@@ -222,9 +222,29 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
     inputRef.current?.focus();
   }, [resetTest, generateText]);
   
-  // Get character states for rendering
-  const characterStates = useMemo(() => {
-    return getCharacterStates(targetText, typedText, typedText.length);
+  // Get character states for rendering - grouped by words
+  const wordGroups = useMemo(() => {
+    const states = getCharacterStates(targetText, typedText, typedText.length);
+    const words: { chars: typeof states; hasSpace: boolean }[] = [];
+    let currentWord: typeof states = [];
+    
+    states.forEach((charState, index) => {
+      if (charState.char === ' ') {
+        if (currentWord.length > 0) {
+          words.push({ chars: currentWord, hasSpace: true });
+          currentWord = [];
+        }
+      } else {
+        currentWord.push(charState);
+      }
+    });
+    
+    // Push last word if any
+    if (currentWord.length > 0) {
+      words.push({ chars: currentWord, hasSpace: false });
+    }
+    
+    return words;
   }, [targetText, typedText]);
   
   // Focus input on mount and status change
@@ -302,28 +322,33 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
         
         {/* Text Display */}
         <div className={cn(
-          "font-mono text-xl md:text-2xl leading-loose select-none break-words max-h-[280px] overflow-hidden transition-opacity duration-300",
+          "font-mono text-xl md:text-2xl leading-relaxed select-none max-h-[280px] overflow-hidden transition-opacity duration-300",
           status === 'idle' && "opacity-50"
         )}>
-          {characterStates.slice(0, 350).map((charState, index) => (
-            <span
-              key={index}
-              className={cn(
-                'relative transition-colors duration-75 inline',
-                charState.state === 'correct' && 'text-typing-correct',
-                charState.state === 'incorrect' && 'text-typing-error bg-destructive/20 rounded-sm px-0.5',
-                charState.state === 'current' && 'text-primary',
-                charState.state === 'upcoming' && 'text-muted-foreground/70'
-              )}
-            >
-              {charState.state === 'current' && status === 'running' && (
-                <motion.span 
-                  className="absolute left-0 top-1 w-0.5 h-[calc(100%-8px)] bg-primary rounded-full"
-                  animate={{ opacity: [1, 0, 1] }}
-                  transition={{ duration: 0.8, repeat: Infinity }}
-                />
-              )}
-              {charState.char === ' ' ? '\u00A0' : charState.char}
+          {wordGroups.slice(0, 80).map((word, wordIndex) => (
+            <span key={wordIndex} className="inline-block whitespace-nowrap">
+              {word.chars.map((charState, charIndex) => (
+                <span
+                  key={charIndex}
+                  className={cn(
+                    'relative transition-colors duration-75',
+                    charState.state === 'correct' && 'text-typing-correct',
+                    charState.state === 'incorrect' && 'text-typing-error bg-destructive/20 rounded-sm',
+                    charState.state === 'current' && 'text-primary',
+                    charState.state === 'upcoming' && 'text-muted-foreground/70'
+                  )}
+                >
+                  {charState.state === 'current' && status === 'running' && (
+                    <motion.span 
+                      className="absolute left-0 top-1 w-0.5 h-[calc(100%-8px)] bg-primary rounded-full"
+                      animate={{ opacity: [1, 0, 1] }}
+                      transition={{ duration: 0.8, repeat: Infinity }}
+                    />
+                  )}
+                  {charState.char}
+                </span>
+              ))}
+              {word.hasSpace && <span className="text-muted-foreground/70">{'\u00A0'}</span>}
             </span>
           ))}
         </div>
