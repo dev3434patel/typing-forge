@@ -48,17 +48,19 @@ const Index = () => {
       
       <main className="flex-1 container mx-auto px-4 py-8 md:py-12">
         <div className="flex flex-col items-center">
-          {/* Title */}
-          <div className="text-center mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold mb-2">
-              {settings.mode === 'keybr' ? 'Adaptive Learning' : 'Test your typing speed'}
-            </h1>
-            <p className="text-muted-foreground">
-              {settings.mode === 'keybr' 
-                ? 'Master each letter with intelligent practice - unlock new letters as you improve'
-                : 'Choose your mode and start typing to begin the test'}
-            </p>
-          </div>
+          {/* Title - hidden when running */}
+          {status !== 'running' && (
+            <div className="text-center mb-8">
+              <h1 className="text-3xl md:text-4xl font-bold mb-2">
+                {settings.mode === 'keybr' ? 'Adaptive Learning' : 'Test your typing speed'}
+              </h1>
+              <p className="text-muted-foreground">
+                {settings.mode === 'keybr' 
+                  ? 'Master each letter with intelligent practice - unlock new letters as you improve'
+                  : 'Choose your mode and start typing to begin the test'}
+              </p>
+            </div>
+          )}
           
           {/* Settings */}
           <TestSettings />
