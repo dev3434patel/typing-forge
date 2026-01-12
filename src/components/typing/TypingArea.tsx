@@ -11,6 +11,7 @@ import {
 import { generateRandomWords, getRandomQuote } from '@/lib/quotes';
 import { cn } from '@/lib/utils';
 import { RotateCcw } from 'lucide-react';
+import { KeyboardVisualizer } from './KeyboardVisualizer';
 
 interface TypingAreaProps {
   onTestComplete: (stats: TypingStats & { wpmHistory: number[] }) => void;
@@ -40,8 +41,13 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
   const [currentWpm, setCurrentWpm] = useState(0);
   const [currentAccuracy, setCurrentAccuracy] = useState(100);
   const [isFocused, setIsFocused] = useState(false);
+  const [zenWordsTyped, setZenWordsTyped] = useState(0);
+  const [zenElapsedTime, setZenElapsedTime] = useState(0);
+  const [currentKeyPressed, setCurrentKeyPressed] = useState<string | undefined>();
+  const [errorKeys, setErrorKeys] = useState<Set<string>>(new Set());
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const wpmIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const zenTimerRef = useRef<NodeJS.Timeout | null>(null);
   const statsRef = useRef({ wpm: 0, accuracy: 100, correctChars: 0, incorrectChars: 0, totalChars: 0, elapsedTime: 0 });
   
   // Generate text based on mode
@@ -124,11 +130,27 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
       }, 1000);
     }
     
+    // Zen mode timer - just track elapsed time
+    if (status === 'running' && settings.mode === 'zen') {
+      zenTimerRef.current = setInterval(() => {
+        setZenElapsedTime((prev) => prev + 1);
+      }, 1000);
+    }
+    
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
       if (wpmIntervalRef.current) clearInterval(wpmIntervalRef.current);
+      if (zenTimerRef.current) clearInterval(zenTimerRef.current);
     };
   }, [status, settings.mode, finishTest, addWpmSample]);
+  
+  // Track words typed for Zen mode
+  useEffect(() => {
+    if (settings.mode === 'zen' && typedText.length > 0) {
+      const words = typedText.trim().split(/\s+/).filter(w => w.length > 0);
+      setZenWordsTyped(words.length);
+    }
+  }, [typedText, settings.mode]);
   
   // Check for completion in words/quote mode
   useEffect(() => {
@@ -168,12 +190,34 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
     if (status === 'finished') return;
     
     const value = e.target.value;
+    const lastChar = value.slice(-1);
+    const expectedChar = targetText[value.length - 1];
+    
+    // Track current key for keyboard visualization
+    if (value.length > typedText.length && lastChar) {
+      setCurrentKeyPressed(lastChar);
+      
+      // Track error keys
+      if (lastChar !== expectedChar && expectedChar) {
+        setErrorKeys(prev => new Set([...prev, lastChar.toLowerCase()]));
+        setTimeout(() => {
+          setErrorKeys(prev => {
+            const newSet = new Set(prev);
+            newSet.delete(lastChar.toLowerCase());
+            return newSet;
+          });
+        }, 300);
+      }
+      
+      // Clear current key highlight after brief moment
+      setTimeout(() => setCurrentKeyPressed(undefined), 100);
+    }
     
     // Don't allow typing beyond target
     if (value.length <= targetText.length) {
       updateTypedText(value);
     }
-  }, [status, startTest, updateTypedText, targetText.length]);
+  }, [status, startTest, updateTypedText, targetText, typedText.length]);
   
   // Handle key down events
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
@@ -227,6 +271,10 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
     resetTest();
     generateText();
     setScrollOffset(0);
+    setZenWordsTyped(0);
+    setZenElapsedTime(0);
+    setCurrentKeyPressed(undefined);
+    setErrorKeys(new Set());
     inputRef.current?.focus();
   }, [resetTest, generateText]);
   
@@ -326,6 +374,24 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
                 </span>
                 <span className="text-xs uppercase tracking-wider">accuracy</span>
               </div>
+            </div>
+          </motion.div>
+        )}
+        
+        {/* Zen Mode - Minimal distraction stats */}
+        {status === 'running' && settings.mode === 'zen' && (
+          <motion.div
+            className="flex items-center justify-center gap-6 mb-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.6 }}
+            exit={{ opacity: 0 }}
+          >
+            <div className="flex items-center gap-2 text-muted-foreground text-sm">
+              <span className="font-mono">{zenWordsTyped}</span>
+              <span className="text-xs">words</span>
+            </div>
+            <div className="flex items-center gap-2 text-muted-foreground text-sm">
+              <span className="font-mono">{Math.floor(zenElapsedTime / 60)}:{(zenElapsedTime % 60).toString().padStart(2, '0')}</span>
             </div>
           </motion.div>
         )}
@@ -457,7 +523,23 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
           <span className="text-sm">restart</span>
           <span className="text-xs text-muted-foreground/60 ml-1">tab</span>
         </button>
+        
+        {/* Zen mode finish button */}
+        {status === 'running' && settings.mode === 'zen' && zenWordsTyped >= 10 && (
+          <button
+            onClick={() => finishTest()}
+            className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors rounded-lg"
+          >
+            <span className="text-sm">Finish</span>
+          </button>
+        )}
       </motion.div>
+      
+      {/* Keyboard Visualizer */}
+      <KeyboardVisualizer 
+        currentKey={currentKeyPressed}
+        errorKeys={errorKeys}
+      />
     </div>
   );
 }

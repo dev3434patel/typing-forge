@@ -13,6 +13,7 @@ import { calculateWPM, calculateAccuracy } from '@/lib/typing-engine';
 import { LetterProgressPanel } from './LetterProgressPanel';
 import { KeybrResults } from './KeybrResults';
 import { Button } from '@/components/ui/button';
+import { KeyboardVisualizer } from '@/components/typing/KeyboardVisualizer';
 
 type TestStatus = 'idle' | 'running' | 'finished';
 
@@ -27,6 +28,8 @@ export function KeybrLessonMode() {
   const [isFocused, setIsFocused] = useState(false);
   const [showErrorFlash, setShowErrorFlash] = useState(false);
   const [scrollOffset, setScrollOffset] = useState(0);
+  const [currentKeyPressed, setCurrentKeyPressed] = useState<string | undefined>();
+  const [errorKeys, setErrorKeys] = useState<Set<string>>(new Set());
   const [results, setResults] = useState<{
     wpm: number;
     accuracy: number;
@@ -129,11 +132,25 @@ export function KeybrLessonMode() {
       const newChar = value[value.length - 1];
       const expectedChar = lesson.text[value.length - 1];
       
+      // Track current key for keyboard visualization
+      if (newChar) {
+        setCurrentKeyPressed(newChar);
+        setTimeout(() => setCurrentKeyPressed(undefined), 100);
+      }
+      
       // Learn mode requires 100% accuracy - only accept correct characters
       if (newChar && newChar !== expectedChar) {
         // Wrong character - show error flash but don't accept
         setShowErrorFlash(true);
+        setErrorKeys(prev => new Set([...prev, newChar.toLowerCase()]));
         setTimeout(() => setShowErrorFlash(false), 150);
+        setTimeout(() => {
+          setErrorKeys(prev => {
+            const newSet = new Set(prev);
+            newSet.delete(newChar.toLowerCase());
+            return newSet;
+          });
+        }, 300);
         // Reset input to current typed text to reject the wrong character
         e.target.value = typedText;
         return;
@@ -450,6 +467,12 @@ export function KeybrLessonMode() {
       <div className="mt-8">
         <LetterProgressPanel />
       </div>
+      
+      {/* Keyboard Visualizer */}
+      <KeyboardVisualizer 
+        currentKey={currentKeyPressed}
+        errorKeys={errorKeys}
+      />
     </div>
   );
 }
