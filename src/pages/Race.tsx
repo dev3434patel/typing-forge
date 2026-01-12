@@ -12,7 +12,17 @@ import { calculateWPM, calculateAccuracy } from '@/lib/typing-engine';
 import { Swords, Copy, Users, Trophy, Loader2, Play } from 'lucide-react';
 
 function generateRoomCode(): string {
-  return Math.random().toString(36).substring(2, 8).toUpperCase();
+  // Use cryptographically secure random generation
+  const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const randomValues = new Uint8Array(6);
+  crypto.getRandomValues(randomValues);
+  
+  let code = '';
+  for (let i = 0; i < 6; i++) {
+    code += chars[randomValues[i] % chars.length];
+  }
+  
+  return code;
 }
 
 const raceTexts = [
@@ -39,6 +49,8 @@ const Race = () => {
   const [currentWpm, setCurrentWpm] = useState(0);
   const [opponentProgress, setOpponentProgress] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
+  const updateThrottleRef = useRef<NodeJS.Timeout | null>(null);
+  const pendingUpdateRef = useRef<any>(null);
 
   const isHost = raceData?.host_id === user?.id;
   const expectedText = raceData?.expected_text || '';
@@ -211,7 +223,7 @@ const Race = () => {
     const wpm = calculateWPM(correctChars, elapsedSeconds);
     setCurrentWpm(wpm);
 
-    // Update progress in database
+    // Update progress in database with throttling
     const progress = Math.round((newText.length / expectedText.length) * 100);
     const accuracy = calculateAccuracy(correctChars, newText.length);
     
@@ -219,21 +231,39 @@ const Race = () => {
       ? { host_progress: progress, host_wpm: wpm, host_accuracy: accuracy }
       : { opponent_progress: progress, opponent_wpm: wpm, opponent_accuracy: accuracy };
 
-    await supabase
-      .from('race_sessions')
-      .update(updateData)
-      .eq('room_code', roomCode);
+    // Store pending update
+    pendingUpdateRef.current = updateData;
 
-    // Check if finished
+    // Throttle database updates (max once per 200ms)
+    if (!updateThrottleRef.current) {
+      updateThrottleRef.current = setTimeout(async () => {
+        if (pendingUpdateRef.current) {
+          await supabase
+            .from('race_sessions')
+            .update(pendingUpdateRef.current)
+            .eq('room_code', roomCode);
+          pendingUpdateRef.current = null;
+        }
+        updateThrottleRef.current = null;
+      }, 200);
+    }
+
+    // Check if finished - always send final update immediately
     if (newText.length >= expectedText.length) {
+      // Cancel throttle and send final update
+      if (updateThrottleRef.current) {
+        clearTimeout(updateThrottleRef.current);
+        updateThrottleRef.current = null;
+      }
+      
       const finalWpm = calculateWPM(correctChars, elapsedSeconds);
       const finalAccuracy = calculateAccuracy(correctChars, newText.length);
 
+      // Server-side trigger determines winner_id automatically
       await supabase
         .from('race_sessions')
         .update({
           status: 'completed',
-          winner_id: user?.id,
           ended_at: new Date().toISOString(),
           ...(isHost 
             ? { host_wpm: finalWpm, host_accuracy: finalAccuracy, host_progress: 100 }
@@ -243,7 +273,16 @@ const Race = () => {
 
       setStatus('finished');
     }
-  }, [startTime, expectedText, isHost, roomCode, user?.id]);
+  }, [startTime, expectedText, isHost, roomCode]);
+
+  // Cleanup throttle on unmount
+  useEffect(() => {
+    return () => {
+      if (updateThrottleRef.current) {
+        clearTimeout(updateThrottleRef.current);
+      }
+    };
+  }, []);
 
   const copyRoomCode = () => {
     navigator.clipboard.writeText(roomCode);
