@@ -153,7 +153,17 @@ const Race = () => {
       return;
     }
 
-    const code = joinCode.toUpperCase();
+    const code = joinCode.toUpperCase().trim();
+    
+    // Validate room code format (6 alphanumeric characters)
+    if (!/^[0-9A-Z]{6}$/.test(code)) {
+      toast({ 
+        title: 'Invalid room code', 
+        description: 'Room code must be 6 alphanumeric characters',
+        variant: 'destructive' 
+      });
+      return;
+    }
     
     const { data: race, error: fetchError } = await supabase
       .from('race_sessions')
