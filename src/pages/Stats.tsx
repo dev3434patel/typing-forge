@@ -311,7 +311,7 @@ const Stats = () => {
       .map(k => k.key);
     
     return lessonData.slice(0, 20).map((lesson, i) => {
-      const entry: Record<string, number> = { lesson: i + 1 };
+      const entry: { lesson: number; [key: string]: number } = { lesson: i + 1 };
       unlockedKeys.forEach(key => {
         entry[key] = Math.random() * 50 + 30; // Simulated per-key speed
       });
