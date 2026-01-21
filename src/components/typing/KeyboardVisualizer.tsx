@@ -33,12 +33,12 @@ const KEY_WIDTHS: Record<string, number> = {
 // Home row markers
 const HOME_ROW_KEYS = new Set(['f', 'j']);
 
-// Get color based on confidence level
+// Get color based on confidence level - Blue theme only
 function getConfidenceColor(confidence: number): string {
-  if (confidence >= 1.0) return 'hsl(142 50% 35%)'; // dark green - mastered
-  if (confidence >= 0.8) return 'hsl(142 50% 45%)'; // light green - nearly there
-  if (confidence >= 0.6) return 'hsl(48 80% 45%)'; // yellow - in progress
-  if (confidence >= 0.3) return 'hsl(25 80% 50%)'; // orange - needs work
+  if (confidence >= 1.0) return 'hsl(217 91% 50%)'; // deep blue - mastered
+  if (confidence >= 0.8) return 'hsl(217 91% 60%)'; // blue - nearly there
+  if (confidence >= 0.6) return 'hsl(217 80% 70%)'; // light blue - in progress
+  if (confidence >= 0.3) return 'hsl(38 92% 50%)'; // warning/orange - needs work
   return 'hsl(0 60% 50%)'; // red - weak
 }
 
@@ -154,11 +154,11 @@ export function KeyboardVisualizer({
         {/* Legend */}
         <div className="flex items-center justify-center gap-4 mt-4 text-xs text-muted-foreground">
           <div className="flex items-center gap-1.5">
-            <div className="w-3 h-3 rounded" style={{ backgroundColor: 'hsl(142 50% 35%)' }} />
+            <div className="w-3 h-3 rounded" style={{ backgroundColor: 'hsl(217 91% 50%)' }} />
             <span>Mastered</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="w-3 h-3 rounded" style={{ backgroundColor: 'hsl(48 80% 45%)' }} />
+            <div className="w-3 h-3 rounded" style={{ backgroundColor: 'hsl(217 80% 70%)' }} />
             <span>Learning</span>
           </div>
           <div className="flex items-center gap-1.5">
