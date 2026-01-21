@@ -30,7 +30,7 @@ export const Header = forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>
   };
   
   return (
-    <header className="sticky top-0 z-50 glass border-b">
+    <header ref={ref} className="sticky top-0 z-50 glass border-b" {...props}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-2 group">
