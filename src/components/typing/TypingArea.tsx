@@ -46,6 +46,10 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
   const [currentKeyPressed, setCurrentKeyPressed] = useState<string | undefined>();
   const [errorKeys, setErrorKeys] = useState<Set<string>>(new Set());
   
+  // NEW: Ready state - paragraph visible, waiting for first keystroke
+  const [isReady, setIsReady] = useState(false);
+  const [showTabHint, setShowTabHint] = useState(false);
+  
   // CRITICAL: Track backspace usage for strict accuracy
   const [backspaceCount, setBackspaceCount] = useState(0);
   const [totalKeystrokes, setTotalKeystrokes] = useState(0);
@@ -279,50 +283,96 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
   
   // Handle key down events - NO timer start on Enter, only on first character typed
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    // Restart on Tab key
+    // Tab key - show restart hint or restart if already showing
     if (e.key === 'Tab') {
       e.preventDefault();
-      resetTest();
-      generateText();
+      if (showTabHint || status === 'running') {
+        // Actually restart
+        resetTest();
+        generateText();
+        setIsReady(false);
+        setShowTabHint(false);
+        inputRef.current?.focus();
+      } else {
+        // Show the restart hint
+        setShowTabHint(true);
+      }
+      return;
+    }
+    
+    // Enter key when idle - show paragraph (ready state)
+    if (status === 'idle' && e.key === 'Enter') {
+      e.preventDefault();
+      setIsReady(true);
+      setShowTabHint(false);
       inputRef.current?.focus();
       return;
     }
     
-    // Focus input on Enter when idle (but do NOT start timer)
-    if (status === 'idle' && e.key === 'Enter') {
+    // Enter key when ready with tab hint showing - start new test
+    if (isReady && showTabHint && e.key === 'Enter') {
       e.preventDefault();
+      resetTest();
+      generateText();
+      setIsReady(true);
+      setShowTabHint(false);
       inputRef.current?.focus();
       return;
     }
-  }, [status, resetTest, generateText]);
+  }, [status, resetTest, generateText, showTabHint, isReady]);
   
-  // Global keyboard listener - Tab to restart, Enter to focus
+  // Global keyboard listener - Tab to show restart hint, Enter to reveal paragraph
   useEffect(() => {
     const handleGlobalKeyDown = (e: KeyboardEvent) => {
-      // Tab to restart
+      // Tab key handling
       if (e.key === 'Tab' && status !== 'finished') {
+        e.preventDefault();
+        if (showTabHint || status === 'running') {
+          // Actually restart
+          resetTest();
+          generateText();
+          setIsReady(false);
+          setShowTabHint(false);
+          inputRef.current?.focus();
+        } else {
+          // Show the restart hint
+          setShowTabHint(true);
+        }
+        return;
+      }
+      
+      // Enter when idle - reveal paragraph (ready state)
+      if (status === 'idle' && e.key === 'Enter') {
+        e.preventDefault();
+        setIsReady(true);
+        setShowTabHint(false);
+        inputRef.current?.focus();
+        return;
+      }
+      
+      // Enter when ready with tab hint - start new test
+      if (isReady && showTabHint && e.key === 'Enter') {
         e.preventDefault();
         resetTest();
         generateText();
-        inputRef.current?.focus();
-      }
-      
-      // Enter focuses input when idle (does NOT start timer)
-      if (status === 'idle' && e.key === 'Enter') {
-        e.preventDefault();
+        setIsReady(true);
+        setShowTabHint(false);
         inputRef.current?.focus();
       }
     };
     
     window.addEventListener('keydown', handleGlobalKeyDown);
     return () => window.removeEventListener('keydown', handleGlobalKeyDown);
-  }, [status, resetTest, generateText]);
+  }, [status, resetTest, generateText, showTabHint, isReady]);
   
-  // Focus input on click - allow starting by clicking
+  // Focus input on click - allow starting by clicking (reveals paragraph)
   const handleClick = useCallback(() => {
+    if (status === 'idle') {
+      setIsReady(true);
+      setShowTabHint(false);
+    }
     inputRef.current?.focus();
-    // If idle, just focus - typing will start test
-  }, []);
+  }, [status]);
   
   // Handle restart
   const handleRestart = useCallback(() => {
@@ -336,6 +386,8 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
     setBackspaceCount(0);
     setTotalKeystrokes(0);
     setCompletedWordEndIndices([]);
+    setIsReady(false);
+    setShowTabHint(false);
     inputRef.current?.focus();
   }, [resetTest, generateText]);
   
@@ -497,12 +549,12 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
           disabled={status === 'finished'}
         />
         
-        {/* Text Display - Paragraph always visible, especially behind idle overlay */}
+        {/* Text Display - Paragraph always visible when ready */}
         <div 
           ref={textDisplayRef}
           className={cn(
             "font-mono text-xl md:text-2xl leading-[2.5] select-none max-h-[200px] overflow-hidden transition-all duration-300",
-            status === 'idle' && "opacity-70" // Make text visible behind overlay
+            status === 'idle' && !isReady && "opacity-50" // Faded behind overlay when not ready
           )}
           style={{
             transform: `translateY(-${scrollOffset * 48}px)`,
@@ -525,7 +577,7 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
                     charState.state === 'upcoming' && 'char-upcoming'
                   )}
                 >
-                  {charState.state === 'current' && status === 'running' && (
+                  {charState.state === 'current' && (status === 'running' || isReady) && (
                     <motion.span 
                       className="absolute left-0 top-1 w-0.5 h-[calc(100%-8px)] bg-primary rounded-full"
                       animate={{ opacity: [1, 0, 1] }}
@@ -556,8 +608,54 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
           ))}
         </div>
         
-        {/* Start prompt overlay - 50% transparency so paragraph is clearly visible */}
-        {status === 'idle' && (
+        {/* Word Counter - shows when ready or running */}
+        {(isReady || status === 'running') && status !== 'finished' && (
+          <motion.div
+            className="absolute top-2 right-4 text-muted-foreground text-sm font-mono"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <span className="text-foreground font-bold">{typedText.split(' ').filter(w => w).length}</span>
+            <span className="mx-1">/</span>
+            <span>{targetText.split(' ').filter(w => w).length}</span>
+            <span className="ml-1 text-xs">words</span>
+          </motion.div>
+        )}
+        
+        {/* Tab hint overlay - shows when Tab pressed in ready state */}
+        {status === 'idle' && isReady && showTabHint && (
+          <motion.div
+            className="absolute inset-0 flex items-center justify-center bg-card/80 backdrop-blur-sm rounded-2xl z-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <div className="flex flex-col items-center gap-4 text-center">
+              <div className="flex gap-4">
+                <motion.div
+                  className="px-4 py-2 bg-warning/20 border border-warning/40 rounded-lg"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <span className="text-warning font-mono font-bold">Tab</span>
+                  <span className="text-muted-foreground ml-2">→ Restart</span>
+                </motion.div>
+                <motion.div
+                  className="px-4 py-2 bg-primary/20 border border-primary/40 rounded-lg"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <span className="text-primary font-mono font-bold">Enter</span>
+                  <span className="text-muted-foreground ml-2">→ New Test</span>
+                </motion.div>
+              </div>
+              <p className="text-muted-foreground text-sm">
+                Press <span className="text-warning font-bold">Tab</span> again to restart or <span className="text-primary font-bold">Enter</span> for a new test
+              </p>
+            </div>
+          </motion.div>
+        )}
+        
+        {/* Start prompt overlay - only when NOT ready */}
+        {status === 'idle' && !isReady && (
           <motion.div
             className="absolute inset-0 flex flex-col items-center justify-center bg-card/50 rounded-2xl z-10 cursor-text"
             initial={{ opacity: 0 }}
@@ -581,14 +679,29 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
                 transition={{ duration: 2, repeat: Infinity }}
                 onClick={handleClick}
               >
-                <span className="text-primary font-mono font-bold text-lg">⌨️ Click to Focus</span>
+                <span className="text-primary font-mono font-bold text-lg">⌨️ Click or Press Enter</span>
               </motion.div>
               <p className="text-muted-foreground text-sm font-medium text-center max-w-xs">
-                Click here and start typing.<br/>
+                Click here or press Enter to reveal the text.<br/>
                 <span className="text-primary/80">Timer begins on first keystroke</span><br/>
-                <span className="text-warning/80 text-xs">Backspace = accuracy penalty</span>
+                <span className="text-warning/80 text-xs">Backspace = accuracy penalty • No going back after word complete</span>
               </p>
             </motion.div>
+          </motion.div>
+        )}
+        
+        {/* Ready state prompt - just a small hint at the bottom */}
+        {status === 'idle' && isReady && !showTabHint && (
+          <motion.div
+            className="absolute bottom-2 left-0 right-0 flex justify-center"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <div className="flex items-center gap-4 px-4 py-2 bg-muted/50 rounded-lg text-sm text-muted-foreground">
+              <span>Start typing to begin</span>
+              <span className="text-xs opacity-60">•</span>
+              <span className="text-xs">Press <span className="text-warning font-mono">Tab</span> for options</span>
+            </div>
           </motion.div>
         )}
       </div>
