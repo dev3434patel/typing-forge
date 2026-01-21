@@ -539,10 +539,7 @@ export function KeybrLessonMode() {
                   {word.spaceState.state === 'upcoming' ? '·' : '\u00A0'}
                 </span>
               )}
-              {/* Lock indicator for completed words */}
-              {word.isLocked && word.hasSpace && (
-                <span className="text-primary/40 text-xs align-super">✓</span>
-              )}
+              {/* No visual lock indicator - locking is handled internally */}
             </span>
           ))}
         </div>
