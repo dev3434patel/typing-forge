@@ -14,23 +14,19 @@ import { useState, useMemo, useEffect } from 'react';
 import { Zap, BarChart3, Keyboard, Calendar } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
-import { getTestHistory, getPersonalBest } from '@/lib/typing-engine';
-import { getAllCharacterStats, getCharacterData } from '@/lib/keybr-engine';
+import { getTestHistory } from '@/lib/typing-engine';
+import { getCharacterData } from '@/lib/keybr-engine';
 import { useNavigate } from 'react-router-dom';
-
-interface TestSession {
-  id: string;
-  created_at: string | null;
-  net_wpm: number | null;
-  accuracy_percent: number | null;
-  consistency_percent: number | null;
-  duration_seconds: number;
-  test_mode: string;
-  total_characters: number | null;
-  correct_characters: number | null;
-  error_count: number | null;
-  per_char_metrics: unknown;
-}
+import {
+  type TestSession,
+  calculateAggregateStats,
+  filterByTimePeriod,
+  calculateAccuracyStreaks,
+  generateSpeedDistribution,
+  calculatePercentile,
+  prepareLessonData,
+  generateCalendarActivities,
+} from '@/lib/stats-utils';
 
 const Stats = () => {
   const { user, loading: authLoading } = useAuth();
@@ -89,21 +85,9 @@ const Stats = () => {
     }
   }, [user, authLoading]);
 
-  // Filter tests by time period
+  // Filter tests by time period using utility
   const filteredTests = useMemo(() => {
-    let filtered = [...testSessions].filter(t => t.created_at); // Filter out null dates
-    
-    const now = new Date();
-    if (timePeriod === 'week') {
-      const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-      filtered = filtered.filter(t => t.created_at && new Date(t.created_at) >= weekAgo);
-    } else if (timePeriod === 'month') {
-      const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
-      filtered = filtered.filter(t => t.created_at && new Date(t.created_at) >= monthAgo);
-    } else if (timePeriod === 'year') {
-      const yearAgo = new Date(now.getTime() - 365 * 24 * 60 * 60 * 1000);
-      filtered = filtered.filter(t => t.created_at && new Date(t.created_at) >= yearAgo);
-    }
+    let filtered = filterByTimePeriod(testSessions, timePeriod as 'all' | 'week' | 'month' | 'year');
     
     // Filter by content type (mode)
     if (contentType !== 'letters') {
@@ -113,149 +97,35 @@ const Stats = () => {
     return filtered;
   }, [testSessions, timePeriod, contentType]);
 
-  // Calculate all-time stats
+  // Calculate all-time stats using canonical utility
   const allTimeStats = useMemo(() => {
-    if (filteredTests.length === 0) {
-      return {
-        totalTime: 0,
-        lessonsCount: 0,
-        topSpeed: 0,
-        avgSpeed: 0,
-        topAccuracy: 0,
-        avgAccuracy: 0,
-      };
-    }
-    
-    const totalTime = filteredTests.reduce((sum, t) => sum + t.duration_seconds, 0);
-    const topSpeed = Math.max(...filteredTests.map(t => t.net_wpm || 0));
-    const avgSpeed = filteredTests.reduce((sum, t) => sum + (t.net_wpm || 0), 0) / filteredTests.length;
-    const topAccuracy = Math.max(...filteredTests.map(t => t.accuracy_percent || 0));
-    const avgAccuracy = filteredTests.reduce((sum, t) => sum + (t.accuracy_percent || 0), 0) / filteredTests.length;
-    
-    return {
-      totalTime,
-      lessonsCount: filteredTests.length,
-      topSpeed,
-      avgSpeed,
-      topAccuracy,
-      avgAccuracy,
-    };
+    return calculateAggregateStats(filteredTests);
   }, [filteredTests]);
 
-  // Calculate today's stats
+  // Calculate today's stats using canonical utility
   const todayStats = useMemo(() => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    
-    const todayTests = testSessions.filter(t => t.created_at && new Date(t.created_at) >= today);
-    
-    if (todayTests.length === 0) {
-      return {
-        totalTime: 0,
-        lessonsCount: 0,
-        topSpeed: 0,
-        avgSpeed: 0,
-        topAccuracy: 0,
-        avgAccuracy: 0,
-      };
-    }
-    
-    const totalTime = todayTests.reduce((sum, t) => sum + t.duration_seconds, 0);
-    const topSpeed = Math.max(...todayTests.map(t => t.net_wpm || 0));
-    const avgSpeed = todayTests.reduce((sum, t) => sum + (t.net_wpm || 0), 0) / todayTests.length;
-    const topAccuracy = Math.max(...todayTests.map(t => t.accuracy_percent || 0));
-    const avgAccuracy = todayTests.reduce((sum, t) => sum + (t.accuracy_percent || 0), 0) / todayTests.length;
-    
-    return {
-      totalTime,
-      lessonsCount: todayTests.length,
-      topSpeed,
-      avgSpeed,
-      topAccuracy,
-      avgAccuracy,
-    };
+    const todayTests = filterByTimePeriod(testSessions, 'today');
+    return calculateAggregateStats(todayTests);
   }, [testSessions]);
 
-  // Calculate accuracy streaks
+  // Calculate accuracy streaks using canonical utility
   const accuracyStreaks = useMemo(() => {
-    const thresholds = [100, 98, 95, 90];
-    const streaks: { threshold: number; count: number; avgWpm: number; avgAccuracy: number; startDate: string; endDate: string }[] = [];
-    
-    thresholds.forEach(threshold => {
-      let currentStreak: TestSession[] = [];
-      let longestStreak: TestSession[] = [];
-      
-      filteredTests.forEach(test => {
-        if ((test.accuracy_percent || 0) >= threshold) {
-          currentStreak.push(test);
-          if (currentStreak.length > longestStreak.length) {
-            longestStreak = [...currentStreak];
-          }
-        } else {
-          currentStreak = [];
-        }
-      });
-      
-      if (longestStreak.length >= 3) {
-        const avgWpm = longestStreak.reduce((sum, t) => sum + (t.net_wpm || 0), 0) / longestStreak.length;
-        const avgAccuracy = longestStreak.reduce((sum, t) => sum + (t.accuracy_percent || 0), 0) / longestStreak.length;
-        
-        streaks.push({
-          threshold,
-          count: longestStreak.length,
-          avgWpm,
-          avgAccuracy,
-          startDate: longestStreak[0].created_at ? new Date(longestStreak[0].created_at).toLocaleDateString() : 'N/A',
-          endDate: longestStreak[longestStreak.length - 1].created_at ? new Date(longestStreak[longestStreak.length - 1].created_at).toLocaleDateString() : 'N/A',
-        });
-      }
-    });
-    
-    return streaks;
+    return calculateAccuracyStreaks(filteredTests);
   }, [filteredTests]);
 
-  // Generate speed distribution for histogram - USE REAL DATA from user's tests
+  // Generate speed distribution using canonical utility
   const speedDistribution = useMemo(() => {
-    const buckets = [
-      { range: '0-20', rangeStart: 0, rangeEnd: 20, count: 0 },
-      { range: '20-40', rangeStart: 20, rangeEnd: 40, count: 0 },
-      { range: '40-60', rangeStart: 40, rangeEnd: 60, count: 0 },
-      { range: '60-80', rangeStart: 60, rangeEnd: 80, count: 0 },
-      { range: '80-100', rangeStart: 80, rangeEnd: 100, count: 0 },
-      { range: '100-120', rangeStart: 100, rangeEnd: 120, count: 0 },
-      { range: '120+', rangeStart: 120, rangeEnd: 999, count: 0 },
-    ];
-    
-    // Count user's actual tests in each bucket
-    filteredTests.forEach(test => {
-      const wpm = test.net_wpm || 0;
-      const bucket = buckets.find(b => wpm >= b.rangeStart && wpm < b.rangeEnd);
-      if (bucket) bucket.count++;
-    });
-    
-    return buckets;
+    return generateSpeedDistribution(filteredTests);
   }, [filteredTests]);
 
-  // Calculate percentile based on actual performance data
+  // Calculate percentile using canonical utility
   const percentileBeat = useMemo(() => {
-    if (filteredTests.length === 0) return 0;
-    
-    // Calculate percentile based on user's own test distribution
-    const avgSpeed = allTimeStats.avgSpeed;
-    const sortedTests = [...filteredTests].sort((a, b) => (a.net_wpm || 0) - (b.net_wpm || 0));
-    const testsBelow = sortedTests.filter(t => (t.net_wpm || 0) < avgSpeed).length;
-    
-    return Math.round((testsBelow / sortedTests.length) * 100);
+    return calculatePercentile(filteredTests, allTimeStats.avgSpeed);
   }, [filteredTests, allTimeStats.avgSpeed]);
 
-  // Prepare lesson data for charts
+  // Prepare lesson data using canonical utility
   const lessonData = useMemo(() => {
-    return filteredTests.map((t, i) => ({
-      lesson: i + 1,
-      wpm: t.net_wpm || 0,
-      accuracy: t.accuracy_percent || 0,
-      keysCount: Math.floor((t.total_characters || 0) / 10),
-    }));
+    return prepareLessonData(filteredTests);
   }, [filteredTests]);
 
   // Get character stats from localStorage (keybr engine)
@@ -283,38 +153,22 @@ const Stats = () => {
     }));
   }, []);
 
-  // Practice calendar data
+  // Practice calendar data using canonical utility
   const calendarActivities = useMemo(() => {
-    const activityMap = new Map<string, { lessonsCompleted: number; dailyGoalPercent: number }>();
-    
-    testSessions.forEach(t => {
-      if (!t.created_at) return; // Skip null dates
-      const date = new Date(t.created_at).toISOString().split('T')[0];
-      const existing = activityMap.get(date) || { lessonsCompleted: 0, dailyGoalPercent: 0 };
-      existing.lessonsCompleted++;
-      existing.dailyGoalPercent = Math.min(100, existing.lessonsCompleted * 10);
-      activityMap.set(date, existing);
-    });
-    
-    return Array.from(activityMap.entries()).map(([date, data]) => ({
-      date,
-      ...data,
-    }));
+    return generateCalendarActivities(testSessions);
   }, [testSessions]);
 
-  // Key progress data for learning progress chart - USE REAL DATA
+  // Key progress data for learning progress chart
   const keyProgressData = useMemo(() => {
     const unlockedKeys = characterStats
       .filter(k => k.avgSpeed > 0)
       .slice(0, 10)
       .map(k => k.key);
     
-    // Use actual lesson data with real per-key speeds from character stats
     return lessonData.slice(0, 20).map((lesson, i) => {
       const entry: { lesson: number; [key: string]: number } = { lesson: i + 1 };
       unlockedKeys.forEach(key => {
         const charStat = characterStats.find(c => c.key === key);
-        // Use actual speed from character stats, with small variation per lesson
         entry[key] = charStat ? charStat.avgSpeed : 0;
       });
       return entry;

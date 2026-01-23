@@ -2,6 +2,12 @@ import { useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from './useAuth';
 import { saveTestResult, type TestResult, type TypingStats } from '@/lib/typing-engine';
+import { 
+  type KeystrokeRecord, 
+  computeSessionMetrics, 
+  sanitizeMetric 
+} from '@/lib/metrics-engine';
+import { type Keystroke } from '@/lib/professional-accuracy';
 
 interface PerCharMetric {
   char: string;
@@ -11,57 +17,117 @@ interface PerCharMetric {
   occurrences: number;
 }
 
+// Extended stats interface with keystroke log for server-authoritative metrics
+export interface ExtendedTypingStats extends TypingStats {
+  wpmHistory: number[];
+  backspaceCount?: number;
+  keystrokeLog?: Keystroke[];
+  targetText?: string;
+  typedText?: string;
+}
+
+/**
+ * Convert legacy Keystroke format to KeystrokeRecord for metrics engine
+ */
+function convertToKeystrokeRecord(keystrokes: Keystroke[], sessionId: string): KeystrokeRecord[] {
+  return keystrokes.map((k, index) => ({
+    session_id: sessionId,
+    char_expected: k.expected || k.char,
+    char_typed: k.char,
+    event_type: 'keydown' as const,
+    timestamp_ms: k.timestamp,
+    cursor_index: k.position,
+    is_backspace: k.key === 'Backspace',
+    is_correct: k.isCorrect ?? (k.char === k.expected),
+  }));
+}
+
 export function useTestResults() {
   const { user } = useAuth();
 
   const saveResult = useCallback(async (
-    stats: TypingStats & { wpmHistory: number[]; backspaceCount?: number },
+    stats: ExtendedTypingStats,
     mode: string,
     duration: number
   ) => {
-    // CRITICAL: If backspace was used, cap accuracy at 99.99%
-    let finalAccuracy = stats.accuracy;
-    if (stats.backspaceCount && stats.backspaceCount > 0 && finalAccuracy === 100) {
-      finalAccuracy = 99.99;
+    // Use canonical metrics engine if keystroke log is available
+    let finalMetrics = {
+      netWpm: sanitizeMetric(stats.wpm),
+      rawWpm: sanitizeMetric(stats.rawWpm),
+      accuracy: sanitizeMetric(stats.accuracy),
+      consistency: sanitizeMetric(stats.consistency),
+      correctChars: stats.correctChars,
+      incorrectChars: stats.incorrectChars,
+      totalChars: stats.totalChars,
+      backspaceCount: stats.backspaceCount || 0,
+    };
+
+    // If keystroke log is available, compute server-authoritative metrics
+    if (stats.keystrokeLog && stats.keystrokeLog.length > 0 && stats.targetText && stats.typedText) {
+      const sessionId = crypto.randomUUID();
+      const keystrokeRecords = convertToKeystrokeRecord(stats.keystrokeLog, sessionId);
+      
+      const sessionMetrics = computeSessionMetrics(
+        keystrokeRecords,
+        stats.targetText,
+        stats.typedText
+      );
+      
+      // Use canonical metrics from engine
+      finalMetrics = {
+        netWpm: sanitizeMetric(sessionMetrics.netWpm),
+        rawWpm: sanitizeMetric(sessionMetrics.rawWpm),
+        accuracy: sanitizeMetric(sessionMetrics.accuracy),
+        consistency: sanitizeMetric(sessionMetrics.consistency),
+        correctChars: sessionMetrics.correctChars,
+        incorrectChars: sessionMetrics.incorrectChars,
+        totalChars: sessionMetrics.totalTypedChars,
+        backspaceCount: sessionMetrics.backspaceCount,
+      };
+    } else {
+      // Fallback: Apply backspace cap manually if no keystroke log
+      if (stats.backspaceCount && stats.backspaceCount > 0 && finalMetrics.accuracy === 100) {
+        finalMetrics.accuracy = 99.99;
+      }
     }
     
     // Always save to localStorage
     const localResult: TestResult = {
       id: crypto.randomUUID(),
-      wpm: stats.wpm,
-      rawWpm: stats.rawWpm,
-      accuracy: finalAccuracy,
-      consistency: stats.consistency,
+      wpm: finalMetrics.netWpm,
+      rawWpm: finalMetrics.rawWpm,
+      accuracy: finalMetrics.accuracy,
+      consistency: finalMetrics.consistency,
       mode,
       duration,
-      correctChars: stats.correctChars,
-      incorrectChars: stats.incorrectChars,
-      totalChars: stats.totalChars,
+      correctChars: finalMetrics.correctChars,
+      incorrectChars: finalMetrics.incorrectChars,
+      totalChars: finalMetrics.totalChars,
       errors: stats.errors,
       date: new Date().toISOString(),
       wpmHistory: stats.wpmHistory,
     };
     saveTestResult(localResult);
 
-    // If logged in, also save to database
+    // If logged in, also save to database with canonical metrics
     if (user) {
       try {
-        // Save test session with strict accuracy
+        // Save test session with server-authoritative metrics
         await supabase.from('test_sessions').insert({
           user_id: user.id,
           test_mode: mode,
           duration_seconds: duration,
-          gross_wpm: stats.rawWpm,
-          net_wpm: stats.wpm,
-          accuracy_percent: finalAccuracy, // Use final accuracy (capped if backspace used)
-          consistency_percent: stats.consistency,
-          total_characters: stats.totalChars,
-          correct_characters: stats.correctChars,
+          gross_wpm: finalMetrics.rawWpm,
+          net_wpm: finalMetrics.netWpm,
+          accuracy_percent: finalMetrics.accuracy,
+          consistency_percent: finalMetrics.consistency,
+          total_characters: finalMetrics.totalChars,
+          correct_characters: finalMetrics.correctChars,
           error_count: stats.errors,
           wpm_history: stats.wpmHistory,
         });
 
-        // Update leaderboard entry
+        // Update leaderboard entry with sanitized values
         const { data: existingEntry } = await supabase
           .from('leaderboards')
           .select('*')
@@ -69,32 +135,37 @@ export function useTestResults() {
           .maybeSingle();
 
         if (existingEntry) {
-          const testsCompleted = existingEntry.tests_completed + 1;
-          const newAvgWpm = ((existingEntry.wpm_avg * existingEntry.tests_completed) + stats.wpm) / testsCompleted;
-          const newAvgAccuracy = ((existingEntry.accuracy_avg * existingEntry.tests_completed) + finalAccuracy) / testsCompleted;
-          const newAvgConsistency = ((existingEntry.consistency_avg * existingEntry.tests_completed) + stats.consistency) / testsCompleted;
+          const testsCompleted = (existingEntry.tests_completed || 0) + 1;
+          const prevAvgWpm = existingEntry.wpm_avg || 0;
+          const prevAvgAccuracy = existingEntry.accuracy_avg || 0;
+          const prevAvgConsistency = existingEntry.consistency_avg || 0;
+          const prevTestsCompleted = existingEntry.tests_completed || 0;
+          
+          const newAvgWpm = sanitizeMetric(((prevAvgWpm * prevTestsCompleted) + finalMetrics.netWpm) / testsCompleted);
+          const newAvgAccuracy = sanitizeMetric(((prevAvgAccuracy * prevTestsCompleted) + finalMetrics.accuracy) / testsCompleted);
+          const newAvgConsistency = sanitizeMetric(((prevAvgConsistency * prevTestsCompleted) + finalMetrics.consistency) / testsCompleted);
 
           await supabase
             .from('leaderboards')
             .update({
-              wpm_best: Math.max(existingEntry.wpm_best, stats.wpm),
+              wpm_best: Math.max(existingEntry.wpm_best || 0, finalMetrics.netWpm),
               wpm_avg: newAvgWpm,
               accuracy_avg: newAvgAccuracy,
               consistency_avg: newAvgConsistency,
               tests_completed: testsCompleted,
-              total_characters: existingEntry.total_characters + stats.totalChars,
+              total_characters: (existingEntry.total_characters || 0) + finalMetrics.totalChars,
               updated_at: new Date().toISOString(),
             })
             .eq('user_id', user.id);
         } else {
           await supabase.from('leaderboards').insert({
             user_id: user.id,
-            wpm_best: stats.wpm,
-            wpm_avg: stats.wpm,
-            accuracy_avg: finalAccuracy, // Use final accuracy
-            consistency_avg: stats.consistency,
+            wpm_best: finalMetrics.netWpm,
+            wpm_avg: finalMetrics.netWpm,
+            accuracy_avg: finalMetrics.accuracy,
+            consistency_avg: finalMetrics.consistency,
             tests_completed: 1,
-            total_characters: stats.totalChars,
+            total_characters: finalMetrics.totalChars,
           });
         }
       } catch (error) {
