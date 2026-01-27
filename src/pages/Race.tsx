@@ -6,7 +6,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { useToast } from '@/hooks/use-toast';
-import { calculateWPM, calculateAccuracy } from '@/lib/typing-engine';
+import { sanitizeMetric } from '@/lib/metrics-engine';
 import { BotDifficulty } from '@/lib/bot-engine';
 import { useBotRace } from '@/hooks/useBotRace';
 import { Loader2 } from 'lucide-react';
@@ -84,18 +84,22 @@ const Race = () => {
     return generateRandomWords(wordsNeeded, false, false);
   }, []);
 
+  // Track bot accuracy in real-time
+  const [opponentAccuracy, setOpponentAccuracy] = useState(100);
+
   // Bot race hook
   const { reset: resetBot } = useBotRace({
     isActive: status === 'racing' && isBotRace,
     expectedText,
     difficulty: botDifficulty || 'beginner',
-    onBotProgress: useCallback((progress: number, wpm: number) => {
+    onBotProgress: useCallback((progress: number, wpm: number, accuracy: number) => {
       setOpponentProgress(progress);
-      setOpponentWpm(wpm);
+      setOpponentWpm(sanitizeMetric(wpm));
+      setOpponentAccuracy(sanitizeMetric(accuracy));
     }, []),
     onBotFinish: useCallback((wpm: number, accuracy: number) => {
-      setOpponentFinalWpm(wpm);
-      setOpponentFinalAccuracy(accuracy);
+      setOpponentFinalWpm(sanitizeMetric(wpm));
+      setOpponentFinalAccuracy(sanitizeMetric(accuracy));
     }, []),
   });
 
@@ -226,17 +230,40 @@ const Race = () => {
     }
     
     const elapsedSeconds = startTime ? (Date.now() - startTime) / 1000 : 0;
-    const correctChars = [...expectedText].filter((char, i) => char === typedText[i]).length;
-    const finalWpm = calculateWPM(correctChars, elapsedSeconds);
-    const finalAccuracy = calculateAccuracy(correctChars, typedText.length);
+    const elapsedMs = elapsedSeconds * 1000;
     
-    setMyFinalWpm(finalWpm);
-    setMyFinalAccuracy(finalAccuracy);
+    // Calculate metrics properly using canonical formula
+    // Formula: (correctChars / 5) / (elapsedMs / 60000)
+    const comparisonLength = Math.min(typedText.length, expectedText.length);
+    let correctChars = 0;
+    let incorrectChars = 0;
     
-    // For bot races, capture bot's final state
+    for (let i = 0; i < comparisonLength; i++) {
+      if (typedText[i] === expectedText[i]) {
+        correctChars++;
+      } else {
+        incorrectChars++;
+      }
+    }
+    
+    // Calculate WPM: (correctChars / 5) / (elapsedMs / 60000)
+    const finalWpm = elapsedMs > 0 
+      ? Math.round((correctChars / 5) / (elapsedMs / 60000))
+      : 0;
+    
+    // Calculate accuracy: (correctChars / totalTypedChars) * 100
+    const totalTypedChars = typedText.length;
+    const finalAccuracy = totalTypedChars > 0 
+      ? Math.round((correctChars / totalTypedChars) * 10000) / 100
+      : 100;
+    
+    setMyFinalWpm(sanitizeMetric(finalWpm));
+    setMyFinalAccuracy(sanitizeMetric(finalAccuracy));
+    
+    // For bot races, use actual tracked bot accuracy (not random)
     if (isBotRace) {
-      setOpponentFinalWpm(opponentWpm);
-      setOpponentFinalAccuracy(95 + Math.random() * 4); // Bot accuracy estimate
+      setOpponentFinalWpm(sanitizeMetric(opponentWpm));
+      setOpponentFinalAccuracy(sanitizeMetric(opponentAccuracy));
     }
     
     setStatus('finished');
@@ -254,7 +281,7 @@ const Race = () => {
         })
         .eq('room_code', roomCode);
     }
-  }, [status, startTime, expectedText, typedText, isBotRace, roomCode, isHost, opponentWpm]);
+  }, [status, startTime, expectedText, typedText, isBotRace, roomCode, isHost, opponentWpm, opponentAccuracy]);
 
   const createRace = async () => {
     if (!user) {
@@ -374,13 +401,29 @@ const Race = () => {
 
     if (!startTime) return;
 
-    const elapsedSeconds = (Date.now() - startTime) / 1000;
-    const correctChars = [...expectedText].filter((char, i) => char === newText[i]).length;
-    const wpm = calculateWPM(correctChars, elapsedSeconds);
-    const accuracy = calculateAccuracy(correctChars, newText.length);
+    const elapsedMs = Date.now() - startTime;
     
-    setCurrentWpm(wpm);
-    setCurrentAccuracy(accuracy);
+    // Calculate metrics properly
+    const comparisonLength = Math.min(newText.length, expectedText.length);
+    let correctChars = 0;
+    for (let i = 0; i < comparisonLength; i++) {
+      if (newText[i] === expectedText[i]) {
+        correctChars++;
+      }
+    }
+    
+    // WPM: (correctChars / 5) / (elapsedMs / 60000)
+    const wpm = elapsedMs > 0 
+      ? Math.round((correctChars / 5) / (elapsedMs / 60000))
+      : 0;
+    
+    // Accuracy: (correctChars / totalTypedChars) * 100
+    const accuracy = newText.length > 0 
+      ? Math.round((correctChars / newText.length) * 100)
+      : 100;
+    
+    setCurrentWpm(sanitizeMetric(wpm));
+    setCurrentAccuracy(sanitizeMetric(accuracy));
 
     // Update progress in database (multiplayer only)
     if (!isBotRace && roomCode) {
@@ -423,6 +466,7 @@ const Race = () => {
     setCurrentAccuracy(100);
     setOpponentProgress(0);
     setOpponentWpm(0);
+    setOpponentAccuracy(100);
     setMyFinalWpm(0);
     setMyFinalAccuracy(0);
     setOpponentFinalWpm(0);
