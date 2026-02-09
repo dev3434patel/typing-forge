@@ -407,7 +407,7 @@ export function KeybrLessonMode() {
   }
 
   return (
-    <div className="w-full max-w-4xl mx-auto" tabIndex={0} onKeyDown={handleKeyDown}>
+    <div className="w-full max-w-6xl mx-auto" tabIndex={0} onKeyDown={handleKeyDown}>
       {/* Header */}
       <div className="flex items-center justify-center gap-3 mb-6">
         <Sparkles className="w-6 h-6 text-primary" />
@@ -462,7 +462,7 @@ export function KeybrLessonMode() {
       {/* Typing Area */}
       <div
         className={cn(
-          "relative bg-card border rounded-2xl p-6 md:p-10 cursor-text min-h-[200px] transition-all duration-300",
+          "relative bg-card border rounded-2xl p-6 md:p-8 cursor-text min-h-[180px] transition-all duration-300",
           status === 'running' ? "border-primary/50 shadow-lg shadow-primary/10" : "border-border",
           isFocused && status === 'idle' && "border-primary/30",
           showErrorFlash && "border-destructive shadow-destructive/20"
@@ -489,7 +489,7 @@ export function KeybrLessonMode() {
         <div 
           ref={textDisplayRef}
           className={cn(
-            "font-mono text-xl md:text-2xl leading-[2.5] select-none max-h-[200px] overflow-hidden transition-all duration-300",
+            "font-mono text-xl md:text-2xl leading-[2.5] select-none max-h-[192px] overflow-hidden transition-all duration-300",
             status === 'idle' && "opacity-70" // Make text visible behind overlay
           )}
           style={{
