@@ -57,7 +57,7 @@ export function KeyboardVisualizer({
   errorKeys = new Set(), 
   keyConfidence 
 }: KeyboardVisualizerProps) {
-  const [showKeyboard, setShowKeyboard] = useState(true);
+  const [showKeyboard, setShowKeyboard] = useState(false);
   const [pressedKeys, setPressedKeys] = useState<Set<string>>(new Set());
   
   // Track pressed keys for animation
