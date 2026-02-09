@@ -14,6 +14,12 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { toast } from 'sonner';
+import { z } from 'zod';
+
+const usernameSchema = z.string()
+  .min(3, 'Username must be at least 3 characters')
+  .max(50, 'Username must be less than 50 characters')
+  .regex(/^[a-zA-Z0-9_-]+$/, 'Username can only contain letters, numbers, underscore, and hyphen');
 
 interface ProfileSettingsProps {
   profile: ProfileData;
@@ -28,7 +34,15 @@ export function ProfileSettings({ profile, onUpdate }: ProfileSettingsProps) {
     theme: profile.theme,
   });
 
+  const [usernameError, setUsernameError] = useState<string | null>(null);
+
   const handleSave = async () => {
+    const result = usernameSchema.safeParse(formData.username);
+    if (!result.success) {
+      setUsernameError(result.error.errors[0].message);
+      return;
+    }
+    setUsernameError(null);
     setSaving(true);
     try {
       const { error } = await supabase
@@ -79,8 +93,11 @@ export function ProfileSettings({ profile, onUpdate }: ProfileSettingsProps) {
               placeholder="Enter your username"
               maxLength={50}
             />
+            {usernameError && (
+              <p className="text-sm text-destructive">{usernameError}</p>
+            )}
             <p className="text-sm text-muted-foreground">
-              This is your display name on the leaderboard
+              Letters, numbers, underscore, and hyphen only (3-50 chars)
             </p>
           </div>
         </div>
