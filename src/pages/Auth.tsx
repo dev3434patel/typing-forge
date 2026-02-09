@@ -9,6 +9,11 @@ import { useToast } from '@/hooks/use-toast';
 import { Keyboard, Mail, Lock, User, Loader2 } from 'lucide-react';
 import { z } from 'zod';
 
+const usernameSchema = z.string()
+  .min(3, 'Username must be at least 3 characters')
+  .max(50, 'Username must be less than 50 characters')
+  .regex(/^[a-zA-Z0-9_-]+$/, 'Only letters, numbers, underscore, and hyphen allowed');
+
 const authSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
   password: z.string().min(6, 'Password must be at least 6 characters'),
@@ -20,7 +25,7 @@ const Auth = () => {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+  const [errors, setErrors] = useState<{ email?: string; password?: string; username?: string }>({});
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -44,11 +49,26 @@ const Auth = () => {
   const validateForm = () => {
     try {
       authSchema.parse({ email, password });
+      const newErrors: { email?: string; password?: string; username?: string } = {};
+      
+      // Validate username on signup
+      if (!isLogin && username) {
+        const usernameResult = usernameSchema.safeParse(username);
+        if (!usernameResult.success) {
+          newErrors.username = usernameResult.error.errors[0].message;
+        }
+      }
+      
+      if (Object.keys(newErrors).length > 0) {
+        setErrors(newErrors);
+        return false;
+      }
+      
       setErrors({});
       return true;
     } catch (error) {
       if (error instanceof z.ZodError) {
-        const newErrors: { email?: string; password?: string } = {};
+        const newErrors: { email?: string; password?: string; username?: string } = {};
         error.errors.forEach((err) => {
           if (err.path[0] === 'email') newErrors.email = err.message;
           if (err.path[0] === 'password') newErrors.password = err.message;
@@ -154,9 +174,13 @@ const Auth = () => {
                     placeholder="speedtyper"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    className="pl-10"
+                    className={`pl-10 ${errors.username ? 'border-destructive' : ''}`}
+                    maxLength={50}
                   />
                 </div>
+                {errors.username && (
+                  <p className="text-sm text-destructive">{errors.username}</p>
+                )}
               </div>
             )}
 
