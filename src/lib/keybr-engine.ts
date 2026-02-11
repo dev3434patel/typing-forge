@@ -274,8 +274,22 @@ export function getWeakLetters(count: number = 5): string[] {
   const unlocked = getUnlockedLetters();
   
   return unlocked
-    .map(char => ({ char, confidence: data[char]?.confidence || 0 }))
-    .sort((a, b) => a.confidence - b.confidence)
+    .map(char => {
+      const charData = data[char];
+      // Prioritize letters with actual practice data over default confidence
+      // Letters with no data get confidence 0, but letters with data (even low) should be prioritized
+      const confidence = charData?.confidence ?? 0;
+      const hasData = charData !== undefined;
+      return { char, confidence, hasData };
+    })
+    .sort((a, b) => {
+      // First sort by whether they have data (letters with data come first)
+      if (a.hasData !== b.hasData) {
+        return a.hasData ? -1 : 1;
+      }
+      // Then sort by confidence (lower confidence = weaker)
+      return a.confidence - b.confidence;
+    })
     .slice(0, count)
     .map(x => x.char);
 }
@@ -288,7 +302,12 @@ export function generateKeybrLesson(wordCount: number = 50): KeybrLesson {
   const lockedLetters = getLockedLetters();
   const focusLetters = getWeakLetters(3);
   
-  // Word bank filtered by available letters
+  // Ensure we have focus letters (if none, use first 3 unlocked)
+  const effectiveFocusLetters = focusLetters.length > 0 
+    ? focusLetters 
+    : unlockedLetters.slice(0, Math.min(3, unlockedLetters.length));
+  
+  // Word bank filtered by available letters - STRICT: only words using unlocked letters
   const wordBank = getWordBank().filter(word => {
     const wordLetters = new Set(word.toLowerCase().replace(/[^a-z]/g, '').split(''));
     for (const char of wordLetters) {
@@ -299,30 +318,61 @@ export function generateKeybrLesson(wordCount: number = 50): KeybrLesson {
     return true;
   });
   
-  // Prioritize words with focus letters
-  const focusWords = wordBank.filter(word => 
-    focusLetters.some(char => word.includes(char))
-  );
-  const otherWords = wordBank.filter(word => 
-    !focusLetters.some(char => word.includes(char))
-  );
-  
-  // Mix: 70% focus words, 30% other
-  const focusCount = Math.ceil(wordCount * 0.7);
-  const otherCount = wordCount - focusCount;
-  
-  const selectedWords: string[] = [];
-  
-  // Add focus words
-  for (let i = 0; i < focusCount && focusWords.length > 0; i++) {
-    const idx = Math.floor(Math.random() * focusWords.length);
-    selectedWords.push(focusWords[idx]);
+  // If word bank is empty or too small, generate simple words from unlocked letters
+  let effectiveWordBank = wordBank;
+  if (wordBank.length === 0 || wordBank.length < 10) {
+    // Generate simple words from unlocked letters (2-4 letter combinations)
+    effectiveWordBank = generateWordsFromLetters(unlockedLetters, 50);
   }
   
-  // Add other words
-  for (let i = 0; i < otherCount && otherWords.length > 0; i++) {
-    const idx = Math.floor(Math.random() * otherWords.length);
-    selectedWords.push(otherWords[idx]);
+  // Prioritize words with focus letters
+  const focusWords = effectiveWordBank.filter(word => 
+    effectiveFocusLetters.some(char => word.toLowerCase().includes(char))
+  );
+  const otherWords = effectiveWordBank.filter(word => 
+    !effectiveFocusLetters.some(char => word.toLowerCase().includes(char))
+  );
+  
+  // Ensure we have enough focus words - generate if needed
+  let finalFocusWords = focusWords;
+  const focusCount = Math.ceil(wordCount * 0.7);
+  
+  // If we don't have enough focus words, generate more
+  if (finalFocusWords.length < focusCount && effectiveFocusLetters.length > 0) {
+    const needed = focusCount - finalFocusWords.length;
+    const generated = generateWordsFromLetters(unlockedLetters, needed * 2, effectiveFocusLetters);
+    finalFocusWords = [...finalFocusWords, ...generated];
+  }
+  
+  const otherCount = wordCount - focusCount;
+  const selectedWords: string[] = [];
+  
+  // Add focus words (repeat if needed to reach count)
+  if (finalFocusWords.length > 0) {
+    for (let i = 0; i < focusCount; i++) {
+      const idx = Math.floor(Math.random() * finalFocusWords.length);
+      selectedWords.push(finalFocusWords[idx]);
+    }
+  } else if (effectiveWordBank.length > 0) {
+    // Fallback: use all available words if no focus words
+    for (let i = 0; i < focusCount && effectiveWordBank.length > 0; i++) {
+      const idx = Math.floor(Math.random() * effectiveWordBank.length);
+      selectedWords.push(effectiveWordBank[idx]);
+    }
+  }
+  
+  // Add other words (repeat if needed to reach count)
+  if (otherWords.length > 0) {
+    for (let i = 0; i < otherCount; i++) {
+      const idx = Math.floor(Math.random() * otherWords.length);
+      selectedWords.push(otherWords[idx]);
+    }
+  } else if (selectedWords.length < wordCount && effectiveWordBank.length > 0) {
+    // Fill remaining with any available words
+    for (let i = selectedWords.length; i < wordCount && effectiveWordBank.length > 0; i++) {
+      const idx = Math.floor(Math.random() * effectiveWordBank.length);
+      selectedWords.push(effectiveWordBank[idx]);
+    }
   }
   
   // Shuffle
@@ -334,9 +384,51 @@ export function generateKeybrLesson(wordCount: number = 50): KeybrLesson {
   return {
     text: selectedWords.slice(0, wordCount).join(' '),
     availableLetters: unlockedLetters,
-    focusLetters,
+    focusLetters: effectiveFocusLetters,
     lockedLetters
   };
+}
+
+/**
+ * Generate simple words from unlocked letters only
+ * If focusLetters provided, ensures words contain at least one focus letter
+ */
+function generateWordsFromLetters(letters: string[], count: number, focusLetters?: string[]): string[] {
+  const words: string[] = [];
+  const letterArray = letters.slice();
+  
+  // Generate 2-4 letter words
+  for (let i = 0; i < count; i++) {
+    const wordLength = 2 + Math.floor(Math.random() * 3); // 2, 3, or 4 letters
+    let word = '';
+    
+    // If focus letters provided, ensure at least one is included
+    if (focusLetters && focusLetters.length > 0) {
+      // Add at least one focus letter (can be anywhere in the word)
+      const focusLetter = focusLetters[Math.floor(Math.random() * focusLetters.length)];
+      const focusPosition = Math.floor(Math.random() * wordLength);
+      
+      // Build word with focus letter at random position
+      for (let j = 0; j < wordLength; j++) {
+        if (j === focusPosition) {
+          word += focusLetter;
+        } else {
+          const randomLetter = letterArray[Math.floor(Math.random() * letterArray.length)];
+          word += randomLetter;
+        }
+      }
+    } else {
+      // Generate random word
+      for (let j = 0; j < wordLength; j++) {
+        const randomLetter = letterArray[Math.floor(Math.random() * letterArray.length)];
+        word += randomLetter;
+      }
+    }
+    
+    words.push(word);
+  }
+  
+  return words;
 }
 
 /**

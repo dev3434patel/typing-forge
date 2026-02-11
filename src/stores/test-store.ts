@@ -10,6 +10,7 @@ interface TestSettings {
   wordCount: number;
   punctuation: boolean;
   numbers: boolean;
+  codeLanguage: string; // For code mode: 'javascript' | 'typescript' | 'python' | 'rust' | 'sql'
 }
 
 interface TestState {
@@ -39,6 +40,7 @@ export const useTestStore = create<TestState>((set) => ({
     wordCount: 50,
     punctuation: false,
     numbers: false,
+    codeLanguage: 'javascript', // Default code language
   },
   status: 'idle',
   targetText: '',

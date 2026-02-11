@@ -16,36 +16,53 @@ export interface CharacterState {
   typed?: string;
 }
 
+// Import canonical metrics engine for consistency
+import { calculateWpm as canonicalWpm, calculateRawWpm as canonicalRawWpm, calculateAccuracy as canonicalAccuracy, calculateConsistency as canonicalConsistency, sanitizeMetric } from './metrics-engine';
+
+/**
+ * Calculate WPM from correct characters and elapsed time (in seconds)
+ * Delegates to canonical metrics-engine for consistency
+ * Formula: (correctChars / 5) / (elapsedTimeSeconds / 60)
+ */
 export function calculateWPM(correctChars: number, elapsedTimeSeconds: number): number {
   if (elapsedTimeSeconds === 0) return 0;
-  // Standard: 5 characters = 1 word
-  const words = correctChars / 5;
-  const minutes = elapsedTimeSeconds / 60;
-  return Math.round(words / minutes);
+  const elapsedMs = elapsedTimeSeconds * 1000;
+  return sanitizeMetric(canonicalWpm(correctChars, elapsedMs));
 }
 
+/**
+ * Calculate Raw WPM from total typed characters and elapsed time (in seconds)
+ * Delegates to canonical metrics-engine for consistency
+ * Formula: (totalChars / 5) / (elapsedTimeSeconds / 60)
+ */
 export function calculateRawWPM(totalChars: number, elapsedTimeSeconds: number): number {
   if (elapsedTimeSeconds === 0) return 0;
-  const words = totalChars / 5;
-  const minutes = elapsedTimeSeconds / 60;
-  return Math.round(words / minutes);
+  const elapsedMs = elapsedTimeSeconds * 1000;
+  return sanitizeMetric(canonicalRawWpm(totalChars, elapsedMs));
 }
 
+/**
+ * Calculate accuracy percentage
+ * NOTE: This is a simplified version for backward compatibility.
+ * For full accuracy calculation with missed/extra chars and backspace handling,
+ * use metrics-engine.calculateAccuracy directly.
+ * 
+ * This function assumes: incorrectChars = totalChars - correctChars
+ * For time-based tests where not all text is typed, use metrics-engine instead.
+ */
 export function calculateAccuracy(correctChars: number, totalChars: number): number {
   if (totalChars === 0) return 100;
-  return Math.round((correctChars / totalChars) * 100);
+  // Use canonical engine with simplified inputs (no missed/extra, no backspace info)
+  return sanitizeMetric(canonicalAccuracy(correctChars, totalChars - correctChars, 0, 0, false));
 }
 
+/**
+ * Calculate consistency from WPM history
+ * Delegates to canonical metrics-engine for consistency
+ * Formula: 100 - (CV * 100) where CV = stdDev(wpmWindows) / mean(wpmWindows)
+ */
 export function calculateConsistency(wpmHistory: number[]): number {
-  if (wpmHistory.length < 2) return 100;
-  
-  const mean = wpmHistory.reduce((a, b) => a + b, 0) / wpmHistory.length;
-  const variance = wpmHistory.reduce((sum, wpm) => sum + Math.pow(wpm - mean, 2), 0) / wpmHistory.length;
-  const stdDev = Math.sqrt(variance);
-  
-  // Convert to a 0-100 scale where lower variance = higher consistency
-  const coefficientOfVariation = mean > 0 ? (stdDev / mean) * 100 : 0;
-  return Math.max(0, Math.min(100, Math.round(100 - coefficientOfVariation)));
+  return sanitizeMetric(canonicalConsistency(wpmHistory));
 }
 
 export function getCharacterStates(

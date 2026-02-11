@@ -10,12 +10,14 @@ import { ProfileOverview } from '@/components/profile/ProfileOverview';
 import { CharacterGrid } from '@/components/profile/CharacterGrid';
 import { TestHistory } from '@/components/profile/TestHistory';
 import { ProfileSettings } from '@/components/profile/ProfileSettings';
+import { RaceHistory, type RaceHistoryItem } from '@/components/race/RaceHistory';
 import { 
   LayoutDashboard, 
   Clock, 
   Keyboard, 
   Settings, 
-  Loader2 
+  Loader2,
+  Trophy
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -72,6 +74,7 @@ const Profile = () => {
   const [leaderboardData, setLeaderboardData] = useState<LeaderboardData | null>(null);
   const [characterData, setCharacterData] = useState<CharacterConfidence[]>([]);
   const [testHistory, setTestHistory] = useState<TestSession[]>([]);
+  const [raceHistory, setRaceHistory] = useState<RaceHistoryItem[]>([]);
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -133,6 +136,19 @@ const Profile = () => {
             wpm_history: Array.isArray(t.wpm_history) ? t.wpm_history as number[] : [],
           })));
         }
+
+        // Fetch race history (races where user is host or opponent and status is completed)
+        const { data: races } = await supabase
+          .from('race_sessions')
+          .select('*')
+          .or(`host_id.eq.${user.id},opponent_id.eq.${user.id}`)
+          .eq('status', 'completed')
+          .order('created_at', { ascending: false })
+          .limit(100);
+
+        if (races) {
+          setRaceHistory(races as RaceHistoryItem[]);
+        }
       } catch (error) {
         console.error('Error fetching profile data:', error);
       } finally {
@@ -189,6 +205,7 @@ const Profile = () => {
   const tabConfig = [
     { id: 'overview', label: 'Overview', icon: LayoutDashboard },
     { id: 'tests', label: 'Test History', icon: Clock },
+    { id: 'races', label: 'Race History', icon: Trophy },
     { id: 'characters', label: 'Characters', icon: Keyboard },
     { id: 'settings', label: 'Settings', icon: Settings },
   ];
@@ -207,7 +224,7 @@ const Profile = () => {
 
           {/* Profile Tabs */}
           <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
-            <TabsList className="grid w-full grid-cols-4 h-auto mb-8">
+            <TabsList className="grid w-full grid-cols-5 h-auto mb-8">
               {tabConfig.map((tab) => {
                 const Icon = tab.icon;
                 return (
@@ -229,6 +246,10 @@ const Profile = () => {
 
             <TabsContent value="tests">
               <TestHistory testHistory={testHistory} />
+            </TabsContent>
+
+            <TabsContent value="races">
+              <RaceHistory raceHistory={raceHistory} currentUserId={user.id} />
             </TabsContent>
 
             <TabsContent value="characters">

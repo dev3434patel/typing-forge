@@ -6,7 +6,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { useToast } from '@/hooks/use-toast';
-import { sanitizeMetric } from '@/lib/metrics-engine';
+import { sanitizeMetric, calculateWpm, calculateAccuracy } from '@/lib/metrics-engine';
 import { BotDifficulty } from '@/lib/bot-engine';
 import { useBotRace } from '@/hooks/useBotRace';
 import { Loader2 } from 'lucide-react';
@@ -229,11 +229,12 @@ const Race = () => {
       timerRef.current = null;
     }
     
-    const elapsedSeconds = startTime ? (Date.now() - startTime) / 1000 : 0;
-    const elapsedMs = elapsedSeconds * 1000;
+    const elapsedMs = startTime ? Date.now() - startTime : 0;
     
-    // Calculate metrics properly using canonical formula
-    // Formula: (correctChars / 5) / (elapsedMs / 60000)
+    // CANONICAL METRICS: Use metrics-engine for final race metrics
+    // Reference: metrics-engine.ts -> calculateWpm() and calculateAccuracy()
+    // Formula: WPM = (correctChars / 5) / (elapsedMs / 60000)
+    // Formula: Accuracy = (correctChars / totalTypedChars) * 100
     const comparisonLength = Math.min(typedText.length, expectedText.length);
     let correctChars = 0;
     let incorrectChars = 0;
@@ -246,19 +247,18 @@ const Race = () => {
       }
     }
     
-    // Calculate WPM: (correctChars / 5) / (elapsedMs / 60000)
-    const finalWpm = elapsedMs > 0 
-      ? Math.round((correctChars / 5) / (elapsedMs / 60000))
-      : 0;
+    // Use canonical metrics-engine functions for consistency
+    const finalWpm = sanitizeMetric(calculateWpm(correctChars, elapsedMs));
+    const finalAccuracy = sanitizeMetric(calculateAccuracy(
+      correctChars,
+      incorrectChars,
+      0, // missedChars (not applicable for race completion)
+      0, // extraChars (not applicable for race completion)
+      false // backspaceUsed (race doesn't track backspace)
+    ));
     
-    // Calculate accuracy: (correctChars / totalTypedChars) * 100
-    const totalTypedChars = typedText.length;
-    const finalAccuracy = totalTypedChars > 0 
-      ? Math.round((correctChars / totalTypedChars) * 10000) / 100
-      : 100;
-    
-    setMyFinalWpm(sanitizeMetric(finalWpm));
-    setMyFinalAccuracy(sanitizeMetric(finalAccuracy));
+    setMyFinalWpm(finalWpm);
+    setMyFinalAccuracy(finalAccuracy);
     
     // For bot races, use actual tracked bot accuracy (not random)
     if (isBotRace) {
@@ -403,7 +403,10 @@ const Race = () => {
 
     const elapsedMs = Date.now() - startTime;
     
-    // Calculate metrics properly
+    // CANONICAL METRICS: Use metrics-engine for consistency
+    // Reference: metrics-engine.ts -> calculateWpm() and calculateAccuracy()
+    // Formula: WPM = (correctChars / 5) / (elapsedMs / 60000)
+    // Formula: Accuracy = (correctChars / totalTypedChars) * 100
     const comparisonLength = Math.min(newText.length, expectedText.length);
     let correctChars = 0;
     for (let i = 0; i < comparisonLength; i++) {
@@ -412,18 +415,18 @@ const Race = () => {
       }
     }
     
-    // WPM: (correctChars / 5) / (elapsedMs / 60000)
-    const wpm = elapsedMs > 0 
-      ? Math.round((correctChars / 5) / (elapsedMs / 60000))
-      : 0;
+    // Use canonical metrics-engine functions
+    const wpm = sanitizeMetric(calculateWpm(correctChars, elapsedMs));
+    const accuracy = sanitizeMetric(calculateAccuracy(
+      correctChars,
+      newText.length - correctChars, // incorrectChars
+      0, // missedChars (not applicable for race)
+      0, // extraChars (not applicable for race)
+      false // backspaceUsed (race doesn't track this)
+    ));
     
-    // Accuracy: (correctChars / totalTypedChars) * 100
-    const accuracy = newText.length > 0 
-      ? Math.round((correctChars / newText.length) * 100)
-      : 100;
-    
-    setCurrentWpm(sanitizeMetric(wpm));
-    setCurrentAccuracy(sanitizeMetric(accuracy));
+    setCurrentWpm(wpm);
+    setCurrentAccuracy(accuracy);
 
     // Update progress in database (multiplayer only)
     if (!isBotRace && roomCode) {

@@ -13,7 +13,8 @@ import {
   type ProfessionalAccuracyReport,
   type Keystroke 
 } from '@/lib/professional-accuracy';
-import { generateRandomWords, getRandomQuote } from '@/lib/quotes';
+import { generateRandomWords, getRandomQuote, type Quote } from '@/lib/quotes';
+import { getRandomCodeSnippet } from '@/lib/content-library';
 import { useTestResults } from '@/hooks/useTestResults';
 
 const Index = () => {
@@ -57,6 +58,11 @@ const Index = () => {
         break;
       case 'words':
         text = generateRandomWords(settings.wordCount, settings.punctuation, settings.numbers);
+        break;
+      case 'code':
+        // Get code snippet for selected language
+        const codeSnippet = getRandomCodeSnippet(settings.codeLanguage);
+        text = codeSnippet.content;
         break;
       default:
         text = generateRandomWords(200, settings.punctuation, settings.numbers);

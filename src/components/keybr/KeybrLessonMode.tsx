@@ -92,6 +92,9 @@ export function KeybrLessonMode() {
     if (status === 'running' && startTime) {
       wpmIntervalRef.current = setInterval(() => {
         if (!lesson) return;
+        // LIVE METRICS: WPM sampling for consistency calculation
+        // Reference: metrics-engine.ts -> calculateWpm()
+        // Formula: WPM = (correctChars / 5) / (elapsedSeconds / 60)
         const elapsedTime = (Date.now() - startTime) / 1000;
         let correctChars = 0;
         for (let i = 0; i < typedText.length; i++) {
@@ -99,6 +102,7 @@ export function KeybrLessonMode() {
             correctChars++;
           }
         }
+        // typing-engine.calculateWPM delegates to metrics-engine.calculateWpm
         const wpm = calculateWPM(correctChars, elapsedTime);
         setWpmHistory(prev => [...prev, wpm]);
       }, 1000);
@@ -112,7 +116,10 @@ export function KeybrLessonMode() {
     };
   }, [status, startTime, typedText, lesson]);
 
-  // Calculate live stats
+  // LIVE METRICS: Calculate live stats for UI display
+  // Reference: metrics-engine.ts -> calculateWpm() and calculateAccuracy()
+  // Formula: WPM = (correctChars / 5) / (elapsedSeconds / 60)
+  // Formula: Accuracy = (correctChars / totalTypedChars) * 100
   useEffect(() => {
     if (!lesson || !startTime || typedText.length === 0) return;
     
@@ -125,6 +132,7 @@ export function KeybrLessonMode() {
       }
     }
     
+    // typing-engine functions delegate to metrics-engine for consistency
     setCurrentWpm(calculateWPM(correctChars, elapsedTime));
     setCurrentAccuracy(calculateAccuracy(correctChars, typedText.length));
   }, [typedText, lesson, startTime]);
@@ -147,6 +155,9 @@ export function KeybrLessonMode() {
       wpmIntervalRef.current = null;
     }
     
+    // FINAL METRICS: Use typing-engine functions (which delegate to metrics-engine)
+    // Reference: metrics-engine.ts -> calculateWpm(), calculateAccuracy(), calculateConsistency()
+    // For production accuracy report, use professional-accuracy.generateProfessionalAccuracyReport()
     const elapsedTime = (Date.now() - (startTime || Date.now())) / 1000;
     let correctChars = 0;
     
@@ -156,6 +167,7 @@ export function KeybrLessonMode() {
       }
     }
     
+    // typing-engine functions delegate to metrics-engine for consistency
     const wpm = calculateWPM(correctChars, elapsedTime);
     const accuracy = calculateAccuracy(correctChars, typedText.length);
     const consistency = calculateConsistency(wpmHistory);
@@ -415,7 +427,7 @@ export function KeybrLessonMode() {
       </div>
       
       {/* Focus letters indicator */}
-      {lesson && (
+      {lesson && lesson.focusLetters && lesson.focusLetters.length > 0 && (
         <div className="flex items-center justify-center gap-2 mb-6">
           <Zap className="w-4 h-4 text-warning" />
           <span className="text-sm text-muted-foreground">Focus letters:</span>
@@ -425,7 +437,7 @@ export function KeybrLessonMode() {
                 key={letter} 
                 className="px-2 py-0.5 bg-warning/20 text-warning rounded font-mono font-bold uppercase"
               >
-                {letter}
+                {letter.toUpperCase()}
               </span>
             ))}
           </div>

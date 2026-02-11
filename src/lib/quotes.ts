@@ -128,20 +128,10 @@ export const quotes: Quote[] = [
   }
 ];
 
-export const commonWords = [
-  'the', 'be', 'to', 'of', 'and', 'a', 'in', 'that', 'have', 'I',
-  'it', 'for', 'not', 'on', 'with', 'he', 'as', 'you', 'do', 'at',
-  'this', 'but', 'his', 'by', 'from', 'they', 'we', 'say', 'her', 'she',
-  'or', 'an', 'will', 'my', 'one', 'all', 'would', 'there', 'their', 'what',
-  'so', 'up', 'out', 'if', 'about', 'who', 'get', 'which', 'go', 'me',
-  'when', 'make', 'can', 'like', 'time', 'no', 'just', 'him', 'know', 'take',
-  'people', 'into', 'year', 'your', 'good', 'some', 'could', 'them', 'see', 'other',
-  'than', 'then', 'now', 'look', 'only', 'come', 'its', 'over', 'think', 'also',
-  'back', 'after', 'use', 'two', 'how', 'our', 'work', 'first', 'well', 'way',
-  'even', 'new', 'want', 'because', 'any', 'these', 'give', 'day', 'most', 'us',
-  'world', 'very', 'through', 'right', 'down', 'still', 'find', 'here', 'thing', 'place',
-  'great', 'little', 'own', 'old', 'home', 'same', 'last', 'never', 'before', 'while'
-];
+import { commonWords1000 } from './content-library';
+
+// Re-export for backward compatibility
+export const commonWords = commonWords1000;
 
 export function getRandomQuote(): Quote {
   return quotes[Math.floor(Math.random() * quotes.length)];
@@ -151,7 +141,7 @@ export function generateRandomWords(count: number, includePunctuation: boolean =
   const words: string[] = [];
   
   for (let i = 0; i < count; i++) {
-    let word = commonWords[Math.floor(Math.random() * commonWords.length)];
+    let word = commonWords1000[Math.floor(Math.random() * commonWords1000.length)];
     
     if (includeNumbers && Math.random() < 0.1) {
       word = Math.floor(Math.random() * 1000).toString();

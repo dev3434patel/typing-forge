@@ -1,7 +1,10 @@
 /**
  * PROFESSIONAL ACCURACY CALCULATOR
  * Generates detailed accuracy report with keystroke-level analysis
+ * Uses canonical metrics-engine for WPM calculations
  */
+
+import { calculateWpm, calculateRawWpm } from './metrics-engine';
 
 export interface Keystroke {
   key: string;
@@ -271,17 +274,19 @@ export function generateProfessionalAccuracyReport(
   
   // Primary accuracy: based on what was typed (correct / total typed)
   // This is the standard typing test accuracy formula
+  // Empty test (no characters typed) = 100% accuracy (perfect, nothing wrong)
   const typedAccuracy = totalTypedChars > 0 
     ? (correctChars / totalTypedChars) * 100 
-    : 0;
+    : 100;
   
   // Target-based accuracy (how much of target was correct)
   const targetAccuracy = totalTargetChars > 0 
     ? (correctChars / totalTargetChars) * 100 
-    : 0;
+    : 100;
   
   // For completed tests, use typed accuracy (correct / total typed)
   // This matches MonkeyType behavior: accuracy = correct keystrokes / total keystrokes
+  // Empty test = 100% (nothing typed = nothing wrong)
   let finalAccuracy = Math.round(typedAccuracy * 100) / 100;
   
   // Cap at 99.99% if backspace was used (per memory: strict accuracy enforcement)
@@ -367,11 +372,16 @@ export function generateProfessionalAccuracyReport(
     consistencyScore = Math.max(0, Math.min(100, Math.round(100 - Math.min(coefficientOfVariation, 100))));
   }
   
-  // Calculate WPM metrics
-  const durationMinutes = durationSeconds / 60;
-  const wpm = durationMinutes > 0 ? Math.round((correctChars / 5) / durationMinutes) : 0;
-  const rawWpm = durationMinutes > 0 ? Math.round((totalTypedChars / 5) / durationMinutes) : 0;
-  const netWpm = durationMinutes > 0 ? Math.round(((correctChars - incorrectChars) / 5) / durationMinutes) : 0;
+  // CANONICAL METRICS: Use metrics-engine for WPM calculations
+  // Reference: metrics-engine.ts -> calculateWpm() and calculateRawWpm()
+  // Formula: WPM = (correctChars / 5) / (elapsedMs / 60000)
+  // Formula: Raw WPM = (totalTypedChars / 5) / (elapsedMs / 60000)
+  // Net WPM matches canonical definition: correctChars only (same as WPM in metrics-engine)
+  const durationMs = durationSeconds * 1000;
+  const wpm = calculateWpm(correctChars, durationMs);
+  const rawWpm = calculateRawWpm(totalTypedChars, durationMs);
+  // Net WPM = correctChars / 5 / durationMinutes (matches computeSessionMetrics canonical definition)
+  const netWpm = calculateWpm(correctChars, durationMs);
   const charsPerSecond = durationSeconds > 0 ? Math.round((totalTypedChars / durationSeconds) * 100) / 100 : 0;
   
   // Peak and lowest WPM from history

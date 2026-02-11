@@ -303,15 +303,20 @@ describe('Countdown Duplicate Prevention', () => {
     const race = createRaceState('race-1', 'ABC123', 'host-1', 'Test');
     const withOpponent = addOpponent(race, 'opponent-1');
     
-    // Simulate concurrent calls
+    // Simulate concurrent calls - first call succeeds, subsequent calls use updated state
+    let currentState = withOpponent;
     const results: (RaceState | null)[] = [];
+    
     for (let i = 0; i < 10; i++) {
-      // Each call after the first should return null
-      const current = results.length > 0 ? results[results.length - 1] || withOpponent : withOpponent;
-      results.push(startCountdown(current, 'host-1'));
+      const result = startCountdown(currentState, 'host-1');
+      results.push(result);
+      // Update current state to the result (or keep same if null)
+      if (result !== null) {
+        currentState = result;
+      }
     }
     
-    // Only first should succeed
+    // Only first should succeed (others should return null due to idempotency)
     expect(results.filter(r => r !== null).length).toBe(1);
   });
 });
@@ -349,5 +354,114 @@ describe('Winner Determination Edge Cases', () => {
     
     // Host wins by progress
     expect(completed.winnerId).toBe('host-1');
+  });
+});
+
+describe('Race Mode Sanity Checks', () => {
+  it('should NEVER end with progress > 100 for any participant', () => {
+    const race = createRaceState('race-1', 'ABC123', 'host-1', 'Test');
+    const withOpponent = addOpponent(race, 'opponent-1');
+    const countdown = startCountdown(withOpponent, 'host-1')!;
+    let active = startRace(countdown)!;
+    
+    // Try to set progress > 100
+    active = updateProgress(active, 'host-1', 150, 60, 95);
+    
+    // Should be clamped to 100
+    expect(active.host.progress).toBeLessThanOrEqual(100);
+    expect(active.host.progress).toBe(100);
+    
+    // Complete race and verify
+    const completed = completeRace(active);
+    expect(completed.host.progress).toBeLessThanOrEqual(100);
+    if (completed.opponent) {
+      expect(completed.opponent.progress).toBeLessThanOrEqual(100);
+    }
+  });
+
+  it('should NEVER end with progress < 0 for any participant', () => {
+    const race = createRaceState('race-1', 'ABC123', 'host-1', 'Test');
+    const withOpponent = addOpponent(race, 'opponent-1');
+    const countdown = startCountdown(withOpponent, 'host-1')!;
+    let active = startRace(countdown)!;
+    
+    // Try to set progress < 0
+    active = updateProgress(active, 'host-1', -10, 60, 95);
+    
+    // Should be clamped to 0
+    expect(active.host.progress).toBeGreaterThanOrEqual(0);
+    expect(active.host.progress).toBe(0);
+    
+    // Complete race and verify
+    const completed = completeRace(active);
+    expect(completed.host.progress).toBeGreaterThanOrEqual(0);
+    if (completed.opponent) {
+      expect(completed.opponent.progress).toBeGreaterThanOrEqual(0);
+    }
+  });
+
+  it('should pick correct winner when tied in progress and WPM (use finish time)', () => {
+    const race = createRaceState('race-1', 'ABC123', 'host-1', 'Test');
+    const withOpponent = addOpponent(race, 'opponent-1');
+    const countdown = startCountdown(withOpponent, 'host-1')!;
+    let active = startRace(countdown)!;
+    
+    // Both reach 100% with same WPM
+    // Host finishes first (earlier finishedAt)
+    active = updateProgress(active, 'host-1', 100, 60, 95);
+    const hostFinishTime = active.host.finishedAt!;
+    
+    // Wait a bit to ensure different finish times
+    const waitTime = 10;
+    const laterTime = Date.now() + waitTime;
+    
+    // Opponent finishes later - manually set finishedAt to be later
+    active = updateProgress(active, 'opponent-1', 100, 60, 95);
+    // Manually update opponent finishedAt to be later
+    if (active.opponent) {
+      active.opponent.finishedAt = laterTime;
+    }
+    const opponentFinishTime = active.opponent!.finishedAt!;
+    
+    // Opponent finished later, so host should win
+    expect(hostFinishTime).toBeLessThan(opponentFinishTime);
+    
+    const completed = completeRace(active);
+    // Winner should be host (earlier finish time)
+    expect(completed.winnerId).toBe('host-1');
+  });
+
+  it('should handle strict winner logic: 1) progress, 2) WPM, 3) finish time', () => {
+    const race = createRaceState('race-1', 'ABC123', 'host-1', 'Test');
+    const withOpponent = addOpponent(race, 'opponent-1');
+    const countdown = startCountdown(withOpponent, 'host-1')!;
+    let active = startRace(countdown)!;
+    
+    // Test case 1: Opponent has higher progress
+    active = updateProgress(active, 'host-1', 80, 70, 95);
+    active = updateProgress(active, 'opponent-1', 90, 60, 90);
+    let completed = completeRace(active);
+    expect(completed.winnerId).toBe('opponent-1'); // Higher progress wins
+    
+    // Test case 2: Same progress, opponent has higher WPM
+    active = startRace(countdown)!;
+    active = updateProgress(active, 'host-1', 80, 60, 95);
+    active = updateProgress(active, 'opponent-1', 80, 70, 90);
+    completed = completeRace(active);
+    expect(completed.winnerId).toBe('opponent-1'); // Higher WPM wins
+    
+    // Test case 3: Same progress and WPM, host finishes first
+    active = startRace(countdown)!;
+    active = updateProgress(active, 'host-1', 100, 60, 95);
+    const hostTime = active.host.finishedAt!;
+    // Wait a bit to ensure different finish times
+    const waitTime = 10;
+    active = updateProgress(active, 'opponent-1', 100, 60, 95);
+    // Manually set opponent finishedAt to be later
+    if (active.opponent) {
+      active.opponent.finishedAt = hostTime + waitTime;
+    }
+    completed = completeRace(active);
+    expect(completed.winnerId).toBe('host-1'); // Earlier finish time wins
   });
 });

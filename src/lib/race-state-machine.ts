@@ -243,18 +243,54 @@ export function completeRace(state: RaceState): RaceState {
   
   const hostProgress = state.host.progress;
   const opponentProgress = state.opponent?.progress ?? 0;
+  const hostWpm = state.host.wpm;
+  const opponentWpm = state.opponent?.wpm ?? 0;
+  const hostFinishedAt = state.host.finishedAt;
+  const opponentFinishedAt = state.opponent?.finishedAt;
   
-  if (hostProgress >= 100 && (opponentProgress < 100 || (state.host.finishedAt && (!state.opponent?.finishedAt || state.host.finishedAt < state.opponent.finishedAt)))) {
+  // Winner logic (strict priority):
+  // 1. First to reach 100% progress
+  // 2. If both reach 100%, highest WPM
+  // 3. If still tie, earliest finish time
+  // 4. If neither reached 100%, highest progress
+  // 5. If progress tie, highest WPM
+  
+  // Both reached 100%
+  if (hostProgress >= 100 && opponentProgress >= 100) {
+    if (hostWpm > opponentWpm) {
+      winnerId = state.hostId;
+    } else if (opponentWpm > hostWpm) {
+      winnerId = state.opponent?.id;
+    } else {
+      // WPM tie, use finish time
+      if (hostFinishedAt && opponentFinishedAt) {
+        winnerId = hostFinishedAt < opponentFinishedAt ? state.hostId : state.opponent?.id;
+      } else if (hostFinishedAt) {
+        winnerId = state.hostId;
+      } else if (opponentFinishedAt) {
+        winnerId = state.opponent?.id;
+      } else {
+        // No finish times, use host as default
+        winnerId = state.hostId;
+      }
+    }
+  }
+  // Only host reached 100%
+  else if (hostProgress >= 100) {
     winnerId = state.hostId;
-  } else if (opponentProgress >= 100) {
+  }
+  // Only opponent reached 100%
+  else if (opponentProgress >= 100) {
     winnerId = state.opponent?.id;
-  } else if (hostProgress > opponentProgress) {
+  }
+  // Neither reached 100%, use progress
+  else if (hostProgress > opponentProgress) {
     winnerId = state.hostId;
   } else if (opponentProgress > hostProgress) {
     winnerId = state.opponent?.id;
   } else {
-    // Tie in progress, use WPM
-    if (state.host.wpm >= (state.opponent?.wpm ?? 0)) {
+    // Progress tie, use WPM
+    if (hostWpm >= opponentWpm) {
       winnerId = state.hostId;
     } else {
       winnerId = state.opponent?.id;

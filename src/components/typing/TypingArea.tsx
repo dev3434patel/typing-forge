@@ -9,7 +9,8 @@ import {
   type TypingStats 
 } from '@/lib/typing-engine';
 import { type Keystroke } from '@/lib/professional-accuracy';
-import { generateRandomWords, getRandomQuote } from '@/lib/quotes';
+import { generateRandomWords, getRandomQuote, type Quote } from '@/lib/quotes';
+import { getRandomCodeSnippet } from '@/lib/content-library';
 import { cn } from '@/lib/utils';
 import { RotateCcw } from 'lucide-react';
 import { KeyboardVisualizer } from './KeyboardVisualizer';
@@ -52,6 +53,7 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
   const [zenElapsedTime, setZenElapsedTime] = useState(0);
   const [currentKeyPressed, setCurrentKeyPressed] = useState<string | undefined>();
   const [errorKeys, setErrorKeys] = useState<Set<string>>(new Set());
+  const [currentQuote, setCurrentQuote] = useState<Quote | null>(null);
   
   // NEW: Ready state - paragraph visible, waiting for first keystroke
   const [isReady, setIsReady] = useState(false);
@@ -73,30 +75,56 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
   const zenTimerRef = useRef<NodeJS.Timeout | null>(null);
   const statsRef = useRef({ wpm: 0, accuracy: 100, correctChars: 0, incorrectChars: 0, totalChars: 0, elapsedTime: 0 });
   
-  // Generate text based on mode
-  const generateText = useCallback(() => {
-    let text = '';
-    switch (settings.mode) {
-      case 'quote':
-        text = getRandomQuote().text;
-        break;
-      case 'words':
-        text = generateRandomWords(settings.wordCount, settings.punctuation, settings.numbers);
-        break;
-      case 'time':
-      case 'zen':
-      default:
-        text = generateRandomWords(200, settings.punctuation, settings.numbers);
-        break;
+  // REACT-SAFE: Generate text only in useEffect, never during render
+  // This prevents "Cannot update component while rendering" warnings
+  useEffect(() => {
+    // Only generate text when settings change or when test is reset
+    if (status === 'idle' || status === 'finished') {
+      let text = '';
+      switch (settings.mode) {
+        case 'quote':
+          const quote = getRandomQuote();
+          setCurrentQuote(quote);
+          text = quote.text;
+          break;
+        case 'words':
+          text = generateRandomWords(settings.wordCount, settings.punctuation, settings.numbers);
+          break;
+        case 'code':
+          // Get code snippet for selected language
+          const codeSnippet = getRandomCodeSnippet(settings.codeLanguage);
+          text = codeSnippet.content;
+          break;
+        case 'time':
+        case 'zen':
+        default:
+          text = generateRandomWords(200, settings.punctuation, settings.numbers);
+          break;
+      }
+      
+      // Update store state in effect (safe, not during render)
+      setTargetText(text);
+      setTimeRemaining(settings.duration);
+      setBackspaceCount(0);
+      setTotalKeystrokes(0);
+      setCompletedWordEndIndices([]);
+      setKeystrokeLog([]);
+      testStartTimeRef.current = 0;
+      // Clear quote when switching modes
+      if (settings.mode !== 'quote') {
+        setCurrentQuote(null);
+      }
     }
-    setTargetText(text);
-    setTimeRemaining(settings.duration);
-    setBackspaceCount(0);
-    setTotalKeystrokes(0);
-    setCompletedWordEndIndices([]);
-    setKeystrokeLog([]);
-    testStartTimeRef.current = 0;
-  }, [settings, setTargetText]);
+  }, [
+    settings.mode,
+    settings.wordCount,
+    settings.punctuation,
+    settings.numbers,
+    settings.codeLanguage,
+    settings.duration,
+    status,
+    setTargetText,
+  ]);
   
   // Pre-calculate word boundaries from target text
   const wordBoundaries = useMemo(() => {
@@ -109,12 +137,12 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
     return boundaries;
   }, [targetText]);
   
-  // Initialize text
-  useEffect(() => {
-    generateText();
-  }, [generateText]);
-  
-  // Calculate stats with strict accuracy (backspace = not 100%)
+  // LIVE METRICS: Calculate stats for real-time UI updates
+  // NOTE: These use typing-engine functions which delegate to metrics-engine.ts
+  // For final metrics, use metrics-engine.computeSessionMetrics() with keystroke log
+  // Reference: metrics-engine.ts -> calculateWpm() and calculateAccuracy()
+  // Formula: WPM = (correctChars / 5) / (elapsedMs / 60000)
+  // Formula: Accuracy = (correctChars / totalTypedChars) * 100, capped at 99.99% if backspace used
   const stats = useMemo(() => {
     let correctChars = 0;
     let incorrectChars = 0;
@@ -128,9 +156,11 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
     }
     
     const elapsedTime = startTime ? (Date.now() - startTime) / 1000 : 0;
+    // typing-engine.calculateWPM delegates to metrics-engine.calculateWpm
     const wpm = calculateWPM(correctChars, elapsedTime);
     
     // CRITICAL: Calculate accuracy - if backspace used, cap at 99.99%
+    // typing-engine.calculateAccuracy delegates to metrics-engine.calculateAccuracy
     let accuracy = calculateAccuracy(correctChars, typedText.length);
     if (backspaceCount > 0 && accuracy === 100) {
       accuracy = 99.99;
@@ -320,6 +350,38 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
     }
   }, [status, startTest, updateTypedText, targetText, typedText, wordBoundaries, completedWordEndIndices]);
   
+    // REACT-SAFE: Helper to regenerate text (called from handlers, not render)
+  const regenerateText = useCallback(() => {
+    let text = '';
+    switch (settings.mode) {
+      case 'quote':
+        const quote = getRandomQuote();
+        setCurrentQuote(quote);
+        text = quote.text;
+        break;
+      case 'words':
+        text = generateRandomWords(settings.wordCount, settings.punctuation, settings.numbers);
+        break;
+      case 'code':
+        // Get code snippet for selected language
+        const codeSnippet = getRandomCodeSnippet(settings.codeLanguage);
+        text = codeSnippet.content;
+        break;
+      case 'time':
+      case 'zen':
+      default:
+        text = generateRandomWords(200, settings.punctuation, settings.numbers);
+        break;
+    }
+    setTargetText(text);
+    setTimeRemaining(settings.duration);
+    setBackspaceCount(0);
+    setTotalKeystrokes(0);
+    setCompletedWordEndIndices([]);
+    setKeystrokeLog([]);
+    testStartTimeRef.current = 0;
+  }, [settings.mode, settings.wordCount, settings.punctuation, settings.numbers, settings.codeLanguage, settings.duration, setTargetText]);
+
   // Handle key down events - NO timer start on Enter, only on first character typed
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     // Tab key - show restart hint or restart if already showing
@@ -328,7 +390,7 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
       if (showTabHint || status === 'running') {
         // Actually restart
         resetTest();
-        generateText();
+        regenerateText();
         setIsReady(false);
         setShowTabHint(false);
         inputRef.current?.focus();
@@ -352,13 +414,13 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
     if (isReady && showTabHint && e.key === 'Enter') {
       e.preventDefault();
       resetTest();
-      generateText();
+      regenerateText();
       setIsReady(true);
       setShowTabHint(false);
       inputRef.current?.focus();
       return;
     }
-  }, [status, resetTest, generateText, showTabHint, isReady]);
+  }, [status, resetTest, regenerateText, showTabHint, isReady]);
   
   // Global keyboard listener - Tab to show restart hint, Enter to reveal paragraph
   useEffect(() => {
@@ -369,7 +431,7 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
         if (showTabHint || status === 'running') {
           // Actually restart
           resetTest();
-          generateText();
+          regenerateText();
           setIsReady(false);
           setShowTabHint(false);
           inputRef.current?.focus();
@@ -393,7 +455,7 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
       if (isReady && showTabHint && e.key === 'Enter') {
         e.preventDefault();
         resetTest();
-        generateText();
+        regenerateText();
         setIsReady(true);
         setShowTabHint(false);
         inputRef.current?.focus();
@@ -402,7 +464,7 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
     
     window.addEventListener('keydown', handleGlobalKeyDown);
     return () => window.removeEventListener('keydown', handleGlobalKeyDown);
-  }, [status, resetTest, generateText, showTabHint, isReady]);
+  }, [status, resetTest, regenerateText, showTabHint, isReady]);
   
   // Focus input on click - allow starting by clicking (reveals paragraph)
   const handleClick = useCallback(() => {
@@ -416,7 +478,7 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
   // Handle restart
   const handleRestart = useCallback(() => {
     resetTest();
-    generateText();
+    regenerateText();
     setScrollOffset(0);
     setZenWordsTyped(0);
     setZenElapsedTime(0);
@@ -430,7 +492,7 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
     setKeystrokeLog([]);
     testStartTimeRef.current = 0;
     inputRef.current?.focus();
-  }, [resetTest, generateText]);
+  }, [resetTest, regenerateText]);
   
   // Define extended type for space handling
   type ExtendedCharState = ReturnType<typeof getCharacterStates>[0] & { isSpace?: boolean; isLocked?: boolean };
@@ -506,6 +568,21 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
       tabIndex={0}
       onKeyDown={handleKeyDown}
     >
+      {/* Quote Author/Category Display */}
+      {settings.mode === 'quote' && currentQuote && (
+        <motion.div
+          className="text-center mb-4"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <div className="flex items-center justify-center gap-3 text-sm text-muted-foreground">
+            <span className="font-medium">{currentQuote.author}</span>
+            <span>•</span>
+            <span className="capitalize px-2 py-1 bg-muted rounded-md">{currentQuote.category}</span>
+          </div>
+        </motion.div>
+      )}
+
       {/* Live Stats Bar */}
       <AnimatePresence>
         {status === 'running' && settings.mode !== 'zen' && (

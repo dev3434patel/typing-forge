@@ -462,6 +462,65 @@ export function ProfessionalResultsScreen({
         </div>
       </motion.div>
       
+      {/* Character Comparison */}
+      {report.charComparison && report.charComparison.length > 0 && (
+        <motion.div
+          className="stat-card"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <Keyboard className="w-5 h-5 text-primary" />
+            <h3 className="text-lg font-semibold">Character-by-Character Comparison</h3>
+            <span className="text-sm text-muted-foreground">({report.charComparison.length} characters)</span>
+          </div>
+          
+          <div className="max-h-64 overflow-y-auto">
+            <div className="grid grid-cols-8 md:grid-cols-12 lg:grid-cols-16 gap-1 font-mono text-xs">
+              {report.charComparison.map((char, i) => (
+                <div
+                  key={i}
+                  className={cn(
+                    "p-1 rounded text-center border",
+                    char.status === 'CORRECT' && "bg-success/20 border-success/30 text-success",
+                    char.status === 'INCORRECT' && "bg-destructive/20 border-destructive/30 text-destructive",
+                    char.status === 'MISSED' && "bg-warning/20 border-warning/30 text-warning",
+                    char.status === 'EXTRA' && "bg-muted border-border text-muted-foreground",
+                    char.status === 'UNTYPED' && "bg-muted/50 border-border/50 text-muted-foreground/50"
+                  )}
+                  title={`Position ${char.position}: ${char.status}${char.errorType ? ` (${char.errorType})` : ''}`}
+                >
+                  {char.typedChar || char.targetChar || ' '}
+                </div>
+              ))}
+            </div>
+            <div className="mt-4 flex flex-wrap gap-4 text-xs text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-success/20 border border-success/30 rounded" />
+                <span>Correct</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-destructive/20 border border-destructive/30 rounded" />
+                <span>Incorrect</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-warning/20 border border-warning/30 rounded" />
+                <span>Missed</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-muted border border-border rounded" />
+                <span>Extra</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-muted/50 border border-border/50 rounded" />
+                <span>Untyped</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      )}
+
       {/* Error Details (if any) */}
       {report.errors.typos.length > 0 && (
         <motion.div

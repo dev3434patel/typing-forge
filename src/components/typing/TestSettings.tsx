@@ -2,6 +2,8 @@ import { useTestStore, type TestMode, type TestDuration } from '@/stores/test-st
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Clock, Type, Quote, Sparkles, Hash, LetterText, Brain, Code } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { CODE_LANGUAGES } from '@/lib/content-library';
 
 const modes: { value: TestMode; label: string; icon: React.ReactNode }[] = [
   { value: 'time', label: 'time', icon: <Clock className="w-4 h-4" /> },
@@ -82,6 +84,26 @@ export function TestSettings() {
               {count}
             </button>
           ))}
+        </div>
+      )}
+      
+      {settings.mode === 'code' && (
+        <div className="flex items-center gap-1 bg-muted/50 rounded-lg p-1">
+          <Select 
+            value={settings.codeLanguage} 
+            onValueChange={(value) => setSettings({ codeLanguage: value })}
+          >
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Select language" />
+            </SelectTrigger>
+            <SelectContent>
+              {CODE_LANGUAGES.map((lang) => (
+                <SelectItem key={lang.value} value={lang.value}>
+                  {lang.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
       )}
       

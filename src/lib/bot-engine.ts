@@ -353,6 +353,7 @@ export interface BotUpdate {
   timestamp: number;
   progress: number;
   wpm: number;
+  accuracy: number;
   typedText: string;
 }
 
@@ -378,6 +379,7 @@ export function simulateFullRace(
         timestamp: currentTime,
         progress: bot.progress,
         wpm: bot.currentWpm,
+        accuracy: bot.accuracy,
         typedText: bot.typedText,
       });
       nextUpdateTime += updateIntervalMs;
@@ -389,6 +391,7 @@ export function simulateFullRace(
     timestamp: currentTime,
     progress: 100,
     wpm: bot.currentWpm,
+    accuracy: bot.accuracy,
     typedText: bot.typedText,
   });
   
