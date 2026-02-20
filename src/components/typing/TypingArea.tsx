@@ -80,7 +80,7 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
   // This prevents "Cannot update component while rendering" warnings
   useEffect(() => {
     // Only generate text when settings change or when test is reset
-    if (status === 'idle' || status === 'finished') {
+    if (status === 'idle') {
       let text = '';
       switch (settings.mode) {
         case 'quote':
