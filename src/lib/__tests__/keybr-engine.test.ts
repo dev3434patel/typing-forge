@@ -386,16 +386,19 @@ describe('Keybr Engine', () => {
 
     it('should unlock character at exactly 35.0 WPM AND 95.0% accuracy AND confidence>=0.9 AND samples>=20', () => {
       // Spec: unlock requires wpm>=35, accuracy>=95, confidence>=0.9, samples>=20
-      // To get confidence>=0.9 we need high speed, accuracy, and low stdDev
-      // We'll directly set the metrics to meet thresholds
+      // confidence = speed * acc * cons
+      // speed(40) = min((40-12)/(35-12), 1) = 1.0
+      // acc(99.5) = (99.5-90)/10 = 0.95
+      // cons(stdDev=5) = 1 - 5/200 = 0.975
+      // confidence = 1.0 * 0.95 * 0.975 = 0.926 >= 0.9 ✓
       const zMetrics: CharacterConfidence = {
         char: 'z',
-        confidence: 0.95,
+        confidence: 0.93,
         wpm: 40,
-        accuracy: 98,
+        accuracy: 99.5,
         occurrences: 25,
         avgTimeMs: 150,
-        stdDev: 10,
+        stdDev: 5,
         isUnlocked: false,
         status: 'weak',
       };
