@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTestStore } from '@/stores/test-store';
 import { 
   calculateWPM, 
+  calculateRawWPM,
   calculateAccuracy, 
   calculateConsistency,
   getCharacterStates,
@@ -239,9 +240,10 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
   useEffect(() => {
     if (status === 'finished') {
       const consistency = calculateConsistency(wpmHistory);
+      const rawWpm = calculateRawWPM(stats.totalChars, stats.elapsedTime);
       onTestComplete({
         wpm: stats.wpm,
-        rawWpm: stats.wpm,
+        rawWpm,
         accuracy: stats.accuracy,
         correctChars: stats.correctChars,
         incorrectChars: stats.incorrectChars,

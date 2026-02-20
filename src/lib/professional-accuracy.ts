@@ -353,7 +353,7 @@ export function generateProfessionalAccuracyReport(
   
   // Calculate consistency score based on WPM variance (like MonkeyType)
   // This measures how consistent the typing speed is, not keystroke intervals
-  let consistencyScore = 100;
+  let consistencyScore = 0;
   if (wpmHistory.length > 1) {
     const validWpms = wpmHistory.filter(w => w > 0);
     if (validWpms.length > 1) {

@@ -92,8 +92,10 @@ export function calculatePerCharMetrics(
     const charWPM = avgTimeMs > 0 ? (60000 / avgTimeMs) / 5 : 0;
     
     // Confidence = (speed component) × (accuracy component) × (consistency multiplier)
-    const speedComponent = Math.min(charWPM / targetWPM, 1.0);
-    const accuracyComponent = accuracy / 100;
+    // Speed: 0 below 12 WPM, linear 12→35 WPM maps to 0→1, capped at 1
+    const speedComponent = charWPM <= 12 ? 0 : Math.min((charWPM - 12) / (targetWPM - 12), 1.0);
+    // Accuracy: 90% or less → 0, 95% → 0.5, 100% → 1, linear between thresholds
+    const accuracyComponent = accuracy <= 90 ? 0 : Math.min((accuracy - 90) / 10, 1.0);
     const consistencyMult = Math.max(0, 1 - (stdDev / 200));
     const confidence = speedComponent * accuracyComponent * consistencyMult;
     
@@ -198,7 +200,7 @@ export function updateCharacterProgress(
     }
     
     const wasUnlocked = existing?.isUnlocked || STARTING_LETTERS.has(char);
-    const shouldUnlock = newWpm >= targetWPM && newAccuracy >= 95;
+    const shouldUnlock = newWpm >= targetWPM && newAccuracy >= 95 && newConfidence >= 0.9 && totalOccurrences >= 20;
     const isUnlocked = wasUnlocked || shouldUnlock;
     
     if (!wasUnlocked && shouldUnlock) {
