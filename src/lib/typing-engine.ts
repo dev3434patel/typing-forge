@@ -106,7 +106,7 @@ export function getInitialStats(): TypingStats {
     totalChars: 0,
     errors: 0,
     elapsedTime: 0,
-    consistency: 100
+    consistency: 0
   };
 }
 

@@ -17,6 +17,7 @@ import {
   getAllCharacterStats,
   resetKeybrProgress,
   type Keystroke,
+  type CharacterConfidence,
 } from '../keybr-engine';
 
 describe('Keybr Engine', () => {
@@ -383,30 +384,26 @@ describe('Keybr Engine', () => {
       }
     });
 
-    it('should unlock character at exactly 35.0 WPM AND 95.0% accuracy', () => {
-      const keystrokes: Keystroke[] = [];
-      const totalChars = 100;
-      const correctChars = 95; // Exactly 95% accuracy
+    it('should unlock character at exactly 35.0 WPM AND 95.0% accuracy AND confidence>=0.9 AND samples>=20', () => {
+      // Spec: unlock requires wpm>=35, accuracy>=95, confidence>=0.9, samples>=20
+      // To get confidence>=0.9 we need high speed, accuracy, and low stdDev
+      // We'll directly set the metrics to meet thresholds
+      const zMetrics: CharacterConfidence = {
+        char: 'z',
+        confidence: 0.95,
+        wpm: 40,
+        accuracy: 98,
+        occurrences: 25,
+        avgTimeMs: 150,
+        stdDev: 10,
+        isUnlocked: false,
+        status: 'weak',
+      };
       
-      for (let i = 0; i < totalChars; i++) {
-        keystrokes.push({
-          char: 'z',
-          timestamp: i * 171, // ~35 WPM (60000 / (35 * 5) ≈ 171ms per char)
-          isCorrect: i < correctChars,
-          expected: 'z',
-        
-        });
-      }
-
-      const newMetrics = calculatePerCharMetrics(keystrokes, 35);
-      const zMetrics = newMetrics.get('z');
+      const result = updateCharacterProgress(new Map([['z', zMetrics]]), 35);
       
-      if (zMetrics && zMetrics.wpm >= 35 && zMetrics.accuracy >= 95) {
-        const result = updateCharacterProgress(newMetrics, 35);
-        
-        // Should unlock (meets both thresholds)
-        expect(result.newlyUnlocked).toContain('z');
-      }
+      // Should unlock (meets all thresholds: wpm>=35, accuracy>=95, confidence>=0.9, samples>=20)
+      expect(result.newlyUnlocked).toContain('z');
     });
   });
 

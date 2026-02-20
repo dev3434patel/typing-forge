@@ -188,8 +188,8 @@ export function KeybrLessonMode() {
     // Save to database
     await saveResult(
       {
-        wpm,
-        rawWpm: wpm, // In learn mode, raw = net since only correct chars counted
+      wpm,
+      rawWpm: wpm, // In learn mode (100% accuracy enforced), raw ≈ net
         accuracy,
         consistency,
         correctChars,

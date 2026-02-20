@@ -113,11 +113,11 @@ export function calculateAccuracy(
  * Clamped to [0, 100]
  */
 export function calculateConsistency(wpmWindows: number[]): number {
-  if (wpmWindows.length < 2) return 100;
+  if (wpmWindows.length < 2) return 0;
   
   // Filter out zero/invalid values
   const validWpms = wpmWindows.filter(w => w > 0 && isFinite(w));
-  if (validWpms.length < 2) return 100;
+  if (validWpms.length < 2) return 0;
   
   const mean = validWpms.reduce((a, b) => a + b, 0) / validWpms.length;
   if (mean <= 0) return 100;
