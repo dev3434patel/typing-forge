@@ -3,12 +3,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTestStore } from '@/stores/test-store';
 import { 
   calculateWPM, 
-  calculateAccuracy, 
   calculateConsistency,
   getCharacterStates,
   type TypingStats 
 } from '@/lib/typing-engine';
+import { 
+  calculateKeystrokeAccuracy as canonicalCalculateKeystrokeAccuracy,
+  computeSessionMetrics,
+  type KeystrokeRecord
+} from '@/lib/metrics-engine';
 import { type Keystroke } from '@/lib/professional-accuracy';
+import { logger } from '@/lib/logger';
 import { generateRandomWords, getRandomQuote, type Quote } from '@/lib/quotes';
 import { getRandomCodeSnippet } from '@/lib/content-library';
 import { cn } from '@/lib/utils';
@@ -82,19 +87,21 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
     if (status === 'idle' || status === 'finished') {
       let text = '';
       switch (settings.mode) {
-        case 'quote':
+        case 'quote': {
           const quote = getRandomQuote();
           setCurrentQuote(quote);
           text = quote.text;
           break;
+        }
         case 'words':
           text = generateRandomWords(settings.wordCount, settings.punctuation, settings.numbers);
           break;
-        case 'code':
+        case 'code': {
           // Get code snippet for selected language
           const codeSnippet = getRandomCodeSnippet(settings.codeLanguage);
           text = codeSnippet.content;
           break;
+        }
         case 'time':
         case 'zen':
         default:
@@ -138,16 +145,32 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
   }, [targetText]);
   
   // LIVE METRICS: Calculate stats for real-time UI updates
-  // NOTE: These use typing-engine functions which delegate to metrics-engine.ts
-  // For final metrics, use metrics-engine.computeSessionMetrics() with keystroke log
-  // Reference: metrics-engine.ts -> calculateWpm() and calculateAccuracy()
-  // Formula: WPM = (correctChars / 5) / (elapsedMs / 60000)
-  // Formula: Accuracy = (correctChars / totalTypedChars) * 100, capped at 99.99% if backspace used
+  // CANONICAL ACCURACY: Uses EXACT same formula as final calculation
+  // Formula: accuracy = (correctChars / totalDenominator) * 100
+  // Where totalDenominator = correctChars + incorrectChars + missedChars + extraChars
+  // 
+  // CRITICAL: This MUST match final accuracy calculation exactly
+  // Both use same typedText, same targetText, same mode logic, same formula
   const stats = useMemo(() => {
+    // Validate inputs
+    if (typeof typedText !== 'string' || typeof targetText !== 'string') {
+      logger.error('[Live Accuracy] Invalid typedText or targetText:', { typedText, targetText });
+      return {
+        wpm: 0,
+        accuracy: 100,
+        correctChars: 0,
+        incorrectChars: 0,
+        totalChars: 0,
+        elapsedTime: 0,
+      };
+    }
+    
+    // Character-by-character comparison (used for the correct/incorrect HUD counters).
+    const comparisonLength = Math.min(typedText.length, targetText.length);
     let correctChars = 0;
     let incorrectChars = 0;
     
-    for (let i = 0; i < typedText.length; i++) {
+    for (let i = 0; i < comparisonLength; i++) {
       if (typedText[i] === targetText[i]) {
         correctChars++;
       } else {
@@ -155,16 +178,18 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
       }
     }
     
-    const elapsedTime = startTime ? (Date.now() - startTime) / 1000 : 0;
-    // typing-engine.calculateWPM delegates to metrics-engine.calculateWpm
-    const wpm = calculateWPM(correctChars, elapsedTime);
+    // PRIMARY (keystroke-based) live accuracy — same model as the final result.
+    // Backspaces are excluded; corrected typos still count against accuracy.
+    // Before the first keypress we show 100 (nothing wrong yet) purely for display.
+    const printableKeystrokes = keystrokeLog.filter(k => k.key !== 'Backspace' && k.char !== '');
+    const correctKeystrokes = printableKeystrokes.filter(k => k.isCorrect === true).length;
+    const accuracy = printableKeystrokes.length > 0
+      ? canonicalCalculateKeystrokeAccuracy(correctKeystrokes, printableKeystrokes.length)
+      : 100;
     
-    // CRITICAL: Calculate accuracy - if backspace used, cap at 99.99%
-    // typing-engine.calculateAccuracy delegates to metrics-engine.calculateAccuracy
-    let accuracy = calculateAccuracy(correctChars, typedText.length);
-    if (backspaceCount > 0 && accuracy === 100) {
-      accuracy = 99.99;
-    }
+    // Calculate WPM
+    const elapsedTime = startTime ? (Date.now() - startTime) / 1000 : 0;
+    const wpm = calculateWPM(correctChars, elapsedTime);
     
     const result = {
       wpm,
@@ -175,9 +200,10 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
       elapsedTime,
     };
     
+    // Store in ref for WPM sampling
     statsRef.current = result;
     return result;
-  }, [typedText, targetText, startTime, backspaceCount]);
+  }, [typedText, targetText, startTime, keystrokeLog]);
   
   // Update live stats
   useEffect(() => {
@@ -236,27 +262,54 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
   }, [typedText, targetText, status, settings.mode, finishTest]);
   
   // Handle test completion
+  // CRITICAL: Use canonical metrics-engine for final accuracy calculation
+  // CRITICAL FIX: Ensure final accuracy matches live accuracy by using the SAME typedText and calculation
   useEffect(() => {
     if (status === 'finished') {
       const consistency = calculateConsistency(wpmHistory);
+
+      // Use the same typedText that drove live accuracy as the source of truth.
+      const finalTypedText = typedText;
+
+      // Convert the keystroke log into canonical KeystrokeRecord format.
+      const keystrokeRecords: KeystrokeRecord[] = keystrokeLog.map((k) => ({
+        session_id: 'session-' + Date.now(),
+        char_expected: k.expected || targetText[k.position] || '',
+        char_typed: k.char,
+        event_type: 'keydown' as const,
+        timestamp_ms: k.timestamp,
+        cursor_index: k.position,
+        is_backspace: k.key === 'Backspace',
+        is_correct: k.key === 'Backspace' ? false : (k.isCorrect ?? false),
+      }));
+
+      // Canonical metrics-engine is the single source of truth for final metrics.
+      const isTimeBasedTest = settings.mode === 'time';
+      const canonicalMetrics = computeSessionMetrics(
+        keystrokeRecords,
+        targetText,
+        finalTypedText,
+        isTimeBasedTest
+      );
+
       onTestComplete({
-        wpm: stats.wpm,
-        rawWpm: stats.wpm,
-        accuracy: stats.accuracy,
-        correctChars: stats.correctChars,
-        incorrectChars: stats.incorrectChars,
-        totalChars: stats.totalChars,
-        errors: stats.incorrectChars,
+        wpm: canonicalMetrics.netWpm,
+        rawWpm: canonicalMetrics.rawWpm,
+        accuracy: canonicalMetrics.accuracy,
+        correctChars: canonicalMetrics.correctChars,
+        incorrectChars: canonicalMetrics.incorrectChars,
+        totalChars: canonicalMetrics.totalTypedChars,
+        errors: canonicalMetrics.incorrectChars,
         elapsedTime: stats.elapsedTime,
         consistency,
         wpmHistory,
-        backspaceCount,
+        backspaceCount: canonicalMetrics.backspaceCount,
         keystrokeLog,
         targetText,
-        typedText, // Pass actual typed text
+        typedText: finalTypedText,
       });
     }
-  }, [status, stats, wpmHistory, onTestComplete, backspaceCount, keystrokeLog, targetText, typedText]);
+  }, [status, stats, wpmHistory, onTestComplete, keystrokeLog, targetText, typedText, settings.mode]);
   
   // Handle keyboard input - start test on first keystroke
   const handleInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -344,29 +397,38 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
       setTimeout(() => setCurrentKeyPressed(undefined), 100);
     }
     
-    // Don't allow typing beyond target
-    if (value.length <= targetText.length) {
+    // CRITICAL FIX: For time-based tests, allow typing beyond target text
+    // For non-time tests, restrict to target length
+    if (settings.mode === 'time') {
+      // Time mode: Allow unlimited typing (user types as much as possible in time limit)
       updateTypedText(value);
+    } else {
+      // Non-time modes: Don't allow typing beyond target
+      if (value.length <= targetText.length) {
+        updateTypedText(value);
+      }
     }
-  }, [status, startTest, updateTypedText, targetText, typedText, wordBoundaries, completedWordEndIndices]);
+  }, [status, startTest, updateTypedText, targetText, typedText, wordBoundaries, completedWordEndIndices, settings.mode]);
   
     // REACT-SAFE: Helper to regenerate text (called from handlers, not render)
   const regenerateText = useCallback(() => {
     let text = '';
     switch (settings.mode) {
-      case 'quote':
+      case 'quote': {
         const quote = getRandomQuote();
         setCurrentQuote(quote);
         text = quote.text;
         break;
+      }
       case 'words':
         text = generateRandomWords(settings.wordCount, settings.punctuation, settings.numbers);
         break;
-      case 'code':
+      case 'code': {
         // Get code snippet for selected language
         const codeSnippet = getRandomCodeSnippet(settings.codeLanguage);
         text = codeSnippet.content;
         break;
+      }
       case 'time':
       case 'zen':
       default:

@@ -17,6 +17,7 @@ import {
   getAllCharacterStats,
   resetKeybrProgress,
   type Keystroke,
+  type CharacterConfidence,
 } from '../keybr-engine';
 
 describe('Keybr Engine', () => {
@@ -205,7 +206,7 @@ describe('Keybr Engine', () => {
 
     it('should focus on weak letters', () => {
       // Set up weak letters
-      const weakData: Record<string, any> = {};
+      const weakData: Record<string, CharacterConfidence> = {};
       ['x', 'z', 'q'].forEach(char => {
         weakData[char] = {
           char,
@@ -263,7 +264,7 @@ describe('Keybr Engine', () => {
 
   describe('getWeakLetters', () => {
     it('should return letters with lowest confidence', () => {
-      const weakData: Record<string, any> = {};
+      const weakData: Record<string, CharacterConfidence> = {};
       ['x', 'z', 'q', 'j', 'k'].forEach((char, i) => {
         weakData[char] = {
           char,
@@ -477,7 +478,7 @@ describe('Keybr Engine', () => {
   describe('Precision Tests - Lesson Generation', () => {
     it('should generate lesson with ~70% focus words on weak letters', () => {
       // Set up weak letters
-      const weakData: Record<string, any> = {};
+      const weakData: Record<string, CharacterConfidence> = {};
       ['x', 'z', 'q'].forEach(char => {
         weakData[char] = {
           char,

@@ -193,16 +193,18 @@ describe('Per-Keystroke Fidelity: Fixed Synthetic Logs', () => {
       createKeystroke('t', 't', 1000, 3, true),
     ];
 
-    it('should cap accuracy at 99.99% with backspace', () => {
+    it('counts a corrected typo against keystroke accuracy', () => {
       const metrics = computeSessionMetrics(keystrokeRecords, targetText, typedText);
       
       expect(metrics.backspaceCount).toBe(1);
-      expect(metrics.accuracy).toBe(99.99); // Capped
+      // Printable: t, e, x, s, t → 4/5 = 80%
+      expect(metrics.accuracy).toBe(80);
+      expect(metrics.finalTextAccuracy).toBe(100);
       expect(metrics.correctChars).toBe(4);
       expect(metrics.isValid).toBe(true);
     });
 
-    it('should match professional report backspace cap', () => {
+    it('should match professional report keystroke accuracy', () => {
       const durationSeconds = 1.0;
       const report = generateProfessionalAccuracyReport(
         targetText,
@@ -214,7 +216,8 @@ describe('Per-Keystroke Fidelity: Fixed Synthetic Logs', () => {
       );
       
       expect(report.typing.backspaceCount).toBe(1);
-      expect(report.accuracy.final).toBe(99.99);
+      expect(report.accuracy.final).toBe(80);
+      expect(report.accuracy.finalText).toBe(100);
     });
   });
 

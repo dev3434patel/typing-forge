@@ -8,6 +8,40 @@ import { calculateWpm, calculateProgress } from './metrics-engine';
 export type BotLevel = 'beginner' | 'intermediate' | 'pro';
 export type BotDifficulty = BotLevel; // Alias for compatibility
 
+/** A pseudo-random number generator returning a float in [0, 1). */
+export type Rng = () => number;
+
+/** Hard safety caps so bot loops can never run unbounded. */
+const MAX_TICKS = 100_000;
+const MAX_SIM_ITERATIONS = 100_000;
+/** After this many consecutive ticks with no progress, force the virtual clock forward. */
+const FORCE_ADVANCE_AFTER_TICKS = 50;
+/** Simulated-time cap for offline full-race simulation (10 minutes). */
+const MAX_SIM_MS = 10 * 60 * 1000;
+
+/** Thrown when a bot cannot make progress within the configured safety caps. */
+export class BotEngineStuckError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'BotEngineStuckError';
+  }
+}
+
+/**
+ * Deterministic seeded RNG (mulberry32). Given the same seed it always yields the
+ * same sequence, which makes bot behaviour fully reproducible in tests.
+ */
+export function mulberry32(seed: number): Rng {
+  let a = seed >>> 0;
+  return function (): number {
+    a |= 0;
+    a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
 export interface BotConfig {
   level: BotLevel;
   targetWpmMean: number;
@@ -82,10 +116,10 @@ export const BOT_CONFIGS: Record<BotLevel, BotConfig> = {
 /**
  * Sample from log-normal distribution for natural keystroke timing
  */
-function sampleLogNormal(mean: number, stdDev: number): number {
-  // Box-Muller transform for normal distribution
-  const u1 = Math.random();
-  const u2 = Math.random();
+function sampleLogNormal(mean: number, stdDev: number, rng: Rng = Math.random): number {
+  // Box-Muller transform for normal distribution. Clamp u1 away from 0 so log() is finite.
+  const u1 = Math.min(1 - Number.EPSILON, Math.max(1e-12, rng()));
+  const u2 = rng();
   const z = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
   
   // Convert to log-normal
@@ -98,9 +132,9 @@ function sampleLogNormal(mean: number, stdDev: number): number {
 /**
  * Sample from normal distribution
  */
-function sampleNormal(mean: number, stdDev: number): number {
-  const u1 = Math.random();
-  const u2 = Math.random();
+function sampleNormal(mean: number, stdDev: number, rng: Rng = Math.random): number {
+  const u1 = Math.min(1 - Number.EPSILON, Math.max(1e-12, rng()));
+  const u2 = rng();
   const z = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
   return mean + stdDev * z;
 }
@@ -141,31 +175,31 @@ const ADJACENT_KEYS: Record<string, string[]> = {
 /**
  * Get a realistic typo character
  */
-function getTypoChar(expectedChar: string): string {
+function getTypoChar(expectedChar: string, rng: Rng = Math.random): string {
   const lowerChar = expectedChar.toLowerCase();
   const adjacent = ADJACENT_KEYS[lowerChar];
   
   if (adjacent && adjacent.length > 0) {
-    const typo = adjacent[Math.floor(Math.random() * adjacent.length)];
+    const typo = adjacent[Math.floor(rng() * adjacent.length)];
     // Preserve case
     return expectedChar === expectedChar.toUpperCase() ? typo.toUpperCase() : typo;
   }
   
   // Fallback: random nearby ASCII char
-  const offset = Math.random() > 0.5 ? 1 : -1;
+  const offset = rng() > 0.5 ? 1 : -1;
   return String.fromCharCode(expectedChar.charCodeAt(0) + offset);
 }
 
 /**
  * Create a new bot instance
  */
-export function createBotState(level: BotLevel, targetText: string): BotState {
+export function createBotState(level: BotLevel, targetText: string, rng: Rng = Math.random): BotState {
   const config = { ...BOT_CONFIGS[level] };
   
   // Add some variance to make each bot unique
-  config.targetWpmMean = Math.round(sampleNormal(config.targetWpmMean, config.targetWpmStdDev / 2));
+  config.targetWpmMean = Math.round(sampleNormal(config.targetWpmMean, config.targetWpmStdDev / 2, rng));
   config.mistakeProbability = Math.max(0.01, Math.min(0.25, 
-    config.mistakeProbability + (Math.random() - 0.5) * 0.05
+    config.mistakeProbability + (rng() - 0.5) * 0.05
   ));
   
   return {
@@ -193,30 +227,69 @@ export interface BotRunner {
   isFinished: () => boolean;
 }
 
-export function createBot(level: BotLevel, targetText: string): BotRunner {
-  let state = createBotState(level, targetText);
+export interface BotRunnerOptions {
+  /** Deterministic RNG. Defaults to Math.random. */
+  rng?: Rng;
+  /** Clock source in ms. Defaults to performance.now. Inject for deterministic tests. */
+  now?: () => number;
+  /** Safety cap on total ticks before BotEngineStuckError is thrown. */
+  maxTicks?: number;
+}
+
+export function createBot(
+  level: BotLevel,
+  targetText: string,
+  options: BotRunnerOptions = {}
+): BotRunner {
+  const rng: Rng = options.rng ?? Math.random;
+  const now: () => number = options.now ?? (() => performance.now());
+  const maxTicks = options.maxTicks ?? MAX_TICKS;
+
+  let state = createBotState(level, targetText, rng);
   let nextKeystrokeTime = 0;
   let isStarted = false;
+  let tickCount = 0;
+  let noProgressTicks = 0;
 
   return {
     get state() { return state; },
     
     start() {
       isStarted = true;
-      state = { ...state, startTime: performance.now() };
-      nextKeystrokeTime = performance.now() + getNextKeystrokeDelay(state);
+      state = { ...state, startTime: now() };
+      nextKeystrokeTime = now() + getNextKeystrokeDelay(state, rng);
     },
     
     tick(): BotState {
       if (!isStarted || state.isFinished) return state;
-      
-      const now = performance.now();
-      
-      // Process keystrokes that should have happened by now
-      while (now >= nextKeystrokeTime && !state.isFinished) {
-        state = simulateKeystroke(state, now);
-        nextKeystrokeTime = now + getNextKeystrokeDelay(state);
+
+      tickCount++;
+      if (tickCount > maxTicks) {
+        state = { ...state, isFinished: true };
+        throw new BotEngineStuckError(
+          `Bot exceeded ${maxTicks} ticks without finishing (cursor ${state.cursorIndex}/${state.targetText.length})`
+        );
       }
+
+      let current = now();
+
+      // Force-advance guard: in tight loops (or when the wall clock stalls) the real
+      // clock may never reach the next scheduled keystroke. After enough no-progress
+      // ticks, snap the virtual clock forward so a keystroke is guaranteed to fire.
+      if (current < nextKeystrokeTime) {
+        noProgressTicks++;
+        if (noProgressTicks < FORCE_ADVANCE_AFTER_TICKS) {
+          return state;
+        }
+        current = nextKeystrokeTime;
+      }
+
+      // Process keystrokes that should have happened by now
+      while (current >= nextKeystrokeTime && !state.isFinished) {
+        state = simulateKeystroke(state, current, rng);
+        nextKeystrokeTime = current + getNextKeystrokeDelay(state, rng);
+      }
+      noProgressTicks = 0;
       
       // Update accuracy
       const totalTyped = state.typedText.length;
@@ -236,19 +309,19 @@ export function createBot(level: BotLevel, targetText: string): BotRunner {
 /**
  * Generate next keystroke timing for bot
  */
-export function getNextKeystrokeDelay(bot: BotState): number {
+export function getNextKeystrokeDelay(bot: BotState, rng: Rng = Math.random): number {
   const { config } = bot;
   
   // Base delay from log-normal distribution
-  let delay = sampleLogNormal(config.ikiMean, config.ikiStdDev);
+  let delay = sampleLogNormal(config.ikiMean, config.ikiStdDev, rng);
   
   // Hesitation (think pause)
-  if (Math.random() < config.hesitationProbability) {
-    delay += sampleLogNormal(500, 200);
+  if (rng() < config.hesitationProbability) {
+    delay += sampleLogNormal(500, 200, rng);
   }
   
   // Burst typing (faster)
-  if (Math.random() < config.burstProbability) {
+  if (rng() < config.burstProbability) {
     delay *= 0.6;
   }
   
@@ -259,7 +332,7 @@ export function getNextKeystrokeDelay(bot: BotState): number {
 /**
  * Simulate a single keystroke
  */
-export function simulateKeystroke(bot: BotState, currentTime: number): BotState {
+export function simulateKeystroke(bot: BotState, currentTime: number, rng: Rng = Math.random): BotState {
   if (bot.isFinished) return bot;
   
   const newBot = { ...bot };
@@ -276,11 +349,11 @@ export function simulateKeystroke(bot: BotState, currentTime: number): BotState 
   }
   
   // Determine if this keystroke is a mistake
-  const isMistake = Math.random() < newBot.config.mistakeProbability;
+  const isMistake = rng() < newBot.config.mistakeProbability;
   
   let typedChar = expectedChar;
   if (isMistake) {
-    typedChar = getTypoChar(expectedChar);
+    typedChar = getTypoChar(expectedChar, rng);
   }
   
   // Record keystroke
@@ -300,10 +373,10 @@ export function simulateKeystroke(bot: BotState, currentTime: number): BotState 
   }
   
   // If mistake was made, simulate correction pattern
-  if (isMistake && Math.random() > 0.1) { // 90% chance to correct
+  if (isMistake && rng() > 0.1) { // 90% chance to correct
     // Add backspace after delay
     const correctionDelay = newBot.config.correctionDelay[0] + 
-      Math.random() * (newBot.config.correctionDelay[1] - newBot.config.correctionDelay[0]);
+      rng() * (newBot.config.correctionDelay[1] - newBot.config.correctionDelay[0]);
     
     const backspaceKeystroke: BotKeystroke = {
       char: '',
@@ -319,7 +392,7 @@ export function simulateKeystroke(bot: BotState, currentTime: number): BotState 
     // Retype correct character
     const retypeKeystroke: BotKeystroke = {
       char: expectedChar,
-      timestamp: currentTime + correctionDelay + sampleLogNormal(100, 30),
+      timestamp: currentTime + correctionDelay + sampleLogNormal(100, 30, rng),
       isCorrect: true,
       isBackspace: false,
     };
@@ -360,18 +433,44 @@ export interface BotUpdate {
 export function simulateFullRace(
   level: BotLevel,
   targetText: string,
-  updateIntervalMs: number = 200
+  updateIntervalMs: number = 200,
+  rng: Rng = Math.random
 ): BotUpdate[] {
-  let bot = createBotState(level, targetText);
+  let bot = createBotState(level, targetText, rng);
   const updates: BotUpdate[] = [];
   let currentTime = 0;
   let nextUpdateTime = 0;
+  let iterations = 0;
+  let stalledTicks = 0;
+  let lastCursor = bot.cursorIndex;
   
   while (!bot.isFinished) {
+    if (++iterations > MAX_SIM_ITERATIONS) {
+      throw new BotEngineStuckError(
+        `simulateFullRace exceeded ${MAX_SIM_ITERATIONS} iterations (cursor ${bot.cursorIndex}/${bot.targetText.length})`
+      );
+    }
+    if (currentTime > MAX_SIM_MS) {
+      throw new BotEngineStuckError(
+        `simulateFullRace exceeded ${MAX_SIM_MS}ms simulated time (cursor ${bot.cursorIndex}/${bot.targetText.length})`
+      );
+    }
     // Simulate keystroke
-    const delay = getNextKeystrokeDelay(bot);
+    const delay = getNextKeystrokeDelay(bot, rng);
     currentTime += delay;
-    bot = simulateKeystroke(bot, currentTime);
+    bot = simulateKeystroke(bot, currentTime, rng);
+
+    if (bot.cursorIndex === lastCursor && !bot.isFinished) {
+      stalledTicks++;
+      if (stalledTicks >= FORCE_ADVANCE_AFTER_TICKS) {
+        bot = { ...bot, cursorIndex: bot.cursorIndex + 1, typedText: bot.typedText + (bot.targetText[bot.cursorIndex] ?? '') };
+        if (bot.cursorIndex >= bot.targetText.length) bot = { ...bot, isFinished: true };
+        stalledTicks = 0;
+      }
+    } else {
+      stalledTicks = 0;
+    }
+    lastCursor = bot.cursorIndex;
     
     // Record update at interval
     if (currentTime >= nextUpdateTime) {
@@ -401,7 +500,7 @@ export function simulateFullRace(
 /**
  * Get bot display name based on level
  */
-export function getBotName(level: BotLevel): string {
+export function getBotName(level: BotLevel, rng: Rng = Math.random): string {
   const names: Record<BotLevel, string[]> = {
     beginner: ['TypeLearner', 'KeyNewbie', 'SlowTyper', 'Novice123'],
     intermediate: ['SwiftKeys', 'TyperMike', 'KeyboardKid', 'MidRacer'],
@@ -409,7 +508,7 @@ export function getBotName(level: BotLevel): string {
   };
   
   const levelNames = names[level];
-  return levelNames[Math.floor(Math.random() * levelNames.length)];
+  return levelNames[Math.floor(rng() * levelNames.length)];
 }
 
 /**

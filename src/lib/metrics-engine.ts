@@ -20,7 +20,10 @@ export interface SessionMetrics {
   // Core metrics
   rawWpm: number;
   netWpm: number;
+  /** PRIMARY accuracy: keystroke-based (correctKeystrokes / totalKeystrokes * 100). */
   accuracy: number;
+  /** SECONDARY accuracy: based on the final text vs target (ignores corrected keystrokes). */
+  finalTextAccuracy: number;
   consistency: number;
   
   // Character counts
@@ -29,6 +32,10 @@ export interface SessionMetrics {
   incorrectChars: number;
   missedChars: number;
   extraChars: number;
+
+  // Keystroke counts (basis for primary accuracy)
+  totalKeystrokes: number;
+  correctKeystrokes: number;
   
   // Timing
   durationMs: number;
@@ -80,58 +87,79 @@ export function calculateRawWpm(totalTypedChars: number, elapsedMs: number): num
 }
 
 /**
- * Calculate accuracy percentage
+ * SECONDARY accuracy — "final text" accuracy.
  * Formula: (correctChars / totalDenominator) * 100
- * Where totalDenominator = correctChars + incorrectChars + missedChars + extraChars
- * 
- * CRITICAL: If backspace was used, cap at 99.99%
+ * Where totalDenominator = correctChars + incorrectChars + missedChars + extraChars.
+ *
+ * This measures how closely the FINAL typed text matches the target and intentionally
+ * ignores keystrokes that were typed and later corrected. It is NOT the headline number;
+ * the headline accuracy is keystroke-based (see calculateKeystrokeAccuracy).
+ *
+ * An empty comparison (nothing typed, nothing wrong) returns 100.
+ * NOTE: `backspaceUsed` is retained for API compatibility and does not affect the result
+ * (there is no cap/penalty on final-text accuracy).
  */
 export function calculateAccuracy(
   correctChars: number,
   incorrectChars: number,
   missedChars: number,
   extraChars: number,
-  backspaceUsed: boolean
+  backspaceUsed: boolean = false
 ): number {
+  void backspaceUsed;
   const totalDenominator = correctChars + incorrectChars + missedChars + extraChars;
-  
+
   if (totalDenominator === 0) return 100;
-  
-  let accuracy = (correctChars / totalDenominator) * 100;
-  
-  // Cap at 99.99% if backspace was used (strict accuracy enforcement)
-  if (backspaceUsed && accuracy >= 100) {
-    accuracy = 99.99;
-  }
-  
+
+  const accuracy = (correctChars / totalDenominator) * 100;
+
+  // Round to 2 decimal places for precision. No cap.
   return Math.round(accuracy * 100) / 100;
 }
 
 /**
- * Calculate consistency from WPM windows
- * Formula: 100 - (CV * 100) where CV = std(wpmWindows) / mean(wpmWindows)
- * Clamped to [0, 100]
+ * PRIMARY accuracy — keystroke-based (MonkeyType/Keybr model).
+ * Formula: (correctKeystrokes / totalKeystrokes) * 100, rounded to 2 decimals.
+ *
+ * Every printable keypress counts; backspaces are excluded from both counts.
+ * Corrected typos still cost accuracy (the wrong keypress was still a wrong keypress).
+ *
+ * Zero keystrokes returns 0 (never NaN) — nothing typed means no demonstrated accuracy.
+ * No caps, no overrides.
+ */
+export function calculateKeystrokeAccuracy(
+  correctKeystrokes: number,
+  totalKeystrokes: number
+): number {
+  if (totalKeystrokes <= 0) return 0;
+  const accuracy = (correctKeystrokes / totalKeystrokes) * 100;
+  return Math.round(accuracy * 100) / 100;
+}
+
+/**
+ * Calculate consistency from WPM windows (MonkeyType formula).
+ * consistency = 100 * (1 - tanh(cov + cov^3/3 + cov^5/5))
+ * where cov = stdDev / mean (coefficient of variation).
+ * Clamped to [0, 100]. Fewer than 2 valid samples returns 100.
  */
 export function calculateConsistency(wpmWindows: number[]): number {
-  if (wpmWindows.length < 2) return 100;
-  
   // Filter out zero/invalid values
   const validWpms = wpmWindows.filter(w => w > 0 && isFinite(w));
   if (validWpms.length < 2) return 100;
-  
+
   const mean = validWpms.reduce((a, b) => a + b, 0) / validWpms.length;
   if (mean <= 0) return 100;
-  
+
   const variance = validWpms.reduce((sum, wpm) => sum + Math.pow(wpm - mean, 2), 0) / validWpms.length;
   const stdDev = Math.sqrt(variance);
-  
+
   // Coefficient of Variation
-  const cv = stdDev / mean;
-  
-  // Convert to 0-100 scale (100 = perfectly consistent)
-  const consistency = Math.max(0, Math.min(100, 100 - (cv * 100)));
-  
-  return Math.round(consistency * 10) / 10;
+  const cov = stdDev / mean;
+
+  // MonkeyType consistency transform
+  const consistency = 100 * (1 - Math.tanh(cov + Math.pow(cov, 3) / 3 + Math.pow(cov, 5) / 5));
+
+  return Math.round(Math.max(0, Math.min(100, consistency)) * 100) / 100;
 }
 
 /**
@@ -176,47 +204,34 @@ export function calculateWpmWindows(
 /**
  * Compute all session metrics from keystroke log
  * This is the CANONICAL source of truth for metrics
+ * 
+ * @param keystrokes - Array of keystroke records
+ * @param targetText - The target text to type
+ * @param finalTypedText - The final typed text
+ * @param isTimeBasedTest - If true, untyped remainder is NOT counted as missed chars (for time-based tests)
  */
 export function computeSessionMetrics(
   keystrokes: KeystrokeRecord[],
   targetText: string,
-  finalTypedText: string
+  finalTypedText: string,
+  isTimeBasedTest: boolean = false
 ): SessionMetrics {
   const validationErrors: string[] = [];
-  
-  // Edge case: no keystrokes
-  if (keystrokes.length === 0) {
-    return {
-      rawWpm: 0,
-      netWpm: 0,
-      accuracy: 100,
-      consistency: 100,
-      totalTypedChars: 0,
-      correctChars: 0,
-      incorrectChars: 0,
-      missedChars: targetText.length,
-      extraChars: 0,
-      durationMs: 0,
-      durationSeconds: 0,
-      durationMinutes: 0,
-      charsPerSecond: 0,
-      peakWpm: 0,
-      lowestWpm: 0,
-      backspaceCount: 0,
-      isValid: false,
-      validationErrors: ['No keystrokes recorded']
-    };
+
+  const hasKeystrokes = keystrokes.length > 0;
+  if (!hasKeystrokes) {
+    validationErrors.push('No keystrokes recorded');
   }
-  
-  // Calculate timing
-  const startTime = keystrokes[0].timestamp_ms;
-  const endTime = keystrokes[keystrokes.length - 1].timestamp_ms;
-  const durationMs = endTime - startTime;
+
+  // Calculate timing (fall back to 0 when no keystrokes are available)
+  const startTime = hasKeystrokes ? keystrokes[0].timestamp_ms : 0;
+  const endTime = hasKeystrokes ? keystrokes[keystrokes.length - 1].timestamp_ms : 0;
+  const durationMs = hasKeystrokes ? Math.max(0, endTime - startTime) : 0;
   const durationSeconds = durationMs / 1000;
   const durationMinutes = durationMs / 60000;
-  
+
   // Validate duration
-  if (durationMs <= 0) {
+  if (hasKeystrokes && durationMs <= 0) {
     validationErrors.push('Invalid duration');
   }
   
@@ -228,7 +243,10 @@ export function computeSessionMetrics(
   let extraChars = 0;
   
   // Compare typed vs target
+  // PERFECT ACCURACY: Character-by-character exact comparison
   for (let i = 0; i < comparisonLength; i++) {
+    // PERFECT COMPARISON: Exact character match (case-sensitive, whitespace-sensitive)
+    // This ensures 100% accuracy when all characters match exactly
     if (finalTypedText[i] === targetText[i]) {
       correctChars++;
     } else {
@@ -242,15 +260,23 @@ export function computeSessionMetrics(
   }
   
   // Handle missed chars (target beyond typed)
-  if (targetText.length > finalTypedText.length) {
+  // CRITICAL: For time-based tests, untyped remainder is NOT counted as missed
+  // Only count missed chars if it's NOT a time-based test
+  if (!isTimeBasedTest && targetText.length > finalTypedText.length) {
     missedChars = targetText.length - finalTypedText.length;
   }
+  // For time-based tests, missedChars remains 0 (untyped remainder is expected behavior)
   
   const totalTypedChars = finalTypedText.length;
   
   // Count backspaces
   const backspaceCount = keystrokes.filter(ks => ks.is_backspace).length;
-  const backspaceUsed = backspaceCount > 0;
+  
+  // Keystroke-based counts (basis for PRIMARY accuracy).
+  // Every printable keypress counts; backspaces are excluded.
+  const printableKeystrokes = keystrokes.filter(ks => !ks.is_backspace);
+  const totalKeystrokes = printableKeystrokes.length;
+  const correctKeystrokes = printableKeystrokes.filter(ks => ks.is_correct).length;
   
   // Calculate WPM windows for consistency
   const wpmWindows = calculateWpmWindows(keystrokes);
@@ -259,7 +285,9 @@ export function computeSessionMetrics(
   // Calculate metrics
   const rawWpm = calculateRawWpm(totalTypedChars, durationMs);
   const netWpm = calculateWpm(correctChars, durationMs);
-  const accuracy = calculateAccuracy(correctChars, incorrectChars, missedChars, extraChars, backspaceUsed);
+  // PRIMARY accuracy = keystroke-based. SECONDARY = final-text based.
+  const accuracy = calculateKeystrokeAccuracy(correctKeystrokes, totalKeystrokes);
+  const finalTextAccuracy = calculateAccuracy(correctChars, incorrectChars, missedChars, extraChars);
   const consistency = calculateConsistency(wpmValues);
   const charsPerSecond = durationSeconds > 0 ? Math.round((totalTypedChars / durationSeconds) * 100) / 100 : 0;
   
@@ -269,7 +297,7 @@ export function computeSessionMetrics(
   const lowestWpm = validWpms.length > 0 ? Math.min(...validWpms) : netWpm;
   
   // Validate metrics for NaN/Infinity
-  const metricsToValidate = { rawWpm, netWpm, accuracy, consistency, peakWpm, lowestWpm, charsPerSecond };
+  const metricsToValidate = { rawWpm, netWpm, accuracy, finalTextAccuracy, consistency, peakWpm, lowestWpm, charsPerSecond };
   for (const [key, value] of Object.entries(metricsToValidate)) {
     if (!isFinite(value) || isNaN(value)) {
       validationErrors.push(`Invalid ${key}: ${value}`);
@@ -280,12 +308,15 @@ export function computeSessionMetrics(
     rawWpm,
     netWpm,
     accuracy,
+    finalTextAccuracy,
     consistency,
     totalTypedChars,
     correctChars,
     incorrectChars,
     missedChars,
     extraChars,
+    totalKeystrokes,
+    correctKeystrokes,
     durationMs,
     durationSeconds: Math.round(durationSeconds * 100) / 100,
     durationMinutes: Math.round(durationMinutes * 1000) / 1000,

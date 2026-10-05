@@ -135,6 +135,9 @@ export function ProfessionalResultsScreen({
           variant="default"
         />
       </motion.div>
+      <p className="text-center text-sm text-muted-foreground -mt-2">
+        Accuracy counts every keystroke. Final-text accuracy (corrections ignored): {report.accuracy.finalText}%
+      </p>
       
       {/* WPM Over Time Chart */}
       {wpmChartData.length > 1 && (

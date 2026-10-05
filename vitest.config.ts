@@ -8,6 +8,9 @@ export default defineConfig({
     globals: true,
     environment: 'node', // Use node environment for pure unit tests
     setupFiles: ['./src/test-setup.ts'],
+    // Hard cap so a hung/stuck test fails fast instead of blocking the suite.
+    testTimeout: 10000,
+    hookTimeout: 10000,
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     coverage: {
       provider: 'v8',

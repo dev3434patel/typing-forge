@@ -8,6 +8,7 @@ import {
   calculateWpm,
   calculateRawWpm,
   calculateAccuracy,
+  calculateKeystrokeAccuracy,
   calculateConsistency,
   calculateWpmWindows,
   computeSessionMetrics,
@@ -62,8 +63,9 @@ describe('Metrics Engine', () => {
       expect(calculateAccuracy(100, 0, 0, 0, false)).toBe(100);
     });
 
-    it('should cap at 99.99% when backspace used', () => {
-      expect(calculateAccuracy(100, 0, 0, 0, true)).toBe(99.99);
+    it('does not cap final-text accuracy when backspace is used', () => {
+      // calculateAccuracy is SECONDARY (final text). A perfect final text is 100%.
+      expect(calculateAccuracy(100, 0, 0, 0, true)).toBe(100);
     });
 
     it('should calculate correct accuracy with errors', () => {
@@ -81,8 +83,28 @@ describe('Metrics Engine', () => {
       expect(calculateAccuracy(80, 0, 0, 20, false)).toBe(80);
     });
 
-    it('should return 100% for empty test', () => {
+    it('should return 100% for empty final-text comparison', () => {
       expect(calculateAccuracy(0, 0, 0, 0, false)).toBe(100);
+    });
+  });
+
+  describe('calculateKeystrokeAccuracy (PRIMARY)', () => {
+    it('returns 100 for a perfect run', () => {
+      expect(calculateKeystrokeAccuracy(11, 11)).toBe(100);
+    });
+
+    it('is below 100 when one error was corrected', () => {
+      // 5 correct printable + 1 wrong printable = 6 total → 83.33%
+      expect(calculateKeystrokeAccuracy(5, 6)).toBe(83.33);
+    });
+
+    it('returns 0 when every keystroke is wrong', () => {
+      expect(calculateKeystrokeAccuracy(0, 12)).toBe(0);
+    });
+
+    it('returns 0 (not NaN) for zero keystrokes', () => {
+      expect(calculateKeystrokeAccuracy(0, 0)).toBe(0);
+      expect(Number.isNaN(calculateKeystrokeAccuracy(0, 0))).toBe(false);
     });
   });
 
@@ -218,7 +240,7 @@ describe('Keystroke Processing', () => {
       expect(metrics.isValid).toBe(true);
     });
 
-    it('should cap accuracy at 99.99% with backspace', () => {
+    it('counts a corrected typo against keystroke accuracy, not final-text accuracy', () => {
       const keystrokes: KeystrokeRecord[] = [
         createKeystroke('t', 't', 0),
         createKeystroke('x', 'e', 200), // typo
@@ -230,7 +252,9 @@ describe('Keystroke Processing', () => {
       
       const metrics = computeSessionMetrics(keystrokes, 'test', 'test');
       
-      expect(metrics.accuracy).toBe(99.99);
+      // Printable keystrokes: t, x, e, s, t → 4/5 = 80%. Backspace excluded.
+      expect(metrics.accuracy).toBe(80);
+      expect(metrics.finalTextAccuracy).toBe(100);
       expect(metrics.backspaceCount).toBe(1);
     });
 
@@ -239,6 +263,7 @@ describe('Keystroke Processing', () => {
       
       expect(metrics.isValid).toBe(false);
       expect(metrics.validationErrors).toContain('No keystrokes recorded');
+      expect(metrics.accuracy).toBe(0);
     });
 
     it('should calculate missed chars correctly', () => {
@@ -286,7 +311,8 @@ describe('Keystroke Processing', () => {
 describe('Edge Cases', () => {
   it('should handle zero character session', () => {
     const metrics = computeSessionMetrics([], '', '');
-    expect(metrics.accuracy).toBe(100);
+    expect(metrics.accuracy).toBe(0);
+    expect(metrics.finalTextAccuracy).toBe(100);
     expect(metrics.netWpm).toBe(0);
     expect(metrics.isValid).toBe(false);
     expect(metrics.validationErrors).toContain('No keystrokes recorded');
@@ -396,8 +422,10 @@ describe('Edge Cases', () => {
     const metrics = computeSessionMetrics(keystrokes, targetText, typedText);
     
     expect(metrics.backspaceCount).toBe(4);
-    expect(metrics.accuracy).toBe(99.99); // Capped at 99.99% due to backspace
-    expect(metrics.accuracy).toBeLessThanOrEqual(99.99);
+    // Printable: 5 correct + 4 typos = 9; accuracy = 5/9 ≈ 55.56
+    expect(metrics.accuracy).toBe(55.56);
+    expect(metrics.finalTextAccuracy).toBe(100);
+    expect(metrics.accuracy).toBeLessThan(100);
     expect(isFinite(metrics.netWpm)).toBe(true);
     expect(metrics.netWpm).toBeGreaterThanOrEqual(0);
     // Determinism
@@ -496,9 +524,9 @@ describe('Edge Cases', () => {
     expect(accuracy).toBe(80); // 80 / 100
   });
 
-  it('should cap accuracy at 99.99% with backspace even if perfect', () => {
+  it('does not apply a backspace cap to final-text accuracy', () => {
     const accuracy = calculateAccuracy(100, 0, 0, 0, true);
-    expect(accuracy).toBe(99.99);
+    expect(accuracy).toBe(100);
   });
 
   it('should handle accuracy with backspace but errors present', () => {

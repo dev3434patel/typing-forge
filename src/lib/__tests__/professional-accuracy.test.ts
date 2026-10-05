@@ -63,7 +63,7 @@ describe('Professional Accuracy', () => {
       expect(report.assessment.skillLevel).toBeDefined();
     });
 
-    it('should cap accuracy at 99.99% when backspace used', () => {
+    it('counts a corrected typo against keystroke accuracy', () => {
       const targetText = 'hello';
       const typedText = 'hello';
       const keystrokes: Keystroke[] = [
@@ -88,7 +88,9 @@ describe('Professional Accuracy', () => {
         wpmHistory
       );
 
-      expect(report.accuracy.final).toBe(99.99);
+      // Printable: h, x, e, l, l, o → 5/6 = 83.33. Final text is perfect.
+      expect(report.accuracy.final).toBe(83.33);
+      expect(report.accuracy.finalText).toBe(100);
       expect(report.typing.backspaceCount).toBe(1);
     });
 
@@ -111,10 +113,11 @@ describe('Professional Accuracy', () => {
         keystrokes,
         durationSeconds,
         backspaceCount,
-        wpmHistory
+        wpmHistory,
+        true // isTimeBasedTest = true
       );
 
-      // Should not count remaining untyped text as missed
+      // Should not count remaining untyped text as missed for time-based tests
       expect(report.accuracy.missedChars).toBe(0);
       expect(report.errors.misses.length).toBe(0);
       // All metrics should be finite
@@ -142,7 +145,7 @@ describe('Professional Accuracy', () => {
       );
 
       expect(report.overview.wpm).toBe(0);
-      expect(report.overview.accuracy).toBe(100); // Empty test = 100%
+      expect(report.overview.accuracy).toBe(0); // Zero keystrokes = 0, never NaN
       expect(isFinite(report.overview.wpm)).toBe(true);
       expect(isFinite(report.overview.accuracy)).toBe(true);
     });
@@ -203,7 +206,7 @@ describe('Professional Accuracy', () => {
       expect(report.overview.wpm).toBeGreaterThanOrEqual(0);
     });
 
-    it('should handle heavy backspace usage with accuracy cap', () => {
+    it('should handle heavy backspace usage without a cap', () => {
       const targetText = 'test';
       const typedText = 'test';
       const keystrokes: Keystroke[] = [
@@ -232,8 +235,10 @@ describe('Professional Accuracy', () => {
       );
 
       expect(report.typing.backspaceCount).toBe(3);
-      expect(report.accuracy.final).toBe(99.99); // Capped
-      expect(report.accuracy.final).toBeLessThanOrEqual(99.99);
+      // Printable: t,x,e,x,s,x,t → 4/7 ≈ 57.14. Final text is perfect.
+      expect(report.accuracy.final).toBe(57.14);
+      expect(report.accuracy.finalText).toBe(100);
+      expect(report.accuracy.final).toBeLessThan(100);
       expect(isFinite(report.overview.wpm)).toBe(true);
     });
 

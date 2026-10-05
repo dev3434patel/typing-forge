@@ -7,7 +7,8 @@ import {
   calculatePerCharMetrics,
   updateCharacterProgress,
   type Keystroke,
-  type KeybrLesson
+  type KeybrLesson,
+  type CharacterConfidence
 } from '@/lib/keybr-engine';
 import { calculateWPM, calculateAccuracy, calculateConsistency } from '@/lib/typing-engine';
 import { LetterProgressPanel } from './LetterProgressPanel';
@@ -43,7 +44,7 @@ export function KeybrLessonMode() {
     wpm: number;
     accuracy: number;
     newlyUnlocked: string[];
-    perCharMetrics: Map<string, any>;
+    perCharMetrics: Map<string, CharacterConfidence>;
   } | null>(null);
   
   const inputRef = useRef<HTMLInputElement>(null);
@@ -63,9 +64,10 @@ export function KeybrLessonMode() {
     return boundaries;
   }, [lesson]);
 
-  // Generate lesson on mount
+  // Generate lesson on mount only (generateNewLesson is defined below; running once is intended)
   useEffect(() => {
     generateNewLesson();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const generateNewLesson = useCallback(() => {
@@ -142,6 +144,7 @@ export function KeybrLessonMode() {
     if (status === 'running' && lesson && typedText.length >= lesson.text.length) {
       finishTest();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [typedText, lesson, status]);
 
   const finishTest = useCallback(async () => {

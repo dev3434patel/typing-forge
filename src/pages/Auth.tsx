@@ -120,8 +120,8 @@ const Auth = () => {
           description: 'You can now start typing.',
         });
       }
-    } catch (error: any) {
-      let message = error.message;
+    } catch (error) {
+      let message = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
       
       if (message.includes('User already registered')) {
         message = 'This email is already registered. Please sign in instead.';

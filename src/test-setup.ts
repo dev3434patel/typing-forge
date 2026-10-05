@@ -66,7 +66,7 @@ if (typeof global !== 'undefined') {
     observe() {}
     unobserve() {}
     disconnect() {}
-  } as any;
+  } as unknown as typeof globalThis.ResizeObserver;
 
   // Mock IntersectionObserver
   global.IntersectionObserver = class IntersectionObserver {
@@ -74,5 +74,5 @@ if (typeof global !== 'undefined') {
     observe() {}
     unobserve() {}
     disconnect() {}
-  } as any;
+  } as unknown as typeof globalThis.IntersectionObserver;
 }

@@ -21,6 +21,28 @@ import { RaceSettings } from '@/components/race/RaceSettings';
 
 type RaceStatus = 'lobby' | 'waiting' | 'countdown' | 'racing' | 'finished';
 
+interface RaceSessionRow {
+  host_id?: string;
+  expected_text?: string;
+  is_bot_race?: boolean;
+  status?: string;
+  opponent_progress?: number | null;
+  opponent_wpm?: number | null;
+  opponent_accuracy?: number | null;
+  host_progress?: number | null;
+  host_wpm?: number | null;
+  host_accuracy?: number | null;
+}
+
+interface RaceProgressUpdate {
+  host_progress?: number;
+  host_wpm?: number;
+  host_accuracy?: number;
+  opponent_progress?: number;
+  opponent_wpm?: number;
+  opponent_accuracy?: number;
+}
+
 function generateRoomCode(): string {
   const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const randomValues = new Uint8Array(6);
@@ -42,7 +64,7 @@ const Race = () => {
   
   // Race state
   const [roomCode, setRoomCode] = useState(urlRoomCode || '');
-  const [raceData, setRaceData] = useState<any>(null);
+  const [raceData, setRaceData] = useState<RaceSessionRow | null>(null);
   const [status, setStatus] = useState<RaceStatus>('lobby');
   const [countdown, setCountdown] = useState(3);
   
@@ -69,7 +91,7 @@ const Race = () => {
   
   // Refs
   const updateThrottleRef = useRef<NodeJS.Timeout | null>(null);
-  const pendingUpdateRef = useRef<any>(null);
+  const pendingUpdateRef = useRef<RaceProgressUpdate | null>(null);
   const countdownStartedRef = useRef(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -103,28 +125,7 @@ const Race = () => {
     }, []),
   });
 
-  // Timer countdown for race
-  useEffect(() => {
-    if (status === 'racing' && timeRemaining > 0) {
-      timerRef.current = setInterval(() => {
-        setTimeRemaining((prev) => {
-          if (prev <= 1) {
-            // Time's up - end the race
-            finishRace(false);
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    }
-
-    return () => {
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-        timerRef.current = null;
-      }
-    };
-  }, [status]);
+  // Timer is registered after finishRace so the effect can depend on it.
 
   // Server-controlled countdown
   const startCountdown = useCallback(() => {
@@ -161,7 +162,7 @@ const Race = () => {
           filter: `room_code=eq.${roomCode}`,
         },
         (payload) => {
-          const newData = payload.new as any;
+          const newData = payload.new as RaceSessionRow;
           setRaceData(newData);
           
           if (user.id === newData.host_id) {
@@ -282,6 +283,27 @@ const Race = () => {
         .eq('room_code', roomCode);
     }
   }, [status, startTime, expectedText, typedText, isBotRace, roomCode, isHost, opponentWpm, opponentAccuracy]);
+
+  useEffect(() => {
+    if (status !== 'racing') return;
+
+    timerRef.current = setInterval(() => {
+      setTimeRemaining((prev) => {
+        if (prev <= 1) {
+          void finishRace(false);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
+      }
+    };
+  }, [status, finishRace]);
 
   const createRace = async () => {
     if (!user) {

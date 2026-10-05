@@ -32,16 +32,22 @@ const Index = () => {
     targetText: string;
     typedText: string;
   }) => {
-    // Generate professional accuracy report
+    // CRITICAL: Ensure typedText matches what was used for live accuracy
+    // Generate professional accuracy report using the SAME typedText
+    // CRITICAL FIX: Pass isTimeBasedTest parameter to correctly calculate missed chars
+    const isTimeBasedTest = settings.mode === 'time';
     const report = generateProfessionalAccuracyReport(
       stats.targetText,
-      stats.typedText,
+      stats.typedText, // Use same typedText as live calculation
       stats.keystrokeLog,
       stats.elapsedTime,
       stats.backspaceCount,
-      stats.wpmHistory
+      stats.wpmHistory,
+      isTimeBasedTest // CRITICAL: Pass mode to correctly calculate missed chars
     );
     
+    // The report derives all metrics from the canonical keystroke log, so its
+    // accuracy already agrees with the live HUD. Never mutate report values here.
     setResults({ report, wpmHistory: stats.wpmHistory });
     
     // Save to both localStorage and database
@@ -59,11 +65,12 @@ const Index = () => {
       case 'words':
         text = generateRandomWords(settings.wordCount, settings.punctuation, settings.numbers);
         break;
-      case 'code':
+      case 'code': {
         // Get code snippet for selected language
         const codeSnippet = getRandomCodeSnippet(settings.codeLanguage);
         text = codeSnippet.content;
         break;
+      }
       default:
         text = generateRandomWords(200, settings.punctuation, settings.numbers);
         break;

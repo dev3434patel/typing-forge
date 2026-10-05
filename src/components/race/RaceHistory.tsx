@@ -103,7 +103,7 @@ export function RaceHistory({ raceHistory, currentUserId }: RaceHistoryProps) {
 
   // Filter and sort
   const filteredRaces = useMemo(() => {
-    let filtered = [...raceHistory];
+    const filtered = [...raceHistory];
 
     // Apply sort
     filtered.sort((a, b) => {
@@ -112,16 +112,18 @@ export function RaceHistory({ raceHistory, currentUserId }: RaceHistoryProps) {
         case 'date':
           comparison = new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
           break;
-        case 'wpm':
+        case 'wpm': {
           const aWpm = getMyStats(a).wpm || 0;
           const bWpm = getMyStats(b).wpm || 0;
           comparison = aWpm - bWpm;
           break;
+        }
       }
       return sortOrder === 'desc' ? -comparison : comparison;
     });
 
     return filtered;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [raceHistory, sortField, sortOrder, currentUserId]);
 
   // Pagination

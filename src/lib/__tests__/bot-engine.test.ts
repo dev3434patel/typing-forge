@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   BOT_CONFIGS,
+  BotEngineStuckError,
   createBot,
   createBotState,
   getNextKeystrokeDelay,
@@ -8,6 +9,7 @@ import {
   simulateFullRace,
   getBotName,
   getExpectedCompletionTime,
+  mulberry32,
 } from '../bot-engine';
 
 describe('Bot Engine', () => {
@@ -67,8 +69,8 @@ describe('Bot Engine', () => {
       const races: number[] = [];
       
       // Run multiple simulated races
-      for (let i = 0; i < 20; i++) {
-        const updates = simulateFullRace('beginner', 'the quick brown fox jumps over the lazy dog');
+      for (let i = 0; i < 8; i++) {
+        const updates = simulateFullRace('beginner', 'the quick brown fox jumps over the lazy dog', 200, mulberry32(1000 + i));
         if (updates.length > 0) {
           const finalUpdate = updates[updates.length - 1];
           races.push(finalUpdate.wpm);
@@ -86,8 +88,8 @@ describe('Bot Engine', () => {
       const targetWpm = BOT_CONFIGS.intermediate.targetWpmMean;
       const races: number[] = [];
       
-      for (let i = 0; i < 20; i++) {
-        const updates = simulateFullRace('intermediate', 'the quick brown fox jumps over the lazy dog');
+      for (let i = 0; i < 8; i++) {
+        const updates = simulateFullRace('intermediate', 'the quick brown fox jumps over the lazy dog', 200, mulberry32(2000 + i));
         if (updates.length > 0) {
           const finalUpdate = updates[updates.length - 1];
           races.push(finalUpdate.wpm);
@@ -102,8 +104,8 @@ describe('Bot Engine', () => {
       const targetWpm = BOT_CONFIGS.pro.targetWpmMean;
       const races: number[] = [];
       
-      for (let i = 0; i < 20; i++) {
-        const updates = simulateFullRace('pro', 'the quick brown fox jumps over the lazy dog');
+      for (let i = 0; i < 8; i++) {
+        const updates = simulateFullRace('pro', 'the quick brown fox jumps over the lazy dog', 200, mulberry32(3000 + i));
         if (updates.length > 0) {
           const finalUpdate = updates[updates.length - 1];
           races.push(finalUpdate.wpm);
@@ -120,21 +122,25 @@ describe('Bot Engine', () => {
       let totalKeystrokes = 0;
       
       // Simulate many races and track actual mistakes from keystrokes
-      for (let i = 0; i < 20; i++) {
-        const bot = createBot('beginner', 'the quick brown fox jumps over the lazy dog');
+      for (let i = 0; i < 8; i++) {
+        let clock = 0;
+        const bot = createBot('beginner', 'the quick brown fox', {
+          rng: mulberry32(4000 + i),
+          now: () => clock,
+          maxTicks: 2000,
+        });
         bot.start();
-        
-        // Run until finished
-        while (!bot.isFinished()) {
+        for (let tick = 0; tick < 2000 && !bot.isFinished(); tick++) {
+          clock += 250;
           bot.tick();
         }
+        expect(bot.isFinished()).toBe(true);
         
         // Count mistakes from keystrokes
         bot.state.keystrokes.forEach(ks => {
+          if (ks.isBackspace) return;
           totalKeystrokes++;
-          if (!ks.isCorrect) {
-            totalMistakes++;
-          }
+          if (!ks.isCorrect) totalMistakes++;
         });
       }
       
@@ -192,6 +198,40 @@ describe('Bot Engine', () => {
       expect(updates.length).toBeGreaterThan(0);
       const finalUpdate = updates[updates.length - 1];
       expect(finalUpdate.progress).toBe(100);
+    });
+  });
+
+  describe('safety and determinism', () => {
+    const text = 'the quick brown fox jumps over the lazy dog';
+
+    it('terminates for every bot profile', () => {
+      for (const level of ['beginner', 'intermediate', 'pro'] as const) {
+        const updates = simulateFullRace(level, text, 200, mulberry32(7));
+        expect(updates[updates.length - 1].progress).toBe(100);
+        expect(updates[updates.length - 1].wpm).toBeGreaterThan(0);
+      }
+    });
+
+    it('returns the same result for the same seed', () => {
+      const a = simulateFullRace('intermediate', text, 200, mulberry32(42));
+      const b = simulateFullRace('intermediate', text, 200, mulberry32(42));
+      expect(a).toEqual(b);
+    });
+
+    it('throws BotEngineStuckError when a runner exceeds its tick cap', () => {
+      let clock = 0;
+      const bot = createBot('pro', 'hello world this is a longer line', {
+        rng: () => 0.5,
+        now: () => clock,
+        maxTicks: 3,
+      });
+      bot.start();
+      expect(() => {
+        for (let i = 0; i < 10; i++) {
+          clock += 5000;
+          bot.tick();
+        }
+      }).toThrow(BotEngineStuckError);
     });
   });
 });

@@ -11,6 +11,7 @@ import { CharacterGrid } from '@/components/profile/CharacterGrid';
 import { TestHistory } from '@/components/profile/TestHistory';
 import { ProfileSettings } from '@/components/profile/ProfileSettings';
 import { RaceHistory, type RaceHistoryItem } from '@/components/race/RaceHistory';
+import { logger } from '@/lib/logger';
 import { 
   LayoutDashboard, 
   Clock, 
@@ -150,7 +151,7 @@ const Profile = () => {
           setRaceHistory(races as RaceHistoryItem[]);
         }
       } catch (error) {
-        console.error('Error fetching profile data:', error);
+        logger.error('Error fetching profile data:', error);
       } finally {
         setLoading(false);
       }

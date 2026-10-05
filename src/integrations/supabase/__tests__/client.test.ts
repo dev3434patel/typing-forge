@@ -21,9 +21,9 @@ describe('Supabase Client Configuration', () => {
     try {
       const clientModule = await import('../client');
       expect(clientModule.supabase).toBeDefined();
-    } catch (error: any) {
+    } catch (error) {
       // Expected if env vars not set in test environment
-      expect(error.message).toContain('Missing Supabase environment variables');
+      expect((error as Error).message).toContain('Missing Supabase environment variables');
     }
   });
 });

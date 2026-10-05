@@ -15,6 +15,7 @@ import {
 } from '@/components/ui/select';
 import { toast } from 'sonner';
 import { z } from 'zod';
+import { logger } from '@/lib/logger';
 
 const usernameSchema = z.string()
   .min(3, 'Username must be at least 3 characters')
@@ -63,7 +64,7 @@ export function ProfileSettings({ profile, onUpdate }: ProfileSettingsProps) {
       });
       toast.success('Profile updated successfully');
     } catch (error) {
-      console.error('Error updating profile:', error);
+      logger.error('Error updating profile:', error);
       toast.error('Failed to update profile');
     } finally {
       setSaving(false);

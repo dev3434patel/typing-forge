@@ -4,7 +4,13 @@
  * Uses canonical metrics-engine for WPM calculations
  */
 
-import { calculateWpm, calculateRawWpm } from './metrics-engine';
+import {
+  calculateWpm,
+  calculateRawWpm,
+  calculateAccuracy,
+  calculateKeystrokeAccuracy,
+  calculateConsistency,
+} from './metrics-engine';
 
 export interface Keystroke {
   key: string;
@@ -70,7 +76,10 @@ export interface ProfessionalAccuracyReport {
     typed: number;
     target: number;
     adjusted: number;
+    /** PRIMARY accuracy: keystroke-based. */
     final: number;
+    /** SECONDARY accuracy: final-text vs target. */
+    finalText: number;
     correctChars: number;
     incorrectChars: number;
     extraChars: number;
@@ -189,7 +198,8 @@ export function generateProfessionalAccuracyReport(
   keystrokeLog: Keystroke[],
   durationSeconds: number,
   backspaceCount: number,
-  wpmHistory: number[]
+  wpmHistory: number[],
+  isTimeBasedTest: boolean = false // CRITICAL: Add mode parameter to correctly calculate missed chars
 ): ProfessionalAccuracyReport {
   // CRITICAL FIX: For time-based tests, only analyze what was actually typed
   // Don't count untyped remaining text as "missed" errors
@@ -206,11 +216,13 @@ export function generateProfessionalAccuracyReport(
   };
   
   // Calculate character-by-character comparison
+  // CRITICAL: Ensure perfect accuracy calculation - compare character by character exactly
   let correctChars = 0;
   let incorrectChars = 0;
   let extraChars = 0;
-  // CRITICAL FIX: missedChars should NOT count untyped remaining text
-  // It should only count actual skipped characters within what was attempted
+  // CRITICAL FIX: missedChars should NOT count untyped remaining text for time-based tests
+  // For non-time tests, count untyped remainder as missed
+  // For time-based tests, missedChars = 0 (untyped remainder is expected)
   let missedChars = 0;
   
   // Compare only what was typed against the corresponding target characters
@@ -221,12 +233,16 @@ export function generateProfessionalAccuracyReport(
     let status: CharComparison['status'] = 'UNTYPED';
     let errorType: string | null = null;
     
-    if (typedChar === targetChar) {
+    // Exact character match (case-sensitive, whitespace-sensitive)
+    const isMatch = typedChar === targetChar;
+
+    if (isMatch) {
       status = 'CORRECT';
       correctChars++;
       const charType = getCharType(targetChar);
       distribution[charType].correct++;
     } else {
+      // Only mark as incorrect if characters don't match exactly
       status = 'INCORRECT';
       errorType = 'TYPO';
       incorrectChars++;
@@ -255,44 +271,58 @@ export function generateProfessionalAccuracyReport(
     });
   }
   
-  // NOTE: We intentionally do NOT count remaining untyped text as "missed"
-  // For time-based tests, not finishing the entire text is expected behavior
-  // "Missed" should only apply to characters that were actually skipped mid-typing
+  // CRITICAL FIX: Handle missed characters based on test mode
+  // For time-based tests: Don't count untyped remainder as missed (expected behavior)
+  // For non-time tests: Count untyped remainder as missed characters
+  if (!isTimeBasedTest && targetText.length > typedText.length) {
+    missedChars = targetText.length - typedText.length;
+    // Add missed characters to charComparison for completeness
+    for (let i = typedText.length; i < targetText.length; i++) {
+      charComparison.push({
+        position: i,
+        typedChar: null,
+        targetChar: targetText[i],
+        status: 'MISSED',
+        errorType: 'MISSED_CHAR',
+      });
+    }
+  }
+  // For time-based tests, missedChars remains 0 (untyped remainder is expected)
   
   // Calculate distribution accuracies
+  // PERFECT ACCURACY: Each character type accuracy should be 100% when all characters are correct
   Object.keys(distribution).forEach((key) => {
     const type = key as keyof CharTypeDistribution;
     const total = distribution[type].correct + distribution[type].incorrect;
+    // PERFECT ACCURACY: If all characters of this type are correct, accuracy = 100%
     distribution[type].accuracy = total > 0 
       ? Math.round((distribution[type].correct / total) * 10000) / 100 
       : 100;
+    // Ensure accuracy is never above 100% or below 0%
+    distribution[type].accuracy = Math.max(0, Math.min(100, distribution[type].accuracy));
   });
   
-  // Calculate accuracy percentages - CRITICAL FIX
+  // Calculate accuracy percentages - CANONICAL FORMULA
+  // Formula: accuracy = (correctChars / totalDenominator) * 100
+  // Where totalDenominator = correctChars + incorrectChars + missedChars + extraChars
+  // This matches metrics-engine.calculateAccuracy() exactly
+  // PERFECT ACCURACY: When all typed characters match target, accuracy = 100%
+  
   const totalTypedChars = typedText.length;
   const totalTargetChars = targetText.length;
-  
-  // Primary accuracy: based on what was typed (correct / total typed)
-  // This is the standard typing test accuracy formula
-  // Empty test (no characters typed) = 100% accuracy (perfect, nothing wrong)
-  const typedAccuracy = totalTypedChars > 0 
-    ? (correctChars / totalTypedChars) * 100 
-    : 100;
-  
-  // Target-based accuracy (how much of target was correct)
-  const targetAccuracy = totalTargetChars > 0 
-    ? (correctChars / totalTargetChars) * 100 
-    : 100;
-  
-  // For completed tests, use typed accuracy (correct / total typed)
-  // This matches MonkeyType behavior: accuracy = correct keystrokes / total keystrokes
-  // Empty test = 100% (nothing typed = nothing wrong)
-  let finalAccuracy = Math.round(typedAccuracy * 100) / 100;
-  
-  // Cap at 99.99% if backspace was used (per memory: strict accuracy enforcement)
-  if (backspaceCount > 0 && finalAccuracy >= 100) {
-    finalAccuracy = 99.99;
-  }
+
+  const typedAccuracy = calculateAccuracy(correctChars, incorrectChars, missedChars, extraChars);
+  const targetAccuracy = totalTargetChars > 0
+    ? Math.round((correctChars / totalTargetChars) * 10000) / 100
+    : 0;
+  const finalTextAccuracy = typedAccuracy;
+
+  // PRIMARY accuracy — keystroke-based. Must match metrics-engine.calculateKeystrokeAccuracy.
+  const printableKeystrokes = keystrokeLog.filter(k => k.key !== 'Backspace' && k.char !== '');
+  const finalAccuracy = calculateKeystrokeAccuracy(
+    printableKeystrokes.filter(k => k.isCorrect === true).length,
+    printableKeystrokes.length
+  );
   
   // Adjusted accuracy for detailed reporting
   const adjustedAccuracy = totalTypedChars > 0 
@@ -333,9 +363,14 @@ export function generateProfessionalAccuracyReport(
   });
   
   // CRITICAL FIX: Calculate error rate based on what was actually typed, not total target
+  // PERFECT ACCURACY: Error rate should be 0% when all characters are correct
+  // Error rate = (totalErrors / totalTypedChars) * 100
+  // When accuracy = 100%, error rate = 0%
   errors.errorRate = totalTypedChars > 0 
     ? Math.round((errors.totalErrors / totalTypedChars) * 10000) / 100 
     : 0;
+  // Ensure error rate is never negative or above 100%
+  errors.errorRate = Math.max(0, Math.min(100, errors.errorRate));
   
   // Calculate keystroke intervals
   const intervals: number[] = [];
@@ -351,26 +386,7 @@ export function generateProfessionalAccuracyReport(
     stdDev: Math.round(calculateStdDev(intervals)),
   };
   
-  // Calculate consistency score based on WPM variance (like MonkeyType)
-  // This measures how consistent the typing speed is, not keystroke intervals
-  let consistencyScore = 100;
-  if (wpmHistory.length > 1) {
-    const validWpms = wpmHistory.filter(w => w > 0);
-    if (validWpms.length > 1) {
-      const meanWpm = validWpms.reduce((a, b) => a + b, 0) / validWpms.length;
-      const wpmVariance = validWpms.reduce((sum, val) => sum + Math.pow(val - meanWpm, 2), 0) / validWpms.length;
-      const wpmStdDev = Math.sqrt(wpmVariance);
-      // Coefficient of variation for WPM
-      const wpmCV = meanWpm > 0 ? (wpmStdDev / meanWpm) * 100 : 0;
-      // Convert to 0-100 score where 100 = perfectly consistent
-      // Cap the CV effect at 100% (would give 0 consistency)
-      consistencyScore = Math.max(0, Math.round(100 - Math.min(wpmCV, 100)));
-    }
-  } else if (keystrokeIntervals.average > 0) {
-    // Fallback to keystroke interval consistency if no WPM history
-    const coefficientOfVariation = (keystrokeIntervals.stdDev / keystrokeIntervals.average) * 100;
-    consistencyScore = Math.max(0, Math.min(100, Math.round(100 - Math.min(coefficientOfVariation, 100))));
-  }
+  const consistencyScore = calculateConsistency(wpmHistory);
   
   // CANONICAL METRICS: Use metrics-engine for WPM calculations
   // Reference: metrics-engine.ts -> calculateWpm() and calculateRawWpm()
@@ -509,6 +525,7 @@ export function generateProfessionalAccuracyReport(
       target: Math.round(targetAccuracy * 100) / 100,
       adjusted: Math.round(adjustedAccuracy * 100) / 100,
       final: finalAccuracy,
+      finalText: finalTextAccuracy,
       correctChars,
       incorrectChars,
       extraChars,

@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from './useAuth';
 import { saveTestResult, type TestResult, type TypingStats } from '@/lib/typing-engine';
+import { logger } from '@/lib/logger';
 import { 
   type KeystrokeRecord, 
   computeSessionMetrics, 
@@ -67,10 +68,14 @@ export function useTestResults() {
       const sessionId = crypto.randomUUID();
       const keystrokeRecords = convertToKeystrokeRecord(stats.keystrokeLog, sessionId);
       
+      // CRITICAL: For time-based tests, untyped remainder should NOT be counted as missed
+      const isTimeBasedTest = mode === 'time';
+      
       const sessionMetrics = computeSessionMetrics(
         keystrokeRecords,
         stats.targetText,
-        stats.typedText
+        stats.typedText,
+        isTimeBasedTest
       );
       
       // Use canonical metrics from engine
@@ -85,10 +90,10 @@ export function useTestResults() {
         backspaceCount: sessionMetrics.backspaceCount,
       };
     } else {
-      // Fallback: Apply backspace cap manually if no keystroke log
-      if (stats.backspaceCount && stats.backspaceCount > 0 && finalMetrics.accuracy === 100) {
-        finalMetrics.accuracy = 99.99;
-      }
+      // Fallback: Use provided accuracy as-is
+      // PERFECT ACCURACY: If final typed text matches target perfectly,
+      // user deserves 100% accuracy regardless of backspace usage
+      // NO CAP - Perfect final result = 100% accuracy always!
     }
     
     // Always save to localStorage
@@ -169,7 +174,7 @@ export function useTestResults() {
           });
         }
       } catch (error) {
-        console.error('Failed to save test to database:', error);
+        logger.error('Failed to save test to database:', error);
       }
     }
 
@@ -221,7 +226,7 @@ export function useTestResults() {
         }
       }
     } catch (error) {
-      console.error('Failed to save character confidence:', error);
+      logger.error('Failed to save character confidence:', error);
     }
   }, [user]);
 

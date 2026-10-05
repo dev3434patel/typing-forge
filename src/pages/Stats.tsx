@@ -140,7 +140,7 @@ const Stats = () => {
                     data.confidence >= 0.5 ? 'improving' as const : 'uncertain' as const,
       history: [{ lesson: 1, wpm: data.wpm || 0 }],
     }));
-  }, [filteredTests]);
+  }, []);
 
   // Key frequency data
   const keyFrequencies = useMemo(() => {

@@ -7,7 +7,7 @@ import { Swords, Play, Bot, Users } from 'lucide-react';
 import { BotDifficulty } from '@/lib/bot-engine';
 
 interface RaceLobbyProps {
-  user: any;
+  user: { id: string } | null;
   onCreateRace: () => void;
   onJoinRace: (code: string) => void;
   onCreateBotRace: (difficulty: BotDifficulty) => void;

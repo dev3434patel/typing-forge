@@ -327,7 +327,7 @@ export function cancelRace(state: RaceState, reason?: string): RaceState {
 /**
  * Serialize state for database storage
  */
-export function serializeRaceState(state: RaceState): Record<string, any> {
+export function serializeRaceState(state: RaceState): Record<string, unknown> {
   return {
     id: state.id,
     room_code: state.roomCode,
@@ -356,34 +356,57 @@ export function serializeRaceState(state: RaceState): Record<string, any> {
 /**
  * Deserialize state from database
  */
-export function deserializeRaceState(data: Record<string, any>): RaceState {
+export function deserializeRaceState(data: Record<string, unknown>): RaceState {
+  const d = data as {
+    id: string;
+    room_code: string;
+    status: string;
+    expected_text: string;
+    host_id: string;
+    host_progress?: number;
+    host_wpm?: number;
+    host_accuracy?: number;
+    opponent_id?: string | null;
+    opponent_is_bot?: boolean;
+    opponent_bot_level?: 'beginner' | 'intermediate' | 'pro' | null;
+    opponent_progress?: number;
+    opponent_wpm?: number;
+    opponent_accuracy?: number;
+    countdown_started_at?: string | null;
+    started_at?: string | null;
+    ended_at?: string | null;
+    winner_id?: string | null;
+    version?: number;
+    created_at: string;
+    updated_at: string;
+  };
   return {
-    id: data.id,
-    roomCode: data.room_code,
-    status: data.status as RaceStatus,
-    expectedText: data.expected_text,
-    hostId: data.host_id,
+    id: d.id,
+    roomCode: d.room_code,
+    status: d.status as RaceStatus,
+    expectedText: d.expected_text,
+    hostId: d.host_id,
     host: {
-      id: data.host_id,
+      id: d.host_id,
       isBot: false,
-      progress: data.host_progress ?? 0,
-      wpm: data.host_wpm ?? 0,
-      accuracy: data.host_accuracy ?? 100,
+      progress: d.host_progress ?? 0,
+      wpm: d.host_wpm ?? 0,
+      accuracy: d.host_accuracy ?? 100,
     },
-    opponent: data.opponent_id ? {
-      id: data.opponent_id,
-      isBot: data.opponent_is_bot ?? false,
-      botLevel: data.opponent_bot_level,
-      progress: data.opponent_progress ?? 0,
-      wpm: data.opponent_wpm ?? 0,
-      accuracy: data.opponent_accuracy ?? 100,
+    opponent: d.opponent_id ? {
+      id: d.opponent_id,
+      isBot: d.opponent_is_bot ?? false,
+      botLevel: d.opponent_bot_level ?? undefined,
+      progress: d.opponent_progress ?? 0,
+      wpm: d.opponent_wpm ?? 0,
+      accuracy: d.opponent_accuracy ?? 100,
     } : undefined,
-    countdownStartedAt: data.countdown_started_at ? new Date(data.countdown_started_at).getTime() : undefined,
-    raceStartedAt: data.started_at ? new Date(data.started_at).getTime() : undefined,
-    raceEndedAt: data.ended_at ? new Date(data.ended_at).getTime() : undefined,
-    winnerId: data.winner_id,
-    version: data.version ?? 0,
-    createdAt: new Date(data.created_at).getTime(),
-    updatedAt: new Date(data.updated_at).getTime(),
+    countdownStartedAt: d.countdown_started_at ? new Date(d.countdown_started_at).getTime() : undefined,
+    raceStartedAt: d.started_at ? new Date(d.started_at).getTime() : undefined,
+    raceEndedAt: d.ended_at ? new Date(d.ended_at).getTime() : undefined,
+    winnerId: d.winner_id ?? undefined,
+    version: d.version ?? 0,
+    createdAt: new Date(d.created_at).getTime(),
+    updatedAt: new Date(d.updated_at).getTime(),
   };
 }
