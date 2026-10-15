@@ -124,11 +124,11 @@ export function TestSettings() {
         )}
         {["time", "words", "zen"].includes(settings.mode) && (
           <>
-            <label className="flex items-center gap-2 text-xs text-muted-foreground">
+            <label className="test-toolbar-select-label text-xs text-muted-foreground">
               Language
               <select
                 aria-label="Language"
-                className="bg-transparent text-foreground min-h-11 text-xs max-w-40"
+                className="test-toolbar-select"
                 value={preferences.language}
                 onChange={(e) =>
                   updatePreferences({ language: e.target.value })
@@ -141,7 +141,7 @@ export function TestSettings() {
                 ))}
               </select>
             </label>
-            <span className="h-4 border-l mx-1" />
+            <span className="hidden sm:block h-4 border-l mx-1" aria-hidden="true" />
             <button
               className="forge-chip !text-xs"
               aria-pressed={settings.punctuation}
@@ -163,11 +163,11 @@ export function TestSettings() {
         )}
         {settings.mode === "code" && (
           <>
-            <label className="text-xs text-muted-foreground flex items-center gap-3">
+            <label className="test-toolbar-select-label text-xs text-muted-foreground">
               Code language
               <select
                 aria-label="Code language"
-                className="bg-background min-h-11 text-foreground"
+                className="test-toolbar-select"
                 value={settings.codeLanguage}
                 onChange={(e) => setSettings({ codeLanguage: e.target.value })}
               >
@@ -177,7 +177,6 @@ export function TestSettings() {
                   </option>
                 ))}
               </select>
-              <span>Exact whitespace · separate code metrics</span>
             </label>
             <label className="flex min-h-11 items-center gap-2 text-xs text-muted-foreground">
               <input
@@ -190,6 +189,9 @@ export function TestSettings() {
               />
               Enable Tab indentation
             </label>
+            <p className="test-toolbar-help text-xs text-muted-foreground">
+              Exact whitespace · separate code metrics
+            </p>
           </>
         )}
         {settings.mode === "quote" && (

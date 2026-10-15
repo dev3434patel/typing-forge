@@ -142,9 +142,9 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
+    <main id="main-content" className="min-h-screen flex items-center justify-center bg-background p-4">
       <motion.div
-        className="w-full max-w-md"
+        className="w-full min-w-0 max-w-md [&_input]:min-h-11 [&_button]:min-h-11"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
       >
@@ -254,12 +254,12 @@ const Auth = () => {
         </div>
 
         <div className="mt-6 text-center">
-          <a href="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <a href="/" className="inline-flex min-h-11 items-center text-sm text-muted-foreground hover:text-foreground transition-colors">
             ← Back to typing
           </a>
         </div>
       </motion.div>
-    </div>
+    </main>
   );
 };
 

@@ -45,10 +45,14 @@ function Track({
   rival?: boolean;
 }) {
   return (
-    <div className="panel p-5">
-      <div className="flex justify-between items-center mb-4 text-sm">
-        <span className="inline-flex gap-2 items-center">
-          {bot ? <Bot size={16} /> : <Users size={16} />}
+    <div className="panel min-w-0 p-5">
+      <div className="flex flex-wrap justify-between items-center gap-x-3 gap-y-2 mb-4 text-sm">
+        <span className="inline-flex min-w-0 flex-wrap gap-2 items-center">
+          {bot ? (
+            <Bot size={16} className="shrink-0" />
+          ) : (
+            <Users size={16} className="shrink-0" />
+          )}
           {name}
           {bot && (
             <span className="text-xs text-muted-foreground border rounded px-2 py-1">
@@ -56,7 +60,7 @@ function Track({
             </span>
           )}
         </span>
-        <span className="font-mono">
+        <span className="shrink-0 font-mono">
           {wpm === null ? "—" : wpm.toFixed(0)}
           <span className="text-xs text-muted-foreground ml-1">wpm</span>
         </span>
@@ -497,7 +501,7 @@ export default function Race() {
             onRoom={acceptRoom}
           />
         ) : room ? (
-          <section className="panel p-8 sm:p-12 text-center">
+          <section className="panel min-w-0 p-5 sm:p-12 text-center">
             <Swords className="text-primary mx-auto mb-5" size={30} />
             <h2 className="text-2xl font-medium">
               {room.status === "waiting"
@@ -513,7 +517,7 @@ export default function Race() {
                   ? "The shared clock starts with the countdown, including any idle time."
                   : "The scores below are the last server-confirmed result."}
             </p>
-            <p className="font-mono text-4xl tracking-[.25em] text-primary mt-8 mb-4">
+            <p className="font-mono text-2xl sm:text-4xl break-all tracking-[.25em] text-primary mt-8 mb-4">
               {room.room_code}
             </p>
             {room.status === "completed" && (
@@ -553,7 +557,7 @@ export default function Race() {
             )}
             {["cancelled", "abandoned", "completed"].includes(room.status) && (
               <button
-                className="forge-button ml-3"
+                className="forge-button m-2"
                 onClick={() =>
                   void operation(() => raceService.rematch(room.id))
                 }
@@ -565,7 +569,7 @@ export default function Race() {
           </section>
         ) : (
           <div className="grid md:grid-cols-2 gap-6">
-            <section className="panel p-7">
+            <section className="panel min-w-0 p-5 sm:p-7">
               <Bot size={24} className="text-primary mb-5" />
               <h2 className="text-xl font-medium">
                 A practice partner, always ready.
@@ -605,7 +609,7 @@ export default function Race() {
                 30 seconds · local practice · clearly labelled bot
               </p>
             </section>
-            <section className="panel p-7">
+            <section className="panel min-w-0 p-5 sm:p-7">
               <Users size={24} className="text-primary mb-5" />
               <h2 className="text-xl font-medium">One room. Two racers.</h2>
               <p className="text-sm text-muted-foreground leading-relaxed mt-3 mb-6">
@@ -628,7 +632,7 @@ export default function Race() {
                       ))}
                     </select>
                   </label>
-                  <div className="flex gap-3 my-4">
+                  <div className="flex flex-col sm:flex-row gap-3 my-4">
                     <button
                       className="forge-button flex-1"
                       disabled={busy}
@@ -649,7 +653,7 @@ export default function Race() {
                     </button>
                   </div>
                   <form
-                    className="flex gap-2"
+                    className="flex flex-wrap gap-2"
                     onSubmit={(event) => {
                       event.preventDefault();
                       void operation(() => raceService.join(roomCode || code));
@@ -660,7 +664,7 @@ export default function Race() {
                     </label>
                     <input
                       id="room-code"
-                      className="forge-input font-mono uppercase"
+                      className="forge-input min-w-0 flex-1 basis-36 font-mono uppercase"
                       placeholder="Room code"
                       value={roomCode || code}
                       onChange={(e) => setCode(e.target.value)}

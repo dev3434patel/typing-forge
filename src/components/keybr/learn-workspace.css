@@ -33,6 +33,8 @@
   margin-inline-end: 0.5rem;
 }
 .learn-new-lesson {
+  min-height: 2.75rem;
+  min-width: 2.75rem;
   margin-inline-start: auto;
   color: hsl(var(--muted-foreground));
 }
@@ -108,6 +110,14 @@
   flex-wrap: wrap;
   gap: 0.4rem;
 }
+.learn-keyboard[data-mapped="true"] .learn-keyboard-row {
+  flex-wrap: nowrap;
+  --learn-key-gap: 0.4rem;
+}
+.learn-keyboard[data-mapped="true"] .learn-key:not(.learn-space-key) {
+  flex-shrink: 0;
+  width: min(2.45rem, calc((100% - (var(--learn-key-columns) - 1) * var(--learn-key-gap)) / var(--learn-key-columns)));
+}
 .learn-key {
   display: grid;
   place-items: center;
@@ -175,7 +185,7 @@
   color: hsl(var(--muted-foreground));
 }
 .learn-control select {
-  min-height: 2.25rem;
+  min-height: 2.75rem;
   max-width: 12rem;
   padding: 0.35rem 0.4rem;
   border: 0;
@@ -191,13 +201,16 @@
   display: inline-flex;
   gap: 0.35rem;
   align-items: center;
-  min-height: 2.25rem;
+  min-height: 2.75rem;
   padding: 0.25rem;
   font-size: 0.7rem;
   color: hsl(var(--muted-foreground));
 }
 .learn-keyboard-toggle:hover {
   color: hsl(var(--foreground));
+}
+.learn-controls > button {
+  min-height: 2.75rem;
 }
 .learn-shortcuts {
   display: flex;
@@ -284,6 +297,9 @@
   .learn-keyboard-row,
   .learn-keyboard-rows {
     gap: 0.25rem;
+  }
+  .learn-keyboard[data-mapped="true"] .learn-keyboard-row {
+    --learn-key-gap: 0.25rem;
   }
   .learn-space-key {
     width: 8rem;

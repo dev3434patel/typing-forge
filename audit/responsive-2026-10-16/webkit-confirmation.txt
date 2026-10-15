@@ -1,0 +1,100 @@
+
+Running 9 tests using 1 worker
+
+(node:80608) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [webkit] › e2e\responsive-layout.spec.ts:28:3 › main local pages fit a 320px viewport (1.4m)
+  ok 2 [webkit] › e2e\responsive-layout.spec.ts:28:3 › main local pages fit a 390px viewport (1.1m)
+  ok 3 [webkit] › e2e\responsive-layout.spec.ts:28:3 › main local pages fit a 768px viewport (1.2m)
+  ok 4 [webkit] › e2e\responsive-layout.spec.ts:28:3 › main local pages fit a 1440px viewport (17.3s)
+  ok 5 [webkit] › e2e\responsive-layout.spec.ts:43:1 › every theme provides opaque, readable native language options (18.5s)
+  x  6 [webkit] › e2e\responsive-layout.spec.ts:93:1 › small-screen test controls wrap in all six modes and keep select targets usable (5.2s)
+(node:68168) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 7 [webkit] › e2e\responsive-layout.spec.ts:118:1 › narrow results retain the whole keyboard map and expanded evidence (9.8s)
+  x  8 [webkit] › e2e\responsive-layout.spec.ts:156:1 › race and learning remain usable after landscape and narrow resize (8.3s)
+(node:19808) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  9 [webkit] › e2e\responsive-pages.spec.ts:19:1 › populated history, comparison chart and account controls fit narrow and tablet screens (10.7s)
+
+
+  1) [webkit] › e2e\responsive-layout.spec.ts:93:1 › small-screen test controls wrap in all six modes and keep select targets usable 
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    43.99090576171875
+
+      103 |       const rect = await control.boundingBox();
+      104 |       expect(rect).not.toBeNull();
+    > 105 |       expect(rect!.height).toBeGreaterThanOrEqual(44);
+          |                            ^
+      106 |       expect(rect!.x).toBeGreaterThanOrEqual(0);
+      107 |       expect(rect!.x + rect!.width).toBeLessThanOrEqual(321);
+      108 |     }
+        at D:\extra\typing_updated\typing-forge\e2e\responsive-layout.spec.ts:105:28
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\responsive-2026-10-16\webkit-confirmation-artifacts\responsive-layout-small-sc-b19c1--keep-select-targets-usable-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\responsive-2026-10-16\webkit-confirmation-artifacts\responsive-layout-small-sc-b19c1--keep-select-targets-usable-webkit\error-context.md
+
+  2) [webkit] › e2e\responsive-layout.spec.ts:156:1 › race and learning remain usable after landscape and narrow resize 
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    43.99090576171875
+
+      182 |   for (const name of ["Correction policy", "Input method"]) {
+      183 |     const control = page.getByRole("combobox", { name, exact: true });
+    > 184 |     expect((await control.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+          |                                                   ^
+      185 |   }
+      186 |   await expectPageFits(page);
+      187 |   await page.getByRole("combobox", { name: "Correction policy", exact: true }).selectOption("stop");
+        at D:\extra\typing_updated\typing-forge\e2e\responsive-layout.spec.ts:184:51
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\responsive-2026-10-16\webkit-confirmation-artifacts\responsive-layout-race-and-0d947-landscape-and-narrow-resize-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\responsive-2026-10-16\webkit-confirmation-artifacts\responsive-layout-race-and-0d947-landscape-and-narrow-resize-webkit\error-context.md
+
+  3) [webkit] › e2e\responsive-pages.spec.ts:19:1 › populated history, comparison chart and account controls fit narrow and tablet screens 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByRole('table', { name: 'Completed sessions, most recent first', exact: true }).getByRole('row')
+    Expected: 2
+    Received: 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByRole('table', { name: 'Completed sessions, most recent first', exact: true }).getByRole('row') with timeout 5000ms
+      - waiting for getByRole('table', { name: 'Completed sessions, most recent first', exact: true }).getByRole('row')
+        12 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      27 |     await page.goto("/stats", { waitUntil: "domcontentloaded" });
+      28 |     const history = page.getByRole("table", { name: "Completed sessions, most recent first", exact: true });
+    > 29 |     await expect(history.getByRole("row")).toHaveCount(2);
+         |                                            ^
+      30 |     await expect(history.getByRole("row").nth(1)).toContainText("75.0%");
+      31 |     await page.getByRole("combobox", { name: "Comparison", exact: true }).selectOption({ index: 1 });
+      32 |     const chart = page.getByRole("img", { name: /Typing speed for 1 matched sessions/ });
+        at D:\extra\typing_updated\typing-forge\e2e\responsive-pages.spec.ts:29:44
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\responsive-2026-10-16\webkit-confirmation-artifacts\responsive-pages-populated-0d4ac-t-narrow-and-tablet-screens-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\responsive-2026-10-16\webkit-confirmation-artifacts\responsive-pages-populated-0d4ac-t-narrow-and-tablet-screens-webkit\error-context.md
+
+  3 failed
+    [webkit] › e2e\responsive-layout.spec.ts:93:1 › small-screen test controls wrap in all six modes and keep select targets usable 
+    [webkit] › e2e\responsive-layout.spec.ts:156:1 › race and learning remain usable after landscape and narrow resize 
+    [webkit] › e2e\responsive-pages.spec.ts:19:1 › populated history, comparison chart and account controls fit narrow and tablet screens 
+  6 passed (4.9m)

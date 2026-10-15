@@ -247,7 +247,7 @@ export default function Index() {
           <>
             <h1 className="sr-only">Typing practice</h1>
             {retestConfiguration ? (
-              <div className="panel p-4 mb-8 flex justify-between gap-3 items-center text-sm">
+              <div className="panel p-4 mb-8 flex flex-wrap justify-between gap-3 items-center text-sm">
                 <span>
                   Repeated passage · {configuration.mode} · original language
                   and layout

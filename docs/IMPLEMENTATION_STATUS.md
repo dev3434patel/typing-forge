@@ -12,6 +12,14 @@ Existing user changes were preserved in [the baseline patch](../audit/implementa
 
 ## Implemented behavior
 
+### Responsive controls checkpoint — 16 October
+
+The reported language popup inherited pale foreground text while leaving option backgrounds transparent. Native option and option-group surfaces now receive the theme's popover background and foreground together, with an initial dark browser color scheme before preferences load. Native selection, keyboard navigation and platform pickers are retained. Test language/code selectors have visible themed boundaries and 44px heights; labels wrap independently from descriptive code text.
+
+At narrow widths, Test mode buttons center on wrapped rows, repeated-passage actions wrap, and results stack their headline metrics below 400px. Result and learning keyboard rows size their keys from the available row width while retaining their layout. This fixes centered result-map overflow that previously clipped both ends at 320px. Word-credit and recorded-event tables retain their own horizontal scrolling and can be focused by keyboard. Learn controls have 44px targets; race form controls, player labels and room codes wrap. Footer links have 44px targets and wrap naturally. The ranked-page introduction stacks its action on narrow screens. The sign-in page now has a main landmark and 44px form controls.
+
+Responsive verification and screenshots are recorded in `audit/responsive-2026-10-16/`. These are layout and control changes; canonical input events, score calculations, correction policy, bot progress and server authority retain their existing contracts.
+
 ### Quick retry checkpoint — 16 October
 
 Tab → Enter now starts a fresh random-word local bot race from the typing field: ordinary Tab focuses the native Restart button and Enter activates it. Each retry changes the keyed session identity, producing a new UUID-seeded passage, empty input/history, a fresh 30-second clock and a new bot runner. Difficulty is retained. Interrupted local attempts are discarded consistently with Test; completed results retain their own saved identities.

@@ -77,6 +77,10 @@ function LessonKeyboard({
   return (
     <div
       className="learn-keyboard"
+      data-mapped={mapped}
+      style={{
+        "--learn-key-columns": Math.max(1, ...rows.map((row) => row.length)),
+      } as CSSProperties}
       role="img"
       aria-label={`${mapping.label} logical keyboard. Expected ${expected === " " ? "Space" : (expected ?? "end of passage")}.${pressed ? ` Last input ${pressed === " " ? "Space" : pressed}${incorrect ? ", incorrect" : ""}.` : ""}`}
     >
@@ -820,7 +824,7 @@ export function KeybrLessonMode({
               <option value="virtual">On-screen keyboard</option>
             </select>
           </label>
-          <label className="flex min-h-9 items-center gap-2 text-xs text-muted-foreground">
+          <label className="flex min-h-11 items-center gap-2 text-xs text-muted-foreground">
             <input
               type="checkbox"
               checked={review}

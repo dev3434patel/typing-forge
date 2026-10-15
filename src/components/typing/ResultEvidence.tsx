@@ -111,7 +111,12 @@ function Inspection({ result }: { result: SessionResult }) {
               incorrect word can contain correct characters and still earn no
               word credit. Untouched future words are omitted.
             </p>
-            <div className="overflow-x-auto">
+            <div
+              className="max-w-full overflow-x-auto"
+              role="region"
+              aria-label="Word credit table"
+              tabIndex={0}
+            >
               <table className="w-full text-left text-xs min-w-[560px]">
                 <caption className="sr-only">
                   Word by word credited characters
@@ -201,7 +206,7 @@ function Inspection({ result }: { result: SessionResult }) {
             <label className="text-xs">
               Replay speed{" "}
               <select
-                className="bg-background border rounded p-2 ml-2"
+                className="bg-background border rounded min-h-11 p-2 ml-2"
                 value={speed}
                 onChange={(event) => setSpeed(Number(event.target.value))}
               >
@@ -273,7 +278,12 @@ function Inspection({ result }: { result: SessionResult }) {
               Showing the first 100 events through this position. JSON export
               contains all retained evidence.
             </p>
-            <div className="overflow-auto max-h-64">
+            <div
+              className="max-w-full overflow-auto max-h-64"
+              role="region"
+              aria-label="Recorded edit event table"
+              tabIndex={0}
+            >
               <table className="w-full text-left">
                 <thead>
                   <tr>
@@ -304,7 +314,7 @@ function Inspection({ result }: { result: SessionResult }) {
                           s
                         </td>
                         <td className="p-2">{event.type}</td>
-                        <td className="p-2 font-mono">
+                        <td className="p-2 font-mono whitespace-pre-wrap break-all">
                           {event.text
                             ? JSON.stringify(event.text)
                             : `range ${event.start}–${event.end}`}
@@ -355,7 +365,7 @@ export function ResultEvidence({ result }: { result: SessionResult }) {
     ],
   ];
   return (
-    <section className="panel p-5 sm:p-6" aria-label="Score explanation">
+    <section className="panel min-w-0 p-5 sm:p-6" aria-label="Score explanation">
       <div className="flex flex-wrap justify-between gap-3">
         <div>
           <h2 className="text-sm font-medium">Every number, explained</h2>
@@ -376,7 +386,7 @@ export function ResultEvidence({ result }: { result: SessionResult }) {
         {formulas.map(([label, formula]) => (
           <div key={label}>
             <dt className="text-xs font-medium">{label}</dt>
-            <dd className="text-xs text-muted-foreground mt-2 leading-relaxed font-mono">
+            <dd className="text-xs text-muted-foreground mt-2 leading-relaxed font-mono break-words">
               {formula}
             </dd>
           </div>

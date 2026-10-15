@@ -10,14 +10,14 @@ export const Footer = forwardRef<
       <span className="flex gap-2 items-center">
         <Keyboard size={14} /> A little practice. Lasting progress.
       </span>
-      <div className="flex gap-6">
-        <Link to="/about" className="hover:text-foreground">
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-1">
+        <Link to="/about" className="inline-flex min-h-11 items-center hover:text-foreground">
           About & metrics
         </Link>
-        <Link to="/settings" className="hover:text-foreground">
+        <Link to="/settings" className="inline-flex min-h-11 items-center hover:text-foreground">
           Preferences & data
         </Link>
-        <span>Typing Forge © {new Date().getFullYear()}</span>
+        <span className="py-3">Typing Forge © {new Date().getFullYear()}</span>
       </div>
     </div>
   </footer>

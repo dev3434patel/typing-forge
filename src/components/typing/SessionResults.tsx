@@ -102,6 +102,7 @@ export function SessionResults({
   }, [result]);
   const layout =
     LAYOUTS[(config.keyboardLayout ?? "qwerty") as LayoutId] ?? LAYOUTS.native;
+  const keyboardColumns = Math.max(1, ...layout.rows.map((row) => row.length));
   const attemptStats = new Map<string, { correct: number; total: number }>();
   learningEvidenceFromResult(result).attempts.forEach((attempt) => {
     if (!attempt.expected.trim()) return;
@@ -229,7 +230,7 @@ export function SessionResults({
       tabIndex={quickRestart ? -1 : undefined}
       aria-label="Session results"
       aria-describedby={quickRestart ? "results-restart-hint" : undefined}
-      className="forge-appear space-y-6 outline-none"
+      className="forge-appear min-w-0 space-y-6 outline-none"
       onKeyDown={(event) => {
         if (
           quickRestart &&
@@ -261,7 +262,7 @@ export function SessionResults({
           </span>
         )}
       </div>
-      <div className="grid grid-cols-2 gap-6 py-5 sm:py-7">
+      <div className="grid grid-cols-1 min-[400px]:grid-cols-2 gap-6 py-5 sm:py-7">
         <div>
           <p className="eyebrow">Words per minute</p>
           <div className="font-mono font-medium text-primary tracking-tighter text-6xl sm:text-8xl mt-3">
@@ -329,7 +330,7 @@ export function SessionResults({
         </div>
         {result.timeSeries.length ? (
           <>
-            <div className="h-56 w-full">
+            <div className="h-56 min-w-0 w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <ComposedChart
                   data={result.timeSeries}
@@ -452,9 +453,9 @@ export function SessionResults({
       </section>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
         {grid.map(([label, value, formula]) => (
-          <div className="stat-card !p-4" key={label}>
+          <div className="stat-card min-w-0 !p-4" key={label}>
             <p className="stat-label">{label}</p>
-            <p className="font-mono text-2xl mt-3">
+            <p className="font-mono text-2xl mt-3 break-words">
               {display(
                 value,
                 label === "Duration" ||
@@ -541,9 +542,9 @@ export function SessionResults({
               Measured final characters only. Untyped keys have no color.
             </span>
           </summary>
-          <div className="flex flex-col items-center gap-2 mt-5 overflow-x-auto">
+          <div className="flex flex-col items-center gap-2 mt-5">
             {layout.rows.map((row, i) => (
-              <div className="flex gap-1.5" key={i}>
+              <div className="flex w-full justify-center gap-1.5" key={i}>
                 {row.map((key) => {
                   const stats = keyStats.get(key);
                   return (
@@ -555,13 +556,16 @@ export function SessionResults({
                           : `${key}: no observations`
                       }
                       className={cn(
-                        "border rounded-lg w-7 sm:w-10 h-9 sm:h-11 inline-flex items-center justify-center text-xs font-mono",
+                        "border rounded-lg min-w-0 max-w-10 h-9 sm:h-11 inline-flex shrink-0 items-center justify-center text-xs font-mono",
                         !stats
                           ? "text-muted-foreground"
                           : stats.correct < stats.total
                             ? "text-destructive bg-destructive/10 border-destructive/50"
                             : "text-foreground bg-secondary",
                       )}
+                      style={{
+                        width: `calc((100% - ${(keyboardColumns - 1) * 0.375}rem) / ${keyboardColumns})`,
+                      }}
                     >
                       {key}
                     </span>
@@ -600,7 +604,7 @@ export function SessionResults({
           ) : (
             <Cloud size={17} />
           )}
-          <span className="flex-1">
+          <span className="min-w-0 flex-1 break-words">
             {saveStatus.storageMode === "memory"
               ? "Memory only. Export before closing. "
               : ""}
