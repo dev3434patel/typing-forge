@@ -1,25 +1,25 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Trophy, Bot, RotateCcw, Home } from 'lucide-react';
+import { Trophy, Bot, RotateCcw, Home, Award, Target, Gauge } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import type { PlayerStats } from '@/hooks/useRaceEngine';
 
 interface RaceResultsProps {
+  myStats: PlayerStats;
+  opponentStats: PlayerStats;
   isWinner: boolean;
-  myWpm: number;
-  myAccuracy: number;
-  opponentWpm: number;
-  opponentAccuracy: number;
+  isTie: boolean;
   isBot: boolean;
   botDifficulty?: string;
   onPlayAgain?: () => void;
 }
 
 export const RaceResults = ({
+  myStats,
+  opponentStats,
   isWinner,
-  myWpm,
-  myAccuracy,
-  opponentWpm,
-  opponentAccuracy,
+  isTie,
   isBot,
   botDifficulty,
   onPlayAgain,
@@ -34,6 +34,18 @@ export const RaceResults = ({
     }
   };
 
+  const headlineText = isTie
+    ? '🤝 It\'s a Tie!'
+    : isWinner
+      ? '🎉 Victory!'
+      : 'Race Complete';
+
+  const subtitleText = isTie
+    ? 'You matched your opponent perfectly!'
+    : isWinner
+      ? 'Congratulations! You outpaced your opponent!'
+      : 'Great effort! Keep practicing to improve.';
+
   return (
     <motion.div
       key="finished"
@@ -46,96 +58,78 @@ export const RaceResults = ({
         animate={{ scale: 1 }}
         transition={{ type: 'spring', delay: 0.2 }}
       >
-        <Trophy 
-          className={`w-20 h-20 mx-auto mb-6 ${isWinner ? 'text-yellow-500' : 'text-muted-foreground'}`} 
+        <Trophy
+          className={cn(
+            'w-20 h-20 mx-auto mb-6',
+            isTie ? 'text-warning' : isWinner ? 'text-primary' : 'text-muted-foreground'
+          )}
         />
       </motion.div>
-      
-      <motion.h2 
+
+      <motion.h2
         className="text-3xl font-bold mb-2"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
       >
-        {isWinner ? '🎉 Victory!' : 'Race Complete'}
+        {headlineText}
       </motion.h2>
-      
-      <motion.p 
+
+      <motion.p
         className="text-muted-foreground mb-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}
       >
-        {isWinner 
-          ? 'Congratulations! You outpaced your opponent!' 
-          : 'Great effort! Keep practicing to improve.'}
+        {subtitleText}
       </motion.p>
-      
-      <motion.div 
+
+      <motion.div
         className="space-y-4 mb-8"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
       >
         {/* Your stats */}
-        <div className="stat-card p-5 border-primary/30">
-          <p className="text-sm text-primary font-medium mb-3">Your Results</p>
-          <div className="grid grid-cols-2 gap-6">
-            <div>
-              <p className="text-4xl font-bold text-primary font-mono">{myWpm}</p>
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">WPM</p>
-            </div>
-            <div>
-              <p className={`text-4xl font-bold font-mono ${myAccuracy >= 95 ? 'text-primary' : myAccuracy >= 90 ? 'text-warning' : 'text-destructive'}`}>
-                {myAccuracy.toFixed(1)}%
-              </p>
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">Accuracy</p>
-            </div>
-          </div>
-        </div>
+        <StatRow
+          label="Your Results"
+          isHighlighted
+          stats={myStats}
+          accentClass="text-primary"
+          borderClass="border-primary/30"
+        />
 
         {/* Opponent stats */}
-        <div className="stat-card p-5 border-destructive/30">
-          <p className="text-sm text-muted-foreground font-medium mb-3 flex items-center justify-center gap-2">
-            {isBot ? (
-              <>
-                <Bot className="w-4 h-4" />
-                {botDifficulty ? `${botDifficulty.charAt(0).toUpperCase() + botDifficulty.slice(1)} Bot` : 'Bot'}
-              </>
-            ) : (
-              'Opponent'
-            )}
-          </p>
-          <div className="grid grid-cols-2 gap-6">
-            <div>
-              <p className="text-4xl font-bold text-destructive font-mono">{opponentWpm}</p>
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">WPM</p>
-            </div>
-            <div>
-              <p className="text-4xl font-bold font-mono">{opponentAccuracy.toFixed(1)}%</p>
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">Accuracy</p>
-            </div>
-          </div>
-        </div>
+        <StatRow
+          label={
+            isBot
+              ? `${botDifficulty ? botDifficulty.charAt(0).toUpperCase() + botDifficulty.slice(1) : ''} Bot`
+              : 'Opponent'
+          }
+          icon={isBot ? <Bot className="w-4 h-4" /> : undefined}
+          stats={opponentStats}
+          accentClass="text-destructive"
+          borderClass="border-destructive/30"
+        />
       </motion.div>
 
-      <motion.div 
+      <motion.div
         className="flex gap-4"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
       >
-        <Button 
-          variant="outline" 
-          onClick={handlePlayAgain} 
+        <Button
+          variant="outline"
+          onClick={handlePlayAgain}
           className="flex-1 gap-2"
           size="lg"
         >
           <RotateCcw className="w-4 h-4" />
           Play Again
         </Button>
-        <Button 
-          onClick={() => navigate('/')} 
+        <Button
+          onClick={() => navigate('/')}
           className="flex-1 gap-2"
           size="lg"
         >
@@ -146,3 +140,54 @@ export const RaceResults = ({
     </motion.div>
   );
 };
+
+function StatRow({
+  label,
+  icon,
+  stats,
+  accentClass,
+  borderClass,
+  isHighlighted,
+}: {
+  label: string;
+  icon?: React.ReactNode;
+  stats: PlayerStats;
+  accentClass: string;
+  borderClass: string;
+  isHighlighted?: boolean;
+}) {
+  return (
+    <div className={cn('stat-card p-5', borderClass)}>
+      <p className={cn(
+        'text-sm font-medium mb-3 flex items-center justify-center gap-2',
+        isHighlighted ? accentClass : 'text-muted-foreground'
+      )}>
+        {icon}
+        {label}
+      </p>
+      <div className="grid grid-cols-3 gap-4">
+        <div>
+          <p className={cn('text-3xl font-bold font-mono', accentClass)}>
+            {Math.round(stats.netWpm)}
+          </p>
+          <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">WPM</p>
+        </div>
+        <div>
+          <p className={cn(
+            'text-3xl font-bold font-mono',
+            stats.accuracy >= 95 ? 'text-primary' : stats.accuracy >= 90 ? 'text-warning' : 'text-destructive'
+          )}>
+            {stats.accuracy.toFixed(1)}%
+          </p>
+          <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">Accuracy</p>
+        </div>
+        <div>
+          <p className="text-3xl font-bold font-mono text-foreground">
+            {stats.progress}%
+          </p>
+          <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">Complete</p>
+        </div>
+      </div>
+    </div>
+  );
+}

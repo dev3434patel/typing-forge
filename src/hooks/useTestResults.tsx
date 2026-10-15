@@ -27,22 +27,6 @@ export interface ExtendedTypingStats extends TypingStats {
   typedText?: string;
 }
 
-/**
- * Convert legacy Keystroke format to KeystrokeRecord for metrics engine
- */
-function convertToKeystrokeRecord(keystrokes: Keystroke[], sessionId: string): KeystrokeRecord[] {
-  return keystrokes.map((k, index) => ({
-    session_id: sessionId,
-    char_expected: k.expected || k.char,
-    char_typed: k.char,
-    event_type: 'keydown' as const,
-    timestamp_ms: k.timestamp,
-    cursor_index: k.position,
-    is_backspace: k.key === 'Backspace',
-    is_correct: k.isCorrect ?? (k.char === k.expected),
-  }));
-}
-
 export function useTestResults() {
   const { user } = useAuth();
 
@@ -51,7 +35,7 @@ export function useTestResults() {
     mode: string,
     duration: number
   ) => {
-    // Use canonical metrics engine if keystroke log is available
+    // Compute client-side metrics for localStorage (works for anonymous users)
     let finalMetrics = {
       netWpm: sanitizeMetric(stats.wpm),
       rawWpm: sanitizeMetric(stats.rawWpm),
@@ -63,7 +47,6 @@ export function useTestResults() {
       backspaceCount: stats.backspaceCount || 0,
     };
 
-    // If keystroke log is available, compute server-authoritative metrics
     if (stats.keystrokeLog && stats.keystrokeLog.length > 0 && stats.targetText && stats.typedText) {
       const sessionId = crypto.randomUUID();
       const keystrokeRecords = convertToKeystrokeRecord(stats.keystrokeLog, sessionId);
@@ -89,13 +72,8 @@ export function useTestResults() {
         totalChars: sessionMetrics.totalTypedChars,
         backspaceCount: sessionMetrics.backspaceCount,
       };
-    } else {
-      // Fallback: Use provided accuracy as-is
-      // PERFECT ACCURACY: If final typed text matches target perfectly,
-      // user deserves 100% accuracy regardless of backspace usage
-      // NO CAP - Perfect final result = 100% accuracy always!
     }
-    
+
     // Always save to localStorage
     const localResult: TestResult = {
       id: crypto.randomUUID(),
@@ -114,68 +92,34 @@ export function useTestResults() {
     };
     saveTestResult(localResult);
 
-    // If logged in, also save to database with canonical metrics
-    if (user) {
+    // SERVER-AUTHORITATIVE: Send keystrokes to edge function for logged-in users
+    // Server recomputes all metrics and saves to test_sessions + leaderboards
+    if (user && stats.keystrokeLog && stats.keystrokeLog.length > 0 && stats.targetText) {
       try {
-        // Save test session with server-authoritative metrics
-        await supabase.from('test_sessions').insert({
-          user_id: user.id,
-          test_mode: mode,
-          duration_seconds: duration,
-          gross_wpm: finalMetrics.rawWpm,
-          net_wpm: finalMetrics.netWpm,
-          accuracy_percent: finalMetrics.accuracy,
-          consistency_percent: finalMetrics.consistency,
-          total_characters: finalMetrics.totalChars,
-          correct_characters: finalMetrics.correctChars,
-          error_count: stats.errors,
-          wpm_history: stats.wpmHistory,
+        const keystrokePayload = stats.keystrokeLog.map(k => ({
+          char: k.char,
+          expectedChar: k.expected || k.char,
+          timestamp: k.timestamp,
+          isCorrect: k.isCorrect ?? (k.char === k.expected),
+          isBackspace: k.key === 'Backspace',
+        }));
+
+        await supabase.functions.invoke('finish-test', {
+          body: {
+            keystrokes: keystrokePayload,
+            targetText: stats.targetText,
+            typedText: stats.typedText || '',
+            mode,
+            durationSeconds: duration,
+          },
         });
-
-        // Update leaderboard entry with sanitized values
-        const { data: existingEntry } = await supabase
-          .from('leaderboards')
-          .select('*')
-          .eq('user_id', user.id)
-          .maybeSingle();
-
-        if (existingEntry) {
-          const testsCompleted = (existingEntry.tests_completed || 0) + 1;
-          const prevAvgWpm = existingEntry.wpm_avg || 0;
-          const prevAvgAccuracy = existingEntry.accuracy_avg || 0;
-          const prevAvgConsistency = existingEntry.consistency_avg || 0;
-          const prevTestsCompleted = existingEntry.tests_completed || 0;
-          
-          const newAvgWpm = sanitizeMetric(((prevAvgWpm * prevTestsCompleted) + finalMetrics.netWpm) / testsCompleted);
-          const newAvgAccuracy = sanitizeMetric(((prevAvgAccuracy * prevTestsCompleted) + finalMetrics.accuracy) / testsCompleted);
-          const newAvgConsistency = sanitizeMetric(((prevAvgConsistency * prevTestsCompleted) + finalMetrics.consistency) / testsCompleted);
-
-          await supabase
-            .from('leaderboards')
-            .update({
-              wpm_best: Math.max(existingEntry.wpm_best || 0, finalMetrics.netWpm),
-              wpm_avg: newAvgWpm,
-              accuracy_avg: newAvgAccuracy,
-              consistency_avg: newAvgConsistency,
-              tests_completed: testsCompleted,
-              total_characters: (existingEntry.total_characters || 0) + finalMetrics.totalChars,
-              updated_at: new Date().toISOString(),
-            })
-            .eq('user_id', user.id);
-        } else {
-          await supabase.from('leaderboards').insert({
-            user_id: user.id,
-            wpm_best: finalMetrics.netWpm,
-            wpm_avg: finalMetrics.netWpm,
-            accuracy_avg: finalMetrics.accuracy,
-            consistency_avg: finalMetrics.consistency,
-            tests_completed: 1,
-            total_characters: finalMetrics.totalChars,
-          });
-        }
       } catch (error) {
         logger.error('Failed to save test to database:', error);
+        await fallbackSave(user.id, finalMetrics, stats, mode, duration);
       }
+    } else if (user) {
+      // No keystroke log available, fallback to client-side save
+      await fallbackSave(user.id, finalMetrics, stats, mode, duration);
     }
 
     return localResult;
@@ -194,8 +138,8 @@ export function useTestResults() {
           .maybeSingle();
 
         if (existing) {
-          const shouldUnlock = metrics.wpm >= 35 && metrics.accuracy >= 95;
-          
+          const shouldUnlock = metrics.wpm >= 35 && metrics.accuracy >= 95 && metrics.confidence >= 0.9 && metrics.occurrences >= 20;
+
           await supabase
             .from('character_confidence')
             .update({
@@ -210,8 +154,8 @@ export function useTestResults() {
             })
             .eq('id', existing.id);
         } else {
-          const shouldUnlock = metrics.wpm >= 35 && metrics.accuracy >= 95;
-          
+          const shouldUnlock = metrics.wpm >= 35 && metrics.accuracy >= 95 && metrics.confidence >= 0.9 && metrics.occurrences >= 20;
+
           await supabase.from('character_confidence').insert({
             user_id: user.id,
             character: char,
@@ -231,4 +175,31 @@ export function useTestResults() {
   }, [user]);
 
   return { saveResult, saveCharacterConfidence };
+}
+
+/** Fallback: direct DB save when edge function is unavailable */
+async function fallbackSave(
+  userId: string,
+  metrics: { netWpm: number; rawWpm: number; accuracy: number; consistency: number; correctChars: number; incorrectChars: number; totalChars: number; backspaceCount: number },
+  stats: ExtendedTypingStats,
+  mode: string,
+  duration: number
+) {
+  try {
+    await supabase.from('test_sessions').insert({
+      user_id: userId,
+      test_mode: mode,
+      duration_seconds: duration,
+      gross_wpm: metrics.rawWpm,
+      net_wpm: metrics.netWpm,
+      accuracy_percent: metrics.accuracy,
+      consistency_percent: metrics.consistency,
+      total_characters: metrics.totalChars,
+      correct_characters: metrics.correctChars,
+      error_count: stats.errors,
+      wpm_history: stats.wpmHistory,
+    });
+  } catch (error) {
+    logger.error('Fallback save failed:', error);
+  }
 }

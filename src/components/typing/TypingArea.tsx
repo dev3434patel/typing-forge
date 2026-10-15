@@ -84,7 +84,7 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
   // This prevents "Cannot update component while rendering" warnings
   useEffect(() => {
     // Only generate text when settings change or when test is reset
-    if (status === 'idle' || status === 'finished') {
+    if (status === 'idle') {
       let text = '';
       switch (settings.mode) {
         case 'quote': {
@@ -267,8 +267,6 @@ export function TypingArea({ onTestComplete }: TypingAreaProps) {
   useEffect(() => {
     if (status === 'finished') {
       const consistency = calculateConsistency(wpmHistory);
-
-      // Use the same typedText that drove live accuracy as the source of truth.
       const finalTypedText = typedText;
 
       // Convert the keystroke log into canonical KeystrokeRecord format.

@@ -109,7 +109,15 @@ describe('Per-Keystroke Fidelity: Fixed Synthetic Logs', () => {
         key: (index: number) => Object.keys(mockLocalStorage)[index] || null,
       } as Storage;
       
-      const perCharMetrics = calculatePerCharMetrics(keystrokes, 35);
+      const perCharMetrics = calculatePerCharMetrics(
+        keystrokes.map((keystroke) => ({
+          char: keystroke.char,
+          timestamp: keystroke.timestamp,
+          isCorrect: keystroke.isCorrect ?? false,
+          expected: keystroke.expected ?? '',
+        })),
+        35
+      );
       
       // All letters should have metrics
       const uniqueChars = new Set(targetText.toLowerCase().replace(/[^a-z]/g, '').split(''));

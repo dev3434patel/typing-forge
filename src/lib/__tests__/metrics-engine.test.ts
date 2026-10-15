@@ -109,7 +109,7 @@ describe('Metrics Engine', () => {
   });
 
   describe('calculateConsistency', () => {
-    it('should return 100 for single WPM value', () => {
+    it('returns 100 for a single WPM sample (insufficient data)', () => {
       expect(calculateConsistency([50])).toBe(100);
     });
 

@@ -28,11 +28,11 @@ describe('Keybr Engine', () => {
   describe('calculatePerCharMetrics', () => {
     it('should calculate metrics for characters', () => {
       const keystrokes: Keystroke[] = [
-        { char: 'h', timestamp: 0, isCorrect: true, expected: 'h', key: 'h', position: 0 },
-        { char: 'e', timestamp: 200, isCorrect: true, expected: 'e', key: 'e', position: 1 },
-        { char: 'l', timestamp: 400, isCorrect: true, expected: 'l', key: 'l', position: 2 },
-        { char: 'l', timestamp: 600, isCorrect: true, expected: 'l', key: 'l', position: 3 },
-        { char: 'o', timestamp: 800, isCorrect: true, expected: 'o', key: 'o', position: 4 },
+        { char: 'h', timestamp: 0, isCorrect: true, expected: 'h' },
+        { char: 'e', timestamp: 200, isCorrect: true, expected: 'e' },
+        { char: 'l', timestamp: 400, isCorrect: true, expected: 'l' },
+        { char: 'l', timestamp: 600, isCorrect: true, expected: 'l' },
+        { char: 'o', timestamp: 800, isCorrect: true, expected: 'o' },
       ];
 
       const metrics = calculatePerCharMetrics(keystrokes, 35);
@@ -49,10 +49,10 @@ describe('Keybr Engine', () => {
 
     it('should track accuracy per character', () => {
       const keystrokes: Keystroke[] = [
-        { char: 'a', timestamp: 0, isCorrect: true, expected: 'a', key: 'a', position: 0 },
-        { char: 'a', timestamp: 200, isCorrect: true, expected: 'a', key: 'a', position: 1 },
-        { char: 'x', timestamp: 400, isCorrect: false, expected: 'a', key: 'x', position: 2 },
-        { char: 'a', timestamp: 600, isCorrect: true, expected: 'a', key: 'a', position: 3 },
+        { char: 'a', timestamp: 0, isCorrect: true, expected: 'a' },
+        { char: 'a', timestamp: 200, isCorrect: true, expected: 'a' },
+        { char: 'x', timestamp: 400, isCorrect: false, expected: 'a' },
+        { char: 'a', timestamp: 600, isCorrect: true, expected: 'a' },
       ];
 
       const metrics = calculatePerCharMetrics(keystrokes, 35);
@@ -64,9 +64,9 @@ describe('Keybr Engine', () => {
 
     it('should only track letters', () => {
       const keystrokes: Keystroke[] = [
-        { char: 'a', timestamp: 0, isCorrect: true, expected: 'a', key: 'a', position: 0 },
-        { char: ' ', timestamp: 200, isCorrect: true, expected: ' ', key: ' ', position: 1 },
-        { char: '1', timestamp: 400, isCorrect: true, expected: '1', key: '1', position: 2 },
+        { char: 'a', timestamp: 0, isCorrect: true, expected: 'a' },
+        { char: ' ', timestamp: 200, isCorrect: true, expected: ' ' },
+        { char: '1', timestamp: 400, isCorrect: true, expected: '1' },
       ];
 
       const metrics = calculatePerCharMetrics(keystrokes, 35);
@@ -134,8 +134,7 @@ describe('Keybr Engine', () => {
           timestamp: i * 200,
           isCorrect: true,
           expected: 'z',
-          key: 'z',
-          position: i,
+        
         });
       }
 
@@ -174,8 +173,7 @@ describe('Keybr Engine', () => {
           timestamp: i * 150, // Faster = higher WPM
           isCorrect: true,
           expected: 'a',
-          key: 'a',
-          position: i,
+        
         });
       }
 
@@ -342,8 +340,7 @@ describe('Keybr Engine', () => {
           timestamp: i * timePerChar,
           isCorrect: true, // 100% accuracy
           expected: 'z',
-          key: 'z',
-          position: i,
+        
         });
       }
 
@@ -371,8 +368,7 @@ describe('Keybr Engine', () => {
           timestamp: i * 200, // ~35 WPM
           isCorrect: i < correctChars,
           expected: 'z',
-          key: 'z',
-          position: i,
+        
         });
       }
 
@@ -388,31 +384,29 @@ describe('Keybr Engine', () => {
       }
     });
 
-    it('should unlock character at exactly 35.0 WPM AND 95.0% accuracy', () => {
-      const keystrokes: Keystroke[] = [];
-      const totalChars = 100;
-      const correctChars = 95; // Exactly 95% accuracy
+    it('should unlock character at exactly 35.0 WPM AND 95.0% accuracy AND confidence>=0.9 AND samples>=20', () => {
+      // Spec: unlock requires wpm>=35, accuracy>=95, confidence>=0.9, samples>=20
+      // confidence = speed * acc * cons
+      // speed(40) = min((40-12)/(35-12), 1) = 1.0
+      // acc(99.5) = (99.5-90)/10 = 0.95
+      // cons(stdDev=5) = 1 - 5/200 = 0.975
+      // confidence = 1.0 * 0.95 * 0.975 = 0.926 >= 0.9 ✓
+      const zMetrics: CharacterConfidence = {
+        char: 'z',
+        confidence: 0.93,
+        wpm: 40,
+        accuracy: 99.5,
+        occurrences: 25,
+        avgTimeMs: 150,
+        stdDev: 5,
+        isUnlocked: false,
+        status: 'weak',
+      };
       
-      for (let i = 0; i < totalChars; i++) {
-        keystrokes.push({
-          char: 'z',
-          timestamp: i * 171, // ~35 WPM (60000 / (35 * 5) ≈ 171ms per char)
-          isCorrect: i < correctChars,
-          expected: 'z',
-          key: 'z',
-          position: i,
-        });
-      }
-
-      const newMetrics = calculatePerCharMetrics(keystrokes, 35);
-      const zMetrics = newMetrics.get('z');
+      const result = updateCharacterProgress(new Map([['z', zMetrics]]), 35);
       
-      if (zMetrics && zMetrics.wpm >= 35 && zMetrics.accuracy >= 95) {
-        const result = updateCharacterProgress(newMetrics, 35);
-        
-        // Should unlock (meets both thresholds)
-        expect(result.newlyUnlocked).toContain('z');
-      }
+      // Should unlock (meets all thresholds: wpm>=35, accuracy>=95, confidence>=0.9, samples>=20)
+      expect(result.newlyUnlocked).toContain('z');
     });
   });
 
@@ -451,8 +445,7 @@ describe('Keybr Engine', () => {
           timestamp: i * 120, // 120ms per keystroke = 100 WPM
           isCorrect: true,
           expected: 'a',
-          key: 'a',
-          position: i,
+        
         });
       }
 
