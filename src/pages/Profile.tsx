@@ -1,273 +1,43 @@
-import { useState, useEffect, useMemo } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect,useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowUpRight,Download,ShieldCheck,UserRound } from 'lucide-react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { useAuth } from '@/hooks/useAuth';
-import { supabase } from '@/integrations/supabase/client';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ProfileHeader } from '@/components/profile/ProfileHeader';
-import { ProfileOverview } from '@/components/profile/ProfileOverview';
-import { CharacterGrid } from '@/components/profile/CharacterGrid';
-import { TestHistory } from '@/components/profile/TestHistory';
-import { ProfileSettings } from '@/components/profile/ProfileSettings';
-import { RaceHistory, type RaceHistoryItem } from '@/components/race/RaceHistory';
-import { 
-  LayoutDashboard, 
-  Clock, 
-  Keyboard, 
-  Settings, 
-  Loader2,
-  Trophy
-} from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useSessionHistory } from '@/hooks/useTestResults';
+import { isSupabaseConfigured,supabase } from '@/integrations/supabase/client';
+import { deleteAccount,deleteSession,exportHistory } from '@/services/account-data';
+import { sessionRepository } from '@/services/session-repository';
+import { cohortLabel,metricLabel,sessionView } from '@/services/history-model';
 
-export interface ProfileData {
-  id: string;
-  username: string;
-  avatar_url: string | null;
-  target_wpm: number;
-  theme: string;
-  created_at: string;
+// Retained exported contracts for existing profile display primitives.
+export interface ProfileData {id:string;username:string;avatar_url:string|null;target_wpm:number;theme:string;created_at:string}
+export interface LeaderboardData {wpm_best:number;wpm_avg:number;accuracy_avg:number;consistency_avg:number;tests_completed:number;total_characters:number}
+export interface CharacterConfidence {character:string;confidence_level:number;current_wpm:number;current_accuracy:number;total_instances:number;lessons_practiced:number;is_unlocked:boolean;unlocked_at:string|null}
+export interface TestSession {id:string;test_mode:string;duration_seconds:number;gross_wpm:number;net_wpm:number;accuracy_percent:number;consistency_percent:number;total_characters:number;correct_characters:number;error_count:number;created_at:string;wpm_history:number[]}
+
+export default function Profile(){
+  const {user,signOut}=useAuth();const {records,loading,error,ownerId,storageMode}=useSessionHistory();
+  const [handle,setHandle]=useState(''),[savedHandle,setSavedHandle]=useState(''),[message,setMessage]=useState(''),[busy,setBusy]=useState(false),[confirmation,setConfirmation]=useState(''),[guestCount,setGuestCount]=useState(0),[limit,setLimit]=useState(10);
+  useEffect(()=>{setConfirmation('');setMessage('');},[ownerId]);
+  useEffect(()=>{let active=true;setHandle('');setSavedHandle('');void sessionRepository.list('guest').then(rows=>{if(active)setGuestCount(rows.length);});
+    if(user&&isSupabaseConfigured)void supabase.from('public_identities' as never).select('handle').eq('user_id',user.id).maybeSingle().then(({data,error:readError})=>{if(!active)return;if(readError){setMessage(`Public identity unavailable: ${readError.message}`);return;}const identity=data as unknown as {handle?:string};if(identity?.handle){setHandle(identity.handle);setSavedHandle(identity.handle);}});
+    return()=>{active=false;};
+  },[user]);
+  const run=async(action:()=>Promise<unknown>,success:string)=>{setBusy(true);setMessage('');try{await action();setMessage(success);}catch(cause){setMessage(cause instanceof Error?cause.message:'This action could not be completed.');}finally{setBusy(false);}};
+  const saveIdentity=()=>run(async()=>{if(!user)throw new Error('Sign in to set a public handle.');if(!/^[a-z][a-z0-9_]{2,23}$/.test(handle))throw new Error('Use 3–24 lowercase letters, numbers or underscores, starting with a letter.');const {error}=await supabase.from('public_identities' as never).update({handle} as never).eq('user_id',user.id);if(error)throw new Error(error.message);setSavedHandle(handle);},'Your public handle is saved.');
+  const personalBests=new Map<string,number>();for(const view of records.map(sessionView))if(view.isV3&&view.wpm!==null&&view.personalBestEligible)personalBests.set(view.comparisonKey,Math.max(personalBests.get(view.comparisonKey)??0,view.wpm));
+  return <div className="forge-shell"><Header/><main id="main-content" className="forge-main">
+    <div className="flex flex-wrap justify-between items-start gap-5 mb-9"><div className="flex items-center gap-5"><span className="rounded-2xl border p-5 text-primary bg-primary/5"><UserRound size={30}/></span><div><p className="eyebrow">Your Typing Forge profile</p><h1 className="text-3xl font-semibold tracking-tight mt-2">{user?savedHandle||'Your account':'Guest workspace'}</h1><p className="text-sm text-muted-foreground mt-2">{records.length} saved sessions · {(records.reduce((sum,row)=>sum+row.summary.duration,0)/60).toFixed(1)} minutes practiced</p></div></div>{user?<button className="forge-button-secondary" onClick={()=>void run(signOut,'Signed out. Your account history stays in its own workspace.')}>Sign out</button>:<Link to="/auth" className="forge-button">Sign in<ArrowUpRight size={15}/></Link>}</div>
+    {(error||message)&&<p role="status" className="panel p-4 mb-6 text-sm">{message||error}</p>}
+    <div className="grid lg:grid-cols-[1fr_1.7fr] gap-6"><div className="space-y-6">
+      <section className="panel p-6"><h2 className="font-medium">Public identity</h2><p className="text-xs text-muted-foreground leading-relaxed mt-2">A handle appears in human rooms and eligible rankings. Your email is private.</p><label className="block text-xs text-muted-foreground mt-5" htmlFor="profile-handle">Handle</label><input id="profile-handle" className="forge-input mt-2" autoComplete="nickname" value={handle} onChange={event=>setHandle(event.target.value)} maxLength={24} disabled={!user||busy} placeholder={user?'forge_typist':'Sign in to choose a handle'}/><p className="text-[11px] text-muted-foreground mt-2">3–24 lowercase letters, numbers or underscores.</p><button className="forge-button-secondary mt-4" disabled={!user||busy||handle===savedHandle} onClick={()=>void saveIdentity()}>Save handle</button></section>
+      <section className="panel p-6"><h2 className="font-medium flex items-center gap-2"><ShieldCheck size={17} className="text-primary"/>Your data, your choice</h2><p className="text-xs text-muted-foreground leading-relaxed mt-3">Replay evidence and private text expire after 90 days. Summary history stays until you delete it. Cloud storage of private passages needs separate consent for each session.</p><button className="forge-button-secondary mt-5 w-full" disabled={!records.length} onClick={()=>exportHistory(records)}><Download size={15}/>Export this workspace</button><Link className="forge-button-secondary mt-3 w-full" to="/settings">Practice & appearance settings<ArrowUpRight size={15}/></Link><p className="text-[11px] text-muted-foreground mt-4">Workspace: {user?'signed-in account':'guest'} · {storageMode==='indexeddb'?'durable browser storage':'memory for this visit'}</p></section>
+      {user&&guestCount>0&&<section className="panel p-6"><h2 className="font-medium">Bring your guest history</h2><p className="text-xs text-muted-foreground leading-relaxed mt-2">Import {guestCount} sessions into this account's local workspace. Imports remain personal only and are deduplicated. Guest originals stay on this device.</p><button className="forge-button-secondary mt-4" disabled={busy} onClick={()=>void run(async()=>{const count=await sessionRepository.importGuest(user.id);setGuestCount(0);return count;},'Guest history imported. Imported scores remain personal only.')}>Import guest history</button></section>}
+    </div><div className="space-y-6">
+      <section className="panel p-6"><h2 className="font-medium">Personal bests by comparison</h2><p className="text-xs text-muted-foreground mt-2">V3 metrics only. Repeated content, languages and durations are separate comparisons.</p>{personalBests.size?<div className="mt-5 divide-y">{Array.from(personalBests.entries()).slice(0,8).map(([key,wpm])=><div className="py-4 flex justify-between gap-4 items-center" key={key}><p className="text-xs text-muted-foreground leading-relaxed">{cohortLabel(key)}</p><p className="font-mono whitespace-nowrap text-primary">{metricLabel(wpm)} <span className="text-[10px] text-muted-foreground">WPM</span></p></div>)}</div>:<p className="text-sm text-muted-foreground py-8">Complete a V3 session to set your first personal best.</p>}</section>
+      <section className="panel overflow-hidden"><div className="p-6 border-b flex justify-between"><div><h2 className="font-medium">Your saved sessions</h2><p className="text-xs text-muted-foreground mt-2">Deletion also reconciles cloud comparisons and learning evidence.</p></div><Link className="text-xs text-primary" to="/stats">View progress</Link></div>{loading?<p className="p-6 text-muted-foreground" role="status">Loading history…</p>:!records.length?<p className="p-6 text-sm text-muted-foreground">No sessions saved in this workspace yet.</p>:<div className="divide-y">{records.slice(0,limit).map(record=>{const view=sessionView(record);return <div key={record.clientSessionId} className="px-6 py-4 flex flex-wrap items-center justify-between gap-3"><div><p className="text-sm capitalize">{record.summary.mode} <span className="font-mono text-primary ml-2">{metricLabel(view.wpm)} WPM</span></p><p className="text-[11px] text-muted-foreground mt-1">{new Date(record.createdAt).toLocaleString()} · {record.state.replace(/-/g,' ')}{!view.isV3?' · legacy metrics':''}</p></div><button className="text-xs text-destructive min-h-11 px-3" disabled={busy} aria-label={`Delete ${record.summary.mode} session from ${new Date(record.createdAt).toLocaleString()}`} onClick={()=>{if(window.confirm('Delete this session from this workspace and your account if synced? Its personal best and learning evidence will be recomputed.'))void run(()=>deleteSession(ownerId,record.clientSessionId),'Session deleted.');}}>Delete</button></div>;})}</div>}{records.length>limit&&<button className="forge-button-secondary m-5" onClick={()=>setLimit(value=>value+10)}>Show 10 more</button>}</section>
+    </div></div>
+    <section className="panel p-6 mt-8 border-destructive/25"><h2 className="font-medium">{user?'Delete account':'Reset guest workspace'}</h2><p className="text-xs text-muted-foreground leading-relaxed mt-2">{user?'Permanently remove this account, owned sessions, cloud evidence, shares and learning data. Host-owned rooms are removed; other shared race records anonymize your identity. Downloaded exports must be removed separately.':'Remove guest history and learning evidence from this device. Other signed-in workspaces are preserved.'} Export your history first if you want a copy.</p><label htmlFor="delete-confirmation" className="block text-xs text-muted-foreground mt-5">Type DELETE to enable this action</label><div className="flex flex-wrap gap-3 mt-2"><input id="delete-confirmation" className="forge-input max-w-xs" value={confirmation} onChange={event=>setConfirmation(event.target.value)} autoComplete="off"/><button className="forge-button-secondary text-destructive" disabled={confirmation!=='DELETE'||busy} onClick={()=>void run(async()=>{await deleteAccount(ownerId);setConfirmation('');},user?'Account deleted.':'Guest workspace reset.')}>{busy?'Working…':user?'Permanently delete account':'Reset guest workspace'}</button></div></section>
+  </main><Footer/></div>;
 }
-
-export interface LeaderboardData {
-  wpm_best: number;
-  wpm_avg: number;
-  accuracy_avg: number;
-  consistency_avg: number;
-  tests_completed: number;
-  total_characters: number;
-}
-
-export interface CharacterConfidence {
-  character: string;
-  confidence_level: number;
-  current_wpm: number;
-  current_accuracy: number;
-  total_instances: number;
-  lessons_practiced: number;
-  is_unlocked: boolean;
-  unlocked_at: string | null;
-}
-
-export interface TestSession {
-  id: string;
-  test_mode: string;
-  duration_seconds: number;
-  gross_wpm: number;
-  net_wpm: number;
-  accuracy_percent: number;
-  consistency_percent: number;
-  total_characters: number;
-  correct_characters: number;
-  error_count: number;
-  created_at: string;
-  wpm_history: number[];
-}
-
-const Profile = () => {
-  const { user, loading: authLoading } = useAuth();
-  const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState('overview');
-  const [loading, setLoading] = useState(true);
-  const [profile, setProfile] = useState<ProfileData | null>(null);
-  const [leaderboardData, setLeaderboardData] = useState<LeaderboardData | null>(null);
-  const [characterData, setCharacterData] = useState<CharacterConfidence[]>([]);
-  const [testHistory, setTestHistory] = useState<TestSession[]>([]);
-  const [raceHistory, setRaceHistory] = useState<RaceHistoryItem[]>([]);
-
-  useEffect(() => {
-    if (!authLoading && !user) {
-      navigate('/auth');
-    }
-  }, [user, authLoading, navigate]);
-
-  useEffect(() => {
-    async function fetchProfileData() {
-      if (!user) return;
-      
-      setLoading(true);
-      
-      try {
-        // Fetch profile
-        const { data: profileData } = await supabase
-          .from('profiles')
-          .select('*')
-          .eq('id', user.id)
-          .single();
-
-        if (profileData) {
-          setProfile(profileData);
-        }
-
-        // Fetch leaderboard entry
-        const { data: leaderboard } = await supabase
-          .from('leaderboards')
-          .select('*')
-          .eq('user_id', user.id)
-          .maybeSingle();
-
-        if (leaderboard) {
-          setLeaderboardData(leaderboard);
-        }
-
-        // Fetch character confidence
-        const { data: characters } = await supabase
-          .from('character_confidence')
-          .select('*')
-          .eq('user_id', user.id)
-          .order('character');
-
-        if (characters) {
-          setCharacterData(characters);
-        }
-
-        // Fetch test history
-        const { data: tests } = await supabase
-          .from('test_sessions')
-          .select('*')
-          .eq('user_id', user.id)
-          .order('created_at', { ascending: false })
-          .limit(100);
-
-        if (tests) {
-          setTestHistory(tests.map(t => ({
-            ...t,
-            wpm_history: Array.isArray(t.wpm_history) ? t.wpm_history as number[] : [],
-          })));
-        }
-
-        // Fetch race history (races where user is host or opponent and status is completed)
-        const { data: races } = await supabase
-          .from('race_sessions')
-          .select('*')
-          .or(`host_id.eq.${user.id},opponent_id.eq.${user.id}`)
-          .eq('status', 'completed')
-          .order('created_at', { ascending: false })
-          .limit(100);
-
-        if (races) {
-          setRaceHistory(races as RaceHistoryItem[]);
-        }
-      } catch (error) {
-        console.error('Error fetching profile data:', error);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchProfileData();
-  }, [user]);
-
-  // Calculate additional stats
-  const stats = useMemo(() => {
-    if (!testHistory.length) return null;
-
-    const totalTime = testHistory.reduce((acc, t) => acc + t.duration_seconds, 0);
-    const avgWpm = testHistory.reduce((acc, t) => acc + t.net_wpm, 0) / testHistory.length;
-    const avgAccuracy = testHistory.reduce((acc, t) => acc + t.accuracy_percent, 0) / testHistory.length;
-    const avgConsistency = testHistory.reduce((acc, t) => acc + (t.consistency_percent || 0), 0) / testHistory.length;
-
-    // WPM trend (compare last 10 to previous 10)
-    const recent = testHistory.slice(0, 10);
-    const previous = testHistory.slice(10, 20);
-    const recentAvg = recent.reduce((acc, t) => acc + t.net_wpm, 0) / (recent.length || 1);
-    const previousAvg = previous.length > 0 
-      ? previous.reduce((acc, t) => acc + t.net_wpm, 0) / previous.length 
-      : recentAvg;
-    const wpmTrend = previousAvg > 0 ? ((recentAvg - previousAvg) / previousAvg) * 100 : 0;
-
-    return {
-      totalTime,
-      avgWpm,
-      avgAccuracy,
-      avgConsistency,
-      wpmTrend,
-    };
-  }, [testHistory]);
-
-  if (authLoading || loading) {
-    return (
-      <div className="min-h-screen flex flex-col bg-background">
-        <Header />
-        <main className="flex-1 flex items-center justify-center">
-          <Loader2 className="w-8 h-8 animate-spin text-primary" />
-        </main>
-        <Footer />
-      </div>
-    );
-  }
-
-  if (!user || !profile) {
-    return null;
-  }
-
-  const tabConfig = [
-    { id: 'overview', label: 'Overview', icon: LayoutDashboard },
-    { id: 'tests', label: 'Test History', icon: Clock },
-    { id: 'races', label: 'Race History', icon: Trophy },
-    { id: 'characters', label: 'Characters', icon: Keyboard },
-    { id: 'settings', label: 'Settings', icon: Settings },
-  ];
-
-  return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <Header />
-      <main className="flex-1 container mx-auto px-4 py-8 md:py-12">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          {/* Profile Header */}
-          <ProfileHeader 
-            profile={profile} 
-            leaderboardData={leaderboardData}
-            testsCompleted={testHistory.length}
-          />
-
-          {/* Profile Tabs */}
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
-            <TabsList className="grid w-full grid-cols-5 h-auto mb-8">
-              {tabConfig.map((tab) => {
-                const Icon = tab.icon;
-                return (
-                  <TabsTrigger key={tab.id} value={tab.id} className="flex items-center gap-2 py-3">
-                    <Icon className="w-4 h-4" />
-                    <span className="hidden sm:inline">{tab.label}</span>
-                  </TabsTrigger>
-                );
-              })}
-            </TabsList>
-
-            <TabsContent value="overview">
-              <ProfileOverview 
-                leaderboardData={leaderboardData}
-                testHistory={testHistory}
-                stats={stats}
-              />
-            </TabsContent>
-
-            <TabsContent value="tests">
-              <TestHistory testHistory={testHistory} />
-            </TabsContent>
-
-            <TabsContent value="races">
-              <RaceHistory raceHistory={raceHistory} currentUserId={user.id} />
-            </TabsContent>
-
-            <TabsContent value="characters">
-              <CharacterGrid characterData={characterData} />
-            </TabsContent>
-
-            <TabsContent value="settings">
-              <ProfileSettings 
-                profile={profile} 
-                onUpdate={(updated) => setProfile(updated)} 
-              />
-            </TabsContent>
-          </Tabs>
-        </motion.div>
-      </main>
-      <Footer />
-    </div>
-  );
-};
-
-export default Profile;

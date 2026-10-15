@@ -1,0 +1,135 @@
+
+> typing-forge@3.0.0 test:e2e
+> playwright test e2e/profile-flow.spec.ts --workers=1 --reporter=list,json --output=audit/accuracy-research-2026-10-15/profile-after-controller-artifacts
+
+
+Running 12 tests using 1 worker
+
+(node:33284) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › e2e\profile-flow.spec.ts:3:1 › guest profile protects account controls and destructive reset requires exact confirmation (679ms)
+  ok  2 [chromium] › e2e\profile-flow.spec.ts:13:1 › themes and keyboard preferences survive reload (865ms)
+  ok  3 [chromium] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands (1.6s)
+  ok  4 [chromium] › e2e\profile-flow.spec.ts:50:1 › mobile navigation exposes Test, Learn, Race, and Stats without horizontal overflow (1.0s)
+(node:53608) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   5 [firefox] › e2e\profile-flow.spec.ts:3:1 › guest profile protects account controls and destructive reset requires exact confirmation (34.2s)
+(node:11812) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  6 [firefox] › e2e\profile-flow.spec.ts:13:1 › themes and keyboard preferences survive reload (9.0s)
+  ok  7 [firefox] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands (3.0s)
+  ok  8 [firefox] › e2e\profile-flow.spec.ts:50:1 › mobile navigation exposes Test, Learn, Race, and Stats without horizontal overflow (1.5s)
+(node:78544) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  9 [webkit] › e2e\profile-flow.spec.ts:3:1 › guest profile protects account controls and destructive reset requires exact confirmation (1.3s)
+  ok 10 [webkit] › e2e\profile-flow.spec.ts:13:1 › themes and keyboard preferences survive reload (1.6s)
+  ok 11 [webkit] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands (2.8s)
+  ok 12 [webkit] › e2e\profile-flow.spec.ts:50:1 › mobile navigation exposes Test, Learn, Race, and Stats without horizontal overflow (1.8s)
+
+
+  1) [firefox] › e2e\profile-flow.spec.ts:3:1 › guest profile protects account controls and destructive reset requires exact confirmation 
+
+    Tearing down "context" exceeded the test timeout of 30000ms.
+
+    Error: browserContext.close: Test ended.
+    Browser logs:
+
+    <launching> C:\Users\DELL\AppData\Local\ms-playwright\firefox-1555\firefox\firefox.exe -no-remote -headless -profile C:\Users\DELL\AppData\Local\Temp\playwright_firefoxdev_profile-uF8E0g -juggler-pipe -silent
+    <launched> pid=14464
+    [pid=14464][err] *** You are running in headless mode.
+    [pid=14464][err] JavaScript warning: resource://services-settings/Utils.sys.mjs, line 125: unreachable code after return statement
+    [pid=14464][out] 
+    [pid=14464][out] Juggler listening to the pipe
+    [pid=14464][err] [WARN  rkv::backend::impl_safe::environment] `load_ratio()` is irrelevant for this storage backend.
+    [pid=14464][out] Crash Annotation GraphicsCriticalError: |[0][GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt (t=1.54831) [GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+    [pid=14464][err] JavaScript error: chrome://juggler/content/Helper.js, line 82: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIWebProgress.removeProgressListener]
+    [pid=14464][out] console.warn: services.settings: #fetchAttachment: Forcing fallbackToDump to false due to Utils.LOAD_DUMPS being false
+    [pid=14464][out] console.error: (new NotFoundError("Could not find fa0fc42c-d91d-fca7-34eb-806ff46062dc in cache or dump", "resource://services-settings/Attachments.sys.mjs", 48))
+    [pid=14464][out] console.warn: "Unable to find the attachment for" "fa0fc42c-d91d-fca7-34eb-806ff46062dc"
+    [pid=14464][err] [ERROR shell_windows::limited_access_features] Error generating feature token: NS_ERROR_FAILURE
+    [pid=14464][out] console.error: "Error fetching the wallpaper attachments URL" (new SyntaxError("JSON.parse: unexpected end of data at line 1 column 1 of the JSON data", ""))
+    [pid=14464][err] [ERROR shell_windows::taskbar::shortcut] Error matching shortcut: Error { code: HRESULT(0x80004005), message: "Unspecified error" }
+    [pid=14464][out] console.error: services.settings: 
+    [pid=14464][out]   Message: EmptyDatabaseError: "main/nimbus-desktop-experiments" has not been synced yet
+    [pid=14464][out]   Stack:
+    [pid=14464][out]     EmptyDatabaseError@resource://services-settings/Database.sys.mjs:19:5
+    [pid=14464][out] list@resource://services-settings/Database.sys.mjs:96:13
+    [pid=14464][out] 
+    [pid=14464][err] [ERROR shell_windows::taskbar::shortcut] Error matching shortcut: Error { code: HRESULT(0x80004005), message: "Unspecified error" }
+    [pid=14464][out] console.error: [Exception... "Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIWinTaskbar.getTaskbarProgress]"  nsresult: "0x80070057 (NS_ERROR_ILLEGAL_VALUE)"  location: "JS frame :: moz-src:///browser/components/downloads/DownloadsTaskbar.sys.mjs :: #windowsAttachIndicator :: line 181"  data: no]
+    [pid=14464][err] [ERROR shell_windows::taskbar::shortcut] Error matching shortcut: Error { code: HRESULT(0x80004005), message: "Unspecified error" }
+    [pid=14464] <gracefully close start>
+    [pid=14464][out] 
+    [pid=14464][out]         ERROR: Failed "callFunction": connector for namespace "page" in channel "undefined" is disposed. _rejectCallbacksFromConnector@chrome://juggler/content/SimpleChannel.js:108:25
+    [pid=14464][out] dispose@chrome://juggler/content/SimpleChannel.js:119:27
+    [pid=14464][out] dispose@chrome://juggler/content/protocol/PageHandler.js:152:23
+    [pid=14464][out] _dispose@chrome://juggler/content/protocol/Dispatcher.js:117:21
+    [pid=14464][out] destroySession@chrome://juggler/content/protocol/Dispatcher.js:35:13
+    [pid=14464][out] dispose@chrome://juggler/content/protocol/BrowserHandler.js:77:24
+    [pid=14464][out] _dispose@chrome://juggler/content/protocol/Dispatcher.js:117:21
+    [pid=14464][out] _dispose@chrome://juggler/content/protocol/Dispatcher.js:41:23
+    [pid=14464][out] observe/browserHandler<@chrome://juggler/content/components/Juggler.js:143:22
+    [pid=14464][out] Browser.close@chrome://juggler/content/protocol/BrowserHandler.js:156:10
+    [pid=14464][out] 
+    [pid=14464][err] JavaScript warning: debugger eval code, line 3139: Script terminated by timeout at:
+    [pid=14464][err] getElementComputedStyle@debugger eval code:3139:51
+    [pid=14464][err] visit@debugger eval code:4069:30
+    [pid=14464][err] innerAccumulatedElementText@debugger eval code:4092:14
+    [pid=14464][err] getTextAlternativeInternal@debugger eval code:4043:55
+    [pid=14464][err] computeAccessibleNameComposite@debugger eval code:3710:44
+    [pid=14464][err] getElementAccessibleName@debugger eval code:3723:22
+    [pid=14464][err] toAriaNode@debugger eval code:4516:40
+    [pid=14464][err] visit@debugger eval code:4412:37
+    [pid=14464][err] processElement@debugger eval code:4449:16
+    [pid=14464][err] visit@debugger eval code:4426:19
+    [pid=14464][err] processElement@debugger eval code:4449:16
+    [pid=14464][err] visit@debugger eval code:4426:19
+    [pid=14464][err] processElement@debugger eval code:4449:16
+    [pid=14464][err] visit@debugger eval code:4426:19
+    [pid=14464][err] processElement@debugger eval code:4449:16
+    [pid=14464][err] visit@debugger eval code:4426:19
+    [pid=14464][err] processElement@debugger eval code:4449:16
+    [pid=14464][err] visit@debugger eval code:4426:19
+    [pid=14464][err] processElement@debugger eval code:4449:16
+    [pid=14464][err] visit@debugger eval code:4426:19
+    [pid=14464][err] processElement@debugger eval code:4449:16
+    [pid=14464][err] visit@debugger eval code:4426:19
+    [pid=14464][err] generateAriaTree@debugger eval code:4474:10
+    [pid=14464][err] ariaSnapshotJSON@debugger eval code:7152:42
+    [pid=14464][err] @debugger eval code line 7098 > eval:2:25
+    [pid=14464][err] @debugger eval code line 370 > eval:15:22
+    [pid=14464][err] evaluate@debugger eval code:372:16
+    [pid=14464][err] @debugger eval code:1:44
+    [pid=14464][err] @debugger eval code:1:62
+    [pid=14464][err] 
+    [pid=14464][err] JavaScript error: chrome://juggler/content/Helper.js, line 82: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIWebProgress.removeProgressListener]
+    [pid=14464][out]       
+    [pid=14464][out]         ERROR: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIRemoteDebuggingPipe.sendMessage] send@chrome://juggler/content/components/Juggler.js:135:18
+    [pid=14464][out] _dispatch@chrome://juggler/content/protocol/Dispatcher.js:76:24
+    [pid=14464][out] #onQuitApplicationGranted@moz-src:///browser/components/sessionstore/SessionStore.sys.mjs:2359:19
+    [pid=14464][out] observe@moz-src:///browser/components/sessionstore/SessionStore.sys.mjs:991:39
+    [pid=14464][out] observe/browserHandler<@chrome://juggler/content/components/Juggler.js:144:16
+    [pid=14464][out] Browser.close@chrome://juggler/content/protocol/BrowserHandler.js:156:10
+    [pid=14464][out] 
+    [pid=14464][err] JavaScript error: chrome://juggler/content/components/Juggler.js, line 135: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIRemoteDebuggingPipe.sendMessage]
+    [pid=14464][err] JavaScript error: chrome://juggler/content/components/Juggler.js, line 135: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIRemoteDebuggingPipe.sendMessage]
+    [pid=14464][out]       console.warn: AboutNewTabResourceMapping: "updateAddonStateDeferredTask cancelled on application shutdown"
+    [pid=14464][out] 1792089046658	addons.xpi	ERROR	System addon update list error [Exception... "<no message>"  nsresult: "0x8046001e (<unknown>)"  location: "JS frame :: resource://gre/modules/ServiceRequest.sys.mjs :: open :: line 126"  data: no]
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\accuracy-research-2026-10-15\profile-after-controller-artifacts\profile-flow-guest-profile-10d24-requires-exact-confirmation-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\accuracy-research-2026-10-15\profile-after-controller-artifacts\profile-flow-guest-profile-10d24-requires-exact-confirmation-firefox\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\accuracy-research-2026-10-15\profile-after-controller-artifacts\profile-flow-guest-profile-10d24-requires-exact-confirmation-firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\accuracy-research-2026-10-15\profile-after-controller-artifacts\profile-flow-guest-profile-10d24-requires-exact-confirmation-firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [firefox] › e2e\profile-flow.spec.ts:3:1 › guest profile protects account controls and destructive reset requires exact confirmation 
+  11 passed (1.4m)

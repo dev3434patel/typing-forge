@@ -1,0 +1,32 @@
+
+> typing-forge@3.0.0 test:coverage
+> vitest run --coverage --maxWorkers=2
+
+
+ RUN  v4.1.12 D:/extra/typing_updated/typing-forge
+      Coverage enabled with v8
+
+ ❯ src/lib/typing-core/__tests__/conformance.test.ts (13 tests | 1 failed) 11696ms
+     × preserves atomic Unicode range edits against an independent string-splice reference 5442ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/lib/typing-core/__tests__/conformance.test.ts > cross-layer attribution, lifecycle and Unicode boundaries > preserves atomic Unicode range edits against an independent string-splice reference
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/lib/typing-core/__tests__/conformance.test.ts:75:3
+     73|     summary.fixedRegressions.push('Grapheme boundaries are reconciled …
+     74|   });
+     75|   it('preserves atomic Unicode range edits against an independent stri…
+       |   ^
+     76|     const segmenter = new Intl.Segmenter('und', { granularity: 'graphe…
+     77|     const split = (text: string) => Array.from(segmenter.segment(text)…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 26 passed (27)
+      Tests  1 failed | 427 passed (428)
+   Start at  23:16:23
+   Duration  22.22s (transform 1.96s, setup 1.21s, import 4.37s, tests 18.80s, environment 7ms)
+

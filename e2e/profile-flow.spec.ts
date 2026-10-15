@@ -1,121 +1,57 @@
-/**
- * E2E TEST: Profile Flow
- * Tests profile page, settings, and test history
- */
+import { test, expect } from '@playwright/test';
 
-import { test, expect } from '../playwright-fixture';
+test('guest profile protects account controls and destructive reset requires exact confirmation', async ({ page }) => {
+  await page.goto('/profile');
+  await expect(page.getByRole('heading', { name: 'Guest workspace', exact: true })).toBeVisible();
+  await expect(page.getByRole('textbox', { name: 'Handle', exact: true })).toBeDisabled();
+  const reset = page.getByRole('button', { name: 'Reset guest workspace', exact: true });
+  await expect(reset).toBeDisabled();
+  await page.getByLabel('Type DELETE to enable this action', { exact: true }).fill('delete'); await expect(reset).toBeDisabled();
+  await page.getByLabel('Type DELETE to enable this action', { exact: true }).fill('DELETE'); await expect(reset).toBeEnabled();
+});
 
-test.describe('Profile Flow', () => {
-  test('should redirect to auth if not authenticated', async ({ page }) => {
-    await page.goto('/profile');
-    
-    // Should redirect to auth page
-    await page.waitForTimeout(2000);
-    
-    // Check if redirected to auth or still on profile
-    const url = page.url();
-    // Might redirect to auth or show login prompt
-    expect(url).toMatch(/\/(profile|auth)/);
-  });
+test('themes and keyboard preferences survive reload', async ({ page }) => {
+  await page.goto('/settings');
+  await page.getByRole('button', { name: 'Aa bb Paper', exact: true }).click();
+  await page.getByRole('combobox', { name: 'Keyboard layout', exact: true }).selectOption('dvorak');
+  await page.reload();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'paper');
+  await expect(page.getByRole('combobox', { name: 'Keyboard layout', exact: true })).toHaveValue('dvorak');
+  await expect(page.getByRole('button', { name: 'Aa bb Paper', exact: true })).toHaveAttribute('aria-pressed', 'true');
+});
 
-  test('should display profile page when authenticated', async ({ page }) => {
-    // Mock authentication state
-    await page.goto('/');
-    await page.evaluate(() => {
-      // Set mock auth state
-      localStorage.setItem('supabase.auth.token', JSON.stringify({ access_token: 'mock', expires_at: Date.now() + 3600000 }));
-    });
-    
-    await page.goto('/profile');
-    await page.waitForTimeout(2000);
-    
-    // Profile page should load (or redirect to auth if mock doesn't work)
-    const url = page.url();
-    expect(url).toMatch(/\/(profile|auth)/);
-  });
+test('the keyboard command palette changes theme and navigates using concrete commands', async ({ page }) => {
+  await page.goto('/');
+  // Keyboard events do not auto-wait for React's lazy workspace to mount.
+  await expect(page.getByRole('button', { name: 'Open command palette', exact: true })).toBeVisible();
+  const dialog = page.getByRole('dialog', { name: 'Typing Forge commands', exact: true });
+  await page.keyboard.press('ControlOrMeta+k');
+  await expect(dialog).toBeVisible();
+  await dialog.getByRole('combobox').fill('Aurora');
+  // Once the lazy palette is interactive, a held shortcut closes it only once.
+  await page.keyboard.down('ControlOrMeta');
+  await page.keyboard.down('k');
+  try {
+    await expect(dialog).toBeHidden();
+    await page.keyboard.down('k'); // The second down is an actual browser repeat event.
+    await expect(dialog).toBeHidden();
+  } finally {
+    await page.keyboard.up('k');
+    await page.keyboard.up('ControlOrMeta');
+  }
+  await page.keyboard.press('ControlOrMeta+k');
+  await expect(dialog).toBeVisible();
+  await dialog.getByRole('combobox').fill('Aurora'); await page.keyboard.press('Enter');
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'aurora');
+  await page.keyboard.press('ControlOrMeta+k'); await dialog.getByRole('combobox').fill('Adaptive learning'); await page.keyboard.press('Enter');
+  await expect(page).toHaveURL('/learn'); await expect(page.getByRole('heading', { name: 'Make every key feel natural.', exact: true })).toBeVisible();
+});
 
-  test('should show profile tabs', async ({ page }) => {
-    await page.goto('/profile');
-    await page.waitForTimeout(2000);
-    
-    // Look for tab buttons
-    const tabs = page.locator('button[role="tab"]').or(page.locator('[class*="tab"]'));
-    
-    // Tabs might be visible if authenticated
-    const tabCount = await tabs.count();
-    expect(tabCount).toBeGreaterThanOrEqual(0);
-  });
-
-  test('should display consistent metrics after completing a test', async ({ page }) => {
-    // Seed a known test result
-    await page.goto('/');
-    await page.evaluate(() => {
-      const testResult = {
-        id: 'cross-page-test-1',
-        wpm: 50,
-        rawWpm: 52,
-        accuracy: 95.5,
-        consistency: 85,
-        mode: 'quote',
-        duration: 10,
-        correctChars: 250,
-        incorrectChars: 12,
-        totalChars: 262,
-        errors: 12,
-        date: new Date().toISOString(),
-        wpmHistory: [48, 50, 52],
-      };
-      const existing = localStorage.getItem('typingmaster_history');
-      const history = existing ? JSON.parse(existing) : [];
-      history.unshift(testResult);
-      localStorage.setItem('typingmaster_history', JSON.stringify(history));
-    });
-
-    // Navigate to profile
-    await page.goto('/profile');
-    await page.waitForTimeout(2000);
-
-    // Extract metrics from profile
-    const profileWpmText = await page.locator('text=/\\d+(\\.\\d+)?\\s*wpm/i').first().textContent().catch(() => null);
-    const profileAccuracyText = await page.locator('text=/\\d+(\\.\\d+)?\\s*%/i').first().textContent().catch(() => null);
-
-    if (profileWpmText) {
-      const wpmMatch = profileWpmText.match(/(\d+(?:\.\d+)?)/);
-      if (wpmMatch) {
-        const profileWpm = parseFloat(wpmMatch[1]);
-        // Should be close to seeded value (50 WPM)
-        expect(Math.abs(profileWpm - 50)).toBeLessThan(2); // Within 2 WPM tolerance
-        expect(isFinite(profileWpm)).toBe(true);
-        expect(profileWpm).toBeGreaterThanOrEqual(0);
-      }
-    }
-
-    if (profileAccuracyText) {
-      const accMatch = profileAccuracyText.match(/(\d+(?:\.\d+)?)/);
-      if (accMatch) {
-        const profileAccuracy = parseFloat(accMatch[1]);
-        // Should be close to seeded value (95.5%)
-        expect(Math.abs(profileAccuracy - 95.5)).toBeLessThan(1); // Within 1% tolerance
-        expect(isFinite(profileAccuracy)).toBe(true);
-        expect(profileAccuracy).toBeGreaterThanOrEqual(0);
-        expect(profileAccuracy).toBeLessThanOrEqual(100);
-      }
-    }
-
-    // Navigate to stats and verify same metrics
-    await page.goto('/stats');
-    await page.waitForTimeout(2000);
-
-    const statsWpmText = await page.locator('text=/\\d+(\\.\\d+)?\\s*wpm/i').first().textContent().catch(() => null);
-    if (statsWpmText && profileWpmText) {
-      const statsWpmMatch = statsWpmText.match(/(\d+(?:\.\d+)?)/);
-      const profileWpmMatch = profileWpmText.match(/(\d+(?:\.\d+)?)/);
-      if (statsWpmMatch && profileWpmMatch) {
-        const statsWpm = parseFloat(statsWpmMatch[1]);
-        const profileWpm = parseFloat(profileWpmMatch[1]);
-        // Cross-page consistency: stats and profile should match within tolerance
-        expect(Math.abs(statsWpm - profileWpm)).toBeLessThan(1); // < 1 WPM difference
-      }
-    }
-  });
+test('mobile navigation exposes Test, Learn, Race, and Stats without horizontal overflow', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 }); await page.goto('/');
+  const nav = page.getByRole('navigation', { name: 'Mobile navigation', exact: true });
+  for (const [name, href] of [['Test', '/'], ['Learn', '/learn'], ['Race', '/race'], ['Stats', '/stats']]) await expect(nav.getByRole('link', { name, exact: true })).toHaveAttribute('href', href);
+  await nav.getByRole('link', { name: 'Learn', exact: true }).click(); await expect(page).toHaveURL('/learn');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await nav.getByRole('link', { name: 'Stats', exact: true }).click(); await expect(page).toHaveURL('/stats');
 });

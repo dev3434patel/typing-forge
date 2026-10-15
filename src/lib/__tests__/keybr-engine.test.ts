@@ -1,530 +1,203 @@
-/**
- * KEYBR ENGINE TEST SUITE
- * Tests for adaptive learning and letter unlocking
- */
-
-import { describe, it, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import {
-  calculatePerCharMetrics,
-  updateCharacterProgress,
-  generateKeybrLesson,
-  getUnlockedLetters,
-  getLockedLetters,
-  getWeakLetters,
-  getConfidenceStatus,
-  getCharacterData,
-  saveCharacterData,
-  getAllCharacterStats,
-  resetKeybrProgress,
-  type Keystroke,
+  attemptsFromKeystrokes, calculatePerCharMetrics, generateKeybrLesson, getAllCharacterStats, getCharacterData,
+  getCharacterHistory, getLearningSessions, getLockedLetters, getUnlockedLetters, getWeakLetters,
+  LEARNING_VERSION, mergeLearningSessions, reconcileLearningSessions, recordLearningSession, removeLearningSession, resetKeybrProgress,
+  saveCharacterData, type Keystroke, type LearningSessionEvidence,
 } from '../keybr-engine';
+import { CONTENT_PACKS, graphemes } from '../content-packs';
+import { sessionRepository } from '@/services/session-repository';
 
-describe('Keybr Engine', () => {
-  beforeEach(() => {
-    localStorage.clear();
+const dimensions = { language: 'en', layout: 'qwerty', inputMethod: 'keyboard', domain: 'prose' } as const;
+function lesson(id: number, letters = ['e', 't', 'a', 'o', 'i', 'n'], count = 25, errors = 0): LearningSessionEvidence {
+  let timestamp = 0;
+  const strokes: Keystroke[] = letters.flatMap(char => Array.from({ length: count }, (_, index) => ({ char: index < errors ? '#' : char, expected: char, timestamp: timestamp += 200, isCorrect: index >= errors })));
+  return { learningVersion: LEARNING_VERSION, sessionId: `lesson-${id}`, completedAt: new Date(Date.UTC(2026, 9, 15, 0, id)).toISOString(), elapsedMs: timestamp, dimensions, attempts: attemptsFromKeystrokes(strokes), assessment: true, targetWpm: 35 };
+}
+
+describe('Forge learning v3', () => {
+  beforeEach(() => { localStorage.clear(); resetKeybrProgress(); });
+  it('begins a fresh learner with six introduced and zero mastered keys', () => {
+    expect(getUnlockedLetters()).toEqual(['e', 't', 'a', 'o', 'i', 'n']);
+    expect(getLockedLetters()).toHaveLength(20);
+    expect(getAllCharacterStats().filter(stat => stat.mastered)).toHaveLength(0);
+    expect(getCharacterData()).toEqual({});
   });
-
-  describe('calculatePerCharMetrics', () => {
-    it('should calculate metrics for characters', () => {
-      const keystrokes: Keystroke[] = [
-        { char: 'h', timestamp: 0, isCorrect: true, expected: 'h', key: 'h', position: 0 },
-        { char: 'e', timestamp: 200, isCorrect: true, expected: 'e', key: 'e', position: 1 },
-        { char: 'l', timestamp: 400, isCorrect: true, expected: 'l', key: 'l', position: 2 },
-        { char: 'l', timestamp: 600, isCorrect: true, expected: 'l', key: 'l', position: 3 },
-        { char: 'o', timestamp: 800, isCorrect: true, expected: 'o', key: 'o', position: 4 },
-      ];
-
-      const metrics = calculatePerCharMetrics(keystrokes, 35);
-
-      expect(metrics.has('h')).toBe(true);
-      expect(metrics.has('e')).toBe(true);
-      expect(metrics.has('l')).toBe(true);
-      expect(metrics.has('o')).toBe(true);
-
-      const hMetrics = metrics.get('h')!;
-      expect(hMetrics.accuracy).toBeGreaterThan(0);
-      expect(hMetrics.wpm).toBeGreaterThan(0);
-    });
-
-    it('should track accuracy per character', () => {
-      const keystrokes: Keystroke[] = [
-        { char: 'a', timestamp: 0, isCorrect: true, expected: 'a', key: 'a', position: 0 },
-        { char: 'a', timestamp: 200, isCorrect: true, expected: 'a', key: 'a', position: 1 },
-        { char: 'x', timestamp: 400, isCorrect: false, expected: 'a', key: 'x', position: 2 },
-        { char: 'a', timestamp: 600, isCorrect: true, expected: 'a', key: 'a', position: 3 },
-      ];
-
-      const metrics = calculatePerCharMetrics(keystrokes, 35);
-      const aMetrics = metrics.get('a')!;
-
-      // 3 correct out of 4 total = 75%
-      expect(aMetrics.accuracy).toBeCloseTo(75, 1);
-    });
-
-    it('should only track letters', () => {
-      const keystrokes: Keystroke[] = [
-        { char: 'a', timestamp: 0, isCorrect: true, expected: 'a', key: 'a', position: 0 },
-        { char: ' ', timestamp: 200, isCorrect: true, expected: ' ', key: ' ', position: 1 },
-        { char: '1', timestamp: 400, isCorrect: true, expected: '1', key: '1', position: 2 },
-      ];
-
-      const metrics = calculatePerCharMetrics(keystrokes, 35);
-
-      expect(metrics.has('a')).toBe(true);
-      expect(metrics.has(' ')).toBe(false);
-      expect(metrics.has('1')).toBe(false);
-    });
+  it('preserves eight legacy introductions but does not fabricate mastery evidence', () => {
+    localStorage.setItem('keybr_character_data', JSON.stringify({ e: { char: 'e', confidence: 1, wpm: 80, accuracy: 100, occurrences: 20, isUnlocked: true } }));
+    expect(getUnlockedLetters()).toEqual(expect.arrayContaining(['e', 't', 'a', 'o', 'i', 'n', 's', 'r']));
+    expect(getAllCharacterStats().find(stat => stat.char === 'e')).toMatchObject({ mastered: false, lessonCount: 0, assessmentState: 'introduced', occurrences: 20 });
+    expect(getUnlockedLetters({ owner: 'other-account' })).toHaveLength(6);
   });
-
-  describe('getUnlockedLetters', () => {
-    it('should include starting letters', () => {
-      const unlocked = getUnlockedLetters();
-      const startingLetters = ['e', 't', 'a', 'o', 'i', 'n', 's', 'r'];
-
-      startingLetters.forEach(letter => {
-        expect(unlocked).toContain(letter);
-      });
-    });
-
-    it('should include newly unlocked letters', () => {
-      const data = {
-        'z': {
-          char: 'z',
-          confidence: 1.0,
-          wpm: 40,
-          accuracy: 96,
-          occurrences: 10,
-          avgTimeMs: 200,
-          stdDev: 20,
-          isUnlocked: true,
-          status: 'unlocked' as const,
-        },
-      };
-      saveCharacterData(data);
-
-      const unlocked = getUnlockedLetters();
-      expect(unlocked).toContain('z');
-    });
+  it('handles corrupted old or new storage without throwing', () => {
+    localStorage.setItem('keybr_character_data', '{bad');
+    localStorage.setItem('typingforge:v3:guest:learning', '{bad');
+    expect(getUnlockedLetters()).toHaveLength(6);
   });
-
-  describe('getLockedLetters', () => {
-    it('should return letters not in unlocked set', () => {
-      const locked = getLockedLetters();
-      const startingLetters = ['e', 't', 'a', 'o', 'i', 'n', 's', 'r'];
-
-      startingLetters.forEach(letter => {
-        expect(locked).not.toContain(letter);
-      });
-
-      // Should contain letters like 'z', 'q', 'x'
-      expect(locked).toContain('z');
-      expect(locked).toContain('q');
-      expect(locked).toContain('x');
-    });
+  it('does not infer latency for the trigger attempt', () => {
+    const summary = calculatePerCharMetrics([{ char: 'e', expected: 'e', timestamp: 0, isCorrect: true }]).get('e')!;
+    expect(summary).toMatchObject({ accuracy: 100, occurrences: 1, qualifiedLatencySamples: 0, wpm: 0 });
   });
-
-  describe('updateCharacterProgress', () => {
-    it('should unlock letter when threshold met', () => {
-      const keystrokes: Keystroke[] = [];
-      // Generate enough keystrokes for 'z' to meet threshold
-      for (let i = 0; i < 20; i++) {
-        keystrokes.push({
-          char: 'z',
-          timestamp: i * 200,
-          isCorrect: true,
-          expected: 'z',
-          key: 'z',
-          position: i,
-        });
-      }
-
-      const newMetrics = calculatePerCharMetrics(keystrokes, 35);
-      const result = updateCharacterProgress(newMetrics, 35);
-
-      // 'z' should be newly unlocked if it meets 35 WPM and 95% accuracy
-      const zMetrics = newMetrics.get('z');
-      if (zMetrics && zMetrics.wpm >= 35 && zMetrics.accuracy >= 95) {
-        expect(result.newlyUnlocked).toContain('z');
-      }
-    });
-
-    it('should use weighted average for existing data', () => {
-      // Set up existing data
-      const existingData = {
-        'a': {
-          char: 'a',
-          confidence: 0.5,
-          wpm: 30,
-          accuracy: 90,
-          occurrences: 10,
-          avgTimeMs: 300,
-          stdDev: 50,
-          isUnlocked: true,
-          status: 'in_progress' as const,
-        },
-      };
-      saveCharacterData(existingData);
-
-      // New metrics with better performance
-      const keystrokes: Keystroke[] = [];
-      for (let i = 0; i < 10; i++) {
-        keystrokes.push({
-          char: 'a',
-          timestamp: i * 150, // Faster = higher WPM
-          isCorrect: true,
-          expected: 'a',
-          key: 'a',
-          position: i,
-        });
-      }
-
-      const newMetrics = calculatePerCharMetrics(keystrokes, 35);
-      const result = updateCharacterProgress(newMetrics, 35);
-
-      const updated = getCharacterData();
-      const aData = updated['a'];
-
-      // Should have improved (weighted average)
-      expect(aData).toBeDefined();
-      expect(aData.wpm).toBeGreaterThan(30);
-    });
+  it('records rejected errors and recomputes correctness from the characters', () => {
+    const strokes = [{ char: 'x', expected: 'a', timestamp: 0, isCorrect: true }, { char: 'a', expected: 'a', timestamp: 200, isCorrect: false }];
+    expect(calculatePerCharMetrics(strokes).get('a')).toMatchObject({ accuracy: 50, occurrences: 2, qualifiedLatencySamples: 1 });
   });
-
-  describe('generateKeybrLesson', () => {
-    it('should generate lesson with only unlocked letters', () => {
-      const lesson = generateKeybrLesson(20);
-
-      // Check that all characters in lesson are unlocked
-      const unlocked = getUnlockedLetters();
-      const lessonChars = new Set(lesson.text.toLowerCase().replace(/[^a-z]/g, '').split(''));
-
-      lessonChars.forEach(char => {
-        expect(unlocked).toContain(char);
-      });
-    });
-
-    it('should focus on weak letters', () => {
-      // Set up weak letters
-      const weakData: Record<string, any> = {};
-      ['x', 'z', 'q'].forEach(char => {
-        weakData[char] = {
-          char,
-          confidence: 0.2,
-          wpm: 20,
-          accuracy: 85,
-          occurrences: 5,
-          avgTimeMs: 500,
-          stdDev: 100,
-          isUnlocked: true,
-          status: 'weak' as const,
-        };
-      });
-      saveCharacterData(weakData);
-
-      const lesson = generateKeybrLesson(50);
-      const lessonText = lesson.text.toLowerCase();
-
-      // Should contain focus letters
-      expect(lesson.focusLetters.length).toBeGreaterThan(0);
-    });
-
-    it('should return correct structure', () => {
-      const lesson = generateKeybrLesson(30);
-
-      expect(lesson.text).toBeDefined();
-      expect(lesson.text.length).toBeGreaterThan(0);
-      expect(Array.isArray(lesson.availableLetters)).toBe(true);
-      expect(Array.isArray(lesson.focusLetters)).toBe(true);
-      expect(Array.isArray(lesson.lockedLetters)).toBe(true);
-    });
+  it('does not count deletions as insertion attempts', () => {
+    const evidence = attemptsFromKeystrokes([{ char: 'a', expected: 'a', timestamp: 0 }, { char: '', expected: '', timestamp: 20, key: 'Backspace' }, { char: 'a', expected: 'a', timestamp: 200 }]);
+    expect(evidence).toHaveLength(2);
+    expect(evidence[1].latencyMs).toBe(200);
   });
-
-  describe('getConfidenceStatus', () => {
-    it('should return locked status for locked letters', () => {
-      const status = getConfidenceStatus(0.5, false);
-      expect(status.status).toBe('weak');
-      expect(status.emoji).toBe('🔒');
-      expect(status.text).toBe('Locked');
-    });
-
-    it('should return mastered for high confidence', () => {
-      const status = getConfidenceStatus(1.0, true);
-      expect(status.status).toBe('unlocked');
-      expect(status.emoji).toBe('✅');
-    });
-
-    it('should return appropriate status for confidence levels', () => {
-      expect(getConfidenceStatus(0.9, true).status).toBe('nearly_unlocked');
-      expect(getConfidenceStatus(0.7, true).status).toBe('in_progress');
-      expect(getConfidenceStatus(0.4, true).status).toBe('needs_work');
-      expect(getConfidenceStatus(0.2, true).status).toBe('weak');
-    });
+  it('excludes deliberate inactivity from key latency while retaining its classification', () => {
+    const attempts = attemptsFromKeystrokes([{ char: 'e', expected: 'e', timestamp: 0 }, { char: 'e', expected: 'e', timestamp: 4000 }, { char: 'e', expected: 'e', timestamp: 4200 }]);
+    expect(attempts[1]).toMatchObject({ classification: 'inactivity', latencyMs: null, attributable: false });
+    expect(attempts[2].latencyMs).toBe(200);
   });
-
-  describe('getWeakLetters', () => {
-    it('should return letters with lowest confidence', () => {
-      const weakData: Record<string, any> = {};
-      ['x', 'z', 'q', 'j', 'k'].forEach((char, i) => {
-        weakData[char] = {
-          char,
-          confidence: 0.1 + i * 0.1,
-          wpm: 20,
-          accuracy: 85,
-          occurrences: 5,
-          avgTimeMs: 500,
-          stdDev: 100,
-          isUnlocked: true,
-          status: 'weak' as const,
-        };
-      });
-      saveCharacterData(weakData);
-
-      const weak = getWeakLetters(3);
-      expect(weak.length).toBe(3);
-      expect(weak).toContain('x'); // Lowest confidence
-    });
+  it('never assigns individual timing to simultaneous IME graphemes', () => {
+    const attempts = attemptsFromKeystrokes([{ char: 'e', expected: 'e', timestamp: 0 }, { char: 'a', expected: 'a', timestamp: 300, compositionGroup: 'ime' }, { char: 'n', expected: 'n', timestamp: 300, compositionGroup: 'ime' }, { char: 'e', expected: 'e', timestamp: 500 }]);
+    expect(attempts.slice(1).every(item => item.latencyMs === null && !item.attributable)).toBe(true);
+    expect(attempts[1].classification).toBe('composition');
   });
-
-  describe('getAllCharacterStats', () => {
-    it('should return stats for all 26 letters', () => {
-      const stats = getAllCharacterStats();
-      expect(stats.length).toBe(26);
-    });
-
-    it('should include starting letters as unlocked', () => {
-      const stats = getAllCharacterStats();
-      const startingLetters = ['e', 't', 'a', 'o', 'i', 'n', 's', 'r'];
-
-      startingLetters.forEach(letter => {
-        const stat = stats.find(s => s.char === letter);
-        expect(stat).toBeDefined();
-        expect(stat?.isUnlocked).toBe(true);
-      });
-    });
+  it('uses an uncapped speed ratio and alpha .1 smoothing', () => {
+    const value = calculatePerCharMetrics([{ char: 'e', expected: 'e', timestamp: 0 }, { char: 'e', expected: 'e', timestamp: 100 }, { char: 'e', expected: 'e', timestamp: 300 }], 35).get('e')!;
+    expect(value.avgTimeMs).toBeCloseTo(110);
+    expect(value.confidence).toBeCloseTo((60000 / (35 * 5)) / 110);
+    expect(value.confidence).toBeGreaterThan(1);
   });
-
-  describe('resetKeybrProgress', () => {
-    it('should clear all character data', () => {
-      const data = {
-        'z': {
-          char: 'z',
-          confidence: 1.0,
-          wpm: 40,
-          accuracy: 96,
-          occurrences: 10,
-          avgTimeMs: 200,
-          stdDev: 20,
-          isUnlocked: true,
-          status: 'unlocked' as const,
-        },
-      };
-      saveCharacterData(data);
-
-      resetKeybrProgress();
-
-      const cleared = getCharacterData();
-      expect(Object.keys(cleared).length).toBe(0);
-    });
+  it('requires twenty attributable attempts across two lessons and two qualifying checkpoints', () => {
+    recordLearningSession(lesson(1));
+    expect(getAllCharacterStats().some(stat => stat.mastered)).toBe(false);
+    recordLearningSession(lesson(2));
+    expect(getAllCharacterStats().find(stat => stat.char === 'e')).toMatchObject({ mastered: false, masteryCheckpoints: 1, lessonCount: 2 });
+    const update = recordLearningSession(lesson(3));
+    expect(update.newlyUnlocked).toEqual(['s']);
+    expect(getAllCharacterStats().filter(stat => stat.mastered).map(stat => stat.char)).toEqual(['e', 't', 'a', 'o', 'i', 'n']);
+    expect(getUnlockedLetters()).toHaveLength(7);
   });
-
-  describe('Precision Tests - Unlock Thresholds', () => {
-    it('should NOT unlock character at 34.9 WPM even with 95% accuracy', () => {
-      // Create keystrokes that result in exactly 34.9 WPM
-      const keystrokes: Keystroke[] = [];
-      const targetWpm = 34.9;
-      const charsNeeded = Math.ceil((targetWpm * 5 * 60) / 60000); // ~35 chars for 34.9 WPM in 1 minute
-      const timePerChar = 60000 / (charsNeeded * 5); // Time per char to achieve target WPM
-      
-      for (let i = 0; i < charsNeeded; i++) {
-        keystrokes.push({
-          char: 'z',
-          timestamp: i * timePerChar,
-          isCorrect: true, // 100% accuracy
-          expected: 'z',
-          key: 'z',
-          position: i,
-        });
-      }
-
-      const newMetrics = calculatePerCharMetrics(keystrokes, 35);
-      const zMetrics = newMetrics.get('z');
-      
-      if (zMetrics) {
-        // Adjust to exactly 34.9 WPM
-        const adjustedWpm = 34.9;
-        const result = updateCharacterProgress(new Map([['z', { ...zMetrics, wpm: adjustedWpm, accuracy: 95 }]]), 35);
-        
-        // Should NOT unlock (below 35.0 WPM threshold)
-        expect(result.newlyUnlocked).not.toContain('z');
-      }
-    });
-
-    it('should NOT unlock character at 94.9% accuracy even with 35 WPM', () => {
-      const keystrokes: Keystroke[] = [];
-      const totalChars = 100;
-      const correctChars = 95; // 95% accuracy
-      
-      for (let i = 0; i < totalChars; i++) {
-        keystrokes.push({
-          char: 'z',
-          timestamp: i * 200, // ~35 WPM
-          isCorrect: i < correctChars,
-          expected: 'z',
-          key: 'z',
-          position: i,
-        });
-      }
-
-      const newMetrics = calculatePerCharMetrics(keystrokes, 35);
-      const zMetrics = newMetrics.get('z');
-      
-      if (zMetrics) {
-        // Set to exactly 35 WPM but 94.9% accuracy
-        const result = updateCharacterProgress(new Map([['z', { ...zMetrics, wpm: 35, accuracy: 94.9 }]]), 35);
-        
-        // Should NOT unlock (below 95% accuracy threshold)
-        expect(result.newlyUnlocked).not.toContain('z');
-      }
-    });
-
-    it('should unlock character at exactly 35.0 WPM AND 95.0% accuracy', () => {
-      const keystrokes: Keystroke[] = [];
-      const totalChars = 100;
-      const correctChars = 95; // Exactly 95% accuracy
-      
-      for (let i = 0; i < totalChars; i++) {
-        keystrokes.push({
-          char: 'z',
-          timestamp: i * 171, // ~35 WPM (60000 / (35 * 5) ≈ 171ms per char)
-          isCorrect: i < correctChars,
-          expected: 'z',
-          key: 'z',
-          position: i,
-        });
-      }
-
-      const newMetrics = calculatePerCharMetrics(keystrokes, 35);
-      const zMetrics = newMetrics.get('z');
-      
-      if (zMetrics && zMetrics.wpm >= 35 && zMetrics.accuracy >= 95) {
-        const result = updateCharacterProgress(newMetrics, 35);
-        
-        // Should unlock (meets both thresholds)
-        expect(result.newlyUnlocked).toContain('z');
-      }
-    });
+  it('does not introduce a letter merely because an unavailable letter was typed quickly', () => {
+    for (let i = 1; i <= 3; i++) recordLearningSession(lesson(i, ['z']));
+    expect(getUnlockedLetters()).not.toContain('z');
+    expect(getAllCharacterStats().find(stat => stat.char === 'z')?.mastered).toBe(false);
   });
-
-  describe('Precision Tests - Confidence Weighted Updates', () => {
-    it('should use exactly 70% new data and 30% old data for confidence', () => {
-      // Set up existing data
-      const existingConfidence = 0.5;
-      const existingWpm = 30;
-      const existingAccuracy = 90;
-      
-      const existingData = {
-        'a': {
-          char: 'a',
-          confidence: existingConfidence,
-          wpm: existingWpm,
-          accuracy: existingAccuracy,
-          occurrences: 10,
-          avgTimeMs: 300,
-          stdDev: 50,
-          isUnlocked: true,
-          status: 'in_progress' as const,
-        },
-      };
-      saveCharacterData(existingData);
-
-      // New metrics with better performance
-      // Calculate WPM from keystroke timings: 120ms per keystroke = 100 WPM
-      // Formula: (60000 / avgTimeMs) / 5 = (60000 / 120) / 5 = 100 WPM
-      const calculatedNewWpm = (60000 / 120) / 5; // = 100 WPM
-      const newAccuracy = 100; // All correct
-      
-      const keystrokes: Keystroke[] = [];
-      for (let i = 0; i < 20; i++) {
-        keystrokes.push({
-          char: 'a',
-          timestamp: i * 120, // 120ms per keystroke = 100 WPM
-          isCorrect: true,
-          expected: 'a',
-          key: 'a',
-          position: i,
-        });
-      }
-
-      const newMetrics = calculatePerCharMetrics(keystrokes, 35);
-      const result = updateCharacterProgress(newMetrics, 35);
-
-      const updated = getCharacterData();
-      const aData = updated['a'];
-
-      // Verify weighted update: 70% new + 30% old
-      // WPM: 0.7 * calculatedNewWpm + 0.3 * existingWpm
-      const expectedWpm = 0.7 * calculatedNewWpm + 0.3 * existingWpm;
-      const wpmDiff = Math.abs(aData.wpm - expectedWpm);
-      expect(wpmDiff).toBeLessThan(5); // Within 5 WPM tolerance (allowing for rounding)
-
-      // Accuracy: 0.7 * newAccuracy + 0.3 * oldAccuracy
-      const expectedAccuracy = 0.7 * newAccuracy + 0.3 * existingAccuracy;
-      const accDiff = Math.abs(aData.accuracy - expectedAccuracy);
-      expect(accDiff).toBeLessThan(1); // Within 1% tolerance
-    });
+  it('requires 97 percent recent accuracy without rounding a failing value upward', () => {
+    for (let i = 1; i <= 4; i++) recordLearningSession(lesson(i, undefined, 25, 1));
+    expect(getAllCharacterStats().filter(stat => stat.mastered)).toHaveLength(0);
+    expect(getUnlockedLetters()).toHaveLength(6);
   });
+  it('allows old mistakes to leave the recent window and recover mastery', () => {
+    recordLearningSession(lesson(1, undefined, 25, 15));
+    for (let i = 2; i <= 4; i++) recordLearningSession(lesson(i));
+    expect(getAllCharacterStats().find(stat => stat.char === 'e')).toMatchObject({ accuracy: 100, mastered: true, recentAttempts: 50 });
+    expect(getUnlockedLetters()).toContain('s');
+  });
+  it('preserves introduced keys when mastered keys later need review', () => {
+    for (let i = 1; i <= 3; i++) recordLearningSession(lesson(i));
+    recordLearningSession(lesson(4, ['e'], 50, 20));
+    expect(getAllCharacterStats().find(stat => stat.char === 'e')).toMatchObject({ mastered: true, assessmentState: 'review' });
+    expect(getUnlockedLetters()).toContain('s');
+  });
+  it('does not grant initial mastery from review/context evidence', () => {
+    for (let i = 1; i <= 4; i++) recordLearningSession({ ...lesson(i), assessment: false });
+    expect(getAllCharacterStats().filter(stat => stat.mastered)).toHaveLength(0);
+    expect(getAllCharacterStats().find(stat => stat.char === 'e')?.lessonCount).toBe(0);
+  });
+  it('deduplicates a repeated session identity and rejects changed evidence', () => {
+    const evidence = lesson(1);
+    recordLearningSession(evidence); recordLearningSession(evidence);
+    expect(getLearningSessions()).toHaveLength(1);
+    expect(getCharacterHistory('e')).toHaveLength(1);
+    expect(() => recordLearningSession({ ...evidence, elapsedMs: 2 })).toThrow('identity conflict');
+  });
+  it('keeps account, language, layout, domain, and input method models separate', () => {
+    recordLearningSession(lesson(1), 'alice');
+    expect(getCharacterData()).toEqual({});
+    expect(getCharacterData({ owner: 'bob' })).toEqual({});
+    expect(getCharacterData({ owner: 'alice', dimensions: { ...dimensions, language: 'es' } })).toEqual({});
+    expect(getCharacterData({ owner: 'alice', dimensions: { ...dimensions, layout: 'dvorak' } })).toEqual({});
+    expect(getCharacterData({ owner: 'alice', dimensions: { ...dimensions, domain: 'code' } })).toEqual({});
+    expect(getCharacterData({ owner: 'alice', dimensions: { ...dimensions, inputMethod: 'composition' } })).toEqual({});
+    expect(Object.keys(getCharacterData({ owner: 'alice' }))).toHaveLength(6);
+  });
+  it('merges out-of-order session evidence deterministically without stale overwrites', () => {
+    mergeLearningSessions([lesson(3), lesson(1), lesson(2)], 'alice', 10);
+    mergeLearningSessions([lesson(1)], 'alice', 2);
+    mergeLearningSessions([lesson(1), lesson(2), lesson(3)], 'bob', 10);
+    expect(getAllCharacterStats({ owner: 'alice' })).toEqual(getAllCharacterStats({ owner: 'bob' }));
+    expect(getLearningSessions({ owner: 'alice' })).toHaveLength(3);
+  });
+  it('rebuilds real key history and mastery when a session is removed', () => {
+    for (let i = 1; i <= 3; i++) recordLearningSession(lesson(i));
+    removeLearningSession('lesson-3');
+    expect(getCharacterHistory('e')).toHaveLength(2);
+    expect(getAllCharacterStats().find(stat => stat.char === 'e')?.mastered).toBe(false);
+    expect(getUnlockedLetters()).toContain('s');
+  });
+  it('reconciles remote deletion without discarding pending local sessions or resurrecting stale evidence', () => {
+    reconcileLearningSessions([lesson(1), lesson(2)], 'alice', 2);
+    recordLearningSession(lesson(3), 'alice');
+    reconcileLearningSessions([lesson(2)], 'alice', 3);
+    expect(getLearningSessions({ owner: 'alice' }).map(item => item.sessionId).sort()).toEqual(['lesson-2', 'lesson-3']);
+    reconcileLearningSessions([lesson(1), lesson(2)], 'alice', 2);
+    recordLearningSession(lesson(1), 'alice');
+    expect(getLearningSessions({ owner: 'alice' }).map(item => item.sessionId).sort()).toEqual(['lesson-2', 'lesson-3']);
+  });
+  it('observes deletions made anywhere through the repository', async () => {
+    recordLearningSession(lesson(1), 'alice');
+    await sessionRepository.remove('alice', 'lesson-1');
+    expect(getLearningSessions({ owner: 'alice' })).toHaveLength(0);
+  });
+  it('prioritizes under-assessed keys ahead of adequately sampled keys', () => {
+    recordLearningSession(lesson(1, ['e'], 30));
+    expect(getWeakLetters(1)[0]).not.toBe('e');
+  });
+  it('preserves imported introduced letters without inventing session history', () => {
+    saveCharacterData({ z: { char: 'z', wpm: 50, accuracy: 90, occurrences: 10, confidence: 1, avgTimeMs: 200, stdDev: 0, isUnlocked: true, status: 'unlocked' } });
+    expect(getUnlockedLetters()).toContain('z');
+    expect(getCharacterHistory('z')).toEqual([]);
+    expect(getAllCharacterStats().find(stat => stat.char === 'z')?.mastered).toBe(false);
+  });
+  it('keeps current-visit progress if durable learning storage is unavailable', () => {
+    const setter = vi.spyOn(localStorage, 'setItem').mockImplementation(() => { throw new Error('Quota exceeded'); });
+    expect(recordLearningSession(lesson(1)).persisted).toBe(false);
+    expect(getLearningSessions()).toHaveLength(1);
+    setter.mockRestore(); resetKeybrProgress();
+  });
+  it('rejects malformed learning evidence', () => {
+    expect(() => recordLearningSession({ ...lesson(1), targetWpm: NaN })).toThrow('Invalid learning evidence');
+  });
+});
 
-  describe('Precision Tests - Lesson Generation', () => {
-    it('should generate lesson with ~70% focus words on weak letters', () => {
-      // Set up weak letters
-      const weakData: Record<string, any> = {};
-      ['x', 'z', 'q'].forEach(char => {
-        weakData[char] = {
-          char,
-          confidence: 0.2,
-          wpm: 20,
-          accuracy: 85,
-          occurrences: 5,
-          avgTimeMs: 500,
-          stdDev: 100,
-          isUnlocked: true,
-          status: 'weak' as const,
-        };
-      });
-      saveCharacterData(weakData);
-
-      const lesson = generateKeybrLesson(100); // Generate longer lesson for better stats
-      const lessonText = lesson.text.toLowerCase();
-      const words = lessonText.split(/\s+/).filter(w => w.length > 0);
-      
-      // Count words containing weak letters
-      const weakLetters = ['x', 'z', 'q'];
-      const focusWords = words.filter(word => 
-        weakLetters.some(letter => word.includes(letter))
-      );
-      
-      const focusWordPercentage = (focusWords.length / words.length) * 100;
-      
-      // Should be approximately 70% (within 10% tolerance)
-      expect(focusWordPercentage).toBeGreaterThan(60);
-      expect(focusWordPercentage).toBeLessThan(80);
-    });
-
-    it('should use only unlocked letters in generated lesson', () => {
-      // Ensure some letters are locked
-      const unlocked = getUnlockedLetters();
-      const allLetters = 'abcdefghijklmnopqrstuvwxyz'.split('');
-      const locked = allLetters.filter(l => !unlocked.includes(l));
-      
-      expect(locked.length).toBeGreaterThan(0); // Some letters should be locked
-      
-      const lesson = generateKeybrLesson(50);
-      const lessonChars = new Set(lesson.text.toLowerCase().replace(/[^a-z]/g, '').split(''));
-      
-      // No locked letters should appear
-      locked.forEach(char => {
-        expect(lessonChars.has(char)).toBe(false);
-      });
-    });
+describe('Seeded adaptive lesson generation', () => {
+  it('is deterministic, finite, nonempty and includes focus in every new-key word', () => {
+    const first = generateKeybrLesson(100, { seed: 'stable' });
+    expect(generateKeybrLesson(100, { seed: 'stable' })).toEqual(first);
+    const focus = first.focusLetters[0];
+    expect(first.text.split(' ')).toHaveLength(100);
+    expect(first.text.split(' ').every(word => graphemes(word).includes(focus))).toBe(true);
+    expect(graphemes(first.text.replace(/ /g, '')).every(char => first.availableLetters.includes(char))).toBe(true);
+    expect(first.naturalWordCount + first.phoneticWordCount).toBe(100);
+  });
+  it('clamps pathological requested lengths and labels mixed review explicitly', () => {
+    expect(generateKeybrLesson(-3, { seed: 'x' }).text.split(' ')).toHaveLength(1);
+    expect(generateKeybrLesson(Infinity, { seed: 'x' }).text.split(' ')).toHaveLength(2000);
+    const review = generateKeybrLesson(20, { seed: 'x', review: true });
+    expect(review.review).toBe(true);
+    expect(review.focusLetters).toEqual([]);
+  });
+  it('can target a locked result key without silently introducing it into the curriculum', () => {
+    const exercise = generateKeybrLesson(20, { seed: 'target', targeted: true, focusLetters: ['z'] });
+    expect(exercise.focusLetters).toEqual(['z']);
+    expect(exercise.text.split(' ').every(word => word.includes('z'))).toBe(true);
+    expect(getUnlockedLetters()).not.toContain('z');
+  });
+  for (const pack of CONTENT_PACKS) it(`terminates with allowed graphemes and guaranteed focus for ${pack.id}`, () => {
+    const lesson = generateKeybrLesson(40, { seed: `pack-${pack.id}`, dimensions: { ...dimensions, language: pack.id } });
+    const locale = pack.id === 'gu-Latn' ? 'gu' : pack.id;
+    expect(lesson.text.length).toBeGreaterThan(0);
+    for (const word of lesson.text.split(' ')) {
+      const units = graphemes(word, locale);
+      expect(units.length).toBeLessThanOrEqual(12);
+      expect(units.every(char => lesson.availableLetters.includes(char))).toBe(true);
+      expect(units).toContain(lesson.focusLetters[0]);
+    }
   });
 });

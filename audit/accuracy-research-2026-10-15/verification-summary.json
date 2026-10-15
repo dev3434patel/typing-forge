@@ -1,0 +1,334 @@
+{
+  "scope": "Finite local implementation and verification evidence; not a guarantee of all possible inputs or production readiness",
+  "researchDate": "2026-10-15",
+  "verificationCompletedLocalDate": "2026-10-16",
+  "timezone": "Asia/Calcutta",
+  "workspace": "Existing uncommitted user working tree preserved; no commit, push, publication, remote migration, real account deletion or Edge deployment performed",
+  "environment": {
+    "node": "v22.20.0",
+    "npm": "11.8.0",
+    "playwright": "1.64.1",
+    "platform": "win32",
+    "browserRegistry": [
+      {
+        "name": "chromium",
+        "revision": "1248",
+        "installByDefault": true,
+        "browserVersion": "156.0.8078.4",
+        "title": "Chrome for Testing"
+      },
+      {
+        "name": "firefox",
+        "revision": "1555",
+        "installByDefault": true,
+        "browserVersion": "157.0",
+        "title": "Firefox"
+      },
+      {
+        "name": "webkit",
+        "revision": "2370",
+        "installByDefault": true,
+        "revisionOverrides": {
+          "mac14": "2251",
+          "mac14-arm64": "2251"
+        },
+        "browserVersion": "27.2",
+        "title": "WebKit"
+      }
+    ]
+  },
+  "currentBuild": {
+    "manifestSha256": "1cc951c5c80906a722fa0b0220b3d6acd74036c914fad27d3dd03b452e9d57ec",
+    "buildExitCode": 0,
+    "buildLog": "build.txt",
+    "bundleExitCode": 0,
+    "initialPracticeJsGzipBytes": 194923,
+    "maxFeatureJsGzipBytes": 108518,
+    "cssGzipBytes": 20954,
+    "budgets": {
+      "initialPracticeJsGzipBytes": 200000,
+      "featureJsGzipBytes": 150000
+    },
+    "warning": "Main minified chunk exceeds Vite500kB warning; gzip graph budget passes; field performance not measured"
+  },
+  "checks": {
+    "typecheck": {
+      "exitCode": 0,
+      "file": "typecheck-final.txt",
+      "scope": "App/tooling plus strict domain and portable configurations; full React app strict:false"
+    },
+    "lint": {
+      "exitCode": 0,
+      "errors": 0,
+      "warnings": 9,
+      "file": "lint-final.txt",
+      "note": "Existing mixed-export Fast Refresh warnings; changed controller files additionally passed scoped lint after final edit",
+      "finalScopedLog": "command-controller-lint.txt"
+    },
+    "unitCoverage": {
+      "exitCode": 0,
+      "testsPassed": 431,
+      "testFilesPassed": 27,
+      "statementPercent": 89.72,
+      "branchPercent": 86,
+      "functionPercent": 90.09,
+      "linePercent": 96.17,
+      "file": "coverage.txt",
+      "scope": "Configured domain/service modules, not the entire React application; these modules unchanged during final command-controller edit"
+    },
+    "conformance": {
+      "exhaustiveProseVectors": 13640,
+      "randomizedCodeEdits": 7500,
+      "randomizedProseEdits": 7500,
+      "randomizedUnicodeEdits": 5000,
+      "file": "core-conformance.json",
+      "syntheticWitness": "Sample-count existence witness is synthetic and not the user's original session"
+    },
+    "database": {
+      "exitCode": 0,
+      "migrations": 15,
+      "file": "database.txt",
+      "scope": "PGlite PostgreSQL/WASM replay, integrity, owner intent, duration matching, challenge use and legacy fixture; no native concurrent connections"
+    },
+    "edge": {
+      "exitCode": 0,
+      "entrypoints": 3,
+      "file": "edge.txt",
+      "scope": "Deno module/type compatibility only, no deployed HTTP requests"
+    },
+    "content": {
+      "exitCode": 0,
+      "examples": 20,
+      "file": "content.txt",
+      "scope": "JS parsing, TS compilation, Python AST, Rust metadata, SQLite/PostgreSQL planning; practice programs not executed"
+    },
+    "dependencyAudit": {
+      "exitCode": 0,
+      "totalAdvisories": 0,
+      "includesDevelopment": true,
+      "file": "dependency-audit.json"
+    },
+    "diffCheck": {
+      "exitCode": 0,
+      "file": "diff-check.txt"
+    }
+  },
+  "browsers": {
+    "beforeFinalOwnerGuard": {
+      "passed": 142,
+      "skipped": 6,
+      "failed": 2,
+      "exitCode": 1,
+      "file": "browser-all.txt",
+      "note": "Earlier150-case matrix; WebKit command/mobile failures retained"
+    },
+    "fullMatrixBeforeFinalCommandFix": {
+      "file": "browser-final.json",
+      "exitCode": 1,
+      "stats": {
+        "startTime": "2026-10-15T18:15:41.554Z",
+        "duration": 389846.403,
+        "expected": 149,
+        "skipped": 6,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "projects": {
+        "chromium": {
+          "passed": 50,
+          "skipped": 2,
+          "failed": 0
+        },
+        "firefox": {
+          "passed": 50,
+          "skipped": 2,
+          "failed": 0
+        },
+        "webkit": {
+          "passed": 49,
+          "skipped": 2,
+          "failed": 1
+        }
+      },
+      "failures": [
+        {
+          "project": "webkit",
+          "title": "the keyboard command palette changes theme and navigates using concrete commands",
+          "status": "failed",
+          "error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('dialog', { name: 'Typing Forge commands', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('dialog', { name: 'Typing Forge commands', exact: true }) with timeout 5000ms\n  - waiting for getByRole('dialog', { name: 'Typing Forge commands', exact: true })\n"
+        }
+      ],
+      "note": "156cases:149pass6cloudskip1WebKitshortcut failure. Pre-command-controller build, not the final controller source."
+    },
+    "readinessOnlyStress": {
+      "file": "shortcut-readiness.json",
+      "exitCode": 1,
+      "stats": {
+        "startTime": "2026-10-15T18:22:39.750Z",
+        "duration": 146600.04499999998,
+        "expected": 5,
+        "skipped": 0,
+        "unexpected": 4,
+        "flaky": 0
+      },
+      "projects": {
+        "chromium": {
+          "passed": 3,
+          "skipped": 0,
+          "failed": 0
+        },
+        "firefox": {
+          "passed": 2,
+          "skipped": 0,
+          "failed": 1
+        },
+        "webkit": {
+          "passed": 0,
+          "skipped": 0,
+          "failed": 3
+        }
+      },
+      "failures": [
+        {
+          "project": "firefox",
+          "title": "the keyboard command palette changes theme and navigates using concrete commands",
+          "status": "timedOut",
+          "error": "Test timeout of 30000ms exceeded."
+        },
+        {
+          "project": "webkit",
+          "title": "the keyboard command palette changes theme and navigates using concrete commands",
+          "status": "failed",
+          "error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('dialog', { name: 'Typing Forge commands', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('dialog', { name: 'Typing Forge commands', exact: true }) with timeout 5000ms\n  - waiting for getByRole('dialog', { name: 'Typing Forge commands', exact: true })\n"
+        },
+        {
+          "project": "webkit",
+          "title": "the keyboard command palette changes theme and navigates using concrete commands",
+          "status": "failed",
+          "error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('dialog', { name: 'Typing Forge commands', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('dialog', { name: 'Typing Forge commands', exact: true }) with timeout 5000ms\n  - waiting for getByRole('dialog', { name: 'Typing Forge commands', exact: true })\n"
+        },
+        {
+          "project": "webkit",
+          "title": "the keyboard command palette changes theme and navigates using concrete commands",
+          "status": "failed",
+          "error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('dialog', { name: 'Typing Forge commands', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('dialog', { name: 'Typing Forge commands', exact: true }) with timeout 5000ms\n  - waiting for getByRole('dialog', { name: 'Typing Forge commands', exact: true })\n"
+        }
+      ],
+      "note": "9runs:5pass4fail. Waiting for visible controls did not resolve all runtime stalls; do not claim this was a complete fix."
+    },
+    "heldShortcutBeforeFix": {
+      "exitCode": 1,
+      "file": "shortcut-repeat-before.txt",
+      "note": "Archived older static build reopens palette on an actual browser repeat event; same regression now passes."
+    },
+    "currentControllerProfile": {
+      "file": "profile-after-controller.json",
+      "exitCode": 1,
+      "stats": {
+        "startTime": "2026-10-15T18:29:49.706Z",
+        "duration": 83143.34999999999,
+        "expected": 11,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "projects": {
+        "chromium": {
+          "passed": 4,
+          "skipped": 0,
+          "failed": 0
+        },
+        "firefox": {
+          "passed": 3,
+          "skipped": 0,
+          "failed": 1
+        },
+        "webkit": {
+          "passed": 4,
+          "skipped": 0,
+          "failed": 0
+        }
+      },
+      "failures": [
+        {
+          "project": "firefox",
+          "title": "guest profile protects account controls and destructive reset requires exact confirmation",
+          "status": "timedOut",
+          "error": "Tearing down \"context\" exceeded the test timeout of 30000ms."
+        }
+      ],
+      "note": "11pass1Firefoxcontext-teardown timeout. All three command-repeat cases pass; screenshot/Juggler errors retained in failed Firefox trace."
+    },
+    "currentChromiumFull": {
+      "file": "chromium-current.json",
+      "exitCode": 0,
+      "stats": {
+        "startTime": "2026-10-15T18:32:01.676Z",
+        "duration": 103805.929,
+        "expected": 50,
+        "skipped": 2,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "projects": {
+        "chromium": {
+          "passed": 50,
+          "skipped": 2,
+          "failed": 0
+        }
+      },
+      "failures": [],
+      "note": "Final production build:50pass2cloudskip; all52project cases executed."
+    },
+    "firefoxNoTraceComparator": {
+      "file": "firefox-no-trace.json",
+      "exitCode": 0,
+      "stats": {
+        "startTime": "2026-10-15T18:34:11.787Z",
+        "duration": 10068.185,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "projects": {
+        "firefox": {
+          "passed": 1,
+          "skipped": 0,
+          "failed": 0
+        }
+      },
+      "failures": [],
+      "note": "Same guest-profile assertions pass with tracing disabled. Diagnostic only; normal tracing config unchanged; prior teardown failure retained."
+    },
+    "interruptedFollowup": {
+      "file": "browser-followup.txt",
+      "status": "incomplete",
+      "note": "Tool-session restart interrupted after four Chromium passes. No success exit or complete12-case claim."
+    },
+    "noBlanketGreenClaim": "Current Chromium is green for applicable cases; earlier all-engine and profile runs contain retained failures. No claim of one fully green current-build all-engine matrix."
+  },
+  "reportedSample": {
+    "inputAccuracy": 86.53846153846155,
+    "finalTextAccuracy": 91.8918918918919,
+    "rawWpm": 58.8,
+    "attemptRate": 62.4,
+    "wordWpm": "44 not independently verified from aggregate paste",
+    "rhythm": "Consistency and burst require original timestamped evidence"
+  },
+  "releaseGates": [
+    "Reproduce intermittent WebKit loading/navigation in a clean runtime and intended Apple devices",
+    "Investigate Firefox tracing/teardown failures; trace-off comparator is not a universal stability proof",
+    "Deploy reviewed Supabase migrations/Edge functions to staging; genuine Auth/HTTP/Realtime/cron and multi-connection races",
+    "Native OS IMEs/mobile keyboards, assistive technology and language editorial review",
+    "Field performance and learning-outcome evaluation",
+    "Remaining extended specification items listed in docs/AUDIT_RESOLUTION_MATRIX.md"
+  ],
+  "reports": [
+    "docs/ACCURACY_UPGRADE_2026-10-15.md",
+    "docs/COMPETITOR_ACCURACY_RESEARCH_2026-10-15.md",
+    "docs/PRODUCT_VERIFICATION_2026-10-15.md",
+    "docs/WEBKIT_VERIFICATION_2026-10-15.md",
+    "docs/IMPLEMENTATION_STATUS.md"
+  ]
+}

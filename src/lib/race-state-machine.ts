@@ -327,7 +327,7 @@ export function cancelRace(state: RaceState, reason?: string): RaceState {
 /**
  * Serialize state for database storage
  */
-export function serializeRaceState(state: RaceState): Record<string, any> {
+export function serializeRaceState(state: RaceState) {
   return {
     id: state.id,
     room_code: state.roomCode,
@@ -356,7 +356,7 @@ export function serializeRaceState(state: RaceState): Record<string, any> {
 /**
  * Deserialize state from database
  */
-export function deserializeRaceState(data: Record<string, any>): RaceState {
+export function deserializeRaceState(data: ReturnType<typeof serializeRaceState>): RaceState {
   return {
     id: data.id,
     roomCode: data.room_code,

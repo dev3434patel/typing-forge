@@ -1,194 +1,132 @@
-/**
- * E2E TEST: Typing Test Flow
- * Tests complete typing test flow from start to results
- */
+import { test, expect } from '@playwright/test';
+import { mkdir, readFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
+import { completeCorrectedCat, customPractice, exportedResult, focusTyping } from './helpers';
 
-import { test, expect } from '../playwright-fixture';
+test('a corrected mistake yields 75% input accuracy and perfect final text once', async ({ page }) => {
+  await completeCorrectedCat(page);
+  const results = page.getByRole('region', { name: 'Session results', exact: true });
+  await expect(results.getByText('3 / 4 insertion attempts', { exact: true })).toBeVisible();
+  await expect(results.getByText('75.0%', { exact: true })).toBeVisible();
+  await expect(results.getByText('Final accuracy', { exact: true }).locator('..').getByText('100%', { exact: true })).toBeVisible();
+  const result = await exportedResult(page);
+  expect(result.finalText).toBe('cat'); expect(result.metrics.inputAccuracy).toBe(75); expect(result.metrics.finalTextAccuracy).toBe(100);
+  expect(result.metrics.deletionActions).toBe(1); expect(result.events).toHaveLength(5);
+  await expect(page.getByRole('button', { name: 'Next test', exact: true })).toHaveCount(1);
+  const evidenceDirectory = resolve('audit', 'implementation-2026-10-15');
+  await mkdir(evidenceDirectory, { recursive: true });
+  const shareDownloadEvent = page.waitForEvent('download');
+  await results.getByRole('button', { name: 'Share image', exact: true }).click();
+  const shareDownload = await shareDownloadEvent;
+  expect(shareDownload.suggestedFilename()).toBe('typing-forge-result.png');
+  const sharePath = resolve(evidenceDirectory, 'result-share.png');
+  await shareDownload.saveAs(sharePath);
+  const png = await readFile(sharePath);
+  expect([...png.subarray(0, 8)]).toEqual([137, 80, 78, 71, 13, 10, 26, 10]);
+  expect(png.toString('ascii', 12, 16)).toBe('IHDR');
+  expect(png.readUInt32BE(16)).toBe(1200);
+  expect(png.readUInt32BE(20)).toBe(630);
+  const axisLabels = results.locator('.recharts-xAxis .recharts-cartesian-axis-tick-value');
+  await expect(axisLabels.first()).toBeVisible();
+  for (const label of await axisLabels.allTextContents()) expect(label).toMatch(/^\d+(?:\.\d)?s$/);
+  const nextTest = results.getByRole('button', { name: 'Next test', exact: true });
+  await nextTest.focus(); await expect(nextTest).toBeFocused();
+  await expect(page.getByRole('link', { name: 'Skip to content', exact: true })).not.toBeFocused();
+  await page.screenshot({ path: resolve(evidenceDirectory, 'results-desktop.png'), fullPage: true });
+});
 
-test.describe('Typing Test Flow', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+test('a 15 second deadline includes the whole idle period and persists the final cutoff', async ({ page }) => {
+  test.setTimeout(30000);
+  await page.goto('/');
+  const duration = page.getByRole('group', { name: 'Test duration', exact: true }).getByRole('button', { name: '15 seconds', exact: true });
+  await duration.click(); await expect(duration).toHaveAttribute('aria-pressed', 'true');
+  const target = await page.getByTestId('typing-target').innerText();
+  const input = await focusTyping(page);
+  await input.pressSequentially(target.slice(0, 10), { delay: 10 });
+  await expect(input).toHaveValue(target.slice(0, 10));
+  await expect(page.getByRole('region', { name: 'Session results', exact: true })).toBeVisible({ timeout: 18000 });
+  const result = await exportedResult(page);
+  expect(result.elapsedMs).toBe(15000); expect(result.metrics.wpm).toBe(8); expect(result.finalText).toBe(target.slice(0, 10));
+  expect(result.timeSeries).toHaveLength(15); expect(result.timeSeries[14].localWpm).toBe(0);
+  expect(result.timeSeries[14].wpm).toBe(result.metrics.wpm);
+});
+
+test('code Tab preserves normal focus by default and indents only after opting in', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Code', exact: true }).click();
+  const indentation = page.getByRole('checkbox', { name: 'Enable Tab indentation', exact: true });
+  await expect(indentation).not.toBeChecked();
+  let input = await focusTyping(page);
+  await input.press('Tab'); await expect(input).not.toBeFocused(); await expect(input).toHaveValue('');
+  await indentation.check();
+  await expect(indentation).toBeChecked();
+  const target = await page.getByTestId('typing-target').innerText();
+  input = await focusTyping(page);
+  await input.press('Tab'); await expect(input).toHaveValue('    ');
+  await input.press('Shift+Tab'); await expect(input).not.toBeFocused();
+  await input.focus(); await input.press('ControlOrMeta+A'); await input.press('Backspace');
+  await input.fill(target);
+  await expect(page.getByRole('region', { name: 'Session results', exact: true })).toBeVisible();
+  const result = await exportedResult(page);
+  expect(result.configuration.scoringPolicy).toBe('code'); expect(result.finishReason).toBe('completed'); expect(result.finalText).toBe(target);
+  expect(result.metrics.correct).toBe(result.metrics.retainedUnits); expect(result.metrics.creditedUnits).toBe(result.metrics.correct);
+  expect(result.events[0].provenance).toBe('generated'); expect(result.assistance).toContain('generated');
+  expect(result.configuration.settings?.tabIndents).toBe(true);
+});
+
+test('composition commits one NFC grapheme and ignores intermediate IME changes', async ({ page }) => {
+  const input = await customPractice(page, 'é');
+  await input.evaluate(element => {
+    const textarea = element as HTMLTextAreaElement;
+    const setValue = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value')!.set!;
+    textarea.dispatchEvent(new CompositionEvent('compositionstart', { bubbles: true, data: '' }));
+    setValue.call(textarea, 'e');
+    textarea.dispatchEvent(new InputEvent('input', { bubbles: true, inputType: 'insertCompositionText', data: 'e', isComposing: true }));
+    setValue.call(textarea, 'e\u0301');
+    textarea.dispatchEvent(new CompositionEvent('compositionend', { bubbles: true, data: 'e\u0301' }));
+    textarea.dispatchEvent(new InputEvent('input', { bubbles: true, inputType: 'insertCompositionText', data: 'e\u0301' }));
   });
+  await expect(page.getByRole('region', { name: 'Session results', exact: true })).toBeVisible();
+  const result = await exportedResult(page);
+  expect(result.finalText).toBe('é'); expect(result.metrics.insertionAttempts).toBe(1); expect(result.events).toHaveLength(1);
+  expect(result.events[0].provenance).toBe('composition'); expect(result.metrics.inputAccuracy).toBe(100);
+});
 
-  test('should complete a time-based typing test', async ({ page }) => {
-    // Wait for page to load
-    await page.waitForSelector('h1', { timeout: 5000 });
+test('repeat preserves the exact target and creates a new id with repeated-content provenance', async ({ page }) => {
+  await completeCorrectedCat(page); const first = await exportedResult(page);
+  await page.getByRole('button', { name: 'Repeat passage', exact: true }).click();
+  await expect(page.getByTestId('typing-target')).toHaveText('cat');
+  const input = await focusTyping(page); await input.pressSequentially('cat', { delay: 30 });
+  await expect(page.getByRole('region', { name: 'Session results', exact: true })).toBeVisible();
+  const second = await exportedResult(page);
+  expect(second.clientSessionId).not.toBe(first.clientSessionId); expect(second.targetText).toBe(first.targetText);
+  expect(second.configuration.repeatedContent).toBe(true); expect(second.comparisonKey).not.toBe(first.comparisonKey);
+});
 
-    // Select time mode (should be default)
-    const modeSelect = page.locator('[data-testid="test-mode"]').or(page.locator('select, button').filter({ hasText: /time|words|quote/i }).first());
-    
-    // Select duration (30 seconds)
-    const durationButton = page.locator('button').filter({ hasText: /30|seconds/i }).first();
-    if (await durationButton.isVisible()) {
-      await durationButton.click();
-    }
+test('prompted zen appends target segments and finishes only through the visible action', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Zen', exact: true }).click();
+  await expect(page.getByRole('group', { name: 'Zen style', exact: true }).getByRole('button', { name: 'Prompted practice', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  const initialTarget = await page.getByTestId('typing-target').innerText();
+  expect(initialTarget.length).toBeGreaterThan(100);
+  const input = await focusTyping(page); await input.fill(initialTarget);
+  await expect(page.getByRole('region', { name: 'Session results', exact: true })).toHaveCount(0);
+  await expect.poll(async () => (await page.getByTestId('typing-target').innerText()).length).toBeGreaterThan(initialTarget.length);
+  await page.getByRole('button', { name: 'Finish', exact: true }).click();
+  const result = await exportedResult(page);
+  expect(result.configuration.mode).toBe('zen'); expect(result.configuration.scoringPolicy).toBe('prose');
+  expect(result.initialTarget).toBe(initialTarget); expect(result.targetText.startsWith(initialTarget)).toBe(true);
+  expect(result.issuedTargetSegments.length).toBeGreaterThan(0); expect(result.finalText).toBe(initialTarget); expect(result.finishReason).toBe('manual');
+});
 
-    // Start typing test
-    const typingInput = page.locator('input[type="text"]').or(page.locator('textarea')).first();
-    await expect(typingInput).toBeVisible({ timeout: 5000 });
-
-    // Type some text
-    const targetText = await page.locator('[data-testid="target-text"]').or(page.locator('.text-foreground, .text-muted-foreground').filter({ hasText: /[a-z]{3,}/i }).first()).textContent();
-    
-    if (targetText) {
-      // Type first few words
-      const wordsToType = targetText.split(' ').slice(0, 5).join(' ');
-      await typingInput.type(wordsToType, { delay: 100 });
-    }
-
-    // Wait for test to complete or check results
-    await page.waitForTimeout(2000);
-
-    // Check that metrics are displayed (WPM, accuracy, etc.)
-    const wpmDisplay = page.locator('text=/WPM|wpm/i').first();
-    const accuracyDisplay = page.locator('text=/accuracy|%/i').first();
-
-    // Results might be shown or test might still be running
-    // Just verify the page is functional
-    await expect(page).toHaveURL('/');
-  });
-
-  test('should save test results to localStorage', async ({ page }) => {
-    await page.goto('/');
-    await page.waitForSelector('h1', { timeout: 5000 });
-
-    // Check localStorage before test
-    const initialHistory = await page.evaluate(() => {
-      return localStorage.getItem('typingmaster_history');
-    });
-
-    // Complete a quick test
-    const typingInput = page.locator('input[type="text"]').or(page.locator('textarea')).first();
-    if (await typingInput.isVisible()) {
-      await typingInput.type('hello world test', { delay: 50 });
-      await page.waitForTimeout(1000);
-    }
-
-    // Check localStorage after test
-    const finalHistory = await page.evaluate(() => {
-      return localStorage.getItem('typingmaster_history');
-    });
-
-    // History should exist (might be empty array or have data)
-    expect(finalHistory).toBeTruthy();
-  });
-
-  test('should display professional results screen after completion', async ({ page }) => {
-    await page.goto('/');
-    await page.waitForTimeout(2000);
-
-    // Look for results screen elements
-    const resultsScreen = page.locator('text=/results|accuracy|WPM|consistency/i').first();
-    
-    // If results are shown, verify key metrics
-    if (await resultsScreen.isVisible({ timeout: 2000 }).catch(() => false)) {
-      await expect(page.locator('text=/WPM|wpm/i').first()).toBeVisible();
-      await expect(page.locator('text=/accuracy|%/i').first()).toBeVisible();
-    }
-  });
-
-  test('should maintain metric consistency across pages (cross-page regression)', async ({ page }) => {
-    // This test verifies that metrics shown on results screen match those on stats/profile/leaderboard
-    // Step 1: Complete a controlled typing test
-    await page.goto('/');
-    await page.waitForTimeout(2000);
-
-    // Use a fixed quote for deterministic results
-    const fixedQuote = 'the quick brown fox jumps over the lazy dog';
-    
-    // Select quote mode if available
-    const quoteModeButton = page.locator('button').filter({ hasText: /quote/i }).first();
-    if (await quoteModeButton.isVisible({ timeout: 2000 }).catch(() => false)) {
-      await quoteModeButton.click();
-      await page.waitForTimeout(500);
-    }
-
-    // Type the quote at controlled speed (~50 WPM = ~250ms per char)
-    const typingInput = page.locator('input[type="text"]').or(page.locator('textarea')).first();
-    await expect(typingInput).toBeVisible({ timeout: 5000 });
-
-    // Type with deliberate speed to achieve ~50 WPM and ~95% accuracy
-    // Simulate: type correctly but with a few deliberate errors
-    const typedText = 'the quick brown fox jumps over the lazy do'; // Missing 'g' for ~95% accuracy
-    for (let i = 0; i < typedText.length; i++) {
-      await typingInput.type(typedText[i], { delay: 250 }); // ~250ms per char = ~48 WPM
-    }
-
-    // Wait for test completion
-    await page.waitForTimeout(2000);
-
-    // Step 2: Extract metrics from results screen
-    let resultsWpm: number | null = null;
-    let resultsAccuracy: number | null = null;
-
-    // Try to extract WPM and accuracy from results screen
-    const wpmText = await page.locator('text=/\\d+\\s*wpm/i').first().textContent().catch(() => null);
-    const accuracyText = await page.locator('text=/\\d+(\\.\\d+)?\\s*%/i').first().textContent().catch(() => null);
-
-    if (wpmText) {
-      const wpmMatch = wpmText.match(/(\d+(?:\.\d+)?)/);
-      if (wpmMatch) resultsWpm = parseFloat(wpmMatch[1]);
-    }
-
-    if (accuracyText) {
-      const accMatch = accuracyText.match(/(\d+(?:\.\d+)?)/);
-      if (accMatch) resultsAccuracy = parseFloat(accMatch[1]);
-    }
-
-    // If we couldn't extract from UI, use expected values based on our controlled input
-    // For 'the quick brown fox jumps over the lazy do' (43 chars) in ~10.75 seconds = ~48 WPM
-    // Accuracy: 42 correct / 43 total = ~97.67%
-    const expectedWpm = 48;
-    const expectedAccuracy = 97.67;
-
-    const finalWpm = resultsWpm ?? expectedWpm;
-    const finalAccuracy = resultsAccuracy ?? expectedAccuracy;
-
-    // Step 3: Navigate to /stats and verify metrics match
-    await page.goto('/stats');
-    await page.waitForTimeout(2000);
-
-    // Extract top speed from stats page
-    const statsWpmText = await page.locator('text=/\\d+(\\.\\d+)?\\s*wpm/i').first().textContent().catch(() => null);
-    if (statsWpmText) {
-      const statsWpmMatch = statsWpmText.match(/(\d+(?:\.\d+)?)/);
-      if (statsWpmMatch) {
-        const statsWpm = parseFloat(statsWpmMatch[1]);
-        // Assert within 1 WPM tolerance
-        expect(Math.abs(statsWpm - finalWpm)).toBeLessThan(1);
-      }
-    }
-
-    // Step 4: Navigate to /profile and verify metrics match
-    await page.goto('/profile');
-    await page.waitForTimeout(2000);
-
-    const profileWpmText = await page.locator('text=/\\d+(\\.\\d+)?\\s*wpm/i').first().textContent().catch(() => null);
-    if (profileWpmText) {
-      const profileWpmMatch = profileWpmText.match(/(\d+(?:\.\d+)?)/);
-      if (profileWpmMatch) {
-        const profileWpm = parseFloat(profileWpmMatch[1]);
-        // Assert within 1 WPM tolerance
-        expect(Math.abs(profileWpm - finalWpm)).toBeLessThan(1);
-      }
-    }
-
-    // Step 5: Verify test count is consistent
-    const testCountText = await page.locator('text=/\\d+\\s*test/i').first().textContent().catch(() => null);
-    if (testCountText) {
-      const testCountMatch = testCountText.match(/(\d+)/);
-      if (testCountMatch) {
-        const testCount = parseInt(testCountMatch[1]);
-        expect(testCount).toBeGreaterThanOrEqual(1);
-      }
-    }
-
-    // Assert that metrics are finite and within reasonable bounds
-    expect(isFinite(finalWpm)).toBe(true);
-    expect(finalWpm).toBeGreaterThanOrEqual(0);
-    expect(finalWpm).toBeLessThanOrEqual(500);
-    expect(isFinite(finalAccuracy)).toBe(true);
-    expect(finalAccuracy).toBeGreaterThanOrEqual(0);
-    expect(finalAccuracy).toBeLessThanOrEqual(100);
-  });
+test('free writing has raw speed and no invented target accuracy or credited WPM', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Zen', exact: true }).click();
+  await page.getByRole('group', { name: 'Zen style', exact: true }).getByRole('button', { name: 'Free writing', exact: true }).click();
+  const input = await focusTyping(page); await input.pressSequentially('Words on a blank page.', { delay: 20 });
+  await page.getByRole('button', { name: 'Finish', exact: true }).click();
+  const result = await exportedResult(page);
+  expect(result.configuration.scoringPolicy).toBe('free'); expect(result.targetText).toBe('');
+  expect(result.metrics.wpm).toBeNull(); expect(result.metrics.inputAccuracy).toBeNull(); expect(result.metrics.finalTextAccuracy).toBeNull();
+  expect(result.metrics.rawWpm).toBeGreaterThan(0); expect(result.configuration.privacy).toBe('private-custom');
 });

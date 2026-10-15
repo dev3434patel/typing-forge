@@ -1,37 +1,25 @@
-import { forwardRef } from 'react';
-import { Github, Twitter, Heart } from 'lucide-react';
-
-export const Footer = forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>((props, ref) => {
-  return (
-    <footer ref={ref} className="border-t mt-auto" {...props}>
-      <div className="container mx-auto px-4 py-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground flex items-center gap-1">
-            Made with <Heart className="w-4 h-4 text-destructive fill-destructive" /> for typists
-          </p>
-          
-          <div className="flex items-center gap-4">
-            <a
-              href="#"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Twitter className="w-5 h-5" />
-            </a>
-            <a
-              href="#"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Github className="w-5 h-5" />
-            </a>
-          </div>
-          
-          <p className="text-sm text-muted-foreground">
-            © 2026 Typing Master
-          </p>
-        </div>
+import { forwardRef } from "react";
+import { Link } from "react-router-dom";
+import { Keyboard } from "lucide-react";
+export const Footer = forwardRef<
+  HTMLElement,
+  React.HTMLAttributes<HTMLElement>
+>((props, ref) => (
+  <footer ref={ref} className="border-t border-border mt-auto" {...props}>
+    <div className="max-w-7xl mx-auto px-5 sm:px-8 py-6 flex flex-wrap justify-between gap-4 text-xs text-muted-foreground">
+      <span className="flex gap-2 items-center">
+        <Keyboard size={14} /> A little practice. Lasting progress.
+      </span>
+      <div className="flex gap-6">
+        <Link to="/about" className="hover:text-foreground">
+          About & metrics
+        </Link>
+        <Link to="/settings" className="hover:text-foreground">
+          Preferences & data
+        </Link>
+        <span>Typing Forge © {new Date().getFullYear()}</span>
       </div>
-    </footer>
-  );
-});
-
-Footer.displayName = 'Footer';
+    </div>
+  </footer>
+));
+Footer.displayName = "Footer";

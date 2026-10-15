@@ -1,0 +1,51 @@
+
+> typing-forge@3.0.0 test:e2e
+> playwright test e2e/account-workspace.spec.ts --workers=1
+
+
+Running 1 test using 1 worker
+
+(node:77820) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [chromium] › e2e\account-workspace.spec.ts:4:1 › cross-tab account change discards a previous owner's unsaved private passage (7.9s)
+
+
+  1) [chromium] › e2e\account-workspace.spec.ts:4:1 › cross-tab account change discards a previous owner's unsaved private passage 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('textbox', { name: 'Custom practice passage' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('textbox', { name: 'Custom practice passage' }) with timeout 5000ms
+      - waiting for getByRole('textbox', { name: 'Custom practice passage' })
+
+
+      18 |   await expect(page.getByTestId("typing-target")).toContainText("Private passage");
+      19 |   await page.evaluate(({ key, value }) => { localStorage.setItem(key, JSON.stringify(value)); const channel = new BroadcastChannel(key); channel.postMessage({ event: "SIGNED_IN", session: value }); channel.close(); }, { key: storageKey, value: session(bob) });
+    > 20 |   await expect(page.getByRole("textbox", { name: "Custom practice passage" })).toBeVisible();
+         |                                                                                ^
+      21 |   await expect(page.getByRole("textbox", { name: "Custom practice passage" })).toHaveValue("");
+      22 |   await expect(page.getByTestId("typing-target")).toHaveCount(0);
+      23 |   await expect(page.getByText("Private passage belonging to the previous account", { exact: true })).toHaveCount(0);
+        at D:\extra\typing_updated\typing-forge\e2e\account-workspace.spec.ts:20:80
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\account-workspace-cross-ta-a7ad6-r-s-unsaved-private-passage-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\account-workspace-cross-ta-a7ad6-r-s-unsaved-private-passage-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\account-workspace-cross-ta-a7ad6-r-s-unsaved-private-passage-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\account-workspace-cross-ta-a7ad6-r-s-unsaved-private-passage-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › e2e\account-workspace.spec.ts:4:1 › cross-tab account change discards a previous owner's unsaved private passage 

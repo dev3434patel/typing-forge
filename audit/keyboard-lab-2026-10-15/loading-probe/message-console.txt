@@ -1,0 +1,194 @@
+
+Running 8 tests using 1 worker
+
+(node:63156) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [webkit-message-probe] › audit\keyboard-lab-2026-10-15\loading-probe\message-probe.spec.ts:54:30 › scheduler-1 (8.1s)
+(node:85496) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 [webkit-message-probe] › audit\keyboard-lab-2026-10-15\loading-probe\message-probe.spec.ts:54:30 › scheduler-2 (9.5s)
+(node:25880) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 3 [webkit-message-probe] › audit\keyboard-lab-2026-10-15\loading-probe\message-probe.spec.ts:54:30 › scheduler-3 (4.9s)
+  ok 4 [webkit-message-probe] › audit\keyboard-lab-2026-10-15\loading-probe\message-probe.spec.ts:54:30 › scheduler-4 (5.9s)
+  ok 5 [webkit-message-probe] › audit\keyboard-lab-2026-10-15\loading-probe\message-probe.spec.ts:54:30 › scheduler-5 (2.2s)
+  x  6 [webkit-message-probe] › audit\keyboard-lab-2026-10-15\loading-probe\message-probe.spec.ts:54:30 › scheduler-6 (7.2s)
+(node:71548) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  7 [webkit-message-probe] › audit\keyboard-lab-2026-10-15\loading-probe\message-probe.spec.ts:54:30 › scheduler-7 (7.7s)
+(node:56700) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  8 [webkit-message-probe] › audit\keyboard-lab-2026-10-15\loading-probe\message-probe.spec.ts:54:30 › scheduler-8 (7.0s)
+
+
+  1) [webkit-message-probe] › audit\keyboard-lab-2026-10-15\loading-probe\message-probe.spec.ts:54:30 › scheduler-1 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator: getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })
+    Expected: "/"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveAttribute" getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true }) with timeout 5000ms
+      - waiting for getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })
+
+
+      56 |   await page.goto('/');
+      57 |   const nav = page.getByRole('navigation', { name: 'Mobile navigation', exact: true });
+    > 58 |   await expect(nav.getByRole('link', { name: 'Test', exact: true })).toHaveAttribute('href', '/');
+         |                                                                      ^
+      59 |   await nav.getByRole('link', { name: 'Learn', exact: true }).click();
+      60 |   await expect(page).toHaveURL('/learn');
+      61 |   await expect(page.getByRole('heading', { name: 'Make every key feel natural.', exact: true })).toBeVisible();
+        at D:\extra\typing_updated\typing-forge\audit\keyboard-lab-2026-10-15\loading-probe\message-probe.spec.ts:58:70
+
+    Error Context: audit\keyboard-lab-2026-10-15\loading-probe\message-browser-artifacts\message-probe-scheduler-1-webkit-message-probe\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\keyboard-lab-2026-10-15\loading-probe\message-browser-artifacts\message-probe-scheduler-1-webkit-message-probe\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\keyboard-lab-2026-10-15\loading-probe\message-browser-artifacts\message-probe-scheduler-1-webkit-message-probe\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [webkit-message-probe] › audit\keyboard-lab-2026-10-15\loading-probe\message-probe.spec.ts:54:30 › scheduler-2 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator: getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })
+    Expected: "/"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveAttribute" getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true }) with timeout 5000ms
+      - waiting for getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })
+
+
+      56 |   await page.goto('/');
+      57 |   const nav = page.getByRole('navigation', { name: 'Mobile navigation', exact: true });
+    > 58 |   await expect(nav.getByRole('link', { name: 'Test', exact: true })).toHaveAttribute('href', '/');
+         |                                                                      ^
+      59 |   await nav.getByRole('link', { name: 'Learn', exact: true }).click();
+      60 |   await expect(page).toHaveURL('/learn');
+      61 |   await expect(page.getByRole('heading', { name: 'Make every key feel natural.', exact: true })).toBeVisible();
+        at D:\extra\typing_updated\typing-forge\audit\keyboard-lab-2026-10-15\loading-probe\message-probe.spec.ts:58:70
+
+    Error Context: audit\keyboard-lab-2026-10-15\loading-probe\message-browser-artifacts\message-probe-scheduler-2-webkit-message-probe\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\keyboard-lab-2026-10-15\loading-probe\message-browser-artifacts\message-probe-scheduler-2-webkit-message-probe\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\keyboard-lab-2026-10-15\loading-probe\message-browser-artifacts\message-probe-scheduler-2-webkit-message-probe\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [webkit-message-probe] › audit\keyboard-lab-2026-10-15\loading-probe\message-probe.spec.ts:54:30 › scheduler-6 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Make every key feel natural.', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Make every key feel natural.', exact: true }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'Make every key feel natural.', exact: true })
+
+
+      59 |   await nav.getByRole('link', { name: 'Learn', exact: true }).click();
+      60 |   await expect(page).toHaveURL('/learn');
+    > 61 |   await expect(page.getByRole('heading', { name: 'Make every key feel natural.', exact: true })).toBeVisible();
+         |                                                                                                  ^
+      62 | });
+      63 |
+        at D:\extra\typing_updated\typing-forge\audit\keyboard-lab-2026-10-15\loading-probe\message-probe.spec.ts:61:98
+
+    Error Context: audit\keyboard-lab-2026-10-15\loading-probe\message-browser-artifacts\message-probe-scheduler-6-webkit-message-probe\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\keyboard-lab-2026-10-15\loading-probe\message-browser-artifacts\message-probe-scheduler-6-webkit-message-probe\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\keyboard-lab-2026-10-15\loading-probe\message-browser-artifacts\message-probe-scheduler-6-webkit-message-probe\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [webkit-message-probe] › audit\keyboard-lab-2026-10-15\loading-probe\message-probe.spec.ts:54:30 › scheduler-7 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator: getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })
+    Expected: "/"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveAttribute" getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true }) with timeout 5000ms
+      - waiting for getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })
+
+
+      56 |   await page.goto('/');
+      57 |   const nav = page.getByRole('navigation', { name: 'Mobile navigation', exact: true });
+    > 58 |   await expect(nav.getByRole('link', { name: 'Test', exact: true })).toHaveAttribute('href', '/');
+         |                                                                      ^
+      59 |   await nav.getByRole('link', { name: 'Learn', exact: true }).click();
+      60 |   await expect(page).toHaveURL('/learn');
+      61 |   await expect(page.getByRole('heading', { name: 'Make every key feel natural.', exact: true })).toBeVisible();
+        at D:\extra\typing_updated\typing-forge\audit\keyboard-lab-2026-10-15\loading-probe\message-probe.spec.ts:58:70
+
+    Error Context: audit\keyboard-lab-2026-10-15\loading-probe\message-browser-artifacts\message-probe-scheduler-7-webkit-message-probe\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\keyboard-lab-2026-10-15\loading-probe\message-browser-artifacts\message-probe-scheduler-7-webkit-message-probe\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\keyboard-lab-2026-10-15\loading-probe\message-browser-artifacts\message-probe-scheduler-7-webkit-message-probe\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [webkit-message-probe] › audit\keyboard-lab-2026-10-15\loading-probe\message-probe.spec.ts:54:30 › scheduler-8 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator: getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })
+    Expected: "/"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveAttribute" getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true }) with timeout 5000ms
+      - waiting for getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })
+
+
+      56 |   await page.goto('/');
+      57 |   const nav = page.getByRole('navigation', { name: 'Mobile navigation', exact: true });
+    > 58 |   await expect(nav.getByRole('link', { name: 'Test', exact: true })).toHaveAttribute('href', '/');
+         |                                                                      ^
+      59 |   await nav.getByRole('link', { name: 'Learn', exact: true }).click();
+      60 |   await expect(page).toHaveURL('/learn');
+      61 |   await expect(page.getByRole('heading', { name: 'Make every key feel natural.', exact: true })).toBeVisible();
+        at D:\extra\typing_updated\typing-forge\audit\keyboard-lab-2026-10-15\loading-probe\message-probe.spec.ts:58:70
+
+    Error Context: audit\keyboard-lab-2026-10-15\loading-probe\message-browser-artifacts\message-probe-scheduler-8-webkit-message-probe\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\keyboard-lab-2026-10-15\loading-probe\message-browser-artifacts\message-probe-scheduler-8-webkit-message-probe\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\keyboard-lab-2026-10-15\loading-probe\message-browser-artifacts\message-probe-scheduler-8-webkit-message-probe\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5 failed
+    [webkit-message-probe] › audit\keyboard-lab-2026-10-15\loading-probe\message-probe.spec.ts:54:30 › scheduler-1 
+    [webkit-message-probe] › audit\keyboard-lab-2026-10-15\loading-probe\message-probe.spec.ts:54:30 › scheduler-2 
+    [webkit-message-probe] › audit\keyboard-lab-2026-10-15\loading-probe\message-probe.spec.ts:54:30 › scheduler-6 
+    [webkit-message-probe] › audit\keyboard-lab-2026-10-15\loading-probe\message-probe.spec.ts:54:30 › scheduler-7 
+    [webkit-message-probe] › audit\keyboard-lab-2026-10-15\loading-probe\message-probe.spec.ts:54:30 › scheduler-8 
+  3 passed (1.1m)

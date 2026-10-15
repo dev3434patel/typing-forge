@@ -1,0 +1,9 @@
+import {describe,it,expect} from 'vitest';
+import {PREFERENCE_DEFAULTS,validatePreferences,validatePreferencePatch,mergeCloudPreferences,acknowledgePreferences,type PreferenceEnvelope} from '../preferences-store';
+const local=():PreferenceEnvelope=>({schemaVersion:3,values:{...PREFERENCE_DEFAULTS,fontSize:28},pending:{fontSize:28},cloudVersion:2,updatedAt:100});
+describe('local first versioned preference reconciliation',()=>{
+  it('validates stored controls rather than trusting a stale or corrupt object',()=>{const value=validatePreferences({fontSize:999,theme:'bad',layout:'bad',volume:0,liveStats:'yes',language:'unavailable'});expect(value.fontSize).toBe(40);expect(value.theme).toBe('forge-dark');expect(value.layout).toBe('qwerty');expect(value.volume).toBe(0);expect(value.liveStats).toBe(true);expect(value.language).toBe('en');});
+  it('preserves a user edit made before a slow cloud read',()=>{const merged=mergeCloudPreferences(local(),{preferences:{...PREFERENCE_DEFAULTS,fontSize:20,theme:'forge-light'},version:7});expect(merged.values.fontSize).toBe(28);expect(merged.cloudVersion).toBe(7);expect(merged.pending).toEqual({fontSize:28});});
+  it('does not erase an edit made while an earlier update was in flight',()=>{const entry={...local(),values:{...PREFERENCE_DEFAULTS,fontSize:32},pending:{fontSize:32}};const next=acknowledgePreferences(entry,{fontSize:28},{preferences:{...PREFERENCE_DEFAULTS,fontSize:28},version:8});expect(next.values.fontSize).toBe(32);expect(next.pending).toEqual({fontSize:32});});
+  it('clears only acknowledged fields and drops unknown patch keys',()=>{const next=acknowledgePreferences(local(),{fontSize:28},{preferences:{...PREFERENCE_DEFAULTS,fontSize:28},version:8});expect(next.pending).toEqual({});expect(validatePreferencePatch({fontSize:29,unknown:'no'},PREFERENCE_DEFAULTS)).toEqual({fontSize:29});});
+});

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type TestMode = 'time' | 'words' | 'quote' | 'zen' | 'keybr' | 'code';
+export type TestMode = 'time' | 'words' | 'quote' | 'zen' | 'keybr' | 'code' | 'custom';
 export type TestDuration = 15 | 30 | 60 | 120 | 180;
 export type TestStatus = 'idle' | 'running' | 'finished';
 
@@ -11,6 +11,9 @@ interface TestSettings {
   punctuation: boolean;
   numbers: boolean;
   codeLanguage: string; // For code mode: 'javascript' | 'typescript' | 'python' | 'rust' | 'sql'
+  tabIndents: boolean;
+  precisionMode: boolean;
+  zenStyle: 'prompted' | 'free';
 }
 
 interface TestState {
@@ -41,6 +44,9 @@ export const useTestStore = create<TestState>((set) => ({
     punctuation: false,
     numbers: false,
     codeLanguage: 'javascript', // Default code language
+    tabIndents: false,
+    precisionMode: false,
+    zenStyle: 'prompted',
   },
   status: 'idle',
   targetText: '',

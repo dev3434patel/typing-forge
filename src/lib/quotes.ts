@@ -1,159 +1,42 @@
+import { curatedCommonWords } from './content-library';
 export interface Quote {
   id: string;
   text: string;
   author: string;
   category: 'literature' | 'tech' | 'motivational' | 'philosophy' | 'science';
+  source: string;
+  license: string;
+  revision: string;
 }
-
-export const quotes: Quote[] = [
-  {
-    id: '1',
-    text: 'The only way to do great work is to love what you do.',
-    author: 'Steve Jobs',
-    category: 'motivational'
-  },
-  {
-    id: '2',
-    text: 'Innovation distinguishes between a leader and a follower.',
-    author: 'Steve Jobs',
-    category: 'tech'
-  },
-  {
-    id: '3',
-    text: 'The future belongs to those who believe in the beauty of their dreams.',
-    author: 'Eleanor Roosevelt',
-    category: 'motivational'
-  },
-  {
-    id: '4',
-    text: 'It is not the strongest of the species that survives, nor the most intelligent, but the one most responsive to change.',
-    author: 'Charles Darwin',
-    category: 'science'
-  },
-  {
-    id: '5',
-    text: 'The only thing we have to fear is fear itself.',
-    author: 'Franklin D. Roosevelt',
-    category: 'motivational'
-  },
-  {
-    id: '6',
-    text: 'In the middle of difficulty lies opportunity.',
-    author: 'Albert Einstein',
-    category: 'science'
-  },
-  {
-    id: '7',
-    text: 'Code is like humor. When you have to explain it, it is bad.',
-    author: 'Cory House',
-    category: 'tech'
-  },
-  {
-    id: '8',
-    text: 'The best time to plant a tree was twenty years ago. The second best time is now.',
-    author: 'Chinese Proverb',
-    category: 'philosophy'
-  },
-  {
-    id: '9',
-    text: 'Simplicity is the ultimate sophistication.',
-    author: 'Leonardo da Vinci',
-    category: 'philosophy'
-  },
-  {
-    id: '10',
-    text: 'Talk is cheap. Show me the code.',
-    author: 'Linus Torvalds',
-    category: 'tech'
-  },
-  {
-    id: '11',
-    text: 'The greatest glory in living lies not in never falling, but in rising every time we fall.',
-    author: 'Nelson Mandela',
-    category: 'motivational'
-  },
-  {
-    id: '12',
-    text: 'Life is what happens when you are busy making other plans.',
-    author: 'John Lennon',
-    category: 'philosophy'
-  },
-  {
-    id: '13',
-    text: 'First, solve the problem. Then, write the code.',
-    author: 'John Johnson',
-    category: 'tech'
-  },
-  {
-    id: '14',
-    text: 'Any fool can write code that a computer can understand. Good programmers write code that humans can understand.',
-    author: 'Martin Fowler',
-    category: 'tech'
-  },
-  {
-    id: '15',
-    text: 'The mind is everything. What you think you become.',
-    author: 'Buddha',
-    category: 'philosophy'
-  },
-  {
-    id: '16',
-    text: 'Success is not final, failure is not fatal: it is the courage to continue that counts.',
-    author: 'Winston Churchill',
-    category: 'motivational'
-  },
-  {
-    id: '17',
-    text: 'Two things are infinite: the universe and human stupidity; and I am not sure about the universe.',
-    author: 'Albert Einstein',
-    category: 'science'
-  },
-  {
-    id: '18',
-    text: 'The only true wisdom is in knowing you know nothing.',
-    author: 'Socrates',
-    category: 'philosophy'
-  },
-  {
-    id: '19',
-    text: 'Programs must be written for people to read, and only incidentally for machines to execute.',
-    author: 'Harold Abelson',
-    category: 'tech'
-  },
-  {
-    id: '20',
-    text: 'Be the change you wish to see in the world.',
-    author: 'Mahatma Gandhi',
-    category: 'motivational'
-  }
+/** Original practice passages, not quotations attributed to public figures. */
+const passages: { text: string; category: Quote['category'] }[] = [
+  { text: 'The window opened onto a quiet garden. Beyond the silver leaves, the morning light gathered slowly on the path.', category: 'literature' },
+  { text: 'A steady rhythm begins with a clear intention. Give each movement the attention it needs, and let the next one follow.', category: 'motivational' },
+  { text: 'Readable code leaves a trail of small decisions. A useful name and a simple boundary can make the next change easier.', category: 'tech' },
+  { text: 'Learning is a conversation between effort and evidence. Notice what happened, choose one adjustment, and try again.', category: 'philosophy' },
+  { text: 'Rain gathers in a thousand small places before it becomes a river. Each drop follows the shape of the ground beneath it.', category: 'science' },
+  { text: 'The workshop was warm with afternoon sun. A pencil, a folded plan, and a careful pair of hands were enough to begin.', category: 'literature' },
+  { text: 'Speed grows from movements you can repeat with care. A calm minute of deliberate practice is a useful place to start.', category: 'motivational' },
+  { text: 'A reliable system makes its state easy to understand. It tells you what succeeded, what needs attention, and what can be tried again.', category: 'tech' },
+  { text: 'An unanswered question can be a good companion. Carry it into the next experiment, and leave room for an unexpected result.', category: 'philosophy' },
+  { text: 'The moon reflects a light that has already crossed the space between worlds. Its quiet glow reaches the water and returns to the sky.', category: 'science' },
+  { text: 'Along the narrow lane, the baker arranged fresh loaves beside the door. The town was only beginning to wake.', category: 'literature' },
+  { text: 'Set a small goal that you can observe. Finish the work, read the evidence, and decide which step deserves your attention next.', category: 'motivational' },
 ];
-
-import { commonWords1000 } from './content-library';
-
-// Re-export for backward compatibility
-export const commonWords = commonWords1000;
-
-export function getRandomQuote(): Quote {
-  return quotes[Math.floor(Math.random() * quotes.length)];
+export const quotes: Quote[] = passages.map((passage, index) => ({ ...passage, id: `forge-passage-${index + 1}`, author: 'Typing Forge', source: 'Original Typing Forge practice passage', license: 'CC0-1.0', revision: 'forge-passages-2026.10.15' }));
+export const commonWords = curatedCommonWords;
+export function getRandomQuote(seed?: string): Quote {
+  if (seed === undefined) return quotes[Math.floor(Math.random() * quotes.length)];
+  let hash = 0;
+  for (const char of seed) hash = (Math.imul(hash, 31) + char.codePointAt(0)!) >>> 0;
+  return quotes[hash % quotes.length];
 }
-
-export function generateRandomWords(count: number, includePunctuation: boolean = false, includeNumbers: boolean = false): string {
-  const words: string[] = [];
-  
-  for (let i = 0; i < count; i++) {
-    let word = commonWords1000[Math.floor(Math.random() * commonWords1000.length)];
-    
-    if (includeNumbers && Math.random() < 0.1) {
-      word = Math.floor(Math.random() * 1000).toString();
-    }
-    
-    if (includePunctuation && Math.random() < 0.15) {
-      const punctuation = ['.', ',', '!', '?', ';', ':'];
-      word += punctuation[Math.floor(Math.random() * punctuation.length)];
-    }
-    
-    words.push(word);
-  }
-  
-  return words.join(' ');
+export function generateRandomWords(count: number, includePunctuation = false, includeNumbers = false): string {
+  const punctuation = ['.', ',', '!', '?', ';', ':'];
+  return Array.from({ length: Math.max(1, Math.min(2000, Math.floor(count) || 1)) }, () => {
+    let word = curatedCommonWords[Math.floor(Math.random() * curatedCommonWords.length)];
+    if (includeNumbers && Math.random() < 0.1) word = Math.floor(Math.random() * 1000).toString();
+    if (includePunctuation && Math.random() < 0.15) word += punctuation[Math.floor(Math.random() * punctuation.length)];
+    return word;
+  }).join(' ');
 }

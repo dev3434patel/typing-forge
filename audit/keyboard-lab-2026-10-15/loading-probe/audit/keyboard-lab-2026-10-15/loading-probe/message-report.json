@@ -1,0 +1,590 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\extra\\typing_updated\\typing-forge\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--config",
+      "audit/keyboard-lab-2026-10-15/loading-probe/playwright.message.config.ts"
+    ],
+    "configFile": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\playwright.message.config.ts",
+    "rootDir": "D:/extra/typing_updated/typing-forge/audit/keyboard-lab-2026-10-15/loading-probe",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/audit/keyboard-lab-2026-10-15/loading-probe/message-browser-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit-message-probe",
+        "name": "webkit-message-probe",
+        "testDir": "D:/extra/typing_updated/typing-forge/audit/keyboard-lab-2026-10-15/loading-probe",
+        "testIgnore": [],
+        "testMatch": [
+          "message-probe.spec.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-browser-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "webkit-message-probe",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe",
+        "testIgnore": [],
+        "testMatch": "message-probe.spec.ts",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:5190",
+          "trace": "on",
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Safari/605.1.15",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1792,
+            "height": 1120
+          },
+          "deviceScaleFactor": 2,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "webkit"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "webkit-message-probe"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "audit/keyboard-lab-2026-10-15/loading-probe/message-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "message-probe.spec.ts",
+      "file": "message-probe.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "scheduler-1",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit-message-probe",
+              "projectName": "webkit-message-probe",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 8116,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\nExpected: \u001b[32m\"/\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\nExpected: \u001b[32m\"/\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\u001b[22m\n\n    at D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts:58:70",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts",
+                      "column": 70,
+                      "line": 58
+                    },
+                    "snippet": "  56 |   await page.goto('/');\n  57 |   const nav = page.getByRole('navigation', { name: 'Mobile navigation', exact: true });\n> 58 |   await expect(nav.getByRole('link', { name: 'Test', exact: true })).toHaveAttribute('href', '/');\n     |                                                                      ^\n  59 |   await nav.getByRole('link', { name: 'Learn', exact: true }).click();\n  60 |   await expect(page).toHaveURL('/learn');\n  61 |   await expect(page.getByRole('heading', { name: 'Make every key feel natural.', exact: true })).toBeVisible();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts",
+                        "column": 70,
+                        "line": 58
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\nExpected: \u001b[32m\"/\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\u001b[22m\n\n\n  56 |   await page.goto('/');\n  57 |   const nav = page.getByRole('navigation', { name: 'Mobile navigation', exact: true });\n> 58 |   await expect(nav.getByRole('link', { name: 'Test', exact: true })).toHaveAttribute('href', '/');\n     |                                                                      ^\n  59 |   await nav.getByRole('link', { name: 'Learn', exact: true }).click();\n  60 |   await expect(page).toHaveURL('/learn');\n  61 |   await expect(page.getByRole('heading', { name: 'Make every key feel natural.', exact: true })).toBeVisible();\n    at D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts:58:70"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T18:08:15.241Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-browser-artifacts\\message-probe-scheduler-1-webkit-message-probe\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-browser-artifacts\\message-probe-scheduler-1-webkit-message-probe\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts",
+                    "column": 70,
+                    "line": 58
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d9bc49567a710298d230-765facdfd5deaa290e26",
+          "file": "message-probe.spec.ts",
+          "line": 54,
+          "column": 30
+        },
+        {
+          "title": "scheduler-2",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit-message-probe",
+              "projectName": "webkit-message-probe",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 9497,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\nExpected: \u001b[32m\"/\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\nExpected: \u001b[32m\"/\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\u001b[22m\n\n    at D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts:58:70",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts",
+                      "column": 70,
+                      "line": 58
+                    },
+                    "snippet": "  56 |   await page.goto('/');\n  57 |   const nav = page.getByRole('navigation', { name: 'Mobile navigation', exact: true });\n> 58 |   await expect(nav.getByRole('link', { name: 'Test', exact: true })).toHaveAttribute('href', '/');\n     |                                                                      ^\n  59 |   await nav.getByRole('link', { name: 'Learn', exact: true }).click();\n  60 |   await expect(page).toHaveURL('/learn');\n  61 |   await expect(page.getByRole('heading', { name: 'Make every key feel natural.', exact: true })).toBeVisible();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts",
+                        "column": 70,
+                        "line": 58
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\nExpected: \u001b[32m\"/\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\u001b[22m\n\n\n  56 |   await page.goto('/');\n  57 |   const nav = page.getByRole('navigation', { name: 'Mobile navigation', exact: true });\n> 58 |   await expect(nav.getByRole('link', { name: 'Test', exact: true })).toHaveAttribute('href', '/');\n     |                                                                      ^\n  59 |   await nav.getByRole('link', { name: 'Learn', exact: true }).click();\n  60 |   await expect(page).toHaveURL('/learn');\n  61 |   await expect(page.getByRole('heading', { name: 'Make every key feel natural.', exact: true })).toBeVisible();\n    at D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts:58:70"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T18:08:25.817Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-browser-artifacts\\message-probe-scheduler-2-webkit-message-probe\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-browser-artifacts\\message-probe-scheduler-2-webkit-message-probe\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts",
+                    "column": 70,
+                    "line": 58
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d9bc49567a710298d230-4228478320c2913ca354",
+          "file": "message-probe.spec.ts",
+          "line": 54,
+          "column": 30
+        },
+        {
+          "title": "scheduler-3",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit-message-probe",
+              "projectName": "webkit-message-probe",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4938,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T18:08:39.004Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-browser-artifacts\\message-probe-scheduler-3-webkit-message-probe\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d9bc49567a710298d230-ad798349c7eba668605b",
+          "file": "message-probe.spec.ts",
+          "line": 54,
+          "column": 30
+        },
+        {
+          "title": "scheduler-4",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit-message-probe",
+              "projectName": "webkit-message-probe",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5913,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T18:08:44.464Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-browser-artifacts\\message-probe-scheduler-4-webkit-message-probe\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d9bc49567a710298d230-3fad004ee6c16f79626f",
+          "file": "message-probe.spec.ts",
+          "line": 54,
+          "column": 30
+        },
+        {
+          "title": "scheduler-5",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit-message-probe",
+              "projectName": "webkit-message-probe",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2213,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T18:08:50.466Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-browser-artifacts\\message-probe-scheduler-5-webkit-message-probe\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d9bc49567a710298d230-e90c188949b473f040eb",
+          "file": "message-probe.spec.ts",
+          "line": 54,
+          "column": 30
+        },
+        {
+          "title": "scheduler-6",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit-message-probe",
+              "projectName": "webkit-message-probe",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7243,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Make every key feel natural.', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'Make every key feel natural.', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Make every key feel natural.', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Make every key feel natural.', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'Make every key feel natural.', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Make every key feel natural.', exact: true })\u001b[22m\n\n    at D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts:61:98",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts",
+                      "column": 98,
+                      "line": 61
+                    },
+                    "snippet": "  59 |   await nav.getByRole('link', { name: 'Learn', exact: true }).click();\n  60 |   await expect(page).toHaveURL('/learn');\n> 61 |   await expect(page.getByRole('heading', { name: 'Make every key feel natural.', exact: true })).toBeVisible();\n     |                                                                                                  ^\n  62 | });\n  63 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts",
+                        "column": 98,
+                        "line": 61
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Make every key feel natural.', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'Make every key feel natural.', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Make every key feel natural.', exact: true })\u001b[22m\n\n\n  59 |   await nav.getByRole('link', { name: 'Learn', exact: true }).click();\n  60 |   await expect(page).toHaveURL('/learn');\n> 61 |   await expect(page.getByRole('heading', { name: 'Make every key feel natural.', exact: true })).toBeVisible();\n     |                                                                                                  ^\n  62 | });\n  63 |\n    at D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts:61:98"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T18:08:52.748Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-browser-artifacts\\message-probe-scheduler-6-webkit-message-probe\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-browser-artifacts\\message-probe-scheduler-6-webkit-message-probe\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts",
+                    "column": 98,
+                    "line": 61
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d9bc49567a710298d230-181ef6a1def25bd1c3bc",
+          "file": "message-probe.spec.ts",
+          "line": 54,
+          "column": 30
+        },
+        {
+          "title": "scheduler-7",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit-message-probe",
+              "projectName": "webkit-message-probe",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7699,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\nExpected: \u001b[32m\"/\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\nExpected: \u001b[32m\"/\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\u001b[22m\n\n    at D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts:58:70",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts",
+                      "column": 70,
+                      "line": 58
+                    },
+                    "snippet": "  56 |   await page.goto('/');\n  57 |   const nav = page.getByRole('navigation', { name: 'Mobile navigation', exact: true });\n> 58 |   await expect(nav.getByRole('link', { name: 'Test', exact: true })).toHaveAttribute('href', '/');\n     |                                                                      ^\n  59 |   await nav.getByRole('link', { name: 'Learn', exact: true }).click();\n  60 |   await expect(page).toHaveURL('/learn');\n  61 |   await expect(page.getByRole('heading', { name: 'Make every key feel natural.', exact: true })).toBeVisible();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts",
+                        "column": 70,
+                        "line": 58
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\nExpected: \u001b[32m\"/\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\u001b[22m\n\n\n  56 |   await page.goto('/');\n  57 |   const nav = page.getByRole('navigation', { name: 'Mobile navigation', exact: true });\n> 58 |   await expect(nav.getByRole('link', { name: 'Test', exact: true })).toHaveAttribute('href', '/');\n     |                                                                      ^\n  59 |   await nav.getByRole('link', { name: 'Learn', exact: true }).click();\n  60 |   await expect(page).toHaveURL('/learn');\n  61 |   await expect(page.getByRole('heading', { name: 'Make every key feel natural.', exact: true })).toBeVisible();\n    at D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts:58:70"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T18:09:01.360Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-browser-artifacts\\message-probe-scheduler-7-webkit-message-probe\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-browser-artifacts\\message-probe-scheduler-7-webkit-message-probe\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts",
+                    "column": 70,
+                    "line": 58
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d9bc49567a710298d230-3cde897e0e9ec16df8e1",
+          "file": "message-probe.spec.ts",
+          "line": 54,
+          "column": 30
+        },
+        {
+          "title": "scheduler-8",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit-message-probe",
+              "projectName": "webkit-message-probe",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6953,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\nExpected: \u001b[32m\"/\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\nExpected: \u001b[32m\"/\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\u001b[22m\n\n    at D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts:58:70",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts",
+                      "column": 70,
+                      "line": 58
+                    },
+                    "snippet": "  56 |   await page.goto('/');\n  57 |   const nav = page.getByRole('navigation', { name: 'Mobile navigation', exact: true });\n> 58 |   await expect(nav.getByRole('link', { name: 'Test', exact: true })).toHaveAttribute('href', '/');\n     |                                                                      ^\n  59 |   await nav.getByRole('link', { name: 'Learn', exact: true }).click();\n  60 |   await expect(page).toHaveURL('/learn');\n  61 |   await expect(page.getByRole('heading', { name: 'Make every key feel natural.', exact: true })).toBeVisible();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts",
+                        "column": 70,
+                        "line": 58
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\nExpected: \u001b[32m\"/\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Test', exact: true })\u001b[22m\n\n\n  56 |   await page.goto('/');\n  57 |   const nav = page.getByRole('navigation', { name: 'Mobile navigation', exact: true });\n> 58 |   await expect(nav.getByRole('link', { name: 'Test', exact: true })).toHaveAttribute('href', '/');\n     |                                                                      ^\n  59 |   await nav.getByRole('link', { name: 'Learn', exact: true }).click();\n  60 |   await expect(page).toHaveURL('/learn');\n  61 |   await expect(page.getByRole('heading', { name: 'Make every key feel natural.', exact: true })).toBeVisible();\n    at D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts:58:70"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T18:09:11.309Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-browser-artifacts\\message-probe-scheduler-8-webkit-message-probe\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-browser-artifacts\\message-probe-scheduler-8-webkit-message-probe\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-lab-2026-10-15\\loading-probe\\message-probe.spec.ts",
+                    "column": 70,
+                    "line": 58
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d9bc49567a710298d230-586e54b872f4d25372b0",
+          "file": "message-probe.spec.ts",
+          "line": 54,
+          "column": 30
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-15T18:08:11.466Z",
+    "duration": 67406.56300000001,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 5,
+    "flaky": 0
+  }
+}

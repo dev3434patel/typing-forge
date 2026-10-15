@@ -1,26 +1,48 @@
-/**
- * KEYBR-STYLE ADAPTIVE LEARNING ENGINE
- * Per-character metrics, confidence levels, and intelligent letter unlocking
- */
+import { getContentPack, graphemes, seededRandom, type ContentPack } from './content-packs';
+import { sessionRepository, stableJson } from '@/services/session-repository';
 
-// Character confidence data structure
+import { LEARNING_VERSION, LEARNING_INACTIVITY_MS, learningEvidenceFromResult, type LearningDimensions, type LearningAttempt, type LearningSessionEvidence } from './learning-evidence';
+import type { SessionResult } from './typing-core/types';
+export { LEARNING_VERSION, LEARNING_INACTIVITY_MS, learningEvidenceFromResult, type LearningDimensions, type LearningAttempt, type LearningSessionEvidence } from './learning-evidence';
+
+const RECENT_WINDOW = 50;
+const MIN_SAMPLES = 20;
+const LEGACY_LETTERS = ['e', 't', 'a', 'o', 'i', 'n', 's', 'r'];
+
+
+export const DEFAULT_LEARNING_DIMENSIONS: LearningDimensions = { language: 'en', layout: 'qwerty', domain: 'prose', inputMethod: 'keyboard' };
+
 export interface CharacterConfidence {
   char: string;
-  confidence: number; // 0.0 to 1.0+
-  wpm: number;
+  confidence: number; // Uncapped latency speed ratio, not a probability.
+  wpm: number; // Latency-derived estimate, not a test score.
   accuracy: number;
   occurrences: number;
   avgTimeMs: number;
   stdDev: number;
-  isUnlocked: boolean;
+  isUnlocked: boolean; // Legacy alias for introduced, not mastered.
   status: 'weak' | 'needs_work' | 'in_progress' | 'nearly_unlocked' | 'unlocked';
+  introduced?: boolean;
+  mastered?: boolean;
+  assessmentState?: 'locked' | 'introduced' | 'sampled' | 'assessed' | 'mastered' | 'review';
+  recentAttempts?: number;
+  attributableAttempts?: number;
+  qualifiedLatencySamples?: number;
+  lessonCount?: number;
+  masteryCheckpoints?: number;
+  lastPracticedAt?: string | null;
+  observations?: LearningAttempt[];
+  masteryHistory?: { sessionId: string; completedAt: string; qualified: boolean }[];
 }
-
 export interface Keystroke {
   char: string;
   timestamp: number;
-  isCorrect: boolean;
+  isCorrect?: boolean;
   expected: string;
+  key?: string;
+  position?: number;
+  compositionGroup?: string;
+  provenance?: string;
 }
 
 export interface KeybrLesson {
@@ -28,464 +50,348 @@ export interface KeybrLesson {
   availableLetters: string[];
   focusLetters: string[];
   lockedLetters: string[];
+  seed: string;
+  generatorVersion: string;
+  contentRevision: string;
+  naturalWordCount: number;
+  phoneticWordCount: number;
+  review: boolean;
 }
+interface LearningEnvelope {
+  learningVersion: typeof LEARNING_VERSION;
+  owner: string;
+  introduced: Record<string, string[]>;
+  legacyStats: Record<string, Record<string, CharacterConfidence>>;
+  sessions: LearningSessionEvidence[];
+  serverVersion: number;
+  serverSessionIds?: string[];
+  removedSessionIds?: string[];
+}
+const memoryFallback = new Map<string, LearningEnvelope>();
+export interface LearningOptions { owner?: string; dimensions?: LearningDimensions }
+interface ProgressOptions extends LearningOptions { sessionId?: string; completedAt?: string; elapsedMs?: number; assessment?: boolean; sourceResultId?: string }
 
-// Default starting letters (vowels + common consonants)
-const STARTING_LETTERS = new Set(['e', 't', 'a', 'o', 'i', 'n', 's', 'r']);
-const ALL_LETTERS = 'abcdefghijklmnopqrstuvwxyz'.split('');
-
-// Letter frequency order (most common to least common in English)
-const LETTER_FREQUENCY_ORDER = [
-  'e', 't', 'a', 'o', 'i', 'n', 's', 'h', 'r', 'd', 'l', 'c', 'u', 'm', 'w',
-  'f', 'g', 'y', 'p', 'b', 'v', 'k', 'j', 'x', 'q', 'z'
-];
-
-/**
- * Calculate per-character metrics from keystrokes
- */
-export function calculatePerCharMetrics(
-  keystrokes: Keystroke[],
-  targetWPM: number = 35
-): Map<string, CharacterConfidence> {
-  const charMap = new Map<string, {
-    correct: number;
-    total: number;
-    timings: number[];
-  }>();
-
-  // Group keystrokes by character
-  for (let i = 0; i < keystrokes.length; i++) {
-    const ks = keystrokes[i];
-    const char = ks.expected.toLowerCase();
-    
-    if (!char.match(/[a-z]/)) continue; // Only track letters
-    
-    if (!charMap.has(char)) {
-      charMap.set(char, { correct: 0, total: 0, timings: [] });
-    }
-    
-    const data = charMap.get(char)!;
-    data.total++;
-    if (ks.isCorrect) data.correct++;
-    
-    // Calculate time since previous keystroke (bigram timing)
-    if (i > 0) {
-      const timeDiff = ks.timestamp - keystrokes[i - 1].timestamp;
-      if (timeDiff > 0 && timeDiff < 5000) { // Ignore pauses > 5s
-        data.timings.push(timeDiff);
+function dimensionsOf(dimensions?: LearningDimensions): LearningDimensions {
+  const input = dimensions ?? DEFAULT_LEARNING_DIMENSIONS;
+  return { ...input, language: getContentPack(input.language).id, layout: input.layout.toLowerCase() };
+}
+export function learningModelKey(dimensions?: LearningDimensions): string {
+  const input = dimensionsOf(dimensions);
+  return `${input.language}|${input.layout}|${input.domain}|${input.inputMethod}`;
+}
+function storageKey(owner: string): string { return `typingforge:v3:${owner}:learning`; }
+function emptyEnvelope(owner: string): LearningEnvelope {
+  return { learningVersion: LEARNING_VERSION, owner, introduced: {}, legacyStats: {}, sessions: [], serverVersion: 0 };
+}
+function loadEnvelope(owner = 'guest'): LearningEnvelope {
+  const empty = emptyEnvelope(owner);
+  try {
+    const raw = localStorage.getItem(storageKey(owner));
+    if (!raw && memoryFallback.has(owner)) return JSON.parse(JSON.stringify(memoryFallback.get(owner))) as LearningEnvelope;
+    if (raw) {
+      const candidate: unknown = JSON.parse(raw);
+      if (candidate && typeof candidate === 'object' && 'learningVersion' in candidate && candidate.learningVersion === LEARNING_VERSION && 'owner' in candidate && candidate.owner === owner) {
+        const value = candidate as LearningEnvelope;
+        return { ...empty, ...value, sessions: Array.isArray(value.sessions) ? value.sessions.filter(validEvidence) : [], introduced: value.introduced ?? {}, legacyStats: value.legacyStats ?? {} };
       }
     }
-  }
-
-  // Convert to CharacterConfidence
-  const result = new Map<string, CharacterConfidence>();
-  const savedData = getCharacterData();
-
-  for (const [char, data] of charMap) {
-    const accuracy = data.total > 0 ? (data.correct / data.total) * 100 : 0;
-    const avgTimeMs = data.timings.length > 0 
-      ? data.timings.reduce((a, b) => a + b, 0) / data.timings.length 
-      : 500;
-    const stdDev = calculateStdDev(data.timings);
-    
-    // Calculate WPM for this character: 60000ms/min ÷ avg_time ÷ 5 chars/word
-    const charWPM = avgTimeMs > 0 ? (60000 / avgTimeMs) / 5 : 0;
-    
-    // Confidence = (speed component) × (accuracy component) × (consistency multiplier)
-    const speedComponent = Math.min(charWPM / targetWPM, 1.0);
-    const accuracyComponent = accuracy / 100;
-    const consistencyMult = Math.max(0, 1 - (stdDev / 200));
-    const confidence = speedComponent * accuracyComponent * consistencyMult;
-    
-    const isUnlocked = savedData[char]?.isUnlocked || STARTING_LETTERS.has(char);
-    
-    result.set(char, {
-      char,
-      confidence: Math.round(confidence * 100) / 100,
-      wpm: Math.round(charWPM * 10) / 10,
-      accuracy: Math.round(accuracy * 10) / 10,
-      occurrences: data.total,
-      avgTimeMs: Math.round(avgTimeMs),
-      stdDev: Math.round(stdDev),
-      isUnlocked,
-      status: getConfidenceStatus(confidence, isUnlocked).status
-    });
-  }
-
-  return result;
-}
-
-/**
- * Calculate standard deviation
- */
-function calculateStdDev(values: number[]): number {
-  if (values.length === 0) return 0;
-  const mean = values.reduce((a, b) => a + b, 0) / values.length;
-  const variance = values.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / values.length;
-  return Math.sqrt(variance);
-}
-
-/**
- * Get confidence status with color and emoji
- */
-export function getConfidenceStatus(confidence: number, isUnlocked: boolean = true): {
-  status: 'weak' | 'needs_work' | 'in_progress' | 'nearly_unlocked' | 'unlocked';
-  color: string;
-  emoji: string;
-  text: string;
-} {
-  if (!isUnlocked) {
-    return { status: 'weak', color: 'gray', emoji: '🔒', text: 'Locked' };
-  }
-  if (confidence >= 1.0) {
-    return { status: 'unlocked', color: 'success', emoji: '✅', text: 'Mastered' };
-  }
-  if (confidence >= 0.8) {
-    return { status: 'nearly_unlocked', color: 'primary', emoji: '🟢', text: 'Nearly there' };
-  }
-  if (confidence >= 0.6) {
-    return { status: 'in_progress', color: 'warning', emoji: '🟡', text: 'In progress' };
-  }
-  if (confidence >= 0.3) {
-    return { status: 'needs_work', color: 'warning', emoji: '🟠', text: 'Needs work' };
-  }
-  return { status: 'weak', color: 'destructive', emoji: '🔴', text: 'Weak' };
-}
-
-/**
- * Get/save character confidence data from localStorage
- */
-export function getCharacterData(): Record<string, CharacterConfidence> {
-  const stored = localStorage.getItem('keybr_character_data');
-  return stored ? JSON.parse(stored) : {};
-}
-
-export function saveCharacterData(data: Record<string, CharacterConfidence>): void {
-  localStorage.setItem('keybr_character_data', JSON.stringify(data));
-}
-
-/**
- * Update character data with new test results
- */
-export function updateCharacterProgress(
-  newMetrics: Map<string, CharacterConfidence>,
-  targetWPM: number = 35
-): {
-  updatedChars: CharacterConfidence[];
-  newlyUnlocked: string[];
-  nextToUnlock: string | null;
-} {
-  const savedData = getCharacterData();
-  const updatedChars: CharacterConfidence[] = [];
-  const newlyUnlocked: string[] = [];
-
-  // Merge new metrics with saved data
-  for (const [char, metrics] of newMetrics) {
-    const existing = savedData[char];
-    
-    // Calculate weighted average if existing data
-    let newConfidence = metrics.confidence;
-    let newWpm = metrics.wpm;
-    let newAccuracy = metrics.accuracy;
-    let totalOccurrences = metrics.occurrences;
-    
-    if (existing) {
-      const weight = 0.7; // Give more weight to recent results
-      newConfidence = existing.confidence * (1 - weight) + metrics.confidence * weight;
-      newWpm = existing.wpm * (1 - weight) + metrics.wpm * weight;
-      newAccuracy = existing.accuracy * (1 - weight) + metrics.accuracy * weight;
-      totalOccurrences = existing.occurrences + metrics.occurrences;
-    }
-    
-    const wasUnlocked = existing?.isUnlocked || STARTING_LETTERS.has(char);
-    const shouldUnlock = newWpm >= targetWPM && newAccuracy >= 95;
-    const isUnlocked = wasUnlocked || shouldUnlock;
-    
-    if (!wasUnlocked && shouldUnlock) {
-      newlyUnlocked.push(char);
-    }
-    
-    const updated: CharacterConfidence = {
-      char,
-      confidence: Math.round(newConfidence * 100) / 100,
-      wpm: Math.round(newWpm * 10) / 10,
-      accuracy: Math.round(newAccuracy * 10) / 10,
-      occurrences: totalOccurrences,
-      avgTimeMs: metrics.avgTimeMs,
-      stdDev: metrics.stdDev,
-      isUnlocked,
-      status: getConfidenceStatus(newConfidence, isUnlocked).status
-    };
-    
-    savedData[char] = updated;
-    updatedChars.push(updated);
-  }
-
-  saveCharacterData(savedData);
-
-  return {
-    updatedChars,
-    newlyUnlocked,
-    nextToUnlock: getNextLetterToUnlock(savedData)
-  };
-}
-
-/**
- * Get the next letter that should be unlocked
- */
-function getNextLetterToUnlock(data: Record<string, CharacterConfidence>): string | null {
-  for (const letter of LETTER_FREQUENCY_ORDER) {
-    if (!data[letter]?.isUnlocked && !STARTING_LETTERS.has(letter)) {
-      return letter;
-    }
-  }
-  return null;
-}
-
-/**
- * Get all unlocked letters
- */
-export function getUnlockedLetters(): string[] {
-  const data = getCharacterData();
-  const unlocked = new Set<string>(STARTING_LETTERS);
-  
-  for (const [char, charData] of Object.entries(data)) {
-    if (charData.isUnlocked) {
-      unlocked.add(char);
-    }
-  }
-  
-  return Array.from(unlocked).sort();
-}
-
-/**
- * Get locked letters
- */
-export function getLockedLetters(): string[] {
-  const unlocked = new Set(getUnlockedLetters());
-  return ALL_LETTERS.filter(l => !unlocked.has(l));
-}
-
-/**
- * Get weak letters (lowest confidence among unlocked)
- */
-export function getWeakLetters(count: number = 5): string[] {
-  const data = getCharacterData();
-  const unlocked = getUnlockedLetters();
-  
-  return unlocked
-    .map(char => {
-      const charData = data[char];
-      // Prioritize letters with actual practice data over default confidence
-      // Letters with no data get confidence 0, but letters with data (even low) should be prioritized
-      const confidence = charData?.confidence ?? 0;
-      const hasData = charData !== undefined;
-      return { char, confidence, hasData };
-    })
-    .sort((a, b) => {
-      // First sort by whether they have data (letters with data come first)
-      if (a.hasData !== b.hasData) {
-        return a.hasData ? -1 : 1;
-      }
-      // Then sort by confidence (lower confidence = weaker)
-      return a.confidence - b.confidence;
-    })
-    .slice(0, count)
-    .map(x => x.char);
-}
-
-/**
- * Generate Keybr-style adaptive lesson
- */
-export function generateKeybrLesson(wordCount: number = 50): KeybrLesson {
-  const unlockedLetters = getUnlockedLetters();
-  const lockedLetters = getLockedLetters();
-  const focusLetters = getWeakLetters(3);
-  
-  // Ensure we have focus letters (if none, use first 3 unlocked)
-  const effectiveFocusLetters = focusLetters.length > 0 
-    ? focusLetters 
-    : unlockedLetters.slice(0, Math.min(3, unlockedLetters.length));
-  
-  // Word bank filtered by available letters - STRICT: only words using unlocked letters
-  const wordBank = getWordBank().filter(word => {
-    const wordLetters = new Set(word.toLowerCase().replace(/[^a-z]/g, '').split(''));
-    for (const char of wordLetters) {
-      if (!unlockedLetters.includes(char)) {
-        return false;
+    // Import old unscoped observations into guest only. Legacy values never establish mastery.
+    const old = owner === 'guest' ? localStorage.getItem('keybr_character_data') : null;
+    if (old !== null) {
+      const data = JSON.parse(old) as Record<string, CharacterConfidence>;
+      if (data && typeof data === 'object' && !Array.isArray(data)) {
+        const model = learningModelKey();
+        empty.introduced[model] = [...new Set([...LEGACY_LETTERS, ...Object.entries(data).filter(([, stat]) => stat?.isUnlocked).map(([char]) => char)])];
+        empty.legacyStats[model] = data;
+        persistEnvelope(empty);
       }
     }
+  } catch { if (memoryFallback.has(owner)) return JSON.parse(JSON.stringify(memoryFallback.get(owner))) as LearningEnvelope; }
+  return empty;
+}
+function persistEnvelope(envelope: LearningEnvelope): boolean {
+  try {
+    localStorage.setItem(storageKey(envelope.owner), JSON.stringify(envelope));
+    memoryFallback.delete(envelope.owner);
+    if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('typingforge:learning-updated', { detail: { owner: envelope.owner } }));
     return true;
+  } catch { memoryFallback.set(envelope.owner, JSON.parse(JSON.stringify(envelope)) as LearningEnvelope); return false; }
+}
+function validEvidence(value: unknown): value is LearningSessionEvidence {
+  if (!value || typeof value !== 'object') return false;
+  const item = value as LearningSessionEvidence;
+  return item.learningVersion === LEARNING_VERSION && typeof item.sessionId === 'string' && item.sessionId.length > 0 && Number.isFinite(Date.parse(item.completedAt)) && Number.isFinite(item.elapsedMs) && item.elapsedMs >= 0 && item.elapsedMs <= 86_400_000 && !!item.dimensions && ['keyboard', 'composition', 'virtual'].includes(item.dimensions.inputMethod) && ['prose', 'code'].includes(item.dimensions.domain) && typeof item.dimensions.language === 'string' && typeof item.dimensions.layout === 'string' && Number.isFinite(item.targetWpm) && item.targetWpm >= 1 && item.targetWpm <= 500 && Array.isArray(item.attempts) && item.attempts.length <= 100_000 && item.attempts.every(attempt => typeof attempt.expected === 'string' && typeof attempt.typed === 'string' && typeof attempt.correct === 'boolean' && Number.isFinite(attempt.offsetMs) && attempt.offsetMs >= 0 && (attempt.latencyMs === null || Number.isFinite(attempt.latencyMs) && attempt.latencyMs > 0));
+}
+const mean = (values: number[]) => values.length ? values.reduce((sum, value) => sum + value, 0) / values.length : 0;
+function stdDev(values: number[]): number { const average = mean(values); return Math.sqrt(mean(values.map(value => (value - average) ** 2))); }
+function saneTarget(value: number): number { return Number.isFinite(value) ? Math.max(1, Math.min(500, value)) : 35; }
+
+/** Only individual correct, non-trigger intervals <=2 seconds qualify for latency. */
+export function attemptsFromKeystrokes(keystrokes: readonly Keystroke[], language = 'en'): LearningAttempt[] {
+  return keystrokes.filter(stroke => stroke.key !== 'Backspace' && stroke.char !== '').map((stroke, index, strokes) => {
+    const previous = strokes[index - 1];
+    const interval = previous ? stroke.timestamp - previous.timestamp : 0;
+    const composition = !!stroke.compositionGroup || stroke.provenance === 'composition';
+    const correct = stroke.char.normalize('NFC') === stroke.expected.normalize('NFC');
+    const individual = graphemes(stroke.char, language).length === 1 && !composition;
+    const attributable = index > 0 && individual && !previous?.compositionGroup && previous?.provenance !== 'composition' && interval > 0 && interval <= LEARNING_INACTIVITY_MS;
+    const classification: LearningAttempt['classification'] = !previous ? 'trigger' : composition ? 'composition' : interval > LEARNING_INACTIVITY_MS ? 'inactivity' : !individual || interval <= 0 ? 'unattributable' : !correct ? 'incorrect' : 'individual';
+    return { expected: stroke.expected.normalize('NFC'), typed: stroke.char.normalize('NFC'), correct, offsetMs: Math.max(0, stroke.timestamp), latencyMs: attributable && correct ? interval : null, attributable, classification };
   });
-  
-  // If word bank is empty or too small, generate simple words from unlocked letters
-  let effectiveWordBank = wordBank;
-  if (wordBank.length === 0 || wordBank.length < 10) {
-    // Generate simple words from unlocked letters (2-4 letter combinations)
-    effectiveWordBank = generateWordsFromLetters(unlockedLetters, 50);
-  }
-  
-  // Prioritize words with focus letters
-  const focusWords = effectiveWordBank.filter(word => 
-    effectiveFocusLetters.some(char => word.toLowerCase().includes(char))
-  );
-  const otherWords = effectiveWordBank.filter(word => 
-    !effectiveFocusLetters.some(char => word.toLowerCase().includes(char))
-  );
-  
-  // Ensure we have enough focus words - generate if needed
-  let finalFocusWords = focusWords;
-  const focusCount = Math.ceil(wordCount * 0.7);
-  
-  // If we don't have enough focus words, generate more
-  if (finalFocusWords.length < focusCount && effectiveFocusLetters.length > 0) {
-    const needed = focusCount - finalFocusWords.length;
-    const generated = generateWordsFromLetters(unlockedLetters, needed * 2, effectiveFocusLetters);
-    finalFocusWords = [...finalFocusWords, ...generated];
-  }
-  
-  const otherCount = wordCount - focusCount;
-  const selectedWords: string[] = [];
-  
-  // Add focus words (repeat if needed to reach count)
-  if (finalFocusWords.length > 0) {
-    for (let i = 0; i < focusCount; i++) {
-      const idx = Math.floor(Math.random() * finalFocusWords.length);
-      selectedWords.push(finalFocusWords[idx]);
-    }
-  } else if (effectiveWordBank.length > 0) {
-    // Fallback: use all available words if no focus words
-    for (let i = 0; i < focusCount && effectiveWordBank.length > 0; i++) {
-      const idx = Math.floor(Math.random() * effectiveWordBank.length);
-      selectedWords.push(effectiveWordBank[idx]);
-    }
-  }
-  
-  // Add other words (repeat if needed to reach count)
-  if (otherWords.length > 0) {
-    for (let i = 0; i < otherCount; i++) {
-      const idx = Math.floor(Math.random() * otherWords.length);
-      selectedWords.push(otherWords[idx]);
-    }
-  } else if (selectedWords.length < wordCount && effectiveWordBank.length > 0) {
-    // Fill remaining with any available words
-    for (let i = selectedWords.length; i < wordCount && effectiveWordBank.length > 0; i++) {
-      const idx = Math.floor(Math.random() * effectiveWordBank.length);
-      selectedWords.push(effectiveWordBank[idx]);
-    }
-  }
-  
-  // Shuffle
-  for (let i = selectedWords.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [selectedWords[i], selectedWords[j]] = [selectedWords[j], selectedWords[i]];
-  }
-  
+}
+function summarize(char: string, observations: LearningAttempt[], targetWpm: number, introduced: boolean): CharacterConfidence {
+  const recent = observations.slice(-RECENT_WINDOW);
+  const timings = recent.flatMap(attempt => attempt.latencyMs === null ? [] : [attempt.latencyMs]);
+  // Smoothing is rebuilt from the recent evidence window, so an old mistake or pause can recover.
+  let smoothed = 0;
+  for (const latency of timings) smoothed = smoothed > 0 ? smoothed * 0.9 + latency * 0.1 : latency;
+  const accuracy = recent.length ? recent.filter(attempt => attempt.correct).length / recent.length * 100 : 0;
+  const confidence = smoothed > 0 ? (60000 / (saneTarget(targetWpm) * 5)) / smoothed : 0;
   return {
-    text: selectedWords.slice(0, wordCount).join(' '),
-    availableLetters: unlockedLetters,
-    focusLetters: effectiveFocusLetters,
-    lockedLetters
+    char, confidence, wpm: smoothed > 0 ? 12000 / smoothed : 0, accuracy, occurrences: observations.length,
+    avgTimeMs: smoothed, stdDev: stdDev(timings), isUnlocked: introduced, introduced, mastered: false,
+    status: getConfidenceStatus(confidence, introduced, false).status,
+    recentAttempts: recent.length, attributableAttempts: recent.filter(attempt => attempt.attributable).length,
+    qualifiedLatencySamples: timings.length, observations: recent,
   };
 }
-
-/**
- * Generate simple words from unlocked letters only
- * If focusLetters provided, ensures words contain at least one focus letter
- */
-function generateWordsFromLetters(letters: string[], count: number, focusLetters?: string[]): string[] {
-  const words: string[] = [];
-  const letterArray = letters.slice();
-  
-  // Generate 2-4 letter words
-  for (let i = 0; i < count; i++) {
-    const wordLength = 2 + Math.floor(Math.random() * 3); // 2, 3, or 4 letters
-    let word = '';
-    
-    // If focus letters provided, ensure at least one is included
-    if (focusLetters && focusLetters.length > 0) {
-      // Add at least one focus letter (can be anywhere in the word)
-      const focusLetter = focusLetters[Math.floor(Math.random() * focusLetters.length)];
-      const focusPosition = Math.floor(Math.random() * wordLength);
-      
-      // Build word with focus letter at random position
-      for (let j = 0; j < wordLength; j++) {
-        if (j === focusPosition) {
-          word += focusLetter;
-        } else {
-          const randomLetter = letterArray[Math.floor(Math.random() * letterArray.length)];
-          word += randomLetter;
-        }
-      }
-    } else {
-      // Generate random word
-      for (let j = 0; j < wordLength; j++) {
-        const randomLetter = letterArray[Math.floor(Math.random() * letterArray.length)];
-        word += randomLetter;
+/** Pure session summary. Expected/typed characters, not client correctness booleans, determine accuracy. */
+export function calculatePerCharMetrics(keystrokes: Keystroke[], targetWPM = 35, dimensions?: LearningDimensions): Map<string, CharacterConfidence> {
+  return summarizeLearningAttempts(attemptsFromKeystrokes(keystrokes, dimensions?.language ?? 'en'), targetWPM, dimensions);
+}
+export function summarizeLearningAttempts(attempts: LearningAttempt[], targetWPM = 35, dimensions?: LearningDimensions): Map<string, CharacterConfidence> {
+  const pack = getContentPack(dimensions?.language ?? 'en');
+  const alphabet = new Set(pack.alphabet);
+  const groups = new Map<string, LearningAttempt[]>();
+  for (const attempt of attempts) {
+    const char = attempt.expected.toLocaleLowerCase(pack.id === 'gu-Latn' ? 'gu' : pack.id);
+    if (!alphabet.has(char)) continue;
+    groups.set(char, [...(groups.get(char) ?? []), attempt]);
+  }
+  return new Map([...groups].map(([char, observations]) => [char, summarize(char, observations, targetWPM, true)]));
+}
+function initialLetters(pack: ContentPack, envelope: LearningEnvelope, model: string): string[] {
+  return [...new Set(envelope.introduced[model] ?? pack.introductionOrder.slice(0, 6))].filter(char => pack.alphabet.includes(char));
+}
+/** Matched sessions rebuild deterministically even when received out of order. */
+function derive(envelope: LearningEnvelope, dimensions: LearningDimensions, targetWpm: number): { stats: Record<string, CharacterConfidence>; introduced: string[] } {
+  const pack = getContentPack(dimensions.language);
+  const model = learningModelKey(dimensions);
+  const introduced = new Set(initialLetters(pack, envelope, model));
+  const groups = new Map<string, LearningAttempt[]>();
+  const assessmentGroups = new Map<string, LearningAttempt[]>();
+  const lessons = new Map<string, Set<string>>();
+  const checkpoints = new Map<string, { sessionId: string; completedAt: string; qualified: boolean }[]>();
+  const mastered = new Set<string>();
+  const lastPracticed = new Map<string, string>();
+  const relevant = envelope.sessions.filter(session => learningModelKey(session.dimensions) === model).sort((a, b) => a.completedAt.localeCompare(b.completedAt) || a.sessionId.localeCompare(b.sessionId));
+  for (const session of relevant) {
+    const observed = new Set<string>();
+    for (const attempt of session.attempts) {
+      const char = attempt.expected.toLocaleLowerCase(pack.id === 'gu-Latn' ? 'gu' : pack.id);
+      if (!pack.alphabet.includes(char)) continue;
+      groups.set(char, [...(groups.get(char) ?? []), attempt]);
+      observed.add(char);
+      lastPracticed.set(char, session.completedAt);
+      if (session.assessment) {
+        assessmentGroups.set(char, [...(assessmentGroups.get(char) ?? []), attempt]);
+        const keyLessons = lessons.get(char) ?? new Set<string>();
+        keyLessons.add(session.sessionId);
+        lessons.set(char, keyLessons);
       }
     }
-    
-    words.push(word);
+    if (session.assessment) {
+      for (const char of observed) {
+        if (!introduced.has(char)) continue;
+        const stat = summarize(char, assessmentGroups.get(char) ?? [], session.targetWpm, true);
+        const qualified = (stat.attributableAttempts ?? 0) >= MIN_SAMPLES && (lessons.get(char)?.size ?? 0) >= 2 && stat.accuracy + 1e-9 >= 97 && stat.avgTimeMs > 0 && stat.avgTimeMs <= 60000 / (saneTarget(session.targetWpm) * 5) + 1e-6;
+        const history = checkpoints.get(char) ?? [];
+        history.push({ sessionId: session.sessionId, completedAt: session.completedAt, qualified });
+        checkpoints.set(char, history);
+        if (qualified && history.length > 1 && history[history.length - 2].qualified) mastered.add(char);
+      }
+      if ([...introduced].every(char => mastered.has(char))) {
+        const next = pack.introductionOrder.find(char => !introduced.has(char));
+        if (next) introduced.add(next);
+      }
+    }
   }
-  
-  return words;
-}
-
-/**
- * Get word bank for Keybr lessons
- */
-function getWordBank(): string[] {
-  return [
-    // Common short words
-    'the', 'be', 'to', 'of', 'and', 'a', 'in', 'that', 'have', 'it',
-    'for', 'not', 'on', 'with', 'he', 'as', 'you', 'do', 'at', 'this',
-    'but', 'his', 'by', 'from', 'they', 'we', 'say', 'her', 'she', 'or',
-    'an', 'will', 'my', 'one', 'all', 'would', 'there', 'their', 'what', 'so',
-    'up', 'out', 'if', 'about', 'who', 'get', 'which', 'go', 'me', 'when',
-    'make', 'can', 'like', 'time', 'no', 'just', 'him', 'know', 'take', 'into',
-    'year', 'your', 'good', 'some', 'them', 'see', 'other', 'than', 'then', 'now',
-    'look', 'only', 'come', 'its', 'over', 'think', 'also', 'back', 'after', 'use',
-    'two', 'how', 'our', 'work', 'first', 'well', 'way', 'even', 'new', 'want',
-    'day', 'most', 'us', 'is', 'are', 'was', 'were', 'been', 'has', 'had',
-    // Medium words  
-    'state', 'never', 'before', 'high', 'every', 'same', 'under', 'last', 'great', 'own',
-    'little', 'still', 'world', 'life', 'home', 'read', 'hand', 'between', 'each', 'made',
-    'next', 'sound', 'below', 'saw', 'house', 'again', 'side', 'large', 'three', 'small',
-    'part', 'live', 'found', 'upon', 'right', 'left', 'line', 'turn', 'move', 'must',
-    'name', 'kind', 'need', 'place', 'long', 'old', 'help', 'mean', 'might', 'end',
-    'different', 'around', 'animal', 'point', 'mother', 'answer', 'learn', 'study', 'father', 'head',
-    'stand', 'page', 'earth', 'letter', 'thought', 'together', 'until', 'children', 'begin', 'idea',
-    'enough', 'almost', 'above', 'sometimes', 'mountain', 'paper', 'example', 'hundred', 'thousand', 'second'
-  ];
-}
-
-/**
- * Get all character stats for display
- */
-export function getAllCharacterStats(): CharacterConfidence[] {
-  const data = getCharacterData();
-  
-  return ALL_LETTERS.map(char => {
-    const existing = data[char];
-    const isUnlocked = existing?.isUnlocked || STARTING_LETTERS.has(char);
-    
-    return existing || {
-      char,
-      confidence: 0,
-      wpm: 0,
-      accuracy: 0,
-      occurrences: 0,
-      avgTimeMs: 0,
-      stdDev: 0,
-      isUnlocked,
-      status: isUnlocked ? 'weak' : 'weak'
+  const stats: Record<string, CharacterConfidence> = {};
+  for (const char of pack.alphabet) {
+    const observations = groups.get(char) ?? [];
+    const stat = summarize(char, observations, targetWpm, introduced.has(char));
+    const history = checkpoints.get(char) ?? [];
+    const wasMastered = mastered.has(char);
+    const reviewing = wasMastered && (stat.accuracy < 97 || stat.confidence + 1e-9 < 1);
+    const legacy = envelope.legacyStats[model]?.[char];
+    stats[char] = {
+      ...stat,
+      ...(observations.length === 0 && legacy ? { wpm: legacy.wpm || 0, accuracy: legacy.accuracy || 0, occurrences: legacy.occurrences || 0, confidence: 0 } : {}),
+      mastered: wasMastered, lessonCount: lessons.get(char)?.size ?? 0, masteryCheckpoints: history.slice(-2).filter(checkpoint => checkpoint.qualified).length,
+      lastPracticedAt: lastPracticed.get(char) ?? null, masteryHistory: history,
+      assessmentState: !introduced.has(char) ? 'locked' : wasMastered ? reviewing ? 'review' : 'mastered' : stat.attributableAttempts! >= MIN_SAMPLES && (lessons.get(char)?.size ?? 0) >= 2 ? 'assessed' : observations.length ? 'sampled' : 'introduced',
+      status: wasMastered && !reviewing ? 'unlocked' : getConfidenceStatus(stat.confidence, introduced.has(char), false).status,
     };
+  }
+  return { stats, introduced: [...introduced] };
+}
+export function getConfidenceStatus(confidence: number, isUnlocked = true, mastered = confidence >= 1): { status: CharacterConfidence['status']; color: string; emoji: string; text: string } {
+  if (!isUnlocked) return { status: 'weak', color: 'gray', emoji: '🔒', text: 'Locked' };
+  if (mastered) return { status: 'unlocked', color: 'success', emoji: '✓', text: 'Mastered' };
+  if (confidence >= 0.8) return { status: 'nearly_unlocked', color: 'primary', emoji: '◕', text: 'Building evidence' };
+  if (confidence >= 0.6) return { status: 'in_progress', color: 'warning', emoji: '◑', text: 'In progress' };
+  if (confidence >= 0.3) return { status: 'needs_work', color: 'warning', emoji: '◔', text: 'Needs practice' };
+  return { status: 'weak', color: 'destructive', emoji: '○', text: 'Needs evidence' };
+}
+export function getCharacterData(options: LearningOptions = {}): Record<string, CharacterConfidence> {
+  const result = derive(loadEnvelope(options.owner), dimensionsOf(options.dimensions), 35).stats;
+  return Object.fromEntries(Object.entries(result).filter(([, stat]) => stat.occurrences > 0));
+}
+/** Legacy display import. Values are unassessed and cannot create mastery. */
+export function saveCharacterData(data: Record<string, CharacterConfidence>, options: LearningOptions = {}): void {
+  const envelope = loadEnvelope(options.owner);
+  const model = learningModelKey(options.dimensions);
+  envelope.legacyStats[model] = data;
+  envelope.introduced[model] = [...new Set([...initialLetters(getContentPack(options.dimensions?.language ?? 'en'), envelope, model), ...Object.entries(data).filter(([, item]) => item.isUnlocked).map(([char]) => char)])];
+  persistEnvelope(envelope);
+}
+export function getAllCharacterStats(options: LearningOptions & { targetWpm?: number } = {}): CharacterConfidence[] {
+  const dimensions = dimensionsOf(options.dimensions);
+  const data = derive(loadEnvelope(options.owner), dimensions, options.targetWpm ?? 35).stats;
+  return getContentPack(dimensions.language).introductionOrder.map(char => data[char]);
+}
+export function getUnlockedLetters(options: LearningOptions = {}): string[] { return derive(loadEnvelope(options.owner), dimensionsOf(options.dimensions), 35).introduced; }
+export function getLockedLetters(options: LearningOptions = {}): string[] { const available = new Set(getUnlockedLetters(options)); return getContentPack(options.dimensions?.language ?? 'en').introductionOrder.filter(char => !available.has(char)); }
+export function getWeakLetters(count = 5, options: LearningOptions & { targetWpm?: number } = {}): string[] {
+  return getAllCharacterStats(options).filter(stat => stat.isUnlocked).sort((a, b) => Number(a.mastered) - Number(b.mastered) || (a.attributableAttempts ?? 0) - (b.attributableAttempts ?? 0) || a.confidence - b.confidence).slice(0, Math.max(0, count)).map(stat => stat.char);
+}
+export function recordLearningSession(evidence: LearningSessionEvidence, owner = 'guest'): { updatedChars: CharacterConfidence[]; newlyUnlocked: string[]; nextToUnlock: string | null; persisted: boolean } {
+  if (!validEvidence(evidence)) throw new Error('Invalid learning evidence');
+  const envelope = loadEnvelope(owner);
+  const dimensions = dimensionsOf(evidence.dimensions);
+  const normalized = { ...evidence, dimensions };
+  const before = derive(envelope, dimensions, evidence.targetWpm).introduced;
+  if (envelope.removedSessionIds?.includes(evidence.sessionId)) {
+    const current = derive(envelope, dimensions, evidence.targetWpm);
+    return { updatedChars: Object.values(current.stats).filter(stat => stat.isUnlocked), newlyUnlocked: [], nextToUnlock: getContentPack(dimensions.language).introductionOrder.find(char => !current.introduced.includes(char)) ?? null, persisted: true };
+  }
+  const duplicate = envelope.sessions.find(session => session.sessionId === evidence.sessionId);
+  if (duplicate && stableJson(duplicate) !== stableJson(normalized)) throw new Error('Learning session identity conflict');
+  if (!duplicate) envelope.sessions.push(normalized);
+  const { stats, introduced } = derive(envelope, dimensions, evidence.targetWpm);
+  envelope.introduced[learningModelKey(dimensions)] = introduced;
+  const persisted = persistEnvelope(envelope);
+  const available = new Set(introduced);
+  return { updatedChars: Object.values(stats).filter(stat => stat.isUnlocked), newlyUnlocked: introduced.filter(char => !before.includes(char)), nextToUnlock: getContentPack(dimensions.language).introductionOrder.find(char => !available.has(char)) ?? null, persisted };
+}
+export function updateCharacterProgress(newMetrics: Map<string, CharacterConfidence>, targetWPM = 35, options: ProgressOptions = {}) {
+  return recordLearningSession({ learningVersion: LEARNING_VERSION, sessionId: options.sessionId ?? crypto.randomUUID(), completedAt: options.completedAt ?? new Date().toISOString(), elapsedMs: options.elapsedMs ?? 0, dimensions: dimensionsOf(options.dimensions), attempts: [...newMetrics.values()].flatMap(metric => metric.observations ?? []).sort((a, b) => a.offsetMs - b.offsetMs), assessment: options.assessment ?? true, targetWpm: saneTarget(targetWPM), ...(options.sourceResultId ? { sourceResultId: options.sourceResultId } : {}) }, options.owner);
+}
+export function getLearningSessions(options: LearningOptions = {}): LearningSessionEvidence[] {
+  const sessions = loadEnvelope(options.owner).sessions;
+  return options.dimensions ? sessions.filter(session => learningModelKey(session.dimensions) === learningModelKey(options.dimensions)) : sessions;
+}
+export function getCharacterHistory(char: string, options: LearningOptions = {}): { sessionId: string; completedAt: string; wpm: number | null; accuracy: number; attempts: number; attributable: number }[] {
+  return getLearningSessions({ ...options, dimensions: dimensionsOf(options.dimensions) }).filter(session => session.attempts.some(attempt => attempt.expected.toLocaleLowerCase() === char)).sort((a, b) => a.completedAt.localeCompare(b.completedAt) || a.sessionId.localeCompare(b.sessionId)).map(session => {
+    const observations = session.attempts.filter(attempt => attempt.expected.toLocaleLowerCase() === char);
+    const stat = summarize(char, observations, session.targetWpm, true);
+    return { sessionId: session.sessionId, completedAt: session.completedAt, wpm: stat.avgTimeMs > 0 ? stat.wpm : null, accuracy: stat.accuracy, attempts: observations.length, attributable: stat.attributableAttempts ?? 0 };
   });
 }
-
-/**
- * Reset all Keybr progress
+export function mergeLearningSessions(incoming: LearningSessionEvidence[], owner = 'guest', serverVersion = 0): void {
+  const envelope = loadEnvelope(owner);
+  for (const session of incoming) {
+    if (!validEvidence(session)) continue;
+    if (envelope.removedSessionIds?.includes(session.sessionId)) continue;
+    const normalized = { ...session, dimensions: dimensionsOf(session.dimensions) };
+    const existing = envelope.sessions.find(item => item.sessionId === session.sessionId);
+    if (existing && stableJson(existing) !== stableJson(normalized)) throw new Error('Conflicting learning evidence');
+    if (!existing) envelope.sessions.push(normalized);
+  }
+  envelope.serverVersion = Math.max(envelope.serverVersion, serverVersion);
+  persistEnvelope(envelope);
+}
+/** A complete owner-authorized cloud snapshot removes previously accepted sessions absent after deletion.
+ * Pending/local-only evidence remains untouched. Stale cloud versions cannot resurrect deleted evidence.
  */
-export function resetKeybrProgress(): void {
-  localStorage.removeItem('keybr_character_data');
+export function reconcileLearningSessions(incoming: LearningSessionEvidence[], owner: string, serverVersion: number): void {
+  const envelope = loadEnvelope(owner);
+  if (serverVersion < envelope.serverVersion) return;
+  const present = new Set(incoming.filter(validEvidence).map(session => session.sessionId));
+  const removed = (envelope.serverSessionIds ?? []).filter(id => !present.has(id));
+  const removedSet = new Set([...(envelope.removedSessionIds ?? []), ...removed]);
+  envelope.sessions = envelope.sessions.filter(session => !removedSet.has(session.sessionId));
+  envelope.removedSessionIds = [...removedSet];
+  envelope.serverSessionIds = [...present];
+  envelope.serverVersion = serverVersion;
+  persistEnvelope(envelope);
+  mergeLearningSessions(incoming, owner, serverVersion);
+}
+export function removeLearningSession(sessionId: string, owner = 'guest'): void {
+  const envelope = loadEnvelope(owner);
+  envelope.sessions = envelope.sessions.filter(session => session.sessionId !== sessionId);
+  envelope.removedSessionIds = [...new Set([...(envelope.removedSessionIds ?? []), sessionId])];
+  persistEnvelope(envelope);
+}
+export function resetKeybrProgress(owner = 'guest'): void {
+  memoryFallback.delete(owner);
+  try { localStorage.removeItem(storageKey(owner)); if (owner === 'guest') localStorage.removeItem('keybr_character_data'); } catch { /* Practice can still continue. */ }
+}
+function isCanonicalResult(value: unknown, owner: string): value is SessionResult {
+  if (!value || typeof value !== 'object') return false;
+  const result = value as Partial<SessionResult>;
+  return result.schemaVersion === 3 && result.metricsVersion === 'forge-v3' && result.ownerScope === owner && typeof result.clientSessionId === 'string' && !!result.configuration && Array.isArray(result.events) && Array.isArray(result.pauseIntervals) && Array.isArray(result.assistance) && Number.isFinite(result.finishedAtWall);
+}
+/** Context-qualified ordinary tests/races update review; only dedicated assessments grant initial mastery. */
+export async function hydrateLearningFromSessions(owner: string): Promise<void> {
+  const known = new Set(getLearningSessions({ owner }).map(session => session.sessionId));
+  for (const record of await sessionRepository.list(owner)) {
+    if (known.has(record.clientSessionId) || record.provenance !== 'observed' || !isCanonicalResult(record.candidate, owner)) continue;
+    try { recordLearningSession(learningEvidenceFromResult(record.candidate), owner); }
+    catch { /* An invalid or conflicting history row is retained without replacing valid key evidence. */ }
+  }
+}
+sessionRepository.subscribe(event => {
+  if (event.type === 'remove' && event.sessionId) removeLearningSession(event.sessionId, event.ownerId);
+  if (event.type === 'clear') resetKeybrProgress(event.ownerId);
+  if (event.type === 'save' && event.sessionId) {
+    void sessionRepository.get(event.ownerId, event.sessionId).then(record => {
+      if (record?.provenance === 'observed' && isCanonicalResult(record.candidate, event.ownerId)) recordLearningSession(learningEvidenceFromResult(record.candidate), event.ownerId);
+    }).catch(() => { /* Save failures remain visible through the repository's own save state. */ });
+  }
+});
+export interface LessonGenerationOptions extends LearningOptions { seed?: string; focusLetters?: string[]; review?: boolean; targetWpm?: number; targeted?: boolean }
+/** Natural words first; sparse sets use bounded Forge vowel/consonant patterns. */
+export function generateKeybrLesson(wordCount = 40, options: LessonGenerationOptions = {}): KeybrLesson {
+  const dimensions = dimensionsOf(options.dimensions);
+  const pack = getContentPack(dimensions.language);
+  const availableLetters = [...new Set([...getUnlockedLetters(options), ...(options.targeted ? options.focusLetters?.filter(char => pack.alphabet.includes(char)) ?? [] : [])])];
+  const seed = options.seed ?? crypto.randomUUID();
+  const random = seededRandom(seed);
+  const available = new Set(availableLetters);
+  const requestedFocus = options.focusLetters?.filter(char => available.has(char));
+  const focus = requestedFocus?.[0] ?? getWeakLetters(1, options)[0] ?? availableLetters[0];
+  const review = options.review ?? false;
+  const natural = pack.words.filter(word => {
+    const chars = graphemes(word, pack.id === 'gu-Latn' ? 'gu' : pack.id);
+    return chars.length <= 12 && chars.every(char => available.has(char)) && (review || chars.includes(focus));
+  });
+  const vowels = availableLetters.filter(char => /[aeiouyàáâäãåèéêëìíîïòóôöõùúûüаеёиоуыэюяअआइईउऊएऐओऔاوي]/u.test(char));
+  const consonants = availableLetters.filter(char => !vowels.includes(char));
+  const choose = (items: readonly string[]) => items[Math.floor(random() * items.length)];
+  const fallback = () => {
+    const length = 3 + Math.floor(random() * 4);
+    const chars = Array.from({ length }, (_, index) => {
+      const group = index % 2 === 0 ? consonants : vowels;
+      return choose(group.length ? group : availableLetters);
+    });
+    chars[Math.floor(random() * length)] = focus;
+    return chars.join('');
+  };
+  let naturalWordCount = 0;
+  const words = Array.from({ length: Math.max(1, Math.min(2000, Math.floor(wordCount) || 1)) }, (_, index) => {
+    if (natural.length > 0 && (natural.length >= 6 || index % 3 !== 2)) { naturalWordCount++; return choose(natural); }
+    return fallback();
+  });
+  return { text: words.join(' '), availableLetters, focusLetters: review ? [] : [focus], lockedLetters: getLockedLetters(options), seed, generatorVersion: 'forge-pattern-v3', contentRevision: pack.revision, naturalWordCount, phoneticWordCount: words.length - naturalWordCount, review };
 }

@@ -1,332 +1,47 @@
-import { motion } from 'framer-motion';
+import { useMemo,useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Area,AreaChart,CartesianGrid,ResponsiveContainer,Tooltip,XAxis,YAxis } from 'recharts';
+import { ArrowUpRight,Clock3,Flame,Target,TrendingUp } from 'lucide-react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
-import { StatsFilter } from '@/components/stats/StatsFilter';
-import { StatsSummary } from '@/components/stats/StatsSummary';
-import { AccuracyStreaks } from '@/components/stats/AccuracyStreaks';
-import { SpeedHistogram } from '@/components/stats/SpeedHistogram';
-import { LearningProgressChart, TypingSpeedChart } from '@/components/stats/LearningProgressChart';
-import { KeySpeedChart, KeySpeedHistogram } from '@/components/stats/KeySpeedChart';
-import { KeyFrequencyHistogram, KeyFrequencyHeatmap } from '@/components/stats/KeyFrequencyCharts';
-import { PracticeCalendar } from '@/components/stats/PracticeCalendar';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { useState, useMemo, useEffect } from 'react';
-import { Zap, BarChart3, Keyboard, Calendar } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
-import { useAuth } from '@/hooks/useAuth';
-import { getTestHistory } from '@/lib/typing-engine';
-import { getCharacterData } from '@/lib/keybr-engine';
-import { useNavigate } from 'react-router-dom';
-import {
-  type TestSession,
-  calculateAggregateStats,
-  filterByTimePeriod,
-  calculateAccuracyStreaks,
-  generateSpeedDistribution,
-  calculatePercentile,
-  prepareLessonData,
-  generateCalendarActivities,
-} from '@/lib/stats-utils';
+import { useSessionHistory } from '@/hooks/useTestResults';
+import { cohortLabel,localDateKey,metricLabel,sessionView } from '@/services/history-model';
+import { exportHistory } from '@/services/account-data';
+import { LetterProgressPanel } from '@/components/keybr/LetterProgressPanel';
+import { usePreferences } from '@/contexts/PreferencesContext';
+import { getContentPack, CONTENT_PACKS, LAYOUTS, type LayoutId } from '@/lib/content-packs';
+import type { LearningDimensions } from '@/lib/keybr-engine';
 
-const Stats = () => {
-  const { user, loading: authLoading } = useAuth();
-  const navigate = useNavigate();
-  
-  // Filter states
-  const [language, setLanguage] = useState('en-US');
-  const [contentType, setContentType] = useState('letters');
-  const [timePeriod, setTimePeriod] = useState('all');
-  const [selectedKey, setSelectedKey] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState('overview');
-  
-  // Data states
-  const [testSessions, setTestSessions] = useState<TestSession[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  // Fetch data from database or localStorage
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      
-      if (user) {
-        // Fetch from Supabase
-        const { data, error } = await supabase
-          .from('test_sessions')
-          .select('*')
-          .eq('user_id', user.id)
-          .order('created_at', { ascending: true });
-        
-        if (!error && data) {
-          setTestSessions(data as unknown as TestSession[]);
-        }
-      } else {
-        // Use localStorage data
-        const localHistory = getTestHistory();
-        setTestSessions(localHistory.map((t, i) => ({
-          id: t.id,
-          created_at: t.date,
-          net_wpm: t.wpm,
-          accuracy_percent: t.accuracy,
-          consistency_percent: t.consistency,
-          duration_seconds: t.duration,
-          test_mode: t.mode,
-          total_characters: t.totalChars,
-          correct_characters: t.correctChars,
-          error_count: t.errors,
-          per_char_metrics: null,
-        })));
-      }
-      
-      setIsLoading(false);
-    };
-    
-    if (!authLoading) {
-      fetchData();
-    }
-  }, [user, authLoading]);
-
-  // Filter tests by time period using utility
-  const filteredTests = useMemo(() => {
-    let filtered = filterByTimePeriod(testSessions, timePeriod as 'all' | 'week' | 'month' | 'year');
-    
-    // Filter by content type (mode)
-    if (contentType !== 'letters') {
-      filtered = filtered.filter(t => t.test_mode.toLowerCase().includes(contentType));
-    }
-    
-    return filtered;
-  }, [testSessions, timePeriod, contentType]);
-
-  // Calculate all-time stats using canonical utility
-  const allTimeStats = useMemo(() => {
-    return calculateAggregateStats(filteredTests);
-  }, [filteredTests]);
-
-  // Calculate today's stats using canonical utility
-  const todayStats = useMemo(() => {
-    const todayTests = filterByTimePeriod(testSessions, 'today');
-    return calculateAggregateStats(todayTests);
-  }, [testSessions]);
-
-  // Calculate accuracy streaks using canonical utility
-  const accuracyStreaks = useMemo(() => {
-    return calculateAccuracyStreaks(filteredTests);
-  }, [filteredTests]);
-
-  // Generate speed distribution using canonical utility
-  const speedDistribution = useMemo(() => {
-    return generateSpeedDistribution(filteredTests);
-  }, [filteredTests]);
-
-  // Calculate percentile using canonical utility
-  const percentileBeat = useMemo(() => {
-    return calculatePercentile(filteredTests, allTimeStats.avgSpeed);
-  }, [filteredTests, allTimeStats.avgSpeed]);
-
-  // Prepare lesson data using canonical utility
-  const lessonData = useMemo(() => {
-    return prepareLessonData(filteredTests);
-  }, [filteredTests]);
-
-  // Get character stats from localStorage (keybr engine)
-  const characterStats = useMemo(() => {
-    const charData = getCharacterData();
-    return Object.entries(charData).map(([key, data]) => ({
-      key,
-      lastSpeed: data.wpm || 0,
-      topSpeed: data.wpm || 0,
-      avgSpeed: data.wpm || 0,
-      learningRate: data.confidence >= 0.8 ? 'stable' as const : 
-                    data.confidence >= 0.5 ? 'improving' as const : 'uncertain' as const,
-      history: [{ lesson: 1, wpm: data.wpm || 0 }],
-    }));
-  }, [filteredTests]);
-
-  // Key frequency data
-  const keyFrequencies = useMemo(() => {
-    const charData = getCharacterData();
-    return Object.entries(charData).map(([key, data]) => ({
-      key,
-      hits: data.occurrences || 0,
-      misses: Math.round((data.occurrences || 0) * (1 - (data.accuracy || 0) / 100)),
-      missRatio: 1 - (data.accuracy || 100) / 100,
-    }));
-  }, []);
-
-  // Practice calendar data using canonical utility
-  const calendarActivities = useMemo(() => {
-    return generateCalendarActivities(testSessions);
-  }, [testSessions]);
-
-  // Key progress data for learning progress chart
-  const keyProgressData = useMemo(() => {
-    const unlockedKeys = characterStats
-      .filter(k => k.avgSpeed > 0)
-      .slice(0, 10)
-      .map(k => k.key);
-    
-    return lessonData.slice(0, 20).map((lesson, i) => {
-      const entry: { lesson: number; [key: string]: number } = { lesson: i + 1 };
-      unlockedKeys.forEach(key => {
-        const charStat = characterStats.find(c => c.key === key);
-        entry[key] = charStat ? charStat.avgSpeed : 0;
-      });
-      return entry;
-    });
-  }, [lessonData, characterStats]);
-
-  if (isLoading || authLoading) {
-    return (
-      <div className="min-h-screen flex flex-col bg-background">
-        <Header />
-        <main className="flex-1 container mx-auto px-4 py-12 flex items-center justify-center">
-          <div className="text-center">
-            <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-            <p className="text-muted-foreground">Loading statistics...</p>
-          </div>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
-
-  if (testSessions.length === 0) {
-    return (
-      <div className="min-h-screen flex flex-col bg-background">
-        <Header />
-        <main className="flex-1 container mx-auto px-4 py-12">
-          <motion.div
-            className="text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <h1 className="text-3xl font-bold mb-4">Your Statistics</h1>
-            <p className="text-muted-foreground mb-8">
-              Complete your first typing test to see your stats here!
-            </p>
-            <button
-              onClick={() => navigate('/')}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
-            >
-              <Zap className="w-4 h-4" />
-              Start Typing
-            </button>
-          </motion.div>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
-
-  return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <Header />
-      
-      <main className="flex-1 container mx-auto px-4 py-8 md:py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          <h1 className="text-3xl font-bold mb-6">Your Statistics</h1>
-          
-          {/* Filters */}
-          <StatsFilter
-            language={language}
-            setLanguage={setLanguage}
-            contentType={contentType}
-            setContentType={setContentType}
-            timePeriod={timePeriod}
-            setTimePeriod={setTimePeriod}
-          />
-          
-          {/* Tabs */}
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-4 mb-6">
-              <TabsTrigger value="overview" className="flex items-center gap-2">
-                <BarChart3 className="w-4 h-4" />
-                <span className="hidden sm:inline">Overview</span>
-              </TabsTrigger>
-              <TabsTrigger value="speed" className="flex items-center gap-2">
-                <Zap className="w-4 h-4" />
-                <span className="hidden sm:inline">Speed</span>
-              </TabsTrigger>
-              <TabsTrigger value="keys" className="flex items-center gap-2">
-                <Keyboard className="w-4 h-4" />
-                <span className="hidden sm:inline">Keys</span>
-              </TabsTrigger>
-              <TabsTrigger value="calendar" className="flex items-center gap-2">
-                <Calendar className="w-4 h-4" />
-                <span className="hidden sm:inline">Calendar</span>
-              </TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="overview" className="space-y-6">
-              {/* Summary Stats */}
-              <div className="grid md:grid-cols-2 gap-6">
-                <StatsSummary
-                  title="All Time Statistics"
-                  {...allTimeStats}
-                />
-                <StatsSummary
-                  title="Statistics for Today"
-                  {...todayStats}
-                />
-              </div>
-              
-              {/* Accuracy Streaks */}
-              <AccuracyStreaks streaks={accuracyStreaks} />
-              
-              {/* Speed Histogram */}
-              <SpeedHistogram
-                userAvgSpeed={allTimeStats.avgSpeed}
-                userTopSpeed={allTimeStats.topSpeed}
-                distribution={speedDistribution}
-                percentileBeat={percentileBeat}
-              />
-            </TabsContent>
-            
-            <TabsContent value="speed" className="space-y-6">
-              {/* Learning Progress */}
-              <LearningProgressChart
-                lessonData={lessonData}
-                keyProgressData={keyProgressData}
-                unlockedKeys={characterStats.filter(k => k.avgSpeed > 0).map(k => k.key)}
-              />
-              
-              {/* Typing Speed Chart */}
-              <TypingSpeedChart lessonData={lessonData} />
-              
-              {/* Key Speed Charts */}
-              <div className="grid lg:grid-cols-2 gap-6">
-                <KeySpeedChart
-                  keyData={characterStats}
-                  targetWpm={35}
-                  selectedKey={selectedKey}
-                  onSelectKey={setSelectedKey}
-                />
-                <KeySpeedHistogram keyData={characterStats} />
-              </div>
-            </TabsContent>
-            
-            <TabsContent value="keys" className="space-y-6">
-              {/* Key Frequency Charts */}
-              <div className="grid lg:grid-cols-2 gap-6">
-                <KeyFrequencyHistogram frequencies={keyFrequencies} />
-                <KeyFrequencyHeatmap frequencies={keyFrequencies} />
-              </div>
-            </TabsContent>
-            
-            <TabsContent value="calendar" className="space-y-6">
-              {/* Practice Calendar */}
-              <PracticeCalendar activities={calendarActivities} />
-            </TabsContent>
-          </Tabs>
-        </motion.div>
-      </main>
-      
-      <Footer />
-    </div>
-  );
-};
-
-export default Stats;
+export default function Stats(){
+  const {records,loading,error,storageMode,ownerId}=useSessionHistory();
+  const {preferences}=usePreferences();
+  const [keyLanguage,setKeyLanguage]=useState(preferences.language),[keyLayout,setKeyLayout]=useState(preferences.layout),[keyMethod,setKeyMethod]=useState<LearningDimensions['inputMethod']>('keyboard');
+  const keyPack=getContentPack(keyLanguage);
+  const [cohort,setCohort]=useState('all'),[period,setPeriod]=useState('all'),[limit,setLimit]=useState(20);
+  const views=useMemo(()=>records.map(sessionView),[records]);
+  const cohorts=useMemo(()=>Array.from(new Set(views.map(view=>view.comparisonKey))),[views]);
+  const selected=useMemo(()=>views.filter(view=>(cohort==='all'||view.comparisonKey===cohort)&&(period==='all'||view.record.createdAt>=Date.now()-Number(period)*86400000)),[views,cohort,period]);
+  const measured=selected.filter(view=>view.isV3),speed=measured.filter(view=>view.wpm!==null);
+  const eligibleSpeed=speed.filter(view=>view.personalBestEligible);
+  const minutes=selected.reduce((sum,view)=>sum+view.record.summary.duration,0)/60;
+  const days=new Map<string,number>();selected.forEach(view=>{const key=localDateKey(view.record.createdAt);days.set(key,(days.get(key)??0)+1);});
+  const accuracy=measured.filter(view=>view.accuracy!==null);
+  const matched=cohort!=='all';
+  const chart=matched?speed.slice(0,50).reverse().map((view,index)=>({session:index+1,wpm:view.wpm,accuracy:view.accuracy,date:new Date(view.record.createdAt).toLocaleString()})):[];
+  const distribution=matched?Array.from({length:10},(_,index)=>({range:`${index*20}–${index*20+19}`,count:speed.filter(view=>view.wpm!>=index*20&&(index===9||view.wpm!<(index+1)*20)).length})):[];
+  return <div className="forge-shell"><Header/><main id="main-content" className="forge-main">
+    <div className="flex flex-wrap items-end justify-between gap-5 mb-9"><div><p className="eyebrow">Your practice, in perspective</p><h1 className="text-4xl font-semibold tracking-tight mt-3">Progress you can measure<span className="text-primary">.</span></h1><p className="text-muted-foreground text-sm mt-3">Actual sessions and active typing duration. Compare the same settings to see meaningful change.</p></div><button className="forge-button-secondary" disabled={!records.length} onClick={()=>exportHistory(records)}>Export history<ArrowUpRight size={15}/></button></div>
+    {error&&<p role="alert" className="panel p-4 text-sm text-destructive mb-5">{error} Local results are still shown.</p>}
+    <section className="panel p-4 flex flex-wrap gap-5 mb-6" aria-label="History filters"><label className="text-xs text-muted-foreground grow">Comparison<select className="forge-input mt-2" value={cohort} onChange={event=>{setCohort(event.target.value);setLimit(20);}}><option value="all">All sessions · no combined speed comparison</option>{cohorts.map(key=><option key={key} value={key}>{cohortLabel(key)}</option>)}</select></label><label className="text-xs text-muted-foreground">Period<select className="forge-input mt-2" value={period} onChange={event=>setPeriod(event.target.value)}><option value="all">All history</option><option value="7">Past 7 days</option><option value="30">Past 30 days</option><option value="365">Past year</option></select></label></section>
+    {loading?<p role="status" className="text-muted-foreground py-14">Loading your practice history…</p>:!selected.length?<section className="panel p-12 text-center"><h2 className="text-xl font-medium">Your next session starts your story.</h2><p className="text-muted-foreground mt-3 text-sm">Complete a test to see your measured progress here.</p><Link to="/" className="forge-button mt-6">Start typing<ArrowUpRight size={16}/></Link></section>:<>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">{[{label:'Completed sessions',value:String(selected.length),icon:TrendingUp},{label:'Actual practice',value:`${minutes.toFixed(1)} min`,icon:Clock3},{label:'Practice days',value:String(days.size),icon:Flame},{label:matched?'Average input accuracy':'V3 sessions',value:matched?accuracy.length?`${metricLabel(accuracy.reduce((sum,v)=>sum+v.accuracy!,0)/accuracy.length)}%`:'—':String(measured.length),icon:Target}].map(({label,value,icon:Icon})=><div className="panel p-5" key={label}><Icon size={17} className="text-primary mb-5"/><p className="font-mono text-2xl sm:text-3xl">{value}</p><p className="text-xs text-muted-foreground mt-2">{label}</p></div>)}</div>
+      <section className="panel p-5 sm:p-7 mb-6"><div className="flex justify-between items-start gap-4"><div><h2 className="font-medium">Speed over time</h2><p className="text-xs text-muted-foreground mt-2">{matched?`${speed.length} V3 observations in this comparison. Showing the latest ${chart.length}.`:'Choose one comparison above to chart matched V3 sessions.'}</p></div>{matched&&eligibleSpeed.length>0&&<div className="text-right"><span className="font-mono text-2xl text-primary">{metricLabel(Math.max(...eligibleSpeed.map(v=>v.wpm!)))}</span><p className="text-xs text-muted-foreground">personal best WPM</p></div>}</div>
+        {chart.length>0?<div className="h-64 mt-7" role="img" aria-label={`Typing speed for ${chart.length} matched sessions. Exact values are available in the history table.`}><ResponsiveContainer width="100%" height="100%"><AreaChart data={chart}><defs><linearGradient id="progress-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="var(--forge-accent)" stopOpacity={.18}/><stop offset="100%" stopColor="var(--forge-accent)" stopOpacity={0}/></linearGradient></defs><CartesianGrid stroke="var(--forge-border)" vertical={false}/><XAxis dataKey="session" tick={{fontSize:11}} axisLine={false} tickLine={false}/><YAxis tick={{fontSize:11}} axisLine={false} tickLine={false}/><Tooltip contentStyle={{background:'hsl(var(--popover))',border:'1px solid hsl(var(--border))',borderRadius:10}} labelFormatter={label=>`Session ${label}`} formatter={value=>[metricLabel(Number(value)),'WPM']}/><Area type="linear" dataKey="wpm" stroke="hsl(var(--primary))" strokeWidth={2} fill="url(#progress-fill)" isAnimationActive={false}/></AreaChart></ResponsiveContainer></div>:<div className="py-14 text-sm text-muted-foreground">{matched?'No comparable V3 scores yet. Legacy results remain in history.':'Tests with different modes, durations, languages and input methods have separate comparisons.'}</div>}
+      </section>
+      <div className="grid lg:grid-cols-2 gap-6 mb-6"><section className="panel p-6"><h2 className="font-medium">Recent practice days</h2><p className="text-xs text-muted-foreground mt-2">Local calendar dates · number of observed completed sessions</p><div className="grid grid-cols-7 gap-2 mt-6">{Array.from({length:35},(_,index)=>{const date=new Date();date.setDate(date.getDate()-34+index);const key=localDateKey(date.getTime());const count=days.get(key)??0;return <div key={key} tabIndex={0} title={`${key}: ${count} sessions`} aria-label={`${key}: ${count} sessions`} className={`rounded-md p-2 text-center text-xs ${count?'bg-primary/15 text-primary':'bg-muted/30 text-muted-foreground'}`}><span className="block">{date.getDate()}</span><span className="block text-[10px] mt-1">{count||'·'}</span></div>;})}</div></section><section className="panel p-6"><h2 className="font-medium">Your speed distribution</h2><p className="text-xs text-muted-foreground mt-2">{matched?'Personal V3 results in the selected comparison. No population percentile is inferred.':'Choose a comparison to inspect your personal distribution.'}</p><div className="mt-5 space-y-2">{distribution.map(bucket=><div className="grid grid-cols-[4rem_1fr_2rem] gap-3 items-center text-xs" key={bucket.range}><span className="font-mono text-muted-foreground">{bucket.range}</span><div className="h-2 bg-muted rounded"><div className="h-2 bg-primary rounded" style={{width:`${speed.length?bucket.count/speed.length*100:0}%`}}/></div><span className="text-right font-mono">{bucket.count}</span></div>)}</div></section></div>
+      <section className="panel overflow-hidden"><div className="p-6 border-b"><h2 className="font-medium">Session history</h2><p className="text-xs text-muted-foreground mt-2">Attempt accuracy preserves corrected mistakes. A dash means the metric does not apply.</p></div><div className="overflow-x-auto"><table className="w-full text-left text-sm"><caption className="sr-only">Completed sessions, most recent first</caption><thead className="text-xs text-muted-foreground border-b"><tr>{['Date','Mode','WPM','Input accuracy','Actual duration','Save state'].map(label=><th scope="col" className="px-6 py-3 font-normal whitespace-nowrap" key={label}>{label}</th>)}</tr></thead><tbody>{selected.slice(0,limit).map(view=><tr className="border-b last:border-0" key={view.record.clientSessionId}><td className="px-6 py-4 whitespace-nowrap text-xs">{new Date(view.record.createdAt).toLocaleString()}</td><td className="px-6 py-4"><span className="capitalize">{view.record.summary.mode}</span>{!view.isV3&&<span className="block text-[10px] text-muted-foreground">legacy · unverified</span>}</td><td className="px-6 py-4 font-mono text-primary">{metricLabel(view.wpm)}</td><td className="px-6 py-4 font-mono">{view.accuracy===null?'—':`${metricLabel(view.accuracy)}%`}</td><td className="px-6 py-4 font-mono whitespace-nowrap">{view.record.summary.duration.toFixed(1)}s</td><td className="px-6 py-4 text-xs text-muted-foreground whitespace-nowrap">{view.record.state.replace(/-/g,' ')}</td></tr>)}</tbody></table></div>{selected.length>limit&&<div className="p-4 text-center"><button className="forge-button-secondary" onClick={()=>setLimit(value=>value+20)}>Show 20 more</button></div>}</section>
+    </>}
+    <section className="mt-8 space-y-4" aria-label="Per-key history filters"><div><h2 className="font-medium">Your key evidence</h2><p className="mt-2 text-xs text-muted-foreground">Choose a model and select a key to inspect actual session history. Initial mastery is established through dedicated learning assessments.</p></div><div className="flex flex-wrap gap-4"><label className="text-xs text-muted-foreground">Content language<select className="forge-input mt-2" value={keyLanguage} onChange={event=>setKeyLanguage(event.target.value)}>{CONTENT_PACKS.map(pack=><option key={pack.id} value={pack.id}>{pack.label}</option>)}</select></label><label className="text-xs text-muted-foreground">Layout<select className="forge-input mt-2" value={keyPack.script==='Latin'?keyLayout:'native'} disabled={keyPack.script!=='Latin'} onChange={event=>setKeyLayout(event.target.value)}>{Object.keys(LAYOUTS).map(id=><option key={id} value={id}>{LAYOUTS[id as LayoutId].label}</option>)}</select></label><label className="text-xs text-muted-foreground">Input method<select className="forge-input mt-2" value={keyMethod} onChange={event=>setKeyMethod(event.target.value as LearningDimensions['inputMethod'])}><option value="keyboard">Physical keyboard</option><option value="composition">Composition / IME</option><option value="virtual">On-screen keyboard</option></select></label></div><LetterProgressPanel key={`${ownerId}:${keyPack.id}:${keyLayout}:${keyMethod}:${records.length}`} owner={ownerId} dimensions={{language:keyPack.id,layout:keyPack.script==='Latin'?keyLayout:'native',domain:'prose',inputMethod:keyMethod}} targetWpm={preferences.targetWpm}/></section>
+    <p className="text-xs text-muted-foreground mt-6">Storage: {storageMode==='indexeddb'?'on this device · IndexedDB':'memory for this visit'}. Replay evidence expires after 90 days; summary history is retained until you delete it.</p>
+  </main><Footer/></div>;
+}

@@ -1,269 +1,29 @@
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect,useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowUpRight,Crown,ShieldCheck,Trophy } from 'lucide-react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
-import { Trophy, Medal, Award, Crown, Loader2, Target, Zap, Calendar, Clock } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { cn } from '@/lib/utils';
-
-interface LeaderboardEntry {
-  user_id: string;
-  username: string;
-  wpm_best: number;
-  wpm_avg: number;
-  accuracy_avg: number;
-  consistency_avg: number;
-  tests_completed: number;
-  total_characters: number;
+import { isSupabaseConfigured,supabase } from '@/integrations/supabase/client';
+import { cohortLabel,metricLabel } from '@/services/history-model';
+interface Cohort {comparison_key:string;participants:number}
+interface RankedEntry {position:number;user_id:string;handle:string;best_wpm:number;avg_accuracy:number;test_count:number;total_entries:number;is_own:boolean}
+export default function Leaderboard(){
+  const [cohorts,setCohorts]=useState<Cohort[]>([]),[cohort,setCohort]=useState(''),[entries,setEntries]=useState<RankedEntry[]>([]),[page,setPage]=useState(0),[loading,setLoading]=useState(true),[error,setError]=useState(''),[retry,setRetry]=useState(0);
+  useEffect(()=>{let active=true;
+    if(!isSupabaseConfigured){setLoading(false);return;}
+    setLoading(true);setError('');
+    void supabase.rpc('forge_ranked_cohorts' as never).then(({data,error})=>{if(!active)return;if(error){setError(`Rankings are unavailable: ${error.message}`);setLoading(false);return;}const rows=data as unknown as Cohort[];setCohorts(rows??[]);setCohort(previous=>rows?.some(row=>row.comparison_key===previous)?previous:rows?.[0]?.comparison_key??'');if(!rows?.length)setLoading(false);});
+    return()=>{active=false;};
+  },[retry]);
+  useEffect(()=>{if(!cohort)return;let active=true;setLoading(true);setError('');
+    void supabase.rpc('forge_rankings' as never,{p_comparison_key:cohort,p_limit:25,p_offset:page*25} as never).then(({data,error})=>{if(!active)return;if(error){setError(`Ranking results could not be loaded: ${error.message}`);setEntries([]);}else setEntries(data as unknown as RankedEntry[]??[]);setLoading(false);});
+    return()=>{active=false;};
+  },[cohort,page,retry]);
+  return <div className="forge-shell"><Header/><main id="main-content" className="forge-main"><div className="flex flex-wrap justify-between items-end gap-5 mb-9"><div><p className="eyebrow flex items-center gap-2"><Trophy size={14}/>An even playing field</p><h1 className="text-4xl font-semibold tracking-tight mt-3">The leaderboard<span className="text-primary">.</span></h1><p className="text-muted-foreground text-sm mt-3">Server accepted results, compared with the same rules and settings.</p></div><Link to="/ranked" className="forge-button-secondary">Take a ranked challenge<ArrowUpRight size={15}/></Link></div>
+    <section className="panel p-5 flex items-start gap-3 mb-6"><ShieldCheck size={19} className="text-primary shrink-0 mt-1"/><p className="text-xs text-muted-foreground leading-relaxed">Rankings require an authenticated, server issued timed challenge and replay validation. Ordinary practice, imported history, bots and assisted input stay personal. Browser evidence checks consistency; it cannot prove human input. Equal best WPM and average accuracy share the same rank.</p></section>
+    {!isSupabaseConfigured?<section className="panel p-10 text-center"><h2 className="text-lg font-medium">Cloud rankings are unavailable in this installation.</h2><p className="text-sm text-muted-foreground mt-3">Your guest practice and personal history are ready to use.</p></section>:error?<section role="alert" className="panel p-7"><p className="text-sm">{error}</p><button className="forge-button-secondary mt-4" onClick={()=>setRetry(value=>value+1)}>Retry</button></section>:<>
+      {cohorts.length>0&&<label className="block panel p-5 text-xs text-muted-foreground mb-6">Comparison<select className="forge-input mt-2" value={cohort} onChange={event=>{setCohort(event.target.value);setPage(0);}}>{cohorts.map(row=><option key={row.comparison_key} value={row.comparison_key}>{cohortLabel(row.comparison_key)} · {row.participants} typists</option>)}</select></label>}
+      {loading?<p className="text-muted-foreground py-14" role="status">Loading verified rankings…</p>:!entries.length?<section className="panel p-12 text-center"><Crown size={32} className="text-primary mx-auto mb-5"/><h2 className="text-xl font-medium">A clean slate.</h2><p className="text-sm text-muted-foreground mt-3 max-w-md mx-auto">There are no verified scores for this comparison yet. Your personal tests still contribute to your progress.</p><Link className="forge-button mt-6" to="/stats">See your progress<ArrowUpRight size={15}/></Link></section>:<section className="panel overflow-hidden"><div className="overflow-x-auto"><table className="w-full text-left text-sm"><caption className="sr-only">Rankings within the selected comparison</caption><thead className="text-xs text-muted-foreground border-b"><tr>{['Rank','Typist','Best WPM','Average input accuracy','Accepted tests'].map(label=><th scope="col" key={label} className="px-6 py-4 font-normal whitespace-nowrap">{label}</th>)}</tr></thead><tbody>{entries.map(entry=><tr key={entry.user_id} className={`border-b last:border-0 ${entry.is_own?'bg-primary/5':''}`}><td className="px-6 py-5 font-mono text-muted-foreground">{entry.position===1?<Crown size={18} className="text-primary"/>:entry.position}</td><td className="px-6 py-5 font-medium">{entry.handle}{entry.is_own&&<span className="ml-2 text-[10px] text-primary">YOU</span>}</td><td className="px-6 py-5 font-mono text-primary text-lg">{metricLabel(entry.best_wpm)}</td><td className="px-6 py-5 font-mono">{metricLabel(entry.avg_accuracy)}%</td><td className="px-6 py-5 font-mono text-muted-foreground">{entry.test_count}</td></tr>)}</tbody></table></div><div className="p-5 border-t flex justify-between items-center text-xs text-muted-foreground"><span>{page*25+1}–{page*25+entries.length} of {entries[0]?.total_entries}</span><div className="flex gap-2"><button className="forge-button-secondary" disabled={!page} onClick={()=>setPage(value=>value-1)}>Previous</button><button className="forge-button-secondary" disabled={(page+1)*25>=entries[0]?.total_entries} onClick={()=>setPage(value=>value+1)}>Next</button></div></div></section>}
+    </>}
+  </main><Footer/></div>;
 }
-
-const getRankIcon = (rank: number) => {
-  switch (rank) {
-    case 1: return <Crown className="w-5 h-5 text-yellow-500" />;
-    case 2: return <Medal className="w-5 h-5 text-gray-400" />;
-    case 3: return <Award className="w-5 h-5 text-amber-600" />;
-    default: return <span className="w-5 text-center font-mono text-muted-foreground">{rank}</span>;
-  }
-};
-
-type LeaderboardType = 'wpm' | 'accuracy' | 'consistency' | 'tests';
-type TimeFilter = 'all' | 'weekly' | 'daily';
-
-const Leaderboard = () => {
-  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<LeaderboardType>('wpm');
-  const [timeFilter, setTimeFilter] = useState<TimeFilter>('all');
-
-  useEffect(() => {
-    async function fetchLeaderboard() {
-      setLoading(true);
-      
-      // Determine order column based on active tab
-      let orderColumn = 'wpm_best';
-      if (activeTab === 'accuracy') orderColumn = 'accuracy_avg';
-      if (activeTab === 'consistency') orderColumn = 'consistency_avg';
-      if (activeTab === 'tests') orderColumn = 'tests_completed';
-
-      let query = supabase
-        .from('leaderboards')
-        .select('user_id, wpm_best, wpm_avg, accuracy_avg, consistency_avg, tests_completed, total_characters, updated_at')
-        .order(orderColumn, { ascending: false })
-        .limit(50);
-
-      // Apply time filter
-      if (timeFilter === 'daily') {
-        const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
-        query = query.gte('updated_at', oneDayAgo);
-      } else if (timeFilter === 'weekly') {
-        const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
-        query = query.gte('updated_at', oneWeekAgo);
-      }
-
-      const { data: entries } = await query;
-
-      if (entries && entries.length > 0) {
-        const { data: profiles } = await supabase
-          .from('profiles')
-          .select('id, username')
-          .in('id', entries.map(e => e.user_id));
-
-        const profileMap = new Map(profiles?.map(p => [p.id, p.username]) || []);
-        
-        setLeaderboard(entries.map(e => ({
-          ...e,
-          username: profileMap.get(e.user_id) || 'Anonymous',
-        })));
-      } else {
-        setLeaderboard([]);
-      }
-      setLoading(false);
-    }
-    fetchLeaderboard();
-  }, [activeTab, timeFilter]);
-
-  const getMetricValue = (entry: LeaderboardEntry) => {
-    switch (activeTab) {
-      case 'wpm': return { value: entry.wpm_best, suffix: 'WPM' };
-      case 'accuracy': return { value: entry.accuracy_avg?.toFixed(1), suffix: '%' };
-      case 'consistency': return { value: entry.consistency_avg?.toFixed(1), suffix: '%' };
-      case 'tests': return { value: entry.tests_completed, suffix: 'tests' };
-    }
-  };
-
-  const tabConfig = [
-    { id: 'wpm' as LeaderboardType, label: 'Speed', icon: Zap, description: 'Best WPM' },
-    { id: 'accuracy' as LeaderboardType, label: 'Accuracy', icon: Target, description: 'Avg Accuracy' },
-    { id: 'consistency' as LeaderboardType, label: 'Consistency', icon: Trophy, description: 'Avg Consistency' },
-    { id: 'tests' as LeaderboardType, label: 'Tests', icon: Calendar, description: 'Tests Completed' },
-  ];
-
-  const timeFilters = [
-    { id: 'all' as TimeFilter, label: 'All Time', icon: Trophy },
-    { id: 'weekly' as TimeFilter, label: 'Weekly', icon: Calendar },
-    { id: 'daily' as TimeFilter, label: 'Daily', icon: Clock },
-  ];
-
-  return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <Header />
-      <main className="flex-1 container mx-auto px-4 py-8 md:py-12">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <div className="flex items-center gap-3 mb-6">
-            <Trophy className="w-8 h-8 text-primary" />
-            <h1 className="text-3xl font-bold">Leaderboard</h1>
-          </div>
-
-          {/* Time Filter */}
-          <div className="flex flex-wrap gap-2 mb-6">
-            {timeFilters.map((filter) => {
-              const Icon = filter.icon;
-              return (
-                <button
-                  key={filter.id}
-                  onClick={() => setTimeFilter(filter.id)}
-                  className={cn(
-                    'flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all',
-                    timeFilter === filter.id
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-muted text-muted-foreground hover:bg-muted/80'
-                  )}
-                >
-                  <Icon className="w-4 h-4" />
-                  {filter.label}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Leaderboard Type Tabs */}
-          <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as LeaderboardType)} className="mb-6">
-            <TabsList className="grid w-full grid-cols-4 h-auto">
-              {tabConfig.map((tab) => {
-                const Icon = tab.icon;
-                return (
-                  <TabsTrigger key={tab.id} value={tab.id} className="flex flex-col gap-1 py-3">
-                    <Icon className="w-4 h-4" />
-                    <span className="text-sm font-medium">{tab.label}</span>
-                    <span className="text-xs text-muted-foreground hidden sm:block">{tab.description}</span>
-                  </TabsTrigger>
-                );
-              })}
-            </TabsList>
-          </Tabs>
-
-          {loading ? (
-            <div className="flex items-center justify-center py-12">
-              <Loader2 className="w-8 h-8 animate-spin text-primary" />
-            </div>
-          ) : leaderboard.length === 0 ? (
-            <div className="text-center py-12">
-              <Trophy className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-              <p className="text-muted-foreground mb-4">No entries yet. Be the first to compete!</p>
-              <a href="/auth" className="text-primary hover:underline">Sign in to start</a>
-            </div>
-          ) : (
-            <>
-              {/* Top 3 Podium */}
-              {leaderboard.length >= 3 && (
-                <div className="grid grid-cols-3 gap-4 mb-8">
-                  {/* Second Place */}
-                  <motion.div 
-                    className="stat-card text-center mt-8" 
-                    initial={{ opacity: 0, y: 20 }} 
-                    animate={{ opacity: 1, y: 0 }} 
-                    transition={{ delay: 0.2 }}
-                  >
-                    <Medal className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                    <p className="font-semibold truncate">{leaderboard[1]?.username}</p>
-                    <p className="text-2xl font-mono font-bold text-primary">
-                      {getMetricValue(leaderboard[1]).value} 
-                      <span className="text-sm text-muted-foreground ml-1">{getMetricValue(leaderboard[1]).suffix}</span>
-                    </p>
-                  </motion.div>
-                  
-                  {/* First Place */}
-                  <motion.div 
-                    className="stat-card text-center border-primary/50" 
-                    initial={{ opacity: 0, y: 20 }} 
-                    animate={{ opacity: 1, y: 0 }} 
-                    transition={{ delay: 0.1 }}
-                  >
-                    <Crown className="w-10 h-10 text-yellow-500 mx-auto mb-2" />
-                    <p className="font-semibold text-lg truncate">{leaderboard[0]?.username}</p>
-                    <p className="text-3xl font-mono font-bold text-primary">
-                      {getMetricValue(leaderboard[0]).value} 
-                      <span className="text-sm text-muted-foreground ml-1">{getMetricValue(leaderboard[0]).suffix}</span>
-                    </p>
-                  </motion.div>
-                  
-                  {/* Third Place */}
-                  <motion.div 
-                    className="stat-card text-center mt-12" 
-                    initial={{ opacity: 0, y: 20 }} 
-                    animate={{ opacity: 1, y: 0 }} 
-                    transition={{ delay: 0.3 }}
-                  >
-                    <Award className="w-8 h-8 text-amber-600 mx-auto mb-2" />
-                    <p className="font-semibold truncate">{leaderboard[2]?.username}</p>
-                    <p className="text-2xl font-mono font-bold text-primary">
-                      {getMetricValue(leaderboard[2]).value} 
-                      <span className="text-sm text-muted-foreground ml-1">{getMetricValue(leaderboard[2]).suffix}</span>
-                    </p>
-                  </motion.div>
-                </div>
-              )}
-
-              {/* Full Leaderboard Table */}
-              <motion.div 
-                className="stat-card" 
-                initial={{ opacity: 0 }} 
-                animate={{ opacity: 1 }} 
-                transition={{ delay: 0.4 }}
-              >
-                <table className="w-full">
-                  <thead>
-                    <tr className="text-left text-muted-foreground text-sm border-b border-border">
-                      <th className="pb-4 font-medium w-16">Rank</th>
-                      <th className="pb-4 font-medium">User</th>
-                      <th className="pb-4 font-medium text-right">
-                        {activeTab === 'wpm' && 'Best WPM'}
-                        {activeTab === 'accuracy' && 'Accuracy'}
-                        {activeTab === 'consistency' && 'Consistency'}
-                        {activeTab === 'tests' && 'Tests'}
-                      </th>
-                      <th className="pb-4 font-medium text-right hidden md:table-cell">Avg WPM</th>
-                      <th className="pb-4 font-medium text-right hidden md:table-cell">Characters</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {leaderboard.map((entry, index) => (
-                      <tr key={entry.user_id} className="border-b border-border/50 last:border-0">
-                        <td className="py-4">{getRankIcon(index + 1)}</td>
-                        <td className="py-4 font-medium">{entry.username}</td>
-                        <td className="py-4 text-right font-mono font-bold text-primary">
-                          {getMetricValue(entry).value}
-                          <span className="text-xs text-muted-foreground ml-1">{getMetricValue(entry).suffix}</span>
-                        </td>
-                        <td className="py-4 text-right hidden md:table-cell font-mono text-muted-foreground">
-                          {entry.wpm_avg?.toFixed(0)}
-                        </td>
-                        <td className="py-4 text-right hidden md:table-cell text-muted-foreground">
-                          {entry.total_characters?.toLocaleString()}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </motion.div>
-            </>
-          )}
-        </motion.div>
-      </main>
-      <Footer />
-    </div>
-  );
-};
-
-export default Leaderboard;

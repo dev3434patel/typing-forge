@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-15",
+  "scope": "Keyboard lab and optional Playwright browser selection",
+  "unit": { "passed": 48, "failed": 0, "exitCode": 0 },
+  "typecheck": {
+    "app": true,
+    "node": true,
+    "domainStrict": true,
+    "portableStrict": true,
+    "exitCode": 0
+  },
+  "lint": { "errors": 0, "warnings": 0, "exitCode": 0 },
+  "build": { "passed": true, "exitCode": 0 },
+  "browser": {
+    "baseURL": "http://127.0.0.1:5190",
+    "build": "static production snapshot",
+    "chromium": { "passed": 8, "failed": 0, "seconds": 7.1, "workers": 2 },
+    "firefox": { "passed": 8, "failed": 0, "seconds": 16.0, "workers": 2 },
+    "webkitFinal": { "passed": 8, "failed": 0, "seconds": 14.8, "workers": 1 },
+    "webkitInitial": {
+      "passed": 7,
+      "failed": 1,
+      "workers": 2,
+      "note": "Learn-link navigation failed once. Passed unchanged in isolated rerun and full serial suite. Cause not established."
+    },
+    "capabilityPermissions": "Browser capability success, unavailable and blocked outcomes are mocked; no physical hardware access approval is claimed."
+  },
+  "allEngineDiscovery": { "cases": 24, "exitCode": 0 },
+  "limitations": [
+    "No hardware identity or switch detection",
+    "No physical keyboard latency diagnostic",
+    "No native hardware/IME or assistive technology certification",
+    "Playwright WebKit on Windows does not certify Safari on Apple devices"
+  ]
+}

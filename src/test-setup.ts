@@ -66,13 +66,16 @@ if (typeof global !== 'undefined') {
     observe() {}
     unobserve() {}
     disconnect() {}
-  } as any;
+  };
 
   // Mock IntersectionObserver
   global.IntersectionObserver = class IntersectionObserver {
-    constructor() {}
+    readonly root = null;
+    readonly rootMargin = '0px';
+    readonly thresholds = [0];
+    takeRecords(): IntersectionObserverEntry[] { return []; }
     observe() {}
     unobserve() {}
     disconnect() {}
-  } as any;
+  };
 }

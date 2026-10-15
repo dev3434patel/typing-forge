@@ -1,0 +1,32 @@
+
+> typing-forge@3.0.0 test:coverage
+> vitest run --coverage
+
+
+ RUN  v4.1.12 D:/extra/typing_updated/typing-forge
+      Coverage enabled with v8
+
+ ❯ src/integrations/supabase/__tests__/client.test.ts (3 tests | 1 failed) 5684ms
+     × leaves guest practice usable when cloud configuration is absent 5675ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/integrations/supabase/__tests__/client.test.ts > optional Supabase client configuration > leaves guest practice usable when cloud configuration is absent
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/integrations/supabase/__tests__/client.test.ts:4:3
+      2| afterEach(()=>{vi.unstubAllEnvs();vi.resetModules();});
+      3| describe('optional Supabase client configuration',()=>{
+      4|   it('leaves guest practice usable when cloud configuration is absent'…
+       |   ^
+      5|     vi.stubEnv('VITE_SUPABASE_URL','');vi.stubEnv('VITE_SUPABASE_ANON_…
+      6|     const client=await import('../client');expect(client.isSupabaseCon…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 26 passed (27)
+      Tests  1 failed | 427 passed (428)
+   Start at  23:14:57
+   Duration  15.18s (transform 23.07s, setup 6.23s, import 32.02s, tests 23.58s, environment 8ms)
+

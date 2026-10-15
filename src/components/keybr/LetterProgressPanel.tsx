@@ -1,156 +1,37 @@
-import { motion } from 'framer-motion';
+import { useMemo, useState } from 'react';
+import { Check, Lock } from 'lucide-react';
+import { getAllCharacterStats, getCharacterHistory, type LearningOptions } from '@/lib/keybr-engine';
+import { getContentPack, getLayout } from '@/lib/content-packs';
 import { cn } from '@/lib/utils';
-import { 
-  getAllCharacterStats, 
-  getConfidenceStatus,
-  type CharacterConfidence 
-} from '@/lib/keybr-engine';
-import { Lock, Check, TrendingUp } from 'lucide-react';
 
-interface LetterProgressPanelProps {
-  compact?: boolean;
-}
-
-export function LetterProgressPanel({ compact = false }: LetterProgressPanelProps) {
-  const stats = getAllCharacterStats();
-  
-  // QWERTY layout
-  const qwertyRows = [
-    ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
-    ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
-    ['z', 'x', 'c', 'v', 'b', 'n', 'm']
-  ];
-  
-  const getCharData = (char: string): CharacterConfidence | undefined => {
-    return stats.find(s => s.char === char);
+interface Props extends LearningOptions { compact?: boolean; targetWpm?: number; selectedKey?: string; onSelectKey?: (char: string) => void }
+export function LetterProgressPanel({ compact = false, targetWpm = 35, selectedKey, onSelectKey, ...options }: Props) {
+  const [inspectedKey, setInspectedKey] = useState<string | null>(null);
+  const stats = getAllCharacterStats({ ...options, targetWpm });
+  const pack = getContentPack(options.dimensions?.language ?? 'en');
+  const selected = selectedKey ?? inspectedKey;
+  const metric = stats.find(stat => stat.char === selected);
+  const history = selected ? getCharacterHistory(selected, options) : [];
+  const layout = getLayout(options.dimensions?.layout ?? 'qwerty');
+  const useMappedRows = pack.script === 'Latin' && layout.rows.length > 0;
+  const rows = useMemo(() => {
+    if (!useMappedRows) return [pack.introductionOrder];
+    const mapped = layout.rows.map(row => row.filter(char => pack.alphabet.includes(char)));
+    const represented = new Set(mapped.flat());
+    return [...mapped, pack.introductionOrder.filter(char => !represented.has(char))].filter(row => row.length > 0);
+  }, [layout.rows, pack, useMappedRows]);
+  const keyButton = (char: string) => {
+    const stat = stats.find(item => item.char === char)!;
+    const label = !stat.isUnlocked ? 'Locked' : stat.assessmentState === 'introduced' ? 'Introduced, awaiting evidence' : stat.assessmentState === 'mastered' ? 'Mastered' : stat.assessmentState === 'review' ? 'Mastered, needs review' : `${stat.assessmentState ?? 'Unassessed'}, ${stat.attributableAttempts ?? 0} attributable recent attempts`;
+    return <button type="button" key={char} aria-label={`${char}: ${label}`} aria-pressed={selected === char} onClick={() => { setInspectedKey(char); if (stat.isUnlocked) onSelectKey?.(char); }} className={cn('relative flex min-h-10 min-w-10 items-center justify-center gap-1 rounded-lg border p-2 font-mono text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring', !stat.isUnlocked ? 'border-border bg-muted/20 text-muted-foreground' : stat.assessmentState === 'mastered' ? 'border-success/50 bg-success/10 text-success' : stat.assessmentState === 'review' ? 'border-warning/50 bg-warning/10 text-warning' : 'border-border bg-background text-foreground hover:border-primary', selected === char && 'ring-2 ring-primary')} title={`${char}: ${label}`}><span>{char}</span>{!stat.isUnlocked ? <Lock className="size-2.5" /> : stat.assessmentState === 'mastered' ? <Check className="size-3" /> : null}</button>;
   };
-  
-  const getKeyColor = (charData: CharacterConfidence | undefined) => {
-    if (!charData) return 'bg-muted/50 text-muted-foreground';
-    if (!charData.isUnlocked) return 'bg-muted/30 text-muted-foreground/50';
-    
-    const conf = charData.confidence;
-    if (conf >= 1.0) return 'bg-success/20 text-success border-success/50';
-    if (conf >= 0.8) return 'bg-primary/20 text-primary border-primary/50';
-    if (conf >= 0.6) return 'bg-warning/20 text-warning border-warning/50';
-    if (conf >= 0.3) return 'bg-orange-500/20 text-orange-400 border-orange-500/50';
-    return 'bg-destructive/20 text-destructive border-destructive/50';
-  };
-
-  if (compact) {
-    return (
-      <div className="flex flex-wrap gap-1.5 justify-center">
-        {stats.map(charData => (
-          <motion.div
-            key={charData.char}
-            className={cn(
-              "w-7 h-7 rounded flex items-center justify-center text-xs font-mono font-bold uppercase border",
-              getKeyColor(charData)
-            )}
-            whileHover={{ scale: 1.1 }}
-            title={`${charData.char.toUpperCase()}: ${Math.round(charData.confidence * 100)}% confidence`}
-          >
-            {!charData.isUnlocked ? (
-              <Lock className="w-3 h-3" />
-            ) : charData.confidence >= 1.0 ? (
-              <Check className="w-3 h-3" />
-            ) : (
-              charData.char
-            )}
-          </motion.div>
-        ))}
-      </div>
-    );
-  }
-
-  return (
-    <motion.div
-      className="stat-card"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-    >
-      <div className="flex items-center gap-2 mb-4">
-        <TrendingUp className="w-5 h-5 text-primary" />
-        <h3 className="text-lg font-semibold">Letter Progress</h3>
-      </div>
-      
-      <div className="space-y-2">
-        {qwertyRows.map((row, rowIndex) => (
-          <div 
-            key={rowIndex} 
-            className="flex justify-center gap-1.5"
-            style={{ paddingLeft: rowIndex === 1 ? '16px' : rowIndex === 2 ? '32px' : '0' }}
-          >
-            {row.map(char => {
-              const charData = getCharData(char);
-              const status = charData ? getConfidenceStatus(charData.confidence, charData.isUnlocked) : null;
-              
-              return (
-                <motion.div
-                  key={char}
-                  className={cn(
-                    "relative w-10 h-10 rounded-lg flex flex-col items-center justify-center border transition-all cursor-default group",
-                    getKeyColor(charData)
-                  )}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-                >
-                  {!charData?.isUnlocked ? (
-                    <Lock className="w-4 h-4 opacity-50" />
-                  ) : (
-                    <>
-                      <span className="text-sm font-mono font-bold uppercase">{char}</span>
-                      {charData && charData.confidence > 0 && (
-                        <span className="text-[8px] opacity-70">
-                          {Math.round(charData.confidence * 100)}%
-                        </span>
-                      )}
-                    </>
-                  )}
-                  
-                  {/* Tooltip */}
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-popover border rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 whitespace-nowrap">
-                    <div className="text-xs font-semibold uppercase">{char}</div>
-                    {charData && charData.isUnlocked ? (
-                      <div className="text-xs text-muted-foreground space-y-0.5">
-                        <div>WPM: {charData.wpm}</div>
-                        <div>Accuracy: {charData.accuracy}%</div>
-                        <div>Status: {status?.text}</div>
-                      </div>
-                    ) : (
-                      <div className="text-xs text-muted-foreground">Locked</div>
-                    )}
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        ))}
-      </div>
-      
-      {/* Legend */}
-      <div className="flex flex-wrap justify-center gap-4 mt-6 text-xs">
-        <div className="flex items-center gap-1.5">
-          <div className="w-3 h-3 rounded bg-success/20 border border-success/50" />
-          <span className="text-muted-foreground">Mastered</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <div className="w-3 h-3 rounded bg-primary/20 border border-primary/50" />
-          <span className="text-muted-foreground">Nearly there</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <div className="w-3 h-3 rounded bg-warning/20 border border-warning/50" />
-          <span className="text-muted-foreground">In progress</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <div className="w-3 h-3 rounded bg-destructive/20 border border-destructive/50" />
-          <span className="text-muted-foreground">Weak</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <Lock className="w-3 h-3 text-muted-foreground/50" />
-          <span className="text-muted-foreground">Locked</span>
-        </div>
-      </div>
-    </motion.div>
-  );
+  if (compact) return <div className="flex flex-wrap justify-center gap-1.5">{stats.map(stat => keyButton(stat.char))}</div>;
+  return <section className="rounded-2xl border border-border bg-card p-5 sm:p-6" aria-label="Per-key learning progress">
+    <div className="mb-5 flex flex-wrap items-center justify-between gap-2"><div><h3 className="font-semibold">Your key map</h3><p className="mt-1 text-xs text-muted-foreground">{useMappedRows ? `${layout.label} logical-character view` : 'Native / unmapped character view'} · select an available key to focus practice</p></div><span className="text-xs text-muted-foreground">{stats.filter(stat => stat.isUnlocked).length} introduced / {stats.length}</span></div>
+    <div className="space-y-2" lang={pack.id}>{rows.map((row, index) => <div key={index} className="flex flex-wrap justify-center gap-1.5">{row.map(keyButton)}</div>)}</div>
+    <div className="mt-5 flex flex-wrap justify-center gap-4 text-xs text-muted-foreground"><span className="flex items-center gap-1"><Check className="size-3 text-success" />Mastered</span><span>Available: evidence in progress</span><span className="text-warning">Needs review</span><span className="flex items-center gap-1"><Lock className="size-3" />Locked</span></div>
+    {metric && <div className="mt-6 border-t border-border pt-5"><div className="flex flex-wrap items-center justify-between gap-3"><h4 className="font-semibold"><span className="mr-2 font-mono text-xl text-primary">{metric.char}</span>{metric.assessmentState?.replaceAll('_', ' ')}</h4><span className="text-xs text-muted-foreground">{metric.recentAttempts ?? 0} recent attempts · {metric.lessonCount ?? 0} assessments</span></div><p className="mt-2 text-sm text-muted-foreground">{metric.qualifiedLatencySamples ? `${Math.round(metric.wpm)} WPM latency estimate; target ${targetWpm} WPM. ` : 'No qualified individual-key timing yet. '}{metric.recentAttempts ? `${metric.accuracy.toFixed(1)}% recent attempt accuracy.` : 'Practice this key to begin collecting evidence.'}</p>
+      {history.length > 0 ? <div className="mt-4 max-h-52 overflow-auto"><table className="w-full text-left text-xs"><caption className="sr-only">Actual session history for {metric.char}</caption><thead className="text-muted-foreground"><tr><th className="py-2 font-normal">Completed lesson</th><th className="text-right font-normal">Key speed</th><th className="text-right font-normal">Accuracy</th><th className="text-right font-normal">Attempts</th></tr></thead><tbody>{history.slice(-10).map(item => <tr key={item.sessionId} className="border-t border-border"><td className="py-2">{new Date(item.completedAt).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</td><td className="text-right font-mono">{item.wpm === null ? '—' : `${Math.round(item.wpm)} WPM`}</td><td className="text-right font-mono">{item.accuracy.toFixed(1)}%</td><td className="text-right font-mono">{item.attempts}</td></tr>)}</tbody></table></div> : <p className="mt-3 text-xs text-muted-foreground">No recorded sessions for this key. Legacy summary values are unassessed.</p>}
+    </div>}
+  </section>;
 }

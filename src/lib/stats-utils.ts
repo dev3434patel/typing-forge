@@ -166,7 +166,7 @@ export function calculateAccuracyStreaks(sessions: TestSession[]): AccuracyStrea
           ? new Date(longestStreak[0].created_at).toLocaleDateString() 
           : 'N/A',
         endDate: longestStreak[longestStreak.length - 1].created_at 
-          ? new Date(longestStreak[longestStreak.length - 1].created_at).toLocaleDateString() 
+          ? new Date(longestStreak[longestStreak.length - 1].created_at!).toLocaleDateString()
           : 'N/A',
       });
     }

@@ -5,9 +5,10 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Swords, Play, Bot, Users } from 'lucide-react';
 import { BotDifficulty } from '@/lib/bot-engine';
+import type { User } from '@supabase/supabase-js';
 
 interface RaceLobbyProps {
-  user: any;
+  user: User | null;
   onCreateRace: () => void;
   onJoinRace: (code: string) => void;
   onCreateBotRace: (difficulty: BotDifficulty) => void;

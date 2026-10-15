@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-15",
+  "timezone": "Asia/Calcutta",
+  "runtime": { "node": "22.20.0", "npm": "11.8.0", "deno": "2.9.6", "platform": "Windows" },
+  "checks": {
+    "cleanInstall": { "exitCode": 0, "evidence": "clean-install.txt" },
+    "typecheck": { "exitCode": 0, "strictDomain": true, "portableCoreWithoutDomOrNodeTypes": true, "fullReactAppStrict": false, "evidence": "typecheck.txt" },
+    "lint": { "exitCode": 0, "errors": 0, "warnings": 9, "evidence": "lint.txt" },
+    "unitCoverage": {
+      "exitCode": 0, "testsPassed": 334, "filesPassed": 23,
+      "statementsPercent": 86.8, "branchesPercent": 81.35, "functionsPercent": 88.03, "linesPercent": 95,
+      "scope": "Business logic modules listed in vitest.config.ts; not the entire application",
+      "floors": { "linesPercent": 85, "otherDimensionsPercent": 80 },
+      "evidence": "coverage.txt"
+    },
+    "browser": {
+      "exitCode": 0, "browser": "Chromium", "build": "production static preview", "workers": 2,
+      "testsPassed": 31, "testsSkipped": 2, "testsFailed": 0, "durationReported": "1.4m",
+      "skipReason": "Dedicated cloud account credentials are not configured",
+      "evidence": "browser.txt"
+    },
+    "database": { "exitCode": 0, "migrationsReplayed": 14, "integrityAssertions": "passed", "legacyUpgradeFixture": "passed", "runtime": "PostgreSQL/WASM via PGlite 0.5.10", "liveSupabase": false, "evidence": "database.txt" },
+    "edgeTypecheck": { "exitCode": 0, "entrypoints": 3, "deployedHttpVerified": false, "evidence": "edge-typecheck.txt" },
+    "contentSyntax": { "exitCode": 0, "examples": 20, "sqlExamples": 4, "sqlRuntimes": ["SQLite EXPLAIN", "PostgreSQL 18.6/PGlite 0.5.10 EXPLAIN"], "programsExecuted": false, "evidence": "content.txt" },
+    "dependencyAudit": { "exitCode": 0, "vulnerabilities": 0, "includesDevDependencies": true, "evidence": "dependency-audit.json" },
+    "build": { "exitCode": 0, "warnings": ["A minified main chunk is larger than 500 kB"], "evidence": "build.txt" },
+    "bundle": { "exitCode": 0, "initialPracticeJsGzipBytes": 192655, "maxFeatureJsGzipBytes": 108518, "cssGzipBytes": 20049, "fontsSeparate": true, "evidence": "bundle.json" },
+    "diffWhitespace": { "exitCode": 0, "evidence": "diff-check.txt" },
+    "shareImage": { "verifiedPngSignature": true, "width": 1200, "height": 630, "visuallyInspected": true, "evidence": "result-share.png" }
+  },
+  "preview": "http://127.0.0.1:4173",
+  "remoteMigrationPerformed": false,
+  "edgeDeploymentPerformed": false,
+  "sitePublished": false,
+  "completeMasterSpecification": false,
+  "remainingWork": "See docs/IMPLEMENTATION_STATUS.md, docs/AUDIT_RESOLUTION_MATRIX.md and docs/DATA_AND_DEPLOYMENT.md"
+}

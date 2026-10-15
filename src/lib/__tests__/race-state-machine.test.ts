@@ -221,7 +221,7 @@ describe('Race State Machine', () => {
     });
 
     it('should be idempotent', () => {
-      let race = updateProgress(activeRace, 'host-1', 100, 60, 95);
+      const race = updateProgress(activeRace, 'host-1', 100, 60, 95);
       const completed = completeRace(race);
       const duplicate = completeRace(completed);
       

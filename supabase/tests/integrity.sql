@@ -1,0 +1,54 @@
+-- Run on a disposable migrated Supabase database as postgres. This rolls back.
+-- It proves SQL authorization/transaction properties, not Edge auth or Realtime.
+begin;
+create function pg_temp.assert_true(condition boolean,message text) returns void language plpgsql as $$ begin if condition is distinct from true then raise exception 'ASSERTION FAILED: %',message;end if;end $$;
+select pg_temp.assert_true(not has_table_privilege('authenticated','public.test_sessions','INSERT'),'Browser cannot insert scores');
+select pg_temp.assert_true(not has_table_privilege('authenticated','public.leaderboards','UPDATE'),'Browser cannot rewrite aggregates');
+select pg_temp.assert_true(not has_table_privilege('authenticated','public.race_sessions','UPDATE'),'Browser cannot rewrite protected room fields');
+select pg_temp.assert_true(not has_function_privilege('anon','public.forge_commit_session(uuid,text,text,jsonb,jsonb,jsonb)','EXECUTE'),'Anon cannot call commit facade');
+select pg_temp.assert_true(not has_function_privilege('authenticated','public.forge_commit_session(uuid,text,text,jsonb,jsonb,jsonb)','EXECUTE'),'Owner cannot pass arbitrary validated scores');
+select pg_temp.assert_true(has_function_privilege('service_role','public.forge_commit_session(uuid,text,text,jsonb,jsonb,jsonb)','EXECUTE'),'Trusted Edge deployment role can commit');
+select pg_temp.assert_true(not has_schema_privilege('authenticated','forge_private','USAGE'),'Private schema is inaccessible to browsers');
+
+insert into auth.users(id,email) values('11111111-1111-4111-8111-111111111111','alice@example.invalid'),('22222222-2222-4222-8222-222222222222','bob@example.invalid'),('33333333-3333-4333-8333-333333333333','charlie@example.invalid');
+select pg_temp.assert_true((select count(*)=3 from public.public_identities where handle ~ '^[a-z][a-z0-9_]{2,23}$'),'Signup generates safe handles');
+select pg_temp.assert_true(not exists(select 1 from public.profiles where username like '%@%'),'Email is not used as a handle');
+set local role authenticated;
+select set_config('request.jwt.claims','{"role":"authenticated","sub":"11111111-1111-4111-8111-111111111111"}',true);
+select pg_temp.assert_true((select count(*)=1 from public.profiles),'Owner sees only private owner profile');
+select pg_temp.assert_true((select count(*)=3 from public.public_identities),'Other users approved handles are actually readable');
+select public.forge_update_preferences('11111111-1111-4111-8111-111111111111',0,'{"fontSize":28}');
+select pg_temp.assert_true((public.forge_update_preferences('11111111-1111-4111-8111-111111111111',0,'{"fontSize":40}')->>'conflict')::boolean,'Preference conflicts return a new version instead of overwriting');
+select pg_temp.assert_true((select preferences->>'fontSize'='28' from public.user_preferences),'A stale preference write does not replace a newer value');
+do $$ begin begin perform public.forge_update_preferences('22222222-2222-4222-8222-222222222222',0,'{"fontSize":32}');raise exception 'Other account preference changed';exception when insufficient_privilege then null;end;end $$;
+create temp table test_room as select public.forge_create_race(30) room;
+select pg_temp.assert_true((select room->>'status'='waiting' from test_room),'Created room waits');
+do $$ begin begin perform public.forge_join_race((select room->>'room_code' from test_room));raise exception 'Host joined self';exception when raise_exception then if sqlerrm='Host joined self' then raise;end if;end;end $$;
+select set_config('request.jwt.claims','{"role":"authenticated","sub":"22222222-2222-4222-8222-222222222222"}',true);
+select public.forge_join_race((select room->>'room_code' from test_room));
+select pg_temp.assert_true((select status='countdown' and opponent_id='22222222-2222-4222-8222-222222222222' and deadline_at-started_at=interval '30 seconds' from public.race_sessions where id=(select (room->>'id')::uuid from test_room)),'Atomic join sets shared countdown/deadline');
+select public.forge_join_race((select room->>'room_code' from test_room));
+select set_config('request.jwt.claims','{"role":"authenticated","sub":"33333333-3333-4333-8333-333333333333"}',true);
+select pg_temp.assert_true((select count(*)=0 from public.race_sessions),'Unrelated user cannot read private room');
+do $$ begin begin perform public.forge_join_race((select room->>'room_code' from test_room));raise exception 'Third player joined';exception when raise_exception then if sqlerrm='Third player joined' then raise;end if;end;end $$;
+reset role;
+select set_config('request.jwt.claims','{"role":"service_role"}',true);
+-- These intentionally synthetic scores exercise DB transactions, never UI or ranking.
+select public.forge_commit_session('11111111-1111-4111-8111-111111111111','fixture-one','sha256:'||repeat('a',64),'{"metricsVersion":"forge-v3","mode":"quote","comparisonKey":"fixture","elapsedMs":10000,"metrics":{"wpm":42.1234567,"rawWpm":45,"inputAccuracy":90,"consistency":80,"retainedUnits":10,"correct":9,"incorrectAttempts":1},"eligibility":{"eligible":false},"timeSeries":[]}', '{}','[]');
+select public.forge_commit_session('11111111-1111-4111-8111-111111111111','fixture-one','sha256:'||repeat('a',64),'{"metricsVersion":"forge-v3"}', '{}','[]');
+select pg_temp.assert_true((select count(*)=1 from public.test_sessions where client_session_id='fixture-one'),'Identical retry has one session effect');
+select pg_temp.assert_true((select net_wpm=42.1234567 from public.test_sessions where client_session_id='fixture-one'),'Canonical precision is retained');
+select pg_temp.assert_true((select count(*)=0 from public.leaderboards),'Personal sessions never enter rankings');
+do $$ begin begin perform public.forge_commit_session('11111111-1111-4111-8111-111111111111','fixture-one','sha256:'||repeat('b',64),'{"metricsVersion":"forge-v3"}','{}','[]');raise exception 'Changed payload accepted';exception when unique_violation then null;end;end $$;
+set local role authenticated;
+select set_config('request.jwt.claims','{"role":"authenticated","sub":"11111111-1111-4111-8111-111111111111"}',true);
+select public.forge_delete_session_for_owner('11111111-1111-4111-8111-111111111111','fixture-one');
+select pg_temp.assert_true((select count(*)=0 from public.test_sessions),'Owner deletion removes session');
+select pg_temp.assert_true((select count(*)=0 from public.comparison_bests),'Owner deletion reconciles comparisons');
+reset role;
+select set_config('request.jwt.claims','{"role":"service_role"}',true);
+do $$ begin begin perform public.forge_commit_session('11111111-1111-4111-8111-111111111111','fixture-one','sha256:'||repeat('a',64),'{"metricsVersion":"forge-v3"}','{}','[]');raise exception 'Deleted session resurrected';exception when unique_violation then null;end;end $$;
+select forge_private.expire_evidence();
+select forge_private.expire_rooms();
+select pg_temp.assert_true((select count(*)=2 from forge_private.job_runs),'Cleanup jobs record actual execution');
+rollback;

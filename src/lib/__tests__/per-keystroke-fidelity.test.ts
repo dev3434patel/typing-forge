@@ -109,7 +109,7 @@ describe('Per-Keystroke Fidelity: Fixed Synthetic Logs', () => {
         key: (index: number) => Object.keys(mockLocalStorage)[index] || null,
       } as Storage;
       
-      const perCharMetrics = calculatePerCharMetrics(keystrokes, 35);
+      const perCharMetrics = calculatePerCharMetrics(keystrokes.map(stroke => ({ ...stroke, expected: stroke.expected ?? targetText[stroke.position] ?? stroke.char, isCorrect: stroke.isCorrect ?? stroke.char === stroke.expected })), 35);
       
       // All letters should have metrics
       const uniqueChars = new Set(targetText.toLowerCase().replace(/[^a-z]/g, '').split(''));
@@ -193,16 +193,16 @@ describe('Per-Keystroke Fidelity: Fixed Synthetic Logs', () => {
       createKeystroke('t', 't', 1000, 3, true),
     ];
 
-    it('should cap accuracy at 99.99% with backspace', () => {
+    it('preserves perfect final text after a corrected mistake', () => {
       const metrics = computeSessionMetrics(keystrokeRecords, targetText, typedText);
       
       expect(metrics.backspaceCount).toBe(1);
-      expect(metrics.accuracy).toBe(99.99); // Capped
+      expect(metrics.accuracy).toBe(100); // Legacy field is final-text accuracy.
       expect(metrics.correctChars).toBe(4);
       expect(metrics.isValid).toBe(true);
     });
 
-    it('should match professional report backspace cap', () => {
+    it('matches the historical final-text report after a correction', () => {
       const durationSeconds = 1.0;
       const report = generateProfessionalAccuracyReport(
         targetText,
@@ -214,7 +214,7 @@ describe('Per-Keystroke Fidelity: Fixed Synthetic Logs', () => {
       );
       
       expect(report.typing.backspaceCount).toBe(1);
-      expect(report.accuracy.final).toBe(99.99);
+      expect(report.accuracy.final).toBe(100);
     });
   });
 

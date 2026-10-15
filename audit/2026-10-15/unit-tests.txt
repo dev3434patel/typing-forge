@@ -1,0 +1,786 @@
+
+> vite_react_shadcn_ts@0.0.0 test:run
+> vitest run
+
+
+ RUN  v4.0.18 D:/extra/typing_updated/typing-forge
+
+ ✓ src/lib/__tests__/accuracy-live-update.test.ts (11 tests) 9ms
+ ✓ src/lib/__tests__/metrics-consistency.test.ts (6 tests) 8ms
+stderr | src/lib/__tests__/accuracy-pipeline.test.ts > Accuracy Pipeline - Canonical Formula Consistency > Test Case 2: One typo, no correction > should return same accuracy from both engines
+[Accuracy Debug] Found 1 incorrect chars out of 3 compared. First mismatches: [
+  {
+    pos: 1,
+    typed: 'x',
+    target: 'b',
+    match: false,
+    typedCode: 120,
+    targetCode: 98
+  }
+]
+[Accuracy Debug] typedText length: 3, targetText length: 3
+[Accuracy Debug] typedText sample (first 50): "axc"
+[Accuracy Debug] targetText sample (first 50): "abc"
+stdout | src/lib/__tests__/accuracy-end-to-end.test.ts > End-to-End Accuracy Pipeline Test > should show consistent accuracy through entire flow (7.2% scenario)
+[E2E TEST] Manual calculation (what live HUD should show): {
+  correctChars: 17,
+  incorrectChars: 26,
+  extraChars: 21,
+  missedChars: 0,
+  totalDenominator: 64,
+  accuracy: 26.56
+}
+[E2E TEST] Canonical metrics (final calculation): {
+  correctChars: 17,
+  incorrectChars: 26,
+  extraChars: 21,
+  missedChars: 0,
+  accuracy: 26.56
+}
+[E2E TEST] Professional report (results screen): {
+  overviewAccuracy: 26.56,
+  finalAccuracy: 26.56,
+  correctChars: 17,
+  incorrectChars: 26,
+  extraChars: 21,
+  missedChars: 0
+}
+
+stderr | src/lib/__tests__/accuracy-end-to-end.test.ts > End-to-End Accuracy Pipeline Test > should show consistent accuracy through entire flow (7.2% scenario)
+[Accuracy Debug] Found 26 incorrect chars out of 43 compared. First mismatches: [
+  {
+    pos: 1,
+    typed: 'x',
+    target: 'h',
+    match: false,
+    typedCode: 120,
+    targetCode: 104
+  },
+  {
+    pos: 2,
+    typed: 'x',
+    target: 'e',
+    match: false,
+    typedCode: 120,
+    targetCode: 101
+  },
+  {
+    pos: 5,
+    typed: 'x',
+    target: 'u',
+    match: false,
+    typedCode: 120,
+    targetCode: 117
+  },
+  {
+    pos: 6,
+    typed: 'x',
+    target: 'i',
+    match: false,
+    typedCode: 120,
+    targetCode: 105
+  },
+  {
+    pos: 7,
+    typed: 'x',
+    target: 'c',
+    match: false,
+    typedCode: 120,
+    targetCode: 99
+  },
+  {
+    pos: 8,
+    typed: 'x',
+    target: 'k',
+    match: false,
+    typedCode: 120,
+    targetCode: 107
+  },
+  {
+    pos: 11,
+    typed: 'x',
+    target: 'r',
+    match: false,
+    typedCode: 120,
+    targetCode: 114
+  },
+  {
+    pos: 12,
+    typed: 'x',
+    target: 'o',
+    match: false,
+    typedCode: 120,
+    targetCode: 111
+  },
+  {
+    pos: 13,
+    typed: 'x',
+    target: 'w',
+    match: false,
+    typedCode: 120,
+    targetCode: 119
+  },
+  {
+    pos: 14,
+    typed: 'x',
+    target: 'n',
+    match: false,
+    typedCode: 120,
+    targetCode: 110
+  }
+]
+[Accuracy Debug] typedText length: 64, targetText length: 43
+[Accuracy Debug] typedText sample (first 50): "txx qxxxx bxxxx fxx jxxxx oxxx xxx lxxx dxx xxxxxx"
+[Accuracy Debug] targetText sample (first 50): "the quick brown fox jumps over the lazy dog"
+
+stderr | src/lib/__tests__/accuracy-pipeline.test.ts > Accuracy Pipeline - Canonical Formula Consistency > Test Case 7: Many errors scenario (matches user bug report) > should show low accuracy (~10%) when most characters are incorrect
+[Accuracy Debug] Found 10 incorrect chars out of 12 compared. First mismatches: [
+  {
+    pos: 1,
+    typed: 'x',
+    target: 'e',
+    match: false,
+    typedCode: 120,
+    targetCode: 101
+  },
+  {
+    pos: 2,
+    typed: 'x',
+    target: 'n',
+    match: false,
+    typedCode: 120,
+    targetCode: 110
+  },
+  {
+    pos: 3,
+    typed: 'x',
+    target: 'd',
+    match: false,
+    typedCode: 120,
+    targetCode: 100
+  },
+  {
+    pos: 4,
+    typed: 'x',
+    target: 's',
+    match: false,
+    typedCode: 120,
+    targetCode: 115
+  },
+  {
+    pos: 6,
+    typed: 'x',
+    target: 's',
+    match: false,
+    typedCode: 120,
+    targetCode: 115
+  },
+  {
+    pos: 7,
+    typed: 'x',
+    target: 'e',
+    match: false,
+    typedCode: 120,
+    targetCode: 101
+  },
+  {
+    pos: 8,
+    typed: 'x',
+    target: 'a',
+    match: false,
+    typedCode: 120,
+    targetCode: 97
+  },
+  {
+    pos: 9,
+    typed: 'x',
+    target: 's',
+    match: false,
+    typedCode: 120,
+    targetCode: 115
+  },
+  {
+    pos: 10,
+    typed: 'x',
+    target: 'o',
+    match: false,
+    typedCode: 120,
+    targetCode: 111
+  },
+  {
+    pos: 11,
+    typed: 'x',
+    target: 'n',
+    match: false,
+    typedCode: 120,
+    targetCode: 110
+  }
+]
+[Accuracy Debug] typedText length: 12, targetText length: 12
+[Accuracy Debug] typedText sample (first 50): "sxxxx xxxxxx"
+[Accuracy Debug] targetText sample (first 50): "sends season"
+
+stderr | src/lib/__tests__/accuracy-reality-check.test.ts > Accuracy Reality Check - 7.2% Scenario > should show consistent accuracy across all calculation paths
+[Accuracy Debug] Found 35 incorrect chars out of 43 compared. First mismatches: [
+  {
+    pos: 4,
+    typed: 'x',
+    target: 'q',
+    match: false,
+    typedCode: 120,
+    targetCode: 113
+  },
+  {
+    pos: 5,
+    typed: 'x',
+    target: 'u',
+    match: false,
+    typedCode: 120,
+    targetCode: 117
+  },
+  {
+    pos: 6,
+    typed: 'x',
+    target: 'i',
+    match: false,
+    typedCode: 120,
+    targetCode: 105
+  },
+  {
+    pos: 7,
+    typed: 'x',
+    target: 'c',
+    match: false,
+    typedCode: 120,
+    targetCode: 99
+  },
+  {
+    pos: 8,
+    typed: 'x',
+    target: 'k',
+    match: false,
+    typedCode: 120,
+    targetCode: 107
+  },
+  {
+    pos: 10,
+    typed: 'x',
+    target: 'b',
+    match: false,
+    typedCode: 120,
+    targetCode: 98
+  },
+  {
+    pos: 11,
+    typed: 'x',
+    target: 'r',
+    match: false,
+    typedCode: 120,
+    targetCode: 114
+  },
+  {
+    pos: 12,
+    typed: 'x',
+    target: 'o',
+    match: false,
+    typedCode: 120,
+    targetCode: 111
+  },
+  {
+    pos: 13,
+    typed: 'x',
+    target: 'w',
+    match: false,
+    typedCode: 120,
+    targetCode: 119
+  },
+  {
+    pos: 14,
+    typed: 'x',
+    target: 'n',
+    match: false,
+    typedCode: 120,
+    targetCode: 110
+  }
+]
+[Accuracy Debug] typedText length: 63, targetText length: 43
+[Accuracy Debug] typedText sample (first 50): "the xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxx"
+[Accuracy Debug] targetText sample (first 50): "the quick brown fox jumps over the lazy dog"
+
+stderr | src/lib/__tests__/accuracy-end-to-end.test.ts > End-to-End Accuracy Pipeline Test > should show consistent accuracy when user types with some errors
+[Accuracy Debug] Found 1 incorrect chars out of 11 compared. First mismatches: [
+  {
+    pos: 1,
+    typed: 'x',
+    target: 'e',
+    match: false,
+    typedCode: 120,
+    targetCode: 101
+  }
+]
+[Accuracy Debug] typedText length: 11, targetText length: 11
+[Accuracy Debug] typedText sample (first 50): "hxllo world"
+[Accuracy Debug] targetText sample (first 50): "hello world"
+
+
+stdout | src/lib/__tests__/accuracy-reality-check.test.ts > Accuracy Reality Check - 7.2% Scenario > should show consistent accuracy across all calculation paths
+[REALITY CHECK] Character counts: {
+  correctCount: 8,
+  incorrectCount: 35,
+  totalDenominator: 63,
+  expectedAccuracy: 12.7
+}
+[REALITY CHECK] Canonical metrics: {
+  accuracy: 12.7,
+  correctChars: 8,
+  incorrectChars: 35,
+  missedChars: 0,
+  extraChars: 20
+}
+[REALITY CHECK] Report metrics: {
+  overviewAccuracy: 12.7,
+  finalAccuracy: 12.7,
+  correctChars: 8,
+  incorrectChars: 35,
+  missedChars: 0,
+  extraChars: 20
+}
+
+ ✓ src/lib/__tests__/accuracy-reality-check.test.ts (2 tests) 17ms
+ ✓ src/lib/__tests__/race-state-machine.test.ts (39 tests) 24ms
+ ✓ src/lib/__tests__/accuracy-end-to-end.test.ts (3 tests) 20ms
+ ✓ src/lib/__tests__/accuracy-pipeline.test.ts (8 tests) 19ms
+stderr | src/lib/__tests__/per-keystroke-fidelity.test.ts > Per-Keystroke Fidelity: Fixed Synthetic Logs > Fixed Log 2: 95% accuracy with 2 errors > should match professional report accuracy
+[Accuracy Debug] Found 1 incorrect chars out of 11 compared. First mismatches: [
+  {
+    pos: 1,
+    typed: 'x',
+    target: 'e',
+    match: false,
+    typedCode: 120,
+    targetCode: 101
+  }
+]
+[Accuracy Debug] typedText length: 11, targetText length: 11
+[Accuracy Debug] typedText sample (first 50): "hxllo world"
+[Accuracy Debug] targetText sample (first 50): "hello world"
+ ✓ src/lib/__tests__/keybr-engine.test.ts (24 tests) 28ms
+
+ ✓ src/lib/__tests__/typing-engine.test.ts (34 tests) 34ms
+stderr | src/lib/__tests__/professional-accuracy.test.ts > Professional Accuracy > generateProfessionalAccuracyReport > should handle session with accuracy near 0%
+[Accuracy Debug] Found 5 incorrect chars out of 5 compared. First mismatches: [
+  {
+    pos: 0,
+    typed: 'x',
+    target: 'h',
+    match: false,
+    typedCode: 120,
+    targetCode: 104
+  },
+  {
+    pos: 1,
+    typed: 'x',
+    target: 'e',
+    match: false,
+    typedCode: 120,
+    targetCode: 101
+  },
+  {
+    pos: 2,
+    typed: 'x',
+    target: 'l',
+    match: false,
+    typedCode: 120,
+    targetCode: 108
+  },
+  {
+    pos: 3,
+    typed: 'x',
+    target: 'l',
+    match: false,
+    typedCode: 120,
+    targetCode: 108
+  },
+  {
+    pos: 4,
+    typed: 'x',
+    target: 'o',
+    match: false,
+    typedCode: 120,
+    targetCode: 111
+  }
+]
+[Accuracy Debug] typedText length: 5, targetText length: 5
+[Accuracy Debug] typedText sample (first 50): "xxxxx"
+[Accuracy Debug] targetText sample (first 50): "hello"
+
+stderr | src/lib/__tests__/professional-accuracy.test.ts > Professional Accuracy > generateProfessionalAccuracyReport > should classify errors correctly
+[Accuracy Debug] Found 1 incorrect chars out of 5 compared. First mismatches: [
+  {
+    pos: 1,
+    typed: 'x',
+    target: 'e',
+    match: false,
+    typedCode: 120,
+    targetCode: 101
+  }
+]
+[Accuracy Debug] typedText length: 5, targetText length: 5
+[Accuracy Debug] typedText sample (first 50): "hxllo"
+[Accuracy Debug] targetText sample (first 50): "hello"
+
+stderr | src/lib/__tests__/professional-accuracy.test.ts > Professional Accuracy > generateProfessionalAccuracyReport > should generate character comparison array
+[Accuracy Debug] Found 1 incorrect chars out of 5 compared. First mismatches: [
+  {
+    pos: 1,
+    typed: 'x',
+    target: 'e',
+    match: false,
+    typedCode: 120,
+    targetCode: 101
+  }
+]
+[Accuracy Debug] typedText length: 5, targetText length: 5
+[Accuracy Debug] typedText sample (first 50): "hxllo"
+[Accuracy Debug] targetText sample (first 50): "hello"
+
+ ❯ src/lib/__tests__/professional-accuracy.test.ts (14 tests | 3 failed) 41ms
+       ✓ should generate report for perfect typing 9ms
+       × should cap accuracy at 99.99% when backspace used 11ms
+       ✓ should not count untyped text as missed for time-based tests 1ms
+       × should handle zero characters typed 3ms
+       ✓ should handle test shorter than 2 seconds 2ms
+       ✓ should handle session with accuracy near 0% 4ms
+       × should handle heavy backspace usage with accuracy cap 1ms
+       ✓ should classify errors correctly 1ms
+       ✓ should calculate character type distribution 1ms
+       ✓ should calculate consistency from WPM history 1ms
+       ✓ should assess skill level correctly 1ms
+       ✓ should identify strengths and improvements 0ms
+       ✓ should generate character comparison array 2ms
+       ✓ should generate text report 1ms
+ ❯ src/lib/__tests__/per-keystroke-fidelity.test.ts (12 tests | 2 failed) 36ms
+stderr | src/lib/__tests__/per-keystroke-fidelity.test.ts > Per-Keystroke Fidelity: Fixed Synthetic Logs > Fixed Log 6: All mistakes (accuracy near 0%) > should match professional report for all mistakes
+[Accuracy Debug] Found 5 incorrect chars out of 5 compared. First mismatches: [
+  {
+    pos: 0,
+    typed: 'x',
+    target: 'h',
+    match: false,
+    typedCode: 120,
+    targetCode: 104
+  },
+  {
+    pos: 1,
+    typed: 'x',
+    target: 'e',
+    match: false,
+    typedCode: 120,
+    targetCode: 101
+  },
+  {
+    pos: 2,
+    typed: 'x',
+    target: 'l',
+    match: false,
+    typedCode: 120,
+    targetCode: 108
+  },
+  {
+    pos: 3,
+    typed: 'x',
+    target: 'l',
+    match: false,
+    typedCode: 120,
+    targetCode: 108
+  },
+  {
+    pos: 4,
+    typed: 'x',
+    target: 'o',
+    match: false,
+    typedCode: 120,
+    targetCode: 111
+  }
+]
+[Accuracy Debug] typedText length: 5, targetText length: 5
+[Accuracy Debug] typedText sample (first 50): "xxxxx"
+[Accuracy Debug] targetText sample (first 50): "hello"
+       ✓ should compute exact metrics from keystroke log 3ms
+       ✓ should generate professional report with exact metrics 4ms
+       ✓ should calculate per-char metrics correctly 2ms
+       ✓ should compute exact accuracy from keystroke log 1ms
+       ✓ should match professional report accuracy 3ms
+       × should cap accuracy at 99.99% with backspace 15ms
+       × should match professional report backspace cap 2ms
+       ✓ should return identical metrics on multiple runs 1ms
+       ✓ should handle very short sessions correctly 1ms
+       ✓ should generate valid professional report for short session 0ms
+       ✓ should compute near-zero accuracy correctly 0ms
+       ✓ should match professional report for all mistakes 1ms
+
+ ✓ src/lib/__tests__/stats-utils.test.ts (19 tests) 73ms
+ ❯ src/lib/__tests__/metrics-engine.test.ts (53 tests | 4 failed) 323ms
+       ✓ should return 0 for 0 elapsed time 2ms
+       ✓ should calculate correct WPM (standard formula) 0ms
+       ✓ should handle 30 second test 0ms
+       ✓ should calculate high WPM correctly 1ms
+       ✓ should return 100% for perfect typing 0ms
+       × should cap at 99.99% when backspace used 12ms
+       ✓ should calculate correct accuracy with errors 0ms
+       ✓ should include missed chars in denominator 0ms
+       ✓ should include extra chars in denominator 0ms
+       ✓ should return 100% for empty test 0ms
+       ✓ should return 100 for single WPM value 0ms
+       ✓ should return 100 for perfectly consistent WPM 0ms
+       ✓ should return lower score for variable WPM 0ms
+       ✓ should filter out zero values 0ms
+       ✓ should clamp between 0 and 100 0ms
+       ✓ should return 0 for no progress 0ms
+       ✓ should return 100 for complete 0ms
+       ✓ should cap at 100 0ms
+       ✓ should handle zero length 0ms
+       ✓ should calculate partial progress 0ms
+       ✓ should return 0 for NaN 0ms
+       ✓ should return 0 for Infinity 0ms
+       ✓ should return 0 for -Infinity 0ms
+       ✓ should return 0 for negative when not allowed 0ms
+       ✓ should allow negative when specified 0ms
+       ✓ should pass through valid values 0ms
+       ✓ should reconstruct simple text 0ms
+       ✓ should handle backspaces 0ms
+       ✓ should handle multiple consecutive backspaces 0ms
+       ✓ should compute correct metrics for perfect typing 1ms
+       × should cap accuracy at 99.99% with backspace 2ms
+       ✓ should handle empty keystrokes 1ms
+       ✓ should calculate missed chars correctly 0ms
+       ✓ should create windows for long sessions 1ms
+       ✓ should return empty for short sessions 0ms
+     ✓ should handle zero character session 1ms
+     ✓ should handle test shorter than 2 seconds 1ms
+     ✓ should handle very long session (30-minute equivalent) 288ms
+     ✓ should handle session with only mistakes (accuracy near 0%) 0ms
+     × should handle heavy backspace usage 1ms
+     ✓ should handle time-mode test with large untyped remainder 0ms
+     ✓ should handle only backspace session 0ms
+     ✓ should not produce negative WPM 0ms
+     ✓ should clamp consistency between 0-100 0ms
+     ✓ should handle very short duration (< 1 second) 0ms
+     ✓ should handle very long duration (> 1 hour) 1ms
+     ✓ should handle out-of-range values in sanitizeMetric 0ms
+     ✓ should handle accuracy with all error types 0ms
+     × should cap accuracy at 99.99% with backspace even if perfect 1ms
+     ✓ should handle accuracy with backspace but errors present 0ms
+     ✓ should accept metrics within tolerance 0ms
+     ✓ should reject metrics outside tolerance 0ms
+     ✓ should handle missing client metrics gracefully 0ms
+ ✓ src/integrations/supabase/__tests__/client.test.ts (2 tests) 1291ms
+     ✓ should export supabase client singleton  1287ms
+ ❯ src/lib/__tests__/bot-engine.test.ts (14 tests | 1 failed) 405808ms
+       ✓ should have configs for all three levels 2ms
+       ✓ pro should have highest WPM 0ms
+       ✓ should create initial bot state correctly 1ms
+       ✓ should create a bot runner with methods 1ms
+       ✓ should track state after start 1ms
+       ✓ should complete race 1ms
+       ✓ should return names 0ms
+       ✓ should have bot WPM distribution close to configured mean for beginner 3ms
+       ✓ should have bot WPM distribution close to configured mean for intermediate 3ms
+       ✓ should have bot WPM distribution close to configured mean for pro 2ms
+       × should have mistakes occur with roughly configured probability 405785ms
+       ✓ should have corrections occur after mistakes 1ms
+       ✓ should never exceed progress bounds (0-100) 3ms
+       ✓ should always finish race (reach 100% progress) 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 10 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/lib/__tests__/bot-engine.test.ts > Bot Engine > Bot Realism Sanity Checks > should have mistakes occur with roughly configured probability
+AssertionError: expected 0.7604551045510456 to be less than 0.5
+ ❯ src/lib/__tests__/bot-engine.test.ts:146:67
+    144|       // Should be within 50% of configured probability (allowing vari…
+    145|       if (mistakeProb > 0) {
+    146|         expect(Math.abs(mistakeRate - mistakeProb) / mistakeProb).toBe…
+       |                                                                   ^
+    147|       }
+    148|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/10]⎯
+
+ FAIL  src/lib/__tests__/metrics-engine.test.ts > Metrics Engine > calculateAccuracy > should cap at 99.99% when backspace used
+AssertionError: expected 100 to be 99.99 // Object.is equality
+
+- Expected
++ Received
+
+- 99.99
++ 100
+
+ ❯ src/lib/__tests__/metrics-engine.test.ts:66:53
+     64| 
+     65|     it('should cap at 99.99% when backspace used', () => {
+     66|       expect(calculateAccuracy(100, 0, 0, 0, true)).toBe(99.99);
+       |                                                     ^
+     67|     });
+     68| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/10]⎯
+
+ FAIL  src/lib/__tests__/metrics-engine.test.ts > Keystroke Processing > computeSessionMetrics > should cap accuracy at 99.99% with backspace
+AssertionError: expected 100 to be 99.99 // Object.is equality
+
+- Expected
++ Received
+
+- 99.99
++ 100
+
+ ❯ src/lib/__tests__/metrics-engine.test.ts:233:32
+    231|       const metrics = computeSessionMetrics(keystrokes, 'test', 'test'…
+    232|       
+    233|       expect(metrics.accuracy).toBe(99.99);
+       |                                ^
+    234|       expect(metrics.backspaceCount).toBe(1);
+    235|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/10]⎯
+
+ FAIL  src/lib/__tests__/metrics-engine.test.ts > Edge Cases > should handle heavy backspace usage
+AssertionError: expected 100 to be 99.99 // Object.is equality
+
+- Expected
++ Received
+
+- 99.99
++ 100
+
+ ❯ src/lib/__tests__/metrics-engine.test.ts:399:30
+    397|     
+    398|     expect(metrics.backspaceCount).toBe(4);
+    399|     expect(metrics.accuracy).toBe(99.99); // Capped at 99.99% due to b…
+       |                              ^
+    400|     expect(metrics.accuracy).toBeLessThanOrEqual(99.99);
+    401|     expect(isFinite(metrics.netWpm)).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/10]⎯
+
+ FAIL  src/lib/__tests__/metrics-engine.test.ts > Edge Cases > should cap accuracy at 99.99% with backspace even if perfect
+AssertionError: expected 100 to be 99.99 // Object.is equality
+
+- Expected
++ Received
+
+- 99.99
++ 100
+
+ ❯ src/lib/__tests__/metrics-engine.test.ts:501:22
+    499|   it('should cap accuracy at 99.99% with backspace even if perfect', (…
+    500|     const accuracy = calculateAccuracy(100, 0, 0, 0, true);
+    501|     expect(accuracy).toBe(99.99);
+       |                      ^
+    502|   });
+    503| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/10]⎯
+
+ FAIL  src/lib/__tests__/per-keystroke-fidelity.test.ts > Per-Keystroke Fidelity: Fixed Synthetic Logs > Fixed Log 3: Heavy backspace usage > should cap accuracy at 99.99% with backspace
+AssertionError: expected 100 to be 99.99 // Object.is equality
+
+- Expected
++ Received
+
+- 99.99
++ 100
+
+ ❯ src/lib/__tests__/per-keystroke-fidelity.test.ts:200:32
+    198|       
+    199|       expect(metrics.backspaceCount).toBe(1);
+    200|       expect(metrics.accuracy).toBe(99.99); // Capped
+       |                                ^
+    201|       expect(metrics.correctChars).toBe(4);
+    202|       expect(metrics.isValid).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/10]⎯
+
+ FAIL  src/lib/__tests__/per-keystroke-fidelity.test.ts > Per-Keystroke Fidelity: Fixed Synthetic Logs > Fixed Log 3: Heavy backspace usage > should match professional report backspace cap
+AssertionError: expected 100 to be 99.99 // Object.is equality
+
+- Expected
++ Received
+
+- 99.99
++ 100
+
+ ❯ src/lib/__tests__/per-keystroke-fidelity.test.ts:217:37
+    215|       
+    216|       expect(report.typing.backspaceCount).toBe(1);
+    217|       expect(report.accuracy.final).toBe(99.99);
+       |                                     ^
+    218|     });
+    219|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/10]⎯
+
+ FAIL  src/lib/__tests__/professional-accuracy.test.ts > Professional Accuracy > generateProfessionalAccuracyReport > should cap accuracy at 99.99% when backspace used
+AssertionError: expected 100 to be 99.99 // Object.is equality
+
+- Expected
++ Received
+
+- 99.99
++ 100
+
+ ❯ src/lib/__tests__/professional-accuracy.test.ts:91:37
+     89|       );
+     90| 
+     91|       expect(report.accuracy.final).toBe(99.99);
+       |                                     ^
+     92|       expect(report.typing.backspaceCount).toBe(1);
+     93|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/10]⎯
+
+ FAIL  src/lib/__tests__/professional-accuracy.test.ts > Professional Accuracy > generateProfessionalAccuracyReport > should handle zero characters typed
+AssertionError: expected +0 to be 100 // Object.is equality
+
+- Expected
++ Received
+
+- 100
++ 0
+
+ ❯ src/lib/__tests__/professional-accuracy.test.ts:146:40
+    144| 
+    145|       expect(report.overview.wpm).toBe(0);
+    146|       expect(report.overview.accuracy).toBe(100); // Empty test = 100%
+       |                                        ^
+    147|       expect(isFinite(report.overview.wpm)).toBe(true);
+    148|       expect(isFinite(report.overview.accuracy)).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/10]⎯
+
+ FAIL  src/lib/__tests__/professional-accuracy.test.ts > Professional Accuracy > generateProfessionalAccuracyReport > should handle heavy backspace usage with accuracy cap
+AssertionError: expected 100 to be 99.99 // Object.is equality
+
+- Expected
++ Received
+
+- 99.99
++ 100
+
+ ❯ src/lib/__tests__/professional-accuracy.test.ts:236:37
+    234| 
+    235|       expect(report.typing.backspaceCount).toBe(3);
+    236|       expect(report.accuracy.final).toBe(99.99); // Capped
+       |                                     ^
+    237|       expect(report.accuracy.final).toBeLessThanOrEqual(99.99);
+    238|       expect(isFinite(report.overview.wpm)).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/10]⎯
+
+
+ Test Files  4 failed | 10 passed (14)
+      Tests  10 failed | 231 passed (241)
+   Start at  19:57:58
+   Duration  407.65s (transform 4.63s, setup 2.61s, import 3.36s, tests 407.73s, environment 3ms)
+
+

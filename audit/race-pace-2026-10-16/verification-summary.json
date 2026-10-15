@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-16",
+  "scope": "gray opponent caret and ghost trail in races",
+  "sourceChecks": {
+    "unitPassed": 494,
+    "unitFiles": 31,
+    "newPaceUnitVectors": 19,
+    "typecheck": "passed, including strict-domain/portable",
+    "lintErrors": 0,
+    "existingLintWarnings": 9,
+    "build": "passed",
+    "initialPracticeJsGzipBytes": 197034
+  },
+  "fullChromium": {
+    "startTime": "2026-10-15T19:52:59.166Z",
+    "duration": 94994.996,
+    "expected": 74,
+    "skipped": 2,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "focusedThreeEngines": {
+    "startTime": "2026-10-15T19:55:09.545Z",
+    "duration": 20791.945,
+    "expected": 9,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "engines": [
+    "chromium",
+    "firefox",
+    "webkit"
+  ],
+  "checks": [
+    "bot moves while user idle without creating user events",
+    "user controls scrolling and errors retain their styling",
+    "mobile width and offscreen opponent cue",
+    "dark/light theme contrast and resize",
+    "finish/leave cleanup and normal Test navigation"
+  ],
+  "limitations": [
+    "Human marker is last server-confirmed progress rather than an exact insertion cursor; actual two-account runtime check remains credential-gated.",
+    "Two deployment-dependent Chromium cases skipped.",
+    "Initial matrix passed 8/9 with WebKit workspace-loading timeout on hard reload; real navigation cleanup confirmation passed 9/9 without increasing timeouts. Earlier artifacts retained; existing WebKit readiness release gate remains open."
+  ],
+  "reports": [
+    "unit.txt",
+    "typecheck.txt",
+    "lint.txt",
+    "build.txt",
+    "bundle.json",
+    "chromium.json",
+    "engines.json",
+    "confirmation.json"
+  ],
+  "preview": "http://127.0.0.1:4173/race?pace=visible"
+}

@@ -1,0 +1,11 @@
+{
+  "kind": "observation from the failed production-browser trace, not a synthetic session",
+  "trace": "browser-final-artifacts/profile-flow-the-keyboard--1e78d-tes-using-concrete-commands-webkit/trace.zip",
+  "callId": "wayr@3572",
+  "rootEmptySnapshotMonotonicMs": 299023.294,
+  "shortcutPressStartedMonotonicMs": 299024.614,
+  "loadingFallbackSnapshotMonotonicMs": 299103.052,
+  "finalSnapshotWithCommandButtonMonotonicMs": 304125.7,
+  "finding": "The shortcut press starts immediately after an empty React root snapshot and before the workspace is ready. Keyboard events do not auto-wait for a listener. The test now waits for the visible command button before pressing the same shortcut; all behavior assertions and the default expectation timeout remain unchanged.",
+  "scope": "This identifies a test sequencing race. It does not resolve the separate earlier WebKit navigation and rendering delay observations."
+}

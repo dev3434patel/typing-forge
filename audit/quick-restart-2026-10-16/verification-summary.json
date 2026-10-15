@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-16",
+  "scope": "Tab then Enter for fresh Test/bot retries, including results",
+  "sourceChecks": {
+    "unitPassed": 494,
+    "unitFiles": 31,
+    "typecheck": "passed, including strict domain/portable",
+    "lintErrors": 0,
+    "existingLintWarnings": 9,
+    "build": "passed",
+    "initialPracticeJsGzipBytes": 197062
+  },
+  "fullChromium": {
+    "startTime": "2026-10-15T20:10:03.296Z",
+    "duration": 97476.934,
+    "expected": 79,
+    "skipped": 2,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "focusedThreeEngines": {
+    "startTime": "2026-10-15T20:10:03.297Z",
+    "duration": 151839.608,
+    "expected": 24,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "engines": [
+    "chromium",
+    "firefox",
+    "webkit"
+  ],
+  "behavior": [
+    "native Tab focuses restart; Enter activates",
+    "new UUID-seeded random bot passage, same difficulty",
+    "new controller, cleared input/attempts, full clock and new bot runner",
+    "results panel Tab then Enter starts next run",
+    "keyboard retry focus restored on touch devices",
+    "ordinary Tab/Shift+Tab controls remain reachable"
+  ],
+  "additionalRepair": "Opponent marker now measures after parent host refs attach; paused-clock test asserts its zero position before the first bot tick.",
+  "earlierDiagnostics": [
+    "Initial runs exposed missing zero-position opponent marker plus an overstrict difficulty label selector.",
+    "Paused-clock setup and difficulty selector were corrected; marker initialization was repaired in production source. Earlier reports/traces retained."
+  ],
+  "limitations": [
+    "Two deployed cloud-account tests skipped without dedicated credentials.",
+    "Human rooms retain server-controlled passages/clock/rematches; local random retry applies to bots.",
+    "Code Tab indentation and custom-content policies retain their separate behavior."
+  ],
+  "reports": [
+    "unit.txt",
+    "typecheck-final.txt",
+    "lint-final.txt",
+    "build-final.txt",
+    "bundle-final.json",
+    "confirmation.json",
+    "chromium-final.json"
+  ],
+  "preview": "http://127.0.0.1:4173/race?retry=ready"
+}

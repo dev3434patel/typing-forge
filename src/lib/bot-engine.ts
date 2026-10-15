@@ -1,33 +1,20 @@
-/**
- * BOT ENGINE - Simulates human-like typing for race mode
- * Supports three difficulty levels with realistic behavior patterns
- */
-
+/** Local, visibly labelled race opponents. Clock and randomness can be deterministic in tests. */
 import { calculateWpm, calculateProgress } from './metrics-engine';
 
 export type BotLevel = 'beginner' | 'intermediate' | 'pro';
-export type BotDifficulty = BotLevel; // Alias for compatibility
-
+export type BotDifficulty = BotLevel;
 export interface BotConfig {
   level: BotLevel;
   targetWpmMean: number;
   targetWpmStdDev: number;
-  mistakeProbability: number; // 0-1
-  correctionDelay: [number, number]; // [min, max] ms before correcting
-  burstProbability: number; // Probability of typing burst
-  hesitationProbability: number; // Probability of hesitation
-  // Inter-keystroke interval params (log-normal)
-  ikiMean: number; // ms
-  ikiStdDev: number; // ms
+  mistakeProbability: number;
+  correctionDelay: [number, number];
+  burstProbability: number;
+  hesitationProbability: number;
+  ikiMean: number;
+  ikiStdDev: number;
 }
-
-export interface BotKeystroke {
-  char: string;
-  timestamp: number;
-  isCorrect: boolean;
-  isBackspace: boolean;
-}
-
+export interface BotKeystroke { char: string; timestamp: number; isCorrect: boolean; isBackspace: boolean }
 export interface BotState {
   config: BotConfig;
   targetText: string;
@@ -40,389 +27,124 @@ export interface BotState {
   isFinished: boolean;
   correctChars: number;
   accuracy: number;
+  pendingCorrection?: { stage: 'backspace' | 'retype'; expected: string; at: number };
 }
-
-// Bot configurations by level
+export interface BotDependencies { now?: () => number; random?: () => number }
 export const BOT_CONFIGS: Record<BotLevel, BotConfig> = {
-  beginner: {
-    level: 'beginner',
-    targetWpmMean: 30,
-    targetWpmStdDev: 8,
-    mistakeProbability: 0.12, // 8-18% -> 12% mean
-    correctionDelay: [300, 800],
-    burstProbability: 0.1,
-    hesitationProbability: 0.2,
-    ikiMean: 400, // ~30 WPM
-    ikiStdDev: 120,
-  },
-  intermediate: {
-    level: 'intermediate',
-    targetWpmMean: 50,
-    targetWpmStdDev: 10,
-    mistakeProbability: 0.07, // 4-10% -> 7% mean
-    correctionDelay: [200, 500],
-    burstProbability: 0.2,
-    hesitationProbability: 0.1,
-    ikiMean: 240, // ~50 WPM
-    ikiStdDev: 60,
-  },
-  pro: {
-    level: 'pro',
-    targetWpmMean: 82,
-    targetWpmStdDev: 12,
-    mistakeProbability: 0.025, // 1-4% -> 2.5% mean
-    correctionDelay: [100, 300],
-    burstProbability: 0.35,
-    hesitationProbability: 0.05,
-    ikiMean: 146, // ~82 WPM
-    ikiStdDev: 35,
-  },
+  beginner: { level: 'beginner', targetWpmMean: 30, targetWpmStdDev: 8, mistakeProbability: .12, correctionDelay: [300, 800], burstProbability: .1, hesitationProbability: .2, ikiMean: 400, ikiStdDev: 120 },
+  intermediate: { level: 'intermediate', targetWpmMean: 50, targetWpmStdDev: 10, mistakeProbability: .07, correctionDelay: [200, 500], burstProbability: .2, hesitationProbability: .1, ikiMean: 240, ikiStdDev: 60 },
+  pro: { level: 'pro', targetWpmMean: 82, targetWpmStdDev: 12, mistakeProbability: .025, correctionDelay: [100, 300], burstProbability: .35, hesitationProbability: .05, ikiMean: 146, ikiStdDev: 35 },
 };
-
-/**
- * Sample from log-normal distribution for natural keystroke timing
- */
-function sampleLogNormal(mean: number, stdDev: number): number {
-  // Box-Muller transform for normal distribution
-  const u1 = Math.random();
-  const u2 = Math.random();
-  const z = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
-  
-  // Convert to log-normal
-  const mu = Math.log(mean * mean / Math.sqrt(mean * mean + stdDev * stdDev));
-  const sigma = Math.sqrt(Math.log(1 + (stdDev * stdDev) / (mean * mean)));
-  
-  return Math.exp(mu + sigma * z);
+export function seededRandom(seed: number): () => number {
+  let state = seed >>> 0;
+  return () => { state = (Math.imul(state, 1664525) + 1013904223) >>> 0; return state / 4294967296; };
 }
-
-/**
- * Sample from normal distribution
- */
-function sampleNormal(mean: number, stdDev: number): number {
-  const u1 = Math.random();
-  const u2 = Math.random();
-  const z = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
-  return mean + stdDev * z;
+function unit(random: () => number): number { return Math.max(Number.EPSILON, Math.min(1 - Number.EPSILON, random())); }
+function normal(mean: number, stdDev: number, random: () => number): number {
+  return mean + Math.sqrt(-2 * Math.log(unit(random))) * Math.cos(2 * Math.PI * unit(random)) * stdDev;
 }
-
-/**
- * Get adjacent keys for realistic typo simulation
- */
-const ADJACENT_KEYS: Record<string, string[]> = {
-  'a': ['q', 'w', 's', 'z'],
-  'b': ['v', 'g', 'h', 'n'],
-  'c': ['x', 'd', 'f', 'v'],
-  'd': ['s', 'e', 'r', 'f', 'x', 'c'],
-  'e': ['w', 's', 'd', 'r'],
-  'f': ['d', 'r', 't', 'g', 'c', 'v'],
-  'g': ['f', 't', 'y', 'h', 'v', 'b'],
-  'h': ['g', 'y', 'u', 'j', 'b', 'n'],
-  'i': ['u', 'j', 'k', 'o'],
-  'j': ['h', 'u', 'i', 'k', 'n', 'm'],
-  'k': ['j', 'i', 'o', 'l', 'm'],
-  'l': ['k', 'o', 'p'],
-  'm': ['n', 'j', 'k'],
-  'n': ['b', 'h', 'j', 'm'],
-  'o': ['i', 'k', 'l', 'p'],
-  'p': ['o', 'l'],
-  'q': ['w', 'a'],
-  'r': ['e', 'd', 'f', 't'],
-  's': ['a', 'w', 'e', 'd', 'z', 'x'],
-  't': ['r', 'f', 'g', 'y'],
-  'u': ['y', 'h', 'j', 'i'],
-  'v': ['c', 'f', 'g', 'b'],
-  'w': ['q', 'a', 's', 'e'],
-  'x': ['z', 's', 'd', 'c'],
-  'y': ['t', 'g', 'h', 'u'],
-  'z': ['a', 's', 'x'],
-  ' ': ['c', 'v', 'b', 'n', 'm'],
-};
-
-/**
- * Get a realistic typo character
- */
-function getTypoChar(expectedChar: string): string {
-  const lowerChar = expectedChar.toLowerCase();
-  const adjacent = ADJACENT_KEYS[lowerChar];
-  
-  if (adjacent && adjacent.length > 0) {
-    const typo = adjacent[Math.floor(Math.random() * adjacent.length)];
-    // Preserve case
-    return expectedChar === expectedChar.toUpperCase() ? typo.toUpperCase() : typo;
-  }
-  
-  // Fallback: random nearby ASCII char
-  const offset = Math.random() > 0.5 ? 1 : -1;
-  return String.fromCharCode(expectedChar.charCodeAt(0) + offset);
+function logNormal(mean: number, stdDev: number, random: () => number): number {
+  const sigma = Math.sqrt(Math.log(1 + stdDev ** 2 / mean ** 2));
+  const mu = Math.log(mean) - sigma ** 2 / 2;
+  return Math.exp(normal(mu, sigma, random));
 }
-
-/**
- * Create a new bot instance
- */
-export function createBotState(level: BotLevel, targetText: string): BotState {
-  const config = { ...BOT_CONFIGS[level] };
-  
-  // Add some variance to make each bot unique
-  config.targetWpmMean = Math.round(sampleNormal(config.targetWpmMean, config.targetWpmStdDev / 2));
-  config.mistakeProbability = Math.max(0.01, Math.min(0.25, 
-    config.mistakeProbability + (Math.random() - 0.5) * 0.05
-  ));
-  
-  return {
-    config,
-    targetText,
-    typedText: '',
-    cursorIndex: 0,
-    keystrokes: [],
-    startTime: 0,
-    currentWpm: 0,
-    progress: 0,
-    isFinished: false,
-    correctChars: 0,
-    accuracy: 100,
-  };
+const ADJACENT: Record<string, string> = { a: 'qwsz', b: 'vghn', c: 'xdfv', d: 'serfxc', e: 'wsdr', f: 'drtgcv', g: 'ftyhvb', h: 'gyujbn', i: 'ujko', j: 'huiknm', k: 'jiolm', l: 'kop', m: 'njk', n: 'bhjm', o: 'iklp', p: 'ol', q: 'wa', r: 'edft', s: 'awedzx', t: 'rfgy', u: 'yhji', v: 'cfgb', w: 'qase', x: 'zsdc', y: 'tghu', z: 'asx', ' ': 'cvbnm' };
+function typo(expected: string, random: () => number): string {
+  const adjacent = ADJACENT[expected.toLowerCase()] ?? 'asdf';
+  const value = adjacent[Math.floor(unit(random) * adjacent.length)];
+  return expected !== expected.toLowerCase() ? value.toUpperCase() : value;
 }
-
-/**
- * Interactive bot runner for client-side use
- */
-export interface BotRunner {
-  state: BotState;
-  start: () => void;
-  tick: () => BotState;
-  isFinished: () => boolean;
+export function createBotState(level: BotLevel, targetText: string, random = Math.random): BotState {
+  const template = BOT_CONFIGS[level];
+  const config: BotConfig = { ...template, correctionDelay: [...template.correctionDelay], targetWpmMean: Math.max(10, normal(template.targetWpmMean, template.targetWpmStdDev / 2, random)) };
+  return { config, targetText, typedText: '', cursorIndex: 0, keystrokes: [], startTime: 0, currentWpm: 0, progress: targetText ? 0 : 100, isFinished: !targetText, correctChars: 0, accuracy: 100 };
 }
-
-export function createBot(level: BotLevel, targetText: string): BotRunner {
-  let state = createBotState(level, targetText);
-  let nextKeystrokeTime = 0;
-  let isStarted = false;
-
+export interface BotRunner { readonly state: BotState; start(): void; tick(): BotState; isFinished(): boolean }
+export function createBot(level: BotLevel, targetText: string, dependencies: BotDependencies = {}): BotRunner {
+  const now = dependencies.now ?? (() => performance.now());
+  const random = dependencies.random ?? Math.random;
+  let state = createBotState(level, targetText, random);
+  let nextTime = 0;
+  let started = false;
   return {
     get state() { return state; },
-    
     start() {
-      isStarted = true;
-      state = { ...state, startTime: performance.now() };
-      nextKeystrokeTime = performance.now() + getNextKeystrokeDelay(state);
+      if (started) return;
+      started = true;
+      state = { ...state, startTime: now() };
+      nextTime = state.startTime + getNextKeystrokeDelay(state, random);
     },
-    
-    tick(): BotState {
-      if (!isStarted || state.isFinished) return state;
-      
-      const now = performance.now();
-      
-      // Process keystrokes that should have happened by now
-      while (now >= nextKeystrokeTime && !state.isFinished) {
-        state = simulateKeystroke(state, now);
-        nextKeystrokeTime = now + getNextKeystrokeDelay(state);
+    tick() {
+      if (!started || state.isFinished) return state;
+      const current = now();
+      // Scheduled event times keep delayed animation frames from changing a bot's pace.
+      while (current >= nextTime && !state.isFinished) {
+        state = simulateKeystroke(state, nextTime, random);
+        nextTime = state.pendingCorrection?.at ?? nextTime + getNextKeystrokeDelay(state, random);
       }
-      
-      // Update accuracy
-      const totalTyped = state.typedText.length;
-      state.accuracy = totalTyped > 0 
-        ? Math.round((state.correctChars / totalTyped) * 100) 
-        : 100;
-      
       return state;
     },
-    
-    isFinished() {
-      return state.isFinished;
-    }
+    isFinished: () => state.isFinished,
   };
 }
-
-/**
- * Generate next keystroke timing for bot
- */
-export function getNextKeystrokeDelay(bot: BotState): number {
-  const { config } = bot;
-  
-  // Base delay from log-normal distribution
-  let delay = sampleLogNormal(config.ikiMean, config.ikiStdDev);
-  
-  // Hesitation (think pause)
-  if (Math.random() < config.hesitationProbability) {
-    delay += sampleLogNormal(500, 200);
-  }
-  
-  // Burst typing (faster)
-  if (Math.random() < config.burstProbability) {
-    delay *= 0.6;
-  }
-  
-  // Clamp to reasonable values
-  return Math.max(50, Math.min(2000, delay));
+export function getNextKeystrokeDelay(bot: BotState, random = Math.random): number {
+  const config = bot.config;
+  // Target WPM includes configured hesitations and corrections.
+  const correctionCost = config.mistakeProbability * ((config.correctionDelay[0] + config.correctionDelay[1]) / 2 + 100);
+  const baseMean = Math.max(50, (12000 / config.targetWpmMean - correctionCost) / (1 - .4 * config.burstProbability) - 500 * config.hesitationProbability);
+  let delay = logNormal(baseMean, config.ikiStdDev * baseMean / config.ikiMean, random);
+  if (unit(random) < config.hesitationProbability) delay += logNormal(500, 200, random);
+  if (unit(random) < config.burstProbability) delay *= .6;
+  return Math.max(35, Math.min(2000, delay));
 }
-
-/**
- * Simulate a single keystroke
- */
-export function simulateKeystroke(bot: BotState, currentTime: number): BotState {
-  if (bot.isFinished) return bot;
-  
-  const newBot = { ...bot };
-  
-  // Set start time on first keystroke
-  if (newBot.keystrokes.length === 0) {
-    newBot.startTime = currentTime;
+export function simulateKeystroke(bot: BotState, currentTime: number, random = Math.random): BotState {
+  if (bot.isFinished || !Number.isFinite(currentTime)) return bot;
+  const pending = bot.pendingCorrection;
+  if (pending && currentTime < pending.at) return bot;
+  const next: BotState = { ...bot, keystrokes: [...bot.keystrokes] };
+  if (pending?.stage === 'backspace') {
+    next.typedText = next.typedText.slice(0, -1); next.cursorIndex--;
+    next.keystrokes.push({ char: '', timestamp: currentTime, isCorrect: false, isBackspace: true });
+    next.pendingCorrection = { stage: 'retype', expected: pending.expected, at: currentTime + logNormal(100, 30, random) };
+  } else {
+    const expected = pending?.expected ?? next.targetText[next.cursorIndex];
+    if (expected === undefined) return { ...next, isFinished: true };
+    const mistaken = !pending && unit(random) < next.config.mistakeProbability;
+    const char = mistaken ? typo(expected, random) : expected;
+    next.typedText += char; next.cursorIndex++;
+    next.keystrokes.push({ char, timestamp: currentTime, isCorrect: char === expected, isBackspace: false });
+    next.pendingCorrection = mistaken ? { stage: 'backspace', expected, at: currentTime + next.config.correctionDelay[0] + unit(random) * (next.config.correctionDelay[1] - next.config.correctionDelay[0]) } : undefined;
   }
-  
-  const expectedChar = newBot.targetText[newBot.cursorIndex];
-  if (!expectedChar) {
-    newBot.isFinished = true;
-    return newBot;
-  }
-  
-  // Determine if this keystroke is a mistake
-  const isMistake = Math.random() < newBot.config.mistakeProbability;
-  
-  let typedChar = expectedChar;
-  if (isMistake) {
-    typedChar = getTypoChar(expectedChar);
-  }
-  
-  // Record keystroke
-  const keystroke: BotKeystroke = {
-    char: typedChar,
-    timestamp: currentTime,
-    isCorrect: typedChar === expectedChar,
-    isBackspace: false,
-  };
-  
-  newBot.keystrokes = [...newBot.keystrokes, keystroke];
-  newBot.typedText += typedChar;
-  newBot.cursorIndex++;
-  
-  if (keystroke.isCorrect) {
-    newBot.correctChars++;
-  }
-  
-  // If mistake was made, simulate correction pattern
-  if (isMistake && Math.random() > 0.1) { // 90% chance to correct
-    // Add backspace after delay
-    const correctionDelay = newBot.config.correctionDelay[0] + 
-      Math.random() * (newBot.config.correctionDelay[1] - newBot.config.correctionDelay[0]);
-    
-    const backspaceKeystroke: BotKeystroke = {
-      char: '',
-      timestamp: currentTime + correctionDelay,
-      isCorrect: false,
-      isBackspace: true,
-    };
-    
-    newBot.keystrokes = [...newBot.keystrokes, backspaceKeystroke];
-    newBot.typedText = newBot.typedText.slice(0, -1);
-    newBot.cursorIndex--;
-    
-    // Retype correct character
-    const retypeKeystroke: BotKeystroke = {
-      char: expectedChar,
-      timestamp: currentTime + correctionDelay + sampleLogNormal(100, 30),
-      isCorrect: true,
-      isBackspace: false,
-    };
-    
-    newBot.keystrokes = [...newBot.keystrokes, retypeKeystroke];
-    newBot.typedText += expectedChar;
-    newBot.cursorIndex++;
-    newBot.correctChars++;
-  }
-  
-  // Calculate current WPM
-  const elapsedMs = currentTime - newBot.startTime;
-  newBot.currentWpm = calculateWpm(newBot.correctChars, elapsedMs);
-  
-  // Calculate progress
-  newBot.progress = calculateProgress(newBot.correctChars, newBot.targetText.length);
-  
-  // Check if finished
-  if (newBot.cursorIndex >= newBot.targetText.length) {
-    newBot.isFinished = true;
-  }
-  
-  return newBot;
+  next.correctChars = Array.from(next.typedText).reduce((count, char, index) => count + Number(char === next.targetText[index]), 0);
+  const insertions = next.keystrokes.filter(event => !event.isBackspace);
+  next.accuracy = insertions.length ? insertions.filter(event => event.isCorrect).length / insertions.length * 100 : 100;
+  next.currentWpm = calculateWpm(next.correctChars, Math.max(0, currentTime - next.startTime));
+  next.progress = calculateProgress(next.correctChars, next.targetText.length);
+  next.isFinished = next.cursorIndex >= next.targetText.length && !next.pendingCorrection;
+  return next;
 }
-
-/**
- * Run full bot simulation and return timeline of updates
- * Used for server-side bot execution
- */
-export interface BotUpdate {
-  timestamp: number;
-  progress: number;
-  wpm: number;
-  accuracy: number;
-  typedText: string;
-}
-
-export function simulateFullRace(
-  level: BotLevel,
-  targetText: string,
-  updateIntervalMs: number = 200
-): BotUpdate[] {
-  let bot = createBotState(level, targetText);
+export interface BotUpdate { timestamp: number; progress: number; wpm: number; accuracy: number; typedText: string }
+export function simulateFullRace(level: BotLevel, targetText: string, updateIntervalMs = 200, dependencies: BotDependencies = {}): BotUpdate[] {
+  const random = dependencies.random ?? Math.random;
+  let bot = createBotState(level, targetText, random);
   const updates: BotUpdate[] = [];
   let currentTime = 0;
-  let nextUpdateTime = 0;
-  
+  let nextUpdate = 0;
   while (!bot.isFinished) {
-    // Simulate keystroke
-    const delay = getNextKeystrokeDelay(bot);
-    currentTime += delay;
-    bot = simulateKeystroke(bot, currentTime);
-    
-    // Record update at interval
-    if (currentTime >= nextUpdateTime) {
-      updates.push({
-        timestamp: currentTime,
-        progress: bot.progress,
-        wpm: bot.currentWpm,
-        accuracy: bot.accuracy,
-        typedText: bot.typedText,
-      });
-      nextUpdateTime += updateIntervalMs;
+    currentTime = bot.pendingCorrection?.at ?? currentTime + getNextKeystrokeDelay(bot, random);
+    bot = simulateKeystroke(bot, currentTime, random);
+    if (currentTime >= nextUpdate || bot.isFinished) {
+      updates.push({ timestamp: currentTime, progress: bot.progress, wpm: bot.currentWpm, accuracy: bot.accuracy, typedText: bot.typedText });
+      nextUpdate = currentTime + Math.max(1, updateIntervalMs);
     }
   }
-  
-  // Final update
-  updates.push({
-    timestamp: currentTime,
-    progress: 100,
-    wpm: bot.currentWpm,
-    accuracy: bot.accuracy,
-    typedText: bot.typedText,
-  });
-  
+  if (!updates.length) updates.push({ timestamp: 0, progress: 100, wpm: 0, accuracy: 100, typedText: '' });
   return updates;
 }
-
-/**
- * Get bot display name based on level
- */
-export function getBotName(level: BotLevel): string {
-  const names: Record<BotLevel, string[]> = {
-    beginner: ['TypeLearner', 'KeyNewbie', 'SlowTyper', 'Novice123'],
-    intermediate: ['SwiftKeys', 'TyperMike', 'KeyboardKid', 'MidRacer'],
-    pro: ['SpeedDemon', 'TypeMaster', 'KeyboardKing', 'WPMChamp'],
-  };
-  
-  const levelNames = names[level];
-  return levelNames[Math.floor(Math.random() * levelNames.length)];
+export function getBotName(level: BotLevel, random = Math.random): string {
+  const names: Record<BotLevel, string[]> = { beginner: ['TypeLearner', 'KeyNewbie', 'SlowTyper', 'Novice123'], intermediate: ['SwiftKeys', 'TyperMike', 'KeyboardKid', 'MidRacer'], pro: ['SpeedDemon', 'TypeMaster', 'KeyboardKing', 'WPMChamp'] };
+  return names[level][Math.floor(unit(random) * names[level].length)];
 }
-
-/**
- * Get expected completion time for a bot
- */
 export function getExpectedCompletionTime(level: BotLevel, textLength: number): number {
-  const config = BOT_CONFIGS[level];
-  // Average chars per minute based on WPM (5 chars = 1 word)
-  const charsPerMinute = config.targetWpmMean * 5;
-  const charsPerMs = charsPerMinute / 60000;
-  
-  // Add buffer for mistakes and corrections
-  const mistakeOverhead = 1 + (config.mistakeProbability * 2);
-  
-  return Math.round(textLength / charsPerMs * mistakeOverhead);
+  return Math.max(0, Math.round(textLength * 12000 / BOT_CONFIGS[level].targetWpmMean));
 }

@@ -1,139 +1,208 @@
-import { useTestStore, type TestMode, type TestDuration } from '@/stores/test-store';
-import { motion } from 'framer-motion';
-import { cn } from '@/lib/utils';
-import { Clock, Type, Quote, Sparkles, Hash, LetterText, Brain, Code } from 'lucide-react';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { CODE_LANGUAGES } from '@/lib/content-library';
-
-const modes: { value: TestMode; label: string; icon: React.ReactNode }[] = [
-  { value: 'time', label: 'time', icon: <Clock className="w-4 h-4" /> },
-  { value: 'words', label: 'words', icon: <Type className="w-4 h-4" /> },
-  { value: 'quote', label: 'quote', icon: <Quote className="w-4 h-4" /> },
-  { value: 'code', label: 'code', icon: <Code className="w-4 h-4" /> },
-  { value: 'zen', label: 'zen', icon: <Sparkles className="w-4 h-4" /> },
-  { value: 'keybr', label: 'learn', icon: <Brain className="w-4 h-4" /> },
-];
-
-const durations: TestDuration[] = [15, 30, 60, 120];
-const wordCounts = [25, 50, 100, 200];
-
+import {
+  useTestStore,
+  type TestMode,
+  type TestDuration,
+} from "@/stores/test-store";
+import {
+  Clock3,
+  Type,
+  Quote,
+  Sparkles,
+  Code2,
+  FileText,
+  Plus,
+} from "lucide-react";
+import { CODE_LANGUAGES } from "@/lib/content-library";
+import { CONTENT_PACKS } from "@/lib/content-packs";
+import { usePreferences } from "@/contexts/PreferencesContext";
+const modes = [
+  { value: "time", label: "Time", icon: Clock3 },
+  { value: "words", label: "Words", icon: Type },
+  { value: "quote", label: "Quote", icon: Quote },
+  { value: "code", label: "Code", icon: Code2 },
+  { value: "custom", label: "Custom", icon: FileText },
+  { value: "zen", label: "Zen", icon: Sparkles },
+] as const;
 export function TestSettings() {
-  const { settings, setSettings, status } = useTestStore();
-  
-  if (status === 'running') return null;
-  
+  const { settings, setSettings, status } = useTestStore(),
+    { preferences, updatePreferences } = usePreferences();
   return (
-    <motion.div
-      className="flex flex-wrap items-center justify-center gap-6 mb-8"
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
+    <section
+      aria-label="Test configuration"
+      className="test-toolbar"
+      data-running={status === "running"}
     >
-      {/* Mode Selection */}
-      <div className="flex items-center gap-1 bg-muted/50 rounded-lg p-1">
-        {modes.map((mode) => (
-          <button
-            key={mode.value}
-            onClick={() => setSettings({ mode: mode.value })}
-            className={cn(
-              'flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all',
-              settings.mode === mode.value
-                ? 'bg-primary text-primary-foreground shadow-sm'
-                : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-            )}
-          >
-            {mode.icon}
-            {mode.label}
-          </button>
-        ))}
-      </div>
-      
-      {/* Duration/Word Count Selection */}
-      {settings.mode === 'time' && (
-        <div className="flex items-center gap-1 bg-muted/50 rounded-lg p-1">
-          {durations.map((duration) => (
+      <div className="flex items-center flex-wrap gap-1 justify-between">
+        <div
+          className="flex flex-wrap gap-1"
+          role="group"
+          aria-label="Test mode"
+        >
+          {modes.map(({ value, label, icon: Icon }) => (
             <button
-              key={duration}
-              onClick={() => setSettings({ duration })}
-              className={cn(
-                'px-4 py-2 rounded-md text-sm font-medium transition-all',
-                settings.duration === duration
-                  ? 'bg-secondary text-secondary-foreground shadow-sm'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-              )}
+              className="forge-chip"
+              aria-pressed={settings.mode === value}
+              key={value}
+              onClick={() => setSettings({ mode: value as TestMode })}
             >
-              {duration}
+              <Icon size={14} />
+              {label}
             </button>
           ))}
         </div>
-      )}
-      
-      {settings.mode === 'words' && (
-        <div className="flex items-center gap-1 bg-muted/50 rounded-lg p-1">
-          {wordCounts.map((count) => (
-            <button
-              key={count}
-              onClick={() => setSettings({ wordCount: count })}
-              className={cn(
-                'px-4 py-2 rounded-md text-sm font-medium transition-all',
-                settings.wordCount === count
-                  ? 'bg-secondary text-secondary-foreground shadow-sm'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-              )}
-            >
-              {count}
-            </button>
-          ))}
-        </div>
-      )}
-      
-      {settings.mode === 'code' && (
-        <div className="flex items-center gap-1 bg-muted/50 rounded-lg p-1">
-          <Select 
-            value={settings.codeLanguage} 
-            onValueChange={(value) => setSettings({ codeLanguage: value })}
+        {["time", "words"].includes(settings.mode) && (
+          <div
+            className="flex gap-1 pl-2 border-l"
+            role="group"
+            aria-label={
+              settings.mode === "time" ? "Test duration" : "Word count"
+            }
           >
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Select language" />
-            </SelectTrigger>
-            <SelectContent>
-              {CODE_LANGUAGES.map((lang) => (
-                <SelectItem key={lang.value} value={lang.value}>
-                  {lang.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-      )}
-      
-      {/* Options */}
-      <div className="flex items-center gap-1 bg-muted/50 rounded-lg p-1">
-        <button
-          onClick={() => setSettings({ punctuation: !settings.punctuation })}
-          className={cn(
-            'flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all',
-            settings.punctuation
-              ? 'bg-secondary text-secondary-foreground shadow-sm'
-              : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-          )}
-        >
-          <LetterText className="w-4 h-4" />
-          @ #
-        </button>
-        <button
-          onClick={() => setSettings({ numbers: !settings.numbers })}
-          className={cn(
-            'flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all',
-            settings.numbers
-              ? 'bg-secondary text-secondary-foreground shadow-sm'
-              : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-          )}
-        >
-          <Hash className="w-4 h-4" />
-          123
-        </button>
+            {(settings.mode === "time"
+              ? [15, 30, 60, 120]
+              : [25, 50, 100, 200]
+            ).map((value) => (
+              <button
+                className="forge-chip font-mono"
+                aria-pressed={
+                  (settings.mode === "time"
+                    ? settings.duration
+                    : settings.wordCount) === value
+                }
+                key={value}
+                onClick={() =>
+                  setSettings(
+                    settings.mode === "time"
+                      ? { duration: value as TestDuration }
+                      : { wordCount: value },
+                  )
+                }
+              >
+                {value}
+                <span className="sr-only">
+                  {settings.mode === "time" ? "seconds" : "words"}
+                </span>
+              </button>
+            ))}
+          </div>
+        )}
       </div>
-    </motion.div>
+      <div className="test-toolbar-options flex flex-wrap items-center justify-center gap-x-3 gap-y-1 px-2">
+        {!(settings.mode === "zen" && settings.zenStyle === "free") && (
+          <label
+            className="flex min-h-11 items-center gap-2 text-xs text-muted-foreground"
+            title="Wrong insertion attempts count toward accuracy but do not advance the caret. Compared separately from normal practice."
+          >
+            <input
+              type="checkbox"
+              checked={settings.precisionMode}
+              onChange={(event) =>
+                setSettings({ precisionMode: event.target.checked })
+              }
+              className="h-4 w-4 accent-[var(--forge-accent)]"
+            />
+            Precision mode · stop on errors
+          </label>
+        )}
+        {settings.mode === "zen" && (
+          <div role="group" aria-label="Zen style">
+            <button
+              className="forge-chip !text-xs"
+              aria-pressed={settings.zenStyle === "prompted"}
+              onClick={() => setSettings({ zenStyle: "prompted" })}
+            >
+              Prompted practice
+            </button>
+            <button
+              className="forge-chip !text-xs"
+              aria-pressed={settings.zenStyle === "free"}
+              onClick={() => setSettings({ zenStyle: "free" })}
+            >
+              Free writing
+            </button>
+          </div>
+        )}
+        {["time", "words", "zen"].includes(settings.mode) && (
+          <>
+            <label className="flex items-center gap-2 text-xs text-muted-foreground">
+              Language
+              <select
+                aria-label="Language"
+                className="bg-transparent text-foreground min-h-11 text-xs max-w-40"
+                value={preferences.language}
+                onChange={(e) =>
+                  updatePreferences({ language: e.target.value })
+                }
+              >
+                {CONTENT_PACKS.map((p) => (
+                  <option value={p.id} key={p.id}>
+                    {p.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <span className="h-4 border-l mx-1" />
+            <button
+              className="forge-chip !text-xs"
+              aria-pressed={settings.punctuation}
+              onClick={() =>
+                setSettings({ punctuation: !settings.punctuation })
+              }
+            >
+              <Plus size={12} />
+              punctuation
+            </button>
+            <button
+              className="forge-chip !text-xs"
+              aria-pressed={settings.numbers}
+              onClick={() => setSettings({ numbers: !settings.numbers })}
+            >
+              # numbers
+            </button>
+          </>
+        )}
+        {settings.mode === "code" && (
+          <>
+            <label className="text-xs text-muted-foreground flex items-center gap-3">
+              Code language
+              <select
+                aria-label="Code language"
+                className="bg-background min-h-11 text-foreground"
+                value={settings.codeLanguage}
+                onChange={(e) => setSettings({ codeLanguage: e.target.value })}
+              >
+                {CODE_LANGUAGES.map((l) => (
+                  <option key={l.value} value={l.value}>
+                    {l.label}
+                  </option>
+                ))}
+              </select>
+              <span>Exact whitespace · separate code metrics</span>
+            </label>
+            <label className="flex min-h-11 items-center gap-2 text-xs text-muted-foreground">
+              <input
+                type="checkbox"
+                checked={settings.tabIndents}
+                onChange={(event) =>
+                  setSettings({ tabIndents: event.target.checked })
+                }
+                className="h-4 w-4 accent-[var(--forge-accent)]"
+              />
+              Enable Tab indentation
+            </label>
+          </>
+        )}
+        {settings.mode === "quote" && (
+          <p className="text-xs text-muted-foreground py-3">
+            Complete a passage. Every correction remains part of your practice.
+          </p>
+        )}
+        {settings.mode === "custom" && (
+          <p className="text-xs text-muted-foreground py-3">
+            Your own text. Stored on this device unless you choose to upload.
+          </p>
+        )}
+      </div>
+    </section>
   );
 }

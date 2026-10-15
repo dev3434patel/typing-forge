@@ -1,0 +1,464 @@
+
+> typing-forge@3.0.0 test:e2e
+> playwright test --workers=3
+
+
+Running 150 tests using 3 workers
+
+(node:24048) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:25516) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:85220) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  -    3 [chromium] › e2e\auth-flow.spec.ts:19:1 › real account sign in with dedicated deployment credentials
+  ok   1 [chromium] › e2e\auth-flow.spec.ts:3:1 › account form switches between sign in and creation using labelled controls (2.0s)
+  ok   2 [chromium] › e2e\auth-flow.spec.ts:14:1 › guest practice remains reachable from the account screen (2.3s)
+  ok   4 [chromium] › e2e\keyboard-lab.spec.ts:3:1 › manual signals are focus-scoped; Tab, Shift+Tab and Escape leave normally (2.5s)
+  ok   5 [chromium] › e2e\keyboard-lab.spec.ts:47:1 › browser layout access happens only after an explicit request and never changes preferences automatically (1.2s)
+  ok   6 [chromium] › e2e\keyboard-lab.spec.ts:125:3 › unsupported browser mapping has a working manual fallback (1.3s)
+  ok   9 [chromium] › e2e\keyboard-lab.spec.ts:196:1 › composition and repeat signals never create invented pair timings; blur clears held state (1.7s)
+  ok   7 [chromium] › e2e\keyboard-lab.spec.ts:125:3 › blocked browser mapping has a working manual fallback (2.3s)
+  ok   8 [chromium] › e2e\keyboard-lab.spec.ts:163:1 › repeated transitions produce a measured pair drill and targeted learning link (2.4s)
+  ok  11 [chromium] › e2e\keyboard-lab.spec.ts:278:1 › mobile layout keeps capture accessible without horizontal page overflow (1.0s)
+  ok  12 [chromium] › e2e\leaderboard.spec.ts:3:1 › rankings explain challenge eligibility without presenting practice as verified scores (1.1s)
+  ok  10 [chromium] › e2e\keyboard-lab.spec.ts:252:1 › lab data remains ephemeral and reset removes observations and browser mapping (1.8s)
+  ok  15 [chromium] › e2e\learning-v3.spec.ts:40:1 › Arabic lesson uses RTL native characters and composition has no invented key timing (1.7s)
+  ok  14 [chromium] › e2e\learning-v3.spec.ts:28:1 › Tab leaves the learning input without generating another lesson (3.1s)
+  ok  13 [chromium] › e2e\learning-v3.spec.ts:3:1 › learning records rejected attempts and saves exactly one immutable result (4.1s)
+  ok  16 [chromium] › e2e\learning-v3.spec.ts:58:3 › en content completes through the actual learning input adapter (3.3s)
+  ok  17 [chromium] › e2e\learning-v3.spec.ts:58:3 › es content completes through the actual learning input adapter (2.7s)
+  ok  19 [chromium] › e2e\learning-v3.spec.ts:58:3 › de content completes through the actual learning input adapter (2.8s)
+  ok  20 [chromium] › e2e\learning-v3.spec.ts:58:3 › pt content completes through the actual learning input adapter (2.4s)
+  ok  18 [chromium] › e2e\learning-v3.spec.ts:58:3 › fr content completes through the actual learning input adapter (5.0s)
+  ok  23 [chromium] › e2e\learning-v3.spec.ts:58:3 › hi content completes through the actual learning input adapter (1.3s)
+  ok  21 [chromium] › e2e\learning-v3.spec.ts:58:3 › it content completes through the actual learning input adapter (2.1s)
+  ok  22 [chromium] › e2e\learning-v3.spec.ts:58:3 › ru content completes through the actual learning input adapter (2.0s)
+  ok  24 [chromium] › e2e\learning-v3.spec.ts:58:3 › ar content completes through the actual learning input adapter (1.0s)
+  ok  25 [chromium] › e2e\learning-v3.spec.ts:58:3 › gu-Latn content completes through the actual learning input adapter (1.9s)
+  ok  26 [chromium] › e2e\mode-matrix.spec.ts:13:3 › finite mode completes and exports exact committed input: Words (2.6s)
+  ok  27 [chromium] › e2e\mode-matrix.spec.ts:13:3 › finite mode completes and exports exact committed input: Quote (2.0s)
+  ok  28 [chromium] › e2e\mode-matrix.spec.ts:13:3 › finite mode completes and exports exact committed input: Code:javascript (2.1s)
+  ok  29 [chromium] › e2e\mode-matrix.spec.ts:13:3 › finite mode completes and exports exact committed input: Code:typescript (1.8s)
+  ok  30 [chromium] › e2e\mode-matrix.spec.ts:13:3 › finite mode completes and exports exact committed input: Code:python (2.0s)
+  ok  31 [chromium] › e2e\mode-matrix.spec.ts:13:3 › finite mode completes and exports exact committed input: Code:rust (2.1s)
+  ok  33 [chromium] › e2e\profile-flow.spec.ts:3:1 › guest profile protects account controls and destructive reset requires exact confirmation (1.2s)
+  ok  32 [chromium] › e2e\mode-matrix.spec.ts:13:3 › finite mode completes and exports exact committed input: Code:sql (2.0s)
+  ok  34 [chromium] › e2e\profile-flow.spec.ts:13:1 › themes and keyboard preferences survive reload (1.4s)
+  ok  35 [chromium] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands (1.7s)
+  ok  36 [chromium] › e2e\profile-flow.spec.ts:32:1 › mobile navigation exposes Test, Learn, Race, and Stats without horizontal overflow (1.6s)
+  -   39 [chromium] › e2e\race-mode.spec.ts:24:1 › deployed two-account race authorization and RLS
+  ok  38 [chromium] › e2e\race-mode.spec.ts:17:1 › human rooms require authentication while bot practice remains available (679ms)
+  ok  37 [chromium] › e2e\race-mode.spec.ts:4:1 › a guest can finish clearly labelled local bot practice (2.7s)
+  ok  41 [chromium] › e2e\result-evidence.spec.ts:48:1 › precision mode rejects errors without erasing their accuracy cost (2.6s)
+  ok  43 [chromium] › e2e\stats-dashboard.spec.ts:15:1 › empty history gives an actionable state without invented scores (665ms)
+  ok  42 [chromium] › e2e\stats-dashboard.spec.ts:4:1 › actual guest history survives reload without duplicate completion (2.5s)
+  ok  44 [chromium] › e2e\typing-test.spec.ts:6:1 › a corrected mistake yields 75% input accuracy and perfect final text once (3.0s)
+  ok  46 [chromium] › e2e\typing-test.spec.ts:54:1 › code Tab preserves normal focus by default and indents only after opting in (2.7s)
+  ok  47 [chromium] › e2e\typing-test.spec.ts:77:1 › composition commits one NFC grapheme and ignores intermediate IME changes (2.0s)
+  x   40 [chromium] › e2e\result-evidence.spec.ts:4:1 › results explain both accuracy denominators and replay corrections without rewriting them (8.4s)
+(node:75792) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  48 [chromium] › e2e\typing-test.spec.ts:95:1 › repeat preserves the exact target and creates a new id with repeated-content provenance (4.1s)
+  ok  50 [chromium] › e2e\typing-test.spec.ts:122:1 › free writing has raw speed and no invented target accuracy or credited WPM (3.0s)
+  ok  49 [chromium] › e2e\typing-test.spec.ts:106:1 › prompted zen appends target segments and finishes only through the visible action (5.6s)
+  ok  45 [chromium] › e2e\typing-test.spec.ts:38:1 › a 15 second deadline includes the whole idle period and persists the final cutoff (17.0s)
+(node:71296) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:38752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:63312) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  -   53 [firefox] › e2e\auth-flow.spec.ts:19:1 › real account sign in with dedicated deployment credentials
+  ok  51 [firefox] › e2e\auth-flow.spec.ts:14:1 › guest practice remains reachable from the account screen (4.6s)
+  ok  55 [firefox] › e2e\keyboard-lab.spec.ts:47:1 › browser layout access happens only after an explicit request and never changes preferences automatically (3.4s)
+  ok  56 [firefox] › e2e\keyboard-lab.spec.ts:125:3 › unsupported browser mapping has a working manual fallback (2.1s)
+  ok  52 [firefox] › e2e\auth-flow.spec.ts:3:1 › account form switches between sign in and creation using labelled controls (10.7s)
+  ok  57 [firefox] › e2e\keyboard-lab.spec.ts:125:3 › blocked browser mapping has a working manual fallback (1.4s)
+  ok  54 [firefox] › e2e\keyboard-lab.spec.ts:3:1 › manual signals are focus-scoped; Tab, Shift+Tab and Escape leave normally (9.1s)
+  ok  59 [firefox] › e2e\keyboard-lab.spec.ts:196:1 › composition and repeat signals never create invented pair timings; blur clears held state (2.0s)
+  ok  58 [firefox] › e2e\keyboard-lab.spec.ts:163:1 › repeated transitions produce a measured pair drill and targeted learning link (4.2s)
+  ok  60 [firefox] › e2e\keyboard-lab.spec.ts:252:1 › lab data remains ephemeral and reset removes observations and browser mapping (3.7s)
+  ok  62 [firefox] › e2e\leaderboard.spec.ts:3:1 › rankings explain challenge eligibility without presenting practice as verified scores (1.7s)
+  ok  64 [firefox] › e2e\learning-v3.spec.ts:28:1 › Tab leaves the learning input without generating another lesson (1.3s)
+  ok  65 [firefox] › e2e\learning-v3.spec.ts:40:1 › Arabic lesson uses RTL native characters and composition has no invented key timing (2.1s)
+  ok  63 [firefox] › e2e\learning-v3.spec.ts:3:1 › learning records rejected attempts and saves exactly one immutable result (5.9s)
+  ok  66 [firefox] › e2e\learning-v3.spec.ts:58:3 › en content completes through the actual learning input adapter (4.7s)
+  ok  67 [firefox] › e2e\learning-v3.spec.ts:58:3 › es content completes through the actual learning input adapter (3.5s)
+  ok  68 [firefox] › e2e\learning-v3.spec.ts:58:3 › fr content completes through the actual learning input adapter (3.1s)
+  ok  69 [firefox] › e2e\learning-v3.spec.ts:58:3 › de content completes through the actual learning input adapter (3.6s)
+  ok  70 [firefox] › e2e\learning-v3.spec.ts:58:3 › pt content completes through the actual learning input adapter (3.3s)
+  ok  71 [firefox] › e2e\learning-v3.spec.ts:58:3 › it content completes through the actual learning input adapter (3.2s)
+  ok  72 [firefox] › e2e\learning-v3.spec.ts:58:3 › ru content completes through the actual learning input adapter (2.5s)
+  ok  73 [firefox] › e2e\learning-v3.spec.ts:58:3 › hi content completes through the actual learning input adapter (1.6s)
+  ok  74 [firefox] › e2e\learning-v3.spec.ts:58:3 › ar content completes through the actual learning input adapter (2.3s)
+  ok  75 [firefox] › e2e\learning-v3.spec.ts:58:3 › gu-Latn content completes through the actual learning input adapter (2.0s)
+  ok  61 [firefox] › e2e\keyboard-lab.spec.ts:278:1 › mobile layout keeps capture accessible without horizontal page overflow (24.5s)
+  ok  76 [firefox] › e2e\mode-matrix.spec.ts:13:3 › finite mode completes and exports exact committed input: Words (2.1s)
+  ok  77 [firefox] › e2e\mode-matrix.spec.ts:13:3 › finite mode completes and exports exact committed input: Quote (3.5s)
+  ok  78 [firefox] › e2e\mode-matrix.spec.ts:13:3 › finite mode completes and exports exact committed input: Code:javascript (2.6s)
+  ok  79 [firefox] › e2e\mode-matrix.spec.ts:13:3 › finite mode completes and exports exact committed input: Code:typescript (2.6s)
+  ok  80 [firefox] › e2e\mode-matrix.spec.ts:13:3 › finite mode completes and exports exact committed input: Code:python (3.3s)
+  ok  81 [firefox] › e2e\mode-matrix.spec.ts:13:3 › finite mode completes and exports exact committed input: Code:rust (3.4s)
+  ok  82 [firefox] › e2e\mode-matrix.spec.ts:13:3 › finite mode completes and exports exact committed input: Code:sql (3.9s)
+  ok  83 [firefox] › e2e\profile-flow.spec.ts:3:1 › guest profile protects account controls and destructive reset requires exact confirmation (2.0s)
+  ok  84 [firefox] › e2e\profile-flow.spec.ts:13:1 › themes and keyboard preferences survive reload (2.7s)
+  ok  86 [firefox] › e2e\profile-flow.spec.ts:32:1 › mobile navigation exposes Test, Learn, Race, and Stats without horizontal overflow (3.1s)
+  ok  88 [firefox] › e2e\race-mode.spec.ts:17:1 › human rooms require authentication while bot practice remains available (1.3s)
+  -   89 [firefox] › e2e\race-mode.spec.ts:24:1 › deployed two-account race authorization and RLS
+  ok  87 [firefox] › e2e\race-mode.spec.ts:4:1 › a guest can finish clearly labelled local bot practice (5.0s)
+  ok  85 [firefox] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands (8.0s)
+  ok  90 [firefox] › e2e\result-evidence.spec.ts:4:1 › results explain both accuracy denominators and replay corrections without rewriting them (4.2s)
+  ok  91 [firefox] › e2e\result-evidence.spec.ts:48:1 › precision mode rejects errors without erasing their accuracy cost (3.7s)
+  ok  93 [firefox] › e2e\stats-dashboard.spec.ts:15:1 › empty history gives an actionable state without invented scores (2.1s)
+  ok  92 [firefox] › e2e\stats-dashboard.spec.ts:4:1 › actual guest history survives reload without duplicate completion (5.8s)
+  ok  94 [firefox] › e2e\typing-test.spec.ts:6:1 › a corrected mistake yields 75% input accuracy and perfect final text once (4.8s)
+  ok  96 [firefox] › e2e\typing-test.spec.ts:54:1 › code Tab preserves normal focus by default and indents only after opting in (7.0s)
+  ok  97 [firefox] › e2e\typing-test.spec.ts:77:1 › composition commits one NFC grapheme and ignores intermediate IME changes (6.9s)
+  ok  98 [firefox] › e2e\typing-test.spec.ts:95:1 › repeat preserves the exact target and creates a new id with repeated-content provenance (4.0s)
+  ok  99 [firefox] › e2e\typing-test.spec.ts:106:1 › prompted zen appends target segments and finishes only through the visible action (4.8s)
+  ok 100 [firefox] › e2e\typing-test.spec.ts:122:1 › free writing has raw speed and no invented target accuracy or credited WPM (3.2s)
+  ok  95 [firefox] › e2e\typing-test.spec.ts:38:1 › a 15 second deadline includes the whole idle period and persists the final cutoff (18.8s)
+(node:55648) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:52100) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:69616) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 101 [webkit] › e2e\auth-flow.spec.ts:3:1 › account form switches between sign in and creation using labelled controls (2.5s)
+  -  103 [webkit] › e2e\auth-flow.spec.ts:19:1 › real account sign in with dedicated deployment credentials
+  ok 102 [webkit] › e2e\auth-flow.spec.ts:14:1 › guest practice remains reachable from the account screen (2.7s)
+  ok 105 [webkit] › e2e\keyboard-lab.spec.ts:47:1 › browser layout access happens only after an explicit request and never changes preferences automatically (2.9s)
+  ok 104 [webkit] › e2e\keyboard-lab.spec.ts:3:1 › manual signals are focus-scoped; Tab, Shift+Tab and Escape leave normally (3.5s)
+  ok 106 [webkit] › e2e\keyboard-lab.spec.ts:125:3 › unsupported browser mapping has a working manual fallback (3.0s)
+  ok 107 [webkit] › e2e\keyboard-lab.spec.ts:125:3 › blocked browser mapping has a working manual fallback (3.0s)
+  ok 109 [webkit] › e2e\keyboard-lab.spec.ts:196:1 › composition and repeat signals never create invented pair timings; blur clears held state (2.3s)
+  ok 108 [webkit] › e2e\keyboard-lab.spec.ts:163:1 › repeated transitions produce a measured pair drill and targeted learning link (4.1s)
+  ok 111 [webkit] › e2e\keyboard-lab.spec.ts:278:1 › mobile layout keeps capture accessible without horizontal page overflow (1.5s)
+  ok 112 [webkit] › e2e\leaderboard.spec.ts:3:1 › rankings explain challenge eligibility without presenting practice as verified scores (1.9s)
+  ok 110 [webkit] › e2e\keyboard-lab.spec.ts:252:1 › lab data remains ephemeral and reset removes observations and browser mapping (4.2s)
+  ok 114 [webkit] › e2e\learning-v3.spec.ts:28:1 › Tab leaves the learning input without generating another lesson (2.1s)
+  ok 115 [webkit] › e2e\learning-v3.spec.ts:40:1 › Arabic lesson uses RTL native characters and composition has no invented key timing (2.4s)
+  ok 117 [webkit] › e2e\learning-v3.spec.ts:58:3 › es content completes through the actual learning input adapter (23.6s)
+  ok 116 [webkit] › e2e\learning-v3.spec.ts:58:3 › en content completes through the actual learning input adapter (28.7s)
+  x  113 [webkit] › e2e\learning-v3.spec.ts:3:1 › learning records rejected attempts and saves exactly one immutable result (31.8s)
+(node:58456) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  120 [webkit] › e2e\learning-v3.spec.ts:58:3 › pt content completes through the actual learning input adapter (7.3s)
+(node:76544) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  121 [webkit] › e2e\learning-v3.spec.ts:58:3 › it content completes through the actual learning input adapter (8.1s)
+(node:7820) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 118 [webkit] › e2e\learning-v3.spec.ts:58:3 › fr content completes through the actual learning input adapter (28.5s)
+  ok 119 [webkit] › e2e\learning-v3.spec.ts:58:3 › de content completes through the actual learning input adapter (28.2s)
+  ok 123 [webkit] › e2e\learning-v3.spec.ts:58:3 › hi content completes through the actual learning input adapter (3.7s)
+  ok 124 [webkit] › e2e\learning-v3.spec.ts:58:3 › ar content completes through the actual learning input adapter (2.2s)
+  ok 122 [webkit] › e2e\learning-v3.spec.ts:58:3 › ru content completes through the actual learning input adapter (8.1s)
+  ok 125 [webkit] › e2e\learning-v3.spec.ts:58:3 › gu-Latn content completes through the actual learning input adapter (5.6s)
+  ok 126 [webkit] › e2e\mode-matrix.spec.ts:13:3 › finite mode completes and exports exact committed input: Words (3.5s)
+  ok 127 [webkit] › e2e\mode-matrix.spec.ts:13:3 › finite mode completes and exports exact committed input: Quote (3.0s)
+  ok 128 [webkit] › e2e\mode-matrix.spec.ts:13:3 › finite mode completes and exports exact committed input: Code:javascript (7.8s)
+  ok 129 [webkit] › e2e\mode-matrix.spec.ts:13:3 › finite mode completes and exports exact committed input: Code:typescript (8.0s)
+  ok 130 [webkit] › e2e\mode-matrix.spec.ts:13:3 › finite mode completes and exports exact committed input: Code:python (13.5s)
+  ok 131 [webkit] › e2e\mode-matrix.spec.ts:13:3 › finite mode completes and exports exact committed input: Code:rust (12.8s)
+  ok 132 [webkit] › e2e\mode-matrix.spec.ts:13:3 › finite mode completes and exports exact committed input: Code:sql (12.7s)
+  x  133 [webkit] › e2e\profile-flow.spec.ts:3:1 › guest profile protects account controls and destructive reset requires exact confirmation (7.0s)
+(node:39480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  134 [webkit] › e2e\profile-flow.spec.ts:13:1 › themes and keyboard preferences survive reload (8.8s)
+(node:25560) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 136 [webkit] › e2e\profile-flow.spec.ts:32:1 › mobile navigation exposes Test, Learn, Race, and Stats without horizontal overflow (6.8s)
+  ok 135 [webkit] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands (9.7s)
+  -  138 [webkit] › e2e\race-mode.spec.ts:24:1 › deployed two-account race authorization and RLS
+  ok 137 [webkit] › e2e\race-mode.spec.ts:17:1 › human rooms require authentication while bot practice remains available (1.6s)
+  ok 140 [webkit] › e2e\race-mode.spec.ts:4:1 › a guest can finish clearly labelled local bot practice (15.6s)
+  ok 141 [webkit] › e2e\result-evidence.spec.ts:48:1 › precision mode rejects errors without erasing their accuracy cost (15.5s)
+  ok 139 [webkit] › e2e\result-evidence.spec.ts:4:1 › results explain both accuracy denominators and replay corrections without rewriting them (18.4s)
+  ok 143 [webkit] › e2e\stats-dashboard.spec.ts:15:1 › empty history gives an actionable state without invented scores (2.6s)
+  x  142 [webkit] › e2e\stats-dashboard.spec.ts:4:1 › actual guest history survives reload without duplicate completion (13.6s)
+(node:73344) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 144 [webkit] › e2e\typing-test.spec.ts:6:1 › a corrected mistake yields 75% input accuracy and perfect final text once (14.7s)
+  ok 145 [webkit] › e2e\typing-test.spec.ts:38:1 › a 15 second deadline includes the whole idle period and persists the final cutoff (30.4s)
+  ok 147 [webkit] › e2e\typing-test.spec.ts:77:1 › composition commits one NFC grapheme and ignores intermediate IME changes (21.1s)
+  ok 146 [webkit] › e2e\typing-test.spec.ts:54:1 › code Tab preserves normal focus by default and indents only after opting in (28.8s)
+  ok 148 [webkit] › e2e\typing-test.spec.ts:95:1 › repeat preserves the exact target and creates a new id with repeated-content provenance (16.5s)
+  ok 149 [webkit] › e2e\typing-test.spec.ts:106:1 › prompted zen appends target segments and finishes only through the visible action (12.5s)
+  ok 150 [webkit] › e2e\typing-test.spec.ts:122:1 › free writing has raw speed and no invented target accuracy or credited WPM (9.9s)
+
+
+  1) [chromium] › e2e\result-evidence.spec.ts:4:1 › results explain both accuracy denominators and replay corrections without rewriting them 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  getByRole('region', { name: 'Score explanation' }).getByLabel('Replayed transcript', { exact: true })
+    Expected: "cat"
+    Received: "ca"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveText" getByRole('region', { name: 'Score explanation' }).getByLabel('Replayed transcript', { exact: true }) with timeout 5000ms
+      - waiting for getByRole('region', { name: 'Score explanation' }).getByLabel('Replayed transcript', { exact: true })
+        14 × locator resolved to <div aria-label="Replayed transcript" class="rounded-lg border p-4 bg-background min-h-28 max-h-64 overflow-auto font-mono text-sm whitespace-pre-wrap break-all">ca</div>
+           - unexpected value "ca"
+
+
+      27 |   await expect(
+      28 |     proof.getByLabel("Replayed transcript", { exact: true }),
+    > 29 |   ).toHaveText("cat");
+         |     ^
+      30 |   await expect(
+      31 |     proof.getByText(
+      32 |       /4 insertion attempts · 1 deletion actions · 75.0% input accuracy/,
+        at D:\extra\typing_updated\typing-forge\e2e\result-evidence.spec.ts:29:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\result-evidence-results-ex-9b883-ions-without-rewriting-them-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\result-evidence-results-ex-9b883-ions-without-rewriting-them-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\result-evidence-results-ex-9b883-ions-without-rewriting-them-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\result-evidence-results-ex-9b883-ions-without-rewriting-them-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [webkit] › e2e\learning-v3.spec.ts:3:1 › learning records rejected attempts and saves exactly one immutable result 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Make every key feel natural.')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Make every key feel natural.') with timeout 5000ms
+      - waiting for getByText('Make every key feel natural.')
+
+
+      21 |   await expect(page.getByRole('region', { name: 'Session results' })).toContainText(expectedAccuracy.toFixed(1));
+      22 |   await page.reload();
+    > 23 |   await expect(page.getByText('Make every key feel natural.')).toBeVisible();
+         |                                                                ^
+      24 |   const persisted = await page.evaluate(() => JSON.parse(localStorage.getItem('typingforge:v3:guest:learning') || '{}'));
+      25 |   expect(persisted.sessions).toHaveLength(1);
+      26 | });
+        at D:\extra\typing_updated\typing-forge\e2e\learning-v3.spec.ts:23:64
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\learning-v3-learning-recor-3e29c-xactly-one-immutable-result-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\learning-v3-learning-recor-3e29c-xactly-one-immutable-result-webkit\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\learning-v3-learning-recor-3e29c-xactly-one-immutable-result-webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\learning-v3-learning-recor-3e29c-xactly-one-immutable-result-webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [webkit] › e2e\learning-v3.spec.ts:58:3 › pt content completes through the actual learning input adapter 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('textbox', { name: 'Type the practice text' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('textbox', { name: 'Type the practice text' }) with timeout 5000ms
+      - waiting for getByRole('textbox', { name: 'Type the practice text' })
+
+
+      59 |     await page.goto(`/learn?language=${language}`);
+      60 |     const input = page.getByRole('textbox', { name: 'Type the practice text' });
+    > 61 |     await expect(input).toBeVisible();
+         |                         ^
+      62 |     const text = await page.locator('[aria-label="Adaptive typing lesson"] div[aria-hidden="true"][dir]').textContent();
+      63 |     expect(text?.length).toBeGreaterThan(0);
+      64 |     if (language === 'hi' || language === 'ar') {
+        at D:\extra\typing_updated\typing-forge\e2e\learning-v3.spec.ts:61:25
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\learning-v3-pt-content-com-15545-tual-learning-input-adapter-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\learning-v3-pt-content-com-15545-tual-learning-input-adapter-webkit\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\learning-v3-pt-content-com-15545-tual-learning-input-adapter-webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\learning-v3-pt-content-com-15545-tual-learning-input-adapter-webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [webkit] › e2e\learning-v3.spec.ts:58:3 › it content completes through the actual learning input adapter 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('textbox', { name: 'Type the practice text' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('textbox', { name: 'Type the practice text' }) with timeout 5000ms
+      - waiting for getByRole('textbox', { name: 'Type the practice text' })
+
+
+      59 |     await page.goto(`/learn?language=${language}`);
+      60 |     const input = page.getByRole('textbox', { name: 'Type the practice text' });
+    > 61 |     await expect(input).toBeVisible();
+         |                         ^
+      62 |     const text = await page.locator('[aria-label="Adaptive typing lesson"] div[aria-hidden="true"][dir]').textContent();
+      63 |     expect(text?.length).toBeGreaterThan(0);
+      64 |     if (language === 'hi' || language === 'ar') {
+        at D:\extra\typing_updated\typing-forge\e2e\learning-v3.spec.ts:61:25
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\learning-v3-it-content-com-07167-tual-learning-input-adapter-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\learning-v3-it-content-com-07167-tual-learning-input-adapter-webkit\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\learning-v3-it-content-com-07167-tual-learning-input-adapter-webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\learning-v3-it-content-com-07167-tual-learning-input-adapter-webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [webkit] › e2e\profile-flow.spec.ts:3:1 › guest profile protects account controls and destructive reset requires exact confirmation 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Guest workspace', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Guest workspace', exact: true }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'Guest workspace', exact: true })
+
+
+      3 | test('guest profile protects account controls and destructive reset requires exact confirmation', async ({ page }) => {
+      4 |   await page.goto('/profile');
+    > 5 |   await expect(page.getByRole('heading', { name: 'Guest workspace', exact: true })).toBeVisible();
+        |                                                                                     ^
+      6 |   await expect(page.getByRole('textbox', { name: 'Handle', exact: true })).toBeDisabled();
+      7 |   const reset = page.getByRole('button', { name: 'Reset guest workspace', exact: true });
+      8 |   await expect(reset).toBeDisabled();
+        at D:\extra\typing_updated\typing-forge\e2e\profile-flow.spec.ts:5:85
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\profile-flow-guest-profile-10d24-requires-exact-confirmation-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\profile-flow-guest-profile-10d24-requires-exact-confirmation-webkit\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\profile-flow-guest-profile-10d24-requires-exact-confirmation-webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\profile-flow-guest-profile-10d24-requires-exact-confirmation-webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [webkit] › e2e\profile-flow.spec.ts:13:1 › themes and keyboard preferences survive reload ─────
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator: getByRole('combobox', { name: 'Keyboard layout', exact: true })
+    Expected: "dvorak"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveValue" getByRole('combobox', { name: 'Keyboard layout', exact: true }) with timeout 5000ms
+      - waiting for getByRole('combobox', { name: 'Keyboard layout', exact: true })
+
+
+      17 |   await page.reload();
+      18 |   await expect(page.locator('html')).toHaveAttribute('data-theme', 'paper');
+    > 19 |   await expect(page.getByRole('combobox', { name: 'Keyboard layout', exact: true })).toHaveValue('dvorak');
+         |                                                                                      ^
+      20 |   await expect(page.getByRole('button', { name: 'Aa bb Paper', exact: true })).toHaveAttribute('aria-pressed', 'true');
+      21 | });
+      22 |
+        at D:\extra\typing_updated\typing-forge\e2e\profile-flow.spec.ts:19:86
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\profile-flow-themes-and-keyboard-preferences-survive-reload-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\profile-flow-themes-and-keyboard-preferences-survive-reload-webkit\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\profile-flow-themes-and-keyboard-preferences-survive-reload-webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\profile-flow-themes-and-keyboard-preferences-survive-reload-webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [webkit] › e2e\stats-dashboard.spec.ts:4:1 › actual guest history survives reload without duplicate completion 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByRole('table', { name: 'Completed sessions, most recent first', exact: true }).getByRole('row')
+    Expected: 2
+    Received: 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByRole('table', { name: 'Completed sessions, most recent first', exact: true }).getByRole('row') with timeout 5000ms
+      - waiting for getByRole('table', { name: 'Completed sessions, most recent first', exact: true }).getByRole('row')
+        12 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+       7 |   await page.goto('/stats');
+       8 |   const table = page.getByRole('table', { name: 'Completed sessions, most recent first', exact: true });
+    >  9 |   await expect(table.getByRole('row')).toHaveCount(2); await expect(table.getByRole('row').nth(1)).toContainText('75.0%');
+         |                                        ^
+      10 |   await page.reload();
+      11 |   await expect(table.getByRole('row')).toHaveCount(2); await expect(table.getByRole('row').nth(1)).toContainText('custom');
+      12 |   await expect(page.getByText('Completed sessions', { exact: true }).locator('..').getByText('1', { exact: true })).toBeVisible();
+        at D:\extra\typing_updated\typing-forge\e2e\stats-dashboard.spec.ts:9:40
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\stats-dashboard-actual-gue-bf8af-ithout-duplicate-completion-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\stats-dashboard-actual-gue-bf8af-ithout-duplicate-completion-webkit\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\stats-dashboard-actual-gue-bf8af-ithout-duplicate-completion-webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\stats-dashboard-actual-gue-bf8af-ithout-duplicate-completion-webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7 failed
+    [chromium] › e2e\result-evidence.spec.ts:4:1 › results explain both accuracy denominators and replay corrections without rewriting them 
+    [webkit] › e2e\learning-v3.spec.ts:3:1 › learning records rejected attempts and saves exactly one immutable result 
+    [webkit] › e2e\learning-v3.spec.ts:58:3 › pt content completes through the actual learning input adapter 
+    [webkit] › e2e\learning-v3.spec.ts:58:3 › it content completes through the actual learning input adapter 
+    [webkit] › e2e\profile-flow.spec.ts:3:1 › guest profile protects account controls and destructive reset requires exact confirmation 
+    [webkit] › e2e\profile-flow.spec.ts:13:1 › themes and keyboard preferences survive reload ──────
+    [webkit] › e2e\stats-dashboard.spec.ts:4:1 › actual guest history survives reload without duplicate completion 
+  6 skipped
+  137 passed (5.3m)

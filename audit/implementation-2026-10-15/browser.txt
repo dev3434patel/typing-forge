@@ -1,0 +1,47 @@
+
+> typing-forge@3.0.0 test:e2e
+> playwright test --workers=2
+
+
+Running 33 tests using 2 workers
+
+(node:61696) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3100) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › e2e\auth-flow.spec.ts:14:1 › guest practice remains reachable from the account screen (6.5s)
+  ok  2 [chromium] › e2e\auth-flow.spec.ts:3:1 › account form switches between sign in and creation using labelled controls (6.5s)
+  -   3 [chromium] › e2e\auth-flow.spec.ts:19:1 › real account sign in with dedicated deployment credentials
+  ok  4 [chromium] › e2e\leaderboard.spec.ts:3:1 › rankings explain challenge eligibility without presenting practice as verified scores (2.3s)
+  ok  6 [chromium] › e2e\learning-v3.spec.ts:28:1 › Tab leaves the learning input without generating another lesson (3.0s)
+  ok  5 [chromium] › e2e\learning-v3.spec.ts:3:1 › learning records rejected attempts and saves exactly one immutable result (6.4s)
+  ok  7 [chromium] › e2e\learning-v3.spec.ts:40:1 › Arabic lesson uses RTL native characters and composition has no invented key timing (1.6s)
+  ok  8 [chromium] › e2e\learning-v3.spec.ts:58:3 › en content completes through the actual learning input adapter (1.8s)
+  ok  9 [chromium] › e2e\learning-v3.spec.ts:58:3 › es content completes through the actual learning input adapter (1.8s)
+  ok 10 [chromium] › e2e\learning-v3.spec.ts:58:3 › fr content completes through the actual learning input adapter (2.6s)
+  ok 11 [chromium] › e2e\learning-v3.spec.ts:58:3 › de content completes through the actual learning input adapter (3.3s)
+  ok 12 [chromium] › e2e\learning-v3.spec.ts:58:3 › pt content completes through the actual learning input adapter (3.2s)
+  ok 13 [chromium] › e2e\learning-v3.spec.ts:58:3 › it content completes through the actual learning input adapter (3.5s)
+  ok 15 [chromium] › e2e\learning-v3.spec.ts:58:3 › hi content completes through the actual learning input adapter (2.3s)
+  ok 14 [chromium] › e2e\learning-v3.spec.ts:58:3 › ru content completes through the actual learning input adapter (3.4s)
+  ok 16 [chromium] › e2e\learning-v3.spec.ts:58:3 › ar content completes through the actual learning input adapter (1.3s)
+  ok 17 [chromium] › e2e\learning-v3.spec.ts:58:3 › gu-Latn content completes through the actual learning input adapter (2.3s)
+  ok 18 [chromium] › e2e\profile-flow.spec.ts:3:1 › guest profile protects account controls and destructive reset requires exact confirmation (1.1s)
+  ok 19 [chromium] › e2e\profile-flow.spec.ts:13:1 › themes and keyboard preferences survive reload (973ms)
+  ok 20 [chromium] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands (1.3s)
+  ok 21 [chromium] › e2e\profile-flow.spec.ts:32:1 › mobile navigation exposes Test, Learn, Race, and Stats without horizontal overflow (1.3s)
+  ok 23 [chromium] › e2e\race-mode.spec.ts:17:1 › human rooms require authentication while bot practice remains available (944ms)
+  -  24 [chromium] › e2e\race-mode.spec.ts:24:1 › deployed two-account race authorization and RLS
+  ok 22 [chromium] › e2e\race-mode.spec.ts:4:1 › a guest can finish clearly labelled local bot practice (4.1s)
+  ok 25 [chromium] › e2e\stats-dashboard.spec.ts:4:1 › actual guest history survives reload without duplicate completion (2.8s)
+  ok 26 [chromium] › e2e\stats-dashboard.spec.ts:15:1 › empty history gives an actionable state without invented scores (3.0s)
+  ok 27 [chromium] › e2e\typing-test.spec.ts:6:1 › a corrected mistake yields 75% input accuracy and perfect final text once (8.0s)
+  ok 29 [chromium] › e2e\typing-test.spec.ts:54:1 › code Tab preserves normal focus by default and indents only after opting in (4.5s)
+  ok 30 [chromium] › e2e\typing-test.spec.ts:77:1 › composition commits one NFC grapheme and ignores intermediate IME changes (2.2s)
+  ok 31 [chromium] › e2e\typing-test.spec.ts:95:1 › repeat preserves the exact target and creates a new id with repeated-content provenance (3.6s)
+  ok 32 [chromium] › e2e\typing-test.spec.ts:106:1 › prompted zen appends target segments and finishes only through the visible action (1.8s)
+  ok 28 [chromium] › e2e\typing-test.spec.ts:38:1 › a 15 second deadline includes the whole idle period and persists the final cutoff (17.8s)
+  ok 33 [chromium] › e2e\typing-test.spec.ts:122:1 › free writing has raw speed and no invented target accuracy or credited WPM (2.4s)
+
+  2 skipped
+  31 passed (1.4m)

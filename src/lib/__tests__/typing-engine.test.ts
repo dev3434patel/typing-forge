@@ -322,7 +322,7 @@ describe('Typing Engine', () => {
       expect(consistency2).toBe(100);
       
       const consistency3 = calculateConsistency([0, 0, 0]); // All zeros
-      expect(consistency3).toBe(100); // Filtered out
+      expect(consistency3).toBe(0); // Idle samples remain evidence of inactivity.
     });
 
     it('should ensure re-running same input yields identical results (determinism)', () => {

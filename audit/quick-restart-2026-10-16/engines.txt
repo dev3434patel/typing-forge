@@ -1,0 +1,330 @@
+
+Running 15 tests using 1 worker
+
+(node:2744) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   1 [chromium] › e2e\quick-restart.spec.ts:15:1 › Tab then Enter creates fresh random bot races and resets typing, timer and opponent (7.6s)
+(node:87804) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   2 [chromium] › e2e\quick-restart.spec.ts:80:1 › bot results support Tab then Enter for a fresh race at the same difficulty (7.6s)
+(node:19020) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  3 [chromium] › e2e\quick-restart.spec.ts:103:1 › normal Test results use Tab then Enter for new random words (1.7s)
+  ok  4 [chromium] › e2e\quick-restart.spec.ts:124:1 › Shift+Tab and further Tab navigation keep ordinary bot controls reachable (1.0s)
+  ok  5 [chromium] › e2e\quick-restart.spec.ts:158:3 › touch device with a physical keyboard › keyboard retry restores focus even when the primary pointer is touch (894ms)
+(node:71548) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   6 [firefox] › e2e\quick-restart.spec.ts:15:1 › Tab then Enter creates fresh random bot races and resets typing, timer and opponent (10.7s)
+(node:86180) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   7 [firefox] › e2e\quick-restart.spec.ts:80:1 › bot results support Tab then Enter for a fresh race at the same difficulty (15.9s)
+(node:17384) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  8 [firefox] › e2e\quick-restart.spec.ts:103:1 › normal Test results use Tab then Enter for new random words (3.8s)
+  ok  9 [firefox] › e2e\quick-restart.spec.ts:124:1 › Shift+Tab and further Tab navigation keep ordinary bot controls reachable (1.6s)
+  ok 10 [firefox] › e2e\quick-restart.spec.ts:158:3 › touch device with a physical keyboard › keyboard retry restores focus even when the primary pointer is touch (1.5s)
+(node:60540) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  11 [webkit] › e2e\quick-restart.spec.ts:15:1 › Tab then Enter creates fresh random bot races and resets typing, timer and opponent (8.3s)
+(node:70116) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  12 [webkit] › e2e\quick-restart.spec.ts:80:1 › bot results support Tab then Enter for a fresh race at the same difficulty (8.1s)
+(node:64500) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 13 [webkit] › e2e\quick-restart.spec.ts:103:1 › normal Test results use Tab then Enter for new random words (2.0s)
+  ok 14 [webkit] › e2e\quick-restart.spec.ts:124:1 › Shift+Tab and further Tab navigation keep ordinary bot controls reachable (2.2s)
+  ok 15 [webkit] › e2e\quick-restart.spec.ts:158:3 › touch device with a physical keyboard › keyboard retry restores focus even when the primary pointer is touch (1.6s)
+
+
+  1) [chromium] › e2e\quick-restart.spec.ts:15:1 › Tab then Enter creates fresh random bot races and resets typing, timer and opponent 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByTestId('opponent-caret')
+    Expected: "0"
+    Received: "31"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByTestId('opponent-caret') with timeout 5000ms
+      - waiting for getByTestId('opponent-caret')
+        2 × locator resolved to <span data-position="1" aria-hidden="true" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+          - unexpected value "1"
+        - locator resolved to <span data-position="2" aria-hidden="true" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+        - unexpected value "2"
+        2 × locator resolved to <span data-position="3" aria-hidden="true" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+          - unexpected value "3"
+        - locator resolved to <span data-position="7" aria-hidden="true" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+        - unexpected value "7"
+        - locator resolved to <span aria-hidden="true" data-position="13" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+        - unexpected value "13"
+        - locator resolved to <span aria-hidden="true" data-position="17" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+        - unexpected value "17"
+        - locator resolved to <span aria-hidden="true" data-position="21" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+        - unexpected value "21"
+        - locator resolved to <span aria-hidden="true" data-position="23" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+        - unexpected value "23"
+        - locator resolved to <span aria-hidden="true" data-position="24" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+        - unexpected value "24"
+        - locator resolved to <span aria-hidden="true" data-position="28" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+        - unexpected value "28"
+        2 × locator resolved to <span aria-hidden="true" data-position="31" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+          - unexpected value "31"
+
+
+      51 |       "0",
+      52 |     );
+    > 53 |     await expect(marker).toHaveAttribute("data-position", "0");
+         |                          ^
+      54 |     await expect(page.getByTestId("race-pace-legend")).toContainText(
+      55 |       "Alongside you",
+      56 |     );
+        at D:\extra\typing_updated\typing-forge\e2e\quick-restart.spec.ts:53:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-Tab-then-Ent-cb573-s-typing-timer-and-opponent-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-Tab-then-Ent-cb573-s-typing-timer-and-opponent-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-Tab-then-Ent-cb573-s-typing-timer-and-opponent-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-Tab-then-Ent-cb573-s-typing-timer-and-opponent-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › e2e\quick-restart.spec.ts:80:1 › bot results support Tab then Enter for a fresh race at the same difficulty 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Pro opponent', { exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Pro opponent', { exact: true }) with timeout 5000ms
+      - waiting for getByText('Pro opponent', { exact: true })
+
+
+       97 |   await expect(input).toHaveValue("");
+       98 |   await expect(page.getByTestId("typing-target")).not.toHaveText(before!);
+    >  99 |   await expect(page.getByText("Pro opponent", { exact: true })).toBeVisible();
+          |                                                                 ^
+      100 |   await expect(results).toHaveCount(0);
+      101 | });
+      102 |
+        at D:\extra\typing_updated\typing-forge\e2e\quick-restart.spec.ts:99:65
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-bot-results--23db8-race-at-the-same-difficulty-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-bot-results--23db8-race-at-the-same-difficulty-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-bot-results--23db8-race-at-the-same-difficulty-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-bot-results--23db8-race-at-the-same-difficulty-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [firefox] › e2e\quick-restart.spec.ts:15:1 › Tab then Enter creates fresh random bot races and resets typing, timer and opponent 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByTestId('opponent-caret')
+    Expected: "0"
+    Received: "37"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByTestId('opponent-caret') with timeout 5000ms
+      - waiting for getByTestId('opponent-caret')
+        2 × locator resolved to <span data-position="1" aria-hidden="true" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+          - unexpected value "1"
+        - locator resolved to <span data-position="2" aria-hidden="true" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+        - unexpected value "2"
+        - locator resolved to <span data-position="3" aria-hidden="true" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+        - unexpected value "3"
+        2 × locator resolved to <span data-position="4" aria-hidden="true" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+          - unexpected value "4"
+        - locator resolved to <span data-position="8" aria-hidden="true" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+        - unexpected value "8"
+        - locator resolved to <span aria-hidden="true" data-position="13" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+        - unexpected value "13"
+        - locator resolved to <span aria-hidden="true" data-position="18" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+        - unexpected value "18"
+        - locator resolved to <span aria-hidden="true" data-position="24" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+        - unexpected value "24"
+        - locator resolved to <span aria-hidden="true" data-position="28" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+        - unexpected value "28"
+        - locator resolved to <span aria-hidden="true" data-position="34" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+        - unexpected value "34"
+        - locator resolved to <span aria-hidden="true" data-position="37" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+        - unexpected value "37"
+
+
+      51 |       "0",
+      52 |     );
+    > 53 |     await expect(marker).toHaveAttribute("data-position", "0");
+         |                          ^
+      54 |     await expect(page.getByTestId("race-pace-legend")).toContainText(
+      55 |       "Alongside you",
+      56 |     );
+        at D:\extra\typing_updated\typing-forge\e2e\quick-restart.spec.ts:53:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-Tab-then-Ent-cb573-s-typing-timer-and-opponent-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-Tab-then-Ent-cb573-s-typing-timer-and-opponent-firefox\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-Tab-then-Ent-cb573-s-typing-timer-and-opponent-firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-Tab-then-Ent-cb573-s-typing-timer-and-opponent-firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [firefox] › e2e\quick-restart.spec.ts:80:1 › bot results support Tab then Enter for a fresh race at the same difficulty 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Pro opponent', { exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Pro opponent', { exact: true }) with timeout 5000ms
+      - waiting for getByText('Pro opponent', { exact: true })
+
+
+       97 |   await expect(input).toHaveValue("");
+       98 |   await expect(page.getByTestId("typing-target")).not.toHaveText(before!);
+    >  99 |   await expect(page.getByText("Pro opponent", { exact: true })).toBeVisible();
+          |                                                                 ^
+      100 |   await expect(results).toHaveCount(0);
+      101 | });
+      102 |
+        at D:\extra\typing_updated\typing-forge\e2e\quick-restart.spec.ts:99:65
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-bot-results--23db8-race-at-the-same-difficulty-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-bot-results--23db8-race-at-the-same-difficulty-firefox\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-bot-results--23db8-race-at-the-same-difficulty-firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-bot-results--23db8-race-at-the-same-difficulty-firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [webkit] › e2e\quick-restart.spec.ts:15:1 › Tab then Enter creates fresh random bot races and resets typing, timer and opponent 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByTestId('opponent-caret')
+    Expected: "0"
+    Received: "29"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByTestId('opponent-caret') with timeout 5000ms
+      - waiting for getByTestId('opponent-caret')
+        3 × locator resolved to <span data-position="2" aria-hidden="true" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+          - unexpected value "2"
+        2 × locator resolved to <span data-position="3" aria-hidden="true" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+          - unexpected value "3"
+        2 × locator resolved to <span data-position="7" aria-hidden="true" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+          - unexpected value "7"
+        - locator resolved to <span data-position="8" aria-hidden="true" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+        - unexpected value "8"
+        - locator resolved to <span aria-hidden="true" data-position="11" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+        - unexpected value "11"
+        - locator resolved to <span aria-hidden="true" data-position="15" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+        - unexpected value "15"
+        - locator resolved to <span aria-hidden="true" data-position="19" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+        - unexpected value "19"
+        - locator resolved to <span aria-hidden="true" data-position="24" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+        - unexpected value "24"
+        - locator resolved to <span aria-hidden="true" data-position="29" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span>
+        - unexpected value "29"
+
+
+      51 |       "0",
+      52 |     );
+    > 53 |     await expect(marker).toHaveAttribute("data-position", "0");
+         |                          ^
+      54 |     await expect(page.getByTestId("race-pace-legend")).toContainText(
+      55 |       "Alongside you",
+      56 |     );
+        at D:\extra\typing_updated\typing-forge\e2e\quick-restart.spec.ts:53:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-Tab-then-Ent-cb573-s-typing-timer-and-opponent-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-Tab-then-Ent-cb573-s-typing-timer-and-opponent-webkit\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-Tab-then-Ent-cb573-s-typing-timer-and-opponent-webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-Tab-then-Ent-cb573-s-typing-timer-and-opponent-webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [webkit] › e2e\quick-restart.spec.ts:80:1 › bot results support Tab then Enter for a fresh race at the same difficulty 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Pro opponent', { exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Pro opponent', { exact: true }) with timeout 5000ms
+      - waiting for getByText('Pro opponent', { exact: true })
+
+
+       97 |   await expect(input).toHaveValue("");
+       98 |   await expect(page.getByTestId("typing-target")).not.toHaveText(before!);
+    >  99 |   await expect(page.getByText("Pro opponent", { exact: false })).toBeVisible();
+          |                                                                 ^
+      100 |   await expect(results).toHaveCount(0);
+      101 | });
+      102 |
+        at D:\extra\typing_updated\typing-forge\e2e\quick-restart.spec.ts:99:65
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-bot-results--23db8-race-at-the-same-difficulty-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-bot-results--23db8-race-at-the-same-difficulty-webkit\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-bot-results--23db8-race-at-the-same-difficulty-webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\quick-restart-2026-10-16\engine-artifacts\quick-restart-bot-results--23db8-race-at-the-same-difficulty-webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6 failed
+    [chromium] › e2e\quick-restart.spec.ts:15:1 › Tab then Enter creates fresh random bot races and resets typing, timer and opponent 
+    [chromium] › e2e\quick-restart.spec.ts:80:1 › bot results support Tab then Enter for a fresh race at the same difficulty 
+    [firefox] › e2e\quick-restart.spec.ts:15:1 › Tab then Enter creates fresh random bot races and resets typing, timer and opponent 
+    [firefox] › e2e\quick-restart.spec.ts:80:1 › bot results support Tab then Enter for a fresh race at the same difficulty 
+    [webkit] › e2e\quick-restart.spec.ts:15:1 › Tab then Enter creates fresh random bot races and resets typing, timer and opponent 
+    [webkit] › e2e\quick-restart.spec.ts:80:1 › bot results support Tab then Enter for a fresh race at the same difficulty 
+  9 passed (1.9m)

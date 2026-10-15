@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { supabase } from '@/integrations/supabase/client';
+import { supabase, isSupabaseConfigured } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -31,6 +31,7 @@ const Auth = () => {
 
   // Check if already logged in
   useEffect(() => {
+    if (!isSupabaseConfigured) return;
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (session?.user) {
         navigate('/');
@@ -41,7 +42,7 @@ const Auth = () => {
       if (session?.user) {
         navigate('/');
       }
-    });
+    }).catch(() => {});
 
     return () => subscription.unsubscribe();
   }, [navigate]);
@@ -81,6 +82,7 @@ const Auth = () => {
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isSupabaseConfigured) { toast({ title: 'Guest practice is ready', description: 'Cloud accounts are not configured in this installation.', variant: 'destructive' }); return; }
     
     if (!validateForm()) return;
     
@@ -108,7 +110,7 @@ const Auth = () => {
           options: {
             emailRedirectTo: redirectUrl,
             data: {
-              username: username || email.split('@')[0],
+              requested_handle: username || undefined,
             },
           },
         });
@@ -117,11 +119,11 @@ const Auth = () => {
 
         toast({
           title: 'Account created!',
-          description: 'You can now start typing.',
+          description: 'Check your email if confirmation is required. You can keep practicing as a guest.',
         });
       }
-    } catch (error: any) {
-      let message = error.message;
+    } catch (error: unknown) {
+      let message = error instanceof Error ? error.message : 'Could not complete the account request. Try again.';
       
       if (message.includes('User already registered')) {
         message = 'This email is already registered. Please sign in instead.';
@@ -149,7 +151,7 @@ const Auth = () => {
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Keyboard className="w-10 h-10 text-primary" />
-            <span className="text-2xl font-bold">Typing Master</span>
+            <span className="text-2xl font-bold">Typing Forge</span>
           </div>
           <h1 className="text-3xl font-bold mb-2">
             {isLogin ? 'Welcome Back' : 'Create Account'}
@@ -222,7 +224,8 @@ const Auth = () => {
               )}
             </div>
 
-            <Button type="submit" className="w-full" disabled={loading}>
+            {!isSupabaseConfigured && <p role="status" className="text-sm text-muted-foreground">Cloud accounts are unavailable. Guest practice and local history are ready.</p>}
+            <Button type="submit" className="w-full" disabled={loading || !isSupabaseConfigured}>
               {loading ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />

@@ -1,0 +1,59 @@
+
+Running 8 tests using 2 workers
+
+(node:3996) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:85612) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 2 [webkit] › e2e\keyboard-lab.spec.ts:47:1 › browser layout access happens only after an explicit request and never changes preferences automatically (5.0s)
+  ok 1 [webkit] › e2e\keyboard-lab.spec.ts:3:1 › manual signals are focus-scoped; Tab, Shift+Tab and Escape leave normally (5.3s)
+  ok 3 [webkit] › e2e\keyboard-lab.spec.ts:125:3 › unsupported browser mapping has a working manual fallback (1.9s)
+  ok 4 [webkit] › e2e\keyboard-lab.spec.ts:125:3 › blocked browser mapping has a working manual fallback (2.0s)
+  ok 6 [webkit] › e2e\keyboard-lab.spec.ts:196:1 › composition and repeat signals never create invented pair timings; blur clears held state (1.4s)
+  x  5 [webkit] › e2e\keyboard-lab.spec.ts:163:1 › repeated transitions produce a measured pair drill and targeted learning link (8.4s)
+(node:34936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 7 [webkit] › e2e\keyboard-lab.spec.ts:252:1 › lab data remains ephemeral and reset removes observations and browser mapping (7.6s)
+  ok 8 [webkit] › e2e\keyboard-lab.spec.ts:278:1 › mobile layout keeps capture accessible without horizontal page overflow (1.2s)
+
+
+  1) [webkit] › e2e\keyboard-lab.spec.ts:163:1 › repeated transitions produce a measured pair drill and targeted learning link 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Make every key feel natural.' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Make every key feel natural.' }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'Make every key feel natural.' })
+
+
+      191 |   await expect(
+      192 |     page.getByRole("heading", { name: "Make every key feel natural." }),
+    > 193 |   ).toBeVisible();
+          |     ^
+      194 | });
+      195 |
+      196 | test("composition and repeat signals never create invented pair timings; blur clears held state", async ({
+        at D:\extra\typing_updated\typing-forge\e2e\keyboard-lab.spec.ts:193:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\keyboard-lab-repeated-tran-ce863--and-targeted-learning-link-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\keyboard-lab-repeated-tran-ce863--and-targeted-learning-link-webkit\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\keyboard-lab-repeated-tran-ce863--and-targeted-learning-link-webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\keyboard-lab-repeated-tran-ce863--and-targeted-learning-link-webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [webkit] › e2e\keyboard-lab.spec.ts:163:1 › repeated transitions produce a measured pair drill and targeted learning link 
+  7 passed (19.9s)

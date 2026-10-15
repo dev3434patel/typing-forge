@@ -1,0 +1,49 @@
+
+Running 2 tests using 1 worker
+
+(node:38228) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › e2e\result-evidence.spec.ts:4:1 › results explain both accuracy denominators and replay corrections without rewriting them (4.0s)
+  x  2 [chromium] › e2e\result-evidence.spec.ts:48:1 › precision mode rejects errors without erasing their accuracy cost (6.9s)
+
+
+  1) [chromium] › e2e\result-evidence.spec.ts:48:1 › precision mode rejects errors without erasing their accuracy cost 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('region', { name: 'Session results' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('region', { name: 'Session results' }) with timeout 5000ms
+      - waiting for getByRole('region', { name: 'Session results' })
+
+
+      67 |   await expect(
+      68 |     page.getByRole("region", { name: "Session results" }),
+    > 69 |   ).toBeVisible();
+         |     ^
+      70 |   const result = await exportedResult(page);
+      71 |   expect(result.configuration.rejectIncorrect).toBe(true);
+      72 |   expect(result.metrics.inputAccuracy).toBe(75);
+        at D:\extra\typing_updated\typing-forge\e2e\result-evidence.spec.ts:69:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\result-evidence-precision--f062c-erasing-their-accuracy-cost-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\result-evidence-precision--f062c-erasing-their-accuracy-cost-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\result-evidence-precision--f062c-erasing-their-accuracy-cost-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\result-evidence-precision--f062c-erasing-their-accuracy-cost-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › e2e\result-evidence.spec.ts:48:1 › precision mode rejects errors without erasing their accuracy cost 
+  1 passed (12.5s)

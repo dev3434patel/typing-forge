@@ -1,622 +1,957 @@
-import { useCallback, useEffect, useRef, useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { cn } from '@/lib/utils';
-import { RotateCcw, Sparkles, Zap } from 'lucide-react';
-import { 
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  type CompositionEvent,
+  type FormEvent,
+  type CSSProperties,
+} from "react";
+import {
+  ArrowRight,
+  Check,
+  Keyboard,
+  Pause,
+  Play,
+  RotateCcw,
+  Timer,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { SessionController, type SessionResult } from "@/lib/typing-core";
+import { getContentPack, getLayout } from "@/lib/content-packs";
+import {
+  summarizeLearningAttempts,
   generateKeybrLesson,
-  calculatePerCharMetrics,
-  updateCharacterProgress,
-  type Keystroke,
-  type KeybrLesson
-} from '@/lib/keybr-engine';
-import { calculateWPM, calculateAccuracy, calculateConsistency } from '@/lib/typing-engine';
-import { LetterProgressPanel } from './LetterProgressPanel';
-import { KeybrResults } from './KeybrResults';
-import { KeyboardVisualizer } from '@/components/typing/KeyboardVisualizer';
-import { useTestResults } from '@/hooks/useTestResults';
+  getAllCharacterStats,
+  getLearningSessions,
+  hydrateLearningFromSessions,
+  learningEvidenceFromResult,
+  recordLearningSession,
+  type LearningDimensions,
+  type CharacterConfidence,
+} from "@/lib/keybr-engine";
+import { useAuth } from "@/hooks/useAuth";
+import { usePreferences } from "@/contexts/PreferencesContext";
+import { useTestResults } from "@/hooks/useTestResults";
+import { LetterProgressPanel } from "./LetterProgressPanel";
+import { KeybrResults } from "./KeybrResults";
+import { sessionRepository } from "@/services/session-repository";
+import { TypingPassage } from "@/components/typing/TypingPassage";
+import { TypingFeedback } from "@/components/typing/TypingFeedback";
 
-type TestStatus = 'idle' | 'running' | 'finished';
+interface Props {
+  focusKeys?: string[];
+  sourceResultId?: string;
+  retestTo?: string;
+  language?: string;
+  layout?: string;
+}
+type CorrectionPolicy = "stop" | "correct";
+const format = (number: number | null) =>
+  number === null ? "—" : Math.round(number).toString();
 
-export function KeybrLessonMode() {
-  const { saveResult, saveCharacterConfidence } = useTestResults();
-  const [status, setStatus] = useState<TestStatus>('idle');
-  const [lesson, setLesson] = useState<KeybrLesson | null>(null);
-  const [typedText, setTypedText] = useState('');
-  const [keystrokes, setKeystrokes] = useState<Keystroke[]>([]);
-  const [startTime, setStartTime] = useState<number | null>(null);
-  const [currentWpm, setCurrentWpm] = useState(0);
-  const [currentAccuracy, setCurrentAccuracy] = useState(100);
-  const [isFocused, setIsFocused] = useState(false);
-  const [showErrorFlash, setShowErrorFlash] = useState(false);
-  const [scrollOffset, setScrollOffset] = useState(0);
-  const [currentKeyPressed, setCurrentKeyPressed] = useState<string | undefined>();
-  const [errorKeys, setErrorKeys] = useState<Set<string>>(new Set());
-  const [wpmHistory, setWpmHistory] = useState<number[]>([]);
-  
-  // Track backspace attempts (for logging, even though learn mode rejects them)
-  const [backspaceAttempts, setBackspaceAttempts] = useState(0);
-  
-  // Word-level locking for learn mode too
-  const [completedWordEndIndices, setCompletedWordEndIndices] = useState<number[]>([]);
-  
-  const [results, setResults] = useState<{
-    wpm: number;
-    accuracy: number;
-    newlyUnlocked: string[];
-    perCharMetrics: Map<string, any>;
+function LessonKeyboard({
+  language,
+  layout,
+  stats,
+  expected,
+  pressed,
+  incorrect,
+}: {
+  language: string;
+  layout: string;
+  stats: CharacterConfidence[];
+  expected?: string | null;
+  pressed?: string;
+  incorrect: boolean;
+}) {
+  const pack = getContentPack(language);
+  const mapping = getLayout(pack.script === "Latin" ? layout : "native");
+  const mapped = mapping.rows.length > 0;
+  const rows = mapped ? mapping.rows : [pack.introductionOrder];
+  // Keycaps show the base Latin key; retain the exact entered case in text/feedback.
+  const pressedKey = mapped ? pressed?.toLocaleLowerCase(pack.id) : pressed;
+  return (
+    <div
+      className="learn-keyboard"
+      role="img"
+      aria-label={`${mapping.label} logical keyboard. Expected ${expected === " " ? "Space" : (expected ?? "end of passage")}.${pressed ? ` Last input ${pressed === " " ? "Space" : pressed}${incorrect ? ", incorrect" : ""}.` : ""}`}
+    >
+      <div className="learn-keyboard-rows" lang={pack.id}>
+        {rows.map((row, index) => (
+          <div className="learn-keyboard-row" key={index}>
+            {row.map((char) => {
+              const stat = stats.find((item) => item.char === char);
+              return (
+                <span
+                  key={char}
+                  data-key={char}
+                  data-expected-key={expected === char || undefined}
+                  data-pressed-key={pressedKey === char || undefined}
+                  className={cn(
+                    "learn-key",
+                    !stat?.isUnlocked && "learn-key-locked",
+                    stat?.mastered && "learn-key-mastered",
+                    expected === char && "learn-key-expected",
+                    pressedKey === char &&
+                      (incorrect ? "learn-key-incorrect" : "learn-key-pressed"),
+                  )}
+                >
+                  {char}
+                </span>
+              );
+            })}
+          </div>
+        ))}
+        {mapped && (
+          <div className="learn-keyboard-row">
+            <span
+              data-key=" "
+              data-expected-key={expected === " " || undefined}
+              data-pressed-key={pressed === " " || undefined}
+              className={cn(
+                "learn-key learn-space-key",
+                expected === " " && "learn-key-expected",
+                pressed === " " &&
+                  (incorrect ? "learn-key-incorrect" : "learn-key-pressed"),
+              )}
+            >
+              space
+            </span>
+          </div>
+        )}
+      </div>
+      <p className="learn-keyboard-caption">
+        {mapped
+          ? mapping.label
+          : "Native character view · no physical layout mapping"}
+        <span aria-hidden="true"> · </span>Outlined: next character
+        <span aria-hidden="true"> · </span>Red: your incorrect input
+      </p>
+    </div>
+  );
+}
+
+export function KeybrLessonMode({
+  focusKeys,
+  sourceResultId,
+  retestTo,
+  language,
+  layout,
+}: Props) {
+  const { user } = useAuth();
+  const owner = user?.id ?? "guest";
+  const { preferences } = usePreferences();
+  const { saveSession, syncState, retrySync } = useTestResults();
+  const pack = getContentPack(language ?? preferences.language);
+  const selectedLayout =
+    layout ?? (pack.script === "Latin" ? preferences.layout : "native");
+  const [policy, setPolicy] = useState<CorrectionPolicy>("correct");
+  const [review, setReview] = useState(false);
+  const [method, setMethod] =
+    useState<LearningDimensions["inputMethod"]>("keyboard");
+  const [showKeyboard, setShowKeyboard] = useState(true);
+  const [focused, setFocused] = useState(false);
+  const [selectedFocus, setSelectedFocus] = useState<string | null>(null);
+  const dimensions = useMemo<LearningDimensions>(
+    () => ({
+      language: pack.id,
+      layout: selectedLayout,
+      domain: "prose",
+      inputMethod: method,
+    }),
+    [pack.id, selectedLayout, method],
+  );
+  const options = useMemo(
+    () => ({ owner, dimensions, targetWpm: preferences.targetWpm }),
+    [owner, dimensions, preferences.targetWpm],
+  );
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const resumeRef = useRef<HTMLButtonElement>(null);
+  const composed = useRef(false);
+  const lastComposition = useRef({ text: "", at: 0 });
+  const audio = useRef<AudioContext | null>(null);
+  const settled = useRef<string | null>(null);
+  const [draft, setDraft] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [revision, setRevision] = useState(0);
+  const [caret, setCaret] = useState<{
+    x: number;
+    y: number;
+    width: number;
+    height: number;
   } | null>(null);
-  
-  const inputRef = useRef<HTMLInputElement>(null);
-  const textDisplayRef = useRef<HTMLDivElement>(null);
-  const startTimeRef = useRef<number>(0);
-  const wpmIntervalRef = useRef<NodeJS.Timeout | null>(null);
-
-  // Pre-calculate word boundaries
-  const wordBoundaries = useMemo(() => {
-    if (!lesson) return [];
-    const boundaries: number[] = [];
-    for (let i = 0; i < lesson.text.length; i++) {
-      if (lesson.text[i] === ' ') {
-        boundaries.push(i);
-      }
+  useEffect(
+    () => () => {
+      void audio.current?.close();
+    },
+    [],
+  );
+  const playSound = useCallback(() => {
+    if (!preferences.sound || preferences.volume <= 0) return;
+    try {
+      const context = (audio.current ??= new AudioContext());
+      void context.resume();
+      const oscillator = context.createOscillator(),
+        gain = context.createGain();
+      oscillator.type = "sine";
+      oscillator.frequency.value = 480;
+      gain.gain.setValueAtTime(preferences.volume * 0.045, context.currentTime);
+      gain.gain.exponentialRampToValueAtTime(
+        0.0001,
+        context.currentTime + 0.025,
+      );
+      oscillator.connect(gain);
+      gain.connect(context.destination);
+      oscillator.start();
+      oscillator.stop(context.currentTime + 0.025);
+    } catch {
+      /* Optional sound can be unavailable without affecting input. */
     }
-    return boundaries;
-  }, [lesson]);
-
-  // Generate lesson on mount
-  useEffect(() => {
-    generateNewLesson();
-  }, []);
-
-  const generateNewLesson = useCallback(() => {
-    const newLesson = generateKeybrLesson(40);
-    setLesson(newLesson);
-    setTypedText('');
-    setKeystrokes([]);
-    setStatus('idle');
-    setCurrentWpm(0);
-    setCurrentAccuracy(100);
-    setResults(null);
-    setScrollOffset(0);
-    setWpmHistory([]);
-    setBackspaceAttempts(0);
-    setCompletedWordEndIndices([]);
-    if (wpmIntervalRef.current) {
-      clearInterval(wpmIntervalRef.current);
-      wpmIntervalRef.current = null;
-    }
-  }, []);
-
-  // WPM tracking interval
-  useEffect(() => {
-    if (status === 'running' && startTime) {
-      wpmIntervalRef.current = setInterval(() => {
-        if (!lesson) return;
-        // LIVE METRICS: WPM sampling for consistency calculation
-        // Reference: metrics-engine.ts -> calculateWpm()
-        // Formula: WPM = (correctChars / 5) / (elapsedSeconds / 60)
-        const elapsedTime = (Date.now() - startTime) / 1000;
-        let correctChars = 0;
-        for (let i = 0; i < typedText.length; i++) {
-          if (typedText[i] === lesson.text[i]) {
-            correctChars++;
-          }
-        }
-        // typing-engine.calculateWPM delegates to metrics-engine.calculateWpm
-        const wpm = calculateWPM(correctChars, elapsedTime);
-        setWpmHistory(prev => [...prev, wpm]);
-      }, 1000);
-    }
-    
-    return () => {
-      if (wpmIntervalRef.current) {
-        clearInterval(wpmIntervalRef.current);
-        wpmIntervalRef.current = null;
-      }
-    };
-  }, [status, startTime, typedText, lesson]);
-
-  // LIVE METRICS: Calculate live stats for UI display
-  // Reference: metrics-engine.ts -> calculateWpm() and calculateAccuracy()
-  // Formula: WPM = (correctChars / 5) / (elapsedSeconds / 60)
-  // Formula: Accuracy = (correctChars / totalTypedChars) * 100
-  useEffect(() => {
-    if (!lesson || !startTime || typedText.length === 0) return;
-    
-    const elapsedTime = (Date.now() - startTime) / 1000;
-    let correctChars = 0;
-    
-    for (let i = 0; i < typedText.length; i++) {
-      if (typedText[i] === lesson.text[i]) {
-        correctChars++;
-      }
-    }
-    
-    // typing-engine functions delegate to metrics-engine for consistency
-    setCurrentWpm(calculateWPM(correctChars, elapsedTime));
-    setCurrentAccuracy(calculateAccuracy(correctChars, typedText.length));
-  }, [typedText, lesson, startTime]);
-
-  // Check for completion
-  useEffect(() => {
-    if (status === 'running' && lesson && typedText.length >= lesson.text.length) {
-      finishTest();
-    }
-  }, [typedText, lesson, status]);
-
-  const finishTest = useCallback(async () => {
-    if (!lesson) return;
-    
-    setStatus('finished');
-    
-    // Clear WPM interval
-    if (wpmIntervalRef.current) {
-      clearInterval(wpmIntervalRef.current);
-      wpmIntervalRef.current = null;
-    }
-    
-    // FINAL METRICS: Use typing-engine functions (which delegate to metrics-engine)
-    // Reference: metrics-engine.ts -> calculateWpm(), calculateAccuracy(), calculateConsistency()
-    // For production accuracy report, use professional-accuracy.generateProfessionalAccuracyReport()
-    const elapsedTime = (Date.now() - (startTime || Date.now())) / 1000;
-    let correctChars = 0;
-    
-    for (let i = 0; i < typedText.length; i++) {
-      if (typedText[i] === lesson.text[i]) {
-        correctChars++;
-      }
-    }
-    
-    // typing-engine functions delegate to metrics-engine for consistency
-    const wpm = calculateWPM(correctChars, elapsedTime);
-    const accuracy = calculateAccuracy(correctChars, typedText.length);
-    const consistency = calculateConsistency(wpmHistory);
-    
-    // Calculate per-character metrics
-    const perCharMetrics = calculatePerCharMetrics(keystrokes);
-    
-    // Update progress and check for unlocks
-    const { newlyUnlocked } = updateCharacterProgress(perCharMetrics);
-    
-    setResults({
-      wpm,
-      accuracy,
-      newlyUnlocked,
-      perCharMetrics
-    });
-
-    // Save to database
-    await saveResult(
-      {
-        wpm,
-        rawWpm: wpm, // In learn mode, raw = net since only correct chars counted
-        accuracy,
-        consistency,
-        correctChars,
-        incorrectChars: typedText.length - correctChars,
-        totalChars: typedText.length,
-        errors: typedText.length - correctChars,
-        elapsedTime,
-        wpmHistory,
-      },
-      'learn',
-      Math.round(elapsedTime)
-    );
-
-    // Convert perCharMetrics Map to record for saving
-    const charMetricsRecord: Record<string, { char: string; wpm: number; accuracy: number; confidence: number; occurrences: number }> = {};
-    perCharMetrics.forEach((value, key) => {
-      charMetricsRecord[key] = {
-        char: value.char,
-        wpm: value.wpm,
-        accuracy: value.accuracy,
-        confidence: value.confidence,
-        occurrences: value.occurrences,
+  }, [preferences.sound, preferences.volume]);
+  const createLesson = useCallback(
+    (retryText?: { text: string; seed: string }) => {
+      const lesson = generateKeybrLesson(25, {
+        ...options,
+        seed: retryText?.seed,
+        review,
+        focusLetters: selectedFocus ? [selectedFocus] : focusKeys,
+        targeted: !!sourceResultId,
+      });
+      if (retryText) lesson.text = retryText.text;
+      const controller = new SessionController(
+        {
+          clientSessionId: crypto.randomUUID(),
+          mode: "learn",
+          initialTarget: lesson.text,
+          rejectIncorrect: policy === "stop",
+          ownerScope: owner,
+          language: pack.id,
+          script: pack.script,
+          keyboardLayout: selectedLayout,
+          inputMethod: method,
+          contentRevision: lesson.contentRevision,
+          generatorVersion: lesson.generatorVersion,
+          seed: lesson.seed,
+          repeatedContent: !!retryText,
+          privacy: "public-corpus",
+          settings: {
+            correctionPolicy: policy,
+            review,
+            sourceResultId: sourceResultId ?? null,
+            targetWpm: preferences.targetWpm,
+          },
+        },
+        { now: () => performance.now(), wallNow: () => Date.now() },
+      );
+      return {
+        lesson,
+        controller,
+        dimensions,
+        targetWpm: preferences.targetWpm,
+        owner,
       };
-    });
-    await saveCharacterConfidence(charMetricsRecord);
-  }, [lesson, typedText, startTime, keystrokes, wpmHistory, saveResult, saveCharacterConfidence]);
+    },
+    [
+      options,
+      review,
+      selectedFocus,
+      focusKeys,
+      policy,
+      owner,
+      pack.id,
+      pack.script,
+      selectedLayout,
+      preferences.targetWpm,
+      method,
+      sourceResultId,
+      dimensions,
+    ],
+  );
+  const [session, setSession] = useState(createLesson);
+  const previousFactory = useRef(createLesson);
+  const [view, setView] = useState(() => session.controller.snapshot());
+  const [finished, setFinished] = useState<{
+    result: SessionResult;
+    newlyUnlocked: string[];
+    progress: CharacterConfidence[];
+    perCharMetrics: Map<string, CharacterConfidence>;
+  } | null>(null);
+  const startLesson = useCallback(
+    (retry = false) => {
+      const next = createLesson(
+        retry
+          ? { text: session.lesson.text, seed: session.lesson.seed }
+          : undefined,
+      );
+      settled.current = null;
+      composed.current = false;
+      setDraft("");
+      setError(null);
+      setFinished(null);
+      setSession(next);
+      setView(next.controller.snapshot());
+      requestAnimationFrame(() => inputRef.current?.focus());
+    },
+    [createLesson, session.lesson.text, session.lesson.seed],
+  );
 
-  const handleInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!lesson) return;
-    
-    // Start test on first keystroke if idle
-    if (status === 'idle') {
-      setStatus('running');
-      setStartTime(Date.now());
-      startTimeRef.current = Date.now();
-    }
-    
-    if (status === 'finished') return;
-    
-    const value = e.target.value;
-    const isBackspace = value.length < typedText.length;
-    
-    // WORD-LEVEL LOCKING: Prevent backspace to previous completed words
-    if (isBackspace) {
-      const lastCompletedBoundary = completedWordEndIndices.length > 0 
-        ? completedWordEndIndices[completedWordEndIndices.length - 1] 
-        : -1;
-      
-      // If trying to backspace past a completed word, prevent it
-      if (value.length <= lastCompletedBoundary) {
-        e.target.value = typedText;
-        setBackspaceAttempts(prev => prev + 1);
-        return;
-      }
-      
-      // Learn mode: reject all backspaces within current word too (100% accuracy requirement)
-      setShowErrorFlash(true);
-      setTimeout(() => setShowErrorFlash(false), 150);
-      setBackspaceAttempts(prev => prev + 1);
-      e.target.value = typedText;
-      return;
-    }
-    
-    if (value.length <= lesson.text.length) {
-      // Get the new character typed
-      const newChar = value[value.length - 1];
-      const expectedChar = lesson.text[value.length - 1];
-      const charIndex = value.length - 1;
-      
-      // Track current key for keyboard visualization
-      if (newChar) {
-        setCurrentKeyPressed(newChar);
-        setTimeout(() => setCurrentKeyPressed(undefined), 100);
-      }
-      
-      // Learn mode requires 100% accuracy - only accept correct characters
-      if (newChar && newChar !== expectedChar) {
-        // Wrong character - show error flash but don't accept
-        setShowErrorFlash(true);
-        setErrorKeys(prev => new Set([...prev, newChar.toLowerCase()]));
-        setTimeout(() => setShowErrorFlash(false), 150);
-        setTimeout(() => {
-          setErrorKeys(prev => {
-            const newSet = new Set(prev);
-            newSet.delete(newChar.toLowerCase());
-            return newSet;
-          });
-        }, 300);
-        // Reset input to current typed text to reject the wrong character
-        e.target.value = typedText;
-        return;
-      }
-      
-      // Track word completion (when space is typed at word boundary)
-      if (newChar === ' ' && wordBoundaries.includes(charIndex)) {
-        setCompletedWordEndIndices(prev => [...prev, charIndex + 1]);
-      }
-      
-      if (newChar) {
-        setKeystrokes(prev => [...prev, {
-          char: newChar,
-          timestamp: Date.now() - startTimeRef.current,
-          isCorrect: true, // Always true in learn mode
-          expected: expectedChar
-        }]);
-      }
-      
-      setTypedText(value);
-    }
-  }, [status, lesson, typedText, wordBoundaries, completedWordEndIndices]);
-
-  // Handle key down - NO timer start on Enter, only on first character typed
-  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    // Tab to generate new lesson
-    if (e.key === 'Tab') {
-      e.preventDefault();
-      generateNewLesson();
-      return;
-    }
-    
-    // Enter focuses input when idle (does NOT start timer)
-    if (status === 'idle' && e.key === 'Enter') {
-      e.preventDefault();
-      inputRef.current?.focus();
-      return;
-    }
-  }, [status, generateNewLesson]);
-
-  // Global keyboard listener - Tab to restart, Enter to focus
+  // Changing a model dimension starts a separate session; data never crosses owner/layout/input method.
+  useLayoutEffect(() => {
+    if (previousFactory.current === createLesson) return;
+    previousFactory.current = createLesson;
+    const next = createLesson();
+    settled.current = null;
+    setDraft("");
+    setError(null);
+    setFinished(null);
+    setSession(next);
+    setView(next.controller.snapshot());
+  }, [createLesson]);
+  // One stable sampler per controller. Typing does not tear down and restart this interval.
   useEffect(() => {
-    const handleGlobalKeyDown = (e: KeyboardEvent) => {
-      // Tab to generate new lesson
-      if (e.key === 'Tab' && status !== 'finished') {
-        e.preventDefault();
-        generateNewLesson();
-      }
-      
-      // Enter focuses input when idle (does NOT start timer)
-      if (status === 'idle' && e.key === 'Enter') {
-        e.preventDefault();
-        inputRef.current?.focus();
-      }
-    };
-    
-    window.addEventListener('keydown', handleGlobalKeyDown);
-    return () => window.removeEventListener('keydown', handleGlobalKeyDown);
-  }, [status, generateNewLesson]);
-
-  // Word groups for display with space state and locking
-  type CharState = { char: string; state: string; isSpace?: boolean };
-  
-  const wordGroups = useMemo(() => {
-    if (!lesson) return [];
-    
-    const words: { chars: CharState[]; hasSpace: boolean; spaceState?: CharState; isLocked: boolean }[] = [];
-    let currentWord: CharState[] = [];
-    let currentWordStartIdx = 0;
-    
-    for (let i = 0; i < lesson.text.length; i++) {
-      const char = lesson.text[i];
-      const typedChar = typedText[i];
-      
-      let state: string;
-      if (i < typedText.length) {
-        state = typedChar === char ? 'correct' : 'incorrect';
-      } else if (i === typedText.length) {
-        state = 'current';
-      } else {
-        state = 'upcoming';
-      }
-      
-      if (char === ' ') {
-        if (currentWord.length > 0 || words.length === 0) {
-          const wordEndIdx = i;
-          const isLocked = completedWordEndIndices.some(boundary => boundary > currentWordStartIdx && boundary <= wordEndIdx + 1);
-          
-          words.push({ 
-            chars: currentWord, 
-            hasSpace: true,
-            spaceState: { char: ' ', state, isSpace: true },
-            isLocked
-          });
-          currentWord = [];
-          currentWordStartIdx = i + 1;
-        }
-      } else {
-        currentWord.push({ char, state });
-      }
-    }
-    
-    if (currentWord.length > 0) {
-      words.push({ chars: currentWord, hasSpace: false, isLocked: false });
-    }
-    
-    return words;
-  }, [lesson, typedText, completedWordEndIndices]);
-  
-  // Auto-scroll to keep current character visible
+    const timer = window.setInterval(() => {
+      if (session.controller.status === "running")
+        setView(session.controller.tick());
+    }, 100);
+    return () => window.clearInterval(timer);
+  }, [session.controller]);
   useEffect(() => {
-    if (status !== 'running' || !textDisplayRef.current) return;
-    
-    const currentCharElement = textDisplayRef.current.querySelector('.char-current');
-    if (currentCharElement) {
-      const container = textDisplayRef.current;
-      const charRect = currentCharElement.getBoundingClientRect();
-      const containerRect = container.getBoundingClientRect();
-      
-      const lineHeight = 48;
-      
-      if (charRect.top > containerRect.top + lineHeight * 2) {
-        const newOffset = Math.floor((charRect.top - containerRect.top) / lineHeight) - 1;
-        setScrollOffset(prev => Math.max(prev, newOffset));
-      }
-    }
-  }, [typedText, status]);
-
-  if (results) {
-    return (
-      <KeybrResults
-        wpm={results.wpm}
-        accuracy={results.accuracy}
-        newlyUnlocked={results.newlyUnlocked}
-        perCharMetrics={results.perCharMetrics}
-        onRestart={generateNewLesson}
-      />
+    if (matchMedia("(pointer: fine)").matches)
+      inputRef.current?.focus({ preventScroll: true });
+  }, [session.controller]);
+  useEffect(() => {
+    document.documentElement.classList.toggle(
+      "forge-focused",
+      focused && view.status === "running",
     );
-  }
+    return () => document.documentElement.classList.remove("forge-focused");
+  }, [focused, view.status]);
+  useLayoutEffect(() => {
+    if (view.status !== "paused") return;
+    resumeRef.current?.focus({ preventScroll: true });
+    stageRef.current?.scrollIntoView({ block: "center", behavior: "instant" });
+  }, [view.status]);
+  useLayoutEffect(() => {
+    let active = true;
+    const measure = () => {
+      if (!active) return;
+      const container = stageRef.current,
+        marker = container?.querySelector('[data-current="true"]');
+      if (!container || !marker) {
+        setCaret(null);
+        return;
+      }
+      let boundary = container.getBoundingClientRect(),
+        rect = marker.getBoundingClientRect();
+      const lineHeight = preferences.fontSize * 1.85;
+      const targetTop = rect.top - boundary.top + container.scrollTop;
+      const nextScroll = Math.max(
+        0,
+        Math.floor((targetTop + 1) / lineHeight) * lineHeight - lineHeight,
+      );
+      if (container.scrollTop !== nextScroll) container.scrollTop = nextScroll;
+      boundary = container.getBoundingClientRect();
+      rect = marker.getBoundingClientRect();
+      const next = {
+        x: rect.left - boundary.left + container.scrollLeft,
+        y: rect.top - boundary.top + container.scrollTop,
+        width: Math.max(rect.width, 2),
+        height: rect.height,
+      };
+      setCaret((previous) =>
+        previous?.x === next.x &&
+        previous.y === next.y &&
+        previous.width === next.width &&
+        previous.height === next.height
+          ? previous
+          : next,
+      );
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    if (stageRef.current) observer.observe(stageRef.current);
+    const text = stageRef.current?.querySelector(".learn-stream-text");
+    if (text) observer.observe(text);
+    void document.fonts.ready.then(measure);
+    return () => {
+      active = false;
+      observer.disconnect();
+    };
+  }, [
+    view.cursor,
+    view.finalText,
+    session.controller,
+    preferences.fontSize,
+    focused,
+  ]);
+  useEffect(
+    () =>
+      sessionRepository.subscribe((event) => {
+        if (event.ownerId === owner && event.type !== "save")
+          setRevision((value) => value + 1);
+      }),
+    [owner],
+  );
+  useEffect(() => {
+    let active = true;
+    void hydrateLearningFromSessions(owner).then(() => {
+      if (active) setRevision((value) => value + 1);
+    });
+    const changed = () => setRevision((value) => value + 1);
+    window.addEventListener("typingforge:learning-updated", changed);
+    return () => {
+      active = false;
+      window.removeEventListener("typingforge:learning-updated", changed);
+    };
+  }, [owner]);
+
+  const settle = useCallback(
+    (result: SessionResult) => {
+      if (settled.current === result.clientSessionId) return;
+      settled.current = result.clientSessionId;
+      const evidence = learningEvidenceFromResult(result);
+      const progress = recordLearningSession(evidence, session.owner);
+      if (!progress.persisted)
+        setError(
+          "Learning progress could not be stored. Keep this tab open and free browser storage before the next lesson.",
+        );
+      setFinished({
+        result,
+        newlyUnlocked: progress.newlyUnlocked,
+        progress: progress.updatedChars,
+        perCharMetrics: summarizeLearningAttempts(
+          evidence.attempts,
+          session.targetWpm,
+          evidence.dimensions,
+        ),
+      });
+      setView(result);
+      setRevision((value) => value + 1);
+      void saveSession(result).catch((reason) =>
+        setError(
+          reason instanceof Error
+            ? reason.message
+            : "This result could not be saved.",
+        ),
+      );
+    },
+    [session, saveSession],
+  );
+
+  const commit = useCallback(
+    (text: string, composition = false) => {
+      if (
+        !text ||
+        session.controller.result ||
+        session.controller.status === "paused"
+      )
+        return;
+      playSound();
+      const next = session.controller.input({
+        type: composition ? "composition" : "insert",
+        text,
+        provenance: composition ? "composition" : "keyboard",
+        ...(composition ? { compositionId: crypto.randomUUID() } : {}),
+      });
+      setView(next);
+      setError(null);
+      if (session.controller.result) settle(session.controller.result);
+    },
+    [session, settle, playSound],
+  );
+  const handleInput = (event: FormEvent<HTMLTextAreaElement>) => {
+    const text = event.currentTarget.value;
+    if (composed.current || (event.nativeEvent as InputEvent).isComposing) {
+      setDraft(text);
+      return;
+    }
+    if (
+      text === lastComposition.current.text &&
+      performance.now() - lastComposition.current.at < 30
+    ) {
+      setDraft("");
+      return;
+    }
+    commit(text);
+    setDraft("");
+  };
+  const handleCompositionEnd = (
+    event: CompositionEvent<HTMLTextAreaElement>,
+  ) => {
+    composed.current = false;
+    const text = event.data || event.currentTarget.value;
+    lastComposition.current = { text, at: performance.now() };
+    commit(text, true);
+    setDraft("");
+  };
+  const stats = useMemo(() => {
+    void revision;
+    return getAllCharacterStats(options);
+  }, [options, revision]);
+  const focus = stats.find(
+    (stat) => stat.char === session.lesson.focusLetters[0],
+  );
+  const today = new Date().toDateString();
+  const practicedMs = useMemo(() => {
+    void revision;
+    return getLearningSessions({ owner })
+      .filter((item) => new Date(item.completedAt).toDateString() === today)
+      .reduce((total, item) => total + item.elapsedMs, 0);
+  }, [owner, today, revision]);
+  const goalMs = preferences.dailyGoalMinutes * 60_000;
+  const masteredCount = stats.filter((stat) => stat.mastered).length;
+  const attempts = session.controller.lastInputAttempts;
+  const observed =
+    attempts.filter((attempt) => !attempt.correct).at(-1) ?? attempts.at(-1);
+  const focusedPractice = preferences.focusMode && view.status === "running";
+  // Revision intentionally refreshes session-derived data after completion/deletion.
+  const goal = (
+    <div className="rounded-xl border border-border bg-card p-4">
+      <div className="flex justify-between text-sm">
+        <span className="flex items-center gap-2 text-muted-foreground">
+          <Timer className="size-4" />
+          Today’s practice
+        </span>
+        <span className="font-mono">
+          {(practicedMs / 60000).toFixed(1)} / {preferences.dailyGoalMinutes}{" "}
+          min
+        </span>
+      </div>
+      <progress
+        className="mt-3 h-2 w-full accent-primary"
+        aria-label="Daily practice goal"
+        max={goalMs}
+        value={Math.min(goalMs, practicedMs)}
+      />
+      <p className="mt-2 text-xs text-muted-foreground">
+        Completed lessons and partial practice, using active time.
+      </p>
+    </div>
+  );
+
+  if (finished)
+    return (
+      <div className="space-y-6">
+        <KeybrResults
+          {...finished}
+          onRestart={() => startLesson()}
+          onRetry={() => startLesson(true)}
+          retestTo={retestTo}
+          sourceResultId={sourceResultId}
+          saveStatus={syncState}
+          onRetrySave={() => void retrySync()}
+        />
+        {error && (
+          <p role="status" className="text-sm text-destructive">
+            {error}
+          </p>
+        )}
+        {goal}
+        <LetterProgressPanel {...options} />
+      </div>
+    );
 
   return (
-    <div className="w-full max-w-6xl mx-auto" tabIndex={0} onKeyDown={handleKeyDown}>
-      {/* Header */}
-      <div className="flex items-center justify-center gap-3 mb-6">
-        <Sparkles className="w-6 h-6 text-primary" />
-        <h2 className="text-2xl font-bold">Adaptive Practice</h2>
-      </div>
-      
-      {/* Focus letters indicator */}
-      {lesson && lesson.focusLetters && lesson.focusLetters.length > 0 && (
-        <div className="flex items-center justify-center gap-2 mb-6">
-          <Zap className="w-4 h-4 text-warning" />
-          <span className="text-sm text-muted-foreground">Focus letters:</span>
-          <div className="flex gap-1">
-            {lesson.focusLetters.map(letter => (
-              <span 
-                key={letter} 
-                className="px-2 py-0.5 bg-warning/20 text-warning rounded font-mono font-bold uppercase"
-              >
-                {letter.toUpperCase()}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-      
-      {/* Live Stats */}
-      <AnimatePresence>
-        {status === 'running' && (
-          <motion.div
-            className="flex items-center justify-center gap-8 mb-6"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-          >
-            <div className="flex flex-col items-center">
-              <span className="text-3xl font-mono font-bold text-foreground">{currentWpm}</span>
-              <span className="text-xs uppercase tracking-wider text-muted-foreground">wpm</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className={cn(
-                "text-3xl font-mono font-bold",
-                currentAccuracy >= 95 ? "text-primary" : 
-                currentAccuracy >= 90 ? "text-warning" : "text-destructive"
-              )}>
-                {currentAccuracy}%
-              </span>
-              <span className="text-xs uppercase tracking-wider text-muted-foreground">accuracy</span>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-      
-      {/* Typing Area */}
-      <div
-        className={cn(
-          "relative bg-card border rounded-2xl p-6 md:p-8 cursor-text min-h-[180px] transition-all duration-300",
-          status === 'running' ? "border-primary/50 shadow-lg shadow-primary/10" : "border-border",
-          isFocused && status === 'idle' && "border-primary/30",
-          showErrorFlash && "border-destructive shadow-destructive/20"
-        )}
-        onClick={() => inputRef.current?.focus()}
-      >
-        {/* Hidden Input - NOT disabled when idle so user can start typing immediately */}
-        <input
-          ref={inputRef}
-          type="text"
-          value={typedText}
-          onChange={handleInput}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          className="absolute opacity-0 pointer-events-none"
-          autoComplete="off"
-          autoCapitalize="off"
-          autoCorrect="off"
-          spellCheck={false}
-          disabled={status === 'finished'}
-        />
-        
-        {/* Text Display - Paragraph always visible, especially behind idle overlay */}
-        <div 
-          ref={textDisplayRef}
-          className={cn(
-            "font-mono text-xl md:text-2xl leading-[2.5] select-none max-h-[192px] overflow-hidden transition-all duration-300",
-            status === 'idle' && "opacity-70" // Make text visible behind overlay
-          )}
-          style={{
-            transform: `translateY(-${scrollOffset * 48}px)`,
-            transition: 'transform 0.3s ease-out'
-          }}
-        >
-          {wordGroups.map((word, wordIndex) => (
-            <span key={wordIndex} className={cn(
-              "inline-block whitespace-nowrap",
-              word.isLocked && "opacity-80"
-            )}>
-              {word.chars.map((charState, charIndex) => (
-                <span
-                  key={charIndex}
-                  className={cn(
-                    'relative inline-block',
-                    charState.state === 'correct' && 'char-correct',
-                    charState.state === 'incorrect' && 'char-error animate-shake',
-                    charState.state === 'current' && 'char-current',
-                    charState.state === 'upcoming' && 'char-upcoming',
-                    // Highlight focus letters
-                    lesson?.focusLetters.includes(charState.char.toLowerCase()) && 
-                    charState.state === 'upcoming' && 'text-warning/80'
-                  )}
-                >
-                  {charState.state === 'current' && status === 'running' && (
-                    <motion.span 
-                      className="absolute left-0 top-1 w-0.5 h-[calc(100%-8px)] bg-primary rounded-full"
-                      animate={{ opacity: [1, 0, 1] }}
-                      transition={{ duration: 0.8, repeat: Infinity }}
-                    />
-                  )}
-                  {charState.char}
-                </span>
-              ))}
-              {word.hasSpace && word.spaceState && (
-                <span
-                  className={cn(
-                    'inline-block min-w-[0.6em]',
-                    word.spaceState.state === 'correct' && 'char-correct',
-                    word.spaceState.state === 'incorrect' && 'char-error animate-shake',
-                    word.spaceState.state === 'current' && 'char-current',
-                    word.spaceState.state === 'upcoming' && 'char-upcoming-space'
-                  )}
-                >
-                  {word.spaceState.state === 'upcoming' ? '·' : '\u00A0'}
-                </span>
-              )}
-              {/* No visual lock indicator - locking is handled internally */}
+    <div className="learn-session w-full">
+      <section className="min-w-0" aria-label="Adaptive typing lesson">
+        <div className="learn-indicators">
+          <div className="learn-focus-indicator">
+            <span className="learn-indicator-label">
+              {review
+                ? "Mixed review"
+                : sourceResultId
+                  ? "Targeted practice"
+                  : "Adaptive lesson"}
             </span>
-          ))}
+            <h2>
+              {review ? (
+                "Review available keys"
+              ) : (
+                <>
+                  Focus on{" "}
+                  <span className="font-mono text-primary">
+                    {session.lesson.focusLetters[0]}
+                  </span>
+                </>
+              )}
+            </h2>
+          </div>
+          <div>
+            <span className="learn-indicator-label">Available keys</span>
+            <p className="font-mono">
+              {session.lesson.availableLetters.join(" ")}
+            </p>
+          </div>
+          {preferences.liveStats && (
+            <>
+              <div>
+                <span className="learn-indicator-label">WPM</span>
+                <p className="font-mono text-primary">
+                  {format(view.metrics.wpm)}
+                </p>
+              </div>
+              <div>
+                <span className="learn-indicator-label">Attempt accuracy</span>
+                <p className="font-mono">
+                  {format(view.metrics.inputAccuracy)}
+                  {view.metrics.inputAccuracy !== null ? "%" : ""}
+                </p>
+              </div>
+              <div className="learn-time-indicator">
+                <span className="learn-indicator-label">Time</span>
+                <p className="font-mono">
+                  {(view.elapsedMs / 1000).toFixed(1)}s
+                </p>
+              </div>
+            </>
+          )}
+          <Button
+            variant="ghost"
+            size="sm"
+            className="learn-new-lesson"
+            onClick={() => startLesson()}
+            aria-label="New lesson"
+            title="Start a new lesson"
+          >
+            <RotateCcw className="size-4" />
+            <span className="sm:hidden">New lesson</span>
+          </Button>
         </div>
-        
-        {/* Start prompt - 50% transparency so paragraph is clearly visible */}
-        {status === 'idle' && (
-          <motion.div
-            className="absolute inset-0 flex flex-col items-center justify-center bg-card/50 rounded-2xl z-10 cursor-text"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
+        <progress
+          className="learn-lesson-progress"
+          aria-label="Lesson progress"
+          max={Math.max(1, view.characters.length)}
+          value={view.cursor}
+        />
+        <div
+          className="learn-stream-wrap"
+          style={
+            {
+              "--learn-font-size": `${preferences.fontSize}px`,
+            } as CSSProperties
+          }
+        >
+          <div
+            ref={stageRef}
+            className={cn(
+              "learn-stream relative outline-none",
+              !focused && view.status !== "paused" && "learn-stream-unfocused",
+            )}
             onClick={() => inputRef.current?.focus()}
           >
-            <motion.div
-              className="flex flex-col items-center gap-4"
-              initial={{ y: 10, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-            >
-              <motion.div
-                className="flex items-center gap-2 px-5 py-2.5 bg-primary/10 border border-primary/30 rounded-xl cursor-pointer"
-                whileHover={{ scale: 1.02 }}
-                animate={{ 
-                  boxShadow: ['0 0 0px hsl(var(--primary) / 0)', '0 0 20px hsl(var(--primary) / 0.3)', '0 0 0px hsl(var(--primary) / 0)']
+            {caret && focused && (
+              <span
+                aria-hidden="true"
+                className={cn(
+                  "learn-caret pointer-events-none absolute left-0 top-0 bg-primary motion-reduce:!transition-none",
+                  preferences.caretStyle === "block" && "rounded-sm opacity-25",
+                )}
+                style={{
+                  width: preferences.caretStyle === "line" ? 2 : caret.width,
+                  height:
+                    preferences.caretStyle === "underline" ? 2 : caret.height,
+                  transform: `translate3d(${caret.x + (preferences.caretStyle === "line" && pack.direction === "rtl" ? caret.width : 0)}px, ${caret.y + (preferences.caretStyle === "underline" ? caret.height - 2 : 0)}px, 0)`,
+                  transition: preferences.smoothCaret
+                    ? "transform 85ms linear"
+                    : "none",
                 }}
-                transition={{ duration: 2, repeat: Infinity }}
-                onClick={() => inputRef.current?.focus()}
+              />
+            )}
+            <div
+              aria-hidden="true"
+              lang={pack.id}
+              dir={pack.direction}
+              className="learn-stream-text pointer-events-none whitespace-pre-wrap break-words font-mono leading-[1.85]"
+              style={{ fontFamily: pack.font, fontSize: preferences.fontSize }}
+            >
+              <TypingPassage
+                slots={view.characters}
+                cursor={view.cursor}
+                marker={<span className="learn-caret-marker" />}
+                renderBefore={(slot) =>
+                  preferences.paceCaret &&
+                  view.status === "running" &&
+                  slot.index ===
+                    Math.floor(
+                      (view.elapsedMs * preferences.targetWpm * 5) / 60000,
+                    ) ? (
+                    <span className="pointer-events-none absolute inset-0 border-b border-dashed border-muted-foreground" />
+                  ) : null
+                }
+              />
+            </div>
+          </div>
+          <textarea
+            ref={inputRef}
+            aria-label="Type the practice text"
+            aria-describedby="lesson-instructions lesson-feedback lesson-passage"
+            autoComplete="off"
+            autoCapitalize="off"
+            autoCorrect="off"
+            spellCheck={false}
+            value={draft}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            onChange={handleInput}
+            onCompositionStart={() => {
+              composed.current = true;
+            }}
+            onCompositionEnd={handleCompositionEnd}
+            onPaste={(event) => {
+              event.preventDefault();
+              setError(
+                "Paste is unavailable in adaptive assessments. Type each character to build evidence.",
+              );
+            }}
+            onDrop={(event) => event.preventDefault()}
+            onKeyDown={(event) => {
+              if (
+                composed.current ||
+                event.nativeEvent.isComposing ||
+                event.keyCode === 229
+              )
+                return;
+              if (event.key === "Escape") {
+                event.preventDefault();
+                inputRef.current?.blur();
+              }
+              if (event.key === "Backspace" && !composed.current) {
+                event.preventDefault();
+                if (policy === "correct") {
+                  setView(session.controller.input({ type: "delete" }));
+                  setError(null);
+                } else
+                  setError(
+                    "Stop-on-error keeps the cursor on the expected key. Type that key to continue.",
+                  );
+              }
+            }}
+            className="absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0"
+          />
+          {view.status === "paused" && (
+            <div className="absolute inset-0 z-20 grid place-items-center bg-background/95">
+              <Button
+                ref={resumeRef}
+                onClick={() => {
+                  setView(session.controller.resume());
+                  inputRef.current?.focus();
+                }}
               >
-                <span className="text-primary font-mono font-bold text-lg">⌨️ Click to Focus</span>
-              </motion.div>
-              <p className="text-muted-foreground text-sm font-medium text-center max-w-xs">
-                Click here and start typing.<br/>
-                <span className="text-primary/80">Timer begins on first keystroke</span><br/>
-                <span className="text-warning/80 text-xs">100% accuracy required • No backspace</span>
-              </p>
-            </motion.div>
-          </motion.div>
+                <Play className="mr-2 size-4" />
+                Resume practice
+              </Button>
+            </div>
+          )}
+          {!focused && view.status !== "paused" && (
+            <p className="learn-focus-message pointer-events-none">
+              Click the text or Tab to focus
+            </p>
+          )}
+        </div>
+        <div id="lesson-feedback">
+          <TypingFeedback
+            snapshot={view}
+            controller={session.controller}
+            rejectIncorrect={policy === "stop"}
+          />
+        </div>
+        {showKeyboard && (
+          <LessonKeyboard
+            language={pack.id}
+            layout={selectedLayout}
+            stats={stats}
+            expected={view.characters[view.cursor]?.expected}
+            pressed={observed?.typed}
+            incorrect={observed ? !observed.correct : false}
+          />
         )}
-      </div>
-      
-      {/* Controls */}
-      <motion.div 
-        className="flex items-center justify-center gap-6 mt-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-      >
-        <button
-          onClick={generateNewLesson}
-          className="flex items-center gap-2 px-4 py-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted group"
+        <p id="lesson-instructions" className="sr-only">
+          Click the lesson and start typing.{" "}
+          {policy === "stop"
+            ? "Stop on error is enabled: your pressed key appears below and your cursor waits for the expected key."
+            : "Your actual input appears as you type, including mistakes. Backspace corrects the text while every original mistake remains in attempt accuracy."}{" "}
+          Escape releases focus. Tab moves to the next control.
+        </p>
+        <p
+          id="lesson-passage"
+          className="sr-only"
+          lang={pack.id}
+          dir={pack.direction}
         >
-          <RotateCcw className="w-4 h-4 group-hover:rotate-[-45deg] transition-transform" />
-          <span className="text-sm">new lesson</span>
-          <span className="text-xs text-muted-foreground/60 ml-1">tab</span>
-        </button>
-      </motion.div>
-      
-      {/* Letter Progress */}
-      <div className="mt-8">
-        <LetterProgressPanel />
-      </div>
-      
-      {/* Keyboard Visualizer with Toggle */}
-      <KeyboardVisualizer 
-        currentKey={currentKeyPressed}
-        errorKeys={errorKeys}
-      />
+          {session.lesson.text}
+        </p>
+        {error && (
+          <p role="status" className="text-sm text-destructive">
+            {error}
+          </p>
+        )}
+        <div className="learn-controls flex flex-wrap items-center justify-center gap-x-5 gap-y-3">
+          <label className="learn-control">
+            <span>Correction policy</span>
+            <select
+              aria-label="Correction policy"
+              value={policy}
+              onChange={(event) =>
+                setPolicy(event.target.value as CorrectionPolicy)
+              }
+            >
+              <option value="correct">Allow corrections</option>
+              <option value="stop">Stop on error</option>
+            </select>
+          </label>
+          <label className="learn-control">
+            <span>Input method</span>
+            <select
+              aria-label="Input method"
+              value={method}
+              onChange={(event) =>
+                setMethod(
+                  event.target.value as LearningDimensions["inputMethod"],
+                )
+              }
+            >
+              <option value="keyboard">Physical keyboard</option>
+              <option value="composition">Composition / IME</option>
+              <option value="virtual">On-screen keyboard</option>
+            </select>
+          </label>
+          <label className="flex min-h-9 items-center gap-2 text-xs text-muted-foreground">
+            <input
+              type="checkbox"
+              checked={review}
+              onChange={(event) => setReview(event.target.checked)}
+              className="accent-primary"
+            />
+            Mixed review
+          </label>
+          {view.status === "running" && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setView(session.controller.pause())}
+            >
+              <Pause className="mr-2 size-4" />
+              Pause
+            </Button>
+          )}
+          {(view.status === "running" || view.status === "paused") && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => settle(session.controller.finish("manual"))}
+            >
+              Finish practice
+              <ArrowRight className="ml-2 size-4" />
+            </Button>
+          )}
+          <button
+            type="button"
+            className="learn-keyboard-toggle"
+            aria-pressed={showKeyboard}
+            onClick={() => setShowKeyboard((value) => !value)}
+          >
+            <Keyboard className="size-3.5" />
+            {showKeyboard ? "Hide keyboard" : "Show keyboard"}
+          </button>
+        </div>
+        {method === "composition" && (
+          <p className="text-xs text-muted-foreground">
+            Composition accuracy is measured by committed graphemes. A
+            simultaneous commit cannot establish individual-key speed or initial
+            mastery.
+          </p>
+        )}
+        {preferences.paceCaret && (
+          <p className="text-xs text-muted-foreground">
+            Dashed pace caret: your custom target of {preferences.targetWpm}{" "}
+            WPM.
+          </p>
+        )}
+        <p className="learn-shortcuts">
+          <kbd>esc</kbd> release focus<span>·</span>
+          <kbd>tab</kbd> next control<span>·</span>Backspace to correct
+        </p>
+      </section>
+      {!focusedPractice && (
+        <details className="learn-evidence">
+          <summary>
+            Learning progress &amp; evidence
+            <span>
+              {masteredCount} / {stats.length} mastered · target{" "}
+              {preferences.targetWpm} WPM
+            </span>
+          </summary>
+          <div className="learn-evidence-content">
+            <div className="learn-evidence-overview">
+              <div>
+                <p className="text-xs uppercase tracking-widest text-muted-foreground">
+                  Learning checkpoint
+                </p>
+                <p className="mt-3 text-sm text-muted-foreground">
+                  Mastery needs 20 attributable recent attempts, 97% accuracy,
+                  target key speed, two lessons, and two qualifying checkpoints.
+                </p>
+                {session.lesson.phoneticWordCount > 0 && (
+                  <p className="mt-3 text-xs text-muted-foreground">
+                    {session.lesson.naturalWordCount} natural words ·{" "}
+                    {session.lesson.phoneticWordCount} generated sound patterns,
+                    constrained to your available letters.
+                  </p>
+                )}
+              </div>
+              {focus && (
+                <dl className="space-y-2 text-xs">
+                  <div className="flex justify-between gap-5">
+                    <dt className="text-muted-foreground">
+                      {focus.char} · Recent key speed
+                    </dt>
+                    <dd>
+                      {focus.qualifiedLatencySamples
+                        ? `${Math.round(focus.wpm)} WPM`
+                        : "No timing yet"}
+                    </dd>
+                  </div>
+                  <div className="flex justify-between gap-5">
+                    <dt className="text-muted-foreground">Recent accuracy</dt>
+                    <dd>
+                      {focus.recentAttempts
+                        ? `${focus.accuracy.toFixed(1)}%`
+                        : "No attempts yet"}
+                    </dd>
+                  </div>
+                  <div className="flex justify-between gap-5">
+                    <dt className="text-muted-foreground">Evidence</dt>
+                    <dd>{focus.attributableAttempts ?? 0} / 20</dd>
+                  </div>
+                  <div className="flex justify-between gap-5">
+                    <dt className="text-muted-foreground">Checkpoints</dt>
+                    <dd>{focus.masteryCheckpoints ?? 0} / 2</dd>
+                  </div>
+                </dl>
+              )}
+              {goal}
+            </div>
+            <LetterProgressPanel
+              {...options}
+              onSelectKey={(char) => {
+                setSelectedFocus(char);
+              }}
+              selectedKey={selectedFocus ?? undefined}
+            />
+            <p className="mt-4 flex items-start gap-2 text-xs text-muted-foreground">
+              <Check className="size-4 shrink-0" />
+              Logical-key practice is separated by language, layout, and input
+              method. Key speed is a latency estimate; test WPM includes all
+              active time.
+            </p>
+          </div>
+        </details>
+      )}
     </div>
   );
 }

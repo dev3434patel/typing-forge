@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Trophy, User, Bot, Calendar, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -79,14 +79,14 @@ export function RaceHistory({ raceHistory, currentUserId }: RaceHistoryProps) {
     return 'Solo';
   };
 
-  const getMyStats = (race: RaceHistoryItem) => {
+  const getMyStats = useCallback((race: RaceHistoryItem) => {
     const isHost = race.host_id === currentUserId;
     return {
       wpm: isHost ? race.host_wpm : race.opponent_wpm,
       accuracy: isHost ? race.host_accuracy : race.opponent_accuracy,
       progress: isHost ? race.host_progress : race.opponent_progress,
     };
-  };
+  }, [currentUserId]);
 
   const getOpponentStats = (race: RaceHistoryItem) => {
     const isHost = race.host_id === currentUserId;
@@ -103,7 +103,7 @@ export function RaceHistory({ raceHistory, currentUserId }: RaceHistoryProps) {
 
   // Filter and sort
   const filteredRaces = useMemo(() => {
-    let filtered = [...raceHistory];
+    const filtered = [...raceHistory];
 
     // Apply sort
     filtered.sort((a, b) => {
@@ -112,17 +112,18 @@ export function RaceHistory({ raceHistory, currentUserId }: RaceHistoryProps) {
         case 'date':
           comparison = new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
           break;
-        case 'wpm':
+        case 'wpm': {
           const aWpm = getMyStats(a).wpm || 0;
           const bWpm = getMyStats(b).wpm || 0;
           comparison = aWpm - bWpm;
           break;
+        }
       }
       return sortOrder === 'desc' ? -comparison : comparison;
     });
 
     return filtered;
-  }, [raceHistory, sortField, sortOrder, currentUserId]);
+  }, [raceHistory, sortField, sortOrder, getMyStats]);
 
   // Pagination
   const totalPages = Math.ceil(filteredRaces.length / pageSize);

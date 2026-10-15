@@ -16,7 +16,7 @@ export interface CharacterState {
   typed?: string;
 }
 
-// Import canonical metrics engine for consistency
+// Legacy display helpers. New session metrics are owned by ./typing-core.
 import { calculateWpm as canonicalWpm, calculateRawWpm as canonicalRawWpm, calculateAccuracy as canonicalAccuracy, calculateConsistency as canonicalConsistency, sanitizeMetric } from './metrics-engine';
 
 /**
@@ -127,18 +127,21 @@ export interface TestResult {
 }
 
 export function saveTestResult(result: TestResult): void {
-  const history = getTestHistory();
+  const history = getTestHistory().filter(item => item.id !== result.id);
   history.unshift(result);
   // Keep last 100 results
   if (history.length > 100) {
     history.pop();
   }
-  localStorage.setItem('typingmaster_history', JSON.stringify(history));
+  try { localStorage.setItem('typingmaster_history', JSON.stringify(history)); } catch { /* History must not prevent a result from being shown. */ }
 }
 
 export function getTestHistory(): TestResult[] {
-  const stored = localStorage.getItem('typingmaster_history');
-  return stored ? JSON.parse(stored) : [];
+  try {
+    const stored = localStorage.getItem('typingmaster_history');
+    const parsed: unknown = stored ? JSON.parse(stored) : [];
+    return Array.isArray(parsed) ? parsed.filter((item): item is TestResult => !!item && typeof item === 'object' && typeof item.id === 'string' && Number.isFinite(item.wpm) && Number.isFinite(item.accuracy)) : [];
+  } catch { return []; }
 }
 
 export function getPersonalBest(): { wpm: number; accuracy: number } | null {

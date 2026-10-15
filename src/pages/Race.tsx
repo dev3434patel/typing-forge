@@ -1,627 +1,690 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
-import { supabase } from '@/integrations/supabase/client';
-import { useAuth } from '@/hooks/useAuth';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
-import { useToast } from '@/hooks/use-toast';
-import { sanitizeMetric, calculateWpm, calculateAccuracy } from '@/lib/metrics-engine';
-import { BotDifficulty } from '@/lib/bot-engine';
-import { useBotRace } from '@/hooks/useBotRace';
-import { Loader2 } from 'lucide-react';
-import { generateRandomWords } from '@/lib/quotes';
-
-import { RaceLobby } from '@/components/race/RaceLobby';
-import { RaceWaiting } from '@/components/race/RaceWaiting';
-import { RaceCountdown } from '@/components/race/RaceCountdown';
-import { RaceTypingArea } from '@/components/race/RaceTypingArea';
-import { RaceResults } from '@/components/race/RaceResults';
-import { RaceSettings } from '@/components/race/RaceSettings';
-
-type RaceStatus = 'lobby' | 'waiting' | 'countdown' | 'racing' | 'finished';
-
-function generateRoomCode(): string {
-  const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const randomValues = new Uint8Array(6);
-  crypto.getRandomValues(randomValues);
-  
-  let code = '';
-  for (let i = 0; i < 6; i++) {
-    code += chars[randomValues[i] % chars.length];
-  }
-  
-  return code;
-}
-
-const Race = () => {
-  const { roomCode: urlRoomCode } = useParams();
-  const navigate = useNavigate();
-  const { user, loading: authLoading } = useAuth();
-  const { toast } = useToast();
-  
-  // Race state
-  const [roomCode, setRoomCode] = useState(urlRoomCode || '');
-  const [raceData, setRaceData] = useState<any>(null);
-  const [status, setStatus] = useState<RaceStatus>('lobby');
-  const [countdown, setCountdown] = useState(3);
-  
-  // Settings
-  const [raceDuration, setRaceDuration] = useState(30);
-  const [timeRemaining, setTimeRemaining] = useState(30);
-  
-  // Typing state
-  const [typedText, setTypedText] = useState('');
-  const [startTime, setStartTime] = useState<number | null>(null);
-  const [currentWpm, setCurrentWpm] = useState(0);
-  const [currentAccuracy, setCurrentAccuracy] = useState(100);
-  
-  // Opponent state
-  const [opponentProgress, setOpponentProgress] = useState(0);
-  const [opponentWpm, setOpponentWpm] = useState(0);
-  const [botDifficulty, setBotDifficulty] = useState<BotDifficulty | null>(null);
-  
-  // Results
-  const [myFinalWpm, setMyFinalWpm] = useState(0);
-  const [myFinalAccuracy, setMyFinalAccuracy] = useState(0);
-  const [opponentFinalWpm, setOpponentFinalWpm] = useState(0);
-  const [opponentFinalAccuracy, setOpponentFinalAccuracy] = useState(0);
-  
-  // Refs
-  const updateThrottleRef = useRef<NodeJS.Timeout | null>(null);
-  const pendingUpdateRef = useRef<any>(null);
-  const countdownStartedRef = useRef(false);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-
-  const isHost = raceData?.host_id === user?.id;
-  const expectedText = raceData?.expected_text || '';
-  const isBotRace = raceData?.is_bot_race || botDifficulty !== null;
-
-  // Generate race text based on duration
-  const generateRaceText = useCallback((duration: number) => {
-    // Estimate words needed: ~60 WPM average, multiply by 1.5 for fast typers
-    const wordsNeeded = Math.ceil((duration / 60) * 100);
-    return generateRandomWords(wordsNeeded, false, false);
-  }, []);
-
-  // Track bot accuracy in real-time
-  const [opponentAccuracy, setOpponentAccuracy] = useState(100);
-
-  // Bot race hook
-  const { reset: resetBot } = useBotRace({
-    isActive: status === 'racing' && isBotRace,
-    expectedText,
-    difficulty: botDifficulty || 'beginner',
-    onBotProgress: useCallback((progress: number, wpm: number, accuracy: number) => {
-      setOpponentProgress(progress);
-      setOpponentWpm(sanitizeMetric(wpm));
-      setOpponentAccuracy(sanitizeMetric(accuracy));
-    }, []),
-    onBotFinish: useCallback((wpm: number, accuracy: number) => {
-      setOpponentFinalWpm(sanitizeMetric(wpm));
-      setOpponentFinalAccuracy(sanitizeMetric(accuracy));
-    }, []),
-  });
-
-  // Timer countdown for race
-  useEffect(() => {
-    if (status === 'racing' && timeRemaining > 0) {
-      timerRef.current = setInterval(() => {
-        setTimeRemaining((prev) => {
-          if (prev <= 1) {
-            // Time's up - end the race
-            finishRace(false);
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    }
-
-    return () => {
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-        timerRef.current = null;
-      }
-    };
-  }, [status]);
-
-  // Server-controlled countdown
-  const startCountdown = useCallback(() => {
-    if (countdownStartedRef.current) return;
-    countdownStartedRef.current = true;
-    
-    setCountdown(3);
-    const interval = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          clearInterval(interval);
-          setStatus('racing');
-          setStartTime(Date.now());
-          setTimeRemaining(raceDuration);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-  }, [raceDuration]);
-
-  // Subscribe to race updates (multiplayer only)
-  useEffect(() => {
-    if (!roomCode || !user || isBotRace) return;
-
-    const channel = supabase
-      .channel(`race:${roomCode}`)
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'race_sessions',
-          filter: `room_code=eq.${roomCode}`,
-        },
-        (payload) => {
-          const newData = payload.new as any;
-          setRaceData(newData);
-          
-          if (user.id === newData.host_id) {
-            setOpponentProgress(newData.opponent_progress || 0);
-            setOpponentWpm(newData.opponent_wpm || 0);
-          } else {
-            setOpponentProgress(newData.host_progress || 0);
-            setOpponentWpm(newData.host_wpm || 0);
-          }
-          
-          if (newData.status === 'countdown' && status !== 'countdown' && status !== 'racing') {
-            setStatus('countdown');
-            startCountdown();
-          }
-          
-          if (newData.status === 'completed' && status !== 'finished') {
-            const myWpm = user.id === newData.host_id ? newData.host_wpm : newData.opponent_wpm;
-            const myAcc = user.id === newData.host_id ? newData.host_accuracy : newData.opponent_accuracy;
-            const oppWpm = user.id === newData.host_id ? newData.opponent_wpm : newData.host_wpm;
-            const oppAcc = user.id === newData.host_id ? newData.opponent_accuracy : newData.host_accuracy;
-            
-            setMyFinalWpm(myWpm || 0);
-            setMyFinalAccuracy(myAcc || 0);
-            setOpponentFinalWpm(oppWpm || 0);
-            setOpponentFinalAccuracy(oppAcc || 0);
-            setStatus('finished');
-          }
-        }
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
-  }, [roomCode, user, status, isBotRace, startCountdown]);
-
-  // Load race data from URL
-  useEffect(() => {
-    if (urlRoomCode && user && !raceData) {
-      supabase
-        .from('race_sessions')
-        .select('*')
-        .eq('room_code', urlRoomCode)
-        .maybeSingle()
-        .then(({ data }) => {
-          if (data) {
-            setRaceData(data);
-            setRoomCode(urlRoomCode);
-            if (data.status === 'waiting') {
-              setStatus('waiting');
-            } else if (data.status === 'active') {
-              setStatus('racing');
-              setStartTime(Date.now());
-            }
-          }
-        });
-    }
-  }, [urlRoomCode, user, raceData]);
-
-  const finishRace = useCallback(async (completedByTyping: boolean) => {
-    if (status === 'finished') return;
-    
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-      timerRef.current = null;
-    }
-    
-    const elapsedMs = startTime ? Date.now() - startTime : 0;
-    
-    // CANONICAL METRICS: Use metrics-engine for final race metrics
-    // Reference: metrics-engine.ts -> calculateWpm() and calculateAccuracy()
-    // Formula: WPM = (correctChars / 5) / (elapsedMs / 60000)
-    // Formula: Accuracy = (correctChars / totalTypedChars) * 100
-    const comparisonLength = Math.min(typedText.length, expectedText.length);
-    let correctChars = 0;
-    let incorrectChars = 0;
-    
-    for (let i = 0; i < comparisonLength; i++) {
-      if (typedText[i] === expectedText[i]) {
-        correctChars++;
-      } else {
-        incorrectChars++;
-      }
-    }
-    
-    // Use canonical metrics-engine functions for consistency
-    const finalWpm = sanitizeMetric(calculateWpm(correctChars, elapsedMs));
-    const finalAccuracy = sanitizeMetric(calculateAccuracy(
-      correctChars,
-      incorrectChars,
-      0, // missedChars (not applicable for race completion)
-      0, // extraChars (not applicable for race completion)
-      false // backspaceUsed (race doesn't track backspace)
-    ));
-    
-    setMyFinalWpm(finalWpm);
-    setMyFinalAccuracy(finalAccuracy);
-    
-    // For bot races, use actual tracked bot accuracy (not random)
-    if (isBotRace) {
-      setOpponentFinalWpm(sanitizeMetric(opponentWpm));
-      setOpponentFinalAccuracy(sanitizeMetric(opponentAccuracy));
-    }
-    
-    setStatus('finished');
-
-    // Update database for non-bot races
-    if (!isBotRace && roomCode) {
-      await supabase
-        .from('race_sessions')
-        .update({
-          status: 'completed',
-          ended_at: new Date().toISOString(),
-          ...(isHost 
-            ? { host_wpm: finalWpm, host_accuracy: finalAccuracy, host_progress: 100 }
-            : { opponent_wpm: finalWpm, opponent_accuracy: finalAccuracy, opponent_progress: 100 }),
-        })
-        .eq('room_code', roomCode);
-    }
-  }, [status, startTime, expectedText, typedText, isBotRace, roomCode, isHost, opponentWpm, opponentAccuracy]);
-
-  const createRace = async () => {
-    if (!user) {
-      toast({ title: 'Please sign in to create a race', variant: 'destructive' });
-      navigate('/auth');
-      return;
-    }
-
-    const code = generateRoomCode();
-    const text = generateRaceText(raceDuration);
-
-    const { data, error } = await supabase
-      .from('race_sessions')
-      .insert({
-        room_code: code,
-        host_id: user.id,
-        expected_text: text,
-        status: 'waiting',
-        is_bot_race: false,
-      })
-      .select()
-      .single();
-
-    if (error) {
-      toast({ title: 'Failed to create race', description: error.message, variant: 'destructive' });
-      return;
-    }
-
-    setRoomCode(code);
-    setRaceData(data);
-    setStatus('waiting');
-    countdownStartedRef.current = false;
-    navigate(`/race/${code}`);
-  };
-
-  const createBotRace = async (difficulty: BotDifficulty) => {
-    if (!user) {
-      toast({ title: 'Please sign in to race', variant: 'destructive' });
-      navigate('/auth');
-      return;
-    }
-
-    const text = generateRaceText(raceDuration);
-    
-    setBotDifficulty(difficulty);
-    setRaceData({
-      expected_text: text,
-      host_id: user.id,
-      is_bot_race: true,
-      bot_difficulty: difficulty,
-    });
-    setTypedText('');
-    setOpponentProgress(0);
-    setOpponentWpm(0);
-    setTimeRemaining(raceDuration);
-    countdownStartedRef.current = false;
-    setStatus('countdown');
-    startCountdown();
-  };
-
-  const joinRace = async (joinCode: string) => {
-    if (!user) {
-      toast({ title: 'Please sign in to join a race', variant: 'destructive' });
-      navigate('/auth');
-      return;
-    }
-
-    const code = joinCode.toUpperCase().trim();
-    
-    if (!/^[0-9A-Z]{6}$/.test(code)) {
-      toast({ 
-        title: 'Invalid room code', 
-        description: 'Room code must be 6 alphanumeric characters',
-        variant: 'destructive' 
-      });
-      return;
-    }
-    
-    const { data: race, error: fetchError } = await supabase
-      .from('race_sessions')
-      .select('*')
-      .eq('room_code', code)
-      .eq('status', 'waiting')
-      .maybeSingle();
-
-    if (fetchError || !race) {
-      toast({ title: 'Race not found', description: 'Invalid room code or race already started', variant: 'destructive' });
-      return;
-    }
-
-    const { error: updateError } = await supabase
-      .from('race_sessions')
-      .update({ 
-        opponent_id: user.id,
-        status: 'countdown',
-        started_at: new Date().toISOString(),
-        countdown_started_at: new Date().toISOString(),
-      })
-      .eq('id', race.id);
-
-    if (updateError) {
-      toast({ title: 'Failed to join race', variant: 'destructive' });
-      return;
-    }
-
-    setRoomCode(code);
-    setRaceData({ ...race, opponent_id: user.id });
-    countdownStartedRef.current = false;
-    setStatus('countdown');
-    startCountdown();
-    navigate(`/race/${code}`);
-  };
-
-  const handleTyping = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const newText = e.target.value;
-    setTypedText(newText);
-
-    if (!startTime) return;
-
-    const elapsedMs = Date.now() - startTime;
-    
-    // CANONICAL METRICS: Use metrics-engine for consistency
-    // Reference: metrics-engine.ts -> calculateWpm() and calculateAccuracy()
-    // Formula: WPM = (correctChars / 5) / (elapsedMs / 60000)
-    // Formula: Accuracy = (correctChars / totalTypedChars) * 100
-    const comparisonLength = Math.min(newText.length, expectedText.length);
-    let correctChars = 0;
-    for (let i = 0; i < comparisonLength; i++) {
-      if (newText[i] === expectedText[i]) {
-        correctChars++;
-      }
-    }
-    
-    // Use canonical metrics-engine functions
-    const wpm = sanitizeMetric(calculateWpm(correctChars, elapsedMs));
-    const accuracy = sanitizeMetric(calculateAccuracy(
-      correctChars,
-      newText.length - correctChars, // incorrectChars
-      0, // missedChars (not applicable for race)
-      0, // extraChars (not applicable for race)
-      false // backspaceUsed (race doesn't track this)
-    ));
-    
-    setCurrentWpm(wpm);
-    setCurrentAccuracy(accuracy);
-
-    // Update progress in database (multiplayer only)
-    if (!isBotRace && roomCode) {
-      const progress = Math.round((newText.length / expectedText.length) * 100);
-      
-      const updateData = isHost 
-        ? { host_progress: progress, host_wpm: wpm, host_accuracy: accuracy }
-        : { opponent_progress: progress, opponent_wpm: wpm, opponent_accuracy: accuracy };
-
-      pendingUpdateRef.current = updateData;
-
-      if (!updateThrottleRef.current) {
-        updateThrottleRef.current = setTimeout(async () => {
-          if (pendingUpdateRef.current) {
-            await supabase
-              .from('race_sessions')
-              .update(pendingUpdateRef.current)
-              .eq('room_code', roomCode);
-            pendingUpdateRef.current = null;
-          }
-          updateThrottleRef.current = null;
-        }, 200);
-      }
-    }
-
-    // Check if finished typing all text
-    if (newText.length >= expectedText.length) {
-      if (updateThrottleRef.current) {
-        clearTimeout(updateThrottleRef.current);
-        updateThrottleRef.current = null;
-      }
-      finishRace(true);
-    }
-  }, [startTime, expectedText, isHost, roomCode, isBotRace, finishRace]);
-
-  const handleRestart = useCallback(() => {
-    resetBot();
-    setTypedText('');
-    setCurrentWpm(0);
-    setCurrentAccuracy(100);
-    setOpponentProgress(0);
-    setOpponentWpm(0);
-    setOpponentAccuracy(100);
-    setMyFinalWpm(0);
-    setMyFinalAccuracy(0);
-    setOpponentFinalWpm(0);
-    setOpponentFinalAccuracy(0);
-    setTimeRemaining(raceDuration);
-    countdownStartedRef.current = false;
-    
-    if (botDifficulty) {
-      // Restart bot race with same difficulty
-      const text = generateRaceText(raceDuration);
-      setRaceData({
-        expected_text: text,
-        host_id: user?.id,
-        is_bot_race: true,
-        bot_difficulty: botDifficulty,
-      });
-      setStatus('countdown');
-      startCountdown();
-    } else {
-      // Return to lobby for multiplayer
-      setStatus('lobby');
-      setRaceData(null);
-      setRoomCode('');
-      setBotDifficulty(null);
-    }
-  }, [botDifficulty, raceDuration, generateRaceText, startCountdown, resetBot, user]);
-
-  const copyRoomCode = () => {
-    navigator.clipboard.writeText(roomCode);
-    toast({ title: 'Room code copied!', description: `Share ${roomCode} with your opponent` });
-  };
-
-  // Cleanup
-  useEffect(() => {
-    return () => {
-      if (updateThrottleRef.current) {
-        clearTimeout(updateThrottleRef.current);
-      }
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-      }
-    };
-  }, []);
-
-  if (authLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <Loader2 className="w-8 h-8 animate-spin text-primary" />
-      </div>
-    );
-  }
-
-  const isWinner = isBotRace 
-    ? myFinalWpm > opponentFinalWpm || (myFinalWpm === opponentFinalWpm && myFinalAccuracy >= opponentFinalAccuracy)
-    : raceData?.winner_id === user?.id;
-
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+  Bot,
+  Swords,
+  Users,
+  ArrowRight,
+  Copy,
+  LogOut,
+  RotateCcw,
+} from "lucide-react";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { TypingArea } from "@/components/typing/TypingArea";
+import { SessionResults } from "@/components/typing/SessionResults";
+import {
+  SessionController,
+  graphemes,
+  type SessionConfig,
+  type SessionResult,
+  type SessionSnapshot,
+} from "@/lib/typing-core";
+import { createBot, BOT_CONFIGS, type BotLevel } from "@/lib/bot-engine";
+import { generatePackText } from "@/lib/content-packs";
+import { opponentPacePosition } from "@/lib/race-pace";
+import { useAuth } from "@/hooks/useAuth";
+import { useTestResults } from "@/hooks/useTestResults";
+import { usePreferences } from "@/contexts/PreferencesContext";
+import {
+  raceService,
+  subscribeRace,
+  type RaceRoom,
+} from "@/services/race-service";
+function Track({
+  name,
+  progress,
+  wpm,
+  bot,
+  rival,
+}: {
+  name: string;
+  progress: number;
+  wpm: number | null;
+  bot?: boolean;
+  rival?: boolean;
+}) {
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <Header />
-      
-      <main className="flex-1 container mx-auto px-4 py-8">
-        {/* Title */}
-        {status === 'lobby' && (
-          <motion.div 
-            className="text-center mb-8"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <h1 className="text-3xl md:text-4xl font-bold mb-2">Race Mode</h1>
-            <p className="text-muted-foreground">
-              Challenge opponents in real-time typing races
+    <div className="panel p-5">
+      <div className="flex justify-between items-center mb-4 text-sm">
+        <span className="inline-flex gap-2 items-center">
+          {bot ? <Bot size={16} /> : <Users size={16} />}
+          {name}
+          {bot && (
+            <span className="text-xs text-muted-foreground border rounded px-2 py-1">
+              local bot
+            </span>
+          )}
+        </span>
+        <span className="font-mono">
+          {wpm === null ? "—" : wpm.toFixed(0)}
+          <span className="text-xs text-muted-foreground ml-1">wpm</span>
+        </span>
+      </div>
+      <div className="h-1.5 bg-secondary rounded-full">
+        <div
+          className={`h-full rounded-full transition-[width] duration-150 ${rival ? "race-opponent-progress" : "bg-primary"}`}
+          style={{ width: `${Math.max(0, Math.min(100, progress))}%` }}
+        />
+      </div>
+      <p className="text-xs text-muted-foreground mt-2">
+        {progress.toFixed(0)}% correct target characters
+      </p>
+    </div>
+  );
+}
+function RaceSession({
+  room,
+  botLevel,
+  onExit,
+  onRoom,
+  onRestart,
+  autoFocus,
+}: {
+  room?: RaceRoom;
+  botLevel?: BotLevel;
+  onExit: () => void;
+  onRoom: (room: RaceRoom) => void;
+  onRestart?: () => void;
+  autoFocus?: boolean;
+}) {
+  const { user } = useAuth(),
+    { preferences } = usePreferences(),
+    { saveSession, syncState } = useTestResults();
+  const [result, setResult] = useState<SessionResult | null>(null),
+    [error, setError] = useState(""),
+    [botStats, setBotStats] = useState({
+      progress: 0,
+      wpm: null as number | null,
+      cursor: 0,
+    }),
+    [own, setOwn] = useState({ progress: 0, wpm: null as number | null });
+  const [bundle] = useState(() => {
+    const config: SessionConfig = {
+      clientSessionId: crypto.randomUUID(),
+      mode: "race",
+      ownerScope: user?.id || "guest",
+      initialTarget:
+        room?.expected_text || generatePackText("en", 100, crypto.randomUUID()),
+      durationMs: (room?.duration_seconds || 30) * 1000,
+      scoringPolicy: "prose",
+      language: "en",
+      keyboardLayout: preferences.layout,
+      contentRevision: room ? "server-race-v1" : "forge-curated-2026.10.15",
+      challengeId: room?.id || `local-bot:${botLevel}`,
+      settings: { localBot: !!botLevel },
+      privacy: "public-corpus",
+    };
+    const now = performance.now(),
+      serverNow = room?.server_now ? Date.parse(room.server_now) : Date.now(),
+      startWall = room?.started_at ? Date.parse(room.started_at) : Date.now(),
+      startMono = now - Math.max(0, serverNow - startWall);
+    const controller = new SessionController(config, {
+      now: () => performance.now(),
+      wallNow: () => Date.now(),
+    });
+    controller.startAt(startMono, startWall);
+    return {
+      config,
+      controller,
+      startMono,
+      startWall,
+      targetUnits: graphemes(config.initialTarget).length,
+    };
+  });
+  const roomRef = useRef(room),
+    latest = useRef<SessionSnapshot | null>(null),
+    posting = useRef(false),
+    completed = useRef(false);
+  roomRef.current = room;
+  const roomStatus = room?.status,
+    raceId = room?.id;
+  const finish = useCallback(
+    (value: SessionResult) => {
+      completed.current = true;
+      setResult(value);
+      if (botLevel)
+        void saveSession(value).catch((cause) => setError(String(cause)));
+      else if (roomRef.current)
+        void raceService
+          .submit(roomRef.current.id, value, true)
+          .then(onRoom)
+          .catch((cause) =>
+            setError(
+              `Race finish could not be confirmed: ${String(cause)}. Retry below.`,
+            ),
+          );
+    },
+    [botLevel, saveSession, onRoom],
+  );
+  useEffect(() => {
+    if (
+      roomStatus &&
+      ["completed", "cancelled", "abandoned"].includes(roomStatus) &&
+      !completed.current
+    ) {
+      completed.current = true;
+      setResult(bundle.controller.finish("abandoned"));
+    }
+  }, [roomStatus, bundle]);
+  useEffect(() => {
+    if (!botLevel) return;
+    const runner = createBot(botLevel, bundle.config.initialTarget, {
+      now: () => performance.now(),
+    });
+    runner.start();
+    const botController = new SessionController(
+      {
+        ...bundle.config,
+        clientSessionId: `${bundle.config.clientSessionId}-opponent`,
+      },
+      { now: () => performance.now(), wallNow: () => Date.now() },
+    );
+    botController.startAt(bundle.startMono, bundle.startWall);
+    let processed = 0;
+    const timer = setInterval(() => {
+      if (completed.current) return;
+      const state = runner.tick();
+      for (; processed < state.keystrokes.length; processed++) {
+        const event = state.keystrokes[processed];
+        botController.input(
+          event.isBackspace
+            ? { type: "delete" }
+            : { type: "insert", text: event.char },
+          event.timestamp,
+        );
+      }
+      const snapshot = botController.tick();
+      setBotStats({
+        progress: snapshot.targetText.length
+          ? (snapshot.metrics.correct /
+              snapshot.characters.filter((slot) => slot.expected !== null)
+                .length) *
+            100
+          : 0,
+        wpm: snapshot.metrics.wpm,
+        cursor: snapshot.cursor,
+      });
+    }, 100);
+    return () => clearInterval(timer);
+  }, [botLevel, bundle]);
+  useEffect(() => {
+    if (botLevel || !raceId) return;
+    const timer = setInterval(() => {
+      if (
+        posting.current ||
+        completed.current ||
+        !latest.current ||
+        latest.current.status !== "running"
+      )
+        return;
+      // A checkpoint exports replayable evidence without freezing the live controller.
+      const controller = bundle.controller as SessionController & {
+        checkpoint?: () => SessionResult;
+      };
+      if (!controller.checkpoint) return;
+      posting.current = true;
+      void raceService
+        .submit(raceId, controller.checkpoint(), false)
+        .then(onRoom)
+        .catch((cause) => setError(String(cause)))
+        .finally(() => {
+          posting.current = false;
+        });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [botLevel, bundle, raceId, onRoom]);
+  const isHost = room?.host_id === user?.id;
+  const opponent = botLevel
+    ? botStats
+    : {
+        progress: isHost
+          ? (room?.opponent_progress ?? 0)
+          : (room?.host_progress ?? 0),
+        wpm: isHost ? (room?.opponent_wpm ?? null) : (room?.host_wpm ?? null),
+      };
+  const snapshot = useCallback((value: SessionSnapshot) => {
+    latest.current = value;
+    setOwn({
+      progress: value.characters.length
+        ? (value.metrics.correct /
+            value.characters.filter((slot) => slot.expected !== null).length) *
+          100
+        : 0,
+      wpm: value.metrics.wpm,
+    });
+  }, []);
+  return (
+    <div className="space-y-6">
+      <div className="grid sm:grid-cols-2 gap-4">
+        <Track name="You" progress={own.progress} wpm={own.wpm} />
+        <Track
+          name={
+            botLevel
+              ? `${botLevel[0].toUpperCase()}${botLevel.slice(1)} opponent`
+              : "Opponent"
+          }
+          progress={opponent.progress}
+          wpm={opponent.wpm}
+          bot={!!botLevel}
+          rival
+        />
+      </div>
+      {error && (
+        <div role="alert" className="panel p-4 text-sm text-destructive">
+          {error}
+          {result && room && (
+            <button
+              className="forge-button-secondary ml-3"
+              onClick={() => {
+                void raceService
+                  .submit(room.id, result, true)
+                  .then((value) => {
+                    setError("");
+                    onRoom(value);
+                  })
+                  .catch((cause) => setError(String(cause)));
+              }}
+            >
+              Retry finish
+            </button>
+          )}
+        </div>
+      )}
+      {result ? (
+        <>
+          <div className="panel p-5">
+            <h2 className="font-medium">
+              {botLevel
+                ? "Bot practice complete"
+                : room?.status === "completed"
+                  ? room.winner_id === null
+                    ? "Race tied"
+                    : room.winner_id === user?.id
+                      ? "You won this race"
+                      : "Opponent won this race"
+                  : ["cancelled", "abandoned"].includes(room?.status || "")
+                    ? "Race ended"
+                    : "Your result is in. Waiting for the server."}
+            </h2>
+            <p className="text-xs text-muted-foreground mt-2">
+              {botLevel
+                ? "Local bot practice stays separate from human rankings."
+                : "The server confirms the finish order and shared race timing."}
             </p>
-          </motion.div>
-        )}
-
-        {/* Settings - show in lobby */}
-        {status === 'lobby' && (
-          <RaceSettings
-            duration={raceDuration}
-            onDurationChange={setRaceDuration}
-            isBot={false}
-            disabled={false}
+          </div>
+          <SessionResults
+            result={result}
+            onRestart={botLevel && onRestart ? onRestart : onExit}
+            quickRestart={!!botLevel && !!onRestart}
+            saveStatus={botLevel ? syncState : undefined}
           />
+        </>
+      ) : (
+        <TypingArea
+          configuration={bundle.config}
+          controller={bundle.controller}
+          onTestComplete={finish}
+          onSnapshot={snapshot}
+          onRestart={botLevel ? onRestart : undefined}
+          autoFocus={autoFocus}
+          opponentPace={{
+            label: botLevel ? "Bot" : "Opponent",
+            position: opponentPacePosition(
+              bundle.targetUnits,
+              botLevel
+                ? { cursor: botStats.cursor }
+                : { progress: opponent.progress },
+            ),
+            wpm: opponent.wpm,
+            approximate: !botLevel,
+          }}
+        />
+      )}
+    </div>
+  );
+}
+export default function Race() {
+  const { roomCode } = useParams(),
+    navigate = useNavigate(),
+    { user } = useAuth();
+  const userId = user?.id;
+  const [room, setRoom] = useState<RaceRoom | null>(null),
+    [mountedRace, setMountedRace] = useState<string | null>(null),
+    [bot, setBot] = useState<BotLevel | null>(null),
+    [botAttempt, setBotAttempt] = useState(0),
+    [difficulty, setDifficulty] = useState<BotLevel>("intermediate"),
+    [code, setCode] = useState(""),
+    [busy, setBusy] = useState(false),
+    [error, setError] = useState(""),
+    [now, setNow] = useState(Date.now()),
+    [serverOffset, setServerOffset] = useState(0),
+    [copied, setCopied] = useState(false),
+    [duration, setDuration] = useState(30);
+  const acceptRoom = useCallback((value: RaceRoom) => {
+    if (value.server_now)
+      setServerOffset(Date.parse(value.server_now) - Date.now());
+    setRoom((previous) =>
+      !previous || value.id !== previous.id || value.version >= previous.version
+        ? value
+        : previous,
+    );
+  }, []);
+  useEffect(() => {
+    const timer = setInterval(() => setNow(Date.now()), 100);
+    return () => clearInterval(timer);
+  }, []);
+  useEffect(() => {
+    if (!roomCode || !userId) return;
+    setError("");
+    let alive = true;
+    void raceService
+      .get(roomCode)
+      .then((value) => {
+        if (alive) acceptRoom(value);
+      })
+      .catch((cause) => {
+        if (alive) setError(String(cause));
+      });
+    const unsubscribe = subscribeRace(
+      roomCode,
+      (value) => {
+        if (alive) acceptRoom(value);
+      },
+      (cause) => {
+        if (alive) setError(cause.message);
+      },
+    );
+    return () => {
+      alive = false;
+      unsubscribe();
+    };
+  }, [roomCode, userId, acceptRoom]);
+  const operation = async (run: () => Promise<RaceRoom>) => {
+    setBusy(true);
+    setError("");
+    try {
+      const value = await run();
+      acceptRoom(value);
+      navigate(`/race/${value.room_code}`);
+    } catch (cause) {
+      setError(
+        cause instanceof Error
+          ? cause.message
+          : "The race operation failed. Try again.",
+      );
+    } finally {
+      setBusy(false);
+    }
+  };
+  const exit = () => {
+    setBot(null);
+    setBotAttempt(0);
+    setRoom(null);
+    setMountedRace(null);
+    setError("");
+    navigate("/race");
+  };
+  const retryBot = useCallback(() => setBotAttempt((value) => value + 1), []);
+  const synchronizedNow = now + serverOffset;
+  const start = room?.started_at ? Date.parse(room.started_at) : null;
+  const active =
+    room &&
+    (room.status === "active" ||
+      (room.status === "countdown" &&
+        start !== null &&
+        synchronizedNow >= start));
+  const currentRoomId = room?.id;
+  useEffect(() => {
+    if (active && currentRoomId) setMountedRace(currentRoomId);
+  }, [active, currentRoomId]);
+  return (
+    <div className="forge-shell">
+      <Header />
+      <main id="main-content" className="forge-main">
+        <div className="flex flex-wrap justify-between gap-4 mb-9">
+          <div>
+            <p className="eyebrow">A little friendly competition</p>
+            <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight mt-3">
+              Find your racing rhythm<span className="text-primary">.</span>
+            </h1>
+            <p className="text-sm text-muted-foreground mt-3">
+              Share a track with a friend, or warm up against a local bot.
+            </p>
+          </div>
+          {(bot || room) && (
+            <button
+              className="forge-button-secondary self-end"
+              disabled={busy}
+              onClick={() => {
+                if (
+                  room &&
+                  !["completed", "cancelled", "abandoned"].includes(room.status)
+                ) {
+                  setBusy(true);
+                  void raceService
+                    .leave(room.id)
+                    .then(exit)
+                    .catch((cause) => setError(String(cause)))
+                    .finally(() => setBusy(false));
+                } else exit();
+              }}
+            >
+              <LogOut size={15} />
+              Leave race
+            </button>
+          )}
+        </div>
+        {error && (
+          <p role="alert" className="panel p-4 mb-5 text-sm text-destructive">
+            {error}
+          </p>
         )}
-
-        {/* Racing settings indicator */}
-        {(status === 'racing' || status === 'countdown') && (
-          <RaceSettings
-            duration={raceDuration}
-            onDurationChange={() => {}}
-            isBot={isBotRace}
-            botDifficulty={botDifficulty || undefined}
-            disabled={true}
+        {bot ? (
+          <RaceSession
+            key={`bot:${bot}:${botAttempt}`}
+            botLevel={bot}
+            onExit={exit}
+            onRoom={acceptRoom}
+            onRestart={retryBot}
+            autoFocus={botAttempt > 0 ? true : undefined}
           />
+        ) : room && (active || mountedRace === room.id) ? (
+          <RaceSession
+            key={room.id}
+            room={room}
+            onExit={exit}
+            onRoom={acceptRoom}
+          />
+        ) : room ? (
+          <section className="panel p-8 sm:p-12 text-center">
+            <Swords className="text-primary mx-auto mb-5" size={30} />
+            <h2 className="text-2xl font-medium">
+              {room.status === "waiting"
+                ? "Your track is ready."
+                : room.status === "countdown"
+                  ? "Get ready…"
+                  : "This race has ended."}
+            </h2>
+            <p className="text-sm text-muted-foreground mt-3">
+              {room.status === "waiting"
+                ? "Send the room code to a friend. Both racers start on the same server countdown."
+                : room.status === "countdown"
+                  ? "The shared clock starts with the countdown, including any idle time."
+                  : "The scores below are the last server-confirmed result."}
+            </p>
+            <p className="font-mono text-4xl tracking-[.25em] text-primary mt-8 mb-4">
+              {room.room_code}
+            </p>
+            {room.status === "completed" && (
+              <div className="grid sm:grid-cols-2 gap-4 my-6 text-left">
+                <Track
+                  name="Host"
+                  progress={room.host_progress}
+                  wpm={room.host_wpm}
+                />
+                <Track
+                  name="Opponent"
+                  progress={room.opponent_progress}
+                  wpm={room.opponent_wpm}
+                />
+              </div>
+            )}
+            <button
+              className="forge-button-secondary"
+              onClick={() => {
+                void navigator.clipboard
+                  .writeText(`${location.origin}/race/${room.room_code}`)
+                  .then(() => setCopied(true))
+                  .catch(() =>
+                    setError("Copy unavailable. Select the room code above."),
+                  );
+              }}
+            >
+              <Copy size={15} />
+              {copied ? "Link copied" : "Copy invite link"}
+            </button>
+            {room.status === "countdown" && (
+              <p className="font-mono text-5xl mt-8">
+                {start
+                  ? Math.max(1, Math.ceil((start - synchronizedNow) / 1000))
+                  : "…"}
+              </p>
+            )}
+            {["cancelled", "abandoned", "completed"].includes(room.status) && (
+              <button
+                className="forge-button ml-3"
+                onClick={() =>
+                  void operation(() => raceService.rematch(room.id))
+                }
+              >
+                <RotateCcw size={15} />
+                Rematch
+              </button>
+            )}
+          </section>
+        ) : (
+          <div className="grid md:grid-cols-2 gap-6">
+            <section className="panel p-7">
+              <Bot size={24} className="text-primary mb-5" />
+              <h2 className="text-xl font-medium">
+                A practice partner, always ready.
+              </h2>
+              <p className="text-sm text-muted-foreground leading-relaxed mt-3 mb-6">
+                A local bot with a natural rhythm, occasional mistakes and real
+                corrections. No account needed.
+              </p>
+              <label className="text-sm block mb-6">
+                Difficulty
+                <select
+                  className="forge-input mt-2"
+                  value={difficulty}
+                  onChange={(event) =>
+                    setDifficulty(event.target.value as BotLevel)
+                  }
+                >
+                  {Object.entries(BOT_CONFIGS).map(([id, value]) => (
+                    <option key={id} value={id}>
+                      {id[0].toUpperCase() + id.slice(1)} · about{" "}
+                      {value.targetWpmMean} wpm
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <button
+                className="forge-button w-full"
+                onClick={() => {
+                  setBotAttempt(0);
+                  setBot(difficulty);
+                }}
+              >
+                Start bot practice
+                <ArrowRight size={16} />
+              </button>
+              <p className="text-xs text-muted-foreground mt-4 text-center">
+                30 seconds · local practice · clearly labelled bot
+              </p>
+            </section>
+            <section className="panel p-7">
+              <Users size={24} className="text-primary mb-5" />
+              <h2 className="text-xl font-medium">One room. Two racers.</h2>
+              <p className="text-sm text-muted-foreground leading-relaxed mt-3 mb-6">
+                A shared passage, server countdown and validated finish. Sign in
+                to create or join a human room.
+              </p>
+              {user ? (
+                <>
+                  <label className="text-sm block">
+                    Duration
+                    <select
+                      className="forge-input mt-2"
+                      value={duration}
+                      onChange={(e) => setDuration(+e.target.value)}
+                    >
+                      {[15, 30, 60, 120].map((n) => (
+                        <option key={n} value={n}>
+                          {n} seconds
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <div className="flex gap-3 my-4">
+                    <button
+                      className="forge-button flex-1"
+                      disabled={busy}
+                      onClick={() =>
+                        void operation(() => raceService.create(duration))
+                      }
+                    >
+                      Create room
+                    </button>
+                    <button
+                      className="forge-button-secondary flex-1"
+                      disabled={busy}
+                      onClick={() =>
+                        void operation(() => raceService.quickMatch(duration))
+                      }
+                    >
+                      Quick match
+                    </button>
+                  </div>
+                  <form
+                    className="flex gap-2"
+                    onSubmit={(event) => {
+                      event.preventDefault();
+                      void operation(() => raceService.join(roomCode || code));
+                    }}
+                  >
+                    <label className="sr-only" htmlFor="room-code">
+                      Room code
+                    </label>
+                    <input
+                      id="room-code"
+                      className="forge-input font-mono uppercase"
+                      placeholder="Room code"
+                      value={roomCode || code}
+                      onChange={(e) => setCode(e.target.value)}
+                      maxLength={12}
+                    />
+                    <button
+                      className="forge-button-secondary"
+                      disabled={busy || !(roomCode || code).trim()}
+                    >
+                      Join
+                    </button>
+                  </form>
+                </>
+              ) : (
+                <Link to="/auth" className="forge-button-secondary w-full">
+                  Sign in for human races
+                  <ArrowRight size={16} />
+                </Link>
+              )}
+            </section>
+          </div>
         )}
-
-        <AnimatePresence mode="wait">
-          {status === 'lobby' && (
-            <RaceLobby
-              user={user}
-              onCreateRace={createRace}
-              onJoinRace={joinRace}
-              onCreateBotRace={createBotRace}
-            />
-          )}
-
-          {status === 'waiting' && (
-            <RaceWaiting
-              roomCode={roomCode}
-              onCopyCode={copyRoomCode}
-            />
-          )}
-
-          {status === 'countdown' && (
-            <RaceCountdown countdown={countdown} />
-          )}
-
-          {status === 'racing' && (
-            <RaceTypingArea
-              expectedText={expectedText}
-              typedText={typedText}
-              currentWpm={currentWpm}
-              currentAccuracy={currentAccuracy}
-              opponentWpm={opponentWpm}
-              opponentProgress={opponentProgress}
-              isBot={isBotRace}
-              botDifficulty={botDifficulty || undefined}
-              timeRemaining={timeRemaining}
-              isRacing={true}
-              onTyping={handleTyping}
-              onRestart={handleRestart}
-            />
-          )}
-
-          {status === 'finished' && (
-            <RaceResults
-              isWinner={isWinner}
-              myWpm={myFinalWpm}
-              myAccuracy={myFinalAccuracy}
-              opponentWpm={opponentFinalWpm}
-              opponentAccuracy={opponentFinalAccuracy}
-              isBot={isBotRace}
-              botDifficulty={botDifficulty || undefined}
-              onPlayAgain={handleRestart}
-            />
-          )}
-        </AnimatePresence>
       </main>
-
       <Footer />
     </div>
   );
-};
-
-export default Race;
+}

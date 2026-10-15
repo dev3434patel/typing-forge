@@ -1,0 +1,143 @@
+
+ RUN  v4.1.12 D:/extra/typing_updated/typing-forge
+
+ ❯ src/services/__tests__/trust-boundary-audit.test.ts (16 tests | 5 failed) 45ms
+     × does not start account deletion with another account currently authenticated 5ms
+     × binds the account deletion request to the intended owner and captured bearer 4ms
+     × does not clear or sign out a new workspace after an old deletion acknowledgement 1ms
+     × binds a session deletion RPC to both expected owner and captured bearer 2ms
+     × does not delete a same-ID session with the next account credentials 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/services/__tests__/trust-boundary-audit.test.ts > late acknowledgements and explicit workspace ownership > does not start account deletion with another account currently authenticated
+AssertionError: promise resolved "undefined" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+undefined
+
+ ❯ src/services/__tests__/trust-boundary-audit.test.ts:90:32
+     88|     cloud.getSession.mockResolvedValue(identity('bob'));
+     89|     const clear = vi.spyOn(sessionRepository, 'clear').mockResolvedVal…
+     90|     await expect(deleteAccount('alice')).rejects.toThrow('account');
+       |                                ^
+     91|     expect(cloud.invoke).not.toHaveBeenCalled(); expect(clear).not.toH…
+     92|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  src/services/__tests__/trust-boundary-audit.test.ts > late acknowledgements and explicit workspace ownership > binds the account deletion request to the intended owner and captured bearer
+AssertionError: expected "vi.fn()" to be called with arguments: [ 'delete-account', …(1) ]
+
+Received:
+
+  1st vi.fn() call:
+
+  [
+    "delete-account",
+    {
+      "body": {
+        "confirmation": "DELETE MY ACCOUNT",
+-       "expectedOwner": "alice",
+-     },
+-     "headers": {
+-       "Authorization": "Bearer token-alice",
+      },
+    },
+  ]
+
+
+Number of calls: 1
+
+ ❯ src/services/__tests__/trust-boundary-audit.test.ts:96:26
+     94|     vi.spyOn(sessionRepository, 'clear').mockResolvedValue();
+     95|     await deleteAccount('alice');
+     96|     expect(cloud.invoke).toHaveBeenCalledWith('delete-account', { body…
+       |                          ^
+     97|   });
+     98|   it('does not clear or sign out a new workspace after an old deletion…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  src/services/__tests__/trust-boundary-audit.test.ts > late acknowledgements and explicit workspace ownership > does not clear or sign out a new workspace after an old deletion acknowledgement
+AssertionError: promise resolved "undefined" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+undefined
+
+ ❯ src/services/__tests__/trust-boundary-audit.test.ts:101:32
+     99|     cloud.getSession.mockResolvedValueOnce(identity()).mockResolvedVal…
+    100|     const clear = vi.spyOn(sessionRepository, 'clear').mockResolvedVal…
+    101|     await expect(deleteAccount('alice')).rejects.toThrow('Account chan…
+       |                                ^
+    102|     expect(clear).not.toHaveBeenCalled(); expect(cloud.signOut).not.to…
+    103|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  src/services/__tests__/trust-boundary-audit.test.ts > late acknowledgements and explicit workspace ownership > binds a session deletion RPC to both expected owner and captured bearer
+AssertionError: expected "vi.fn()" to be called with arguments: [ …(2) ]
+
+Received:
+
+  1st vi.fn() call:
+
+  [
+-   "forge_delete_session_for_owner",
++   "forge_delete_session",
+    {
+      "p_client_id": "trust-audit",
+-     "p_owner": "alice",
+    },
+  ]
+
+
+Number of calls: 1
+
+ ❯ src/services/__tests__/trust-boundary-audit.test.ts:108:23
+    106|     const remove = vi.spyOn(sessionRepository, 'remove').mockResolvedV…
+    107|     await deleteSession('alice', 'trust-audit');
+    108|     expect(cloud.rpc).toHaveBeenCalledWith('forge_delete_session_for_o…
+       |                       ^
+    109|     expect(cloud.setHeader).toHaveBeenCalledWith('Authorization', 'Bea…
+    110|     expect(remove).toHaveBeenCalledWith('alice', 'trust-audit');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  src/services/__tests__/trust-boundary-audit.test.ts > late acknowledgements and explicit workspace ownership > does not delete a same-ID session with the next account credentials
+AssertionError: promise resolved "undefined" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+undefined
+
+ ❯ src/services/__tests__/trust-boundary-audit.test.ts:116:41
+    114|     vi.spyOn(sessionRepository, 'get').mockResolvedValue(queued());
+    115|     const remove = vi.spyOn(sessionRepository, 'remove').mockResolvedV…
+    116|     await expect(deleteSession('alice', 'trust-audit')).rejects.toThro…
+       |                                         ^
+    117|     expect(cloud.rpc).not.toHaveBeenCalled(); expect(remove).not.toHav…
+    118|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed | 11 passed (16)
+   Start at  23:03:27
+   Duration  442ms (transform 137ms, setup 36ms, import 159ms, tests 45ms, environment 0ms)
+

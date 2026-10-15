@@ -1,183 +1,33 @@
-import { motion } from 'framer-motion';
-import { StatCard } from '@/components/typing/StatCard';
+import { lazy, Suspense, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { RotateCcw, Trophy, Sparkles, TrendingUp } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { getConfidenceStatus, type CharacterConfidence } from '@/lib/keybr-engine';
+const SessionResults = lazy(() => import('@/components/typing/SessionResults').then(module => ({ default: module.SessionResults })));
+import type { SaveStatus } from '@/hooks/useTestResults';
+import type { SessionResult } from '@/lib/typing-core';
+import type { CharacterConfidence } from '@/lib/keybr-engine';
 
 interface KeybrResultsProps {
-  wpm: number;
-  accuracy: number;
+  result: SessionResult;
   newlyUnlocked: string[];
+  progress: CharacterConfidence[];
   perCharMetrics: Map<string, CharacterConfidence>;
   onRestart: () => void;
+  onRetry: () => void;
+  sourceResultId?: string;
+  retestTo?: string;
+  saveStatus?: SaveStatus;
+  onRetrySave?: () => void;
 }
-
-export function KeybrResults({ 
-  wpm, 
-  accuracy, 
-  newlyUnlocked, 
-  perCharMetrics,
-  onRestart 
-}: KeybrResultsProps) {
-  // Sort metrics by confidence (weakest first)
-  const sortedMetrics = Array.from(perCharMetrics.values())
-    .sort((a, b) => a.confidence - b.confidence);
-  
-  const weakestKeys = sortedMetrics.slice(0, 5);
-  const strongestKeys = sortedMetrics.slice(-5).reverse();
-
-  return (
-    <motion.div
-      className="w-full max-w-4xl mx-auto"
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-    >
-      {/* Newly Unlocked Celebration */}
-      {newlyUnlocked.length > 0 && (
-        <motion.div
-          className="mb-8 p-6 bg-gradient-to-r from-success/10 via-success/5 to-success/10 border border-success/30 rounded-2xl text-center"
-          initial={{ opacity: 0, y: -20, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ delay: 0.2, type: 'spring' }}
-        >
-          <div className="flex items-center justify-center gap-3 mb-3">
-            <Trophy className="w-8 h-8 text-success" />
-            <h2 className="text-2xl font-bold text-success">Letters Unlocked!</h2>
-            <Trophy className="w-8 h-8 text-success" />
-          </div>
-          <div className="flex justify-center gap-3">
-            {newlyUnlocked.map((letter, i) => (
-              <motion.div
-                key={letter}
-                className="w-14 h-14 bg-success/20 border-2 border-success rounded-xl flex items-center justify-center text-2xl font-bold text-success uppercase"
-                initial={{ opacity: 0, scale: 0, rotate: -180 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                transition={{ delay: 0.3 + i * 0.1, type: 'spring', stiffness: 200 }}
-              >
-                {letter}
-              </motion.div>
-            ))}
-          </div>
-          <p className="mt-3 text-success/80 text-sm">
-            Great progress! These letters are now part of your practice pool.
-          </p>
-        </motion.div>
-      )}
-
-      {/* Main Stats */}
-      <div className="grid grid-cols-2 gap-4 mb-8">
-        <StatCard 
-          label="WPM" 
-          value={wpm} 
-          variant={wpm >= 60 ? 'success' : wpm >= 40 ? 'primary' : 'default'}
-          size="lg"
-        />
-        <StatCard 
-          label="Accuracy" 
-          value={accuracy} 
-          suffix="%" 
-          variant={accuracy >= 98 ? 'success' : accuracy >= 95 ? 'primary' : accuracy >= 90 ? 'warning' : 'error'}
-          size="lg"
-        />
-      </div>
-
-      {/* Per-Character Analysis */}
-      <motion.div
-        className="grid md:grid-cols-2 gap-6 mb-8"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-      >
-        {/* Weakest Keys */}
-        <div className="stat-card">
-          <div className="flex items-center gap-2 mb-4">
-            <TrendingUp className="w-5 h-5 text-warning rotate-180" />
-            <h3 className="font-semibold">Focus Areas</h3>
-          </div>
-          <div className="space-y-3">
-            {weakestKeys.map(metric => {
-              const status = getConfidenceStatus(metric.confidence, metric.isUnlocked);
-              return (
-                <div key={metric.char} className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <span className="w-8 h-8 bg-muted rounded-lg flex items-center justify-center font-mono font-bold uppercase">
-                      {metric.char}
-                    </span>
-                    <div>
-                      <div className="text-sm font-medium">{Math.round(metric.confidence * 100)}% confidence</div>
-                      <div className="text-xs text-muted-foreground">
-                        {metric.wpm} WPM · {metric.accuracy}% acc
-                      </div>
-                    </div>
-                  </div>
-                  <span className={cn(
-                    "text-xs px-2 py-1 rounded",
-                    status.color === 'success' && 'bg-success/20 text-success',
-                    status.color === 'primary' && 'bg-primary/20 text-primary',
-                    status.color === 'warning' && 'bg-warning/20 text-warning',
-                    status.color === 'destructive' && 'bg-destructive/20 text-destructive'
-                  )}>
-                    {status.text}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Strongest Keys */}
-        <div className="stat-card">
-          <div className="flex items-center gap-2 mb-4">
-            <Sparkles className="w-5 h-5 text-success" />
-            <h3 className="font-semibold">Strongest Keys</h3>
-          </div>
-          <div className="space-y-3">
-            {strongestKeys.map(metric => {
-              const status = getConfidenceStatus(metric.confidence, metric.isUnlocked);
-              return (
-                <div key={metric.char} className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <span className="w-8 h-8 bg-success/20 text-success rounded-lg flex items-center justify-center font-mono font-bold uppercase">
-                      {metric.char}
-                    </span>
-                    <div>
-                      <div className="text-sm font-medium">{Math.round(metric.confidence * 100)}% confidence</div>
-                      <div className="text-xs text-muted-foreground">
-                        {metric.wpm} WPM · {metric.accuracy}% acc
-                      </div>
-                    </div>
-                  </div>
-                  <span className={cn(
-                    "text-xs px-2 py-1 rounded",
-                    status.color === 'success' && 'bg-success/20 text-success',
-                    status.color === 'primary' && 'bg-primary/20 text-primary'
-                  )}>
-                    {status.text}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Action */}
-      <motion.div
-        className="flex justify-center"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
-      >
-        <Button
-          onClick={onRestart}
-          size="lg"
-          className="gap-2"
-        >
-          <RotateCcw className="w-4 h-4" />
-          Continue Practice
-        </Button>
-      </motion.div>
-    </motion.div>
-  );
+export function KeybrResults({ result, newlyUnlocked, progress, perCharMetrics, onRestart, onRetry, sourceResultId, retestTo, saveStatus, onRetrySave }: KeybrResultsProps) {
+  const root = useRef<HTMLDivElement>(null);
+  useEffect(() => { root.current?.focus(); }, [result.clientSessionId]);
+  const observed = [...perCharMetrics.values()].sort((a, b) => a.accuracy - b.accuracy || a.confidence - b.confidence);
+  return <div ref={root} tabIndex={-1} onKeyDown={event => { if (event.key === 'Enter' && event.target === event.currentTarget) { event.preventDefault(); onRestart(); } }} className="space-y-6 outline-none" aria-label="Learning results">
+    {newlyUnlocked.length > 0 && <div role="status" className="flex items-center gap-4 rounded-xl border border-success/40 bg-success/10 p-5"><Sparkles className="size-6 shrink-0 text-success" /><div><h3 className="font-semibold text-success">New key introduced: <span className="font-mono">{newlyUnlocked.join(', ')}</span></h3><p className="mt-1 text-sm text-muted-foreground">All previous keys met initial mastery. This key is now available in your next lesson.</p></div></div>}
+    <Suspense fallback={<p className="py-10 text-sm text-muted-foreground" role="status">Preparing your recorded results…</p>}><SessionResults result={result} onRestart={onRestart} onRepeat={onRetry} saveStatus={saveStatus} onRetrySave={onRetrySave} /></Suspense>
+    <section className="overflow-hidden rounded-2xl border bg-card"><div className="border-b p-5"><h3 className="font-semibold">Key evidence from this lesson</h3><p className="mt-1 text-xs text-muted-foreground">Key speed estimates use attributable individual timings. Simultaneous IME commits have accuracy evidence only.</p></div><div className="overflow-x-auto"><table className="w-full text-left text-sm"><caption className="sr-only">Session-local per-key measurements and accumulated mastery evidence</caption><thead className="bg-muted/20 text-xs text-muted-foreground"><tr><th className="p-4 font-normal">Key</th><th className="p-4 font-normal">Attempt accuracy</th><th className="p-4 font-normal">Key speed</th><th className="p-4 font-normal">Recent evidence</th><th className="p-4 font-normal">State</th></tr></thead><tbody>{observed.map(metric => { const cumulative = progress.find(stat => stat.char === metric.char); return <tr className="border-t" key={metric.char}><td className="p-4 font-mono text-lg">{metric.char}</td><td className="p-4 font-mono">{metric.accuracy.toFixed(1)}% <span className="text-xs text-muted-foreground">({metric.occurrences})</span></td><td className="p-4 font-mono">{metric.qualifiedLatencySamples ? `${Math.round(metric.wpm)} WPM` : '—'}</td><td className="p-4 font-mono">{cumulative?.attributableAttempts ?? 0} / 20 · {cumulative?.masteryCheckpoints ?? 0} / 2 checkpoints</td><td className="p-4 text-xs capitalize">{cumulative?.assessmentState ?? 'Observed'}</td></tr>; })}</tbody></table></div></section>
+    {sourceResultId && <Button variant="outline" asChild><Link to={retestTo ?? '/?retest=targeted'}>Retest matched configuration</Link></Button>}
+    <p className="text-xs text-muted-foreground">Enter continues when the results panel has focus.</p>
+  </div>;
 }

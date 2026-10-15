@@ -62,8 +62,8 @@ describe('Metrics Engine', () => {
       expect(calculateAccuracy(100, 0, 0, 0, false)).toBe(100);
     });
 
-    it('should cap at 99.99% when backspace used', () => {
-      expect(calculateAccuracy(100, 0, 0, 0, true)).toBe(99.99);
+    it('keeps final-text accuracy independent of backspace use', () => {
+      expect(calculateAccuracy(100, 0, 0, 0, true)).toBe(100);
     });
 
     it('should calculate correct accuracy with errors', () => {
@@ -101,8 +101,9 @@ describe('Metrics Engine', () => {
       expect(consistency).toBeGreaterThan(0);
     });
 
-    it('should filter out zero values', () => {
-      expect(calculateConsistency([50, 0, 50, 0, 50])).toBe(100);
+    it('retains idle buckets when measuring rhythm', () => {
+      expect(calculateConsistency([50, 0, 50, 0, 50])).toBeLessThan(100);
+      expect(calculateConsistency([0, 0, 0])).toBe(0);
     });
 
     it('should clamp between 0 and 100', () => {
@@ -218,7 +219,7 @@ describe('Keystroke Processing', () => {
       expect(metrics.isValid).toBe(true);
     });
 
-    it('should cap accuracy at 99.99% with backspace', () => {
+    it('preserves perfect final-text accuracy after a correction', () => {
       const keystrokes: KeystrokeRecord[] = [
         createKeystroke('t', 't', 0),
         createKeystroke('x', 'e', 200), // typo
@@ -230,7 +231,7 @@ describe('Keystroke Processing', () => {
       
       const metrics = computeSessionMetrics(keystrokes, 'test', 'test');
       
-      expect(metrics.accuracy).toBe(99.99);
+      expect(metrics.accuracy).toBe(100);
       expect(metrics.backspaceCount).toBe(1);
     });
 
@@ -396,8 +397,8 @@ describe('Edge Cases', () => {
     const metrics = computeSessionMetrics(keystrokes, targetText, typedText);
     
     expect(metrics.backspaceCount).toBe(4);
-    expect(metrics.accuracy).toBe(99.99); // Capped at 99.99% due to backspace
-    expect(metrics.accuracy).toBeLessThanOrEqual(99.99);
+    expect(metrics.accuracy).toBe(100); // Capped at 100% due to backspace
+    expect(metrics.accuracy).toBeLessThanOrEqual(100);
     expect(isFinite(metrics.netWpm)).toBe(true);
     expect(metrics.netWpm).toBeGreaterThanOrEqual(0);
     // Determinism
@@ -496,9 +497,9 @@ describe('Edge Cases', () => {
     expect(accuracy).toBe(80); // 80 / 100
   });
 
-  it('should cap accuracy at 99.99% with backspace even if perfect', () => {
+  it('preserves perfect final text after a correction', () => {
     const accuracy = calculateAccuracy(100, 0, 0, 0, true);
-    expect(accuracy).toBe(99.99);
+    expect(accuracy).toBe(100);
   });
 
   it('should handle accuracy with backspace but errors present', () => {

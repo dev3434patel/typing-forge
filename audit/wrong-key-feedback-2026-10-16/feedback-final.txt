@@ -1,0 +1,45 @@
+
+> typing-forge@3.0.0 test:e2e
+> playwright test e2e/wrong-key-feedback.spec.ts e2e/learning-v3.spec.ts --grep wrong|rejected --workers=1 --reporter=list,json --output=audit/wrong-key-feedback-2026-10-16/feedback-final-artifacts
+
+
+Running 30 tests using 1 worker
+
+(node:32212) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › e2e\learning-v3.spec.ts:4:1 › learning shows the pressed wrong letter and advances by default, with corrections still counted (3.2s)
+  ok  2 [chromium] › e2e\learning-v3.spec.ts:35:1 › learning records rejected attempts and saves exactly one immutable result (3.0s)
+  ok  3 [chromium] › e2e\learning-v3.spec.ts:66:1 › learning preserves wrong-key feedback when one stop-mode input batch ends correctly (1.4s)
+  ok  4 [chromium] › e2e\wrong-key-feedback.spec.ts:5:1 › a retained wrong letter is visible in place, advances, and can be corrected honestly (1.9s)
+  ok  5 [chromium] › e2e\wrong-key-feedback.spec.ts:48:1 › explicit precision mode shows the rejected key and expected character (1.2s)
+  ok  6 [chromium] › e2e\wrong-key-feedback.spec.ts:85:1 › an early space has visible input feedback even when the final separator aligns correctly (944ms)
+  ok  7 [chromium] › e2e\wrong-key-feedback.spec.ts:104:1 › overtyping a word reports the actual input and the missing separator (903ms)
+  ok  8 [chromium] › e2e\wrong-key-feedback.spec.ts:117:1 › wrong code newline and tab input have visible glyphs (791ms)
+  ok  9 [chromium] › e2e\wrong-key-feedback.spec.ts:141:1 › wrong composed input shows the normalized committed letter and counts one attempt (1.3s)
+  ok 10 [chromium] › e2e\wrong-key-feedback.spec.ts:194:1 › wrong-key feedback fits mobile and restarting clears the previous input (1.0s)
+(node:72004) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 11 [firefox] › e2e\learning-v3.spec.ts:4:1 › learning shows the pressed wrong letter and advances by default, with corrections still counted (9.3s)
+  ok 12 [firefox] › e2e\learning-v3.spec.ts:35:1 › learning records rejected attempts and saves exactly one immutable result (4.0s)
+  ok 13 [firefox] › e2e\learning-v3.spec.ts:66:1 › learning preserves wrong-key feedback when one stop-mode input batch ends correctly (1.5s)
+  ok 14 [firefox] › e2e\wrong-key-feedback.spec.ts:5:1 › a retained wrong letter is visible in place, advances, and can be corrected honestly (3.4s)
+  ok 15 [firefox] › e2e\wrong-key-feedback.spec.ts:48:1 › explicit precision mode shows the rejected key and expected character (1.6s)
+  ok 16 [firefox] › e2e\wrong-key-feedback.spec.ts:85:1 › an early space has visible input feedback even when the final separator aligns correctly (1.3s)
+  ok 17 [firefox] › e2e\wrong-key-feedback.spec.ts:104:1 › overtyping a word reports the actual input and the missing separator (1.2s)
+  ok 18 [firefox] › e2e\wrong-key-feedback.spec.ts:117:1 › wrong code newline and tab input have visible glyphs (1.3s)
+  ok 19 [firefox] › e2e\wrong-key-feedback.spec.ts:141:1 › wrong composed input shows the normalized committed letter and counts one attempt (1.7s)
+  ok 20 [firefox] › e2e\wrong-key-feedback.spec.ts:194:1 › wrong-key feedback fits mobile and restarting clears the previous input (2.2s)
+(node:45204) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 21 [webkit] › e2e\learning-v3.spec.ts:4:1 › learning shows the pressed wrong letter and advances by default, with corrections still counted (7.8s)
+  ok 22 [webkit] › e2e\learning-v3.spec.ts:35:1 › learning records rejected attempts and saves exactly one immutable result (6.9s)
+  ok 23 [webkit] › e2e\learning-v3.spec.ts:66:1 › learning preserves wrong-key feedback when one stop-mode input batch ends correctly (2.7s)
+  ok 24 [webkit] › e2e\wrong-key-feedback.spec.ts:5:1 › a retained wrong letter is visible in place, advances, and can be corrected honestly (5.1s)
+  ok 25 [webkit] › e2e\wrong-key-feedback.spec.ts:48:1 › explicit precision mode shows the rejected key and expected character (2.5s)
+  ok 26 [webkit] › e2e\wrong-key-feedback.spec.ts:85:1 › an early space has visible input feedback even when the final separator aligns correctly (2.5s)
+  ok 27 [webkit] › e2e\wrong-key-feedback.spec.ts:104:1 › overtyping a word reports the actual input and the missing separator (2.5s)
+  ok 28 [webkit] › e2e\wrong-key-feedback.spec.ts:117:1 › wrong code newline and tab input have visible glyphs (5.0s)
+  ok 29 [webkit] › e2e\wrong-key-feedback.spec.ts:141:1 › wrong composed input shows the normalized committed letter and counts one attempt (4.9s)
+  ok 30 [webkit] › e2e\wrong-key-feedback.spec.ts:194:1 › wrong-key feedback fits mobile and restarting clears the previous input (2.0s)
+
+  30 passed (1.5m)

@@ -1,0 +1,182 @@
+
+> typing-forge@3.0.0 test:e2e
+> playwright test e2e/profile-flow.spec.ts --grep the keyboard command palette --repeat-each=3 --workers=1 --reporter=list,json --output=audit/accuracy-research-2026-10-15/shortcut-readiness-artifacts
+
+
+Running 9 tests using 1 worker
+
+(node:79736) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands (2.1s)
+(node:67172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 2 [chromium] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands (1.9s)
+(node:43924) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 3 [chromium] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands (1.5s)
+(node:88644) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 4 [firefox] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands (5.1s)
+(node:41880) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 5 [firefox] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands (4.3s)
+(node:86944) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  6 [firefox] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands (37.0s)
+(node:74372) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  7 [webkit] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands (12.4s)
+(node:84668) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  8 [webkit] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands (12.1s)
+(node:55868) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  9 [webkit] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands (9.8s)
+
+
+  1) [firefox] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog', { name: 'Typing Forge commands', exact: true }).getByRole('combobox')
+        - locator resolved to <input value="" type="text" cmdk-input="" role="combobox" id="radix-:r5:" autocorrect="off" autocomplete="off" spellcheck="false" aria-expanded="true" aria-autocomplete="list" aria-controls="radix-:r3:" aria-labelledby="radix-:r4:" placeholder="Where would you like to go?" class="flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"/>
+
+
+      27 |   await page.keyboard.press('ControlOrMeta+k');
+      28 |   const dialog = page.getByRole('dialog', { name: 'Typing Forge commands', exact: true }); await expect(dialog).toBeVisible();
+    > 29 |   await dialog.getByRole('combobox').fill('Aurora'); await page.keyboard.press('Enter');
+         |                                      ^
+      30 |   await expect(page.locator('html')).toHaveAttribute('data-theme', 'aurora');
+      31 |   await page.keyboard.press('ControlOrMeta+k'); await dialog.getByRole('combobox').fill('Adaptive learning'); await page.keyboard.press('Enter');
+      32 |   await expect(page).toHaveURL('/learn'); await expect(page.getByRole('heading', { name: 'Make every key feel natural.', exact: true })).toBeVisible();
+        at D:\extra\typing_updated\typing-forge\e2e\profile-flow.spec.ts:29:38
+
+    Error Context: audit\accuracy-research-2026-10-15\shortcut-readiness-artifacts\profile-flow-the-keyboard--1e78d-tes-using-concrete-commands-firefox-repeat2\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\accuracy-research-2026-10-15\shortcut-readiness-artifacts\profile-flow-the-keyboard--1e78d-tes-using-concrete-commands-firefox-repeat2\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\accuracy-research-2026-10-15\shortcut-readiness-artifacts\profile-flow-the-keyboard--1e78d-tes-using-concrete-commands-firefox-repeat2\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [webkit] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: 'Typing Forge commands', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: 'Typing Forge commands', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: 'Typing Forge commands', exact: true })
+
+
+      26 |   await expect(page.getByRole('button', { name: 'Open command palette', exact: true })).toBeVisible();
+      27 |   await page.keyboard.press('ControlOrMeta+k');
+    > 28 |   const dialog = page.getByRole('dialog', { name: 'Typing Forge commands', exact: true }); await expect(dialog).toBeVisible();
+         |                                                                                                                 ^
+      29 |   await dialog.getByRole('combobox').fill('Aurora'); await page.keyboard.press('Enter');
+      30 |   await expect(page.locator('html')).toHaveAttribute('data-theme', 'aurora');
+      31 |   await page.keyboard.press('ControlOrMeta+k'); await dialog.getByRole('combobox').fill('Adaptive learning'); await page.keyboard.press('Enter');
+        at D:\extra\typing_updated\typing-forge\e2e\profile-flow.spec.ts:28:113
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\accuracy-research-2026-10-15\shortcut-readiness-artifacts\profile-flow-the-keyboard--1e78d-tes-using-concrete-commands-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\accuracy-research-2026-10-15\shortcut-readiness-artifacts\profile-flow-the-keyboard--1e78d-tes-using-concrete-commands-webkit\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\accuracy-research-2026-10-15\shortcut-readiness-artifacts\profile-flow-the-keyboard--1e78d-tes-using-concrete-commands-webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\accuracy-research-2026-10-15\shortcut-readiness-artifacts\profile-flow-the-keyboard--1e78d-tes-using-concrete-commands-webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [webkit] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: 'Typing Forge commands', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: 'Typing Forge commands', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: 'Typing Forge commands', exact: true })
+
+
+      26 |   await expect(page.getByRole('button', { name: 'Open command palette', exact: true })).toBeVisible();
+      27 |   await page.keyboard.press('ControlOrMeta+k');
+    > 28 |   const dialog = page.getByRole('dialog', { name: 'Typing Forge commands', exact: true }); await expect(dialog).toBeVisible();
+         |                                                                                                                 ^
+      29 |   await dialog.getByRole('combobox').fill('Aurora'); await page.keyboard.press('Enter');
+      30 |   await expect(page.locator('html')).toHaveAttribute('data-theme', 'aurora');
+      31 |   await page.keyboard.press('ControlOrMeta+k'); await dialog.getByRole('combobox').fill('Adaptive learning'); await page.keyboard.press('Enter');
+        at D:\extra\typing_updated\typing-forge\e2e\profile-flow.spec.ts:28:113
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\accuracy-research-2026-10-15\shortcut-readiness-artifacts\profile-flow-the-keyboard--1e78d-tes-using-concrete-commands-webkit-repeat1\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\accuracy-research-2026-10-15\shortcut-readiness-artifacts\profile-flow-the-keyboard--1e78d-tes-using-concrete-commands-webkit-repeat1\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\accuracy-research-2026-10-15\shortcut-readiness-artifacts\profile-flow-the-keyboard--1e78d-tes-using-concrete-commands-webkit-repeat1\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\accuracy-research-2026-10-15\shortcut-readiness-artifacts\profile-flow-the-keyboard--1e78d-tes-using-concrete-commands-webkit-repeat1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [webkit] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: 'Typing Forge commands', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: 'Typing Forge commands', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: 'Typing Forge commands', exact: true })
+
+
+      26 |   await expect(page.getByRole('button', { name: 'Open command palette', exact: true })).toBeVisible();
+      27 |   await page.keyboard.press('ControlOrMeta+k');
+    > 28 |   const dialog = page.getByRole('dialog', { name: 'Typing Forge commands', exact: true }); await expect(dialog).toBeVisible();
+         |                                                                                                                 ^
+      29 |   await dialog.getByRole('combobox').fill('Aurora'); await page.keyboard.press('Enter');
+      30 |   await expect(page.locator('html')).toHaveAttribute('data-theme', 'aurora');
+      31 |   await page.keyboard.press('ControlOrMeta+k'); await dialog.getByRole('combobox').fill('Adaptive learning'); await page.keyboard.press('Enter');
+        at D:\extra\typing_updated\typing-forge\e2e\profile-flow.spec.ts:28:113
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\accuracy-research-2026-10-15\shortcut-readiness-artifacts\profile-flow-the-keyboard--1e78d-tes-using-concrete-commands-webkit-repeat2\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\accuracy-research-2026-10-15\shortcut-readiness-artifacts\profile-flow-the-keyboard--1e78d-tes-using-concrete-commands-webkit-repeat2\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\accuracy-research-2026-10-15\shortcut-readiness-artifacts\profile-flow-the-keyboard--1e78d-tes-using-concrete-commands-webkit-repeat2\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\accuracy-research-2026-10-15\shortcut-readiness-artifacts\profile-flow-the-keyboard--1e78d-tes-using-concrete-commands-webkit-repeat2\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4 failed
+    [firefox] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands 
+    [webkit] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands 
+    [webkit] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands 
+    [webkit] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands 
+  5 passed (2.4m)

@@ -1,858 +1,712 @@
-import { useCallback, useEffect, useRef, useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useTestStore } from '@/stores/test-store';
-import { 
-  calculateWPM, 
-  calculateAccuracy, 
-  calculateConsistency,
-  getCharacterStates,
-  type TypingStats 
-} from '@/lib/typing-engine';
-import { type Keystroke } from '@/lib/professional-accuracy';
-import { generateRandomWords, getRandomQuote, type Quote } from '@/lib/quotes';
-import { getRandomCodeSnippet } from '@/lib/content-library';
-import { cn } from '@/lib/utils';
-import { RotateCcw } from 'lucide-react';
-import { KeyboardVisualizer } from './KeyboardVisualizer';
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+} from "react";
+import {
+  Pause,
+  Play,
+  RotateCcw,
+  Flag,
+  Keyboard,
+  Eye,
+  EyeOff,
+} from "lucide-react";
+import {
+  SessionController,
+  graphemes,
+  utf16ToGraphemeOffset,
+  type SessionConfig,
+  type SessionResult,
+  type SessionSnapshot,
+  type InputProvenance,
+} from "@/lib/typing-core";
+import { usePreferences } from "@/contexts/PreferencesContext";
+import { getContentPack } from "@/lib/content-packs";
+import { cn } from "@/lib/utils";
+import { TypingPassage } from "./TypingPassage";
+import { TypingFeedback } from "./TypingFeedback";
+import { OpponentPaceMarker } from "./OpponentPaceMarker";
+import { opponentPacePosition, type RacePace } from "@/lib/race-pace";
 
-interface TypingAreaProps {
-  onTestComplete: (stats: TypingStats & { 
-    wpmHistory: number[]; 
-    backspaceCount: number;
-    keystrokeLog: Keystroke[];
-    targetText: string;
-    typedText: string;
-  }) => void;
+interface Props {
+  configuration: SessionConfig;
+  onTestComplete: (result: SessionResult) => void;
+  onRestart?: () => void;
+  onStatusChange?: (status: SessionSnapshot["status"]) => void;
+  appendContent?: () => string;
+  controller?: SessionController;
+  onSnapshot?: (snapshot: SessionSnapshot) => void;
+  opponentPace?: RacePace;
+  autoFocus?: boolean;
 }
-
-export function TypingArea({ onTestComplete }: TypingAreaProps) {
-  const {
-    settings,
-    status,
-    targetText,
-    typedText,
-    startTime,
-    wpmHistory,
-    setTargetText,
-    startTest,
-    updateTypedText,
-    finishTest,
-    resetTest,
-    addWpmSample,
-  } = useTestStore();
-  
-  const inputRef = useRef<HTMLInputElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const textDisplayRef = useRef<HTMLDivElement>(null);
-  const [timeRemaining, setTimeRemaining] = useState<number>(settings.duration);
-  const [scrollOffset, setScrollOffset] = useState(0);
-  const [currentWpm, setCurrentWpm] = useState(0);
-  const [currentAccuracy, setCurrentAccuracy] = useState(100);
-  const [isFocused, setIsFocused] = useState(false);
-  const [zenWordsTyped, setZenWordsTyped] = useState(0);
-  const [zenElapsedTime, setZenElapsedTime] = useState(0);
-  const [currentKeyPressed, setCurrentKeyPressed] = useState<string | undefined>();
-  const [errorKeys, setErrorKeys] = useState<Set<string>>(new Set());
-  const [currentQuote, setCurrentQuote] = useState<Quote | null>(null);
-  
-  // NEW: Ready state - paragraph visible, waiting for first keystroke
-  const [isReady, setIsReady] = useState(false);
-  const [showTabHint, setShowTabHint] = useState(false);
-  
-  // CRITICAL: Track backspace usage for strict accuracy
-  const [backspaceCount, setBackspaceCount] = useState(0);
-  const [totalKeystrokes, setTotalKeystrokes] = useState(0);
-  
-  // PROFESSIONAL ACCURACY: Track all keystrokes with timestamps
-  const [keystrokeLog, setKeystrokeLog] = useState<Keystroke[]>([]);
-  const testStartTimeRef = useRef<number>(0);
-  
-  // Track completed word indices for word-level locking
-  const [completedWordEndIndices, setCompletedWordEndIndices] = useState<number[]>([]);
-  
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const wpmIntervalRef = useRef<NodeJS.Timeout | null>(null);
-  const zenTimerRef = useRef<NodeJS.Timeout | null>(null);
-  const statsRef = useRef({ wpm: 0, accuracy: 100, correctChars: 0, incorrectChars: 0, totalChars: 0, elapsedTime: 0 });
-  
-  // REACT-SAFE: Generate text only in useEffect, never during render
-  // This prevents "Cannot update component while rendering" warnings
+const number = (value: number | null, decimals = 0) =>
+  value === null ? "—" : value.toFixed(decimals);
+export function TypingArea({
+  configuration,
+  onTestComplete,
+  onRestart,
+  onStatusChange,
+  appendContent,
+  controller: supplied,
+  onSnapshot,
+  opponentPace,
+  autoFocus,
+}: Props) {
+  const { preferences: p } = usePreferences();
+  const [controller] = useState(
+    () =>
+      supplied ??
+      new SessionController(configuration, {
+        now: () => performance.now(),
+        wallNow: () => Date.now(),
+      }),
+  );
+  const [snapshot, setSnapshot] = useState(() => controller.snapshot());
+  const [value, setValue] = useState(""),
+    [focused, setFocused] = useState(false),
+    [revealed, setRevealed] = useState(false);
+  const [caretPosition, setCaretPosition] = useState<{
+    left: number;
+    top: number;
+    height: number;
+  } | null>(null);
+  const textarea = useRef<HTMLTextAreaElement>(null),
+    caret = useRef<HTMLSpanElement>(null),
+    viewport = useRef<HTMLDivElement>(null),
+    passage = useRef<HTMLDivElement>(null),
+    resumeButton = useRef<HTMLButtonElement>(null);
+  const composing = useRef(false),
+    provenance = useRef<InputProvenance>("keyboard"),
+    finished = useRef(false),
+    committedComposition = useRef<string | null>(null);
+  const callbacks = useRef({
+    onTestComplete,
+    onStatusChange,
+    appendContent,
+    onSnapshot,
+  });
+  callbacks.current = {
+    onTestComplete,
+    onStatusChange,
+    appendContent,
+    onSnapshot,
+  };
+  const audio = useRef<AudioContext | null>(null);
+  const canPause = configuration.mode !== "race" && !configuration.challengeId;
+  const tabIndents =
+    configuration.mode === "code" &&
+    configuration.settings?.tabIndents === true;
+  const update = useCallback(
+    (next: SessionSnapshot) => {
+      if (
+        callbacks.current.appendContent &&
+        ["time", "zen"].includes(configuration.mode) &&
+        graphemes(next.targetText).length - next.cursor < 160 &&
+        next.status !== "finished"
+      ) {
+        controller.appendTarget(` ${callbacks.current.appendContent()}`);
+        next = controller.snapshot();
+      }
+      setSnapshot(next);
+      callbacks.current.onSnapshot?.(next);
+      callbacks.current.onStatusChange?.(next.status);
+      if (
+        next.status === "finished" &&
+        controller.result &&
+        !finished.current
+      ) {
+        finished.current = true;
+        callbacks.current.onTestComplete(controller.result);
+      }
+    },
+    [controller, configuration.mode],
+  );
   useEffect(() => {
-    // Only generate text when settings change or when test is reset
-    if (status === 'idle' || status === 'finished') {
-      let text = '';
-      switch (settings.mode) {
-        case 'quote':
-          const quote = getRandomQuote();
-          setCurrentQuote(quote);
-          text = quote.text;
-          break;
-        case 'words':
-          text = generateRandomWords(settings.wordCount, settings.punctuation, settings.numbers);
-          break;
-        case 'code':
-          // Get code snippet for selected language
-          const codeSnippet = getRandomCodeSnippet(settings.codeLanguage);
-          text = codeSnippet.content;
-          break;
-        case 'time':
-        case 'zen':
-        default:
-          text = generateRandomWords(200, settings.punctuation, settings.numbers);
-          break;
-      }
-      
-      // Update store state in effect (safe, not during render)
-      setTargetText(text);
-      setTimeRemaining(settings.duration);
-      setBackspaceCount(0);
-      setTotalKeystrokes(0);
-      setCompletedWordEndIndices([]);
-      setKeystrokeLog([]);
-      testStartTimeRef.current = 0;
-      // Clear quote when switching modes
-      if (settings.mode !== 'quote') {
-        setCurrentQuote(null);
-      }
-    }
-  }, [
-    settings.mode,
-    settings.wordCount,
-    settings.punctuation,
-    settings.numbers,
-    settings.codeLanguage,
-    settings.duration,
-    status,
-    setTargetText,
-  ]);
-  
-  // Pre-calculate word boundaries from target text
-  const wordBoundaries = useMemo(() => {
-    const boundaries: number[] = [];
-    for (let i = 0; i < targetText.length; i++) {
-      if (targetText[i] === ' ') {
-        boundaries.push(i);
-      }
-    }
-    return boundaries;
-  }, [targetText]);
-  
-  // LIVE METRICS: Calculate stats for real-time UI updates
-  // NOTE: These use typing-engine functions which delegate to metrics-engine.ts
-  // For final metrics, use metrics-engine.computeSessionMetrics() with keystroke log
-  // Reference: metrics-engine.ts -> calculateWpm() and calculateAccuracy()
-  // Formula: WPM = (correctChars / 5) / (elapsedMs / 60000)
-  // Formula: Accuracy = (correctChars / totalTypedChars) * 100, capped at 99.99% if backspace used
-  const stats = useMemo(() => {
-    let correctChars = 0;
-    let incorrectChars = 0;
-    
-    for (let i = 0; i < typedText.length; i++) {
-      if (typedText[i] === targetText[i]) {
-        correctChars++;
-      } else {
-        incorrectChars++;
-      }
-    }
-    
-    const elapsedTime = startTime ? (Date.now() - startTime) / 1000 : 0;
-    // typing-engine.calculateWPM delegates to metrics-engine.calculateWpm
-    const wpm = calculateWPM(correctChars, elapsedTime);
-    
-    // CRITICAL: Calculate accuracy - if backspace used, cap at 99.99%
-    // typing-engine.calculateAccuracy delegates to metrics-engine.calculateAccuracy
-    let accuracy = calculateAccuracy(correctChars, typedText.length);
-    if (backspaceCount > 0 && accuracy === 100) {
-      accuracy = 99.99;
-    }
-    
-    const result = {
-      wpm,
-      accuracy,
-      correctChars,
-      incorrectChars,
-      totalChars: typedText.length,
-      elapsedTime,
+    const timer = setInterval(() => update(controller.tick()), 100);
+    return () => clearInterval(timer);
+  }, [controller, update]);
+  useLayoutEffect(() => {
+    const container = viewport.current;
+    const text = passage.current;
+    if (!container || !text) return;
+    let active = true;
+    const measure = () => {
+      if (!active || !caret.current) return;
+      const marker = caret.current.getBoundingClientRect();
+      const bounds = container.getBoundingClientRect();
+      const top = marker.top - bounds.top + container.scrollTop;
+      const left = marker.left - bounds.left + container.scrollLeft;
+      setCaretPosition((previous) =>
+        previous?.top === top &&
+        previous.left === left &&
+        previous.height === marker.height
+          ? previous
+          : { top, left, height: marker.height },
+      );
+      // Keep the active line in the middle row; never scroll part of a line.
+      const lineHeight = parseFloat(getComputedStyle(text).lineHeight);
+      const row = Math.floor(Math.max(0, top) / lineHeight);
+      container.scrollTop = Math.max(0, row - 1) * lineHeight;
     };
-    
-    statsRef.current = result;
-    return result;
-  }, [typedText, targetText, startTime, backspaceCount]);
-  
-  // Update live stats
-  useEffect(() => {
-    setCurrentWpm(stats.wpm);
-    setCurrentAccuracy(stats.accuracy);
-  }, [stats]);
-  
-  // Timer for time mode
-  useEffect(() => {
-    if (status === 'running' && settings.mode === 'time') {
-      intervalRef.current = setInterval(() => {
-        setTimeRemaining((prev) => {
-          if (prev <= 1) {
-            finishTest();
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-      
-      // Sample WPM every second using ref to avoid stale closure
-      wpmIntervalRef.current = setInterval(() => {
-        addWpmSample(statsRef.current.wpm);
-      }, 1000);
-    }
-    
-    // Zen mode timer - just track elapsed time
-    if (status === 'running' && settings.mode === 'zen') {
-      zenTimerRef.current = setInterval(() => {
-        setZenElapsedTime((prev) => prev + 1);
-      }, 1000);
-    }
-    
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(container);
+    observer.observe(text);
+    void document.fonts.ready.then(measure);
     return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-      if (wpmIntervalRef.current) clearInterval(wpmIntervalRef.current);
-      if (zenTimerRef.current) clearInterval(zenTimerRef.current);
+      active = false;
+      observer.disconnect();
     };
-  }, [status, settings.mode, finishTest, addWpmSample]);
-  
-  // Track words typed for Zen mode
+  }, [
+    snapshot.cursor,
+    snapshot.finalText,
+    snapshot.targetText,
+    p.fontSize,
+    focused,
+    revealed,
+  ]);
   useEffect(() => {
-    if (settings.mode === 'zen' && typedText.length > 0) {
-      const words = typedText.trim().split(/\s+/).filter(w => w.length > 0);
-      setZenWordsTyped(words.length);
-    }
-  }, [typedText, settings.mode]);
-  
-  // Check for completion in words/quote mode
+    // Desktop users can type immediately. Touch users choose when to open their keyboard.
+    if (autoFocus ?? matchMedia("(pointer: fine)").matches)
+      textarea.current?.focus({ preventScroll: true });
+  }, [autoFocus]);
+  useLayoutEffect(() => {
+    if (snapshot.status !== "paused") return;
+    resumeButton.current?.focus({ preventScroll: true });
+    viewport.current?.scrollIntoView({ block: "center", behavior: "instant" });
+  }, [snapshot.status]);
   useEffect(() => {
-    if (status === 'running' && (settings.mode === 'words' || settings.mode === 'quote')) {
-      if (typedText.length >= targetText.length) {
-        finishTest();
-      }
+    document.documentElement.classList.toggle(
+      "forge-focused",
+      focused && snapshot.status === "running",
+    );
+    return () => document.documentElement.classList.remove("forge-focused");
+  }, [focused, snapshot.status]);
+  useEffect(
+    () => () => {
+      void audio.current?.close();
+    },
+    [],
+  );
+  const sound = () => {
+    if (!p.sound || !p.volume) return;
+    try {
+      const context = (audio.current ??= new AudioContext());
+      void context.resume();
+      const oscillator = context.createOscillator(),
+        gain = context.createGain();
+      oscillator.type = "sine";
+      oscillator.frequency.value = 480;
+      gain.gain.setValueAtTime(p.volume * 0.045, context.currentTime);
+      gain.gain.exponentialRampToValueAtTime(
+        0.0001,
+        context.currentTime + 0.025,
+      );
+      oscillator.connect(gain);
+      gain.connect(context.destination);
+      oscillator.start();
+      oscillator.stop(context.currentTime + 0.025);
+    } catch {
+      /* Sound is optional. */
     }
-  }, [typedText, targetText, status, settings.mode, finishTest]);
-  
-  // Handle test completion
-  useEffect(() => {
-    if (status === 'finished') {
-      const consistency = calculateConsistency(wpmHistory);
-      onTestComplete({
-        wpm: stats.wpm,
-        rawWpm: stats.wpm,
-        accuracy: stats.accuracy,
-        correctChars: stats.correctChars,
-        incorrectChars: stats.incorrectChars,
-        totalChars: stats.totalChars,
-        errors: stats.incorrectChars,
-        elapsedTime: stats.elapsedTime,
-        consistency,
-        wpmHistory,
-        backspaceCount,
-        keystrokeLog,
-        targetText,
-        typedText, // Pass actual typed text
-      });
+  };
+  const commit = (
+    newValue: string,
+    source: InputProvenance = provenance.current,
+    compositionId?: string,
+  ) => {
+    const oldUnits = graphemes(controller.snapshot().finalText),
+      newUnits = graphemes(
+        configuration.scoringPolicy === "code"
+          ? newValue
+          : newValue.normalize("NFC"),
+      );
+    let start = 0;
+    while (
+      start < oldUnits.length &&
+      start < newUnits.length &&
+      oldUnits[start] === newUnits[start]
+    )
+      start++;
+    let end = oldUnits.length,
+      newEnd = newUnits.length;
+    while (
+      end > start &&
+      newEnd > start &&
+      oldUnits[end - 1] === newUnits[newEnd - 1]
+    ) {
+      end--;
+      newEnd--;
     }
-  }, [status, stats, wpmHistory, onTestComplete, backspaceCount, keystrokeLog, targetText, typedText]);
-  
-  // Handle keyboard input - start test on first keystroke
-  const handleInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    // Start test on first keystroke if idle
-    if (status === 'idle') {
-      startTest();
-      testStartTimeRef.current = performance.now();
-    }
-    
-    if (status === 'finished') return;
-    
-    const value = e.target.value;
-    const isBackspace = value.length < typedText.length;
-    const currentTimestamp = performance.now() - testStartTimeRef.current;
-    
-    // WORD-LEVEL LOCKING: Prevent backspace to previous completed words
-    if (isBackspace) {
-      // Find the last completed word boundary
-      const lastCompletedBoundary = completedWordEndIndices.length > 0 
-        ? completedWordEndIndices[completedWordEndIndices.length - 1] 
-        : -1;
-      
-      // If trying to backspace past a completed word boundary, prevent it
-      // User can backspace within current word (even if first char of new word)
-      if (value.length < lastCompletedBoundary) {
-        e.target.value = typedText;
-        return;
-      }
-      
-      // Track backspace for accuracy penalty
-      setBackspaceCount(prev => prev + 1);
-      
-      // Log backspace keystroke
-      setKeystrokeLog(prev => [...prev, {
-        key: 'Backspace',
-        char: '',
-        timestamp: currentTimestamp,
-        position: value.length,
-        expected: targetText[value.length] || '',
-        isCorrect: false,
-      }]);
-    }
-    
-    // Track total keystrokes
-    setTotalKeystrokes(prev => prev + 1);
-    
-    // Track word completion (when space is typed after a word)
-    if (!isBackspace && value.length > typedText.length) {
-      const lastChar = value[value.length - 1];
-      const lastIndex = value.length - 1;
-      const expectedChar = targetText[lastIndex];
-      const isCorrect = lastChar === expectedChar;
-      
-      // Log keystroke with full details
-      setKeystrokeLog(prev => [...prev, {
-        key: lastChar,
-        char: lastChar,
-        timestamp: currentTimestamp,
-        position: lastIndex,
-        expected: expectedChar || '',
-        isCorrect,
-      }]);
-      
-      // If space was typed and it's at a word boundary, lock the word
-      if (lastChar === ' ' && wordBoundaries.includes(lastIndex)) {
-        setCompletedWordEndIndices(prev => [...prev, lastIndex + 1]);
-      }
-      
-      // Track current key for keyboard visualization
-      setCurrentKeyPressed(lastChar);
-      
-      // Track error keys
-      if (!isCorrect && expectedChar) {
-        setErrorKeys(prev => new Set([...prev, lastChar.toLowerCase()]));
-        setTimeout(() => {
-          setErrorKeys(prev => {
-            const newSet = new Set(prev);
-            newSet.delete(lastChar.toLowerCase());
-            return newSet;
-          });
-        }, 300);
-      }
-      
-      // Clear current key highlight after brief moment
-      setTimeout(() => setCurrentKeyPressed(undefined), 100);
-    }
-    
-    // Don't allow typing beyond target
-    if (value.length <= targetText.length) {
-      updateTypedText(value);
-    }
-  }, [status, startTest, updateTypedText, targetText, typedText, wordBoundaries, completedWordEndIndices]);
-  
-    // REACT-SAFE: Helper to regenerate text (called from handlers, not render)
-  const regenerateText = useCallback(() => {
-    let text = '';
-    switch (settings.mode) {
-      case 'quote':
-        const quote = getRandomQuote();
-        setCurrentQuote(quote);
-        text = quote.text;
-        break;
-      case 'words':
-        text = generateRandomWords(settings.wordCount, settings.punctuation, settings.numbers);
-        break;
-      case 'code':
-        // Get code snippet for selected language
-        const codeSnippet = getRandomCodeSnippet(settings.codeLanguage);
-        text = codeSnippet.content;
-        break;
-      case 'time':
-      case 'zen':
-      default:
-        text = generateRandomWords(200, settings.punctuation, settings.numbers);
-        break;
-    }
-    setTargetText(text);
-    setTimeRemaining(settings.duration);
-    setBackspaceCount(0);
-    setTotalKeystrokes(0);
-    setCompletedWordEndIndices([]);
-    setKeystrokeLog([]);
-    testStartTimeRef.current = 0;
-  }, [settings.mode, settings.wordCount, settings.punctuation, settings.numbers, settings.codeLanguage, settings.duration, setTargetText]);
-
-  // Handle key down events - NO timer start on Enter, only on first character typed
-  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    // Tab key - show restart hint or restart if already showing
-    if (e.key === 'Tab') {
-      e.preventDefault();
-      if (showTabHint || status === 'running') {
-        // Actually restart
-        resetTest();
-        regenerateText();
-        setIsReady(false);
-        setShowTabHint(false);
-        inputRef.current?.focus();
-      } else {
-        // Show the restart hint
-        setShowTabHint(true);
-      }
-      return;
-    }
-    
-    // Enter key when idle - show paragraph (ready state)
-    if (status === 'idle' && e.key === 'Enter') {
-      e.preventDefault();
-      setIsReady(true);
-      setShowTabHint(false);
-      inputRef.current?.focus();
-      return;
-    }
-    
-    // Enter key when ready with tab hint showing - start new test
-    if (isReady && showTabHint && e.key === 'Enter') {
-      e.preventDefault();
-      resetTest();
-      regenerateText();
-      setIsReady(true);
-      setShowTabHint(false);
-      inputRef.current?.focus();
-      return;
-    }
-  }, [status, resetTest, regenerateText, showTabHint, isReady]);
-  
-  // Global keyboard listener - Tab to show restart hint, Enter to reveal paragraph
-  useEffect(() => {
-    const handleGlobalKeyDown = (e: KeyboardEvent) => {
-      // Tab key handling
-      if (e.key === 'Tab' && status !== 'finished') {
-        e.preventDefault();
-        if (showTabHint || status === 'running') {
-          // Actually restart
-          resetTest();
-          regenerateText();
-          setIsReady(false);
-          setShowTabHint(false);
-          inputRef.current?.focus();
-        } else {
-          // Show the restart hint
-          setShowTabHint(true);
-        }
-        return;
-      }
-      
-      // Enter when idle - reveal paragraph (ready state)
-      if (status === 'idle' && e.key === 'Enter') {
-        e.preventDefault();
-        setIsReady(true);
-        setShowTabHint(false);
-        inputRef.current?.focus();
-        return;
-      }
-      
-      // Enter when ready with tab hint - start new test
-      if (isReady && showTabHint && e.key === 'Enter') {
-        e.preventDefault();
-        resetTest();
-        regenerateText();
-        setIsReady(true);
-        setShowTabHint(false);
-        inputRef.current?.focus();
-      }
-    };
-    
-    window.addEventListener('keydown', handleGlobalKeyDown);
-    return () => window.removeEventListener('keydown', handleGlobalKeyDown);
-  }, [status, resetTest, regenerateText, showTabHint, isReady]);
-  
-  // Focus input on click - allow starting by clicking (reveals paragraph)
-  const handleClick = useCallback(() => {
-    if (status === 'idle') {
-      setIsReady(true);
-      setShowTabHint(false);
-    }
-    inputRef.current?.focus();
-  }, [status]);
-  
-  // Handle restart
-  const handleRestart = useCallback(() => {
-    resetTest();
-    regenerateText();
-    setScrollOffset(0);
-    setZenWordsTyped(0);
-    setZenElapsedTime(0);
-    setCurrentKeyPressed(undefined);
-    setErrorKeys(new Set());
-    setBackspaceCount(0);
-    setTotalKeystrokes(0);
-    setCompletedWordEndIndices([]);
-    setIsReady(false);
-    setShowTabHint(false);
-    setKeystrokeLog([]);
-    testStartTimeRef.current = 0;
-    inputRef.current?.focus();
-  }, [resetTest, regenerateText]);
-  
-  // Define extended type for space handling
-  type ExtendedCharState = ReturnType<typeof getCharacterStates>[0] & { isSpace?: boolean; isLocked?: boolean };
-  
-  // Get character states for rendering - grouped by words with space handling and locking
-  const wordGroups = useMemo(() => {
-    const states = getCharacterStates(targetText, typedText, typedText.length);
-    const words: { chars: ExtendedCharState[]; hasSpace: boolean; spaceState?: ExtendedCharState; isLocked: boolean }[] = [];
-    let currentWord: ExtendedCharState[] = [];
-    let currentWordStartIdx = 0;
-    
-    states.forEach((charState, idx) => {
-      if (charState.char === ' ') {
-        if (currentWord.length > 0 || words.length === 0) {
-          // Check if this word is locked (completed)
-          const wordEndIdx = idx;
-          const isLocked = completedWordEndIndices.some(boundary => boundary > currentWordStartIdx && boundary <= wordEndIdx + 1);
-          
-          words.push({ 
-            chars: currentWord, 
-            hasSpace: true,
-            spaceState: { ...charState, isSpace: true },
-            isLocked
-          });
-          currentWord = [];
-          currentWordStartIdx = idx + 1;
-        }
-      } else {
-        currentWord.push(charState);
-      }
+    if (start === end && start === newEnd) return;
+    const text = newUnits.slice(start, newEnd).join("");
+    const next = controller.input({
+      type: compositionId
+        ? "composition"
+        : text
+          ? end > start
+            ? "replace"
+            : "insert"
+          : "delete",
+      start,
+      end,
+      text,
+      provenance: source,
+      compositionId,
     });
-    
-    // Push last word if any
-    if (currentWord.length > 0) {
-      words.push({ chars: currentWord, hasSpace: false, isLocked: false });
-    }
-    
-    return words;
-  }, [targetText, typedText, completedWordEndIndices]);
-  
-  // Auto-scroll to keep current character visible
-  useEffect(() => {
-    if (status !== 'running' || !textDisplayRef.current) return;
-    
-    const currentCharElement = textDisplayRef.current.querySelector('.char-current');
-    if (currentCharElement) {
-      const container = textDisplayRef.current;
-      const charRect = currentCharElement.getBoundingClientRect();
-      const containerRect = container.getBoundingClientRect();
-      
-      // Calculate line height (approximately)
-      const lineHeight = 48; // Matches the text size
-      
-      // If current char is below visible area, scroll down
-      if (charRect.top > containerRect.top + lineHeight * 2) {
-        const newOffset = Math.floor((charRect.top - containerRect.top) / lineHeight) - 1;
-        setScrollOffset(prev => Math.max(prev, newOffset));
-      }
-    }
-  }, [typedText, status]);
-  
-  // Focus input on mount and status change
-  useEffect(() => {
-    if (status === 'running') {
-      inputRef.current?.focus();
-    }
-  }, [status]);
-  
+    setValue(next.finalText);
+    update(next);
+    provenance.current = "keyboard";
+    if (text) sound();
+  };
+  const pack = getContentPack(configuration.language || "en");
+  const free = configuration.scoringPolicy === "free";
+  const rival =
+    configuration.mode === "race" && !free ? opponentPace : undefined;
+  const rivalPosition = rival
+    ? opponentPacePosition(
+        snapshot.characters.filter((slot) => slot.expected !== null).length,
+        { cursor: rival.position },
+      )
+    : 0;
+  const gap = rivalPosition - snapshot.cursor;
+  const pace = Math.floor((snapshot.elapsedMs / 60000) * p.targetWpm * 5);
+  const visibleSlots = snapshot.characters;
+  const clock =
+    snapshot.remainingMs !== null
+      ? Math.ceil(snapshot.remainingMs / 1000)
+      : Math.floor(snapshot.elapsedMs / 1000);
   return (
-    <div 
-      className="w-full max-w-6xl mx-auto" 
-      ref={containerRef}
-      tabIndex={0}
-      onKeyDown={handleKeyDown}
+    <section
+      className="typing-workspace w-full forge-appear"
+      aria-label="Typing session"
+      data-session-id={configuration.clientSessionId}
+      data-focused={focused}
+      data-status={snapshot.status}
     >
-      {/* Quote Author/Category Display */}
-      {settings.mode === 'quote' && currentQuote && (
-        <motion.div
-          className="text-center mb-4"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          <div className="flex items-center justify-center gap-3 text-sm text-muted-foreground">
-            <span className="font-medium">{currentQuote.author}</span>
-            <span>•</span>
-            <span className="capitalize px-2 py-1 bg-muted rounded-md">{currentQuote.category}</span>
-          </div>
-        </motion.div>
-      )}
-
-      {/* Live Stats Bar */}
-      <AnimatePresence>
-        {status === 'running' && settings.mode !== 'zen' && (
-          <motion.div
-            className="flex items-center justify-center gap-8 mb-6"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-          >
-            {settings.mode === 'time' && (
-              <div className="text-5xl font-mono font-bold text-primary">
-                {timeRemaining}
-              </div>
-            )}
-            <div className="flex items-center gap-8 text-muted-foreground">
-              <div className="flex flex-col items-center">
-                <span className="text-3xl font-mono font-bold text-foreground">{currentWpm}</span>
-                <span className="text-xs uppercase tracking-wider">wpm</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <span className={cn(
-                  "text-3xl font-mono font-bold",
-                  currentAccuracy >= 95 ? "text-primary" : 
-                  currentAccuracy >= 90 ? "text-warning" : "text-destructive"
-                )}>
-                  {currentAccuracy}%
-                </span>
-                <span className="text-xs uppercase tracking-wider">accuracy</span>
-              </div>
-              {/* Show backspace indicator if used */}
-              {backspaceCount > 0 && (
-                <div className="flex flex-col items-center opacity-60">
-                  <span className="text-lg font-mono text-warning">{backspaceCount}</span>
-                  <span className="text-xs uppercase tracking-wider">corrections</span>
-                </div>
-              )}
-            </div>
-          </motion.div>
-        )}
-        
-        {/* Zen Mode - Minimal distraction stats */}
-        {status === 'running' && settings.mode === 'zen' && (
-          <motion.div
-            className="flex items-center justify-center gap-6 mb-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.6 }}
-            exit={{ opacity: 0 }}
-          >
-            <div className="flex items-center gap-2 text-muted-foreground text-sm">
-              <span className="font-mono">{zenWordsTyped}</span>
-              <span className="text-xs">words</span>
-            </div>
-            <div className="flex items-center gap-2 text-muted-foreground text-sm">
-              <span className="font-mono">{Math.floor(zenElapsedTime / 60)}:{(zenElapsedTime % 60).toString().padStart(2, '0')}</span>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-      
-      {/* Typing Area */}
-      <div
-        className={cn(
-          "relative bg-card border rounded-2xl p-6 md:p-8 cursor-text min-h-[180px] transition-all duration-300",
-          status === 'running' ? "border-primary/50 shadow-lg shadow-primary/10" : "border-border",
-          isFocused && status === 'idle' && "border-primary/30"
-        )}
-        onClick={handleClick}
-      >
-        {/* Hidden Input - NOT disabled when idle so user can start typing immediately */}
-        <input
-          ref={inputRef}
-          type="text"
-          value={typedText}
-          onChange={handleInput}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          className="absolute opacity-0 pointer-events-none"
-          autoComplete="off"
-          autoCapitalize="off"
-          autoCorrect="off"
-          spellCheck={false}
-          disabled={status === 'finished'}
-        />
-        
-        {/* Text Display - Paragraph always visible when ready */}
-        <div 
-          ref={textDisplayRef}
-          className={cn(
-            "font-mono text-xl md:text-2xl leading-[2.5] select-none max-h-[192px] overflow-hidden transition-all duration-300",
-            status === 'idle' && !isReady && "opacity-50" // Faded behind overlay when not ready
-          )}
-          style={{
-            transform: `translateY(-${scrollOffset * 48}px)`,
-            transition: 'transform 0.3s ease-out'
-          }}
-        >
-          {wordGroups.map((word, wordIndex) => (
-            <span key={wordIndex} className={cn(
-              "inline-block whitespace-nowrap",
-              word.isLocked && "opacity-80"
-            )}>
-              {word.chars.map((charState, charIndex) => (
-                <span
-                  key={charIndex}
-                  className={cn(
-                    'relative inline-block',
-                    charState.state === 'correct' && 'char-correct',
-                    charState.state === 'incorrect' && 'char-error animate-shake',
-                    charState.state === 'current' && 'char-current',
-                    charState.state === 'upcoming' && 'char-upcoming'
-                  )}
-                >
-                  {charState.state === 'current' && (status === 'running' || isReady) && (
-                    <motion.span 
-                      className="absolute left-0 top-1 w-0.5 h-[calc(100%-8px)] bg-primary rounded-full"
-                      animate={{ opacity: [1, 0, 1] }}
-                      transition={{ duration: 0.8, repeat: Infinity }}
-                    />
-                  )}
-                  {charState.char}
-                </span>
-              ))}
-              {word.hasSpace && word.spaceState && (
-                <span
-                  className={cn(
-                    'inline-block min-w-[0.6em]',
-                    word.spaceState.state === 'correct' && 'char-correct',
-                    word.spaceState.state === 'incorrect' && 'char-error animate-shake',
-                    word.spaceState.state === 'current' && 'char-current',
-                    word.spaceState.state === 'upcoming' && 'char-upcoming-space'
-                  )}
-                >
-                  {word.spaceState.state === 'upcoming' ? '·' : '\u00A0'}
-                </span>
-              )}
-              {/* No visual lock indicator - just prevent backspace */}
+      <div className="typing-hud flex items-center justify-between mb-4 gap-4">
+        <div className="flex gap-7 items-end min-h-12">
+          <div>
+            <span className="text-3xl font-mono text-primary">
+              {clock}
+              <span className="text-base ml-1 text-muted-foreground">s</span>
             </span>
-          ))}
-        </div>
-        
-        {/* Word Counter - shows when ready or running */}
-        {(isReady || status === 'running') && status !== 'finished' && (
-          <motion.div
-            className="absolute top-2 right-4 text-muted-foreground text-sm font-mono"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            <span className="text-foreground font-bold">{typedText.split(' ').filter(w => w).length}</span>
-            <span className="mx-1">/</span>
-            <span>{targetText.split(' ').filter(w => w).length}</span>
-            <span className="ml-1 text-xs">words</span>
-          </motion.div>
-        )}
-        
-        {/* Tab hint overlay - shows when Tab pressed in ready state */}
-        {status === 'idle' && isReady && showTabHint && (
-          <motion.div
-            className="absolute inset-0 flex items-center justify-center bg-card/80 backdrop-blur-sm rounded-2xl z-10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <div className="flex flex-col items-center gap-4 text-center">
-              <div className="flex gap-4">
-                <motion.div
-                  className="px-4 py-2 bg-warning/20 border border-warning/40 rounded-lg"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <span className="text-warning font-mono font-bold">Tab</span>
-                  <span className="text-muted-foreground ml-2">→ Restart</span>
-                </motion.div>
-                <motion.div
-                  className="px-4 py-2 bg-primary/20 border border-primary/40 rounded-lg"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <span className="text-primary font-mono font-bold">Enter</span>
-                  <span className="text-muted-foreground ml-2">→ New Test</span>
-                </motion.div>
+            <span className="sr-only">
+              {snapshot.remainingMs !== null ? "remaining" : "elapsed"}
+            </span>
+          </div>
+          {p.liveStats && (
+            <>
+              <div>
+                <span className="text-2xl font-mono">
+                  {number(
+                    snapshot.elapsedMs < 1000 ? null : snapshot.metrics.wpm,
+                  )}
+                </span>
+                <span className="text-xs text-muted-foreground ml-2">wpm</span>
               </div>
-              <p className="text-muted-foreground text-sm">
-                Press <span className="text-warning font-bold">Tab</span> again to restart or <span className="text-primary font-bold">Enter</span> for a new test
-              </p>
-            </div>
-          </motion.div>
-        )}
-        
-        {/* Start prompt overlay - only when NOT ready */}
-        {status === 'idle' && !isReady && (
-          <motion.div
-            className="absolute inset-0 flex flex-col items-center justify-center bg-card/50 rounded-2xl z-10 cursor-text"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            onClick={handleClick}
-          >
-            <motion.div
-              className="flex flex-col items-center gap-4"
-              initial={{ y: 10, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.1 }}
-            >
-              <motion.div
-                className="flex items-center gap-2 px-5 py-2.5 bg-primary/10 border border-primary/30 rounded-xl cursor-pointer"
-                whileHover={{ scale: 1.02 }}
-                animate={{ 
-                  boxShadow: ['0 0 0px hsl(var(--primary) / 0)', '0 0 20px hsl(var(--primary) / 0.3)', '0 0 0px hsl(var(--primary) / 0)']
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
-                onClick={handleClick}
-              >
-                <span className="text-primary font-mono font-bold text-lg">⌨️ Click or Press Enter</span>
-              </motion.div>
-              <p className="text-muted-foreground text-sm font-medium text-center max-w-xs">
-                Click here or press Enter to reveal the text.<br/>
-                <span className="text-primary/80">Timer begins on first keystroke</span><br/>
-                <span className="text-warning/80 text-xs">Backspace = accuracy penalty • No going back after word complete</span>
-              </p>
-            </motion.div>
-          </motion.div>
-        )}
-        
-        {/* Ready state prompt - just a small hint at the bottom */}
-        {status === 'idle' && isReady && !showTabHint && (
-          <motion.div
-            className="absolute bottom-2 left-0 right-0 flex justify-center"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <div className="flex items-center gap-4 px-4 py-2 bg-muted/50 rounded-lg text-sm text-muted-foreground">
-              <span>Start typing to begin</span>
-              <span className="text-xs opacity-60">•</span>
-              <span className="text-xs">Press <span className="text-warning font-mono">Tab</span> for options</span>
-            </div>
-          </motion.div>
-        )}
+              <div className="hidden sm:block">
+                <span className="text-2xl font-mono">
+                  {number(snapshot.metrics.inputAccuracy)}
+                </span>
+                <span className="text-xs text-muted-foreground ml-2">
+                  acc %
+                </span>
+              </div>
+            </>
+          )}
+        </div>
+        <span className="eyebrow hidden sm:block">
+          {snapshot.status === "ready"
+            ? "Ready when you are"
+            : snapshot.status === "paused"
+              ? "Paused practice"
+              : "Find your rhythm"}
+        </span>
       </div>
-      
-      {/* Bottom Controls */}
-      <motion.div 
-        className="flex items-center justify-center gap-6 mt-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
-      >
-        <button
-          onClick={handleRestart}
-          className="flex items-center gap-2 px-4 py-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted group"
+      {rival && (
+        <div
+          id="race-pace-legend"
+          className="race-pace-legend"
+          data-testid="race-pace-legend"
+          data-position={rivalPosition}
         >
-          <RotateCcw className="w-4 h-4 group-hover:rotate-[-45deg] transition-transform" />
-          <span className="text-sm">restart</span>
-          <span className="text-xs text-muted-foreground/60 ml-1">tab</span>
-        </button>
-        
-        {/* Zen mode finish button */}
-        {status === 'running' && settings.mode === 'zen' && zenWordsTyped >= 10 && (
-          <button
-            onClick={() => finishTest()}
-            className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors rounded-lg"
+          <span>
+            <i className="race-you-swatch" aria-hidden="true" />
+            You
+          </span>
+          <span>
+            <i className="race-opponent-swatch" aria-hidden="true" />
+            {rival.label}
+            {rival.approximate ? " · confirmed progress" : " pace"}
+          </span>
+          <span className="font-mono">
+            {rival.wpm === null || !Number.isFinite(rival.wpm)
+              ? "—"
+              : Math.round(rival.wpm)}{" "}
+            wpm
+          </span>
+          <span>
+            {gap === 0
+              ? "Alongside you"
+              : `${Math.abs(gap)} characters ${gap > 0 ? "ahead" : "behind"}`}
+          </span>
+        </div>
+      )}
+      <div className="relative">
+        <div className="typing-stage relative py-2">
+          <div
+            ref={viewport}
+            data-testid="typing-viewport"
+            className="typing-viewport overflow-hidden scrollbar-hide relative"
+            aria-hidden="true"
+            dir={pack.direction}
+            style={
+              {
+                fontFamily: pack.font,
+                height: p.fontSize * 1.9 * 3,
+                "--typing-size": `${p.fontSize}px`,
+              } as CSSProperties
+            }
           >
-            <span className="text-sm">Finish</span>
-          </button>
+            {caretPosition && (
+              <span
+                className={cn(
+                  "forge-caret font-mono",
+                  p.caretStyle === "block" && "caret-block",
+                  p.caretStyle === "underline" && "caret-underline",
+                  snapshot.status === "ready" && "caret-blink",
+                )}
+                style={{
+                  left: 0,
+                  top: 0,
+                  bottom: "auto",
+                  insetInlineStart: "auto",
+                  fontSize: p.fontSize,
+                  height:
+                    p.caretStyle === "underline"
+                      ? 2
+                      : Math.max(caretPosition.height, p.fontSize),
+                  transform: `translate3d(${caretPosition.left}px, ${caretPosition.top + (p.caretStyle === "underline" ? Math.max(caretPosition.height, p.fontSize) - 2 : 0)}px, 0)`,
+                  transition: p.smoothCaret
+                    ? "transform 85ms cubic-bezier(.2,.8,.2,1)"
+                    : "none",
+                  zIndex: rival ? 3 : 1,
+                }}
+              />
+            )}
+            {rival && (
+              <OpponentPaceMarker
+                position={rivalPosition}
+                viewportRef={viewport}
+                passageRef={passage}
+                revision={snapshot.finalText}
+                ownCursor={snapshot.cursor}
+                fontSize={p.fontSize}
+                smooth={p.smoothCaret}
+              />
+            )}
+            <div
+              ref={passage}
+              className="typing-text relative pb-5"
+              data-testid="typing-target"
+              style={{ fontFamily: pack.font }}
+            >
+              {free ? (
+                <span className="char-correct">
+                  {snapshot.finalText}
+                  <span className="typing-free-end">
+                    <span
+                      ref={caret}
+                      className="forge-caret"
+                      style={{ visibility: "hidden" }}
+                    />
+                  </span>
+                  {!snapshot.finalText && (
+                    <span className="text-muted-foreground">
+                      A blank page. Write freely, and finish when you’re ready.
+                    </span>
+                  )}
+                </span>
+              ) : (
+                <TypingPassage
+                  slots={visibleSlots}
+                  cursor={snapshot.cursor}
+                  preserveWhitespace={configuration.scoringPolicy === "code"}
+                  characterClassName={
+                    rival
+                      ? (slot) =>
+                          slot.expected !== null &&
+                          slot.status === "untyped" &&
+                          slot.index < rivalPosition
+                            ? "opponent-passed"
+                            : undefined
+                      : undefined
+                  }
+                  marker={
+                    <span
+                      ref={caret}
+                      style={{ visibility: "hidden" }}
+                      className={cn(
+                        "forge-caret",
+                        p.caretStyle === "block" && "caret-block",
+                        p.caretStyle === "underline" && "caret-underline",
+                        snapshot.status === "ready" && "caret-blink",
+                      )}
+                    />
+                  }
+                  renderBefore={(slot) =>
+                    p.paceCaret && !rival && slot.index === pace ? (
+                      <span className="absolute top-0 bottom-0 border-l border-dashed border-primary/40" />
+                    ) : null
+                  }
+                />
+              )}
+              {rival && (
+                <span className="typing-free-end" data-opponent-end-anchor />
+              )}
+            </div>
+          </div>
+          <p id="typing-passage" className="sr-only">
+            {free
+              ? "Free writing practice."
+              : `Practice passage: ${snapshot.targetText}`}
+          </p>
+          <textarea
+            ref={textarea}
+            aria-label="Typing input"
+            aria-describedby={
+              free
+                ? "typing-instructions typing-passage"
+                : `typing-instructions typing-passage typing-feedback${rival ? " race-pace-legend" : ""}`
+            }
+            value={value}
+            onChange={(event) => {
+              setValue(event.target.value);
+              if (!composing.current) {
+                if (committedComposition.current === event.target.value) {
+                  committedComposition.current = null;
+                  return;
+                }
+                commit(event.target.value);
+              }
+            }}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            onBeforeInput={(event) => {
+              const kind = (event.nativeEvent as InputEvent).inputType;
+              if (kind === "insertReplacementText")
+                provenance.current = "autocorrect";
+            }}
+            onCompositionStart={() => {
+              composing.current = true;
+            }}
+            onCompositionEnd={(event) => {
+              composing.current = false;
+              committedComposition.current = event.currentTarget.value;
+              commit(
+                event.currentTarget.value,
+                "composition",
+                crypto.randomUUID(),
+              );
+            }}
+            onPaste={(event) => {
+              event.preventDefault();
+              provenance.current = "paste";
+              const input = event.currentTarget;
+              commit(
+                input.value.slice(0, input.selectionStart) +
+                  event.clipboardData.getData("text/plain") +
+                  input.value.slice(input.selectionEnd),
+                "paste",
+              );
+            }}
+            onDrop={(event) => {
+              event.preventDefault();
+              commit(value + event.dataTransfer.getData("text/plain"), "drop");
+            }}
+            onKeyDown={(event) => {
+              if (
+                composing.current ||
+                event.nativeEvent.isComposing ||
+                event.keyCode === 229
+              )
+                return;
+              if (event.key === "Escape" && !composing.current && canPause) {
+                event.preventDefault();
+                update(
+                  snapshot.status === "paused"
+                    ? controller.resume()
+                    : controller.pause(),
+                );
+              }
+              if (
+                event.key === "Enter" &&
+                !composing.current &&
+                (event.ctrlKey || event.metaKey)
+              ) {
+                event.preventDefault();
+                update(controller.finish("manual"));
+              }
+              if (
+                event.key === "Tab" &&
+                tabIndents &&
+                !event.shiftKey &&
+                !event.ctrlKey &&
+                !event.metaKey
+              ) {
+                event.preventDefault();
+                const input = event.currentTarget;
+                const start = utf16ToGraphemeOffset(
+                  input.value,
+                  input.selectionStart,
+                );
+                const end = utf16ToGraphemeOffset(
+                  input.value,
+                  input.selectionEnd,
+                );
+                const next = controller.input({
+                  type: "insert",
+                  start,
+                  end,
+                  text: "    ",
+                  provenance: "generated",
+                });
+                setValue(next.finalText);
+                update(next);
+              }
+            }}
+            disabled={
+              snapshot.status === "finished" || snapshot.status === "paused"
+            }
+            autoCapitalize="off"
+            autoComplete="off"
+            autoCorrect="off"
+            spellCheck={false}
+            maxLength={100000}
+            dir={pack.direction}
+            className={cn(
+              "typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2",
+              revealed &&
+                "!relative !text-foreground !caret-primary !h-40 !border-t",
+            )}
+            style={{ fontSize: p.fontSize }}
+          />
+          {!focused && snapshot.status !== "paused" && (
+            <button
+              tabIndex={-1}
+              className="typing-focus-prompt absolute inset-0 flex items-center justify-center gap-3 text-sm text-foreground"
+              onClick={() => textarea.current?.focus()}
+            >
+              <Keyboard size={22} className="text-primary" />
+              <span>Click here or tab to start typing</span>
+            </button>
+          )}
+          {snapshot.status === "paused" && (
+            <div className="absolute inset-0 bg-card/95 flex flex-col justify-center items-center gap-3">
+              <p className="text-lg font-medium">Take a breath.</p>
+              <p className="text-xs text-muted-foreground">
+                Paused sessions stay in personal practice.
+              </p>
+              <button
+                ref={resumeButton}
+                className="forge-button"
+                onClick={() => {
+                  update(controller.resume());
+                  requestAnimationFrame(() => textarea.current?.focus());
+                }}
+              >
+                <Play size={15} />
+                Resume
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+      {!free && (
+        <div id="typing-feedback">
+          <TypingFeedback
+            snapshot={snapshot}
+            controller={controller}
+            rejectIncorrect={configuration.rejectIncorrect}
+          />
+        </div>
+      )}
+      <div className="typing-controls flex flex-wrap items-center justify-center gap-3 mt-5">
+        <p id="typing-instructions" className="text-xs text-muted-foreground">
+          {canPause ? "Esc pauses · " : "Shared clock · "}Ctrl+Enter finishes ·
+          {tabIndents
+            ? " Tab indents · Shift+Tab moves focus"
+            : onRestart
+              ? " Tab → Enter restarts"
+              : " Tab moves focus"}
+        </p>
+        {configuration.rejectIncorrect && (
+          <p className="text-xs text-muted-foreground mt-2" role="note">
+            Precision mode: incorrect attempts count toward accuracy and keep
+            the caret in place. Type the expected character to continue;
+            Backspace is not required.
+          </p>
         )}
-      </motion.div>
-      
-      {/* Keyboard Visualizer with Toggle */}
-      <KeyboardVisualizer 
-        currentKey={currentKeyPressed}
-        errorKeys={errorKeys}
-      />
-    </div>
+        <div className="flex gap-1 items-center">
+          {onRestart && (
+            <button
+              className="forge-icon-button"
+              aria-label="Restart with new text"
+              title={
+                tabIndents
+                  ? "Restart with new text"
+                  : "Restart · Tab then Enter"
+              }
+              onClick={onRestart}
+            >
+              <RotateCcw size={18} />
+            </button>
+          )}
+          <button
+            className="forge-icon-button"
+            aria-label={
+              revealed
+                ? "Hide accessible text editor"
+                : "Show accessible text editor"
+            }
+            aria-pressed={revealed}
+            onClick={() => setRevealed(!revealed)}
+          >
+            {revealed ? <EyeOff size={17} /> : <Eye size={17} />}
+          </button>
+          {snapshot.status === "running" && canPause && (
+            <button
+              className="forge-icon-button"
+              aria-label="Pause practice"
+              onClick={() => update(controller.pause())}
+            >
+              <Pause size={17} />
+            </button>
+          )}
+          <button
+            className="forge-chip"
+            disabled={snapshot.status === "ready"}
+            onClick={() => update(controller.finish("manual"))}
+          >
+            <Flag size={15} />
+            Finish
+          </button>
+        </div>
+      </div>
+      <span role="status" className="sr-only">
+        {snapshot.status === "finished"
+          ? "Test complete"
+          : snapshot.status === "paused"
+            ? "Test paused"
+            : snapshot.status === "ready"
+              ? "Ready to type"
+              : "Test running"}
+      </span>
+    </section>
   );
 }
