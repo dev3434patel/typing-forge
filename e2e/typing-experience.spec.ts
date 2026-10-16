@@ -1,6 +1,12 @@
 import { expect, test, type Page } from "@playwright/test";
 import { customPractice, focusTyping } from "./helpers";
 
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() =>
+    localStorage.setItem("sparowtype.opening-animation.enabled", "false"),
+  );
+});
+
 async function expectVisibleCaret(page: Page) {
   await expect
     .poll(async () =>
@@ -138,6 +144,57 @@ test("whole-word flow rolls by full lines, resizes and backspaces to the beginni
     .poll(() => viewport.evaluate((element) => element.scrollTop))
     .toBe(0);
   await expectVisibleCaret(page);
+});
+
+test("sustained typing reuses its layout observer and keeps the caret through resize and deletion", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    const receipts = { starts: 0, disconnects: 0 };
+    Object.assign(window, { typingObserverReceipts: receipts });
+    const NativeObserver = window.ResizeObserver;
+    window.ResizeObserver = class extends NativeObserver {
+      tracksTyping = false;
+      observe(target: Element, options?: ResizeObserverOptions) {
+        if (target.getAttribute("data-testid") === "typing-viewport") {
+          this.tracksTyping = true;
+          receipts.starts++;
+        }
+        super.observe(target, options);
+      }
+      disconnect() {
+        if (this.tracksTyping) receipts.disconnects++;
+        super.disconnect();
+      }
+    };
+  });
+  await page.setViewportSize({ width: 780, height: 900 });
+  const text = Array(40).fill("cat dog quiet calm clear focus").join(" ");
+  const input = await customPractice(page, text);
+  const readReceipts = () =>
+    page.evaluate(() => ({
+      ...(
+        window as unknown as {
+          typingObserverReceipts: { starts: number; disconnects: number };
+        }
+      ).typingObserverReceipts,
+    }));
+  const before = await readReceipts();
+  expect(before.starts).toBeGreaterThan(0);
+  await input.pressSequentially(text.slice(0, 210), { delay: 5 });
+  await expect(input).toHaveValue(text.slice(0, 210));
+  await expectVisibleCaret(page);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expectVisibleCaret(page);
+  await input.pressSequentially(text.slice(210, 240), { delay: 5 });
+  await input.press("Backspace");
+  await input.press("Backspace");
+  await expect(input).toHaveValue(text.slice(0, 238));
+  await expectVisibleCaret(page);
+  expect(await readReceipts()).toEqual(before);
+  await expect(
+    page.getByRole("region", { name: "Typing session", exact: true }),
+  ).toHaveAttribute("data-status", "running");
 });
 
 test("blur preserves input and refocus resumes the same passage", async ({

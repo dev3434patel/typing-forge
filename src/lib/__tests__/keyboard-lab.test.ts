@@ -201,6 +201,12 @@ describe("focused keyboard observations", () => {
   });
 });
 describe("reference layout agreement remains an incomplete hint", () => {
+  it("matches standard Workman physical key positions rather than QWERTY labels", () => {
+    const observed={KeyW:'d',KeyE:'r',KeyD:'h',KeyF:'t',KeyJ:'n',KeyC:'m'};
+    expect(compareLabLayouts(observed).find(layout=>layout.layout==='workman')).toMatchObject({checked:6,matched:6,mismatches:[]});
+    expect(REFERENCE_MAPS.workman).toMatchObject({KeyP:';',Semicolon:'i',KeyZ:'z',KeyC:'m',KeyN:'k',KeyM:'l',Comma:',',Period:'.',Slash:'/'});
+    expect(compareLabLayouts(observed).find(layout=>layout.layout==='qwerty')?.mismatches).toContain('KeyW');
+  });
   it("has no evidence before mappings are observed", () => {
     expect(compareLabLayouts({}).every((layout) => layout.checked === 0)).toBe(
       true,

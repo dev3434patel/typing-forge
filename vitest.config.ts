@@ -1,9 +1,10 @@
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
+import { keyboardWorkerPlugin } from "./build/keyboard-worker-plugin";
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), keyboardWorkerPlugin()],
   test: {
     globals: true,
     environment: "node", // Use node environment for pure unit tests

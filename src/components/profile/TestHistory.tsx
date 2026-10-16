@@ -401,7 +401,7 @@ export function TestHistory({ testHistory: initialHistory }: TestHistoryProps) {
                         <Tooltip
                           contentStyle={{
                             backgroundColor: 'hsl(var(--card))',
-                            border: '1px solid hsl(var(--border))',
+                            border: '1px solid hsl(var(--ui-border))',
                             borderRadius: '8px',
                             color: 'hsl(var(--foreground))',
                           }}

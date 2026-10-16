@@ -11,7 +11,7 @@ export default function About() {
             A clearer way to improve.
           </h1>
           <p className="text-muted-foreground leading-relaxed mt-4">
-            Typing Forge brings focused tests, adaptive lessons, coding practice
+            SparowType brings focused tests, adaptive lessons, coding practice
             and races into one workspace. Your progress comes from the
             characters you actually type.
           </p>
@@ -67,10 +67,10 @@ export default function About() {
         <section>
           <h2 className="text-xl font-medium mb-3">Comparing typing tools</h2>
           <p className="text-sm leading-relaxed text-muted-foreground">
-            Monkeytype, Keybr and Forge use different scoring rules. Keybr’s
-            lesson accuracy marks errors at accepted target positions; Forge’s
+            Monkeytype, Keybr and SparowType use different scoring rules. Keybr’s
+            lesson accuracy marks errors at accepted target positions; SparowType’s
             input accuracy counts insertion attempts, including repeated and
-            corrected errors. Forge’s consistency formula also differs from
+            corrected errors. SparowType’s consistency formula also differs from
             Monkeytype’s. Compare the same duration, language, passage and
             correction policy, and keep repeated practice separate from
             unseen-text benchmarks.

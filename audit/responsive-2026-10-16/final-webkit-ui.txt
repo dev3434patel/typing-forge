@@ -1,0 +1,35 @@
+
+Running 3 tests using 1 worker
+
+(node:65088) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [webkit] › e2e\responsive-layout.spec.ts:93:1 › small-screen test controls wrap in all six modes and keep select targets usable (1.0m)
+(node:76480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 2 [webkit] › e2e\responsive-layout.spec.ts:156:1 › race and learning remain usable after landscape and narrow resize (2.9s)
+  ok 3 [webkit] › e2e\responsive-pages.spec.ts:19:1 › populated history, comparison chart and account controls fit narrow and tablet screens (5.0s)
+
+
+  1) [webkit] › e2e\responsive-layout.spec.ts:93:1 › small-screen test controls wrap in all six modes and keep select targets usable 
+
+    TimeoutError: page.waitForFunction: Timeout 10000ms exceeded.
+
+      4 | async function expectPageFits(page: Page) {
+      5 |   await page.locator("#main-content").waitFor();
+    > 6 |   await page.waitForFunction(
+        |              ^
+      7 |     () => document.fonts.status === "loaded" && document.fonts.check('400 16px "Inter Variable"', "Typing Forge"),
+      8 |     undefined,
+      9 |     { timeout: 10_000 },
+        at expectPageFits (D:\extra\typing_updated\typing-forge\e2e\responsive-layout.spec.ts:6:14)
+        at D:\extra\typing_updated\typing-forge\e2e\responsive-layout.spec.ts:100:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\responsive-2026-10-16\final-webkit-ui-artifacts\responsive-layout-small-sc-b19c1--keep-select-targets-usable-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\responsive-2026-10-16\final-webkit-ui-artifacts\responsive-layout-small-sc-b19c1--keep-select-targets-usable-webkit\error-context.md
+
+  1 failed
+    [webkit] › e2e\responsive-layout.spec.ts:93:1 › small-screen test controls wrap in all six modes and keep select targets usable 
+  2 passed (1.3m)

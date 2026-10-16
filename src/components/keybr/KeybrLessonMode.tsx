@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import type { KeyboardAudio } from "@/lib/keyboard-audio";
 import { SessionController, type SessionResult } from "@/lib/typing-core";
 import { getContentPack, getLayout } from "@/lib/content-packs";
 import {
@@ -78,9 +79,11 @@ function LessonKeyboard({
     <div
       className="learn-keyboard"
       data-mapped={mapped}
-      style={{
-        "--learn-key-columns": Math.max(1, ...rows.map((row) => row.length)),
-      } as CSSProperties}
+      style={
+        {
+          "--learn-key-columns": Math.max(1, ...rows.map((row) => row.length)),
+        } as CSSProperties
+      }
       role="img"
       aria-label={`${mapping.label} logical keyboard. Expected ${expected === " " ? "Space" : (expected ?? "end of passage")}.${pressed ? ` Last input ${pressed === " " ? "Space" : pressed}${incorrect ? ", incorrect" : ""}.` : ""}`}
     >
@@ -159,6 +162,7 @@ export function KeybrLessonMode({
     useState<LearningDimensions["inputMethod"]>("keyboard");
   const [showKeyboard, setShowKeyboard] = useState(true);
   const [focused, setFocused] = useState(false);
+  const [capsLock, setCapsLock] = useState<boolean | null>(null);
   const [selectedFocus, setSelectedFocus] = useState<string | null>(null);
   const dimensions = useMemo<LearningDimensions>(
     () => ({
@@ -178,7 +182,7 @@ export function KeybrLessonMode({
   const resumeRef = useRef<HTMLButtonElement>(null);
   const composed = useRef(false);
   const lastComposition = useRef({ text: "", at: 0 });
-  const audio = useRef<AudioContext | null>(null);
+  const audio = useRef<KeyboardAudio | null>(null);
   const settled = useRef<string | null>(null);
   const [draft, setDraft] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -189,34 +193,29 @@ export function KeybrLessonMode({
     width: number;
     height: number;
   } | null>(null);
-  useEffect(
-    () => () => {
-      void audio.current?.close();
-    },
-    [],
-  );
+  useEffect(() => {
+    if (!preferences.sound) return;
+    let active = true;
+    void import("@/lib/keyboard-audio")
+      .then(({ createKeyboardAudio }) => {
+        if (active) audio.current = createKeyboardAudio();
+      })
+      .catch(() => undefined);
+    return () => {
+      active = false;
+      audio.current?.dispose();
+      audio.current = null;
+    };
+  }, [preferences.sound]);
   const playSound = useCallback(() => {
     if (!preferences.sound || preferences.volume <= 0) return;
-    try {
-      const context = (audio.current ??= new AudioContext());
-      void context.resume();
-      const oscillator = context.createOscillator(),
-        gain = context.createGain();
-      oscillator.type = "sine";
-      oscillator.frequency.value = 480;
-      gain.gain.setValueAtTime(preferences.volume * 0.045, context.currentTime);
-      gain.gain.exponentialRampToValueAtTime(
-        0.0001,
-        context.currentTime + 0.025,
-      );
-      oscillator.connect(gain);
-      gain.connect(context.destination);
-      oscillator.start();
-      oscillator.stop(context.currentTime + 0.025);
-    } catch {
-      /* Optional sound can be unavailable without affecting input. */
-    }
-  }, [preferences.sound, preferences.volume]);
+    const engine = audio.current;
+    if (engine)
+      void engine
+        .unlock()
+        .then(() => engine.play(preferences.soundPack, preferences.volume))
+        .catch(() => undefined);
+  }, [preferences.sound, preferences.soundPack, preferences.volume]);
   const createLesson = useCallback(
     (retryText?: { text: string; seed: string }) => {
       const lesson = generateKeybrLesson(25, {
@@ -285,6 +284,9 @@ export function KeybrLessonMode({
     progress: CharacterConfidence[];
     perCharMetrics: Map<string, CharacterConfidence>;
   } | null>(null);
+  const lessonFinished = finished !== null;
+  const caretFontSize = useRef(preferences.fontSize);
+  caretFontSize.current = preferences.fontSize;
   const startLesson = useCallback(
     (retry = false) => {
       const next = createLesson(
@@ -316,14 +318,30 @@ export function KeybrLessonMode({
     setSession(next);
     setView(next.controller.snapshot());
   }, [createLesson]);
-  // One stable sampler per controller. Typing does not tear down and restart this interval.
+  // Presentation refreshes only while running; core timing always uses performance.now().
   useEffect(() => {
-    const timer = window.setInterval(() => {
-      if (session.controller.status === "running")
-        setView(session.controller.tick());
-    }, 100);
-    return () => window.clearInterval(timer);
-  }, [session.controller]);
+    if (view.status !== "running") return;
+    let timer: ReturnType<typeof setTimeout>;
+    const refresh = () => {
+      const next = session.controller.tick();
+      setView(next);
+      if (next.status === "running") timer = setTimeout(refresh, 100);
+    };
+    timer = setTimeout(refresh, 100);
+    return () => clearTimeout(timer);
+  }, [session.controller, view.status]);
+  useEffect(() => {
+    const input = inputRef.current;
+    if (!input) return;
+    const blockTransfer = (event: InputEvent) => {
+      if (!["insertFromPaste", "insertFromDrop"].includes(event.inputType))
+        return;
+      event.preventDefault();
+      setError("Paste is disabled during typing practice.");
+    };
+    input.addEventListener("beforeinput", blockTransfer);
+    return () => input.removeEventListener("beforeinput", blockTransfer);
+  }, [session.controller, finished]);
   useEffect(() => {
     if (matchMedia("(pointer: fine)").matches)
       inputRef.current?.focus({ preventScroll: true });
@@ -340,59 +358,69 @@ export function KeybrLessonMode({
     resumeRef.current?.focus({ preventScroll: true });
     stageRef.current?.scrollIntoView({ block: "center", behavior: "instant" });
   }, [view.status]);
-  useLayoutEffect(() => {
-    let active = true;
-    const measure = () => {
-      if (!active) return;
-      const container = stageRef.current,
-        marker = container?.querySelector('[data-current="true"]');
-      if (!container || !marker) {
-        setCaret(null);
-        return;
-      }
-      let boundary = container.getBoundingClientRect(),
-        rect = marker.getBoundingClientRect();
-      const lineHeight = preferences.fontSize * 1.85;
-      const targetTop = rect.top - boundary.top + container.scrollTop;
-      const nextScroll = Math.max(
-        0,
-        Math.floor((targetTop + 1) / lineHeight) * lineHeight - lineHeight,
-      );
-      if (container.scrollTop !== nextScroll) container.scrollTop = nextScroll;
-      boundary = container.getBoundingClientRect();
+  const measureCaret = useCallback(() => {
+    const container = stageRef.current,
+      marker = container?.querySelector('[data-current="true"]');
+    if (!container || !marker) {
+      setCaret(null);
+      return;
+    }
+    let boundary = container.getBoundingClientRect(),
       rect = marker.getBoundingClientRect();
-      const next = {
-        x: rect.left - boundary.left + container.scrollLeft,
-        y: rect.top - boundary.top + container.scrollTop,
-        width: Math.max(rect.width, 2),
-        height: rect.height,
-      };
-      setCaret((previous) =>
-        previous?.x === next.x &&
-        previous.y === next.y &&
-        previous.width === next.width &&
-        previous.height === next.height
-          ? previous
-          : next,
-      );
+    const lineHeight = caretFontSize.current * 1.85;
+    const targetTop = rect.top - boundary.top + container.scrollTop;
+    const nextScroll = Math.max(
+      0,
+      Math.floor((targetTop + 1) / lineHeight) * lineHeight - lineHeight,
+    );
+    if (container.scrollTop !== nextScroll) container.scrollTop = nextScroll;
+    boundary = container.getBoundingClientRect();
+    rect = marker.getBoundingClientRect();
+    const next = {
+      x: rect.left - boundary.left + container.scrollLeft,
+      y: rect.top - boundary.top + container.scrollTop,
+      width: Math.max(rect.width, 2),
+      height: rect.height,
     };
-    measure();
-    const observer = new ResizeObserver(measure);
-    if (stageRef.current) observer.observe(stageRef.current);
-    const text = stageRef.current?.querySelector(".learn-stream-text");
-    if (text) observer.observe(text);
-    void document.fonts.ready.then(measure);
-    return () => {
-      active = false;
-      observer.disconnect();
-    };
+    setCaret((previous) =>
+      previous?.x === next.x &&
+      previous.y === next.y &&
+      previous.width === next.width &&
+      previous.height === next.height
+        ? previous
+        : next,
+    );
+  }, []);
+  useLayoutEffect(() => {
+    measureCaret();
   }, [
+    measureCaret,
     view.cursor,
     view.finalText,
     session.controller,
     preferences.fontSize,
     focused,
+    lessonFinished,
   ]);
+  useLayoutEffect(() => {
+    const container = stageRef.current;
+    const text = container?.querySelector(".learn-stream-text");
+    if (!container || !text) return;
+    let active = true;
+    const measure = () => {
+      if (active) measureCaret();
+    };
+    // A keystroke measures the committed marker above. Observe each real lesson
+    // stage once, keeping font/resize ownership stable while its text changes.
+    const observer = new ResizeObserver(measure);
+    observer.observe(container);
+    observer.observe(text);
+    void document.fonts.ready.then(measure);
+    return () => {
+      active = false;
+      observer.disconnect();
+    };
+  }, [measureCaret, session.controller, lessonFinished]);
   useEffect(
     () =>
       sessionRepository.subscribe((event) => {
@@ -469,6 +497,16 @@ export function KeybrLessonMode({
     [session, settle, playSound],
   );
   const handleInput = (event: FormEvent<HTMLTextAreaElement>) => {
+    if (
+      ["insertFromPaste", "insertFromDrop"].includes(
+        (event.nativeEvent as InputEvent).inputType,
+      )
+    ) {
+      event.currentTarget.value = "";
+      setDraft("");
+      setError("Paste is disabled during typing practice.");
+      return;
+    }
     const text = event.currentTarget.value;
     if (composed.current || (event.nativeEvent as InputEvent).isComposing) {
       setDraft(text);
@@ -652,7 +690,10 @@ export function KeybrLessonMode({
               <span
                 aria-hidden="true"
                 className={cn(
-                  "learn-caret pointer-events-none absolute left-0 top-0 bg-primary motion-reduce:!transition-none",
+                  "learn-caret pointer-events-none absolute left-0 top-0 motion-reduce:!transition-none",
+                  preferences.caretStyle === "outline"
+                    ? "caret-outline"
+                    : "bg-primary",
                   preferences.caretStyle === "block" && "rounded-sm opacity-25",
                 )}
                 style={{
@@ -660,9 +701,10 @@ export function KeybrLessonMode({
                   height:
                     preferences.caretStyle === "underline" ? 2 : caret.height,
                   transform: `translate3d(${caret.x + (preferences.caretStyle === "line" && pack.direction === "rtl" ? caret.width : 0)}px, ${caret.y + (preferences.caretStyle === "underline" ? caret.height - 2 : 0)}px, 0)`,
-                  transition: preferences.smoothCaret
-                    ? "transform 85ms linear"
-                    : "none",
+                  transition:
+                    preferences.smoothCaret && !preferences.reducedMotion
+                      ? "transform 85ms linear"
+                      : "none",
                 }}
               />
             )}
@@ -700,7 +742,10 @@ export function KeybrLessonMode({
             spellCheck={false}
             value={draft}
             onFocus={() => setFocused(true)}
-            onBlur={() => setFocused(false)}
+            onBlur={() => {
+              setFocused(false);
+              setCapsLock(null);
+            }}
             onChange={handleInput}
             onCompositionStart={() => {
               composed.current = true;
@@ -708,12 +753,14 @@ export function KeybrLessonMode({
             onCompositionEnd={handleCompositionEnd}
             onPaste={(event) => {
               event.preventDefault();
-              setError(
-                "Paste is unavailable in adaptive assessments. Type each character to build evidence.",
-              );
+              setError("Paste is disabled during typing practice.");
             }}
-            onDrop={(event) => event.preventDefault()}
+            onDrop={(event) => {
+              event.preventDefault();
+              setError("Paste is disabled during typing practice.");
+            }}
             onKeyDown={(event) => {
+              setCapsLock(event.getModifierState("CapsLock"));
               if (
                 composed.current ||
                 event.nativeEvent.isComposing ||
@@ -735,6 +782,7 @@ export function KeybrLessonMode({
                   );
               }
             }}
+            onKeyUp={(event) => setCapsLock(event.getModifierState("CapsLock"))}
             className="absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0"
           />
           {view.status === "paused" && (
@@ -764,6 +812,16 @@ export function KeybrLessonMode({
             rejectIncorrect={policy === "stop"}
           />
         </div>
+        {capsLock && (
+          <p
+            role="status"
+            aria-live="polite"
+            data-testid="lesson-input-notice"
+            className="text-xs text-muted-foreground"
+          >
+            Caps Lock is on.
+          </p>
+        )}
         {showKeyboard && (
           <LessonKeyboard
             language={pack.id}

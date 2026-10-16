@@ -7,6 +7,32 @@ function fixture(target: string, overrides: Partial<SessionConfig> = {}) {
   return { session, at(value: number) { now = value; }, insert(text: string, at: number) { now = at; return session.input({ type: 'insert', text }); } };
 }
 describe('forge-v3 golden metrics', () => {
+  it('reads retained edit text without consuming clock samples or changing evidence', () => {
+    let reads = 0;
+    const session = new SessionController(
+      { clientSessionId: 'text-read', mode: 'time', durationMs: 30000, initialTarget: 'cat dog' },
+      { now: () => { reads++; return 500; }, wallNow: () => 1700000000000 },
+    );
+    session.input({ type: 'insert', text: 'cx' }, 0);
+    const before = session.snapshot(100);
+    for (let i = 0; i < 100; i++) expect(session.currentText).toBe('cx');
+    expect(reads).toBe(0);
+    expect(session.snapshot(100)).toEqual(before);
+    session.input({ type: 'replace', start: 1, end: 2, text: 'at' }, 200);
+    expect(session.currentText).toBe('cat');
+    expect(session.finish('manual', 1000).metrics.inputAccuracy).toBe(75);
+    expect(session.currentText).toBe('cat');
+  });
+  it('exposes accepted normalized composition and deletion while rejected input stays absent', () => {
+    const test = fixture('éa', { mode: 'learn', durationMs: undefined, rejectIncorrect: true });
+    test.insert('x', 0);
+    expect(test.session.currentText).toBe('');
+    test.session.input({ type: 'composition', text: 'e\u0301', compositionId: 'accent' }, 100);
+    expect(test.session.currentText).toBe('é');
+    test.session.input({ type: 'delete' }, 200);
+    expect(test.session.currentText).toBe('');
+    expect(test.session.snapshot(200).metrics).toMatchObject({ insertionAttempts: 2, deletedUnits: 1, inputAccuracy: 50 });
+  });
   it('keeps the entire deadline, idle buckets and excludes late input', () => {
     const test = fixture('abcdefghij other words');
     test.insert('abcdefghij ', 0);

@@ -1,0 +1,196 @@
+{
+  "stats": {
+    "startTime": "2026-10-16T19:30:38.255Z",
+    "duration": 54125.523,
+    "expected": 7,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "config": {
+    "workers": 1,
+    "globalTimeout": 120000,
+    "projects": [
+      {
+        "name": "chromium",
+        "timeout": 30000,
+        "retries": 0,
+        "repeatEach": 1
+      }
+    ]
+  },
+  "runtimeVersions": [
+    "156.0.8078.4"
+  ],
+  "reportedAttempts": 8,
+  "nonPassing": [
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "default native worker draws the complete keyboard while document tasks, resize and skip remain responsive",
+      "project": "chromium",
+      "status": "failed",
+      "durationMs": 5179,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "156.0.8078.4"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        }
+      ],
+      "errors": [
+        {
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts",
+            "column": 26,
+            "line": 260
+          },
+          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  258 |   let path = \"acknowledged-disposal\";\n  259 |   if (policy === \"acknowledged\" || acknowledged) {\n> 260 |     expect(acknowledged).toBe(true);\n      |                          ^\n  261 |   } else {\n  262 |     // A busy GPU worker gets a200ms disposal grace period before termination.\n  263 |     // Require measured watchdog timing and actual native closure. A missing\n    at expectWorkerClosed (D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:260:26)\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:393:3"
+        }
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "default native worker draws the complete keyboard while document tasks, resize and skip remain responsive",
+      "project": "chromium",
+      "status": "failed",
+      "durationMs": 5179,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "156.0.8078.4"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        }
+      ],
+      "errors": [
+        {
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts",
+            "column": 26,
+            "line": 260
+          },
+          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  258 |   let path = \"acknowledged-disposal\";\n  259 |   if (policy === \"acknowledged\" || acknowledged) {\n> 260 |     expect(acknowledged).toBe(true);\n      |                          ^\n  261 |   } else {\n  262 |     // A busy GPU worker gets a200ms disposal grace period before termination.\n  263 |     // Require measured watchdog timing and actual native closure. A missing\n    at expectWorkerClosed (D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:260:26)\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:393:3"
+        }
+      ]
+    },
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "five consecutive live-worker reloads close each prior worker and final skip closes the last worker",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 13320,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "156.0.8078.4"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        },
+        {
+          "type": "limitation",
+          "description": "Five actual reloads and native worker closure/ownership are finite lifecycle evidence, not a universal heap/GPU-memory leak guarantee."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "skipping while the native worker entry is blocked terminates startup and preserves the first typing key",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 1216,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "156.0.8078.4"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "a native worker transport failure replaces the transferred canvas with the complete real document renderer",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 6636,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "156.0.8078.4"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "actual worker WebGL context loss during preparation recovers with a fresh canvas and keeps practice usable",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 5729,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "156.0.8078.4"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "actual worker WebGL context loss after live frames recovers with a fresh canvas and keeps practice usable",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 7212,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "156.0.8078.4"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "startup-recovery.spec.ts",
+      "title": "startup recovers from real workspace script and stylesheet failures at 320px without losing guest history",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 3538,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-experience.spec.ts",
+      "title": "sustained typing reuses its layout observer and keeps the caret through resize and deletion",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 5641,
+      "annotations": [],
+      "errors": []
+    }
+  ]
+}

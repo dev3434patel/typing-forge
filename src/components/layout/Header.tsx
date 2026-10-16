@@ -8,10 +8,15 @@ import {
   GraduationCap,
   Settings2,
   Command,
+  Sun,
+  Moon,
 } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
+import { BrandWordmark } from "@/components/brand/BrandMark";
+import { usePreferences } from "@/contexts/PreferencesContext";
+import { THEMES } from "@/lib/themes";
 const items = [
   { href: "/", label: "Test", icon: Keyboard },
   { href: "/learn", label: "Learn", icon: GraduationCap },
@@ -25,27 +30,22 @@ export const Header = forwardRef<
   React.HTMLAttributes<HTMLElement>
 >((props, ref) => {
   const { user } = useAuth();
+  const { preferences, updatePreferences } = usePreferences();
+  const light = THEMES.find((theme) => theme.id === preferences.theme)?.light ?? false;
   return (
     <header ref={ref} className="border-b border-border" {...props}>
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between h-20 gap-4">
+      <div className="max-w-7xl mx-auto px-3 min-[360px]:px-5 sm:px-8 flex items-center justify-between h-20 gap-1 sm:gap-4">
         <Link
           to="/"
-          aria-label="Typing Forge home"
-          className="flex items-center gap-3 shrink-0"
+          aria-label="SparowType home"
+          className="flex items-center gap-1.5 min-[360px]:gap-2 shrink-0"
         >
-          <span className="text-primary">
-            <Keyboard size={28} strokeWidth={1.7} />
-          </span>
-          <span className="font-semibold text-lg tracking-tight">
-            typing
-            <span className="text-muted-foreground font-normal">forge</span>
-            <span className="text-primary">.</span>
-          </span>
+          <BrandWordmark className="text-lg sm:text-xl" />
         </Link>
-        <nav aria-label="Main navigation" className="hidden lg:flex gap-1">
+        <nav aria-label="Main navigation" className="hidden xl:flex gap-1">
           {items.map(({ href, label, icon: Icon }) => (
             <NavLink
               key={href}
@@ -60,7 +60,15 @@ export const Header = forwardRef<
             </NavLink>
           ))}
         </nav>
-        <div className="flex items-center gap-1">
+        <div className="flex shrink-0 items-center gap-1">
+          <button
+            className="forge-icon-button"
+            aria-label={light ? "Switch to dark theme" : "Switch to light theme"}
+            title={light ? "Switch to dark theme" : "Switch to light theme"}
+            onClick={() => updatePreferences({ theme: light ? "sparow-dark" : "sparow-light" })}
+          >
+            {light ? <Moon size={18} /> : <Sun size={18} />}
+          </button>
           <button
             className="forge-icon-button hidden sm:flex"
             aria-label="Open command palette"
@@ -90,7 +98,7 @@ export const Header = forwardRef<
       </div>
       <nav
         aria-label="Mobile navigation"
-        className="lg:hidden flex overflow-x-auto gap-1 px-4 pb-3 scrollbar-hide"
+        className="xl:hidden flex overflow-x-auto gap-1 px-4 pb-3 scrollbar-hide"
       >
         {items.map(({ href, label, icon: Icon }) => (
           <NavLink

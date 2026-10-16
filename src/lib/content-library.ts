@@ -27,7 +27,7 @@ const sources: Record<CodeLanguage, readonly string[]> = {
     'interface Lesson {\n  id: string;\n  duration: number;\n}\nfunction totalDuration(lessons: Lesson[]): number {\n  return lessons.reduce((sum, lesson) => sum + lesson.duration, 0);\n}',
     'type Result<T> = { ok: true; value: T } | { ok: false; reason: string };\nfunction first<T>(values: T[]): Result<T> {\n  return values.length ? { ok: true, value: values[0] } : { ok: false, reason: "Empty" };\n}',
     'function groupBy<T, K extends string>(items: T[], key: (item: T) => K): Partial<Record<K, T[]>> {\n  const groups: Partial<Record<K, T[]>> = {};\n  for (const item of items) {\n    const name = key(item);\n    (groups[name] ??= []).push(item);\n  }\n  return groups;\n}',
-    'type Theme = "dark" | "light";\nconst labels: Record<Theme, string> = { dark: "Forge Dark", light: "Forge Light" };\nfunction themeLabel(theme: Theme): string {\n  return labels[theme];\n}',
+    'type Theme = "dark" | "light";\nconst labels: Record<Theme, string> = { dark: "Sparow Dark", light: "Sparow Light" };\nfunction themeLabel(theme: Theme): string {\n  return labels[theme];\n}',
   ],
   python: [
     'def fibonacci(count):\n    values = []\n    current, following = 0, 1\n    for _ in range(count):\n        values.append(current)\n        current, following = following, current + following\n    return values',
@@ -42,13 +42,13 @@ const sources: Record<CodeLanguage, readonly string[]> = {
     'fn main() {\n    let words = ["calm", "clear", "steady"];\n    let lengths: Vec<usize> = words.iter().map(|word| word.len()).collect();\n    for length in lengths {\n        println!("{}", length);\n    }\n}',
   ],
   sql: [
-    "SELECT upper('typing forge') AS title;",
+    "SELECT upper('sparowtype') AS title;",
     'WITH samples(number) AS (VALUES (1), (2), (3))\nSELECT number, number * number AS square\nFROM samples\nORDER BY number;',
     "WITH practice(day, minutes) AS (VALUES ('Monday', 10), ('Tuesday', 12))\nSELECT SUM(minutes) AS total_minutes\nFROM practice;",
     'WITH scores(wpm, accuracy) AS (VALUES (42, 98), (55, 96), (38, 99))\nSELECT wpm, accuracy\nFROM scores\nWHERE accuracy >= 97\nORDER BY wpm DESC;',
   ],
 };
-export const CODE_SNIPPETS: readonly CodeSnippet[] = Object.entries(sources).flatMap(([language, contents]) => contents.map((content, index) => ({ id: `forge-${language}-${index + 1}`, content, language: language as CodeLanguage, revision: 'forge-code-2026.10.15', kind: language === 'sql' ? 'standalone-query' as const : 'complete-program' as const, ...(language === 'sql' ? { dialect: 'PostgreSQL 15+ (portable SELECT/CTE subset)' } : {}), author: 'Typing Forge', license: 'CC0-1.0' })));
+export const CODE_SNIPPETS: readonly CodeSnippet[] = Object.entries(sources).flatMap(([language, contents]) => contents.map((content, index) => ({ id: `forge-${language}-${index + 1}`, content, language: language as CodeLanguage, revision: 'sparow-code-2026.10.16', kind: language === 'sql' ? 'standalone-query' as const : 'complete-program' as const, ...(language === 'sql' ? { dialect: 'PostgreSQL 15+ (portable SELECT/CTE subset)' } : {}), author: 'SparowType', license: 'CC0-1.0' })));
 export async function getQuotes(): Promise<{ content: string; author: string; source: string; license: string }[]> {
   const { quotes } = await import('./quotes');
   return quotes.map(quote => ({ content: quote.text, author: quote.author, source: quote.source, license: quote.license }));

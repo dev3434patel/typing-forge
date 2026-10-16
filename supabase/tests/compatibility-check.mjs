@@ -24,6 +24,8 @@ try {
  process.stdout.write('PostgreSQL compatibility replay + SQL integrity assertions passed.\n');
  await db.exec(await readFile(path.resolve(import.meta.dirname,'trust-boundary-audit.sql'),'utf8'));
  process.stdout.write('Owner-intent deletion, matched-duration rooms and one-use challenge assertions passed.\n');
+ await db.exec(await readFile(path.resolve(import.meta.dirname,'period-rankings.sql'),'utf8'));
+ process.stdout.write('UTC period rankings, bounded pagination, rejected periods, public aggregate privacy and owner/version-checked sound/reduced-motion preference assertions passed.\n');
  const upgrade=new PGlite();
  try{
   await upgrade.exec(prelude);

@@ -1,0 +1,533 @@
+
+Running 4 tests using 1 worker
+
+(node:77880) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  pw:api => browserType.launch started +0ms
+  pw:browser <launching> C:\Users\DELL\AppData\Local\ms-playwright\chromium_headless_shell-1248\chrome-headless-shell-win64\chrome-headless-shell.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=C:\Users\DELL\AppData\Local\Temp\playwright_chromiumdev_profile-E2XgQ6 --remote-debugging-pipe --no-startup-window +0ms
+  pw:browser <launched> pid=35072 +205ms
+  pw:api <= browserType.launch succeeded +449ms
+  pw:api => browser.newContext started +6ms
+  pw:api <= browser.newContext succeeded +11ms
+  pw:api => browserContext.newPage started +13ms
+  pw:api <= browserContext.newPage succeeded +168ms
+  pw:api => page.addInitScript started +2ms
+  pw:api <= page.addInitScript succeeded +3ms
+  pw:api => page.setViewportSize started +2ms
+  pw:api <= page.setViewportSize succeeded +10ms
+  pw:api => page.goto started +1ms
+  pw:api navigating to "http://127.0.0.1:4175/learn?language=en&layout=qwerty", waiting until "load" +5ms
+  pw:api   "commit" event fired +16ms
+  pw:api   navigated to "http://127.0.0.1:4175/learn?language=en&layout=qwerty" +0ms
+  pw:api   "domcontentloaded" event fired +25ms
+  pw:api   "load" event fired +3ms
+  pw:api <= page.goto succeeded +29ms
+  pw:api => locator.focus started +5ms
+  pw:api waiting for getByRole('textbox', { name: 'Type the practice text', exact: true }) +15ms
+  pw:api   navigated to "http://127.0.0.1:4175/learn?language=en&layout=qwerty" +37ms
+  pw:api   locator resolved to <textarea autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off" aria-label="Type the practice text" aria-describedby="lesson-instructions lesson-feedback lesson-passage" class="absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0"></textarea> +180ms
+  pw:api <= locator.focus succeeded +54ms
+  pw:api => locator.textContent started +4ms
+  pw:api waiting for locator('#lesson-passage') +7ms
+  pw:api   locator resolved to <p lang="en" dir="ltr" class="sr-only" id="lesson-passage">tie teen neat ante teen one ante tent none note n…</p> +4ms
+  pw:api <= locator.textContent succeeded +6ms
+  pw:api => page.evaluate started +8ms
+  pw:api <= page.evaluate succeeded +18ms
+  pw:api => locator.pressSequentially started +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Type the practice text', exact: true }) +8ms
+  pw:api   locator resolved to <textarea autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off" aria-label="Type the practice text" aria-describedby="lesson-instructions lesson-feedback lesson-passage" class="absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0"></textarea> +4ms
+  pw:api elementHandle.type("tie teen neat ante teen one ante tent none note none eat neon tone one ante note eat tone neat neat innate innate tent n") +2ms
+  pw:api   "networkidle" event fired +384ms
+  pw:api <= locator.pressSequentially succeeded +2s
+  pw:api => Expect "toHaveAttribute" started +3ms
+  pw:api Expect "toHaveAttribute" locator('.learn-stream [data-current="true"]') with timeout 5000ms +6ms
+  pw:api waiting for locator('.learn-stream [data-current="true"]') +0ms
+  pw:api <= Expect "toHaveAttribute" succeeded +8ms
+  pw:api => locator.press started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Type the practice text', exact: true }) +4ms
+  pw:api   locator resolved to <textarea autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off" aria-label="Type the practice text" aria-describedby="lesson-instructions lesson-feedback lesson-passage" class="absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0"></textarea> +4ms
+  pw:api elementHandle.press("Backspace") +2ms
+  pw:api <= locator.press succeeded +23ms
+  pw:api => locator.press started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Type the practice text', exact: true }) +4ms
+  pw:api   locator resolved to <textarea autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off" aria-label="Type the practice text" aria-describedby="lesson-instructions lesson-feedback lesson-passage" class="absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0"></textarea> +5ms
+  pw:api elementHandle.press("Backspace") +1ms
+  pw:api <= locator.press succeeded +20ms
+  pw:api => Expect "toHaveAttribute" started +1ms
+  pw:api Expect "toHaveAttribute" locator('.learn-stream [data-current="true"]') with timeout 5000ms +4ms
+  pw:api waiting for locator('.learn-stream [data-current="true"]') +0ms
+  pw:api <= Expect "toHaveAttribute" succeeded +8ms
+  pw:api => Expect "toHaveCount" started +1ms
+  pw:api Expect "toHaveCount" locator('.learn-stream [data-typed]') with timeout 5000ms +3ms
+  pw:api waiting for locator('.learn-stream [data-typed]') +1ms
+  pw:api <= Expect "toHaveCount" succeeded +9ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +37ms
+  pw:api => locator.evaluate started +5ms
+  pw:api waiting for locator('.learn-stream') +5ms
+  pw:api   locator resolved to visible <div class="learn-stream relative outline-none">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +24ms
+  pw:api => locator.evaluate started +118ms
+  pw:api waiting for locator('.learn-stream') +6ms
+  pw:api   locator resolved to visible <div class="learn-stream relative outline-none">…</div> +7ms
+  pw:api <= locator.evaluate succeeded +13ms
+  pw:api => page.evaluate started +0ms
+  pw:api <= page.evaluate succeeded +9ms
+  pw:api => locator.click started +2ms
+  pw:api waiting for getByRole('button', { name: 'Finish practice', exact: true }) +3ms
+  pw:api   locator resolved to <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">…</button> +9ms
+  pw:api attempting click action +2ms
+  pw:api   waiting for element to be visible, enabled and stable +1ms
+  pw:api   element is visible, enabled and stable +17ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +3ms
+  pw:api   performing click action +13ms
+  pw:api   click action done +68ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +38ms
+  pw:api <= locator.click succeeded +61ms
+  pw:api => Expect "toBeVisible" started +2ms
+  pw:api Expect "toBeVisible" getByRole('region', { name: 'Session results', exact: true }) with timeout 5000ms +56ms
+  pw:api waiting for getByRole('region', { name: 'Session results', exact: true }) +0ms
+  pw:api <= Expect "toBeVisible" succeeded +15ms
+  pw:api => page.evaluate started +1ms
+  pw:api <= page.evaluate succeeded +7ms
+  pw:api => locator.click started +2ms
+  pw:api waiting for getByRole('button', { name: 'Next test', exact: true }) +8ms
+  pw:api   locator resolved to <button class="forge-button">…</button> +5ms
+  pw:api attempting click action +1ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is not stable +20ms
+  pw:api retrying click action +1ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is not stable +33ms
+  pw:api retrying click action +0ms
+  pw:api   waiting 20ms +0ms
+  pw:api   waiting for element to be visible, enabled and stable +24ms
+  pw:api   element is visible, enabled and stable +25ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +3ms
+  pw:api   performing click action +8ms
+  pw:api   click action done +28ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +1ms
+  pw:api <= locator.click succeeded +13ms
+  pw:api => Expect "toBeFocused" started +1ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Type the practice text', exact: true }) with timeout 5000ms +5ms
+  pw:api waiting for getByRole('textbox', { name: 'Type the practice text', exact: true }) +0ms
+  pw:api <= Expect "toBeFocused" succeeded +8ms
+  pw:api => Expect "toHaveAttribute" started +2ms
+  pw:api Expect "toHaveAttribute" locator('.learn-stream [data-current="true"]') with timeout 5000ms +5ms
+  pw:api waiting for locator('.learn-stream [data-current="true"]') +0ms
+  pw:api <= Expect "toHaveAttribute" succeeded +13ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for locator('.learn-stream') +4ms
+  pw:api   locator resolved to visible <div class="learn-stream relative outline-none">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +8ms
+  pw:api => page.evaluate started +1ms
+  pw:api <= page.evaluate succeeded +8ms
+  pw:api => locator.click started +2ms
+  pw:api waiting for getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Stats', exact: true }) +14ms
+  pw:api   locator resolved to <a href="/stats" data-discover="true" class="forge-chip shrink-0">…</a> +12ms
+  pw:api attempting click action +7ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +35ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +7ms
+  pw:api   navigated to "http://127.0.0.1:4175/stats" +12ms
+  pw:api   click action done +8ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +7ms
+  pw:api <= locator.click succeeded +47ms
+  pw:api => Expect "toHaveCount" started +2ms
+  pw:api Expect "toHaveCount" getByRole('textbox', { name: 'Type the practice text', exact: true }) with timeout 5000ms +18ms
+  pw:api waiting for getByRole('textbox', { name: 'Type the practice text', exact: true }) +0ms
+  pw:api <= Expect "toHaveCount" succeeded +6ms
+  pw:api => page.evaluate started +1ms
+  pw:api <= page.evaluate succeeded +7ms
+  pw:api taking page screenshot +330ms
+  pw:api waiting for fonts to load... +2ms
+  pw:api fonts loaded +1ms
+  pw:api => browserContext.close started +42ms
+  pw:api <= browserContext.close succeeded +12ms
+  ok 1 [chromium] › e2e\typing-observer-ownership.spec.ts:100:1 › learning keeps one native layout observer through input, deletion and resize and cleans each real lesson stage (4.0s)
+  pw:api => browser.newContext started +162ms
+  pw:api <= browser.newContext succeeded +4ms
+  pw:api => browserContext.newPage started +4ms
+  pw:api <= browserContext.newPage succeeded +86ms
+  pw:api => page.addInitScript started +1ms
+  pw:api <= page.addInitScript succeeded +2ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +12ms
+  pw:api => page.goto started +1ms
+  pw:api navigating to "http://127.0.0.1:4175/race", waiting until "load" +2ms
+  pw:api   "commit" event fired +12ms
+  pw:api   navigated to "http://127.0.0.1:4175/race" +1ms
+  pw:api   "domcontentloaded" event fired +26ms
+  pw:api   "load" event fired +2ms
+  pw:api <= page.goto succeeded +27ms
+  pw:api => locator.selectOption started +2ms
+  pw:api waiting for getByRole('combobox', { name: 'Difficulty', exact: true }) +10ms
+  pw:api   navigated to "http://127.0.0.1:4175/race" +44ms
+  pw:api   locator resolved to <select class="forge-input mt-2">…</select> +201ms
+  pw:api attempting select option action +2ms
+  pw:api   waiting for element to be visible and enabled +7ms
+  pw:api   selected specified option(s) +8ms
+  pw:api <= locator.selectOption succeeded +3ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('button', { name: 'Start bot practice', exact: true }) +5ms
+  pw:api   locator resolved to <button class="forge-button w-full">…</button> +5ms
+  pw:api attempting click action +1ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +14ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +2ms
+  pw:api   performing click action +9ms
+  pw:api   click action done +77ms
+  pw:api   waiting for scheduled navigations to finish +1ms
+  pw:api   navigations have finished +3ms
+  pw:api <= locator.click succeeded +26ms
+  pw:api => Expect "toBeVisible" started +8ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +18ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeVisible" succeeded +20ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +8ms
+  pw:api   locator resolved to visible <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback race-pace-legend" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +9ms
+  pw:api <= locator.evaluate succeeded +33ms
+  pw:api => Expect "toBeFocused" started +1ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +6ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeFocused" succeeded +12ms
+  pw:api => locator.getAttribute started +3ms
+  pw:api waiting for getByTestId('opponent-caret') +13ms
+  pw:api   locator resolved to <span data-position="1" aria-hidden="true" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span> +6ms
+  pw:api <= locator.getAttribute succeeded +13ms
+  pw:api => locator.getAttribute started +2ms
+  pw:api waiting for getByTestId('opponent-caret') +10ms
+  pw:api   locator resolved to <span data-position="2" aria-hidden="true" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span> +8ms
+  pw:api <= locator.getAttribute succeeded +13ms
+  pw:api => page.evaluate started +1ms
+  pw:api <= page.evaluate succeeded +20ms
+  pw:api => locator.textContent started +5ms
+  pw:api waiting for getByTestId('typing-target') +7ms
+  pw:api   locator resolved to <div data-testid="typing-target" class="typing-text relative pb-5">…</div> +5ms
+  pw:api <= locator.textContent succeeded +10ms
+  pw:api => locator.pressSequentially started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +12ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback race-pace-legend" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +12ms
+  pw:api elementHandle.type("sun know often tie dream onion view down deep retain can brown race short has guide high train use g") +3ms
+  pw:api   "networkidle" event fired +250ms
+  pw:api <= locator.pressSequentially succeeded +1s
+  pw:api => locator.press started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +10ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback race-pace-legend" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">sun know often tie dream onion view down deep ret…</textarea> +7ms
+  pw:api elementHandle.press("Backspace") +1ms
+  pw:api <= locator.press succeeded +17ms
+  pw:api => Expect "toHaveValue" started +2ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +5ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +7ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +32ms
+  pw:api => locator.getAttribute started +2ms
+  pw:api waiting for getByTestId('opponent-caret') +4ms
+  pw:api   locator resolved to <span aria-hidden="true" data-position="15" data-in-view="false" class="opponent-caret" data-testid="opponent-caret"></span> +3ms
+  pw:api <= locator.getAttribute succeeded +5ms
+  pw:api => page.evaluate started +0ms
+  pw:api <= page.evaluate succeeded +14ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('button', { name: 'Leave race', exact: true }) +4ms
+  pw:api   locator resolved to <button class="forge-button-secondary self-end">…</button> +9ms
+  pw:api attempting click action +2ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +27ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +6ms
+  pw:api   navigated to "http://127.0.0.1:4175/race" +7ms
+  pw:api   click action done +7ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +1ms
+  pw:api <= locator.click succeeded +3ms
+  pw:api => Expect "toHaveCount" started +1ms
+  pw:api Expect "toHaveCount" getByTestId('opponent-caret') with timeout 5000ms +2ms
+  pw:api waiting for getByTestId('opponent-caret') +1ms
+  pw:api <= Expect "toHaveCount" succeeded +4ms
+  pw:api => page.evaluate started +1ms
+  pw:api <= page.evaluate succeeded +7ms
+  pw:api taking page screenshot +164ms
+  pw:api waiting for fonts to load... +2ms
+  pw:api fonts loaded +0ms
+  pw:api => browserContext.close started +14ms
+  pw:api <= browserContext.close succeeded +4ms
+  ok 2 [chromium] › e2e\typing-observer-ownership.spec.ts:176:1 › bot and user progress keep native resize and scroll subscriptions stable until leaving the race (2.8s)
+  pw:api => browser.close started +93ms
+  pw:browser [pid=35072] <gracefully close start> +7s
+  pw:browser [pid=35072] <process did exit: exitCode=0, signal=null> +98ms
+  pw:browser [pid=35072] starting temporary directories cleanup +0ms
+  pw:browser [pid=35072] finished temporary directories cleanup +7ms
+  pw:browser [pid=35072] <gracefully close end> +0ms
+  pw:api <= browser.close succeeded +105ms
+(node:53720) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  pw:api => browserType.launch started +0ms
+  pw:browser <launching> C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=C:\Users\DELL\AppData\Local\Temp\playwright_chromiumdev_profile-4wD9fU --remote-debugging-pipe --no-startup-window +0ms
+  pw:browser <launched> pid=60252 +19ms
+  pw:api <= browserType.launch succeeded +568ms
+  pw:api => browser.newContext started +5ms
+  pw:api <= browser.newContext succeeded +19ms
+  pw:api => browserContext.newPage started +18ms
+  pw:api <= browserContext.newPage succeeded +306ms
+  pw:api => page.addInitScript started +2ms
+  pw:api <= page.addInitScript succeeded +16ms
+  pw:api => page.setViewportSize started +4ms
+  pw:api <= page.setViewportSize succeeded +20ms
+  pw:api => page.goto started +2ms
+  pw:api navigating to "http://127.0.0.1:4175/learn?language=en&layout=qwerty", waiting until "load" +9ms
+  pw:api   "commit" event fired +44ms
+  pw:api   navigated to "http://127.0.0.1:4175/learn?language=en&layout=qwerty" +0ms
+  pw:api   "domcontentloaded" event fired +46ms
+  pw:api   "load" event fired +8ms
+  pw:api <= page.goto succeeded +69ms
+  pw:api => locator.focus started +6ms
+  pw:api waiting for getByRole('textbox', { name: 'Type the practice text', exact: true }) +43ms
+  pw:api   navigated to "http://127.0.0.1:4175/learn?language=en&layout=qwerty" +34ms
+  pw:api   locator resolved to <textarea autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off" aria-label="Type the practice text" aria-describedby="lesson-instructions lesson-feedback lesson-passage" class="absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0"></textarea> +215ms
+  pw:api <= locator.focus succeeded +43ms
+  pw:api => locator.textContent started +4ms
+  pw:api waiting for locator('#lesson-passage') +11ms
+  pw:api   locator resolved to <p lang="en" dir="ltr" class="sr-only" id="lesson-passage">teen one net net attention neon tea net tea teen …</p> +6ms
+  pw:api <= locator.textContent succeeded +5ms
+  pw:api => page.evaluate started +7ms
+  pw:api <= page.evaluate succeeded +22ms
+  pw:api => locator.pressSequentially started +8ms
+  pw:api waiting for getByRole('textbox', { name: 'Type the practice text', exact: true }) +8ms
+  pw:api   locator resolved to <textarea autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off" aria-label="Type the practice text" aria-describedby="lesson-instructions lesson-feedback lesson-passage" class="absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0"></textarea> +4ms
+  pw:api elementHandle.type("teen one net net attention neon tea net tea teen note nine toe net neat teen neon note ten one ante none neat tone no") +3ms
+  pw:api   "networkidle" event fired +359ms
+  pw:api <= locator.pressSequentially succeeded +2s
+  pw:api => Expect "toHaveAttribute" started +2ms
+  pw:api Expect "toHaveAttribute" locator('.learn-stream [data-current="true"]') with timeout 5000ms +13ms
+  pw:api waiting for locator('.learn-stream [data-current="true"]') +1ms
+  pw:api <= Expect "toHaveAttribute" succeeded +8ms
+  pw:api => locator.press started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Type the practice text', exact: true }) +4ms
+  pw:api   locator resolved to <textarea autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off" aria-label="Type the practice text" aria-describedby="lesson-instructions lesson-feedback lesson-passage" class="absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0"></textarea> +8ms
+  pw:api elementHandle.press("Backspace") +4ms
+  pw:api <= locator.press succeeded +20ms
+  pw:api => locator.press started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Type the practice text', exact: true }) +6ms
+  pw:api   locator resolved to <textarea autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off" aria-label="Type the practice text" aria-describedby="lesson-instructions lesson-feedback lesson-passage" class="absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0"></textarea> +6ms
+  pw:api elementHandle.press("Backspace") +1ms
+  pw:api <= locator.press succeeded +19ms
+  pw:api => Expect "toHaveAttribute" started +1ms
+  pw:api Expect "toHaveAttribute" locator('.learn-stream [data-current="true"]') with timeout 5000ms +6ms
+  pw:api waiting for locator('.learn-stream [data-current="true"]') +0ms
+  pw:api <= Expect "toHaveAttribute" succeeded +8ms
+  pw:api => Expect "toHaveCount" started +3ms
+  pw:api Expect "toHaveCount" locator('.learn-stream [data-typed]') with timeout 5000ms +5ms
+  pw:api waiting for locator('.learn-stream [data-typed]') +0ms
+  pw:api <= Expect "toHaveCount" succeeded +11ms
+  pw:api => page.setViewportSize started +0ms
+  pw:api <= page.setViewportSize succeeded +42ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for locator('.learn-stream') +5ms
+  pw:api   locator resolved to visible <div class="learn-stream relative outline-none">…</div> +7ms
+  pw:api <= locator.evaluate succeeded +26ms
+  pw:api => page.evaluate started +1ms
+  pw:api <= page.evaluate succeeded +13ms
+  pw:api => locator.click started +2ms
+  pw:api waiting for getByRole('button', { name: 'Finish practice', exact: true }) +4ms
+  pw:api   locator resolved to <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">…</button> +6ms
+  pw:api attempting click action +1ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +17ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +3ms
+  pw:api   performing click action +9ms
+  pw:api   click action done +60ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +34ms
+  pw:api <= locator.click succeeded +45ms
+  pw:api => Expect "toBeVisible" started +1ms
+  pw:api Expect "toBeVisible" getByRole('region', { name: 'Session results', exact: true }) with timeout 5000ms +34ms
+  pw:api waiting for getByRole('region', { name: 'Session results', exact: true }) +0ms
+  pw:api <= Expect "toBeVisible" succeeded +13ms
+  pw:api => page.evaluate started +1ms
+  pw:api <= page.evaluate succeeded +11ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('button', { name: 'Next test', exact: true }) +3ms
+  pw:api   locator resolved to <button class="forge-button">…</button> +5ms
+  pw:api attempting click action +2ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +905ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +9ms
+  pw:api   click action done +29ms
+  pw:api   waiting for scheduled navigations to finish +1ms
+  pw:api   navigations have finished +1ms
+  pw:api <= locator.click succeeded +12ms
+  pw:api => Expect "toBeFocused" started +2ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Type the practice text', exact: true }) with timeout 5000ms +11ms
+  pw:api waiting for getByRole('textbox', { name: 'Type the practice text', exact: true }) +0ms
+  pw:api <= Expect "toBeFocused" succeeded +9ms
+  pw:api => Expect "toHaveAttribute" started +1ms
+  pw:api Expect "toHaveAttribute" locator('.learn-stream [data-current="true"]') with timeout 5000ms +4ms
+  pw:api waiting for locator('.learn-stream [data-current="true"]') +1ms
+  pw:api <= Expect "toHaveAttribute" succeeded +9ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for locator('.learn-stream') +4ms
+  pw:api   locator resolved to visible <div class="learn-stream relative outline-none">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +10ms
+  pw:api => page.evaluate started +1ms
+  pw:api <= page.evaluate succeeded +22ms
+  pw:api => locator.click started +6ms
+  pw:api waiting for getByRole('navigation', { name: 'Mobile navigation', exact: true }).getByRole('link', { name: 'Stats', exact: true }) +8ms
+  pw:api   locator resolved to <a href="/stats" data-discover="true" class="forge-chip shrink-0">…</a> +14ms
+  pw:api attempting click action +6ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +22ms
+  pw:api   scrolling into view if needed +1ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +8ms
+  pw:api   navigated to "http://127.0.0.1:4175/stats" +30ms
+  pw:api   click action done +10ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +45ms
+  pw:api <= locator.click succeeded +24ms
+  pw:api => Expect "toHaveCount" started +1ms
+  pw:api Expect "toHaveCount" getByRole('textbox', { name: 'Type the practice text', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Type the practice text', exact: true }) +0ms
+  pw:api <= Expect "toHaveCount" succeeded +5ms
+  pw:api => page.evaluate started +1ms
+  pw:api <= page.evaluate succeeded +6ms
+  pw:api taking page screenshot +313ms
+  pw:api waiting for fonts to load... +6ms
+  pw:api fonts loaded +2ms
+  pw:api => browserContext.close started +35ms
+  pw:api <= browserContext.close succeeded +28ms
+  ok 3 [edge] › e2e\typing-observer-ownership.spec.ts:100:1 › learning keeps one native layout observer through input, deletion and resize and cleans each real lesson stage (5.2s)
+  pw:api => browser.newContext started +195ms
+  pw:api <= browser.newContext succeeded +13ms
+  pw:api => browserContext.newPage started +5ms
+  pw:api <= browserContext.newPage succeeded +178ms
+  pw:api => page.addInitScript started +1ms
+  pw:api <= page.addInitScript succeeded +7ms
+  pw:api => page.setViewportSize started +3ms
+  pw:api <= page.setViewportSize succeeded +25ms
+  pw:api => page.goto started +1ms
+  pw:api navigating to "http://127.0.0.1:4175/race", waiting until "load" +3ms
+  pw:api   "commit" event fired +34ms
+  pw:api   navigated to "http://127.0.0.1:4175/race" +0ms
+  pw:api   "domcontentloaded" event fired +39ms
+  pw:api   "load" event fired +2ms
+  pw:api <= page.goto succeeded +42ms
+  pw:api => locator.selectOption started +1ms
+  pw:api waiting for getByRole('combobox', { name: 'Difficulty', exact: true }) +17ms
+  pw:api   navigated to "http://127.0.0.1:4175/race" +66ms
+  pw:api   locator resolved to <select class="forge-input mt-2">…</select> +188ms
+  pw:api attempting select option action +2ms
+  pw:api   waiting for element to be visible and enabled +7ms
+  pw:api   selected specified option(s) +7ms
+  pw:api <= locator.selectOption succeeded +4ms
+  pw:api => locator.click started +2ms
+  pw:api waiting for getByRole('button', { name: 'Start bot practice', exact: true }) +5ms
+  pw:api   locator resolved to <button class="forge-button w-full">…</button> +9ms
+  pw:api attempting click action +2ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +13ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +6ms
+  pw:api   click action done +91ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +11ms
+  pw:api <= locator.click succeeded +47ms
+  pw:api => Expect "toBeVisible" started +7ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +9ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +1ms
+  pw:browser [pid=60252][err] [60252:59268:1017/005557.126:ERROR:chrome\browser\task_manager\providers\fallback_task_provider.cc:126] Every renderer should have at least one task provided by a primary task provider. If a "Renderer" fallback task is shown, it is a bug. If you have repro steps, please file a new bug and tag it as a dependency of crbug.com/40528867. +7s
+  pw:api <= Expect "toBeVisible" succeeded +22ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +17ms
+  pw:api   locator resolved to visible <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback race-pace-legend" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +8ms
+  pw:api <= locator.evaluate succeeded +48ms
+  pw:api => Expect "toBeFocused" started +2ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +8ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeFocused" succeeded +16ms
+  pw:api => locator.getAttribute started +8ms
+  pw:api waiting for getByTestId('opponent-caret') +12ms
+  pw:api   locator resolved to <span data-position="2" aria-hidden="true" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span> +5ms
+  pw:api <= locator.getAttribute succeeded +6ms
+  pw:api => locator.getAttribute started +3ms
+  pw:api waiting for getByTestId('opponent-caret') +9ms
+  pw:api   locator resolved to <span data-position="2" aria-hidden="true" data-in-view="true" class="opponent-caret" data-testid="opponent-caret"></span> +5ms
+  pw:api <= locator.getAttribute succeeded +6ms
+  pw:api => page.evaluate started +2ms
+  pw:api <= page.evaluate succeeded +21ms
+  pw:api => locator.textContent started +6ms
+  pw:api waiting for getByTestId('typing-target') +8ms
+  pw:api   locator resolved to <div data-testid="typing-target" class="typing-text relative pb-5">…</div> +6ms
+  pw:api <= locator.textContent succeeded +15ms
+  pw:api => locator.pressSequentially started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +7ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback race-pace-legend" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +11ms
+  pw:api elementHandle.type("town gold open that brown task white plain ten join she his silver are care race come my it most que") +3ms
+  pw:api   "networkidle" event fired +179ms
+  pw:api <= locator.pressSequentially succeeded +1s
+  pw:api => locator.press started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +6ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback race-pace-legend" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">town gold open that brown task white plain ten jo…</textarea> +11ms
+  pw:api elementHandle.press("Backspace") +1ms
+  pw:api <= locator.press succeeded +22ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +9ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +12ms
+  pw:api => page.setViewportSize started +2ms
+  pw:api <= page.setViewportSize succeeded +45ms
+  pw:api => locator.getAttribute started +1ms
+  pw:api waiting for getByTestId('opponent-caret') +9ms
+  pw:api   locator resolved to <span aria-hidden="true" data-position="17" data-in-view="false" class="opponent-caret" data-testid="opponent-caret"></span> +5ms
+  pw:api <= locator.getAttribute succeeded +4ms
+  pw:api => page.evaluate started +2ms
+  pw:api <= page.evaluate succeeded +14ms
+  pw:api => locator.click started +3ms
+  pw:api waiting for getByRole('button', { name: 'Leave race', exact: true }) +9ms
+  pw:api   locator resolved to <button class="forge-button-secondary self-end">…</button> +5ms
+  pw:api attempting click action +1ms
+  pw:api   waiting for element to be visible, enabled and stable +1ms
+  pw:api   element is visible, enabled and stable +18ms
+  pw:api   scrolling into view if needed +1ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +18ms
+  pw:api   navigated to "http://127.0.0.1:4175/race" +22ms
+  pw:api   click action done +6ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +1ms
+  pw:api <= locator.click succeeded +4ms
+  pw:api => Expect "toHaveCount" started +2ms
+  pw:api Expect "toHaveCount" getByTestId('opponent-caret') with timeout 5000ms +4ms
+  pw:api waiting for getByTestId('opponent-caret') +0ms
+  pw:api <= Expect "toHaveCount" succeeded +5ms
+  pw:api => page.evaluate started +1ms
+  pw:api <= page.evaluate succeeded +10ms
+  pw:api taking page screenshot +344ms
+  pw:api waiting for fonts to load... +2ms
+  pw:api fonts loaded +1ms
+  pw:api => browserContext.close started +30ms
+  pw:api <= browserContext.close succeeded +14ms
+  ok 4 [edge] › e2e\typing-observer-ownership.spec.ts:176:1 › bot and user progress keep native resize and scroll subscriptions stable until leaving the race (3.2s)
+  pw:api => browser.close started +183ms
+  pw:browser [pid=60252] <gracefully close start> +3s
+  pw:browser [pid=60252] <process did exit: exitCode=0, signal=null> +388ms
+  pw:browser [pid=60252] starting temporary directories cleanup +0ms
+  pw:browser [pid=60252] finished temporary directories cleanup +18ms
+  pw:browser [pid=60252] <gracefully close end> +0ms
+  pw:api <= browser.close succeeded +408ms
+
+  4 passed (19.2s)

@@ -3,24 +3,150 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Typing Forge · Make every keystroke count</title>
-    <meta name="description" content="Free online typing test and practice. Measure your WPM, improve accuracy, compete on leaderboards. Multiple modes including timed, words, quotes, and zen." />
-    <meta name="author" content="Typing Forge" />
-    <meta name="keywords" content="typing test, typing speed, WPM, words per minute, typing practice, touch typing, keyboard skills" />
+    <link
+      rel="preload"
+      href="/fonts/sora-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/fonts/fonts.css" />
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: #07070a;
+      }
+      .first-paint {
+        position: fixed;
+        inset: 0;
+        min-height: 100svh;
+        background: #07070a;
+      }
+      .first-paint-caret {
+        position: absolute;
+        top: 46%;
+        left: 50%;
+        display: block;
+        width: 2px;
+        height: 56px;
+        background: #c6ff3d;
+        transform: translate(-50%, -50%);
+        animation: first-paint-blink 1s steps(1) infinite;
+      }
+      .first-paint-title {
+        position: absolute;
+        top: 64%;
+        left: 50%;
+        display: inline-flex;
+        transform: translateX(-50%);
+        color: #77778f;
+        font:
+          700 clamp(48px, 9vw, 128px)/1.1 Sora,
+          "Sora Fallback",
+          "Inter Variable",
+          sans-serif;
+        letter-spacing: -0.04em;
+        white-space: nowrap;
+        text-shadow:
+          0 1px 0 #ffffff08,
+          0 -1px 0 #000;
+        -webkit-font-smoothing: antialiased;
+      }
+      .first-paint-label {
+        position: absolute;
+        inset: auto 24px 32px;
+        color: #8b8ba0;
+        font:
+          400 12px Sora,
+          sans-serif;
+        text-align: center;
+      }
+      .workspace-loading {
+        box-sizing: border-box;
+        min-height: 100svh;
+        margin: 0;
+        padding: 24px;
+        display: grid;
+        place-items: center;
+        background: #07070a;
+        color: #ededf2;
+        font:
+          400 14px Sora,
+          sans-serif;
+      }
+      @keyframes first-paint-blink {
+        0%,
+        49% {
+          opacity: 1;
+        }
+        50%,
+        100% {
+          opacity: 0;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .first-paint-caret {
+          animation: none;
+        }
+      }
+      @media (max-height: 500px) {
+        .first-paint-title {
+          top: 56%;
+          font-size: 48px;
+        }
+      }
+    </style>
+    <title>Typing test and deliberate practice · SparowType</title>
+    <meta
+      name="description"
+      content="Free online typing test and practice. Measure your WPM, improve accuracy, compete on leaderboards. Multiple modes including timed, words, quotes, and zen."
+    />
+    <meta name="author" content="SparowType" />
+    <meta
+      name="keywords"
+      content="typing test, typing speed, WPM, words per minute, typing practice, touch typing, keyboard skills"
+    />
 
-    <meta property="og:title" content="Typing Forge · Practice with purpose" />
-    <meta property="og:description" content="Free online typing test. Measure WPM, improve accuracy, compete globally. Multiple practice modes available." />
+    <meta
+      property="og:title"
+      content="Typing test and deliberate practice · SparowType"
+    />
+    <meta
+      property="og:description"
+      content="Free online typing test. Measure WPM, improve accuracy, compete globally. Multiple practice modes available."
+    />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="/og-sparowtype.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Typing Forge · Practice with purpose" />
-    <meta name="twitter:description" content="Free online typing test. Measure WPM, improve accuracy, compete globally." />
-    
-    <meta name="theme-color" content="#0B0D12" />
+    <meta
+      name="twitter:title"
+      content="Typing test and deliberate practice · SparowType"
+    />
+    <meta name="twitter:image" content="/og-sparowtype.png" />
+    <meta
+      name="twitter:description"
+      content="Free online typing test. Measure WPM, improve accuracy, compete globally."
+    />
+
+    <meta name="theme-color" content="#07070A" />
+    <link rel="icon" type="image/svg+xml" href="/sparowtype.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <main class="first-paint" aria-label="SparowType introduction">
+        <span class="first-paint-caret" aria-hidden="true"></span
+        ><span class="first-paint-title" aria-hidden="true"
+          ><span>Sparow</span><span>Type</span></span
+        ><span class="first-paint-label" role="status" aria-live="polite">Loading SparowType</span>
+      </main>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

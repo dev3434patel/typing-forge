@@ -2,6 +2,12 @@ import { expect, test } from "@playwright/test";
 import { mkdir } from "node:fs/promises";
 import { customPractice, exportedResult, focusTyping } from "./helpers";
 
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() =>
+    localStorage.setItem("sparowtype.opening-animation.enabled", "false"),
+  );
+});
+
 test("a retained wrong letter is visible in place, advances, and can be corrected honestly", async ({
   page,
 }, info) => {
@@ -74,7 +80,9 @@ test("explicit precision mode shows the rejected key and expected character", as
     "Not inserted",
   );
   await input.press("x");
-  await expect(page.getByTestId("typing-feedback").getByRole("status")).toContainText("2 incorrect attempts so far");
+  await expect(
+    page.getByTestId("typing-feedback").getByRole("status"),
+  ).toContainText("2 incorrect attempts so far");
   await input.press("a");
   await expect(input).toHaveValue("ca");
   await expect(page.getByTestId("typing-feedback")).not.toContainText(
@@ -206,7 +214,9 @@ test("wrong-key feedback fits mobile and restarting clears the previous input", 
   await page
     .getByRole("button", { name: "Restart with new text", exact: true })
     .click();
-  await page.getByRole("button", { name: "Start private practice", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Start private practice", exact: true })
+    .click();
   await expect(page.getByTestId("typing-target")).toBeVisible();
   await expect(page.getByTestId("typing-feedback")).not.toContainText(
     "You typed x",

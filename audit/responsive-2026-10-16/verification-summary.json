@@ -1,0 +1,90 @@
+{
+  "date": "2026-10-16",
+  "status": "Implemented and rebuilt; cross-browser runtime acceptance remains open",
+  "preview": "http://127.0.0.1:4173/",
+  "source": {
+    "unitFilesPassed": 31,
+    "unitTestsPassed": 494,
+    "typechecks": "passed",
+    "lint": {
+      "errors": 0,
+      "existingWarnings": 9
+    },
+    "productionBuild": "passed",
+    "initialPracticeJsGzipBytes": 197067,
+    "budgetBytes": 200000
+  },
+  "browser": {
+    "fullChromiumBeforeFinalMobileAlignment": {
+      "startTime": "2026-10-15T20:43:05.145Z",
+      "duration": 234832.202,
+      "expected": 88,
+      "skipped": 2,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "finalChromiumUI": {
+      "startTime": "2026-10-15T20:57:23.540Z",
+      "duration": 119251.90699999999,
+      "expected": 4,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "firefoxLatest": {
+      "startTime": "2026-10-15T20:46:05.700Z",
+      "duration": 239790.041,
+      "expected": 8,
+      "skipped": 0,
+      "unexpected": 1,
+      "flaky": 0
+    },
+    "webkitMatrixBeforeRoundingCorrections": {
+      "startTime": "2026-10-15T20:42:21.876Z",
+      "duration": 292987.706,
+      "expected": 6,
+      "skipped": 0,
+      "unexpected": 3,
+      "flaky": 0
+    },
+    "finalWebkitInteractions": {
+      "startTime": "2026-10-15T20:57:54.291Z",
+      "duration": 76486.47,
+      "expected": 2,
+      "skipped": 0,
+      "unexpected": 1,
+      "flaky": 0
+    }
+  },
+  "scope": {
+    "requestedWidths": [
+      320,
+      390,
+      768,
+      1440
+    ],
+    "localPages": 11,
+    "themes": 8,
+    "testModes": 6,
+    "also": [
+      "short landscape",
+      "native keyboard selection and persistence",
+      "fitted keyboard rows",
+      "expanded replay tables",
+      "populated history",
+      "Tab then Enter retry",
+      "opponent marker resizing"
+    ]
+  },
+  "limitations": [
+    "Two full-suite checks require cloud credentials and a deployed backend.",
+    "Firefox had a context teardown timeout; WebKit had a font-readiness timeout. Earlier test rounding and page-readiness errors were corrected; diagnostic runs are retained.",
+    "A concurrent merge briefly interrupted main-source verification; it cleared before the successful final build."
+  ],
+  "temporaryVerificationCopy": {
+    "path": "audit/responsive-2026-10-16/verified-head-b0b075c/",
+    "retained": true,
+    "cleanup": "Automatic approval review blocked deletion."
+  },
+  "screenshot": "audit/responsive-2026-10-16/practice-390.png"
+}

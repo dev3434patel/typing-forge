@@ -1,0 +1,25 @@
+
+> sparowtype@3.0.0 test:database
+> node supabase/tests/compatibility-check.mjs node_modules/@electric-sql/pglite
+
+Replayed 20260112190721_53980950-5de5-4ad8-87b3-363ab88b497e.sql
+Replayed 20260112191759_346a7659-c38c-40a2-bed8-873d6cc0f610.sql
+Replayed 20260112193515_c5a2e5f1-914c-4d56-a567-a4febdf06ede.sql
+Replayed 20260112195233_30e84053-274e-4d7b-a11e-2fd6f53ef710.sql
+Replayed 20260112195838_f15b4374-e640-484c-b853-b1e7d11f0358.sql
+Replayed 20260112202820_6c0a35f1-976e-478b-9408-63db6356f5ea.sql
+Replayed 20260112203830_8771865b-0f66-4562-91d1-3af18262a9d2.sql
+Replayed 20260123144927_251c9dd5-b537-4d22-b391-1be4e32188fc.sql
+Replayed 20260209193256_67c13f03-2d0a-4d67-8ee8-7002dffac8dc.sql
+Replayed 20261015090000_forge_v3_integrity.sql
+Replayed 20261015091000_forge_race_protocol.sql
+Replayed 20261015092000_forge_account_cleanup.sql
+Replayed 20261015093000_forge_ranking_reads.sql
+Replayed 20261015094000_forge_preference_versions.sql
+Replayed 20261015095000_forge_owner_intent.sql
+Replayed 20261016143000_sparow_preferences.sql
+Replayed 20261016150000_sparow_period_rankings.sql
+PostgreSQL compatibility replay + SQL integrity assertions passed.
+Owner-intent deletion, matched-duration rooms and one-use challenge assertions passed.
+UTC period rankings, bounded pagination, rejected periods, public aggregate privacy and owner/version-checked sound/reduced-motion preference assertions passed.
+Legacy upgrade fixture passed: history preserved, scores quarantined, handles safe, old rooms cancelled.

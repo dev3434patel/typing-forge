@@ -172,7 +172,7 @@ export function ProfileOverview({ leaderboardData, testHistory, stats }: Profile
                 <Tooltip
                   contentStyle={{
                     backgroundColor: 'hsl(var(--card))',
-                    border: '1px solid hsl(var(--border))',
+                    border: '1px solid hsl(var(--ui-border))',
                     borderRadius: '8px',
                     color: 'hsl(var(--foreground))',
                   }}
@@ -279,7 +279,7 @@ export function ProfileOverview({ leaderboardData, testHistory, stats }: Profile
                 <Tooltip
                   contentStyle={{
                     backgroundColor: 'hsl(var(--card))',
-                    border: '1px solid hsl(var(--border))',
+                    border: '1px solid hsl(var(--ui-border))',
                     borderRadius: '8px',
                     color: 'hsl(var(--foreground))',
                   }}

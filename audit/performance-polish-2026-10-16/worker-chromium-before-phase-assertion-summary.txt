@@ -1,0 +1,55 @@
+{
+  "stats": {
+    "startTime": "2026-10-16T19:27:03.763Z",
+    "duration": 54970.696,
+    "expected": 7,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "config": {
+    "workers": 1,
+    "globalTimeout": 120000,
+    "projects": [
+      {
+        "name": "chromium",
+        "timeout": 30000,
+        "retries": 0,
+        "repeatEach": 1
+      }
+    ]
+  },
+  "runtimeVersions": [
+    "156.0.8078.4"
+  ],
+  "reportedAttempts": 8,
+  "nonPassing": [
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "actual worker WebGL context loss after live frames recovers with a fresh canvas and keeps practice usable",
+      "project": "chromium",
+      "status": "failed",
+      "durationMs": 12072,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "156.0.8078.4"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        }
+      ],
+      "errors": [
+        {
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts",
+            "column": 6,
+            "line": 563
+          },
+          "message": "Error: Timeout 5000ms exceeded while waiting on the predicate\n\n  561 |       );\n  562 |     })\n> 563 |     .toBe(true);\n      |      ^\n  564 |   await expect(canvas).toHaveCount(1);\n  565 |   await expect.poll(async () => (await records(page))[0]?.terminated).toBe(1);\n  566 |   await page.keyboard.press(\"Escape\");\n    at expectRecoveredDocumentScene (D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:563:6)\n    at nativeContextLoss (D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:795:3)\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:807:3"
+        }
+      ]
+    }
+  ]
+}

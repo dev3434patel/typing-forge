@@ -5,19 +5,25 @@ const Toaster = lazy(() =>
     default: module.Toaster,
   })),
 );
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import { PreferencesProvider } from "@/contexts/PreferencesContext";
 import { ErrorBoundary } from "@/components/layout/ErrorBoundary";
 import { AccountWorkspace } from "@/components/layout/AccountWorkspace";
+import "./index.css";
+import { applyRouteSeo } from "@/lib/seo";
+const PwaStatus = lazy(() =>
+  import("@/components/layout/PwaStatus").then((module) => ({
+    default: module.PwaStatus,
+  })),
+);
 const CommandPalette = lazy(() =>
   import("@/components/layout/CommandPalette").then((module) => ({
     default: module.CommandPalette,
   })),
 );
-const Index = lazy(() => import("./pages/Index"));
 const Learn = lazy(() => import("./pages/Learn"));
+const Index = lazy(() => import("./pages/Index"));
 const Stats = lazy(() => import("./pages/Stats"));
 const Leaderboard = lazy(() => import("./pages/Leaderboard"));
 const Profile = lazy(() => import("./pages/Profile"));
@@ -28,6 +34,10 @@ const Settings = lazy(() => import("./pages/Settings"));
 const About = lazy(() => import("./pages/About"));
 const KeyboardLab = lazy(() => import("./pages/KeyboardLab"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const Terms = lazy(() => import("./pages/Terms"));
+const Offline = lazy(() => import("./pages/Offline"));
+const TouchTyping = lazy(() => import("./pages/TouchTyping"));
 function DeferredCommands() {
   const [loaded, setLoaded] = useState(false);
   const [open, setOpen] = useState(false);
@@ -74,7 +84,7 @@ function RouteEffects() {
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = `${({ "/": "Practice", "/learn": "Learn", "/stats": "Progress", "/settings": "Preferences", "/race": "Race", "/leaderboard": "Rankings", "/profile": "Account", "/about": "About", "/auth": "Sign in", "/keyboard-lab": "Keyboard Lab", "/ranked": "Ranked challenge" } as Record<string, string>)[pathname] || "Typing"} · Typing Forge`;
+    applyRouteSeo(pathname, window.location.origin);
   }, [pathname]);
   return null;
 }
@@ -83,41 +93,50 @@ export default function App() {
     <ErrorBoundary>
       <AuthProvider>
         <PreferencesProvider>
-          <TooltipProvider>
-            <Notifications />
-            <BrowserRouter>
-              <RouteEffects />
-              <DeferredCommands />
-              <Suspense
-                fallback={
-                  <main
-                    className="forge-main py-24 text-muted-foreground"
-                    role="status"
-                  >
-                    Loading your workspace…
-                  </main>
-                }
-              >
-                <AccountWorkspace>
-                  <Routes>
-                    <Route path="/" element={<Index />} />
-                    <Route path="/learn" element={<Learn />} />
-                    <Route path="/stats" element={<Stats />} />
-                    <Route path="/leaderboard" element={<Leaderboard />} />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/auth" element={<Auth />} />
-                    <Route path="/race" element={<Race />} />
-                    <Route path="/race/:roomCode" element={<Race />} />
-                    <Route path="/ranked" element={<Ranked />} />
-                    <Route path="/settings" element={<Settings />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/keyboard-lab" element={<KeyboardLab />} />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
-                </AccountWorkspace>
-              </Suspense>
-            </BrowserRouter>
-          </TooltipProvider>
+          <Notifications />
+          {/* Replace the active typing route immediately while a lazy destination loads. */}
+          <BrowserRouter useTransitions={false}>
+            <RouteEffects />
+            <DeferredCommands />
+            <Suspense fallback={null}>
+              <PwaStatus />
+            </Suspense>
+            <Suspense
+              fallback={
+                <main
+                  className="forge-main py-24 text-muted-foreground"
+                  role="status"
+                >
+                  Loading your workspace…
+                </main>
+              }
+            >
+              <AccountWorkspace>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/typing-test" element={<Index />} />
+                  <Route path="/learn" element={<Learn />} />
+                  <Route path="/typing-practice" element={<Learn />} />
+                  <Route path="/practice" element={<Learn />} />
+                  <Route path="/touch-typing" element={<TouchTyping />} />
+                  <Route path="/privacy" element={<Privacy />} />
+                  <Route path="/terms" element={<Terms />} />
+                  <Route path="/offline" element={<Offline />} />
+                  <Route path="/stats" element={<Stats />} />
+                  <Route path="/leaderboard" element={<Leaderboard />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/auth" element={<Auth />} />
+                  <Route path="/race" element={<Race />} />
+                  <Route path="/race/:roomCode" element={<Race />} />
+                  <Route path="/ranked" element={<Ranked />} />
+                  <Route path="/settings" element={<Settings />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/keyboard-lab" element={<KeyboardLab />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </AccountWorkspace>
+            </Suspense>
+          </BrowserRouter>
         </PreferencesProvider>
       </AuthProvider>
     </ErrorBoundary>

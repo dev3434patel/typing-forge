@@ -54,6 +54,8 @@ export class SessionController {
   }
   get status(): SessionSnapshot['status'] { return this.finalized ? 'finished' : this.pauseStart !== null ? 'paused' : this.startMono !== null ? 'running' : 'ready'; }
   get result(): SessionResult | null { return this.finalized; }
+  /** Canonical retained input for edit diffing; reading text never samples time or rescores. */
+  get currentText(): string { return this.state.units.join(''); }
   /** Read-only view feedback from the actual last edit, without replaying or rescoring. */
   get lastInputAttempts(): readonly Attempt[] {
     const event = this.transcriptEvents.at(-1);

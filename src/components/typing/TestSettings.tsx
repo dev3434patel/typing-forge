@@ -60,7 +60,7 @@ export function TestSettings() {
           >
             {(settings.mode === "time"
               ? [15, 30, 60, 120]
-              : [25, 50, 100, 200]
+              : [10, 25, 50, 100]
             ).map((value) => (
               <button
                 className="forge-chip font-mono"
@@ -82,6 +82,15 @@ export function TestSettings() {
                 <span className="sr-only">
                   {settings.mode === "time" ? "seconds" : "words"}
                 </span>
+              </button>
+            ))}
+          </div>
+        )}
+        {settings.mode === "quote" && (
+          <div role="group" aria-label="Quote length" className="flex gap-1 pl-2 border-l">
+            {(["short", "medium", "long"] as const).map((length) => (
+              <button key={length} className="forge-chip" aria-pressed={settings.quoteLength === length} onClick={() => setSettings({ quoteLength: length })}>
+                {length === "short" ? "Short" : length === "medium" ? "Medium" : "Long"}
               </button>
             ))}
           </div>

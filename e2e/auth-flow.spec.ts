@@ -1,5 +1,10 @@
 import { test, expect } from '@playwright/test';
 
+test.beforeEach(async ({ page }) => {
+  // Account flows are independent of the separately tested opening animation.
+  await page.addInitScript(() => localStorage.setItem('sparowtype.opening-animation.enabled', 'false'));
+});
+
 test('account form switches between sign in and creation using labelled controls', async ({ page }) => {
   await page.goto('/auth');
   await expect(page.getByRole('heading', { name: 'Welcome Back', exact: true })).toBeVisible();

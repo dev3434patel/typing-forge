@@ -1,6 +1,12 @@
 import { test, expect } from "@playwright/test";
 import { completeCorrectedCat, exportedResult, focusTyping } from "./helpers";
 import { mkdir } from "node:fs/promises";
+
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() =>
+    localStorage.setItem("sparowtype.opening-animation.enabled", "false"),
+  );
+});
 test("results explain both accuracy denominators and replay corrections without rewriting them", async ({
   page,
 }, testInfo) => {

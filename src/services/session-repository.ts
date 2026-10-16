@@ -78,7 +78,7 @@ export class SessionRepository {
         };
         request.onsuccess = () => { this.storageMode = 'indexeddb'; resolve(request.result); };
         request.onerror = () => { this.storageError = 'Browser storage is unavailable. Results are kept in memory for this visit.'; resolve(null); };
-        request.onblocked = () => { this.storageError = 'Close older Typing Forge tabs to enable durable storage.'; resolve(null); };
+        request.onblocked = () => { this.storageError = 'Close older SparowType tabs to enable durable storage.'; resolve(null); };
       } catch { this.storageError = 'Browser storage is blocked. Results are kept in memory for this visit.'; resolve(null); }
     });
     return this.database;

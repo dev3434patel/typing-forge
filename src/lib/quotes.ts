@@ -3,7 +3,7 @@ export interface Quote {
   id: string;
   text: string;
   author: string;
-  category: 'literature' | 'tech' | 'motivational' | 'philosophy' | 'science';
+  category: 'literature' | 'tech' | 'motivational' | 'philosophy' | 'science' | 'mixed';
   source: string;
   license: string;
   revision: string;
@@ -23,13 +23,24 @@ const passages: { text: string; category: Quote['category'] }[] = [
   { text: 'Along the narrow lane, the baker arranged fresh loaves beside the door. The town was only beginning to wake.', category: 'literature' },
   { text: 'Set a small goal that you can observe. Finish the work, read the evidence, and decide which step deserves your attention next.', category: 'motivational' },
 ];
-export const quotes: Quote[] = passages.map((passage, index) => ({ ...passage, id: `forge-passage-${index + 1}`, author: 'Typing Forge', source: 'Original Typing Forge practice passage', license: 'CC0-1.0', revision: 'forge-passages-2026.10.15' }));
+export const quotes: Quote[] = passages.map((passage, index) => ({ ...passage, id: `forge-passage-${index + 1}`, author: 'SparowType', source: 'Original SparowType practice passage', license: 'CC0-1.0', revision: 'forge-passages-2026.10.15' }));
 export const commonWords = curatedCommonWords;
-export function getRandomQuote(seed?: string): Quote {
-  if (seed === undefined) return quotes[Math.floor(Math.random() * quotes.length)];
+export type QuoteLength = 'short' | 'medium' | 'long';
+export function getRandomQuote(seed?: string, length: QuoteLength = 'short'): Quote {
   let hash = 0;
-  for (const char of seed) hash = (Math.imul(hash, 31) + char.codePointAt(0)!) >>> 0;
-  return quotes[hash % quotes.length];
+  if (seed === undefined) hash = Math.floor(Math.random() * quotes.length);
+  else for (const char of seed) hash = (Math.imul(hash, 31) + char.codePointAt(0)!) >>> 0;
+  const start = hash % quotes.length;
+  const count = length === 'long' ? 4 : length === 'medium' ? 2 : 1;
+  if (count === 1) return quotes[start];
+  return {
+    ...quotes[start],
+    id: `forge-passage-${length}-${start + 1}`,
+    text: Array.from({length: count}, (_, offset) => quotes[(start + offset) % quotes.length].text).join(' '),
+    category: 'mixed',
+    source: 'Original SparowType practice passages',
+    revision: `${quotes[start].revision}:joined-v1`,
+  };
 }
 export function generateRandomWords(count: number, includePunctuation = false, includeNumbers = false): string {
   const punctuation = ['.', ',', '!', '?', ';', ':'];

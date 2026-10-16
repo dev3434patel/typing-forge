@@ -118,6 +118,8 @@ const REFERENCE_ROWS: Record<string, string[]> = {
   dvorak: ["',.pyfgcrl", "aoeuidhtns", ";qjkxbmwvz"],
   colemak: ["qwfpgjluy;", "arstdhneio", "zxcvbkm,./"],
   "colemak-dh": ["qwfpbjluy;", "arstgmneio", "zxcdvkh,./"],
+  // OJ Bucao's standard Workman, verified against workman-layout/Workman xorg/workman and wm-us.klc.
+  workman: ["qdrwbjfup;", "ashtgyneoi", "zxmcvkl,./"],
   azerty: ["azertyuiop", "qsdfghjklm", "wxcvbn,;:!"],
   qwertz: ["qwertzuiop", "asdfghjklö", "yxcvbnm,.-"],
 };
@@ -126,6 +128,7 @@ export const LAB_LAYOUT_LABELS: Readonly<Record<string, string>> = {
   dvorak: "Dvorak",
   colemak: "Colemak",
   "colemak-dh": "Colemak-DH",
+  workman: "Workman",
   azerty: "AZERTY",
   qwertz: "QWERTZ",
   native: "Native / custom",

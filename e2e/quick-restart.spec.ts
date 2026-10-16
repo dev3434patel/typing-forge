@@ -104,6 +104,9 @@ test("bot results support Tab then Enter for a fresh race at the same difficulty
 test("normal Test results use Tab then Enter for new random words", async ({
   page,
 }) => {
+  await page.addInitScript(() =>
+    localStorage.setItem("sparowtype.opening-animation.enabled", "false"),
+  );
   await page.goto("/");
   const input = await focusTyping(page);
   const before = await page.getByTestId("typing-target").textContent();

@@ -1,6 +1,12 @@
 import { test, expect } from "@playwright/test";
 import { exportedResult, focusTyping } from "./helpers";
 
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() =>
+    localStorage.setItem("sparowtype.opening-animation.enabled", "false"),
+  );
+});
+
 for (const mode of [
   "Words",
   "Quote",

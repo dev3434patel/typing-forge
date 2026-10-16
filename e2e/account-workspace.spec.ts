@@ -45,7 +45,11 @@ test("cross-tab account change discards a previous owner's unsaved private passa
     }),
   );
   await page.addInitScript(
-    ({ key, value }) => localStorage.setItem(key, JSON.stringify(value)),
+    ({ key, value }) => {
+      // This case verifies account isolation; the opening has dedicated lifecycle coverage.
+      localStorage.setItem("sparowtype.opening-animation.enabled", "false");
+      localStorage.setItem(key, JSON.stringify(value));
+    },
     { key: storageKey, value: session(alice) },
   );
   await page.goto("/");

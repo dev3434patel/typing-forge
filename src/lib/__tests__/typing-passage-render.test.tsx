@@ -126,4 +126,66 @@ describe("typing passage cursor presentation", () => {
       html.indexOf('data-slot-index="2"'),
     );
   });
+
+  it("preserves independent pace, opponent and after-slot annotations around the real caret", () => {
+    const source = slots("cat dog");
+    source[0] = { ...source[0], typed: "c", status: "correct" };
+    const html = renderToStaticMarkup(
+      <TypingPassage
+        slots={source}
+        cursor={1}
+        marker={<i data-test-marker />}
+        characterClassName={(slot) =>
+          slot.status === "untyped" && slot.index < 4
+            ? "opponent-passed"
+            : undefined
+        }
+        renderBefore={(slot) =>
+          slot.index === 2 ? <i data-pace-marker /> : null
+        }
+        renderAfter={(slot) =>
+          slot.index === 4 ? <small data-after-slot>next</small> : null
+        }
+      />,
+    );
+    expect(html.match(/data-test-marker/g)).toHaveLength(1);
+    expect(html.match(/data-pace-marker/g)).toHaveLength(1);
+    expect(html.match(/opponent-passed/g)).toHaveLength(3);
+    expect(html.indexOf("data-test-marker")).toBeLessThan(
+      html.indexOf("data-pace-marker"),
+    );
+    expect(html.indexOf("data-after-slot")).toBeGreaterThan(
+      html.indexOf('data-slot-index="4"'),
+    );
+    expect(html.indexOf("data-after-slot")).toBeLessThan(
+      html.indexOf('data-slot-index="5"'),
+    );
+    expect(html).toContain('class="typing-character char-correct"');
+  });
+
+  it("retains composed graphemes and code line breaks while annotations change", () => {
+    const result = alignTranscript(
+      graphemes("é\nकिताब"),
+      graphemes("é\n"),
+      "code",
+    );
+    const html = renderToStaticMarkup(
+      <TypingPassage
+        slots={result.characters}
+        cursor={result.cursor}
+        preserveWhitespace
+        marker={<i data-test-marker />}
+        renderBefore={(slot) =>
+          slot.index === result.cursor ? <i data-pace-marker /> : null
+        }
+      />,
+    );
+    expect(html.match(/data-test-marker/g)).toHaveLength(1);
+    expect(html.match(/data-pace-marker/g)).toHaveLength(1);
+    expect(html.match(/<br\/?\s*>/g)).toHaveLength(1);
+    expect(html).toContain('<span data-typed-glyph="true">é</span>');
+    expect(html).toContain('<span data-typed-glyph="true">↵</span>');
+    expect(html).toContain('data-current="true" data-slot-index="2"');
+    expect(html).not.toContain("data-typing-word");
+  });
 });

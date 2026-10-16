@@ -29,3 +29,19 @@ dist-ssr
 coverage/
 playwright-report/
 test-results/
+
+# Machine-local tooling and generated source deliveries
+.cursor/
+.vercel/
+.netlify/
+__pycache__/
+*.pyc
+delivery/
+
+# Keep audit reports and screenshots, but retain bulky replay archives locally
+audit/**/*.zip
+audit/**/*.tar
+audit/**/*.tar.gz
+audit/**/*.tgz
+audit/**/*.7z
+audit/**/verified-head-*/

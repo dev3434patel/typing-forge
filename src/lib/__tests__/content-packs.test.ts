@@ -32,12 +32,19 @@ describe('Original content pack inventory and segmentation', () => {
     expect(graphemes('سلام', 'ar')).toEqual(['س', 'ل', 'ا', 'م']);
     expect(graphemes('👨‍👩‍👧‍👦')).toHaveLength(1);
   });
-  it('exposes the six distinct layout views and an honest unmapped state', () => {
-    expect(Object.keys(LAYOUTS)).toEqual(['qwerty', 'dvorak', 'colemak', 'colemak-dh', 'azerty', 'qwertz', 'native']);
+  it('exposes seven distinct layout views and an honest unmapped state', () => {
+    expect(Object.keys(LAYOUTS)).toEqual(['qwerty', 'dvorak', 'colemak', 'colemak-dh', 'workman', 'azerty', 'qwertz', 'native']);
     expect(LAYOUTS.qwerty.rows[0].join('')).toBe('qwertyuiop');
     expect(LAYOUTS['colemak-dh'].rows[1].join('')).toBe('arstgmneio');
     expect(getLayout('unknown').rows).toEqual([]);
     expect(getLayout('DVORAK')).toBe(LAYOUTS.dvorak);
+  });
+  it('preserves the standard Workman US rows and every Latin letter exactly once', () => {
+    expect(LAYOUTS.workman.rows.map(row => row.join(''))).toEqual(['qdrwbjfup;', 'ashtgyneoi', 'zxmcvkl,.']);
+    const letters=LAYOUTS.workman.rows.flat().filter(char => /^[a-z]$/.test(char));
+    expect(letters).toHaveLength(26);
+    expect(new Set(letters)).toEqual(new Set('abcdefghijklmnopqrstuvwxyz'));
+    expect(getLayout('WORKMAN')).toBe(LAYOUTS.workman);
   });
   it('uses seeded selection with no ambient random dependency', () => {
     const a = seededRandom('a'), b = seededRandom('a'), c = seededRandom('b');

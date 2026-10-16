@@ -1,0 +1,440 @@
+[
+  {
+    "title": "default native worker draws the complete keyboard while document tasks, resize and skip remain responsive",
+    "status": "passed",
+    "attachment": "native-worker-shutdown",
+    "data": {
+      "path": "acknowledged-disposal",
+      "policy": "acknowledged",
+      "disposeAtMs": 1409.1000000238419,
+      "terminatedAtMs": 1609.8000000715256,
+      "elapsedMs": 200.70000004768372,
+      "terminated": 1,
+      "liveNativeWorkers": 0
+    }
+  },
+  {
+    "title": "five consecutive live-worker reloads close each prior worker and final skip closes the last worker",
+    "status": "passed",
+    "attachment": "native-worker-shutdown",
+    "data": {
+      "path": "acknowledged-disposal",
+      "policy": "watchdog-allowed",
+      "disposeAtMs": 351.09999990463257,
+      "terminatedAtMs": 519.1999999284744,
+      "elapsedMs": 168.10000002384186,
+      "terminated": 1,
+      "liveNativeWorkers": 0
+    }
+  },
+  {
+    "title": "five consecutive live-worker reloads close each prior worker and final skip closes the last worker",
+    "status": "passed",
+    "attachment": "five-native-worker-reload-cycles",
+    "data": {
+      "initial": [
+        {
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "sent": [
+            {
+              "type": "initialize",
+              "atMs": 154.10000002384186,
+              "viewport": {
+                "width": 1280,
+                "height": 720,
+                "pixelRatio": 1
+              },
+              "lowPower": false,
+              "finePointer": true
+            },
+            {
+              "type": "resize",
+              "atMs": 155.30000007152557,
+              "viewport": {
+                "width": 1280,
+                "height": 720,
+                "pixelRatio": 1
+              }
+            },
+            {
+              "type": "progress",
+              "atMs": 629.3000000715256
+            },
+            {
+              "type": "start",
+              "atMs": 629.4000000953674
+            },
+            {
+              "type": "progress",
+              "atMs": 629.8000000715256
+            }
+          ],
+          "received": [
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": false,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 35,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 0,
+                "averageFps": 0,
+                "drawCalls": 0,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 411.90000009536743
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 34.8,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 1,
+                "averageFps": 0,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 629.1000000238419
+            },
+            {
+              "type": "ready",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 34.8,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 1,
+                "averageFps": 0,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 629.2000000476837
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 34.9,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 23,
+                "averageFps": 69,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 938.9000000953674
+            }
+          ],
+          "terminated": 0,
+          "terminatedAtMs": null
+        }
+      ],
+      "cycles": [
+        {
+          "reload": 1,
+          "records": [
+            {
+              "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+              "sent": [
+                {
+                  "type": "initialize",
+                  "atMs": 343.5,
+                  "viewport": {
+                    "width": 1280,
+                    "height": 720,
+                    "pixelRatio": 1
+                  },
+                  "lowPower": false,
+                  "finePointer": true
+                },
+                {
+                  "type": "resize",
+                  "atMs": 349.3000000715256,
+                  "viewport": {
+                    "width": 1280,
+                    "height": 720,
+                    "pixelRatio": 1
+                  }
+                }
+              ],
+              "received": [],
+              "terminated": 0,
+              "terminatedAtMs": null
+            }
+          ],
+          "priorWorkersClosed": 1,
+          "liveWorkers": 1
+        },
+        {
+          "reload": 2,
+          "records": [
+            {
+              "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+              "sent": [
+                {
+                  "type": "initialize",
+                  "atMs": 95.19999992847443,
+                  "viewport": {
+                    "width": 1280,
+                    "height": 720,
+                    "pixelRatio": 1
+                  },
+                  "lowPower": false,
+                  "finePointer": true
+                },
+                {
+                  "type": "resize",
+                  "atMs": 102.69999992847443,
+                  "viewport": {
+                    "width": 1280,
+                    "height": 720,
+                    "pixelRatio": 1
+                  }
+                }
+              ],
+              "received": [],
+              "terminated": 0,
+              "terminatedAtMs": null
+            }
+          ],
+          "priorWorkersClosed": 2,
+          "liveWorkers": 1
+        },
+        {
+          "reload": 3,
+          "records": [
+            {
+              "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+              "sent": [
+                {
+                  "type": "initialize",
+                  "atMs": 122.39999997615814,
+                  "viewport": {
+                    "width": 1280,
+                    "height": 720,
+                    "pixelRatio": 1
+                  },
+                  "lowPower": false,
+                  "finePointer": true
+                },
+                {
+                  "type": "resize",
+                  "atMs": 125,
+                  "viewport": {
+                    "width": 1280,
+                    "height": 720,
+                    "pixelRatio": 1
+                  }
+                }
+              ],
+              "received": [],
+              "terminated": 0,
+              "terminatedAtMs": null
+            }
+          ],
+          "priorWorkersClosed": 3,
+          "liveWorkers": 1
+        },
+        {
+          "reload": 4,
+          "records": [
+            {
+              "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+              "sent": [
+                {
+                  "type": "initialize",
+                  "atMs": 97.39999997615814,
+                  "viewport": {
+                    "width": 1280,
+                    "height": 720,
+                    "pixelRatio": 1
+                  },
+                  "lowPower": false,
+                  "finePointer": true
+                },
+                {
+                  "type": "resize",
+                  "atMs": 111.39999997615814,
+                  "viewport": {
+                    "width": 1280,
+                    "height": 720,
+                    "pixelRatio": 1
+                  }
+                }
+              ],
+              "received": [],
+              "terminated": 0,
+              "terminatedAtMs": null
+            }
+          ],
+          "priorWorkersClosed": 4,
+          "liveWorkers": 1
+        },
+        {
+          "reload": 5,
+          "records": [
+            {
+              "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+              "sent": [
+                {
+                  "type": "initialize",
+                  "atMs": 84.59999990463257,
+                  "viewport": {
+                    "width": 1280,
+                    "height": 720,
+                    "pixelRatio": 1
+                  },
+                  "lowPower": false,
+                  "finePointer": true
+                },
+                {
+                  "type": "resize",
+                  "atMs": 90,
+                  "viewport": {
+                    "width": 1280,
+                    "height": 720,
+                    "pixelRatio": 1
+                  }
+                }
+              ],
+              "received": [],
+              "terminated": 0,
+              "terminatedAtMs": null
+            }
+          ],
+          "priorWorkersClosed": 5,
+          "liveWorkers": 1
+        }
+      ],
+      "started": [
+        {
+          "sequence": 1,
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "startedAtNodeMs": 40686.3746
+        },
+        {
+          "sequence": 2,
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "startedAtNodeMs": 42088.3942
+        },
+        {
+          "sequence": 3,
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "startedAtNodeMs": 42386.7553
+        },
+        {
+          "sequence": 4,
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "startedAtNodeMs": 42643.3348
+        },
+        {
+          "sequence": 5,
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "startedAtNodeMs": 42873.794
+        },
+        {
+          "sequence": 6,
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "startedAtNodeMs": 43072.3817
+        }
+      ],
+      "closed": [
+        {
+          "sequence": 1,
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "closedAtNodeMs": 41750.9692
+        },
+        {
+          "sequence": 2,
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "closedAtNodeMs": 42276.2023
+        },
+        {
+          "sequence": 3,
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "closedAtNodeMs": 42497.6101
+        },
+        {
+          "sequence": 4,
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "closedAtNodeMs": 42769.8443
+        },
+        {
+          "sequence": 5,
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "closedAtNodeMs": 42979.3994
+        },
+        {
+          "sequence": 6,
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "closedAtNodeMs": 43483.1555
+        }
+      ],
+      "maximumLive": 1
+    }
+  },
+  {
+    "title": "skipping while the native worker entry is blocked terminates startup and preserves the first typing key",
+    "status": "passed",
+    "attachment": "native-worker-shutdown",
+    "data": {
+      "path": "watchdog-termination-no-disposal-acknowledgement",
+      "policy": "watchdog-allowed",
+      "disposeAtMs": 471.7999999523163,
+      "terminatedAtMs": 674,
+      "elapsedMs": 202.20000004768372,
+      "terminated": 1,
+      "liveNativeWorkers": 0
+    }
+  }
+]

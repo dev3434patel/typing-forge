@@ -21,15 +21,18 @@ import {
 } from "@/services/preferences-store";
 import { useTestStore } from "@/stores/test-store";
 import { sessionRepository } from "@/services/session-repository";
+import { publishOpeningPreferences } from "@/lib/opening-preferences";
 export interface Preferences {
   theme: string;
   targetWpm: number;
   language: string;
   layout: string;
   fontSize: number;
-  caretStyle: "line" | "block" | "underline";
+  caretStyle: "line" | "block" | "underline" | "outline";
   smoothCaret: boolean;
   sound: boolean;
+  soundPack: "soft" | "mechanical" | "typewriter" | "arcade" | "minimal";
+  reducedMotion: boolean;
   volume: number;
   dailyGoalMinutes: number;
   liveStats: boolean;
@@ -298,12 +301,21 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
   );
   const preferences = envelope.values;
   useEffect(() => {
+    publishOpeningPreferences({
+      language: preferences.language,
+      reducedMotion: preferences.reducedMotion,
+    });
+  }, [preferences.language, preferences.reducedMotion]);
+  useEffect(() => {
     applyTheme(preferences.theme);
     document.documentElement.style.setProperty(
       "--typing-size",
       `${preferences.fontSize}px`,
     );
-  }, [preferences.theme, preferences.fontSize]);
+    document.documentElement.dataset.reducedMotion = String(
+      preferences.reducedMotion,
+    );
+  }, [preferences.theme, preferences.fontSize, preferences.reducedMotion]);
   const updatePreferences = useCallback(
     (patch: Partial<Preferences>) => {
       const previous = current.current.envelope;

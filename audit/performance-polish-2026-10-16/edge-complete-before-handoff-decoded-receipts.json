@@ -1,0 +1,3274 @@
+[
+  {
+    "title": "public app download supports a real server outage and clearing preserves real history",
+    "status": "passed",
+    "attachments": {
+      "true-outage-build": {
+        "version": "731c32cb25e6d1ef7dfe",
+        "publicFiles": 87,
+        "bytes": 2680019,
+        "origin": "http://127.0.0.1:6095",
+        "transport": "Owned HTTP server stopped; accepting and active connections closed. No Playwright offline emulation."
+      }
+    }
+  },
+  {
+    "title": "five full reload cycles close their native canvas resources before entry",
+    "status": "passed",
+    "attachments": {
+      "native-context-disposal-cycles": [
+        {
+          "cycle": 1,
+          "records": [
+            {
+              "disposed": true,
+              "lost": true
+            }
+          ]
+        },
+        {
+          "cycle": 2,
+          "records": [
+            {
+              "disposed": true,
+              "lost": true
+            }
+          ]
+        },
+        {
+          "cycle": 3,
+          "records": [
+            {
+              "disposed": true,
+              "lost": true
+            }
+          ]
+        },
+        {
+          "cycle": 4,
+          "records": [
+            {
+              "disposed": true,
+              "lost": true
+            }
+          ]
+        },
+        {
+          "cycle": 5,
+          "records": [
+            {
+              "disposed": true,
+              "lost": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "title": "default native worker draws the complete keyboard while document tasks, resize and skip remain responsive",
+    "status": "passed",
+    "attachments": {
+      "document-task-and-paint-during-worker": {
+        "timerAtMs": 0.20000004768371582,
+        "frameAtMs": 33.700000047683716,
+        "openingPresent": true
+      },
+      "native-worker-shutdown": {
+        "path": "acknowledged-disposal",
+        "policy": "acknowledged",
+        "disposeAtMs": 1409.1000000238419,
+        "terminatedAtMs": 1609.8000000715256,
+        "elapsedMs": 200.70000004768372,
+        "terminated": 1,
+        "liveNativeWorkers": 0
+      },
+      "native-worker-receipts": [
+        {
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "sent": [
+            {
+              "type": "initialize",
+              "atMs": 166.60000002384186,
+              "viewport": {
+                "width": 1280,
+                "height": 800,
+                "pixelRatio": 1
+              },
+              "lowPower": false,
+              "finePointer": true
+            },
+            {
+              "type": "resize",
+              "atMs": 168.40000009536743,
+              "viewport": {
+                "width": 1280,
+                "height": 800,
+                "pixelRatio": 1
+              }
+            },
+            {
+              "type": "progress",
+              "atMs": 813.9000000953674
+            },
+            {
+              "type": "start",
+              "atMs": 814.2000000476837
+            },
+            {
+              "type": "progress",
+              "atMs": 814.5
+            },
+            {
+              "type": "resize",
+              "atMs": 1260.4000000953674,
+              "viewport": {
+                "width": 390,
+                "height": 844,
+                "pixelRatio": 1
+              }
+            },
+            {
+              "type": "resize",
+              "atMs": 1261.8000000715256,
+              "viewport": {
+                "width": 390,
+                "height": 844,
+                "pixelRatio": 1
+              }
+            },
+            {
+              "type": "dispose",
+              "atMs": 1409.1000000238419
+            }
+          ],
+          "received": [
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": false,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 35,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 800,
+                "frames": 0,
+                "averageFps": 0,
+                "drawCalls": 0,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 463.8000000715256
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 34.8,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 800,
+                "frames": 1,
+                "averageFps": 0,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 813.7000000476837
+            },
+            {
+              "type": "ready",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 34.8,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 800,
+                "frames": 1,
+                "averageFps": 0,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 813.9000000953674
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 34.9,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 800,
+                "frames": 23,
+                "averageFps": 59,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 1176.9000000953674
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 34.9,
+                "pixelRatio": 1,
+                "width": 390,
+                "height": 844,
+                "frames": 27,
+                "averageFps": 59,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 1348.9000000953674
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 35,
+                "pixelRatio": 1,
+                "width": 390,
+                "height": 844,
+                "frames": 35,
+                "averageFps": 59,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": true,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 1609.5
+            },
+            {
+              "type": "disposed",
+              "atMs": 1609.6000000238419
+            }
+          ],
+          "terminated": 1,
+          "terminatedAtMs": 1609.8000000715256
+        }
+      ]
+    }
+  },
+  {
+    "title": "five consecutive live-worker reloads close each prior worker and final skip closes the last worker",
+    "status": "passed",
+    "attachments": {
+      "native-worker-shutdown": {
+        "path": "acknowledged-disposal",
+        "policy": "watchdog-allowed",
+        "disposeAtMs": 351.09999990463257,
+        "terminatedAtMs": 519.1999999284744,
+        "elapsedMs": 168.10000002384186,
+        "terminated": 1,
+        "liveNativeWorkers": 0
+      },
+      "five-native-worker-reload-cycles": {
+        "initial": [
+          {
+            "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+            "sent": [
+              {
+                "type": "initialize",
+                "atMs": 154.10000002384186,
+                "viewport": {
+                  "width": 1280,
+                  "height": 720,
+                  "pixelRatio": 1
+                },
+                "lowPower": false,
+                "finePointer": true
+              },
+              {
+                "type": "resize",
+                "atMs": 155.30000007152557,
+                "viewport": {
+                  "width": 1280,
+                  "height": 720,
+                  "pixelRatio": 1
+                }
+              },
+              {
+                "type": "progress",
+                "atMs": 629.3000000715256
+              },
+              {
+                "type": "start",
+                "atMs": 629.4000000953674
+              },
+              {
+                "type": "progress",
+                "atMs": 629.8000000715256
+              }
+            ],
+            "received": [
+              {
+                "type": "diagnostics",
+                "diagnostics": {
+                  "renderer": "webgl2",
+                  "thread": "worker",
+                  "keyCount": 61,
+                  "keycapMeshes": 1,
+                  "tier": "desktop",
+                  "bloom": false,
+                  "environment": true,
+                  "environmentIntensity": 0.35,
+                  "cameraElevationDegrees": 35,
+                  "pixelRatio": 1,
+                  "width": 1280,
+                  "height": 720,
+                  "frames": 0,
+                  "averageFps": 0,
+                  "drawCalls": 0,
+                  "degraded": false,
+                  "contextLost": false,
+                  "disposed": false,
+                  "asyncShaderCompile": false,
+                  "shaderPreparationMs": 0
+                },
+                "atMs": 411.90000009536743
+              },
+              {
+                "type": "diagnostics",
+                "diagnostics": {
+                  "renderer": "webgl2",
+                  "thread": "worker",
+                  "keyCount": 61,
+                  "keycapMeshes": 1,
+                  "tier": "desktop",
+                  "bloom": true,
+                  "environment": true,
+                  "environmentIntensity": 0.35,
+                  "cameraElevationDegrees": 34.8,
+                  "pixelRatio": 1,
+                  "width": 1280,
+                  "height": 720,
+                  "frames": 1,
+                  "averageFps": 0,
+                  "drawCalls": 22,
+                  "degraded": false,
+                  "contextLost": false,
+                  "disposed": false,
+                  "asyncShaderCompile": false,
+                  "shaderPreparationMs": 0
+                },
+                "atMs": 629.1000000238419
+              },
+              {
+                "type": "ready",
+                "diagnostics": {
+                  "renderer": "webgl2",
+                  "thread": "worker",
+                  "keyCount": 61,
+                  "keycapMeshes": 1,
+                  "tier": "desktop",
+                  "bloom": true,
+                  "environment": true,
+                  "environmentIntensity": 0.35,
+                  "cameraElevationDegrees": 34.8,
+                  "pixelRatio": 1,
+                  "width": 1280,
+                  "height": 720,
+                  "frames": 1,
+                  "averageFps": 0,
+                  "drawCalls": 22,
+                  "degraded": false,
+                  "contextLost": false,
+                  "disposed": false,
+                  "asyncShaderCompile": false,
+                  "shaderPreparationMs": 0
+                },
+                "atMs": 629.2000000476837
+              },
+              {
+                "type": "diagnostics",
+                "diagnostics": {
+                  "renderer": "webgl2",
+                  "thread": "worker",
+                  "keyCount": 61,
+                  "keycapMeshes": 1,
+                  "tier": "desktop",
+                  "bloom": true,
+                  "environment": true,
+                  "environmentIntensity": 0.35,
+                  "cameraElevationDegrees": 34.9,
+                  "pixelRatio": 1,
+                  "width": 1280,
+                  "height": 720,
+                  "frames": 23,
+                  "averageFps": 69,
+                  "drawCalls": 22,
+                  "degraded": false,
+                  "contextLost": false,
+                  "disposed": false,
+                  "asyncShaderCompile": false,
+                  "shaderPreparationMs": 0
+                },
+                "atMs": 938.9000000953674
+              }
+            ],
+            "terminated": 0,
+            "terminatedAtMs": null
+          }
+        ],
+        "cycles": [
+          {
+            "reload": 1,
+            "records": [
+              {
+                "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+                "sent": [
+                  {
+                    "type": "initialize",
+                    "atMs": 343.5,
+                    "viewport": {
+                      "width": 1280,
+                      "height": 720,
+                      "pixelRatio": 1
+                    },
+                    "lowPower": false,
+                    "finePointer": true
+                  },
+                  {
+                    "type": "resize",
+                    "atMs": 349.3000000715256,
+                    "viewport": {
+                      "width": 1280,
+                      "height": 720,
+                      "pixelRatio": 1
+                    }
+                  }
+                ],
+                "received": [],
+                "terminated": 0,
+                "terminatedAtMs": null
+              }
+            ],
+            "priorWorkersClosed": 1,
+            "liveWorkers": 1
+          },
+          {
+            "reload": 2,
+            "records": [
+              {
+                "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+                "sent": [
+                  {
+                    "type": "initialize",
+                    "atMs": 95.19999992847443,
+                    "viewport": {
+                      "width": 1280,
+                      "height": 720,
+                      "pixelRatio": 1
+                    },
+                    "lowPower": false,
+                    "finePointer": true
+                  },
+                  {
+                    "type": "resize",
+                    "atMs": 102.69999992847443,
+                    "viewport": {
+                      "width": 1280,
+                      "height": 720,
+                      "pixelRatio": 1
+                    }
+                  }
+                ],
+                "received": [],
+                "terminated": 0,
+                "terminatedAtMs": null
+              }
+            ],
+            "priorWorkersClosed": 2,
+            "liveWorkers": 1
+          },
+          {
+            "reload": 3,
+            "records": [
+              {
+                "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+                "sent": [
+                  {
+                    "type": "initialize",
+                    "atMs": 122.39999997615814,
+                    "viewport": {
+                      "width": 1280,
+                      "height": 720,
+                      "pixelRatio": 1
+                    },
+                    "lowPower": false,
+                    "finePointer": true
+                  },
+                  {
+                    "type": "resize",
+                    "atMs": 125,
+                    "viewport": {
+                      "width": 1280,
+                      "height": 720,
+                      "pixelRatio": 1
+                    }
+                  }
+                ],
+                "received": [],
+                "terminated": 0,
+                "terminatedAtMs": null
+              }
+            ],
+            "priorWorkersClosed": 3,
+            "liveWorkers": 1
+          },
+          {
+            "reload": 4,
+            "records": [
+              {
+                "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+                "sent": [
+                  {
+                    "type": "initialize",
+                    "atMs": 97.39999997615814,
+                    "viewport": {
+                      "width": 1280,
+                      "height": 720,
+                      "pixelRatio": 1
+                    },
+                    "lowPower": false,
+                    "finePointer": true
+                  },
+                  {
+                    "type": "resize",
+                    "atMs": 111.39999997615814,
+                    "viewport": {
+                      "width": 1280,
+                      "height": 720,
+                      "pixelRatio": 1
+                    }
+                  }
+                ],
+                "received": [],
+                "terminated": 0,
+                "terminatedAtMs": null
+              }
+            ],
+            "priorWorkersClosed": 4,
+            "liveWorkers": 1
+          },
+          {
+            "reload": 5,
+            "records": [
+              {
+                "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+                "sent": [
+                  {
+                    "type": "initialize",
+                    "atMs": 84.59999990463257,
+                    "viewport": {
+                      "width": 1280,
+                      "height": 720,
+                      "pixelRatio": 1
+                    },
+                    "lowPower": false,
+                    "finePointer": true
+                  },
+                  {
+                    "type": "resize",
+                    "atMs": 90,
+                    "viewport": {
+                      "width": 1280,
+                      "height": 720,
+                      "pixelRatio": 1
+                    }
+                  }
+                ],
+                "received": [],
+                "terminated": 0,
+                "terminatedAtMs": null
+              }
+            ],
+            "priorWorkersClosed": 5,
+            "liveWorkers": 1
+          }
+        ],
+        "started": [
+          {
+            "sequence": 1,
+            "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+            "startedAtNodeMs": 40686.3746
+          },
+          {
+            "sequence": 2,
+            "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+            "startedAtNodeMs": 42088.3942
+          },
+          {
+            "sequence": 3,
+            "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+            "startedAtNodeMs": 42386.7553
+          },
+          {
+            "sequence": 4,
+            "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+            "startedAtNodeMs": 42643.3348
+          },
+          {
+            "sequence": 5,
+            "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+            "startedAtNodeMs": 42873.794
+          },
+          {
+            "sequence": 6,
+            "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+            "startedAtNodeMs": 43072.3817
+          }
+        ],
+        "closed": [
+          {
+            "sequence": 1,
+            "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+            "closedAtNodeMs": 41750.9692
+          },
+          {
+            "sequence": 2,
+            "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+            "closedAtNodeMs": 42276.2023
+          },
+          {
+            "sequence": 3,
+            "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+            "closedAtNodeMs": 42497.6101
+          },
+          {
+            "sequence": 4,
+            "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+            "closedAtNodeMs": 42769.8443
+          },
+          {
+            "sequence": 5,
+            "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+            "closedAtNodeMs": 42979.3994
+          },
+          {
+            "sequence": 6,
+            "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+            "closedAtNodeMs": 43483.1555
+          }
+        ],
+        "maximumLive": 1
+      },
+      "native-worker-receipts": [
+        {
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "sent": [
+            {
+              "type": "initialize",
+              "atMs": 84.59999990463257,
+              "viewport": {
+                "width": 1280,
+                "height": 720,
+                "pixelRatio": 1
+              },
+              "lowPower": false,
+              "finePointer": true
+            },
+            {
+              "type": "resize",
+              "atMs": 90,
+              "viewport": {
+                "width": 1280,
+                "height": 720,
+                "pixelRatio": 1
+              }
+            },
+            {
+              "type": "dispose",
+              "atMs": 351.09999990463257
+            }
+          ],
+          "received": [
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": false,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 35,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 0,
+                "averageFps": 0,
+                "drawCalls": 0,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 391.59999990463257
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": false,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 35,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 0,
+                "averageFps": 0,
+                "drawCalls": 0,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": true,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 519.0999999046326
+            },
+            {
+              "type": "disposed",
+              "atMs": 519.1999999284744
+            }
+          ],
+          "terminated": 1,
+          "terminatedAtMs": 519.1999999284744
+        }
+      ]
+    }
+  },
+  {
+    "title": "skipping while the native worker entry is blocked terminates startup and preserves the first typing key",
+    "status": "passed",
+    "attachments": {
+      "native-worker-shutdown": {
+        "path": "watchdog-termination-no-disposal-acknowledgement",
+        "policy": "watchdog-allowed",
+        "disposeAtMs": 471.7999999523163,
+        "terminatedAtMs": 674,
+        "elapsedMs": 202.20000004768372,
+        "terminated": 1,
+        "liveNativeWorkers": 0
+      },
+      "native-worker-receipts": [
+        {
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "sent": [
+            {
+              "type": "initialize",
+              "atMs": 177,
+              "viewport": {
+                "width": 1280,
+                "height": 720,
+                "pixelRatio": 1
+              },
+              "lowPower": false,
+              "finePointer": true
+            },
+            {
+              "type": "resize",
+              "atMs": 181.59999990463257,
+              "viewport": {
+                "width": 1280,
+                "height": 720,
+                "pixelRatio": 1
+              }
+            },
+            {
+              "type": "dispose",
+              "atMs": 471.7999999523163
+            }
+          ],
+          "received": [],
+          "terminated": 1,
+          "terminatedAtMs": 674
+        }
+      ]
+    }
+  },
+  {
+    "title": "a native worker transport failure replaces the transferred canvas with the complete real document renderer",
+    "status": "passed",
+    "attachments": {
+      "native-worker-receipts": [
+        {
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "sent": [
+            {
+              "type": "initialize",
+              "atMs": 149.79999995231628,
+              "viewport": {
+                "width": 1280,
+                "height": 720,
+                "pixelRatio": 1
+              },
+              "lowPower": false,
+              "finePointer": true
+            },
+            {
+              "type": "resize",
+              "atMs": 151.60000002384186,
+              "viewport": {
+                "width": 1280,
+                "height": 720,
+                "pixelRatio": 1
+              }
+            },
+            {
+              "type": "progress",
+              "atMs": 742.5
+            },
+            {
+              "type": "start",
+              "atMs": 742.6000000238419
+            },
+            {
+              "type": "progress",
+              "atMs": 743.6000000238419
+            }
+          ],
+          "received": [
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": false,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 35,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 0,
+                "averageFps": 0,
+                "drawCalls": 0,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 417.60000002384186
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 34.8,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 1,
+                "averageFps": 0,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 742.1000000238419
+            },
+            {
+              "type": "ready",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 34.8,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 1,
+                "averageFps": 0,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 742.2999999523163
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 34.9,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 23,
+                "averageFps": 63,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 1095
+            }
+          ],
+          "terminated": 1,
+          "terminatedAtMs": 1120.5
+        }
+      ]
+    }
+  },
+  {
+    "title": "actual worker WebGL context loss during preparation recovers with a fresh canvas and keeps practice usable",
+    "status": "passed",
+    "attachments": {
+      "native-worker-receipts": [
+        {
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "sent": [
+            {
+              "type": "initialize",
+              "atMs": 149.5,
+              "viewport": {
+                "width": 1280,
+                "height": 720,
+                "pixelRatio": 1
+              },
+              "lowPower": false,
+              "finePointer": true
+            },
+            {
+              "type": "resize",
+              "atMs": 155.39999997615814,
+              "viewport": {
+                "width": 1280,
+                "height": 720,
+                "pixelRatio": 1
+              }
+            }
+          ],
+          "received": [
+            {
+              "type": "test-context-loss-capability",
+              "supported": true,
+              "atMs": 310.2999999523163
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": false,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 35,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 0,
+                "averageFps": 0,
+                "drawCalls": 0,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 474.5
+            },
+            {
+              "type": "test-native-context-loss-requested",
+              "atMs": 477.10000002384186
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": false,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 35,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 0,
+                "averageFps": 0,
+                "drawCalls": 0,
+                "degraded": false,
+                "contextLost": true,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 482.7000000476837
+            },
+            {
+              "type": "failure",
+              "message": "Worker WebGL context unavailable",
+              "atMs": 482.7999999523163
+            }
+          ],
+          "terminated": 1,
+          "terminatedAtMs": 483
+        }
+      ]
+    }
+  },
+  {
+    "title": "actual worker WebGL context loss after live frames recovers with a fresh canvas and keeps practice usable",
+    "status": "passed",
+    "attachments": {
+      "native-worker-receipts": [
+        {
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "sent": [
+            {
+              "type": "initialize",
+              "atMs": 174.70000004768372,
+              "viewport": {
+                "width": 1280,
+                "height": 720,
+                "pixelRatio": 1
+              },
+              "lowPower": false,
+              "finePointer": true
+            },
+            {
+              "type": "resize",
+              "atMs": 177.70000004768372,
+              "viewport": {
+                "width": 1280,
+                "height": 720,
+                "pixelRatio": 1
+              }
+            },
+            {
+              "type": "progress",
+              "atMs": 774.5
+            },
+            {
+              "type": "start",
+              "atMs": 774.6000000238419
+            },
+            {
+              "type": "progress",
+              "atMs": 775.1000000238419
+            },
+            {
+              "type": "test-request-native-context-loss",
+              "atMs": 1119
+            }
+          ],
+          "received": [
+            {
+              "type": "test-context-loss-capability",
+              "supported": true,
+              "atMs": 312.60000002384186
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": false,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 35,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 0,
+                "averageFps": 0,
+                "drawCalls": 0,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 487.10000002384186
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 34.8,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 1,
+                "averageFps": 0,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 774.3000000715256
+            },
+            {
+              "type": "ready",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 34.8,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 1,
+                "averageFps": 0,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 774.4000000953674
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 34.9,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 23,
+                "averageFps": 71,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 1089.6000000238419
+            },
+            {
+              "type": "test-live-animation-frame",
+              "atMs": 1154
+            },
+            {
+              "type": "test-native-context-loss-requested",
+              "atMs": 1154
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 34.9,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 28,
+                "averageFps": 71,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": true,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 1209.6000000238419
+            },
+            {
+              "type": "failure",
+              "message": "Worker WebGL context unavailable",
+              "atMs": 1209.9000000953674
+            }
+          ],
+          "terminated": 1,
+          "terminatedAtMs": 1210.2000000476837
+        }
+      ]
+    }
+  },
+  {
+    "title": "startup recovers from real workspace script and stylesheet failures at 320px without losing guest history",
+    "status": "passed",
+    "attachments": {
+      "css-recovery-geometry": {
+        "viewport": 320,
+        "scrollWidth": 320,
+        "main": {
+          "left": 0,
+          "right": 320,
+          "width": 320
+        },
+        "button": {
+          "left": 24,
+          "right": 200.109375,
+          "width": 176.109375,
+          "height": 45.59375
+        },
+        "fontSize": 16,
+        "lineHeight": 26.4,
+        "foreground": "rgb(237, 237, 242)",
+        "background": "rgb(7, 7, 10)",
+        "paragraph": "rgb(139, 139, 160)",
+        "buttonForeground": "rgb(7, 7, 10)",
+        "buttonBackground": "rgb(198, 255, 61)"
+      },
+      "css-actual-blocked-workspace-assets": [
+        "http://127.0.0.1:4175/assets/App-CcHKaXY4.css"
+      ],
+      "js-recovery-geometry": {
+        "viewport": 320,
+        "scrollWidth": 320,
+        "main": {
+          "left": 0,
+          "right": 320,
+          "width": 320
+        },
+        "button": {
+          "left": 24,
+          "right": 200.109375,
+          "width": 176.109375,
+          "height": 45.59375
+        },
+        "fontSize": 16,
+        "lineHeight": 26.4,
+        "foreground": "rgb(237, 237, 242)",
+        "background": "rgb(7, 7, 10)",
+        "paragraph": "rgb(139, 139, 160)",
+        "buttonForeground": "rgb(7, 7, 10)",
+        "buttonBackground": "rgb(198, 255, 61)"
+      },
+      "js-actual-blocked-workspace-assets": [
+        "http://127.0.0.1:4175/assets/App-BlYOR0tu.js"
+      ]
+    }
+  },
+  {
+    "title": "360px phone: intro, home, wrong-key caret and fresh restart fit",
+    "status": "passed",
+    "attachments": {
+      "viewport-geometry": {
+        "viewport": {
+          "name": "360px phone",
+          "width": 360,
+          "height": 800
+        },
+        "introGeometry": {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "opening": {
+            "left": 0,
+            "top": 0,
+            "right": 360,
+            "bottom": 800,
+            "width": 360,
+            "height": 800
+          },
+          "elements": [
+            {
+              "selector": ".awakening-title",
+              "left": 34.8984375,
+              "top": 344,
+              "right": 325.1015625,
+              "bottom": 396.796875,
+              "width": 290.203125,
+              "height": 52.796875
+            },
+            {
+              "selector": ".awakening-caption",
+              "left": 20,
+              "top": 416,
+              "right": 340,
+              "bottom": 428,
+              "width": 320,
+              "height": 12
+            },
+            {
+              "selector": ".awakening-coordinates",
+              "left": 24,
+              "top": 28,
+              "right": 340,
+              "bottom": 38,
+              "width": 316,
+              "height": 10
+            },
+            {
+              "selector": ".awakening-controls",
+              "left": 20,
+              "top": 696,
+              "right": 340,
+              "bottom": 752,
+              "width": 320,
+              "height": 56
+            },
+            {
+              "selector": ".awakening-actions",
+              "left": 20,
+              "top": 696,
+              "right": 340,
+              "bottom": 740,
+              "width": 320,
+              "height": 44
+            },
+            {
+              "selector": ".awakening-actions button",
+              "left": 121.34375,
+              "top": 696,
+              "right": 238.65625,
+              "bottom": 740,
+              "width": 117.3125,
+              "height": 44
+            }
+          ],
+          "caption": {
+            "left": 20,
+            "top": 416,
+            "right": 340,
+            "bottom": 428,
+            "width": 320,
+            "height": 12
+          },
+          "controls": {
+            "left": 20,
+            "top": 696,
+            "right": 340,
+            "bottom": 752,
+            "width": 320,
+            "height": 56
+          }
+        },
+        "practiceGeometry": {
+          "initialCaret": {
+            "x": 19,
+            "y": 552.65625,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": -1,
+            "relativeY": 8.296875
+          },
+          "wrongCaret": {
+            "x": 34.609375,
+            "y": 552.65625,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": 14.609375,
+            "relativeY": 8.296875
+          },
+          "freshCaret": {
+            "x": 19,
+            "y": 231.65625,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": -1,
+            "relativeY": 8.296875
+          },
+          "inputRect": {
+            "x": 20,
+            "y": 536.359375,
+            "width": 320,
+            "height": 164.1875
+          },
+          "pageGeometry": {
+            "viewport": 360,
+            "document": 360,
+            "body": 360,
+            "sectionsOutsideViewport": []
+          }
+        }
+      }
+    }
+  },
+  {
+    "title": "390px phone: intro, home, wrong-key caret and fresh restart fit",
+    "status": "passed",
+    "attachments": {
+      "viewport-geometry": {
+        "viewport": {
+          "name": "390px phone",
+          "width": 390,
+          "height": 844
+        },
+        "introGeometry": {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "opening": {
+            "left": 0,
+            "top": 0,
+            "right": 390,
+            "bottom": 844,
+            "width": 390,
+            "height": 844
+          },
+          "elements": [
+            {
+              "selector": ".awakening-title",
+              "left": 49.8984375,
+              "top": 362.90625,
+              "right": 340.1015625,
+              "bottom": 415.703125,
+              "width": 290.203125,
+              "height": 52.796875
+            },
+            {
+              "selector": ".awakening-caption",
+              "left": 20,
+              "top": 434.90625,
+              "right": 370,
+              "bottom": 446.90625,
+              "width": 350,
+              "height": 12
+            },
+            {
+              "selector": ".awakening-coordinates",
+              "left": 24,
+              "top": 28,
+              "right": 370,
+              "bottom": 38,
+              "width": 346,
+              "height": 10
+            },
+            {
+              "selector": ".awakening-controls",
+              "left": 20,
+              "top": 740,
+              "right": 370,
+              "bottom": 796,
+              "width": 350,
+              "height": 56
+            },
+            {
+              "selector": ".awakening-actions",
+              "left": 20,
+              "top": 740,
+              "right": 370,
+              "bottom": 784,
+              "width": 350,
+              "height": 44
+            },
+            {
+              "selector": ".awakening-actions button",
+              "left": 136.34375,
+              "top": 740,
+              "right": 253.65625,
+              "bottom": 784,
+              "width": 117.3125,
+              "height": 44
+            }
+          ],
+          "caption": {
+            "left": 20,
+            "top": 434.90625,
+            "right": 370,
+            "bottom": 446.90625,
+            "width": 350,
+            "height": 12
+          },
+          "controls": {
+            "left": 20,
+            "top": 740,
+            "right": 370,
+            "bottom": 796,
+            "width": 350,
+            "height": 56
+          }
+        },
+        "practiceGeometry": {
+          "initialCaret": {
+            "x": 19,
+            "y": 552.65625,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": -1,
+            "relativeY": 8.296875
+          },
+          "wrongCaret": {
+            "x": 34.609375,
+            "y": 552.65625,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": 14.609375,
+            "relativeY": 8.296875
+          },
+          "freshCaret": {
+            "x": 19,
+            "y": 552.65625,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": -1,
+            "relativeY": 8.296875
+          },
+          "inputRect": {
+            "x": 20,
+            "y": 536.359375,
+            "width": 350,
+            "height": 164.1875
+          },
+          "pageGeometry": {
+            "viewport": 390,
+            "document": 390,
+            "body": 390,
+            "sectionsOutsideViewport": []
+          }
+        }
+      }
+    }
+  },
+  {
+    "title": "768px tablet: intro, home, wrong-key caret and fresh restart fit",
+    "status": "passed",
+    "attachments": {
+      "viewport-geometry": {
+        "viewport": {
+          "name": "768px tablet",
+          "width": 768,
+          "height": 1024
+        },
+        "introGeometry": {
+          "viewport": {
+            "width": 768,
+            "height": 1024
+          },
+          "opening": {
+            "left": 0,
+            "top": 0,
+            "right": 768,
+            "bottom": 1024,
+            "width": 768,
+            "height": 1024
+          },
+          "elements": [
+            {
+              "selector": ".awakening-title",
+              "left": 175.0546875,
+              "top": 440.3125,
+              "right": 592.9453125,
+              "bottom": 516.34375,
+              "width": 417.890625,
+              "height": 76.03125
+            },
+            {
+              "selector": ".awakening-caption",
+              "left": 20,
+              "top": 544,
+              "right": 748,
+              "bottom": 558,
+              "width": 728,
+              "height": 14
+            },
+            {
+              "selector": ".awakening-coordinates",
+              "left": 40,
+              "top": 28,
+              "right": 728,
+              "bottom": 40,
+              "width": 688,
+              "height": 12
+            },
+            {
+              "selector": ".awakening-controls",
+              "left": 40,
+              "top": 936,
+              "right": 728,
+              "bottom": 980,
+              "width": 688,
+              "height": 44
+            },
+            {
+              "selector": ".awakening-actions",
+              "left": 610.6875,
+              "top": 936,
+              "right": 728,
+              "bottom": 980,
+              "width": 117.3125,
+              "height": 44
+            },
+            {
+              "selector": ".awakening-actions button",
+              "left": 610.6875,
+              "top": 936,
+              "right": 728,
+              "bottom": 980,
+              "width": 117.3125,
+              "height": 44
+            }
+          ],
+          "caption": {
+            "left": 20,
+            "top": 544,
+            "right": 748,
+            "bottom": 558,
+            "width": 728,
+            "height": 14
+          },
+          "controls": {
+            "left": 40,
+            "top": 936,
+            "right": 728,
+            "bottom": 980,
+            "width": 688,
+            "height": 44
+          }
+        },
+        "practiceGeometry": {
+          "initialCaret": {
+            "x": 31,
+            "y": 475.296875,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": -1,
+            "relativeY": 8.296875
+          },
+          "wrongCaret": {
+            "x": 46.609375,
+            "y": 475.296875,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": 14.609375,
+            "relativeY": 8.296875
+          },
+          "freshCaret": {
+            "x": 31,
+            "y": 475.296875,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": -1,
+            "relativeY": 8.296875
+          },
+          "inputRect": {
+            "x": 32,
+            "y": 459,
+            "width": 704,
+            "height": 164.1875
+          },
+          "pageGeometry": {
+            "viewport": 768,
+            "document": 768,
+            "body": 768,
+            "sectionsOutsideViewport": []
+          }
+        }
+      }
+    }
+  },
+  {
+    "title": "1024px tablet: intro, home, wrong-key caret and fresh restart fit",
+    "status": "passed",
+    "attachments": {
+      "viewport-geometry": {
+        "viewport": {
+          "name": "1024px tablet",
+          "width": 1024,
+          "height": 768
+        },
+        "introGeometry": {
+          "viewport": {
+            "width": 1024,
+            "height": 768
+          },
+          "opening": {
+            "left": 0,
+            "top": 0,
+            "right": 1024,
+            "bottom": 768,
+            "width": 1024,
+            "height": 768
+          },
+          "elements": [
+            {
+              "selector": ".awakening-title",
+              "left": 233.4140625,
+              "top": 330.234375,
+              "right": 790.5859375,
+              "bottom": 431.59375,
+              "width": 557.171875,
+              "height": 101.359375
+            },
+            {
+              "selector": ".awakening-caption",
+              "left": 20,
+              "top": 468.46875,
+              "right": 1004,
+              "bottom": 482.46875,
+              "width": 984,
+              "height": 14
+            },
+            {
+              "selector": ".awakening-coordinates",
+              "left": 40,
+              "top": 28,
+              "right": 984,
+              "bottom": 40,
+              "width": 944,
+              "height": 12
+            },
+            {
+              "selector": ".awakening-controls",
+              "left": 40,
+              "top": 680,
+              "right": 984,
+              "bottom": 724,
+              "width": 944,
+              "height": 44
+            },
+            {
+              "selector": ".awakening-actions",
+              "left": 866.6875,
+              "top": 680,
+              "right": 984,
+              "bottom": 724,
+              "width": 117.3125,
+              "height": 44
+            },
+            {
+              "selector": ".awakening-actions button",
+              "left": 866.6875,
+              "top": 680,
+              "right": 984,
+              "bottom": 724,
+              "width": 117.3125,
+              "height": 44
+            }
+          ],
+          "caption": {
+            "left": 20,
+            "top": 468.46875,
+            "right": 1004,
+            "bottom": 482.46875,
+            "width": 984,
+            "height": 14
+          },
+          "controls": {
+            "left": 40,
+            "top": 680,
+            "right": 984,
+            "bottom": 724,
+            "width": 944,
+            "height": 44
+          }
+        },
+        "practiceGeometry": {
+          "initialCaret": {
+            "x": 31,
+            "y": 411.171875,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": -1,
+            "relativeY": 8.296875
+          },
+          "wrongCaret": {
+            "x": 46.609375,
+            "y": 411.171875,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": 14.609375,
+            "relativeY": 8.296875
+          },
+          "freshCaret": {
+            "x": 31,
+            "y": 411.171875,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": -1,
+            "relativeY": 8.296875
+          },
+          "inputRect": {
+            "x": 32,
+            "y": 394.875,
+            "width": 960,
+            "height": 164.1875
+          },
+          "pageGeometry": {
+            "viewport": 1024,
+            "document": 1024,
+            "body": 1024,
+            "sectionsOutsideViewport": []
+          }
+        }
+      }
+    }
+  },
+  {
+    "title": "1280px desktop: intro, home, wrong-key caret and fresh restart fit",
+    "status": "passed",
+    "attachments": {
+      "viewport-geometry": {
+        "viewport": {
+          "name": "1280px desktop",
+          "width": 1280,
+          "height": 800
+        },
+        "introGeometry": {
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "opening": {
+            "left": 0,
+            "top": 0,
+            "right": 1280,
+            "bottom": 800,
+            "width": 1280,
+            "height": 800
+          },
+          "elements": [
+            {
+              "selector": ".awakening-title",
+              "left": 291.7734375,
+              "top": 344,
+              "right": 988.2265625,
+              "bottom": 470.71875,
+              "width": 696.453125,
+              "height": 126.71875
+            },
+            {
+              "selector": ".awakening-caption",
+              "left": 20,
+              "top": 516.796875,
+              "right": 1260,
+              "bottom": 530.796875,
+              "width": 1240,
+              "height": 14
+            },
+            {
+              "selector": ".awakening-coordinates",
+              "left": 40,
+              "top": 28,
+              "right": 1240,
+              "bottom": 40,
+              "width": 1200,
+              "height": 12
+            },
+            {
+              "selector": ".awakening-controls",
+              "left": 40,
+              "top": 712,
+              "right": 1240,
+              "bottom": 756,
+              "width": 1200,
+              "height": 44
+            },
+            {
+              "selector": ".awakening-actions",
+              "left": 1122.6875,
+              "top": 712,
+              "right": 1240,
+              "bottom": 756,
+              "width": 117.3125,
+              "height": 44
+            },
+            {
+              "selector": ".awakening-actions button",
+              "left": 1122.6875,
+              "top": 712,
+              "right": 1240,
+              "bottom": 756,
+              "width": 117.3125,
+              "height": 44
+            }
+          ],
+          "caption": {
+            "left": 20,
+            "top": 516.796875,
+            "right": 1260,
+            "bottom": 530.796875,
+            "width": 1240,
+            "height": 14
+          },
+          "controls": {
+            "left": 40,
+            "top": 712,
+            "right": 1240,
+            "bottom": 756,
+            "width": 1200,
+            "height": 44
+          }
+        },
+        "practiceGeometry": {
+          "initialCaret": {
+            "x": 95,
+            "y": 359.671875,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": -1,
+            "relativeY": 8.296875
+          },
+          "wrongCaret": {
+            "x": 110.609375,
+            "y": 359.671875,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": 14.609375,
+            "relativeY": 8.296875
+          },
+          "freshCaret": {
+            "x": 95,
+            "y": 359.671875,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": -1,
+            "relativeY": 8.296875
+          },
+          "inputRect": {
+            "x": 96,
+            "y": 343.375,
+            "width": 1088,
+            "height": 164.1875
+          },
+          "pageGeometry": {
+            "viewport": 1280,
+            "document": 1280,
+            "body": 1280,
+            "sectionsOutsideViewport": []
+          }
+        }
+      }
+    }
+  },
+  {
+    "title": "1440px desktop: intro, home, wrong-key caret and fresh restart fit",
+    "status": "passed",
+    "attachments": {
+      "viewport-geometry": {
+        "viewport": {
+          "name": "1440px desktop",
+          "width": 1440,
+          "height": 900
+        },
+        "introGeometry": {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "opening": {
+            "left": 0,
+            "top": 0,
+            "right": 1440,
+            "bottom": 900,
+            "width": 1440,
+            "height": 900
+          },
+          "elements": [
+            {
+              "selector": ".awakening-title",
+              "left": 333.078125,
+              "top": 387,
+              "right": 1106.921875,
+              "bottom": 527.796875,
+              "width": 773.84375,
+              "height": 140.796875
+            },
+            {
+              "selector": ".awakening-caption",
+              "left": 20,
+              "top": 579,
+              "right": 1420,
+              "bottom": 593,
+              "width": 1400,
+              "height": 14
+            },
+            {
+              "selector": ".awakening-coordinates",
+              "left": 40,
+              "top": 28,
+              "right": 1400,
+              "bottom": 40,
+              "width": 1360,
+              "height": 12
+            },
+            {
+              "selector": ".awakening-controls",
+              "left": 40,
+              "top": 812,
+              "right": 1400,
+              "bottom": 856,
+              "width": 1360,
+              "height": 44
+            },
+            {
+              "selector": ".awakening-actions",
+              "left": 1282.6875,
+              "top": 812,
+              "right": 1400,
+              "bottom": 856,
+              "width": 117.3125,
+              "height": 44
+            },
+            {
+              "selector": ".awakening-actions button",
+              "left": 1282.6875,
+              "top": 812,
+              "right": 1400,
+              "bottom": 856,
+              "width": 117.3125,
+              "height": 44
+            }
+          ],
+          "caption": {
+            "left": 20,
+            "top": 579,
+            "right": 1420,
+            "bottom": 593,
+            "width": 1400,
+            "height": 14
+          },
+          "controls": {
+            "left": 40,
+            "top": 812,
+            "right": 1400,
+            "bottom": 856,
+            "width": 1360,
+            "height": 44
+          }
+        },
+        "practiceGeometry": {
+          "initialCaret": {
+            "x": 175,
+            "y": 398.953125,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": -1,
+            "relativeY": 8.296875
+          },
+          "wrongCaret": {
+            "x": 190.609375,
+            "y": 398.953125,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": 14.609375,
+            "relativeY": 8.296875
+          },
+          "freshCaret": {
+            "x": 175,
+            "y": 398.953125,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": -1,
+            "relativeY": 8.296875
+          },
+          "inputRect": {
+            "x": 176,
+            "y": 382.65625,
+            "width": 1088,
+            "height": 164.1875
+          },
+          "pageGeometry": {
+            "viewport": 1440,
+            "document": 1440,
+            "body": 1440,
+            "sectionsOutsideViewport": []
+          }
+        }
+      }
+    }
+  },
+  {
+    "title": "1920px desktop: intro, home, wrong-key caret and fresh restart fit",
+    "status": "passed",
+    "attachments": {
+      "viewport-geometry": {
+        "viewport": {
+          "name": "1920px desktop",
+          "width": 1920,
+          "height": 1080
+        },
+        "introGeometry": {
+          "viewport": {
+            "width": 1920,
+            "height": 1080
+          },
+          "opening": {
+            "left": 0,
+            "top": 0,
+            "right": 1920,
+            "bottom": 1080,
+            "width": 1920,
+            "height": 1080
+          },
+          "elements": [
+            {
+              "selector": ".awakening-title",
+              "left": 573.078125,
+              "top": 464.390625,
+              "right": 1346.921875,
+              "bottom": 605.1875,
+              "width": 773.84375,
+              "height": 140.796875
+            },
+            {
+              "selector": ".awakening-caption",
+              "left": 20,
+              "top": 656.390625,
+              "right": 1900,
+              "bottom": 670.390625,
+              "width": 1880,
+              "height": 14
+            },
+            {
+              "selector": ".awakening-coordinates",
+              "left": 40,
+              "top": 28,
+              "right": 1880,
+              "bottom": 40,
+              "width": 1840,
+              "height": 12
+            },
+            {
+              "selector": ".awakening-controls",
+              "left": 40,
+              "top": 992,
+              "right": 1880,
+              "bottom": 1036,
+              "width": 1840,
+              "height": 44
+            },
+            {
+              "selector": ".awakening-actions",
+              "left": 1762.6875,
+              "top": 992,
+              "right": 1880,
+              "bottom": 1036,
+              "width": 117.3125,
+              "height": 44
+            },
+            {
+              "selector": ".awakening-actions button",
+              "left": 1762.6875,
+              "top": 992,
+              "right": 1880,
+              "bottom": 1036,
+              "width": 117.3125,
+              "height": 44
+            }
+          ],
+          "caption": {
+            "left": 20,
+            "top": 656.390625,
+            "right": 1900,
+            "bottom": 670.390625,
+            "width": 1880,
+            "height": 14
+          },
+          "controls": {
+            "left": 40,
+            "top": 992,
+            "right": 1880,
+            "bottom": 1036,
+            "width": 1840,
+            "height": 44
+          }
+        },
+        "practiceGeometry": {
+          "initialCaret": {
+            "x": 415,
+            "y": 492.25,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": -1,
+            "relativeY": 8.296875
+          },
+          "wrongCaret": {
+            "x": 430.609375,
+            "y": 492.25,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": 14.609375,
+            "relativeY": 8.296875
+          },
+          "freshCaret": {
+            "x": 415,
+            "y": 492.25,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": -1,
+            "relativeY": 8.296875
+          },
+          "inputRect": {
+            "x": 416,
+            "y": 475.953125,
+            "width": 1088,
+            "height": 164.1875
+          },
+          "pageGeometry": {
+            "viewport": 1920,
+            "document": 1920,
+            "body": 1920,
+            "sectionsOutsideViewport": []
+          }
+        }
+      }
+    }
+  },
+  {
+    "title": "2560px desktop: intro, home, wrong-key caret and fresh restart fit",
+    "status": "passed",
+    "attachments": {
+      "viewport-geometry": {
+        "viewport": {
+          "name": "2560px desktop",
+          "width": 2560,
+          "height": 1440
+        },
+        "introGeometry": {
+          "viewport": {
+            "width": 2560,
+            "height": 1440
+          },
+          "opening": {
+            "left": 0,
+            "top": 0,
+            "right": 2560,
+            "bottom": 1440,
+            "width": 2560,
+            "height": 1440
+          },
+          "elements": [
+            {
+              "selector": ".awakening-title",
+              "left": 893.078125,
+              "top": 619.1875,
+              "right": 1666.921875,
+              "bottom": 759.984375,
+              "width": 773.84375,
+              "height": 140.796875
+            },
+            {
+              "selector": ".awakening-caption",
+              "left": 20,
+              "top": 811.1875,
+              "right": 2540,
+              "bottom": 825.1875,
+              "width": 2520,
+              "height": 14
+            },
+            {
+              "selector": ".awakening-coordinates",
+              "left": 40,
+              "top": 28,
+              "right": 2520,
+              "bottom": 40,
+              "width": 2480,
+              "height": 12
+            },
+            {
+              "selector": ".awakening-controls",
+              "left": 40,
+              "top": 1352,
+              "right": 2520,
+              "bottom": 1396,
+              "width": 2480,
+              "height": 44
+            },
+            {
+              "selector": ".awakening-actions",
+              "left": 2402.6875,
+              "top": 1352,
+              "right": 2520,
+              "bottom": 1396,
+              "width": 117.3125,
+              "height": 44
+            },
+            {
+              "selector": ".awakening-actions button",
+              "left": 2402.6875,
+              "top": 1352,
+              "right": 2520,
+              "bottom": 1396,
+              "width": 117.3125,
+              "height": 44
+            }
+          ],
+          "caption": {
+            "left": 20,
+            "top": 811.1875,
+            "right": 2540,
+            "bottom": 825.1875,
+            "width": 2520,
+            "height": 14
+          },
+          "controls": {
+            "left": 40,
+            "top": 1352,
+            "right": 2520,
+            "bottom": 1396,
+            "width": 2480,
+            "height": 44
+          }
+        },
+        "practiceGeometry": {
+          "initialCaret": {
+            "x": 735,
+            "y": 674.453125,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": -1,
+            "relativeY": 8.296875
+          },
+          "wrongCaret": {
+            "x": 750.609375,
+            "y": 674.453125,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": 14.609375,
+            "relativeY": 8.296875
+          },
+          "freshCaret": {
+            "x": 735,
+            "y": 674.453125,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": -1,
+            "relativeY": 8.296875
+          },
+          "inputRect": {
+            "x": 736,
+            "y": 658.15625,
+            "width": 1088,
+            "height": 164.1875
+          },
+          "pageGeometry": {
+            "viewport": 2560,
+            "document": 2560,
+            "body": 2560,
+            "sectionsOutsideViewport": []
+          }
+        }
+      }
+    }
+  },
+  {
+    "title": "844px phone landscape: intro, home, wrong-key caret and fresh restart fit",
+    "status": "passed",
+    "attachments": {
+      "viewport-geometry": {
+        "viewport": {
+          "name": "844px phone landscape",
+          "width": 844,
+          "height": 390
+        },
+        "introGeometry": {
+          "viewport": {
+            "width": 844,
+            "height": 390
+          },
+          "opening": {
+            "left": 0,
+            "top": 0,
+            "right": 844,
+            "bottom": 390,
+            "width": 844,
+            "height": 390
+          },
+          "elements": [
+            {
+              "selector": ".awakening-title",
+              "left": 276.8984375,
+              "top": 167.6875,
+              "right": 567.1015625,
+              "bottom": 220.484375,
+              "width": 290.203125,
+              "height": 52.796875
+            },
+            {
+              "selector": ".awakening-caption",
+              "left": 20,
+              "top": 281.625,
+              "right": 824,
+              "bottom": 295.625,
+              "width": 804,
+              "height": 14
+            },
+            {
+              "selector": ".awakening-coordinates",
+              "left": 40,
+              "top": 12,
+              "right": 804,
+              "bottom": 24,
+              "width": 764,
+              "height": 12
+            },
+            {
+              "selector": ".awakening-controls",
+              "left": 40,
+              "top": 324,
+              "right": 804,
+              "bottom": 368,
+              "width": 764,
+              "height": 44
+            },
+            {
+              "selector": ".awakening-actions",
+              "left": 686.6875,
+              "top": 324,
+              "right": 804,
+              "bottom": 368,
+              "width": 117.3125,
+              "height": 44
+            },
+            {
+              "selector": ".awakening-actions button",
+              "left": 686.6875,
+              "top": 324,
+              "right": 804,
+              "bottom": 368,
+              "width": 117.3125,
+              "height": 44
+            }
+          ],
+          "caption": {
+            "left": 20,
+            "top": 281.625,
+            "right": 824,
+            "bottom": 295.625,
+            "width": 804,
+            "height": 14
+          },
+          "controls": {
+            "left": 40,
+            "top": 324,
+            "right": 804,
+            "bottom": 368,
+            "width": 764,
+            "height": 44
+          }
+        },
+        "practiceGeometry": {
+          "initialCaret": {
+            "x": 31,
+            "y": 367.671875,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": -1,
+            "relativeY": 8.296875
+          },
+          "wrongCaret": {
+            "x": 46.609375,
+            "y": 362.671875,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": 14.609375,
+            "relativeY": 8.296875
+          },
+          "freshCaret": {
+            "x": 31,
+            "y": -59.328125,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": -1,
+            "relativeY": 8.296875
+          },
+          "inputRect": {
+            "x": 32,
+            "y": 346.375,
+            "width": 780,
+            "height": 164.1875
+          },
+          "pageGeometry": {
+            "viewport": 844,
+            "document": 844,
+            "body": 844,
+            "sectionsOutsideViewport": []
+          }
+        }
+      }
+    }
+  },
+  {
+    "title": "640px 200% zoom equivalent: intro, home, wrong-key caret and fresh restart fit",
+    "status": "passed",
+    "attachments": {
+      "viewport-geometry": {
+        "viewport": {
+          "name": "640px 200% zoom equivalent",
+          "width": 640,
+          "height": 450
+        },
+        "introGeometry": {
+          "viewport": {
+            "width": 640,
+            "height": 450
+          },
+          "opening": {
+            "left": 0,
+            "top": 0,
+            "right": 640,
+            "bottom": 450,
+            "width": 640,
+            "height": 450
+          },
+          "elements": [
+            {
+              "selector": ".awakening-title",
+              "left": 174.8984375,
+              "top": 193.5,
+              "right": 465.1015625,
+              "bottom": 246.296875,
+              "width": 290.203125,
+              "height": 52.796875
+            },
+            {
+              "selector": ".awakening-caption",
+              "left": 20,
+              "top": 279.890625,
+              "right": 620,
+              "bottom": 293.890625,
+              "width": 600,
+              "height": 14
+            },
+            {
+              "selector": ".awakening-coordinates",
+              "left": 40,
+              "top": 12,
+              "right": 600,
+              "bottom": 24,
+              "width": 560,
+              "height": 12
+            },
+            {
+              "selector": ".awakening-controls",
+              "left": 40,
+              "top": 384,
+              "right": 600,
+              "bottom": 428,
+              "width": 560,
+              "height": 44
+            },
+            {
+              "selector": ".awakening-actions",
+              "left": 482.6875,
+              "top": 384,
+              "right": 600,
+              "bottom": 428,
+              "width": 117.3125,
+              "height": 44
+            },
+            {
+              "selector": ".awakening-actions button",
+              "left": 482.6875,
+              "top": 384,
+              "right": 600,
+              "bottom": 428,
+              "width": 117.3125,
+              "height": 44
+            }
+          ],
+          "caption": {
+            "left": 20,
+            "top": 279.890625,
+            "right": 620,
+            "bottom": 293.890625,
+            "width": 600,
+            "height": 14
+          },
+          "controls": {
+            "left": 40,
+            "top": 384,
+            "right": 600,
+            "bottom": 428,
+            "width": 560,
+            "height": 44
+          }
+        },
+        "practiceGeometry": {
+          "initialCaret": {
+            "x": 31,
+            "y": 552.65625,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": -1,
+            "relativeY": 8.296875
+          },
+          "wrongCaret": {
+            "x": 46.609375,
+            "y": 422.65625,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": 14.609375,
+            "relativeY": 8.296875
+          },
+          "freshCaret": {
+            "x": 31,
+            "y": -44.34375,
+            "width": 2,
+            "height": 32.40625,
+            "relativeX": -1,
+            "relativeY": 8.296875
+          },
+          "inputRect": {
+            "x": 32,
+            "y": 406.359375,
+            "width": 576,
+            "height": 164.1875
+          },
+          "pageGeometry": {
+            "viewport": 640,
+            "document": 640,
+            "body": 640,
+            "sectionsOutsideViewport": []
+          }
+        }
+      }
+    }
+  },
+  {
+    "title": "390px full mobile fallback contains every key and keeps controls separate",
+    "status": "passed",
+    "attachments": {
+      "viewport-geometry": {
+        "introGeometry": {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "opening": {
+            "left": 0,
+            "top": 0,
+            "right": 390,
+            "bottom": 844,
+            "width": 390,
+            "height": 844
+          },
+          "elements": [
+            {
+              "selector": ".awakening-title",
+              "left": 49.8984375,
+              "top": 540.15625,
+              "right": 340.1015625,
+              "bottom": 592.953125,
+              "width": 290.203125,
+              "height": 52.796875
+            },
+            {
+              "selector": ".awakening-caption",
+              "left": 20,
+              "top": 612.15625,
+              "right": 370,
+              "bottom": 627.15625,
+              "width": 350,
+              "height": 15
+            },
+            {
+              "selector": ".awakening-coordinates",
+              "left": 24,
+              "top": 28,
+              "right": 370,
+              "bottom": 38,
+              "width": 346,
+              "height": 10
+            },
+            {
+              "selector": ".awakening-controls",
+              "left": 20,
+              "top": 726,
+              "right": 370,
+              "bottom": 796,
+              "width": 350,
+              "height": 70
+            },
+            {
+              "selector": ".awakening-actions",
+              "left": 20,
+              "top": 726,
+              "right": 370,
+              "bottom": 770,
+              "width": 350,
+              "height": 44
+            },
+            {
+              "selector": ".awakening-actions button",
+              "left": 73.375,
+              "top": 726,
+              "right": 187.3125,
+              "bottom": 770,
+              "width": 113.9375,
+              "height": 44
+            },
+            {
+              "selector": ".awakening-actions button",
+              "left": 199.3125,
+              "top": 726,
+              "right": 316.625,
+              "bottom": 770,
+              "width": 117.3125,
+              "height": 44
+            }
+          ],
+          "caption": {
+            "left": 20,
+            "top": 612.15625,
+            "right": 370,
+            "bottom": 627.15625,
+            "width": 350,
+            "height": 15
+          },
+          "controls": {
+            "left": 20,
+            "top": 726,
+            "right": 370,
+            "bottom": 796,
+            "width": 350,
+            "height": 70
+          }
+        },
+        "keyGeometry": [
+          {
+            "label": "Esc",
+            "left": 42.16640090942383,
+            "right": 60.09481430053711,
+            "top": 347.04302978515625,
+            "bottom": 357.2450256347656
+          },
+          {
+            "label": "1",
+            "left": 62.27432632446289,
+            "right": 79.9256820678711,
+            "top": 344.8237609863281,
+            "bottom": 355.0006103515625
+          },
+          {
+            "label": "2",
+            "left": 82.41107940673828,
+            "right": 99.78457641601562,
+            "top": 342.6013488769531,
+            "bottom": 352.75299072265625
+          },
+          {
+            "label": "3",
+            "left": 102.57671356201172,
+            "right": 119.67154693603516,
+            "top": 340.37579345703125,
+            "bottom": 350.50213623046875
+          },
+          {
+            "label": "4",
+            "left": 122.75711059570312,
+            "right": 139.57264709472656,
+            "top": 338.1486511230469,
+            "bottom": 348.2496337890625
+          },
+          {
+            "label": "5",
+            "left": 142.98069763183594,
+            "right": 159.573486328125,
+            "top": 335.91680908203125,
+            "bottom": 345.9923095703125
+          },
+          {
+            "label": "6",
+            "left": 163.12078857421875,
+            "right": 179.8500213623047,
+            "top": 333.6817932128906,
+            "bottom": 343.73175048828125
+          },
+          {
+            "label": "7",
+            "left": 183.0974578857422,
+            "right": 200.15574645996094,
+            "top": 331.443603515625,
+            "bottom": 341.4679260253906
+          },
+          {
+            "label": "8",
+            "left": 203.08837890625,
+            "right": 220.47642517089844,
+            "top": 329.2038269042969,
+            "bottom": 339.20245361328125
+          },
+          {
+            "label": "9",
+            "left": 223.12173461914062,
+            "right": 240.8406982421875,
+            "top": 326.9592590332031,
+            "bottom": 336.93212890625
+          },
+          {
+            "label": "0",
+            "left": 243.1835479736328,
+            "right": 261.234375,
+            "top": 324.7115478515625,
+            "bottom": 334.65850830078125
+          },
+          {
+            "label": "-",
+            "left": 263.2597351074219,
+            "right": 281.6430969238281,
+            "top": 322.4621887207031,
+            "bottom": 332.3832092285156
+          },
+          {
+            "label": "=",
+            "left": 283.37860107421875,
+            "right": 302.095703125,
+            "top": 320.20806884765625,
+            "bottom": 330.10302734375
+          },
+          {
+            "label": "Back",
+            "left": 303.51904296875,
+            "right": 343.08245849609375,
+            "top": 315.69097900390625,
+            "bottom": 327.82037353515625
+          },
+          {
+            "label": "Tab",
+            "left": 40.022010803222656,
+            "right": 68.41825866699219,
+            "top": 356.1495056152344,
+            "bottom": 367.82342529296875
+          },
+          {
+            "label": "Q",
+            "left": 70.76985931396484,
+            "right": 88.63157653808594,
+            "top": 353.8946533203125,
+            "bottom": 364.4027404785156
+          },
+          {
+            "label": "W",
+            "left": 91.28662109375,
+            "right": 108.85975646972656,
+            "top": 351.6381530761719,
+            "bottom": 362.1202697753906
+          },
+          {
+            "label": "E",
+            "left": 111.84782409667969,
+            "right": 129.13131713867188,
+            "top": 349.3768005371094,
+            "bottom": 359.83282470703125
+          },
+          {
+            "label": "R",
+            "left": 132.43911743164062,
+            "right": 149.43211364746094,
+            "top": 347.1121826171875,
+            "bottom": 357.54205322265625
+          },
+          {
+            "label": "T",
+            "left": 153.0460662841797,
+            "right": 169.96571350097656,
+            "top": 344.8459167480469,
+            "bottom": 355.2495422363281
+          },
+          {
+            "label": "Y",
+            "left": 173.4227294921875,
+            "right": 190.6421661376953,
+            "top": 342.57476806640625,
+            "bottom": 352.9520568847656
+          },
+          {
+            "label": "U",
+            "left": 193.7874755859375,
+            "right": 211.34898376464844,
+            "top": 340.3003234863281,
+            "bottom": 350.65118408203125
+          },
+          {
+            "label": "I",
+            "left": 214.18162536621094,
+            "right": 232.08619689941406,
+            "top": 338.0226135253906,
+            "bottom": 348.3469543457031
+          },
+          {
+            "label": "O",
+            "left": 234.59092712402344,
+            "right": 252.83929443359375,
+            "top": 335.7431945800781,
+            "bottom": 346.04095458984375
+          },
+          {
+            "label": "P",
+            "left": 255.04412841796875,
+            "right": 273.63751220703125,
+            "top": 333.4588928222656,
+            "bottom": 343.7299499511719
+          },
+          {
+            "label": "[",
+            "left": 275.5269470214844,
+            "right": 294.4663391113281,
+            "top": 331.1712646484375,
+            "bottom": 341.41552734375
+          },
+          {
+            "label": "]",
+            "left": 296.0250244140625,
+            "right": 315.3111877441406,
+            "top": 328.8819274902344,
+            "bottom": 339.0993347167969
+          },
+          {
+            "label": "\\",
+            "left": 316.5672607421875,
+            "right": 346.6654357910156,
+            "top": 325.4384460449219,
+            "bottom": 336.7781066894531
+          },
+          {
+            "label": "Caps",
+            "left": 37.800819396972656,
+            "right": 71.90364074707031,
+            "top": 366.1893615722656,
+            "bottom": 378.8160705566406
+          },
+          {
+            "label": "A",
+            "left": 74.34921264648438,
+            "right": 92.49990844726562,
+            "top": 363.8994140625,
+            "bottom": 374.7640686035156
+          },
+          {
+            "label": "S",
+            "left": 95.28308868408203,
+            "right": 113.13363647460938,
+            "top": 361.6053466796875,
+            "bottom": 372.44317626953125
+          },
+          {
+            "label": "D",
+            "left": 116.2481689453125,
+            "right": 133.79766845703125,
+            "top": 359.307861328125,
+            "bottom": 370.11883544921875
+          },
+          {
+            "label": "F",
+            "left": 137.22976684570312,
+            "right": 154.47750854492188,
+            "top": 357.0086364746094,
+            "bottom": 367.7926940917969
+          },
+          {
+            "label": "G",
+            "left": 158.21824645996094,
+            "right": 175.51087951660156,
+            "top": 354.7044372558594,
+            "bottom": 365.4613952636719
+          },
+          {
+            "label": "H",
+            "left": 178.94857788085938,
+            "right": 196.5957794189453,
+            "top": 352.3968200683594,
+            "bottom": 363.12664794921875
+          },
+          {
+            "label": "J",
+            "left": 199.7093963623047,
+            "right": 217.7122344970703,
+            "top": 350.0858154296875,
+            "bottom": 360.78839111328125
+          },
+          {
+            "label": "K",
+            "left": 220.48619079589844,
+            "right": 238.84544372558594,
+            "top": 347.77301025390625,
+            "bottom": 358.44830322265625
+          },
+          {
+            "label": "L",
+            "left": 241.30824279785156,
+            "right": 260.0251770019531,
+            "top": 345.4552001953125,
+            "bottom": 356.1030578613281
+          },
+          {
+            "label": ";",
+            "left": 262.1609802246094,
+            "right": 281.2366943359375,
+            "top": 343.1339416503906,
+            "bottom": 353.7542724609375
+          },
+          {
+            "label": "'",
+            "left": 283.02984619140625,
+            "right": 302.465087890625,
+            "top": 340.8109130859375,
+            "bottom": 351.4036560058594
+          },
+          {
+            "label": "Enter",
+            "left": 303.9368591308594,
+            "right": 350.37554931640625,
+            "top": 335.5682067871094,
+            "bottom": 349.04864501953125
+          },
+          {
+            "label": "Shift",
+            "left": 35.484928131103516,
+            "right": 80.78561401367188,
+            "top": 376.0386657714844,
+            "bottom": 390.2412109375
+          },
+          {
+            "label": "Z",
+            "left": 83.42457580566406,
+            "right": 101.79515075683594,
+            "top": 373.71087646484375,
+            "bottom": 384.94537353515625
+          },
+          {
+            "label": "X",
+            "left": 104.77034759521484,
+            "right": 122.8287124633789,
+            "top": 371.38043212890625,
+            "bottom": 382.5873107910156
+          },
+          {
+            "label": "C",
+            "left": 126.16360473632812,
+            "right": 143.9085693359375,
+            "top": 369.0448913574219,
+            "bottom": 380.2240295410156
+          },
+          {
+            "label": "V",
+            "left": 147.58941650390625,
+            "right": 165.1699676513672,
+            "top": 366.705810546875,
+            "bottom": 377.8571472167969
+          },
+          {
+            "label": "B",
+            "left": 168.82138061523438,
+            "right": 186.6400909423828,
+            "top": 364.3648681640625,
+            "bottom": 375.4883117675781
+          },
+          {
+            "label": "N",
+            "left": 189.97019958496094,
+            "right": 208.1580810546875,
+            "top": 362.018798828125,
+            "bottom": 373.1142272949219
+          },
+          {
+            "label": "M",
+            "left": 211.15077209472656,
+            "right": 229.70892333984375,
+            "top": 359.669189453125,
+            "bottom": 370.7364807128906
+          },
+          {
+            "label": ",",
+            "left": 232.3631591796875,
+            "right": 251.2926788330078,
+            "top": 357.3160400390625,
+            "bottom": 368.3551330566406
+          },
+          {
+            "label": ".",
+            "left": 253.59249877929688,
+            "right": 272.89422607421875,
+            "top": 354.96099853515625,
+            "bottom": 365.9718322753906
+          },
+          {
+            "label": "/",
+            "left": 274.86871337890625,
+            "right": 294.5440368652344,
+            "top": 352.60076904296875,
+            "bottom": 363.58319091796875
+          },
+          {
+            "label": "Shift",
+            "left": 296.1769714355469,
+            "right": 354.2483215332031,
+            "top": 346.0921936035156,
+            "bottom": 361.1908874511719
+          },
+          {
+            "label": "Ctrl",
+            "left": 33.07036590576172,
+            "right": 57.90174102783203,
+            "top": 389.8226013183594,
+            "bottom": 402.1163330078125
+          },
+          {
+            "label": "Win",
+            "left": 60.220062255859375,
+            "right": 84.65807342529297,
+            "top": 386.86883544921875,
+            "bottom": 399.1283874511719
+          },
+          {
+            "label": "Alt",
+            "left": 87.40703582763672,
+            "right": 111.45034790039062,
+            "top": 383.91107177734375,
+            "bottom": 396.13629150390625
+          },
+          {
+            "label": "Space",
+            "left": 114.64668273925781,
+            "right": 247.70787048339844,
+            "top": 369.03399658203125,
+            "bottom": 393.138427734375
+          },
+          {
+            "label": "Alt",
+            "left": 250.12594604492188,
+            "right": 275.2746887207031,
+            "top": 366.04046630859375,
+            "bottom": 378.0564270019531
+          },
+          {
+            "label": "Fn",
+            "left": 277.23468017578125,
+            "right": 302.8797302246094,
+            "top": 363.0428466796875,
+            "bottom": 375.0234069824219
+          },
+          {
+            "label": "Menu",
+            "left": 304.39544677734375,
+            "right": 330.5386962890625,
+            "top": 360.03948974609375,
+            "bottom": 371.9844665527344
+          },
+          {
+            "label": "Ctrl",
+            "left": 331.6236877441406,
+            "right": 358.2673034667969,
+            "top": 357.0286560058594,
+            "bottom": 368.9378967285156
+          }
+        ]
+      }
+    }
+  }
+]

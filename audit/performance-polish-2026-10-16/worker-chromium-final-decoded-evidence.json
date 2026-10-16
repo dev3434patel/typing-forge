@@ -1,0 +1,1493 @@
+[
+  {
+    "title": "default native worker draws the complete keyboard while document tasks, resize and skip remain responsive",
+    "status": "passed",
+    "duration": 5176,
+    "annotations": [
+      {
+        "type": "browser-runtime-version",
+        "description": "156.0.8078.4"
+      },
+      {
+        "type": "scope",
+        "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+      }
+    ],
+    "attachments": {
+      "document-task-and-paint-during-worker": {
+        "timerAtMs": 0.20000004768371582,
+        "frameAtMs": 0.40000009536743164,
+        "openingPresent": true
+      },
+      "native-worker-shutdown": {
+        "path": "acknowledged-disposal",
+        "policy": "acknowledged",
+        "disposeAtMs": 3478.399999976158,
+        "terminatedAtMs": 3504.5,
+        "elapsedMs": 26.100000023841858,
+        "terminated": 1,
+        "liveNativeWorkers": 0
+      },
+      "native-worker-receipts": [
+        {
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "sent": [
+            {
+              "type": "initialize",
+              "atMs": 334.39999997615814,
+              "viewport": {
+                "width": 1280,
+                "height": 800,
+                "pixelRatio": 1
+              },
+              "lowPower": false,
+              "finePointer": true
+            },
+            {
+              "type": "resize",
+              "atMs": 342,
+              "viewport": {
+                "width": 1280,
+                "height": 800,
+                "pixelRatio": 1
+              }
+            },
+            {
+              "type": "progress",
+              "atMs": 1328.6000000238419
+            },
+            {
+              "type": "start",
+              "atMs": 1328.7999999523163
+            },
+            {
+              "type": "progress",
+              "atMs": 1330.7000000476837
+            },
+            {
+              "type": "resize",
+              "atMs": 2418.600000023842,
+              "viewport": {
+                "width": 390,
+                "height": 844,
+                "pixelRatio": 1
+              }
+            },
+            {
+              "type": "resize",
+              "atMs": 2419.600000023842,
+              "viewport": {
+                "width": 390,
+                "height": 844,
+                "pixelRatio": 1
+              }
+            },
+            {
+              "type": "dispose",
+              "atMs": 3478.399999976158
+            }
+          ],
+          "received": [
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": false,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 35,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 800,
+                "frames": 0,
+                "averageFps": 0,
+                "drawCalls": 0,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 876.7999999523163
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 34.8,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 800,
+                "frames": 1,
+                "averageFps": 0,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 1327.7000000476837
+            },
+            {
+              "type": "ready",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 34.8,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 800,
+                "frames": 1,
+                "averageFps": 0,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 1327.8999999761581
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 34.8,
+                "pixelRatio": 1,
+                "width": 390,
+                "height": 844,
+                "frames": 1,
+                "averageFps": 0,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 2975.7000000476837
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 35,
+                "pixelRatio": 1,
+                "width": 390,
+                "height": 844,
+                "frames": 5,
+                "averageFps": 0,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": true,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 3503.7999999523163
+            },
+            {
+              "type": "disposed",
+              "atMs": 3504.399999976158
+            }
+          ],
+          "terminated": 1,
+          "terminatedAtMs": 3504.5
+        }
+      ]
+    }
+  },
+  {
+    "title": "five consecutive live-worker reloads close each prior worker and final skip closes the last worker",
+    "status": "failed",
+    "duration": 17514,
+    "annotations": [
+      {
+        "type": "browser-runtime-version",
+        "description": "156.0.8078.4"
+      },
+      {
+        "type": "scope",
+        "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+      },
+      {
+        "type": "limitation",
+        "description": "Five actual reloads and native worker closure/ownership are finite lifecycle evidence, not a universal heap/GPU-memory leak guarantee."
+      }
+    ],
+    "attachments": {
+      "five-native-worker-reload-cycles": {
+        "initial": [
+          {
+            "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+            "sent": [
+              {
+                "type": "initialize",
+                "atMs": 147.89999997615814,
+                "viewport": {
+                  "width": 1280,
+                  "height": 720,
+                  "pixelRatio": 1
+                },
+                "lowPower": false,
+                "finePointer": true
+              },
+              {
+                "type": "resize",
+                "atMs": 148.89999997615814,
+                "viewport": {
+                  "width": 1280,
+                  "height": 720,
+                  "pixelRatio": 1
+                }
+              },
+              {
+                "type": "progress",
+                "atMs": 2400
+              },
+              {
+                "type": "start",
+                "atMs": 2400.2999999523163
+              },
+              {
+                "type": "progress",
+                "atMs": 2401
+              }
+            ],
+            "received": [
+              {
+                "type": "diagnostics",
+                "diagnostics": {
+                  "renderer": "webgl2",
+                  "thread": "worker",
+                  "keyCount": 61,
+                  "keycapMeshes": 1,
+                  "tier": "desktop",
+                  "bloom": false,
+                  "environment": true,
+                  "environmentIntensity": 0.35,
+                  "cameraElevationDegrees": 35,
+                  "pixelRatio": 1,
+                  "width": 1280,
+                  "height": 720,
+                  "frames": 0,
+                  "averageFps": 0,
+                  "drawCalls": 0,
+                  "degraded": false,
+                  "contextLost": false,
+                  "disposed": false,
+                  "asyncShaderCompile": false,
+                  "shaderPreparationMs": 0
+                },
+                "atMs": 409.2999999523163
+              },
+              {
+                "type": "diagnostics",
+                "diagnostics": {
+                  "renderer": "webgl2",
+                  "thread": "worker",
+                  "keyCount": 61,
+                  "keycapMeshes": 1,
+                  "tier": "desktop",
+                  "bloom": true,
+                  "environment": true,
+                  "environmentIntensity": 0.35,
+                  "cameraElevationDegrees": 34.8,
+                  "pixelRatio": 1,
+                  "width": 1280,
+                  "height": 720,
+                  "frames": 1,
+                  "averageFps": 0,
+                  "drawCalls": 22,
+                  "degraded": false,
+                  "contextLost": false,
+                  "disposed": false,
+                  "asyncShaderCompile": false,
+                  "shaderPreparationMs": 0
+                },
+                "atMs": 2399.5
+              },
+              {
+                "type": "ready",
+                "diagnostics": {
+                  "renderer": "webgl2",
+                  "thread": "worker",
+                  "keyCount": 61,
+                  "keycapMeshes": 1,
+                  "tier": "desktop",
+                  "bloom": true,
+                  "environment": true,
+                  "environmentIntensity": 0.35,
+                  "cameraElevationDegrees": 34.8,
+                  "pixelRatio": 1,
+                  "width": 1280,
+                  "height": 720,
+                  "frames": 1,
+                  "averageFps": 0,
+                  "drawCalls": 22,
+                  "degraded": false,
+                  "contextLost": false,
+                  "disposed": false,
+                  "asyncShaderCompile": false,
+                  "shaderPreparationMs": 0
+                },
+                "atMs": 2399.600000023842
+              }
+            ],
+            "terminated": 0,
+            "terminatedAtMs": null
+          }
+        ],
+        "cycles": [
+          {
+            "reload": 1,
+            "records": [
+              {
+                "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+                "sent": [
+                  {
+                    "type": "initialize",
+                    "atMs": 70.19999992847443,
+                    "viewport": {
+                      "width": 1280,
+                      "height": 720,
+                      "pixelRatio": 1
+                    },
+                    "lowPower": false,
+                    "finePointer": true
+                  },
+                  {
+                    "type": "resize",
+                    "atMs": 76.89999997615814,
+                    "viewport": {
+                      "width": 1280,
+                      "height": 720,
+                      "pixelRatio": 1
+                    }
+                  },
+                  {
+                    "type": "progress",
+                    "atMs": 2983.2999999523163
+                  },
+                  {
+                    "type": "start",
+                    "atMs": 2983.399999976158
+                  },
+                  {
+                    "type": "progress",
+                    "atMs": 2984
+                  }
+                ],
+                "received": [
+                  {
+                    "type": "diagnostics",
+                    "diagnostics": {
+                      "renderer": "webgl2",
+                      "thread": "worker",
+                      "keyCount": 61,
+                      "keycapMeshes": 1,
+                      "tier": "desktop",
+                      "bloom": false,
+                      "environment": true,
+                      "environmentIntensity": 0.35,
+                      "cameraElevationDegrees": 35,
+                      "pixelRatio": 1,
+                      "width": 1280,
+                      "height": 720,
+                      "frames": 0,
+                      "averageFps": 0,
+                      "drawCalls": 0,
+                      "degraded": false,
+                      "contextLost": false,
+                      "disposed": false,
+                      "asyncShaderCompile": false,
+                      "shaderPreparationMs": 0
+                    },
+                    "atMs": 833.2999999523163
+                  },
+                  {
+                    "type": "diagnostics",
+                    "diagnostics": {
+                      "renderer": "webgl2",
+                      "thread": "worker",
+                      "keyCount": 61,
+                      "keycapMeshes": 1,
+                      "tier": "desktop",
+                      "bloom": true,
+                      "environment": true,
+                      "environmentIntensity": 0.35,
+                      "cameraElevationDegrees": 34.8,
+                      "pixelRatio": 1,
+                      "width": 1280,
+                      "height": 720,
+                      "frames": 1,
+                      "averageFps": 0,
+                      "drawCalls": 22,
+                      "degraded": false,
+                      "contextLost": false,
+                      "disposed": false,
+                      "asyncShaderCompile": false,
+                      "shaderPreparationMs": 0
+                    },
+                    "atMs": 2983
+                  },
+                  {
+                    "type": "ready",
+                    "diagnostics": {
+                      "renderer": "webgl2",
+                      "thread": "worker",
+                      "keyCount": 61,
+                      "keycapMeshes": 1,
+                      "tier": "desktop",
+                      "bloom": true,
+                      "environment": true,
+                      "environmentIntensity": 0.35,
+                      "cameraElevationDegrees": 34.8,
+                      "pixelRatio": 1,
+                      "width": 1280,
+                      "height": 720,
+                      "frames": 1,
+                      "averageFps": 0,
+                      "drawCalls": 22,
+                      "degraded": false,
+                      "contextLost": false,
+                      "disposed": false,
+                      "asyncShaderCompile": false,
+                      "shaderPreparationMs": 0
+                    },
+                    "atMs": 2983.100000023842
+                  }
+                ],
+                "terminated": 0,
+                "terminatedAtMs": null
+              }
+            ],
+            "priorWorkersClosed": 1,
+            "liveWorkers": 1
+          },
+          {
+            "reload": 2,
+            "records": [
+              {
+                "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+                "sent": [
+                  {
+                    "type": "initialize",
+                    "atMs": 649.8000000715256,
+                    "viewport": {
+                      "width": 1280,
+                      "height": 720,
+                      "pixelRatio": 1
+                    },
+                    "lowPower": false,
+                    "finePointer": true
+                  },
+                  {
+                    "type": "resize",
+                    "atMs": 669.8000000715256,
+                    "viewport": {
+                      "width": 1280,
+                      "height": 720,
+                      "pixelRatio": 1
+                    }
+                  },
+                  {
+                    "type": "progress",
+                    "atMs": 2885.5
+                  },
+                  {
+                    "type": "start",
+                    "atMs": 2885.7000000476837
+                  },
+                  {
+                    "type": "progress",
+                    "atMs": 2886.100000023842
+                  }
+                ],
+                "received": [
+                  {
+                    "type": "diagnostics",
+                    "diagnostics": {
+                      "renderer": "webgl2",
+                      "thread": "worker",
+                      "keyCount": 61,
+                      "keycapMeshes": 1,
+                      "tier": "desktop",
+                      "bloom": false,
+                      "environment": true,
+                      "environmentIntensity": 0.35,
+                      "cameraElevationDegrees": 35,
+                      "pixelRatio": 1,
+                      "width": 1280,
+                      "height": 720,
+                      "frames": 0,
+                      "averageFps": 0,
+                      "drawCalls": 0,
+                      "degraded": false,
+                      "contextLost": false,
+                      "disposed": false,
+                      "asyncShaderCompile": false,
+                      "shaderPreparationMs": 0
+                    },
+                    "atMs": 859.7000000476837
+                  },
+                  {
+                    "type": "diagnostics",
+                    "diagnostics": {
+                      "renderer": "webgl2",
+                      "thread": "worker",
+                      "keyCount": 61,
+                      "keycapMeshes": 1,
+                      "tier": "desktop",
+                      "bloom": true,
+                      "environment": true,
+                      "environmentIntensity": 0.35,
+                      "cameraElevationDegrees": 34.8,
+                      "pixelRatio": 1,
+                      "width": 1280,
+                      "height": 720,
+                      "frames": 1,
+                      "averageFps": 0,
+                      "drawCalls": 22,
+                      "degraded": false,
+                      "contextLost": false,
+                      "disposed": false,
+                      "asyncShaderCompile": false,
+                      "shaderPreparationMs": 0
+                    },
+                    "atMs": 2885
+                  },
+                  {
+                    "type": "ready",
+                    "diagnostics": {
+                      "renderer": "webgl2",
+                      "thread": "worker",
+                      "keyCount": 61,
+                      "keycapMeshes": 1,
+                      "tier": "desktop",
+                      "bloom": true,
+                      "environment": true,
+                      "environmentIntensity": 0.35,
+                      "cameraElevationDegrees": 34.8,
+                      "pixelRatio": 1,
+                      "width": 1280,
+                      "height": 720,
+                      "frames": 1,
+                      "averageFps": 0,
+                      "drawCalls": 22,
+                      "degraded": false,
+                      "contextLost": false,
+                      "disposed": false,
+                      "asyncShaderCompile": false,
+                      "shaderPreparationMs": 0
+                    },
+                    "atMs": 2885.100000023842
+                  }
+                ],
+                "terminated": 0,
+                "terminatedAtMs": null
+              }
+            ],
+            "priorWorkersClosed": 2,
+            "liveWorkers": 1
+          },
+          {
+            "reload": 3,
+            "records": [
+              {
+                "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+                "sent": [
+                  {
+                    "type": "initialize",
+                    "atMs": 488.89999997615814,
+                    "viewport": {
+                      "width": 1280,
+                      "height": 720,
+                      "pixelRatio": 1
+                    },
+                    "lowPower": false,
+                    "finePointer": true
+                  },
+                  {
+                    "type": "resize",
+                    "atMs": 508.1999999284744,
+                    "viewport": {
+                      "width": 1280,
+                      "height": 720,
+                      "pixelRatio": 1
+                    }
+                  },
+                  {
+                    "type": "progress",
+                    "atMs": 1135.5999999046326
+                  },
+                  {
+                    "type": "start",
+                    "atMs": 1135.6999999284744
+                  },
+                  {
+                    "type": "progress",
+                    "atMs": 1136.0999999046326
+                  }
+                ],
+                "received": [
+                  {
+                    "type": "diagnostics",
+                    "diagnostics": {
+                      "renderer": "webgl2",
+                      "thread": "worker",
+                      "keyCount": 61,
+                      "keycapMeshes": 1,
+                      "tier": "desktop",
+                      "bloom": false,
+                      "environment": true,
+                      "environmentIntensity": 0.35,
+                      "cameraElevationDegrees": 35,
+                      "pixelRatio": 1,
+                      "width": 1280,
+                      "height": 720,
+                      "frames": 0,
+                      "averageFps": 0,
+                      "drawCalls": 0,
+                      "degraded": false,
+                      "contextLost": false,
+                      "disposed": false,
+                      "asyncShaderCompile": false,
+                      "shaderPreparationMs": 0
+                    },
+                    "atMs": 678
+                  },
+                  {
+                    "type": "diagnostics",
+                    "diagnostics": {
+                      "renderer": "webgl2",
+                      "thread": "worker",
+                      "keyCount": 61,
+                      "keycapMeshes": 1,
+                      "tier": "desktop",
+                      "bloom": true,
+                      "environment": true,
+                      "environmentIntensity": 0.35,
+                      "cameraElevationDegrees": 34.8,
+                      "pixelRatio": 1,
+                      "width": 1280,
+                      "height": 720,
+                      "frames": 1,
+                      "averageFps": 0,
+                      "drawCalls": 22,
+                      "degraded": false,
+                      "contextLost": false,
+                      "disposed": false,
+                      "asyncShaderCompile": false,
+                      "shaderPreparationMs": 0
+                    },
+                    "atMs": 1135.5
+                  },
+                  {
+                    "type": "ready",
+                    "diagnostics": {
+                      "renderer": "webgl2",
+                      "thread": "worker",
+                      "keyCount": 61,
+                      "keycapMeshes": 1,
+                      "tier": "desktop",
+                      "bloom": true,
+                      "environment": true,
+                      "environmentIntensity": 0.35,
+                      "cameraElevationDegrees": 34.8,
+                      "pixelRatio": 1,
+                      "width": 1280,
+                      "height": 720,
+                      "frames": 1,
+                      "averageFps": 0,
+                      "drawCalls": 22,
+                      "degraded": false,
+                      "contextLost": false,
+                      "disposed": false,
+                      "asyncShaderCompile": false,
+                      "shaderPreparationMs": 0
+                    },
+                    "atMs": 1135.5999999046326
+                  }
+                ],
+                "terminated": 0,
+                "terminatedAtMs": null
+              }
+            ],
+            "priorWorkersClosed": 3,
+            "liveWorkers": 1
+          }
+        ],
+        "started": [
+          {
+            "sequence": 1,
+            "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+            "startedAtNodeMs": 6625.6989
+          },
+          {
+            "sequence": 2,
+            "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+            "startedAtNodeMs": 9063.2194
+          },
+          {
+            "sequence": 3,
+            "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+            "startedAtNodeMs": 12752.6932
+          },
+          {
+            "sequence": 4,
+            "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+            "startedAtNodeMs": 15667.4015
+          },
+          {
+            "sequence": 5,
+            "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+            "startedAtNodeMs": 19510.8908
+          }
+        ],
+        "closed": [
+          {
+            "sequence": 1,
+            "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+            "closedAtNodeMs": 8985.4676
+          },
+          {
+            "sequence": 2,
+            "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+            "closedAtNodeMs": 12104.6967
+          },
+          {
+            "sequence": 3,
+            "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+            "closedAtNodeMs": 15180.3149
+          },
+          {
+            "sequence": 4,
+            "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+            "closedAtNodeMs": 17251.6951
+          }
+        ],
+        "maximumLive": 1
+      },
+      "native-worker-receipts": [
+        {
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "sent": [
+            {
+              "type": "initialize",
+              "atMs": 2259.100000023842,
+              "viewport": {
+                "width": 1280,
+                "height": 720,
+                "pixelRatio": 1
+              },
+              "lowPower": false,
+              "finePointer": true
+            },
+            {
+              "type": "resize",
+              "atMs": 2274.899999976158,
+              "viewport": {
+                "width": 1280,
+                "height": 720,
+                "pixelRatio": 1
+              }
+            },
+            {
+              "type": "resize",
+              "atMs": 4487.200000047684,
+              "viewport": {
+                "width": 1280,
+                "height": 720,
+                "pixelRatio": 1
+              }
+            },
+            {
+              "type": "dispose",
+              "atMs": 4491.899999976158
+            }
+          ],
+          "received": [
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": false,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 35,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 0,
+                "averageFps": 0,
+                "drawCalls": 0,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 2571.2999999523163
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 34.8,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 1,
+                "averageFps": 0,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 4969.5
+            },
+            {
+              "type": "ready",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 34.8,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 1,
+                "averageFps": 0,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 4969.600000023842
+            }
+          ],
+          "terminated": 1,
+          "terminatedAtMs": 4978
+        }
+      ]
+    }
+  },
+  {
+    "title": "skipping while the native worker entry is blocked terminates startup and preserves the first typing key",
+    "status": "passed",
+    "duration": 1691,
+    "annotations": [
+      {
+        "type": "browser-runtime-version",
+        "description": "156.0.8078.4"
+      },
+      {
+        "type": "scope",
+        "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+      }
+    ],
+    "attachments": {
+      "native-worker-shutdown": {
+        "path": "watchdog-termination-no-disposal-acknowledgement",
+        "policy": "watchdog-allowed",
+        "disposeAtMs": 573.2000000476837,
+        "terminatedAtMs": 782.8999999761581,
+        "elapsedMs": 209.69999992847443,
+        "terminated": 1,
+        "liveNativeWorkers": 0
+      },
+      "native-worker-receipts": [
+        {
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "sent": [
+            {
+              "type": "initialize",
+              "atMs": 336.89999997615814,
+              "viewport": {
+                "width": 1280,
+                "height": 720,
+                "pixelRatio": 1
+              },
+              "lowPower": false,
+              "finePointer": true
+            },
+            {
+              "type": "resize",
+              "atMs": 338.3000000715256,
+              "viewport": {
+                "width": 1280,
+                "height": 720,
+                "pixelRatio": 1
+              }
+            },
+            {
+              "type": "dispose",
+              "atMs": 573.2000000476837
+            }
+          ],
+          "received": [],
+          "terminated": 1,
+          "terminatedAtMs": 782.8999999761581
+        }
+      ]
+    }
+  },
+  {
+    "title": "a native worker transport failure replaces the transferred canvas with the complete real document renderer",
+    "status": "passed",
+    "duration": 8081,
+    "annotations": [
+      {
+        "type": "browser-runtime-version",
+        "description": "156.0.8078.4"
+      },
+      {
+        "type": "scope",
+        "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+      }
+    ],
+    "attachments": {
+      "native-worker-receipts": [
+        {
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "sent": [
+            {
+              "type": "initialize",
+              "atMs": 164,
+              "viewport": {
+                "width": 1280,
+                "height": 720,
+                "pixelRatio": 1
+              },
+              "lowPower": false,
+              "finePointer": true
+            },
+            {
+              "type": "resize",
+              "atMs": 172.69999992847443,
+              "viewport": {
+                "width": 1280,
+                "height": 720,
+                "pixelRatio": 1
+              }
+            },
+            {
+              "type": "progress",
+              "atMs": 2676.6999999284744
+            },
+            {
+              "type": "start",
+              "atMs": 2676.899999976158
+            },
+            {
+              "type": "progress",
+              "atMs": 2677.6999999284744
+            }
+          ],
+          "received": [
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": false,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 35,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 0,
+                "averageFps": 0,
+                "drawCalls": 0,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 488.2999999523163
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 34.8,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 1,
+                "averageFps": 0,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 2676.0999999046326
+            },
+            {
+              "type": "ready",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 34.8,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 1,
+                "averageFps": 0,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 2676.2999999523163
+            }
+          ],
+          "terminated": 1,
+          "terminatedAtMs": 3145.5999999046326
+        }
+      ]
+    }
+  },
+  {
+    "title": "actual worker WebGL context loss during preparation recovers with a fresh canvas and keeps practice usable",
+    "status": "passed",
+    "duration": 6653,
+    "annotations": [
+      {
+        "type": "browser-runtime-version",
+        "description": "156.0.8078.4"
+      },
+      {
+        "type": "scope",
+        "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+      }
+    ],
+    "attachments": {
+      "native-worker-receipts": [
+        {
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "sent": [
+            {
+              "type": "initialize",
+              "atMs": 173.60000002384186,
+              "viewport": {
+                "width": 1280,
+                "height": 720,
+                "pixelRatio": 1
+              },
+              "lowPower": false,
+              "finePointer": true
+            },
+            {
+              "type": "resize",
+              "atMs": 178.30000007152557,
+              "viewport": {
+                "width": 1280,
+                "height": 720,
+                "pixelRatio": 1
+              }
+            }
+          ],
+          "received": [
+            {
+              "type": "test-context-loss-capability",
+              "supported": true,
+              "atMs": 309.5
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": false,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 35,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 0,
+                "averageFps": 0,
+                "drawCalls": 0,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 462
+            },
+            {
+              "type": "test-native-context-loss-requested",
+              "atMs": 465.5
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": false,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 35,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 0,
+                "averageFps": 0,
+                "drawCalls": 0,
+                "degraded": false,
+                "contextLost": true,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 2219.100000023842
+            },
+            {
+              "type": "failure",
+              "message": "Worker WebGL context unavailable",
+              "atMs": 2219.5
+            }
+          ],
+          "terminated": 1,
+          "terminatedAtMs": 2219.7000000476837
+        }
+      ]
+    }
+  },
+  {
+    "title": "actual worker WebGL context loss after live frames recovers with a fresh canvas and keeps practice usable",
+    "status": "passed",
+    "duration": 7833,
+    "annotations": [
+      {
+        "type": "browser-runtime-version",
+        "description": "156.0.8078.4"
+      },
+      {
+        "type": "scope",
+        "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+      }
+    ],
+    "attachments": {
+      "native-worker-receipts": [
+        {
+          "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+          "sent": [
+            {
+              "type": "initialize",
+              "atMs": 146,
+              "viewport": {
+                "width": 1280,
+                "height": 720,
+                "pixelRatio": 1
+              },
+              "lowPower": false,
+              "finePointer": true
+            },
+            {
+              "type": "resize",
+              "atMs": 151,
+              "viewport": {
+                "width": 1280,
+                "height": 720,
+                "pixelRatio": 1
+              }
+            },
+            {
+              "type": "progress",
+              "atMs": 2534.2000000476837
+            },
+            {
+              "type": "start",
+              "atMs": 2535.3000000715256
+            },
+            {
+              "type": "progress",
+              "atMs": 2535.8000000715256
+            },
+            {
+              "type": "test-request-native-context-loss",
+              "atMs": 2578.7000000476837
+            }
+          ],
+          "received": [
+            {
+              "type": "test-context-loss-capability",
+              "supported": true,
+              "atMs": 270.3000000715256
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": false,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 35,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 0,
+                "averageFps": 0,
+                "drawCalls": 0,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 419.10000002384186
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 34.8,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 1,
+                "averageFps": 0,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 2533.7000000476837
+            },
+            {
+              "type": "ready",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 34.8,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 1,
+                "averageFps": 0,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": false,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 2533.8000000715256
+            },
+            {
+              "type": "test-live-animation-frame",
+              "atMs": 3066.5
+            },
+            {
+              "type": "test-native-context-loss-requested",
+              "atMs": 3066.5
+            },
+            {
+              "type": "diagnostics",
+              "diagnostics": {
+                "renderer": "webgl2",
+                "thread": "worker",
+                "keyCount": 61,
+                "keycapMeshes": 1,
+                "tier": "desktop",
+                "bloom": true,
+                "environment": true,
+                "environmentIntensity": 0.35,
+                "cameraElevationDegrees": 35,
+                "pixelRatio": 1,
+                "width": 1280,
+                "height": 720,
+                "frames": 2,
+                "averageFps": 0,
+                "drawCalls": 22,
+                "degraded": false,
+                "contextLost": true,
+                "disposed": false,
+                "asyncShaderCompile": false,
+                "shaderPreparationMs": 0
+              },
+              "atMs": 3439.5
+            },
+            {
+              "type": "failure",
+              "message": "Worker WebGL context unavailable",
+              "atMs": 3439.600000023842
+            }
+          ],
+          "terminated": 1,
+          "terminatedAtMs": 3439.9000000953674
+        }
+      ]
+    }
+  },
+  {
+    "title": "startup recovers from real workspace script and stylesheet failures at 320px without losing guest history",
+    "status": "passed",
+    "duration": 4303,
+    "annotations": [],
+    "attachments": {
+      "css-recovery-geometry": {
+        "viewport": 320,
+        "scrollWidth": 320,
+        "main": {
+          "left": 0,
+          "right": 320,
+          "width": 320
+        },
+        "button": {
+          "left": 24,
+          "right": 200.109375,
+          "width": 176.109375,
+          "height": 45.59375
+        },
+        "fontSize": 16,
+        "lineHeight": 26.4,
+        "foreground": "rgb(237, 237, 242)",
+        "background": "rgb(7, 7, 10)",
+        "paragraph": "rgb(139, 139, 160)",
+        "buttonForeground": "rgb(7, 7, 10)",
+        "buttonBackground": "rgb(198, 255, 61)"
+      },
+      "css-actual-blocked-workspace-assets": [
+        "http://127.0.0.1:4175/assets/App-CcHKaXY4.css"
+      ],
+      "js-recovery-geometry": {
+        "viewport": 320,
+        "scrollWidth": 320,
+        "main": {
+          "left": 0,
+          "right": 320,
+          "width": 320
+        },
+        "button": {
+          "left": 24,
+          "right": 200.109375,
+          "width": 176.109375,
+          "height": 45.59375
+        },
+        "fontSize": 16,
+        "lineHeight": 26.4,
+        "foreground": "rgb(237, 237, 242)",
+        "background": "rgb(7, 7, 10)",
+        "paragraph": "rgb(139, 139, 160)",
+        "buttonForeground": "rgb(7, 7, 10)",
+        "buttonBackground": "rgb(198, 255, 61)"
+      },
+      "js-actual-blocked-workspace-assets": [
+        "http://127.0.0.1:4175/assets/App-BlYOR0tu.js",
+        "http://127.0.0.1:4175/assets/App-BlYOR0tu.js",
+        "http://127.0.0.1:4175/assets/App-BlYOR0tu.js"
+      ]
+    }
+  },
+  {
+    "title": "sustained typing reuses its layout observer and keeps the caret through resize and deletion",
+    "status": "passed",
+    "duration": 6914,
+    "annotations": [],
+    "attachments": {}
+  }
+]

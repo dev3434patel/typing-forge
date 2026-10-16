@@ -1,22 +1,25 @@
 export const baseDark = {
-  background: "#0B0D12",
-  surface: "#11141B",
-  raised: "#171B24",
-  hover: "#1F2430",
-  border: "#2D3746",
-  borderStrong: "#65758B",
-  text: "#EEF1F7",
-  secondary: "#AAB6C6",
-  muted: "#8796A8",
-  accent: "#F5B544",
-  accentHover: "#FFC568",
-  accentInk: "#201404",
-  correct: "#EEF1F7",
-  error: "#FF7A85",
-  errorSurface: "#351C25",
-  extra: "#E88891",
-  success: "#55D6A0",
-  info: "#70B7FF",
+  background: "#07070A",
+  surface: "#0E0E14",
+  raised: "#151520",
+  hover: "#1C1C28",
+  border: "rgba(255, 255, 255, 0.08)",
+  borderStrong: "#68687F",
+  text: "#EDEDF2",
+  secondary: "#B6B6C6",
+  muted: "#8B8BA0",
+  accent: "#C6FF3D",
+  // Brand violet is decorative; use accent2Text for small secondary-accent text.
+  accent2: "#7B61FF",
+  accent2Text: "#AA98FF",
+  accentHover: "#D5FF79",
+  accentInk: "#07070A",
+  correct: "#EDEDF2",
+  error: "#FF4D6D",
+  errorSurface: "#29121B",
+  extra: "#FF4D6D",
+  success: "#3DFFA2",
+  info: "#AA98FF",
 };
 export type ThemeColors = typeof baseDark;
 export interface ForgeTheme {
@@ -40,9 +43,11 @@ const lightColors: ThemeColors = {
   borderStrong: "#67778D",
   text: "#121A26",
   secondary: "#4F5D70",
-  muted: "#5F6C7E",
-  accent: "#9B5700",
-  accentHover: "#814600",
+  muted: "#5B687A",
+  accent: "#496600",
+  accent2: "#6546D8",
+  accent2Text: "#6546D8",
+  accentHover: "#354D00",
   accentInk: "#FFFFFF",
   correct: "#202B3C",
   error: "#B42336",
@@ -52,8 +57,8 @@ const lightColors: ThemeColors = {
   info: "#175FA8",
 };
 export const THEMES: ForgeTheme[] = [
-  variant("forge-dark", "Forge dark", {}),
-  { id: "forge-light", name: "Forge light", light: true, colors: lightColors },
+  variant("sparow-dark", "Sparow dark", {}),
+  { id: "sparow-light", name: "Sparow light", light: true, colors: lightColors },
   variant("graphite", "Graphite", {
     background: "#111111",
     surface: "#191919",
@@ -61,6 +66,7 @@ export const THEMES: ForgeTheme[] = [
     hover: "#292929",
     border: "#383838",
     borderStrong: "#818181",
+    muted: "#9191A6",
     accent: "#E4E4E4",
     accentHover: "#FFFFFF",
     accentInk: "#161616",
@@ -73,6 +79,9 @@ export const THEMES: ForgeTheme[] = [
     accent: "#88C8FF",
     accentHover: "#B2DBFF",
     accentInk: "#071B2D",
+    muted: "#9999AE",
+    error: "#FF6882",
+    extra: "#FF6882",
   }),
   variant("ember", "Ember", {
     background: "#150D0D",
@@ -83,6 +92,9 @@ export const THEMES: ForgeTheme[] = [
     accentHover: "#FFC8AD",
     accentInk: "#321209",
     border: "#493631",
+    muted: "#9292A7",
+    error: "#FF5675",
+    extra: "#FF5675",
   }),
   variant("mono-ink", "Mono ink", {
     background: "#080808",
@@ -111,7 +123,7 @@ export const THEMES: ForgeTheme[] = [
       hover: "#E5DECE",
       text: "#292820",
       correct: "#292820",
-      muted: "#696352",
+      muted: "#676150",
       secondary: "#575242",
       accent: "#655016",
       accentHover: "#4D3C0F",
@@ -127,13 +139,25 @@ export const THEMES: ForgeTheme[] = [
     accent: "#86E5C6",
     accentHover: "#B0F4DF",
     accentInk: "#07271F",
+    muted: "#A1A1B6",
+    error: "#FF8098",
+    extra: "#FF8098",
   }),
 ];
+/** Legacy preference values keep their meaning after the brand/theme rename. */
+export function resolveThemeId(id: unknown): string | undefined {
+  const candidate = id === "forge-dark"
+    ? "sparow-dark"
+    : id === "forge-light"
+      ? "sparow-light"
+      : id;
+  return THEMES.some((theme) => theme.id === candidate) ? candidate as string : undefined;
+}
 export function hexToHsl(hex: string): string {
-  const [r, g, b] = hex
-    .replace("#", "")
-    .match(/../g)!
-    .map((v) => parseInt(v, 16) / 255);
+  const rgba = hex.match(/^rgba\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*\)$/);
+  const [r, g, b] = rgba
+    ? rgba.slice(1, 4).map((value) => Number(value) / 255)
+    : hex.replace("#", "").match(/../g)!.slice(0, 3).map((v) => parseInt(v, 16) / 255);
   const max = Math.max(r, g, b),
     min = Math.min(r, g, b),
     d = max - min,
@@ -147,14 +171,17 @@ export function hexToHsl(hex: string): string {
           ? (b - r) / d + 2
           : (r - g) / d + 4;
   const s = d ? d / (1 - Math.abs(2 * l - 1)) : 0;
-  return `${(h * 60).toFixed(2)} ${(s * 100).toFixed(2)}% ${(l * 100).toFixed(2)}%`;
+  return `${(h * 60).toFixed(2)} ${(s * 100).toFixed(2)}% ${(l * 100).toFixed(2)}%${rgba ? ` / ${rgba[4]}` : ""}`;
 }
 export function applyTheme(id: string, root = document.documentElement) {
-  const theme = THEMES.find((t) => t.id === id) || THEMES[0],
+  const theme = THEMES.find((t) => t.id === resolveThemeId(id)) || THEMES[0],
     c = theme.colors;
   root.dataset.theme = theme.id;
   root.classList.toggle("dark", !theme.light);
   root.style.colorScheme = theme.light ? "light" : "dark";
+  if (typeof document !== "undefined" && root === document.documentElement) {
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", c.background);
+  }
   const aliases: Record<string, string> = {
     background: c.background,
     foreground: c.text,
@@ -168,15 +195,15 @@ export function applyTheme(id: string, root = document.documentElement) {
     "secondary-foreground": c.text,
     muted: c.raised,
     "muted-foreground": c.muted,
-    accent: c.hover,
+    "ui-accent": c.hover,
     "accent-foreground": c.text,
     destructive: c.error,
     "destructive-foreground": c.background,
-    success: c.success,
+    "ui-success": c.success,
     "success-foreground": c.background,
     warning: c.accent,
     "warning-foreground": c.accentInk,
-    border: c.border,
+    "ui-border": c.border,
     input: c.borderStrong,
     ring: c.accent,
     "typing-correct": c.correct,
@@ -191,4 +218,18 @@ export function applyTheme(id: string, root = document.documentElement) {
   Object.entries(aliases).forEach(([key, value]) =>
     root.style.setProperty(`--${key}`, hexToHsl(value)),
   );
+  Object.entries({
+    bg: c.background,
+    surface: c.surface,
+    "surface-2": c.raised,
+    border: c.border,
+    text: c.text,
+    "text-dim": c.muted,
+    accent: c.accent,
+    "accent-2": c.accent2,
+    accent2: c.accent2,
+    "text-accent-2": c.accent2Text,
+    error: c.error,
+    success: c.success,
+  }).forEach(([key, value]) => root.style.setProperty(`--${key}`, value));
 }

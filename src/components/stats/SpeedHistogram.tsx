@@ -91,7 +91,7 @@ export function SpeedHistogram({
             <Tooltip
               contentStyle={{
                 backgroundColor: 'hsl(var(--card))',
-                border: '1px solid hsl(var(--border))',
+                border: '1px solid hsl(var(--ui-border))',
                 borderRadius: '8px',
                 color: 'hsl(var(--foreground))',
                 fontSize: '12px',
@@ -107,7 +107,7 @@ export function SpeedHistogram({
                   <Cell
                     key={`cell-${index}`}
                     fill={
-                      isUserTop ? 'hsl(var(--success))' :
+                      isUserTop ? 'hsl(var(--ui-success))' :
                       isUserAvg ? 'hsl(var(--primary))' :
                       'hsl(var(--muted-foreground) / 0.3)'
                     }
@@ -124,7 +124,7 @@ export function SpeedHistogram({
             />
             <ReferenceLine
               x={distribution.find(d => userTopSpeed >= d.rangeStart && userTopSpeed < d.rangeEnd)?.range}
-              stroke="hsl(var(--success))"
+              stroke="hsl(var(--ui-success))"
               strokeWidth={2}
               strokeDasharray="4 4"
             />

@@ -101,7 +101,7 @@ export function LearningProgressChart({
               <Tooltip
                 contentStyle={{
                   backgroundColor: 'hsl(var(--card))',
-                  border: '1px solid hsl(var(--border))',
+                  border: '1px solid hsl(var(--ui-border))',
                   borderRadius: '8px',
                   color: 'hsl(var(--foreground))',
                   fontSize: '11px',
@@ -209,7 +209,7 @@ export function TypingSpeedChart({ lessonData }: TypingSpeedChartProps) {
               <Tooltip
                 contentStyle={{
                   backgroundColor: 'hsl(var(--card))',
-                  border: '1px solid hsl(var(--border))',
+                  border: '1px solid hsl(var(--ui-border))',
                   borderRadius: '8px',
                   color: 'hsl(var(--foreground))',
                   fontSize: '11px',
@@ -219,8 +219,8 @@ export function TypingSpeedChart({ lessonData }: TypingSpeedChartProps) {
                 yAxisId="right"
                 type={smoothness[0] > 50 ? 'monotone' : 'linear'}
                 dataKey="accuracy"
-                fill="hsl(var(--success) / 0.2)"
-                stroke="hsl(var(--success))"
+                fill="hsl(var(--ui-success) / 0.2)"
+                stroke="hsl(var(--ui-success))"
                 strokeWidth={1}
                 name="Accuracy %"
               />

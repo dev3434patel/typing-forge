@@ -1,0 +1,1824 @@
+{
+  "stats": {
+    "startTime": "2026-10-16T19:50:02.565Z",
+    "duration": 452773.767,
+    "expected": 155,
+    "skipped": 2,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "config": {
+    "workers": 1,
+    "globalTimeout": 600000,
+    "projects": [
+      {
+        "name": "edge",
+        "timeout": 30000,
+        "retries": 0,
+        "repeatEach": 1
+      }
+    ]
+  },
+  "runtimeVersions": [
+    "155.0.4283.45"
+  ],
+  "reportedAttempts": 158,
+  "nonPassing": [
+    {
+      "file": "auth-flow.spec.ts",
+      "title": "real account sign in with dedicated deployment credentials",
+      "project": "edge",
+      "status": "skipped",
+      "durationMs": 255,
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\auth-flow.spec.ts",
+            "line": 25,
+            "column": 8
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "five consecutive live-worker reloads close each prior worker and final skip closes the last worker",
+      "project": "edge",
+      "status": "failed",
+      "durationMs": 5927,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "155.0.4283.45"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        },
+        {
+          "type": "limitation",
+          "description": "Five actual reloads and native worker closure/ownership are finite lifecycle evidence, not a universal heap/GPU-memory leak guarantee."
+        }
+      ],
+      "errors": [
+        {
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts",
+            "column": 6,
+            "line": 212
+          },
+          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate\n\n  210 |       ),\n  211 |     )\n> 212 |     .toBe(true);\n      |      ^\n  213 | }\n  214 | async function firstWorkerInitialized(page: Page) {\n  215 |   await expect\n    at firstWorkerReady (D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:212:6)\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:574:11"
+        }
+      ]
+    },
+    {
+      "file": "race-mode.spec.ts",
+      "title": "deployed two-account race authorization and RLS",
+      "project": "edge",
+      "status": "skipped",
+      "durationMs": 15,
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Requires a deployed test backend URL/anon key and two dedicated authenticated test accounts. No mocked backend establishes authorization.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\race-mode.spec.ts",
+            "line": 57,
+            "column": 8
+          }
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "cases": [
+    {
+      "file": "account-workspace.spec.ts",
+      "title": "cross-tab account change discards a previous owner's unsaved private passage",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2418,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "auth-flow.spec.ts",
+      "title": "account form switches between sign in and creation using labelled controls",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1311,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "auth-flow.spec.ts",
+      "title": "guest practice remains reachable from the account screen",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1281,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "auth-flow.spec.ts",
+      "title": "real account sign in with dedicated deployment credentials",
+      "project": "edge",
+      "status": "skipped",
+      "durationMs": 255,
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\auth-flow.spec.ts",
+            "line": 25,
+            "column": 8
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "caret-geometry.spec.ts",
+      "title": "line caret follows the actual LTR character edge through input and rotation",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2228,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "155.0.4283.45"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "caret-geometry.spec.ts",
+      "title": "line caret follows the actual RTL character edge through input and rotation",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2515,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "155.0.4283.45"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "caret-geometry.spec.ts",
+      "title": "block caret follows the actual LTR character edge through input and rotation",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2291,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "155.0.4283.45"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "caret-geometry.spec.ts",
+      "title": "block caret follows the actual RTL character edge through input and rotation",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1873,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "155.0.4283.45"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "caret-geometry.spec.ts",
+      "title": "outline caret follows the actual LTR character edge through input and rotation",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1950,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "155.0.4283.45"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "caret-geometry.spec.ts",
+      "title": "outline caret follows the actual RTL character edge through input and rotation",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1908,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "155.0.4283.45"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "caret-geometry.spec.ts",
+      "title": "underline caret follows the actual LTR character edge through input and rotation",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2049,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "155.0.4283.45"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "caret-geometry.spec.ts",
+      "title": "underline caret follows the actual RTL character edge through input and rotation",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2075,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "155.0.4283.45"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "caret-geometry.spec.ts",
+      "title": "a prompted code newline uses its first actual client fragment before entering the next line",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1495,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "155.0.4283.45"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "caret-geometry.spec.ts",
+      "title": "empty and multiline free writing use the same static end anchor through deletion and rotation",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1775,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "155.0.4283.45"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "caret-handoff-readiness.spec.ts",
+      "title": "real delayed workspace within readiness window keeps automatic handoff and first input safe",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1029,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "caret-handoff-readiness.spec.ts",
+      "title": "real delayed workspace after readiness deadline keeps automatic handoff and first input safe",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1110,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "caret-handoff-readiness.spec.ts",
+      "title": "an actual caret module arriving after its import deadline cannot revive decoration or consume the first key",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1217,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "content-options.spec.ts",
+      "title": "quote lengths create complete passages and repeating retains the exact long passage",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 3504,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "content-options.spec.ts",
+      "title": "the Workman preference persists and feeds both reference keyboard views",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1618,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "input-guardrails.spec.ts",
+      "title": "paste and drop stay outside the practice transcript and never start its clock",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2306,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "input-guardrails.spec.ts",
+      "title": "adaptive practice blocks transfer input and reports only observed Caps Lock state",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 960,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "input-guardrails.spec.ts",
+      "title": "feedback preferences persist and outline carets respect reduced motion in both modes",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2171,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "input-guardrails.spec.ts",
+      "title": "supported typing audio creates one context on input and disposes it on navigation",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1755,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "input-guardrails.spec.ts",
+      "title": "unavailable browser audio is explained without clearing the saved sound preference",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 922,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "input-guardrails.spec.ts",
+      "title": "idle practice has no 100ms interval and the active deadline still persists exactly",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2341,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "keyboard-lab.spec.ts",
+      "title": "manual signals are focus-scoped; Tab, Shift+Tab and Escape leave normally",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2311,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "keyboard-lab.spec.ts",
+      "title": "browser layout access happens only after an explicit request and never changes preferences automatically",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1068,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "keyboard-lab.spec.ts",
+      "title": "unsupported browser mapping has a working manual fallback",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1130,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "keyboard-lab.spec.ts",
+      "title": "blocked browser mapping has a working manual fallback",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1139,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "keyboard-lab.spec.ts",
+      "title": "repeated transitions produce a measured pair drill and targeted learning link",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1824,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "keyboard-lab.spec.ts",
+      "title": "composition and repeat signals never create invented pair timings; blur clears held state",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1347,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "keyboard-lab.spec.ts",
+      "title": "lab data remains ephemeral and reset removes observations and browser mapping",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1825,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "keyboard-lab.spec.ts",
+      "title": "mobile layout keeps capture accessible without horizontal page overflow",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 790,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "leaderboard-periods.spec.ts",
+      "title": "period controls preserve the old all-time RPC and render server day/week aggregates in UTC",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1234,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "leaderboard-periods.spec.ts",
+      "title": "an empty day stays empty and a failed week can be retried without sample entries",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1221,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "leaderboard-periods.spec.ts",
+      "title": "a missing period endpoint shows its real error and returns to all-time only by user choice",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1047,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "leaderboard.spec.ts",
+      "title": "rankings explain challenge eligibility without presenting practice as verified scores",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 741,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "learning-v3.spec.ts",
+      "title": "learning shows the pressed wrong letter and advances by default, with corrections still counted",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 3755,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "learning-v3.spec.ts",
+      "title": "learning records rejected attempts and saves exactly one immutable result",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 3967,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "learning-v3.spec.ts",
+      "title": "learning preserves wrong-key feedback when one stop-mode input batch ends correctly",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1943,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "learning-v3.spec.ts",
+      "title": "Tab leaves the learning input without generating another lesson",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1024,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "learning-v3.spec.ts",
+      "title": "Arabic lesson uses RTL native characters and composition has no invented key timing",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1142,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "learning-v3.spec.ts",
+      "title": "en content completes through the actual learning input adapter",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 3241,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "learning-v3.spec.ts",
+      "title": "es content completes through the actual learning input adapter",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2302,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "learning-v3.spec.ts",
+      "title": "fr content completes through the actual learning input adapter",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2369,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "learning-v3.spec.ts",
+      "title": "de content completes through the actual learning input adapter",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2211,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "learning-v3.spec.ts",
+      "title": "pt content completes through the actual learning input adapter",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2390,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "learning-v3.spec.ts",
+      "title": "it content completes through the actual learning input adapter",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2384,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "learning-v3.spec.ts",
+      "title": "ru content completes through the actual learning input adapter",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1975,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "learning-v3.spec.ts",
+      "title": "hi content completes through the actual learning input adapter",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 999,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "learning-v3.spec.ts",
+      "title": "ar content completes through the actual learning input adapter",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 943,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "learning-v3.spec.ts",
+      "title": "gu-Latn content completes through the actual learning input adapter",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2708,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "mode-matrix.spec.ts",
+      "title": "finite mode completes and exports exact committed input: Words",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 3957,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "mode-matrix.spec.ts",
+      "title": "finite mode completes and exports exact committed input: Quote",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2022,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "mode-matrix.spec.ts",
+      "title": "finite mode completes and exports exact committed input: Code:javascript",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2080,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "mode-matrix.spec.ts",
+      "title": "finite mode completes and exports exact committed input: Code:typescript",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2191,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "mode-matrix.spec.ts",
+      "title": "finite mode completes and exports exact committed input: Code:python",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2960,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "mode-matrix.spec.ts",
+      "title": "finite mode completes and exports exact committed input: Code:rust",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 5494,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "mode-matrix.spec.ts",
+      "title": "finite mode completes and exports exact committed input: Code:sql",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2533,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "offline-pwa.spec.ts",
+      "title": "public app download supports a real server outage and clearing preserves real history",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 4694,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "opening-experience.spec.ts",
+      "title": "full opening gates practice and returning visitors receive the 900ms wordmark",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1941,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-experience.spec.ts",
+      "title": "ordinary letters, Enter, Escape and Space skip without input leakage while Tab preserves focus",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 3657,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-experience.spec.ts",
+      "title": "automatic caret handoff leaves the first real keystroke available to practice",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1431,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-experience.spec.ts",
+      "title": "caret handoff blocked chunk preserves input and the real caret",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1374,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-experience.spec.ts",
+      "title": "caret handoff late chunk preserves input and the real caret",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1344,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-experience.spec.ts",
+      "title": "caret handoff animation API preserves input and the real caret",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1563,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-experience.spec.ts",
+      "title": "system reduced motion uses the 300ms wordmark without downloading WebGL",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1103,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-experience.spec.ts",
+      "title": "device preference reduced motion uses the 300ms wordmark without downloading WebGL",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1043,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-experience.spec.ts",
+      "title": "deep links remain immediate and a device opt-out persists through manual replay",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2261,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-experience.spec.ts",
+      "title": "blocked browser storage and unavailable WebGL retain a complete fallback keyboard",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1539,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-experience.spec.ts",
+      "title": "native WebGL renders 61 instanced caps, then disposes before practice mounts",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 4002,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-experience.spec.ts",
+      "title": "native context loss switches to fallback and preserves ready practice",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1985,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-experience.spec.ts",
+      "title": "five full reload cycles close their native canvas resources before entry",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 14636,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        },
+        {
+          "type": "limitation",
+          "description": "Native creation and explicit disposal receipts verified; this is not a universal GPU-memory or garbage-collection guarantee."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-experience.spec.ts",
+      "title": "a tap on the composition skips and leaves practice ready",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1294,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-low-power.spec.ts",
+      "title": "low-power WebGL precompiles asynchronously and disposes without a scored skip key",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 3011,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "default native worker draws the complete keyboard while document tasks, resize and skip remain responsive",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 4437,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "155.0.4283.45"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "native worker acknowledges real resource disposal at an explicitly idle renderer boundary",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 4515,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "155.0.4283.45"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        },
+        {
+          "type": "scope",
+          "description": "Protocol-only idle-boundary proof: native desktop full-quality draw first, then a test-owned RAF hold. This cadence-controlled case is not a performance measurement."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "five consecutive live-worker reloads close each prior worker and final skip closes the last worker",
+      "project": "edge",
+      "status": "failed",
+      "durationMs": 5927,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "155.0.4283.45"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        },
+        {
+          "type": "limitation",
+          "description": "Five actual reloads and native worker closure/ownership are finite lifecycle evidence, not a universal heap/GPU-memory leak guarantee."
+        }
+      ],
+      "errors": [
+        {
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts",
+            "column": 6,
+            "line": 212
+          },
+          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate\n\n  210 |       ),\n  211 |     )\n> 212 |     .toBe(true);\n      |      ^\n  213 | }\n  214 | async function firstWorkerInitialized(page: Page) {\n  215 |   await expect\n    at firstWorkerReady (D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:212:6)\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:574:11"
+        }
+      ]
+    },
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "skipping while the native worker entry is blocked terminates startup and preserves the first typing key",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2815,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "155.0.4283.45"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "a native worker transport failure replaces the transferred canvas with the complete real document renderer",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 6288,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "155.0.4283.45"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "actual worker WebGL context loss during preparation recovers with a fresh canvas and keeps practice usable",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 4895,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "155.0.4283.45"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "actual worker WebGL context loss after live frames recovers with a fresh canvas and keeps practice usable",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 5732,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "155.0.4283.45"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "profile-flow.spec.ts",
+      "title": "guest profile protects account controls and destructive reset requires exact confirmation",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 3218,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "profile-flow.spec.ts",
+      "title": "themes and keyboard preferences survive reload",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1238,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "profile-flow.spec.ts",
+      "title": "the keyboard command palette changes theme and navigates using concrete commands",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2536,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "profile-flow.spec.ts",
+      "title": "mobile navigation exposes Test, Learn, Race, and Stats without horizontal overflow",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1405,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "quick-restart.spec.ts",
+      "title": "Tab then Enter creates fresh random bot races and resets typing, timer and opponent",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 7905,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "quick-restart.spec.ts",
+      "title": "bot results support Tab then Enter for a fresh race at the same difficulty",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 5019,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "quick-restart.spec.ts",
+      "title": "normal Test results use Tab then Enter for new random words",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2204,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "quick-restart.spec.ts",
+      "title": "Shift+Tab and further Tab navigation keep ordinary bot controls reachable",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2188,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "quick-restart.spec.ts",
+      "title": "keyboard retry restores focus even when the primary pointer is touch",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2542,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "race-mode.spec.ts",
+      "title": "a guest can finish clearly labelled local bot practice",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 4004,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "race-mode.spec.ts",
+      "title": "human rooms require authentication while bot practice remains available",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 923,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "race-mode.spec.ts",
+      "title": "deployed two-account race authorization and RLS",
+      "project": "edge",
+      "status": "skipped",
+      "durationMs": 15,
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Requires a deployed test backend URL/anon key and two dedicated authenticated test accounts. No mocked backend establishes authorization.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\race-mode.spec.ts",
+            "line": 57,
+            "column": 8
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "race-pace.spec.ts",
+      "title": "gray bot pace moves while the user is idle without creating user input",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 3026,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "race-pace.spec.ts",
+      "title": "opponent progress does not scroll away from a leading user or recolor their mistakes",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2089,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "race-pace.spec.ts",
+      "title": "light-theme pace remains visible and resizes without leaving a marker in normal practice",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2122,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "responsive-layout.spec.ts",
+      "title": "main local pages fit a 320px viewport",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 3897,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "responsive-layout.spec.ts",
+      "title": "main local pages fit a 390px viewport",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 3089,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "responsive-layout.spec.ts",
+      "title": "main local pages fit a 768px viewport",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 3549,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "responsive-layout.spec.ts",
+      "title": "main local pages fit a 1440px viewport",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 3589,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "responsive-layout.spec.ts",
+      "title": "every theme provides opaque, readable native language options",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 6982,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "responsive-layout.spec.ts",
+      "title": "small-screen test controls wrap in all six modes and keep select targets usable",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 3313,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "responsive-layout.spec.ts",
+      "title": "narrow results retain the whole keyboard map and expanded evidence",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2419,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "responsive-layout.spec.ts",
+      "title": "race and learning remain usable after landscape and narrow resize",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1974,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "responsive-pages.spec.ts",
+      "title": "populated history, comparison chart and account controls fit narrow and tablet screens",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 7780,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "result-evidence.spec.ts",
+      "title": "results explain both accuracy denominators and replay corrections without rewriting them",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 3107,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "result-evidence.spec.ts",
+      "title": "score explanations and replay fit a narrow viewport",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2019,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "result-evidence.spec.ts",
+      "title": "precision mode rejects errors without erasing their accuracy cost",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2129,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "secondary-pages.spec.ts",
+      "title": "public information pages have real recovery navigation and distinct metadata",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1315,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "secondary-pages.spec.ts",
+      "title": "intent aliases retain real workspaces and canonicalize without exposing private routes",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1287,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "secondary-pages.spec.ts",
+      "title": "unknown paths use the branded accessible recovery without an invented console error",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 959,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "sparowtype-brand.spec.ts",
+      "title": "SparowType identity and the header theme choice persist across reload",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2366,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "sparowtype-brand.spec.ts",
+      "title": "legacy light preferences migrate without resetting language, layout or text size",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1111,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "sparowtype-brand.spec.ts",
+      "title": "light and dark headers keep every control separate at mobile, tablet and desktop widths",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2709,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "startup-recovery.spec.ts",
+      "title": "startup recovers from real workspace script and stylesheet failures at 320px without losing guest history",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 3948,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "stats-dashboard.spec.ts",
+      "title": "actual guest history survives reload without duplicate completion",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 6410,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "stats-dashboard.spec.ts",
+      "title": "empty history gives an actionable state without invented scores",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 706,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-experience.spec.ts",
+      "title": "desktop starts ready and focused without starting the clock",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1314,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-experience.spec.ts",
+      "title": "Tab then Enter restarts and accepts the first new character",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1325,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-experience.spec.ts",
+      "title": "whole-word flow rolls by full lines, resizes and backspaces to the beginning",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1900,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-experience.spec.ts",
+      "title": "sustained typing reuses its layout observer and keeps the caret through resize and deletion",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 5931,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-experience.spec.ts",
+      "title": "blur preserves input and refocus resumes the same passage",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1282,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-experience.spec.ts",
+      "title": "overtyped letters stay beside their word and move the caret past the extra input",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1229,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-experience.spec.ts",
+      "title": "RTL language keeps a measured caret and intact word groups",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1091,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-experience.spec.ts",
+      "title": "long free writing follows the visible end caret without clipping new input",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1935,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-experience.spec.ts",
+      "title": "learning keyboard distinguishes the next key from an actual wrong uppercase key",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2412,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-experience.spec.ts",
+      "title": "a rolled learning lesson keeps its input and Resume control in the visible viewport",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2954,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-experience.spec.ts",
+      "title": "learning caret follows extra letters even while the canonical cursor stays on Space",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1416,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-experience.spec.ts",
+      "title": "Escape leaves an active learning composition under IME control",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1067,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-experience.spec.ts",
+      "title": "touch users choose when to open the typing keyboard",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1335,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-observer-ownership.spec.ts",
+      "title": "learning keeps one native layout observer through input, deletion and resize and cleans each real lesson stage",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 4659,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-observer-ownership.spec.ts",
+      "title": "bot and user progress keep native resize and scroll subscriptions stable until leaving the race",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 3488,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-test.spec.ts",
+      "title": "a corrected mistake yields 75% input accuracy and perfect final text once",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 3125,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-test.spec.ts",
+      "title": "a 15 second deadline includes the whole idle period and persists the final cutoff",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 17610,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-test.spec.ts",
+      "title": "code Tab preserves normal focus by default and indents only after opting in",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2311,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-test.spec.ts",
+      "title": "composition commits one NFC grapheme and ignores intermediate IME changes",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1603,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-test.spec.ts",
+      "title": "repeat preserves the exact target and creates a new id with repeated-content provenance",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2825,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-test.spec.ts",
+      "title": "prompted zen appends target segments and finishes only through the visible action",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2052,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-test.spec.ts",
+      "title": "free writing has raw speed and no invented target accuracy or credited WPM",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2806,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "viewport-acceptance.spec.ts",
+      "title": "360px phone: intro, home, wrong-key caret and fresh restart fit",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2331,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "viewport-acceptance.spec.ts",
+      "title": "390px phone: intro, home, wrong-key caret and fresh restart fit",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2352,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "viewport-acceptance.spec.ts",
+      "title": "768px tablet: intro, home, wrong-key caret and fresh restart fit",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2036,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "viewport-acceptance.spec.ts",
+      "title": "1024px tablet: intro, home, wrong-key caret and fresh restart fit",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2213,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "viewport-acceptance.spec.ts",
+      "title": "1280px desktop: intro, home, wrong-key caret and fresh restart fit",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2316,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "viewport-acceptance.spec.ts",
+      "title": "1440px desktop: intro, home, wrong-key caret and fresh restart fit",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2233,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "viewport-acceptance.spec.ts",
+      "title": "1920px desktop: intro, home, wrong-key caret and fresh restart fit",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2415,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "viewport-acceptance.spec.ts",
+      "title": "2560px desktop: intro, home, wrong-key caret and fresh restart fit",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2537,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "viewport-acceptance.spec.ts",
+      "title": "844px phone landscape: intro, home, wrong-key caret and fresh restart fit",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1937,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "viewport-acceptance.spec.ts",
+      "title": "640px 200% zoom equivalent: intro, home, wrong-key caret and fresh restart fit",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1855,
+      "annotations": [
+        {
+          "type": "zoom-equivalence",
+          "description": "640\u00d7450 CSS pixels represent the layout viewport of 1280\u00d7900 at 200% zoom; this does not simulate browser chrome or physical mobile keyboards."
+        },
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "viewport-acceptance.spec.ts",
+      "title": "390px full mobile fallback contains every key and keeps controls separate",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1208,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "wrong-key-feedback.spec.ts",
+      "title": "a retained wrong letter is visible in place, advances, and can be corrected honestly",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2739,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "wrong-key-feedback.spec.ts",
+      "title": "explicit precision mode shows the rejected key and expected character",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1701,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "wrong-key-feedback.spec.ts",
+      "title": "an early space has visible input feedback even when the final separator aligns correctly",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1848,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "wrong-key-feedback.spec.ts",
+      "title": "overtyping a word reports the actual input and the missing separator",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2227,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "wrong-key-feedback.spec.ts",
+      "title": "wrong code newline and tab input have visible glyphs",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1512,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "wrong-key-feedback.spec.ts",
+      "title": "wrong composed input shows the normalized committed letter and counts one attempt",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 2270,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "wrong-key-feedback.spec.ts",
+      "title": "wrong-key feedback fits mobile and restarting clears the previous input",
+      "project": "edge",
+      "status": "passed",
+      "durationMs": 1477,
+      "annotations": [],
+      "errors": []
+    }
+  ]
+}

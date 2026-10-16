@@ -1,17 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import {
   usePreferences,
   type Preferences,
 } from "@/contexts/PreferencesContext";
-import { THEMES } from "@/lib/themes";
+import { THEMES, type ForgeTheme } from "@/lib/themes";
+import {
+  getOpeningAnimationEnabled,
+  setOpeningAnimationEnabled,
+  replayOpeningAnimation,
+  INTRO_PREFERENCE_EVENT,
+} from "@/lib/opening-experience";
 import {
   CONTENT_PACKS,
   LAYOUTS as KEYBOARD_LAYOUTS,
 } from "@/lib/content-packs";
 import { useSessionHistory } from "@/hooks/useTestResults";
-import { Download, RotateCcw, Check } from "lucide-react";
+import { Download, RotateCcw, Check, Play } from "lucide-react";
 export function downloadJson(value: unknown, filename: string) {
   const url = URL.createObjectURL(
     new Blob([JSON.stringify(value, null, 2)], { type: "application/json" }),
@@ -32,6 +38,35 @@ export default function Settings() {
     } = usePreferences(),
     { records, storageMode } = useSessionHistory();
   const [notice, setNotice] = useState("");
+  const [openingEnabled, setOpeningEnabled] = useState(getOpeningAnimationEnabled);
+  useEffect(() => {
+    const refresh = () => setOpeningEnabled(getOpeningAnimationEnabled());
+    window.addEventListener(INTRO_PREFERENCE_EVENT, refresh);
+    window.addEventListener("storage", refresh);
+    return () => {
+      window.removeEventListener(INTRO_PREFERENCE_EVENT, refresh);
+      window.removeEventListener("storage", refresh);
+    };
+  }, []);
+  const themeOption = (theme: ForgeTheme) => (
+    <button
+      aria-pressed={p.theme === theme.id}
+      key={theme.id}
+      onClick={() => update({ theme: theme.id })}
+      className="min-w-0 text-left rounded-xl border p-4 min-h-28 relative"
+      style={{
+        background: theme.colors.surface,
+        color: theme.colors.text,
+        borderColor: p.theme === theme.id ? theme.colors.accent : theme.colors.border,
+      }}
+    >
+      <span className="font-mono text-xl" style={{ color: theme.colors.accent }}>
+        Aa<span style={{ color: theme.colors.muted }}> bb</span>
+      </span>
+      <span className="block text-xs mt-4">{theme.name}</span>
+      {p.theme === theme.id && <Check size={15} className="absolute right-3 top-3" />}
+    </button>
+  );
   const toggle = (key: keyof Preferences, label: string, help: string) => (
     <label className="flex justify-between gap-4 py-4 border-b last:border-0">
       <span>
@@ -39,7 +74,8 @@ export default function Settings() {
         <span className="block text-xs text-muted-foreground mt-1">{help}</span>
       </span>
       <input
-        className="w-5 accent-[var(--forge-accent)]"
+        aria-label={label}
+        className="size-5 shrink-0 accent-[var(--forge-accent)]"
         type="checkbox"
         checked={Boolean(p[key])}
         onChange={(event) => update({ [key]: event.target.checked })}
@@ -68,34 +104,43 @@ export default function Settings() {
         )}
         <section className="mb-10">
           <h2 className="text-lg font-medium mb-4">Appearance</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {THEMES.map((theme) => (
-              <button
-                aria-pressed={p.theme === theme.id}
-                key={theme.id}
-                onClick={() => update({ theme: theme.id })}
-                className="text-left rounded-xl border p-4 min-h-28 relative"
-                style={{
-                  background: theme.colors.surface,
-                  color: theme.colors.text,
-                  borderColor:
-                    p.theme === theme.id
-                      ? theme.colors.accent
-                      : theme.colors.border,
-                }}
-              >
-                <span
-                  className="font-mono text-xl"
-                  style={{ color: theme.colors.accent }}
-                >
-                  Aa<span style={{ color: theme.colors.muted }}> bb</span>
+          <div className="grid grid-cols-2 gap-3" aria-label="Sparow themes">
+            {THEMES.slice(0, 2).map(themeOption)}
+          </div>
+          <h3 className="mt-6 mb-3 text-xs text-muted-foreground">More palettes</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3" aria-label="More themes">
+            {THEMES.slice(2).map(themeOption)}
+          </div>
+        </section>
+        <section className="panel p-5 sm:p-6 mb-10" aria-labelledby="opening-animation-title">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <label className="min-w-0 flex flex-1 basis-64 items-center justify-between gap-4 min-h-11">
+              <span>
+                <span id="opening-animation-title" className="block text-sm font-medium">Opening animation</span>
+                <span id="opening-animation-help" className="mt-1 block text-xs leading-relaxed text-muted-foreground">
+                  A brief keyboard welcome when you open SparowType. Saved on this device; reduced motion is respected.
                 </span>
-                <span className="block text-xs mt-4">{theme.name}</span>
-                {p.theme === theme.id && (
-                  <Check size={15} className="absolute right-3 top-3" />
-                )}
-              </button>
-            ))}
+              </span>
+              <input
+                type="checkbox"
+                aria-labelledby="opening-animation-title"
+                aria-describedby="opening-animation-help"
+                className="size-5 shrink-0 accent-[var(--forge-accent)]"
+                checked={openingEnabled}
+                onChange={(event) => {
+                  setOpeningAnimationEnabled(event.target.checked);
+                  setOpeningEnabled(getOpeningAnimationEnabled());
+                }}
+              />
+            </label>
+            <button
+              id="sparowtype-replay-opening"
+              type="button"
+              className="forge-button-secondary"
+              onClick={replayOpeningAnimation}
+            >
+              <Play size={15} aria-hidden="true" /> Replay opening animation
+            </button>
           </div>
         </section>
         <div className="grid md:grid-cols-2 gap-6">
@@ -158,6 +203,7 @@ export default function Settings() {
                   <option value="line">Line</option>
                   <option value="block">Block</option>
                   <option value="underline">Underline</option>
+                  <option value="outline">Outline</option>
                 </select>
               </label>
               <div className="grid grid-cols-2 gap-4">
@@ -218,11 +264,32 @@ export default function Settings() {
               "Animate the caret when reduced motion is off.",
             )}
             {toggle(
+              "reducedMotion",
+              "Reduced motion",
+              "Keep animation still. Your device’s reduced-motion setting always applies.",
+            )}
+            {toggle(
               "paceCaret",
               "Pace guide",
               "Show your target pace during practice.",
             )}
             {toggle("sound", "Typing sound", "A subtle click. Off by default.")}
+            {typeof AudioContext !== "function" && (
+              <p role="status" className="mt-3 text-xs text-muted-foreground">
+                Typing sound is unavailable in this browser. Your sound preference is kept for devices that support it.
+              </p>
+            )}
+            <label className="block mt-5 text-sm">
+              Sound pack
+              <select aria-label="Sound pack" aria-describedby="sound-pack-help" className="forge-input mt-2" value={p.soundPack} onChange={(event) => update({ soundPack: event.target.value as Preferences["soundPack"] })}>
+                <option value="soft">Soft</option>
+                <option value="mechanical">Mechanical</option>
+                <option value="typewriter">Typewriter</option>
+                <option value="arcade">Arcade</option>
+                <option value="minimal">Minimal</option>
+              </select>
+              <span id="sound-pack-help" className="block mt-2 text-xs text-muted-foreground">Five synthesized styles. Sound starts only while you type.</span>
+            </label>
             <label className="block mt-5 text-sm">
               Volume{" "}
               <input
@@ -259,7 +326,7 @@ export default function Settings() {
                     preferences: p,
                     sessions: records,
                   },
-                  "typing-forge-export.json",
+                  "sparowtype-export.json",
                 );
                 setNotice(
                   "Export prepared. It includes your private session text when available.",

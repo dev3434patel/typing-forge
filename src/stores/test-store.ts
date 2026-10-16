@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import type { QuoteLength } from '@/lib/quotes';
 
 export type TestMode = 'time' | 'words' | 'quote' | 'zen' | 'keybr' | 'code' | 'custom';
 export type TestDuration = 15 | 30 | 60 | 120 | 180;
@@ -8,6 +9,7 @@ interface TestSettings {
   mode: TestMode;
   duration: TestDuration;
   wordCount: number;
+  quoteLength: QuoteLength;
   punctuation: boolean;
   numbers: boolean;
   codeLanguage: string; // For code mode: 'javascript' | 'typescript' | 'python' | 'rust' | 'sql'
@@ -41,6 +43,7 @@ export const useTestStore = create<TestState>((set) => ({
     mode: 'time',
     duration: 30,
     wordCount: 50,
+    quoteLength: 'short',
     punctuation: false,
     numbers: false,
     codeLanguage: 'javascript', // Default code language

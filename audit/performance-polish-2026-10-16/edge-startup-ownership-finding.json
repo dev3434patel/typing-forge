@@ -1,0 +1,87 @@
+{
+  "scope": "Actual pre-reload readiness-precondition failure in complete158-case run; independent strict61/full-quality cases passed",
+  "fullStats": {
+    "startTime": "2026-10-16T19:50:02.565Z",
+    "duration": 452773.767,
+    "expected": 155,
+    "skipped": 2,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "actualRuntimeVersion": [
+    "155.0.4283.45"
+  ],
+  "reloadsAttempted": 0,
+  "nativeStarted": 1,
+  "nativeClosedAtCapture": 0,
+  "maximumLive": 1,
+  "initialActualWorkerReceipts": {
+    "url": "http://127.0.0.1:4175/assets/keyboard-render-worker-oeYyHX4e.js",
+    "sent": [
+      {
+        "type": "initialize",
+        "atMs": 1574.3999999761581,
+        "viewport": {
+          "width": 1280,
+          "height": 720,
+          "pixelRatio": 1
+        },
+        "lowPower": false,
+        "finePointer": true
+      },
+      {
+        "type": "resize",
+        "atMs": 2585.100000023842,
+        "viewport": {
+          "width": 1280,
+          "height": 720,
+          "pixelRatio": 1
+        }
+      },
+      {
+        "type": "resize",
+        "atMs": 4370,
+        "viewport": {
+          "width": 1280,
+          "height": 720,
+          "pixelRatio": 1
+        }
+      },
+      {
+        "type": "dispose",
+        "atMs": 4373.700000047684
+      }
+    ],
+    "received": [
+      {
+        "type": "diagnostics",
+        "diagnostics": {
+          "renderer": "webgl2",
+          "thread": "worker",
+          "keyCount": 61,
+          "keycapMeshes": 1,
+          "tier": "desktop",
+          "bloom": false,
+          "environment": true,
+          "environmentIntensity": 0.35,
+          "cameraElevationDegrees": 35,
+          "pixelRatio": 1,
+          "width": 1280,
+          "height": 720,
+          "frames": 0,
+          "averageFps": 0,
+          "drawCalls": 0,
+          "degraded": false,
+          "contextLost": false,
+          "disposed": false,
+          "asyncShaderCompile": false,
+          "shaderPreparationMs": 0
+        },
+        "atMs": 3967
+      }
+    ],
+    "terminated": 1,
+    "terminatedAtMs": 4605.100000023842
+  },
+  "finding": "Initial full shader preparation did not finish before valid fixed intro completion. No reload ownership cycle had begun. Separate complete quality and idle-ack tests passed; use initialization/publication for the ownership test initial cohort as for its five rapid cycles."
+}

@@ -1,0 +1,66 @@
+{
+  "stats": {
+    "startTime": "2026-10-16T20:00:10.204Z",
+    "duration": 361065.592,
+    "expected": 156,
+    "skipped": 2,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "config": {
+    "workers": 1,
+    "globalTimeout": 600000,
+    "projects": [
+      {
+        "name": "edge",
+        "timeout": 30000,
+        "retries": 0,
+        "repeatEach": 1
+      }
+    ]
+  },
+  "runtimeVersions": [
+    "155.0.4283.45"
+  ],
+  "reportedAttempts": 158,
+  "nonPassing": [
+    {
+      "file": "auth-flow.spec.ts",
+      "title": "real account sign in with dedicated deployment credentials",
+      "project": "edge",
+      "status": "skipped",
+      "durationMs": 298,
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\auth-flow.spec.ts",
+            "line": 25,
+            "column": 8
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "race-mode.spec.ts",
+      "title": "deployed two-account race authorization and RLS",
+      "project": "edge",
+      "status": "skipped",
+      "durationMs": 13,
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Requires a deployed test backend URL/anon key and two dedicated authenticated test accounts. No mocked backend establishes authorization.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\race-mode.spec.ts",
+            "line": 57,
+            "column": 8
+          }
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

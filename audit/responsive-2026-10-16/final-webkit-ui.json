@@ -1,0 +1,273 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\extra\\typing_updated\\typing-forge\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "e2e/responsive-layout.spec.ts",
+      "e2e/responsive-pages.spec.ts",
+      "--grep",
+      "small-screen|race and learning|populated history",
+      "--workers=1",
+      "--trace=off",
+      "--reporter=list,json",
+      "--output=audit/responsive-2026-10-16/final-webkit-ui-artifacts"
+    ],
+    "configFile": "D:\\extra\\typing_updated\\typing-forge\\playwright.config.ts",
+    "rootDir": "D:/extra/typing_updated/typing-forge/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/audit/responsive-2026-10-16/final-webkit-ui-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\audit\\responsive-2026-10-16\\final-webkit-ui-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "webkit",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173",
+          "trace": "off",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Safari/605.1.15",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1792,
+            "height": 1120
+          },
+          "deviceScaleFactor": 2,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "webkit"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "webkit"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "responsive-layout.spec.ts",
+      "file": "responsive-layout.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "small-screen test controls wrap in all six modes and keep select targets usable",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 61147,
+                  "error": {
+                    "message": "TimeoutError: page.waitForFunction: Timeout 10000ms exceeded.",
+                    "stack": "TimeoutError: page.waitForFunction: Timeout 10000ms exceeded.\n    at expectPageFits (D:\\extra\\typing_updated\\typing-forge\\e2e\\responsive-layout.spec.ts:6:14)\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\responsive-layout.spec.ts:100:5",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\responsive-layout.spec.ts",
+                      "column": 14,
+                      "line": 6
+                    },
+                    "snippet": "  4 | async function expectPageFits(page: Page) {\n  5 |   await page.locator(\"#main-content\").waitFor();\n> 6 |   await page.waitForFunction(\n    |              ^\n  7 |     () => document.fonts.status === \"loaded\" && document.fonts.check('400 16px \"Inter Variable\"', \"Typing Forge\"),\n  8 |     undefined,\n  9 |     { timeout: 10_000 },"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\responsive-layout.spec.ts",
+                        "column": 14,
+                        "line": 6
+                      },
+                      "message": "TimeoutError: page.waitForFunction: Timeout 10000ms exceeded.\n\n  4 | async function expectPageFits(page: Page) {\n  5 |   await page.locator(\"#main-content\").waitFor();\n> 6 |   await page.waitForFunction(\n    |              ^\n  7 |     () => document.fonts.status === \"loaded\" && document.fonts.check('400 16px \"Inter Variable\"', \"Typing Forge\"),\n  8 |     undefined,\n  9 |     { timeout: 10_000 },\n    at expectPageFits (D:\\extra\\typing_updated\\typing-forge\\e2e\\responsive-layout.spec.ts:6:14)\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\responsive-layout.spec.ts:100:5"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T20:57:55.187Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\responsive-2026-10-16\\final-webkit-ui-artifacts\\responsive-layout-small-sc-b19c1--keep-select-targets-usable-webkit\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\responsive-2026-10-16\\final-webkit-ui-artifacts\\responsive-layout-small-sc-b19c1--keep-select-targets-usable-webkit\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\responsive-layout.spec.ts",
+                    "column": 14,
+                    "line": 6
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "973d642d79b98c4f8bd6-921cd87255233116a2fa",
+          "file": "responsive-layout.spec.ts",
+          "line": 93,
+          "column": 1
+        },
+        {
+          "title": "race and learning remain usable after landscape and narrow resize",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2881,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T20:59:02.572Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "973d642d79b98c4f8bd6-babc42ba97e4e9f29756",
+          "file": "responsive-layout.spec.ts",
+          "line": 156,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "responsive-pages.spec.ts",
+      "file": "responsive-pages.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "populated history, comparison chart and account controls fit narrow and tablet screens",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5024,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T20:59:05.625Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51aa7a2ace6ef9d9be37-8275a2847d7c0e740deb",
+          "file": "responsive-pages.spec.ts",
+          "line": 19,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-15T20:57:54.291Z",
+    "duration": 76486.47,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

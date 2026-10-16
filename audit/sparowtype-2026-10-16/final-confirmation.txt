@@ -1,0 +1,93 @@
+
+Running 33 tests using 1 worker
+
+(node:72180) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › e2e\opening-experience.spec.ts:13:1 › opening finishes automatically without mounting a test or recording intro keys (1.7s)
+  ok  2 [chromium] › e2e\opening-experience.spec.ts:31:1 › Enter, Escape and Space skip immediately without entering the new passage (825ms)
+  ok  3 [chromium] › e2e\opening-experience.spec.ts:48:1 › deep links and reduced-motion preference bypass the automatic opening (986ms)
+  ok  4 [chromium] › e2e\opening-experience.spec.ts:58:1 › opening completes when browser storage is unavailable (541ms)
+  ok  5 [chromium] › e2e\opening-experience.spec.ts:73:1 › device opt-out persists while manual replay returns focus to Settings (716ms)
+  ok  6 [chromium] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands (3.6s)
+  ok  7 [chromium] › e2e\responsive-layout.spec.ts:43:1 › every theme provides opaque, readable native language options (7.1s)
+  ok  8 [chromium] › e2e\responsive-layout.spec.ts:93:1 › small-screen test controls wrap in all six modes and keep select targets usable (4.9s)
+  ok  9 [chromium] › e2e\sparowtype-brand.spec.ts:22:1 › SparowType identity and the header theme choice persist across reload (1.3s)
+  ok 10 [chromium] › e2e\sparowtype-brand.spec.ts:46:1 › legacy light preferences migrate without resetting language, layout or text size (1.2s)
+  ok 11 [chromium] › e2e\sparowtype-brand.spec.ts:82:1 › light and dark headers keep every control separate at mobile, tablet and desktop widths (1.6s)
+(node:77776) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 12 [firefox] › e2e\opening-experience.spec.ts:13:1 › opening finishes automatically without mounting a test or recording intro keys (9.2s)
+  ok 13 [firefox] › e2e\opening-experience.spec.ts:31:1 › Enter, Escape and Space skip immediately without entering the new passage (1.9s)
+  ok 14 [firefox] › e2e\opening-experience.spec.ts:48:1 › deep links and reduced-motion preference bypass the automatic opening (1.7s)
+  ok 15 [firefox] › e2e\opening-experience.spec.ts:58:1 › opening completes when browser storage is unavailable (1.2s)
+  ok 16 [firefox] › e2e\opening-experience.spec.ts:73:1 › device opt-out persists while manual replay returns focus to Settings (1.3s)
+  ok 17 [firefox] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands (4.2s)
+  ok 18 [firefox] › e2e\responsive-layout.spec.ts:43:1 › every theme provides opaque, readable native language options (9.8s)
+  ok 19 [firefox] › e2e\responsive-layout.spec.ts:93:1 › small-screen test controls wrap in all six modes and keep select targets usable (5.3s)
+  ok 20 [firefox] › e2e\sparowtype-brand.spec.ts:22:1 › SparowType identity and the header theme choice persist across reload (2.1s)
+  ok 21 [firefox] › e2e\sparowtype-brand.spec.ts:46:1 › legacy light preferences migrate without resetting language, layout or text size (2.9s)
+  ok 22 [firefox] › e2e\sparowtype-brand.spec.ts:82:1 › light and dark headers keep every control separate at mobile, tablet and desktop widths (2.3s)
+(node:64000) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 23 [webkit] › e2e\opening-experience.spec.ts:13:1 › opening finishes automatically without mounting a test or recording intro keys (2.2s)
+  ok 24 [webkit] › e2e\opening-experience.spec.ts:31:1 › Enter, Escape and Space skip immediately without entering the new passage (2.5s)
+  ok 25 [webkit] › e2e\opening-experience.spec.ts:48:1 › deep links and reduced-motion preference bypass the automatic opening (5.3s)
+  ok 26 [webkit] › e2e\opening-experience.spec.ts:58:1 › opening completes when browser storage is unavailable (1.3s)
+  ok 27 [webkit] › e2e\opening-experience.spec.ts:73:1 › device opt-out persists while manual replay returns focus to Settings (4.7s)
+  ok 28 [webkit] › e2e\profile-flow.spec.ts:23:1 › the keyboard command palette changes theme and navigates using concrete commands (8.7s)
+  ok 29 [webkit] › e2e\responsive-layout.spec.ts:43:1 › every theme provides opaque, readable native language options (19.2s)
+  x  30 [webkit] › e2e\responsive-layout.spec.ts:93:1 › small-screen test controls wrap in all six modes and keep select targets usable (36.9s)
+(node:50272) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 31 [webkit] › e2e\sparowtype-brand.spec.ts:22:1 › SparowType identity and the header theme choice persist across reload (6.6s)
+  ok 32 [webkit] › e2e\sparowtype-brand.spec.ts:46:1 › legacy light preferences migrate without resetting language, layout or text size (8.3s)
+  x  33 [webkit] › e2e\sparowtype-brand.spec.ts:82:1 › light and dark headers keep every control separate at mobile, tablet and desktop widths (2.6s)
+
+
+  1) [webkit] › e2e\responsive-layout.spec.ts:93:1 › small-screen test controls wrap in all six modes and keep select targets usable 
+
+    TimeoutError: page.waitForFunction: Timeout 10000ms exceeded.
+
+      4 | async function expectPageFits(page: Page) {
+      5 |   await page.locator("#main-content").waitFor();
+    > 6 |   await page.waitForFunction(
+        |              ^
+      7 |     () => document.fonts.status === "loaded" && document.fonts.check('400 16px "Inter Variable"', "SparowType"),
+      8 |     undefined,
+      9 |     { timeout: 10_000 },
+        at expectPageFits (D:\extra\typing_updated\typing-forge\e2e\responsive-layout.spec.ts:6:14)
+        at D:\extra\typing_updated\typing-forge\e2e\responsive-layout.spec.ts:100:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\sparowtype-2026-10-16\final-confirmation-artifacts\responsive-layout-small-sc-b19c1--keep-select-targets-usable-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\sparowtype-2026-10-16\final-confirmation-artifacts\responsive-layout-small-sc-b19c1--keep-select-targets-usable-webkit\error-context.md
+
+  2) [webkit] › e2e\sparowtype-brand.spec.ts:82:1 › light and dark headers keep every control separate at mobile, tablet and desktop widths › 320px · dark 
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    43.99089813232422
+
+      137 |         const bounds = await toggle.boundingBox();
+      138 |         expect(bounds).not.toBeNull();
+    > 139 |         expect(bounds!.width).toBeGreaterThanOrEqual(44);
+          |                               ^
+      140 |         expect(bounds!.height).toBeGreaterThanOrEqual(44);
+      141 |       });
+      142 |     }
+        at D:\extra\typing_updated\typing-forge\e2e\sparowtype-brand.spec.ts:139:31
+        at D:\extra\typing_updated\typing-forge\e2e\sparowtype-brand.spec.ts:95:7
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\sparowtype-2026-10-16\final-confirmation-artifacts\sparowtype-brand-light-and-25a57-e-tablet-and-desktop-widths-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\sparowtype-2026-10-16\final-confirmation-artifacts\sparowtype-brand-light-and-25a57-e-tablet-and-desktop-widths-webkit\error-context.md
+
+  2 failed
+    [webkit] › e2e\responsive-layout.spec.ts:93:1 › small-screen test controls wrap in all six modes and keep select targets usable 
+    [webkit] › e2e\sparowtype-brand.spec.ts:82:1 › light and dark headers keep every control separate at mobile, tablet and desktop widths 
+  31 passed (2.9m)

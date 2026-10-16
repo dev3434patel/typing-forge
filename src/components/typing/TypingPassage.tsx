@@ -1,7 +1,12 @@
-import { Fragment, type ReactNode } from "react";
+import { Fragment, memo, useEffect, useRef, type ReactNode } from "react";
 import type { CharacterSlot } from "@/lib/typing-core";
-import { groupTypingSlots } from "@/lib/typing-passage";
 import { TypingCharacter } from "./TypingCharacter";
+import {
+  buildTypingPassageModel,
+  type TypingCharacterChunk,
+  type TypingPassageBlock,
+  type TypingPassageModel,
+} from "./typing-passage-model";
 
 interface Props {
   slots: readonly CharacterSlot[];
@@ -13,61 +18,92 @@ interface Props {
   characterClassName?: (slot: CharacterSlot) => string | undefined;
 }
 
-/** Word-aware presentation shared by tests and lessons; input remains in the session core. */
-export function TypingPassage({
-  slots,
-  cursor,
-  marker,
-  preserveWhitespace = false,
-  renderBefore,
-  renderAfter,
-  characterClassName,
-}: Props) {
-  const targetCount = slots.filter((slot) => slot.expected !== null).length;
-  const hasCurrentTarget = slots.some(
-    (slot) => slot.expected !== null && slot.index === cursor,
-  );
-  const renderSlot = (slot: CharacterSlot) => (
-    <Fragment key={slot.index}>
-      <TypingCharacter
-        slot={slot}
-        current={slot.expected !== null && slot.index === cursor}
-        className={characterClassName?.(slot)}
-      >
-        {slot.expected !== null && slot.index === cursor && marker}
-        {renderBefore?.(slot)}
-      </TypingCharacter>
-      {renderAfter?.(slot)}
-    </Fragment>
-  );
+const wordStyle = {
+  display: "inline-block",
+  maxWidth: "100%",
+  whiteSpace: "pre-wrap",
+  overflowWrap: "anywhere",
+  verticalAlign: "top",
+} as const;
+
+const CharacterChunk = memo(function CharacterChunk({
+  chunk,
+}: {
+  chunk: TypingCharacterChunk;
+}) {
   return (
     <>
-      {groupTypingSlots(slots, preserveWhitespace, cursor).map((group) =>
-        group.kind === "word" ? (
+      {chunk.views.map((view) => (
+        <Fragment key={view.slot.index}>
+          <TypingCharacter
+            slot={view.slot}
+            current={view.current}
+            className={view.className}
+          >
+            {view.current ? (
+              <>
+                {view.marker}
+                {view.before}
+              </>
+            ) : (
+              view.before
+            )}
+          </TypingCharacter>
+          {view.after}
+        </Fragment>
+      ))}
+    </>
+  );
+});
+
+const PassageBlock = memo(function PassageBlock({
+  block,
+}: {
+  block: TypingPassageBlock;
+}) {
+  return (
+    <>
+      {block.groups.map((group) => {
+        const characters = group.chunks.map((chunk) => (
+          <CharacterChunk key={chunk.key} chunk={chunk} />
+        ));
+        return group.kind === "word" ? (
           <span
             key={group.key}
             className="typing-word"
             data-typing-word
-            style={{
-              display: "inline-block",
-              maxWidth: "100%",
-              whiteSpace: "pre-wrap",
-              overflowWrap: "anywhere",
-              verticalAlign: "top",
-            }}
+            style={wordStyle}
           >
-            {group.slots.map(renderSlot)}
+            {characters}
           </span>
         ) : (
           <Fragment key={group.key}>
-            {group.slots.map(renderSlot)}
+            {characters}
             {group.kind === "whitespace" && <wbr />}
           </Fragment>
-        ),
-      )}
-      {!hasCurrentTarget && cursor >= targetCount && (
+        );
+      })}
+    </>
+  );
+});
+
+/** Word-aware presentation shared by tests and lessons; input remains in the session core. */
+export function TypingPassage(props: Props) {
+  const committedModel = useRef<TypingPassageModel>();
+  const model = buildTypingPassageModel(props.slots, props, committedModel.current);
+  // Store only committed presentation. An interrupted concurrent render cannot
+  // replace the comparison baseline used by the visible passage.
+  useEffect(() => {
+    committedModel.current = model;
+  }, [model]);
+  return (
+    <>
+      {model.blocks.map((block) => (
+        <PassageBlock key={block.key} block={block} />
+      ))}
+      {!model.hasCurrentTarget && props.cursor >= model.targetCount && (
         <span className="typing-passage-end" data-passage-end>
-          {marker}
+          {props.marker}
         </span>
       )}
     </>

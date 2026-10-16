@@ -45,11 +45,11 @@
   height: 2px;
   margin-top: 1.5rem;
   border: 0;
-  background: hsl(var(--border) / 0.5);
+  background: color-mix(in srgb, var(--border) 50%, transparent);
   color: hsl(var(--primary));
 }
 .learn-lesson-progress::-webkit-progress-bar {
-  background: hsl(var(--border) / 0.5);
+  background: color-mix(in srgb, var(--border) 50%, transparent);
 }
 .learn-lesson-progress::-webkit-progress-value {
   background: hsl(var(--primary));
@@ -123,7 +123,7 @@
   place-items: center;
   width: 2.45rem;
   height: 2.45rem;
-  border: 1px solid hsl(var(--border));
+  border: 1px solid hsl(var(--ui-border));
   border-bottom-width: 3px;
   border-radius: 0.35rem;
   font-family: var(--font-mono);
@@ -137,11 +137,11 @@
 }
 .learn-key-locked {
   color: hsl(var(--muted-foreground) / 0.35);
-  border-color: hsl(var(--border) / 0.5);
+  border-color: color-mix(in srgb, var(--border) 50%, transparent);
   background: transparent;
 }
 .learn-key-mastered {
-  color: hsl(var(--success));
+  color: hsl(var(--ui-success));
 }
 .learn-key-expected {
   border-color: hsl(var(--primary));
@@ -150,7 +150,7 @@
 }
 .learn-key-pressed {
   color: hsl(var(--foreground));
-  background: hsl(var(--accent));
+  background: hsl(var(--ui-accent));
 }
 .learn-key-incorrect {
   color: hsl(var(--typing-error));
@@ -195,7 +195,7 @@
   background: hsl(var(--background));
 }
 .learn-control select:hover {
-  background: hsl(var(--accent));
+  background: hsl(var(--ui-accent));
 }
 .learn-keyboard-toggle {
   display: inline-flex;
@@ -230,7 +230,7 @@
 }
 .learn-evidence {
   margin-top: 2rem;
-  border-top: 1px solid hsl(var(--border) / 0.6);
+  border-top: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
 }
 .learn-evidence > summary {
   display: flex;

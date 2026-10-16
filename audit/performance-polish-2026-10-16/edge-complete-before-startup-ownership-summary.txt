@@ -1,0 +1,97 @@
+{
+  "stats": {
+    "startTime": "2026-10-16T19:50:02.565Z",
+    "duration": 452773.767,
+    "expected": 155,
+    "skipped": 2,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "config": {
+    "workers": 1,
+    "globalTimeout": 600000,
+    "projects": [
+      {
+        "name": "edge",
+        "timeout": 30000,
+        "retries": 0,
+        "repeatEach": 1
+      }
+    ]
+  },
+  "runtimeVersions": [
+    "155.0.4283.45"
+  ],
+  "reportedAttempts": 158,
+  "nonPassing": [
+    {
+      "file": "auth-flow.spec.ts",
+      "title": "real account sign in with dedicated deployment credentials",
+      "project": "edge",
+      "status": "skipped",
+      "durationMs": 255,
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\auth-flow.spec.ts",
+            "line": 25,
+            "column": 8
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "five consecutive live-worker reloads close each prior worker and final skip closes the last worker",
+      "project": "edge",
+      "status": "failed",
+      "durationMs": 5927,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "155.0.4283.45"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        },
+        {
+          "type": "limitation",
+          "description": "Five actual reloads and native worker closure/ownership are finite lifecycle evidence, not a universal heap/GPU-memory leak guarantee."
+        }
+      ],
+      "errors": [
+        {
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts",
+            "column": 6,
+            "line": 212
+          },
+          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate\n\n  210 |       ),\n  211 |     )\n> 212 |     .toBe(true);\n      |      ^\n  213 | }\n  214 | async function firstWorkerInitialized(page: Page) {\n  215 |   await expect\n    at firstWorkerReady (D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:212:6)\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:574:11"
+        }
+      ]
+    },
+    {
+      "file": "race-mode.spec.ts",
+      "title": "deployed two-account race authorization and RLS",
+      "project": "edge",
+      "status": "skipped",
+      "durationMs": 15,
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Requires a deployed test backend URL/anon key and two dedicated authenticated test accounts. No mocked backend establishes authorization.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\race-mode.spec.ts",
+            "line": 57,
+            "column": 8
+          }
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

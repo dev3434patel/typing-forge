@@ -1,4 +1,11 @@
-import { useEffect, useState, type RefObject } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type RefObject,
+} from "react";
 
 interface Props {
   position: number;
@@ -26,40 +33,52 @@ export function OpponentPaceMarker({
     height: number;
     visible: boolean;
   } | null>(null);
+  const latest = useRef({ position, fontSize });
+  latest.current = { position, fontSize };
+  const measurePoint = useCallback(() => {
+    const viewport = viewportRef.current;
+    const passage = passageRef.current;
+    if (!viewport || !passage) return;
+    const { position: currentPosition, fontSize: currentFontSize } =
+      latest.current;
+    const slot =
+      passage.querySelector<HTMLElement>(
+        `[data-slot-index="${currentPosition}"][data-expected]`,
+      ) ?? passage.querySelector<HTMLElement>("[data-opponent-end-anchor]");
+    if (!slot) {
+      setPoint(null);
+      return;
+    }
+    const rect = slot.getBoundingClientRect();
+    const bounds = viewport.getBoundingClientRect();
+    const rtl = getComputedStyle(viewport).direction === "rtl";
+    const next = {
+      x: (rtl ? rect.right : rect.left) - bounds.left + viewport.scrollLeft,
+      y: rect.top - bounds.top + viewport.scrollTop,
+      height: Math.max(currentFontSize, rect.height),
+      visible: rect.top >= bounds.top - 1 && rect.bottom <= bounds.bottom + 1,
+    };
+    setPoint((previous) =>
+      previous?.x === next.x &&
+      previous.y === next.y &&
+      previous.height === next.height &&
+      previous.visible === next.visible
+        ? previous
+        : next,
+    );
+  }, [viewportRef, passageRef]);
+  useLayoutEffect(() => {
+    measurePoint();
+  }, [measurePoint, position, revision, ownCursor, fontSize]);
   // Parent host refs are attached after child layout effects on a fresh mount.
-  // The passive effect can measure both refs before the bot's first timer tick.
+  // Keep this initial passive measurement, and subscribe once for those nodes.
   useEffect(() => {
     const viewport = viewportRef.current;
     const passage = passageRef.current;
     if (!viewport || !passage) return;
     let active = true;
     const measure = () => {
-      if (!active) return;
-      const slot =
-        passage.querySelector<HTMLElement>(
-          `[data-slot-index="${position}"][data-expected]`,
-        ) ?? passage.querySelector<HTMLElement>("[data-opponent-end-anchor]");
-      if (!slot) {
-        setPoint(null);
-        return;
-      }
-      const rect = slot.getBoundingClientRect();
-      const bounds = viewport.getBoundingClientRect();
-      const rtl = getComputedStyle(viewport).direction === "rtl";
-      const next = {
-        x: (rtl ? rect.right : rect.left) - bounds.left + viewport.scrollLeft,
-        y: rect.top - bounds.top + viewport.scrollTop,
-        height: Math.max(fontSize, rect.height),
-        visible: rect.top >= bounds.top - 1 && rect.bottom <= bounds.bottom + 1,
-      };
-      setPoint((previous) =>
-        previous?.x === next.x &&
-        previous.y === next.y &&
-        previous.height === next.height &&
-        previous.visible === next.visible
-          ? previous
-          : next,
-      );
+      if (active) measurePoint();
     };
     measure();
     const observer = new ResizeObserver(measure);
@@ -72,7 +91,7 @@ export function OpponentPaceMarker({
       observer.disconnect();
       viewport.removeEventListener("scroll", measure);
     };
-  }, [position, revision, ownCursor, fontSize, viewportRef, passageRef]);
+  }, [measurePoint, viewportRef, passageRef]);
   if (!point) return null;
   return (
     <span

@@ -1,0 +1,112 @@
+{
+  "stats": {
+    "startTime": "2026-10-16T17:53:17.438Z",
+    "duration": 384880.966,
+    "expected": 138,
+    "skipped": 2,
+    "unexpected": 2,
+    "flaky": 0
+  },
+  "config": {
+    "workers": 1,
+    "globalTimeout": 600000,
+    "projects": [
+      {
+        "name": "edge",
+        "timeout": 30000,
+        "retries": 0,
+        "repeatEach": 1
+      }
+    ]
+  },
+  "runtimeVersions": [
+    "155.0.4283.45"
+  ],
+  "reportedAttempts": 142,
+  "nonPassing": [
+    {
+      "file": "auth-flow.spec.ts",
+      "title": "real account sign in with dedicated deployment credentials",
+      "project": "edge",
+      "status": "skipped",
+      "durationMs": 561,
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\auth-flow.spec.ts",
+            "line": 25,
+            "column": 8
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-experience.spec.ts",
+      "title": "automatic caret handoff leaves the first real keystroke available to practice",
+      "project": "edge",
+      "status": "failed",
+      "durationMs": 6008,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": [
+        {
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts",
+            "column": 38,
+            "line": 158
+          },
+          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('html')\nExpected: \u001b[32m\"1\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('html') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('html')\u001b[22m\n\u001b[2m    14 \u00d7 locator resolved to <html lang=\"en\" class=\"dark\" data-theme=\"sparow-dark\" data-reduced-motion=\"false\">\u2026</html>\u001b[22m\n\u001b[2m       - unexpected value \"null\"\u001b[22m\n\n\n  156 |   const input = await expectReadyPractice(page);\n  157 |   await page.clock.runFor(80);\n> 158 |   await expect(page.locator(\"html\")).toHaveAttribute(\n      |                                      ^\n  159 |     \"data-caret-handoffs\",\n  160 |     \"1\",\n  161 |   );\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts:158:38"
+        }
+      ]
+    },
+    {
+      "file": "opening-experience.spec.ts",
+      "title": "caret handoff animation API preserves input and the real caret",
+      "project": "edge",
+      "status": "failed",
+      "durationMs": 6208,
+      "annotations": [
+        {
+          "type": "renderer-scope",
+          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+        }
+      ],
+      "errors": [
+        {
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts",
+            "column": 42,
+            "line": 211
+          },
+          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('html')\nExpected: \u001b[32m\"exercised\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('html') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('html')\u001b[22m\n\u001b[2m    14 \u00d7 locator resolved to <html lang=\"en\" class=\"dark\" data-theme=\"sparow-dark\" data-reduced-motion=\"false\">\u2026</html>\u001b[22m\n\u001b[2m       - unexpected value \"null\"\u001b[22m\n\n\n  209 |     if (failure === \"animation API\") {\n  210 |       await page.clock.runFor(80);\n> 211 |       await expect(page.locator(\"html\")).toHaveAttribute(\n      |                                          ^\n  212 |         \"data-handoff-animation-failure\",\n  213 |         \"exercised\",\n  214 |       );\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts:211:42"
+        }
+      ]
+    },
+    {
+      "file": "race-mode.spec.ts",
+      "title": "deployed two-account race authorization and RLS",
+      "project": "edge",
+      "status": "skipped",
+      "durationMs": 12,
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Requires a deployed test backend URL/anon key and two dedicated authenticated test accounts. No mocked backend establishes authorization.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\race-mode.spec.ts",
+            "line": 57,
+            "column": 8
+          }
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

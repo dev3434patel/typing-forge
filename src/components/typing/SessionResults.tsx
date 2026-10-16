@@ -37,7 +37,7 @@ function exportResult(result: SessionResult) {
   );
   const a = document.createElement("a");
   a.href = url;
-  a.download = `forge-session-${result.clientSessionId}.json`;
+  a.download = `sparowtype-session-${result.clientSessionId}.json`;
   a.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
@@ -144,39 +144,46 @@ export function SessionResults({
       canvas.height = 630;
       const ctx = canvas.getContext("2d");
       if (!ctx) throw new Error("Image export is unavailable.");
-      ctx.fillStyle = "#0B0D12";
+      const styles = getComputedStyle(document.documentElement);
+      const color = (name: string, fallback: string) =>
+        styles.getPropertyValue(`--forge-${name}`).trim() || fallback;
+      ctx.fillStyle = color("background", "#0B0D12");
       ctx.fillRect(0, 0, 1200, 630);
-      ctx.fillStyle = "#F5B544";
-      ctx.font = '500 26px "Inter Variable", sans-serif';
-      ctx.fillText("typingforge.", 70, 85);
-      ctx.fillStyle = "#AAB6C6";
+      ctx.fillStyle = "#07070A";
+      ctx.beginPath();
+      ctx.roundRect(54, 45, 245, 60, 12);
+      ctx.fill();
+      ctx.font = "700 26px Sora, sans-serif";
+      let wordmarkX = 70;
+      for (const [index, letter] of [..."SparowType"].entries()) {
+        ctx.fillStyle = index < 6 ? "#EDEDF2" : "#C6FF3D";
+        ctx.fillText(letter, wordmarkX, 85);
+        wordmarkX += ctx.measureText(letter).width - 1.04;
+      }
+      ctx.fillStyle = color("secondary", "#AAB6C6");
       ctx.font = '20px "Inter Variable", sans-serif';
       ctx.fillText(
         `${config.mode} · ${(result.elapsedMs / 1000).toFixed(1)}s · ${getContentPack(config.language || "en").label}`,
         70,
         150,
       );
-      ctx.fillStyle = "#EEF1F7";
+      ctx.fillStyle = color("text", "#EEF1F7");
       ctx.font = '600 140px "JetBrains Mono Variable", monospace';
       ctx.fillText(display(m.wpm), 65, 340);
       ctx.font = '24px "Inter Variable", sans-serif';
-      ctx.fillStyle = "#8796A8";
+      ctx.fillStyle = color("muted", "#8796A8");
       ctx.fillText("words per minute", 75, 390);
-      ctx.fillStyle = "#F5B544";
+      ctx.fillStyle = color("accent", "#C6FF3D");
       ctx.font = '500 72px "JetBrains Mono Variable", monospace';
       ctx.fillText(`${display(m.inputAccuracy, 1)}%`, 700, 300);
-      ctx.fillStyle = "#8796A8";
+      ctx.fillStyle = color("muted", "#8796A8");
       ctx.font = '24px "Inter Variable", sans-serif';
       ctx.fillText("input accuracy", 705, 355);
-      ctx.fillStyle = "#2D3746";
+      ctx.fillStyle = color("border", "#2D3746");
       ctx.fillRect(70, 475, 1060, 1);
-      ctx.fillStyle = "#8796A8";
+      ctx.fillStyle = color("muted", "#8796A8");
       ctx.font = '18px "Inter Variable", sans-serif';
-      ctx.fillText(
-        "forge-v3 · personal practice · no private text included",
-        70,
-        530,
-      );
+      ctx.fillText("Personal practice · no private text included", 70, 530);
       canvas.toBlob((blob) => {
         if (!blob) {
           setNotice("Image export failed. Try JSON export.");
@@ -185,7 +192,7 @@ export function SessionResults({
         const url = URL.createObjectURL(blob),
           a = document.createElement("a");
         a.href = url;
-        a.download = "typing-forge-result.png";
+        a.download = "sparowtype-result.png";
         a.click();
         setTimeout(() => URL.revokeObjectURL(url), 1000);
         setNotice("Share image downloaded. It contains statistics only.");
@@ -197,6 +204,11 @@ export function SessionResults({
     }
   };
   const grid = [
+    [
+      "Correct-character WPM",
+      m.correctCharacterWpm,
+      "Correct retained characters ÷ 5 ÷ elapsed minutes. Word-credit WPM remains the comparable headline metric.",
+    ],
     ["Raw WPM", m.rawWpm, "Retained characters ÷ 5 ÷ elapsed minutes."],
     [
       "Attempt rate",

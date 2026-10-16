@@ -117,7 +117,7 @@ export function ResultsScreen({ stats, onRestart, onNewTest }: ResultsScreenProp
                 <Tooltip
                   contentStyle={{
                     backgroundColor: 'hsl(var(--card))',
-                    border: '1px solid hsl(var(--border))',
+                    border: '1px solid hsl(var(--ui-border))',
                     borderRadius: '8px',
                     color: 'hsl(var(--foreground))',
                   }}

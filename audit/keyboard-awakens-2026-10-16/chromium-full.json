@@ -1,0 +1,4691 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\extra\\typing_updated\\typing-forge\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--workers=1",
+      "--trace=off",
+      "--reporter=list,json",
+      "--output=audit/keyboard-awakens-2026-10-16/chromium-full-artifacts"
+    ],
+    "configFile": "D:\\extra\\typing_updated\\typing-forge\\playwright.config.ts",
+    "rootDir": "D:/extra/typing_updated/typing-forge/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/audit/keyboard-awakens-2026-10-16/chromium-full-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-awakens-2026-10-16\\chromium-full-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4175",
+          "trace": "off",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "account-workspace.spec.ts",
+      "file": "account-workspace.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "cross-tab account change discards a previous owner's unsaved private passage",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5545,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('link', { name: 'Account', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('link', { name: 'Account', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('link', { name: 'Account', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('link', { name: 'Account', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('link', { name: 'Account', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('link', { name: 'Account', exact: true })\u001b[22m\n\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\account-workspace.spec.ts:54:5",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\account-workspace.spec.ts",
+                      "column": 5,
+                      "line": 54
+                    },
+                    "snippet": "  52 |   await expect(\n  53 |     page.getByRole(\"link\", { name: \"Account\", exact: true }),\n> 54 |   ).toBeVisible();\n     |     ^\n  55 |   await page\n  56 |     .getByRole(\"group\", { name: \"Test mode\" })\n  57 |     .getByRole(\"button\", { name: \"Custom\", exact: true })"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\account-workspace.spec.ts",
+                        "column": 5,
+                        "line": 54
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('link', { name: 'Account', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('link', { name: 'Account', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('link', { name: 'Account', exact: true })\u001b[22m\n\n\n  52 |   await expect(\n  53 |     page.getByRole(\"link\", { name: \"Account\", exact: true }),\n> 54 |   ).toBeVisible();\n     |     ^\n  55 |   await page\n  56 |     .getByRole(\"group\", { name: \"Test mode\" })\n  57 |     .getByRole(\"button\", { name: \"Custom\", exact: true })\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\account-workspace.spec.ts:54:5"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:24:58.771Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-awakens-2026-10-16\\chromium-full-artifacts\\account-workspace-cross-ta-a7ad6-r-s-unsaved-private-passage-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-awakens-2026-10-16\\chromium-full-artifacts\\account-workspace-cross-ta-a7ad6-r-s-unsaved-private-passage-chromium\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\account-workspace.spec.ts",
+                    "column": 5,
+                    "line": 54
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "68f92e732e60f967432a-a7a6b19535a033118932",
+          "file": "account-workspace.spec.ts",
+          "line": 6,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "auth-flow.spec.ts",
+      "file": "auth-flow.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "account form switches between sign in and creation using labelled controls",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1121,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:07.942Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "df6b40174562c70df515-f883416fc0fde898527a",
+          "file": "auth-flow.spec.ts",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "guest practice remains reachable from the account screen",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5718,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('textbox', { name: 'Typing input', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('textbox', { name: 'Typing input', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('textbox', { name: 'Typing input', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('textbox', { name: 'Typing input', exact: true })\u001b[22m\n\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\auth-flow.spec.ts:16:82",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\auth-flow.spec.ts",
+                      "column": 82,
+                      "line": 16
+                    },
+                    "snippet": "  14 | test('guest practice remains reachable from the account screen', async ({ page }) => {\n  15 |   await page.goto('/auth'); await page.getByRole('link', { name: '← Back to typing', exact: true }).click();\n> 16 |   await expect(page.getByRole('textbox', { name: 'Typing input', exact: true })).toBeVisible();\n     |                                                                                  ^\n  17 | });\n  18 |\n  19 | test('real account sign in with dedicated deployment credentials', async ({ page }) => {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\auth-flow.spec.ts",
+                        "column": 82,
+                        "line": 16
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('textbox', { name: 'Typing input', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('textbox', { name: 'Typing input', exact: true })\u001b[22m\n\n\n  14 | test('guest practice remains reachable from the account screen', async ({ page }) => {\n  15 |   await page.goto('/auth'); await page.getByRole('link', { name: '← Back to typing', exact: true }).click();\n> 16 |   await expect(page.getByRole('textbox', { name: 'Typing input', exact: true })).toBeVisible();\n     |                                                                                  ^\n  17 | });\n  18 |\n  19 | test('real account sign in with dedicated deployment credentials', async ({ page }) => {\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\auth-flow.spec.ts:16:82"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:09.279Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-awakens-2026-10-16\\chromium-full-artifacts\\auth-flow-guest-practice-r-87418-ble-from-the-account-screen-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-awakens-2026-10-16\\chromium-full-artifacts\\auth-flow-guest-practice-r-87418-ble-from-the-account-screen-chromium\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\auth-flow.spec.ts",
+                    "column": 82,
+                    "line": 16
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "df6b40174562c70df515-2e2210fd9fd866d85f20",
+          "file": "auth-flow.spec.ts",
+          "line": 14,
+          "column": 1
+        },
+        {
+          "title": "real account sign in with dedicated deployment credentials",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used.",
+                  "location": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\auth-flow.spec.ts",
+                    "line": 20,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 234,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:16.102Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used.",
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\auth-flow.spec.ts",
+                        "line": 20,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "df6b40174562c70df515-212f1c92d4b9b2a66a66",
+          "file": "auth-flow.spec.ts",
+          "line": 19,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "content-options.spec.ts",
+      "file": "content-options.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "quote lengths create complete passages and repeating retains the exact long passage",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2475,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:16.519Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "efd05dc9f481cf97e3cc-4c7535db706e8197c40d",
+          "file": "content-options.spec.ts",
+          "line": 8,
+          "column": 1
+        },
+        {
+          "title": "the Workman preference persists and feeds both reference keyboard views",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1032,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:19.008Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "efd05dc9f481cf97e3cc-1584b2b2b334926983b1",
+          "file": "content-options.spec.ts",
+          "line": 38,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "input-guardrails.spec.ts",
+      "file": "input-guardrails.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "paste and drop stay outside the practice transcript and never start its clock",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1184,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:20.070Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ecbefbc50305442035b0-874031cc97e1a0eccba2",
+          "file": "input-guardrails.spec.ts",
+          "line": 25,
+          "column": 1
+        },
+        {
+          "title": "adaptive practice blocks transfer input and reports only observed Caps Lock state",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 550,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:21.265Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ecbefbc50305442035b0-188ec52931eaba5416cc",
+          "file": "input-guardrails.spec.ts",
+          "line": 46,
+          "column": 1
+        },
+        {
+          "title": "feedback preferences persist, outline carets render in both modes, and audio waits for typing",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5920,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[data-testid=\"typing-viewport\"] > .caret-outline')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" locator('[data-testid=\"typing-viewport\"] > .caret-outline') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"typing-viewport\"] > .caret-outline')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[data-testid=\"typing-viewport\"] > .caret-outline')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" locator('[data-testid=\"typing-viewport\"] > .caret-outline') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"typing-viewport\"] > .caret-outline')\u001b[22m\n\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\input-guardrails.spec.ts:96:23",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\input-guardrails.spec.ts",
+                      "column": 23,
+                      "line": 96
+                    },
+                    "snippet": "  94 |   expect(await page.evaluate(() => (window as Window & { audioContexts: number }).audioContexts)).toBe(0);\n  95 |   const caret = page.locator('[data-testid=\"typing-viewport\"] > .caret-outline');\n> 96 |   await expect(caret).toBeVisible();\n     |                       ^\n  97 |   await expect(caret).toHaveCSS(\"border-top-width\", \"2px\");\n  98 |   await expect(caret).toHaveCSS(\"background-color\", \"rgba(0, 0, 0, 0)\");\n  99 |   await expect(caret).toHaveCSS(\"transition-property\", \"none\");"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\input-guardrails.spec.ts",
+                        "column": 23,
+                        "line": 96
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[data-testid=\"typing-viewport\"] > .caret-outline')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" locator('[data-testid=\"typing-viewport\"] > .caret-outline') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"typing-viewport\"] > .caret-outline')\u001b[22m\n\n\n  94 |   expect(await page.evaluate(() => (window as Window & { audioContexts: number }).audioContexts)).toBe(0);\n  95 |   const caret = page.locator('[data-testid=\"typing-viewport\"] > .caret-outline');\n> 96 |   await expect(caret).toBeVisible();\n     |                       ^\n  97 |   await expect(caret).toHaveCSS(\"border-top-width\", \"2px\");\n  98 |   await expect(caret).toHaveCSS(\"background-color\", \"rgba(0, 0, 0, 0)\");\n  99 |   await expect(caret).toHaveCSS(\"transition-property\", \"none\");\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\input-guardrails.spec.ts:96:23"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:21.828Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-awakens-2026-10-16\\chromium-full-artifacts\\input-guardrails-feedback--0715c--and-audio-waits-for-typing-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-awakens-2026-10-16\\chromium-full-artifacts\\input-guardrails-feedback--0715c--and-audio-waits-for-typing-chromium\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\input-guardrails.spec.ts",
+                    "column": 23,
+                    "line": 96
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "ecbefbc50305442035b0-0102f47a65d2d2d5de66",
+          "file": "input-guardrails.spec.ts",
+          "line": 62,
+          "column": 1
+        },
+        {
+          "title": "idle practice has no 100ms interval and the active deadline still persists exactly",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4198,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:29.026Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ecbefbc50305442035b0-b2d6aae6b3facc1f2536",
+          "file": "input-guardrails.spec.ts",
+          "line": 118,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "keyboard-lab.spec.ts",
+      "file": "keyboard-lab.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "manual signals are focus-scoped; Tab, Shift+Tab and Escape leave normally",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2078,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:33.995Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a240b70e988badb73c6c-1f2fcd8fd33e1e00483c",
+          "file": "keyboard-lab.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "browser layout access happens only after an explicit request and never changes preferences automatically",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 915,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:36.096Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a240b70e988badb73c6c-4f6eb96ad16aeadbe443",
+          "file": "keyboard-lab.spec.ts",
+          "line": 48,
+          "column": 1
+        },
+        {
+          "title": "unsupported browser mapping has a working manual fallback",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 981,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:37.028Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a240b70e988badb73c6c-6fe057cec573913c0553",
+          "file": "keyboard-lab.spec.ts",
+          "line": 126,
+          "column": 3
+        },
+        {
+          "title": "blocked browser mapping has a working manual fallback",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 922,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:38.026Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a240b70e988badb73c6c-558e5e1b7f6cda566e15",
+          "file": "keyboard-lab.spec.ts",
+          "line": 126,
+          "column": 3
+        },
+        {
+          "title": "repeated transitions produce a measured pair drill and targeted learning link",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1338,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:38.963Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a240b70e988badb73c6c-350268ae0efa0cd03e4e",
+          "file": "keyboard-lab.spec.ts",
+          "line": 164,
+          "column": 1
+        },
+        {
+          "title": "composition and repeat signals never create invented pair timings; blur clears held state",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 820,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:40.312Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a240b70e988badb73c6c-3e0c46f3678933c76078",
+          "file": "keyboard-lab.spec.ts",
+          "line": 197,
+          "column": 1
+        },
+        {
+          "title": "lab data remains ephemeral and reset removes observations and browser mapping",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1018,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:41.143Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a240b70e988badb73c6c-2704434731cfebe58943",
+          "file": "keyboard-lab.spec.ts",
+          "line": 253,
+          "column": 1
+        },
+        {
+          "title": "mobile layout keeps capture accessible without horizontal page overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 369,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:42.171Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a240b70e988badb73c6c-8b6f0b34add62a898518",
+          "file": "keyboard-lab.spec.ts",
+          "line": 279,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "leaderboard.spec.ts",
+      "file": "leaderboard.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "rankings explain challenge eligibility without presenting practice as verified scores",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 552,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:42.562Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5498c40e8c4b7c4c40a8-0e4d666b7a8e595964c1",
+          "file": "leaderboard.spec.ts",
+          "line": 3,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "learning-v3.spec.ts",
+      "file": "learning-v3.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "learning shows the pressed wrong letter and advances by default, with corrections still counted",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5479,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:43.137Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac50e274528e811812e1-1dc2779348c379b1050c",
+          "file": "learning-v3.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "learning records rejected attempts and saves exactly one immutable result",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2867,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:48.626Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac50e274528e811812e1-3f85272a1cd05b2dfac9",
+          "file": "learning-v3.spec.ts",
+          "line": 35,
+          "column": 1
+        },
+        {
+          "title": "learning preserves wrong-key feedback when one stop-mode input batch ends correctly",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 970,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:51.503Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac50e274528e811812e1-2f73ee68ef188c960540",
+          "file": "learning-v3.spec.ts",
+          "line": 66,
+          "column": 1
+        },
+        {
+          "title": "Tab leaves the learning input without generating another lesson",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 478,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:52.488Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac50e274528e811812e1-d1f6f109ba11c1fbadaa",
+          "file": "learning-v3.spec.ts",
+          "line": 97,
+          "column": 1
+        },
+        {
+          "title": "Arabic lesson uses RTL native characters and composition has no invented key timing",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 615,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:52.980Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac50e274528e811812e1-125442454f6a478cae6d",
+          "file": "learning-v3.spec.ts",
+          "line": 109,
+          "column": 1
+        },
+        {
+          "title": "en content completes through the actual learning input adapter",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2104,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:53.605Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac50e274528e811812e1-8b61905648c3e20f2378",
+          "file": "learning-v3.spec.ts",
+          "line": 127,
+          "column": 3
+        },
+        {
+          "title": "es content completes through the actual learning input adapter",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1805,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:55.719Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac50e274528e811812e1-7746d6b51360479c0593",
+          "file": "learning-v3.spec.ts",
+          "line": 127,
+          "column": 3
+        },
+        {
+          "title": "fr content completes through the actual learning input adapter",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1214,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:57.533Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac50e274528e811812e1-709bd80d14e3051a66c5",
+          "file": "learning-v3.spec.ts",
+          "line": 127,
+          "column": 3
+        },
+        {
+          "title": "de content completes through the actual learning input adapter",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1251,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:25:58.760Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac50e274528e811812e1-b36c326bd5021ce1bb0f",
+          "file": "learning-v3.spec.ts",
+          "line": 127,
+          "column": 3
+        },
+        {
+          "title": "pt content completes through the actual learning input adapter",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1673,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:26:00.026Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac50e274528e811812e1-fcadaf609aca2066e4c4",
+          "file": "learning-v3.spec.ts",
+          "line": 127,
+          "column": 3
+        },
+        {
+          "title": "it content completes through the actual learning input adapter",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1398,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:26:01.709Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac50e274528e811812e1-29a438a791998bef5a44",
+          "file": "learning-v3.spec.ts",
+          "line": 127,
+          "column": 3
+        },
+        {
+          "title": "ru content completes through the actual learning input adapter",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1444,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:26:03.121Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac50e274528e811812e1-55e39cdfc8307d589171",
+          "file": "learning-v3.spec.ts",
+          "line": 127,
+          "column": 3
+        },
+        {
+          "title": "hi content completes through the actual learning input adapter",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 634,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:26:04.579Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac50e274528e811812e1-6d42fa62c4e40745c4dc",
+          "file": "learning-v3.spec.ts",
+          "line": 127,
+          "column": 3
+        },
+        {
+          "title": "ar content completes through the actual learning input adapter",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 595,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:26:05.227Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac50e274528e811812e1-46714a27e2a46f43d197",
+          "file": "learning-v3.spec.ts",
+          "line": 127,
+          "column": 3
+        },
+        {
+          "title": "gu-Latn content completes through the actual learning input adapter",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1671,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:26:05.832Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac50e274528e811812e1-e557a4c6b7dc59aa77ea",
+          "file": "learning-v3.spec.ts",
+          "line": 127,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "title": "mode-matrix.spec.ts",
+      "file": "mode-matrix.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "finite mode completes and exports exact committed input: Words",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6128,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:26:07.527Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0859213ada9cc5945a5e-c49a5330e5b207df32de",
+          "file": "mode-matrix.spec.ts",
+          "line": 13,
+          "column": 3
+        },
+        {
+          "title": "finite mode completes and exports exact committed input: Quote",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5616,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:26:13.665Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0859213ada9cc5945a5e-a33c7abe49ebe93d9453",
+          "file": "mode-matrix.spec.ts",
+          "line": 13,
+          "column": 3
+        },
+        {
+          "title": "finite mode completes and exports exact committed input: Code:javascript",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6165,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:26:19.290Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0859213ada9cc5945a5e-fc91216852b7f6970e82",
+          "file": "mode-matrix.spec.ts",
+          "line": 13,
+          "column": 3
+        },
+        {
+          "title": "finite mode completes and exports exact committed input: Code:typescript",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6042,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:26:25.470Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0859213ada9cc5945a5e-2a367165060940bc89e3",
+          "file": "mode-matrix.spec.ts",
+          "line": 13,
+          "column": 3
+        },
+        {
+          "title": "finite mode completes and exports exact committed input: Code:python",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6086,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:26:31.523Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0859213ada9cc5945a5e-cdd9b523291560ad9d31",
+          "file": "mode-matrix.spec.ts",
+          "line": 13,
+          "column": 3
+        },
+        {
+          "title": "finite mode completes and exports exact committed input: Code:rust",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5461,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:26:37.622Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0859213ada9cc5945a5e-2d2db15052eaed3330db",
+          "file": "mode-matrix.spec.ts",
+          "line": 13,
+          "column": 3
+        },
+        {
+          "title": "finite mode completes and exports exact committed input: Code:sql",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6383,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:26:43.097Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0859213ada9cc5945a5e-96700c5006c0c8f4e6ac",
+          "file": "mode-matrix.spec.ts",
+          "line": 13,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "title": "offline-pwa.spec.ts",
+      "file": "offline-pwa.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "public app download supports offline guest practice and clearing preserves real history",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5198,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Your offline workspace', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'Your offline workspace', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Your offline workspace', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Your offline workspace', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'Your offline workspace', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Your offline workspace', exact: true })\u001b[22m\n\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\offline-pwa.spec.ts:28:5",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\offline-pwa.spec.ts",
+                      "column": 5,
+                      "line": 28
+                    },
+                    "snippet": "  26 |   await expect(\n  27 |     page.getByRole(\"heading\", { name: \"Your offline workspace\", exact: true }),\n> 28 |   ).toBeVisible();\n     |     ^\n  29 |   await expect(page.getByText(/Public download: available/)).toBeVisible();\n  30 |   await expect\n  31 |     .poll(() =>"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\offline-pwa.spec.ts",
+                        "column": 5,
+                        "line": 28
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Your offline workspace', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'Your offline workspace', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Your offline workspace', exact: true })\u001b[22m\n\n\n  26 |   await expect(\n  27 |     page.getByRole(\"heading\", { name: \"Your offline workspace\", exact: true }),\n> 28 |   ).toBeVisible();\n     |     ^\n  29 |   await expect(page.getByText(/Public download: available/)).toBeVisible();\n  30 |   await expect\n  31 |     .poll(() =>\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\offline-pwa.spec.ts:28:5"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:26:49.524Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-awakens-2026-10-16\\chromium-full-artifacts\\offline-pwa-public-app-dow-e47f3-ring-preserves-real-history-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-awakens-2026-10-16\\chromium-full-artifacts\\offline-pwa-public-app-dow-e47f3-ring-preserves-real-history-chromium\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\offline-pwa.spec.ts",
+                    "column": 5,
+                    "line": 28
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "5d9772746f853bc72232-67eedbae39d58959a58a",
+          "file": "offline-pwa.spec.ts",
+          "line": 11,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "opening-experience.spec.ts",
+      "file": "opening-experience.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "full opening gates practice and returning visitors receive the 900ms wordmark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1339,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:26:56.222Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-25344b67cc4a611997b9",
+          "file": "opening-experience.spec.ts",
+          "line": 78,
+          "column": 1
+        },
+        {
+          "title": "ordinary letters, Enter, Escape and Space skip without input leakage while Tab preserves focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2188,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:26:57.823Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-67fa8fa99815a84a87d3",
+          "file": "opening-experience.spec.ts",
+          "line": 97,
+          "column": 1
+        },
+        {
+          "title": "system reduced motion uses the 300ms wordmark without downloading WebGL",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 517,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:27:00.701Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-b48d5c26be2e0d935a25",
+          "file": "opening-experience.spec.ts",
+          "line": 152,
+          "column": 3
+        },
+        {
+          "title": "device preference reduced motion uses the 300ms wordmark without downloading WebGL",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 677,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:27:01.233Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-3a8aa553800b61c3f4ed",
+          "file": "opening-experience.spec.ts",
+          "line": 152,
+          "column": 3
+        },
+        {
+          "title": "deep links remain immediate and a device opt-out persists through manual replay",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1060,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:27:01.929Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-aa87ae0ff41821615482",
+          "file": "opening-experience.spec.ts",
+          "line": 184,
+          "column": 1
+        },
+        {
+          "title": "blocked browser storage and unavailable WebGL retain a complete fallback keyboard",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 862,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:27:03.003Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-4425fbcd6e5a8b7e7354",
+          "file": "opening-experience.spec.ts",
+          "line": 220,
+          "column": 1
+        },
+        {
+          "title": "native WebGL renders 61 instanced caps, then disposes before practice mounts",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4270,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:27:03.881Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-c764053c7a4c773ab3a3",
+          "file": "opening-experience.spec.ts",
+          "line": 256,
+          "column": 1
+        },
+        {
+          "title": "native context loss switches to fallback and preserves ready practice",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3559,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:27:08.164Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-3291a6b7905dad96591e",
+          "file": "opening-experience.spec.ts",
+          "line": 289,
+          "column": 1
+        },
+        {
+          "title": "five full reload cycles close their native canvas resources before entry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "limitation",
+                  "description": "Native creation and explicit disposal receipts verified; this is not a universal GPU-memory or garbage-collection guarantee."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 13654,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:27:11.739Z",
+                  "annotations": [
+                    {
+                      "type": "limitation",
+                      "description": "Native creation and explicit disposal receipts verified; this is not a universal GPU-memory or garbage-collection guarantee."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "native-context-disposal-cycles",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJjeWNsZSI6IDEsCiAgICAicmVjb3JkcyI6IFsKICAgICAgewogICAgICAgICJkaXNwb3NlZCI6IHRydWUsCiAgICAgICAgImxvc3QiOiB0cnVlCiAgICAgIH0KICAgIF0KICB9LAogIHsKICAgICJjeWNsZSI6IDIsCiAgICAicmVjb3JkcyI6IFsKICAgICAgewogICAgICAgICJkaXNwb3NlZCI6IHRydWUsCiAgICAgICAgImxvc3QiOiB0cnVlCiAgICAgIH0KICAgIF0KICB9LAogIHsKICAgICJjeWNsZSI6IDMsCiAgICAicmVjb3JkcyI6IFsKICAgICAgewogICAgICAgICJkaXNwb3NlZCI6IHRydWUsCiAgICAgICAgImxvc3QiOiB0cnVlCiAgICAgIH0KICAgIF0KICB9LAogIHsKICAgICJjeWNsZSI6IDQsCiAgICAicmVjb3JkcyI6IFsKICAgICAgewogICAgICAgICJkaXNwb3NlZCI6IHRydWUsCiAgICAgICAgImxvc3QiOiB0cnVlCiAgICAgIH0KICAgIF0KICB9LAogIHsKICAgICJjeWNsZSI6IDUsCiAgICAicmVjb3JkcyI6IFsKICAgICAgewogICAgICAgICJkaXNwb3NlZCI6IHRydWUsCiAgICAgICAgImxvc3QiOiB0cnVlCiAgICAgIH0KICAgIF0KICB9Cl0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-d292eb19838c250c1c6c",
+          "file": "opening-experience.spec.ts",
+          "line": 325,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch entry",
+          "file": "opening-experience.spec.ts",
+          "line": 139,
+          "column": 6,
+          "specs": [
+            {
+              "title": "a tap on the composition skips and leaves practice ready",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 659,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-16T14:27:00.030Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cdb3def3b8cc319ba88c-f917b33f20204d73295a",
+              "file": "opening-experience.spec.ts",
+              "line": 141,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "profile-flow.spec.ts",
+      "file": "profile-flow.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "guest profile protects account controls and destructive reset requires exact confirmation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 518,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:27:25.424Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1c4f45d7a12bdc4bff7f-4a7c746ae39d551ab40e",
+          "file": "profile-flow.spec.ts",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "themes and keyboard preferences survive reload",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 535,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:27:25.952Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1c4f45d7a12bdc4bff7f-51dcfb7940f5922162cb",
+          "file": "profile-flow.spec.ts",
+          "line": 13,
+          "column": 1
+        },
+        {
+          "title": "the keyboard command palette changes theme and navigates using concrete commands",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5915,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:27:26.497Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1c4f45d7a12bdc4bff7f-3aec5a4dab467c0af034",
+          "file": "profile-flow.spec.ts",
+          "line": 23,
+          "column": 1
+        },
+        {
+          "title": "mobile navigation exposes Test, Learn, Race, and Stats without horizontal overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5340,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:27:32.425Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1c4f45d7a12bdc4bff7f-15cd53543e6f57ac9c1c",
+          "file": "profile-flow.spec.ts",
+          "line": 50,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "quick-restart.spec.ts",
+      "file": "quick-restart.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Tab then Enter creates fresh random bot races and resets typing, timer and opponent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2190,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:27:37.806Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4084bd320dc6eac05cb8-6ac037331f3186e95523",
+          "file": "quick-restart.spec.ts",
+          "line": 15,
+          "column": 1
+        },
+        {
+          "title": "bot results support Tab then Enter for a fresh race at the same difficulty",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1218,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:27:40.015Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4084bd320dc6eac05cb8-c3de274c4ca9d88f14fb",
+          "file": "quick-restart.spec.ts",
+          "line": 81,
+          "column": 1
+        },
+        {
+          "title": "normal Test results use Tab then Enter for new random words",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5367,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('textbox', { name: 'Typing input', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('textbox', { name: 'Typing input', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('textbox', { name: 'Typing input', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('textbox', { name: 'Typing input', exact: true })\u001b[22m\n\n    at focusTyping (D:\\extra\\typing_updated\\typing-forge\\e2e\\helpers.ts:10:23)\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\quick-restart.spec.ts:108:23",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\helpers.ts",
+                      "column": 23,
+                      "line": 10
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:10\n\n   8 |     exact: true,\n   9 |   });\n> 10 |   await expect(input).toBeVisible();\n     |                       ^\n  11 |   // Desktop starts focused; touch devices retain the explicit keyboard activation.\n  12 |   if (\n  13 |     !(await input.evaluate((element) => element === document.activeElement))"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\helpers.ts",
+                        "column": 23,
+                        "line": 10
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('textbox', { name: 'Typing input', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('textbox', { name: 'Typing input', exact: true })\u001b[22m\n\n\n   at helpers.ts:10\n\n   8 |     exact: true,\n   9 |   });\n> 10 |   await expect(input).toBeVisible();\n     |                       ^\n  11 |   // Desktop starts focused; touch devices retain the explicit keyboard activation.\n  12 |   if (\n  13 |     !(await input.evaluate((element) => element === document.activeElement))\n    at focusTyping (D:\\extra\\typing_updated\\typing-forge\\e2e\\helpers.ts:10:23)\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\quick-restart.spec.ts:108:23"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:27:41.251Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-awakens-2026-10-16\\chromium-full-artifacts\\quick-restart-normal-Test--1698c--Enter-for-new-random-words-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-awakens-2026-10-16\\chromium-full-artifacts\\quick-restart-normal-Test--1698c--Enter-for-new-random-words-chromium\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\helpers.ts",
+                    "column": 23,
+                    "line": 10
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "4084bd320dc6eac05cb8-2f7e081f97b9b9db14f8",
+          "file": "quick-restart.spec.ts",
+          "line": 104,
+          "column": 1
+        },
+        {
+          "title": "Shift+Tab and further Tab navigation keep ordinary bot controls reachable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 983,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:27:51.782Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4084bd320dc6eac05cb8-8b54013d5c36a291a45f",
+          "file": "quick-restart.spec.ts",
+          "line": 125,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch device with a physical keyboard",
+          "file": "quick-restart.spec.ts",
+          "line": 157,
+          "column": 6,
+          "specs": [
+            {
+              "title": "keyboard retry restores focus even when the primary pointer is touch",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 854,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-16T14:27:52.960Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "4084bd320dc6eac05cb8-915ed7f8b4183fbec375",
+              "file": "quick-restart.spec.ts",
+              "line": 159,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "race-mode.spec.ts",
+      "file": "race-mode.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "a guest can finish clearly labelled local bot practice",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2123,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:27:53.850Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5dc3d7b5aacd031da5a6-603097c6295316718bcf",
+          "file": "race-mode.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "human rooms require authentication while bot practice remains available",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 400,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:27:55.982Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5dc3d7b5aacd031da5a6-a047f98d46d3977c6e1f",
+          "file": "race-mode.spec.ts",
+          "line": 35,
+          "column": 1
+        },
+        {
+          "title": "deployed two-account race authorization and RLS",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "Requires a deployed test backend URL/anon key and two dedicated authenticated test accounts. No mocked backend establishes authorization.",
+                  "location": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\race-mode.spec.ts",
+                    "line": 57,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 7,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:27:56.396Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "Requires a deployed test backend URL/anon key and two dedicated authenticated test accounts. No mocked backend establishes authorization.",
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\race-mode.spec.ts",
+                        "line": 57,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "5dc3d7b5aacd031da5a6-791d936f05bcd5335c85",
+          "file": "race-mode.spec.ts",
+          "line": 50,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "race-pace.spec.ts",
+      "file": "race-pace.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "gray bot pace moves while the user is idle without creating user input",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1328,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:27:56.440Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a2c1a0f26f6262400dfe-7a55ccd8674678a5f6dc",
+          "file": "race-pace.spec.ts",
+          "line": 17,
+          "column": 1
+        },
+        {
+          "title": "opponent progress does not scroll away from a leading user or recolor their mistakes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 953,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:27:57.781Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a2c1a0f26f6262400dfe-c1f15b69a004364384b6",
+          "file": "race-pace.spec.ts",
+          "line": 56,
+          "column": 1
+        },
+        {
+          "title": "light-theme pace remains visible and resizes without leaving a marker in normal practice",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1311,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:27:58.747Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a2c1a0f26f6262400dfe-a5f6dbbb735f8f00f969",
+          "file": "race-pace.spec.ts",
+          "line": 109,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "responsive-layout.spec.ts",
+      "file": "responsive-layout.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "main local pages fit a 320px viewport",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6946,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "/",
+                      "duration": 4899
+                    },
+                    {
+                      "title": "/learn",
+                      "duration": 193
+                    },
+                    {
+                      "title": "/race",
+                      "duration": 239
+                    },
+                    {
+                      "title": "/stats",
+                      "duration": 256
+                    },
+                    {
+                      "title": "/settings",
+                      "duration": 186
+                    },
+                    {
+                      "title": "/keyboard-lab",
+                      "duration": 275
+                    },
+                    {
+                      "title": "/leaderboard",
+                      "duration": 192
+                    },
+                    {
+                      "title": "/ranked",
+                      "duration": 171
+                    },
+                    {
+                      "title": "/profile",
+                      "duration": 159
+                    },
+                    {
+                      "title": "/auth",
+                      "duration": 151
+                    },
+                    {
+                      "title": "/about",
+                      "duration": 98
+                    }
+                  ],
+                  "startTime": "2026-10-16T14:28:00.097Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "973d642d79b98c4f8bd6-396fcc778a6787e008f3",
+          "file": "responsive-layout.spec.ts",
+          "line": 28,
+          "column": 3
+        },
+        {
+          "title": "main local pages fit a 390px viewport",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6644,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "/",
+                      "duration": 5031
+                    },
+                    {
+                      "title": "/learn",
+                      "duration": 255
+                    },
+                    {
+                      "title": "/race",
+                      "duration": 139
+                    },
+                    {
+                      "title": "/stats",
+                      "duration": 139
+                    },
+                    {
+                      "title": "/settings",
+                      "duration": 125
+                    },
+                    {
+                      "title": "/keyboard-lab",
+                      "duration": 145
+                    },
+                    {
+                      "title": "/leaderboard",
+                      "duration": 113
+                    },
+                    {
+                      "title": "/ranked",
+                      "duration": 148
+                    },
+                    {
+                      "title": "/profile",
+                      "duration": 135
+                    },
+                    {
+                      "title": "/auth",
+                      "duration": 157
+                    },
+                    {
+                      "title": "/about",
+                      "duration": 135
+                    }
+                  ],
+                  "startTime": "2026-10-16T14:28:07.055Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "973d642d79b98c4f8bd6-1128ef88882977c5e029",
+          "file": "responsive-layout.spec.ts",
+          "line": 28,
+          "column": 3
+        },
+        {
+          "title": "main local pages fit a 768px viewport",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6641,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "/",
+                      "duration": 4987
+                    },
+                    {
+                      "title": "/learn",
+                      "duration": 188
+                    },
+                    {
+                      "title": "/race",
+                      "duration": 152
+                    },
+                    {
+                      "title": "/stats",
+                      "duration": 174
+                    },
+                    {
+                      "title": "/settings",
+                      "duration": 143
+                    },
+                    {
+                      "title": "/keyboard-lab",
+                      "duration": 207
+                    },
+                    {
+                      "title": "/leaderboard",
+                      "duration": 167
+                    },
+                    {
+                      "title": "/ranked",
+                      "duration": 138
+                    },
+                    {
+                      "title": "/profile",
+                      "duration": 113
+                    },
+                    {
+                      "title": "/auth",
+                      "duration": 128
+                    },
+                    {
+                      "title": "/about",
+                      "duration": 112
+                    }
+                  ],
+                  "startTime": "2026-10-16T14:28:13.713Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "973d642d79b98c4f8bd6-491e2868bf182d331f87",
+          "file": "responsive-layout.spec.ts",
+          "line": 28,
+          "column": 3
+        },
+        {
+          "title": "main local pages fit a 1440px viewport",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6856,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "/",
+                      "duration": 4902
+                    },
+                    {
+                      "title": "/learn",
+                      "duration": 276
+                    },
+                    {
+                      "title": "/race",
+                      "duration": 239
+                    },
+                    {
+                      "title": "/stats",
+                      "duration": 173
+                    },
+                    {
+                      "title": "/settings",
+                      "duration": 150
+                    },
+                    {
+                      "title": "/keyboard-lab",
+                      "duration": 212
+                    },
+                    {
+                      "title": "/leaderboard",
+                      "duration": 143
+                    },
+                    {
+                      "title": "/ranked",
+                      "duration": 182
+                    },
+                    {
+                      "title": "/profile",
+                      "duration": 141
+                    },
+                    {
+                      "title": "/auth",
+                      "duration": 150
+                    },
+                    {
+                      "title": "/about",
+                      "duration": 134
+                    }
+                  ],
+                  "startTime": "2026-10-16T14:28:20.363Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "973d642d79b98c4f8bd6-aaad85bcf21ce42a1545",
+          "file": "responsive-layout.spec.ts",
+          "line": 28,
+          "column": 3
+        },
+        {
+          "title": "every theme provides opaque, readable native language options",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5528,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('combobox', { name: 'Language', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('combobox', { name: 'Language', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('combobox', { name: 'Language', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('combobox', { name: 'Language', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('combobox', { name: 'Language', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('combobox', { name: 'Language', exact: true })\u001b[22m\n\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\responsive-layout.spec.ts:60:26",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\responsive-layout.spec.ts",
+                      "column": 26,
+                      "line": 60
+                    },
+                    "snippet": "  58 |     await page.goto(\"/\", { waitUntil: \"domcontentloaded\" });\n  59 |     const select = page.getByRole(\"combobox\", { name: \"Language\", exact: true });\n> 60 |     await expect(select).toBeVisible();\n     |                          ^\n  61 |     const menu = await select.evaluate((element) => {\n  62 |       const control = element as HTMLSelectElement;\n  63 |       const option = getComputedStyle(control.options[1]);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\responsive-layout.spec.ts",
+                        "column": 26,
+                        "line": 60
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('combobox', { name: 'Language', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('combobox', { name: 'Language', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('combobox', { name: 'Language', exact: true })\u001b[22m\n\n\n  58 |     await page.goto(\"/\", { waitUntil: \"domcontentloaded\" });\n  59 |     const select = page.getByRole(\"combobox\", { name: \"Language\", exact: true });\n> 60 |     await expect(select).toBeVisible();\n     |                          ^\n  61 |     const menu = await select.evaluate((element) => {\n  62 |       const control = element as HTMLSelectElement;\n  63 |       const option = getComputedStyle(control.options[1]);\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\responsive-layout.spec.ts:60:26"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:28:27.228Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-awakens-2026-10-16\\chromium-full-artifacts\\responsive-layout-every-th-cef58-ble-native-language-options-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-awakens-2026-10-16\\chromium-full-artifacts\\responsive-layout-every-th-cef58-ble-native-language-options-chromium\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\responsive-layout.spec.ts",
+                    "column": 26,
+                    "line": 60
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "973d642d79b98c4f8bd6-cf7cd729027c6b47baad",
+          "file": "responsive-layout.spec.ts",
+          "line": 43,
+          "column": 1
+        },
+        {
+          "title": "small-screen test controls wrap in all six modes and keep select targets usable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6833,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:28:34.646Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "973d642d79b98c4f8bd6-c213526c530884993c17",
+          "file": "responsive-layout.spec.ts",
+          "line": 93,
+          "column": 1
+        },
+        {
+          "title": "narrow results retain the whole keyboard map and expanded evidence",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6796,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:28:41.664Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "973d642d79b98c4f8bd6-180c14cfe9ff9c24e230",
+          "file": "responsive-layout.spec.ts",
+          "line": 118,
+          "column": 1
+        },
+        {
+          "title": "race and learning remain usable after landscape and narrow resize",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1481,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:28:48.475Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "973d642d79b98c4f8bd6-2c6eec112e1b22513092",
+          "file": "responsive-layout.spec.ts",
+          "line": 156,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "responsive-pages.spec.ts",
+      "file": "responsive-pages.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "populated history, comparison chart and account controls fit narrow and tablet screens",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6635,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:28:49.981Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51aa7a2ace6ef9d9be37-be1e8b9050543002d808",
+          "file": "responsive-pages.spec.ts",
+          "line": 19,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "result-evidence.spec.ts",
+      "file": "result-evidence.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "results explain both accuracy denominators and replay corrections without rewriting them",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7274,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:28:56.655Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a44a7e8c701fc23e1eb0-e9d4c7dfabe409aa53f6",
+          "file": "result-evidence.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "score explanations and replay fit a narrow viewport",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5896,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:29:03.943Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a44a7e8c701fc23e1eb0-464acacf8a7f697b95f1",
+          "file": "result-evidence.spec.ts",
+          "line": 53,
+          "column": 1
+        },
+        {
+          "title": "precision mode rejects errors without erasing their accuracy cost",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6190,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:29:09.849Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a44a7e8c701fc23e1eb0-9a57560a767f2b67bc28",
+          "file": "result-evidence.spec.ts",
+          "line": 84,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "secondary-pages.spec.ts",
+      "file": "secondary-pages.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "public information pages have real recovery navigation and distinct metadata",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5717,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Your offline workspace', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'Your offline workspace', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Your offline workspace', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Your offline workspace', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'Your offline workspace', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Your offline workspace', exact: true })\u001b[22m\n\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\secondary-pages.spec.ts:23:7",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\secondary-pages.spec.ts",
+                      "column": 7,
+                      "line": 23
+                    },
+                    "snippet": "  21 |     await expect(\n  22 |       page.getByRole(\"heading\", { name: heading, exact: true }),\n> 23 |     ).toBeVisible();\n     |       ^\n  24 |     await expect(page.locator(\"main#main-content\")).toBeVisible();\n  25 |     await expect(\n  26 |       page.getByRole(\"link\", { name: \"SparowType home\", exact: true }),"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\secondary-pages.spec.ts",
+                        "column": 7,
+                        "line": 23
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Your offline workspace', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'Your offline workspace', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Your offline workspace', exact: true })\u001b[22m\n\n\n  21 |     await expect(\n  22 |       page.getByRole(\"heading\", { name: heading, exact: true }),\n> 23 |     ).toBeVisible();\n     |       ^\n  24 |     await expect(page.locator(\"main#main-content\")).toBeVisible();\n  25 |     await expect(\n  26 |       page.getByRole(\"link\", { name: \"SparowType home\", exact: true }),\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\secondary-pages.spec.ts:23:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:29:16.064Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-awakens-2026-10-16\\chromium-full-artifacts\\secondary-pages-public-inf-42fb8-ation-and-distinct-metadata-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\keyboard-awakens-2026-10-16\\chromium-full-artifacts\\secondary-pages-public-inf-42fb8-ation-and-distinct-metadata-chromium\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\secondary-pages.spec.ts",
+                    "column": 7,
+                    "line": 23
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "3de1a71e22fb2b79fb44-5dba22802a17e796478b",
+          "file": "secondary-pages.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "intent aliases retain real workspaces and canonicalize without exposing private routes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 788,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:29:22.687Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3de1a71e22fb2b79fb44-a89945c541fe7ebce7f9",
+          "file": "secondary-pages.spec.ts",
+          "line": 36,
+          "column": 1
+        },
+        {
+          "title": "unknown paths use the branded accessible recovery without an invented console error",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 534,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:29:23.619Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3de1a71e22fb2b79fb44-2e7963ea6f3fdfc46381",
+          "file": "secondary-pages.spec.ts",
+          "line": 70,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "sparowtype-brand.spec.ts",
+      "file": "sparowtype-brand.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "SparowType identity and the header theme choice persist across reload",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1442,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:29:24.206Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e82da8a269ee9339f713-93f8db19b1e4ee1c55a2",
+          "file": "sparowtype-brand.spec.ts",
+          "line": 22,
+          "column": 1
+        },
+        {
+          "title": "legacy light preferences migrate without resetting language, layout or text size",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 789,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:29:25.664Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e82da8a269ee9339f713-eab103798519300263ec",
+          "file": "sparowtype-brand.spec.ts",
+          "line": 46,
+          "column": 1
+        },
+        {
+          "title": "light and dark headers keep every control separate at mobile, tablet and desktop widths",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1618,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "320px · dark",
+                      "duration": 81
+                    },
+                    {
+                      "title": "320px · light",
+                      "duration": 107
+                    },
+                    {
+                      "title": "390px · dark",
+                      "duration": 131
+                    },
+                    {
+                      "title": "390px · light",
+                      "duration": 128
+                    },
+                    {
+                      "title": "1024px · dark",
+                      "duration": 122
+                    },
+                    {
+                      "title": "1024px · light",
+                      "duration": 166
+                    },
+                    {
+                      "title": "1440px · dark",
+                      "duration": 140
+                    },
+                    {
+                      "title": "1440px · light",
+                      "duration": 154
+                    }
+                  ],
+                  "startTime": "2026-10-16T14:29:26.467Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e82da8a269ee9339f713-02c9a2873078f29394da",
+          "file": "sparowtype-brand.spec.ts",
+          "line": 82,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "stats-dashboard.spec.ts",
+      "file": "stats-dashboard.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "actual guest history survives reload without duplicate completion",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6549,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:29:28.136Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3ee1bab19a4d51794cdb-5078dabd887f6f2b8f1c",
+          "file": "stats-dashboard.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "empty history gives an actionable state without invented scores",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 564,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:29:34.701Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3ee1bab19a4d51794cdb-98f1a35e1b48755a32ba",
+          "file": "stats-dashboard.spec.ts",
+          "line": 15,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "typing-experience.spec.ts",
+      "file": "typing-experience.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "desktop starts ready and focused without starting the clock",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5339,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:29:35.297Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c58c91ad4f8645865bf4-0eb74fd3e362e4b4d1be",
+          "file": "typing-experience.spec.ts",
+          "line": 25,
+          "column": 1
+        },
+        {
+          "title": "Tab then Enter restarts and accepts the first new character",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5393,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:29:40.646Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c58c91ad4f8645865bf4-bf8d4548a2e8c86efc95",
+          "file": "typing-experience.spec.ts",
+          "line": 59,
+          "column": 1
+        },
+        {
+          "title": "whole-word flow rolls by full lines, resizes and backspaces to the beginning",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6373,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:29:46.053Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c58c91ad4f8645865bf4-a0214976cfb63e24ddda",
+          "file": "typing-experience.spec.ts",
+          "line": 88,
+          "column": 1
+        },
+        {
+          "title": "blur preserves input and refocus resumes the same passage",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5782,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:29:52.440Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c58c91ad4f8645865bf4-961f1e692e956361a75a",
+          "file": "typing-experience.spec.ts",
+          "line": 143,
+          "column": 1
+        },
+        {
+          "title": "overtyped letters stay beside their word and move the caret past the extra input",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5266,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:29:58.231Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c58c91ad4f8645865bf4-a53ca7534bdffbd43440",
+          "file": "typing-experience.spec.ts",
+          "line": 163,
+          "column": 1
+        },
+        {
+          "title": "RTL language keeps a measured caret and intact word groups",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5288,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:30:03.508Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c58c91ad4f8645865bf4-f95c55b02f5a275e40a2",
+          "file": "typing-experience.spec.ts",
+          "line": 189,
+          "column": 1
+        },
+        {
+          "title": "long free writing follows the visible end caret without clipping new input",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5517,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:30:08.807Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c58c91ad4f8645865bf4-710c436c202691bdf839",
+          "file": "typing-experience.spec.ts",
+          "line": 214,
+          "column": 1
+        },
+        {
+          "title": "learning keyboard distinguishes the next key from an actual wrong uppercase key",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 663,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:30:14.336Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c58c91ad4f8645865bf4-0186df52de2fa8db2f83",
+          "file": "typing-experience.spec.ts",
+          "line": 243,
+          "column": 1
+        },
+        {
+          "title": "a rolled learning lesson keeps its input and Resume control in the visible viewport",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1517,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:30:15.009Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c58c91ad4f8645865bf4-265bdc8a62d27868b723",
+          "file": "typing-experience.spec.ts",
+          "line": 269,
+          "column": 1
+        },
+        {
+          "title": "learning caret follows extra letters even while the canonical cursor stays on Space",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 778,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:30:16.536Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c58c91ad4f8645865bf4-293fbb28ea796db41834",
+          "file": "typing-experience.spec.ts",
+          "line": 307,
+          "column": 1
+        },
+        {
+          "title": "Escape leaves an active learning composition under IME control",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 501,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:30:22.299Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c58c91ad4f8645865bf4-49b839844f5a11aee27f",
+          "file": "typing-experience.spec.ts",
+          "line": 360,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch activation",
+          "file": "typing-experience.spec.ts",
+          "line": 336,
+          "column": 6,
+          "specs": [
+            {
+              "title": "touch users choose when to open the typing keyboard",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4960,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-16T14:30:17.328Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c58c91ad4f8645865bf4-22272b824cc41d79fa26",
+              "file": "typing-experience.spec.ts",
+              "line": 338,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "typing-test.spec.ts",
+      "file": "typing-test.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "a corrected mistake yields 75% input accuracy and perfect final text once",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6649,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:30:22.841Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "df46a51a838c4ed398c2-8291a9e18528fd48b0d7",
+          "file": "typing-test.spec.ts",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "a 15 second deadline includes the whole idle period and persists the final cutoff",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 20804,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:30:29.502Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "df46a51a838c4ed398c2-381e11aae81e38cb0480",
+          "file": "typing-test.spec.ts",
+          "line": 38,
+          "column": 1
+        },
+        {
+          "title": "code Tab preserves normal focus by default and indents only after opting in",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6134,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:30:50.316Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "df46a51a838c4ed398c2-8e617f67c526b48088f9",
+          "file": "typing-test.spec.ts",
+          "line": 54,
+          "column": 1
+        },
+        {
+          "title": "composition commits one NFC grapheme and ignores intermediate IME changes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5644,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:30:56.461Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "df46a51a838c4ed398c2-40cdd0ad877dc136260b",
+          "file": "typing-test.spec.ts",
+          "line": 77,
+          "column": 1
+        },
+        {
+          "title": "repeat preserves the exact target and creates a new id with repeated-content provenance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7059,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:31:02.114Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "df46a51a838c4ed398c2-41f5f53ae461b2899705",
+          "file": "typing-test.spec.ts",
+          "line": 95,
+          "column": 1
+        },
+        {
+          "title": "prompted zen appends target segments and finishes only through the visible action",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6116,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:31:09.183Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "df46a51a838c4ed398c2-2b432bf222817cf813d1",
+          "file": "typing-test.spec.ts",
+          "line": 106,
+          "column": 1
+        },
+        {
+          "title": "free writing has raw speed and no invented target accuracy or credited WPM",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6683,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:31:15.313Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "df46a51a838c4ed398c2-364b7664614cdb787682",
+          "file": "typing-test.spec.ts",
+          "line": 122,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "wrong-key-feedback.spec.ts",
+      "file": "wrong-key-feedback.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "a retained wrong letter is visible in place, advances, and can be corrected honestly",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7181,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:31:22.021Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b603f50ca9d498bf6ddb-485d308ff02a0dfc5bb3",
+          "file": "wrong-key-feedback.spec.ts",
+          "line": 5,
+          "column": 1
+        },
+        {
+          "title": "explicit precision mode shows the rejected key and expected character",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5689,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:31:29.211Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b603f50ca9d498bf6ddb-ac2722b4af1c762c9c2a",
+          "file": "wrong-key-feedback.spec.ts",
+          "line": 48,
+          "column": 1
+        },
+        {
+          "title": "an early space has visible input feedback even when the final separator aligns correctly",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5604,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:31:34.912Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b603f50ca9d498bf6ddb-105dd5c1b4093c58bf0e",
+          "file": "wrong-key-feedback.spec.ts",
+          "line": 85,
+          "column": 1
+        },
+        {
+          "title": "overtyping a word reports the actual input and the missing separator",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5662,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:31:40.529Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b603f50ca9d498bf6ddb-b0f17f3d3dfa0c0189a4",
+          "file": "wrong-key-feedback.spec.ts",
+          "line": 104,
+          "column": 1
+        },
+        {
+          "title": "wrong code newline and tab input have visible glyphs",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6811,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:31:46.205Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b603f50ca9d498bf6ddb-d3b60556474ab57aff49",
+          "file": "wrong-key-feedback.spec.ts",
+          "line": 117,
+          "column": 1
+        },
+        {
+          "title": "wrong composed input shows the normalized committed letter and counts one attempt",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6305,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:31:53.030Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b603f50ca9d498bf6ddb-9a8e1396da9fd5b88f62",
+          "file": "wrong-key-feedback.spec.ts",
+          "line": 141,
+          "column": 1
+        },
+        {
+          "title": "wrong-key feedback fits mobile and restarting clears the previous input",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5680,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T14:31:59.348Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b603f50ca9d498bf6ddb-55023b9cfa262ea08800",
+          "file": "wrong-key-feedback.spec.ts",
+          "line": 194,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-16T14:24:55.928Z",
+    "duration": 450400.25399999996,
+    "expected": 104,
+    "skipped": 2,
+    "unexpected": 7,
+    "flaky": 0
+  }
+}

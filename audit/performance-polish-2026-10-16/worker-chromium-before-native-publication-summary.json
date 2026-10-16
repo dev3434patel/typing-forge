@@ -1,0 +1,181 @@
+{
+  "stats": {
+    "startTime": "2026-10-16T19:39:03.709Z",
+    "duration": 55464.107,
+    "expected": 9,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "config": {
+    "workers": 1,
+    "globalTimeout": 120000,
+    "projects": [
+      {
+        "name": "chromium",
+        "timeout": 30000,
+        "retries": 0,
+        "repeatEach": 1
+      }
+    ]
+  },
+  "runtimeVersions": [
+    "156.0.8078.4"
+  ],
+  "reportedAttempts": 9,
+  "nonPassing": [],
+  "cases": [
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "default native worker draws the complete keyboard while document tasks, resize and skip remain responsive",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 4925,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "156.0.8078.4"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "native worker acknowledges real resource disposal at an explicitly idle renderer boundary",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 4122,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "156.0.8078.4"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        },
+        {
+          "type": "scope",
+          "description": "Protocol-only idle-boundary proof: native desktop full-quality draw first, then a test-owned RAF hold. This cadence-controlled case is not a performance measurement."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "five consecutive live-worker reloads close each prior worker and final skip closes the last worker",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 12852,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "156.0.8078.4"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        },
+        {
+          "type": "limitation",
+          "description": "Five actual reloads and native worker closure/ownership are finite lifecycle evidence, not a universal heap/GPU-memory leak guarantee."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "skipping while the native worker entry is blocked terminates startup and preserves the first typing key",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 1327,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "156.0.8078.4"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "a native worker transport failure replaces the transferred canvas with the complete real document renderer",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 7088,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "156.0.8078.4"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "actual worker WebGL context loss during preparation recovers with a fresh canvas and keeps practice usable",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 5770,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "156.0.8078.4"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "opening-worker.spec.ts",
+      "title": "actual worker WebGL context loss after live frames recovers with a fresh canvas and keeps practice usable",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 7215,
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "156.0.8078.4"
+        },
+        {
+          "type": "scope",
+          "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+        }
+      ],
+      "errors": []
+    },
+    {
+      "file": "startup-recovery.spec.ts",
+      "title": "startup recovers from real workspace script and stylesheet failures at 320px without losing guest history",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 3593,
+      "annotations": [],
+      "errors": []
+    },
+    {
+      "file": "typing-experience.spec.ts",
+      "title": "sustained typing reuses its layout observer and keeps the caret through resize and deletion",
+      "project": "chromium",
+      "status": "passed",
+      "durationMs": 5601,
+      "annotations": [],
+      "errors": []
+    }
+  ]
+}

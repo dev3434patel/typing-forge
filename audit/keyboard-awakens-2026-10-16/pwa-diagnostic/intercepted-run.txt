@@ -1,0 +1,33 @@
+
+Running 1 test using 1 worker
+
+(node:13220) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [firefox-diagnostic] › audit\keyboard-awakens-2026-10-16\pwa-diagnostic\offline-transport.spec.ts:84:1 › diagnoses actual offline private-navigation transport without accepting an app shell (4.8s)
+
+
+  1) [firefox-diagnostic] › audit\keyboard-awakens-2026-10-16\pwa-diagnostic\offline-transport.spec.ts:84:1 › diagnoses actual offline private-navigation transport without accepting an app shell 
+
+    Error: page.goto: NS_ERROR_OFFLINE
+    Call log:
+      - navigating to "http://127.0.0.1:4175/profile", waiting until "domcontentloaded"
+
+
+      43 |     }
+      44 |   });
+    > 45 |   const response = await page.goto(`${origin}/profile`, {
+         |                               ^
+      46 |     waitUntil: "domcontentloaded",
+      47 |   });
+      48 |   await expect(page.locator("h1")).toBeVisible();
+        at observe (D:\extra\typing_updated\typing-forge\audit\keyboard-awakens-2026-10-16\pwa-diagnostic\offline-transport.spec.ts:45:31)
+        at D:\extra\typing_updated\typing-forge\audit\keyboard-awakens-2026-10-16\pwa-diagnostic\offline-transport.spec.ts:93:18
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\keyboard-awakens-2026-10-16\pwa-diagnostic\artifacts\offline-transport-diagnose-e8e88-hout-accepting-an-app-shell-firefox-diagnostic\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\keyboard-awakens-2026-10-16\pwa-diagnostic\artifacts\offline-transport-diagnose-e8e88-hout-accepting-an-app-shell-firefox-diagnostic\error-context.md
+
+  1 failed
+    [firefox-diagnostic] › audit\keyboard-awakens-2026-10-16\pwa-diagnostic\offline-transport.spec.ts:84:1 › diagnoses actual offline private-navigation transport without accepting an app shell 

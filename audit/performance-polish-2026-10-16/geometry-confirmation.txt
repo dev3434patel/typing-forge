@@ -1,0 +1,2247 @@
+
+Running 20 tests using 1 worker
+
+(node:71484) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  pw:api => browserType.launch started +0ms
+  pw:browser <launching> C:\Users\DELL\AppData\Local\ms-playwright\chromium_headless_shell-1248\chrome-headless-shell-win64\chrome-headless-shell.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=C:\Users\DELL\AppData\Local\Temp\playwright_chromiumdev_profile-xF5Rsj --remote-debugging-pipe --no-startup-window +0ms
+  pw:browser <launched> pid=87888 +18ms
+  pw:api <= browserType.launch succeeded +227ms
+  pw:api => browser.newContext started +5ms
+  pw:api <= browser.newContext succeeded +16ms
+  pw:api => browserContext.newPage started +18ms
+  pw:api <= browserContext.newPage succeeded +164ms
+  pw:api => page.addInitScript started +4ms
+  pw:api <= page.addInitScript succeeded +2ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +13ms
+  pw:api => page.goto started +3ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "load" +2ms
+  pw:api   "commit" event fired +31ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +0ms
+  pw:api   "domcontentloaded" event fired +38ms
+  pw:api   "load" event fired +2ms
+  pw:api <= page.goto succeeded +18ms
+  pw:api => locator.click started +4ms
+  pw:api waiting for getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Custom', exact: true }) +14ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +39ms
+  pw:api   locator resolved to <button class="forge-chip" aria-pressed="false">…</button> +320ms
+  pw:api attempting click action +16ms
+  pw:api   waiting for element to be visible, enabled and stable +1ms
+  pw:api   element is visible, enabled and stable +30ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +3ms
+  pw:api   performing click action +49ms
+  pw:api   click action done +61ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +2ms
+  pw:api <= locator.click succeeded +5ms
+  pw:api => locator.fill started +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Custom practice passage', exact: true }) +7ms
+  pw:api   locator resolved to <textarea maxlength="10000" id="custom-passage" class="forge-input min-h-48 font-mono leading-relaxed" placeholder="Add something you want to get better at typing…"></textarea> +11ms
+  pw:api   fill("cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus") +2ms
+  pw:api attempting fill action +0ms
+  pw:api   waiting for element to be visible, enabled and editable +3ms
+  pw:api <= locator.fill succeeded +26ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('button', { name: 'Start private practice', exact: true }) +4ms
+  pw:api   locator resolved to <button class="forge-button mt-4">…</button> +8ms
+  pw:api attempting click action +1ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +29ms
+  pw:api   scrolling into view if needed +1ms
+  pw:api   done scrolling +0ms
+  pw:api   performing click action +12ms
+  pw:api   click action done +23ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +1ms
+  pw:api <= locator.click succeeded +9ms
+  pw:api => Expect "toBeVisible" started +9ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +7ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeVisible" succeeded +9ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to visible <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +6ms
+  pw:api <= locator.evaluate succeeded +29ms
+  pw:api => Expect "toBeFocused" started +2ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +6ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeFocused" succeeded +10ms
+  pw:api => locator.evaluate started +3ms
+  pw:api waiting for getByTestId('typing-viewport') +6ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +5ms
+  pw:api <= locator.evaluate succeeded +19ms
+  pw:api => locator.pressSequentially started +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +4ms
+  pw:api   "networkidle" event fired +1ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +4ms
+  pw:api elementHandle.type("cat dog quiet calm clear focus cat dog quiet calm clear") +3ms
+  pw:api <= locator.pressSequentially succeeded +717ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +10ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +5ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +9ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +36ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +9ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +5ms
+  pw:api <= locator.evaluate succeeded +7ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +33ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +2ms
+  pw:api <= locator.evaluate succeeded +6ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +26ms
+  pw:api => locator.press started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">cat dog quiet calm clear focus cat dog quiet calm…</textarea> +9ms
+  pw:api elementHandle.press("Backspace") +2ms
+  pw:api <= locator.press succeeded +16ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +3ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +4ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +3ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +2ms
+  pw:api <= locator.evaluate succeeded +8ms
+  pw:api taking page screenshot +154ms
+  pw:api waiting for fonts to load... +2ms
+  pw:api fonts loaded +1ms
+  pw:api => browserContext.close started +28ms
+  pw:api <= browserContext.close succeeded +14ms
+  ok  1 [chromium] › e2e\caret-geometry.spec.ts:145:5 › line caret follows the actual LTR character edge through input and rotation (2.3s)
+  pw:api => browser.newContext started +109ms
+  pw:api <= browser.newContext succeeded +4ms
+  pw:api => browserContext.newPage started +4ms
+  pw:api <= browserContext.newPage succeeded +95ms
+  pw:api => page.addInitScript started +1ms
+  pw:api <= page.addInitScript succeeded +2ms
+  pw:api => page.setViewportSize started +0ms
+  pw:api <= page.setViewportSize succeeded +7ms
+  pw:api => page.goto started +1ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "load" +2ms
+  pw:api   "commit" event fired +15ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +1ms
+  pw:api   "domcontentloaded" event fired +24ms
+  pw:api   "load" event fired +1ms
+  pw:api <= page.goto succeeded +28ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Custom', exact: true }) +10ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +42ms
+  pw:api   locator resolved to <button class="forge-chip" aria-pressed="false">…</button> +179ms
+  pw:api attempting click action +10ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +33ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +35ms
+  pw:api   click action done +35ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +2ms
+  pw:api <= locator.click succeeded +6ms
+  pw:api => locator.fill started +3ms
+  pw:api waiting for getByRole('textbox', { name: 'Custom practice passage', exact: true }) +8ms
+  pw:api   locator resolved to <textarea maxlength="10000" id="custom-passage" class="forge-input min-h-48 font-mono leading-relaxed" placeholder="Add something you want to get better at typing…"></textarea> +5ms
+  pw:api   fill("سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل") +2ms
+  pw:api attempting fill action +0ms
+  pw:api   waiting for element to be visible, enabled and editable +7ms
+  pw:api <= locator.fill succeeded +18ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('button', { name: 'Start private practice', exact: true }) +4ms
+  pw:api   locator resolved to <button class="forge-button mt-4">…</button> +7ms
+  pw:api attempting click action +2ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +32ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +6ms
+  pw:api   click action done +21ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +1ms
+  pw:api <= locator.click succeeded +11ms
+  pw:api => Expect "toBeVisible" started +3ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +7ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +1ms
+  pw:api <= Expect "toBeVisible" succeeded +7ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +5ms
+  pw:api   locator resolved to visible <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +5ms
+  pw:api <= locator.evaluate succeeded +21ms
+  pw:api => Expect "toBeFocused" started +2ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeFocused" succeeded +7ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +8ms
+  pw:api => locator.pressSequentially started +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +5ms
+  pw:api   locator resolved to <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +5ms
+  pw:api elementHandle.type("سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عا") +2ms
+  pw:api   "networkidle" event fired +140ms
+  pw:api <= locator.pressSequentially succeeded +516ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +1ms
+  pw:api <= Expect "toHaveValue" succeeded +7ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +7ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +5ms
+  pw:api <= locator.evaluate succeeded +9ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +33ms
+  pw:api => locator.evaluate started +3ms
+  pw:api waiting for getByTestId('typing-viewport') +8ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +5ms
+  pw:api <= locator.evaluate succeeded +8ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +30ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +6ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +7ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +24ms
+  pw:api => locator.press started +0ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عل…</textarea> +3ms
+  pw:api elementHandle.press("Backspace") +1ms
+  pw:api <= locator.press succeeded +14ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +5ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +3ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +7ms
+  pw:api taking page screenshot +131ms
+  pw:api waiting for fonts to load... +1ms
+  pw:api fonts loaded +1ms
+  pw:api => browserContext.close started +11ms
+  pw:api <= browserContext.close succeeded +3ms
+  ok  2 [chromium] › e2e\caret-geometry.spec.ts:145:5 › line caret follows the actual RTL character edge through input and rotation (1.8s)
+  pw:api => browser.newContext started +70ms
+  pw:api <= browser.newContext succeeded +4ms
+  pw:api => browserContext.newPage started +3ms
+  pw:api <= browserContext.newPage succeeded +59ms
+  pw:api => page.addInitScript started +0ms
+  pw:api <= page.addInitScript succeeded +1ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +5ms
+  pw:api => page.goto started +1ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "load" +1ms
+  pw:api   "commit" event fired +9ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +0ms
+  pw:api   "domcontentloaded" event fired +24ms
+  pw:api   "load" event fired +2ms
+  pw:api <= page.goto succeeded +24ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Custom', exact: true }) +7ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +47ms
+  pw:api   locator resolved to <button class="forge-chip" aria-pressed="false">…</button> +164ms
+  pw:api attempting click action +20ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +24ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +2ms
+  pw:api   performing click action +32ms
+  pw:api   click action done +28ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +1ms
+  pw:api <= locator.click succeeded +4ms
+  pw:api => locator.fill started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Custom practice passage', exact: true }) +6ms
+  pw:api   locator resolved to <textarea maxlength="10000" id="custom-passage" class="forge-input min-h-48 font-mono leading-relaxed" placeholder="Add something you want to get better at typing…"></textarea> +8ms
+  pw:api   fill("cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus") +5ms
+  pw:api attempting fill action +0ms
+  pw:api   waiting for element to be visible, enabled and editable +6ms
+  pw:api <= locator.fill succeeded +10ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('button', { name: 'Start private practice', exact: true }) +3ms
+  pw:api   locator resolved to <button class="forge-button mt-4">…</button> +5ms
+  pw:api attempting click action +1ms
+  pw:api   waiting for element to be visible, enabled and stable +1ms
+  pw:api   element is visible, enabled and stable +19ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +5ms
+  pw:api   click action done +18ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +2ms
+  pw:api <= locator.click succeeded +8ms
+  pw:api => Expect "toBeVisible" started +1ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +5ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeVisible" succeeded +9ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to visible <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +3ms
+  pw:api <= locator.evaluate succeeded +14ms
+  pw:api => Expect "toBeFocused" started +1ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +1ms
+  pw:api <= Expect "toBeFocused" succeeded +5ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +3ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +2ms
+  pw:api <= locator.evaluate succeeded +7ms
+  pw:api => locator.pressSequentially started +3ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +4ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +3ms
+  pw:api elementHandle.type("cat dog quiet calm clear focus cat dog quiet calm clear") +1ms
+  pw:api   "networkidle" event fired +220ms
+  pw:api <= locator.pressSequentially succeeded +422ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +7ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +11ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +28ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +7ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +9ms
+  pw:api <= locator.evaluate succeeded +10ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +31ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +7ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +8ms
+  pw:api => page.setViewportSize started +2ms
+  pw:api <= page.setViewportSize succeeded +34ms
+  pw:api => locator.press started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +5ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">cat dog quiet calm clear focus cat dog quiet calm…</textarea> +2ms
+  pw:api elementHandle.press("Backspace") +1ms
+  pw:api <= locator.press succeeded +12ms
+  pw:api => Expect "toHaveValue" started +2ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +6ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +7ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +3ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +2ms
+  pw:api <= locator.evaluate succeeded +7ms
+  pw:api taking page screenshot +139ms
+  pw:api waiting for fonts to load... +2ms
+  pw:api fonts loaded +2ms
+  pw:api => browserContext.close started +14ms
+  pw:api <= browserContext.close succeeded +4ms
+  ok  3 [chromium] › e2e\caret-geometry.spec.ts:145:5 › block caret follows the actual LTR character edge through input and rotation (1.7s)
+  pw:api => browser.newContext started +81ms
+  pw:api <= browser.newContext succeeded +3ms
+  pw:api => browserContext.newPage started +4ms
+  pw:api <= browserContext.newPage succeeded +59ms
+  pw:api => page.addInitScript started +0ms
+  pw:api <= page.addInitScript succeeded +2ms
+  pw:api => page.setViewportSize started +0ms
+  pw:api <= page.setViewportSize succeeded +4ms
+  pw:api => page.goto started +1ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "load" +1ms
+  pw:api   "commit" event fired +7ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +0ms
+  pw:api   "domcontentloaded" event fired +28ms
+  pw:api   "load" event fired +1ms
+  pw:api <= page.goto succeeded +25ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Custom', exact: true }) +8ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +36ms
+  pw:api   locator resolved to <button class="forge-chip" aria-pressed="false">…</button> +160ms
+  pw:api attempting click action +15ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +35ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +28ms
+  pw:api   click action done +29ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +2ms
+  pw:api <= locator.click succeeded +5ms
+  pw:api => locator.fill started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Custom practice passage', exact: true }) +4ms
+  pw:api   locator resolved to <textarea maxlength="10000" id="custom-passage" class="forge-input min-h-48 font-mono leading-relaxed" placeholder="Add something you want to get better at typing…"></textarea> +5ms
+  pw:api   fill("سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل") +1ms
+  pw:api attempting fill action +0ms
+  pw:api   waiting for element to be visible, enabled and editable +2ms
+  pw:api <= locator.fill succeeded +16ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('button', { name: 'Start private practice', exact: true }) +3ms
+  pw:api   locator resolved to <button class="forge-button mt-4">…</button> +4ms
+  pw:api attempting click action +1ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +31ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +4ms
+  pw:api   click action done +17ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +1ms
+  pw:api <= locator.click succeeded +6ms
+  pw:api => Expect "toBeVisible" started +2ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +5ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeVisible" succeeded +6ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to visible <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +6ms
+  pw:api <= locator.evaluate succeeded +15ms
+  pw:api => Expect "toBeFocused" started +1ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeFocused" succeeded +5ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +3ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +6ms
+  pw:api => locator.pressSequentially started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +2ms
+  pw:api elementHandle.type("سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عا") +1ms
+  pw:api   "networkidle" event fired +225ms
+  pw:api <= locator.pressSequentially succeeded +381ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +5ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +13ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +9ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +36ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +5ms
+  pw:api <= locator.evaluate succeeded +8ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +25ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +5ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +7ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +25ms
+  pw:api => locator.press started +0ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عل…</textarea> +5ms
+  pw:api elementHandle.press("Backspace") +1ms
+  pw:api <= locator.press succeeded +11ms
+  pw:api => Expect "toHaveValue" started +2ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +5ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +4ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +2ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +2ms
+  pw:api <= locator.evaluate succeeded +6ms
+  pw:api taking page screenshot +149ms
+  pw:api waiting for fonts to load... +1ms
+  pw:api fonts loaded +1ms
+  pw:api => browserContext.close started +15ms
+  pw:api <= browserContext.close succeeded +4ms
+  ok  4 [chromium] › e2e\caret-geometry.spec.ts:145:5 › block caret follows the actual RTL character edge through input and rotation (1.6s)
+  pw:api => browser.newContext started +80ms
+  pw:api <= browser.newContext succeeded +2ms
+  pw:api => browserContext.newPage started +5ms
+  pw:api <= browserContext.newPage succeeded +70ms
+  pw:api => page.addInitScript started +1ms
+  pw:api <= page.addInitScript succeeded +2ms
+  pw:api => page.setViewportSize started +0ms
+  pw:api <= page.setViewportSize succeeded +7ms
+  pw:api => page.goto started +0ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "load" +2ms
+  pw:api   "commit" event fired +10ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +0ms
+  pw:api   "domcontentloaded" event fired +25ms
+  pw:api   "load" event fired +1ms
+  pw:api <= page.goto succeeded +24ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Custom', exact: true }) +12ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +37ms
+  pw:api   locator resolved to <button class="forge-chip" aria-pressed="false">…</button> +170ms
+  pw:api attempting click action +10ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +33ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +34ms
+  pw:api   click action done +29ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +1ms
+  pw:api <= locator.click succeeded +3ms
+  pw:api => locator.fill started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Custom practice passage', exact: true }) +3ms
+  pw:api   locator resolved to <textarea maxlength="10000" id="custom-passage" class="forge-input min-h-48 font-mono leading-relaxed" placeholder="Add something you want to get better at typing…"></textarea> +7ms
+  pw:api   fill("cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus") +2ms
+  pw:api attempting fill action +0ms
+  pw:api   waiting for element to be visible, enabled and editable +2ms
+  pw:api <= locator.fill succeeded +8ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('button', { name: 'Start private practice', exact: true }) +2ms
+  pw:api   locator resolved to <button class="forge-button mt-4">…</button> +5ms
+  pw:api attempting click action +1ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +33ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +0ms
+  pw:api   performing click action +4ms
+  pw:api   click action done +20ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +1ms
+  pw:api <= locator.click succeeded +8ms
+  pw:api => Expect "toBeVisible" started +2ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +3ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeVisible" succeeded +7ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +5ms
+  pw:api   locator resolved to visible <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +3ms
+  pw:api <= locator.evaluate succeeded +18ms
+  pw:api => Expect "toBeFocused" started +1ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +3ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeFocused" succeeded +5ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +10ms
+  pw:api => locator.pressSequentially started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +3ms
+  pw:api elementHandle.type("cat dog quiet calm clear focus cat dog quiet calm clear") +1ms
+  pw:api   "networkidle" event fired +193ms
+  pw:api <= locator.pressSequentially succeeded +534ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +5ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +5ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +6ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +6ms
+  pw:api <= locator.evaluate succeeded +7ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +29ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +5ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +6ms
+  pw:api <= locator.evaluate succeeded +8ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +29ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +5ms
+  pw:api <= locator.evaluate succeeded +11ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +28ms
+  pw:api => locator.press started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">cat dog quiet calm clear focus cat dog quiet calm…</textarea> +5ms
+  pw:api elementHandle.press("Backspace") +2ms
+  pw:api <= locator.press succeeded +20ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +6ms
+  pw:api => locator.evaluate started +0ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +2ms
+  pw:api <= locator.evaluate succeeded +8ms
+  pw:api taking page screenshot +119ms
+  pw:api waiting for fonts to load... +1ms
+  pw:api fonts loaded +1ms
+  pw:api => browserContext.close started +12ms
+  pw:api <= browserContext.close succeeded +4ms
+  ok  5 [chromium] › e2e\caret-geometry.spec.ts:145:5 › outline caret follows the actual LTR character edge through input and rotation (1.7s)
+  pw:api => browser.newContext started +73ms
+  pw:api <= browser.newContext succeeded +3ms
+  pw:api => browserContext.newPage started +4ms
+  pw:api <= browserContext.newPage succeeded +72ms
+  pw:api => page.addInitScript started +1ms
+  pw:api <= page.addInitScript succeeded +2ms
+  pw:api => page.setViewportSize started +0ms
+  pw:api <= page.setViewportSize succeeded +7ms
+  pw:api => page.goto started +1ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "load" +2ms
+  pw:api   "commit" event fired +10ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +1ms
+  pw:api   "domcontentloaded" event fired +31ms
+  pw:api   "load" event fired +1ms
+  pw:api <= page.goto succeeded +18ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Custom', exact: true }) +11ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +45ms
+  pw:api   locator resolved to <button class="forge-chip" aria-pressed="false">…</button> +183ms
+  pw:api attempting click action +19ms
+  pw:api   waiting for element to be visible, enabled and stable +1ms
+  pw:api   element is visible, enabled and stable +25ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +27ms
+  pw:api   click action done +40ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +2ms
+  pw:api <= locator.click succeeded +4ms
+  pw:api => locator.fill started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Custom practice passage', exact: true }) +4ms
+  pw:api   locator resolved to <textarea maxlength="10000" id="custom-passage" class="forge-input min-h-48 font-mono leading-relaxed" placeholder="Add something you want to get better at typing…"></textarea> +7ms
+  pw:api   fill("سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل") +3ms
+  pw:api attempting fill action +0ms
+  pw:api   waiting for element to be visible, enabled and editable +3ms
+  pw:api <= locator.fill succeeded +24ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('button', { name: 'Start private practice', exact: true }) +5ms
+  pw:api   locator resolved to <button class="forge-button mt-4">…</button> +6ms
+  pw:api attempting click action +1ms
+  pw:api   waiting for element to be visible, enabled and stable +1ms
+  pw:api   element is visible, enabled and stable +20ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +8ms
+  pw:api   click action done +20ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +1ms
+  pw:api <= locator.click succeeded +11ms
+  pw:api => Expect "toBeVisible" started +2ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeVisible" succeeded +8ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +5ms
+  pw:api   locator resolved to visible <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +6ms
+  pw:api <= locator.evaluate succeeded +18ms
+  pw:api => Expect "toBeFocused" started +0ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +1ms
+  pw:api <= Expect "toBeFocused" succeeded +9ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +3ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +7ms
+  pw:api => locator.pressSequentially started +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +3ms
+  pw:api elementHandle.type("سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عا") +2ms
+  pw:api   "networkidle" event fired +180ms
+  pw:api <= locator.pressSequentially succeeded +525ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +7ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +2ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +7ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +24ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +5ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +7ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +28ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +3ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +16ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +25ms
+  pw:api => locator.press started +0ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عل…</textarea> +3ms
+  pw:api elementHandle.press("Backspace") +1ms
+  pw:api <= locator.press succeeded +17ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +5ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +5ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +2ms
+  pw:api <= locator.evaluate succeeded +7ms
+  pw:api taking page screenshot +123ms
+  pw:api waiting for fonts to load... +1ms
+  pw:api fonts loaded +1ms
+  pw:api => browserContext.close started +10ms
+  pw:api <= browserContext.close succeeded +3ms
+  ok  6 [chromium] › e2e\caret-geometry.spec.ts:145:5 › outline caret follows the actual RTL character edge through input and rotation (1.7s)
+  pw:api => browser.newContext started +61ms
+  pw:api <= browser.newContext succeeded +5ms
+  pw:api => browserContext.newPage started +4ms
+  pw:api <= browserContext.newPage succeeded +84ms
+  pw:api => page.addInitScript started +1ms
+  pw:api <= page.addInitScript succeeded +1ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +5ms
+  pw:api => page.goto started +1ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "load" +1ms
+  pw:api   "commit" event fired +8ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +1ms
+  pw:api   "domcontentloaded" event fired +24ms
+  pw:api   "load" event fired +1ms
+  pw:api <= page.goto succeeded +27ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Custom', exact: true }) +13ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +41ms
+  pw:api   locator resolved to <button class="forge-chip" aria-pressed="false">…</button> +203ms
+  pw:api attempting click action +8ms
+  pw:api   waiting for element to be visible, enabled and stable +1ms
+  pw:api   element is visible, enabled and stable +13ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +37ms
+  pw:api   click action done +33ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +2ms
+  pw:api <= locator.click succeeded +5ms
+  pw:api => locator.fill started +0ms
+  pw:api waiting for getByRole('textbox', { name: 'Custom practice passage', exact: true }) +4ms
+  pw:api   locator resolved to <textarea maxlength="10000" id="custom-passage" class="forge-input min-h-48 font-mono leading-relaxed" placeholder="Add something you want to get better at typing…"></textarea> +6ms
+  pw:api   fill("cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus") +1ms
+  pw:api attempting fill action +0ms
+  pw:api   waiting for element to be visible, enabled and editable +3ms
+  pw:api <= locator.fill succeeded +12ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('button', { name: 'Start private practice', exact: true }) +5ms
+  pw:api   locator resolved to <button class="forge-button mt-4">…</button> +6ms
+  pw:api attempting click action +1ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +34ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +7ms
+  pw:api   click action done +25ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +0ms
+  pw:api <= locator.click succeeded +10ms
+  pw:api => Expect "toBeVisible" started +1ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +9ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeVisible" succeeded +8ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to visible <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +4ms
+  pw:api <= locator.evaluate succeeded +23ms
+  pw:api => Expect "toBeFocused" started +1ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeFocused" succeeded +5ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +3ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +8ms
+  pw:api => locator.pressSequentially started +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +5ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +6ms
+  pw:api elementHandle.type("cat dog quiet calm clear focus cat dog quiet calm clear") +1ms
+  pw:api   "networkidle" event fired +170ms
+  pw:api <= locator.pressSequentially succeeded +574ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +9ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +11ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +45ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +5ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +8ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +38ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +7ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +9ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +29ms
+  pw:api => locator.press started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +8ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">cat dog quiet calm clear focus cat dog quiet calm…</textarea> +5ms
+  pw:api elementHandle.press("Backspace") +1ms
+  pw:api <= locator.press succeeded +19ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +6ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +10ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +6ms
+  pw:api taking page screenshot +119ms
+  pw:api waiting for fonts to load... +1ms
+  pw:api fonts loaded +1ms
+  pw:api => browserContext.close started +27ms
+  pw:api <= browserContext.close succeeded +4ms
+  ok  7 [chromium] › e2e\caret-geometry.spec.ts:145:5 › underline caret follows the actual LTR character edge through input and rotation (1.9s)
+  pw:api => browser.newContext started +57ms
+  pw:api <= browser.newContext succeeded +3ms
+  pw:api => browserContext.newPage started +2ms
+  pw:api <= browserContext.newPage succeeded +79ms
+  pw:api => page.addInitScript started +1ms
+  pw:api <= page.addInitScript succeeded +1ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +4ms
+  pw:api => page.goto started +1ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "load" +1ms
+  pw:api   "commit" event fired +8ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +0ms
+  pw:api   "domcontentloaded" event fired +25ms
+  pw:api   "load" event fired +1ms
+  pw:api <= page.goto succeeded +25ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Custom', exact: true }) +9ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +35ms
+  pw:api   locator resolved to <button class="forge-chip" aria-pressed="false">…</button> +182ms
+  pw:api attempting click action +11ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +21ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +2ms
+  pw:api   performing click action +24ms
+  pw:api   click action done +26ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +1ms
+  pw:api <= locator.click succeeded +3ms
+  pw:api => locator.fill started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Custom practice passage', exact: true }) +2ms
+  pw:api   locator resolved to <textarea maxlength="10000" id="custom-passage" class="forge-input min-h-48 font-mono leading-relaxed" placeholder="Add something you want to get better at typing…"></textarea> +4ms
+  pw:api   fill("سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل") +1ms
+  pw:api attempting fill action +1ms
+  pw:api   waiting for element to be visible, enabled and editable +2ms
+  pw:api <= locator.fill succeeded +22ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('button', { name: 'Start private practice', exact: true }) +4ms
+  pw:api   locator resolved to <button class="forge-button mt-4">…</button> +4ms
+  pw:api attempting click action +2ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +33ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +5ms
+  pw:api   click action done +17ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +1ms
+  pw:api <= locator.click succeeded +6ms
+  pw:api => Expect "toBeVisible" started +1ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +3ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +1ms
+  pw:api <= Expect "toBeVisible" succeeded +8ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +4ms
+  pw:api   locator resolved to visible <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +5ms
+  pw:api <= locator.evaluate succeeded +16ms
+  pw:api => Expect "toBeFocused" started +2ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +1ms
+  pw:api <= Expect "toBeFocused" succeeded +4ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +3ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +9ms
+  pw:api => locator.pressSequentially started +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +2ms
+  pw:api   locator resolved to <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +3ms
+  pw:api elementHandle.type("سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عا") +1ms
+  pw:api   "networkidle" event fired +212ms
+  pw:api <= locator.pressSequentially succeeded +437ms
+  pw:api => Expect "toHaveValue" started +2ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +3ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +5ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +7ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +28ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +3ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +14ms
+  pw:api => page.setViewportSize started +2ms
+  pw:api <= page.setViewportSize succeeded +29ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +12ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +28ms
+  pw:api => locator.press started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عل…</textarea> +3ms
+  pw:api elementHandle.press("Backspace") +1ms
+  pw:api <= locator.press succeeded +14ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +3ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +1ms
+  pw:api <= Expect "toHaveValue" succeeded +5ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +3ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +2ms
+  pw:api <= locator.evaluate succeeded +11ms
+  pw:api taking page screenshot +114ms
+  pw:api waiting for fonts to load... +2ms
+  pw:api fonts loaded +1ms
+  pw:api => browserContext.close started +11ms
+  pw:api <= browserContext.close succeeded +3ms
+  ok  8 [chromium] › e2e\caret-geometry.spec.ts:145:5 › underline caret follows the actual RTL character edge through input and rotation (1.6s)
+  pw:api => browser.newContext started +57ms
+  pw:api <= browser.newContext succeeded +5ms
+  pw:api => browserContext.newPage started +4ms
+  pw:api <= browserContext.newPage succeeded +77ms
+  pw:api => page.addInitScript started +2ms
+  pw:api <= page.addInitScript succeeded +3ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +6ms
+  pw:api => page.goto started +1ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "load" +2ms
+  pw:api   "commit" event fired +8ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +1ms
+  pw:api   "domcontentloaded" event fired +20ms
+  pw:api   "load" event fired +1ms
+  pw:api <= page.goto succeeded +27ms
+  pw:api => locator.click started +2ms
+  pw:api waiting for getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Code', exact: true }) +16ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +37ms
+  pw:api   locator resolved to <button class="forge-chip" aria-pressed="false">…</button> +162ms
+  pw:api attempting click action +20ms
+  pw:api   waiting for element to be visible, enabled and stable +1ms
+  pw:api   element is visible, enabled and stable +26ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +27ms
+  pw:api   click action done +37ms
+  pw:api   waiting for scheduled navigations to finish +1ms
+  pw:api   navigations have finished +5ms
+  pw:api <= locator.click succeeded +7ms
+  pw:api => locator.evaluateAll started +4ms
+  pw:api <= locator.evaluateAll succeeded +38ms
+  pw:api => Expect "toBeVisible" started +2ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +1ms
+  pw:api <= Expect "toBeVisible" succeeded +7ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +5ms
+  pw:api   locator resolved to visible <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +6ms
+  pw:api <= locator.evaluate succeeded +7ms
+  pw:api => Expect "toBeFocused" started +1ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeFocused" succeeded +5ms
+  pw:api => locator.pressSequentially started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +4ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +3ms
+  pw:api elementHandle.type("function sum(values) {") +1ms
+  pw:api   "networkidle" event fired +285ms
+  pw:api <= locator.pressSequentially succeeded +32ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +5ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +10ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +10ms
+  pw:api <= locator.evaluate succeeded +8ms
+  pw:api => locator.evaluate started +4ms
+  pw:api waiting for getByTestId('typing-target').locator('[data-slot-index="21"]') +4ms
+  pw:api   locator resolved to visible <span data-typed="{" data-expected="{" data-current="false" data-slot-index="21" data-status="correct" class="typing-character char-correct">…</span> +4ms
+  pw:api <= locator.evaluate succeeded +6ms
+  pw:api => locator.press started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +2ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">function sum(values) {</textarea> +4ms
+  pw:api elementHandle.press("Enter") +1ms
+  pw:api <= locator.press succeeded +32ms
+  pw:api => Expect "toHaveValue" started +2ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +7ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +8ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +5ms
+  pw:api <= locator.evaluate succeeded +7ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +27ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +8ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +5ms
+  pw:api <= locator.evaluate succeeded +13ms
+  pw:api taking page screenshot +89ms
+  pw:api waiting for fonts to load... +1ms
+  pw:api fonts loaded +1ms
+  pw:api => browserContext.close started +12ms
+  pw:api <= browserContext.close succeeded +3ms
+  ok  9 [chromium] › e2e\caret-geometry.spec.ts:184:1 › a prompted code newline uses its first actual client fragment before entering the next line (1.2s)
+  pw:api => browser.newContext started +53ms
+  pw:api <= browser.newContext succeeded +3ms
+  pw:api => browserContext.newPage started +3ms
+  pw:api <= browserContext.newPage succeeded +72ms
+  pw:api => page.addInitScript started +1ms
+  pw:api <= page.addInitScript succeeded +1ms
+  pw:api => page.setViewportSize started +0ms
+  pw:api <= page.setViewportSize succeeded +9ms
+  pw:api => page.goto started +2ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "load" +3ms
+  pw:api   "commit" event fired +13ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +0ms
+  pw:api   "domcontentloaded" event fired +34ms
+  pw:api   "load" event fired +0ms
+  pw:api <= page.goto succeeded +20ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Zen', exact: true }) +10ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +37ms
+  pw:api   locator resolved to <button class="forge-chip" aria-pressed="false">…</button> +209ms
+  pw:api attempting click action +13ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +21ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +34ms
+  pw:api   click action done +53ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +1ms
+  pw:api <= locator.click succeeded +21ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('group', { name: 'Zen style', exact: true }).getByRole('button', { name: 'Free writing', exact: true }) +12ms
+  pw:api   locator resolved to <button aria-pressed="false" class="forge-chip !text-xs">Free writing</button> +8ms
+  pw:api attempting click action +1ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +31ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +2ms
+  pw:api   performing click action +10ms
+  pw:api   click action done +18ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +4ms
+  pw:api <= locator.click succeeded +4ms
+  pw:api => Expect "toBeVisible" started +1ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +1ms
+  pw:api <= Expect "toBeVisible" succeeded +5ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +4ms
+  pw:api   locator resolved to visible <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +4ms
+  pw:api <= locator.evaluate succeeded +15ms
+  pw:api => Expect "toBeFocused" started +1ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeFocused" succeeded +5ms
+  pw:api => locator.evaluate started +3ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +2ms
+  pw:api <= locator.evaluate succeeded +7ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +2ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +8ms
+  pw:api => locator.pressSequentially started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +2ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +4ms
+  pw:api elementHandle.type("cat") +1ms
+  pw:api <= locator.pressSequentially succeeded +48ms
+  pw:api => locator.press started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">cat</textarea> +2ms
+  pw:api elementHandle.press("Enter") +1ms
+  pw:api <= locator.press succeeded +11ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +5ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +2ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +8ms
+  pw:api => locator.pressSequentially started +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +2ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">cat↵</textarea> +2ms
+  pw:api elementHandle.type("quiet calm clear focus") +1ms
+  pw:api   "networkidle" event fired +58ms
+  pw:api <= locator.pressSequentially succeeded +201ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +20ms
+  pw:api => locator.evaluate started +0ms
+  pw:api waiting for getByTestId('typing-viewport') +2ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +5ms
+  pw:api <= locator.evaluate succeeded +6ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +21ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +3ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +6ms
+  pw:api => locator.press started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +4ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">cat↵quiet calm clear focus</textarea> +5ms
+  pw:api elementHandle.press("ControlOrMeta+A") +1ms
+  pw:api <= locator.press succeeded +10ms
+  pw:api => locator.press started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +4ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">cat↵quiet calm clear focus</textarea> +3ms
+  pw:api elementHandle.press("Backspace") +1ms
+  pw:api <= locator.press succeeded +14ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +3ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +3ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +2ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +6ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +2ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +5ms
+  pw:api taking page screenshot +94ms
+  pw:api waiting for fonts to load... +2ms
+  pw:api fonts loaded +1ms
+  pw:api => browserContext.close started +15ms
+  pw:api <= browserContext.close succeeded +3ms
+  ok 10 [chromium] › e2e\caret-geometry.spec.ts:241:1 › empty and multiline free writing use the same static end anchor through deletion and rotation (1.3s)
+  pw:api => browser.close started +56ms
+  pw:browser [pid=87888] <gracefully close start> +18s
+  pw:browser [pid=87888] <process did exit: exitCode=0, signal=null> +145ms
+  pw:browser [pid=87888] starting temporary directories cleanup +0ms
+  pw:browser [pid=87888] finished temporary directories cleanup +6ms
+  pw:browser [pid=87888] <gracefully close end> +0ms
+  pw:api <= browser.close succeeded +151ms
+(node:57804) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  pw:api => browserType.launch started +0ms
+  pw:browser <launching> C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=C:\Users\DELL\AppData\Local\Temp\playwright_chromiumdev_profile-qXoTNE --remote-debugging-pipe --no-startup-window +0ms
+  pw:browser <launched> pid=39408 +21ms
+  pw:api <= browserType.launch succeeded +1s
+  pw:api => browser.newContext started +5ms
+  pw:api <= browser.newContext succeeded +44ms
+  pw:api => browserContext.newPage started +15ms
+  pw:api <= browserContext.newPage succeeded +485ms
+  pw:api => page.addInitScript started +3ms
+  pw:api <= page.addInitScript succeeded +5ms
+  pw:api => page.setViewportSize started +2ms
+  pw:api <= page.setViewportSize succeeded +24ms
+  pw:api => page.goto started +4ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "load" +6ms
+  pw:api   "commit" event fired +51ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +1ms
+  pw:api   "domcontentloaded" event fired +61ms
+  pw:api   "load" event fired +21ms
+  pw:api <= page.goto succeeded +115ms
+  pw:api => locator.click started +6ms
+  pw:api waiting for getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Custom', exact: true }) +16ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +83ms
+  pw:api   locator resolved to <button class="forge-chip" aria-pressed="false">…</button> +351ms
+  pw:api attempting click action +24ms
+  pw:api   waiting for element to be visible, enabled and stable +1ms
+  pw:api   element is visible, enabled and stable +9ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +3ms
+  pw:api   performing click action +56ms
+  pw:api   click action done +78ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +2ms
+  pw:api <= locator.click succeeded +5ms
+  pw:api => locator.fill started +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Custom practice passage', exact: true }) +4ms
+  pw:api   locator resolved to <textarea maxlength="10000" id="custom-passage" class="forge-input min-h-48 font-mono leading-relaxed" placeholder="Add something you want to get better at typing…"></textarea> +7ms
+  pw:api   fill("cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus") +3ms
+  pw:api attempting fill action +0ms
+  pw:api   waiting for element to be visible, enabled and editable +6ms
+  pw:api <= locator.fill succeeded +33ms
+  pw:api => locator.click started +2ms
+  pw:api waiting for getByRole('button', { name: 'Start private practice', exact: true }) +3ms
+  pw:api   locator resolved to <button class="forge-button mt-4">…</button> +6ms
+  pw:api attempting click action +2ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +47ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +3ms
+  pw:api   performing click action +11ms
+  pw:api   click action done +61ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +2ms
+  pw:api <= locator.click succeeded +20ms
+  pw:api => Expect "toBeVisible" started +9ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +11ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +1ms
+  pw:api <= Expect "toBeVisible" succeeded +13ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +5ms
+  pw:api   "networkidle" event fired +2ms
+  pw:api   locator resolved to visible <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +5ms
+  pw:api <= locator.evaluate succeeded +26ms
+  pw:api => Expect "toBeFocused" started +2ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeFocused" succeeded +6ms
+  pw:api => locator.evaluate started +3ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +10ms
+  pw:api => locator.pressSequentially started +3ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +3ms
+  pw:api elementHandle.type("cat dog quiet calm clear focus cat dog quiet calm clear") +1ms
+  pw:api <= locator.pressSequentially succeeded +835ms
+  pw:api => Expect "toHaveValue" started +2ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +8ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +1ms
+  pw:api <= Expect "toHaveValue" succeeded +9ms
+  pw:api => locator.evaluate started +3ms
+  pw:api waiting for getByTestId('typing-viewport') +6ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +6ms
+  pw:api <= locator.evaluate succeeded +12ms
+  pw:api => page.setViewportSize started +2ms
+  pw:api <= page.setViewportSize succeeded +62ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +19ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +5ms
+  pw:api <= locator.evaluate succeeded +14ms
+  pw:api => page.setViewportSize started +2ms
+  pw:api <= page.setViewportSize succeeded +54ms
+  pw:api => locator.evaluate started +4ms
+  pw:api waiting for getByTestId('typing-viewport') +7ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +68ms
+  pw:api <= locator.evaluate succeeded +18ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +87ms
+  pw:api => locator.press started +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +8ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">cat dog quiet calm clear focus cat dog quiet calm…</textarea> +18ms
+  pw:api elementHandle.press("Backspace") +18ms
+  pw:api <= locator.press succeeded +112ms
+  pw:api => Expect "toHaveValue" started +3ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +15ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +9ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +23ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +45ms
+  pw:api <= locator.evaluate succeeded +51ms
+  pw:api taking page screenshot +411ms
+  pw:api waiting for fonts to load... +2ms
+  pw:api fonts loaded +1ms
+  pw:api => browserContext.close started +40ms
+  pw:api <= browserContext.close succeeded +29ms
+  ok 11 [edge] › e2e\caret-geometry.spec.ts:145:5 › line caret follows the actual LTR character edge through input and rotation (3.8s)
+  pw:api => browser.newContext started +158ms
+  pw:api <= browser.newContext succeeded +11ms
+  pw:api => browserContext.newPage started +4ms
+  pw:api <= browserContext.newPage succeeded +243ms
+  pw:api => page.addInitScript started +1ms
+  pw:api <= page.addInitScript succeeded +4ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +29ms
+  pw:api => page.goto started +2ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "load" +4ms
+  pw:api   "commit" event fired +35ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +0ms
+  pw:api   "domcontentloaded" event fired +49ms
+  pw:api   "load" event fired +2ms
+  pw:api <= page.goto succeeded +40ms
+  pw:api => locator.click started +3ms
+  pw:api waiting for getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Custom', exact: true }) +14ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +49ms
+  pw:api   locator resolved to <button class="forge-chip" aria-pressed="false">…</button> +265ms
+  pw:api attempting click action +10ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +11ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +41ms
+  pw:api   click action done +39ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +6ms
+  pw:api <= locator.click succeeded +7ms
+  pw:api => locator.fill started +3ms
+  pw:api waiting for getByRole('textbox', { name: 'Custom practice passage', exact: true }) +7ms
+  pw:api   locator resolved to <textarea maxlength="10000" id="custom-passage" class="forge-input min-h-48 font-mono leading-relaxed" placeholder="Add something you want to get better at typing…"></textarea> +9ms
+  pw:api   fill("سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل") +4ms
+  pw:api attempting fill action +0ms
+  pw:api   waiting for element to be visible, enabled and editable +6ms
+  pw:api <= locator.fill succeeded +27ms
+  pw:api => locator.click started +2ms
+  pw:api waiting for getByRole('button', { name: 'Start private practice', exact: true }) +6ms
+  pw:api   locator resolved to <button class="forge-button mt-4">…</button> +9ms
+  pw:api attempting click action +3ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +13ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +7ms
+  pw:api   click action done +27ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +4ms
+  pw:api <= locator.click succeeded +21ms
+  pw:api => Expect "toBeVisible" started +2ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +5ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +1ms
+  pw:api <= Expect "toBeVisible" succeeded +7ms
+  pw:api => locator.evaluate started +0ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +7ms
+  pw:api   locator resolved to visible <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +4ms
+  pw:api <= locator.evaluate succeeded +20ms
+  pw:api => Expect "toBeFocused" started +1ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeFocused" succeeded +10ms
+  pw:api => locator.evaluate started +4ms
+  pw:api waiting for getByTestId('typing-viewport') +5ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +12ms
+  pw:api => locator.pressSequentially started +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +4ms
+  pw:api   locator resolved to <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +6ms
+  pw:api elementHandle.type("سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عا") +2ms
+  pw:api   "networkidle" event fired +117ms
+  pw:api <= locator.pressSequentially succeeded +579ms
+  pw:api => Expect "toHaveValue" started +3ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +6ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +5ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +7ms
+  pw:api <= locator.evaluate succeeded +10ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +55ms
+  pw:api => locator.evaluate started +3ms
+  pw:api waiting for getByTestId('typing-viewport') +7ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +6ms
+  pw:api <= locator.evaluate succeeded +14ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +42ms
+  pw:api => locator.evaluate started +5ms
+  pw:api waiting for getByTestId('typing-viewport') +9ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +7ms
+  pw:api <= locator.evaluate succeeded +12ms
+  pw:api => page.setViewportSize started +2ms
+  pw:api <= page.setViewportSize succeeded +40ms
+  pw:api => locator.press started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +7ms
+  pw:api   locator resolved to <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عل…</textarea> +4ms
+  pw:api elementHandle.press("Backspace") +2ms
+  pw:api <= locator.press succeeded +20ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +6ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +8ms
+  pw:api taking page screenshot +159ms
+  pw:api waiting for fonts to load... +1ms
+  pw:api fonts loaded +1ms
+  pw:api => browserContext.close started +26ms
+  pw:api <= browserContext.close succeeded +857ms
+  ok 12 [edge] › e2e\caret-geometry.spec.ts:145:5 › line caret follows the actual RTL character edge through input and rotation (3.2s)
+  pw:api => browser.newContext started +93ms
+  pw:api <= browser.newContext succeeded +7ms
+  pw:api => browserContext.newPage started +6ms
+  pw:api <= browserContext.newPage succeeded +361ms
+  pw:api => page.addInitScript started +1ms
+  pw:api <= page.addInitScript succeeded +2ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +19ms
+  pw:api => page.goto started +0ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "load" +3ms
+  pw:api   "commit" event fired +31ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +0ms
+  pw:api   "domcontentloaded" event fired +25ms
+  pw:api   "load" event fired +1ms
+  pw:api <= page.goto succeeded +32ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Custom', exact: true }) +7ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +70ms
+  pw:api   locator resolved to <button class="forge-chip" aria-pressed="false">…</button> +214ms
+  pw:api attempting click action +15ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +9ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +33ms
+  pw:api   click action done +39ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +2ms
+  pw:api <= locator.click succeeded +4ms
+  pw:api => locator.fill started +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Custom practice passage', exact: true }) +4ms
+  pw:api   locator resolved to <textarea maxlength="10000" id="custom-passage" class="forge-input min-h-48 font-mono leading-relaxed" placeholder="Add something you want to get better at typing…"></textarea> +7ms
+  pw:api   fill("cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus") +1ms
+  pw:api attempting fill action +0ms
+  pw:api   waiting for element to be visible, enabled and editable +3ms
+  pw:api <= locator.fill succeeded +23ms
+  pw:api => locator.click started +2ms
+  pw:api waiting for getByRole('button', { name: 'Start private practice', exact: true }) +10ms
+  pw:api   locator resolved to <button class="forge-button mt-4">…</button> +7ms
+  pw:api attempting click action +2ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +17ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +5ms
+  pw:api   click action done +22ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +2ms
+  pw:api <= locator.click succeeded +15ms
+  pw:api => Expect "toBeVisible" started +2ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +7ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeVisible" succeeded +8ms
+  pw:api => locator.evaluate started +0ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +4ms
+  pw:api   locator resolved to visible <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +3ms
+  pw:api <= locator.evaluate succeeded +19ms
+  pw:api => Expect "toBeFocused" started +2ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +5ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeFocused" succeeded +5ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +3ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +12ms
+  pw:api => locator.pressSequentially started +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +4ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +3ms
+  pw:api elementHandle.type("cat dog quiet calm clear focus cat dog quiet calm clear") +1ms
+  pw:api   "networkidle" event fired +174ms
+  pw:api <= locator.pressSequentially succeeded +532ms
+  pw:api => Expect "toHaveValue" started +2ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +7ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +9ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +8ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +54ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +10ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +12ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +50ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +10ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +7ms
+  pw:api <= locator.evaluate succeeded +14ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +42ms
+  pw:api => locator.press started +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +8ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">cat dog quiet calm clear focus cat dog quiet calm…</textarea> +8ms
+  pw:api elementHandle.press("Backspace") +3ms
+  pw:api <= locator.press succeeded +22ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +5ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +7ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +3ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +6ms
+  pw:api taking page screenshot +290ms
+  pw:api waiting for fonts to load... +1ms
+  pw:api fonts loaded +1ms
+  pw:api => browserContext.close started +28ms
+  pw:api <= browserContext.close succeeded +3s
+  ok 13 [edge] › e2e\caret-geometry.spec.ts:145:5 › block caret follows the actual LTR character edge through input and rotation (5.4s)
+  pw:api => browser.newContext started +86ms
+  pw:api <= browser.newContext succeeded +6ms
+  pw:api => browserContext.newPage started +3ms
+  pw:api <= browserContext.newPage succeeded +254ms
+  pw:api => page.addInitScript started +1ms
+  pw:api <= page.addInitScript succeeded +3ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +11ms
+  pw:api => page.goto started +1ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "load" +4ms
+  pw:api   "commit" event fired +19ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +1ms
+  pw:api   "domcontentloaded" event fired +33ms
+  pw:api   "load" event fired +0ms
+  pw:api <= page.goto succeeded +18ms
+  pw:api => locator.click started +2ms
+  pw:api waiting for getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Custom', exact: true }) +9ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +44ms
+  pw:api   locator resolved to <button class="forge-chip" aria-pressed="false">…</button> +160ms
+  pw:api attempting click action +11ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +16ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +27ms
+  pw:api   click action done +26ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +1ms
+  pw:api <= locator.click succeeded +5ms
+  pw:api => locator.fill started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Custom practice passage', exact: true }) +3ms
+  pw:api   locator resolved to <textarea maxlength="10000" id="custom-passage" class="forge-input min-h-48 font-mono leading-relaxed" placeholder="Add something you want to get better at typing…"></textarea> +7ms
+  pw:api   fill("سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل") +3ms
+  pw:api attempting fill action +0ms
+  pw:api   waiting for element to be visible, enabled and editable +7ms
+  pw:api <= locator.fill succeeded +17ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('button', { name: 'Start private practice', exact: true }) +6ms
+  pw:api   locator resolved to <button class="forge-button mt-4">…</button> +7ms
+  pw:api attempting click action +1ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +3ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +6ms
+  pw:api   click action done +20ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +5ms
+  pw:api <= locator.click succeeded +11ms
+  pw:api => Expect "toBeVisible" started +1ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +3ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeVisible" succeeded +5ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to visible <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +3ms
+  pw:api <= locator.evaluate succeeded +14ms
+  pw:api => Expect "toBeFocused" started +1ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +5ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeFocused" succeeded +5ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +3ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +6ms
+  pw:api => locator.pressSequentially started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +2ms
+  pw:api   locator resolved to <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +2ms
+  pw:api elementHandle.type("سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عا") +1ms
+  pw:api   "networkidle" event fired +240ms
+  pw:api <= locator.pressSequentially succeeded +363ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +5ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +3ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +6ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +34ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +5ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +13ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +25ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +6ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +14ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +28ms
+  pw:api => locator.press started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +4ms
+  pw:api   locator resolved to <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عل…</textarea> +3ms
+  pw:api elementHandle.press("Backspace") +1ms
+  pw:api <= locator.press succeeded +19ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +5ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +2ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +5ms
+  pw:api taking page screenshot +134ms
+  pw:api waiting for fonts to load... +1ms
+  pw:api fonts loaded +1ms
+  pw:api => browserContext.close started +23ms
+  pw:api <= browserContext.close succeeded +11ms
+  ok 14 [edge] › e2e\caret-geometry.spec.ts:145:5 › block caret follows the actual RTL character edge through input and rotation (1.8s)
+  pw:api => browser.newContext started +84ms
+  pw:api <= browser.newContext succeeded +6ms
+  pw:api => browserContext.newPage started +4ms
+  pw:api <= browserContext.newPage succeeded +111ms
+  pw:api => page.addInitScript started +1ms
+  pw:api <= page.addInitScript succeeded +8ms
+  pw:api => page.setViewportSize started +0ms
+  pw:api <= page.setViewportSize succeeded +14ms
+  pw:api => page.goto started +0ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "load" +2ms
+  pw:api   "commit" event fired +19ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +0ms
+  pw:api   "domcontentloaded" event fired +35ms
+  pw:api   "load" event fired +1ms
+  pw:api <= page.goto succeeded +20ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Custom', exact: true }) +4ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +54ms
+  pw:api   locator resolved to <button class="forge-chip" aria-pressed="false">…</button> +175ms
+  pw:api attempting click action +17ms
+  pw:api   waiting for element to be visible, enabled and stable +1ms
+  pw:api   element is visible, enabled and stable +15ms
+  pw:api   scrolling into view if needed +1ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +29ms
+  pw:api   click action done +28ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +1ms
+  pw:api <= locator.click succeeded +3ms
+  pw:api => locator.fill started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Custom practice passage', exact: true }) +5ms
+  pw:api   locator resolved to <textarea maxlength="10000" id="custom-passage" class="forge-input min-h-48 font-mono leading-relaxed" placeholder="Add something you want to get better at typing…"></textarea> +4ms
+  pw:api   fill("cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus") +2ms
+  pw:api attempting fill action +0ms
+  pw:api   waiting for element to be visible, enabled and editable +3ms
+  pw:api <= locator.fill succeeded +10ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('button', { name: 'Start private practice', exact: true }) +5ms
+  pw:api   locator resolved to <button class="forge-button mt-4">…</button> +10ms
+  pw:api attempting click action +1ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +11ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +5ms
+  pw:api   click action done +17ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +1ms
+  pw:api <= locator.click succeeded +14ms
+  pw:api => Expect "toBeVisible" started +1ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeVisible" succeeded +5ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +5ms
+  pw:api   locator resolved to visible <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +5ms
+  pw:api <= locator.evaluate succeeded +15ms
+  pw:api => Expect "toBeFocused" started +0ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +3ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeFocused" succeeded +6ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +3ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +2ms
+  pw:api <= locator.evaluate succeeded +7ms
+  pw:api => locator.pressSequentially started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +5ms
+  pw:api elementHandle.type("cat dog quiet calm clear focus cat dog quiet calm clear") +1ms
+  pw:api   "networkidle" event fired +227ms
+  pw:api <= locator.pressSequentially succeeded +434ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +6ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +9ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +3ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +6ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +39ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +7ms
+  pw:api => page.setViewportSize started +0ms
+  pw:api <= page.setViewportSize succeeded +32ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +7ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +7ms
+  pw:api <= locator.evaluate succeeded +12ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +30ms
+  pw:api => locator.press started +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +9ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">cat dog quiet calm clear focus cat dog quiet calm…</textarea> +6ms
+  pw:api elementHandle.press("Backspace") +1ms
+  pw:api <= locator.press succeeded +14ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +8ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +2ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +2ms
+  pw:api <= locator.evaluate succeeded +6ms
+  pw:api taking page screenshot +126ms
+  pw:api waiting for fonts to load... +1ms
+  pw:api fonts loaded +0ms
+  pw:api => browserContext.close started +21ms
+  pw:api <= browserContext.close succeeded +11ms
+  ok 15 [edge] › e2e\caret-geometry.spec.ts:145:5 › outline caret follows the actual LTR character edge through input and rotation (1.8s)
+  pw:api => browser.newContext started +84ms
+  pw:api <= browser.newContext succeeded +6ms
+  pw:api => browserContext.newPage started +3ms
+  pw:api <= browserContext.newPage succeeded +123ms
+  pw:api => page.addInitScript started +2ms
+  pw:api <= page.addInitScript succeeded +5ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +13ms
+  pw:api => page.goto started +1ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "load" +2ms
+  pw:api   "commit" event fired +22ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +0ms
+  pw:api   "domcontentloaded" event fired +34ms
+  pw:api   "load" event fired +1ms
+  pw:api <= page.goto succeeded +20ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Custom', exact: true }) +14ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +37ms
+  pw:api   locator resolved to <button class="forge-chip" aria-pressed="false">…</button> +160ms
+  pw:api attempting click action +17ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +10ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +29ms
+  pw:api   click action done +31ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +1ms
+  pw:api <= locator.click succeeded +5ms
+  pw:api => locator.fill started +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Custom practice passage', exact: true }) +4ms
+  pw:api   locator resolved to <textarea maxlength="10000" id="custom-passage" class="forge-input min-h-48 font-mono leading-relaxed" placeholder="Add something you want to get better at typing…"></textarea> +7ms
+  pw:api   fill("سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل") +2ms
+  pw:api attempting fill action +0ms
+  pw:api   waiting for element to be visible, enabled and editable +7ms
+  pw:api <= locator.fill succeeded +23ms
+  pw:api => locator.click started +2ms
+  pw:api waiting for getByRole('button', { name: 'Start private practice', exact: true }) +7ms
+  pw:api   locator resolved to <button class="forge-button mt-4">…</button> +11ms
+  pw:api attempting click action +3ms
+  pw:api   waiting for element to be visible, enabled and stable +1ms
+  pw:api   element is visible, enabled and stable +14ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +3ms
+  pw:api   performing click action +5ms
+  pw:api   click action done +25ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +6ms
+  pw:api <= locator.click succeeded +9ms
+  pw:api => Expect "toBeVisible" started +2ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeVisible" succeeded +6ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +5ms
+  pw:api   locator resolved to visible <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +4ms
+  pw:api <= locator.evaluate succeeded +18ms
+  pw:api => Expect "toBeFocused" started +2ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +3ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeFocused" succeeded +5ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +5ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +2ms
+  pw:api <= locator.evaluate succeeded +7ms
+  pw:api => locator.pressSequentially started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +3ms
+  pw:api elementHandle.type("سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عا") +0ms
+  pw:api   "networkidle" event fired +205ms
+  pw:api <= locator.pressSequentially succeeded +373ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +7ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +2ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +2ms
+  pw:api <= locator.evaluate succeeded +7ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +35ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +6ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +11ms
+  pw:api => page.setViewportSize started +2ms
+  pw:api <= page.setViewportSize succeeded +30ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +6ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +8ms
+  pw:api <= locator.evaluate succeeded +9ms
+  pw:api => page.setViewportSize started +0ms
+  pw:api <= page.setViewportSize succeeded +31ms
+  pw:api => locator.press started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +6ms
+  pw:api   locator resolved to <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عل…</textarea> +4ms
+  pw:api elementHandle.press("Backspace") +2ms
+  pw:api <= locator.press succeeded +18ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +5ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +3ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +5ms
+  pw:api taking page screenshot +140ms
+  pw:api waiting for fonts to load... +1ms
+  pw:api fonts loaded +1ms
+  pw:api => browserContext.close started +19ms
+  pw:api <= browserContext.close succeeded +12ms
+  ok 16 [edge] › e2e\caret-geometry.spec.ts:145:5 › outline caret follows the actual RTL character edge through input and rotation (1.7s)
+  pw:api => browser.newContext started +79ms
+  pw:api <= browser.newContext succeeded +8ms
+  pw:api => browserContext.newPage started +3ms
+  pw:api <= browserContext.newPage succeeded +126ms
+  pw:api => page.addInitScript started +0ms
+  pw:api <= page.addInitScript succeeded +2ms
+  pw:api => page.setViewportSize started +0ms
+  pw:api <= page.setViewportSize succeeded +13ms
+  pw:api => page.goto started +1ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "load" +2ms
+  pw:api   "commit" event fired +18ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +0ms
+  pw:api   "domcontentloaded" event fired +26ms
+  pw:api   "load" event fired +2ms
+  pw:api <= page.goto succeeded +32ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Custom', exact: true }) +13ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +42ms
+  pw:api   locator resolved to <button class="forge-chip" aria-pressed="false">…</button> +202ms
+  pw:api attempting click action +14ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +12ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +42ms
+  pw:api   click action done +38ms
+  pw:api   waiting for scheduled navigations to finish +1ms
+  pw:api   navigations have finished +3ms
+  pw:api <= locator.click succeeded +5ms
+  pw:api => locator.fill started +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Custom practice passage', exact: true }) +6ms
+  pw:api   locator resolved to <textarea maxlength="10000" id="custom-passage" class="forge-input min-h-48 font-mono leading-relaxed" placeholder="Add something you want to get better at typing…"></textarea> +7ms
+  pw:api   fill("cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus cat dog quiet calm clear focus") +3ms
+  pw:api attempting fill action +0ms
+  pw:api   waiting for element to be visible, enabled and editable +7ms
+  pw:api <= locator.fill succeeded +21ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('button', { name: 'Start private practice', exact: true }) +8ms
+  pw:api   locator resolved to <button class="forge-button mt-4">…</button> +6ms
+  pw:api attempting click action +3ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +12ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +7ms
+  pw:api   click action done +33ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +5ms
+  pw:api <= locator.click succeeded +21ms
+  pw:api => Expect "toBeVisible" started +2ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeVisible" succeeded +8ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +4ms
+  pw:api   locator resolved to visible <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +4ms
+  pw:api <= locator.evaluate succeeded +24ms
+  pw:api => Expect "toBeFocused" started +1ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeFocused" succeeded +8ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +3ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +10ms
+  pw:api => locator.pressSequentially started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +4ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +5ms
+  pw:api elementHandle.type("cat dog quiet calm clear focus cat dog quiet calm clear") +2ms
+  pw:api   "networkidle" event fired +124ms
+  pw:api <= locator.pressSequentially succeeded +602ms
+  pw:api => Expect "toHaveValue" started +2ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +5ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +8ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +6ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +7ms
+  pw:api <= locator.evaluate succeeded +7ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +46ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +11ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +8ms
+  pw:api <= locator.evaluate succeeded +10ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +44ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +9ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +6ms
+  pw:api <= locator.evaluate succeeded +8ms
+  pw:api => page.setViewportSize started +2ms
+  pw:api <= page.setViewportSize succeeded +46ms
+  pw:api => locator.press started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +10ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">cat dog quiet calm clear focus cat dog quiet calm…</textarea> +7ms
+  pw:api elementHandle.press("Backspace") +4ms
+  pw:api <= locator.press succeeded +14ms
+  pw:api => Expect "toHaveValue" started +2ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +5ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +5ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +6ms
+  pw:api <= locator.evaluate succeeded +8ms
+  pw:api taking page screenshot +152ms
+  pw:api waiting for fonts to load... +2ms
+  pw:api fonts loaded +2ms
+  pw:api => browserContext.close started +24ms
+  pw:api <= browserContext.close succeeded +13ms
+  ok 17 [edge] › e2e\caret-geometry.spec.ts:145:5 › underline caret follows the actual LTR character edge through input and rotation (2.1s)
+  pw:api => browser.newContext started +89ms
+  pw:api <= browser.newContext succeeded +7ms
+  pw:api => browserContext.newPage started +4ms
+  pw:api <= browserContext.newPage succeeded +156ms
+  pw:api => page.addInitScript started +1ms
+  pw:api <= page.addInitScript succeeded +4ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +21ms
+  pw:api => page.goto started +1ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "load" +3ms
+  pw:api   "commit" event fired +24ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +1ms
+  pw:api   "domcontentloaded" event fired +40ms
+  pw:api   "load" event fired +1ms
+  pw:api <= page.goto succeeded +24ms
+  pw:api => locator.click started +2ms
+  pw:api waiting for getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Custom', exact: true }) +11ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +50ms
+  pw:api   locator resolved to <button class="forge-chip" aria-pressed="false">…</button> +191ms
+  pw:api attempting click action +11ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +10ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +2ms
+  pw:api   performing click action +32ms
+  pw:api   click action done +32ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +1ms
+  pw:api <= locator.click succeeded +3ms
+  pw:api => locator.fill started +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Custom practice passage', exact: true }) +4ms
+  pw:api   locator resolved to <textarea maxlength="10000" id="custom-passage" class="forge-input min-h-48 font-mono leading-relaxed" placeholder="Add something you want to get better at typing…"></textarea> +4ms
+  pw:api   fill("سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عالم جميل") +4ms
+  pw:api attempting fill action +0ms
+  pw:api   waiting for element to be visible, enabled and editable +7ms
+  pw:api <= locator.fill succeeded +22ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('button', { name: 'Start private practice', exact: true }) +7ms
+  pw:api   locator resolved to <button class="forge-button mt-4">…</button> +7ms
+  pw:api attempting click action +1ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +19ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +2ms
+  pw:api   performing click action +5ms
+  pw:api   click action done +23ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +1ms
+  pw:api <= locator.click succeeded +9ms
+  pw:api => Expect "toBeVisible" started +1ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeVisible" succeeded +8ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to visible <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +4ms
+  pw:api <= locator.evaluate succeeded +18ms
+  pw:api => Expect "toBeFocused" started +1ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +3ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeFocused" succeeded +5ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +2ms
+  pw:api <= locator.evaluate succeeded +8ms
+  pw:api => locator.pressSequentially started +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +2ms
+  pw:api   locator resolved to <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +4ms
+  pw:api elementHandle.type("سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عليكم عا") +3ms
+  pw:api   "networkidle" event fired +220ms
+  pw:api <= locator.pressSequentially succeeded +499ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +3ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +1ms
+  pw:api <= Expect "toHaveValue" succeeded +6ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +5ms
+  pw:api <= locator.evaluate succeeded +9ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +31ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +8ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +7ms
+  pw:api <= locator.evaluate succeeded +9ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +33ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +8ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +6ms
+  pw:api <= locator.evaluate succeeded +10ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +33ms
+  pw:api => locator.press started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +7ms
+  pw:api   locator resolved to <textarea dir="rtl" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">سلام عليكم عالم جميل سلام عليكم عالم جميل سلام عل…</textarea> +4ms
+  pw:api elementHandle.press("Backspace") +2ms
+  pw:api <= locator.press succeeded +12ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +6ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +8ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +2ms
+  pw:api   locator resolved to visible <div dir="rtl" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +6ms
+  pw:api taking page screenshot +125ms
+  pw:api waiting for fonts to load... +1ms
+  pw:api fonts loaded +1ms
+  pw:api => browserContext.close started +26ms
+  pw:api <= browserContext.close succeeded +10ms
+  ok 18 [edge] › e2e\caret-geometry.spec.ts:145:5 › underline caret follows the actual RTL character edge through input and rotation (1.9s)
+  pw:api => browser.newContext started +83ms
+  pw:api <= browser.newContext succeeded +6ms
+  pw:api => browserContext.newPage started +4ms
+  pw:api <= browserContext.newPage succeeded +132ms
+  pw:api => page.addInitScript started +1ms
+  pw:api <= page.addInitScript succeeded +5ms
+  pw:api => page.setViewportSize started +2ms
+  pw:api <= page.setViewportSize succeeded +23ms
+  pw:api => page.goto started +1ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "load" +4ms
+  pw:api   "commit" event fired +24ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +0ms
+  pw:api   "domcontentloaded" event fired +44ms
+  pw:api   "load" event fired +1ms
+  pw:api <= page.goto succeeded +28ms
+  pw:api => locator.click started +2ms
+  pw:api waiting for getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Code', exact: true }) +5ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +70ms
+  pw:api   locator resolved to <button class="forge-chip" aria-pressed="false">…</button> +204ms
+  pw:api attempting click action +12ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   "networkidle" event fired +461ms
+  pw:api   element is visible, enabled and stable +5s
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +1ms
+  pw:api   performing click action +29ms
+  pw:api   click action done +33ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +1ms
+  pw:api <= locator.click succeeded +8ms
+  pw:api => locator.evaluateAll started +3ms
+  pw:api <= locator.evaluateAll succeeded +25ms
+  pw:api => Expect "toBeVisible" started +2ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +3ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeVisible" succeeded +4ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to visible <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +6ms
+  pw:api <= locator.evaluate succeeded +5ms
+  pw:api => Expect "toBeFocused" started +1ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeFocused" succeeded +5ms
+  pw:api => locator.pressSequentially started +0ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +3ms
+  pw:api elementHandle.type("class PracticeTimer {") +1ms
+  pw:api <= locator.pressSequentially succeeded +245ms
+  pw:api => Expect "toHaveValue" started +0ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +8ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +2ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +6ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-target').locator('[data-slot-index="20"]') +3ms
+  pw:api   locator resolved to visible <span data-typed="{" data-expected="{" data-current="false" data-slot-index="20" data-status="correct" class="typing-character char-correct">…</span> +3ms
+  pw:api <= locator.evaluate succeeded +5ms
+  pw:api => locator.press started +0ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +2ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">class PracticeTimer {</textarea> +2ms
+  pw:api elementHandle.press("Enter") +1ms
+  pw:api <= locator.press succeeded +24ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +3ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +1ms
+  pw:api <= Expect "toHaveValue" succeeded +4ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +3ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +7ms
+  pw:api => page.setViewportSize started +2ms
+  pw:api <= page.setViewportSize succeeded +35ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +7ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +8ms
+  pw:api taking page screenshot +107ms
+  pw:api waiting for fonts to load... +1ms
+  pw:api fonts loaded +1ms
+  pw:api => browserContext.close started +28ms
+  pw:api <= browserContext.close succeeded +13ms
+  ok 19 [edge] › e2e\caret-geometry.spec.ts:184:1 › a prompted code newline uses its first actual client fragment before entering the next line (6.2s)
+  pw:api => browser.newContext started +72ms
+  pw:api <= browser.newContext succeeded +6ms
+  pw:api => browserContext.newPage started +6ms
+  pw:api <= browserContext.newPage succeeded +127ms
+  pw:api => page.addInitScript started +2ms
+  pw:api <= page.addInitScript succeeded +4ms
+  pw:api => page.setViewportSize started +2ms
+  pw:api <= page.setViewportSize succeeded +17ms
+  pw:api => page.goto started +1ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "load" +3ms
+  pw:api   "commit" event fired +21ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +0ms
+  pw:api   "domcontentloaded" event fired +45ms
+  pw:api   "load" event fired +1ms
+  pw:api <= page.goto succeeded +29ms
+  pw:api => locator.click started +1ms
+  pw:api waiting for getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Zen', exact: true }) +3ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +68ms
+  pw:api   locator resolved to <button class="forge-chip" aria-pressed="false">…</button> +231ms
+  pw:api attempting click action +14ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +11ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +3ms
+  pw:api   performing click action +40ms
+  pw:api   click action done +69ms
+  pw:api   waiting for scheduled navigations to finish +1ms
+  pw:api   navigations have finished +1ms
+  pw:api <= locator.click succeeded +55ms
+  pw:api => locator.click started +2ms
+  pw:api waiting for getByRole('group', { name: 'Zen style', exact: true }).getByRole('button', { name: 'Free writing', exact: true }) +10ms
+  pw:api   locator resolved to <button aria-pressed="false" class="forge-chip !text-xs">Free writing</button> +10ms
+  pw:api attempting click action +5ms
+  pw:api   waiting for element to be visible, enabled and stable +1ms
+  pw:api   element is visible, enabled and stable +9ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +2ms
+  pw:api   performing click action +13ms
+  pw:api   click action done +34ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +5ms
+  pw:api <= locator.click succeeded +7ms
+  pw:api => Expect "toBeVisible" started +3ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +5ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeVisible" succeeded +9ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to visible <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +5ms
+  pw:api <= locator.evaluate succeeded +29ms
+  pw:api => Expect "toBeFocused" started +1ms
+  pw:api Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toBeFocused" succeeded +9ms
+  pw:api => locator.evaluate started +3ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +12ms
+  pw:api => locator.evaluate started +3ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +9ms
+  pw:api <= locator.evaluate succeeded +10ms
+  pw:api => locator.pressSequentially started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +4ms
+  pw:api elementHandle.type("cat") +2ms
+  pw:api   "networkidle" event fired +58ms
+  pw:api <= locator.pressSequentially succeeded +3ms
+  pw:api => locator.press started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +5ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">cat</textarea> +6ms
+  pw:api elementHandle.press("Enter") +5ms
+  pw:api <= locator.press succeeded +18ms
+  pw:api => Expect "toHaveValue" started +3ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +7ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +1ms
+  pw:api <= Expect "toHaveValue" succeeded +6ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +3ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +3ms
+  pw:api <= locator.evaluate succeeded +9ms
+  pw:api => locator.pressSequentially started +3ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +4ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">cat↵</textarea> +5ms
+  pw:api elementHandle.type("quiet calm clear focus") +3ms
+  pw:api <= locator.pressSequentially succeeded +315ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +31ms
+  pw:api => locator.evaluate started +3ms
+  pw:api waiting for getByTestId('typing-viewport') +8ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +8ms
+  pw:api => page.setViewportSize started +2ms
+  pw:api <= page.setViewportSize succeeded +31ms
+  pw:api => locator.evaluate started +2ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +10ms
+  pw:api => locator.press started +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +3ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">cat↵quiet calm clear focus</textarea> +4ms
+  pw:api elementHandle.press("ControlOrMeta+A") +1ms
+  pw:api <= locator.press succeeded +18ms
+  pw:api => locator.press started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +7ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2">cat↵quiet calm clear focus</textarea> +7ms
+  pw:api elementHandle.press("Backspace") +2ms
+  pw:api <= locator.press succeeded +16ms
+  pw:api => Expect "toHaveValue" started +1ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +4ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +1ms
+  pw:api <= Expect "toHaveValue" succeeded +7ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +7ms
+  pw:api <= locator.evaluate succeeded +6ms
+  pw:api => locator.evaluate started +1ms
+  pw:api waiting for getByTestId('typing-viewport') +4ms
+  pw:api   locator resolved to visible <div dir="ltr" aria-hidden="true" data-testid="typing-viewport" class="typing-viewport overflow-hidden scrollbar-hide relative">…</div> +4ms
+  pw:api <= locator.evaluate succeeded +7ms
+  pw:api taking page screenshot +144ms
+  pw:api waiting for fonts to load... +2ms
+  pw:api fonts loaded +1ms
+  pw:api => browserContext.close started +24ms
+  pw:api <= browserContext.close succeeded +18ms
+  ok 20 [edge] › e2e\caret-geometry.spec.ts:241:1 › empty and multiline free writing use the same static end anchor through deletion and rotation (1.9s)
+  pw:api => browser.close started +71ms
+  pw:browser [pid=39408] <gracefully close start> +32s
+  pw:browser [pid=39408] <process did exit: exitCode=0, signal=null> +415ms
+  pw:browser [pid=39408] starting temporary directories cleanup +0ms
+  pw:browser [pid=39408] finished temporary directories cleanup +23ms
+  pw:browser [pid=39408] <gracefully close end> +0ms
+  pw:api <= browser.close succeeded +439ms
+
+  20 passed (52.5s)

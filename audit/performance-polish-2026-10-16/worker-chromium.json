@@ -1,0 +1,1816 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\extra\\typing_updated\\typing-forge\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "e2e/opening-worker.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--retries=0",
+      "--trace=on",
+      "--reporter=list,json",
+      "--global-timeout=120000",
+      "--output=audit/performance-polish-2026-10-16/worker-chromium-artifacts"
+    ],
+    "configFile": "D:\\extra\\typing_updated\\typing-forge\\playwright.config.ts",
+    "rootDir": "D:/extra/typing_updated/typing-forge/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 120000,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/audit/performance-polish-2026-10-16/worker-chromium-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\audit\\performance-polish-2026-10-16\\worker-chromium-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4175",
+          "trace": "on",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "opening-worker.spec.ts",
+      "file": "opening-worker.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "default native worker draws the complete keyboard while document tasks, resize and skip remain responsive",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "scope",
+                  "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6343,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserType.launch started \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m<launching> C:\\Users\\DELL\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1248\\chrome-headless-shell-win64\\chrome-headless-shell.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=C:\\Users\\DELL\\AppData\\Local\\Temp\\playwright_chromiumdev_profile-7yssvo --remote-debugging-pipe --no-startup-window \u001b[30m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m<launched> pid=86108 \u001b[30m+129ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserType.launch succeeded \u001b[38;5;45m+594ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browser.newContext started \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browser.newContext succeeded \u001b[38;5;45m+17ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.newPage started \u001b[38;5;45m+15ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.newPage succeeded \u001b[38;5;45m+311ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+27ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.addInitScript started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.addInitScript succeeded \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.addInitScript started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.addInitScript succeeded \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.emulateMedia started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.emulateMedia succeeded \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.setViewportSize started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.setViewportSize succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.goto started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mnavigating to \"http://127.0.0.1:4175/\", waiting until \"domcontentloaded\" \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"commit\" event fired \u001b[38;5;45m+1s\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"domcontentloaded\" event fired \u001b[38;5;45m+89ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"load\" event fired \u001b[38;5;45m+17ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.goto succeeded \u001b[38;5;45m+152ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+103ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+112ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+77ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+260ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+15ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=86108][err] [1016/223441.766:INFO:CONSOLE:1] \"THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.\", source: http://127.0.0.1:4175/assets/three.module-ytFXl0Cs.js (1) \u001b[30m+3s\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+510ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=86108][err] [1016/223442.185:ERROR:gpu\\command_buffer\\service\\gl_utils.cc:431] [.WebGL-0x789c01689e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels \u001b[30m+426ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+87ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+11ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"networkidle\" event fired \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+27ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.setViewportSize started \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.setViewportSize succeeded \u001b[38;5;45m+95ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.evaluate started \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for locator('.awakening-canvas') \u001b[38;5;45m+19ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to visible <canvas class=\"awakening-canvas\" data-scene=\"{\"renderer\":\"webgl2\",\"thread\":\"worker\",\"keyCount\":61,\"keycapMeshes\":1,\"tier\":\"desktop\",\"bloom\":true,\"environment\":true,\"environmentIntensity\":0.35,\"cameraElevationDegrees\":34.8,\"pixelRatio\":1,\"width\":1280,\"height\":800,\"frames\":1,\"averageFps\":0,\"drawCalls\":22,\"degraded\":false,\"contextLost\":false,\"disposed\":false,\"asyncShaderCompile\":false,\"shaderPreparationMs\":0}\"></canvas> \u001b[38;5;45m+72ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.evaluate succeeded \u001b[38;5;45m+85ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+22ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+109ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+256ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+13ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+506ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+11ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=86108][err] [1016/223444.057:INFO:CONSOLE:0] \"[.WebGL-0x789c01689e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels\", source: http://127.0.0.1:4175/ (0) \u001b[30m+2s\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=86108][err] [1016/223444.070:ERROR:gpu\\command_buffer\\service\\gl_utils.cc:431] [.WebGL-0x789c01689e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels \u001b[30m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=86108][err] [1016/223444.084:INFO:CONSOLE:0] \"[.WebGL-0x789c01689e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels\", source: http://127.0.0.1:4175/ (0) \u001b[30m+15ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=86108][err] [1016/223444.091:ERROR:gpu\\command_buffer\\service\\gl_utils.cc:431] [.WebGL-0x789c01689e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels \u001b[30m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=86108][err] [1016/223444.173:INFO:CONSOLE:0] \"[.WebGL-0x789c01689e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels\", source: http://127.0.0.1:4175/ (0) \u001b[30m+82ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=86108][err] [1016/223444.183:ERROR:gpu\\command_buffer\\service\\gl_utils.cc:431] [.WebGL-0x789c01689e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat) \u001b[30m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=86108][err] [1016/223444.279:INFO:CONSOLE:0] \"[.WebGL-0x789c01689e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)\", source: http://127.0.0.1:4175/ (0) \u001b[30m+96ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+1s\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+22ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+14ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> keyboard.press started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= keyboard.press succeeded \u001b[38;5;45m+38ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+15ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+104ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+11ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+11ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveCount\" started \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveCount\" getByTestId('opening-experience') with timeout 5000ms \u001b[38;5;45m+25ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByTestId('opening-experience') \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/\" \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveCount\" succeeded \u001b[38;5;45m+11ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeVisible\" started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeVisible\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <textarea dir=\"ltr\" autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" maxlength=\"100000\" autocapitalize=\"off\" aria-label=\"Typing input\" aria-describedby=\"typing-instructions typing-passage typing-feedback\" class=\"typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2\"></textarea> \u001b[38;5;45m+222ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeVisible\" succeeded \u001b[38;5;45m+54ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveValue\" started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveValue\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms \u001b[38;5;45m+13ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveValue\" succeeded \u001b[38;5;45m+16ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveAttribute\" started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveAttribute\" getByRole('region', { name: 'Typing session', exact: true }) with timeout 5000ms \u001b[38;5;45m+13ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('region', { name: 'Typing session', exact: true }) \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveAttribute\" succeeded \u001b[38;5;45m+20ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.pressSequentially started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <textarea dir=\"ltr\" autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" maxlength=\"100000\" autocapitalize=\"off\" aria-label=\"Typing input\" aria-describedby=\"typing-instructions typing-passage typing-feedback\" class=\"typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2\"></textarea> \u001b[38;5;45m+10ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0melementHandle.type(\"a\") \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.pressSequentially succeeded \u001b[38;5;45m+72ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveValue\" started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveValue\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveValue\" succeeded \u001b[38;5;45m+14ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+22ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mtaking page screenshot \u001b[38;5;45m+250ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for fonts to load... \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mfonts loaded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.close started \u001b[38;5;45m+37ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.close succeeded \u001b[38;5;45m+15ms\u001b[0m\n"
+                    }
+                  ],
+                  "retry": 0,
+                  "startTime": "2026-10-16T17:04:38.608Z",
+                  "annotations": [
+                    {
+                      "type": "scope",
+                      "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "document-task-and-paint-during-worker",
+                      "contentType": "application/json",
+                      "body": "eyJ0aW1lckF0TXMiOjAuMDk5OTk5OTA0NjMyNTY4MzYsImZyYW1lQXRNcyI6MTIuMzk5OTk5OTc2MTU4MTQyLCJvcGVuaW5nUHJlc2VudCI6dHJ1ZX0="
+                    },
+                    {
+                      "name": "native-worker-receipts",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc1L2Fzc2V0cy9rZXlib2FyZC1yZW5kZXItd29ya2VyLUQtTVVQeE56LmpzIiwKICAgICJzZW50IjogWwogICAgICB7CiAgICAgICAgInR5cGUiOiAiaW5pdGlhbGl6ZSIsCiAgICAgICAgInZpZXdwb3J0IjogewogICAgICAgICAgIndpZHRoIjogMTI4MCwKICAgICAgICAgICJoZWlnaHQiOiA4MDAsCiAgICAgICAgICAicGl4ZWxSYXRpbyI6IDEKICAgICAgICB9LAogICAgICAgICJsb3dQb3dlciI6IGZhbHNlLAogICAgICAgICJmaW5lUG9pbnRlciI6IHRydWUKICAgICAgfSwKICAgICAgewogICAgICAgICJ0eXBlIjogInJlc2l6ZSIsCiAgICAgICAgInZpZXdwb3J0IjogewogICAgICAgICAgIndpZHRoIjogMTI4MCwKICAgICAgICAgICJoZWlnaHQiOiA4MDAsCiAgICAgICAgICAicGl4ZWxSYXRpbyI6IDEKICAgICAgICB9CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAidHlwZSI6ICJwcm9ncmVzcyIKICAgICAgfSwKICAgICAgewogICAgICAgICJ0eXBlIjogInN0YXJ0IgogICAgICB9LAogICAgICB7CiAgICAgICAgInR5cGUiOiAicHJvZ3Jlc3MiCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAidHlwZSI6ICJyZXNpemUiLAogICAgICAgICJ2aWV3cG9ydCI6IHsKICAgICAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgICAgICJoZWlnaHQiOiA4NDQsCiAgICAgICAgICAicGl4ZWxSYXRpbyI6IDEKICAgICAgICB9CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAidHlwZSI6ICJyZXNpemUiLAogICAgICAgICJ2aWV3cG9ydCI6IHsKICAgICAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgICAgICJoZWlnaHQiOiA4NDQsCiAgICAgICAgICAicGl4ZWxSYXRpbyI6IDEKICAgICAgICB9CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAidHlwZSI6ICJkaXNwb3NlIgogICAgICB9CiAgICBdLAogICAgInJlY2VpdmVkIjogWwogICAgICB7CiAgICAgICAgInR5cGUiOiAiZGlhZ25vc3RpY3MiLAogICAgICAgICJkaWFnbm9zdGljcyI6IHsKICAgICAgICAgICJyZW5kZXJlciI6ICJ3ZWJnbDIiLAogICAgICAgICAgInRocmVhZCI6ICJ3b3JrZXIiLAogICAgICAgICAgImtleUNvdW50IjogNjEsCiAgICAgICAgICAia2V5Y2FwTWVzaGVzIjogMSwKICAgICAgICAgICJ0aWVyIjogImRlc2t0b3AiLAogICAgICAgICAgImJsb29tIjogZmFsc2UsCiAgICAgICAgICAiZW52aXJvbm1lbnQiOiB0cnVlLAogICAgICAgICAgImVudmlyb25tZW50SW50ZW5zaXR5IjogMC4zNSwKICAgICAgICAgICJjYW1lcmFFbGV2YXRpb25EZWdyZWVzIjogMzUsCiAgICAgICAgICAicGl4ZWxSYXRpbyI6IDEsCiAgICAgICAgICAid2lkdGgiOiAxMjgwLAogICAgICAgICAgImhlaWdodCI6IDgwMCwKICAgICAgICAgICJmcmFtZXMiOiAwLAogICAgICAgICAgImF2ZXJhZ2VGcHMiOiAwLAogICAgICAgICAgImRyYXdDYWxscyI6IDAsCiAgICAgICAgICAiZGVncmFkZWQiOiBmYWxzZSwKICAgICAgICAgICJjb250ZXh0TG9zdCI6IGZhbHNlLAogICAgICAgICAgImRpc3Bvc2VkIjogZmFsc2UsCiAgICAgICAgICAiYXN5bmNTaGFkZXJDb21waWxlIjogZmFsc2UsCiAgICAgICAgICAic2hhZGVyUHJlcGFyYXRpb25NcyI6IDAKICAgICAgICB9CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAidHlwZSI6ICJkaWFnbm9zdGljcyIsCiAgICAgICAgImRpYWdub3N0aWNzIjogewogICAgICAgICAgInJlbmRlcmVyIjogIndlYmdsMiIsCiAgICAgICAgICAidGhyZWFkIjogIndvcmtlciIsCiAgICAgICAgICAia2V5Q291bnQiOiA2MSwKICAgICAgICAgICJrZXljYXBNZXNoZXMiOiAxLAogICAgICAgICAgInRpZXIiOiAiZGVza3RvcCIsCiAgICAgICAgICAiYmxvb20iOiB0cnVlLAogICAgICAgICAgImVudmlyb25tZW50IjogdHJ1ZSwKICAgICAgICAgICJlbnZpcm9ubWVudEludGVuc2l0eSI6IDAuMzUsCiAgICAgICAgICAiY2FtZXJhRWxldmF0aW9uRGVncmVlcyI6IDM0LjgsCiAgICAgICAgICAicGl4ZWxSYXRpbyI6IDEsCiAgICAgICAgICAid2lkdGgiOiAxMjgwLAogICAgICAgICAgImhlaWdodCI6IDgwMCwKICAgICAgICAgICJmcmFtZXMiOiAxLAogICAgICAgICAgImF2ZXJhZ2VGcHMiOiAwLAogICAgICAgICAgImRyYXdDYWxscyI6IDIyLAogICAgICAgICAgImRlZ3JhZGVkIjogZmFsc2UsCiAgICAgICAgICAiY29udGV4dExvc3QiOiBmYWxzZSwKICAgICAgICAgICJkaXNwb3NlZCI6IGZhbHNlLAogICAgICAgICAgImFzeW5jU2hhZGVyQ29tcGlsZSI6IGZhbHNlLAogICAgICAgICAgInNoYWRlclByZXBhcmF0aW9uTXMiOiAwCiAgICAgICAgfQogICAgICB9LAogICAgICB7CiAgICAgICAgInR5cGUiOiAicmVhZHkiLAogICAgICAgICJkaWFnbm9zdGljcyI6IHsKICAgICAgICAgICJyZW5kZXJlciI6ICJ3ZWJnbDIiLAogICAgICAgICAgInRocmVhZCI6ICJ3b3JrZXIiLAogICAgICAgICAgImtleUNvdW50IjogNjEsCiAgICAgICAgICAia2V5Y2FwTWVzaGVzIjogMSwKICAgICAgICAgICJ0aWVyIjogImRlc2t0b3AiLAogICAgICAgICAgImJsb29tIjogdHJ1ZSwKICAgICAgICAgICJlbnZpcm9ubWVudCI6IHRydWUsCiAgICAgICAgICAiZW52aXJvbm1lbnRJbnRlbnNpdHkiOiAwLjM1LAogICAgICAgICAgImNhbWVyYUVsZXZhdGlvbkRlZ3JlZXMiOiAzNC44LAogICAgICAgICAgInBpeGVsUmF0aW8iOiAxLAogICAgICAgICAgIndpZHRoIjogMTI4MCwKICAgICAgICAgICJoZWlnaHQiOiA4MDAsCiAgICAgICAgICAiZnJhbWVzIjogMSwKICAgICAgICAgICJhdmVyYWdlRnBzIjogMCwKICAgICAgICAgICJkcmF3Q2FsbHMiOiAyMiwKICAgICAgICAgICJkZWdyYWRlZCI6IGZhbHNlLAogICAgICAgICAgImNvbnRleHRMb3N0IjogZmFsc2UsCiAgICAgICAgICAiZGlzcG9zZWQiOiBmYWxzZSwKICAgICAgICAgICJhc3luY1NoYWRlckNvbXBpbGUiOiBmYWxzZSwKICAgICAgICAgICJzaGFkZXJQcmVwYXJhdGlvbk1zIjogMAogICAgICAgIH0KICAgICAgfSwKICAgICAgewogICAgICAgICJ0eXBlIjogImRpYWdub3N0aWNzIiwKICAgICAgICAiZGlhZ25vc3RpY3MiOiB7CiAgICAgICAgICAicmVuZGVyZXIiOiAid2ViZ2wyIiwKICAgICAgICAgICJ0aHJlYWQiOiAid29ya2VyIiwKICAgICAgICAgICJrZXlDb3VudCI6IDYxLAogICAgICAgICAgImtleWNhcE1lc2hlcyI6IDEsCiAgICAgICAgICAidGllciI6ICJkZXNrdG9wIiwKICAgICAgICAgICJibG9vbSI6IHRydWUsCiAgICAgICAgICAiZW52aXJvbm1lbnQiOiB0cnVlLAogICAgICAgICAgImVudmlyb25tZW50SW50ZW5zaXR5IjogMC4zNSwKICAgICAgICAgICJjYW1lcmFFbGV2YXRpb25EZWdyZWVzIjogMzQuOCwKICAgICAgICAgICJwaXhlbFJhdGlvIjogMSwKICAgICAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgICAgICJoZWlnaHQiOiA4NDQsCiAgICAgICAgICAiZnJhbWVzIjogMSwKICAgICAgICAgICJhdmVyYWdlRnBzIjogMCwKICAgICAgICAgICJkcmF3Q2FsbHMiOiAyMiwKICAgICAgICAgICJkZWdyYWRlZCI6IGZhbHNlLAogICAgICAgICAgImNvbnRleHRMb3N0IjogZmFsc2UsCiAgICAgICAgICAiZGlzcG9zZWQiOiBmYWxzZSwKICAgICAgICAgICJhc3luY1NoYWRlckNvbXBpbGUiOiBmYWxzZSwKICAgICAgICAgICJzaGFkZXJQcmVwYXJhdGlvbk1zIjogMAogICAgICAgIH0KICAgICAgfSwKICAgICAgewogICAgICAgICJ0eXBlIjogImRpYWdub3N0aWNzIiwKICAgICAgICAiZGlhZ25vc3RpY3MiOiB7CiAgICAgICAgICAicmVuZGVyZXIiOiAid2ViZ2wyIiwKICAgICAgICAgICJ0aHJlYWQiOiAid29ya2VyIiwKICAgICAgICAgICJrZXlDb3VudCI6IDYxLAogICAgICAgICAgImtleWNhcE1lc2hlcyI6IDEsCiAgICAgICAgICAidGllciI6ICJkZXNrdG9wIiwKICAgICAgICAgICJibG9vbSI6IHRydWUsCiAgICAgICAgICAiZW52aXJvbm1lbnQiOiB0cnVlLAogICAgICAgICAgImVudmlyb25tZW50SW50ZW5zaXR5IjogMC4zNSwKICAgICAgICAgICJjYW1lcmFFbGV2YXRpb25EZWdyZWVzIjogMzUsCiAgICAgICAgICAicGl4ZWxSYXRpbyI6IDEsCiAgICAgICAgICAid2lkdGgiOiAzOTAsCiAgICAgICAgICAiaGVpZ2h0IjogODQ0LAogICAgICAgICAgImZyYW1lcyI6IDcsCiAgICAgICAgICAiYXZlcmFnZUZwcyI6IDAsCiAgICAgICAgICAiZHJhd0NhbGxzIjogMjIsCiAgICAgICAgICAiZGVncmFkZWQiOiBmYWxzZSwKICAgICAgICAgICJjb250ZXh0TG9zdCI6IGZhbHNlLAogICAgICAgICAgImRpc3Bvc2VkIjogdHJ1ZSwKICAgICAgICAgICJhc3luY1NoYWRlckNvbXBpbGUiOiBmYWxzZSwKICAgICAgICAgICJzaGFkZXJQcmVwYXJhdGlvbk1zIjogMAogICAgICAgIH0KICAgICAgfSwKICAgICAgewogICAgICAgICJ0eXBlIjogImRpc3Bvc2VkIgogICAgICB9CiAgICBdLAogICAgInRlcm1pbmF0ZWQiOiAxCiAgfQpd"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\performance-polish-2026-10-16\\worker-chromium-artifacts\\opening-worker-default-nat-26ca6--and-skip-remain-responsive-chromium\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3553ead040fdbe829e1a-6f1e4599e47f0896fc51",
+          "file": "opening-worker.spec.ts",
+          "line": 160,
+          "column": 1
+        },
+        {
+          "title": "reloading a live native worker closes the old worker and a fresh opening releases its own resources",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "scope",
+                  "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5624,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mundefined\u001b[39m\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mundefined\u001b[39m\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate\n    at firstWorkerReady (D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:115:6)\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:273:9",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts",
+                      "column": 6,
+                      "line": 115
+                    },
+                    "snippet": "  113 |       ),\n  114 |     )\n> 115 |     .toBe(true);\n      |      ^\n  116 | }\n  117 | async function readyPractice(page: Page) {\n  118 |   await expect(page.getByTestId(\"opening-experience\")).toHaveCount(0);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts",
+                        "column": 6,
+                        "line": 115
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mundefined\u001b[39m\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate\n\n  113 |       ),\n  114 |     )\n> 115 |     .toBe(true);\n      |      ^\n  116 | }\n  117 | async function readyPractice(page: Page) {\n  118 |   await expect(page.getByTestId(\"opening-experience\")).toHaveCount(0);\n    at firstWorkerReady (D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:115:6)\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:273:9"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browser.newContext started \u001b[38;5;45m+125ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browser.newContext succeeded \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.newPage started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.newPage succeeded \u001b[38;5;45m+67ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.addInitScript started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.addInitScript succeeded \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.goto started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mnavigating to \"http://127.0.0.1:4175/\", waiting until \"domcontentloaded\" \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"commit\" event fired \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"domcontentloaded\" event fired \u001b[38;5;45m+24ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"load\" event fired \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.goto succeeded \u001b[38;5;45m+53ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+79ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+104ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=86108][err] [1016/223446.201:INFO:CONSOLE:1] \"THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.\", source: http://127.0.0.1:4175/assets/three.module-ytFXl0Cs.js (1) \u001b[30m+2s\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+252ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"networkidle\" event fired \u001b[38;5;45m+347ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+162ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+16ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+11ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+11ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.reload started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for navigation until \"domcontentloaded\" \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"commit\" event fired \u001b[38;5;45m+32ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"domcontentloaded\" event fired \u001b[38;5;45m+27ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"load\" event fired \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.reload succeeded \u001b[38;5;45m+13ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+11ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+108ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+253ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+43ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"networkidle\" event fired \u001b[38;5;45m+75ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+430ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/\" \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+18ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+1s\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+47ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+1s\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+1s\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mtaking page screenshot \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for fonts to load... \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mfonts loaded \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+33ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+11ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.close started \u001b[38;5;45m+267ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.close succeeded \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browser.close started \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=86108] <gracefully close start> \u001b[30m+5s\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=86108] <process did exit: exitCode=0, signal=null> \u001b[30m+95ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=86108] starting temporary directories cleanup \u001b[30m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=86108] finished temporary directories cleanup \u001b[30m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=86108] <gracefully close end> \u001b[30m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browser.close succeeded \u001b[38;5;45m+104ms\u001b[0m\n"
+                    }
+                  ],
+                  "retry": 0,
+                  "startTime": "2026-10-16T17:04:45.714Z",
+                  "annotations": [
+                    {
+                      "type": "scope",
+                      "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\performance-polish-2026-10-16\\worker-chromium-artifacts\\opening-worker-reloading-a-331c7--releases-its-own-resources-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "native-worker-receipts",
+                      "contentType": "application/json",
+                      "body": "W10="
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\performance-polish-2026-10-16\\worker-chromium-artifacts\\opening-worker-reloading-a-331c7--releases-its-own-resources-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\performance-polish-2026-10-16\\worker-chromium-artifacts\\opening-worker-reloading-a-331c7--releases-its-own-resources-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts",
+                    "column": 6,
+                    "line": 115
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "3553ead040fdbe829e1a-7809b6972f23bfc92563",
+          "file": "opening-worker.spec.ts",
+          "line": 257,
+          "column": 1
+        },
+        {
+          "title": "skipping while the native worker entry is blocked terminates startup and preserves the first typing key",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "scope",
+                  "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1751,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserType.launch started \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m<launching> C:\\Users\\DELL\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1248\\chrome-headless-shell-win64\\chrome-headless-shell.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=C:\\Users\\DELL\\AppData\\Local\\Temp\\playwright_chromiumdev_profile-XWAIGx --remote-debugging-pipe --no-startup-window \u001b[30m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m<launched> pid=1020 \u001b[30m+20ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserType.launch succeeded \u001b[38;5;45m+120ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browser.newContext started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browser.newContext succeeded \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.newPage started \u001b[38;5;45m+10ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.newPage succeeded \u001b[38;5;45m+80ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+10ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.addInitScript started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.addInitScript succeeded \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.route started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.route succeeded \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.goto started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mnavigating to \"http://127.0.0.1:4175/\", waiting until \"domcontentloaded\" \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"commit\" event fired \u001b[38;5;45m+438ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/\" \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"domcontentloaded\" event fired \u001b[38;5;45m+20ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"load\" event fired \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.goto succeeded \u001b[38;5;45m+56ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+73ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+108ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> keyboard.press started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= keyboard.press succeeded \u001b[38;5;45m+15ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+102ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/\" \u001b[38;5;45m+45ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+207ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+47ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+23ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveCount\" started \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveCount\" getByTestId('opening-experience') with timeout 5000ms \u001b[38;5;45m+13ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByTestId('opening-experience') \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveCount\" succeeded \u001b[38;5;45m+34ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeVisible\" started \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeVisible\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms \u001b[38;5;45m+11ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeVisible\" succeeded \u001b[38;5;45m+18ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveValue\" started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveValue\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms \u001b[38;5;45m+11ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveValue\" succeeded \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveAttribute\" started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveAttribute\" getByRole('region', { name: 'Typing session', exact: true }) with timeout 5000ms \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('region', { name: 'Typing session', exact: true }) \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveAttribute\" succeeded \u001b[38;5;45m+13ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.pressSequentially started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <textarea dir=\"ltr\" autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" maxlength=\"100000\" autocapitalize=\"off\" aria-label=\"Typing input\" aria-describedby=\"typing-instructions typing-passage typing-feedback\" class=\"typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2\"></textarea> \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0melementHandle.type(\"x\") \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.pressSequentially succeeded \u001b[38;5;45m+42ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveValue\" started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveValue\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveValue\" succeeded \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> route.continue started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> route.continue started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= route.continue succeeded \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= route.continue succeeded \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mtaking page screenshot \u001b[38;5;45m+157ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for fonts to load... \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mfonts loaded \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.close started \u001b[38;5;45m+39ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.close succeeded \u001b[38;5;45m+7ms\u001b[0m\n"
+                    }
+                  ],
+                  "retry": 0,
+                  "startTime": "2026-10-16T17:04:52.235Z",
+                  "annotations": [
+                    {
+                      "type": "scope",
+                      "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "native-worker-receipts",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc1L2Fzc2V0cy9rZXlib2FyZC1yZW5kZXItd29ya2VyLUQtTVVQeE56LmpzIiwKICAgICJzZW50IjogWwogICAgICB7CiAgICAgICAgInR5cGUiOiAiaW5pdGlhbGl6ZSIsCiAgICAgICAgInZpZXdwb3J0IjogewogICAgICAgICAgIndpZHRoIjogMTI4MCwKICAgICAgICAgICJoZWlnaHQiOiA3MjAsCiAgICAgICAgICAicGl4ZWxSYXRpbyI6IDEKICAgICAgICB9LAogICAgICAgICJsb3dQb3dlciI6IGZhbHNlLAogICAgICAgICJmaW5lUG9pbnRlciI6IHRydWUKICAgICAgfSwKICAgICAgewogICAgICAgICJ0eXBlIjogInJlc2l6ZSIsCiAgICAgICAgInZpZXdwb3J0IjogewogICAgICAgICAgIndpZHRoIjogMTI4MCwKICAgICAgICAgICJoZWlnaHQiOiA3MjAsCiAgICAgICAgICAicGl4ZWxSYXRpbyI6IDEKICAgICAgICB9CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAidHlwZSI6ICJkaXNwb3NlIgogICAgICB9CiAgICBdLAogICAgInJlY2VpdmVkIjogW10sCiAgICAidGVybWluYXRlZCI6IDEKICB9Cl0="
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\performance-polish-2026-10-16\\worker-chromium-artifacts\\opening-worker-skipping-wh-453da-serves-the-first-typing-key-chromium\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3553ead040fdbe829e1a-bf01470d0f6b8c96a9ee",
+          "file": "opening-worker.spec.ts",
+          "line": 289,
+          "column": 1
+        },
+        {
+          "title": "a native worker transport failure replaces the transferred canvas with the complete real document renderer",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "scope",
+                  "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7250,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browser.newContext started \u001b[38;5;45m+83ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browser.newContext succeeded \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.newPage started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.newPage succeeded \u001b[38;5;45m+71ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+14ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.addInitScript started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.addInitScript succeeded \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.goto started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mnavigating to \"http://127.0.0.1:4175/\", waiting until \"domcontentloaded\" \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"commit\" event fired \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"domcontentloaded\" event fired \u001b[38;5;45m+28ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"load\" event fired \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.goto succeeded \u001b[38;5;45m+71ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+83ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+103ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=1020][err] [1016/223454.793:ERROR:gpu\\command_buffer\\service\\gl_utils.cc:431] [.WebGL-0x3a740199de00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels \u001b[30m+3s\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+254ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+516ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+13ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=1020][err] [1016/223456.364:INFO:CONSOLE:0] \"[.WebGL-0x3a740199de00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels\", source: http://127.0.0.1:4175/ (0) \u001b[30m+2s\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=1020][err] [1016/223456.373:INFO:CONSOLE:1] \"THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.\", source: http://127.0.0.1:4175/assets/three.module-ytFXl0Cs.js (1) \u001b[30m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+1s\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+14ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=1020][err] [1016/223456.841:ERROR:gpu\\command_buffer\\service\\gl_utils.cc:431] [.WebGL-0x3a740199de00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels \u001b[30m+466ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"networkidle\" event fired \u001b[38;5;45m+421ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+590ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+35ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveAttribute\" started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveAttribute\" getByTestId('opening-experience') with timeout 5000ms \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByTestId('opening-experience') \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=1020][err] [1016/223458.158:INFO:CONSOLE:1] \"THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.\", source: http://127.0.0.1:4175/assets/three.module-ytFXl0Cs.js (1) \u001b[30m+1s\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <section data-mode=\"full\" class=\"awakening\" data-closing=\"false\" data-renderer=\"fallback\" data-testid=\"opening-experience\">…</section> \u001b[38;5;45m+1s\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  unexpected value \"fallback\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <section data-mode=\"full\" class=\"awakening\" data-closing=\"false\" data-renderer=\"webgl\" data-testid=\"opening-experience\">…</section> \u001b[38;5;45m+2s\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveAttribute\" succeeded \u001b[38;5;45m+10ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.getAttribute started \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for locator('.awakening-canvas') \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <canvas width=\"1280\" height=\"720\" class=\"awakening-canvas\" data-engine=\"three.js r186\" data-scene=\"{\"renderer\":\"webgl2\",\"thread\":\"main-thread\",\"keyCount\":61,\"keycapMeshes\":1,\"tier\":\"desktop\",\"bloom\":true,\"environment\":true,\"environmentIntensity\":0.35,\"cameraElevationDegrees\":35,\"pixelRatio\":1,\"width\":1280,\"height\":720,\"frames\":2,\"averageFps\":0,\"drawCalls\":22,\"degraded\":false,\"contextLost\":false,\"disposed\":true,\"asyncShaderCompile\":false,\"shaderPreparationMs\":0}\"></canvas> \u001b[38;5;45m+11ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.getAttribute succeeded \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveCount\" started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveCount\" locator('.awakening-canvas') with timeout 5000ms \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for locator('.awakening-canvas') \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveCount\" succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> keyboard.press started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= keyboard.press succeeded \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveCount\" started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveCount\" getByTestId('opening-experience') with timeout 5000ms \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByTestId('opening-experience') \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to 1 element \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  unexpected value \"1\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to 1 element \u001b[38;5;45m+24ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  unexpected value \"1\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/\" \u001b[38;5;45m+52ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to 0 elements \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveCount\" succeeded \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeVisible\" started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeVisible\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms \u001b[38;5;45m+10ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <textarea dir=\"ltr\" autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" maxlength=\"100000\" autocapitalize=\"off\" aria-label=\"Typing input\" aria-describedby=\"typing-instructions typing-passage typing-feedback\" class=\"typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2\"></textarea> \u001b[38;5;45m+124ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeVisible\" succeeded \u001b[38;5;45m+71ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveValue\" started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveValue\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveValue\" succeeded \u001b[38;5;45m+14ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveAttribute\" started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveAttribute\" getByRole('region', { name: 'Typing session', exact: true }) with timeout 5000ms \u001b[38;5;45m+10ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('region', { name: 'Typing session', exact: true }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveAttribute\" succeeded \u001b[38;5;45m+23ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+30ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mtaking page screenshot \u001b[38;5;45m+239ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for fonts to load... \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mfonts loaded \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.close started \u001b[38;5;45m+38ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.close succeeded \u001b[38;5;45m+11ms\u001b[0m\n"
+                    }
+                  ],
+                  "retry": 0,
+                  "startTime": "2026-10-16T17:04:54.216Z",
+                  "annotations": [
+                    {
+                      "type": "scope",
+                      "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "native-worker-receipts",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc1L2Fzc2V0cy9rZXlib2FyZC1yZW5kZXItd29ya2VyLUQtTVVQeE56LmpzIiwKICAgICJzZW50IjogWwogICAgICB7CiAgICAgICAgInR5cGUiOiAiaW5pdGlhbGl6ZSIsCiAgICAgICAgInZpZXdwb3J0IjogewogICAgICAgICAgIndpZHRoIjogMTI4MCwKICAgICAgICAgICJoZWlnaHQiOiA3MjAsCiAgICAgICAgICAicGl4ZWxSYXRpbyI6IDEKICAgICAgICB9LAogICAgICAgICJsb3dQb3dlciI6IGZhbHNlLAogICAgICAgICJmaW5lUG9pbnRlciI6IHRydWUKICAgICAgfSwKICAgICAgewogICAgICAgICJ0eXBlIjogInJlc2l6ZSIsCiAgICAgICAgInZpZXdwb3J0IjogewogICAgICAgICAgIndpZHRoIjogMTI4MCwKICAgICAgICAgICJoZWlnaHQiOiA3MjAsCiAgICAgICAgICAicGl4ZWxSYXRpbyI6IDEKICAgICAgICB9CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAidHlwZSI6ICJwcm9ncmVzcyIKICAgICAgfSwKICAgICAgewogICAgICAgICJ0eXBlIjogInN0YXJ0IgogICAgICB9LAogICAgICB7CiAgICAgICAgInR5cGUiOiAicHJvZ3Jlc3MiCiAgICAgIH0KICAgIF0sCiAgICAicmVjZWl2ZWQiOiBbCiAgICAgIHsKICAgICAgICAidHlwZSI6ICJkaWFnbm9zdGljcyIsCiAgICAgICAgImRpYWdub3N0aWNzIjogewogICAgICAgICAgInJlbmRlcmVyIjogIndlYmdsMiIsCiAgICAgICAgICAidGhyZWFkIjogIndvcmtlciIsCiAgICAgICAgICAia2V5Q291bnQiOiA2MSwKICAgICAgICAgICJrZXljYXBNZXNoZXMiOiAxLAogICAgICAgICAgInRpZXIiOiAiZGVza3RvcCIsCiAgICAgICAgICAiYmxvb20iOiBmYWxzZSwKICAgICAgICAgICJlbnZpcm9ubWVudCI6IHRydWUsCiAgICAgICAgICAiZW52aXJvbm1lbnRJbnRlbnNpdHkiOiAwLjM1LAogICAgICAgICAgImNhbWVyYUVsZXZhdGlvbkRlZ3JlZXMiOiAzNSwKICAgICAgICAgICJwaXhlbFJhdGlvIjogMSwKICAgICAgICAgICJ3aWR0aCI6IDEyODAsCiAgICAgICAgICAiaGVpZ2h0IjogNzIwLAogICAgICAgICAgImZyYW1lcyI6IDAsCiAgICAgICAgICAiYXZlcmFnZUZwcyI6IDAsCiAgICAgICAgICAiZHJhd0NhbGxzIjogMCwKICAgICAgICAgICJkZWdyYWRlZCI6IGZhbHNlLAogICAgICAgICAgImNvbnRleHRMb3N0IjogZmFsc2UsCiAgICAgICAgICAiZGlzcG9zZWQiOiBmYWxzZSwKICAgICAgICAgICJhc3luY1NoYWRlckNvbXBpbGUiOiBmYWxzZSwKICAgICAgICAgICJzaGFkZXJQcmVwYXJhdGlvbk1zIjogMAogICAgICAgIH0KICAgICAgfSwKICAgICAgewogICAgICAgICJ0eXBlIjogImRpYWdub3N0aWNzIiwKICAgICAgICAiZGlhZ25vc3RpY3MiOiB7CiAgICAgICAgICAicmVuZGVyZXIiOiAid2ViZ2wyIiwKICAgICAgICAgICJ0aHJlYWQiOiAid29ya2VyIiwKICAgICAgICAgICJrZXlDb3VudCI6IDYxLAogICAgICAgICAgImtleWNhcE1lc2hlcyI6IDEsCiAgICAgICAgICAidGllciI6ICJkZXNrdG9wIiwKICAgICAgICAgICJibG9vbSI6IHRydWUsCiAgICAgICAgICAiZW52aXJvbm1lbnQiOiB0cnVlLAogICAgICAgICAgImVudmlyb25tZW50SW50ZW5zaXR5IjogMC4zNSwKICAgICAgICAgICJjYW1lcmFFbGV2YXRpb25EZWdyZWVzIjogMzQuOCwKICAgICAgICAgICJwaXhlbFJhdGlvIjogMSwKICAgICAgICAgICJ3aWR0aCI6IDEyODAsCiAgICAgICAgICAiaGVpZ2h0IjogNzIwLAogICAgICAgICAgImZyYW1lcyI6IDEsCiAgICAgICAgICAiYXZlcmFnZUZwcyI6IDAsCiAgICAgICAgICAiZHJhd0NhbGxzIjogMjIsCiAgICAgICAgICAiZGVncmFkZWQiOiBmYWxzZSwKICAgICAgICAgICJjb250ZXh0TG9zdCI6IGZhbHNlLAogICAgICAgICAgImRpc3Bvc2VkIjogZmFsc2UsCiAgICAgICAgICAiYXN5bmNTaGFkZXJDb21waWxlIjogZmFsc2UsCiAgICAgICAgICAic2hhZGVyUHJlcGFyYXRpb25NcyI6IDAKICAgICAgICB9CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAidHlwZSI6ICJyZWFkeSIsCiAgICAgICAgImRpYWdub3N0aWNzIjogewogICAgICAgICAgInJlbmRlcmVyIjogIndlYmdsMiIsCiAgICAgICAgICAidGhyZWFkIjogIndvcmtlciIsCiAgICAgICAgICAia2V5Q291bnQiOiA2MSwKICAgICAgICAgICJrZXljYXBNZXNoZXMiOiAxLAogICAgICAgICAgInRpZXIiOiAiZGVza3RvcCIsCiAgICAgICAgICAiYmxvb20iOiB0cnVlLAogICAgICAgICAgImVudmlyb25tZW50IjogdHJ1ZSwKICAgICAgICAgICJlbnZpcm9ubWVudEludGVuc2l0eSI6IDAuMzUsCiAgICAgICAgICAiY2FtZXJhRWxldmF0aW9uRGVncmVlcyI6IDM0LjgsCiAgICAgICAgICAicGl4ZWxSYXRpbyI6IDEsCiAgICAgICAgICAid2lkdGgiOiAxMjgwLAogICAgICAgICAgImhlaWdodCI6IDcyMCwKICAgICAgICAgICJmcmFtZXMiOiAxLAogICAgICAgICAgImF2ZXJhZ2VGcHMiOiAwLAogICAgICAgICAgImRyYXdDYWxscyI6IDIyLAogICAgICAgICAgImRlZ3JhZGVkIjogZmFsc2UsCiAgICAgICAgICAiY29udGV4dExvc3QiOiBmYWxzZSwKICAgICAgICAgICJkaXNwb3NlZCI6IGZhbHNlLAogICAgICAgICAgImFzeW5jU2hhZGVyQ29tcGlsZSI6IGZhbHNlLAogICAgICAgICAgInNoYWRlclByZXBhcmF0aW9uTXMiOiAwCiAgICAgICAgfQogICAgICB9CiAgICBdLAogICAgInRlcm1pbmF0ZWQiOiAxCiAgfQpd"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\performance-polish-2026-10-16\\worker-chromium-artifacts\\opening-worker-a-native-wo-2521a-lete-real-document-renderer-chromium\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3553ead040fdbe829e1a-b66ea96efa93782ea957",
+          "file": "opening-worker.spec.ts",
+          "line": 349,
+          "column": 1
+        },
+        {
+          "title": "actual worker WebGL context loss recovers with a fresh canvas and keeps practice usable",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "scope",
+                  "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5210,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:415:6",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts",
+                      "column": 6,
+                      "line": 415
+                    },
+                    "snippet": "  413 |       ),\n  414 |     )\n> 415 |     .toBe(true);\n      |      ^\n  416 |   await expectRecoveredDocumentScene(page);\n  417 | });\n  418 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts",
+                        "column": 6,
+                        "line": 415
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate\n\n  413 |       ),\n  414 |     )\n> 415 |     .toBe(true);\n      |      ^\n  416 |   await expectRecoveredDocumentScene(page);\n  417 | });\n  418 |\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:415:6"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browser.newContext started \u001b[38;5;45m+134ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browser.newContext succeeded \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.newPage started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.newPage succeeded \u001b[38;5;45m+71ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+10ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.addInitScript started \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.addInitScript succeeded \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.route started \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.route succeeded \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.goto started \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mnavigating to \"http://127.0.0.1:4175/\", waiting until \"domcontentloaded\" \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"commit\" event fired \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"domcontentloaded\" event fired \u001b[38;5;45m+20ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"load\" event fired \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.goto succeeded \u001b[38;5;45m+51ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+35ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> route.fetch started \u001b[38;5;45m+23ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m→ GET http://127.0.0.1:4175/assets/keyboard-render-worker-D-MUPxNz.js \u001b[38;5;45m+14ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36 \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  accept: */* \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  accept-encoding: gzip,deflate,br \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  accept-language: en-US \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  referer: http://127.0.0.1:4175/ \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m← 200 OK \u001b[38;5;45m+15ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  vary: Origin \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  content-security-policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https: wss:; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self' \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  x-content-type-options: nosniff \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  referrer-policy: strict-origin-when-cross-origin \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  x-frame-options: DENY \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  permissions-policy: camera=(), microphone=(), geolocation=(), gyroscope=() \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  content-type: text/javascript \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  last-modified: Fri, 16 Oct 2026 17:03:30 GMT \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  etag: W/\"1167-1792170210211\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  cache-control: no-cache \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  content-encoding: gzip \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  date: Fri, 16 Oct 2026 17:05:01 GMT \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  connection: keep-alive \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  keep-alive: timeout=5 \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  transfer-encoding: chunked \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= route.fetch succeeded \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> route.fulfill started \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= route.fulfill succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+30ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+253ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+20ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+116ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+10ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+263ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+509ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=1020][err] [1016/223503.671:INFO:CONSOLE:1] \"THREE.WebGLRenderer: Context Lost.\", source: http://127.0.0.1:4175/assets/three.module-ytFXl0Cs.js (1) \u001b[30m+6s\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+1s\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"networkidle\" event fired \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+1s\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+11ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=1020][err] [1016/223505.839:INFO:CONSOLE:1] \"THREE.WebGLRenderer: WEBGL_lose_context extension not supported.\", source: http://127.0.0.1:4175/assets/three.module-ytFXl0Cs.js (1) \u001b[30m+2s\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/\" \u001b[38;5;45m+801ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+201ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+66ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mtaking page screenshot \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for fonts to load... \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mfonts loaded \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+78ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> route.fetch started \u001b[38;5;45m+25ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m→ GET http://127.0.0.1:4175/assets/keyboard-render-worker-D-MUPxNz.js \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36 \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  accept: */* \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  accept-encoding: gzip,deflate,br \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  accept-language: en-US \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  referer: http://127.0.0.1:4175/sw.js \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m← 200 OK \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  vary: Origin \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  content-security-policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https: wss:; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self' \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  x-content-type-options: nosniff \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  referrer-policy: strict-origin-when-cross-origin \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  x-frame-options: DENY \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  permissions-policy: camera=(), microphone=(), geolocation=(), gyroscope=() \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  content-type: text/javascript \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  last-modified: Fri, 16 Oct 2026 17:03:30 GMT \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  etag: W/\"1167-1792170210211\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  cache-control: no-cache \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  content-encoding: gzip \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  date: Fri, 16 Oct 2026 17:05:06 GMT \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  connection: keep-alive \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  keep-alive: timeout=5 \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  transfer-encoding: chunked \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= route.fetch succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> route.fulfill started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= route.fulfill succeeded \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.close started \u001b[38;5;45m+388ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.close succeeded \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browser.close started \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=1020] <gracefully close start> \u001b[30m+988ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=1020] <process did exit: exitCode=0, signal=null> \u001b[30m+835ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=1020] starting temporary directories cleanup \u001b[30m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=1020] finished temporary directories cleanup \u001b[30m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m[pid=1020] <gracefully close end> \u001b[30m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browser.close succeeded \u001b[38;5;45m+844ms\u001b[0m\n"
+                    }
+                  ],
+                  "retry": 0,
+                  "startTime": "2026-10-16T17:05:01.602Z",
+                  "annotations": [
+                    {
+                      "type": "scope",
+                      "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\performance-polish-2026-10-16\\worker-chromium-artifacts\\opening-worker-actual-work-1f86c-s-and-keeps-practice-usable-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "native-worker-receipts",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc1L2Fzc2V0cy9rZXlib2FyZC1yZW5kZXItd29ya2VyLUQtTVVQeE56LmpzIiwKICAgICJzZW50IjogWwogICAgICB7CiAgICAgICAgInR5cGUiOiAiaW5pdGlhbGl6ZSIsCiAgICAgICAgInZpZXdwb3J0IjogewogICAgICAgICAgIndpZHRoIjogMTI4MCwKICAgICAgICAgICJoZWlnaHQiOiA3MjAsCiAgICAgICAgICAicGl4ZWxSYXRpbyI6IDEKICAgICAgICB9LAogICAgICAgICJsb3dQb3dlciI6IGZhbHNlLAogICAgICAgICJmaW5lUG9pbnRlciI6IHRydWUKICAgICAgfSwKICAgICAgewogICAgICAgICJ0eXBlIjogInJlc2l6ZSIsCiAgICAgICAgInZpZXdwb3J0IjogewogICAgICAgICAgIndpZHRoIjogMTI4MCwKICAgICAgICAgICJoZWlnaHQiOiA3MjAsCiAgICAgICAgICAicGl4ZWxSYXRpbyI6IDEKICAgICAgICB9CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAidHlwZSI6ICJwcm9ncmVzcyIKICAgICAgfSwKICAgICAgewogICAgICAgICJ0eXBlIjogInN0YXJ0IgogICAgICB9LAogICAgICB7CiAgICAgICAgInR5cGUiOiAicHJvZ3Jlc3MiCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAidHlwZSI6ICJkaXNwb3NlIgogICAgICB9CiAgICBdLAogICAgInJlY2VpdmVkIjogWwogICAgICB7CiAgICAgICAgInR5cGUiOiAidGVzdC1jb250ZXh0LWxvc3MtY2FwYWJpbGl0eSIsCiAgICAgICAgInN1cHBvcnRlZCI6IHRydWUKICAgICAgfSwKICAgICAgewogICAgICAgICJ0eXBlIjogImRpYWdub3N0aWNzIiwKICAgICAgICAiZGlhZ25vc3RpY3MiOiB7CiAgICAgICAgICAicmVuZGVyZXIiOiAid2ViZ2wyIiwKICAgICAgICAgICJ0aHJlYWQiOiAid29ya2VyIiwKICAgICAgICAgICJrZXlDb3VudCI6IDYxLAogICAgICAgICAgImtleWNhcE1lc2hlcyI6IDEsCiAgICAgICAgICAidGllciI6ICJkZXNrdG9wIiwKICAgICAgICAgICJibG9vbSI6IGZhbHNlLAogICAgICAgICAgImVudmlyb25tZW50IjogdHJ1ZSwKICAgICAgICAgICJlbnZpcm9ubWVudEludGVuc2l0eSI6IDAuMzUsCiAgICAgICAgICAiY2FtZXJhRWxldmF0aW9uRGVncmVlcyI6IDM1LAogICAgICAgICAgInBpeGVsUmF0aW8iOiAxLAogICAgICAgICAgIndpZHRoIjogMTI4MCwKICAgICAgICAgICJoZWlnaHQiOiA3MjAsCiAgICAgICAgICAiZnJhbWVzIjogMCwKICAgICAgICAgICJhdmVyYWdlRnBzIjogMCwKICAgICAgICAgICJkcmF3Q2FsbHMiOiAwLAogICAgICAgICAgImRlZ3JhZGVkIjogZmFsc2UsCiAgICAgICAgICAiY29udGV4dExvc3QiOiBmYWxzZSwKICAgICAgICAgICJkaXNwb3NlZCI6IGZhbHNlLAogICAgICAgICAgImFzeW5jU2hhZGVyQ29tcGlsZSI6IGZhbHNlLAogICAgICAgICAgInNoYWRlclByZXBhcmF0aW9uTXMiOiAwCiAgICAgICAgfQogICAgICB9LAogICAgICB7CiAgICAgICAgInR5cGUiOiAidGVzdC1uYXRpdmUtY29udGV4dC1sb3NzLXJlcXVlc3RlZCIKICAgICAgfSwKICAgICAgewogICAgICAgICJ0eXBlIjogImRpYWdub3N0aWNzIiwKICAgICAgICAiZGlhZ25vc3RpY3MiOiB7CiAgICAgICAgICAicmVuZGVyZXIiOiAid2ViZ2wyIiwKICAgICAgICAgICJ0aHJlYWQiOiAid29ya2VyIiwKICAgICAgICAgICJrZXlDb3VudCI6IDYxLAogICAgICAgICAgImtleWNhcE1lc2hlcyI6IDEsCiAgICAgICAgICAidGllciI6ICJkZXNrdG9wIiwKICAgICAgICAgICJibG9vbSI6IHRydWUsCiAgICAgICAgICAiZW52aXJvbm1lbnQiOiB0cnVlLAogICAgICAgICAgImVudmlyb25tZW50SW50ZW5zaXR5IjogMC4zNSwKICAgICAgICAgICJjYW1lcmFFbGV2YXRpb25EZWdyZWVzIjogMzQuOCwKICAgICAgICAgICJwaXhlbFJhdGlvIjogMSwKICAgICAgICAgICJ3aWR0aCI6IDEyODAsCiAgICAgICAgICAiaGVpZ2h0IjogNzIwLAogICAgICAgICAgImZyYW1lcyI6IDEsCiAgICAgICAgICAiYXZlcmFnZUZwcyI6IDAsCiAgICAgICAgICAiZHJhd0NhbGxzIjogMCwKICAgICAgICAgICJkZWdyYWRlZCI6IGZhbHNlLAogICAgICAgICAgImNvbnRleHRMb3N0IjogZmFsc2UsCiAgICAgICAgICAiZGlzcG9zZWQiOiBmYWxzZSwKICAgICAgICAgICJhc3luY1NoYWRlckNvbXBpbGUiOiBmYWxzZSwKICAgICAgICAgICJzaGFkZXJQcmVwYXJhdGlvbk1zIjogMAogICAgICAgIH0KICAgICAgfSwKICAgICAgewogICAgICAgICJ0eXBlIjogInJlYWR5IiwKICAgICAgICAiZGlhZ25vc3RpY3MiOiB7CiAgICAgICAgICAicmVuZGVyZXIiOiAid2ViZ2wyIiwKICAgICAgICAgICJ0aHJlYWQiOiAid29ya2VyIiwKICAgICAgICAgICJrZXlDb3VudCI6IDYxLAogICAgICAgICAgImtleWNhcE1lc2hlcyI6IDEsCiAgICAgICAgICAidGllciI6ICJkZXNrdG9wIiwKICAgICAgICAgICJibG9vbSI6IHRydWUsCiAgICAgICAgICAiZW52aXJvbm1lbnQiOiB0cnVlLAogICAgICAgICAgImVudmlyb25tZW50SW50ZW5zaXR5IjogMC4zNSwKICAgICAgICAgICJjYW1lcmFFbGV2YXRpb25EZWdyZWVzIjogMzQuOCwKICAgICAgICAgICJwaXhlbFJhdGlvIjogMSwKICAgICAgICAgICJ3aWR0aCI6IDEyODAsCiAgICAgICAgICAiaGVpZ2h0IjogNzIwLAogICAgICAgICAgImZyYW1lcyI6IDEsCiAgICAgICAgICAiYXZlcmFnZUZwcyI6IDAsCiAgICAgICAgICAiZHJhd0NhbGxzIjogMCwKICAgICAgICAgICJkZWdyYWRlZCI6IGZhbHNlLAogICAgICAgICAgImNvbnRleHRMb3N0IjogZmFsc2UsCiAgICAgICAgICAiZGlzcG9zZWQiOiBmYWxzZSwKICAgICAgICAgICJhc3luY1NoYWRlckNvbXBpbGUiOiBmYWxzZSwKICAgICAgICAgICJzaGFkZXJQcmVwYXJhdGlvbk1zIjogMAogICAgICAgIH0KICAgICAgfSwKICAgICAgewogICAgICAgICJ0eXBlIjogImRpYWdub3N0aWNzIiwKICAgICAgICAiZGlhZ25vc3RpY3MiOiB7CiAgICAgICAgICAicmVuZGVyZXIiOiAid2ViZ2wyIiwKICAgICAgICAgICJ0aHJlYWQiOiAid29ya2VyIiwKICAgICAgICAgICJrZXlDb3VudCI6IDYxLAogICAgICAgICAgImtleWNhcE1lc2hlcyI6IDEsCiAgICAgICAgICAidGllciI6ICJkZXNrdG9wIiwKICAgICAgICAgICJibG9vbSI6IHRydWUsCiAgICAgICAgICAiZW52aXJvbm1lbnQiOiB0cnVlLAogICAgICAgICAgImVudmlyb25tZW50SW50ZW5zaXR5IjogMC4zNSwKICAgICAgICAgICJjYW1lcmFFbGV2YXRpb25EZWdyZWVzIjogMzUsCiAgICAgICAgICAicGl4ZWxSYXRpbyI6IDEsCiAgICAgICAgICAid2lkdGgiOiAxMjgwLAogICAgICAgICAgImhlaWdodCI6IDcyMCwKICAgICAgICAgICJmcmFtZXMiOiAyMywKICAgICAgICAgICJhdmVyYWdlRnBzIjogNjAsCiAgICAgICAgICAiZHJhd0NhbGxzIjogMCwKICAgICAgICAgICJkZWdyYWRlZCI6IGZhbHNlLAogICAgICAgICAgImNvbnRleHRMb3N0IjogZmFsc2UsCiAgICAgICAgICAiZGlzcG9zZWQiOiBmYWxzZSwKICAgICAgICAgICJhc3luY1NoYWRlckNvbXBpbGUiOiBmYWxzZSwKICAgICAgICAgICJzaGFkZXJQcmVwYXJhdGlvbk1zIjogMAogICAgICAgIH0KICAgICAgfSwKICAgICAgewogICAgICAgICJ0eXBlIjogImRpYWdub3N0aWNzIiwKICAgICAgICAiZGlhZ25vc3RpY3MiOiB7CiAgICAgICAgICAicmVuZGVyZXIiOiAid2ViZ2wyIiwKICAgICAgICAgICJ0aHJlYWQiOiAid29ya2VyIiwKICAgICAgICAgICJrZXlDb3VudCI6IDYxLAogICAgICAgICAgImtleWNhcE1lc2hlcyI6IDEsCiAgICAgICAgICAidGllciI6ICJkZXNrdG9wIiwKICAgICAgICAgICJibG9vbSI6IHRydWUsCiAgICAgICAgICAiZW52aXJvbm1lbnQiOiB0cnVlLAogICAgICAgICAgImVudmlyb25tZW50SW50ZW5zaXR5IjogMC4zNSwKICAgICAgICAgICJjYW1lcmFFbGV2YXRpb25EZWdyZWVzIjogMzUsCiAgICAgICAgICAicGl4ZWxSYXRpbyI6IDEsCiAgICAgICAgICAid2lkdGgiOiAxMjgwLAogICAgICAgICAgImhlaWdodCI6IDcyMCwKICAgICAgICAgICJmcmFtZXMiOiA0MywKICAgICAgICAgICJhdmVyYWdlRnBzIjogNjAsCiAgICAgICAgICAiZHJhd0NhbGxzIjogMCwKICAgICAgICAgICJkZWdyYWRlZCI6IGZhbHNlLAogICAgICAgICAgImNvbnRleHRMb3N0IjogZmFsc2UsCiAgICAgICAgICAiZGlzcG9zZWQiOiBmYWxzZSwKICAgICAgICAgICJhc3luY1NoYWRlckNvbXBpbGUiOiBmYWxzZSwKICAgICAgICAgICJzaGFkZXJQcmVwYXJhdGlvbk1zIjogMAogICAgICAgIH0KICAgICAgfSwKICAgICAgewogICAgICAgICJ0eXBlIjogImRpYWdub3N0aWNzIiwKICAgICAgICAiZGlhZ25vc3RpY3MiOiB7CiAgICAgICAgICAicmVuZGVyZXIiOiAid2ViZ2wyIiwKICAgICAgICAgICJ0aHJlYWQiOiAid29ya2VyIiwKICAgICAgICAgICJrZXlDb3VudCI6IDYxLAogICAgICAgICAgImtleWNhcE1lc2hlcyI6IDEsCiAgICAgICAgICAidGllciI6ICJkZXNrdG9wIiwKICAgICAgICAgICJibG9vbSI6IHRydWUsCiAgICAgICAgICAiZW52aXJvbm1lbnQiOiB0cnVlLAogICAgICAgICAgImVudmlyb25tZW50SW50ZW5zaXR5IjogMC4zNSwKICAgICAgICAgICJjYW1lcmFFbGV2YXRpb25EZWdyZWVzIjogMzUsCiAgICAgICAgICAicGl4ZWxSYXRpbyI6IDEsCiAgICAgICAgICAid2lkdGgiOiAxMjgwLAogICAgICAgICAgImhlaWdodCI6IDcyMCwKICAgICAgICAgICJmcmFtZXMiOiA2MywKICAgICAgICAgICJhdmVyYWdlRnBzIjogNjAsCiAgICAgICAgICAiZHJhd0NhbGxzIjogMCwKICAgICAgICAgICJkZWdyYWRlZCI6IGZhbHNlLAogICAgICAgICAgImNvbnRleHRMb3N0IjogZmFsc2UsCiAgICAgICAgICAiZGlzcG9zZWQiOiBmYWxzZSwKICAgICAgICAgICJhc3luY1NoYWRlckNvbXBpbGUiOiBmYWxzZSwKICAgICAgICAgICJzaGFkZXJQcmVwYXJhdGlvbk1zIjogMAogICAgICAgIH0KICAgICAgfSwKICAgICAgewogICAgICAgICJ0eXBlIjogImRpYWdub3N0aWNzIiwKICAgICAgICAiZGlhZ25vc3RpY3MiOiB7CiAgICAgICAgICAicmVuZGVyZXIiOiAid2ViZ2wyIiwKICAgICAgICAgICJ0aHJlYWQiOiAid29ya2VyIiwKICAgICAgICAgICJrZXlDb3VudCI6IDYxLAogICAgICAgICAgImtleWNhcE1lc2hlcyI6IDEsCiAgICAgICAgICAidGllciI6ICJkZXNrdG9wIiwKICAgICAgICAgICJibG9vbSI6IHRydWUsCiAgICAgICAgICAiZW52aXJvbm1lbnQiOiB0cnVlLAogICAgICAgICAgImVudmlyb25tZW50SW50ZW5zaXR5IjogMC4zNSwKICAgICAgICAgICJjYW1lcmFFbGV2YXRpb25EZWdyZWVzIjogMzUsCiAgICAgICAgICAicGl4ZWxSYXRpbyI6IDEsCiAgICAgICAgICAid2lkdGgiOiAxMjgwLAogICAgICAgICAgImhlaWdodCI6IDcyMCwKICAgICAgICAgICJmcmFtZXMiOiA4MywKICAgICAgICAgICJhdmVyYWdlRnBzIjogNjAsCiAgICAgICAgICAiZHJhd0NhbGxzIjogMCwKICAgICAgICAgICJkZWdyYWRlZCI6IGZhbHNlLAogICAgICAgICAgImNvbnRleHRMb3N0IjogZmFsc2UsCiAgICAgICAgICAiZGlzcG9zZWQiOiBmYWxzZSwKICAgICAgICAgICJhc3luY1NoYWRlckNvbXBpbGUiOiBmYWxzZSwKICAgICAgICAgICJzaGFkZXJQcmVwYXJhdGlvbk1zIjogMAogICAgICAgIH0KICAgICAgfSwKICAgICAgewogICAgICAgICJ0eXBlIjogImRpYWdub3N0aWNzIiwKICAgICAgICAiZGlhZ25vc3RpY3MiOiB7CiAgICAgICAgICAicmVuZGVyZXIiOiAid2ViZ2wyIiwKICAgICAgICAgICJ0aHJlYWQiOiAid29ya2VyIiwKICAgICAgICAgICJrZXlDb3VudCI6IDYxLAogICAgICAgICAgImtleWNhcE1lc2hlcyI6IDEsCiAgICAgICAgICAidGllciI6ICJkZXNrdG9wIiwKICAgICAgICAgICJibG9vbSI6IHRydWUsCiAgICAgICAgICAiZW52aXJvbm1lbnQiOiB0cnVlLAogICAgICAgICAgImVudmlyb25tZW50SW50ZW5zaXR5IjogMC4zNSwKICAgICAgICAgICJjYW1lcmFFbGV2YXRpb25EZWdyZWVzIjogMzUsCiAgICAgICAgICAicGl4ZWxSYXRpbyI6IDEsCiAgICAgICAgICAid2lkdGgiOiAxMjgwLAogICAgICAgICAgImhlaWdodCI6IDcyMCwKICAgICAgICAgICJmcmFtZXMiOiAxMDMsCiAgICAgICAgICAiYXZlcmFnZUZwcyI6IDYwLAogICAgICAgICAgImRyYXdDYWxscyI6IDAsCiAgICAgICAgICAiZGVncmFkZWQiOiBmYWxzZSwKICAgICAgICAgICJjb250ZXh0TG9zdCI6IGZhbHNlLAogICAgICAgICAgImRpc3Bvc2VkIjogZmFsc2UsCiAgICAgICAgICAiYXN5bmNTaGFkZXJDb21waWxlIjogZmFsc2UsCiAgICAgICAgICAic2hhZGVyUHJlcGFyYXRpb25NcyI6IDAKICAgICAgICB9CiAgICAgIH0sCiAgICAgIHsKICAgICAgICAidHlwZSI6ICJkaWFnbm9zdGljcyIsCiAgICAgICAgImRpYWdub3N0aWNzIjogewogICAgICAgICAgInJlbmRlcmVyIjogIndlYmdsMiIsCiAgICAgICAgICAidGhyZWFkIjogIndvcmtlciIsCiAgICAgICAgICAia2V5Q291bnQiOiA2MSwKICAgICAgICAgICJrZXljYXBNZXNoZXMiOiAxLAogICAgICAgICAgInRpZXIiOiAiZGVza3RvcCIsCiAgICAgICAgICAiYmxvb20iOiB0cnVlLAogICAgICAgICAgImVudmlyb25tZW50IjogdHJ1ZSwKICAgICAgICAgICJlbnZpcm9ubWVudEludGVuc2l0eSI6IDAuMzUsCiAgICAgICAgICAiY2FtZXJhRWxldmF0aW9uRGVncmVlcyI6IDM1LAogICAgICAgICAgInBpeGVsUmF0aW8iOiAxLAogICAgICAgICAgIndpZHRoIjogMTI4MCwKICAgICAgICAgICJoZWlnaHQiOiA3MjAsCiAgICAgICAgICAiZnJhbWVzIjogMTIzLAogICAgICAgICAgImF2ZXJhZ2VGcHMiOiA2MCwKICAgICAgICAgICJkcmF3Q2FsbHMiOiAwLAogICAgICAgICAgImRlZ3JhZGVkIjogZmFsc2UsCiAgICAgICAgICAiY29udGV4dExvc3QiOiBmYWxzZSwKICAgICAgICAgICJkaXNwb3NlZCI6IGZhbHNlLAogICAgICAgICAgImFzeW5jU2hhZGVyQ29tcGlsZSI6IGZhbHNlLAogICAgICAgICAgInNoYWRlclByZXBhcmF0aW9uTXMiOiAwCiAgICAgICAgfQogICAgICB9LAogICAgICB7CiAgICAgICAgInR5cGUiOiAiZGlhZ25vc3RpY3MiLAogICAgICAgICJkaWFnbm9zdGljcyI6IHsKICAgICAgICAgICJyZW5kZXJlciI6ICJ3ZWJnbDIiLAogICAgICAgICAgInRocmVhZCI6ICJ3b3JrZXIiLAogICAgICAgICAgImtleUNvdW50IjogNjEsCiAgICAgICAgICAia2V5Y2FwTWVzaGVzIjogMSwKICAgICAgICAgICJ0aWVyIjogImRlc2t0b3AiLAogICAgICAgICAgImJsb29tIjogdHJ1ZSwKICAgICAgICAgICJlbnZpcm9ubWVudCI6IHRydWUsCiAgICAgICAgICAiZW52aXJvbm1lbnRJbnRlbnNpdHkiOiAwLjM1LAogICAgICAgICAgImNhbWVyYUVsZXZhdGlvbkRlZ3JlZXMiOiAzNSwKICAgICAgICAgICJwaXhlbFJhdGlvIjogMSwKICAgICAgICAgICJ3aWR0aCI6IDEyODAsCiAgICAgICAgICAiaGVpZ2h0IjogNzIwLAogICAgICAgICAgImZyYW1lcyI6IDEzMCwKICAgICAgICAgICJhdmVyYWdlRnBzIjogNjAsCiAgICAgICAgICAiZHJhd0NhbGxzIjogMCwKICAgICAgICAgICJkZWdyYWRlZCI6IGZhbHNlLAogICAgICAgICAgImNvbnRleHRMb3N0IjogZmFsc2UsCiAgICAgICAgICAiZGlzcG9zZWQiOiB0cnVlLAogICAgICAgICAgImFzeW5jU2hhZGVyQ29tcGlsZSI6IGZhbHNlLAogICAgICAgICAgInNoYWRlclByZXBhcmF0aW9uTXMiOiAwCiAgICAgICAgfQogICAgICB9LAogICAgICB7CiAgICAgICAgInR5cGUiOiAiZGlzcG9zZWQiCiAgICAgIH0KICAgIF0sCiAgICAidGVybWluYXRlZCI6IDEKICB9Cl0="
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\performance-polish-2026-10-16\\worker-chromium-artifacts\\opening-worker-actual-work-1f86c-s-and-keeps-practice-usable-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\performance-polish-2026-10-16\\worker-chromium-artifacts\\opening-worker-actual-work-1f86c-s-and-keeps-practice-usable-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts",
+                    "column": 6,
+                    "line": 415
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "3553ead040fdbe829e1a-aecb395bf861fd48d7da",
+          "file": "opening-worker.spec.ts",
+          "line": 363,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-16T17:04:37.426Z",
+    "duration": 30438.259000000002,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

@@ -8,3 +8,99 @@ Running 9 tests using 1 worker
 (node:55644) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `node --trace-warnings ...` to show where the warning was created)
   ok 3 [firefox] › e2e\responsive-layout.spec.ts:28:3 › main local pages fit a 768px viewport (8.9s)
+  ok 4 [firefox] › e2e\responsive-layout.spec.ts:28:3 › main local pages fit a 1440px viewport (19.7s)
+  ok 5 [firefox] › e2e\responsive-layout.spec.ts:43:1 › every theme provides opaque, readable native language options (8.9s)
+  ok 6 [firefox] › e2e\responsive-layout.spec.ts:93:1 › small-screen test controls wrap in all six modes and keep select targets usable (5.0s)
+  ok 7 [firefox] › e2e\responsive-layout.spec.ts:118:1 › narrow results retain the whole keyboard map and expanded evidence (5.7s)
+  ok 8 [firefox] › e2e\responsive-layout.spec.ts:156:1 › race and learning remain usable after landscape and narrow resize (7.3s)
+  ok 9 [firefox] › e2e\responsive-pages.spec.ts:19:1 › populated history, comparison chart and account controls fit narrow and tablet screens (6.0s)
+
+
+  1) [firefox] › e2e\responsive-layout.spec.ts:28:3 › main local pages fit a 390px viewport ────────
+
+    Tearing down "context" exceeded the test timeout of 90000ms.
+
+    Error: browserContext.close: Test ended.
+    Browser logs:
+
+    <launching> C:\Users\DELL\AppData\Local\ms-playwright\firefox-1555\firefox\firefox.exe -no-remote -headless -profile C:\Users\DELL\AppData\Local\Temp\playwright_firefoxdev_profile-OvOP9A -juggler-pipe -silent
+    <launched> pid=81468
+    [pid=81468][err] *** You are running in headless mode.
+    [pid=81468][err] JavaScript warning: resource://services-settings/Utils.sys.mjs, line 125: unreachable code after return statement
+    [pid=81468][out] 
+    [pid=81468][out] Juggler listening to the pipe
+    [pid=81468][err] [WARN  rkv::backend::impl_safe::environment] `load_ratio()` is irrelevant for this storage backend.
+    [pid=81468][out] Crash Annotation GraphicsCriticalError: |[0][GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt (t=1.8749) [GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+    [pid=81468][err] JavaScript error: chrome://juggler/content/Helper.js, line 82: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIWebProgress.removeProgressListener]
+    [pid=81468][out] console.warn: services.settings: #fetchAttachment: Forcing fallbackToDump to false due to Utils.LOAD_DUMPS being false
+    [pid=81468][out] console.error: (new NotFoundError("Could not find fa0fc42c-d91d-fca7-34eb-806ff46062dc in cache or dump", "resource://services-settings/Attachments.sys.mjs", 48))
+    [pid=81468][out] console.warn: "Unable to find the attachment for" "fa0fc42c-d91d-fca7-34eb-806ff46062dc"
+    [pid=81468][err] [ERROR shell_windows::limited_access_features] Error generating feature token: NS_ERROR_FAILURE
+    [pid=81468][out] console.error: "Error fetching the wallpaper attachments URL" (new SyntaxError("JSON.parse: unexpected end of data at line 1 column 1 of the JSON data", ""))
+    [pid=81468][err] [ERROR shell_windows::taskbar::shortcut] Error matching shortcut: Error { code: HRESULT(0x80004005), message: "Unspecified error" }
+    [pid=81468][out] console.error: services.settings: 
+    [pid=81468][out]   Message: EmptyDatabaseError: "main/nimbus-desktop-experiments" has not been synced yet
+    [pid=81468][out]   Stack:
+    [pid=81468][out]     EmptyDatabaseError@resource://services-settings/Database.sys.mjs:19:5
+    [pid=81468][out] list@resource://services-settings/Database.sys.mjs:96:13
+    [pid=81468][out] 
+    [pid=81468][err] [ERROR shell_windows::taskbar::shortcut] Error matching shortcut: Error { code: HRESULT(0x80004005), message: "Unspecified error" }
+    [pid=81468][err] [ERROR shell_windows::taskbar::shortcut] Error matching shortcut: Error { code: HRESULT(0x80004005), message: "Unspecified error" }
+    [pid=81468][out] console.error: [Exception... "Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIWinTaskbar.getTaskbarProgress]"  nsresult: "0x80070057 (NS_ERROR_ILLEGAL_VALUE)"  location: "JS frame :: moz-src:///browser/components/downloads/DownloadsTaskbar.sys.mjs :: #windowsAttachIndicator :: line 181"  data: no]
+    [pid=81468][err] JavaScript warning: http://127.0.0.1:4173/assets/index-28wr3SeE.js, line 17: Script terminated by timeout at:
+    [pid=81468][err] vk/<@http://127.0.0.1:4173/assets/index-28wr3SeE.js:17:6580
+    [pid=81468][err] EventListener.handleEvent*vk@http://127.0.0.1:4173/assets/index-28wr3SeE.js:17:6498
+    [pid=81468][err] Ok@http://127.0.0.1:4173/assets/index-28wr3SeE.js:17:30134
+    [pid=81468][err] $k@http://127.0.0.1:4173/assets/index-28wr3SeE.js:22:1585
+    [pid=81468][err] _initRealtimeClient@http://127.0.0.1:4173/assets/index-28wr3SeE.js:39:59575
+    [pid=81468][err] MR@http://127.0.0.1:4173/assets/index-28wr3SeE.js:39:57453
+    [pid=81468][err] zR@http://127.0.0.1:4173/assets/index-28wr3SeE.js:39:60100
+    [pid=81468][err] @http://127.0.0.1:4173/assets/index-28wr3SeE.js:39:61041
+    [pid=81468][err] 
+    [pid=81468][err] JavaScript error: chrome://juggler/content/Helper.js, line 82: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIWebProgress.removeProgressListener]
+    [pid=81468][out] console.error: [Exception... "Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIWinTaskbar.getTaskbarProgress]"  nsresult: "0x80070057 (NS_ERROR_ILLEGAL_VALUE)"  location: "JS frame :: moz-src:///browser/components/downloads/DownloadsTaskbar.sys.mjs :: #windowsAttachIndicator :: line 181"  data: no]
+    [pid=81468] <gracefully close start>
+    [pid=81468][out] 
+    [pid=81468][out]         ERROR: Failed "callFunction": connector for namespace "page" in channel "undefined" is disposed. _rejectCallbacksFromConnector@chrome://juggler/content/SimpleChannel.js:108:25
+    [pid=81468][out] dispose@chrome://juggler/content/SimpleChannel.js:119:27
+    [pid=81468][out] dispose@chrome://juggler/content/protocol/PageHandler.js:152:23
+    [pid=81468][out] _dispose@chrome://juggler/content/protocol/Dispatcher.js:117:21
+    [pid=81468][out] destroySession@chrome://juggler/content/protocol/Dispatcher.js:35:13
+    [pid=81468][out] dispose@chrome://juggler/content/protocol/BrowserHandler.js:77:24
+    [pid=81468][out] _dispose@chrome://juggler/content/protocol/Dispatcher.js:117:21
+    [pid=81468][out] _dispose@chrome://juggler/content/protocol/Dispatcher.js:41:23
+    [pid=81468][out] observe/browserHandler<@chrome://juggler/content/components/Juggler.js:143:22
+    [pid=81468][out] Browser.close@chrome://juggler/content/protocol/BrowserHandler.js:156:10
+    [pid=81468][out] 
+    [pid=81468][err] JavaScript warning: http://127.0.0.1:4173/assets/index-28wr3SeE.js, line 17: Script terminated by timeout at:
+    [pid=81468][err] vk/<@http://127.0.0.1:4173/assets/index-28wr3SeE.js:17:6580
+    [pid=81468][err] EventListener.handleEvent*vk@http://127.0.0.1:4173/assets/index-28wr3SeE.js:17:6498
+    [pid=81468][err] Ok@http://127.0.0.1:4173/assets/index-28wr3SeE.js:17:30134
+    [pid=81468][err] $k@http://127.0.0.1:4173/assets/index-28wr3SeE.js:22:1585
+    [pid=81468][err] _initRealtimeClient@http://127.0.0.1:4173/assets/index-28wr3SeE.js:39:59575
+    [pid=81468][err] MR@http://127.0.0.1:4173/assets/index-28wr3SeE.js:39:57453
+    [pid=81468][err] zR@http://127.0.0.1:4173/assets/index-28wr3SeE.js:39:60100
+    [pid=81468][err] @http://127.0.0.1:4173/assets/index-28wr3SeE.js:39:61041
+    [pid=81468][err] 
+    [pid=81468][err] JavaScript error: chrome://juggler/content/Helper.js, line 82: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIWebProgress.removeProgressListener]
+    [pid=81468][out]       
+    [pid=81468][out]         ERROR: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIRemoteDebuggingPipe.sendMessage] send@chrome://juggler/content/components/Juggler.js:135:18
+    [pid=81468][out] _dispatch@chrome://juggler/content/protocol/Dispatcher.js:76:24
+    [pid=81468][out] #onQuitApplicationGranted@moz-src:///browser/components/sessionstore/SessionStore.sys.mjs:2359:19
+    [pid=81468][out] observe@moz-src:///browser/components/sessionstore/SessionStore.sys.mjs:991:39
+    [pid=81468][out] observe/browserHandler<@chrome://juggler/content/components/Juggler.js:144:16
+    [pid=81468][out] Browser.close@chrome://juggler/content/protocol/BrowserHandler.js:156:10
+    [pid=81468][out] 
+    [pid=81468][err] JavaScript error: chrome://juggler/content/components/Juggler.js, line 135: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIRemoteDebuggingPipe.sendMessage]
+    [pid=81468][err] JavaScript error: chrome://juggler/content/components/Juggler.js, line 135: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIRemoteDebuggingPipe.sendMessage]
+    [pid=81468][out]       1792097300298	addons.xpi	ERROR	System addon update list error [Exception... "<no message>"  nsresult: "0x8046001e (<unknown>)"  location: "JS frame :: resource://gre/modules/ServiceRequest.sys.mjs :: open :: line 126"  data: no]
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\responsive-2026-10-16\firefox-confirmation-artifacts\responsive-layout-main-local-pages-fit-a-390px-viewport-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\responsive-2026-10-16\firefox-confirmation-artifacts\responsive-layout-main-local-pages-fit-a-390px-viewport-firefox\error-context.md
+
+  1 failed
+    [firefox] › e2e\responsive-layout.spec.ts:28:3 › main local pages fit a 390px viewport ─────────
+  8 passed (4.0m)

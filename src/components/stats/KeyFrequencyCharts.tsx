@@ -81,7 +81,7 @@ export function KeyFrequencyHistogram({ frequencies }: KeyFrequencyHistogramProp
               <Tooltip
                 contentStyle={{
                   backgroundColor: 'hsl(var(--card))',
-                  border: '1px solid hsl(var(--border))',
+                  border: '1px solid hsl(var(--ui-border))',
                   borderRadius: '8px',
                   color: 'hsl(var(--foreground))',
                   fontSize: '11px',
@@ -92,7 +92,7 @@ export function KeyFrequencyHistogram({ frequencies }: KeyFrequencyHistogramProp
               <Legend 
                 wrapperStyle={{ fontSize: '11px' }}
               />
-              <Bar dataKey="hits" stackId="a" fill="hsl(var(--success))" name="Hits" radius={[0, 0, 0, 0]} />
+              <Bar dataKey="hits" stackId="a" fill="hsl(var(--ui-success))" name="Hits" radius={[0, 0, 0, 0]} />
               <Bar dataKey="misses" stackId="a" fill="hsl(var(--destructive))" name="Misses" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>

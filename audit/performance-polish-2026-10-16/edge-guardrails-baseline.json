@@ -1,0 +1,2538 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\extra\\typing_updated\\typing-forge\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "e2e/input-guardrails.spec.ts",
+      "--project=edge",
+      "--workers=1",
+      "--retries=0",
+      "--trace=on",
+      "--reporter=list,json",
+      "--global-timeout=120000",
+      "--output=audit/performance-polish-2026-10-16/edge-guardrails-baseline-artifacts"
+    ],
+    "configFile": "D:\\extra\\typing_updated\\typing-forge\\playwright.config.ts",
+    "rootDir": "D:/extra/typing_updated/typing-forge/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 120000,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/audit/performance-polish-2026-10-16/edge-guardrails-baseline-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "edge",
+        "name": "edge",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\audit\\performance-polish-2026-10-16\\edge-guardrails-baseline-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "edge",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4175",
+          "trace": "on",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36 Edg/156.0.8078.4",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium",
+          "channel": "msedge"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "edge"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "input-guardrails.spec.ts",
+      "file": "input-guardrails.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "paste and drop stay outside the practice transcript and never start its clock",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3530,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserType.launch started \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m<launching> C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=C:\\Users\\DELL\\AppData\\Local\\Temp\\playwright_chromiumdev_profile-R2ZNZq --remote-debugging-pipe --no-startup-window \u001b[30m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[30;1mpw:browser \u001b[0m<launched> pid=71280 \u001b[30m+25ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserType.launch succeeded \u001b[38;5;45m+1s\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browser.newContext started \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browser.newContext succeeded \u001b[38;5;45m+44ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.newPage started \u001b[38;5;45m+15ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.newPage succeeded \u001b[38;5;45m+491ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.addInitScript started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.addInitScript succeeded \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.goto started \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mnavigating to \"http://127.0.0.1:4175/\", waiting until \"load\" \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"commit\" event fired \u001b[38;5;45m+61ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"domcontentloaded\" event fired \u001b[38;5;45m+190ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"load\" event fired \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/\" \u001b[38;5;45m+32ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.goto succeeded \u001b[38;5;45m+316ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.click started \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Custom', exact: true }) \u001b[38;5;45m+27ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <button class=\"forge-chip\" aria-pressed=\"false\">…</button> \u001b[38;5;45m+98ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mattempting click action \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible, enabled and stable \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  element is visible, enabled and stable \u001b[38;5;45m+21ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  scrolling into view if needed \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  done scrolling \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  performing click action \u001b[38;5;45m+34ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  click action done \u001b[38;5;45m+74ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for scheduled navigations to finish \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigations have finished \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.click succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.fill started \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Custom practice passage', exact: true }) \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <textarea maxlength=\"10000\" id=\"custom-passage\" class=\"forge-input min-h-48 font-mono leading-relaxed\" placeholder=\"Add something you want to get better at typing…\"></textarea> \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  fill(\"cat\") \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mattempting fill action \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible, enabled and editable \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.fill succeeded \u001b[38;5;45m+60ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.click started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('button', { name: 'Start private practice', exact: true }) \u001b[38;5;45m+10ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <button class=\"forge-button mt-4\">…</button> \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mattempting click action \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible, enabled and stable \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  element is visible, enabled and stable \u001b[38;5;45m+22ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  scrolling into view if needed \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  done scrolling \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  performing click action \u001b[38;5;45m+25ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  click action done \u001b[38;5;45m+33ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for scheduled navigations to finish \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigations have finished \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.click succeeded \u001b[38;5;45m+16ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeVisible\" started \u001b[38;5;45m+24ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeVisible\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"networkidle\" event fired \u001b[38;5;45m+14ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeVisible\" succeeded \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.evaluate started \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+13ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to visible <textarea dir=\"ltr\" autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" maxlength=\"100000\" autocapitalize=\"off\" aria-label=\"Typing input\" aria-describedby=\"typing-instructions typing-passage typing-feedback\" class=\"typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2\"></textarea> \u001b[38;5;45m+17ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.evaluate succeeded \u001b[38;5;45m+46ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeFocused\" started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeFocused\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeFocused\" succeeded \u001b[38;5;45m+14ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.evaluate started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to visible <textarea dir=\"ltr\" autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" maxlength=\"100000\" autocapitalize=\"off\" aria-label=\"Typing input\" aria-describedby=\"typing-instructions typing-passage typing-feedback\" class=\"typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2\"></textarea> \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.evaluate succeeded \u001b[38;5;45m+15ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveValue\" started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveValue\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveValue\" succeeded \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveAttribute\" started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveAttribute\" getByRole('region', { name: 'Typing session', exact: true }) with timeout 5000ms \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('region', { name: 'Typing session', exact: true }) \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveAttribute\" succeeded \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveText\" started \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveText\" getByTestId('typing-input-notice') with timeout 5000ms \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByTestId('typing-input-notice') \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveText\" succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.evaluate started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to visible <textarea dir=\"ltr\" autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" maxlength=\"100000\" autocapitalize=\"off\" aria-label=\"Typing input\" aria-describedby=\"typing-instructions typing-passage typing-feedback\" class=\"typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2\"></textarea> \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.evaluate succeeded \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveValue\" started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveValue\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveValue\" succeeded \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.pressSequentially started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <textarea dir=\"ltr\" autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" maxlength=\"100000\" autocapitalize=\"off\" aria-label=\"Typing input\" aria-describedby=\"typing-instructions typing-passage typing-feedback\" class=\"typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2\"></textarea> \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0melementHandle.type(\"cat\") \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.pressSequentially succeeded \u001b[38;5;45m+92ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeVisible\" started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeVisible\" getByRole('region', { name: 'Session results', exact: true }) with timeout 5000ms \u001b[38;5;45m+88ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('region', { name: 'Session results', exact: true }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeVisible\" succeeded \u001b[38;5;45m+82ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.click started \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('button', { name: 'Export JSON', exact: true }) \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <button class=\"forge-button-secondary\">Export JSON</button> \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mattempting click action \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible, enabled and stable \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  element is not stable \u001b[38;5;45m+20ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mretrying click action \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible, enabled and stable \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  element is not stable \u001b[38;5;45m+15ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mretrying click action \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting 20ms \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible, enabled and stable \u001b[38;5;45m+29ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  element is visible, enabled and stable \u001b[38;5;45m+73ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  scrolling into view if needed \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  done scrolling \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  performing click action \u001b[38;5;45m+19ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.waitForEvent succeeded \u001b[38;5;45m+31ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  click action done \u001b[38;5;45m+23ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for scheduled navigations to finish \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigations have finished \u001b[38;5;45m+122ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.click succeeded \u001b[38;5;45m+85ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"commit\" event fired \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"commit\" event fired \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"edge://downloads-hub/\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"domcontentloaded\" event fired \u001b[38;5;45m+211ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"load\" event fired \u001b[38;5;45m+10ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mtaking page screenshot \u001b[38;5;45m+494ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mtaking page screenshot \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for fonts to load... \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for fonts to load... \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mfonts loaded \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mfonts loaded \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.close started \u001b[38;5;45m+83ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"networkidle\" event fired \u001b[38;5;45m+29ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.close succeeded \u001b[38;5;45m+2ms\u001b[0m\n"
+                    }
+                  ],
+                  "retry": 0,
+                  "startTime": "2026-10-16T16:33:11.506Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\performance-polish-2026-10-16\\edge-guardrails-baseline-artifacts\\input-guardrails-paste-and-03083-t-and-never-start-its-clock-edge\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ecbefbc50305442035b0-72c7d1a2c5805cedf2ef",
+          "file": "input-guardrails.spec.ts",
+          "line": 25,
+          "column": 1
+        },
+        {
+          "title": "adaptive practice blocks transfer input and reports only observed Caps Lock state",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7220,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browser.newContext started \u001b[38;5;45m+215ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browser.newContext succeeded \u001b[38;5;45m+10ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.newPage started \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.newPage succeeded \u001b[38;5;45m+1s\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.addInitScript started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.addInitScript succeeded \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.goto started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mnavigating to \"http://127.0.0.1:4175/learn\", waiting until \"domcontentloaded\" \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"commit\" event fired \u001b[38;5;45m+29ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/learn\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"domcontentloaded\" event fired \u001b[38;5;45m+105ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"load\" event fired \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/learn\" \u001b[38;5;45m+23ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.goto succeeded \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeVisible\" started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeVisible\" getByRole('textbox', { name: 'Type the practice text', exact: true }) with timeout 5000ms \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Type the practice text', exact: true }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <textarea autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" autocapitalize=\"off\" aria-label=\"Type the practice text\" aria-describedby=\"lesson-instructions lesson-feedback lesson-passage\" class=\"absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0\"></textarea> \u001b[38;5;45m+110ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeVisible\" succeeded \u001b[38;5;45m+29ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.focus started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Type the practice text', exact: true }) \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <textarea autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" autocapitalize=\"off\" aria-label=\"Type the practice text\" aria-describedby=\"lesson-instructions lesson-feedback lesson-passage\" class=\"absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0\"></textarea> \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.focus succeeded \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveCount\" started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveCount\" getByTestId('lesson-input-notice') with timeout 5000ms \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByTestId('lesson-input-notice') \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveCount\" succeeded \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.evaluate started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Type the practice text', exact: true }) \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to visible <textarea autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" autocapitalize=\"off\" aria-label=\"Type the practice text\" aria-describedby=\"lesson-instructions lesson-feedback lesson-passage\" class=\"absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0\"></textarea> \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.evaluate succeeded \u001b[38;5;45m+29ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveValue\" started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveValue\" getByRole('textbox', { name: 'Type the practice text', exact: true }) with timeout 5000ms \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Type the practice text', exact: true }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveValue\" succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveAttribute\" started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveAttribute\" getByRole('progressbar', { name: 'Lesson progress', exact: true }) with timeout 5000ms \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('progressbar', { name: 'Lesson progress', exact: true }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveAttribute\" succeeded \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeVisible\" started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeVisible\" getByRole('status').filter({ hasText: 'Paste is disabled during typing practice.' }) with timeout 5000ms \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('status').filter({ hasText: 'Paste is disabled during typing practice.' }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeVisible\" succeeded \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.evaluate started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Type the practice text', exact: true }) \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to visible <textarea autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" autocapitalize=\"off\" aria-label=\"Type the practice text\" aria-describedby=\"lesson-instructions lesson-feedback lesson-passage\" class=\"absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0\"></textarea> \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.evaluate succeeded \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveText\" started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveText\" getByTestId('lesson-input-notice') with timeout 5000ms \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByTestId('lesson-input-notice') \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveText\" succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.evaluate started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Type the practice text', exact: true }) \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to visible <textarea autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" autocapitalize=\"off\" aria-label=\"Type the practice text\" aria-describedby=\"lesson-instructions lesson-feedback lesson-passage\" class=\"absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0\"></textarea> \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.evaluate succeeded \u001b[38;5;45m+10ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveCount\" started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveCount\" getByTestId('lesson-input-notice') with timeout 5000ms \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByTestId('lesson-input-notice') \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveCount\" succeeded \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mtaking page screenshot \u001b[38;5;45m+44ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for fonts to load... \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mfonts loaded \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"networkidle\" event fired \u001b[38;5;45m+143ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.close started \u001b[38;5;45m+5s\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.close succeeded \u001b[38;5;45m+521ms\u001b[0m\n"
+                    }
+                  ],
+                  "retry": 0,
+                  "startTime": "2026-10-16T16:33:16.543Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\performance-polish-2026-10-16\\edge-guardrails-baseline-artifacts\\input-guardrails-adaptive--3c7b9-ly-observed-Caps-Lock-state-edge\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ecbefbc50305442035b0-4db19ae90f3c671dc575",
+          "file": "input-guardrails.spec.ts",
+          "line": 46,
+          "column": 1
+        },
+        {
+          "title": "feedback preferences persist and outline carets respect reduced motion in both modes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2937,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browser.newContext started \u001b[38;5;45m+35ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browser.newContext succeeded \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.newPage started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.newPage succeeded \u001b[38;5;45m+120ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.addInitScript started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.addInitScript succeeded \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.goto started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mnavigating to \"http://127.0.0.1:4175/settings\", waiting until \"domcontentloaded\" \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"commit\" event fired \u001b[38;5;45m+16ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/settings\" \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"domcontentloaded\" event fired \u001b[38;5;45m+76ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"load\" event fired \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/settings\" \u001b[38;5;45m+20ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.goto succeeded \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.selectOption started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('combobox', { name: 'Caret style', exact: true }) \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <select class=\"forge-input mt-2\">…</select> \u001b[38;5;45m+61ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mattempting select option action \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible and enabled \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  selected specified option(s) \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.selectOption succeeded \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.check started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('checkbox', { name: 'Reduced motion', exact: true }) \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <input type=\"checkbox\" aria-label=\"Reduced motion\" class=\"size-5 shrink-0 accent-[var(--forge-accent)]\"/> \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mattempting click action \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible, enabled and stable \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"networkidle\" event fired \u001b[38;5;45m+423ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  element is visible, enabled and stable \u001b[38;5;45m+512ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  scrolling into view if needed \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  done scrolling \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  performing click action \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  click action done \u001b[38;5;45m+35ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for scheduled navigations to finish \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigations have finished \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.check succeeded \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.check started \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('checkbox', { name: 'Typing sound', exact: true }) \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <input type=\"checkbox\" aria-label=\"Typing sound\" class=\"size-5 shrink-0 accent-[var(--forge-accent)]\"/> \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mattempting click action \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible, enabled and stable \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  element is visible, enabled and stable \u001b[38;5;45m+15ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  scrolling into view if needed \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  done scrolling \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  performing click action \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  click action done \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for scheduled navigations to finish \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigations have finished \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.check succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveCount\" started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveCount\" getByRole('combobox', { name: 'Sound pack', exact: true }).getByRole('option') with timeout 5000ms \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('combobox', { name: 'Sound pack', exact: true }).getByRole('option') \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveCount\" succeeded \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.selectOption started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('combobox', { name: 'Sound pack', exact: true }) \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <select aria-label=\"Sound pack\" class=\"forge-input mt-2\" aria-describedby=\"sound-pack-help\">…</select> \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mattempting select option action \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible and enabled \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  selected specified option(s) \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.selectOption succeeded \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.reload started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for navigation until \"domcontentloaded\" \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"commit\" event fired \u001b[38;5;45m+49ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/settings\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/settings\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"domcontentloaded\" event fired \u001b[38;5;45m+67ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"load\" event fired \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.reload succeeded \u001b[38;5;45m+21ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveValue\" started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveValue\" getByRole('combobox', { name: 'Sound pack', exact: true }) with timeout 5000ms \u001b[38;5;45m+10ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('combobox', { name: 'Sound pack', exact: true }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveValue\" succeeded \u001b[38;5;45m+45ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeChecked\" started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeChecked\" getByRole('checkbox', { name: 'Reduced motion', exact: true }) with timeout 5000ms \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('checkbox', { name: 'Reduced motion', exact: true }) \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeChecked\" succeeded \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeChecked\" started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeChecked\" getByRole('checkbox', { name: 'Typing sound', exact: true }) with timeout 5000ms \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('checkbox', { name: 'Typing sound', exact: true }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeChecked\" succeeded \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.goto started \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mnavigating to \"http://127.0.0.1:4175/\", waiting until \"load\" \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"commit\" event fired \u001b[38;5;45m+24ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"domcontentloaded\" event fired \u001b[38;5;45m+61ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"load\" event fired \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/\" \u001b[38;5;45m+20ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.goto succeeded \u001b[38;5;45m+134ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.click started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Custom', exact: true }) \u001b[38;5;45m+16ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <button class=\"forge-chip\" aria-pressed=\"false\">…</button> \u001b[38;5;45m+26ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mattempting click action \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible, enabled and stable \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  element is visible, enabled and stable \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  scrolling into view if needed \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  done scrolling \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  performing click action \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  click action done \u001b[38;5;45m+33ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for scheduled navigations to finish \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigations have finished \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.click succeeded \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.fill started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Custom practice passage', exact: true }) \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <textarea maxlength=\"10000\" id=\"custom-passage\" class=\"forge-input min-h-48 font-mono leading-relaxed\" placeholder=\"Add something you want to get better at typing…\"></textarea> \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  fill(\"cat dog\") \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mattempting fill action \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible, enabled and editable \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.fill succeeded \u001b[38;5;45m+33ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.click started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('button', { name: 'Start private practice', exact: true }) \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <button class=\"forge-button mt-4\">…</button> \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mattempting click action \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible, enabled and stable \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  element is visible, enabled and stable \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  scrolling into view if needed \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  done scrolling \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  performing click action \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  click action done \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for scheduled navigations to finish \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigations have finished \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.click succeeded \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeVisible\" started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeVisible\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeVisible\" succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.evaluate started \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to visible <textarea dir=\"ltr\" autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" maxlength=\"100000\" autocapitalize=\"off\" aria-label=\"Typing input\" aria-describedby=\"typing-instructions typing-passage typing-feedback\" class=\"typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2\"></textarea> \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.evaluate succeeded \u001b[38;5;45m+14ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeFocused\" started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeFocused\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeFocused\" succeeded \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeVisible\" started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeVisible\" locator('[data-testid=\"typing-viewport\"] > .caret-outline') with timeout 5000ms \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for locator('[data-testid=\"typing-viewport\"] > .caret-outline') \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeVisible\" succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveCSS\" started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveCSS\" locator('[data-testid=\"typing-viewport\"] > .caret-outline') with timeout 5000ms \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for locator('[data-testid=\"typing-viewport\"] > .caret-outline') \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveCSS\" succeeded \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveCSS\" started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveCSS\" locator('[data-testid=\"typing-viewport\"] > .caret-outline') with timeout 5000ms \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for locator('[data-testid=\"typing-viewport\"] > .caret-outline') \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveCSS\" succeeded \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveCSS\" started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveCSS\" locator('[data-testid=\"typing-viewport\"] > .caret-outline') with timeout 5000ms \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for locator('[data-testid=\"typing-viewport\"] > .caret-outline') \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveCSS\" succeeded \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveCount\" started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveCount\" getByTestId('typing-input-notice') with timeout 5000ms \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByTestId('typing-input-notice') \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveCount\" succeeded \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.evaluate started \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to visible <textarea dir=\"ltr\" autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" maxlength=\"100000\" autocapitalize=\"off\" aria-label=\"Typing input\" aria-describedby=\"typing-instructions typing-passage typing-feedback\" class=\"typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2\"></textarea> \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.evaluate succeeded \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toContainText\" started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toContainText\" getByTestId('typing-input-notice') with timeout 5000ms \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByTestId('typing-input-notice') \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toContainText\" succeeded \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.evaluate started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to visible <textarea dir=\"ltr\" autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" maxlength=\"100000\" autocapitalize=\"off\" aria-label=\"Typing input\" aria-describedby=\"typing-instructions typing-passage typing-feedback\" class=\"typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2\"></textarea> \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.evaluate succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.pressSequentially started \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <textarea dir=\"ltr\" autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" maxlength=\"100000\" autocapitalize=\"off\" aria-label=\"Typing input\" aria-describedby=\"typing-instructions typing-passage typing-feedback\" class=\"typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2\"></textarea> \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0melementHandle.type(\"cat\") \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.pressSequentially succeeded \u001b[38;5;45m+210ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveValue\" started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveValue\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"networkidle\" event fired \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveValue\" succeeded \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.goto started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mnavigating to \"http://127.0.0.1:4175/learn\", waiting until \"domcontentloaded\" \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"commit\" event fired \u001b[38;5;45m+37ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/learn\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"domcontentloaded\" event fired \u001b[38;5;45m+67ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"load\" event fired \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/learn\" \u001b[38;5;45m+25ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.goto succeeded \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.focus started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Type the practice text', exact: true }) \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <textarea autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" autocapitalize=\"off\" aria-label=\"Type the practice text\" aria-describedby=\"lesson-instructions lesson-feedback lesson-passage\" class=\"absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0\"></textarea> \u001b[38;5;45m+79ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.focus succeeded \u001b[38;5;45m+41ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeVisible\" started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeVisible\" locator('.learn-caret.caret-outline') with timeout 5000ms \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for locator('.learn-caret.caret-outline') \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeVisible\" succeeded \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveCSS\" started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveCSS\" locator('.learn-caret.caret-outline') with timeout 5000ms \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for locator('.learn-caret.caret-outline') \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveCSS\" succeeded \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveCSS\" started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveCSS\" locator('.learn-caret.caret-outline') with timeout 5000ms \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for locator('.learn-caret.caret-outline') \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveCSS\" succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveCSS\" started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveCSS\" locator('.learn-caret.caret-outline') with timeout 5000ms \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for locator('.learn-caret.caret-outline') \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveCSS\" succeeded \u001b[38;5;45m+10ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mtaking page screenshot \u001b[38;5;45m+126ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for fonts to load... \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mfonts loaded \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.close started \u001b[38;5;45m+34ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.close succeeded \u001b[38;5;45m+18ms\u001b[0m\n"
+                    }
+                  ],
+                  "retry": 0,
+                  "startTime": "2026-10-16T16:33:23.801Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\performance-polish-2026-10-16\\edge-guardrails-baseline-artifacts\\input-guardrails-feedback--0ade8-educed-motion-in-both-modes-edge\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ecbefbc50305442035b0-a96178c37a56aab85199",
+          "file": "input-guardrails.spec.ts",
+          "line": 62,
+          "column": 1
+        },
+        {
+          "title": "supported typing audio creates one context on input and disposes it on navigation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1307,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browser.newContext started \u001b[38;5;45m+81ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browser.newContext succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.newPage started \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.newPage succeeded \u001b[38;5;45m+127ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.addInitScript started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.addInitScript succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.goto started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mnavigating to \"http://127.0.0.1:4175/settings\", waiting until \"domcontentloaded\" \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"commit\" event fired \u001b[38;5;45m+21ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/settings\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"domcontentloaded\" event fired \u001b[38;5;45m+92ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"load\" event fired \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/settings\" \u001b[38;5;45m+17ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.goto succeeded \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+59ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.addInitScript started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.addInitScript succeeded \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.check started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('checkbox', { name: 'Typing sound', exact: true }) \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <input type=\"checkbox\" aria-label=\"Typing sound\" class=\"size-5 shrink-0 accent-[var(--forge-accent)]\"/> \u001b[38;5;45m+23ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mattempting click action \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible, enabled and stable \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  element is visible, enabled and stable \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  scrolling into view if needed \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  done scrolling \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  performing click action \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  click action done \u001b[38;5;45m+13ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for scheduled navigations to finish \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigations have finished \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.check succeeded \u001b[38;5;45m+10ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.selectOption started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('combobox', { name: 'Sound pack', exact: true }) \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <select aria-label=\"Sound pack\" class=\"forge-input mt-2\" aria-describedby=\"sound-pack-help\">…</select> \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mattempting select option action \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible and enabled \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  selected specified option(s) \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.selectOption succeeded \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.goto started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mnavigating to \"http://127.0.0.1:4175/\", waiting until \"load\" \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"commit\" event fired \u001b[38;5;45m+27ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"domcontentloaded\" event fired \u001b[38;5;45m+39ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"load\" event fired \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/\" \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.goto succeeded \u001b[38;5;45m+105ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.click started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('group', { name: 'Test mode', exact: true }).getByRole('button', { name: 'Custom', exact: true }) \u001b[38;5;45m+13ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <button class=\"forge-chip\" aria-pressed=\"false\">…</button> \u001b[38;5;45m+32ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mattempting click action \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible, enabled and stable \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  element is visible, enabled and stable \u001b[38;5;45m+17ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  scrolling into view if needed \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  done scrolling \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  performing click action \u001b[38;5;45m+13ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  click action done \u001b[38;5;45m+20ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for scheduled navigations to finish \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigations have finished \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.click succeeded \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.fill started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Custom practice passage', exact: true }) \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <textarea maxlength=\"10000\" id=\"custom-passage\" class=\"forge-input min-h-48 font-mono leading-relaxed\" placeholder=\"Add something you want to get better at typing…\"></textarea> \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  fill(\"cat dog\") \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mattempting fill action \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible, enabled and editable \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.fill succeeded \u001b[38;5;45m+11ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.click started \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('button', { name: 'Start private practice', exact: true }) \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <button class=\"forge-button mt-4\">…</button> \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mattempting click action \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible, enabled and stable \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  element is visible, enabled and stable \u001b[38;5;45m+18ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  scrolling into view if needed \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  done scrolling \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  performing click action \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  click action done \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for scheduled navigations to finish \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigations have finished \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.click succeeded \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeVisible\" started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeVisible\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeVisible\" succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.evaluate started \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to visible <textarea dir=\"ltr\" autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" maxlength=\"100000\" autocapitalize=\"off\" aria-label=\"Typing input\" aria-describedby=\"typing-instructions typing-passage typing-feedback\" class=\"typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2\"></textarea> \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.evaluate succeeded \u001b[38;5;45m+30ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeFocused\" started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeFocused\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeFocused\" succeeded \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.waitForFunction started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.waitForFunction succeeded \u001b[38;5;45m+11ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+11ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.pressSequentially started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <textarea dir=\"ltr\" autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" maxlength=\"100000\" autocapitalize=\"off\" aria-label=\"Typing input\" aria-describedby=\"typing-instructions typing-passage typing-feedback\" class=\"typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2\"></textarea> \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0melementHandle.type(\"cat\") \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.pressSequentially succeeded \u001b[38;5;45m+68ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+14ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.click started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('link', { name: 'Settings', exact: true }) \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <a href=\"/settings\" data-discover=\"true\" aria-label=\"Settings\" class=\"forge-icon-button\">…</a> \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mattempting click action \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible, enabled and stable \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  element is visible, enabled and stable \u001b[38;5;45m+16ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  scrolling into view if needed \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  done scrolling \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  performing click action \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/settings\" \u001b[38;5;45m+18ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  click action done \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for scheduled navigations to finish \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigations have finished \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.click succeeded \u001b[38;5;45m+11ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeVisible\" started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeVisible\" getByRole('heading', { name: 'Your practice, your space.', exact: true }) with timeout 5000ms \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('heading', { name: 'Your practice, your space.', exact: true }) \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeVisible\" succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mtaking page screenshot \u001b[38;5;45m+134ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for fonts to load... \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mfonts loaded \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.close started \u001b[38;5;45m+40ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.close succeeded \u001b[38;5;45m+12ms\u001b[0m\n"
+                    }
+                  ],
+                  "retry": 0,
+                  "startTime": "2026-10-16T16:33:26.818Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\performance-polish-2026-10-16\\edge-guardrails-baseline-artifacts\\input-guardrails-supported-0c72b-d-disposes-it-on-navigation-edge\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ecbefbc50305442035b0-9f05c94e6c7a337e7126",
+          "file": "input-guardrails.spec.ts",
+          "line": 95,
+          "column": 1
+        },
+        {
+          "title": "unavailable browser audio is explained without clearing the saved sound preference",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 724,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browser.newContext started \u001b[38;5;45m+87ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browser.newContext succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.newPage started \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.newPage succeeded \u001b[38;5;45m+129ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.addInitScript started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.addInitScript succeeded \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.addInitScript started \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.addInitScript succeeded \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.goto started \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mnavigating to \"http://127.0.0.1:4175/settings\", waiting until \"domcontentloaded\" \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"commit\" event fired \u001b[38;5;45m+15ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/settings\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"domcontentloaded\" event fired \u001b[38;5;45m+80ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"load\" event fired \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/settings\" \u001b[38;5;45m+18ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.goto succeeded \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeVisible\" started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeVisible\" getByRole('status').filter({ hasText: 'Typing sound is unavailable in this browser.' }) with timeout 5000ms \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('status').filter({ hasText: 'Typing sound is unavailable in this browser.' }) \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeVisible\" succeeded \u001b[38;5;45m+70ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.check started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('checkbox', { name: 'Typing sound', exact: true }) \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <input type=\"checkbox\" aria-label=\"Typing sound\" class=\"size-5 shrink-0 accent-[var(--forge-accent)]\"/> \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mattempting click action \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible, enabled and stable \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  element is visible, enabled and stable \u001b[38;5;45m+11ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  scrolling into view if needed \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  done scrolling \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  performing click action \u001b[38;5;45m+11ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  click action done \u001b[38;5;45m+15ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for scheduled navigations to finish \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigations have finished \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.check succeeded \u001b[38;5;45m+10ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.reload started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for navigation until \"domcontentloaded\" \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"commit\" event fired \u001b[38;5;45m+37ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/settings\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/settings\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"domcontentloaded\" event fired \u001b[38;5;45m+44ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"load\" event fired \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.reload succeeded \u001b[38;5;45m+19ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeVisible\" started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeVisible\" getByRole('status').filter({ hasText: 'Typing sound is unavailable in this browser.' }) with timeout 5000ms \u001b[38;5;45m+16ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('status').filter({ hasText: 'Typing sound is unavailable in this browser.' }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeVisible\" succeeded \u001b[38;5;45m+43ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeChecked\" started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeChecked\" getByRole('checkbox', { name: 'Typing sound', exact: true }) with timeout 5000ms \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('checkbox', { name: 'Typing sound', exact: true }) \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeChecked\" succeeded \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mtaking page screenshot \u001b[38;5;45m+58ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for fonts to load... \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mfonts loaded \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.close started \u001b[38;5;45m+44ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.close succeeded \u001b[38;5;45m+16ms\u001b[0m\n"
+                    }
+                  ],
+                  "retry": 0,
+                  "startTime": "2026-10-16T16:33:28.214Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\performance-polish-2026-10-16\\edge-guardrails-baseline-artifacts\\input-guardrails-unavailab-7fd04--the-saved-sound-preference-edge\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ecbefbc50305442035b0-225f05899c5f28864f1c",
+          "file": "input-guardrails.spec.ts",
+          "line": 139,
+          "column": 1
+        },
+        {
+          "title": "idle practice has no 100ms interval and the active deadline still persists exactly",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2516,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browser.newContext started \u001b[38;5;45m+61ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browser.newContext succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.newPage started \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.newPage succeeded \u001b[38;5;45m+145ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.addInitScript started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.addInitScript succeeded \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> clock.install started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= clock.install succeeded \u001b[38;5;45m+20ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.goto started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mnavigating to \"http://127.0.0.1:4175/\", waiting until \"domcontentloaded\" \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"commit\" event fired \u001b[38;5;45m+28ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/\" \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"domcontentloaded\" event fired \u001b[38;5;45m+130ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"load\" event fired \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/\" \u001b[38;5;45m+29ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.goto succeeded \u001b[38;5;45m+182ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeVisible\" started \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeVisible\" getByRole('group', { name: 'Test duration', exact: true }) with timeout 5000ms \u001b[38;5;45m+21ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('group', { name: 'Test duration', exact: true }) \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeVisible\" succeeded \u001b[38;5;45m+74ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+45ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.click started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('group', { name: 'Test duration', exact: true }).getByRole('button', { name: '15 seconds', exact: true }) \u001b[38;5;45m+21ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <button aria-pressed=\"false\" class=\"forge-chip font-mono\">…</button> \u001b[38;5;45m+22ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mattempting click action \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible, enabled and stable \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  element is visible, enabled and stable \u001b[38;5;45m+15ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  scrolling into view if needed \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  done scrolling \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  performing click action \u001b[38;5;45m+21ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  click action done \u001b[38;5;45m+92ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for scheduled navigations to finish \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigations have finished \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.click succeeded \u001b[38;5;45m+28ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeVisible\" started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeVisible\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeVisible\" succeeded \u001b[38;5;45m+10ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.evaluate started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to visible <textarea dir=\"ltr\" autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" maxlength=\"100000\" autocapitalize=\"off\" aria-label=\"Typing input\" aria-describedby=\"typing-instructions typing-passage typing-feedback\" class=\"typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2\"></textarea> \u001b[38;5;45m+8ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.evaluate succeeded \u001b[38;5;45m+29ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeFocused\" started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeFocused\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeFocused\" succeeded \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.innerText started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByTestId('typing-target') \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <div data-testid=\"typing-target\" class=\"typing-text relative pb-5\">…</div> \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.innerText succeeded \u001b[38;5;45m+11ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> clock.pauseAt started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= clock.pauseAt succeeded \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> clock.fastForward started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= clock.fastForward succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toHaveAttribute\" started \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toHaveAttribute\" getByRole('region', { name: 'Typing session', exact: true }) with timeout 5000ms \u001b[38;5;45m+10ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('region', { name: 'Typing session', exact: true }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toHaveAttribute\" succeeded \u001b[38;5;45m+10ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.evaluate started \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.evaluate succeeded \u001b[38;5;45m+15ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.press started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('textbox', { name: 'Typing input', exact: true }) \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <textarea dir=\"ltr\" autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" maxlength=\"100000\" autocapitalize=\"off\" aria-label=\"Typing input\" aria-describedby=\"typing-instructions typing-passage typing-feedback\" class=\"typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2\"></textarea> \u001b[38;5;45m+10ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0melementHandle.press(\"p\") \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"networkidle\" event fired \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.press succeeded \u001b[38;5;45m+50ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> clock.fastForward started \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= clock.fastForward succeeded \u001b[38;5;45m+36ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeVisible\" started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeVisible\" getByRole('region', { name: 'Session results', exact: true }) with timeout 5000ms \u001b[38;5;45m+15ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('region', { name: 'Session results', exact: true }) \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <section tabindex=\"-1\" aria-label=\"Session results\" aria-describedby=\"results-restart-hint\" class=\"forge-appear min-w-0 space-y-6 outline-none\">…</section> \u001b[38;5;45m+167ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeVisible\" succeeded \u001b[38;5;45m+44ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> locator.click started \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('button', { name: 'Export JSON', exact: true }) \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <button class=\"forge-button-secondary\">Export JSON</button> \u001b[38;5;45m+7ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mattempting click action \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible, enabled and stable \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  element is not stable \u001b[38;5;45m+19ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mretrying click action \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible, enabled and stable \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  element is not stable \u001b[38;5;45m+15ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mretrying click action \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting 20ms \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible, enabled and stable \u001b[38;5;45m+27ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  element is not stable \u001b[38;5;45m+22ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mretrying click action \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting 100ms \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for element to be visible, enabled and stable \u001b[38;5;45m+103ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  element is visible, enabled and stable \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  scrolling into view if needed \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  done scrolling \u001b[38;5;45m+3ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  performing click action \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.waitForEvent succeeded \u001b[38;5;45m+18ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  click action done \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  waiting for scheduled navigations to finish \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigations have finished \u001b[38;5;45m+20ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= locator.click succeeded \u001b[38;5;45m+13ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"commit\" event fired \u001b[38;5;45m+12ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"commit\" event fired \u001b[38;5;45m+10ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"edge://downloads-hub/\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toBeVisible\" started \u001b[38;5;45m+183ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toBeVisible\" getByRole('status').filter({ hasText: /saved.*device|saved.*locally|local.*saved/i }) with timeout 5000ms \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('status').filter({ hasText: /saved.*device|saved.*locally|local.*saved/i }) \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"domcontentloaded\" event fired \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"load\" event fired \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toBeVisible\" succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> page.goto started \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mnavigating to \"http://127.0.0.1:4175/stats\", waiting until \"domcontentloaded\" \u001b[38;5;45m+4ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"commit\" event fired \u001b[38;5;45m+27ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/stats\" \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"domcontentloaded\" event fired \u001b[38;5;45m+65ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"load\" event fired \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  navigated to \"http://127.0.0.1:4175/stats\" \u001b[38;5;45m+28ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= page.goto succeeded \u001b[38;5;45m+5ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> Expect \"toContainText\" started \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mExpect \"toContainText\" getByRole('table', { name: 'Completed sessions, most recent first', exact: true }).getByRole('row').nth(1) with timeout 5000ms \u001b[38;5;45m+9ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for getByRole('table', { name: 'Completed sessions, most recent first', exact: true }).getByRole('row').nth(1) \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  locator resolved to <tr class=\"border-b last:border-0\">…</tr> \u001b[38;5;45m+139ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= Expect \"toContainText\" succeeded \u001b[38;5;45m+6ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mtaking page screenshot \u001b[38;5;45m+245ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mtaking page screenshot \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for fonts to load... \u001b[38;5;45m+2ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mwaiting for fonts to load... \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mfonts loaded \u001b[38;5;45m+1ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0mfonts loaded \u001b[38;5;45m+0ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m  \"networkidle\" event fired \u001b[38;5;45m+24ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m=> browserContext.close started \u001b[38;5;45m+31ms\u001b[0m\n"
+                    },
+                    {
+                      "text": "  \u001b[38;5;45;1mpw:api \u001b[0m<= browserContext.close succeeded \u001b[38;5;45m+15ms\u001b[0m\n"
+                    }
+                  ],
+                  "retry": 0,
+                  "startTime": "2026-10-16T16:33:28.996Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\performance-polish-2026-10-16\\edge-guardrails-baseline-artifacts\\input-guardrails-idle-prac-e3f96-line-still-persists-exactly-edge\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ecbefbc50305442035b0-8b40a622ed6a688c59ba",
+          "file": "input-guardrails.spec.ts",
+          "line": 150,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-16T16:33:10.749Z",
+    "duration": 21400.09,
+    "expected": 6,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -10,11 +10,12 @@ const browserDevices = {
   chromium: "Desktop Chrome",
   firefox: "Desktop Firefox",
   webkit: "Desktop Safari",
+  edge: "Desktop Edge",
 } as const;
 for (const browser of browserNames) {
   if (!Object.hasOwn(browserDevices, browser))
     throw new Error(
-      `Unsupported PLAYWRIGHT_BROWSERS value: ${browser}. Use chromium, firefox, webkit or all.`,
+      `Unsupported PLAYWRIGHT_BROWSERS value: ${browser}. Use chromium, firefox, webkit, edge or all.`,
     );
 }
 export default defineConfig({
@@ -30,7 +31,10 @@ export default defineConfig({
   },
   projects: browserNames.map((name) => ({
     name,
-    use: { ...devices[browserDevices[name as keyof typeof browserDevices]] },
+    use: {
+      ...devices[browserDevices[name as keyof typeof browserDevices]],
+      ...(name === "edge" ? { channel: "msedge" } : {}),
+    },
   })),
   webServer: externalBaseURL
     ? undefined

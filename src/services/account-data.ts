@@ -82,6 +82,6 @@ export async function deleteAccount(ownerId:string) {
 
 export function exportHistory(records:SessionRecord[]) {
   const blob=new Blob([JSON.stringify({format:'typing-forge-export',schemaVersion:3,exportedAt:new Date().toISOString(),sessions:records},null,2)],{type:'application/json'});
-  const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`typing-forge-history-${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(url);
+  const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`sparowtype-history-${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(url);
 }
 

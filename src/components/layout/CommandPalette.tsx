@@ -25,7 +25,7 @@ export function CommandPalette({
   };
   return (
     <CommandDialog open={open} onOpenChange={onOpenChange}>
-      <DialogTitle className="sr-only">Typing Forge commands</DialogTitle>
+      <DialogTitle className="sr-only">SparowType commands</DialogTitle>
       <DialogDescription className="sr-only">
         Search pages and themes. Use arrow keys and Enter to select.
       </DialogDescription>

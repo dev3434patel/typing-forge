@@ -1,0 +1,530 @@
+
+Running 5 tests using 1 worker
+
+(node:70540) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  pw:api => browserType.launch started +0ms
+  pw:browser <launching> C:\Users\DELL\AppData\Local\ms-playwright\chromium_headless_shell-1248\chrome-headless-shell-win64\chrome-headless-shell.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=C:\Users\DELL\AppData\Local\Temp\playwright_chromiumdev_profile-7yssvo --remote-debugging-pipe --no-startup-window +0ms
+  pw:browser <launched> pid=86108 +129ms
+  pw:api <= browserType.launch succeeded +594ms
+  pw:api => browser.newContext started +5ms
+  pw:api <= browser.newContext succeeded +17ms
+  pw:api => browserContext.newPage started +15ms
+  pw:api <= browserContext.newPage succeeded +311ms
+  pw:api => page.evaluate started +7ms
+  pw:api <= page.evaluate succeeded +27ms
+  pw:api => page.addInitScript started +2ms
+  pw:api <= page.addInitScript succeeded +5ms
+  pw:api => page.addInitScript started +1ms
+  pw:api <= page.addInitScript succeeded +2ms
+  pw:api => page.emulateMedia started +2ms
+  pw:api <= page.emulateMedia succeeded +12ms
+  pw:api => page.setViewportSize started +1ms
+  pw:api <= page.setViewportSize succeeded +6ms
+  pw:api => page.goto started +2ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "domcontentloaded" +3ms
+  pw:api   "commit" event fired +1s
+  pw:api   navigated to "http://127.0.0.1:4175/" +0ms
+  pw:api   "domcontentloaded" event fired +89ms
+  pw:api   "load" event fired +17ms
+  pw:api <= page.goto succeeded +152ms
+  pw:api => page.evaluate started +12ms
+  pw:api <= page.evaluate succeeded +103ms
+  pw:api => page.evaluate started +112ms
+  pw:api <= page.evaluate succeeded +77ms
+  pw:api => page.evaluate started +260ms
+  pw:api <= page.evaluate succeeded +15ms
+  pw:browser [pid=86108][err] [1016/223441.766:INFO:CONSOLE:1] "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.", source: http://127.0.0.1:4175/assets/three.module-ytFXl0Cs.js (1) +3s
+  pw:api => page.evaluate started +510ms
+  pw:browser [pid=86108][err] [1016/223442.185:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x789c01689e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels +426ms
+  pw:api <= page.evaluate succeeded +87ms
+  pw:api => page.evaluate started +2ms
+  pw:api <= page.evaluate succeeded +11ms
+  pw:api => page.evaluate started +2ms
+  pw:api <= page.evaluate succeeded +12ms
+  pw:api => page.evaluate started +5ms
+  pw:api   "networkidle" event fired +0ms
+  pw:api <= page.evaluate succeeded +27ms
+  pw:api => page.setViewportSize started +4ms
+  pw:api <= page.setViewportSize succeeded +95ms
+  pw:api => locator.evaluate started +5ms
+  pw:api waiting for locator('.awakening-canvas') +19ms
+  pw:api   locator resolved to visible <canvas class="awakening-canvas" data-scene="{"renderer":"webgl2","thread":"worker","keyCount":61,"keycapMeshes":1,"tier":"desktop","bloom":true,"environment":true,"environmentIntensity":0.35,"cameraElevationDegrees":34.8,"pixelRatio":1,"width":1280,"height":800,"frames":1,"averageFps":0,"drawCalls":22,"degraded":false,"contextLost":false,"disposed":false,"asyncShaderCompile":false,"shaderPreparationMs":0}"></canvas> +72ms
+  pw:api <= locator.evaluate succeeded +85ms
+  pw:api => page.evaluate started +4ms
+  pw:api <= page.evaluate succeeded +22ms
+  pw:api => page.evaluate started +109ms
+  pw:api <= page.evaluate succeeded +12ms
+  pw:api => page.evaluate started +256ms
+  pw:api <= page.evaluate succeeded +13ms
+  pw:api => page.evaluate started +506ms
+  pw:api <= page.evaluate succeeded +11ms
+  pw:browser [pid=86108][err] [1016/223444.057:INFO:CONSOLE:0] "[.WebGL-0x789c01689e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels", source: http://127.0.0.1:4175/ (0) +2s
+  pw:browser [pid=86108][err] [1016/223444.070:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x789c01689e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels +12ms
+  pw:browser [pid=86108][err] [1016/223444.084:INFO:CONSOLE:0] "[.WebGL-0x789c01689e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels", source: http://127.0.0.1:4175/ (0) +15ms
+  pw:browser [pid=86108][err] [1016/223444.091:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x789c01689e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels +7ms
+  pw:browser [pid=86108][err] [1016/223444.173:INFO:CONSOLE:0] "[.WebGL-0x789c01689e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels", source: http://127.0.0.1:4175/ (0) +82ms
+  pw:browser [pid=86108][err] [1016/223444.183:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x789c01689e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat) +9ms
+  pw:browser [pid=86108][err] [1016/223444.279:INFO:CONSOLE:0] "[.WebGL-0x789c01689e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)", source: http://127.0.0.1:4175/ (0) +96ms
+  pw:api => page.evaluate started +1s
+  pw:api <= page.evaluate succeeded +22ms
+  pw:api => page.evaluate started +4ms
+  pw:api <= page.evaluate succeeded +14ms
+  pw:api => keyboard.press started +2ms
+  pw:api <= keyboard.press succeeded +38ms
+  pw:api => page.evaluate started +2ms
+  pw:api <= page.evaluate succeeded +15ms
+  pw:api => page.evaluate started +104ms
+  pw:api <= page.evaluate succeeded +11ms
+  pw:api => page.evaluate started +2ms
+  pw:api <= page.evaluate succeeded +11ms
+  pw:api => Expect "toHaveCount" started +8ms
+  pw:api Expect "toHaveCount" getByTestId('opening-experience') with timeout 5000ms +25ms
+  pw:api waiting for getByTestId('opening-experience') +0ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +6ms
+  pw:api <= Expect "toHaveCount" succeeded +11ms
+  pw:api => Expect "toBeVisible" started +3ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +6ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +1ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +222ms
+  pw:api <= Expect "toBeVisible" succeeded +54ms
+  pw:api => Expect "toHaveValue" started +3ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +13ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +16ms
+  pw:api => Expect "toHaveAttribute" started +3ms
+  pw:api Expect "toHaveAttribute" getByRole('region', { name: 'Typing session', exact: true }) with timeout 5000ms +13ms
+  pw:api waiting for getByRole('region', { name: 'Typing session', exact: true }) +1ms
+  pw:api <= Expect "toHaveAttribute" succeeded +20ms
+  pw:api => locator.pressSequentially started +2ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +12ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +10ms
+  pw:api elementHandle.type("a") +4ms
+  pw:api <= locator.pressSequentially succeeded +72ms
+  pw:api => Expect "toHaveValue" started +2ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +8ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +14ms
+  pw:api => page.evaluate started +3ms
+  pw:api <= page.evaluate succeeded +22ms
+  pw:api taking page screenshot +250ms
+  pw:api waiting for fonts to load... +2ms
+  pw:api fonts loaded +6ms
+  pw:api => browserContext.close started +37ms
+  pw:api <= browserContext.close succeeded +15ms
+  ok 1 [chromium] › e2e\opening-worker.spec.ts:160:1 › default native worker draws the complete keyboard while document tasks, resize and skip remain responsive (6.3s)
+  pw:api => browser.newContext started +125ms
+  pw:api <= browser.newContext succeeded +3ms
+  pw:api => browserContext.newPage started +3ms
+  pw:api <= browserContext.newPage succeeded +67ms
+  pw:api => page.evaluate started +1ms
+  pw:api <= page.evaluate succeeded +12ms
+  pw:api => page.addInitScript started +1ms
+  pw:api <= page.addInitScript succeeded +1ms
+  pw:api => page.goto started +1ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "domcontentloaded" +2ms
+  pw:api   "commit" event fired +12ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +0ms
+  pw:api   "domcontentloaded" event fired +24ms
+  pw:api   "load" event fired +4ms
+  pw:api <= page.goto succeeded +53ms
+  pw:api => page.evaluate started +1ms
+  pw:api <= page.evaluate succeeded +79ms
+  pw:api => page.evaluate started +104ms
+  pw:api <= page.evaluate succeeded +7ms
+  pw:browser [pid=86108][err] [1016/223446.201:INFO:CONSOLE:1] "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.", source: http://127.0.0.1:4175/assets/three.module-ytFXl0Cs.js (1) +2s
+  pw:api => page.evaluate started +252ms
+  pw:api <= page.evaluate succeeded +12ms
+  pw:api   "networkidle" event fired +347ms
+  pw:api => page.evaluate started +162ms
+  pw:api <= page.evaluate succeeded +16ms
+  pw:api => page.evaluate started +2ms
+  pw:api <= page.evaluate succeeded +11ms
+  pw:api => page.evaluate started +0ms
+  pw:api <= page.evaluate succeeded +11ms
+  pw:api => page.reload started +1ms
+  pw:api waiting for navigation until "domcontentloaded" +3ms
+  pw:api   "commit" event fired +32ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +0ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +0ms
+  pw:api   "domcontentloaded" event fired +27ms
+  pw:api   "load" event fired +7ms
+  pw:api <= page.reload succeeded +13ms
+  pw:api => page.evaluate started +1ms
+  pw:api <= page.evaluate succeeded +11ms
+  pw:api => page.evaluate started +108ms
+  pw:api <= page.evaluate succeeded +6ms
+  pw:api => page.evaluate started +253ms
+  pw:api <= page.evaluate succeeded +43ms
+  pw:api   "networkidle" event fired +75ms
+  pw:api => page.evaluate started +430ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +1ms
+  pw:api <= page.evaluate succeeded +18ms
+  pw:api => page.evaluate started +1s
+  pw:api <= page.evaluate succeeded +47ms
+  pw:api => page.evaluate started +1s
+  pw:api <= page.evaluate succeeded +12ms
+  pw:api => page.evaluate started +1s
+  pw:api <= page.evaluate succeeded +9ms
+  pw:api taking page screenshot +2ms
+  pw:api waiting for fonts to load... +2ms
+  pw:api fonts loaded +1ms
+  pw:api => page.evaluate started +33ms
+  pw:api <= page.evaluate succeeded +11ms
+  pw:api => browserContext.close started +267ms
+  pw:api <= browserContext.close succeeded +4ms
+  pw:api => browser.close started +9ms
+  pw:browser [pid=86108] <gracefully close start> +5s
+  pw:browser [pid=86108] <process did exit: exitCode=0, signal=null> +95ms
+  pw:browser [pid=86108] starting temporary directories cleanup +0ms
+  pw:browser [pid=86108] finished temporary directories cleanup +7ms
+  pw:browser [pid=86108] <gracefully close end> +0ms
+  pw:api <= browser.close succeeded +104ms
+  x  2 [chromium] › e2e\opening-worker.spec.ts:257:1 › reloading a live native worker closes the old worker and a fresh opening releases its own resources (5.6s)
+(node:39468) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  pw:api => browserType.launch started +0ms
+  pw:browser <launching> C:\Users\DELL\AppData\Local\ms-playwright\chromium_headless_shell-1248\chrome-headless-shell-win64\chrome-headless-shell.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=C:\Users\DELL\AppData\Local\Temp\playwright_chromiumdev_profile-XWAIGx --remote-debugging-pipe --no-startup-window +0ms
+  pw:browser <launched> pid=1020 +20ms
+  pw:api <= browserType.launch succeeded +120ms
+  pw:api => browser.newContext started +3ms
+  pw:api <= browser.newContext succeeded +7ms
+  pw:api => browserContext.newPage started +10ms
+  pw:api <= browserContext.newPage succeeded +80ms
+  pw:api => page.evaluate started +2ms
+  pw:api <= page.evaluate succeeded +10ms
+  pw:api => page.addInitScript started +1ms
+  pw:api <= page.addInitScript succeeded +2ms
+  pw:api => browserContext.route started +1ms
+  pw:api <= browserContext.route succeeded +5ms
+  pw:api => page.goto started +2ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "domcontentloaded" +2ms
+  pw:api   "commit" event fired +438ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +1ms
+  pw:api   "domcontentloaded" event fired +20ms
+  pw:api   "load" event fired +2ms
+  pw:api <= page.goto succeeded +56ms
+  pw:api => page.evaluate started +6ms
+  pw:api <= page.evaluate succeeded +73ms
+  pw:api => page.evaluate started +108ms
+  pw:api <= page.evaluate succeeded +7ms
+  pw:api => page.evaluate started +1ms
+  pw:api <= page.evaluate succeeded +12ms
+  pw:api => keyboard.press started +2ms
+  pw:api <= keyboard.press succeeded +15ms
+  pw:api => page.evaluate started +2ms
+  pw:api <= page.evaluate succeeded +7ms
+  pw:api => page.evaluate started +102ms
+  pw:api <= page.evaluate succeeded +8ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +45ms
+  pw:api => page.evaluate started +207ms
+  pw:api <= page.evaluate succeeded +47ms
+  pw:api => page.evaluate started +2ms
+  pw:api <= page.evaluate succeeded +23ms
+  pw:api => Expect "toHaveCount" started +8ms
+  pw:api Expect "toHaveCount" getByTestId('opening-experience') with timeout 5000ms +13ms
+  pw:api waiting for getByTestId('opening-experience') +0ms
+  pw:api <= Expect "toHaveCount" succeeded +34ms
+  pw:api => Expect "toBeVisible" started +4ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +11ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +1ms
+  pw:api <= Expect "toBeVisible" succeeded +18ms
+  pw:api => Expect "toHaveValue" started +3ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +11ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +1ms
+  pw:api <= Expect "toHaveValue" succeeded +12ms
+  pw:api => Expect "toHaveAttribute" started +2ms
+  pw:api Expect "toHaveAttribute" getByRole('region', { name: 'Typing session', exact: true }) with timeout 5000ms +8ms
+  pw:api waiting for getByRole('region', { name: 'Typing session', exact: true }) +1ms
+  pw:api <= Expect "toHaveAttribute" succeeded +13ms
+  pw:api => locator.pressSequentially started +1ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +8ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +6ms
+  pw:api elementHandle.type("x") +2ms
+  pw:api <= locator.pressSequentially succeeded +42ms
+  pw:api => Expect "toHaveValue" started +3ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +6ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +9ms
+  pw:api => route.continue started +1ms
+  pw:api => route.continue started +1ms
+  pw:api => page.evaluate started +1ms
+  pw:api <= route.continue succeeded +3ms
+  pw:api <= route.continue succeeded +0ms
+  pw:api <= page.evaluate succeeded +12ms
+  pw:api taking page screenshot +157ms
+  pw:api waiting for fonts to load... +2ms
+  pw:api fonts loaded +3ms
+  pw:api => browserContext.close started +39ms
+  pw:api <= browserContext.close succeeded +7ms
+  ok 3 [chromium] › e2e\opening-worker.spec.ts:289:1 › skipping while the native worker entry is blocked terminates startup and preserves the first typing key (1.8s)
+  pw:api => browser.newContext started +83ms
+  pw:api <= browser.newContext succeeded +7ms
+  pw:api => browserContext.newPage started +3ms
+  pw:api <= browserContext.newPage succeeded +71ms
+  pw:api => page.evaluate started +1ms
+  pw:api <= page.evaluate succeeded +14ms
+  pw:api => page.addInitScript started +1ms
+  pw:api <= page.addInitScript succeeded +2ms
+  pw:api => page.goto started +1ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "domcontentloaded" +2ms
+  pw:api   "commit" event fired +12ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +0ms
+  pw:api   "domcontentloaded" event fired +28ms
+  pw:api   "load" event fired +2ms
+  pw:api <= page.goto succeeded +71ms
+  pw:api => page.evaluate started +3ms
+  pw:api <= page.evaluate succeeded +83ms
+  pw:api => page.evaluate started +103ms
+  pw:api <= page.evaluate succeeded +9ms
+  pw:browser [pid=1020][err] [1016/223454.793:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x3a740199de00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels +3s
+  pw:api => page.evaluate started +254ms
+  pw:api <= page.evaluate succeeded +6ms
+  pw:api => page.evaluate started +516ms
+  pw:api <= page.evaluate succeeded +13ms
+  pw:browser [pid=1020][err] [1016/223456.364:INFO:CONSOLE:0] "[.WebGL-0x3a740199de00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels", source: http://127.0.0.1:4175/ (0) +2s
+  pw:browser [pid=1020][err] [1016/223456.373:INFO:CONSOLE:1] "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.", source: http://127.0.0.1:4175/assets/three.module-ytFXl0Cs.js (1) +12ms
+  pw:api => page.evaluate started +1s
+  pw:api <= page.evaluate succeeded +14ms
+  pw:browser [pid=1020][err] [1016/223456.841:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x3a740199de00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels +466ms
+  pw:api   "networkidle" event fired +421ms
+  pw:api => page.evaluate started +590ms
+  pw:api <= page.evaluate succeeded +9ms
+  pw:api => page.evaluate started +2ms
+  pw:api <= page.evaluate succeeded +35ms
+  pw:api => Expect "toHaveAttribute" started +3ms
+  pw:api Expect "toHaveAttribute" getByTestId('opening-experience') with timeout 5000ms +5ms
+  pw:api waiting for getByTestId('opening-experience') +0ms
+  pw:browser [pid=1020][err] [1016/223458.158:INFO:CONSOLE:1] "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.", source: http://127.0.0.1:4175/assets/three.module-ytFXl0Cs.js (1) +1s
+  pw:api   locator resolved to <section data-mode="full" class="awakening" data-closing="false" data-renderer="fallback" data-testid="opening-experience">…</section> +1s
+  pw:api   unexpected value "fallback" +0ms
+  pw:api   locator resolved to <section data-mode="full" class="awakening" data-closing="false" data-renderer="webgl" data-testid="opening-experience">…</section> +2s
+  pw:api <= Expect "toHaveAttribute" succeeded +10ms
+  pw:api => locator.getAttribute started +5ms
+  pw:api waiting for locator('.awakening-canvas') +5ms
+  pw:api   locator resolved to <canvas width="1280" height="720" class="awakening-canvas" data-engine="three.js r186" data-scene="{"renderer":"webgl2","thread":"main-thread","keyCount":61,"keycapMeshes":1,"tier":"desktop","bloom":true,"environment":true,"environmentIntensity":0.35,"cameraElevationDegrees":35,"pixelRatio":1,"width":1280,"height":720,"frames":2,"averageFps":0,"drawCalls":22,"degraded":false,"contextLost":false,"disposed":true,"asyncShaderCompile":false,"shaderPreparationMs":0}"></canvas> +11ms
+  pw:api <= locator.getAttribute succeeded +8ms
+  pw:api => Expect "toHaveCount" started +3ms
+  pw:api Expect "toHaveCount" locator('.awakening-canvas') with timeout 5000ms +6ms
+  pw:api waiting for locator('.awakening-canvas') +1ms
+  pw:api <= Expect "toHaveCount" succeeded +6ms
+  pw:api => page.evaluate started +1ms
+  pw:api <= page.evaluate succeeded +9ms
+  pw:api => keyboard.press started +1ms
+  pw:api <= keyboard.press succeeded +9ms
+  pw:api => Expect "toHaveCount" started +1ms
+  pw:api Expect "toHaveCount" getByTestId('opening-experience') with timeout 5000ms +5ms
+  pw:api waiting for getByTestId('opening-experience') +0ms
+  pw:api   locator resolved to 1 element +4ms
+  pw:api   unexpected value "1" +0ms
+  pw:api   locator resolved to 1 element +24ms
+  pw:api   unexpected value "1" +0ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +52ms
+  pw:api   locator resolved to 0 elements +2ms
+  pw:api <= Expect "toHaveCount" succeeded +8ms
+  pw:api => Expect "toBeVisible" started +2ms
+  pw:api Expect "toBeVisible" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +10ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api   locator resolved to <textarea dir="ltr" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="100000" autocapitalize="off" aria-label="Typing input" aria-describedby="typing-instructions typing-passage typing-feedback" class="typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2"></textarea> +124ms
+  pw:api <= Expect "toBeVisible" succeeded +71ms
+  pw:api => Expect "toHaveValue" started +2ms
+  pw:api Expect "toHaveValue" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms +12ms
+  pw:api waiting for getByRole('textbox', { name: 'Typing input', exact: true }) +0ms
+  pw:api <= Expect "toHaveValue" succeeded +14ms
+  pw:api => Expect "toHaveAttribute" started +2ms
+  pw:api Expect "toHaveAttribute" getByRole('region', { name: 'Typing session', exact: true }) with timeout 5000ms +10ms
+  pw:api waiting for getByRole('region', { name: 'Typing session', exact: true }) +0ms
+  pw:api <= Expect "toHaveAttribute" succeeded +23ms
+  pw:api => page.evaluate started +2ms
+  pw:api <= page.evaluate succeeded +30ms
+  pw:api taking page screenshot +239ms
+  pw:api waiting for fonts to load... +2ms
+  pw:api fonts loaded +1ms
+  pw:api => browserContext.close started +38ms
+  pw:api <= browserContext.close succeeded +11ms
+  ok 4 [chromium] › e2e\opening-worker.spec.ts:349:1 › a native worker transport failure replaces the transferred canvas with the complete real document renderer (7.3s)
+  pw:api => browser.newContext started +134ms
+  pw:api <= browser.newContext succeeded +4ms
+  pw:api => browserContext.newPage started +3ms
+  pw:api <= browserContext.newPage succeeded +71ms
+  pw:api => page.evaluate started +0ms
+  pw:api <= page.evaluate succeeded +10ms
+  pw:api => page.addInitScript started +0ms
+  pw:api <= page.addInitScript succeeded +2ms
+  pw:api => browserContext.route started +0ms
+  pw:api <= browserContext.route succeeded +2ms
+  pw:api => page.goto started +0ms
+  pw:api navigating to "http://127.0.0.1:4175/", waiting until "domcontentloaded" +2ms
+  pw:api   "commit" event fired +12ms
+  pw:api   navigated to "http://127.0.0.1:4175/" +0ms
+  pw:api   "domcontentloaded" event fired +20ms
+  pw:api   "load" event fired +3ms
+  pw:api <= page.goto succeeded +51ms
+  pw:api => page.evaluate started +2ms
+  pw:api <= page.evaluate succeeded +35ms
+  pw:api => route.fetch started +23ms
+  pw:api → GET http://127.0.0.1:4175/assets/keyboard-render-worker-D-MUPxNz.js +14ms
+  pw:api   user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36 +0ms
+  pw:api   accept: */* +0ms
+  pw:api   accept-encoding: gzip,deflate,br +0ms
+  pw:api   accept-language: en-US +0ms
+  pw:api   referer: http://127.0.0.1:4175/ +1ms
+  pw:api ← 200 OK +15ms
+  pw:api   vary: Origin +1ms
+  pw:api   content-security-policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https: wss:; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self' +0ms
+  pw:api   x-content-type-options: nosniff +0ms
+  pw:api   referrer-policy: strict-origin-when-cross-origin +0ms
+  pw:api   x-frame-options: DENY +0ms
+  pw:api   permissions-policy: camera=(), microphone=(), geolocation=(), gyroscope=() +0ms
+  pw:api   content-type: text/javascript +0ms
+  pw:api   last-modified: Fri, 16 Oct 2026 17:03:30 GMT +0ms
+  pw:api   etag: W/"1167-1792170210211" +0ms
+  pw:api   cache-control: no-cache +0ms
+  pw:api   content-encoding: gzip +0ms
+  pw:api   date: Fri, 16 Oct 2026 17:05:01 GMT +0ms
+  pw:api   connection: keep-alive +0ms
+  pw:api   keep-alive: timeout=5 +0ms
+  pw:api   transfer-encoding: chunked +0ms
+  pw:api <= route.fetch succeeded +9ms
+  pw:api => route.fulfill started +4ms
+  pw:api <= route.fulfill succeeded +6ms
+  pw:api => page.evaluate started +30ms
+  pw:api <= page.evaluate succeeded +9ms
+  pw:api => page.evaluate started +253ms
+  pw:api <= page.evaluate succeeded +12ms
+  pw:api => page.evaluate started +2ms
+  pw:api <= page.evaluate succeeded +20ms
+  pw:api => page.evaluate started +4ms
+  pw:api <= page.evaluate succeeded +8ms
+  pw:api => page.evaluate started +3ms
+  pw:api <= page.evaluate succeeded +7ms
+  pw:api => page.evaluate started +116ms
+  pw:api <= page.evaluate succeeded +10ms
+  pw:api => page.evaluate started +263ms
+  pw:api <= page.evaluate succeeded +9ms
+  pw:api => page.evaluate started +509ms
+  pw:api <= page.evaluate succeeded +12ms
+  pw:browser [pid=1020][err] [1016/223503.671:INFO:CONSOLE:1] "THREE.WebGLRenderer: Context Lost.", source: http://127.0.0.1:4175/assets/three.module-ytFXl0Cs.js (1) +6s
+  pw:api => page.evaluate started +1s
+  pw:api   "networkidle" event fired +6ms
+  pw:api <= page.evaluate succeeded +1ms
+  pw:api => page.evaluate started +1s
+  pw:api <= page.evaluate succeeded +11ms
+  pw:browser [pid=1020][err] [1016/223505.839:INFO:CONSOLE:1] "THREE.WebGLRenderer: WEBGL_lose_context extension not supported.", source: http://127.0.0.1:4175/assets/three.module-ytFXl0Cs.js (1) +2s
+  pw:api   navigated to "http://127.0.0.1:4175/" +801ms
+  pw:api => page.evaluate started +201ms
+  pw:api <= page.evaluate succeeded +66ms
+  pw:api taking page screenshot +7ms
+  pw:api waiting for fonts to load... +5ms
+  pw:api fonts loaded +4ms
+  pw:api => page.evaluate started +78ms
+  pw:api => route.fetch started +25ms
+  pw:api <= page.evaluate succeeded +8ms
+  pw:api → GET http://127.0.0.1:4175/assets/keyboard-render-worker-D-MUPxNz.js +5ms
+  pw:api   user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36 +1ms
+  pw:api   accept: */* +0ms
+  pw:api   accept-encoding: gzip,deflate,br +0ms
+  pw:api   accept-language: en-US +0ms
+  pw:api   referer: http://127.0.0.1:4175/sw.js +0ms
+  pw:api ← 200 OK +4ms
+  pw:api   vary: Origin +0ms
+  pw:api   content-security-policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https: wss:; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self' +0ms
+  pw:api   x-content-type-options: nosniff +0ms
+  pw:api   referrer-policy: strict-origin-when-cross-origin +1ms
+  pw:api   x-frame-options: DENY +0ms
+  pw:api   permissions-policy: camera=(), microphone=(), geolocation=(), gyroscope=() +0ms
+  pw:api   content-type: text/javascript +0ms
+  pw:api   last-modified: Fri, 16 Oct 2026 17:03:30 GMT +0ms
+  pw:api   etag: W/"1167-1792170210211" +0ms
+  pw:api   cache-control: no-cache +0ms
+  pw:api   content-encoding: gzip +0ms
+  pw:api   date: Fri, 16 Oct 2026 17:05:06 GMT +0ms
+  pw:api   connection: keep-alive +0ms
+  pw:api   keep-alive: timeout=5 +0ms
+  pw:api   transfer-encoding: chunked +0ms
+  pw:api <= route.fetch succeeded +6ms
+  pw:api => route.fulfill started +3ms
+  pw:api <= route.fulfill succeeded +4ms
+  pw:api => browserContext.close started +388ms
+  pw:api <= browserContext.close succeeded +7ms
+  pw:api => browser.close started +9ms
+  pw:browser [pid=1020] <gracefully close start> +988ms
+  pw:browser [pid=1020] <process did exit: exitCode=0, signal=null> +835ms
+  pw:browser [pid=1020] starting temporary directories cleanup +1ms
+  pw:browser [pid=1020] finished temporary directories cleanup +8ms
+  pw:browser [pid=1020] <gracefully close end> +0ms
+  pw:api <= browser.close succeeded +844ms
+  x  5 [chromium] › e2e\opening-worker.spec.ts:363:1 › actual worker WebGL context loss recovers with a fresh canvas and keeps practice usable (5.2s)
+
+
+  1) [chromium] › e2e\opening-worker.spec.ts:257:1 › reloading a live native worker closes the old worker and a fresh opening releases its own resources 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: undefined
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      113 |       ),
+      114 |     )
+    > 115 |     .toBe(true);
+          |      ^
+      116 | }
+      117 | async function readyPractice(page: Page) {
+      118 |   await expect(page.getByTestId("opening-experience")).toHaveCount(0);
+        at firstWorkerReady (D:\extra\typing_updated\typing-forge\e2e\opening-worker.spec.ts:115:6)
+        at D:\extra\typing_updated\typing-forge\e2e\opening-worker.spec.ts:273:9
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\performance-polish-2026-10-16\worker-chromium-artifacts\opening-worker-reloading-a-331c7--releases-its-own-resources-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\performance-polish-2026-10-16\worker-chromium-artifacts\opening-worker-reloading-a-331c7--releases-its-own-resources-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\performance-polish-2026-10-16\worker-chromium-artifacts\opening-worker-reloading-a-331c7--releases-its-own-resources-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\performance-polish-2026-10-16\worker-chromium-artifacts\opening-worker-reloading-a-331c7--releases-its-own-resources-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › e2e\opening-worker.spec.ts:363:1 › actual worker WebGL context loss recovers with a fresh canvas and keeps practice usable 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      413 |       ),
+      414 |     )
+    > 415 |     .toBe(true);
+          |      ^
+      416 |   await expectRecoveredDocumentScene(page);
+      417 | });
+      418 |
+        at D:\extra\typing_updated\typing-forge\e2e\opening-worker.spec.ts:415:6
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\performance-polish-2026-10-16\worker-chromium-artifacts\opening-worker-actual-work-1f86c-s-and-keeps-practice-usable-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\performance-polish-2026-10-16\worker-chromium-artifacts\opening-worker-actual-work-1f86c-s-and-keeps-practice-usable-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\performance-polish-2026-10-16\worker-chromium-artifacts\opening-worker-actual-work-1f86c-s-and-keeps-practice-usable-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\performance-polish-2026-10-16\worker-chromium-artifacts\opening-worker-actual-work-1f86c-s-and-keeps-practice-usable-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › e2e\opening-worker.spec.ts:257:1 › reloading a live native worker closes the old worker and a fresh opening releases its own resources 
+    [chromium] › e2e\opening-worker.spec.ts:363:1 › actual worker WebGL context loss recovers with a fresh canvas and keeps practice usable 
+  3 passed (30.4s)

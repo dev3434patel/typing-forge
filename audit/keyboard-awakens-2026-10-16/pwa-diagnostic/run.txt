@@ -1,0 +1,40 @@
+
+Running 1 test using 1 worker
+
+(node:17800) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"build":"3574d07a5677c0221eb9","directRecovery":false,"proxyRecovery":false,"profileUpstreamHits":1}
+  x  1 [firefox-diagnostic] › audit\keyboard-awakens-2026-10-16\pwa-diagnostic\offline-transport.spec.ts:101:1 › diagnoses actual offline private-navigation transport without accepting an app shell (11.9s)
+
+
+  1) [firefox-diagnostic] › audit\keyboard-awakens-2026-10-16\pwa-diagnostic\offline-transport.spec.ts:101:1 › diagnoses actual offline private-navigation transport without accepting an app shell 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      193 |   expect(proxy.externalRequests).toEqual([]);
+      194 |   expect(proxy.pageNetworkProbe.returned).toBe(false);
+    > 195 |   expect(proxy.genericRecovery).toBe(true);
+          |                                 ^
+      196 | });
+      197 |
+        at D:\extra\typing_updated\typing-forge\audit\keyboard-awakens-2026-10-16\pwa-diagnostic\offline-transport.spec.ts:195:33
+
+    attachment #1: offline-transport-observations (application/json) ───────────────────────────────
+    audit\keyboard-awakens-2026-10-16\pwa-diagnostic\artifacts\offline-transport-diagnose-e8e88-hout-accepting-an-app-shell-firefox-diagnostic\attachments\offline-transport-observations-4a4946305884d5c4928ff486046144ee97084825.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\keyboard-awakens-2026-10-16\pwa-diagnostic\artifacts\offline-transport-diagnose-e8e88-hout-accepting-an-app-shell-firefox-diagnostic\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\keyboard-awakens-2026-10-16\pwa-diagnostic\artifacts\offline-transport-diagnose-e8e88-hout-accepting-an-app-shell-firefox-diagnostic\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\keyboard-awakens-2026-10-16\pwa-diagnostic\artifacts\offline-transport-diagnose-e8e88-hout-accepting-an-app-shell-firefox-diagnostic\error-context.md
+
+  1 failed
+    [firefox-diagnostic] › audit\keyboard-awakens-2026-10-16\pwa-diagnostic\offline-transport.spec.ts:101:1 › diagnoses actual offline private-navigation transport without accepting an app shell 

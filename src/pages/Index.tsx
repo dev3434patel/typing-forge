@@ -111,7 +111,7 @@ export default function Index() {
                 : ""),
         )
         .join(" ");
-    const passage = mode === "quote" ? getRandomQuote() : null,
+    const passage = mode === "quote" ? getRandomQuote(seed, settings.quoteLength) : null,
       snippet =
         mode === "code" ? getRandomCodeSnippet(settings.codeLanguage) : null;
     const initialTarget =
@@ -163,6 +163,7 @@ export default function Index() {
           passage?.author ?? snippet?.author ?? pack.provenance.author,
         contentLicense:
           passage?.license ?? snippet?.license ?? pack.provenance.license,
+        ...(mode === "quote" ? { quoteLength: settings.quoteLength } : {}),
       },
     };
     // Custom text is committed explicitly by the Start button.
@@ -225,15 +226,19 @@ export default function Index() {
     setResult(null);
   };
   const onStatus = useCallback(
-    (status: SessionSnapshot["status"]) =>
-      useTestStore.setState({
-        status:
-          status === "finished"
-            ? "finished"
-            : status === "ready"
-              ? "idle"
-              : "running",
-      }),
+    (status: SessionSnapshot["status"]) => {
+      const mapped =
+        status === "finished"
+          ? "finished"
+          : status === "ready"
+            ? "idle"
+            : "running";
+      // Input/timer snapshots keep reporting their status. Publish only a real
+      // transition so store subscribers do not rebuild the page shell per key.
+      useTestStore.setState((state) =>
+        state.status === mapped ? state : { status: mapped },
+      );
+    },
     [],
   );
   return (

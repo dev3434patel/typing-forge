@@ -1,5 +1,5 @@
 /** Original, deliberately small practice corpora. No third-party word list is bundled. */
-export type LayoutId = 'qwerty' | 'dvorak' | 'colemak' | 'colemak-dh' | 'azerty' | 'qwertz' | 'native';
+export type LayoutId = 'qwerty' | 'dvorak' | 'colemak' | 'colemak-dh' | 'workman' | 'azerty' | 'qwertz' | 'native';
 export interface ContentPack {
   id: string;
   label: string;
@@ -22,15 +22,24 @@ export const LAYOUTS: Readonly<Record<LayoutId, { label: string; rows: readonly 
   dvorak: { label: 'Dvorak', rows: ["',.pyfgcrl", 'aoeuidhtns', ';qjkxbmwvz'].map(row => [...row]) },
   colemak: { label: 'Colemak', rows: ['qwfpgjluy;', 'arstdhneio', 'zxcvbkm,.'].map(row => [...row]) },
   'colemak-dh': { label: 'Colemak-DH', rows: ['qwfpbjluy;', 'arstgmneio', 'zxcdvkh,.'].map(row => [...row]) },
+  // Workman by OJ Bucao: https://workmanlayout.org/ (US Windows/X.Org base rows).
+  workman: { label: 'Workman', rows: ['qdrwbjfup;', 'ashtgyneoi', 'zxmcvkl,.'].map(row => [...row]) },
   azerty: { label: 'AZERTY', rows: ['azertyuiop', 'qsdfghjklm', 'wxcvbn'].map(row => [...row]) },
   qwertz: { label: 'QWERTZ', rows: ['qwertzuiopü', 'asdfghjklöä', 'yxcvbnm'].map(row => [...row]) },
   native: { label: 'Native / unmapped', rows: [] },
 };
 
+const graphemeSegmenters = new Map<string, Intl.Segmenter>();
 export function graphemes(text: string, language = 'en'): string[] {
   const normalized = text.normalize('NFC');
   if (typeof Intl.Segmenter === 'function') {
-    return Array.from(new Intl.Segmenter(language, { granularity: 'grapheme' }).segment(normalized), part => part.segment);
+    let segmenter = graphemeSegmenters.get(language);
+    if (!segmenter) {
+      segmenter = new Intl.Segmenter(language, { granularity: 'grapheme' });
+      if (graphemeSegmenters.size >= 32) graphemeSegmenters.delete(graphemeSegmenters.keys().next().value!);
+      graphemeSegmenters.set(language, segmenter);
+    }
+    return Array.from(segmenter.segment(normalized), part => part.segment);
   }
   // Unicode-property fallback keeps combining marks attached on older browsers.
   return normalized.match(/\P{M}\p{M}*|\p{M}+/gu) ?? [];
@@ -38,14 +47,20 @@ export function graphemes(text: string, language = 'en'): string[] {
 
 function pack(id: string, label: string, script: string, direction: 'ltr' | 'rtl', order: string, source: string, defaultLayout: LayoutId = 'qwerty'): ContentPack {
   const words = [...new Set(source.normalize('NFC').split(/\s+/u).filter(Boolean))];
-  const alphabet = [...new Set(words.flatMap(word => graphemes(word, id === 'gu-Latn' ? 'gu' : id)))];
-  const introductionOrder = [...new Set([...graphemes(order, id === 'gu-Latn' ? 'gu' : id).filter(char => alphabet.includes(char)), ...alphabet])];
+  let alphabet: string[] | undefined;
+  let introductionOrder: string[] | undefined;
+  const getAlphabet = () => alphabet ??= [...new Set(words.flatMap(word => graphemes(word, id === 'gu-Latn' ? 'gu' : id)))];
   return {
-    id, label, script, direction, words, alphabet, introductionOrder, defaultLayout,
+    id, label, script, direction, words, defaultLayout,
+    get alphabet() { return getAlphabet(); },
+    get introductionOrder() {
+      const letters = getAlphabet();
+      return introductionOrder ??= [...new Set([...graphemes(order, id === 'gu-Latn' ? 'gu' : id).filter(char => letters.includes(char)), ...letters])];
+    },
     revision: 'forge-curated-2026.10.15', normalization: 'NFC', segmentation: 'grapheme',
     font: script === 'Devanagari' ? '"Nirmala UI", "Noto Sans Devanagari", sans-serif' : script === 'Arabic' ? '"Noto Sans Arabic", Tahoma, sans-serif' : 'var(--font-mono, ui-monospace, monospace)',
     capabilities: { adaptive: true, composition: true, ranked: false },
-    provenance: { author: 'Typing Forge', license: 'CC0-1.0', note: 'Original curated vocabulary compilation. Introduction order is editorial, not a measured frequency ranking. Ranked language cohorts await backend validation.' },
+    provenance: { author: 'SparowType', license: 'CC0-1.0', note: 'Original curated vocabulary compilation. Introduction order is editorial, not a measured frequency ranking. Ranked language cohorts await backend validation.' },
   };
 }
 

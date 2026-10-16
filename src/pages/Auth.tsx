@@ -6,7 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-import { Keyboard, Mail, Lock, User, Loader2 } from 'lucide-react';
+import { Mail, Lock, User, Loader2 } from 'lucide-react';
+import { BrandWordmark } from '@/components/brand/BrandMark';
 import { z } from 'zod';
 
 const usernameSchema = z.string()
@@ -25,6 +26,7 @@ const Auth = () => {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(false);
+  const [oauthLoading, setOauthLoading] = useState(false);
   const [errors, setErrors] = useState<{ email?: string; password?: string; username?: string }>({});
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -82,6 +84,7 @@ const Auth = () => {
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (loading || oauthLoading) return;
     if (!isSupabaseConfigured) { toast({ title: 'Guest practice is ready', description: 'Cloud accounts are not configured in this installation.', variant: 'destructive' }); return; }
     
     if (!validateForm()) return;
@@ -141,6 +144,22 @@ const Auth = () => {
     }
   };
 
+  const handleGoogleSignIn = async () => {
+    if (!isSupabaseConfigured || loading || oauthLoading) return;
+    setOauthLoading(true);
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: { redirectTo: `${window.location.origin}/auth` },
+      });
+      if (error) throw error;
+    } catch (cause) {
+      toast({ title: 'Sign-in could not start', description: cause instanceof Error ? cause.message : 'Please try again.', variant: 'destructive' });
+    } finally {
+      setOauthLoading(false);
+    }
+  };
+
   return (
     <main id="main-content" className="min-h-screen flex items-center justify-center bg-background p-4">
       <motion.div
@@ -150,8 +169,7 @@ const Auth = () => {
       >
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Keyboard className="w-10 h-10 text-primary" />
-            <span className="text-2xl font-bold">Typing Forge</span>
+            <BrandWordmark className="text-2xl" />
           </div>
           <h1 className="text-3xl font-bold mb-2">
             {isLogin ? 'Welcome Back' : 'Create Account'}
@@ -164,6 +182,10 @@ const Auth = () => {
         </div>
 
         <div className="stat-card p-6">
+          <Button type="button" variant="outline" className="w-full min-h-11" onClick={() => void handleGoogleSignIn()} disabled={loading || oauthLoading || !isSupabaseConfigured}>
+            {oauthLoading ? <><Loader2 className="size-4 animate-spin" /> Connecting…</> : 'Continue with Google'}
+          </Button>
+          <p className="my-5 text-center text-xs text-muted-foreground">or continue with email</p>
           <form onSubmit={handleAuth} className="space-y-4">
             {!isLogin && (
               <div className="space-y-2">
@@ -225,7 +247,7 @@ const Auth = () => {
             </div>
 
             {!isSupabaseConfigured && <p role="status" className="text-sm text-muted-foreground">Cloud accounts are unavailable. Guest practice and local history are ready.</p>}
-            <Button type="submit" className="w-full" disabled={loading || !isSupabaseConfigured}>
+            <Button type="submit" className="w-full" disabled={loading || oauthLoading || !isSupabaseConfigured}>
               {loading ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />

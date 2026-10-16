@@ -15,11 +15,12 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter Variable', 'system-ui', 'sans-serif'],
+        sans: ['Inter Variable', 'Inter Fallback', 'system-ui', 'sans-serif'],
+        display: ['Sora', 'Sora Fallback', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono Variable', 'monospace'],
       },
       colors: {
-        border: "hsl(var(--border))",
+        border: "hsl(var(--ui-border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
@@ -37,7 +38,7 @@ export default {
           foreground: "hsl(var(--destructive-foreground))",
         },
         success: {
-          DEFAULT: "hsl(var(--success))",
+          DEFAULT: "hsl(var(--ui-success))",
           foreground: "hsl(var(--success-foreground))",
         },
         warning: {
@@ -49,7 +50,7 @@ export default {
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
+          DEFAULT: "hsl(var(--ui-accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
         popover: {
