@@ -32,6 +32,7 @@ import { TypingFeedback } from "./TypingFeedback";
 import { OpponentPaceMarker } from "./OpponentPaceMarker";
 import { opponentPacePosition, type RacePace } from "@/lib/race-pace";
 import type { KeyboardAudio } from "@/lib/keyboard-audio";
+import { useWordCorrection, WORD_CORRECTION_NOTICE } from "@/hooks/useWordCorrection";
 import {
   typingCaretAnchor,
   typingCaretGeometry,
@@ -258,6 +259,17 @@ export function TypingArea({
         .then(() => engine.play(p.soundPack, p.volume))
         .catch(() => undefined);
   };
+  const wordCorrection = useWordCorrection({
+    controller,
+    inputRef: textarea,
+    composing,
+    onSnapshot: (next) => {
+      setValue(next.finalText);
+      update(next);
+      sound();
+    },
+    onNotice: setInputHint,
+  });
   const commit = (
     newValue: string,
     source: InputProvenance = provenance.current,
@@ -288,6 +300,7 @@ export function TypingArea({
     }
     if (start === end && start === newEnd) return;
     const text = newUnits.slice(start, newEnd).join("");
+    const touchesPreviousWord = start < controller.editableStart;
     const next = controller.input({
       type: compositionId
         ? "composition"
@@ -302,11 +315,13 @@ export function TypingArea({
       provenance: source,
       compositionId,
     });
+    if (textarea.current && textarea.current.value !== next.finalText)
+      textarea.current.value = next.finalText;
     setValue(next.finalText);
     update(next);
-    setInputHint("");
+    setInputHint(touchesPreviousWord ? WORD_CORRECTION_NOTICE : "");
     provenance.current = "keyboard";
-    if (text || oldUnits.length > newUnits.length) sound();
+    if (!touchesPreviousWord && (text || oldUnits.length > newUnits.length)) sound();
   };
   const pack = getContentPack(configuration.language || "en");
   const free = configuration.scoringPolicy === "free";
@@ -547,7 +562,11 @@ export function TypingArea({
                 commit(event.target.value);
               }
             }}
-            onFocus={() => setFocused(true)}
+            onFocus={() => {
+              wordCorrection.constrainSelection();
+              setFocused(true);
+            }}
+            onSelect={wordCorrection.constrainSelection}
             onBlur={() => {
               setFocused(false);
               setCapsLock(null);
@@ -564,6 +583,7 @@ export function TypingArea({
                 provenance.current = "autocorrect";
             }}
             onCompositionStart={() => {
+              wordCorrection.constrainSelection();
               composing.current = true;
             }}
             onCompositionEnd={(event) => {
@@ -593,6 +613,7 @@ export function TypingArea({
                 event.keyCode === 229
               )
                 return;
+              if (wordCorrection.handleKeyDown(event)) return;
               if (event.key === "Escape" && !composing.current && canPause) {
                 event.preventDefault();
                 update(
@@ -714,6 +735,7 @@ export function TypingArea({
             : onRestart
               ? " Tab → Enter restarts"
               : " Tab moves focus"}
+          {configuration.correctionPolicy === "current-word" && " · Correct current word only"}
         </p>
         {configuration.rejectIncorrect && (
           <p className="text-xs text-muted-foreground mt-2" role="note">

@@ -1,0 +1,1708 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\extra\\typing_updated\\typing-forge\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "e2e/typing-experience.spec.ts",
+      "e2e/typing-observer-ownership.spec.ts",
+      "e2e/caret-geometry.spec.ts",
+      "e2e/typing-test.spec.ts",
+      "--grep",
+      "whole-word flow|caret follows|prompted code newline|empty and multiline free writing|code Tab|native layout observer|bot and user|composition commits|repeat preserves",
+      "--workers=1",
+      "--retries=0",
+      "--reporter=list,json",
+      "--output=audit/current-word-correction-2026-10-17/regression-artifacts"
+    ],
+    "configFile": "D:\\extra\\typing_updated\\typing-forge\\playwright.config.ts",
+    "rootDir": "D:/extra/typing_updated/typing-forge/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/audit/current-word-correction-2026-10-17/regression-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/audit/current-word-correction-2026-10-17/regression-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "edge",
+        "name": "edge",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\audit\\current-word-correction-2026-10-17\\regression-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4175",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\audit\\current-word-correction-2026-10-17\\regression-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "edge",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4175",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36 Edg/156.0.8078.4",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium",
+          "channel": "msedge"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "edge"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "caret-geometry.spec.ts",
+      "file": "caret-geometry.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "line caret follows the actual LTR character edge through input and rotation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "browser-runtime-version",
+                  "description": "156.0.8078.4"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1950,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:41:57.797Z",
+                  "annotations": [
+                    {
+                      "type": "browser-runtime-version",
+                      "description": "156.0.8078.4"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "actual-character-caret-geometry",
+                      "contentType": "application/json",
+                      "body": "eyJzdHlsZSI6ImxpbmUiLCJsYW5ndWFnZSI6ImVuIiwicmVjZWlwdHMiOlt7ImxhYmVsIjoiaW5pdGlhbCIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjMyLCJyaWdodCI6MzQsInRvcCI6NDI5LjM3NSwiYm90dG9tIjo0NjYuMzc1LCJ3aWR0aCI6MiwiaGVpZ2h0IjozN30sImZyYWdtZW50Ijp7ImxlZnQiOjMyLCJyaWdodCI6NDguODEyNSwidG9wIjo0MjkuMzc1LCJib3R0b20iOjQ2Ni4zNzUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnRzIjpbeyJsZWZ0IjozMiwicmlnaHQiOjQ4LjgxMjUsInRvcCI6NDI5LjM3NSwiYm90dG9tIjo0NjYuMzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN31dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjc0OCwidG9wIjo0MjEuMzc1LCJib3R0b20iOjU4MC45Njg3NSwid2lkdGgiOjcxNiwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ImMiLCJjdXJyZW50SW5kZXgiOiIwIiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJsdHIiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiI1NSBjb21taXR0ZWQgY2hhcmFjdGVycyIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjMwMSwicmlnaHQiOjMwMywidG9wIjo0ODIuNTYyNSwiYm90dG9tIjo1MTkuNTYyNSwid2lkdGgiOjIsImhlaWdodCI6Mzd9LCJmcmFnbWVudCI6eyJsZWZ0IjozMDEsInJpZ2h0IjozMTcuODEyNSwidG9wIjo0ODIuNTYyNSwiYm90dG9tIjo1MTkuNTYyNSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjMwMSwicmlnaHQiOjMxNy44MTI1LCJ0b3AiOjQ4Mi41NjI1LCJib3R0b20iOjUxOS41NjI1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN31dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjc0OCwidG9wIjo0MjEuMzc1LCJib3R0b20iOjU4MC45Njg3NSwid2lkdGgiOjcxNiwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6IiAiLCJjdXJyZW50SW5kZXgiOiI1NSIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoibHRyIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoicG9ydHJhaXQiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0IjoyODksInJpZ2h0IjoyOTEsInRvcCI6NTIwLjc1LCJib3R0b20iOjU1Ny43NSwid2lkdGgiOjIsImhlaWdodCI6Mzd9LCJmcmFnbWVudCI6eyJsZWZ0IjoyODksInJpZ2h0IjozMDUuODEyNSwidG9wIjo1MjAuNzUsImJvdHRvbSI6NTU3Ljc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50cyI6W3sibGVmdCI6Mjg5LCJyaWdodCI6MzA1LjgxMjUsInRvcCI6NTIwLjc1LCJib3R0b20iOjU1Ny43NSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9XSwidmlld3BvcnQiOnsibGVmdCI6MjAsInJpZ2h0IjozNzAsInRvcCI6NDU5LjM3NSwiYm90dG9tIjo2MTguOTY4NzUsIndpZHRoIjozNTAsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoiY3VycmVudC1jaGFyYWN0ZXIiLCJjdXJyZW50RXhwZWN0ZWQiOiIgIiwiY3VycmVudEluZGV4IjoiNTUiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6Imx0ciIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6ImxhbmRzY2FwZSIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjIwMC4xMjUsInJpZ2h0IjoyMDIuMTI1LCJ0b3AiOjQyMC41NjI1LCJib3R0b20iOjQ1Ny41NjI1LCJ3aWR0aCI6MiwiaGVpZ2h0IjozN30sImZyYWdtZW50Ijp7ImxlZnQiOjIwMC4xMjUsInJpZ2h0IjoyMTYuOTM3NSwidG9wIjo0MjAuNTYyNSwiYm90dG9tIjo0NTcuNTYyNSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjIwMC4xMjUsInJpZ2h0IjoyMTYuOTM3NSwidG9wIjo0MjAuNTYyNSwiYm90dG9tIjo0NTcuNTYyNSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9XSwidmlld3BvcnQiOnsibGVmdCI6MzIsInJpZ2h0Ijo4MTIsInRvcCI6MzU5LjM3NSwiYm90dG9tIjo1MTguOTY4NzUsIndpZHRoIjo3ODAsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoiY3VycmVudC1jaGFyYWN0ZXIiLCJjdXJyZW50RXhwZWN0ZWQiOiIgIiwiY3VycmVudEluZGV4IjoiNTUiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6Imx0ciIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6Im5hcnJvdyBhZnRlciBkZWxldGlvbiIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjE3MS4zMTI1LCJyaWdodCI6MTczLjMxMjUsInRvcCI6NTIwLjkzNzUsImJvdHRvbSI6NTU3LjkzNzUsIndpZHRoIjoyLCJoZWlnaHQiOjM3fSwiZnJhZ21lbnQiOnsibGVmdCI6MTcxLjMxMjUsInJpZ2h0IjoxODguMTI1LCJ0b3AiOjUyMC45Mzc1LCJib3R0b20iOjU1Ny45Mzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50cyI6W3sibGVmdCI6MTcxLjMxMjUsInJpZ2h0IjoxODguMTI1LCJ0b3AiOjUyMC45Mzc1LCJib3R0b20iOjU1Ny45Mzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN31dLCJ2aWV3cG9ydCI6eyJsZWZ0IjoyMCwicmlnaHQiOjMwMCwidG9wIjo0NTkuMzc1LCJib3R0b20iOjYxOC45Njg3NSwid2lkdGgiOjI4MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6InIiLCJjdXJyZW50SW5kZXgiOiI1NCIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoibHRyIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fV19"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "610ec9ce3fc2299b8c9f-a9522bd6dba8bdd44309",
+          "file": "caret-geometry.spec.ts",
+          "line": 145,
+          "column": 5
+        },
+        {
+          "title": "line caret follows the actual RTL character edge through input and rotation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "browser-runtime-version",
+                  "description": "156.0.8078.4"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1658,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:41:59.985Z",
+                  "annotations": [
+                    {
+                      "type": "browser-runtime-version",
+                      "description": "156.0.8078.4"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "actual-character-caret-geometry",
+                      "contentType": "application/json",
+                      "body": "eyJzdHlsZSI6ImxpbmUiLCJsYW5ndWFnZSI6ImFyIiwicmVjZWlwdHMiOlt7ImxhYmVsIjoiaW5pdGlhbCIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjc0NiwicmlnaHQiOjc0OCwidG9wIjo0MzAuMzc1LCJib3R0b20iOjQ2NC4zNzUsIndpZHRoIjoyLCJoZWlnaHQiOjM0fSwiZnJhZ21lbnQiOnsibGVmdCI6NzIwLjU0Njg3NSwicmlnaHQiOjc0OCwidG9wIjo0MzAuMzc1LCJib3R0b20iOjQ2NC4zNzUsIndpZHRoIjoyNy40NTMxMjUsImhlaWdodCI6MzR9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjcyMC41NDY4NzUsInJpZ2h0Ijo3NDgsInRvcCI6NDMwLjM3NSwiYm90dG9tIjo0NjQuMzc1LCJ3aWR0aCI6MjcuNDUzMTI1LCJoZWlnaHQiOjM0fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6NzQ4LCJ0b3AiOjQyMS4zNzUsImJvdHRvbSI6NTgwLjk2ODc1LCJ3aWR0aCI6NzE2LCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoi2LMiLCJjdXJyZW50SW5kZXgiOiIwIiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJydGwiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiI1NSBjb21taXR0ZWQgY2hhcmFjdGVycyIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjY0MS44OTA2MjUsInJpZ2h0Ijo2NDMuODkwNjI1LCJ0b3AiOjQ4My41NjI1LCJib3R0b20iOjUxNy41NjI1LCJ3aWR0aCI6MiwiaGVpZ2h0IjozNH0sImZyYWdtZW50Ijp7ImxlZnQiOjYzNi4wMTU2MjUsInJpZ2h0Ijo2NDMuODkwNjI1LCJ0b3AiOjQ4My41NjI1LCJib3R0b20iOjUxNy41NjI1LCJ3aWR0aCI6Ny44NzUsImhlaWdodCI6MzR9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjYzNi4wMTU2MjUsInJpZ2h0Ijo2NDMuODkwNjI1LCJ0b3AiOjQ4My41NjI1LCJib3R0b20iOjUxNy41NjI1LCJ3aWR0aCI6Ny44NzUsImhlaWdodCI6MzR9XSwidmlld3BvcnQiOnsibGVmdCI6MzIsInJpZ2h0Ijo3NDgsInRvcCI6NDIxLjM3NSwiYm90dG9tIjo1ODAuOTY4NzUsIndpZHRoIjo3MTYsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoiY3VycmVudC1jaGFyYWN0ZXIiLCJjdXJyZW50RXhwZWN0ZWQiOiLZhCIsImN1cnJlbnRJbmRleCI6IjU1IiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJydGwiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiJwb3J0cmFpdCIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjE5MS4yNSwicmlnaHQiOjE5My4yNSwidG9wIjo1MjEuNzUsImJvdHRvbSI6NTU1Ljc1LCJ3aWR0aCI6MiwiaGVpZ2h0IjozNH0sImZyYWdtZW50Ijp7ImxlZnQiOjE4NS4zNzUsInJpZ2h0IjoxOTMuMjUsInRvcCI6NTIxLjc1LCJib3R0b20iOjU1NS43NSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjM0fSwiZnJhZ21lbnRzIjpbeyJsZWZ0IjoxODUuMzc1LCJyaWdodCI6MTkzLjI1LCJ0b3AiOjUyMS43NSwiYm90dG9tIjo1NTUuNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH1dLCJ2aWV3cG9ydCI6eyJsZWZ0IjoyMCwicmlnaHQiOjM3MCwidG9wIjo0NTkuMzc1LCJib3R0b20iOjYxOC45Njg3NSwid2lkdGgiOjM1MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ItmEIiwiY3VycmVudEluZGV4IjoiNTUiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6InJ0bCIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6ImxhbmRzY2FwZSIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjU5LjM3NSwicmlnaHQiOjYxLjM3NSwidG9wIjozNjguMzc1LCJib3R0b20iOjQwMi4zNzUsIndpZHRoIjoyLCJoZWlnaHQiOjM0fSwiZnJhZ21lbnQiOnsibGVmdCI6NTMuNSwicmlnaHQiOjYxLjM3NSwidG9wIjozNjguMzc1LCJib3R0b20iOjQwMi4zNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH0sImZyYWdtZW50cyI6W3sibGVmdCI6NTMuNSwicmlnaHQiOjYxLjM3NSwidG9wIjozNjguMzc1LCJib3R0b20iOjQwMi4zNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH1dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjgxMiwidG9wIjozNTkuMzc1LCJib3R0b20iOjUxOC45Njg3NSwid2lkdGgiOjc4MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ItmEIiwiY3VycmVudEluZGV4IjoiNTUiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6InJ0bCIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6Im5hcnJvdyBhZnRlciBkZWxldGlvbiIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjEyOS41NDY4NzUsInJpZ2h0IjoxMzEuNTQ2ODc1LCJ0b3AiOjUyMS43NSwiYm90dG9tIjo1NTUuNzUsIndpZHRoIjoyLCJoZWlnaHQiOjM0fSwiZnJhZ21lbnQiOnsibGVmdCI6MTIzLjI1LCJyaWdodCI6MTMxLjU0Njg3NSwidG9wIjo1MjEuNzUsImJvdHRvbSI6NTU1Ljc1LCJ3aWR0aCI6OC4yOTY4NzUsImhlaWdodCI6MzR9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjEyMy4yNSwicmlnaHQiOjEzMS41NDY4NzUsInRvcCI6NTIxLjc1LCJib3R0b20iOjU1NS43NSwid2lkdGgiOjguMjk2ODc1LCJoZWlnaHQiOjM0fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjIwLCJyaWdodCI6MzAwLCJ0b3AiOjQ1OS4zNzUsImJvdHRvbSI6NjE4Ljk2ODc1LCJ3aWR0aCI6MjgwLCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoi2KciLCJjdXJyZW50SW5kZXgiOiI1NCIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoicnRsIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fV19"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "610ec9ce3fc2299b8c9f-c594cbf415a585222a4a",
+          "file": "caret-geometry.spec.ts",
+          "line": 145,
+          "column": 5
+        },
+        {
+          "title": "block caret follows the actual LTR character edge through input and rotation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "browser-runtime-version",
+                  "description": "156.0.8078.4"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2161,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:01.653Z",
+                  "annotations": [
+                    {
+                      "type": "browser-runtime-version",
+                      "description": "156.0.8078.4"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "actual-character-caret-geometry",
+                      "contentType": "application/json",
+                      "body": "eyJzdHlsZSI6ImJsb2NrIiwibGFuZ3VhZ2UiOiJlbiIsInJlY2VpcHRzIjpbeyJsYWJlbCI6ImluaXRpYWwiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0IjozMiwicmlnaHQiOjQ4LjgxMjUsInRvcCI6NDI5LjM3NSwiYm90dG9tIjo0NjYuMzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50Ijp7ImxlZnQiOjMyLCJyaWdodCI6NDguODEyNSwidG9wIjo0MjkuMzc1LCJib3R0b20iOjQ2Ni4zNzUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnRzIjpbeyJsZWZ0IjozMiwicmlnaHQiOjQ4LjgxMjUsInRvcCI6NDI5LjM3NSwiYm90dG9tIjo0NjYuMzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN31dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjc0OCwidG9wIjo0MjEuMzc1LCJib3R0b20iOjU4MC45Njg3NSwid2lkdGgiOjcxNiwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ImMiLCJjdXJyZW50SW5kZXgiOiIwIiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJsdHIiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiI1NSBjb21taXR0ZWQgY2hhcmFjdGVycyIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjMwMSwicmlnaHQiOjMxNy44MTI1LCJ0b3AiOjQ4Mi41NjI1LCJib3R0b20iOjUxOS41NjI1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50Ijp7ImxlZnQiOjMwMSwicmlnaHQiOjMxNy44MTI1LCJ0b3AiOjQ4Mi41NjI1LCJib3R0b20iOjUxOS41NjI1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50cyI6W3sibGVmdCI6MzAxLCJyaWdodCI6MzE3LjgxMjUsInRvcCI6NDgyLjU2MjUsImJvdHRvbSI6NTE5LjU2MjUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6NzQ4LCJ0b3AiOjQyMS4zNzUsImJvdHRvbSI6NTgwLjk2ODc1LCJ3aWR0aCI6NzE2LCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoiICIsImN1cnJlbnRJbmRleCI6IjU1IiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJsdHIiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiJwb3J0cmFpdCIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjI4OSwicmlnaHQiOjMwNS44MTI1LCJ0b3AiOjUyMC43NSwiYm90dG9tIjo1NTcuNzUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnQiOnsibGVmdCI6Mjg5LCJyaWdodCI6MzA1LjgxMjUsInRvcCI6NTIwLjc1LCJib3R0b20iOjU1Ny43NSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjI4OSwicmlnaHQiOjMwNS44MTI1LCJ0b3AiOjUyMC43NSwiYm90dG9tIjo1NTcuNzUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjIwLCJyaWdodCI6MzcwLCJ0b3AiOjQ1OS4zNzUsImJvdHRvbSI6NjE4Ljk2ODc1LCJ3aWR0aCI6MzUwLCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoiICIsImN1cnJlbnRJbmRleCI6IjU1IiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJsdHIiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiJsYW5kc2NhcGUiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0IjoyMDAuMTI1LCJyaWdodCI6MjE2LjkzNzUsInRvcCI6NDIwLjU2MjUsImJvdHRvbSI6NDU3LjU2MjUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnQiOnsibGVmdCI6MjAwLjEyNSwicmlnaHQiOjIxNi45Mzc1LCJ0b3AiOjQyMC41NjI1LCJib3R0b20iOjQ1Ny41NjI1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50cyI6W3sibGVmdCI6MjAwLjEyNSwicmlnaHQiOjIxNi45Mzc1LCJ0b3AiOjQyMC41NjI1LCJib3R0b20iOjQ1Ny41NjI1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN31dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjgxMiwidG9wIjozNTkuMzc1LCJib3R0b20iOjUxOC45Njg3NSwid2lkdGgiOjc4MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6IiAiLCJjdXJyZW50SW5kZXgiOiI1NSIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoibHRyIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoibmFycm93IGFmdGVyIGRlbGV0aW9uIiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6MTcxLjMxMjUsInJpZ2h0IjoxODguMTI1LCJ0b3AiOjUyMC45Mzc1LCJib3R0b20iOjU1Ny45Mzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50Ijp7ImxlZnQiOjE3MS4zMTI1LCJyaWdodCI6MTg4LjEyNSwidG9wIjo1MjAuOTM3NSwiYm90dG9tIjo1NTcuOTM3NSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjE3MS4zMTI1LCJyaWdodCI6MTg4LjEyNSwidG9wIjo1MjAuOTM3NSwiYm90dG9tIjo1NTcuOTM3NSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9XSwidmlld3BvcnQiOnsibGVmdCI6MjAsInJpZ2h0IjozMDAsInRvcCI6NDU5LjM3NSwiYm90dG9tIjo2MTguOTY4NzUsIndpZHRoIjoyODAsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoiY3VycmVudC1jaGFyYWN0ZXIiLCJjdXJyZW50RXhwZWN0ZWQiOiJyIiwiY3VycmVudEluZGV4IjoiNTQiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6Imx0ciIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX1dfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "610ec9ce3fc2299b8c9f-dd8bdf6ed9e207b4eee2",
+          "file": "caret-geometry.spec.ts",
+          "line": 145,
+          "column": 5
+        },
+        {
+          "title": "block caret follows the actual RTL character edge through input and rotation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "browser-runtime-version",
+                  "description": "156.0.8078.4"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1550,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:03.824Z",
+                  "annotations": [
+                    {
+                      "type": "browser-runtime-version",
+                      "description": "156.0.8078.4"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "actual-character-caret-geometry",
+                      "contentType": "application/json",
+                      "body": "eyJzdHlsZSI6ImJsb2NrIiwibGFuZ3VhZ2UiOiJhciIsInJlY2VpcHRzIjpbeyJsYWJlbCI6ImluaXRpYWwiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0Ijo3MjAuNTQ2ODc1LCJyaWdodCI6NzQ4LCJ0b3AiOjQzMC4zNzUsImJvdHRvbSI6NDY0LjM3NSwid2lkdGgiOjI3LjQ1MzEyNSwiaGVpZ2h0IjozNH0sImZyYWdtZW50Ijp7ImxlZnQiOjcyMC41NDY4NzUsInJpZ2h0Ijo3NDgsInRvcCI6NDMwLjM3NSwiYm90dG9tIjo0NjQuMzc1LCJ3aWR0aCI6MjcuNDUzMTI1LCJoZWlnaHQiOjM0fSwiZnJhZ21lbnRzIjpbeyJsZWZ0Ijo3MjAuNTQ2ODc1LCJyaWdodCI6NzQ4LCJ0b3AiOjQzMC4zNzUsImJvdHRvbSI6NDY0LjM3NSwid2lkdGgiOjI3LjQ1MzEyNSwiaGVpZ2h0IjozNH1dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjc0OCwidG9wIjo0MjEuMzc1LCJib3R0b20iOjU4MC45Njg3NSwid2lkdGgiOjcxNiwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ItizIiwiY3VycmVudEluZGV4IjoiMCIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoicnRsIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoiNTUgY29tbWl0dGVkIGNoYXJhY3RlcnMiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0Ijo2MzYuMDE1NjI1LCJyaWdodCI6NjQzLjg5MDYyNSwidG9wIjo0ODMuNTYyNSwiYm90dG9tIjo1MTcuNTYyNSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjM0fSwiZnJhZ21lbnQiOnsibGVmdCI6NjM2LjAxNTYyNSwicmlnaHQiOjY0My44OTA2MjUsInRvcCI6NDgzLjU2MjUsImJvdHRvbSI6NTE3LjU2MjUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH0sImZyYWdtZW50cyI6W3sibGVmdCI6NjM2LjAxNTYyNSwicmlnaHQiOjY0My44OTA2MjUsInRvcCI6NDgzLjU2MjUsImJvdHRvbSI6NTE3LjU2MjUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH1dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjc0OCwidG9wIjo0MjEuMzc1LCJib3R0b20iOjU4MC45Njg3NSwid2lkdGgiOjcxNiwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ItmEIiwiY3VycmVudEluZGV4IjoiNTUiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6InJ0bCIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6InBvcnRyYWl0IiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6MTg1LjM3NSwicmlnaHQiOjE5My4yNSwidG9wIjo1MjEuNzUsImJvdHRvbSI6NTU1Ljc1LCJ3aWR0aCI6Ny44NzUsImhlaWdodCI6MzR9LCJmcmFnbWVudCI6eyJsZWZ0IjoxODUuMzc1LCJyaWdodCI6MTkzLjI1LCJ0b3AiOjUyMS43NSwiYm90dG9tIjo1NTUuNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH0sImZyYWdtZW50cyI6W3sibGVmdCI6MTg1LjM3NSwicmlnaHQiOjE5My4yNSwidG9wIjo1MjEuNzUsImJvdHRvbSI6NTU1Ljc1LCJ3aWR0aCI6Ny44NzUsImhlaWdodCI6MzR9XSwidmlld3BvcnQiOnsibGVmdCI6MjAsInJpZ2h0IjozNzAsInRvcCI6NDU5LjM3NSwiYm90dG9tIjo2MTguOTY4NzUsIndpZHRoIjozNTAsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoiY3VycmVudC1jaGFyYWN0ZXIiLCJjdXJyZW50RXhwZWN0ZWQiOiLZhCIsImN1cnJlbnRJbmRleCI6IjU1IiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJydGwiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiJsYW5kc2NhcGUiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0Ijo1My41LCJyaWdodCI6NjEuMzc1LCJ0b3AiOjM2OC4zNzUsImJvdHRvbSI6NDAyLjM3NSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjM0fSwiZnJhZ21lbnQiOnsibGVmdCI6NTMuNSwicmlnaHQiOjYxLjM3NSwidG9wIjozNjguMzc1LCJib3R0b20iOjQwMi4zNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH0sImZyYWdtZW50cyI6W3sibGVmdCI6NTMuNSwicmlnaHQiOjYxLjM3NSwidG9wIjozNjguMzc1LCJib3R0b20iOjQwMi4zNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH1dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjgxMiwidG9wIjozNTkuMzc1LCJib3R0b20iOjUxOC45Njg3NSwid2lkdGgiOjc4MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ItmEIiwiY3VycmVudEluZGV4IjoiNTUiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6InJ0bCIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6Im5hcnJvdyBhZnRlciBkZWxldGlvbiIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjEyMy4yNSwicmlnaHQiOjEzMS41NDY4NzUsInRvcCI6NTIxLjc1LCJib3R0b20iOjU1NS43NSwid2lkdGgiOjguMjk2ODc1LCJoZWlnaHQiOjM0fSwiZnJhZ21lbnQiOnsibGVmdCI6MTIzLjI1LCJyaWdodCI6MTMxLjU0Njg3NSwidG9wIjo1MjEuNzUsImJvdHRvbSI6NTU1Ljc1LCJ3aWR0aCI6OC4yOTY4NzUsImhlaWdodCI6MzR9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjEyMy4yNSwicmlnaHQiOjEzMS41NDY4NzUsInRvcCI6NTIxLjc1LCJib3R0b20iOjU1NS43NSwid2lkdGgiOjguMjk2ODc1LCJoZWlnaHQiOjM0fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjIwLCJyaWdodCI6MzAwLCJ0b3AiOjQ1OS4zNzUsImJvdHRvbSI6NjE4Ljk2ODc1LCJ3aWR0aCI6MjgwLCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoi2KciLCJjdXJyZW50SW5kZXgiOiI1NCIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoicnRsIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fV19"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "610ec9ce3fc2299b8c9f-f2d499d237e15447981e",
+          "file": "caret-geometry.spec.ts",
+          "line": 145,
+          "column": 5
+        },
+        {
+          "title": "outline caret follows the actual LTR character edge through input and rotation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "browser-runtime-version",
+                  "description": "156.0.8078.4"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1529,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:05.383Z",
+                  "annotations": [
+                    {
+                      "type": "browser-runtime-version",
+                      "description": "156.0.8078.4"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "actual-character-caret-geometry",
+                      "contentType": "application/json",
+                      "body": "eyJzdHlsZSI6Im91dGxpbmUiLCJsYW5ndWFnZSI6ImVuIiwicmVjZWlwdHMiOlt7ImxhYmVsIjoiaW5pdGlhbCIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjMyLCJyaWdodCI6NDguODEyNSwidG9wIjo0MjkuMzc1LCJib3R0b20iOjQ2Ni4zNzUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnQiOnsibGVmdCI6MzIsInJpZ2h0Ijo0OC44MTI1LCJ0b3AiOjQyOS4zNzUsImJvdHRvbSI6NDY2LjM3NSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjMyLCJyaWdodCI6NDguODEyNSwidG9wIjo0MjkuMzc1LCJib3R0b20iOjQ2Ni4zNzUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6NzQ4LCJ0b3AiOjQyMS4zNzUsImJvdHRvbSI6NTgwLjk2ODc1LCJ3aWR0aCI6NzE2LCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoiYyIsImN1cnJlbnRJbmRleCI6IjAiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6Imx0ciIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6IjU1IGNvbW1pdHRlZCBjaGFyYWN0ZXJzIiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6MzAxLCJyaWdodCI6MzE3LjgxMjUsInRvcCI6NDgyLjU2MjUsImJvdHRvbSI6NTE5LjU2MjUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnQiOnsibGVmdCI6MzAxLCJyaWdodCI6MzE3LjgxMjUsInRvcCI6NDgyLjU2MjUsImJvdHRvbSI6NTE5LjU2MjUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnRzIjpbeyJsZWZ0IjozMDEsInJpZ2h0IjozMTcuODEyNSwidG9wIjo0ODIuNTYyNSwiYm90dG9tIjo1MTkuNTYyNSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9XSwidmlld3BvcnQiOnsibGVmdCI6MzIsInJpZ2h0Ijo3NDgsInRvcCI6NDIxLjM3NSwiYm90dG9tIjo1ODAuOTY4NzUsIndpZHRoIjo3MTYsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoiY3VycmVudC1jaGFyYWN0ZXIiLCJjdXJyZW50RXhwZWN0ZWQiOiIgIiwiY3VycmVudEluZGV4IjoiNTUiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6Imx0ciIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6InBvcnRyYWl0IiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6Mjg5LCJyaWdodCI6MzA1LjgxMjUsInRvcCI6NTIwLjc1LCJib3R0b20iOjU1Ny43NSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9LCJmcmFnbWVudCI6eyJsZWZ0IjoyODksInJpZ2h0IjozMDUuODEyNSwidG9wIjo1MjAuNzUsImJvdHRvbSI6NTU3Ljc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50cyI6W3sibGVmdCI6Mjg5LCJyaWdodCI6MzA1LjgxMjUsInRvcCI6NTIwLjc1LCJib3R0b20iOjU1Ny43NSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9XSwidmlld3BvcnQiOnsibGVmdCI6MjAsInJpZ2h0IjozNzAsInRvcCI6NDU5LjM3NSwiYm90dG9tIjo2MTguOTY4NzUsIndpZHRoIjozNTAsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoiY3VycmVudC1jaGFyYWN0ZXIiLCJjdXJyZW50RXhwZWN0ZWQiOiIgIiwiY3VycmVudEluZGV4IjoiNTUiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6Imx0ciIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6ImxhbmRzY2FwZSIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjIwMC4xMjUsInJpZ2h0IjoyMTYuOTM3NSwidG9wIjo0MjAuNTYyNSwiYm90dG9tIjo0NTcuNTYyNSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9LCJmcmFnbWVudCI6eyJsZWZ0IjoyMDAuMTI1LCJyaWdodCI6MjE2LjkzNzUsInRvcCI6NDIwLjU2MjUsImJvdHRvbSI6NDU3LjU2MjUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnRzIjpbeyJsZWZ0IjoyMDAuMTI1LCJyaWdodCI6MjE2LjkzNzUsInRvcCI6NDIwLjU2MjUsImJvdHRvbSI6NDU3LjU2MjUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6ODEyLCJ0b3AiOjM1OS4zNzUsImJvdHRvbSI6NTE4Ljk2ODc1LCJ3aWR0aCI6NzgwLCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoiICIsImN1cnJlbnRJbmRleCI6IjU1IiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJsdHIiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiJuYXJyb3cgYWZ0ZXIgZGVsZXRpb24iLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0IjoxNzEuMzEyNSwicmlnaHQiOjE4OC4xMjUsInRvcCI6NTIwLjkzNzUsImJvdHRvbSI6NTU3LjkzNzUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnQiOnsibGVmdCI6MTcxLjMxMjUsInJpZ2h0IjoxODguMTI1LCJ0b3AiOjUyMC45Mzc1LCJib3R0b20iOjU1Ny45Mzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50cyI6W3sibGVmdCI6MTcxLjMxMjUsInJpZ2h0IjoxODguMTI1LCJ0b3AiOjUyMC45Mzc1LCJib3R0b20iOjU1Ny45Mzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN31dLCJ2aWV3cG9ydCI6eyJsZWZ0IjoyMCwicmlnaHQiOjMwMCwidG9wIjo0NTkuMzc1LCJib3R0b20iOjYxOC45Njg3NSwid2lkdGgiOjI4MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6InIiLCJjdXJyZW50SW5kZXgiOiI1NCIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoibHRyIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fV19"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "610ec9ce3fc2299b8c9f-e7a1aae9b22b7a4dbb5f",
+          "file": "caret-geometry.spec.ts",
+          "line": 145,
+          "column": 5
+        },
+        {
+          "title": "outline caret follows the actual RTL character edge through input and rotation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "browser-runtime-version",
+                  "description": "156.0.8078.4"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1655,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:06.922Z",
+                  "annotations": [
+                    {
+                      "type": "browser-runtime-version",
+                      "description": "156.0.8078.4"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "actual-character-caret-geometry",
+                      "contentType": "application/json",
+                      "body": "eyJzdHlsZSI6Im91dGxpbmUiLCJsYW5ndWFnZSI6ImFyIiwicmVjZWlwdHMiOlt7ImxhYmVsIjoiaW5pdGlhbCIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjcyMC41NDY4NzUsInJpZ2h0Ijo3NDgsInRvcCI6NDMwLjM3NSwiYm90dG9tIjo0NjQuMzc1LCJ3aWR0aCI6MjcuNDUzMTI1LCJoZWlnaHQiOjM0fSwiZnJhZ21lbnQiOnsibGVmdCI6NzIwLjU0Njg3NSwicmlnaHQiOjc0OCwidG9wIjo0MzAuMzc1LCJib3R0b20iOjQ2NC4zNzUsIndpZHRoIjoyNy40NTMxMjUsImhlaWdodCI6MzR9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjcyMC41NDY4NzUsInJpZ2h0Ijo3NDgsInRvcCI6NDMwLjM3NSwiYm90dG9tIjo0NjQuMzc1LCJ3aWR0aCI6MjcuNDUzMTI1LCJoZWlnaHQiOjM0fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6NzQ4LCJ0b3AiOjQyMS4zNzUsImJvdHRvbSI6NTgwLjk2ODc1LCJ3aWR0aCI6NzE2LCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoi2LMiLCJjdXJyZW50SW5kZXgiOiIwIiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJydGwiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiI1NSBjb21taXR0ZWQgY2hhcmFjdGVycyIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjYzNi4wMTU2MjUsInJpZ2h0Ijo2NDMuODkwNjI1LCJ0b3AiOjQ4My41NjI1LCJib3R0b20iOjUxNy41NjI1LCJ3aWR0aCI6Ny44NzUsImhlaWdodCI6MzR9LCJmcmFnbWVudCI6eyJsZWZ0Ijo2MzYuMDE1NjI1LCJyaWdodCI6NjQzLjg5MDYyNSwidG9wIjo0ODMuNTYyNSwiYm90dG9tIjo1MTcuNTYyNSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjM0fSwiZnJhZ21lbnRzIjpbeyJsZWZ0Ijo2MzYuMDE1NjI1LCJyaWdodCI6NjQzLjg5MDYyNSwidG9wIjo0ODMuNTYyNSwiYm90dG9tIjo1MTcuNTYyNSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjM0fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6NzQ4LCJ0b3AiOjQyMS4zNzUsImJvdHRvbSI6NTgwLjk2ODc1LCJ3aWR0aCI6NzE2LCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoi2YQiLCJjdXJyZW50SW5kZXgiOiI1NSIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoicnRsIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoicG9ydHJhaXQiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0IjoxODUuMzc1LCJyaWdodCI6MTkzLjI1LCJ0b3AiOjUyMS43NSwiYm90dG9tIjo1NTUuNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH0sImZyYWdtZW50Ijp7ImxlZnQiOjE4NS4zNzUsInJpZ2h0IjoxOTMuMjUsInRvcCI6NTIxLjc1LCJib3R0b20iOjU1NS43NSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjM0fSwiZnJhZ21lbnRzIjpbeyJsZWZ0IjoxODUuMzc1LCJyaWdodCI6MTkzLjI1LCJ0b3AiOjUyMS43NSwiYm90dG9tIjo1NTUuNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH1dLCJ2aWV3cG9ydCI6eyJsZWZ0IjoyMCwicmlnaHQiOjM3MCwidG9wIjo0NTkuMzc1LCJib3R0b20iOjYxOC45Njg3NSwid2lkdGgiOjM1MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ItmEIiwiY3VycmVudEluZGV4IjoiNTUiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6InJ0bCIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6ImxhbmRzY2FwZSIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjUzLjUsInJpZ2h0Ijo2MS4zNzUsInRvcCI6MzY4LjM3NSwiYm90dG9tIjo0MDIuMzc1LCJ3aWR0aCI6Ny44NzUsImhlaWdodCI6MzR9LCJmcmFnbWVudCI6eyJsZWZ0Ijo1My41LCJyaWdodCI6NjEuMzc1LCJ0b3AiOjM2OC4zNzUsImJvdHRvbSI6NDAyLjM3NSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjM0fSwiZnJhZ21lbnRzIjpbeyJsZWZ0Ijo1My41LCJyaWdodCI6NjEuMzc1LCJ0b3AiOjM2OC4zNzUsImJvdHRvbSI6NDAyLjM3NSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjM0fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6ODEyLCJ0b3AiOjM1OS4zNzUsImJvdHRvbSI6NTE4Ljk2ODc1LCJ3aWR0aCI6NzgwLCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoi2YQiLCJjdXJyZW50SW5kZXgiOiI1NSIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoicnRsIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoibmFycm93IGFmdGVyIGRlbGV0aW9uIiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6MTIzLjI1LCJyaWdodCI6MTMxLjU0Njg3NSwidG9wIjo1MjEuNzUsImJvdHRvbSI6NTU1Ljc1LCJ3aWR0aCI6OC4yOTY4NzUsImhlaWdodCI6MzR9LCJmcmFnbWVudCI6eyJsZWZ0IjoxMjMuMjUsInJpZ2h0IjoxMzEuNTQ2ODc1LCJ0b3AiOjUyMS43NSwiYm90dG9tIjo1NTUuNzUsIndpZHRoIjo4LjI5Njg3NSwiaGVpZ2h0IjozNH0sImZyYWdtZW50cyI6W3sibGVmdCI6MTIzLjI1LCJyaWdodCI6MTMxLjU0Njg3NSwidG9wIjo1MjEuNzUsImJvdHRvbSI6NTU1Ljc1LCJ3aWR0aCI6OC4yOTY4NzUsImhlaWdodCI6MzR9XSwidmlld3BvcnQiOnsibGVmdCI6MjAsInJpZ2h0IjozMDAsInRvcCI6NDU5LjM3NSwiYm90dG9tIjo2MTguOTY4NzUsIndpZHRoIjoyODAsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoiY3VycmVudC1jaGFyYWN0ZXIiLCJjdXJyZW50RXhwZWN0ZWQiOiLYpyIsImN1cnJlbnRJbmRleCI6IjU0IiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJydGwiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19XX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "610ec9ce3fc2299b8c9f-48495732239b85442090",
+          "file": "caret-geometry.spec.ts",
+          "line": 145,
+          "column": 5
+        },
+        {
+          "title": "underline caret follows the actual LTR character edge through input and rotation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "browser-runtime-version",
+                  "description": "156.0.8078.4"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1623,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:08.585Z",
+                  "annotations": [
+                    {
+                      "type": "browser-runtime-version",
+                      "description": "156.0.8078.4"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "actual-character-caret-geometry",
+                      "contentType": "application/json",
+                      "body": "eyJzdHlsZSI6InVuZGVybGluZSIsImxhbmd1YWdlIjoiZW4iLCJyZWNlaXB0cyI6W3sibGFiZWwiOiJpbml0aWFsIiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6MzIsInJpZ2h0Ijo0OC44MTI1LCJ0b3AiOjQ2NC4zNzUsImJvdHRvbSI6NDY2LjM3NSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mn0sImZyYWdtZW50Ijp7ImxlZnQiOjMyLCJyaWdodCI6NDguODEyNSwidG9wIjo0MjkuMzc1LCJib3R0b20iOjQ2Ni4zNzUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnRzIjpbeyJsZWZ0IjozMiwicmlnaHQiOjQ4LjgxMjUsInRvcCI6NDI5LjM3NSwiYm90dG9tIjo0NjYuMzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN31dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjc0OCwidG9wIjo0MjEuMzc1LCJib3R0b20iOjU4MC45Njg3NSwid2lkdGgiOjcxNiwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ImMiLCJjdXJyZW50SW5kZXgiOiIwIiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJsdHIiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiI1NSBjb21taXR0ZWQgY2hhcmFjdGVycyIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjMwMSwicmlnaHQiOjMxNy44MTI1LCJ0b3AiOjUxNy41NjI1LCJib3R0b20iOjUxOS41NjI1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjoyfSwiZnJhZ21lbnQiOnsibGVmdCI6MzAxLCJyaWdodCI6MzE3LjgxMjUsInRvcCI6NDgyLjU2MjUsImJvdHRvbSI6NTE5LjU2MjUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnRzIjpbeyJsZWZ0IjozMDEsInJpZ2h0IjozMTcuODEyNSwidG9wIjo0ODIuNTYyNSwiYm90dG9tIjo1MTkuNTYyNSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9XSwidmlld3BvcnQiOnsibGVmdCI6MzIsInJpZ2h0Ijo3NDgsInRvcCI6NDIxLjM3NSwiYm90dG9tIjo1ODAuOTY4NzUsIndpZHRoIjo3MTYsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoiY3VycmVudC1jaGFyYWN0ZXIiLCJjdXJyZW50RXhwZWN0ZWQiOiIgIiwiY3VycmVudEluZGV4IjoiNTUiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6Imx0ciIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6InBvcnRyYWl0IiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6Mjg5LCJyaWdodCI6MzA1LjgxMjUsInRvcCI6NTU1Ljc1LCJib3R0b20iOjU1Ny43NSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mn0sImZyYWdtZW50Ijp7ImxlZnQiOjI4OSwicmlnaHQiOjMwNS44MTI1LCJ0b3AiOjUyMC43NSwiYm90dG9tIjo1NTcuNzUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnRzIjpbeyJsZWZ0IjoyODksInJpZ2h0IjozMDUuODEyNSwidG9wIjo1MjAuNzUsImJvdHRvbSI6NTU3Ljc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN31dLCJ2aWV3cG9ydCI6eyJsZWZ0IjoyMCwicmlnaHQiOjM3MCwidG9wIjo0NTkuMzc1LCJib3R0b20iOjYxOC45Njg3NSwid2lkdGgiOjM1MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6IiAiLCJjdXJyZW50SW5kZXgiOiI1NSIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoibHRyIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoibGFuZHNjYXBlIiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6MjAwLjEyNSwicmlnaHQiOjIxNi45Mzc1LCJ0b3AiOjQ1NS41NjI1LCJib3R0b20iOjQ1Ny41NjI1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjoyfSwiZnJhZ21lbnQiOnsibGVmdCI6MjAwLjEyNSwicmlnaHQiOjIxNi45Mzc1LCJ0b3AiOjQyMC41NjI1LCJib3R0b20iOjQ1Ny41NjI1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50cyI6W3sibGVmdCI6MjAwLjEyNSwicmlnaHQiOjIxNi45Mzc1LCJ0b3AiOjQyMC41NjI1LCJib3R0b20iOjQ1Ny41NjI1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN31dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjgxMiwidG9wIjozNTkuMzc1LCJib3R0b20iOjUxOC45Njg3NSwid2lkdGgiOjc4MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6IiAiLCJjdXJyZW50SW5kZXgiOiI1NSIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoibHRyIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoibmFycm93IGFmdGVyIGRlbGV0aW9uIiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6MTcxLjMxMjUsInJpZ2h0IjoxODguMTI1LCJ0b3AiOjU1NS45Mzc1LCJib3R0b20iOjU1Ny45Mzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjoyfSwiZnJhZ21lbnQiOnsibGVmdCI6MTcxLjMxMjUsInJpZ2h0IjoxODguMTI1LCJ0b3AiOjUyMC45Mzc1LCJib3R0b20iOjU1Ny45Mzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50cyI6W3sibGVmdCI6MTcxLjMxMjUsInJpZ2h0IjoxODguMTI1LCJ0b3AiOjUyMC45Mzc1LCJib3R0b20iOjU1Ny45Mzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN31dLCJ2aWV3cG9ydCI6eyJsZWZ0IjoyMCwicmlnaHQiOjMwMCwidG9wIjo0NTkuMzc1LCJib3R0b20iOjYxOC45Njg3NSwid2lkdGgiOjI4MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6InIiLCJjdXJyZW50SW5kZXgiOiI1NCIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoibHRyIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fV19"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "610ec9ce3fc2299b8c9f-22318ce36b632b890763",
+          "file": "caret-geometry.spec.ts",
+          "line": 145,
+          "column": 5
+        },
+        {
+          "title": "underline caret follows the actual RTL character edge through input and rotation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "browser-runtime-version",
+                  "description": "156.0.8078.4"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1526,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:10.217Z",
+                  "annotations": [
+                    {
+                      "type": "browser-runtime-version",
+                      "description": "156.0.8078.4"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "actual-character-caret-geometry",
+                      "contentType": "application/json",
+                      "body": "eyJzdHlsZSI6InVuZGVybGluZSIsImxhbmd1YWdlIjoiYXIiLCJyZWNlaXB0cyI6W3sibGFiZWwiOiJpbml0aWFsIiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6NzIwLjU0Njg3NSwicmlnaHQiOjc0OCwidG9wIjo0NjIuMzc1LCJib3R0b20iOjQ2NC4zNzUsIndpZHRoIjoyNy40NTMxMjUsImhlaWdodCI6Mn0sImZyYWdtZW50Ijp7ImxlZnQiOjcyMC41NDY4NzUsInJpZ2h0Ijo3NDgsInRvcCI6NDMwLjM3NSwiYm90dG9tIjo0NjQuMzc1LCJ3aWR0aCI6MjcuNDUzMTI1LCJoZWlnaHQiOjM0fSwiZnJhZ21lbnRzIjpbeyJsZWZ0Ijo3MjAuNTQ2ODc1LCJyaWdodCI6NzQ4LCJ0b3AiOjQzMC4zNzUsImJvdHRvbSI6NDY0LjM3NSwid2lkdGgiOjI3LjQ1MzEyNSwiaGVpZ2h0IjozNH1dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjc0OCwidG9wIjo0MjEuMzc1LCJib3R0b20iOjU4MC45Njg3NSwid2lkdGgiOjcxNiwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ItizIiwiY3VycmVudEluZGV4IjoiMCIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoicnRsIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoiNTUgY29tbWl0dGVkIGNoYXJhY3RlcnMiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0Ijo2MzYuMDE1NjI1LCJyaWdodCI6NjQzLjg5MDYyNSwidG9wIjo1MTUuNTYyNSwiYm90dG9tIjo1MTcuNTYyNSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjJ9LCJmcmFnbWVudCI6eyJsZWZ0Ijo2MzYuMDE1NjI1LCJyaWdodCI6NjQzLjg5MDYyNSwidG9wIjo0ODMuNTYyNSwiYm90dG9tIjo1MTcuNTYyNSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjM0fSwiZnJhZ21lbnRzIjpbeyJsZWZ0Ijo2MzYuMDE1NjI1LCJyaWdodCI6NjQzLjg5MDYyNSwidG9wIjo0ODMuNTYyNSwiYm90dG9tIjo1MTcuNTYyNSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjM0fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6NzQ4LCJ0b3AiOjQyMS4zNzUsImJvdHRvbSI6NTgwLjk2ODc1LCJ3aWR0aCI6NzE2LCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoi2YQiLCJjdXJyZW50SW5kZXgiOiI1NSIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoicnRsIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoicG9ydHJhaXQiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0IjoxODUuMzc1LCJyaWdodCI6MTkzLjI1LCJ0b3AiOjU1My43NSwiYm90dG9tIjo1NTUuNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjoyfSwiZnJhZ21lbnQiOnsibGVmdCI6MTg1LjM3NSwicmlnaHQiOjE5My4yNSwidG9wIjo1MjEuNzUsImJvdHRvbSI6NTU1Ljc1LCJ3aWR0aCI6Ny44NzUsImhlaWdodCI6MzR9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjE4NS4zNzUsInJpZ2h0IjoxOTMuMjUsInRvcCI6NTIxLjc1LCJib3R0b20iOjU1NS43NSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjM0fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjIwLCJyaWdodCI6MzcwLCJ0b3AiOjQ1OS4zNzUsImJvdHRvbSI6NjE4Ljk2ODc1LCJ3aWR0aCI6MzUwLCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoi2YQiLCJjdXJyZW50SW5kZXgiOiI1NSIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoicnRsIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoibGFuZHNjYXBlIiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6NTMuNSwicmlnaHQiOjYxLjM3NSwidG9wIjo0MDAuMzc1LCJib3R0b20iOjQwMi4zNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjoyfSwiZnJhZ21lbnQiOnsibGVmdCI6NTMuNSwicmlnaHQiOjYxLjM3NSwidG9wIjozNjguMzc1LCJib3R0b20iOjQwMi4zNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH0sImZyYWdtZW50cyI6W3sibGVmdCI6NTMuNSwicmlnaHQiOjYxLjM3NSwidG9wIjozNjguMzc1LCJib3R0b20iOjQwMi4zNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH1dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjgxMiwidG9wIjozNTkuMzc1LCJib3R0b20iOjUxOC45Njg3NSwid2lkdGgiOjc4MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ItmEIiwiY3VycmVudEluZGV4IjoiNTUiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6InJ0bCIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6Im5hcnJvdyBhZnRlciBkZWxldGlvbiIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjEyMy4yNSwicmlnaHQiOjEzMS41NDY4NzUsInRvcCI6NTUzLjc1LCJib3R0b20iOjU1NS43NSwid2lkdGgiOjguMjk2ODc1LCJoZWlnaHQiOjJ9LCJmcmFnbWVudCI6eyJsZWZ0IjoxMjMuMjUsInJpZ2h0IjoxMzEuNTQ2ODc1LCJ0b3AiOjUyMS43NSwiYm90dG9tIjo1NTUuNzUsIndpZHRoIjo4LjI5Njg3NSwiaGVpZ2h0IjozNH0sImZyYWdtZW50cyI6W3sibGVmdCI6MTIzLjI1LCJyaWdodCI6MTMxLjU0Njg3NSwidG9wIjo1MjEuNzUsImJvdHRvbSI6NTU1Ljc1LCJ3aWR0aCI6OC4yOTY4NzUsImhlaWdodCI6MzR9XSwidmlld3BvcnQiOnsibGVmdCI6MjAsInJpZ2h0IjozMDAsInRvcCI6NDU5LjM3NSwiYm90dG9tIjo2MTguOTY4NzUsIndpZHRoIjoyODAsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoiY3VycmVudC1jaGFyYWN0ZXIiLCJjdXJyZW50RXhwZWN0ZWQiOiLYpyIsImN1cnJlbnRJbmRleCI6IjU0IiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJydGwiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19XX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "610ec9ce3fc2299b8c9f-20b872464954882a0b10",
+          "file": "caret-geometry.spec.ts",
+          "line": 145,
+          "column": 5
+        },
+        {
+          "title": "a prompted code newline uses its first actual client fragment before entering the next line",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "browser-runtime-version",
+                  "description": "156.0.8078.4"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1292,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:11.752Z",
+                  "annotations": [
+                    {
+                      "type": "browser-runtime-version",
+                      "description": "156.0.8078.4"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "actual-code-newline-caret-geometry",
+                      "contentType": "application/json",
+                      "body": "eyJuZXdsaW5lIjo0MiwicmVjZWlwdHMiOlt7ImxhYmVsIjoibmV3bGluZSBmaXJzdCBmcmFnbWVudCIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjczOC4xMjUsInJpZ2h0Ijo3NTQuOTIxODc1LCJ0b3AiOjQ0OS4zNzUsImJvdHRvbSI6NDg2LjM3NSwid2lkdGgiOjE2Ljc5Njg3NSwiaGVpZ2h0IjozN30sImZyYWdtZW50Ijp7ImxlZnQiOjczOC4xMjUsInJpZ2h0Ijo3MzguMTI1LCJ0b3AiOjQ0OS4zNzUsImJvdHRvbSI6NDg2LjM3NSwid2lkdGgiOjAsImhlaWdodCI6Mzd9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjczOC4xMjUsInJpZ2h0Ijo3MzguMTI1LCJ0b3AiOjQ0OS4zNzUsImJvdHRvbSI6NDg2LjM3NSwid2lkdGgiOjAsImhlaWdodCI6Mzd9XSwidmlld3BvcnQiOnsibGVmdCI6MzIsInJpZ2h0Ijo5OTIsInRvcCI6NDQxLjM3NSwiYm90dG9tIjo2MDAuOTY4NzUsIndpZHRoIjo5NjAsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoiY3VycmVudC1jaGFyYWN0ZXIiLCJjdXJyZW50RXhwZWN0ZWQiOiJcbiIsImN1cnJlbnRJbmRleCI6IjQyIiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJsdHIiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiJhZnRlciBjb21taXR0ZWQgbmV3bGluZSIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjMyLCJyaWdodCI6NDguODEyNSwidG9wIjo1MDIuNTYyNSwiYm90dG9tIjo1MzkuNTYyNSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9LCJmcmFnbWVudCI6eyJsZWZ0IjozMiwicmlnaHQiOjQ4LjgxMjUsInRvcCI6NTAyLjU2MjUsImJvdHRvbSI6NTM5LjU2MjUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnRzIjpbeyJsZWZ0IjozMiwicmlnaHQiOjQ4LjgxMjUsInRvcCI6NTAyLjU2MjUsImJvdHRvbSI6NTM5LjU2MjUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6OTkyLCJ0b3AiOjQ0MS4zNzUsImJvdHRvbSI6NjAwLjk2ODc1LCJ3aWR0aCI6OTYwLCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoiYyIsImN1cnJlbnRJbmRleCI6IjQzIiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJsdHIiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiJjb2RlIGFmdGVyIG5hcnJvdyByZXNpemUiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0IjoyMCwicmlnaHQiOjM2LjgxMjUsInRvcCI6NTc2LjkzNzUsImJvdHRvbSI6NjEzLjkzNzUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnQiOnsibGVmdCI6MjAsInJpZ2h0IjozNi44MTI1LCJ0b3AiOjU3Ni45Mzc1LCJib3R0b20iOjYxMy45Mzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50cyI6W3sibGVmdCI6MjAsInJpZ2h0IjozNi44MTI1LCJ0b3AiOjU3Ni45Mzc1LCJib3R0b20iOjYxMy45Mzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN31dLCJ2aWV3cG9ydCI6eyJsZWZ0IjoyMCwicmlnaHQiOjM3MCwidG9wIjo1MTUuMzc1LCJib3R0b20iOjY3NC45Njg3NSwid2lkdGgiOjM1MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ImMiLCJjdXJyZW50SW5kZXgiOiI0MyIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoibHRyIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fV19"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "610ec9ce3fc2299b8c9f-86d6e0caf07faee9618f",
+          "file": "caret-geometry.spec.ts",
+          "line": 184,
+          "column": 1
+        },
+        {
+          "title": "empty and multiline free writing use the same static end anchor through deletion and rotation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "browser-runtime-version",
+                  "description": "156.0.8078.4"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1444,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:13.053Z",
+                  "annotations": [
+                    {
+                      "type": "browser-runtime-version",
+                      "description": "156.0.8078.4"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "actual-static-free-anchor-geometry",
+                      "contentType": "application/json",
+                      "body": "eyJyZWNlaXB0cyI6W3sibGFiZWwiOiJlbXB0eSBmcmVlIHdyaXRpbmciLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0IjozMiwicmlnaHQiOjQ4Ljc5Njg3NSwidG9wIjo0NzguOTUzMTI1LCJib3R0b20iOjQ4MC45NTMxMjUsIndpZHRoIjoxNi43OTY4NzUsImhlaWdodCI6Mn0sImZyYWdtZW50Ijp7ImxlZnQiOjMyLCJyaWdodCI6MzIsInRvcCI6NDUyLjk1MzEyNSwiYm90dG9tIjo0ODAuOTUzMTI1LCJ3aWR0aCI6MCwiaGVpZ2h0IjoyOH0sImZyYWdtZW50cyI6W3sibGVmdCI6MzIsInJpZ2h0IjozMiwidG9wIjo0NTIuOTUzMTI1LCJib3R0b20iOjQ4MC45NTMxMjUsIndpZHRoIjowLCJoZWlnaHQiOjI4fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6NzQ4LCJ0b3AiOjQzNS45NTMxMjUsImJvdHRvbSI6NTk1LjU0Njg3NSwid2lkdGgiOjcxNiwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJzdGF0aWMtZW5kLWFuY2hvciIsImN1cnJlbnRFeHBlY3RlZCI6bnVsbCwiY3VycmVudEluZGV4IjpudWxsLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6Imx0ciIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6ImVtcHR5IGFmdGVyIGRlbGV0aW5nIHRoZSBjdXJyZW50IHdvcmQiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0IjozMiwicmlnaHQiOjQ4Ljc5Njg3NSwidG9wIjo0NzguOTUzMTI1LCJib3R0b20iOjQ4MC45NTMxMjUsIndpZHRoIjoxNi43OTY4NzUsImhlaWdodCI6Mn0sImZyYWdtZW50Ijp7ImxlZnQiOjMyLCJyaWdodCI6MzIsInRvcCI6NDUyLjk1MzEyNSwiYm90dG9tIjo0ODAuOTUzMTI1LCJ3aWR0aCI6MCwiaGVpZ2h0IjoyOH0sImZyYWdtZW50cyI6W3sibGVmdCI6MzIsInJpZ2h0IjozMiwidG9wIjo0NTIuOTUzMTI1LCJib3R0b20iOjQ4MC45NTMxMjUsIndpZHRoIjowLCJoZWlnaHQiOjI4fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6NzQ4LCJ0b3AiOjQzNS45NTMxMjUsImJvdHRvbSI6NTk1LjU0Njg3NSwid2lkdGgiOjcxNiwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJzdGF0aWMtZW5kLWFuY2hvciIsImN1cnJlbnRFeHBlY3RlZCI6bnVsbCwiY3VycmVudEluZGV4IjpudWxsLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6Imx0ciIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6ImZyZWUgd3JpdGluZyBhZnRlciBuZXdsaW5lIiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6MzIsInJpZ2h0Ijo0OC43OTY4NzUsInRvcCI6NTMyLjE0MDYyNSwiYm90dG9tIjo1MzQuMTQwNjI1LCJ3aWR0aCI6MTYuNzk2ODc1LCJoZWlnaHQiOjJ9LCJmcmFnbWVudCI6eyJsZWZ0IjozMiwicmlnaHQiOjMyLCJ0b3AiOjUwNi4xNDA2MjUsImJvdHRvbSI6NTM0LjE0MDYyNSwid2lkdGgiOjAsImhlaWdodCI6Mjh9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjMyLCJyaWdodCI6MzIsInRvcCI6NTA2LjE0MDYyNSwiYm90dG9tIjo1MzQuMTQwNjI1LCJ3aWR0aCI6MCwiaGVpZ2h0IjoyOH1dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjc0OCwidG9wIjo0MzUuOTUzMTI1LCJib3R0b20iOjU5NS41NDY4NzUsIndpZHRoIjo3MTYsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoic3RhdGljLWVuZC1hbmNob3IiLCJjdXJyZW50RXhwZWN0ZWQiOm51bGwsImN1cnJlbnRJbmRleCI6bnVsbCwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJsdHIiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiJtdWx0aWxpbmUgcG9ydHJhaXQiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0IjoxMDQsInJpZ2h0IjoxMjAuNzk2ODc1LCJ0b3AiOjYyNC43NSwiYm90dG9tIjo2MjYuNzUsIndpZHRoIjoxNi43OTY4NzUsImhlaWdodCI6Mn0sImZyYWdtZW50Ijp7ImxlZnQiOjEwNCwicmlnaHQiOjEwNCwidG9wIjo1OTguNzUsImJvdHRvbSI6NjI2Ljc1LCJ3aWR0aCI6MCwiaGVpZ2h0IjoyOH0sImZyYWdtZW50cyI6W3sibGVmdCI6MTA0LCJyaWdodCI6MTA0LCJ0b3AiOjU5OC43NSwiYm90dG9tIjo2MjYuNzUsIndpZHRoIjowLCJoZWlnaHQiOjI4fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjIwLCJyaWdodCI6MzcwLCJ0b3AiOjQ5NS4zNzUsImJvdHRvbSI6NjU0Ljk2ODc1LCJ3aWR0aCI6MzUwLCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6InN0YXRpYy1lbmQtYW5jaG9yIiwiY3VycmVudEV4cGVjdGVkIjpudWxsLCJjdXJyZW50SW5kZXgiOm51bGwsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoibHRyIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoibXVsdGlsaW5lIGxhbmRzY2FwZSIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjQwMS42MDkzNzUsInJpZ2h0Ijo0MTguNDA2MjUsInRvcCI6NDU1LjU2MjUsImJvdHRvbSI6NDU3LjU2MjUsIndpZHRoIjoxNi43OTY4NzUsImhlaWdodCI6Mn0sImZyYWdtZW50Ijp7ImxlZnQiOjQwMS42MDkzNzUsInJpZ2h0Ijo0MDEuNjA5Mzc1LCJ0b3AiOjQyOS41NjI1LCJib3R0b20iOjQ1Ny41NjI1LCJ3aWR0aCI6MCwiaGVpZ2h0IjoyOH0sImZyYWdtZW50cyI6W3sibGVmdCI6NDAxLjYwOTM3NSwicmlnaHQiOjQwMS42MDkzNzUsInRvcCI6NDI5LjU2MjUsImJvdHRvbSI6NDU3LjU2MjUsIndpZHRoIjowLCJoZWlnaHQiOjI4fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6ODEyLCJ0b3AiOjM1OS4zNzUsImJvdHRvbSI6NTE4Ljk2ODc1LCJ3aWR0aCI6NzgwLCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6InN0YXRpYy1lbmQtYW5jaG9yIiwiY3VycmVudEV4cGVjdGVkIjpudWxsLCJjdXJyZW50SW5kZXgiOm51bGwsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoibHRyIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoiY29tbWl0dGVkIGxpbmVzIHJlbWFpbiBhZnRlciBjdXJyZW50LXdvcmQgZGVsZXRpb24iLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0IjozMTcuNjA5Mzc1LCJyaWdodCI6MzM0LjQwNjI1LCJ0b3AiOjQ1NS41NjI1LCJib3R0b20iOjQ1Ny41NjI1LCJ3aWR0aCI6MTYuNzk2ODc1LCJoZWlnaHQiOjJ9LCJmcmFnbWVudCI6eyJsZWZ0IjozMTcuNjA5Mzc1LCJyaWdodCI6MzE3LjYwOTM3NSwidG9wIjo0MjkuNTYyNSwiYm90dG9tIjo0NTcuNTYyNSwid2lkdGgiOjAsImhlaWdodCI6Mjh9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjMxNy42MDkzNzUsInJpZ2h0IjozMTcuNjA5Mzc1LCJ0b3AiOjQyOS41NjI1LCJib3R0b20iOjQ1Ny41NjI1LCJ3aWR0aCI6MCwiaGVpZ2h0IjoyOH1dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjgxMiwidG9wIjozNTkuMzc1LCJib3R0b20iOjUxOC45Njg3NSwid2lkdGgiOjc4MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJzdGF0aWMtZW5kLWFuY2hvciIsImN1cnJlbnRFeHBlY3RlZCI6bnVsbCwiY3VycmVudEluZGV4IjpudWxsLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6Imx0ciIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6ImZyZXNoIGVtcHR5IHNlc3Npb24gYWZ0ZXIgcmVzdGFydCIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjMyLCJyaWdodCI6NDguNzk2ODc1LCJ0b3AiOjIwLjM3NSwiYm90dG9tIjoyMi4zNzUsIndpZHRoIjoxNi43OTY4NzUsImhlaWdodCI6Mn0sImZyYWdtZW50Ijp7ImxlZnQiOjMyLCJyaWdodCI6MzIsInRvcCI6LTUuNjI1LCJib3R0b20iOjIyLjM3NSwid2lkdGgiOjAsImhlaWdodCI6Mjh9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjMyLCJyaWdodCI6MzIsInRvcCI6LTUuNjI1LCJib3R0b20iOjIyLjM3NSwid2lkdGgiOjAsImhlaWdodCI6Mjh9XSwidmlld3BvcnQiOnsibGVmdCI6MzIsInJpZ2h0Ijo4MTIsInRvcCI6LTIyLjYyNSwiYm90dG9tIjoxMzYuOTY4NzUsIndpZHRoIjo3ODAsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoic3RhdGljLWVuZC1hbmNob3IiLCJjdXJyZW50RXhwZWN0ZWQiOm51bGwsImN1cnJlbnRJbmRleCI6bnVsbCwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJsdHIiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19XX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "610ec9ce3fc2299b8c9f-7f7b4cdf917eab380c99",
+          "file": "caret-geometry.spec.ts",
+          "line": 241,
+          "column": 1
+        },
+        {
+          "title": "line caret follows the actual LTR character edge through input and rotation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "browser-runtime-version",
+                  "description": "155.0.4283.45"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2462,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:38.671Z",
+                  "annotations": [
+                    {
+                      "type": "browser-runtime-version",
+                      "description": "155.0.4283.45"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "actual-character-caret-geometry",
+                      "contentType": "application/json",
+                      "body": "eyJzdHlsZSI6ImxpbmUiLCJsYW5ndWFnZSI6ImVuIiwicmVjZWlwdHMiOlt7ImxhYmVsIjoiaW5pdGlhbCIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjMyLCJyaWdodCI6MzQsInRvcCI6NDI5LjM3NSwiYm90dG9tIjo0NjYuMzc1LCJ3aWR0aCI6MiwiaGVpZ2h0IjozN30sImZyYWdtZW50Ijp7ImxlZnQiOjMyLCJyaWdodCI6NDguODEyNSwidG9wIjo0MjkuMzc1LCJib3R0b20iOjQ2Ni4zNzUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnRzIjpbeyJsZWZ0IjozMiwicmlnaHQiOjQ4LjgxMjUsInRvcCI6NDI5LjM3NSwiYm90dG9tIjo0NjYuMzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN31dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjc0OCwidG9wIjo0MjEuMzc1LCJib3R0b20iOjU4MC45Njg3NSwid2lkdGgiOjcxNiwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ImMiLCJjdXJyZW50SW5kZXgiOiIwIiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJsdHIiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiI1NSBjb21taXR0ZWQgY2hhcmFjdGVycyIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjMwMSwicmlnaHQiOjMwMywidG9wIjo0ODIuNTYyNSwiYm90dG9tIjo1MTkuNTYyNSwid2lkdGgiOjIsImhlaWdodCI6Mzd9LCJmcmFnbWVudCI6eyJsZWZ0IjozMDEsInJpZ2h0IjozMTcuODEyNSwidG9wIjo0ODIuNTYyNSwiYm90dG9tIjo1MTkuNTYyNSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjMwMSwicmlnaHQiOjMxNy44MTI1LCJ0b3AiOjQ4Mi41NjI1LCJib3R0b20iOjUxOS41NjI1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN31dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjc0OCwidG9wIjo0MjEuMzc1LCJib3R0b20iOjU4MC45Njg3NSwid2lkdGgiOjcxNiwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6IiAiLCJjdXJyZW50SW5kZXgiOiI1NSIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoibHRyIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoicG9ydHJhaXQiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0IjoyODksInJpZ2h0IjoyOTEsInRvcCI6NTIwLjc1LCJib3R0b20iOjU1Ny43NSwid2lkdGgiOjIsImhlaWdodCI6Mzd9LCJmcmFnbWVudCI6eyJsZWZ0IjoyODksInJpZ2h0IjozMDUuODEyNSwidG9wIjo1MjAuNzUsImJvdHRvbSI6NTU3Ljc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50cyI6W3sibGVmdCI6Mjg5LCJyaWdodCI6MzA1LjgxMjUsInRvcCI6NTIwLjc1LCJib3R0b20iOjU1Ny43NSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9XSwidmlld3BvcnQiOnsibGVmdCI6MjAsInJpZ2h0IjozNzAsInRvcCI6NDU5LjM3NSwiYm90dG9tIjo2MTguOTY4NzUsIndpZHRoIjozNTAsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoiY3VycmVudC1jaGFyYWN0ZXIiLCJjdXJyZW50RXhwZWN0ZWQiOiIgIiwiY3VycmVudEluZGV4IjoiNTUiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6Imx0ciIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6ImxhbmRzY2FwZSIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjIwMC4xMjUsInJpZ2h0IjoyMDIuMTI1LCJ0b3AiOjQyMC41NjI1LCJib3R0b20iOjQ1Ny41NjI1LCJ3aWR0aCI6MiwiaGVpZ2h0IjozN30sImZyYWdtZW50Ijp7ImxlZnQiOjIwMC4xMjUsInJpZ2h0IjoyMTYuOTM3NSwidG9wIjo0MjAuNTYyNSwiYm90dG9tIjo0NTcuNTYyNSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjIwMC4xMjUsInJpZ2h0IjoyMTYuOTM3NSwidG9wIjo0MjAuNTYyNSwiYm90dG9tIjo0NTcuNTYyNSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9XSwidmlld3BvcnQiOnsibGVmdCI6MzIsInJpZ2h0Ijo4MTIsInRvcCI6MzU5LjM3NSwiYm90dG9tIjo1MTguOTY4NzUsIndpZHRoIjo3ODAsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoiY3VycmVudC1jaGFyYWN0ZXIiLCJjdXJyZW50RXhwZWN0ZWQiOiIgIiwiY3VycmVudEluZGV4IjoiNTUiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6Imx0ciIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6Im5hcnJvdyBhZnRlciBkZWxldGlvbiIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjE3MS4zMTI1LCJyaWdodCI6MTczLjMxMjUsInRvcCI6NTIwLjkzNzUsImJvdHRvbSI6NTU3LjkzNzUsIndpZHRoIjoyLCJoZWlnaHQiOjM3fSwiZnJhZ21lbnQiOnsibGVmdCI6MTcxLjMxMjUsInJpZ2h0IjoxODguMTI1LCJ0b3AiOjUyMC45Mzc1LCJib3R0b20iOjU1Ny45Mzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50cyI6W3sibGVmdCI6MTcxLjMxMjUsInJpZ2h0IjoxODguMTI1LCJ0b3AiOjUyMC45Mzc1LCJib3R0b20iOjU1Ny45Mzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN31dLCJ2aWV3cG9ydCI6eyJsZWZ0IjoyMCwicmlnaHQiOjMwMCwidG9wIjo0NTkuMzc1LCJib3R0b20iOjYxOC45Njg3NSwid2lkdGgiOjI4MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6InIiLCJjdXJyZW50SW5kZXgiOiI1NCIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoibHRyIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fV19"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "610ec9ce3fc2299b8c9f-559e8b19d6ff899c460d",
+          "file": "caret-geometry.spec.ts",
+          "line": 145,
+          "column": 5
+        },
+        {
+          "title": "line caret follows the actual RTL character edge through input and rotation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "browser-runtime-version",
+                  "description": "155.0.4283.45"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2093,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:42.267Z",
+                  "annotations": [
+                    {
+                      "type": "browser-runtime-version",
+                      "description": "155.0.4283.45"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "actual-character-caret-geometry",
+                      "contentType": "application/json",
+                      "body": "eyJzdHlsZSI6ImxpbmUiLCJsYW5ndWFnZSI6ImFyIiwicmVjZWlwdHMiOlt7ImxhYmVsIjoiaW5pdGlhbCIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjc0NiwicmlnaHQiOjc0OCwidG9wIjo0MzAuMzc1LCJib3R0b20iOjQ2NC4zNzUsIndpZHRoIjoyLCJoZWlnaHQiOjM0fSwiZnJhZ21lbnQiOnsibGVmdCI6NzIwLjU0Njg3NSwicmlnaHQiOjc0OCwidG9wIjo0MzAuMzc1LCJib3R0b20iOjQ2NC4zNzUsIndpZHRoIjoyNy40NTMxMjUsImhlaWdodCI6MzR9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjcyMC41NDY4NzUsInJpZ2h0Ijo3NDgsInRvcCI6NDMwLjM3NSwiYm90dG9tIjo0NjQuMzc1LCJ3aWR0aCI6MjcuNDUzMTI1LCJoZWlnaHQiOjM0fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6NzQ4LCJ0b3AiOjQyMS4zNzUsImJvdHRvbSI6NTgwLjk2ODc1LCJ3aWR0aCI6NzE2LCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoi2LMiLCJjdXJyZW50SW5kZXgiOiIwIiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJydGwiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiI1NSBjb21taXR0ZWQgY2hhcmFjdGVycyIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjY0MS44OTA2MjUsInJpZ2h0Ijo2NDMuODkwNjI1LCJ0b3AiOjQ4My41NjI1LCJib3R0b20iOjUxNy41NjI1LCJ3aWR0aCI6MiwiaGVpZ2h0IjozNH0sImZyYWdtZW50Ijp7ImxlZnQiOjYzNi4wMTU2MjUsInJpZ2h0Ijo2NDMuODkwNjI1LCJ0b3AiOjQ4My41NjI1LCJib3R0b20iOjUxNy41NjI1LCJ3aWR0aCI6Ny44NzUsImhlaWdodCI6MzR9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjYzNi4wMTU2MjUsInJpZ2h0Ijo2NDMuODkwNjI1LCJ0b3AiOjQ4My41NjI1LCJib3R0b20iOjUxNy41NjI1LCJ3aWR0aCI6Ny44NzUsImhlaWdodCI6MzR9XSwidmlld3BvcnQiOnsibGVmdCI6MzIsInJpZ2h0Ijo3NDgsInRvcCI6NDIxLjM3NSwiYm90dG9tIjo1ODAuOTY4NzUsIndpZHRoIjo3MTYsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoiY3VycmVudC1jaGFyYWN0ZXIiLCJjdXJyZW50RXhwZWN0ZWQiOiLZhCIsImN1cnJlbnRJbmRleCI6IjU1IiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJydGwiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiJwb3J0cmFpdCIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjE5MS4yNSwicmlnaHQiOjE5My4yNSwidG9wIjo1MjEuNzUsImJvdHRvbSI6NTU1Ljc1LCJ3aWR0aCI6MiwiaGVpZ2h0IjozNH0sImZyYWdtZW50Ijp7ImxlZnQiOjE4NS4zNzUsInJpZ2h0IjoxOTMuMjUsInRvcCI6NTIxLjc1LCJib3R0b20iOjU1NS43NSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjM0fSwiZnJhZ21lbnRzIjpbeyJsZWZ0IjoxODUuMzc1LCJyaWdodCI6MTkzLjI1LCJ0b3AiOjUyMS43NSwiYm90dG9tIjo1NTUuNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH1dLCJ2aWV3cG9ydCI6eyJsZWZ0IjoyMCwicmlnaHQiOjM3MCwidG9wIjo0NTkuMzc1LCJib3R0b20iOjYxOC45Njg3NSwid2lkdGgiOjM1MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ItmEIiwiY3VycmVudEluZGV4IjoiNTUiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6InJ0bCIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6ImxhbmRzY2FwZSIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjU5LjM3NSwicmlnaHQiOjYxLjM3NSwidG9wIjozNjguMzc1LCJib3R0b20iOjQwMi4zNzUsIndpZHRoIjoyLCJoZWlnaHQiOjM0fSwiZnJhZ21lbnQiOnsibGVmdCI6NTMuNSwicmlnaHQiOjYxLjM3NSwidG9wIjozNjguMzc1LCJib3R0b20iOjQwMi4zNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH0sImZyYWdtZW50cyI6W3sibGVmdCI6NTMuNSwicmlnaHQiOjYxLjM3NSwidG9wIjozNjguMzc1LCJib3R0b20iOjQwMi4zNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH1dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjgxMiwidG9wIjozNTkuMzc1LCJib3R0b20iOjUxOC45Njg3NSwid2lkdGgiOjc4MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ItmEIiwiY3VycmVudEluZGV4IjoiNTUiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6InJ0bCIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6Im5hcnJvdyBhZnRlciBkZWxldGlvbiIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjEyOS41NDY4NzUsInJpZ2h0IjoxMzEuNTQ2ODc1LCJ0b3AiOjUyMS43NSwiYm90dG9tIjo1NTUuNzUsIndpZHRoIjoyLCJoZWlnaHQiOjM0fSwiZnJhZ21lbnQiOnsibGVmdCI6MTIzLjI1LCJyaWdodCI6MTMxLjU0Njg3NSwidG9wIjo1MjEuNzUsImJvdHRvbSI6NTU1Ljc1LCJ3aWR0aCI6OC4yOTY4NzUsImhlaWdodCI6MzR9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjEyMy4yNSwicmlnaHQiOjEzMS41NDY4NzUsInRvcCI6NTIxLjc1LCJib3R0b20iOjU1NS43NSwid2lkdGgiOjguMjk2ODc1LCJoZWlnaHQiOjM0fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjIwLCJyaWdodCI6MzAwLCJ0b3AiOjQ1OS4zNzUsImJvdHRvbSI6NjE4Ljk2ODc1LCJ3aWR0aCI6MjgwLCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoi2KciLCJjdXJyZW50SW5kZXgiOiI1NCIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoicnRsIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fV19"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "610ec9ce3fc2299b8c9f-ba6af1776e985bc2792a",
+          "file": "caret-geometry.spec.ts",
+          "line": 145,
+          "column": 5
+        },
+        {
+          "title": "block caret follows the actual LTR character edge through input and rotation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "browser-runtime-version",
+                  "description": "155.0.4283.45"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1757,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:44.378Z",
+                  "annotations": [
+                    {
+                      "type": "browser-runtime-version",
+                      "description": "155.0.4283.45"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "actual-character-caret-geometry",
+                      "contentType": "application/json",
+                      "body": "eyJzdHlsZSI6ImJsb2NrIiwibGFuZ3VhZ2UiOiJlbiIsInJlY2VpcHRzIjpbeyJsYWJlbCI6ImluaXRpYWwiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0IjozMiwicmlnaHQiOjQ4LjgxMjUsInRvcCI6NDI5LjM3NSwiYm90dG9tIjo0NjYuMzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50Ijp7ImxlZnQiOjMyLCJyaWdodCI6NDguODEyNSwidG9wIjo0MjkuMzc1LCJib3R0b20iOjQ2Ni4zNzUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnRzIjpbeyJsZWZ0IjozMiwicmlnaHQiOjQ4LjgxMjUsInRvcCI6NDI5LjM3NSwiYm90dG9tIjo0NjYuMzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN31dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjc0OCwidG9wIjo0MjEuMzc1LCJib3R0b20iOjU4MC45Njg3NSwid2lkdGgiOjcxNiwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ImMiLCJjdXJyZW50SW5kZXgiOiIwIiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJsdHIiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiI1NSBjb21taXR0ZWQgY2hhcmFjdGVycyIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjMwMSwicmlnaHQiOjMxNy44MTI1LCJ0b3AiOjQ4Mi41NjI1LCJib3R0b20iOjUxOS41NjI1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50Ijp7ImxlZnQiOjMwMSwicmlnaHQiOjMxNy44MTI1LCJ0b3AiOjQ4Mi41NjI1LCJib3R0b20iOjUxOS41NjI1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50cyI6W3sibGVmdCI6MzAxLCJyaWdodCI6MzE3LjgxMjUsInRvcCI6NDgyLjU2MjUsImJvdHRvbSI6NTE5LjU2MjUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6NzQ4LCJ0b3AiOjQyMS4zNzUsImJvdHRvbSI6NTgwLjk2ODc1LCJ3aWR0aCI6NzE2LCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoiICIsImN1cnJlbnRJbmRleCI6IjU1IiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJsdHIiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiJwb3J0cmFpdCIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjI4OSwicmlnaHQiOjMwNS44MTI1LCJ0b3AiOjUyMC43NSwiYm90dG9tIjo1NTcuNzUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnQiOnsibGVmdCI6Mjg5LCJyaWdodCI6MzA1LjgxMjUsInRvcCI6NTIwLjc1LCJib3R0b20iOjU1Ny43NSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjI4OSwicmlnaHQiOjMwNS44MTI1LCJ0b3AiOjUyMC43NSwiYm90dG9tIjo1NTcuNzUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjIwLCJyaWdodCI6MzcwLCJ0b3AiOjQ1OS4zNzUsImJvdHRvbSI6NjE4Ljk2ODc1LCJ3aWR0aCI6MzUwLCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoiICIsImN1cnJlbnRJbmRleCI6IjU1IiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJsdHIiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiJsYW5kc2NhcGUiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0IjoyMDAuMTI1LCJyaWdodCI6MjE2LjkzNzUsInRvcCI6NDIwLjU2MjUsImJvdHRvbSI6NDU3LjU2MjUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnQiOnsibGVmdCI6MjAwLjEyNSwicmlnaHQiOjIxNi45Mzc1LCJ0b3AiOjQyMC41NjI1LCJib3R0b20iOjQ1Ny41NjI1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50cyI6W3sibGVmdCI6MjAwLjEyNSwicmlnaHQiOjIxNi45Mzc1LCJ0b3AiOjQyMC41NjI1LCJib3R0b20iOjQ1Ny41NjI1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN31dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjgxMiwidG9wIjozNTkuMzc1LCJib3R0b20iOjUxOC45Njg3NSwid2lkdGgiOjc4MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6IiAiLCJjdXJyZW50SW5kZXgiOiI1NSIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoibHRyIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoibmFycm93IGFmdGVyIGRlbGV0aW9uIiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6MTcxLjMxMjUsInJpZ2h0IjoxODguMTI1LCJ0b3AiOjUyMC45Mzc1LCJib3R0b20iOjU1Ny45Mzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50Ijp7ImxlZnQiOjE3MS4zMTI1LCJyaWdodCI6MTg4LjEyNSwidG9wIjo1MjAuOTM3NSwiYm90dG9tIjo1NTcuOTM3NSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjE3MS4zMTI1LCJyaWdodCI6MTg4LjEyNSwidG9wIjo1MjAuOTM3NSwiYm90dG9tIjo1NTcuOTM3NSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9XSwidmlld3BvcnQiOnsibGVmdCI6MjAsInJpZ2h0IjozMDAsInRvcCI6NDU5LjM3NSwiYm90dG9tIjo2MTguOTY4NzUsIndpZHRoIjoyODAsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoiY3VycmVudC1jaGFyYWN0ZXIiLCJjdXJyZW50RXhwZWN0ZWQiOiJyIiwiY3VycmVudEluZGV4IjoiNTQiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6Imx0ciIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX1dfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "610ec9ce3fc2299b8c9f-9f495caefb671892bd67",
+          "file": "caret-geometry.spec.ts",
+          "line": 145,
+          "column": 5
+        },
+        {
+          "title": "block caret follows the actual RTL character edge through input and rotation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "browser-runtime-version",
+                  "description": "155.0.4283.45"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1598,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:46.152Z",
+                  "annotations": [
+                    {
+                      "type": "browser-runtime-version",
+                      "description": "155.0.4283.45"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "actual-character-caret-geometry",
+                      "contentType": "application/json",
+                      "body": "eyJzdHlsZSI6ImJsb2NrIiwibGFuZ3VhZ2UiOiJhciIsInJlY2VpcHRzIjpbeyJsYWJlbCI6ImluaXRpYWwiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0Ijo3MjAuNTQ2ODc1LCJyaWdodCI6NzQ4LCJ0b3AiOjQzMC4zNzUsImJvdHRvbSI6NDY0LjM3NSwid2lkdGgiOjI3LjQ1MzEyNSwiaGVpZ2h0IjozNH0sImZyYWdtZW50Ijp7ImxlZnQiOjcyMC41NDY4NzUsInJpZ2h0Ijo3NDgsInRvcCI6NDMwLjM3NSwiYm90dG9tIjo0NjQuMzc1LCJ3aWR0aCI6MjcuNDUzMTI1LCJoZWlnaHQiOjM0fSwiZnJhZ21lbnRzIjpbeyJsZWZ0Ijo3MjAuNTQ2ODc1LCJyaWdodCI6NzQ4LCJ0b3AiOjQzMC4zNzUsImJvdHRvbSI6NDY0LjM3NSwid2lkdGgiOjI3LjQ1MzEyNSwiaGVpZ2h0IjozNH1dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjc0OCwidG9wIjo0MjEuMzc1LCJib3R0b20iOjU4MC45Njg3NSwid2lkdGgiOjcxNiwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ItizIiwiY3VycmVudEluZGV4IjoiMCIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoicnRsIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoiNTUgY29tbWl0dGVkIGNoYXJhY3RlcnMiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0Ijo2MzYuMDE1NjI1LCJyaWdodCI6NjQzLjg5MDYyNSwidG9wIjo0ODMuNTYyNSwiYm90dG9tIjo1MTcuNTYyNSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjM0fSwiZnJhZ21lbnQiOnsibGVmdCI6NjM2LjAxNTYyNSwicmlnaHQiOjY0My44OTA2MjUsInRvcCI6NDgzLjU2MjUsImJvdHRvbSI6NTE3LjU2MjUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH0sImZyYWdtZW50cyI6W3sibGVmdCI6NjM2LjAxNTYyNSwicmlnaHQiOjY0My44OTA2MjUsInRvcCI6NDgzLjU2MjUsImJvdHRvbSI6NTE3LjU2MjUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH1dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjc0OCwidG9wIjo0MjEuMzc1LCJib3R0b20iOjU4MC45Njg3NSwid2lkdGgiOjcxNiwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ItmEIiwiY3VycmVudEluZGV4IjoiNTUiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6InJ0bCIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6InBvcnRyYWl0IiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6MTg1LjM3NSwicmlnaHQiOjE5My4yNSwidG9wIjo1MjEuNzUsImJvdHRvbSI6NTU1Ljc1LCJ3aWR0aCI6Ny44NzUsImhlaWdodCI6MzR9LCJmcmFnbWVudCI6eyJsZWZ0IjoxODUuMzc1LCJyaWdodCI6MTkzLjI1LCJ0b3AiOjUyMS43NSwiYm90dG9tIjo1NTUuNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH0sImZyYWdtZW50cyI6W3sibGVmdCI6MTg1LjM3NSwicmlnaHQiOjE5My4yNSwidG9wIjo1MjEuNzUsImJvdHRvbSI6NTU1Ljc1LCJ3aWR0aCI6Ny44NzUsImhlaWdodCI6MzR9XSwidmlld3BvcnQiOnsibGVmdCI6MjAsInJpZ2h0IjozNzAsInRvcCI6NDU5LjM3NSwiYm90dG9tIjo2MTguOTY4NzUsIndpZHRoIjozNTAsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoiY3VycmVudC1jaGFyYWN0ZXIiLCJjdXJyZW50RXhwZWN0ZWQiOiLZhCIsImN1cnJlbnRJbmRleCI6IjU1IiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJydGwiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiJsYW5kc2NhcGUiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0Ijo1My41LCJyaWdodCI6NjEuMzc1LCJ0b3AiOjM2OC4zNzUsImJvdHRvbSI6NDAyLjM3NSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjM0fSwiZnJhZ21lbnQiOnsibGVmdCI6NTMuNSwicmlnaHQiOjYxLjM3NSwidG9wIjozNjguMzc1LCJib3R0b20iOjQwMi4zNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH0sImZyYWdtZW50cyI6W3sibGVmdCI6NTMuNSwicmlnaHQiOjYxLjM3NSwidG9wIjozNjguMzc1LCJib3R0b20iOjQwMi4zNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH1dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjgxMiwidG9wIjozNTkuMzc1LCJib3R0b20iOjUxOC45Njg3NSwid2lkdGgiOjc4MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ItmEIiwiY3VycmVudEluZGV4IjoiNTUiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6InJ0bCIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6Im5hcnJvdyBhZnRlciBkZWxldGlvbiIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjEyMy4yNSwicmlnaHQiOjEzMS41NDY4NzUsInRvcCI6NTIxLjc1LCJib3R0b20iOjU1NS43NSwid2lkdGgiOjguMjk2ODc1LCJoZWlnaHQiOjM0fSwiZnJhZ21lbnQiOnsibGVmdCI6MTIzLjI1LCJyaWdodCI6MTMxLjU0Njg3NSwidG9wIjo1MjEuNzUsImJvdHRvbSI6NTU1Ljc1LCJ3aWR0aCI6OC4yOTY4NzUsImhlaWdodCI6MzR9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjEyMy4yNSwicmlnaHQiOjEzMS41NDY4NzUsInRvcCI6NTIxLjc1LCJib3R0b20iOjU1NS43NSwid2lkdGgiOjguMjk2ODc1LCJoZWlnaHQiOjM0fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjIwLCJyaWdodCI6MzAwLCJ0b3AiOjQ1OS4zNzUsImJvdHRvbSI6NjE4Ljk2ODc1LCJ3aWR0aCI6MjgwLCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoi2KciLCJjdXJyZW50SW5kZXgiOiI1NCIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoicnRsIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fV19"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "610ec9ce3fc2299b8c9f-bb629ace182201522dad",
+          "file": "caret-geometry.spec.ts",
+          "line": 145,
+          "column": 5
+        },
+        {
+          "title": "outline caret follows the actual LTR character edge through input and rotation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "browser-runtime-version",
+                  "description": "155.0.4283.45"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1660,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:47.765Z",
+                  "annotations": [
+                    {
+                      "type": "browser-runtime-version",
+                      "description": "155.0.4283.45"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "actual-character-caret-geometry",
+                      "contentType": "application/json",
+                      "body": "eyJzdHlsZSI6Im91dGxpbmUiLCJsYW5ndWFnZSI6ImVuIiwicmVjZWlwdHMiOlt7ImxhYmVsIjoiaW5pdGlhbCIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjMyLCJyaWdodCI6NDguODEyNSwidG9wIjo0MjkuMzc1LCJib3R0b20iOjQ2Ni4zNzUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnQiOnsibGVmdCI6MzIsInJpZ2h0Ijo0OC44MTI1LCJ0b3AiOjQyOS4zNzUsImJvdHRvbSI6NDY2LjM3NSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjMyLCJyaWdodCI6NDguODEyNSwidG9wIjo0MjkuMzc1LCJib3R0b20iOjQ2Ni4zNzUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6NzQ4LCJ0b3AiOjQyMS4zNzUsImJvdHRvbSI6NTgwLjk2ODc1LCJ3aWR0aCI6NzE2LCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoiYyIsImN1cnJlbnRJbmRleCI6IjAiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6Imx0ciIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6IjU1IGNvbW1pdHRlZCBjaGFyYWN0ZXJzIiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6MzAxLCJyaWdodCI6MzE3LjgxMjUsInRvcCI6NDgyLjU2MjUsImJvdHRvbSI6NTE5LjU2MjUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnQiOnsibGVmdCI6MzAxLCJyaWdodCI6MzE3LjgxMjUsInRvcCI6NDgyLjU2MjUsImJvdHRvbSI6NTE5LjU2MjUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnRzIjpbeyJsZWZ0IjozMDEsInJpZ2h0IjozMTcuODEyNSwidG9wIjo0ODIuNTYyNSwiYm90dG9tIjo1MTkuNTYyNSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9XSwidmlld3BvcnQiOnsibGVmdCI6MzIsInJpZ2h0Ijo3NDgsInRvcCI6NDIxLjM3NSwiYm90dG9tIjo1ODAuOTY4NzUsIndpZHRoIjo3MTYsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoiY3VycmVudC1jaGFyYWN0ZXIiLCJjdXJyZW50RXhwZWN0ZWQiOiIgIiwiY3VycmVudEluZGV4IjoiNTUiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6Imx0ciIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6InBvcnRyYWl0IiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6Mjg5LCJyaWdodCI6MzA1LjgxMjUsInRvcCI6NTIwLjc1LCJib3R0b20iOjU1Ny43NSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9LCJmcmFnbWVudCI6eyJsZWZ0IjoyODksInJpZ2h0IjozMDUuODEyNSwidG9wIjo1MjAuNzUsImJvdHRvbSI6NTU3Ljc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50cyI6W3sibGVmdCI6Mjg5LCJyaWdodCI6MzA1LjgxMjUsInRvcCI6NTIwLjc1LCJib3R0b20iOjU1Ny43NSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9XSwidmlld3BvcnQiOnsibGVmdCI6MjAsInJpZ2h0IjozNzAsInRvcCI6NDU5LjM3NSwiYm90dG9tIjo2MTguOTY4NzUsIndpZHRoIjozNTAsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoiY3VycmVudC1jaGFyYWN0ZXIiLCJjdXJyZW50RXhwZWN0ZWQiOiIgIiwiY3VycmVudEluZGV4IjoiNTUiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6Imx0ciIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6ImxhbmRzY2FwZSIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjIwMC4xMjUsInJpZ2h0IjoyMTYuOTM3NSwidG9wIjo0MjAuNTYyNSwiYm90dG9tIjo0NTcuNTYyNSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9LCJmcmFnbWVudCI6eyJsZWZ0IjoyMDAuMTI1LCJyaWdodCI6MjE2LjkzNzUsInRvcCI6NDIwLjU2MjUsImJvdHRvbSI6NDU3LjU2MjUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnRzIjpbeyJsZWZ0IjoyMDAuMTI1LCJyaWdodCI6MjE2LjkzNzUsInRvcCI6NDIwLjU2MjUsImJvdHRvbSI6NDU3LjU2MjUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6ODEyLCJ0b3AiOjM1OS4zNzUsImJvdHRvbSI6NTE4Ljk2ODc1LCJ3aWR0aCI6NzgwLCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoiICIsImN1cnJlbnRJbmRleCI6IjU1IiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJsdHIiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiJuYXJyb3cgYWZ0ZXIgZGVsZXRpb24iLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0IjoxNzEuMzEyNSwicmlnaHQiOjE4OC4xMjUsInRvcCI6NTIwLjkzNzUsImJvdHRvbSI6NTU3LjkzNzUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnQiOnsibGVmdCI6MTcxLjMxMjUsInJpZ2h0IjoxODguMTI1LCJ0b3AiOjUyMC45Mzc1LCJib3R0b20iOjU1Ny45Mzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50cyI6W3sibGVmdCI6MTcxLjMxMjUsInJpZ2h0IjoxODguMTI1LCJ0b3AiOjUyMC45Mzc1LCJib3R0b20iOjU1Ny45Mzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN31dLCJ2aWV3cG9ydCI6eyJsZWZ0IjoyMCwicmlnaHQiOjMwMCwidG9wIjo0NTkuMzc1LCJib3R0b20iOjYxOC45Njg3NSwid2lkdGgiOjI4MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6InIiLCJjdXJyZW50SW5kZXgiOiI1NCIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoibHRyIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fV19"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "610ec9ce3fc2299b8c9f-f2a4d5edc219aaccdfc3",
+          "file": "caret-geometry.spec.ts",
+          "line": 145,
+          "column": 5
+        },
+        {
+          "title": "outline caret follows the actual RTL character edge through input and rotation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "browser-runtime-version",
+                  "description": "155.0.4283.45"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1655,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:49.439Z",
+                  "annotations": [
+                    {
+                      "type": "browser-runtime-version",
+                      "description": "155.0.4283.45"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "actual-character-caret-geometry",
+                      "contentType": "application/json",
+                      "body": "eyJzdHlsZSI6Im91dGxpbmUiLCJsYW5ndWFnZSI6ImFyIiwicmVjZWlwdHMiOlt7ImxhYmVsIjoiaW5pdGlhbCIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjcyMC41NDY4NzUsInJpZ2h0Ijo3NDgsInRvcCI6NDMwLjM3NSwiYm90dG9tIjo0NjQuMzc1LCJ3aWR0aCI6MjcuNDUzMTI1LCJoZWlnaHQiOjM0fSwiZnJhZ21lbnQiOnsibGVmdCI6NzIwLjU0Njg3NSwicmlnaHQiOjc0OCwidG9wIjo0MzAuMzc1LCJib3R0b20iOjQ2NC4zNzUsIndpZHRoIjoyNy40NTMxMjUsImhlaWdodCI6MzR9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjcyMC41NDY4NzUsInJpZ2h0Ijo3NDgsInRvcCI6NDMwLjM3NSwiYm90dG9tIjo0NjQuMzc1LCJ3aWR0aCI6MjcuNDUzMTI1LCJoZWlnaHQiOjM0fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6NzQ4LCJ0b3AiOjQyMS4zNzUsImJvdHRvbSI6NTgwLjk2ODc1LCJ3aWR0aCI6NzE2LCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoi2LMiLCJjdXJyZW50SW5kZXgiOiIwIiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJydGwiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiI1NSBjb21taXR0ZWQgY2hhcmFjdGVycyIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjYzNi4wMTU2MjUsInJpZ2h0Ijo2NDMuODkwNjI1LCJ0b3AiOjQ4My41NjI1LCJib3R0b20iOjUxNy41NjI1LCJ3aWR0aCI6Ny44NzUsImhlaWdodCI6MzR9LCJmcmFnbWVudCI6eyJsZWZ0Ijo2MzYuMDE1NjI1LCJyaWdodCI6NjQzLjg5MDYyNSwidG9wIjo0ODMuNTYyNSwiYm90dG9tIjo1MTcuNTYyNSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjM0fSwiZnJhZ21lbnRzIjpbeyJsZWZ0Ijo2MzYuMDE1NjI1LCJyaWdodCI6NjQzLjg5MDYyNSwidG9wIjo0ODMuNTYyNSwiYm90dG9tIjo1MTcuNTYyNSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjM0fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6NzQ4LCJ0b3AiOjQyMS4zNzUsImJvdHRvbSI6NTgwLjk2ODc1LCJ3aWR0aCI6NzE2LCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoi2YQiLCJjdXJyZW50SW5kZXgiOiI1NSIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoicnRsIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoicG9ydHJhaXQiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0IjoxODUuMzc1LCJyaWdodCI6MTkzLjI1LCJ0b3AiOjUyMS43NSwiYm90dG9tIjo1NTUuNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH0sImZyYWdtZW50Ijp7ImxlZnQiOjE4NS4zNzUsInJpZ2h0IjoxOTMuMjUsInRvcCI6NTIxLjc1LCJib3R0b20iOjU1NS43NSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjM0fSwiZnJhZ21lbnRzIjpbeyJsZWZ0IjoxODUuMzc1LCJyaWdodCI6MTkzLjI1LCJ0b3AiOjUyMS43NSwiYm90dG9tIjo1NTUuNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH1dLCJ2aWV3cG9ydCI6eyJsZWZ0IjoyMCwicmlnaHQiOjM3MCwidG9wIjo0NTkuMzc1LCJib3R0b20iOjYxOC45Njg3NSwid2lkdGgiOjM1MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ItmEIiwiY3VycmVudEluZGV4IjoiNTUiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6InJ0bCIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6ImxhbmRzY2FwZSIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjUzLjUsInJpZ2h0Ijo2MS4zNzUsInRvcCI6MzY4LjM3NSwiYm90dG9tIjo0MDIuMzc1LCJ3aWR0aCI6Ny44NzUsImhlaWdodCI6MzR9LCJmcmFnbWVudCI6eyJsZWZ0Ijo1My41LCJyaWdodCI6NjEuMzc1LCJ0b3AiOjM2OC4zNzUsImJvdHRvbSI6NDAyLjM3NSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjM0fSwiZnJhZ21lbnRzIjpbeyJsZWZ0Ijo1My41LCJyaWdodCI6NjEuMzc1LCJ0b3AiOjM2OC4zNzUsImJvdHRvbSI6NDAyLjM3NSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjM0fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6ODEyLCJ0b3AiOjM1OS4zNzUsImJvdHRvbSI6NTE4Ljk2ODc1LCJ3aWR0aCI6NzgwLCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoi2YQiLCJjdXJyZW50SW5kZXgiOiI1NSIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoicnRsIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoibmFycm93IGFmdGVyIGRlbGV0aW9uIiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6MTIzLjI1LCJyaWdodCI6MTMxLjU0Njg3NSwidG9wIjo1MjEuNzUsImJvdHRvbSI6NTU1Ljc1LCJ3aWR0aCI6OC4yOTY4NzUsImhlaWdodCI6MzR9LCJmcmFnbWVudCI6eyJsZWZ0IjoxMjMuMjUsInJpZ2h0IjoxMzEuNTQ2ODc1LCJ0b3AiOjUyMS43NSwiYm90dG9tIjo1NTUuNzUsIndpZHRoIjo4LjI5Njg3NSwiaGVpZ2h0IjozNH0sImZyYWdtZW50cyI6W3sibGVmdCI6MTIzLjI1LCJyaWdodCI6MTMxLjU0Njg3NSwidG9wIjo1MjEuNzUsImJvdHRvbSI6NTU1Ljc1LCJ3aWR0aCI6OC4yOTY4NzUsImhlaWdodCI6MzR9XSwidmlld3BvcnQiOnsibGVmdCI6MjAsInJpZ2h0IjozMDAsInRvcCI6NDU5LjM3NSwiYm90dG9tIjo2MTguOTY4NzUsIndpZHRoIjoyODAsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoiY3VycmVudC1jaGFyYWN0ZXIiLCJjdXJyZW50RXhwZWN0ZWQiOiLYpyIsImN1cnJlbnRJbmRleCI6IjU0IiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJydGwiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19XX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "610ec9ce3fc2299b8c9f-72a9aeb2c36d1ee189f3",
+          "file": "caret-geometry.spec.ts",
+          "line": 145,
+          "column": 5
+        },
+        {
+          "title": "underline caret follows the actual LTR character edge through input and rotation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "browser-runtime-version",
+                  "description": "155.0.4283.45"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1867,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:51.108Z",
+                  "annotations": [
+                    {
+                      "type": "browser-runtime-version",
+                      "description": "155.0.4283.45"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "actual-character-caret-geometry",
+                      "contentType": "application/json",
+                      "body": "eyJzdHlsZSI6InVuZGVybGluZSIsImxhbmd1YWdlIjoiZW4iLCJyZWNlaXB0cyI6W3sibGFiZWwiOiJpbml0aWFsIiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6MzIsInJpZ2h0Ijo0OC44MTI1LCJ0b3AiOjQ2NC4zNzUsImJvdHRvbSI6NDY2LjM3NSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mn0sImZyYWdtZW50Ijp7ImxlZnQiOjMyLCJyaWdodCI6NDguODEyNSwidG9wIjo0MjkuMzc1LCJib3R0b20iOjQ2Ni4zNzUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnRzIjpbeyJsZWZ0IjozMiwicmlnaHQiOjQ4LjgxMjUsInRvcCI6NDI5LjM3NSwiYm90dG9tIjo0NjYuMzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN31dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjc0OCwidG9wIjo0MjEuMzc1LCJib3R0b20iOjU4MC45Njg3NSwid2lkdGgiOjcxNiwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ImMiLCJjdXJyZW50SW5kZXgiOiIwIiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJsdHIiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiI1NSBjb21taXR0ZWQgY2hhcmFjdGVycyIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjMwMSwicmlnaHQiOjMxNy44MTI1LCJ0b3AiOjUxNy41NjI1LCJib3R0b20iOjUxOS41NjI1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjoyfSwiZnJhZ21lbnQiOnsibGVmdCI6MzAxLCJyaWdodCI6MzE3LjgxMjUsInRvcCI6NDgyLjU2MjUsImJvdHRvbSI6NTE5LjU2MjUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnRzIjpbeyJsZWZ0IjozMDEsInJpZ2h0IjozMTcuODEyNSwidG9wIjo0ODIuNTYyNSwiYm90dG9tIjo1MTkuNTYyNSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9XSwidmlld3BvcnQiOnsibGVmdCI6MzIsInJpZ2h0Ijo3NDgsInRvcCI6NDIxLjM3NSwiYm90dG9tIjo1ODAuOTY4NzUsIndpZHRoIjo3MTYsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoiY3VycmVudC1jaGFyYWN0ZXIiLCJjdXJyZW50RXhwZWN0ZWQiOiIgIiwiY3VycmVudEluZGV4IjoiNTUiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6Imx0ciIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6InBvcnRyYWl0IiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6Mjg5LCJyaWdodCI6MzA1LjgxMjUsInRvcCI6NTU1Ljc1LCJib3R0b20iOjU1Ny43NSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mn0sImZyYWdtZW50Ijp7ImxlZnQiOjI4OSwicmlnaHQiOjMwNS44MTI1LCJ0b3AiOjUyMC43NSwiYm90dG9tIjo1NTcuNzUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnRzIjpbeyJsZWZ0IjoyODksInJpZ2h0IjozMDUuODEyNSwidG9wIjo1MjAuNzUsImJvdHRvbSI6NTU3Ljc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN31dLCJ2aWV3cG9ydCI6eyJsZWZ0IjoyMCwicmlnaHQiOjM3MCwidG9wIjo0NTkuMzc1LCJib3R0b20iOjYxOC45Njg3NSwid2lkdGgiOjM1MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6IiAiLCJjdXJyZW50SW5kZXgiOiI1NSIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoibHRyIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoibGFuZHNjYXBlIiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6MjAwLjEyNSwicmlnaHQiOjIxNi45Mzc1LCJ0b3AiOjQ1NS41NjI1LCJib3R0b20iOjQ1Ny41NjI1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjoyfSwiZnJhZ21lbnQiOnsibGVmdCI6MjAwLjEyNSwicmlnaHQiOjIxNi45Mzc1LCJ0b3AiOjQyMC41NjI1LCJib3R0b20iOjQ1Ny41NjI1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50cyI6W3sibGVmdCI6MjAwLjEyNSwicmlnaHQiOjIxNi45Mzc1LCJ0b3AiOjQyMC41NjI1LCJib3R0b20iOjQ1Ny41NjI1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN31dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjgxMiwidG9wIjozNTkuMzc1LCJib3R0b20iOjUxOC45Njg3NSwid2lkdGgiOjc4MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6IiAiLCJjdXJyZW50SW5kZXgiOiI1NSIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoibHRyIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoibmFycm93IGFmdGVyIGRlbGV0aW9uIiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6MTcxLjMxMjUsInJpZ2h0IjoxODguMTI1LCJ0b3AiOjU1NS45Mzc1LCJib3R0b20iOjU1Ny45Mzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjoyfSwiZnJhZ21lbnQiOnsibGVmdCI6MTcxLjMxMjUsInJpZ2h0IjoxODguMTI1LCJ0b3AiOjUyMC45Mzc1LCJib3R0b20iOjU1Ny45Mzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50cyI6W3sibGVmdCI6MTcxLjMxMjUsInJpZ2h0IjoxODguMTI1LCJ0b3AiOjUyMC45Mzc1LCJib3R0b20iOjU1Ny45Mzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN31dLCJ2aWV3cG9ydCI6eyJsZWZ0IjoyMCwicmlnaHQiOjMwMCwidG9wIjo0NTkuMzc1LCJib3R0b20iOjYxOC45Njg3NSwid2lkdGgiOjI4MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6InIiLCJjdXJyZW50SW5kZXgiOiI1NCIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoibHRyIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fV19"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "610ec9ce3fc2299b8c9f-a2788492f61d596366ff",
+          "file": "caret-geometry.spec.ts",
+          "line": 145,
+          "column": 5
+        },
+        {
+          "title": "underline caret follows the actual RTL character edge through input and rotation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "browser-runtime-version",
+                  "description": "155.0.4283.45"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1665,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:52.988Z",
+                  "annotations": [
+                    {
+                      "type": "browser-runtime-version",
+                      "description": "155.0.4283.45"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "actual-character-caret-geometry",
+                      "contentType": "application/json",
+                      "body": "eyJzdHlsZSI6InVuZGVybGluZSIsImxhbmd1YWdlIjoiYXIiLCJyZWNlaXB0cyI6W3sibGFiZWwiOiJpbml0aWFsIiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6NzIwLjU0Njg3NSwicmlnaHQiOjc0OCwidG9wIjo0NjIuMzc1LCJib3R0b20iOjQ2NC4zNzUsIndpZHRoIjoyNy40NTMxMjUsImhlaWdodCI6Mn0sImZyYWdtZW50Ijp7ImxlZnQiOjcyMC41NDY4NzUsInJpZ2h0Ijo3NDgsInRvcCI6NDMwLjM3NSwiYm90dG9tIjo0NjQuMzc1LCJ3aWR0aCI6MjcuNDUzMTI1LCJoZWlnaHQiOjM0fSwiZnJhZ21lbnRzIjpbeyJsZWZ0Ijo3MjAuNTQ2ODc1LCJyaWdodCI6NzQ4LCJ0b3AiOjQzMC4zNzUsImJvdHRvbSI6NDY0LjM3NSwid2lkdGgiOjI3LjQ1MzEyNSwiaGVpZ2h0IjozNH1dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjc0OCwidG9wIjo0MjEuMzc1LCJib3R0b20iOjU4MC45Njg3NSwid2lkdGgiOjcxNiwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ItizIiwiY3VycmVudEluZGV4IjoiMCIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoicnRsIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoiNTUgY29tbWl0dGVkIGNoYXJhY3RlcnMiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0Ijo2MzYuMDE1NjI1LCJyaWdodCI6NjQzLjg5MDYyNSwidG9wIjo1MTUuNTYyNSwiYm90dG9tIjo1MTcuNTYyNSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjJ9LCJmcmFnbWVudCI6eyJsZWZ0Ijo2MzYuMDE1NjI1LCJyaWdodCI6NjQzLjg5MDYyNSwidG9wIjo0ODMuNTYyNSwiYm90dG9tIjo1MTcuNTYyNSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjM0fSwiZnJhZ21lbnRzIjpbeyJsZWZ0Ijo2MzYuMDE1NjI1LCJyaWdodCI6NjQzLjg5MDYyNSwidG9wIjo0ODMuNTYyNSwiYm90dG9tIjo1MTcuNTYyNSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjM0fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6NzQ4LCJ0b3AiOjQyMS4zNzUsImJvdHRvbSI6NTgwLjk2ODc1LCJ3aWR0aCI6NzE2LCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoi2YQiLCJjdXJyZW50SW5kZXgiOiI1NSIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoicnRsIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoicG9ydHJhaXQiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0IjoxODUuMzc1LCJyaWdodCI6MTkzLjI1LCJ0b3AiOjU1My43NSwiYm90dG9tIjo1NTUuNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjoyfSwiZnJhZ21lbnQiOnsibGVmdCI6MTg1LjM3NSwicmlnaHQiOjE5My4yNSwidG9wIjo1MjEuNzUsImJvdHRvbSI6NTU1Ljc1LCJ3aWR0aCI6Ny44NzUsImhlaWdodCI6MzR9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjE4NS4zNzUsInJpZ2h0IjoxOTMuMjUsInRvcCI6NTIxLjc1LCJib3R0b20iOjU1NS43NSwid2lkdGgiOjcuODc1LCJoZWlnaHQiOjM0fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjIwLCJyaWdodCI6MzcwLCJ0b3AiOjQ1OS4zNzUsImJvdHRvbSI6NjE4Ljk2ODc1LCJ3aWR0aCI6MzUwLCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoi2YQiLCJjdXJyZW50SW5kZXgiOiI1NSIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoicnRsIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoibGFuZHNjYXBlIiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6NTMuNSwicmlnaHQiOjYxLjM3NSwidG9wIjo0MDAuMzc1LCJib3R0b20iOjQwMi4zNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjoyfSwiZnJhZ21lbnQiOnsibGVmdCI6NTMuNSwicmlnaHQiOjYxLjM3NSwidG9wIjozNjguMzc1LCJib3R0b20iOjQwMi4zNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH0sImZyYWdtZW50cyI6W3sibGVmdCI6NTMuNSwicmlnaHQiOjYxLjM3NSwidG9wIjozNjguMzc1LCJib3R0b20iOjQwMi4zNzUsIndpZHRoIjo3Ljg3NSwiaGVpZ2h0IjozNH1dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjgxMiwidG9wIjozNTkuMzc1LCJib3R0b20iOjUxOC45Njg3NSwid2lkdGgiOjc4MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ItmEIiwiY3VycmVudEluZGV4IjoiNTUiLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6InJ0bCIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6Im5hcnJvdyBhZnRlciBkZWxldGlvbiIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjEyMy4yNSwicmlnaHQiOjEzMS41NDY4NzUsInRvcCI6NTUzLjc1LCJib3R0b20iOjU1NS43NSwid2lkdGgiOjguMjk2ODc1LCJoZWlnaHQiOjJ9LCJmcmFnbWVudCI6eyJsZWZ0IjoxMjMuMjUsInJpZ2h0IjoxMzEuNTQ2ODc1LCJ0b3AiOjUyMS43NSwiYm90dG9tIjo1NTUuNzUsIndpZHRoIjo4LjI5Njg3NSwiaGVpZ2h0IjozNH0sImZyYWdtZW50cyI6W3sibGVmdCI6MTIzLjI1LCJyaWdodCI6MTMxLjU0Njg3NSwidG9wIjo1MjEuNzUsImJvdHRvbSI6NTU1Ljc1LCJ3aWR0aCI6OC4yOTY4NzUsImhlaWdodCI6MzR9XSwidmlld3BvcnQiOnsibGVmdCI6MjAsInJpZ2h0IjozMDAsInRvcCI6NDU5LjM3NSwiYm90dG9tIjo2MTguOTY4NzUsIndpZHRoIjoyODAsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoiY3VycmVudC1jaGFyYWN0ZXIiLCJjdXJyZW50RXhwZWN0ZWQiOiLYpyIsImN1cnJlbnRJbmRleCI6IjU0IiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJydGwiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19XX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "610ec9ce3fc2299b8c9f-432e47b846de1753526e",
+          "file": "caret-geometry.spec.ts",
+          "line": 145,
+          "column": 5
+        },
+        {
+          "title": "a prompted code newline uses its first actual client fragment before entering the next line",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "browser-runtime-version",
+                  "description": "155.0.4283.45"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1472,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:54.669Z",
+                  "annotations": [
+                    {
+                      "type": "browser-runtime-version",
+                      "description": "155.0.4283.45"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "actual-code-newline-caret-geometry",
+                      "contentType": "application/json",
+                      "body": "eyJuZXdsaW5lIjo0MiwicmVjZWlwdHMiOlt7ImxhYmVsIjoibmV3bGluZSBmaXJzdCBmcmFnbWVudCIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjczOC4xMjUsInJpZ2h0Ijo3NTQuOTIxODc1LCJ0b3AiOjQ0OS4zNzUsImJvdHRvbSI6NDg2LjM3NSwid2lkdGgiOjE2Ljc5Njg3NSwiaGVpZ2h0IjozN30sImZyYWdtZW50Ijp7ImxlZnQiOjczOC4xMjUsInJpZ2h0Ijo3MzguMTI1LCJ0b3AiOjQ0OS4zNzUsImJvdHRvbSI6NDg2LjM3NSwid2lkdGgiOjAsImhlaWdodCI6Mzd9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjczOC4xMjUsInJpZ2h0Ijo3MzguMTI1LCJ0b3AiOjQ0OS4zNzUsImJvdHRvbSI6NDg2LjM3NSwid2lkdGgiOjAsImhlaWdodCI6Mzd9XSwidmlld3BvcnQiOnsibGVmdCI6MzIsInJpZ2h0Ijo5OTIsInRvcCI6NDQxLjM3NSwiYm90dG9tIjo2MDAuOTY4NzUsIndpZHRoIjo5NjAsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoiY3VycmVudC1jaGFyYWN0ZXIiLCJjdXJyZW50RXhwZWN0ZWQiOiJcbiIsImN1cnJlbnRJbmRleCI6IjQyIiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJsdHIiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiJhZnRlciBjb21taXR0ZWQgbmV3bGluZSIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjMyLCJyaWdodCI6NDguODEyNSwidG9wIjo1MDIuNTYyNSwiYm90dG9tIjo1MzkuNTYyNSwid2lkdGgiOjE2LjgxMjUsImhlaWdodCI6Mzd9LCJmcmFnbWVudCI6eyJsZWZ0IjozMiwicmlnaHQiOjQ4LjgxMjUsInRvcCI6NTAyLjU2MjUsImJvdHRvbSI6NTM5LjU2MjUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnRzIjpbeyJsZWZ0IjozMiwicmlnaHQiOjQ4LjgxMjUsInRvcCI6NTAyLjU2MjUsImJvdHRvbSI6NTM5LjU2MjUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6OTkyLCJ0b3AiOjQ0MS4zNzUsImJvdHRvbSI6NjAwLjk2ODc1LCJ3aWR0aCI6OTYwLCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6ImN1cnJlbnQtY2hhcmFjdGVyIiwiY3VycmVudEV4cGVjdGVkIjoiYyIsImN1cnJlbnRJbmRleCI6IjQzIiwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJsdHIiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiJjb2RlIGFmdGVyIG5hcnJvdyByZXNpemUiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0IjoyMCwicmlnaHQiOjM2LjgxMjUsInRvcCI6NTc2LjkzNzUsImJvdHRvbSI6NjEzLjkzNzUsIndpZHRoIjoxNi44MTI1LCJoZWlnaHQiOjM3fSwiZnJhZ21lbnQiOnsibGVmdCI6MjAsInJpZ2h0IjozNi44MTI1LCJ0b3AiOjU3Ni45Mzc1LCJib3R0b20iOjYxMy45Mzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN30sImZyYWdtZW50cyI6W3sibGVmdCI6MjAsInJpZ2h0IjozNi44MTI1LCJ0b3AiOjU3Ni45Mzc1LCJib3R0b20iOjYxMy45Mzc1LCJ3aWR0aCI6MTYuODEyNSwiaGVpZ2h0IjozN31dLCJ2aWV3cG9ydCI6eyJsZWZ0IjoyMCwicmlnaHQiOjM3MCwidG9wIjo1MTUuMzc1LCJib3R0b20iOjY3NC45Njg3NSwid2lkdGgiOjM1MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJjdXJyZW50LWNoYXJhY3RlciIsImN1cnJlbnRFeHBlY3RlZCI6ImMiLCJjdXJyZW50SW5kZXgiOiI0MyIsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoibHRyIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fV19"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "610ec9ce3fc2299b8c9f-81d2a6ee362a8cecac50",
+          "file": "caret-geometry.spec.ts",
+          "line": 184,
+          "column": 1
+        },
+        {
+          "title": "empty and multiline free writing use the same static end anchor through deletion and rotation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "browser-runtime-version",
+                  "description": "155.0.4283.45"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1715,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:56.158Z",
+                  "annotations": [
+                    {
+                      "type": "browser-runtime-version",
+                      "description": "155.0.4283.45"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "actual-static-free-anchor-geometry",
+                      "contentType": "application/json",
+                      "body": "eyJyZWNlaXB0cyI6W3sibGFiZWwiOiJlbXB0eSBmcmVlIHdyaXRpbmciLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0IjozMiwicmlnaHQiOjQ4Ljc5Njg3NSwidG9wIjo0NzguOTUzMTI1LCJib3R0b20iOjQ4MC45NTMxMjUsIndpZHRoIjoxNi43OTY4NzUsImhlaWdodCI6Mn0sImZyYWdtZW50Ijp7ImxlZnQiOjMyLCJyaWdodCI6MzIsInRvcCI6NDUyLjk1MzEyNSwiYm90dG9tIjo0ODAuOTUzMTI1LCJ3aWR0aCI6MCwiaGVpZ2h0IjoyOH0sImZyYWdtZW50cyI6W3sibGVmdCI6MzIsInJpZ2h0IjozMiwidG9wIjo0NTIuOTUzMTI1LCJib3R0b20iOjQ4MC45NTMxMjUsIndpZHRoIjowLCJoZWlnaHQiOjI4fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6NzQ4LCJ0b3AiOjQzNS45NTMxMjUsImJvdHRvbSI6NTk1LjU0Njg3NSwid2lkdGgiOjcxNiwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJzdGF0aWMtZW5kLWFuY2hvciIsImN1cnJlbnRFeHBlY3RlZCI6bnVsbCwiY3VycmVudEluZGV4IjpudWxsLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6Imx0ciIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6ImVtcHR5IGFmdGVyIGRlbGV0aW5nIHRoZSBjdXJyZW50IHdvcmQiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0IjozMiwicmlnaHQiOjQ4Ljc5Njg3NSwidG9wIjo0NzguOTUzMTI1LCJib3R0b20iOjQ4MC45NTMxMjUsIndpZHRoIjoxNi43OTY4NzUsImhlaWdodCI6Mn0sImZyYWdtZW50Ijp7ImxlZnQiOjMyLCJyaWdodCI6MzIsInRvcCI6NDUyLjk1MzEyNSwiYm90dG9tIjo0ODAuOTUzMTI1LCJ3aWR0aCI6MCwiaGVpZ2h0IjoyOH0sImZyYWdtZW50cyI6W3sibGVmdCI6MzIsInJpZ2h0IjozMiwidG9wIjo0NTIuOTUzMTI1LCJib3R0b20iOjQ4MC45NTMxMjUsIndpZHRoIjowLCJoZWlnaHQiOjI4fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6NzQ4LCJ0b3AiOjQzNS45NTMxMjUsImJvdHRvbSI6NTk1LjU0Njg3NSwid2lkdGgiOjcxNiwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJzdGF0aWMtZW5kLWFuY2hvciIsImN1cnJlbnRFeHBlY3RlZCI6bnVsbCwiY3VycmVudEluZGV4IjpudWxsLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6Imx0ciIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6ImZyZWUgd3JpdGluZyBhZnRlciBuZXdsaW5lIiwiZ2VvbWV0cnkiOnsiY2FyZXQiOnsibGVmdCI6MzIsInJpZ2h0Ijo0OC43OTY4NzUsInRvcCI6NTMyLjE0MDYyNSwiYm90dG9tIjo1MzQuMTQwNjI1LCJ3aWR0aCI6MTYuNzk2ODc1LCJoZWlnaHQiOjJ9LCJmcmFnbWVudCI6eyJsZWZ0IjozMiwicmlnaHQiOjMyLCJ0b3AiOjUwNi4xNDA2MjUsImJvdHRvbSI6NTM0LjE0MDYyNSwid2lkdGgiOjAsImhlaWdodCI6Mjh9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjMyLCJyaWdodCI6MzIsInRvcCI6NTA2LjE0MDYyNSwiYm90dG9tIjo1MzQuMTQwNjI1LCJ3aWR0aCI6MCwiaGVpZ2h0IjoyOH1dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjc0OCwidG9wIjo0MzUuOTUzMTI1LCJib3R0b20iOjU5NS41NDY4NzUsIndpZHRoIjo3MTYsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoic3RhdGljLWVuZC1hbmNob3IiLCJjdXJyZW50RXhwZWN0ZWQiOm51bGwsImN1cnJlbnRJbmRleCI6bnVsbCwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJsdHIiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19LHsibGFiZWwiOiJtdWx0aWxpbmUgcG9ydHJhaXQiLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0IjoxMDQsInJpZ2h0IjoxMjAuNzk2ODc1LCJ0b3AiOjYyNC43NSwiYm90dG9tIjo2MjYuNzUsIndpZHRoIjoxNi43OTY4NzUsImhlaWdodCI6Mn0sImZyYWdtZW50Ijp7ImxlZnQiOjEwNCwicmlnaHQiOjEwNCwidG9wIjo1OTguNzUsImJvdHRvbSI6NjI2Ljc1LCJ3aWR0aCI6MCwiaGVpZ2h0IjoyOH0sImZyYWdtZW50cyI6W3sibGVmdCI6MTA0LCJyaWdodCI6MTA0LCJ0b3AiOjU5OC43NSwiYm90dG9tIjo2MjYuNzUsIndpZHRoIjowLCJoZWlnaHQiOjI4fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjIwLCJyaWdodCI6MzcwLCJ0b3AiOjQ5NS4zNzUsImJvdHRvbSI6NjU0Ljk2ODc1LCJ3aWR0aCI6MzUwLCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6InN0YXRpYy1lbmQtYW5jaG9yIiwiY3VycmVudEV4cGVjdGVkIjpudWxsLCJjdXJyZW50SW5kZXgiOm51bGwsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoibHRyIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoibXVsdGlsaW5lIGxhbmRzY2FwZSIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjQwMS42MDkzNzUsInJpZ2h0Ijo0MTguNDA2MjUsInRvcCI6NDU1LjU2MjUsImJvdHRvbSI6NDU3LjU2MjUsIndpZHRoIjoxNi43OTY4NzUsImhlaWdodCI6Mn0sImZyYWdtZW50Ijp7ImxlZnQiOjQwMS42MDkzNzUsInJpZ2h0Ijo0MDEuNjA5Mzc1LCJ0b3AiOjQyOS41NjI1LCJib3R0b20iOjQ1Ny41NjI1LCJ3aWR0aCI6MCwiaGVpZ2h0IjoyOH0sImZyYWdtZW50cyI6W3sibGVmdCI6NDAxLjYwOTM3NSwicmlnaHQiOjQwMS42MDkzNzUsInRvcCI6NDI5LjU2MjUsImJvdHRvbSI6NDU3LjU2MjUsIndpZHRoIjowLCJoZWlnaHQiOjI4fV0sInZpZXdwb3J0Ijp7ImxlZnQiOjMyLCJyaWdodCI6ODEyLCJ0b3AiOjM1OS4zNzUsImJvdHRvbSI6NTE4Ljk2ODc1LCJ3aWR0aCI6NzgwLCJoZWlnaHQiOjE1OS41OTM3NX0sInNvdXJjZSI6InN0YXRpYy1lbmQtYW5jaG9yIiwiY3VycmVudEV4cGVjdGVkIjpudWxsLCJjdXJyZW50SW5kZXgiOm51bGwsImZvbnRTaXplIjoyOCwibGluZUhlaWdodCI6NTMuMiwiZGlyZWN0aW9uIjoibHRyIiwicHJvbXB0ZWRNb3ZpbmdQcm9iZXMiOjAsInN0YXRpY0FuY2hvcnMiOjF9fSx7ImxhYmVsIjoiY29tbWl0dGVkIGxpbmVzIHJlbWFpbiBhZnRlciBjdXJyZW50LXdvcmQgZGVsZXRpb24iLCJnZW9tZXRyeSI6eyJjYXJldCI6eyJsZWZ0IjozMTcuNjA5Mzc1LCJyaWdodCI6MzM0LjQwNjI1LCJ0b3AiOjQ1NS41NjI1LCJib3R0b20iOjQ1Ny41NjI1LCJ3aWR0aCI6MTYuNzk2ODc1LCJoZWlnaHQiOjJ9LCJmcmFnbWVudCI6eyJsZWZ0IjozMTcuNjA5Mzc1LCJyaWdodCI6MzE3LjYwOTM3NSwidG9wIjo0MjkuNTYyNSwiYm90dG9tIjo0NTcuNTYyNSwid2lkdGgiOjAsImhlaWdodCI6Mjh9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjMxNy42MDkzNzUsInJpZ2h0IjozMTcuNjA5Mzc1LCJ0b3AiOjQyOS41NjI1LCJib3R0b20iOjQ1Ny41NjI1LCJ3aWR0aCI6MCwiaGVpZ2h0IjoyOH1dLCJ2aWV3cG9ydCI6eyJsZWZ0IjozMiwicmlnaHQiOjgxMiwidG9wIjozNTkuMzc1LCJib3R0b20iOjUxOC45Njg3NSwid2lkdGgiOjc4MCwiaGVpZ2h0IjoxNTkuNTkzNzV9LCJzb3VyY2UiOiJzdGF0aWMtZW5kLWFuY2hvciIsImN1cnJlbnRFeHBlY3RlZCI6bnVsbCwiY3VycmVudEluZGV4IjpudWxsLCJmb250U2l6ZSI6MjgsImxpbmVIZWlnaHQiOjUzLjIsImRpcmVjdGlvbiI6Imx0ciIsInByb21wdGVkTW92aW5nUHJvYmVzIjowLCJzdGF0aWNBbmNob3JzIjoxfX0seyJsYWJlbCI6ImZyZXNoIGVtcHR5IHNlc3Npb24gYWZ0ZXIgcmVzdGFydCIsImdlb21ldHJ5Ijp7ImNhcmV0Ijp7ImxlZnQiOjMyLCJyaWdodCI6NDguNzk2ODc1LCJ0b3AiOjIwLjM3NSwiYm90dG9tIjoyMi4zNzUsIndpZHRoIjoxNi43OTY4NzUsImhlaWdodCI6Mn0sImZyYWdtZW50Ijp7ImxlZnQiOjMyLCJyaWdodCI6MzIsInRvcCI6LTUuNjI1LCJib3R0b20iOjIyLjM3NSwid2lkdGgiOjAsImhlaWdodCI6Mjh9LCJmcmFnbWVudHMiOlt7ImxlZnQiOjMyLCJyaWdodCI6MzIsInRvcCI6LTUuNjI1LCJib3R0b20iOjIyLjM3NSwid2lkdGgiOjAsImhlaWdodCI6Mjh9XSwidmlld3BvcnQiOnsibGVmdCI6MzIsInJpZ2h0Ijo4MTIsInRvcCI6LTIyLjYyNSwiYm90dG9tIjoxMzYuOTY4NzUsIndpZHRoIjo3ODAsImhlaWdodCI6MTU5LjU5Mzc1fSwic291cmNlIjoic3RhdGljLWVuZC1hbmNob3IiLCJjdXJyZW50RXhwZWN0ZWQiOm51bGwsImN1cnJlbnRJbmRleCI6bnVsbCwiZm9udFNpemUiOjI4LCJsaW5lSGVpZ2h0Ijo1My4yLCJkaXJlY3Rpb24iOiJsdHIiLCJwcm9tcHRlZE1vdmluZ1Byb2JlcyI6MCwic3RhdGljQW5jaG9ycyI6MX19XX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "610ec9ce3fc2299b8c9f-3bde66c3ce413ad37205",
+          "file": "caret-geometry.spec.ts",
+          "line": 241,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "typing-experience.spec.ts",
+      "file": "typing-experience.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "whole-word flow rolls by full lines, resizes and returns to the beginning after restart",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1650,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:14.530Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c58c91ad4f8645865bf4-fd0774f5f36073055fcc",
+          "file": "typing-experience.spec.ts",
+          "line": 94,
+          "column": 1
+        },
+        {
+          "title": "learning caret follows extra letters even while the canonical cursor stays on Space",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 859,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:16.193Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c58c91ad4f8645865bf4-293fbb28ea796db41834",
+          "file": "typing-experience.spec.ts",
+          "line": 376,
+          "column": 1
+        },
+        {
+          "title": "whole-word flow rolls by full lines, resizes and returns to the beginning after restart",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1676,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:57.906Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c58c91ad4f8645865bf4-88ed9f1b0f5eb57f4b61",
+          "file": "typing-experience.spec.ts",
+          "line": 94,
+          "column": 1
+        },
+        {
+          "title": "learning caret follows extra letters even while the canonical cursor stays on Space",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 851,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:59.600Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c58c91ad4f8645865bf4-7f793bb68c693c3d85aa",
+          "file": "typing-experience.spec.ts",
+          "line": 376,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "typing-observer-ownership.spec.ts",
+      "file": "typing-observer-ownership.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "learning keeps one native layout observer through input, deletion and resize and cleans each real lesson stage",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4208,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:17.083Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "learning-native-observer-ownership",
+                      "contentType": "application/json",
+                      "body": "eyJvYnNlcnZlZElucHV0Q2hhcmFjdGVycyI6MTE1LCJkZWxldGVkQ2hhcmFjdGVycyI6MiwiYmVmb3JlIjp7Im9ic2VydmVycyI6W3siaWQiOjEsImtpbmQiOiJsZWFybiIsImRpc2Nvbm5lY3RDYWxscyI6MH1dLCJzY3JvbGxBZGRzIjowLCJzY3JvbGxSZW1vdmVzIjowfSwibmV4dCI6eyJvYnNlcnZlcnMiOlt7ImlkIjoxLCJraW5kIjoibGVhcm4iLCJkaXNjb25uZWN0Q2FsbHMiOjF9LHsiaWQiOjIsImtpbmQiOiJsZWFybiIsImRpc2Nvbm5lY3RDYWxscyI6MH1dLCJzY3JvbGxBZGRzIjowLCJzY3JvbGxSZW1vdmVzIjowfSwiYWZ0ZXIiOnsib2JzZXJ2ZXJzIjpbeyJpZCI6MSwia2luZCI6ImxlYXJuIiwiZGlzY29ubmVjdENhbGxzIjoxfSx7ImlkIjoyLCJraW5kIjoibGVhcm4iLCJkaXNjb25uZWN0Q2FsbHMiOjF9XSwic2Nyb2xsQWRkcyI6MCwic2Nyb2xsUmVtb3ZlcyI6MH19"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "94d1f31bcea2384cbdab-b829165ed1c170f28d84",
+          "file": "typing-observer-ownership.spec.ts",
+          "line": 100,
+          "column": 1
+        },
+        {
+          "title": "bot and user progress keep native resize and scroll subscriptions stable until leaving the race",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3238,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:21.314Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "race-native-observer-scroll-ownership",
+                      "contentType": "application/json",
+                      "body": "eyJvYnNlcnZlZElucHV0Q2hhcmFjdGVycyI6MTAwLCJpbml0aWFsUG9zaXRpb24iOjEsImJlZm9yZSI6eyJvYnNlcnZlcnMiOlt7ImlkIjoxLCJraW5kIjoicmFjZSIsImRpc2Nvbm5lY3RDYWxscyI6MH0seyJpZCI6Miwia2luZCI6InJhY2UiLCJkaXNjb25uZWN0Q2FsbHMiOjB9XSwic2Nyb2xsQWRkcyI6MSwic2Nyb2xsUmVtb3ZlcyI6MH0sImFmdGVyIjp7Im9ic2VydmVycyI6W3siaWQiOjEsImtpbmQiOiJyYWNlIiwiZGlzY29ubmVjdENhbGxzIjoxfSx7ImlkIjoyLCJraW5kIjoicmFjZSIsImRpc2Nvbm5lY3RDYWxscyI6MX1dLCJzY3JvbGxBZGRzIjoxLCJzY3JvbGxSZW1vdmVzIjoxfX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "94d1f31bcea2384cbdab-82a461424fee28b7258a",
+          "file": "typing-observer-ownership.spec.ts",
+          "line": 180,
+          "column": 1
+        },
+        {
+          "title": "learning keeps one native layout observer through input, deletion and resize and cleans each real lesson stage",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3598,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:43:00.487Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "learning-native-observer-ownership",
+                      "contentType": "application/json",
+                      "body": "eyJvYnNlcnZlZElucHV0Q2hhcmFjdGVycyI6MTIwLCJkZWxldGVkQ2hhcmFjdGVycyI6MiwiYmVmb3JlIjp7Im9ic2VydmVycyI6W3siaWQiOjEsImtpbmQiOiJsZWFybiIsImRpc2Nvbm5lY3RDYWxscyI6MH1dLCJzY3JvbGxBZGRzIjowLCJzY3JvbGxSZW1vdmVzIjowfSwibmV4dCI6eyJvYnNlcnZlcnMiOlt7ImlkIjoxLCJraW5kIjoibGVhcm4iLCJkaXNjb25uZWN0Q2FsbHMiOjF9LHsiaWQiOjIsImtpbmQiOiJsZWFybiIsImRpc2Nvbm5lY3RDYWxscyI6MH1dLCJzY3JvbGxBZGRzIjowLCJzY3JvbGxSZW1vdmVzIjowfSwiYWZ0ZXIiOnsib2JzZXJ2ZXJzIjpbeyJpZCI6MSwia2luZCI6ImxlYXJuIiwiZGlzY29ubmVjdENhbGxzIjoxfSx7ImlkIjoyLCJraW5kIjoibGVhcm4iLCJkaXNjb25uZWN0Q2FsbHMiOjF9XSwic2Nyb2xsQWRkcyI6MCwic2Nyb2xsUmVtb3ZlcyI6MH19"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "94d1f31bcea2384cbdab-7e379fc2708a5d2f0f88",
+          "file": "typing-observer-ownership.spec.ts",
+          "line": 100,
+          "column": 1
+        },
+        {
+          "title": "bot and user progress keep native resize and scroll subscriptions stable until leaving the race",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2423,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:43:04.103Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "race-native-observer-scroll-ownership",
+                      "contentType": "application/json",
+                      "body": "eyJvYnNlcnZlZElucHV0Q2hhcmFjdGVycyI6MTAwLCJpbml0aWFsUG9zaXRpb24iOjEsImJlZm9yZSI6eyJvYnNlcnZlcnMiOlt7ImlkIjoxLCJraW5kIjoicmFjZSIsImRpc2Nvbm5lY3RDYWxscyI6MH0seyJpZCI6Miwia2luZCI6InJhY2UiLCJkaXNjb25uZWN0Q2FsbHMiOjB9XSwic2Nyb2xsQWRkcyI6MSwic2Nyb2xsUmVtb3ZlcyI6MH0sImFmdGVyIjp7Im9ic2VydmVycyI6W3siaWQiOjEsImtpbmQiOiJyYWNlIiwiZGlzY29ubmVjdENhbGxzIjoxfSx7ImlkIjoyLCJraW5kIjoicmFjZSIsImRpc2Nvbm5lY3RDYWxscyI6MX1dLCJzY3JvbGxBZGRzIjoxLCJzY3JvbGxSZW1vdmVzIjoxfX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "94d1f31bcea2384cbdab-5ce7d14b76f7dd480e45",
+          "file": "typing-observer-ownership.spec.ts",
+          "line": 180,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "typing-test.spec.ts",
+      "file": "typing-test.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "code Tab preserves normal focus by default and indents only after opting in",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4017,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:24.648Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "df46a51a838c4ed398c2-8e617f67c526b48088f9",
+          "file": "typing-test.spec.ts",
+          "line": 106,
+          "column": 1
+        },
+        {
+          "title": "composition commits one NFC grapheme and ignores intermediate IME changes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1961,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:28.722Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "df46a51a838c4ed398c2-40cdd0ad877dc136260b",
+          "file": "typing-test.spec.ts",
+          "line": 156,
+          "column": 1
+        },
+        {
+          "title": "repeat preserves the exact target and creates a new id with repeated-content provenance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2777,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:42:30.705Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "df46a51a838c4ed398c2-41f5f53ae461b2899705",
+          "file": "typing-test.spec.ts",
+          "line": 204,
+          "column": 1
+        },
+        {
+          "title": "code Tab preserves normal focus by default and indents only after opting in",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2799,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:43:06.557Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "df46a51a838c4ed398c2-351d192daf3b0d4112e9",
+          "file": "typing-test.spec.ts",
+          "line": 106,
+          "column": 1
+        },
+        {
+          "title": "composition commits one NFC grapheme and ignores intermediate IME changes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1633,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:43:09.376Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "df46a51a838c4ed398c2-ed053134a666967b4652",
+          "file": "typing-test.spec.ts",
+          "line": 156,
+          "column": 1
+        },
+        {
+          "title": "repeat preserves the exact target and creates a new id with repeated-content provenance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2546,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:43:11.033Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "df46a51a838c4ed398c2-362ba136357d062109c5",
+          "file": "typing-test.spec.ts",
+          "line": 204,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-16T20:41:56.934Z",
+    "duration": 77698.03199999999,
+    "expected": 34,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

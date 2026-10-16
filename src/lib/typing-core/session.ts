@@ -1,6 +1,6 @@
 import type { FinishReason, NormalizedEdit, PauseInterval, SessionClock, SessionConfig, SessionEvent, SessionResult, SessionSnapshot, TargetSegment } from './types.ts';
 import { activeOffset, calculateMetrics, replaySession } from './metrics.ts';
-import { applyEvent, emptyTranscript, targetGraphemes, normalizeTarget, SEGMENTATION_POLICY, type Attempt } from './transcript.ts';
+import { applyEvent, emptyTranscript, targetGraphemes, normalizeTarget, SEGMENTATION_POLICY, validateEvent, type Attempt } from './transcript.ts';
 
 function freeze<T>(value: T): T {
   if (value && typeof value === 'object' && !Object.isFrozen(value)) {
@@ -24,7 +24,7 @@ export function comparisonContent(config: SessionConfig): { contentId: string | 
 }
 export function comparisonKey(config: SessionConfig): string {
   const content = comparisonContent(config);
-  return JSON.stringify({ version: 'forge-v3', comparisonPolicy: 'forge-cohorts-v2', contentId: content.contentId, sessionId: content.sessionId, policy: config.scoringPolicy ?? (config.mode === 'code' ? 'code' : 'prose'), mode: config.mode, durationMs: config.durationMs ?? null, words: config.wordCount ?? null, language: config.language ?? 'en', script: config.script ?? 'Latin', layout: config.keyboardLayout ?? 'qwerty', method: config.inputMethod ?? 'keyboard', punctuation: !!config.punctuation, numbers: !!config.numbers, codeLanguage: config.codeLanguage ?? null, corpus: config.contentRevision ?? 'unspecified', generator: config.generatorVersion ?? 'unspecified', segmentation: SEGMENTATION_POLICY, repeated: !!config.repeatedContent, paused: !!config.paused, rejectionPolicy: !!config.rejectIncorrect });
+  return JSON.stringify({ version: 'forge-v3', comparisonPolicy: 'forge-cohorts-v2', contentId: content.contentId, sessionId: content.sessionId, policy: config.scoringPolicy ?? (config.mode === 'code' ? 'code' : 'prose'), mode: config.mode, durationMs: config.durationMs ?? null, words: config.wordCount ?? null, language: config.language ?? 'en', script: config.script ?? 'Latin', layout: config.keyboardLayout ?? 'qwerty', method: config.inputMethod ?? 'keyboard', punctuation: !!config.punctuation, numbers: !!config.numbers, codeLanguage: config.codeLanguage ?? null, corpus: config.contentRevision ?? 'unspecified', generator: config.generatorVersion ?? 'unspecified', segmentation: SEGMENTATION_POLICY, repeated: !!config.repeatedContent, paused: !!config.paused, rejectionPolicy: !!config.rejectIncorrect, ...(config.correctionPolicy === 'current-word' ? { correctionPolicy: config.correctionPolicy } : {}) });
 }
 /** Monotonic clock and wall clock are injected; the core has no browser or persistence dependency. */
 export class SessionController {
@@ -44,6 +44,7 @@ export class SessionController {
 
   constructor(config: SessionConfig, private readonly clock: SessionClock) {
     if (!config.clientSessionId || config.clientSessionId.length > 200) throw new Error('Session ID is required');
+    if (config.correctionPolicy !== undefined && config.correctionPolicy !== 'current-word') throw new Error('Unknown correction policy');
     if (config.initialTarget.length > 1_000_000) throw new Error('Target exceeds the session resource limit');
     if (config.durationMs !== undefined && (!Number.isFinite(config.durationMs) || config.durationMs <= 0 || config.durationMs > 86_400_000)) throw new Error('Duration must be greater than zero and at most one day');
     if (config.mode === 'time' && !config.durationMs) throw new Error('Timed tests require a duration');
@@ -56,6 +57,8 @@ export class SessionController {
   get result(): SessionResult | null { return this.finalized; }
   /** Canonical retained input for edit diffing; reading text never samples time or rescores. */
   get currentText(): string { return this.state.units.join(''); }
+  /** Earliest retained grapheme that may be corrected in this session. */
+  get editableStart(): number { return this.state.editableStart; }
   /** Read-only view feedback from the actual last edit, without replaying or rescoring. */
   get lastInputAttempts(): readonly Attempt[] {
     const event = this.transcriptEvents.at(-1);
@@ -103,11 +106,21 @@ export class SessionController {
     if (this.startMono !== null && this.configuration.durationMs !== undefined && this.elapsed(now) >= this.configuration.durationMs) return this.finish('timeout', now);
     if (this.transcriptEvents.length >= 100_000) throw new Error('Session event limit exceeded');
     const text = edit.text ?? '';
-    if (this.startMono === null && text && edit.type !== 'delete' && edit.type !== 'submit') this.start(now);
     const length = this.state.units.length;
-    const start = edit.start ?? (edit.type === 'delete' ? Math.max(0, length - 1) : length);
+    let start = edit.start ?? (edit.type === 'delete' ? Math.max(0, length - 1) : length);
     const end = edit.end ?? (edit.type === 'delete' ? length : start);
     const event: SessionEvent = { ...edit, text, start, end, sequence: this.transcriptEvents.length, offsetMs: this.startMono === null ? 0 : now - this.startMono, provenance: edit.provenance ?? (edit.type === 'composition' ? 'composition' : 'keyboard') };
+    // Reject malformed ranges before clipping a valid word-delete operation.
+    validateEvent(event, this.state);
+    if (this.configuration.correctionPolicy === 'current-word') {
+      if (edit.type === 'delete') {
+        if (end <= this.state.editableStart) return this.snapshot(now);
+        start = Math.max(start, this.state.editableStart);
+        if (start === end) return this.snapshot(now);
+      } else if (start < this.state.editableStart) return this.snapshot(now);
+    }
+    if (this.startMono === null && text && edit.type !== 'delete' && edit.type !== 'submit') this.start(now);
+    event.start = start;
     applyEvent(this.state, event, this.target, this.configuration);
     this.transcriptEvents.push(event);
     const snapshot = this.snapshot(now);

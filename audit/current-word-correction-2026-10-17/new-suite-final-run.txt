@@ -1,0 +1,25 @@
+
+Running 16 tests using 1 worker
+
+(node:29752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › e2e\current-word-correction.spec.ts:69:1 › Space commits a correct word while Backspace and word-delete edit only the current word (1.4s)
+  ok  2 [chromium] › e2e\current-word-correction.spec.ts:99:1 › a submitted wrong word cannot be repaired later and blocked edits do not change result counts (1.6s)
+  ok  3 [chromium] › e2e\current-word-correction.spec.ts:124:1 › selection, cut, undo and input-only fallback cannot modify the submitted prefix (901ms)
+  ok  4 [chromium] › e2e\current-word-correction.spec.ts:159:3 › mobile beforeinput correction › soft-keyboard deletion without keydown respects the committed word boundary (912ms)
+  ok  5 [chromium] › e2e\current-word-correction.spec.ts:182:1 › learning supports native deletion from its empty draft while protecting completed words (838ms)
+  ok  6 [chromium] › e2e\current-word-correction.spec.ts:221:1 › local bot practice uses the same word boundary without affecting opponent progress (1.3s)
+  ok  7 [chromium] › e2e\current-word-correction.spec.ts:256:1 › learning IME cleanup events cannot delete a canonical committed composition (1.2s)
+  ok  8 [chromium] › e2e\current-word-correction.spec.ts:333:1 › composition preserves its committed prefix and Tab then Enter resets the word boundary (825ms)
+(node:76464) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  9 [edge] › e2e\current-word-correction.spec.ts:69:1 › Space commits a correct word while Backspace and word-delete edit only the current word (4.8s)
+  ok 10 [edge] › e2e\current-word-correction.spec.ts:99:1 › a submitted wrong word cannot be repaired later and blocked edits do not change result counts (1.8s)
+  ok 11 [edge] › e2e\current-word-correction.spec.ts:124:1 › selection, cut, undo and input-only fallback cannot modify the submitted prefix (1.1s)
+  ok 12 [edge] › e2e\current-word-correction.spec.ts:159:3 › mobile beforeinput correction › soft-keyboard deletion without keydown respects the committed word boundary (1.1s)
+  ok 13 [edge] › e2e\current-word-correction.spec.ts:182:1 › learning supports native deletion from its empty draft while protecting completed words (962ms)
+  ok 14 [edge] › e2e\current-word-correction.spec.ts:221:1 › local bot practice uses the same word boundary without affecting opponent progress (1.6s)
+  ok 15 [edge] › e2e\current-word-correction.spec.ts:256:1 › learning IME cleanup events cannot delete a canonical committed composition (1.6s)
+  ok 16 [edge] › e2e\current-word-correction.spec.ts:333:1 › composition preserves its committed prefix and Tab then Enter resets the word boundary (1.2s)
+
+  16 passed (26.6s)

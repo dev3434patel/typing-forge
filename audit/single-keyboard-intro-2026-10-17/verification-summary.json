@@ -1,0 +1,79 @@
+{
+  "build": {
+    "version": "d73d269f51e6d0ae1ec6",
+    "publicFiles": 87,
+    "bytes": 2689017
+  },
+  "change": "Hide the preliminary CSS keyboard during pending WebGL; remove the850ms premature fallback switch; retain actual-failure recovery and the original3D scene.",
+  "unitTests": 681,
+  "sourceGates": {
+    "typecheckExit": 0,
+    "lintExit": 0,
+    "lintWarnings": 9,
+    "buildExit": 0,
+    "bundleExit": 0
+  },
+  "browserRuns": {
+    "single-keyboard-browser": {
+      "startTime": "2026-10-16T20:48:38.697Z",
+      "duration": 17209.482,
+      "expected": 4,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "native-fallback-phase-browser": {
+      "startTime": "2026-10-16T20:49:02.824Z",
+      "duration": 16901.745,
+      "expected": 2,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "browserPasses": 6,
+  "workers": 1,
+  "retries": 0,
+  "visualInspection": "Pending and main-WebGL Edge captures inspected; preliminary keyboard absent during loading.",
+  "limitations": [
+    "Instrumented document-renderer loading tests and native worker recovery are finite desktop Chromium/Edge checks, not physical device or GPU-FPS certification.",
+    "The initial npx launcher error is retained separately; direct local Playwright CLI ran both successful selections."
+  ],
+  "evidence": [
+    {
+      "path": "unit-tests.txt",
+      "bytes": 239,
+      "sha256": "8031cf3f6989500ee2e08a16bda23aa2fe702fa4c21d3d8b352b1d990fe30118"
+    },
+    {
+      "path": "typecheck.txt",
+      "bytes": 260,
+      "sha256": "08c6c3fea304b80ec9c62e758db858f5a94c1a006f644a6175c15015f2bad435"
+    },
+    {
+      "path": "lint.txt",
+      "bytes": 2356,
+      "sha256": "6bd6ceb6391c3f184759dbd93e6f5bc4939dc9823660e2469808bba42490a5ca"
+    },
+    {
+      "path": "build.txt",
+      "bytes": 6337,
+      "sha256": "aa825de4663291188acf1cf46716775cf4a23a9cf0b4fbaee81f02dec5082ebb"
+    },
+    {
+      "path": "bundle.json",
+      "bytes": 2800,
+      "sha256": "bc5d816a5cc2a501823aefec78954f88da1196f639cab5a5f32d68e7f48a916d"
+    },
+    {
+      "path": "single-keyboard-browser.json",
+      "bytes": 14365,
+      "sha256": "44bf77098faf6ae68776bb74ade42c6b47b68bc42b15c89f48b8e138810b36d2"
+    },
+    {
+      "path": "native-fallback-phase-browser.json",
+      "bytes": 355994,
+      "sha256": "9c939cff450bca1568178728d391975b985f286db030600e242973fdd452b6c8"
+    }
+  ]
+}

@@ -21,6 +21,8 @@ export interface SessionConfig {
   repeatedContent?: boolean;
   paused?: boolean;
   rejectIncorrect?: boolean;
+  /** Retained word separators commit preceding text; absent preserves legacy editing. */
+  correctionPolicy?: 'current-word';
   punctuation?: boolean;
   numbers?: boolean;
   wordCount?: number;

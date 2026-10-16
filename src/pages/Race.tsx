@@ -107,6 +107,7 @@ function RaceSession({
     const config: SessionConfig = {
       clientSessionId: crypto.randomUUID(),
       mode: "race",
+      correctionPolicy: "current-word",
       ownerScope: user?.id || "guest",
       initialTarget:
         room?.expected_text || generatePackText("en", 100, crypto.randomUUID()),

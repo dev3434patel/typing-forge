@@ -1,0 +1,103 @@
+
+Running 16 tests using 1 worker
+
+(node:65252) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › e2e\current-word-correction.spec.ts:69:1 › Space commits a correct word while Backspace and word-delete edit only the current word (2.0s)
+  ok  2 [chromium] › e2e\current-word-correction.spec.ts:99:1 › a submitted wrong word cannot be repaired later and blocked edits do not change result counts (1.8s)
+  ok  3 [chromium] › e2e\current-word-correction.spec.ts:124:1 › selection, cut, undo and input-only fallback cannot modify the submitted prefix (902ms)
+  ok  4 [chromium] › e2e\current-word-correction.spec.ts:159:3 › mobile beforeinput correction › soft-keyboard deletion without keydown respects the committed word boundary (1.5s)
+  ok  5 [chromium] › e2e\current-word-correction.spec.ts:182:1 › learning supports native deletion from its empty draft while protecting completed words (1.2s)
+  ok  6 [chromium] › e2e\current-word-correction.spec.ts:221:1 › local bot practice uses the same word boundary without affecting opponent progress (1.6s)
+  ok  7 [chromium] › e2e\current-word-correction.spec.ts:256:1 › learning IME cleanup events cannot delete a canonical committed composition (1.3s)
+  x   8 [chromium] › e2e\current-word-correction.spec.ts:333:1 › composition preserves its committed prefix and Tab then Enter resets the word boundary (5.9s)
+(node:50872) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  9 [edge] › e2e\current-word-correction.spec.ts:69:1 › Space commits a correct word while Backspace and word-delete edit only the current word (3.0s)
+  ok 10 [edge] › e2e\current-word-correction.spec.ts:99:1 › a submitted wrong word cannot be repaired later and blocked edits do not change result counts (2.4s)
+  ok 11 [edge] › e2e\current-word-correction.spec.ts:124:1 › selection, cut, undo and input-only fallback cannot modify the submitted prefix (1.4s)
+  ok 12 [edge] › e2e\current-word-correction.spec.ts:159:3 › mobile beforeinput correction › soft-keyboard deletion without keydown respects the committed word boundary (1.3s)
+  ok 13 [edge] › e2e\current-word-correction.spec.ts:182:1 › learning supports native deletion from its empty draft while protecting completed words (1.4s)
+  ok 14 [edge] › e2e\current-word-correction.spec.ts:221:1 › local bot practice uses the same word boundary without affecting opponent progress (2.0s)
+  ok 15 [edge] › e2e\current-word-correction.spec.ts:256:1 › learning IME cleanup events cannot delete a canonical committed composition (1.6s)
+  x  16 [edge] › e2e\current-word-correction.spec.ts:333:1 › composition preserves its committed prefix and Tab then Enter resets the word boundary (6.4s)
+
+
+  1) [chromium] › e2e\current-word-correction.spec.ts:333:1 › composition preserves its committed prefix and Tab then Enter resets the word boundary 
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator: getByRole('textbox', { name: 'Typing input', exact: true })
+    Expected: focused
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms
+      - waiting for getByRole('textbox', { name: 'Typing input', exact: true })
+
+
+      384 |   await expect(restart).toBeFocused();
+      385 |   await restart.press("Enter");
+    > 386 |   await expect(input).toBeFocused();
+          |                       ^
+      387 |   await expect(input).toHaveValue("");
+      388 |   await input.press("x");
+      389 |   await input.press("Backspace");
+        at D:\extra\typing_updated\typing-forge\e2e\current-word-correction.spec.ts:386:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\current-word-correction-2026-10-17\new-suite-artifacts\current-word-correction-co-ebee5-er-resets-the-word-boundary-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\current-word-correction-2026-10-17\new-suite-artifacts\current-word-correction-co-ebee5-er-resets-the-word-boundary-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\current-word-correction-2026-10-17\new-suite-artifacts\current-word-correction-co-ebee5-er-resets-the-word-boundary-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\current-word-correction-2026-10-17\new-suite-artifacts\current-word-correction-co-ebee5-er-resets-the-word-boundary-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [edge] › e2e\current-word-correction.spec.ts:333:1 › composition preserves its committed prefix and Tab then Enter resets the word boundary 
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator: getByRole('textbox', { name: 'Typing input', exact: true })
+    Expected: focused
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeFocused" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms
+      - waiting for getByRole('textbox', { name: 'Typing input', exact: true })
+
+
+      384 |   await expect(restart).toBeFocused();
+      385 |   await restart.press("Enter");
+    > 386 |   await expect(input).toBeFocused();
+          |                       ^
+      387 |   await expect(input).toHaveValue("");
+      388 |   await input.press("x");
+      389 |   await input.press("Backspace");
+        at D:\extra\typing_updated\typing-forge\e2e\current-word-correction.spec.ts:386:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\current-word-correction-2026-10-17\new-suite-artifacts\current-word-correction-co-ebee5-er-resets-the-word-boundary-edge\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\current-word-correction-2026-10-17\new-suite-artifacts\current-word-correction-co-ebee5-er-resets-the-word-boundary-edge\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\current-word-correction-2026-10-17\new-suite-artifacts\current-word-correction-co-ebee5-er-resets-the-word-boundary-edge\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\current-word-correction-2026-10-17\new-suite-artifacts\current-word-correction-co-ebee5-er-resets-the-word-boundary-edge\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › e2e\current-word-correction.spec.ts:333:1 › composition preserves its committed prefix and Tab then Enter resets the word boundary 
+    [edge] › e2e\current-word-correction.spec.ts:333:1 › composition preserves its committed prefix and Tab then Enter resets the word boundary 
+  14 passed (42.0s)

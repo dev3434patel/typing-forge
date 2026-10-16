@@ -29,6 +29,7 @@ export function validateCandidate(input: unknown, owner: string, options: { inte
   assert(candidate.initialTarget===config.initialTarget,'Initial target identity mismatch.');
   assert(['time','words','quote','code','zen','custom','learn','learning','race'].includes(config.mode), 'Unsupported mode.');
   assert(['prose','code','free'].includes(config.scoringPolicy ?? 'prose'), 'Unsupported scoring policy.');
+  assert(config.correctionPolicy === undefined || config.correctionPolicy === 'current-word', 'Unsupported correction policy.');
   assert(typeof config.initialTarget === 'string' && config.initialTarget.length <= 40_000, 'Target exceeds the cloud validation limit.');
   assert(typeof candidate.targetText === 'string' && candidate.targetText.length <= 40_000, 'Issued target exceeds the cloud validation limit.');
   assert(Number.isFinite(candidate.elapsedMs) && candidate.elapsedMs >= 0 && candidate.elapsedMs <= 600_000, 'Cloud sessions must be at most ten minutes. The local summary remains available.');

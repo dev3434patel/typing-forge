@@ -113,7 +113,11 @@ test("learning keeps one native layout observer through input, deletion and resi
   expect(before.observers).toEqual([
     { id: 1, kind: "learn", disconnectCalls: 0 },
   ]);
-  const count = Math.min(120, text!.length - 2);
+  let count = Math.min(120, text!.length - 2);
+  // Keep two editable characters in the current word; submitted words must
+  // stay locked without weakening the observer/deletion geometry checks.
+  while (count > 20 && text!.slice(0, count).split(" ").at(-1)!.length < 2)
+    count--;
   expect(count).toBeGreaterThan(20);
   await input.pressSequentially(text!.slice(0, count), { delay: 3 });
   await expect(
@@ -200,7 +204,8 @@ test("bot and user progress keep native resize and scroll subscriptions stable u
   expect(before.scrollAdds).toBeGreaterThan(0);
   expect(before.scrollRemoves).toBe(0);
   const text = await page.getByTestId("typing-target").textContent();
-  const count = Math.min(100, text!.length - 2);
+  const position = Math.min(100, text!.length - 2);
+  const count = text![position - 1] === " " ? position - 1 : position;
   await input.pressSequentially(text!.slice(0, count), { delay: 3 });
   await input.press("Backspace");
   await expect(input).toHaveValue(text!.slice(0, count - 1));

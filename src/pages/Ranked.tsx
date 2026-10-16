@@ -17,7 +17,7 @@ export default function Ranked(){
   const latest=useRef<string>();
   useEffect(()=>{const timer=setInterval(()=>setNow(Date.now()),50);return()=>clearInterval(timer);},[]);
   useEffect(()=>{if(!challenge||bundle||!user||Date.now()+offset<Date.parse(challenge.starts_at))return;
-    const configuration:SessionConfig={...challenge.configuration,clientSessionId:crypto.randomUUID(),ownerScope:user.id,initialTarget:challenge.target_text,challengeId:challenge.id,privacy:'public-corpus'};
+    const configuration:SessionConfig={...challenge.configuration,correctionPolicy:'current-word',clientSessionId:crypto.randomUUID(),ownerScope:user.id,initialTarget:challenge.target_text,challengeId:challenge.id,privacy:'public-corpus'};
     const controller=new SessionController(configuration,{now:()=>performance.now(),wallNow:()=>Date.now()});
     controller.startAt(performance.now()-Math.max(0,Date.now()+offset-Date.parse(challenge.starts_at)),Date.parse(challenge.starts_at));setBundle({configuration,controller});
   },[challenge,bundle,user,offset,now]);

@@ -21,6 +21,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { KeyboardAudio } from "@/lib/keyboard-audio";
+import { useWordCorrection } from "@/hooks/useWordCorrection";
 import { SessionController, type SessionResult } from "@/lib/typing-core";
 import { getContentPack, getLayout } from "@/lib/content-packs";
 import {
@@ -230,6 +231,7 @@ export function KeybrLessonMode({
         {
           clientSessionId: crypto.randomUUID(),
           mode: "learn",
+          correctionPolicy: "current-word",
           initialTarget: lesson.text,
           rejectIncorrect: policy === "stop",
           ownerScope: owner,
@@ -496,7 +498,31 @@ export function KeybrLessonMode({
     },
     [session, settle, playSound],
   );
+  const wordCorrection = useWordCorrection({
+    controller: session.controller,
+    inputRef,
+    composing: composed,
+    draft: true,
+    deletionDisabledNotice: policy === "stop"
+      ? "Stop-on-error keeps the cursor on the expected key. Type that key to continue."
+      : undefined,
+    onSnapshot: (next) => {
+      setView(next);
+      setDraft("");
+    },
+    onNotice: (notice) => setError(notice || null),
+  });
   const handleInput = (event: FormEvent<HTMLTextAreaElement>) => {
+    const native = event.nativeEvent as InputEvent;
+    if (["deleteCompositionText", "deleteByComposition"].includes(native.inputType)) {
+      setDraft(composed.current || native.isComposing ? event.currentTarget.value : "");
+      return;
+    }
+    if (wordCorrection.handleInputDeletion(native.inputType || "", native.isComposing)) {
+      event.currentTarget.value = "";
+      setDraft("");
+      return;
+    }
     if (
       ["insertFromPaste", "insertFromDrop"].includes(
         (event.nativeEvent as InputEvent).inputType,
@@ -771,16 +797,7 @@ export function KeybrLessonMode({
                 event.preventDefault();
                 inputRef.current?.blur();
               }
-              if (event.key === "Backspace" && !composed.current) {
-                event.preventDefault();
-                if (policy === "correct") {
-                  setView(session.controller.input({ type: "delete" }));
-                  setError(null);
-                } else
-                  setError(
-                    "Stop-on-error keeps the cursor on the expected key. Type that key to continue.",
-                  );
-              }
+              wordCorrection.handleKeyDown(event);
             }}
             onKeyUp={(event) => setCapsLock(event.getModifierState("CapsLock"))}
             className="absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0"
@@ -836,7 +853,7 @@ export function KeybrLessonMode({
           Click the lesson and start typing.{" "}
           {policy === "stop"
             ? "Stop on error is enabled: your pressed key appears below and your cursor waits for the expected key."
-            : "Your actual input appears as you type, including mistakes. Backspace corrects the text while every original mistake remains in attempt accuracy."}{" "}
+            : "Your actual input appears as you type, including mistakes. Backspace corrects only the current word; previous words lock when you press Space. Every original mistake remains in attempt accuracy."}{" "}
           Escape releases focus. Tab moves to the next control.
         </p>
         <p
@@ -936,7 +953,7 @@ export function KeybrLessonMode({
         )}
         <p className="learn-shortcuts">
           <kbd>esc</kbd> release focus<span>·</span>
-          <kbd>tab</kbd> next control<span>·</span>Backspace to correct
+          <kbd>tab</kbd> next control<span>·</span>Backspace corrects current word
         </p>
       </section>
       {!focusedPractice && (

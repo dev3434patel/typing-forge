@@ -91,7 +91,7 @@ test("Tab then Enter restarts and accepts the first new character", async ({
   );
 });
 
-test("whole-word flow rolls by full lines, resizes and backspaces to the beginning", async ({
+test("whole-word flow rolls by full lines, resizes and returns to the beginning after restart", async ({
   page,
 }, info) => {
   await page.setViewportSize({ width: 780, height: 900 });
@@ -136,10 +136,22 @@ test("whole-word flow rolls by full lines, resizes and backspaces to the beginni
     ),
   ).toBe(true);
   await page.screenshot({
-    path: `audit/typing-experience-2026-10-16/flow-mobile-${info.project.name}.png`,
+    path: `audit/current-word-correction-2026-10-17/flow-mobile-${info.project.name}.png`,
     fullPage: true,
   });
-  await input.fill(text.slice(0, 3));
+  // Submitted words are immutable. Returning to the opening line requires a
+  // fresh session rather than replacing already completed words.
+  await page
+    .getByRole("button", { name: "Restart with new text", exact: true })
+    .click();
+  await expect(
+    page.getByRole("textbox", { name: "Custom practice passage", exact: true }),
+  ).toHaveValue(text);
+  await page
+    .getByRole("button", { name: "Start private practice", exact: true })
+    .click();
+  await expect(input).toHaveValue("");
+  await input.pressSequentially(text.slice(0, 3));
   await expect
     .poll(() => viewport.evaluate((element) => element.scrollTop))
     .toBe(0);

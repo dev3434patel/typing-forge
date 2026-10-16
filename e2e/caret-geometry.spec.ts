@@ -270,6 +270,17 @@ test("empty and multiline free writing use the same static end anchor through de
       });
     });
     await input.pressSequentially("cat", { delay: 2 });
+    await input.press("ControlOrMeta+A");
+    await input.press("Backspace");
+    await expect(input).toHaveValue("");
+    const cleared = await expectGeometry(
+      page,
+      "underline",
+      "empty after deleting the current word",
+      receipts,
+    );
+    expect(cleared.source).toBe("static-end-anchor");
+    await input.pressSequentially("cat", { delay: 2 });
     await input.press("Enter");
     await expect(input).toHaveValue("cat\n");
     const newline = await expectGeometry(
@@ -287,14 +298,14 @@ test("empty and multiline free writing use the same static end anchor through de
     await expectGeometry(page, "underline", "multiline landscape", receipts);
     await input.press("ControlOrMeta+A");
     await input.press("Backspace");
-    await expect(input).toHaveValue("");
-    const cleared = await expectGeometry(
+    await expect(input).toHaveValue("cat\nquiet calm clear ");
+    const currentWordCleared = await expectGeometry(
       page,
       "underline",
-      "empty after real deletion",
+      "committed lines remain after current-word deletion",
       receipts,
     );
-    expect(cleared.source).toBe("static-end-anchor");
+    expect(currentWordCleared.source).toBe("static-end-anchor");
     expect(
       await page
         .getByTestId("typing-viewport")
@@ -305,6 +316,17 @@ test("empty and multiline free writing use the same static end anchor through de
               .originalFreeCaretAnchor,
         ),
     ).toBe(true);
+    await page
+      .getByRole("button", { name: "Restart with new text", exact: true })
+      .click();
+    await expect(input).toHaveValue("");
+    const restarted = await expectGeometry(
+      page,
+      "underline",
+      "fresh empty session after restart",
+      receipts,
+    );
+    expect(restarted.source).toBe("static-end-anchor");
   } finally {
     await test.info().attach("actual-static-free-anchor-geometry", {
       contentType: "application/json",

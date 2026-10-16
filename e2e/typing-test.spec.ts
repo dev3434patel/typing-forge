@@ -122,7 +122,6 @@ test("code Tab preserves normal focus by default and indents only after opting i
   await expect(input).toHaveValue("");
   await indentation.check();
   await expect(indentation).toBeChecked();
-  const target = await page.getByTestId("typing-target").innerText();
   input = await focusTyping(page);
   await input.press("Tab");
   await expect(input).toHaveValue("    ");
@@ -131,18 +130,26 @@ test("code Tab preserves normal focus by default and indents only after opting i
   await input.focus();
   await input.press("ControlOrMeta+A");
   await input.press("Backspace");
-  await input.fill(target);
+  // Generated indentation advances across whitespace and is committed too.
+  await expect(input).toHaveValue("    ");
+  await page.getByRole("button", { name: "Finish", exact: true }).click();
+  const indented = await exportedResult(page);
+  expect(indented.finalText).toBe("    ");
+  expect(indented.events[0].provenance).toBe("generated");
+  expect(indented.assistance).toContain("generated");
+  await page.getByRole("button", { name: "Next test", exact: true }).click();
+  const nextTarget = await page.getByTestId("typing-target").innerText();
+  input = await focusTyping(page);
+  await input.fill(nextTarget);
   await expect(
     page.getByRole("region", { name: "Session results", exact: true }),
   ).toBeVisible();
   const result = await exportedResult(page);
   expect(result.configuration.scoringPolicy).toBe("code");
   expect(result.finishReason).toBe("completed");
-  expect(result.finalText).toBe(target);
+  expect(result.finalText).toBe(nextTarget);
   expect(result.metrics.correct).toBe(result.metrics.retainedUnits);
   expect(result.metrics.creditedUnits).toBe(result.metrics.correct);
-  expect(result.events[0].provenance).toBe("generated");
-  expect(result.assistance).toContain("generated");
   expect(result.configuration.settings?.tabIndents).toBe(true);
 });
 

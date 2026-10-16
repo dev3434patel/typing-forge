@@ -1,0 +1,379 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\extra\\typing_updated\\typing-forge\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "e2e/opening-single-keyboard.spec.ts",
+      "--workers=1",
+      "--retries=0",
+      "--reporter=list,json",
+      "--output=audit/single-keyboard-intro-2026-10-17/browser-artifacts"
+    ],
+    "configFile": "D:\\extra\\typing_updated\\typing-forge\\playwright.config.ts",
+    "rootDir": "D:/extra/typing_updated/typing-forge/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/audit/single-keyboard-intro-2026-10-17/browser-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/audit/single-keyboard-intro-2026-10-17/browser-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "edge",
+        "name": "edge",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\audit\\single-keyboard-intro-2026-10-17\\browser-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4175",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\audit\\single-keyboard-intro-2026-10-17\\browser-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "edge",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4175",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36 Edg/156.0.8078.4",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium",
+          "channel": "msedge"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "edge"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "opening-single-keyboard.spec.ts",
+      "file": "opening-single-keyboard.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "a delayed scene shows no preliminary keyboard before the real WebGL keyboard",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7147,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:48:39.586Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjE4MH0sInNjaGVkdWxpbmdQYXRoIjoiZ2VudWluZS1wYWludC1vYnNlcnZlci10aGVuLWV4aXN0aW5nLTQwMG1zLWlkbGUtd2luZG93IiwiY2xvY2tBZHZhbmNlZE1zIjo1MDAsIm9yaWdpbmFsVGltZW91dE1zIjoyMDAwMCwicmVtYWluaW5nVGltZW91dE1zIjoxOTk2NH0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ee6a46a0425d60b8d9fd-8d422a738645d67b0b8a",
+          "file": "opening-single-keyboard.spec.ts",
+          "line": 36,
+          "column": 1
+        },
+        {
+          "title": "a genuinely unavailable scene retains the complete recovery keyboard and usable practice",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 927,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:48:47.437Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjEzNn0sInNjaGVkdWxpbmdQYXRoIjoiZ2VudWluZS1wYWludC1vYnNlcnZlci10aGVuLWV4aXN0aW5nLTQwMG1zLWlkbGUtd2luZG93IiwiY2xvY2tBZHZhbmNlZE1zIjo1MDAsIm9yaWdpbmFsVGltZW91dE1zIjoxNTAwMCwicmVtYWluaW5nVGltZW91dE1zIjoxNDkwMH0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ee6a46a0425d60b8d9fd-d3805ddc595bfcba86aa",
+          "file": "opening-single-keyboard.spec.ts",
+          "line": 112,
+          "column": 1
+        },
+        {
+          "title": "a delayed scene shows no preliminary keyboard before the real WebGL keyboard",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3704,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:48:49.286Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjE2NH0sInNjaGVkdWxpbmdQYXRoIjoiZ2VudWluZS1wYWludC1vYnNlcnZlci10aGVuLWV4aXN0aW5nLTQwMG1zLWlkbGUtd2luZG93IiwiY2xvY2tBZHZhbmNlZE1zIjo1MDAsIm9yaWdpbmFsVGltZW91dE1zIjoyMDAwMCwicmVtYWluaW5nVGltZW91dE1zIjoxOTg5OH0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ee6a46a0425d60b8d9fd-7ec34011e92ac4e652c2",
+          "file": "opening-single-keyboard.spec.ts",
+          "line": 36,
+          "column": 1
+        },
+        {
+          "title": "a genuinely unavailable scene retains the complete recovery keyboard and usable practice",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1363,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T20:48:53.619Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjk2fSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjE1MDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjE0ODUzfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ee6a46a0425d60b8d9fd-ec32c93bc8e3e278edec",
+          "file": "opening-single-keyboard.spec.ts",
+          "line": 112,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-16T20:48:38.697Z",
+    "duration": 17209.482,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -356,9 +356,6 @@ export function OpeningExperience({ children }: { children: ReactNode }) {
             receipt("Keyboard scene", "fallback");
           });
       });
-      later(() => {
-        setRenderer((value) => (value === "loading" ? "fallback" : value));
-      }, 850);
       later(() => setPhase("From possibility to precision."), 1600);
       later(() => setPhase("Ten keystrokes. One new beginning."), 2700);
       for (let index = 0; index < WORDMARK.length; index++)
@@ -455,7 +452,9 @@ export function OpeningExperience({ children }: { children: ReactNode }) {
                 className="awakening-canvas"
               />
               <KeyboardFallback
-                hidden={renderer === "webgl"}
+                // Preparing WebGL is not a fallback presentation. Keep one
+                // keyboard reveal, reserving this board for actual failures.
+                hidden={renderer !== "fallback"}
                 pressedKey={
                   letters > 0 ? WORDMARK[letters - 1].toUpperCase() : null
                 }
