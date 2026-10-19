@@ -94,6 +94,9 @@
   animation: awakening-signal 0.48s cubic-bezier(0.16, 1, 0.3, 1) both;
   z-index: 4;
 }
+.awakening[data-presentation="preparing"] .awakening-signal {
+  animation: awakening-blink 1s steps(1) infinite;
+}
 .awakening-scene {
   position: absolute;
   inset: 0;
@@ -174,6 +177,10 @@
   transform: perspective(600px) rotateX(60deg) rotateZ(-20deg);
   animation: awakening-orbit-in 2.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
+.awakening[data-presentation="preparing"] .awakening-orbit {
+  animation: none;
+  opacity: 0;
+}
 .awakening-title {
   position: absolute;
   top: 64%;
@@ -217,13 +224,18 @@
 }
 .awakening-type-caret {
   display: inline-block;
+  flex-shrink: 0;
   width: 3px;
   height: 0.82em;
   margin-left: 0.08em;
   background: #c6ff3d;
   animation: awakening-blink 1s steps(1) infinite;
 }
-.awakening[data-mode="full"] .awakening-type-caret {
+.awakening[data-mode="full"][data-presentation="preparing"] .awakening-type-caret {
+  animation: none;
+  visibility: hidden;
+}
+.awakening[data-mode="full"][data-presentation="playing"] .awakening-type-caret {
   animation:
     awakening-caret-enter 2.7s steps(1) both,
     awakening-blink 1s steps(1) 2.7s infinite;

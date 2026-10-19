@@ -1,0 +1,1902 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\extra\\typing_updated\\typing-forge\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "e2e/opening-experience.spec.ts",
+      "--workers=1",
+      "--retries=0",
+      "--reporter=list,json",
+      "--output=",
+      "D:\\extra\\typing_updated\\typing-forge\\audit\\retained-3d-intro-2026-10-19/opening-experience-artifacts"
+    ],
+    "configFile": "D:\\extra\\typing_updated\\typing-forge\\playwright.config.ts",
+    "rootDir": "D:/extra/typing_updated/typing-forge/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "edge",
+        "name": "edge",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4175",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "edge",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4175",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36 Edg/156.0.8078.4",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium",
+          "channel": "msedge"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "edge"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "opening-experience.spec.ts",
+      "file": "opening-experience.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "full opening gates practice and returning visitors receive the 900ms wordmark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6645,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:04:28.000Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjUyfSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjIwMDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjE0NDc2fQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-25344b67cc4a611997b9",
+          "file": "opening-experience.spec.ts",
+          "line": 112,
+          "column": 1
+        },
+        {
+          "title": "ordinary letters, Enter, Escape and Space skip without input leakage while Tab preserves focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1677,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:04:34.769Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-67fa8fa99815a84a87d3",
+          "file": "opening-experience.spec.ts",
+          "line": 131,
+          "column": 1
+        },
+        {
+          "title": "a replay during the closing fade owns its lifetime instead of inheriting the previous exit timer",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1815,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:04:36.458Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-2accdea5738ac3002f10",
+          "file": "opening-experience.spec.ts",
+          "line": 173,
+          "column": 1
+        },
+        {
+          "title": "automatic caret handoff leaves the first real keystroke available to practice",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 10888,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('html')\nExpected: \u001b[32m\"1\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('html') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('html')\u001b[22m\n\u001b[2m    14 × locator resolved to <html lang=\"en\" class=\"dark\" data-theme=\"sparow-dark\" data-reduced-motion=\"false\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"null\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('html')\nExpected: \u001b[32m\"1\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('html') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('html')\u001b[22m\n\u001b[2m    14 × locator resolved to <html lang=\"en\" class=\"dark\" data-theme=\"sparow-dark\" data-reduced-motion=\"false\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"null\"\u001b[22m\n\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts:213:38",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts",
+                      "column": 38,
+                      "line": 213
+                    },
+                    "snippet": "  211 |   const input = await expectReadyPractice(page);\n  212 |   await page.clock.runFor(80);\n> 213 |   await expect(page.locator(\"html\")).toHaveAttribute(\n      |                                      ^\n  214 |     \"data-caret-handoffs\",\n  215 |     \"1\",\n  216 |   );"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts",
+                        "column": 38,
+                        "line": 213
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('html')\nExpected: \u001b[32m\"1\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('html') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('html')\u001b[22m\n\u001b[2m    14 × locator resolved to <html lang=\"en\" class=\"dark\" data-theme=\"sparow-dark\" data-reduced-motion=\"false\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"null\"\u001b[22m\n\n\n  211 |   const input = await expectReadyPractice(page);\n  212 |   await page.clock.runFor(80);\n> 213 |   await expect(page.locator(\"html\")).toHaveAttribute(\n      |                                      ^\n  214 |     \"data-caret-handoffs\",\n  215 |     \"1\",\n  216 |   );\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts:213:38"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:04:38.281Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjM2fSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjIwMDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjE1MDg5fQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\opening-experience-automat-bf3d7-troke-available-to-practice-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\opening-experience-automat-bf3d7-troke-available-to-practice-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\opening-experience-automat-bf3d7-troke-available-to-practice-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts",
+                    "column": 38,
+                    "line": 213
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-57c6ba63645575421ad2",
+          "file": "opening-experience.spec.ts",
+          "line": 196,
+          "column": 1
+        },
+        {
+          "title": "caret handoff blocked chunk preserves input and the real caret",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6111,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:04:49.885Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjEwNH0sInNjaGVkdWxpbmdQYXRoIjoiZ2VudWluZS1wYWludC1vYnNlcnZlci10aGVuLWV4aXN0aW5nLTQwMG1zLWlkbGUtd2luZG93IiwiY2xvY2tBZHZhbmNlZE1zIjo1MDAsIm9yaWdpbmFsVGltZW91dE1zIjoyMDAwMCwicmVtYWluaW5nVGltZW91dE1zIjoxNDczNn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-7da042a3cedffa9e7b88",
+          "file": "opening-experience.spec.ts",
+          "line": 230,
+          "column": 3
+        },
+        {
+          "title": "caret handoff late chunk preserves input and the real caret",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "timedOut",
+                  "duration": 30677,
+                  "error": {
+                    "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                    },
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts",
+                        "column": 29,
+                        "line": 273
+                      },
+                      "message": "Error: page.waitForResponse: Test timeout of 30000ms exceeded.\n=========================== logs ===========================\nwaiting for response /\\/assets\\/caret-handoff[^/]*\\.js/\n============================================================\n\n  271 |     await input.pressSequentially(\"x\");\n  272 |     if (failure === \"late chunk\") {\n> 273 |       const response = page.waitForResponse(/\\/assets\\/caret-handoff[^/]*\\.js/);\n      |                             ^\n  274 |       release();\n  275 |       await response;\n  276 |     }\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts:273:29"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:04:56.117Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjQ4fSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjIwMDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjE5OTQwfQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\opening-experience-caret-h-a5967-es-input-and-the-real-caret-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\opening-experience-caret-h-a5967-es-input-and-the-real-caret-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\opening-experience-caret-h-a5967-es-input-and-the-real-caret-chromium\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-1cd793c15912fc81a2aa",
+          "file": "opening-experience.spec.ts",
+          "line": 230,
+          "column": 3
+        },
+        {
+          "title": "caret handoff animation API preserves input and the real caret",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 8385,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('html')\nExpected: \u001b[32m\"exercised\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('html') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('html')\u001b[22m\n\u001b[2m    13 × locator resolved to <html lang=\"en\" class=\"dark\" data-theme=\"sparow-dark\" data-reduced-motion=\"false\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"null\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('html')\nExpected: \u001b[32m\"exercised\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('html') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('html')\u001b[22m\n\u001b[2m    13 × locator resolved to <html lang=\"en\" class=\"dark\" data-theme=\"sparow-dark\" data-reduced-motion=\"false\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"null\"\u001b[22m\n\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts:266:42",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts",
+                      "column": 42,
+                      "line": 266
+                    },
+                    "snippet": "  264 |     if (failure === \"animation API\") {\n  265 |       await page.clock.runFor(80);\n> 266 |       await expect(page.locator(\"html\")).toHaveAttribute(\n      |                                          ^\n  267 |         \"data-handoff-animation-failure\",\n  268 |         \"exercised\",\n  269 |       );"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts",
+                        "column": 42,
+                        "line": 266
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('html')\nExpected: \u001b[32m\"exercised\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('html') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('html')\u001b[22m\n\u001b[2m    13 × locator resolved to <html lang=\"en\" class=\"dark\" data-theme=\"sparow-dark\" data-reduced-motion=\"false\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"null\"\u001b[22m\n\n\n  264 |     if (failure === \"animation API\") {\n  265 |       await page.clock.runFor(80);\n> 266 |       await expect(page.locator(\"html\")).toHaveAttribute(\n      |                                          ^\n  267 |         \"data-handoff-animation-failure\",\n  268 |         \"exercised\",\n  269 |       );\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts:266:42"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:05:28.294Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjU2fSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjIwMDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjE5OTY2fQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\opening-experience-caret-h-a3132-es-input-and-the-real-caret-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\opening-experience-caret-h-a3132-es-input-and-the-real-caret-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\opening-experience-caret-h-a3132-es-input-and-the-real-caret-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts",
+                    "column": 42,
+                    "line": 266
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-1d98be62d8f24a02fbbb",
+          "file": "opening-experience.spec.ts",
+          "line": 230,
+          "column": 3
+        },
+        {
+          "title": "system reduced motion uses the 300ms wordmark without downloading WebGL",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 577,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:05:39.342Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-b48d5c26be2e0d935a25",
+          "file": "opening-experience.spec.ts",
+          "line": 300,
+          "column": 3
+        },
+        {
+          "title": "device preference reduced motion uses the 300ms wordmark without downloading WebGL",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 536,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:05:39.928Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-3a8aa553800b61c3f4ed",
+          "file": "opening-experience.spec.ts",
+          "line": 300,
+          "column": 3
+        },
+        {
+          "title": "deep links remain immediate and a device opt-out persists through manual replay",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1102,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:05:40.472Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-aa87ae0ff41821615482",
+          "file": "opening-experience.spec.ts",
+          "line": 332,
+          "column": 1
+        },
+        {
+          "title": "blocked browser storage and unavailable WebGL retain a complete fallback keyboard",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1322,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:05:41.586Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjY4fSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjE1MDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjE0ODU3fQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-4425fbcd6e5a8b7e7354",
+          "file": "opening-experience.spec.ts",
+          "line": 368,
+          "column": 1
+        },
+        {
+          "title": "native WebGL renders 61 instanced caps, then disposes before practice mounts",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5031,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:05:42.929Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjcyfSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjIwMDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjE5OTA2fQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-c764053c7a4c773ab3a3",
+          "file": "opening-experience.spec.ts",
+          "line": 419,
+          "column": 1
+        },
+        {
+          "title": "native context loss switches to fallback and preserves ready practice",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4145,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:05:47.980Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjYwfSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjIwMDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjE5OTUxfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-3291a6b7905dad96591e",
+          "file": "opening-experience.spec.ts",
+          "line": 454,
+          "column": 1
+        },
+        {
+          "title": "five full reload cycles close their native canvas resources before entry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                },
+                {
+                  "type": "limitation",
+                  "description": "Native creation and explicit disposal receipts verified; this is not a universal GPU-memory or garbage-collection guarantee."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 38353,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:05:52.142Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    },
+                    {
+                      "type": "limitation",
+                      "description": "Native creation and explicit disposal receipts verified; this is not a universal GPU-memory or garbage-collection guarantee."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjE0NH0sInNjaGVkdWxpbmdQYXRoIjoiZ2VudWluZS1wYWludC1vYnNlcnZlci10aGVuLWV4aXN0aW5nLTQwMG1zLWlkbGUtd2luZG93IiwiY2xvY2tBZHZhbmNlZE1zIjo1MDAsIm9yaWdpbmFsVGltZW91dE1zIjoyMDAwMCwicmVtYWluaW5nVGltZW91dE1zIjoxMTI4NH0="
+                    },
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjUyfSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjIwMDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjEyMTczfQ=="
+                    },
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjUyfSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjIwMDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjEyMzQxfQ=="
+                    },
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjQ4fSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjIwMDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjE5OTM5fQ=="
+                    },
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjQ0fSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjIwMDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjEyNjczfQ=="
+                    },
+                    {
+                      "name": "native-context-disposal-cycles",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJjeWNsZSI6IDEsCiAgICAicmVjb3JkcyI6IFsKICAgICAgewogICAgICAgICJkaXNwb3NlZCI6IHRydWUsCiAgICAgICAgImxvc3QiOiB0cnVlCiAgICAgIH0KICAgIF0KICB9LAogIHsKICAgICJjeWNsZSI6IDIsCiAgICAicmVjb3JkcyI6IFsKICAgICAgewogICAgICAgICJkaXNwb3NlZCI6IHRydWUsCiAgICAgICAgImxvc3QiOiB0cnVlCiAgICAgIH0KICAgIF0KICB9LAogIHsKICAgICJjeWNsZSI6IDMsCiAgICAicmVjb3JkcyI6IFsKICAgICAgewogICAgICAgICJkaXNwb3NlZCI6IHRydWUsCiAgICAgICAgImxvc3QiOiB0cnVlCiAgICAgIH0KICAgIF0KICB9LAogIHsKICAgICJjeWNsZSI6IDQsCiAgICAicmVjb3JkcyI6IFsKICAgICAgewogICAgICAgICJkaXNwb3NlZCI6IHRydWUsCiAgICAgICAgImxvc3QiOiB0cnVlCiAgICAgIH0KICAgIF0KICB9LAogIHsKICAgICJjeWNsZSI6IDUsCiAgICAicmVjb3JkcyI6IFsKICAgICAgewogICAgICAgICJkaXNwb3NlZCI6IHRydWUsCiAgICAgICAgImxvc3QiOiB0cnVlCiAgICAgIH0KICAgIF0KICB9Cl0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-d292eb19838c250c1c6c",
+          "file": "opening-experience.spec.ts",
+          "line": 490,
+          "column": 1
+        },
+        {
+          "title": "full opening gates practice and returning visitors receive the 900ms wordmark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2918,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:06:32.096Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjg0fSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjIwMDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjE5OTU2fQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-b1e537479896fa2fa14c",
+          "file": "opening-experience.spec.ts",
+          "line": 112,
+          "column": 1
+        },
+        {
+          "title": "ordinary letters, Enter, Escape and Space skip without input leakage while Tab preserves focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2757,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:06:35.508Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-1ddd6711fe39082c99da",
+          "file": "opening-experience.spec.ts",
+          "line": 131,
+          "column": 1
+        },
+        {
+          "title": "a replay during the closing fade owns its lifetime instead of inheriting the previous exit timer",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1025,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:06:38.280Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-b2ef14b4aad35ac00c48",
+          "file": "opening-experience.spec.ts",
+          "line": 173,
+          "column": 1
+        },
+        {
+          "title": "automatic caret handoff leaves the first real keystroke available to practice",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6770,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('html')\nExpected: \u001b[32m\"1\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('html') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('html')\u001b[22m\n\u001b[2m    13 × locator resolved to <html lang=\"en\" class=\"dark\" data-theme=\"sparow-dark\" data-reduced-motion=\"false\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"null\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('html')\nExpected: \u001b[32m\"1\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('html') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('html')\u001b[22m\n\u001b[2m    13 × locator resolved to <html lang=\"en\" class=\"dark\" data-theme=\"sparow-dark\" data-reduced-motion=\"false\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"null\"\u001b[22m\n\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts:213:38",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts",
+                      "column": 38,
+                      "line": 213
+                    },
+                    "snippet": "  211 |   const input = await expectReadyPractice(page);\n  212 |   await page.clock.runFor(80);\n> 213 |   await expect(page.locator(\"html\")).toHaveAttribute(\n      |                                      ^\n  214 |     \"data-caret-handoffs\",\n  215 |     \"1\",\n  216 |   );"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts",
+                        "column": 38,
+                        "line": 213
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('html')\nExpected: \u001b[32m\"1\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('html') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('html')\u001b[22m\n\u001b[2m    13 × locator resolved to <html lang=\"en\" class=\"dark\" data-theme=\"sparow-dark\" data-reduced-motion=\"false\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"null\"\u001b[22m\n\n\n  211 |   const input = await expectReadyPractice(page);\n  212 |   await page.clock.runFor(80);\n> 213 |   await expect(page.locator(\"html\")).toHaveAttribute(\n      |                                      ^\n  214 |     \"data-caret-handoffs\",\n  215 |     \"1\",\n  216 |   );\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts:213:38"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:06:39.322Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjc2fSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjIwMDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjE5OTA3fQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\opening-experience-automat-bf3d7-troke-available-to-practice-edge\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\opening-experience-automat-bf3d7-troke-available-to-practice-edge\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\opening-experience-automat-bf3d7-troke-available-to-practice-edge\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts",
+                    "column": 38,
+                    "line": 213
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-85bf1fcefa0a563cbb26",
+          "file": "opening-experience.spec.ts",
+          "line": 196,
+          "column": 1
+        },
+        {
+          "title": "caret handoff blocked chunk preserves input and the real caret",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2387,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:06:47.665Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjg0fSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjIwMDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjE5OTU3fQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-ad0367c02cec108a451b",
+          "file": "opening-experience.spec.ts",
+          "line": 230,
+          "column": 3
+        },
+        {
+          "title": "caret handoff late chunk preserves input and the real caret",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "timedOut",
+                  "duration": 30657,
+                  "error": {
+                    "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                    },
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts",
+                        "column": 29,
+                        "line": 273
+                      },
+                      "message": "Error: page.waitForResponse: Test timeout of 30000ms exceeded.\n=========================== logs ===========================\nwaiting for response /\\/assets\\/caret-handoff[^/]*\\.js/\n============================================================\n\n  271 |     await input.pressSequentially(\"x\");\n  272 |     if (failure === \"late chunk\") {\n> 273 |       const response = page.waitForResponse(/\\/assets\\/caret-handoff[^/]*\\.js/);\n      |                             ^\n  274 |       release();\n  275 |       await response;\n  276 |     }\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts:273:29"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:06:50.340Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjY4fSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjIwMDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjE5Mzc5fQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\opening-experience-caret-h-a5967-es-input-and-the-real-caret-edge\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\opening-experience-caret-h-a5967-es-input-and-the-real-caret-edge\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\opening-experience-caret-h-a5967-es-input-and-the-real-caret-edge\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-04c65323abacece24ea8",
+          "file": "opening-experience.spec.ts",
+          "line": 230,
+          "column": 3
+        },
+        {
+          "title": "caret handoff animation API preserves input and the real caret",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7248,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('html')\nExpected: \u001b[32m\"exercised\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('html') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('html')\u001b[22m\n\u001b[2m    14 × locator resolved to <html lang=\"en\" class=\"dark\" data-theme=\"sparow-dark\" data-reduced-motion=\"false\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"null\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('html')\nExpected: \u001b[32m\"exercised\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('html') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('html')\u001b[22m\n\u001b[2m    14 × locator resolved to <html lang=\"en\" class=\"dark\" data-theme=\"sparow-dark\" data-reduced-motion=\"false\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"null\"\u001b[22m\n\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts:266:42",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts",
+                      "column": 42,
+                      "line": 266
+                    },
+                    "snippet": "  264 |     if (failure === \"animation API\") {\n  265 |       await page.clock.runFor(80);\n> 266 |       await expect(page.locator(\"html\")).toHaveAttribute(\n      |                                          ^\n  267 |         \"data-handoff-animation-failure\",\n  268 |         \"exercised\",\n  269 |       );"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts",
+                        "column": 42,
+                        "line": 266
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('html')\nExpected: \u001b[32m\"exercised\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('html') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('html')\u001b[22m\n\u001b[2m    14 × locator resolved to <html lang=\"en\" class=\"dark\" data-theme=\"sparow-dark\" data-reduced-motion=\"false\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"null\"\u001b[22m\n\n\n  264 |     if (failure === \"animation API\") {\n  265 |       await page.clock.runFor(80);\n> 266 |       await expect(page.locator(\"html\")).toHaveAttribute(\n      |                                          ^\n  267 |         \"data-handoff-animation-failure\",\n  268 |         \"exercised\",\n  269 |       );\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts:266:42"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:07:22.257Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjUyfSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjIwMDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjE5OTQzfQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\opening-experience-caret-h-a3132-es-input-and-the-real-caret-edge\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\opening-experience-caret-h-a3132-es-input-and-the-real-caret-edge\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\opening-experience-caret-h-a3132-es-input-and-the-real-caret-edge\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-experience.spec.ts",
+                    "column": 42,
+                    "line": 266
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-e7420a65a39ddd96e5c4",
+          "file": "opening-experience.spec.ts",
+          "line": 230,
+          "column": 3
+        },
+        {
+          "title": "system reduced motion uses the 300ms wordmark without downloading WebGL",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 664,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:07:32.131Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-06ffa9f2baa1a05237f4",
+          "file": "opening-experience.spec.ts",
+          "line": 300,
+          "column": 3
+        },
+        {
+          "title": "device preference reduced motion uses the 300ms wordmark without downloading WebGL",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 538,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:07:32.803Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-ca6bc7e7fb8eba4912a1",
+          "file": "opening-experience.spec.ts",
+          "line": 300,
+          "column": 3
+        },
+        {
+          "title": "deep links remain immediate and a device opt-out persists through manual replay",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1143,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:07:33.349Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-b102107ee8bae449aa8f",
+          "file": "opening-experience.spec.ts",
+          "line": 332,
+          "column": 1
+        },
+        {
+          "title": "blocked browser storage and unavailable WebGL retain a complete fallback keyboard",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1007,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:07:34.505Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjU2fSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjE1MDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjE0OTEyfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-fbf7195ed3620225f7cc",
+          "file": "opening-experience.spec.ts",
+          "line": 368,
+          "column": 1
+        },
+        {
+          "title": "native WebGL renders 61 instanced caps, then disposes before practice mounts",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2864,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:07:35.528Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjEwOH0sInNjaGVkdWxpbmdQYXRoIjoiZ2VudWluZS1wYWludC1vYnNlcnZlci10aGVuLWV4aXN0aW5nLTQwMG1zLWlkbGUtd2luZG93IiwiY2xvY2tBZHZhbmNlZE1zIjo1MDAsIm9yaWdpbmFsVGltZW91dE1zIjoyMDAwMCwicmVtYWluaW5nVGltZW91dE1zIjoxOTk0MX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-0f8db2ce3ce7feea1649",
+          "file": "opening-experience.spec.ts",
+          "line": 419,
+          "column": 1
+        },
+        {
+          "title": "native context loss switches to fallback and preserves ready practice",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1279,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:07:38.409Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjY0fSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjIwMDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjE5OTQ3fQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-e24cb39c046f954053b9",
+          "file": "opening-experience.spec.ts",
+          "line": 454,
+          "column": 1
+        },
+        {
+          "title": "five full reload cycles close their native canvas resources before entry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "renderer-scope",
+                  "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                },
+                {
+                  "type": "limitation",
+                  "description": "Native creation and explicit disposal receipts verified; this is not a universal GPU-memory or garbage-collection guarantee."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6260,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T13:07:39.706Z",
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    },
+                    {
+                      "type": "limitation",
+                      "description": "Native creation and explicit disposal receipts verified; this is not a universal GPU-memory or garbage-collection guarantee."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjY0fSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjIwMDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjE5OTE0fQ=="
+                    },
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjYwfSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjIwMDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjE5NDE2fQ=="
+                    },
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjQ4fSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjIwMDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjE5NDIyfQ=="
+                    },
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjUyfSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjIwMDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjE5Mzk1fQ=="
+                    },
+                    {
+                      "name": "clocked-renderer-paint-preparation",
+                      "contentType": "application/json",
+                      "body": "eyJuYXRpdmVQYWludCI6eyJzdXBwb3J0ZWQiOnRydWUsIm9ic2VydmVkIjp0cnVlLCJzdGFydFRpbWUiOjUyfSwic2NoZWR1bGluZ1BhdGgiOiJnZW51aW5lLXBhaW50LW9ic2VydmVyLXRoZW4tZXhpc3RpbmctNDAwbXMtaWRsZS13aW5kb3ciLCJjbG9ja0FkdmFuY2VkTXMiOjUwMCwib3JpZ2luYWxUaW1lb3V0TXMiOjIwMDAwLCJyZW1haW5pbmdUaW1lb3V0TXMiOjE5MzAyfQ=="
+                    },
+                    {
+                      "name": "native-context-disposal-cycles",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJjeWNsZSI6IDEsCiAgICAicmVjb3JkcyI6IFsKICAgICAgewogICAgICAgICJkaXNwb3NlZCI6IHRydWUsCiAgICAgICAgImxvc3QiOiB0cnVlCiAgICAgIH0KICAgIF0KICB9LAogIHsKICAgICJjeWNsZSI6IDIsCiAgICAicmVjb3JkcyI6IFsKICAgICAgewogICAgICAgICJkaXNwb3NlZCI6IHRydWUsCiAgICAgICAgImxvc3QiOiB0cnVlCiAgICAgIH0KICAgIF0KICB9LAogIHsKICAgICJjeWNsZSI6IDMsCiAgICAicmVjb3JkcyI6IFsKICAgICAgewogICAgICAgICJkaXNwb3NlZCI6IHRydWUsCiAgICAgICAgImxvc3QiOiB0cnVlCiAgICAgIH0KICAgIF0KICB9LAogIHsKICAgICJjeWNsZSI6IDQsCiAgICAicmVjb3JkcyI6IFsKICAgICAgewogICAgICAgICJkaXNwb3NlZCI6IHRydWUsCiAgICAgICAgImxvc3QiOiB0cnVlCiAgICAgIH0KICAgIF0KICB9LAogIHsKICAgICJjeWNsZSI6IDUsCiAgICAicmVjb3JkcyI6IFsKICAgICAgewogICAgICAgICJkaXNwb3NlZCI6IHRydWUsCiAgICAgICAgImxvc3QiOiB0cnVlCiAgICAgIH0KICAgIF0KICB9Cl0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cdb3def3b8cc319ba88c-0bfce1bf325f9acf2ece",
+          "file": "opening-experience.spec.ts",
+          "line": 490,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch entry",
+          "file": "opening-experience.spec.ts",
+          "line": 287,
+          "column": 6,
+          "specs": [
+            {
+              "title": "a tap on the composition skips and leaves practice ready",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 709,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-19T13:05:38.457Z",
+                      "annotations": [
+                        {
+                          "type": "renderer-scope",
+                          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cdb3def3b8cc319ba88c-f917b33f20204d73295a",
+              "file": "opening-experience.spec.ts",
+              "line": 289,
+              "column": 3
+            },
+            {
+              "title": "a tap on the composition skips and leaves practice ready",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "renderer-scope",
+                      "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "edge",
+                  "projectName": "edge",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 876,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-19T13:07:30.948Z",
+                      "annotations": [
+                        {
+                          "type": "renderer-scope",
+                          "description": "Document renderer selected explicitly: page.clock and HTMLCanvasElement context injection cannot patch WorkerGlobalScope. Native production workers are covered with normal clocks in opening-worker.spec.ts."
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cdb3def3b8cc319ba88c-dfc2a8b31b61788b4d89",
+              "file": "opening-experience.spec.ts",
+              "line": 289,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-19T13:04:27.172Z",
+    "duration": 201384.373,
+    "expected": 24,
+    "skipped": 0,
+    "unexpected": 6,
+    "flaky": 0
+  }
+}

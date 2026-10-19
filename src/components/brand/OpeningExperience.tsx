@@ -13,6 +13,7 @@ import type { KeyboardSceneHandle } from "./keyboard-scene";
 import {
   INTRO_PREFERENCE_EVENT,
   INTRO_REPLAY_EVENT,
+  INTRO_PREPARATION_TIMEOUT_MS,
   getOpeningMode,
   markOpeningExperienceSeen,
   openingDuration,
@@ -38,6 +39,7 @@ export function OpeningExperience({ children }: { children: ReactNode }) {
     "loading",
   );
   const [letters, setLetters] = useState(0);
+  const [playing, setPlaying] = useState(false);
   const [phase, setPhase] = useState("A signal becomes a keystroke.");
   const [hint, setHint] = useState(false);
   const [muted, setMuted] = useState(true);
@@ -127,10 +129,15 @@ export function OpeningExperience({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const replayIntro = () => {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = undefined;
+      handoffCancellation.current?.abort();
       active.current = true;
       restoreFocus.current = true;
       setClosing(false);
       setLetters(0);
+      setPlaying(false);
+      setRenderer("loading");
       setMode(
         preferences.reducedMotion ||
           matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -183,11 +190,11 @@ export function OpeningExperience({ children }: { children: ReactNode }) {
     }
     let cancelled = false;
     const cancellation = new AbortController();
-    const started = performance.now();
     const timers: number[] = [];
     let disposeScenePreparation: (() => void) | undefined;
     active.current = true;
     setRenderer(mode === "full" ? "loading" : "fallback");
+    setPlaying(false);
     setLetters(mode === "full" ? 0 : WORDMARK.length);
     setHint(false);
     setPhase(
@@ -195,12 +202,13 @@ export function OpeningExperience({ children }: { children: ReactNode }) {
         ? "A signal becomes a keystroke."
         : "Your next rhythm starts here.",
     );
-    const later = (callback: () => void, ms: number) =>
-      timers.push(
-        window.setTimeout(() => {
-          if (!cancelled) callback();
-        }, ms),
-      );
+    const later = (callback: () => void, ms: number) => {
+      const timer = window.setTimeout(() => {
+        if (!cancelled && active.current) callback();
+      }, ms);
+      timers.push(timer);
+      return timer;
+    };
     const keydown = (event: KeyboardEvent) => {
       if (event.isComposing || event.repeat) return;
       if (event.key === "Tab") return;
@@ -226,11 +234,34 @@ export function OpeningExperience({ children }: { children: ReactNode }) {
     document.addEventListener("visibilitychange", hidden);
     media.addEventListener("change", motionChanged);
     later(() => setHint(true), 600);
-    later(
-      () => finish(mode === "reduced", true),
-      openingDuration(mode) - (mode === "reduced" ? 0 : FADE_MS),
-    );
+    if (mode !== "full")
+      later(
+        () => finish(mode === "reduced", true),
+        openingDuration(mode) - (mode === "reduced" ? 0 : FADE_MS),
+      );
     if (mode === "full") {
+      let choreographyStartedAt: number | null = null;
+      const preparationDeadline = later(() => {
+        if (choreographyStartedAt === null) finish(false, true);
+      }, INTRO_PREPARATION_TIMEOUT_MS);
+      const beginChoreography = () => {
+        if (cancelled || !active.current) return 0;
+        if (choreographyStartedAt !== null)
+          return Math.max(0, performance.now() - choreographyStartedAt);
+        choreographyStartedAt = performance.now();
+        clearTimeout(preparationDeadline);
+        setPlaying(true);
+        later(() => setPhase("From possibility to precision."), 1600);
+        later(() => setPhase("Ten keystrokes. One new beginning."), 2700);
+        for (let index = 0; index < WORDMARK.length; index++)
+          later(() => {
+            setLetters(index + 1);
+            if (!mutedRef.current) sound.current?.play("mechanical", 0.25);
+          }, 2700 + index * 90);
+        later(() => setPhase("Make every keystroke yours."), 3600);
+        later(() => finish(false, true), openingDuration("full") - FADE_MS);
+        return 0;
+      };
       setReceipts([
         { name: "Preferences", status: "ready" },
         {
@@ -247,6 +278,12 @@ export function OpeningExperience({ children }: { children: ReactNode }) {
               item.name === name ? { ...item, status } : item,
             ),
           );
+      };
+      const showFallback = () => {
+        if (cancelled || !active.current) return;
+        setRenderer("fallback");
+        receipt("Keyboard scene", "fallback");
+        beginChoreography();
       };
       void import("@/lib/content-packs")
         .then(({ getContentPack }) => {
@@ -327,12 +364,9 @@ export function OpeningExperience({ children }: { children: ReactNode }) {
                   deviceMemory: device.deviceMemory,
                   coarsePointer: matchMedia("(pointer: coarse)").matches,
                 }),
-                onFailure: () => {
-                  if (!cancelled) setRenderer("fallback");
-                  receipt("Keyboard scene", "fallback");
-                },
+                onFailure: showFallback,
                 onRestored: () => {
-                  if (!cancelled) setRenderer("webgl");
+                  if (!cancelled && active.current) setRenderer("webgl");
                 },
                 onDiagnostics: (data) => {
                   if (canvas.current) {
@@ -349,24 +383,10 @@ export function OpeningExperience({ children }: { children: ReactNode }) {
             handle.setProgress(progressRef.current);
             setRenderer("webgl");
             receipt("Keyboard scene", "ready");
-            handle.start(performance.now() - started);
+            handle.start(beginChoreography());
           })
-          .catch(() => {
-            if (!cancelled) setRenderer("fallback");
-            receipt("Keyboard scene", "fallback");
-          });
+          .catch(showFallback);
       });
-      later(() => setPhase("From possibility to precision."), 1600);
-      later(() => setPhase("Ten keystrokes. One new beginning."), 2700);
-      for (let index = 0; index < WORDMARK.length; index++)
-        later(
-          () => {
-            setLetters(index + 1);
-            if (!mutedRef.current) sound.current?.play("mechanical", 0.25);
-          },
-          2700 + index * 90,
-        );
-      later(() => setPhase("Make every keystroke yours."), 3600);
     } else setReceipts([]);
     return () => {
       cancelled = true;
@@ -429,6 +449,7 @@ export function OpeningExperience({ children }: { children: ReactNode }) {
           aria-label="SparowType introduction"
           data-mode={mode}
           data-renderer={renderer}
+          data-presentation={mode !== "full" || playing ? "playing" : "preparing"}
           data-closing={closing}
           data-testid="opening-experience"
           onClick={(event) => {
@@ -451,14 +472,14 @@ export function OpeningExperience({ children }: { children: ReactNode }) {
                 ref={attachCanvas}
                 className="awakening-canvas"
               />
-              <KeyboardFallback
-                // Preparing WebGL is not a fallback presentation. Keep one
-                // keyboard reveal, reserving this board for actual failures.
-                hidden={renderer !== "fallback"}
-                pressedKey={
-                  letters > 0 ? WORDMARK[letters - 1].toUpperCase() : null
-                }
-              />
+              {playing && (
+                <KeyboardFallback
+                  hidden={renderer !== "fallback"}
+                  pressedKey={
+                    letters > 0 ? WORDMARK[letters - 1].toUpperCase() : null
+                  }
+                />
+              )}
               <div className="awakening-orbit" />
             </div>
           )}

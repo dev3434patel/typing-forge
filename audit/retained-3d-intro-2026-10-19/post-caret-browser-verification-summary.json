@@ -1,0 +1,115 @@
+{
+  "buildVersion": "a7ffa374200007166a9e",
+  "browsers": [
+    "chromium",
+    "edge"
+  ],
+  "workers": 1,
+  "retries": 0,
+  "productQualityOverrides": false,
+  "testTimeoutsChanged": false,
+  "runs": [
+    {
+      "selection": "e2e/opening-single-keyboard.spec.ts",
+      "stats": {
+        "startTime": "2026-10-19T13:09:53.982Z",
+        "duration": 55406.348999999995,
+        "expected": 8,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "actualExitCode": 0,
+      "outputDirs": [
+        "D:/extra/typing_updated/typing-forge/audit/retained-3d-intro-2026-10-19/post-caret-single-keyboard-artifacts",
+        "D:/extra/typing_updated/typing-forge/audit/retained-3d-intro-2026-10-19/post-caret-single-keyboard-artifacts"
+      ],
+      "files": {
+        "post-caret-single-keyboard-browser.json": {
+          "bytes": 25950,
+          "sha256": "492cf32c36f17551c3192ed3b108a029a4fffe0a5471abcbaa1cd2ec6e4c76f8"
+        },
+        "post-caret-single-keyboard-browser.txt": {
+          "bytes": 1779,
+          "sha256": "5f9b46f8337c32c892163bed345a8515fee3bde48f4ec4cf9ed66c5fc4213490"
+        },
+        "post-caret-single-keyboard-build-identity.json": {
+          "bytes": 538,
+          "sha256": "6284d1e8bdb7e5f43493feadb8a15229c4f50688aaee6fc5cf655b22931954a3"
+        },
+        "post-caret-single-keyboard-exit.json": {
+          "bytes": 295,
+          "sha256": "9e4958c5d97f71938a1ae4ce67fc5c4da4b9aed7f43e521795c29b61b2f4f9d1"
+        }
+      }
+    },
+    {
+      "selection": "e2e/opening-experience.spec.ts",
+      "stats": {
+        "startTime": "2026-10-19T13:11:01.080Z",
+        "duration": 107177.857,
+        "expected": 30,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "actualExitCode": 0,
+      "outputDirs": [
+        "D:/extra/typing_updated/typing-forge/audit/retained-3d-intro-2026-10-19/post-caret-opening-experience-artifacts",
+        "D:/extra/typing_updated/typing-forge/audit/retained-3d-intro-2026-10-19/post-caret-opening-experience-artifacts"
+      ],
+      "files": {
+        "post-caret-opening-experience-browser.json": {
+          "bytes": 75040,
+          "sha256": "b6339a91e6e86f8d7087e1126dfd6c8889351afd02c5d22700593bab00a2bbfb"
+        },
+        "post-caret-opening-experience-browser.txt": {
+          "bytes": 4788,
+          "sha256": "ede365c8e6d05d1beda12eaa3553f2dd253ed70eedcee4f16dedf43e901668d0"
+        },
+        "post-caret-opening-experience-build-identity.json": {
+          "bytes": 536,
+          "sha256": "9cdebc02bb32109a36780a1b1c5328e737ee1e38a6213c43304c9f56c0894654"
+        },
+        "post-caret-opening-experience-exit.json": {
+          "bytes": 295,
+          "sha256": "5a280cb115b795098ea797b4016da365ac26eeea456720a56c4636d39574e6d9"
+        }
+      }
+    }
+  ],
+  "history": {
+    "initialSingleKeyboard": "8 passed; actual exit 0; first screenshots lost when next run reused default artifacts due a split PowerShell argument; JSON diagnostics/timelines retained.",
+    "initialOpeningExperience": "24 passed, 6 failed; actual exit 1. All six failures were the same three handoff cases per browser. Failed artifacts preserved in opening-experience-initial-failed-artifacts.",
+    "diagnosis": "Read-only actual finish getBoundingClientRect wrapper measured source caret width 0px, height 94.453125px, computed flex-shrink 1, and no handoff module import. Fix flex-shrink:0 retains the 3px caret.",
+    "oct17BrowserCrash": {
+      "stats": {
+        "startTime": "2026-10-16T21:01:22.286Z",
+        "duration": 28639518.038,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 7,
+        "flaky": 0
+      },
+      "actualExitCode": 1,
+      "preservedJson": "../retained-3d-intro-2026-10-17/final-retained-main-keyboard-browser.json",
+      "diagnosis": "First delayed real-scene check passed. Next browserContext.newPage reported Target crashed; remaining workers exited Windows code3221226091. Failure retained, not converted to pass."
+    }
+  },
+  "totalPassed": 38,
+  "screenshotsRetained": 12,
+  "nativeWorkerReceiptsFile": "post-caret-native-scene-receipts.json",
+  "timing": {
+    "preparationWatchdogScheduledMs": 6000,
+    "fullPresentationMs": 4200,
+    "exitFadeIncludedMs": 160,
+    "explanation": "Preparation waits for actual renderer readiness, bounded by a scheduled 6000ms product-clock watchdog. A ready scene then receives the complete 4200ms presentation. Total cold opening is preparation plus presentation; no 4200ms total-wall-time claim is made. Native main-thread stalls can defer scheduled callbacks."
+  },
+  "rendererQuality": {
+    "unchanged": true,
+    "method": "All 8 renderer/model/layout/framing/environment/bloom/worker/bridge files checked byte-equal after CRLF normalization against commit4e71c4f and exact source hashes checked against final-source-identity.json. Final native worker receipts additionally assert real61-key desktop WebGL, bloom/environment, native worker, non-degraded renderer and front camera angle.",
+    "sourceIdentityFile": "final-source-identity.json",
+    "sourceIdentitySha256": "26d48d1b185665f517b788346110a43b2b3159e40535c5727dc7d7ade54f7a94",
+    "verifiedRendererFileCount": 8
+  }
+}

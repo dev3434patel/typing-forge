@@ -3,6 +3,8 @@ export const INTRO_SEEN_SESSION_KEY = "sparowtype.opening-animation.seen";
 export const INTRO_REPLAY_EVENT = "sparowtype:replay-intro";
 export const INTRO_PREFERENCE_EVENT = "sparowtype:intro-preference";
 export const INTRO_DURATION_MS = 4200;
+/** Bound asset/GPU preparation separately so it cannot consume the animation. */
+export const INTRO_PREPARATION_TIMEOUT_MS = 6000;
 export const INTRO_RETURN_DURATION_MS = 900;
 export const INTRO_REDUCED_DURATION_MS = 300;
 export type OpeningMode = "full" | "returning" | "reduced" | "off";

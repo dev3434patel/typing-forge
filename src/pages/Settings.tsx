@@ -118,7 +118,7 @@ export default function Settings() {
               <span>
                 <span id="opening-animation-title" className="block text-sm font-medium">Opening animation</span>
                 <span id="opening-animation-help" className="mt-1 block text-xs leading-relaxed text-muted-foreground">
-                  A brief keyboard welcome when you open SparowType. Saved on this device; reduced motion is respected.
+                    The full 3D keyboard plays once per browser session. Replay it anytime; reduced motion is respected.
                 </span>
               </span>
               <input

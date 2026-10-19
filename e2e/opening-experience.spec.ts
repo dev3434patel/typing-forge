@@ -1,6 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 import {
   INTRO_ENABLED_STORAGE_KEY,
+  INTRO_REPLAY_EVENT,
   INTRO_SEEN_SESSION_KEY,
 } from "../src/lib/opening-experience";
 import type { KeyboardSceneDiagnostics } from "../src/components/brand/keyboard-scene";
@@ -51,6 +52,22 @@ async function expectReadyPractice(page: Page) {
   return input;
 }
 async function completeAutomaticOpening(page: Page, duration = 4500) {
+  const opening = page.getByTestId("opening-experience");
+  if (
+    (await opening.getAttribute("data-mode")) === "full" &&
+    (await opening.getAttribute("data-presentation")) === "preparing"
+  ) {
+    const preparation = await advanceClockedOpeningPreparation(page, 20_000);
+    await expect
+      .poll(
+        async () => {
+          await page.clock.runFor(16);
+          return opening.getAttribute("data-presentation");
+        },
+        { timeout: preparation.remainingTimeoutMs, intervals: [100, 250, 500] },
+      )
+      .toBe("playing");
+  }
   await page.clock.fastForward(duration);
   // fastForward fires a due finish callback at its destination; run the nested exit timer separately.
   await page.clock.runFor(200);
@@ -71,11 +88,17 @@ async function requireNativeWebGL(page: Page) {
 async function realScene(page: Page) {
   await requireNativeWebGL(page);
   const preparation = await advanceClockedOpeningPreparation(page, 20_000);
-  await expect(page.getByTestId("opening-experience")).toHaveAttribute(
-    "data-renderer",
-    "webgl",
-    { timeout: preparation.remainingTimeoutMs },
-  );
+  const opening = page.getByTestId("opening-experience");
+  await expect
+    .poll(
+      async () => {
+        await page.clock.runFor(16);
+        return opening.getAttribute("data-renderer");
+      },
+      { timeout: preparation.remainingTimeoutMs, intervals: [100, 250, 500] },
+    )
+    .toBe("webgl");
+  await expect(opening).toHaveAttribute("data-presentation", "playing");
   const canvas = page.locator(".awakening-canvas");
   await expect
     .poll(async () => {
@@ -83,7 +106,7 @@ async function realScene(page: Page) {
       return raw ? JSON.parse(raw).frames : 0;
     })
     .toBeGreaterThan(0);
-  return { canvas, clockAdvancedMs: preparation.clockAdvancedMs };
+  return { canvas };
 }
 
 test("full opening gates practice and returning visitors receive the 900ms wordmark", async ({
@@ -142,6 +165,29 @@ test("ordinary letters, Enter, Escape and Space skip without input leakage while
   await page.keyboard.press("Tab");
   await expect(opening).toHaveAttribute("data-closing", "false");
   await expect(opening.locator("button:focus")).toHaveCount(1);
+  await page.keyboard.press("Escape");
+  await page.clock.runFor(200);
+  await expectReadyPractice(page);
+});
+
+test("a replay during the closing fade owns its lifetime instead of inheriting the previous exit timer", async ({
+  page,
+}) => {
+  const opening = await firstOpening(page);
+  await page.keyboard.press("Escape");
+  await expect(opening).toHaveAttribute("data-closing", "true");
+  await page.evaluate(
+    (name) => window.dispatchEvent(new Event(name)),
+    INTRO_REPLAY_EVENT,
+  );
+  await expect(opening).toHaveAttribute("data-mode", "full");
+  await expect(opening).toHaveAttribute("data-closing", "false");
+  await page.clock.runFor(200);
+  await expect(opening).toHaveAttribute("data-mode", "full");
+  await expect(opening).toHaveAttribute("data-closing", "false");
+  await expect(
+    page.getByRole("textbox", { name: "Typing input", exact: true }),
+  ).toHaveCount(0);
   await page.keyboard.press("Escape");
   await page.clock.runFor(200);
   await expectReadyPractice(page);
@@ -375,10 +421,9 @@ test("native WebGL renders 61 instanced caps, then disposes before practice moun
 }) => {
   test.setTimeout(60_000);
   await firstOpening(page);
-  const { canvas, clockAdvancedMs } = await realScene(page);
-  // Preserve the original ~2.6s absolute choreography sample even when a
-  // controlled startup advances the genuine-paint/idle capability protocol.
-  await page.clock.fastForward(Math.max(0, 2580 - clockAdvancedMs));
+  const { canvas } = await realScene(page);
+  // The keyboard receives the whole choreography after actual GPU readiness.
+  await page.clock.fastForward(2580);
   await page.clock.runFor(50);
   const data: KeyboardSceneDiagnostics = JSON.parse(
     (await canvas.getAttribute("data-scene"))!,
