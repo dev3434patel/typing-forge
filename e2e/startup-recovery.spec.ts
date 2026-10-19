@@ -135,10 +135,14 @@ test("startup recovers from real workspace script and stylesheet failures at 320
       });
       await fresh.unroute(asset);
       const loaded = fresh.waitForResponse(
-        (response) => asset.test(response.url()) && response.status() === 200,
+        (response) => asset.test(response.url()) && [200, 304].includes(response.status()),
       );
       await reload.click();
-      await loaded;
+      const recoveredAsset = await loaded;
+      await info.attach(`${extension}-actual-recovered-workspace-asset`, {
+        body: JSON.stringify({ url: recoveredAsset.url(), status: recoveredAsset.status() }),
+        contentType: "application/json",
+      });
       const input = await focusTyping(fresh);
       await expect(input).toHaveValue("");
       await expect(

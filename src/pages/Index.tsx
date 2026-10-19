@@ -97,7 +97,9 @@ export default function Index() {
     if (retestConfiguration) return { ...retestConfiguration, correctionPolicy: "current-word" };
     const seed = crypto.randomUUID(),
       mode = settings.mode === "keybr" ? "time" : settings.mode,
-      pack = getContentPack(p.language);
+      pack = getContentPack(mode === "quote" || mode === "code" ? "en" : p.language);
+    const generatedWords = ["time", "words", "zen"].includes(mode) &&
+      !(mode === "zen" && settings.zenStyle === "free");
     const random = seededRandom(seed);
     const words = (count: number) =>
       generatePackText(p.language, count, seed)
@@ -138,15 +140,15 @@ export default function Index() {
           : mode === "zen" && settings.zenStyle === "free"
             ? "free"
             : "prose",
-      language: mode === "quote" || mode === "code" ? "en" : pack.id,
+      language: pack.id,
       keyboardLayout: p.layout,
       script: pack.script,
       inputMethod: "keyboard-or-composition",
       contentRevision: passage?.revision ?? snippet?.revision ?? pack.revision,
       generatorVersion: "forge-content-v1",
       seed,
-      punctuation: settings.punctuation,
-      numbers: settings.numbers,
+      punctuation: generatedWords && settings.punctuation,
+      numbers: generatedWords && settings.numbers,
       wordCount: mode === "words" ? settings.wordCount : undefined,
       codeLanguage: mode === "code" ? settings.codeLanguage : undefined,
       privacy:
@@ -290,7 +292,7 @@ export default function Index() {
               onCloudConsent={() => {
                 if (
                   window.confirm(
-                    "Allow this session’s target text, typed text and input evidence to be stored in your cloud account?",
+                    "Allow this session’s target text, typed text and input evidence to be stored in your account?",
                   )
                 )
                   void enableCloudStorage(result.clientSessionId).catch(

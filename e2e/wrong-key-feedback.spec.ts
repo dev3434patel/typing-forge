@@ -1,5 +1,4 @@
 import { expect, test } from "@playwright/test";
-import { mkdir } from "node:fs/promises";
 import { customPractice, exportedResult, focusTyping } from "./helpers";
 
 test.beforeEach(async ({ page }) => {
@@ -31,9 +30,8 @@ test("a retained wrong letter is visible in place, advances, and can be correcte
   await expect(feedback).toContainText("You typed x");
   await expect(feedback).toContainText("Expected a");
   await expect(feedback).toContainText("Added to your text");
-  await mkdir("audit/wrong-key-feedback-2026-10-16", { recursive: true });
   await page.screenshot({
-    path: `audit/wrong-key-feedback-2026-10-16/practice-${info.project.name}.png`,
+    path: test.info().outputPath(`practice-${info.project.name}.png`),
     fullPage: true,
   });
   await input.press("Backspace");
@@ -103,10 +101,32 @@ test("an early space has visible input feedback even when the final separator al
     page.getByTestId("typing-target").locator('[data-current="true"]'),
   ).toHaveAttribute("data-expected", "d");
   await input.press("Backspace");
-  await expect(input).toHaveValue("c");
-  await expect(page.getByTestId("typing-feedback")).not.toContainText(
-    "You typed Space",
+  await expect(input).toHaveValue("c ");
+  await expect(page.getByTestId("typing-input-notice")).toContainText(
+    "Previous words are locked",
   );
+  // The early separator commits the short first word. Only the new word's
+  // suffix remains editable; neither blocked Backspace nor correction erases
+  // either original incorrect insertion from attempt accuracy.
+  await input.pressSequentially("dx");
+  await expect(input).toHaveValue("c dx");
+  await expect(page.getByTestId("typing-feedback")).toContainText("You typed x");
+  await input.press("Backspace");
+  await expect(input).toHaveValue("c d");
+  await input.pressSequentially("og");
+  await expect(page.getByRole("region", { name: "Session results" })).toBeVisible();
+  const result = await exportedResult(page);
+  expect(result.finalText).toBe("c dog");
+  expect(result.configuration.correctionPolicy).toBe("current-word");
+  expect(result.metrics).toMatchObject({
+    insertionAttempts: 6,
+    incorrectAttempts: 2,
+    correctAttempts: 4,
+    deletionActions: 1,
+    deletedUnits: 1,
+    missed: 2,
+  });
+  expect(result.metrics.inputAccuracy).toBeCloseTo(100 * 4 / 6);
 });
 
 test("overtyping a word reports the actual input and the missing separator", async ({
@@ -139,11 +159,25 @@ test("wrong code newline and tab input have visible glyphs", async ({
   await expect(page.getByTestId("typing-feedback")).toContainText(
     "You typed Enter",
   );
+  await input.press("Backspace");
+  await expect(input).toHaveValue("\n");
+  await expect(first).toHaveAttribute("data-typed", "\n");
+  const previousSession = await page.getByRole("region", { name: "Typing session", exact: true }).getAttribute("data-session-id");
+  await page.getByRole("button", { name: "Restart with new text", exact: true }).click();
+  await expect(page.getByRole("region", { name: "Typing session", exact: true })).not.toHaveAttribute("data-session-id", previousSession!);
+  await expect(input).toHaveValue("");
+  await expect(target.locator("[data-typed]")).toHaveCount(0);
+  await input.focus();
   await input.fill("\t");
+  await expect(first).toHaveAttribute("data-typed", "\t");
   await expect(first.locator("[data-typed-glyph]")).toHaveText("⇥");
   await expect(page.getByTestId("typing-feedback")).toContainText(
     "You typed Tab",
   );
+  await page.getByRole("button", { name: "Finish", exact: true }).click();
+  const result = await exportedResult(page);
+  expect(result.finalText).toBe("\t");
+  expect(result.metrics).toMatchObject({ insertionAttempts: 1, incorrectAttempts: 1, deletionActions: 0 });
 });
 
 test("wrong composed input shows the normalized committed letter and counts one attempt", async ({

@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 import {
   advanceClockedOpeningPreparation,
+  freezeOpeningClock,
   selectDocumentOpeningRenderer,
 } from "./opening-renderer";
 
@@ -14,10 +15,7 @@ test("low-power WebGL precompiles asynchronously and disposes without a scored s
     Object.defineProperty(navigator, "deviceMemory", { get: () => 4 });
   });
   await selectDocumentOpeningRenderer(page);
-  await page.clock.install();
-  await page.clock.pauseAt(
-    new Date((await page.evaluate(() => Date.now())) + 25),
-  );
+  await freezeOpeningClock(page);
   await page.goto("/", { waitUntil: "domcontentloaded" });
   const supported = await page.evaluate(() => {
     const context = document.createElement("canvas").getContext("webgl2");

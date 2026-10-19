@@ -32,7 +32,52 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 7
-  edge:
+  php:
+    runs-on: ubuntu-latest
+    services:
+      mariadb:
+        image: mariadb:10.11
+        env:
+          MARIADB_ROOT_PASSWORD: ci-local-root
+          MARIADB_DATABASE: sparowtype_audit
+          MARIADB_USER: sparowtype
+          MARIADB_PASSWORD: ci-local-sparowtype
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=10s --health-timeout=5s --health-retries=10
+    env:
+      SPAROWTYPE_DB_HOST: 127.0.0.1
+      SPAROWTYPE_DB_NAME: sparowtype_audit
+      SPAROWTYPE_DB_USER: sparowtype
+      SPAROWTYPE_DB_PASSWORD: ci-local-sparowtype
+      SPAROWTYPE_APP_KEY: ci-only-non-production-application-secret-1234567890
+      SPAROWTYPE_CONFIG_FILE: backend/config.example.php
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_mysql, intl, mbstring
+      - run: npm ci
+      - run: npm run test:php
+      - run: php backend/tests/password-policy.php
+      - run: php backend/bin/install-schema.php --config=backend/config.example.php --database=sparowtype_audit --install
+      - name: Start local PHP API and run native lifecycle acceptance
+        run: |
+          php -S 127.0.0.1:8081 -t backend/public backend/router.php > /tmp/sparowtype-php.log 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:8081/api/health; then break; fi
+            sleep 1
+          done
+          node --experimental-transform-types backend/tests/data-lifecycle.mjs
+          node --experimental-transform-types backend/tests/race-lifecycle.mjs
+  legacy-edge-reference:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

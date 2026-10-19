@@ -1,77 +1,49 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { supabase, isSupabaseConfigured } from '@/integrations/supabase/client';
+import { motion, useReducedMotion } from 'framer-motion';
+import { authService, isBackendConfigured } from '@/services/php-api';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-import { Mail, Lock, User, Loader2 } from 'lucide-react';
+import { useAuth } from '@/hooks/useAuth';
+import { Mail, Lock, Loader2 } from 'lucide-react';
 import { BrandWordmark } from '@/components/brand/BrandMark';
 import { z } from 'zod';
 
-const usernameSchema = z.string()
-  .min(3, 'Username must be at least 3 characters')
-  .max(50, 'Username must be less than 50 characters')
-  .regex(/^[a-zA-Z0-9_-]+$/, 'Only letters, numbers, underscore, and hyphen allowed');
-
 const authSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
+  password: z.string().min(1, 'Enter your password').max(128, 'Password must be at most 128 characters'),
 });
 
 const Auth = () => {
+  const reducedMotion = useReducedMotion();
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(false);
-  const [oauthLoading, setOauthLoading] = useState(false);
-  const [errors, setErrors] = useState<{ email?: string; password?: string; username?: string }>({});
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { user, loading: authLoading } = useAuth();
 
-  // Check if already logged in
   useEffect(() => {
-    if (!isSupabaseConfigured) return;
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      if (session?.user) {
-        navigate('/');
-      }
-    });
-
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session?.user) {
-        navigate('/');
-      }
-    }).catch(() => {});
-
-    return () => subscription.unsubscribe();
-  }, [navigate]);
+    if (!authLoading && user) navigate('/', { replace: true });
+  }, [authLoading, user, navigate]);
 
   const validateForm = () => {
     try {
       authSchema.parse({ email, password });
-      const newErrors: { email?: string; password?: string; username?: string } = {};
-      
-      // Validate username on signup
-      if (!isLogin && username) {
-        const usernameResult = usernameSchema.safeParse(username);
-        if (!usernameResult.success) {
-          newErrors.username = usernameResult.error.errors[0].message;
-        }
-      }
-      
-      if (Object.keys(newErrors).length > 0) {
-        setErrors(newErrors);
+      const passwordBytes = new TextEncoder().encode(password).length;
+      if (passwordBytes > 128 || !isLogin && passwordBytes < 10) {
+        setErrors({ password: 'Use a password between 10 and 128 UTF-8 bytes.' });
         return false;
       }
-      
       setErrors({});
       return true;
     } catch (error) {
       if (error instanceof z.ZodError) {
-        const newErrors: { email?: string; password?: string; username?: string } = {};
+        const newErrors: { email?: string; password?: string } = {};
         error.errors.forEach((err) => {
           if (err.path[0] === 'email') newErrors.email = err.message;
           if (err.path[0] === 'password') newErrors.password = err.message;
@@ -84,8 +56,8 @@ const Auth = () => {
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (loading || oauthLoading) return;
-    if (!isSupabaseConfigured) { toast({ title: 'Guest practice is ready', description: 'Cloud accounts are not configured in this installation.', variant: 'destructive' }); return; }
+    if (loading) return;
+    if (!isBackendConfigured) { toast({ title: 'Guest practice is ready', description: 'Account services are disabled in this installation.', variant: 'destructive' }); return; }
     
     if (!validateForm()) return;
     
@@ -93,36 +65,18 @@ const Auth = () => {
 
     try {
       if (isLogin) {
-        const { error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
-
-        if (error) throw error;
+        await authService.signIn(email.trim(), password);
 
         toast({
           title: 'Welcome back!',
           description: 'Successfully signed in.',
         });
       } else {
-        const redirectUrl = `${window.location.origin}/`;
-        
-        const { error } = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            emailRedirectTo: redirectUrl,
-            data: {
-              requested_handle: username || undefined,
-            },
-          },
-        });
-
-        if (error) throw error;
+        await authService.signUp(email.trim(), password);
 
         toast({
           title: 'Account created!',
-          description: 'Check your email if confirmation is required. You can keep practicing as a guest.',
+          description: 'Your account is ready. Your practice will now sync to this account.',
         });
       }
     } catch (error: unknown) {
@@ -144,28 +98,13 @@ const Auth = () => {
     }
   };
 
-  const handleGoogleSignIn = async () => {
-    if (!isSupabaseConfigured || loading || oauthLoading) return;
-    setOauthLoading(true);
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: { redirectTo: `${window.location.origin}/auth` },
-      });
-      if (error) throw error;
-    } catch (cause) {
-      toast({ title: 'Sign-in could not start', description: cause instanceof Error ? cause.message : 'Please try again.', variant: 'destructive' });
-    } finally {
-      setOauthLoading(false);
-    }
-  };
-
   return (
     <main id="main-content" className="min-h-screen flex items-center justify-center bg-background p-4">
       <motion.div
         className="w-full min-w-0 max-w-md [&_input]:min-h-11 [&_button]:min-h-11"
-        initial={{ opacity: 0, y: 20 }}
+        initial={reducedMotion ? false : { opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
+        transition={reducedMotion ? { duration: 0 } : undefined}
       >
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 mb-4">
@@ -182,31 +121,8 @@ const Auth = () => {
         </div>
 
         <div className="stat-card p-6">
-          <Button type="button" variant="outline" className="w-full min-h-11" onClick={() => void handleGoogleSignIn()} disabled={loading || oauthLoading || !isSupabaseConfigured}>
-            {oauthLoading ? <><Loader2 className="size-4 animate-spin" /> Connecting…</> : 'Continue with Google'}
-          </Button>
-          <p className="my-5 text-center text-xs text-muted-foreground">or continue with email</p>
           <form onSubmit={handleAuth} className="space-y-4">
-            {!isLogin && (
-              <div className="space-y-2">
-                <Label htmlFor="username">Username</Label>
-                <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <Input
-                    id="username"
-                    type="text"
-                    placeholder="speedtyper"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    className={`pl-10 ${errors.username ? 'border-destructive' : ''}`}
-                    maxLength={50}
-                  />
-                </div>
-                {errors.username && (
-                  <p className="text-sm text-destructive">{errors.username}</p>
-                )}
-              </div>
-            )}
+            {!isLogin && <p className="text-sm text-muted-foreground">Choose your public handle in Profile after signing in. Your email stays private.</p>}
 
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
@@ -215,15 +131,18 @@ const Auth = () => {
                 <Input
                   id="email"
                   type="email"
+                  autoComplete="email"
                   placeholder="you@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className={`pl-10 ${errors.email ? 'border-destructive' : ''}`}
                   required
+                  aria-invalid={Boolean(errors.email)}
+                  aria-describedby={errors.email ? 'email-error' : undefined}
                 />
               </div>
               {errors.email && (
-                <p className="text-sm text-destructive">{errors.email}</p>
+                <p id="email-error" role="alert" className="text-sm text-destructive">{errors.email}</p>
               )}
             </div>
 
@@ -234,20 +153,23 @@ const Auth = () => {
                 <Input
                   id="password"
                   type="password"
+                  autoComplete={isLogin ? 'current-password' : 'new-password'}
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className={`pl-10 ${errors.password ? 'border-destructive' : ''}`}
                   required
+                  aria-invalid={Boolean(errors.password)}
+                  aria-describedby={errors.password ? 'password-error' : undefined}
                 />
               </div>
               {errors.password && (
-                <p className="text-sm text-destructive">{errors.password}</p>
+                <p id="password-error" role="alert" className="text-sm text-destructive">{errors.password}</p>
               )}
             </div>
 
-            {!isSupabaseConfigured && <p role="status" className="text-sm text-muted-foreground">Cloud accounts are unavailable. Guest practice and local history are ready.</p>}
-            <Button type="submit" className="w-full" disabled={loading || oauthLoading || !isSupabaseConfigured}>
+            {!isBackendConfigured && <p role="status" className="text-sm text-muted-foreground">Account services are unavailable. Guest practice and local history are ready.</p>}
+            <Button type="submit" className="w-full" disabled={loading || !isBackendConfigured}>
               {loading ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />

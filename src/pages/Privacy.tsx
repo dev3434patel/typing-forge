@@ -9,7 +9,7 @@ export default function Privacy() {
     ],
     [
       "Optional account sync",
-      "An account connects to the Supabase service configured by this installation. Authentication uses your account credentials and session tokens. Public-corpus results can enter an owner-bound upload queue. Local storage and cloud storage are separate; a failed upload does not mean the result is already stored remotely.",
+      "Accounts use this installation’s server and database. Authentication uses a protected session cookie; sign-in tokens are not stored in browser local storage. Public-corpus results can enter an account-bound upload queue. Browser storage and account storage are separate; a failed upload does not mean the result is already stored on the server.",
     ],
     [
       "Your private passages",
@@ -17,7 +17,7 @@ export default function Privacy() {
     ],
     [
       "Result and replay evidence",
-      "A completed session can contain its target, typed text, timed edits, assistance flags and derived metrics. Raw evidence is scheduled to expire after 90 days while summaries can remain. Local expiry runs when the app is open; cloud expiry depends on the deployed server cleanup job. Downloaded exports remain wherever you save them.",
+      "A completed session can contain its target, typed text, timed edits, assistance flags and derived metrics. Raw replay evidence is scheduled to expire after 90 days. Summary history and public-corpus learning projections, including ordered expected/typed keys and timing, can remain until you delete the session or account. These learning records can reconstruct portions of public practiced text; replay expiry does not delete all character-level learning data. Private custom passages and free writing do not receive this public-corpus projection. Browser expiry runs when the app is open; server expiry runs when account history is accessed and through the host’s cleanup command. Downloaded exports remain wherever you save them.",
     ],
     [
       "Public results",
@@ -29,7 +29,7 @@ export default function Privacy() {
     ],
     [
       "Offline app files",
-      "The optional service worker downloads public application files and a generic page shell so guest practice can reopen offline after installation completes. It does not cache Supabase responses, authentication requests or personalized API data. Removing the offline download leaves your typing history and preferences in place.",
+      "The optional service worker downloads public application files and a generic page shell so guest practice can reopen offline after installation completes. It does not cache authentication requests or personalized API data. Removing the offline download leaves your typing history and preferences in place.",
     ],
     [
       "Your controls",
@@ -51,7 +51,7 @@ export default function Privacy() {
           </h1>
           <p className="mt-4 text-muted-foreground leading-relaxed">
             A clear account of what this app stores, what can leave this device,
-            and the controls available to you. Updated 16 October 2026.
+            and the controls available to you. Updated 19 October 2026.
           </p>
         </div>
         {sections.map(([title, text]) => (

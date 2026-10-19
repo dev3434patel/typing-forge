@@ -1,0 +1,68 @@
+
+Running 2 tests using 1 worker
+
+(node:46964) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [chromium] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 390px (664ms)
+(node:44756) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 [chromium] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 1440px (744ms)
+
+
+  1) [chromium] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 390px 
+
+    Error: page.addScriptTag: Executing inline script violates the following Content Security Policy directive 'script-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-E3EeTHvx5D/JxHMAmxf9pFfuV6852vl1jPB1znFLMxA='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked.
+
+      18 |       else await page.goto(route, { waitUntil: "domcontentloaded" });
+      19 |       await expect(page.locator("main#main-content")).toBeVisible();
+    > 20 |       await page.addScriptTag({ content: axe.source });
+         |                  ^
+      21 |       const result = await page.evaluate(async () => {
+      22 |         const engine = (window as Window & { axe: typeof axe }).axe;
+      23 |         const report = await engine.run(document, {
+        at D:\extra\typing_updated\typing-forge\e2e\accessibility-audit.spec.ts:20:18
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\accessibility-baseline-artifacts\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\feature-audit-2026-10-19\accessibility-baseline-artifacts\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\accessibility-baseline-artifacts\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\feature-audit-2026-10-19\accessibility-baseline-artifacts\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 1440px 
+
+    Error: page.addScriptTag: Executing inline script violates the following Content Security Policy directive 'script-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-E3EeTHvx5D/JxHMAmxf9pFfuV6852vl1jPB1znFLMxA='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked.
+
+      18 |       else await page.goto(route, { waitUntil: "domcontentloaded" });
+      19 |       await expect(page.locator("main#main-content")).toBeVisible();
+    > 20 |       await page.addScriptTag({ content: axe.source });
+         |                  ^
+      21 |       const result = await page.evaluate(async () => {
+      22 |         const engine = (window as Window & { axe: typeof axe }).axe;
+      23 |         const report = await engine.run(document, {
+        at D:\extra\typing_updated\typing-forge\e2e\accessibility-audit.spec.ts:20:18
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\accessibility-baseline-artifacts\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\feature-audit-2026-10-19\accessibility-baseline-artifacts\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\accessibility-baseline-artifacts\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\feature-audit-2026-10-19\accessibility-baseline-artifacts\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 390px 
+    [chromium] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 1440px 

@@ -36,6 +36,11 @@ interface FallbackAnimationAction extends FallbackAnimationSample {
 }
 type AuditedWindow = Window & {
   openingWorkerAudit?: { records: WorkerRecord[]; workers: Worker[] };
+  recoveredDocumentScene?: {
+    diagnostics: KeyboardSceneDiagnostics;
+    canvasCount: number;
+    atMs: number;
+  };
   fallbackAnimationAudit?: {
     actions: FallbackAnimationAction[];
     sample: () => FallbackAnimationSample[];
@@ -67,6 +72,28 @@ async function observeNativeWorker(page: Page, info: TestInfo) {
   await page.addInitScript(() => {
     const audit = { records: [] as WorkerRecord[], workers: [] as Worker[] };
     (window as AuditedWindow).openingWorkerAudit = audit;
+    // Latch the same native draw evidence inside the browser. A host-side trace
+    // or RPC can return after the fixed intro has already completed normally.
+    const recoveryObserver = new MutationObserver(() => {
+      const opening = document.querySelector('[data-testid="opening-experience"]');
+      const canvas = document.querySelector('.awakening-canvas');
+      if (!opening || !canvas || opening.getAttribute('data-renderer') !== 'webgl' ||
+          opening.getAttribute('data-closing') !== 'false') return;
+      try {
+        const raw = canvas.getAttribute('data-scene');
+        const diagnostics = raw ? JSON.parse(raw) as KeyboardSceneDiagnostics : null;
+        if (diagnostics?.thread === 'main-thread' && diagnostics.keyCount === 61 &&
+            diagnostics.frames > 0 && diagnostics.drawCalls > 0) {
+          (window as AuditedWindow).recoveredDocumentScene = {
+            diagnostics, canvasCount: document.querySelectorAll('.awakening-canvas').length,
+            atMs: performance.now(),
+          };
+          recoveryObserver.disconnect();
+        }
+      } catch { /* Ignore an absent/incomplete diagnostics attribute. */ }
+    });
+    recoveryObserver.observe(document, { subtree: true, childList: true, attributes: true,
+      attributeFilter: ['data-scene', 'data-renderer', 'data-closing'] });
     const NativeWorker = window.Worker;
     const instrumented = new Proxy(NativeWorker, {
       construct(target, args) {
@@ -288,6 +315,10 @@ test.afterEach(async ({ page }, info) => {
   await info.attach("native-worker-receipts", {
     body: JSON.stringify(observed, null, 2),
     contentType: "application/json",
+  });
+  const recovery = await page.evaluate(() => (window as AuditedWindow).recoveredDocumentScene).catch(() => undefined);
+  if (recovery) await info.attach('native-document-recovery', {
+    body: JSON.stringify(recovery), contentType: 'application/json',
   });
   const animationActions = await page
     .evaluate(() => (window as AuditedWindow).fallbackAnimationAudit?.actions)
@@ -704,7 +735,12 @@ test("skipping while the native worker entry is blocked terminates startup and p
       ),
     ).toBe(false);
     await page.keyboard.press("Escape");
+    await expect.poll(async () => (await records(page))[0]?.terminated).toBe(1);
+    // Firefox retains a protocol worker entry while its test-intercepted request
+    // is pending. Release it only after native termination has been observed.
+    release();
     await expectWorkerClosed(page, "watchdog-allowed");
+    expect((await records(page))[0].received.some(receipt => receipt.type === 'ready')).toBe(false);
     const input = await readyPractice(page);
     await input.pressSequentially("x");
     await expect(input).toHaveValue("x");
@@ -715,25 +751,15 @@ test("skipping while the native worker entry is blocked terminates startup and p
 
 async function expectRecoveredDocumentScene(page: Page) {
   const opening = page.getByTestId("opening-experience");
-  const canvas = page.locator(".awakening-canvas");
-  await expect(opening).toHaveAttribute("data-renderer", "webgl");
-  await expect
-    .poll(async () => {
-      const raw = await canvas.getAttribute("data-scene");
-      const scene = raw
-        ? (JSON.parse(raw) as KeyboardSceneDiagnostics)
-        : undefined;
-      return (
-        scene?.thread === "main-thread" &&
-        scene.keyCount === 61 &&
-        scene.frames > 0 &&
-        scene.drawCalls > 0
-      );
-    })
-    .toBe(true);
-  await expect(canvas).toHaveCount(1);
+  await page.waitForFunction(() => Boolean((window as AuditedWindow).recoveredDocumentScene));
+  const recovered = await page.evaluate(() => (window as AuditedWindow).recoveredDocumentScene!);
+  expect(recovered.diagnostics.thread).toBe('main-thread');
+  expect(recovered.diagnostics.keyCount).toBe(61);
+  expect(recovered.diagnostics.frames).toBeGreaterThan(0);
+  expect(recovered.diagnostics.drawCalls).toBeGreaterThan(0);
+  expect(recovered.canvasCount).toBe(1);
   await expect.poll(async () => (await records(page))[0]?.terminated).toBe(1);
-  await page.keyboard.press("Escape");
+  if (await opening.count()) await page.keyboard.press("Escape");
   await readyPractice(page);
 }
 
@@ -895,13 +921,10 @@ addEventListener("message", ({data}) => {
       ),
     )
     .toBe(true);
-  await expect
-    .poll(async () =>
-      (await records(page))[0]?.received.some(
-        (receipt) => receipt.diagnostics?.contextLost,
-      ),
-    )
-    .toBe(true);
+  await page.waitForFunction(() =>
+    (window as AuditedWindow).openingWorkerAudit?.records[0]?.received.some(receipt => receipt.diagnostics?.contextLost),
+    undefined, { timeout: 5000 },
+  );
   if (phase === "live") {
     const readActions = () =>
       page.evaluate(

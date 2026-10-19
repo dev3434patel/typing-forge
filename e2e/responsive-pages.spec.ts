@@ -69,7 +69,7 @@ test("populated history, comparison chart and account controls fit narrow and ta
     ).toBeInViewport();
     if (width === 320)
       await page.screenshot({
-        path: `audit/responsive-2026-10-16/stats-populated-320-${info.project.name}.png`,
+        path: test.info().outputPath(`stats-populated-320-${info.project.name}.png`),
         fullPage: true,
       });
 
@@ -139,7 +139,7 @@ test("populated history, comparison chart and account controls fit narrow and ta
     await expectViewportFit(page);
     if (width === 320)
       await page.screenshot({
-        path: `audit/responsive-2026-10-16/profile-populated-320-${info.project.name}.png`,
+        path: test.info().outputPath(`profile-populated-320-${info.project.name}.png`),
         fullPage: true,
       });
   }

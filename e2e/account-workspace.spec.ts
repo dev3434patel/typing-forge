@@ -1,91 +1,44 @@
 import { test, expect } from "@playwright/test";
-import { loadEnv } from "vite";
-const publicEnv = loadEnv("production", process.cwd(), "VITE_");
-const cloudUrl = publicEnv.VITE_SUPABASE_URL;
-const cloudKey = publicEnv.VITE_SUPABASE_ANON_KEY || publicEnv.VITE_SUPABASE_PUBLISHABLE_KEY;
-test("cross-tab account change discards a previous owner's unsaved private passage", async ({
-  page,
-}) => {
-  test.skip(
-    !cloudUrl || !cloudKey,
-    "Public cloud configuration is absent; the app cannot establish an account workspace.",
-  );
-  const origin = new URL(cloudUrl).origin;
-  const storageKey = `sb-${new URL(cloudUrl).hostname.split(".")[0]}-auth-token`;
-  const alice = "a1111111-1111-4111-8111-111111111111",
-    bob = "b2222222-2222-4222-8222-222222222222";
-  function session(id: string) {
-    return {
-      access_token: "test.fixture.signature",
-      refresh_token: "fixture-refresh",
-      expires_at: Math.floor(Date.now() / 1000) + 3600,
-      expires_in: 3600,
-      token_type: "bearer",
-      user: {
-        id,
-        aud: "authenticated",
-        role: "authenticated",
-        email: `${id}@fixture.invalid`,
-        app_metadata: {},
-        user_metadata: {},
-        created_at: "2026-01-01T00:00:00Z",
-      },
-    };
-  }
-  // All cloud traffic is intercepted. Fixture identities never reach a real service.
-  await page.route(`${origin}/**`, (route) =>
-    route.fulfill({
-      status: 200,
-      contentType: "application/json",
-      body: JSON.stringify(
-        route.request().url().includes("/auth/v1/user")
-          ? session(alice).user
-          : [],
-      ),
-    }),
-  );
-  await page.addInitScript(
-    ({ key, value }) => {
-      // This case verifies account isolation; the opening has dedicated lifecycle coverage.
-      localStorage.setItem("sparowtype.opening-animation.enabled", "false");
-      localStorage.setItem(key, JSON.stringify(value));
-    },
-    { key: storageKey, value: session(alice) },
-  );
+import { phpApiBase } from "./php-api-fixture";
+
+test("cross-tab account change discards a previous owner's unsaved private passage", async ({ page, baseURL }) => {
+  const base = phpApiBase(baseURL!);
+  const alice = "a1111111-1111-4111-8111-111111111111", bob = "b2222222-2222-4222-8222-222222222222";
+  let owner = alice;
+  // All PHP API traffic is intercepted. This verifies UI account isolation and
+  // cookie-session notifications; it is separate from real account acceptance.
+  await page.route(`${base.href}**`, async route => {
+    const url = new URL(route.request().url());
+    const path = url.pathname.slice(base.pathname.length - 1);
+    const requestedOwner = url.searchParams.get("expectedOwner");
+    if (requestedOwner && requestedOwner !== owner) {
+      await route.fulfill({ status: 409, json: { error: { code: "owner-changed", message: "Account changed" } } });
+      return;
+    }
+    const user = { id: owner, email: `${owner}@fixture.invalid`, handle: owner === alice ? "alice" : "bob", created_at: "2026-10-19T00:00:00Z" };
+    const body = path === "/auth/session" ? { user, csrfToken: `fixture-${owner}` }
+      : path === "/preferences" ? { preferences: {}, version: 0 }
+      : path.startsWith("/sessions") ? { sessions: [], learningEvidence: [], version: 0, hasMore: false }
+      : path === "/data/version" ? { ownerId: owner, version: 0 }
+      : path === "/profile" ? { id: owner, handle: user.handle }
+      : {};
+    await route.fulfill({ json: body });
+  });
+  await page.addInitScript(() => localStorage.setItem("sparowtype.opening-animation.enabled", "false"));
   await page.goto("/");
-  await expect(
-    page.getByRole("link", { name: "Account", exact: true }),
-  ).toBeVisible();
-  await page
-    .getByRole("group", { name: "Test mode" })
-    .getByRole("button", { name: "Custom", exact: true })
-    .click();
-  await page
-    .getByRole("textbox", { name: "Custom practice passage" })
-    .fill("Private passage belonging to the previous account");
+  await expect(page.getByRole("link", { name: "Account", exact: true })).toBeVisible();
+  await page.getByRole("group", { name: "Test mode" }).getByRole("button", { name: "Custom", exact: true }).click();
+  await page.getByRole("textbox", { name: "Custom practice passage" }).fill("Private passage belonging to the previous account");
   await page.getByRole("button", { name: "Start private practice" }).click();
-  await expect(page.getByTestId("typing-target")).toContainText(
-    "Private passage",
-  );
-  await page.evaluate(
-    ({ key, value }) => {
-      localStorage.setItem(key, JSON.stringify(value));
-      const channel = new BroadcastChannel(key);
-      channel.postMessage({ event: "SIGNED_IN", session: value });
-      channel.close();
-    },
-    { key: storageKey, value: session(bob) },
-  );
-  await expect(
-    page.getByRole("textbox", { name: "Custom practice passage" }),
-  ).toBeVisible();
-  await expect(
-    page.getByRole("textbox", { name: "Custom practice passage" }),
-  ).toHaveValue("");
+  await expect(page.getByTestId("typing-target")).toContainText("Private passage");
+  owner = bob;
+  await page.evaluate(() => {
+    // A second tab announces only that cookie auth changed; no token or account
+    // data is trusted from localStorage. The API must provide the new identity.
+    window.dispatchEvent(new StorageEvent("storage", { key: "sparowtype:auth-changed", newValue: "fixture-notification" }));
+  });
+  await expect(page.getByRole("textbox", { name: "Custom practice passage" })).toBeVisible();
+  await expect(page.getByRole("textbox", { name: "Custom practice passage" })).toHaveValue("");
   await expect(page.getByTestId("typing-target")).toHaveCount(0);
-  await expect(
-    page.getByText("Private passage belonging to the previous account", {
-      exact: true,
-    }),
-  ).toHaveCount(0);
+  await expect(page.getByText("Private passage belonging to the previous account", { exact: true })).toHaveCount(0);
 });

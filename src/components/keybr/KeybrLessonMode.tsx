@@ -22,6 +22,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { KeyboardAudio } from "@/lib/keyboard-audio";
 import { useWordCorrection } from "@/hooks/useWordCorrection";
+import { CompositionEchoGuard } from "@/lib/composition-echo";
 import { SessionController, type SessionResult } from "@/lib/typing-core";
 import { getContentPack, getLayout } from "@/lib/content-packs";
 import {
@@ -182,7 +183,7 @@ export function KeybrLessonMode({
   const stageRef = useRef<HTMLDivElement>(null);
   const resumeRef = useRef<HTMLButtonElement>(null);
   const composed = useRef(false);
-  const lastComposition = useRef({ text: "", at: 0 });
+  const compositionEcho = useRef(new CompositionEchoGuard());
   const audio = useRef<KeyboardAudio | null>(null);
   const settled = useRef<string | null>(null);
   const [draft, setDraft] = useState("");
@@ -298,6 +299,7 @@ export function KeybrLessonMode({
       );
       settled.current = null;
       composed.current = false;
+      compositionEcho.current.reset();
       setDraft("");
       setError(null);
       setFinished(null);
@@ -314,6 +316,8 @@ export function KeybrLessonMode({
     previousFactory.current = createLesson;
     const next = createLesson();
     settled.current = null;
+    composed.current = false;
+    compositionEcho.current.reset();
     setDraft("");
     setError(null);
     setFinished(null);
@@ -507,6 +511,7 @@ export function KeybrLessonMode({
       ? "Stop-on-error keeps the cursor on the expected key. Type that key to continue."
       : undefined,
     onSnapshot: (next) => {
+      compositionEcho.current.reset();
       setView(next);
       setDraft("");
     },
@@ -519,6 +524,7 @@ export function KeybrLessonMode({
       return;
     }
     if (wordCorrection.handleInputDeletion(native.inputType || "", native.isComposing)) {
+      compositionEcho.current.reset();
       event.currentTarget.value = "";
       setDraft("");
       return;
@@ -528,6 +534,7 @@ export function KeybrLessonMode({
         (event.nativeEvent as InputEvent).inputType,
       )
     ) {
+      compositionEcho.current.reset();
       event.currentTarget.value = "";
       setDraft("");
       setError("Paste is disabled during typing practice.");
@@ -538,10 +545,7 @@ export function KeybrLessonMode({
       setDraft(text);
       return;
     }
-    if (
-      text === lastComposition.current.text &&
-      performance.now() - lastComposition.current.at < 30
-    ) {
+    if (compositionEcho.current.consume(text, native.inputType || "")) {
       setDraft("");
       return;
     }
@@ -553,7 +557,7 @@ export function KeybrLessonMode({
   ) => {
     composed.current = false;
     const text = event.data || event.currentTarget.value;
-    lastComposition.current = { text, at: performance.now() };
+    compositionEcho.current.remember(text);
     commit(text, true);
     setDraft("");
   };
@@ -769,19 +773,23 @@ export function KeybrLessonMode({
             value={draft}
             onFocus={() => setFocused(true)}
             onBlur={() => {
+              compositionEcho.current.reset();
               setFocused(false);
               setCapsLock(null);
             }}
             onChange={handleInput}
             onCompositionStart={() => {
+              compositionEcho.current.reset();
               composed.current = true;
             }}
             onCompositionEnd={handleCompositionEnd}
             onPaste={(event) => {
+              compositionEcho.current.reset();
               event.preventDefault();
               setError("Paste is disabled during typing practice.");
             }}
             onDrop={(event) => {
+              compositionEcho.current.reset();
               event.preventDefault();
               setError("Paste is disabled during typing practice.");
             }}
@@ -793,6 +801,9 @@ export function KeybrLessonMode({
                 event.keyCode === 229
               )
                 return;
+              // A fresh non-IME key is an independent action even when it types
+              // the same letter immediately after the previous composition.
+              compositionEcho.current.reset();
               if (event.key === "Escape") {
                 event.preventDefault();
                 inputRef.current?.blur();

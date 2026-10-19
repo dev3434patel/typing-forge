@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight, Crown, ShieldCheck, Trophy } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { isSupabaseConfigured, supabase } from "@/integrations/supabase/client";
+import { isBackendConfigured, accountApi } from "@/services/php-api";
 import { cohortLabel, metricLabel } from "@/services/history-model";
 
 interface Cohort {
@@ -47,7 +47,7 @@ export default function Leaderboard() {
   const [entries, setEntries] = useState<RankedEntry[]>([]);
   const [period, setPeriod] = useState<RankingPeriod>("alltime");
   const [page, setPage] = useState(0);
-  const [cohortsLoading, setCohortsLoading] = useState(isSupabaseConfigured);
+  const [cohortsLoading, setCohortsLoading] = useState(isBackendConfigured);
   const [rankingsLoading, setRankingsLoading] = useState(false);
   const [cohortError, setCohortError] = useState("");
   const [rankingError, setRankingError] = useState("");
@@ -57,7 +57,7 @@ export default function Leaderboard() {
   const error = cohortError || rankingError;
 
   useEffect(() => {
-    if (!isSupabaseConfigured) return;
+    if (!isBackendConfigured) return;
     let active = true;
     setCohortsLoading(true);
     setCohortError("");
@@ -66,13 +66,9 @@ export default function Leaderboard() {
       setCohortError(`Rankings are unavailable: ${message}`);
       setCohortsLoading(false);
     };
-    void supabase.rpc("forge_ranked_cohorts" as never).then(
-      ({ data, error }) => {
+    void accountApi.cohorts().then(
+      ({ cohorts: data }) => {
         if (!active) return;
-        if (error) {
-          fail(error.message);
-          return;
-        }
         const rows = (data as unknown as Cohort[]) ?? [];
         setCohorts(rows);
         setCohort((previous) =>
@@ -91,7 +87,7 @@ export default function Leaderboard() {
   }, [retry]);
 
   useEffect(() => {
-    if (!isSupabaseConfigured || !cohort) {
+    if (!isBackendConfigured || !cohort) {
       setEntries([]);
       setRankingsLoading(false);
       return;
@@ -99,19 +95,7 @@ export default function Leaderboard() {
     let active = true;
     setRankingsLoading(true);
     setRankingError("");
-    const params = {
-      p_comparison_key: cohort,
-      p_limit: 25,
-      p_offset: page * 25,
-    };
-    // Preserve the deployed all-time endpoint for existing installations.
-    const request =
-      period === "alltime"
-        ? supabase.rpc("forge_rankings" as never, params as never)
-        : supabase.rpc(
-            "forge_rankings_period" as never,
-            { ...params, p_period: period } as never,
-          );
+    const request = accountApi.rankings(cohort, period, page * 25);
     const fail = (message: string) => {
       if (!active) return;
       setRankingError(`Ranking results could not be loaded: ${message}`);
@@ -119,12 +103,8 @@ export default function Leaderboard() {
       setRankingsLoading(false);
     };
     void request.then(
-      ({ data, error }) => {
+      ({ entries: data }) => {
         if (!active) return;
-        if (error) {
-          fail(error.message);
-          return;
-        }
         setEntries((data as unknown as RankedEntry[]) ?? []);
         setRankingsLoading(false);
       },
@@ -172,7 +152,7 @@ export default function Leaderboard() {
             share the same rank.
           </p>
         </section>
-        {!isSupabaseConfigured ? (
+        {!isBackendConfigured ? (
           <section className="panel p-10 text-center">
             <h2 className="text-lg font-medium">
               Cloud rankings are unavailable in this installation.

@@ -1,0 +1,22 @@
+{
+  "name": "verified-fixture-confirmation",
+  "command": [
+    "node",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "e2e/profile-identity.spec.ts",
+    "e2e/php-account-flow.spec.ts",
+    "e2e/input-guardrails.spec.ts",
+    "--grep",
+    "delayed initial profile|same-account auth refresh|initial profile fetch error|real PHP account|ordinary-clock cold startup",
+    "--workers=1",
+    "--retries=0",
+    "--forbid-only",
+    "--reporter=list,json",
+    "--output=audit/feature-audit-2026-10-19/verified-fixture-confirmation-artifacts"
+  ],
+  "exitCode": 0,
+  "durationSeconds": 86.475,
+  "startedUnix": 1792433022.773902,
+  "finishedUnix": 1792433109.249132
+}

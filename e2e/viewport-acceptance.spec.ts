@@ -19,10 +19,11 @@ const VIEWPORTS = [
 
 async function pauseClock(page: Page) {
   await selectDocumentOpeningRenderer(page);
-  await page.clock.install();
-  await page.clock.pauseAt(
-    new Date((await page.evaluate(() => Date.now())) + 25),
-  );
+  const installedAt = new Date();
+  await page.clock.install({ time: installedAt });
+  // Pause the known clock before navigation creates product timers. A 25ms
+  // browser-read/RPC gap can already be in the past on a busy host.
+  await page.clock.pauseAt(new Date(installedAt.getTime() + 60_000));
 }
 
 async function expectNoHorizontalOverflow(page: Page) {

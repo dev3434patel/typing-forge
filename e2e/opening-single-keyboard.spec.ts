@@ -2,6 +2,7 @@ import { expect, test, type Page } from "@playwright/test";
 import type { KeyboardSceneDiagnostics } from "../src/components/brand/keyboard-scene";
 import {
   advanceClockedOpeningPreparation,
+  freezeOpeningClock,
   selectDocumentOpeningRenderer,
 } from "./opening-renderer";
 
@@ -10,6 +11,7 @@ const sceneBridge = /\/keyboard-scene-bridge[^/]*\.(?:js|ts)(?:\?.*)?$/;
 interface NativePresentationReceipt {
   startedAt: number | null;
   completedAt: number | null;
+  completedWhileOpen: boolean | null;
   closedAt: number | null;
   words: Array<{ text: string; atMs: number }>;
   after2700: { playing: boolean; closing: boolean; text: string } | null;
@@ -17,10 +19,7 @@ interface NativePresentationReceipt {
 
 async function firstOpening(page: Page) {
   await selectDocumentOpeningRenderer(page);
-  await page.clock.install();
-  await page.clock.pauseAt(
-    new Date((await page.evaluate(() => Date.now())) + 25),
-  );
+  await freezeOpeningClock(page);
   await page.goto("/", { waitUntil: "domcontentloaded" });
   const opening = page.getByTestId("opening-experience");
   await expect(opening).toHaveAttribute("data-mode", "full");
@@ -270,6 +269,7 @@ test("the normal-clock production worker shows the creative 3D keyboard through 
     const receipt: NativePresentationReceipt = {
       startedAt: null,
       completedAt: null,
+      completedWhileOpen: null,
       closedAt: null,
       words: [],
       after2700: null,
@@ -309,7 +309,10 @@ test("the normal-clock production worker shows the creative 3D keyboard through 
       const text = opening.querySelector(".awakening-title-typed")?.textContent;
       if (text && text !== receipt.words.at(-1)?.text) {
         receipt.words.push({ text, atMs: performance.now() });
-        if (text === "SparowType") receipt.completedAt = performance.now();
+        if (text === "SparowType") {
+          receipt.completedAt = performance.now();
+          receipt.completedWhileOpen = opening.getAttribute('data-closing') === 'false';
+        }
       }
     });
     observer.observe(document, {
@@ -371,16 +374,14 @@ test("the normal-clock production worker shows the creative 3D keyboard through 
       playing: true,
       closing: false,
     });
-    await page.screenshot({
-      path: info.outputPath("native-3d-wordmark-typing.png"),
-    });
-    await expect(opening.locator(".awakening-title-typed")).toHaveText(
-      "SparowType",
-    );
-    await expect(opening).toHaveAttribute("data-closing", "false");
-    await page.screenshot({
-      path: info.outputPath("native-3d-complete-wordmark.png"),
-    });
+    // Observe the actual DOM milestone before capturing. An in-flight screenshot
+    // can stall Firefox long enough to coalesce the final letter and close timers.
+    // The complete-wordmark capture below remains visual evidence after this check.
+    await expect.poll(async () => (await receipt()).completedAt).not.toBeNull();
+    expect((await receipt()).completedWhileOpen).toBe(true);
+    if (await opening.count()) {
+      await page.screenshot({ path: info.outputPath("native-3d-complete-wordmark.png") });
+    }
     await expect(opening).toHaveCount(0);
     const observed = await receipt();
     expect(observed.startedAt).not.toBeNull();

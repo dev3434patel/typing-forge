@@ -34,6 +34,25 @@ describe('Forge learning v3', () => {
     localStorage.setItem('typingforge:v3:guest:learning', '{bad');
     expect(getUnlockedLetters()).toHaveLength(6);
   });
+  it('drops an invalid attempt row without discarding neighboring valid learning evidence', () => {
+    recordLearningSession(lesson(1));
+    const stored = JSON.parse(localStorage.getItem('typingforge:v3:guest:learning')!);
+    stored.sessions.push({ ...lesson(2), attempts: [null] });
+    localStorage.setItem('typingforge:v3:guest:learning', JSON.stringify(stored));
+    expect(getLearningSessions().map(session => session.sessionId)).toEqual(['lesson-1']);
+    expect(getAllCharacterStats().find(stat => stat.char === 'e')?.occurrences).toBe(25);
+    expect(() => mergeLearningSessions([stored.sessions[1], lesson(3)], 'recovered-owner')).not.toThrow();
+    expect(getLearningSessions({ owner: 'recovered-owner' }).map(session => session.sessionId)).toEqual(['lesson-3']);
+  });
+  it.each([{ introduced: 42 }, { introduced: {} }, { introduced: [] }, { introduced: ['unsupported-letter'] }])('recovers a malformed introduced-key list ($introduced) without making lessons unusable', ({ introduced }) => {
+    recordLearningSession(lesson(1));
+    const stored = JSON.parse(localStorage.getItem('typingforge:v3:guest:learning')!);
+    stored.introduced['en|qwerty|prose|keyboard'] = introduced;
+    localStorage.setItem('typingforge:v3:guest:learning', JSON.stringify(stored));
+    expect(getUnlockedLetters()).toEqual(['e', 't', 'a', 'o', 'i', 'n']);
+    expect(generateKeybrLesson(5).text.length).toBeGreaterThan(0);
+    expect(getLearningSessions()).toHaveLength(1);
+  });
   it('does not infer latency for the trigger attempt', () => {
     const summary = calculatePerCharMetrics([{ char: 'e', expected: 'e', timestamp: 0, isCorrect: true }]).get('e')!;
     expect(summary).toMatchObject({ accuracy: 100, occurrences: 1, qualifiedLatencySamples: 0, wpm: 0 });

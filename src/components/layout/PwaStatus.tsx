@@ -10,12 +10,17 @@ import {
 } from "@/lib/pwa";
 export function PwaStatus() {
   const [state, setState] = useState(getPwaState);
-  const [later, setLater] = useState(false);
+  const [installLater, setInstallLater] = useState(false);
+  const [updateLater, setUpdateLater] = useState(false);
   useEffect(() => subscribePwa(() => setState(getPwaState())), []);
   useEffect(() => startPwa(), []);
+  useEffect(() => {
+    if (!state.updateAvailable) setUpdateLater(false);
+  }, [state.updateAvailable]);
   if (
     !state.offline &&
-    (later || (!state.updateAvailable && !state.installAvailable))
+    ((state.updateAvailable ? updateLater : installLater) ||
+      (!state.updateAvailable && !state.installAvailable))
   )
     return null;
   return (
@@ -51,7 +56,7 @@ export function PwaStatus() {
             <button
               className="forge-icon-button"
               aria-label="Remind me about the update later"
-              onClick={() => setLater(true)}
+              onClick={() => setUpdateLater(true)}
             >
               <X className="size-4" aria-hidden="true" />
             </button>
@@ -70,7 +75,7 @@ export function PwaStatus() {
             <button
               className="forge-icon-button"
               aria-label="Dismiss installation suggestion"
-              onClick={() => setLater(true)}
+              onClick={() => setInstallLater(true)}
             >
               <X className="size-4" aria-hidden="true" />
             </button>

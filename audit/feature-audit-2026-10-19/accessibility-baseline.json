@@ -1,0 +1,273 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\extra\\typing_updated\\typing-forge\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "e2e/accessibility-audit.spec.ts",
+      "--workers=1",
+      "--retries=0",
+      "--reporter=list,json",
+      "--output=audit/feature-audit-2026-10-19/accessibility-baseline-artifacts"
+    ],
+    "configFile": "D:\\extra\\typing_updated\\typing-forge\\playwright.config.ts",
+    "rootDir": "D:/extra/typing_updated/typing-forge/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/audit/feature-audit-2026-10-19/accessibility-baseline-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\accessibility-baseline-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "accessibility-audit.spec.ts",
+      "file": "accessibility-audit.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "existing guest pages and completed results meet automated accessibility rules at 390px",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 664,
+                  "error": {
+                    "message": "Error: page.addScriptTag: Executing inline script violates the following Content Security Policy directive 'script-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-E3EeTHvx5D/JxHMAmxf9pFfuV6852vl1jPB1znFLMxA='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked.",
+                    "stack": "Error: page.addScriptTag: Executing inline script violates the following Content Security Policy directive 'script-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-E3EeTHvx5D/JxHMAmxf9pFfuV6852vl1jPB1znFLMxA='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked.\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts:20:18",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts",
+                      "column": 18,
+                      "line": 20
+                    },
+                    "snippet": "  18 |       else await page.goto(route, { waitUntil: \"domcontentloaded\" });\n  19 |       await expect(page.locator(\"main#main-content\")).toBeVisible();\n> 20 |       await page.addScriptTag({ content: axe.source });\n     |                  ^\n  21 |       const result = await page.evaluate(async () => {\n  22 |         const engine = (window as Window & { axe: typeof axe }).axe;\n  23 |         const report = await engine.run(document, {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts",
+                        "column": 18,
+                        "line": 20
+                      },
+                      "message": "Error: page.addScriptTag: Executing inline script violates the following Content Security Policy directive 'script-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-E3EeTHvx5D/JxHMAmxf9pFfuV6852vl1jPB1znFLMxA='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked.\n\n  18 |       else await page.goto(route, { waitUntil: \"domcontentloaded\" });\n  19 |       await expect(page.locator(\"main#main-content\")).toBeVisible();\n> 20 |       await page.addScriptTag({ content: axe.source });\n     |                  ^\n  21 |       const result = await page.evaluate(async () => {\n  22 |         const engine = (window as Window & { axe: typeof axe }).axe;\n  23 |         const report = await engine.run(document, {\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts:20:18"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T16:22:57.239Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\accessibility-baseline-artifacts\\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\accessibility-baseline-artifacts\\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\accessibility-baseline-artifacts\\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts",
+                    "column": 18,
+                    "line": 20
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "133fb274c06e7193ffc5-05d84d265c722b26dcc5",
+          "file": "accessibility-audit.spec.ts",
+          "line": 12,
+          "column": 3
+        },
+        {
+          "title": "existing guest pages and completed results meet automated accessibility rules at 1440px",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 744,
+                  "error": {
+                    "message": "Error: page.addScriptTag: Executing inline script violates the following Content Security Policy directive 'script-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-E3EeTHvx5D/JxHMAmxf9pFfuV6852vl1jPB1znFLMxA='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked.",
+                    "stack": "Error: page.addScriptTag: Executing inline script violates the following Content Security Policy directive 'script-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-E3EeTHvx5D/JxHMAmxf9pFfuV6852vl1jPB1znFLMxA='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked.\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts:20:18",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts",
+                      "column": 18,
+                      "line": 20
+                    },
+                    "snippet": "  18 |       else await page.goto(route, { waitUntil: \"domcontentloaded\" });\n  19 |       await expect(page.locator(\"main#main-content\")).toBeVisible();\n> 20 |       await page.addScriptTag({ content: axe.source });\n     |                  ^\n  21 |       const result = await page.evaluate(async () => {\n  22 |         const engine = (window as Window & { axe: typeof axe }).axe;\n  23 |         const report = await engine.run(document, {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts",
+                        "column": 18,
+                        "line": 20
+                      },
+                      "message": "Error: page.addScriptTag: Executing inline script violates the following Content Security Policy directive 'script-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-E3EeTHvx5D/JxHMAmxf9pFfuV6852vl1jPB1znFLMxA='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked.\n\n  18 |       else await page.goto(route, { waitUntil: \"domcontentloaded\" });\n  19 |       await expect(page.locator(\"main#main-content\")).toBeVisible();\n> 20 |       await page.addScriptTag({ content: axe.source });\n     |                  ^\n  21 |       const result = await page.evaluate(async () => {\n  22 |         const engine = (window as Window & { axe: typeof axe }).axe;\n  23 |         const report = await engine.run(document, {\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts:20:18"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T16:22:58.828Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\accessibility-baseline-artifacts\\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\accessibility-baseline-artifacts\\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\accessibility-baseline-artifacts\\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts",
+                    "column": 18,
+                    "line": 20
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "133fb274c06e7193ffc5-75a63ad994d07852d843",
+          "file": "accessibility-audit.spec.ts",
+          "line": 12,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-19T16:22:56.504Z",
+    "duration": 3340.24,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

@@ -14,18 +14,15 @@ import { historyForOwner, type SessionHistoryState } from "../history-state";
 
 const cloud = vi.hoisted(() => ({
   getSession: vi.fn(),
-  invoke: vi.fn(),
-  rpc: vi.fn(),
+  deleteAccount: vi.fn(),
+  deleteSession: vi.fn(),
   signOut: vi.fn(),
-  setHeader: vi.fn(),
+  refresh: vi.fn(),
 }));
-vi.mock("@/integrations/supabase/client", () => ({
-  isSupabaseConfigured: true,
-  supabase: {
-    auth: { getSession: cloud.getSession, signOut: cloud.signOut },
-    functions: { invoke: cloud.invoke },
-    rpc: cloud.rpc,
-  },
+vi.mock("../php-api", () => ({
+  isBackendConfigured: true,
+  authService: { getSession: cloud.getSession, signOut: cloud.signOut, refresh: cloud.refresh },
+  accountApi: { deleteAccount: cloud.deleteAccount, deleteSession: cloud.deleteSession },
 }));
 vi.mock("@/lib/keybr-engine", () => ({ reconcileLearningSessions: vi.fn() }));
 
@@ -87,20 +84,17 @@ function queued(ownerId = "alice"): SessionRecord {
   };
 }
 const identity = (owner = "alice") => ({
-  data: { session: { user: { id: owner }, access_token: `token-${owner}` } },
-  error: null,
+  user: { id: owner }, csrfToken: 'fixture-csrf',
 });
 
 beforeEach(() => {
   cloud.getSession.mockReset().mockResolvedValue(identity());
-  cloud.invoke
+  cloud.deleteAccount
     .mockReset()
-    .mockResolvedValue({ data: { deleted: true }, error: null });
-  cloud.signOut.mockReset().mockResolvedValue({ error: null });
-  cloud.setHeader.mockReset().mockResolvedValue({ data: null, error: null });
-  cloud.rpc
-    .mockReset()
-    .mockImplementation(() => ({ setHeader: cloud.setHeader }));
+    .mockResolvedValue({ deleted: true });
+  cloud.deleteSession.mockReset().mockResolvedValue({ deleted: true });
+  cloud.signOut.mockReset().mockResolvedValue(undefined);
+  cloud.refresh.mockReset().mockResolvedValue({ user: null, csrfToken: 'guest-csrf' });
 });
 afterEach(() => vi.restoreAllMocks());
 
@@ -265,16 +259,14 @@ describe("late acknowledgements and explicit workspace ownership", () => {
     cloud.getSession.mockResolvedValue(identity("bob"));
     const clear = vi.spyOn(sessionRepository, "clear").mockResolvedValue();
     await expect(deleteAccount("alice")).rejects.toThrow("account");
-    expect(cloud.invoke).not.toHaveBeenCalled();
+    expect(cloud.deleteAccount).not.toHaveBeenCalled();
     expect(clear).not.toHaveBeenCalled();
   });
-  it("binds the account deletion request to the intended owner and captured bearer", async () => {
+  it("binds the account deletion request to the intended cookie account owner", async () => {
     vi.spyOn(sessionRepository, "clear").mockResolvedValue();
     await deleteAccount("alice");
-    expect(cloud.invoke).toHaveBeenCalledWith("delete-account", {
-      body: { confirmation: "DELETE MY ACCOUNT", expectedOwner: "alice" },
-      headers: { Authorization: "Bearer token-alice" },
-    });
+    expect(cloud.deleteAccount).toHaveBeenCalledWith("alice");
+    expect(cloud.signOut).toHaveBeenCalledWith("alice");
   });
   it("does not clear or sign out a new workspace after an old deletion acknowledgement", async () => {
     cloud.getSession
@@ -285,18 +277,11 @@ describe("late acknowledgements and explicit workspace ownership", () => {
     expect(clear).not.toHaveBeenCalled();
     expect(cloud.signOut).not.toHaveBeenCalled();
   });
-  it("binds a session deletion RPC to both expected owner and captured bearer", async () => {
+  it("binds a session deletion API request to its expected cookie account owner", async () => {
     vi.spyOn(sessionRepository, "get").mockResolvedValue(queued());
     const remove = vi.spyOn(sessionRepository, "remove").mockResolvedValue();
     await deleteSession("alice", "trust-audit");
-    expect(cloud.rpc).toHaveBeenCalledWith("forge_delete_session_for_owner", {
-      p_owner: "alice",
-      p_client_id: "trust-audit",
-    });
-    expect(cloud.setHeader).toHaveBeenCalledWith(
-      "Authorization",
-      "Bearer token-alice",
-    );
+    expect(cloud.deleteSession).toHaveBeenCalledWith("alice", "trust-audit");
     expect(remove).toHaveBeenCalledWith("alice", "trust-audit");
   });
   it("does not delete a same-ID session with the next account credentials", async () => {
@@ -306,7 +291,7 @@ describe("late acknowledgements and explicit workspace ownership", () => {
     await expect(deleteSession("alice", "trust-audit")).rejects.toThrow(
       "account",
     );
-    expect(cloud.rpc).not.toHaveBeenCalled();
+    expect(cloud.deleteSession).not.toHaveBeenCalled();
     expect(remove).not.toHaveBeenCalled();
   });
 });

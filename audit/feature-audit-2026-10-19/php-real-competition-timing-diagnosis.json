@@ -1,0 +1,11 @@
+{
+  "originalReport": "php-real-competition.json",
+  "originalResult": { "passedCredentialSignIn": 4, "failedHumanRace": 4, "skipped": 0 },
+  "cleanup": "Both dedicated original accounts deleted successfully through authenticated API; original process receipt retained.",
+  "confirmedCause": "The test finished both partial transcripts after about 4 seconds, then required settled winners within 15 seconds. The shared room lasts 30 seconds and server settlement occurs after the deadline plus 3-second receipt grace unless a complete corpus is typed. Manual partial Finish stores evidence but does not shorten that race deadline.",
+  "evidence": "All four engines reached real signed-in room creation/join, shared countdown, correct individual key input, and gray polled opponent pace in both directions. All four failed only the final heading assertion at original line 75. Chromium/Edge snapshots show 100% input accuracy, personal result, and Your result is in. Waiting for the server, without an error alert.",
+  "classification": "Fixture demanded settlement before the legitimate shared deadline; no production defect established by this failure.",
+  "correction": "Keep 30-second duration and ordinary clock. Remove early Finish clicks, let both engine timers complete naturally, and derive the settled-result assertion budget from remaining server deadline plus 3-second grace and 6-second poll allowance, bounded to 45 seconds within the 90-second test. Preserve all input, pace, shared-target, response, winner/tie, results, and no-alert assertions.",
+  "confirmationRunner": "run-php-real-competition-confirmation.mjs",
+  "confirmationState": "Prepared, Node syntax and scoped ESLint passed. Parent coordinates execution after other browser suites; no confirmation browser run performed by this agent."
+}

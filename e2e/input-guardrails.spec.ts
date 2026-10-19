@@ -148,9 +148,12 @@ test("unavailable browser audio is explained without clearing the saved sound pr
 });
 
 test("idle practice has no 100ms interval and the active deadline still persists exactly", async ({ page }) => {
-  await page.clock.install();
   await page.goto("/", { waitUntil: "domcontentloaded" });
   await expect(page.getByRole("group", { name: "Test duration", exact: true })).toBeVisible();
+  await expect(page.getByRole("region", { name: "Typing session", exact: true })).toHaveAttribute("data-status", "ready");
+  // Bootstrap and first-paint scheduling use the ordinary browser clock. The
+  // deterministic test clock begins only after a real idle workspace exists.
+  await page.clock.install();
   await page.evaluate(() => {
     const tracked = window as Window & { practiceIntervals: number };
     tracked.practiceIntervals = 0;
@@ -176,4 +179,42 @@ test("idle practice has no 100ms interval and the active deadline still persists
   await expect(page.getByRole("status").filter({ hasText: /saved.*device|saved.*locally|local.*saved/i })).toBeVisible();
   await page.goto("/stats", { waitUntil: "domcontentloaded" });
   await expect(page.getByRole("table", { name: "Completed sessions, most recent first", exact: true }).getByRole("row").nth(1)).toContainText("15.0s");
+});
+
+test("ordinary-clock cold startup and reload reach editable practice without timer instrumentation", async ({ page }, info) => {
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  const receipts: unknown[] = [];
+  for (const attempt of ["cold", "reload"] as const) {
+    const startedAt = Date.now();
+    const response = attempt === "cold"
+      ? await page.goto("/", { waitUntil: "domcontentloaded" })
+      : await page.reload({ waitUntil: "domcontentloaded" });
+    expect([200, 304]).toContain(response?.status());
+    await expect(page.getByRole("group", { name: "Test duration", exact: true })).toBeVisible();
+    const session = page.getByRole("region", { name: "Typing session", exact: true });
+    await expect(session).toHaveAttribute("data-status", "ready");
+    await expect(page.getByRole("status").filter({ hasText: "Preparing your typing workspace…" })).toBeHidden();
+    const input = await focusTyping(page);
+    const first = (await page.getByTestId("typing-target").innerText()).slice(0, 1);
+    await input.press(first);
+    await expect(input).toHaveValue(first);
+    await expect(session).toHaveAttribute("data-status", "running");
+    receipts.push({
+      attempt,
+      responseStatus: response!.status(),
+      readyAndInputElapsedMs: Date.now() - startedAt,
+      ...await page.evaluate(() => ({
+        clock: "ordinary browser clock; Playwright clock is not installed",
+        timeOrigin: performance.timeOrigin,
+        performanceNow: performance.now(),
+        navigationType: (performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined)?.type,
+      })),
+    });
+  }
+  await info.attach("ordinary-clock-workspace-startup", {
+    body: JSON.stringify({ receipts, pageErrors: errors }, null, 2),
+    contentType: "application/json",
+  });
+  expect(errors).toEqual([]);
 });

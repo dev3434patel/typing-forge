@@ -41,7 +41,7 @@ test("a corrected mistake yields 75% input accuracy and perfect final text once"
   await expect(
     page.getByRole("button", { name: "Next test", exact: true }),
   ).toHaveCount(1);
-  const evidenceDirectory = resolve("audit", "implementation-2026-10-15");
+  const evidenceDirectory = test.info().outputPath();
   await mkdir(evidenceDirectory, { recursive: true });
   const shareDownloadEvent = page.waitForEvent("download");
   await results

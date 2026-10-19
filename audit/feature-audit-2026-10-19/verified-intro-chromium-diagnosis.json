@@ -1,0 +1,16 @@
+{
+  "run": "verified-intro",
+  "case": "actual worker WebGL context loss after live frames recovers with a fresh canvas and keeps practice usable",
+  "observedFailure": "Host-side assertion expected the opening element after the finite intro had already left the document.",
+  "traceTimingMs": {
+    "nativeWorkerReadyObserved": 193767,
+    "nativeLossRequestedInsideBrowserBefore": 193890,
+    "subsequentLargeReceiptRpcStarted": 194871,
+    "subsequentLargeReceiptRpcBrowserCompleted": 195478,
+    "sameRpcHostTracingCompleted": 198063,
+    "currentElementAssertionStarted": 198487
+  },
+  "confirmationChange": "A browser MutationObserver records the actual main-thread recovery draw while the opening is connected, webgl and not closing: 61 keycaps, positive native frames/drawCalls and exactly one canvas. The original termination and usable-practice assertions remain. This is a persistent observation of the same required native draw, not acceptance of a CSS-only recovery or a timeout increase.",
+  "scope": "Test instrumentation only; no renderer, timeline, quality or public-build changes.",
+  "status": "Requires the separately retained verified-intro-confirmation result; the original failure is not relabeled."
+}

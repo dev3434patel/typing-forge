@@ -7,6 +7,13 @@ interface NativePaintReceipt {
   observationError?: string;
 }
 
+/** Pause before navigation without a browser round-trip racing a 25ms deadline. */
+export async function freezeOpeningClock(page: Page) {
+  const origin = new Date('2026-10-19T12:00:00Z');
+  await page.clock.install({ time: origin });
+  await page.clock.pauseAt(new Date(origin.getTime() + 60_000));
+}
+
 /**
  * page.clock and DOM getContext fault injection affect the document, not a
  * WorkerGlobalScope. Clocked renderer tests explicitly exercise the supported
@@ -64,7 +71,7 @@ export async function selectDocumentOpeningRenderer(page: Page) {
  * callbacks. Observe genuine paint independently, then advance only the product's
  * existing idle/capability-fallback scheduling. No synthetic paint is published.
  * Renderer assertions share the caller's original deadline, rather than adding
- * another real-time budget or crossing the 4.2-second automatic intro finish.
+ * another real-time budget. Full choreography begins at actual renderer readiness.
  */
 export async function advanceClockedOpeningPreparation(
   page: Page,
@@ -112,4 +119,22 @@ export async function advanceClockedOpeningPreparation(
     clockAdvancedMs,
     remainingTimeoutMs: Math.max(1, deadline - Date.now()),
   };
+}
+
+/** Finish the actual presentation, whose 4.2s origin is renderer readiness. */
+export async function completeClockedOpening(page: Page, duration = 4500) {
+  const opening = page.getByTestId("opening-experience");
+  if (
+    (await opening.getAttribute("data-mode")) === "full" &&
+    (await opening.getAttribute("data-presentation")) === "preparing"
+  ) {
+    const preparation = await advanceClockedOpeningPreparation(page, 20_000);
+    await expect.poll(async () => {
+      await page.clock.runFor(16);
+      return opening.getAttribute("data-presentation");
+    }, { timeout: preparation.remainingTimeoutMs, intervals: [100, 250, 500] }).toBe("playing");
+  }
+  await page.clock.fastForward(duration);
+  // The finish callback schedules a nested exit timer at the clock destination.
+  await page.clock.runFor(200);
 }

@@ -21,7 +21,7 @@ export default function Terms() {
     ],
     [
       "Availability and changes",
-      "Local practice can work without an account. Cloud accounts, synchronization, ranked challenges and human races depend on the host and configured backend. Offline practice requires a completed app download and can be affected by browser storage eviction. Save important history with the export controls.",
+      "Local practice can work without an account. Account synchronization, ranked challenges and human races depend on the host’s server and database. Offline practice requires a completed app download and can be affected by browser storage eviction. Save important history with the export controls.",
     ],
     [
       "Learning and accessibility",

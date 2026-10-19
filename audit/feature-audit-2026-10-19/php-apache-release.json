@@ -1,0 +1,108 @@
+{
+  "date": "2026-10-19T17:43:55.325Z",
+  "server": "isolated Apache2.4 + native mod_php8.2 + MariaDB PDO",
+  "build": {
+    "version": "b24d17242a09a89247cd",
+    "publicFiles": 86,
+    "bytes": 2469098
+  },
+  "checks": [
+    {
+      "route": "/",
+      "status": 200,
+      "spa": true,
+      "securityHeaders": true
+    },
+    {
+      "route": "/learn",
+      "status": 200,
+      "spa": true,
+      "securityHeaders": true
+    },
+    {
+      "route": "/race/ABC123",
+      "status": 200,
+      "spa": true,
+      "securityHeaders": true
+    },
+    {
+      "route": "/settings",
+      "status": 200,
+      "spa": true,
+      "securityHeaders": true
+    },
+    {
+      "route": "/assets/index-DqY8UO5B.js",
+      "status": 200,
+      "correctMime": true,
+      "bytes": 161728
+    },
+    {
+      "route": "/assets/keyboard-layout-C21F3kj3.js",
+      "status": 200,
+      "correctMime": true,
+      "bytes": 983
+    },
+    {
+      "route": "/assets/App-CB53G-3_.css",
+      "status": 200,
+      "correctMime": true,
+      "bytes": 122864
+    },
+    {
+      "route": "/api/health",
+      "status": 200,
+      "nativeBackend": true
+    },
+    {
+      "route": "/private-probe/schema.sql",
+      "status": 403,
+      "privateSourceExposed": false
+    },
+    {
+      "route": "/private-probe/config.example.php",
+      "status": 403,
+      "privateSourceExposed": false
+    },
+    {
+      "route": "/private-probe/src/AuthService.php",
+      "status": 403,
+      "privateSourceExposed": false
+    },
+    {
+      "route": "/sparowtype-private/config.example.php",
+      "status": 200,
+      "privateSourceExposed": false
+    },
+    {
+      "route": "/index.html",
+      "status": 200,
+      "cacheControl": "no-cache"
+    },
+    {
+      "route": "/sw.js",
+      "status": 200,
+      "cacheControl": "no-cache"
+    },
+    {
+      "route": "/offline-build.json",
+      "status": 200,
+      "cacheControl": "no-cache"
+    },
+    {
+      "route": "/api/auth/session",
+      "status": 200,
+      "csrfPresent": true,
+      "httpOnlyCookie": true,
+      "noStore": true
+    },
+    {
+      "route": "/api/auth/signup",
+      "status": 403,
+      "missingCsrfBlocked": true
+    }
+  ],
+  "passed": 17,
+  "failed": 0,
+  "externalDeployment": false
+}

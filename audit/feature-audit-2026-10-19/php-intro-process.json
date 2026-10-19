@@ -1,0 +1,21 @@
+{
+  "name": "php-intro",
+  "command": [
+    "node",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "e2e/opening-experience.spec.ts",
+    "e2e/opening-low-power.spec.ts",
+    "e2e/opening-single-keyboard.spec.ts",
+    "e2e/opening-worker.spec.ts",
+    "e2e/caret-handoff-readiness.spec.ts",
+    "--workers=1",
+    "--retries=0",
+    "--forbid-only",
+    "--reporter=list,json",
+    "--output=audit/feature-audit-2026-10-19/php-intro-artifacts"
+  ],
+  "notExecuted": true,
+  "exitCode": 130,
+  "reason": "Profile identity race and retention copy changed; run the intro on the rebuilt release instead of superseded frontend assets."
+}

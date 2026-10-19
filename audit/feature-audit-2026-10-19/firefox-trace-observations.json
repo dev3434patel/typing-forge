@@ -1,0 +1,130 @@
+{
+  "scope": "Read-only inspection of five failed Firefox traces from php-functional-artifacts; no rerun, browser launch, build, or production/test edit.",
+  "browser": "Playwright 1.64.1 Firefox 157.0, headless Windows",
+  "interpretationLimit": "Trace timestamps below are monotonic milliseconds. A missing protocol completion is not proof of an application defect or proof of an infrastructure cause. No failure is classified solely from a SWGL warning.",
+  "observations": [
+    {
+      "trace": "php-functional-artifacts/accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-firefox/trace.zip",
+      "classification": "CONFIRMED_BOOTSTRAP_ASSERTION_FAILURE_CAUSE_UNRESOLVED",
+      "appAssertions": "First route / failed main#main-content visibility; no axe scan or later route was reached.",
+      "evidence": [
+        "test.trace qqim@50 navigation completed at 472188.306; qqim@52 main visibility assertion failed at 480223.672 (browser-side assertion completed at 477207.918).",
+        "1-trace.trace last full DOM at 472187.413 contains main.workspace-loading and Preparing your typing workspace, without main#main-content.",
+        "1-trace.network: /assets/useTestResults-CCoAkbEg.js, /assets/useWordCorrection-Bs46W0WG.js, and /assets/arrow-up-right-CqLe0BXI.js have status -1, time -1, all response timing fields -1, and no recorded failure text. /assets/TypingArea-WVKtyB3M.js has status 200 but receive -1.",
+        "Other recorded dynamic chunks returned 200. No application page-error event is recorded in the browser trace. Context closure eventually completed."
+      ],
+      "conclusion": "The workspace did not become available within the existing 5s assertion. Trace supports unfinished module delivery/observation, not a proven accessibility-rule violation, missing asset 404, or proven WebGL cause. Serial rerun required."
+    },
+    {
+      "trace": "php-functional-artifacts/account-workspace-cross-ta-a7ad6-r-s-unsaved-private-passage-firefox/trace.zip",
+      "classification": "ACTION_PROTOCOL_STALL_WITH_TEARDOWN_FAILURE_FEATURE_UNVERIFIED",
+      "appAssertions": "Account link visibility passed. The account-switch privacy assertions were never reached.",
+      "evidence": [
+        "test.trace qquw@51 Account visibility completed at 503205.676.",
+        "1-trace.trace qquw@57 Custom click began at 503231.832. Logs resolved the button, confirmed visible/enabled/stable, and completed scroll into view; no performing-click log or after record follows.",
+        "test.trace begins After Hooks at 531055.795; context fixture exceeds teardown timeout at 561066.875. Close context qquw@69 has no after record.",
+        "Last screenshot is 503405.349; recorded frontend JavaScript requests returned 200, including all three chunks unresolved in the earlier accessibility failure."
+      ],
+      "conclusion": "The trace does not show a failed account-boundary assertion or a completed account switch. A browser/action transport stall is supported; an application cause is not excluded by this trace."
+    },
+    {
+      "trace": "php-functional-artifacts/input-guardrails-ordinary--60c58-thout-timer-instrumentation-firefox/trace.zip",
+      "classification": "PROTOCOL_OR_CONTENT_PROCESS_STALL_AFTER_READY_FEATURE_PARTLY_UNVERIFIED",
+      "appAssertions": "Cold navigation HTTP 200, visible Test duration controls, and Typing session data-status=ready all passed. Editable input and reload phases were not reached.",
+      "evidence": [
+        "test.trace wfkk@50, wfkk@51, wfkk@53 completed successfully; browser-side ready assertion completed at 601298.985, reported to test at 604311.940.",
+        "Last full DOM snapshot at 601219.813 contains main#main-content and Typing session data-status=ready.",
+        "wfkk@55 hidden-bootstrap assertion begins at 604318.941; browser trace records its request/log but no response. It ends only at 678504.241 during worker cleanup, after test timeout and context teardown timeout.",
+        "The final error includes chrome://juggler NS_ERROR_FAILURE for nsIWebProgress.removeProgressListener, disposed callFunction channel callbacks, and nsIRemoteDebuggingPipe.sendMessage. These are browser automation lifecycle errors; the log does not timestamp them precisely relative to the initial stall.",
+        "No page-error event is recorded; all recorded frontend JavaScript requests returned 200."
+      ],
+      "conclusion": "Initial real-clock workspace startup succeeded. This receipt cannot establish editable/reload success or a genuine persistent loader. Automation/content-process responsiveness failed afterward; causality needs a serial rerun."
+    },
+    {
+      "trace": "php-functional-artifacts/secondary-pages-public-inf-42fb8-ation-and-distinct-metadata-firefox/trace.zip",
+      "classification": "CONFIRMED_TEARDOWN_ONLY_FAILURE",
+      "appAssertions": "All application assertions passed on /privacy, /terms, /touch-typing, and /offline, including headings, main content, home recovery links, nontrivial descriptions, and four distinct descriptions.",
+      "evidence": [
+        "test.trace xdax@3404 through xdax@3446 all have successful after records; final distinct metadata Set size=4 assertion completed at 804608.351.",
+        "After Hooks began at 804608.582; context fixture xdax@3449 failed at 834620.755 after Close context xdax@3456 remained pending.",
+        "This archive contains only test.trace, not a browser/network trace; no stronger browser-process cause can be established from it."
+      ],
+      "conclusion": "Application checks passed in this attempt; Playwright correctly reported the overall test failed because browser context cleanup exceeded 30s. Preserve this distinction without relabelling the test as passed."
+    },
+    {
+      "trace": "php-functional-artifacts/typing-audit-regressions-a-aa908-counts-only-one-composition-firefox/trace.zip",
+      "classification": "REMOTE_EVALUATION_STALL_BEFORE_IME_ASSERTION_FEATURE_UNVERIFIED",
+      "appAssertions": "Learning input focus succeeded. Neither first composition-count assertion nor delayed echo/final result checks obtained a usable within-budget result.",
+      "evidence": [
+        "test.trace zuce@52 locator.evaluate begins at 847416.890. Browser-side locator resolution completed at 847524.312, with last snapshot at 847573.462.",
+        "No subsequent browser-side evaluate completion or count assertion is present in 1-trace.trace. Last screenshot at 847642.697 still shows 0.0s lesson time and no typed text.",
+        "After Hooks begins at 875271.770 (30s test timeout). Test-side evaluate completion appears only at 903024.091, after Close context was initiated.",
+        "zuce@67 toHaveCount(1) starts at 903060.701 after the test budget has expired, then fails with Test timeout exceeded; no received count or duplicate count is reported.",
+        "The 100ms delay, canonical-equivalent input echo, and exported result assertions were never reached. All recorded frontend JavaScript requests returned 200."
+      ],
+      "conclusion": "This is not evidence that IME composition was counted twice: the failure occurred before a meaningful count result, and before the delayed echo. Serial rerun must verify the actual event sequence."
+    }
+  ],
+  "additionalWebKitObservations": [
+    {
+      "trace": "php-functional-artifacts/startup-recovery-startup-r-24a84-ithout-losing-guest-history-webkit/trace.zip",
+      "classification": "CONFIRMED_JS_RECOVERY_FAILURE_AFTER_INJECTED_ASSET_ABORT",
+      "appAssertions": "CSS failure recovery passed, including recovered CSS response, editable ready input, and preserved guest history with 75.0% accuracy. JavaScript failure recovery did not recover after Reload; it is not merely a missed response event after successful recovery.",
+      "evidence": [
+        "CSS abort: /assets/App-CB53G-3_.css status -1 at 1235852.540. After unroute and Reload, the same CSS returned 200 at 1236574.423; waitForResponse oelr@6852 completed at 1236609.486.",
+        "CSS phase oelr@6861 through oelr@6877 passed: typing input visible/focused/empty, session ready, history row count 2, retained 75.0% accuracy.",
+        "JS abort: /assets/App-Rg4_ZngP.js status -1 at 1238169.453, followed by TypeError: Importing a module script failed at 1238275.551 on page@61d15b9c633953cb67da1769c1fc9e2a.",
+        "After unroute oelr@6927, response listener oelr@6929 began at 1238612.784; Reload click oelr@6932 completed at 1238783.897.",
+        "After this Reload, /assets/App-CB53G-3_.css returned 304 at 1238889.921 and /assets/Index-QKwfiSrS.js returned 200 at 1238890.002. There is no subsequent App-Rg4_ZngP.js resource record.",
+        "The reloaded page emitted TypeError: Importing a module script failed again at 1238915.588. Its final screenshot at 1239004.124 still shows the recovery screen and Reload SparowType button.",
+        "oelr@6929 finally failed at 1263933.455 with page.waitForResponse: Test timeout of 30000ms exceeded. The error-context snapshot depicts the separate original completed-results tab, so it must not be used as evidence that the fresh recovery tab succeeded."
+      ],
+      "conclusion": "The app's ordinary reload did not recover from this deliberately failed JavaScript module in the recorded WebKit attempt. Reuse of a cached module failure is consistent with the missing new request, but its browser-internal cause is not established by trace alone. Recheck on the final build and, if reproduced, repair recovery behavior rather than only relaxing the response assertion.",
+      "screenshot": "firefox-trace-inspection/webkit-recovery-page-2-last.jpeg"
+    },
+    {
+      "trace": "php-functional-artifacts/php-account-flow-real-PHP--b8e61-rences-and-account-deletion-webkit/trace.zip",
+      "classification": "COOKIE_POLICY_REPORTING_MISMATCH_BEFORE_PROFILE_FLOW",
+      "appAssertions": "Real signup returned 201, authenticated session returned 200 with the dedicated account, and account deletion cleanup passed. The test failed before typing, history, preference, or Profile steps.",
+      "evidence": [
+        "test.trace mybx@4299 session HTTP success and mybx@4301 account email match both passed.",
+        "mybx@4304 failed php-account-flow.spec.ts:40:82 because cookies.some(cookie => cookie.httpOnly && cookie.sameSite === 'Lax') returned false.",
+        "1-trace.trace mybx@4302 returned cookie metadata {name:sparowtype_audit_session,httpOnly:true,secure:false,sameSite:None,domain:127.0.0.1,path:/,expires:-1}; cookie value intentionally omitted from this observation.",
+        "1-trace.network auth/session and auth/signup response Set-Cookie headers both explicitly contain path=/; HttpOnly; SameSite=Lax. The HTTP server therefore emitted the intended SameSite attribute.",
+        "Cleanup session request succeeded; account/delete succeeded; Dedicated acceptance account cleanup assertion mybx@4311 passed. No Profile save action occurred."
+      ],
+      "conclusion": "This receipt is not the Profile overwrite regression. It establishes a mismatch between correctly emitted Set-Cookie policy and WebKit/Playwright cookie metadata on localhost HTTP. Determine browser handling separately; do not change server SameSite policy to satisfy a browser-specific metadata assertion."
+    }
+  ],
+  "verifiedTargetedObservations": [
+    {
+      "report": "verified-targeted.json",
+      "trace": "verified-targeted-artifacts/input-guardrails-ordinary--60c58-thout-timer-instrumentation-firefox/trace.zip",
+      "classification": "CONFIRMED_FIXTURE_REJECTS_SUCCESSFUL_HTTP_REVALIDATION_NO_DRIVER_STALL",
+      "evidence": [
+        "Cold navigation qphl@719 returned 200. qphl@722 through qphl@742 all passed: controls visible, session ready, loader hidden, input focused, first character retained, session running.",
+        "Reload qphl@746 completed at 135858.610. Its document response is HTTP 304 Not Modified (network monotonic time 135732.751).",
+        "qphl@748 immediately fails input-guardrails.spec.ts:193 because it hard-requires status 200. There is no timeout or pending browser protocol call; context and browser cleanup complete.",
+        "Test duration was 2534ms. Reload's later editable-state assertions were not reached because the status assertion failed first."
+      ],
+      "conclusion": "Cold startup and actual typing succeeded on ordinary browser time. HTTP 304 is a valid revalidation response for this reload. The receipt does not establish full reload interaction success, but it establishes that the reported failure is an overly narrow status assertion, not the earlier driver stall.",
+      "proposedVerification": "Permit only 200 or 304 for the navigation response, retaining all ready/hidden-loader/focus/first-input/running/page-error assertions for both cold and reload phases; rerun serially on the same final build. No edit performed by this diagnosis."
+    },
+    {
+      "report": "verified-targeted.json",
+      "trace": "verified-targeted-artifacts/php-account-flow-real-PHP--b8e61-rences-and-account-deletion-firefox/trace.zip",
+      "classification": "CONFIRMED_ACCEPTANCE_SIGNUP_RATE_LIMIT_NO_DRIVER_STALL",
+      "evidence": [
+        "auth/session GET returned 200 and emitted HttpOnly; SameSite=Lax.",
+        "auth/signup POST returned 429 at 141896.378, Retry-After: 432, JSON error code rate-limit and message Too many requests. Wait briefly before retrying.",
+        "Signup response wait qtwu@55 completed at 141940.204. qtwu@64 immediately fails php-account-flow.spec.ts:37 because the error response has no new session Set-Cookie header.",
+        "Test duration was 3373ms. No authenticated session/typing/history/preferences/Profile assertions were reached. Context and browser cleanup completed.",
+        "AuthService.php signup intentionally applies Security::rate scope signup, 8 requests per 3600 seconds; consecutive acceptance runs consumed the dedicated environment allowance.",
+        "The later WebKit account attempt failed for the same reason: signup HTTP 429, Retry-After: 364, same rate-limit JSON error. This is distinct from the older WebKit cookie-metadata mismatch."
+      ],
+      "conclusion": "The final targeted attempt verifies rate-limit rejection, not signup or a Profile regression. It contains no driver stall and no evidence of a newly broken server cookie policy. HTTP 429 prevents user creation in this attempt.",
+      "proposedVerification": "Coordinate an audit-database-only rate reset or wait until the allowance resets before rerunning the dedicated acceptance accounts. Assert signup HTTP 201 before checking emitted cookie policy so future failures identify the actual cause. Preserve production limits and rerun the complete account lifecycle. No fixture or database change performed by this diagnosis."
+    }
+  ],
+  "nextVerification": "Preserve original and final targeted failures as separate receipts. Root coordinates serial reruns after intro tests. The final targeted Firefox failures require a navigation-status fixture correction and a fresh dedicated audit signup allowance; neither final trace repeats the earlier protocol stalls."
+}

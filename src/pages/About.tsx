@@ -53,11 +53,11 @@ export default function About() {
           </dl>
         </section>
         <section>
-          <h2 className="text-xl font-medium mb-3">Privacy & cloud features</h2>
+          <h2 className="text-xl font-medium mb-3">Privacy & account features</h2>
           <p className="text-sm leading-relaxed text-muted-foreground">
             Guest practice works locally. Signed-in public-corpus sessions can
-            enter a retryable cloud queue. Custom text and free writing require
-            explicit consent to upload. Cloud ranking requires validated session
+            enter a retryable account queue. Custom text and free writing require
+            explicit consent to upload. Public ranking requires validated session
             evidence and a configured backend. Validation checks consistency; it
             cannot establish who or what produced a keystroke. Event evidence
             expires after 90 days. Use Preferences to export your local history

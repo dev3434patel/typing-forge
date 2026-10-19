@@ -1,0 +1,303 @@
+{
+  "buildId": "e2078121727b20cfc4d5",
+  "sourceReceipt": "verified-targeted.json",
+  "sanitization": "Only URL paths, methods, status codes, source classification and allowlisted error codes are retained. Cookie values, CSRF tokens, account IDs, credentials, full response bodies and query values are omitted.",
+  "browserExecutedDuringReview": false,
+  "productFilesChangedDuringDiagnosis": false,
+  "cases": [
+    {
+      "artifactDirectory": "verified-targeted-artifacts/php-account-flow-real-PHP--b8e61-rences-and-account-deletion-firefox",
+      "sequence": [
+        {
+          "requestPath": "/api/auth/session",
+          "method": "GET",
+          "status": 200,
+          "source": "native-PHP",
+          "sessionAuthenticated": false
+        },
+        {
+          "requestPath": "/api/auth/signup",
+          "method": "POST",
+          "status": 429,
+          "source": "native-PHP",
+          "errorCode": "rate-limit",
+          "retryAfterSeconds": 432
+        }
+      ],
+      "confirmedCause": "The actual signup response was HTTP429 rate-limit, so it correctly had no rotated authenticated cookie. The previous fixture asserted cookie policy before checking whether signup succeeded.",
+      "requiredEnvironmentRepair": "Wait for the indicated retry window or reset only the dedicated acceptance database signup bucket. Do not weaken production signup limits."
+    },
+    {
+      "artifactDirectory": "verified-targeted-artifacts/php-account-flow-real-PHP--b8e61-rences-and-account-deletion-webkit",
+      "sequence": [
+        {
+          "requestPath": "/sw.js",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static"
+        },
+        {
+          "requestPath": "/api/auth/session",
+          "method": "GET",
+          "status": 200,
+          "source": "native-PHP",
+          "sessionAuthenticated": false
+        },
+        {
+          "requestPath": "/api/auth/signup",
+          "method": "POST",
+          "status": 429,
+          "source": "native-PHP",
+          "errorCode": "rate-limit",
+          "retryAfterSeconds": 364
+        }
+      ],
+      "confirmedCause": "The actual signup response was HTTP429 rate-limit, so it correctly had no rotated authenticated cookie. The previous fixture asserted cookie policy before checking whether signup succeeded.",
+      "requiredEnvironmentRepair": "Wait for the indicated retry window or reset only the dedicated acceptance database signup bucket. Do not weaken production signup limits."
+    },
+    {
+      "artifactDirectory": "verified-targeted-artifacts/profile-identity-a-delayed-71907-ntil-its-identity-is-loaded-webkit",
+      "sequence": [
+        {
+          "requestPath": "/api/auth/session",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static",
+          "sessionAuthenticated": true
+        },
+        {
+          "requestPath": "/sw.js",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static"
+        },
+        {
+          "requestPath": "/api/auth/session",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static",
+          "sessionAuthenticated": true
+        },
+        {
+          "requestPath": "/api/preferences",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static",
+          "hasExpectedOwnerQuery": true
+        },
+        {
+          "requestPath": "/api/data/version",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static",
+          "hasExpectedOwnerQuery": true
+        },
+        {
+          "requestPath": "/api/sessions",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static",
+          "hasExpectedOwnerQuery": true
+        },
+        {
+          "requestPath": "/api/data/version",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static",
+          "hasExpectedOwnerQuery": true
+        },
+        {
+          "requestPath": "/api/auth/session",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static",
+          "sessionAuthenticated": true
+        },
+        {
+          "requestPath": "/api/profile",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static",
+          "hasExpectedOwnerQuery": true
+        },
+        {
+          "requestPath": "/api/profile",
+          "method": "POST",
+          "status": 403,
+          "source": "native-PHP",
+          "errorCode": "csrf"
+        },
+        {
+          "requestPath": "/api/auth/session",
+          "method": "GET",
+          "status": 200,
+          "source": "native-PHP",
+          "sessionAuthenticated": false
+        },
+        {
+          "requestPath": "/api/profile",
+          "method": "POST",
+          "status": 401,
+          "source": "native-PHP",
+          "errorCode": "auth-required"
+        }
+      ],
+      "confirmedEvidence": "Initial profile/auth requests are mocked successfully, but later account requests reach native PHP and discover guest state. The trace context allows service workers and /sw.js is registered before this escape.",
+      "causalInference": "WebKit service-worker control bypasses the page routing fixture, invalidating its synthetic account identity. Blocking service workers within these mocked tests is the minimal isolation repair; real worker behavior remains separately covered.",
+      "observedFailure": "Save POST hits native PHP with synthetic CSRF:403 csrf, then refreshed guest state and retry401 auth-required; success status never appears."
+    },
+    {
+      "artifactDirectory": "verified-targeted-artifacts/profile-identity-same-acco-763f1-equesting-the-profile-again-webkit",
+      "sequence": [
+        {
+          "requestPath": "/api/auth/session",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static",
+          "sessionAuthenticated": true
+        },
+        {
+          "requestPath": "/sw.js",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static"
+        },
+        {
+          "requestPath": "/api/auth/session",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static",
+          "sessionAuthenticated": true
+        },
+        {
+          "requestPath": "/api/profile",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static",
+          "hasExpectedOwnerQuery": true
+        },
+        {
+          "requestPath": "/api/preferences",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static",
+          "hasExpectedOwnerQuery": true
+        },
+        {
+          "requestPath": "/api/data/version",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static",
+          "hasExpectedOwnerQuery": true
+        },
+        {
+          "requestPath": "/api/sessions",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static",
+          "hasExpectedOwnerQuery": true
+        },
+        {
+          "requestPath": "/api/data/version",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static",
+          "hasExpectedOwnerQuery": true
+        },
+        {
+          "requestPath": "/api/auth/session",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static",
+          "sessionAuthenticated": true
+        },
+        {
+          "requestPath": "/api/auth/session",
+          "method": "GET",
+          "status": 200,
+          "source": "native-PHP",
+          "sessionAuthenticated": false
+        }
+      ],
+      "confirmedEvidence": "Initial profile/auth requests are mocked successfully, but later account requests reach native PHP and discover guest state. The trace context allows service workers and /sw.js is registered before this escape.",
+      "causalInference": "WebKit service-worker control bypasses the page routing fixture, invalidating its synthetic account identity. Blocking service workers within these mocked tests is the minimal isolation repair; real worker behavior remains separately covered.",
+      "observedFailure": "Refresh GET bypasses the mock, returns native guest state, and does not increment the fixture request count; the account workspace resets to guest."
+    },
+    {
+      "artifactDirectory": "verified-targeted-artifacts/profile-identity-an-initia-bd0ef-and-releases-handle-editing-webkit",
+      "sequence": [
+        {
+          "requestPath": "/api/auth/session",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static",
+          "sessionAuthenticated": true
+        },
+        {
+          "requestPath": "/sw.js",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static"
+        },
+        {
+          "requestPath": "/api/profile",
+          "method": "GET",
+          "status": 503,
+          "source": "fixture-or-static",
+          "hasExpectedOwnerQuery": true,
+          "errorCode": "identity-unavailable"
+        },
+        {
+          "requestPath": "/api/auth/session",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static",
+          "sessionAuthenticated": true
+        },
+        {
+          "requestPath": "/api/preferences",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static",
+          "hasExpectedOwnerQuery": true
+        },
+        {
+          "requestPath": "/api/data/version",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static",
+          "hasExpectedOwnerQuery": true
+        },
+        {
+          "requestPath": "/api/sessions",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static",
+          "hasExpectedOwnerQuery": true
+        },
+        {
+          "requestPath": "/api/data/version",
+          "method": "GET",
+          "status": 200,
+          "source": "fixture-or-static",
+          "hasExpectedOwnerQuery": true
+        },
+        {
+          "requestPath": "/api/auth/session",
+          "method": "GET",
+          "status": 200,
+          "source": "native-PHP",
+          "sessionAuthenticated": false
+        }
+      ],
+      "confirmedEvidence": "Initial profile/auth requests are mocked successfully, but later account requests reach native PHP and discover guest state. The trace context allows service workers and /sw.js is registered before this escape.",
+      "causalInference": "WebKit service-worker control bypasses the page routing fixture, invalidating its synthetic account identity. Blocking service workers within these mocked tests is the minimal isolation repair; real worker behavior remains separately covered.",
+      "observedFailure": "Initial mocked503 is displayed and editing is enabled, then a native guest refresh remounts the workspace while fill is starting; Handle becomes disabled and fill times out."
+    }
+  ],
+  "scopedFixtureChanges": [
+    "Block service workers only in profile-identity.spec.ts so all mocked account traffic reaches its page routes; independent PWA tests retain actual service workers.",
+    "Assert actual signup HTTP success before checking Set-Cookie policy; an exhausted acceptance rate bucket is reported as signup failure. Production rate limits remain unchanged."
+  ],
+  "remainingConfirmation": "Root must rerun the failed flows after the currently running intro suite; none is promoted to PASS by this diagnosis."
+}

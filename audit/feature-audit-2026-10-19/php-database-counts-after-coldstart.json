@@ -1,0 +1,65 @@
+{
+    "date": "2026-10-19T18:18:30+00:00",
+    "phase": "after-coldstart",
+    "port": 3308,
+    "operation": "Read-only aggregate counts; no deletion, update or cleanup.",
+    "consistentWithinEachDatabase": true,
+    "atomicAcrossBothDatabases": false,
+    "classification": "Counts matching complete reserved test-email patterns; no account identity is emitted and no ownership for deletion is inferred.",
+    "databases": {
+        "main": {
+            "database": "sparowtype",
+            "tableCounts": {
+                "users": 0,
+                "user_preferences": 0,
+                "typing_sessions": 0,
+                "submission_receipts": 0,
+                "typing_challenges": 0,
+                "race_sessions": 0,
+                "race_outcomes": 0,
+                "race_match_locks": 4,
+                "rate_limits": 0,
+                "schema_metadata": 1
+            },
+            "schemaVersion": 1,
+            "reservedSyntheticAccountCounts": {
+                "nativeDataHarness": 0,
+                "nativeRaceHarness": 0,
+                "realAccountBrowserHarness": 0,
+                "realCompetitionBrowserHarness": 0
+            },
+            "unclassifiedAccountCount": 0,
+            "rawEvidenceRows": 0,
+            "rankedResultCount": 0,
+            "deletedSubmissionReceiptCount": 0,
+            "ongoingRoomCount": 0
+        },
+        "audit": {
+            "database": "sparowtype_audit",
+            "tableCounts": {
+                "users": 0,
+                "user_preferences": 0,
+                "typing_sessions": 0,
+                "submission_receipts": 0,
+                "typing_challenges": 0,
+                "race_sessions": 0,
+                "race_outcomes": 0,
+                "race_match_locks": 4,
+                "rate_limits": 27,
+                "schema_metadata": 1
+            },
+            "schemaVersion": 1,
+            "reservedSyntheticAccountCounts": {
+                "nativeDataHarness": 0,
+                "nativeRaceHarness": 0,
+                "realAccountBrowserHarness": 0,
+                "realCompetitionBrowserHarness": 0
+            },
+            "unclassifiedAccountCount": 0,
+            "rawEvidenceRows": 0,
+            "rankedResultCount": 0,
+            "deletedSubmissionReceiptCount": 0,
+            "ongoingRoomCount": 0
+        }
+    }
+}

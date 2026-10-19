@@ -23,6 +23,8 @@ let state: PwaState = {
 };
 const listeners = new Set<() => void>();
 let registration: ServiceWorkerRegistration | null = null;
+const registrationRequests = new Set<Promise<ServiceWorkerRegistration>>();
+const removalCandidates = new Set<ServiceWorkerRegistration>();
 let installPrompt: InstallPrompt | null = null;
 let cleanup: (() => void) | null = null;
 let explicitReload = false;
@@ -122,10 +124,19 @@ export function startPwa(enabled = import.meta.env.PROD): () => void {
   });
   const generation = ++registerGeneration;
   navigator.serviceWorker.addEventListener("controllerchange", changed);
-  void navigator.serviceWorker
-    .register("/sw.js", { scope: "/", updateViaCache: "none" })
+  const requested = navigator.serviceWorker.register("/sw.js", {
+    scope: "/",
+    updateViaCache: "none",
+  });
+  registrationRequests.add(requested);
+  void requested
     .then(async (value) => {
-      if (generation !== registerGeneration) return;
+      if (generation !== registerGeneration) {
+        // A timed-out removal must still be able to find this late result on
+        // retry. Do not revive its readiness/status observers.
+        removalCandidates.add(value);
+        return;
+      }
       registration = value;
       const refresh = async () => {
         const ready = await hasOfflineApp();
@@ -178,6 +189,9 @@ export function startPwa(enabled = import.meta.env.PROD): () => void {
           message:
             "Offline files could not be prepared. Your local results are unchanged. Reconnect and try the offline controls again.",
         });
+    })
+    .finally(() => {
+      registrationRequests.delete(requested);
     });
   return cleanup;
 }
@@ -232,13 +246,57 @@ export function applyPwaUpdate(): void {
   explicitReload = true;
   registration.waiting.postMessage({ type: "ACTIVATE_UPDATE" });
 }
+function waitForInstaller(worker: ServiceWorker | null): Promise<void> {
+  if (!worker || ["installed", "activated", "redundant"].includes(worker.state))
+    return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const stop = () => {
+      clearTimeout(timer);
+      worker.removeEventListener("statechange", changed);
+    };
+    const changed = () => {
+      if (!["installed", "activated", "redundant"].includes(worker.state)) return;
+      stop();
+      resolve();
+    };
+    const timer = setTimeout(() => {
+      stop();
+      reject(new Error("The offline installer is still running."));
+    }, 10_000);
+    worker.addEventListener("statechange", changed);
+    changed();
+  });
+}
+function boundedRemovalWait<T>(pending: Promise<T>): Promise<T> {
+  let timer: ReturnType<typeof setTimeout>;
+  const deadline = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => {
+      reject(new Error("The browser did not finish the offline operation."));
+    }, 10_000);
+  });
+  return Promise.race([pending, deadline]).finally(() => clearTimeout(timer));
+}
 /** Removes only this app's public downloads; IndexedDB/history/preferences are untouched. */
 export async function clearPwaDownload(): Promise<void> {
+  // Registration and cache installation can still be in flight when the user
+  // removes a download. Finish cancelling that installer before deleting its
+  // files, otherwise it can write the download back after removal succeeds.
+  const requested = [...registrationRequests];
+  if (registration) removalCandidates.add(registration);
   registerGeneration++;
-  const current = registration;
+  explicitReload = false;
+  reloading = false;
   registration = null;
   try {
-    if (current) await current.unregister();
+    const resolved = await boundedRemovalWait(Promise.allSettled(requested));
+    for (const result of resolved)
+      if (result.status === "fulfilled") removalCandidates.add(result.value);
+    for (const current of [...removalCandidates]) {
+      const installing = current.installing;
+      await boundedRemovalWait(current.unregister());
+      await waitForInstaller(installing);
+      removalCandidates.delete(current);
+    }
     if (typeof caches !== "undefined")
       await Promise.all(
         (await caches.keys())
@@ -255,7 +313,7 @@ export async function clearPwaDownload(): Promise<void> {
     update({
       phase: "error",
       message:
-        "Some public offline files could not be removed. Use your browser’s site controls if needed; typing history was not reset.",
+        "Some public offline files could not be removed. Retry removal when the browser finishes its download, or use your browser’s site controls; typing history was not reset.",
     });
   }
 }

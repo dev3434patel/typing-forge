@@ -422,7 +422,10 @@ export default function KeyboardLab() {
           </p>
           <div
             className="mt-4 space-y-1.5 overflow-x-auto pb-3"
+            role="region"
+            tabIndex={0}
             aria-label="Physical key observations"
+            aria-describedby="keyboard-observation-help"
           >
             <div className="min-w-[640px] space-y-1.5">
               {LAB_ROWS.map((row, rowIndex) => (
@@ -465,7 +468,7 @@ export default function KeyboardLab() {
               ))}
             </div>
           </div>
-          <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+          <p id="keyboard-observation-help" className="mt-2 text-xs leading-relaxed text-muted-foreground">
             Neutral = not observed · tinted = observed · solid = currently down.
             The diagram uses a common desktop arrangement; compact, ISO, split
             and mobile keyboards may differ. An unseen key or missed keyup does
@@ -538,7 +541,12 @@ export default function KeyboardLab() {
             changes and gaps over two seconds are excluded. Readings below
             include both lab inputs.
           </p>
-          <div className="mt-6 overflow-x-auto">
+          <div
+            className="mt-6 overflow-x-auto"
+            role="region"
+            tabIndex={0}
+            aria-label="Observed transition intervals"
+          >
             <table className="w-full text-left text-sm">
               <caption className="sr-only">
                 Observed transition intervals in this lab session

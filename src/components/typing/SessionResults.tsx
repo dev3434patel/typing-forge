@@ -642,7 +642,7 @@ export function SessionResults({
                 onClick={onCloudConsent}
               >
                 <Lock size={13} />
-                Allow this text in cloud storage
+                Allow this text in account storage
               </button>
             )}
         </div>

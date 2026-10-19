@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-19T17:15:30.569Z",
+  "backend": "native PHP8.2 + MariaDB10.4 PDO",
+  "checks": [
+    {
+      "name": "guest session, real CSRF token and HttpOnly SameSite cookie",
+      "status": "PASS"
+    },
+    {
+      "name": "state changes reject invalid CSRF",
+      "status": "PASS"
+    },
+    {
+      "name": "foreign credentialed origins are rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "real signup stores a password_hash and rotates session/CSRF",
+      "status": "PASS"
+    },
+    {
+      "name": "anonymous and wrong-owner account reads are blocked",
+      "status": "PASS"
+    },
+    {
+      "name": "public handles are validated and uniquely owned",
+      "status": "PASS"
+    },
+    {
+      "name": "preference optimistic locking, valid choices and invalid-type rejection",
+      "status": "PASS"
+    },
+    {
+      "name": "native replay preserves corrected errors, rejects tampering and deduplicates immutable uploads",
+      "status": "PASS"
+    },
+    {
+      "name": "history projections preserve metrics and stay account scoped",
+      "status": "PASS"
+    },
+    {
+      "name": "private text needs explicit consent and expires while retaining its summary",
+      "status": "PASS"
+    },
+    {
+      "name": "owner-bound session deletion and durable upload tombstones",
+      "status": "PASS"
+    },
+    {
+      "name": "real signout/signin and significant password bytes beyond bcrypt72",
+      "status": "PASS"
+    },
+    {
+      "name": "explicit account deletion invalidates its cookie without touching another account",
+      "status": "PASS"
+    },
+    {
+      "name": "personal practice cannot manufacture ranked entries; ranking period inputs are validated",
+      "status": "PASS"
+    },
+    {
+      "name": "database-backed authentication rate limit enforces its configured boundary",
+      "status": "PASS"
+    }
+  ],
+  "passed": 15,
+  "failed": 0,
+  "syntheticAccounts": true,
+  "externalDeployment": false
+}

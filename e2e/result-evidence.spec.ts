@@ -1,6 +1,5 @@
 import { test, expect } from "@playwright/test";
 import { completeCorrectedCat, exportedResult, focusTyping } from "./helpers";
-import { mkdir } from "node:fs/promises";
 
 test.beforeEach(async ({ page }) => {
   await page.addInitScript(() =>
@@ -50,9 +49,8 @@ test("results explain both accuracy denominators and replay corrections without 
       () => document.documentElement.scrollWidth <= innerWidth,
     ),
   ).toBe(true);
-  await mkdir("audit/accuracy-research-2026-10-15", { recursive: true });
   await page.screenshot({
-    path: `audit/accuracy-research-2026-10-15/result-evidence-${testInfo.project.name}.png`,
+    path: test.info().outputPath(`result-evidence-${testInfo.project.name}.png`),
     fullPage: true,
   });
 });

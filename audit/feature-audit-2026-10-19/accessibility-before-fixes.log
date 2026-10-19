@@ -1,0 +1,268 @@
+
+Running 2 tests using 1 worker
+
+(node:17812) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [chromium] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 390px (7.8s)
+(node:32104) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 [chromium] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 1440px (9.0s)
+
+
+  1) [chromium] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 390px 
+
+    Error: /auth at 390px: [{"id":"color-contrast","impact":"serious","help":"Elements must meet minimum color contrast ratio thresholds","nodes":[{"target":[".brand-wordmark > span:nth-child(1)"],"failureSummary":"Fix any of the following:\n  Element has insufficient color contrast of 2.2 (foreground color: #48484b, background color: #07070a, font size: 18.0pt (24px), font weight: bold). Expected contrast ratio of 3:1"},{"target":[".brand-wordmark-accent"],"failureSummary":"Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #3d4d18, background color: #07070a, font size: 18.0pt (24px), font weight: bold). Expected contrast ratio of 3:1"},{"target":["h1"],"failureSummary":"Fix any of the following:\n  Element has insufficient color contrast of 2.2 (foreground color: #48484b, background color: #07070a, font size: 22.5pt (30px), font weight: bold). Expected contrast ratio of 3:1"},{"target":[".mb-8 > p"],"failureSummary":"Fix any of the following:\n  Element has insufficient color contrast of 1.45 (foreground color: #2c2c34, background color: #07070a, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"},{"target":[".hover\\:bg-accent"],"failureSummary":"Fix any of the following:\n  Element has insufficient color contrast of 2.2 (foreground color: #48484b, background color: #07070a, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"},{"target":[".my-5"],"failureSummary":"Fix any of the following:\n  Element has insufficient color contrast of 1.43 (foreground color: #2c2c34, background color: #09090d, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"},{"target":["label[for=\"email\"]"],"failureSummary":"Fix any of the following:\n  Element has insufficient color contrast of 2.18 (foreground color: #48484b, background color: #09090d, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"},{"target":["label[for=\"password\"]"],"failureSummary":"Fix any of the following:\n  Element has insufficient color contrast of 2.18 (foreground color: #48484b, background color: #09090d, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"},{"target":[".bg-primary"],"failureSummary":"Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #07070a, background color: #3d4d18, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"},{"target":[".hover\\:text-foreground[type=\"button\"]"],"failureSummary":"Fix any of the following:\n  Element has insufficient color contrast of 1.43 (foreground color: #2c2c34, background color: #09090d, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"},{"target":["a"],"failureSummary":"Fix any of the following:\n  Element has insufficient color contrast of 1.45 (foreground color: #2c2c34, background color: #07070a, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"}]}]
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 86
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 2.2 (foreground color: #48484b, background color: #07070a, font size: 18.0pt (24px), font weight: bold). Expected contrast ratio of 3:1",
+    +         "target": Array [
+    +           ".brand-wordmark > span:nth-child(1)",
+    +         ],
+    +       },
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 2.17 (foreground color: #3d4d18, background color: #07070a, font size: 18.0pt (24px), font weight: bold). Expected contrast ratio of 3:1",
+    +         "target": Array [
+    +           ".brand-wordmark-accent",
+    +         ],
+    +       },
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 2.2 (foreground color: #48484b, background color: #07070a, font size: 22.5pt (30px), font weight: bold). Expected contrast ratio of 3:1",
+    +         "target": Array [
+    +           "h1",
+    +         ],
+    +       },
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 1.45 (foreground color: #2c2c34, background color: #07070a, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "target": Array [
+    +           ".mb-8 > p",
+    +         ],
+    +       },
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 2.2 (foreground color: #48484b, background color: #07070a, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "target": Array [
+    +           ".hover\\:bg-accent",
+    +         ],
+    +       },
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 1.43 (foreground color: #2c2c34, background color: #09090d, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "target": Array [
+    +           ".my-5",
+    +         ],
+    +       },
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 2.18 (foreground color: #48484b, background color: #09090d, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "target": Array [
+    +           "label[for=\"email\"]",
+    +         ],
+    +       },
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 2.18 (foreground color: #48484b, background color: #09090d, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "target": Array [
+    +           "label[for=\"password\"]",
+    +         ],
+    +       },
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 2.17 (foreground color: #07070a, background color: #3d4d18, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "target": Array [
+    +           ".bg-primary",
+    +         ],
+    +       },
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 1.43 (foreground color: #2c2c34, background color: #09090d, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "target": Array [
+    +           ".hover\\:text-foreground[type=\"button\"]",
+    +         ],
+    +       },
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 1.45 (foreground color: #2c2c34, background color: #07070a, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "target": Array [
+    +           "a",
+    +         ],
+    +       },
+    +     ],
+    +   },
+    + ]
+
+      38 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: "application/json",
+      39 |       });
+    > 40 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);
+         |                                                                                                      ^
+      41 |     }
+      42 |     await info.attach("automated-accessibility-scope", {
+      43 |       body: JSON.stringify({ receipts, limitation: "Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance." }, null, 2),
+        at D:\extra\typing_updated\typing-forge\e2e\accessibility-audit.spec.ts:40:102
+
+    Error: /keyboard-lab at 390px: [{"id":"scrollable-region-focusable","impact":"serious","help":"Scrollable region must have keyboard access","nodes":[{"target":["div[aria-label=\"Physical key observations\"]"],"failureSummary":"Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"}]}]
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 17
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "help": "Scrollable region must have keyboard access",
+    +     "id": "scrollable-region-focusable",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Element should have focusable content
+    +   Element should be focusable",
+    +         "target": Array [
+    +           "div[aria-label=\"Physical key observations\"]",
+    +         ],
+    +       },
+    +     ],
+    +   },
+    + ]
+
+      38 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: "application/json",
+      39 |       });
+    > 40 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);
+         |                                                                                                      ^
+      41 |     }
+      42 |     await info.attach("automated-accessibility-scope", {
+      43 |       body: JSON.stringify({ receipts, limitation: "Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance." }, null, 2),
+        at D:\extra\typing_updated\typing-forge\e2e\accessibility-audit.spec.ts:40:102
+
+    attachment #19: screenshot (image/png) ─────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\accessibility-before-artifacts\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\feature-audit-2026-10-19\accessibility-before-artifacts\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-chromium\error-context.md
+
+    attachment #21: trace (application/zip) ────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\accessibility-before-artifacts\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\feature-audit-2026-10-19\accessibility-before-artifacts\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 1440px 
+
+    Error: /auth at 1440px: [{"id":"color-contrast","impact":"serious","help":"Elements must meet minimum color contrast ratio thresholds","nodes":[{"target":[".mb-8 > p"],"failureSummary":"Fix any of the following:\n  Element has insufficient color contrast of 1.84 (foreground color: #3c3c46, background color: #07070a, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"},{"target":[".hover\\:bg-accent"],"failureSummary":"Fix any of the following:\n  Element has insufficient color contrast of 3.36 (foreground color: #636367, background color: #07070a, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"},{"target":[".my-5"],"failureSummary":"Fix any of the following:\n  Element has insufficient color contrast of 1.81 (foreground color: #3c3c46, background color: #0a0a0e, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"},{"target":["label[for=\"email\"]"],"failureSummary":"Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #636367, background color: #0a0a0e, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"},{"target":["label[for=\"password\"]"],"failureSummary":"Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #636367, background color: #0a0a0e, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"},{"target":[".bg-primary"],"failureSummary":"Fix any of the following:\n  Element has insufficient color contrast of 3.35 (foreground color: #07070a, background color: #546b1f, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"},{"target":[".hover\\:text-foreground[type=\"button\"]"],"failureSummary":"Fix any of the following:\n  Element has insufficient color contrast of 1.81 (foreground color: #3c3c46, background color: #0a0a0e, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"},{"target":["a"],"failureSummary":"Fix any of the following:\n  Element has insufficient color contrast of 1.84 (foreground color: #3c3c46, background color: #07070a, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"}]}]
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 65
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 1.84 (foreground color: #3c3c46, background color: #07070a, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "target": Array [
+    +           ".mb-8 > p",
+    +         ],
+    +       },
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.36 (foreground color: #636367, background color: #07070a, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "target": Array [
+    +           ".hover\\:bg-accent",
+    +         ],
+    +       },
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 1.81 (foreground color: #3c3c46, background color: #0a0a0e, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "target": Array [
+    +           ".my-5",
+    +         ],
+    +       },
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.3 (foreground color: #636367, background color: #0a0a0e, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "target": Array [
+    +           "label[for=\"email\"]",
+    +         ],
+    +       },
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.3 (foreground color: #636367, background color: #0a0a0e, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "target": Array [
+    +           "label[for=\"password\"]",
+    +         ],
+    +       },
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.35 (foreground color: #07070a, background color: #546b1f, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "target": Array [
+    +           ".bg-primary",
+    +         ],
+    +       },
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 1.81 (foreground color: #3c3c46, background color: #0a0a0e, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "target": Array [
+    +           ".hover\\:text-foreground[type=\"button\"]",
+    +         ],
+    +       },
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 1.84 (foreground color: #3c3c46, background color: #07070a, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "target": Array [
+    +           "a",
+    +         ],
+    +       },
+    +     ],
+    +   },
+    + ]
+
+      38 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: "application/json",
+      39 |       });
+    > 40 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);
+         |                                                                                                      ^
+      41 |     }
+      42 |     await info.attach("automated-accessibility-scope", {
+      43 |       body: JSON.stringify({ receipts, limitation: "Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance." }, null, 2),
+        at D:\extra\typing_updated\typing-forge\e2e\accessibility-audit.spec.ts:40:102
+
+    attachment #19: screenshot (image/png) ─────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\accessibility-before-artifacts\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\feature-audit-2026-10-19\accessibility-before-artifacts\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-chromium\error-context.md
+
+    attachment #21: trace (application/zip) ────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\accessibility-before-artifacts\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\feature-audit-2026-10-19\accessibility-before-artifacts\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 390px 
+    [chromium] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 1440px 

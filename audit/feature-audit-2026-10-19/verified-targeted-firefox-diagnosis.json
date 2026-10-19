@@ -1,0 +1,23 @@
+{
+  "build": "e207 public build",
+  "report": "verified-targeted.json",
+  "method": "Read-only trace and HTTP response inspection; no new browser or build run.",
+  "findings": [
+    {
+      "test": "ordinary-clock cold startup and reload",
+      "cause": "Fixture required HTTP 200; Firefox reload correctly returned HTTP 304 Not Modified.",
+      "evidence": "qphl@722 through qphl@742 passed cold ready/loader hidden/focus/first input/running. Reload qphl@746 completed, then qphl@748 immediately failed line 193 with received 304. No driver stall.",
+      "fix": "Navigation assertion accepts only 200 or 304; receipts now include responseStatus. All existing readiness, focus, input, running, reload, and page-error assertions remain.",
+      "verificationRemaining": "Rerun the complete unchanged interaction flow after the fixture correction; reload input assertions were not reached in the failed receipt."
+    },
+    {
+      "test": "real PHP account lifecycle",
+      "cause": "Dedicated acceptance environment signup allowance was exhausted; signup returned HTTP 429.",
+      "evidence": "Signup at monotonic 141896.378 returned Retry-After 432 and JSON error rate-limit. Response wait completed, then cookie-header assertion qtwu@64 failed immediately. Prior auth/session HTTP 200 emitted HttpOnly; SameSite=Lax. No account lifecycle or Profile assertions reached, and no driver stall.",
+      "relatedWebKitAttempt": "The final targeted WebKit signup also returned HTTP 429, Retry-After 364, with the same error.",
+      "verificationRemaining": "Root will reset only the dedicated audit signup allowance or await reset, then rerun full account lifecycle. Keep production rate limiting and preserve the native 429 acceptance evidence."
+    }
+  ],
+  "confirmedProductDefects": [],
+  "limits": "These receipts cannot establish full account or reload success. Earlier protocol-stall and WebKit recovery failures remain separate observations and are not relabelled by these results."
+}

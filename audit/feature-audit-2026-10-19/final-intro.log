@@ -1,0 +1,379 @@
+
+Running 120 tests using 1 worker
+
+(node:28404) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok   1 [chromium] › e2e\caret-handoff-readiness.spec.ts:10:3 › real delayed workspace within readiness window keeps automatic handoff and first input safe (4.4s)
+  ok   2 [chromium] › e2e\caret-handoff-readiness.spec.ts:10:3 › real delayed workspace after readiness deadline keeps automatic handoff and first input safe (8.9s)
+  ok   3 [chromium] › e2e\caret-handoff-readiness.spec.ts:138:1 › an actual caret module arriving after its import deadline cannot revive decoration or consume the first key (8.6s)
+  ok   4 [chromium] › e2e\opening-experience.spec.ts:92:1 › full opening gates practice and returning visitors receive the 900ms wordmark (10.3s)
+  ok   5 [chromium] › e2e\opening-experience.spec.ts:111:1 › ordinary letters, Enter, Escape and Space skip without input leakage while Tab preserves focus (2.2s)
+  ok   6 [chromium] › e2e\opening-experience.spec.ts:153:1 › a replay during the closing fade owns its lifetime instead of inheriting the previous exit timer (3.7s)
+  ok   7 [chromium] › e2e\opening-experience.spec.ts:176:1 › automatic caret handoff leaves the first real keystroke available to practice (4.3s)
+  ok   8 [chromium] › e2e\opening-experience.spec.ts:210:3 › caret handoff blocked chunk preserves input and the real caret (4.1s)
+  ok   9 [chromium] › e2e\opening-experience.spec.ts:210:3 › caret handoff late chunk preserves input and the real caret (4.4s)
+  ok  10 [chromium] › e2e\opening-experience.spec.ts:210:3 › caret handoff animation API preserves input and the real caret (4.3s)
+  ok  11 [chromium] › e2e\opening-experience.spec.ts:269:3 › touch entry › a tap on the composition skips and leaves practice ready (852ms)
+  ok  12 [chromium] › e2e\opening-experience.spec.ts:280:3 › system reduced motion uses the 300ms wordmark without downloading WebGL (719ms)
+  ok  13 [chromium] › e2e\opening-experience.spec.ts:280:3 › device preference reduced motion uses the 300ms wordmark without downloading WebGL (754ms)
+  ok  14 [chromium] › e2e\opening-experience.spec.ts:312:1 › deep links remain immediate and a device opt-out persists through manual replay (1.3s)
+  ok  15 [chromium] › e2e\opening-experience.spec.ts:348:1 › blocked browser storage and unavailable WebGL retain a complete fallback keyboard (936ms)
+  ok  16 [chromium] › e2e\opening-experience.spec.ts:399:1 › native WebGL renders 61 instanced caps, then disposes before practice mounts (5.1s)
+  ok  17 [chromium] › e2e\opening-experience.spec.ts:434:1 › native context loss switches to fallback and preserves ready practice (10.1s)
+  ok  18 [chromium] › e2e\opening-experience.spec.ts:470:1 › five full reload cycles close their native canvas resources before entry (24.2s)
+  ok  19 [chromium] › e2e\opening-low-power.spec.ts:7:1 › low-power WebGL precompiles asynchronously and disposes without a scored skip key (2.7s)
+  ok  20 [chromium] › e2e\opening-single-keyboard.spec.ts:44:1 › a late real 3D scene gets its complete keyboard and wordmark choreography without a preliminary keyboard (28.3s)
+  ok  21 [chromium] › e2e\opening-single-keyboard.spec.ts:173:1 › a genuinely unavailable scene retains the complete recovery keyboard and usable practice (909ms)
+  ok  22 [chromium] › e2e\opening-single-keyboard.spec.ts:201:1 › a scene that never prepares exits once at the bounded watchdog without a preliminary keyboard (916ms)
+  ok  23 [chromium] › e2e\opening-single-keyboard.spec.ts:241:1 › the normal-clock production worker shows the creative 3D keyboard through wordmark typing and automatic entry (7.4s)
+  ok  24 [chromium] › e2e\opening-worker.spec.ts:302:1 › default native worker draws the complete keyboard while document tasks, resize and skip remain responsive (4.8s)
+  ok  25 [chromium] › e2e\opening-worker.spec.ts:399:1 › native worker acknowledges real resource disposal at an explicitly idle renderer boundary (4.6s)
+  ok  26 [chromium] › e2e\opening-worker.spec.ts:529:1 › five consecutive native-worker startup reloads close each prior owner and final skip closes the last worker (12.2s)
+  ok  27 [chromium] › e2e\opening-worker.spec.ts:680:1 › skipping while the native worker entry is blocked terminates startup and preserves the first typing key (1.1s)
+  ok  28 [chromium] › e2e\opening-worker.spec.ts:740:1 › a native worker transport failure replaces the transferred canvas with the complete real document renderer (7.9s)
+  x   29 [chromium] › e2e\opening-worker.spec.ts:985:1 › actual worker WebGL context loss during preparation recovers with a fresh canvas and keeps practice usable (7.4s)
+(node:45788) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  30 [chromium] › e2e\opening-worker.spec.ts:991:1 › actual worker WebGL context loss after live frames recovers with a fresh canvas and keeps practice usable (7.8s)
+(node:39016) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  31 [edge] › e2e\caret-handoff-readiness.spec.ts:10:3 › real delayed workspace within readiness window keeps automatic handoff and first input safe (2.8s)
+  ok  32 [edge] › e2e\caret-handoff-readiness.spec.ts:10:3 › real delayed workspace after readiness deadline keeps automatic handoff and first input safe (1.6s)
+  ok  33 [edge] › e2e\caret-handoff-readiness.spec.ts:138:1 › an actual caret module arriving after its import deadline cannot revive decoration or consume the first key (1.5s)
+  ok  34 [edge] › e2e\opening-experience.spec.ts:92:1 › full opening gates practice and returning visitors receive the 900ms wordmark (2.0s)
+  ok  35 [edge] › e2e\opening-experience.spec.ts:111:1 › ordinary letters, Enter, Escape and Space skip without input leakage while Tab preserves focus (2.7s)
+  ok  36 [edge] › e2e\opening-experience.spec.ts:153:1 › a replay during the closing fade owns its lifetime instead of inheriting the previous exit timer (1.0s)
+  ok  37 [edge] › e2e\opening-experience.spec.ts:176:1 › automatic caret handoff leaves the first real keystroke available to practice (1.6s)
+  ok  38 [edge] › e2e\opening-experience.spec.ts:210:3 › caret handoff blocked chunk preserves input and the real caret (1.6s)
+  ok  39 [edge] › e2e\opening-experience.spec.ts:210:3 › caret handoff late chunk preserves input and the real caret (1.6s)
+  ok  40 [edge] › e2e\opening-experience.spec.ts:210:3 › caret handoff animation API preserves input and the real caret (1.8s)
+  ok  41 [edge] › e2e\opening-experience.spec.ts:269:3 › touch entry › a tap on the composition skips and leaves practice ready (999ms)
+  ok  42 [edge] › e2e\opening-experience.spec.ts:280:3 › system reduced motion uses the 300ms wordmark without downloading WebGL (871ms)
+  ok  43 [edge] › e2e\opening-experience.spec.ts:280:3 › device preference reduced motion uses the 300ms wordmark without downloading WebGL (833ms)
+  ok  44 [edge] › e2e\opening-experience.spec.ts:312:1 › deep links remain immediate and a device opt-out persists through manual replay (1.5s)
+  ok  45 [edge] › e2e\opening-experience.spec.ts:348:1 › blocked browser storage and unavailable WebGL retain a complete fallback keyboard (1.1s)
+  ok  46 [edge] › e2e\opening-experience.spec.ts:399:1 › native WebGL renders 61 instanced caps, then disposes before practice mounts (1.4s)
+  ok  47 [edge] › e2e\opening-experience.spec.ts:434:1 › native context loss switches to fallback and preserves ready practice (1.4s)
+  ok  48 [edge] › e2e\opening-experience.spec.ts:470:1 › five full reload cycles close their native canvas resources before entry (6.7s)
+  ok  49 [edge] › e2e\opening-low-power.spec.ts:7:1 › low-power WebGL precompiles asynchronously and disposes without a scored skip key (1.7s)
+  ok  50 [edge] › e2e\opening-single-keyboard.spec.ts:44:1 › a late real 3D scene gets its complete keyboard and wordmark choreography without a preliminary keyboard (6.1s)
+  ok  51 [edge] › e2e\opening-single-keyboard.spec.ts:173:1 › a genuinely unavailable scene retains the complete recovery keyboard and usable practice (1.1s)
+  ok  52 [edge] › e2e\opening-single-keyboard.spec.ts:201:1 › a scene that never prepares exits once at the bounded watchdog without a preliminary keyboard (1.1s)
+  ok  53 [edge] › e2e\opening-single-keyboard.spec.ts:241:1 › the normal-clock production worker shows the creative 3D keyboard through wordmark typing and automatic entry (5.6s)
+  ok  54 [edge] › e2e\opening-worker.spec.ts:302:1 › default native worker draws the complete keyboard while document tasks, resize and skip remain responsive (2.4s)
+  ok  55 [edge] › e2e\opening-worker.spec.ts:399:1 › native worker acknowledges real resource disposal at an explicitly idle renderer boundary (2.1s)
+  ok  56 [edge] › e2e\opening-worker.spec.ts:529:1 › five consecutive native-worker startup reloads close each prior owner and final skip closes the last worker (2.5s)
+  ok  57 [edge] › e2e\opening-worker.spec.ts:680:1 › skipping while the native worker entry is blocked terminates startup and preserves the first typing key (1.3s)
+  ok  58 [edge] › e2e\opening-worker.spec.ts:740:1 › a native worker transport failure replaces the transferred canvas with the complete real document renderer (3.0s)
+  ok  59 [edge] › e2e\opening-worker.spec.ts:985:1 › actual worker WebGL context loss during preparation recovers with a fresh canvas and keeps practice usable (2.3s)
+  ok  60 [edge] › e2e\opening-worker.spec.ts:991:1 › actual worker WebGL context loss after live frames recovers with a fresh canvas and keeps practice usable (3.1s)
+(node:48048) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  61 [firefox] › e2e\caret-handoff-readiness.spec.ts:10:3 › real delayed workspace within readiness window keeps automatic handoff and first input safe (10.7s)
+  ok  62 [firefox] › e2e\caret-handoff-readiness.spec.ts:10:3 › real delayed workspace after readiness deadline keeps automatic handoff and first input safe (5.1s)
+  ok  63 [firefox] › e2e\caret-handoff-readiness.spec.ts:138:1 › an actual caret module arriving after its import deadline cannot revive decoration or consume the first key (5.2s)
+  ok  64 [firefox] › e2e\opening-experience.spec.ts:92:1 › full opening gates practice and returning visitors receive the 900ms wordmark (5.5s)
+  ok  65 [firefox] › e2e\opening-experience.spec.ts:111:1 › ordinary letters, Enter, Escape and Space skip without input leakage while Tab preserves focus (4.6s)
+  ok  66 [firefox] › e2e\opening-experience.spec.ts:153:1 › a replay during the closing fade owns its lifetime instead of inheriting the previous exit timer (4.5s)
+  ok  67 [firefox] › e2e\opening-experience.spec.ts:176:1 › automatic caret handoff leaves the first real keystroke available to practice (4.8s)
+  ok  68 [firefox] › e2e\opening-experience.spec.ts:210:3 › caret handoff blocked chunk preserves input and the real caret (3.3s)
+  ok  69 [firefox] › e2e\opening-experience.spec.ts:210:3 › caret handoff late chunk preserves input and the real caret (3.1s)
+  ok  70 [firefox] › e2e\opening-experience.spec.ts:210:3 › caret handoff animation API preserves input and the real caret (3.4s)
+  ok  71 [firefox] › e2e\opening-experience.spec.ts:269:3 › touch entry › a tap on the composition skips and leaves practice ready (1.1s)
+  ok  72 [firefox] › e2e\opening-experience.spec.ts:280:3 › system reduced motion uses the 300ms wordmark without downloading WebGL (1.1s)
+  ok  73 [firefox] › e2e\opening-experience.spec.ts:280:3 › device preference reduced motion uses the 300ms wordmark without downloading WebGL (1.1s)
+  ok  74 [firefox] › e2e\opening-experience.spec.ts:312:1 › deep links remain immediate and a device opt-out persists through manual replay (1.9s)
+  ok  75 [firefox] › e2e\opening-experience.spec.ts:348:1 › blocked browser storage and unavailable WebGL retain a complete fallback keyboard (1.3s)
+  ok  76 [firefox] › e2e\opening-experience.spec.ts:399:1 › native WebGL renders 61 instanced caps, then disposes before practice mounts (3.1s)
+  x   77 [firefox] › e2e\opening-experience.spec.ts:434:1 › native context loss switches to fallback and preserves ready practice (840ms)
+(node:43620) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   78 [firefox] › e2e\opening-experience.spec.ts:470:1 › five full reload cycles close their native canvas resources before entry (1.4s)
+(node:11068) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   79 [firefox] › e2e\opening-low-power.spec.ts:7:1 › low-power WebGL precompiles asynchronously and disposes without a scored skip key (1.3s)
+(node:18020) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   80 [firefox] › e2e\opening-single-keyboard.spec.ts:44:1 › a late real 3D scene gets its complete keyboard and wordmark choreography without a preliminary keyboard (1.3s)
+(node:14500) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  81 [firefox] › e2e\opening-single-keyboard.spec.ts:173:1 › a genuinely unavailable scene retains the complete recovery keyboard and usable practice (3.0s)
+  ok  82 [firefox] › e2e\opening-single-keyboard.spec.ts:201:1 › a scene that never prepares exits once at the bounded watchdog without a preliminary keyboard (1.4s)
+  x   83 [firefox] › e2e\opening-single-keyboard.spec.ts:241:1 › the normal-clock production worker shows the creative 3D keyboard through wordmark typing and automatic entry (15.2s)
+(node:43616) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  84 [firefox] › e2e\opening-worker.spec.ts:302:1 › default native worker draws the complete keyboard while document tasks, resize and skip remain responsive (5.0s)
+  ok  85 [firefox] › e2e\opening-worker.spec.ts:399:1 › native worker acknowledges real resource disposal at an explicitly idle renderer boundary (4.8s)
+  ok  86 [firefox] › e2e\opening-worker.spec.ts:529:1 › five consecutive native-worker startup reloads close each prior owner and final skip closes the last worker (3.6s)
+  x   87 [firefox] › e2e\opening-worker.spec.ts:680:1 › skipping while the native worker entry is blocked terminates startup and preserves the first typing key (6.9s)
+(node:48744) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  88 [firefox] › e2e\opening-worker.spec.ts:740:1 › a native worker transport failure replaces the transferred canvas with the complete real document renderer (8.5s)
+  ok  89 [firefox] › e2e\opening-worker.spec.ts:985:1 › actual worker WebGL context loss during preparation recovers with a fresh canvas and keeps practice usable (6.0s)
+  ok  90 [firefox] › e2e\opening-worker.spec.ts:991:1 › actual worker WebGL context loss after live frames recovers with a fresh canvas and keeps practice usable (8.3s)
+(node:3276) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  91 [webkit] › e2e\caret-handoff-readiness.spec.ts:10:3 › real delayed workspace within readiness window keeps automatic handoff and first input safe (6.4s)
+  ok  92 [webkit] › e2e\caret-handoff-readiness.spec.ts:10:3 › real delayed workspace after readiness deadline keeps automatic handoff and first input safe (7.1s)
+  ok  93 [webkit] › e2e\caret-handoff-readiness.spec.ts:138:1 › an actual caret module arriving after its import deadline cannot revive decoration or consume the first key (8.2s)
+  ok  94 [webkit] › e2e\opening-experience.spec.ts:92:1 › full opening gates practice and returning visitors receive the 900ms wordmark (10.7s)
+  ok  95 [webkit] › e2e\opening-experience.spec.ts:111:1 › ordinary letters, Enter, Escape and Space skip without input leakage while Tab preserves focus (7.9s)
+  ok  96 [webkit] › e2e\opening-experience.spec.ts:153:1 › a replay during the closing fade owns its lifetime instead of inheriting the previous exit timer (7.1s)
+  ok  97 [webkit] › e2e\opening-experience.spec.ts:176:1 › automatic caret handoff leaves the first real keystroke available to practice (11.8s)
+  ok  98 [webkit] › e2e\opening-experience.spec.ts:210:3 › caret handoff blocked chunk preserves input and the real caret (6.0s)
+  ok  99 [webkit] › e2e\opening-experience.spec.ts:210:3 › caret handoff late chunk preserves input and the real caret (6.2s)
+  ok 100 [webkit] › e2e\opening-experience.spec.ts:210:3 › caret handoff animation API preserves input and the real caret (6.9s)
+  ok 101 [webkit] › e2e\opening-experience.spec.ts:269:3 › touch entry › a tap on the composition skips and leaves practice ready (2.3s)
+  ok 102 [webkit] › e2e\opening-experience.spec.ts:280:3 › system reduced motion uses the 300ms wordmark without downloading WebGL (2.1s)
+  ok 103 [webkit] › e2e\opening-experience.spec.ts:280:3 › device preference reduced motion uses the 300ms wordmark without downloading WebGL (1.6s)
+  ok 104 [webkit] › e2e\opening-experience.spec.ts:312:1 › deep links remain immediate and a device opt-out persists through manual replay (3.6s)
+  ok 105 [webkit] › e2e\opening-experience.spec.ts:348:1 › blocked browser storage and unavailable WebGL retain a complete fallback keyboard (2.8s)
+  ok 106 [webkit] › e2e\opening-experience.spec.ts:399:1 › native WebGL renders 61 instanced caps, then disposes before practice mounts (14.8s)
+  ok 107 [webkit] › e2e\opening-experience.spec.ts:434:1 › native context loss switches to fallback and preserves ready practice (6.1s)
+  ok 108 [webkit] › e2e\opening-experience.spec.ts:470:1 › five full reload cycles close their native canvas resources before entry (26.8s)
+  ok 109 [webkit] › e2e\opening-low-power.spec.ts:7:1 › low-power WebGL precompiles asynchronously and disposes without a scored skip key (4.3s)
+  ok 110 [webkit] › e2e\opening-single-keyboard.spec.ts:44:1 › a late real 3D scene gets its complete keyboard and wordmark choreography without a preliminary keyboard (14.3s)
+  ok 111 [webkit] › e2e\opening-single-keyboard.spec.ts:173:1 › a genuinely unavailable scene retains the complete recovery keyboard and usable practice (2.2s)
+  ok 112 [webkit] › e2e\opening-single-keyboard.spec.ts:201:1 › a scene that never prepares exits once at the bounded watchdog without a preliminary keyboard (2.0s)
+  -  113 [webkit] › e2e\opening-single-keyboard.spec.ts:241:1 › the normal-clock production worker shows the creative 3D keyboard through wordmark typing and automatic entry
+  -  114 [webkit] › e2e\opening-worker.spec.ts:302:1 › default native worker draws the complete keyboard while document tasks, resize and skip remain responsive
+  -  115 [webkit] › e2e\opening-worker.spec.ts:399:1 › native worker acknowledges real resource disposal at an explicitly idle renderer boundary
+  -  116 [webkit] › e2e\opening-worker.spec.ts:529:1 › five consecutive native-worker startup reloads close each prior owner and final skip closes the last worker
+  -  117 [webkit] › e2e\opening-worker.spec.ts:680:1 › skipping while the native worker entry is blocked terminates startup and preserves the first typing key
+  -  118 [webkit] › e2e\opening-worker.spec.ts:740:1 › a native worker transport failure replaces the transferred canvas with the complete real document renderer
+  -  119 [webkit] › e2e\opening-worker.spec.ts:985:1 › actual worker WebGL context loss during preparation recovers with a fresh canvas and keeps practice usable
+  -  120 [webkit] › e2e\opening-worker.spec.ts:991:1 › actual worker WebGL context loss after live frames recovers with a fresh canvas and keeps practice usable
+
+
+  1) [chromium] › e2e\opening-worker.spec.ts:985:1 › actual worker WebGL context loss during preparation recovers with a fresh canvas and keeps practice usable 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      902 |       ),
+      903 |     )
+    > 904 |     .toBe(true);
+          |      ^
+      905 |   if (phase === "live") {
+      906 |     const readActions = () =>
+      907 |       page.evaluate(
+        at nativeContextLoss (D:\extra\typing_updated\typing-forge\e2e\opening-worker.spec.ts:904:6)
+        at D:\extra\typing_updated\typing-forge\e2e\opening-worker.spec.ts:988:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\final-intro-artifacts\opening-worker-actual-work-fe62f-s-and-keeps-practice-usable-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\feature-audit-2026-10-19\final-intro-artifacts\opening-worker-actual-work-fe62f-s-and-keeps-practice-usable-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\final-intro-artifacts\opening-worker-actual-work-fe62f-s-and-keeps-practice-usable-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\feature-audit-2026-10-19\final-intro-artifacts\opening-worker-actual-work-fe62f-s-and-keeps-practice-usable-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [firefox] › e2e\opening-experience.spec.ts:434:1 › native context loss switches to fallback and preserves ready practice 
+
+    Error: clock.pauseAt: Cannot fast-forward to the past
+    _innerFastForwardTo@debugger eval code line 370 > eval:201:13
+    pauseAt@debugger eval code line 370 > eval:132:16
+    async*@debugger eval code line 370 > eval:1:33
+    evaluate@debugger eval code:370:30
+    @debugger eval code:1:44
+    @debugger eval code:1:62
+
+        at _innerFastForwardTo@debugger eval code line 370 > eval:201:13
+        at pauseAt@debugger eval code line 370 > eval:132:16
+        at async*@debugger eval code line 370 > eval:1:33
+        at evaluate@debugger eval code:370:30
+        at @debugger eval code:1:44
+        at @debugger eval code:1:62
+        at holdClock (D:\extra\typing_updated\typing-forge\e2e\opening-experience.spec.ts:18:20)
+        at firstOpening (D:\extra\typing_updated\typing-forge\e2e\opening-experience.spec.ts:23:3)
+        at D:\extra\typing_updated\typing-forge\e2e\opening-experience.spec.ts:438:19
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\final-intro-artifacts\opening-experience-native--d6202-nd-preserves-ready-practice-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\feature-audit-2026-10-19\final-intro-artifacts\opening-experience-native--d6202-nd-preserves-ready-practice-firefox\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\final-intro-artifacts\opening-experience-native--d6202-nd-preserves-ready-practice-firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\feature-audit-2026-10-19\final-intro-artifacts\opening-experience-native--d6202-nd-preserves-ready-practice-firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [firefox] › e2e\opening-experience.spec.ts:470:1 › five full reload cycles close their native canvas resources before entry 
+
+    Error: browserContext.close: Protocol error (Browser.removeBrowserContext): can't access property "_maybeDontRestoreTabs", this[#windows][aWindow.__SSi] is undefined
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\final-intro-artifacts\opening-experience-five-fu-0a126-nvas-resources-before-entry-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\feature-audit-2026-10-19\final-intro-artifacts\opening-experience-five-fu-0a126-nvas-resources-before-entry-firefox\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\final-intro-artifacts\opening-experience-five-fu-0a126-nvas-resources-before-entry-firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\feature-audit-2026-10-19\final-intro-artifacts\opening-experience-five-fu-0a126-nvas-resources-before-entry-firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [firefox] › e2e\opening-low-power.spec.ts:7:1 › low-power WebGL precompiles asynchronously and disposes without a scored skip key 
+
+    Error: clock.pauseAt: Cannot fast-forward to the past
+    _innerFastForwardTo@debugger eval code line 370 > eval:201:13
+    pauseAt@debugger eval code line 370 > eval:132:16
+    async*@debugger eval code line 370 > eval:1:33
+    evaluate@debugger eval code:370:30
+    @debugger eval code:1:44
+    @debugger eval code:1:62
+
+        at _innerFastForwardTo@debugger eval code line 370 > eval:201:13
+        at pauseAt@debugger eval code line 370 > eval:132:16
+        at async*@debugger eval code line 370 > eval:1:33
+        at evaluate@debugger eval code:370:30
+        at @debugger eval code:1:44
+        at @debugger eval code:1:62
+        at D:\extra\typing_updated\typing-forge\e2e\opening-low-power.spec.ts:18:20
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\final-intro-artifacts\opening-low-power-low-powe-20992-s-without-a-scored-skip-key-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\feature-audit-2026-10-19\final-intro-artifacts\opening-low-power-low-powe-20992-s-without-a-scored-skip-key-firefox\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\final-intro-artifacts\opening-low-power-low-powe-20992-s-without-a-scored-skip-key-firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\feature-audit-2026-10-19\final-intro-artifacts\opening-low-power-low-powe-20992-s-without-a-scored-skip-key-firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [firefox] › e2e\opening-single-keyboard.spec.ts:44:1 › a late real 3D scene gets its complete keyboard and wordmark choreography without a preliminary keyboard 
+
+    Error: clock.pauseAt: Cannot fast-forward to the past
+    _innerFastForwardTo@debugger eval code line 370 > eval:201:13
+    pauseAt@debugger eval code line 370 > eval:132:16
+    async*@debugger eval code line 370 > eval:1:33
+    evaluate@debugger eval code:370:30
+    @debugger eval code:1:44
+    @debugger eval code:1:62
+
+        at _innerFastForwardTo@debugger eval code line 370 > eval:201:13
+        at pauseAt@debugger eval code line 370 > eval:132:16
+        at async*@debugger eval code line 370 > eval:1:33
+        at evaluate@debugger eval code:370:30
+        at @debugger eval code:1:44
+        at @debugger eval code:1:62
+        at firstOpening (D:\extra\typing_updated\typing-forge\e2e\opening-single-keyboard.spec.ts:21:20)
+        at D:\extra\typing_updated\typing-forge\e2e\opening-single-keyboard.spec.ts:60:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\final-intro-artifacts\opening-single-keyboard-a--7ac7e-hout-a-preliminary-keyboard-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\feature-audit-2026-10-19\final-intro-artifacts\opening-single-keyboard-a--7ac7e-hout-a-preliminary-keyboard-firefox\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\final-intro-artifacts\opening-single-keyboard-a--7ac7e-hout-a-preliminary-keyboard-firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\feature-audit-2026-10-19\final-intro-artifacts\opening-single-keyboard-a--7ac7e-hout-a-preliminary-keyboard-firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [firefox] › e2e\opening-single-keyboard.spec.ts:241:1 › the normal-clock production worker shows the creative 3D keyboard through wordmark typing and automatic entry 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator: getByTestId('opening-experience')
+    Expected: "false"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveAttribute" getByTestId('opening-experience') with timeout 5000ms
+      - waiting for getByTestId('opening-experience')
+
+
+      378 |       "SparowType",
+      379 |     );
+    > 380 |     await expect(opening).toHaveAttribute("data-closing", "false");
+          |                           ^
+      381 |     await page.screenshot({
+      382 |       path: info.outputPath("native-3d-complete-wordmark.png"),
+      383 |     });
+        at D:\extra\typing_updated\typing-forge\e2e\opening-single-keyboard.spec.ts:380:27
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\final-intro-artifacts\opening-single-keyboard-th-95fd5--typing-and-automatic-entry-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\feature-audit-2026-10-19\final-intro-artifacts\opening-single-keyboard-th-95fd5--typing-and-automatic-entry-firefox\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\final-intro-artifacts\opening-single-keyboard-th-95fd5--typing-and-automatic-entry-firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\feature-audit-2026-10-19\final-intro-artifacts\opening-single-keyboard-th-95fd5--typing-and-automatic-entry-firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [firefox] › e2e\opening-worker.spec.ts:680:1 › skipping while the native worker entry is blocked terminates startup and preserves the first typing key 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      245 |           .length,
+      246 |     )
+    > 247 |     .toBe(0);
+          |      ^
+      248 |   const [record] = await records(page);
+      249 |   const dispose = record.sent.find((receipt) => receipt.type === "dispose");
+      250 |   if (dispose?.atMs === undefined || record.terminatedAtMs === null)
+        at expectWorkerClosed (D:\extra\typing_updated\typing-forge\e2e\opening-worker.spec.ts:247:6)
+        at D:\extra\typing_updated\typing-forge\e2e\opening-worker.spec.ts:707:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\final-intro-artifacts\opening-worker-skipping-wh-453da-serves-the-first-typing-key-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\feature-audit-2026-10-19\final-intro-artifacts\opening-worker-skipping-wh-453da-serves-the-first-typing-key-firefox\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\final-intro-artifacts\opening-worker-skipping-wh-453da-serves-the-first-typing-key-firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\feature-audit-2026-10-19\final-intro-artifacts\opening-worker-skipping-wh-453da-serves-the-first-typing-key-firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7 failed
+    [chromium] › e2e\opening-worker.spec.ts:985:1 › actual worker WebGL context loss during preparation recovers with a fresh canvas and keeps practice usable 
+    [firefox] › e2e\opening-experience.spec.ts:434:1 › native context loss switches to fallback and preserves ready practice 
+    [firefox] › e2e\opening-experience.spec.ts:470:1 › five full reload cycles close their native canvas resources before entry 
+    [firefox] › e2e\opening-low-power.spec.ts:7:1 › low-power WebGL precompiles asynchronously and disposes without a scored skip key 
+    [firefox] › e2e\opening-single-keyboard.spec.ts:44:1 › a late real 3D scene gets its complete keyboard and wordmark choreography without a preliminary keyboard 
+    [firefox] › e2e\opening-single-keyboard.spec.ts:241:1 › the normal-clock production worker shows the creative 3D keyboard through wordmark typing and automatic entry 
+    [firefox] › e2e\opening-worker.spec.ts:680:1 › skipping while the native worker entry is blocked terminates startup and preserves the first typing key 
+  8 skipped
+  105 passed (9.4m)

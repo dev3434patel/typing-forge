@@ -47,86 +47,64 @@ test("human rooms require authentication while bot practice remains available", 
   ).toBeEnabled();
 });
 
-test("deployed two-account race authorization and RLS", async ({ request }) => {
-  const url = process.env.FORGE_E2E_SUPABASE_URL,
-    key = process.env.FORGE_E2E_SUPABASE_ANON_KEY;
-  const firstEmail = process.env.FORGE_E2E_AUTH_EMAIL,
-    firstPassword = process.env.FORGE_E2E_AUTH_PASSWORD;
-  const secondEmail = process.env.FORGE_E2E_SECOND_EMAIL,
-    secondPassword = process.env.FORGE_E2E_SECOND_PASSWORD;
+test("PHP two-account race authorization and server-owned countdown", async ({ playwright, baseURL }) => {
+  const firstEmail = process.env.PHP_E2E_RACE_HOST_EMAIL,
+    firstPassword = process.env.PHP_E2E_RACE_HOST_PASSWORD;
+  const secondEmail = process.env.PHP_E2E_RACE_OPPONENT_EMAIL,
+    secondPassword = process.env.PHP_E2E_RACE_OPPONENT_PASSWORD;
   test.skip(
-    !url ||
-      !key ||
+    process.env.PHP_E2E_ACCEPTANCE !== "1" ||
       !firstEmail ||
       !firstPassword ||
       !secondEmail ||
       !secondPassword,
-    "Requires a deployed test backend URL/anon key and two dedicated authenticated test accounts. No mocked backend establishes authorization.",
+    "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization.",
   );
+  const url = process.env.PHP_E2E_API_URL || new URL("/api", baseURL!).href;
   const signIn = async (email: string, password: string) => {
-    const response = await request.post(
-      `${url}/auth/v1/token?grant_type=password`,
-      { headers: { apikey: key! }, data: { email, password } },
-    );
+    const context = await playwright.request.newContext();
+    const bootstrap = await context.get(`${url}/auth/session`);
+    expect(bootstrap.ok()).toBe(true);
+    const guest = await bootstrap.json() as { csrfToken: string };
+    const response = await context.post(`${url}/auth/signin`, {
+      headers: { "X-CSRF-Token": guest.csrfToken }, data: { email, password },
+    });
     expect(response.ok()).toBe(true);
-    return (await response.json()) as {
-      access_token: string;
-      user: { id: string };
+    const signed = await response.json() as { user: { id: string }; csrfToken: string };
+    return {
+      context,
+      user: signed.user,
+      post: (path: string, data: Record<string, unknown>) => context.post(`${url}${path}`, {
+        headers: { "X-CSRF-Token": signed.csrfToken }, data,
+      }),
     };
   };
   const host = await signIn(firstEmail!, firstPassword!),
     outsider = await signIn(secondEmail!, secondPassword!);
   expect(host.user.id).not.toBe(outsider.user.id);
-  const headers = (token: string) => ({
-    apikey: key!,
-    Authorization: `Bearer ${token}`,
-  });
-  const created = await request.post(`${url}/rest/v1/rpc/forge_create_race`, {
-    headers: headers(host.access_token),
-    data: { p_duration: 15 },
-  });
+  const created = await host.post('/race/create', { duration: 15 });
   expect(created.ok()).toBe(true);
-  const room = (await created.json()) as {
+  const { room } = (await created.json()) as { room: {
     id: string;
     room_code: string;
     status: string;
     version: number;
-  };
+  }};
   expect(room.status).toBe("waiting");
   try {
-    const outsiderRead = await request.post(
-      `${url}/rest/v1/rpc/forge_get_race`,
-      {
-        headers: headers(outsider.access_token),
-        data: { p_code: room.room_code },
-      },
-    );
+    const outsiderRead = await outsider.post('/race/get', { code: room.room_code });
     expect(outsiderRead.status()).toBe(403);
-    const forgedWrite = await request.patch(
-      `${url}/rest/v1/race_sessions?id=eq.${room.id}`,
-      {
-        headers: headers(host.access_token),
-        data: {
-          status: "completed",
-          winner_id: host.user.id,
-          host_progress: 100,
-          host_wpm: 9999,
-        },
-      },
-    );
-    expect(forgedWrite.status()).toBe(403);
-    const joined = await request.post(`${url}/rest/v1/rpc/forge_join_race`, {
-      headers: headers(outsider.access_token),
-      data: { p_code: room.room_code },
-    });
+    const changedOwner = await host.post('/race/get', { code: room.room_code, expectedOwner: outsider.user.id });
+    expect(changedOwner.status()).toBe(409);
+    const joined = await outsider.post('/race/join', { code: room.room_code });
     expect(joined.ok()).toBe(true);
-    const joinedRoom = (await joined.json()) as {
+    const { room: joinedRoom } = (await joined.json()) as { room: {
       opponent_id: string;
       status: string;
       started_at: string;
       deadline_at: string;
       version: number;
-    };
+    }};
     expect(joinedRoom.opponent_id).toBe(outsider.user.id);
     expect(joinedRoom.status).toBe("countdown");
     expect(
@@ -134,10 +112,11 @@ test("deployed two-account race authorization and RLS", async ({ request }) => {
     ).toBe(15000);
     expect(joinedRoom.version).toBeGreaterThan(room.version);
   } finally {
-    const left = await request.post(`${url}/rest/v1/rpc/forge_leave_race`, {
-      headers: headers(host.access_token),
-      data: { p_race_id: room.id },
-    });
-    expect(left.ok()).toBe(true);
+    try {
+      const left = await host.post('/race/leave', { raceId: room.id });
+      expect(left.ok()).toBe(true);
+    } finally {
+      await Promise.all([host.context.dispose(), outsider.context.dispose()]);
+    }
   }
 });

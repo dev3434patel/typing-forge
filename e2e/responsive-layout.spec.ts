@@ -147,7 +147,7 @@ test("small-screen test controls wrap in all six modes and keep select targets u
         .getByRole("combobox", { name: "Code language" })
         .selectOption("python");
       await page.screenshot({
-        path: `audit/responsive-2026-10-16/code-320-${info.project.name}.png`,
+        path: test.info().outputPath(`code-320-${info.project.name}.png`),
         fullPage: true,
       });
     }
@@ -219,7 +219,7 @@ test("narrow results retain the whole keyboard map and expanded evidence", async
     .click();
   await expectPageFits(page);
   await page.screenshot({
-    path: `audit/responsive-2026-10-16/results-320-${info.project.name}.png`,
+    path: test.info().outputPath(`results-320-${info.project.name}.png`),
     fullPage: true,
   });
 });

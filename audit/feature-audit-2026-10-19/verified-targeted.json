@@ -1,0 +1,2684 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\extra\\typing_updated\\typing-forge\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "e2e/profile-identity.spec.ts",
+      "e2e/php-account-flow.spec.ts",
+      "e2e/accessibility-audit.spec.ts",
+      "e2e/account-workspace.spec.ts",
+      "e2e/input-guardrails.spec.ts",
+      "e2e/secondary-pages.spec.ts",
+      "e2e/typing-audit-regressions.spec.ts",
+      "--grep",
+      "delayed initial profile|same-account auth refresh|initial profile fetch error|real PHP account|existing guest pages|cross-tab account change|ordinary-clock cold startup|public information pages|delayed canonical-equivalent",
+      "--workers=1",
+      "--retries=0",
+      "--forbid-only",
+      "--reporter=list,json",
+      "--output=audit/feature-audit-2026-10-19/verified-targeted-artifacts"
+    ],
+    "configFile": "D:\\extra\\typing_updated\\typing-forge\\playwright.config.ts",
+    "rootDir": "D:/extra/typing_updated/typing-forge/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/audit/feature-audit-2026-10-19/verified-targeted-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/audit/feature-audit-2026-10-19/verified-targeted-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "edge",
+        "name": "edge",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/audit/feature-audit-2026-10-19/verified-targeted-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/audit/feature-audit-2026-10-19/verified-targeted-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\verified-targeted-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\verified-targeted-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "edge",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36 Edg/156.0.8078.4",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium",
+          "channel": "msedge"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "edge"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\verified-targeted-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "firefox",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:157.0) Gecko/20100101 Firefox/157.0",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "firefox"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "firefox"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\verified-targeted-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "webkit",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Safari/605.1.15",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1792,
+            "height": 1120
+          },
+          "deviceScaleFactor": 2,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "webkit"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "webkit"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "accessibility-audit.spec.ts",
+      "file": "accessibility-audit.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "existing guest pages and completed results meet automated accessibility rules at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9179,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:50:28.896Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "automated-accessibility-_",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDUxCiAgICB9CiAgXSwKICAicGFzc2VzIjogMjgsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_learn",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhcm4iLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMjMKICAgIH0KICBdLAogICJwYXNzZXMiOiAzMSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_race",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFjZSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAyCiAgICB9CiAgXSwKICAicGFzc2VzIjogMjEsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_ranked",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFua2VkIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDIKICAgIH0KICBdLAogICJwYXNzZXMiOiAyMSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_stats",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc3RhdHMiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfSwKICAgIHsKICAgICAgImlkIjogImxhYmVsLWNvbnRlbnQtbmFtZS1taXNtYXRjaCIsCiAgICAgICJub2RlQ291bnQiOiAyNgogICAgfQogIF0sCiAgInBhc3NlcyI6IDIyLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_profile",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJvZmlsZSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAyCiAgICB9CiAgXSwKICAicGFzc2VzIjogMjMsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_leaderboard",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhZGVyYm9hcmQiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfQogIF0sCiAgInBhc3NlcyI6IDI0LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_settings",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc2V0dGluZ3MiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiYXJpYS1wcm9oaWJpdGVkLWF0dHIiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfSwKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDIKICAgIH0KICBdLAogICJwYXNzZXMiOiAyNywKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_auth",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYXV0aCIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMjEsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_keyboard-lab",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIva2V5Ym9hcmQtbGFiIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImFyaWEtcHJvaGliaXRlZC1hdHRyIiwKICAgICAgIm5vZGVDb3VudCI6IDEKICAgIH0sCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAyMwogICAgfSwKICAgIHsKICAgICAgImlkIjogInRoLWhhcy1kYXRhLWNlbGxzIiwKICAgICAgIm5vZGVDb3VudCI6IDEKICAgIH0KICBdLAogICJwYXNzZXMiOiAzMiwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_about",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYWJvdXQiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfQogIF0sCiAgInBhc3NlcyI6IDIxLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_privacy",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJpdmFjeSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAyCiAgICB9CiAgXSwKICAicGFzc2VzIjogMTksCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_terms",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdGVybXMiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfQogIF0sCiAgInBhc3NlcyI6IDE5LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_touch-typing",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdG91Y2gtdHlwaW5nIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDIKICAgIH0KICBdLAogICJwYXNzZXMiOiAyMSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_offline",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvb2ZmbGluZSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAyCiAgICB9CiAgXSwKICAicGFzc2VzIjogMjUsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_missing-page",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbWlzc2luZy1wYWdlIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDIKICAgIH0KICBdLAogICJwYXNzZXMiOiAxOSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-completed-results",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICJjb21wbGV0ZWQtcmVzdWx0cyIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiA4CiAgICB9CiAgXSwKICAicGFzc2VzIjogMjksCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-scope",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZWNlaXB0cyI6IFsKICAgIHsKICAgICAgInJvdXRlIjogIi8iLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogNTEKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyOCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9sZWFybiIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyMwogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDMxLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3JhY2UiLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMgogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDIxLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3JhbmtlZCIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjEsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvc3RhdHMiLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImlkIjogImxhYmVsLWNvbnRlbnQtbmFtZS1taXNtYXRjaCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMjYKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyMiwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9wcm9maWxlIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDIKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyMywKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9sZWFkZXJib2FyZCIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjQsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvc2V0dGluZ3MiLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJhcmlhLXByb2hpYml0ZWQtYXR0ciIsCiAgICAgICAgICAibm9kZUNvdW50IjogMgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjcsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvYXV0aCIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDIxLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL2tleWJvYXJkLWxhYiIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImFyaWEtcHJvaGliaXRlZC1hdHRyIiwKICAgICAgICAgICJub2RlQ291bnQiOiAxCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDIzCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAidGgtaGFzLWRhdGEtY2VsbHMiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDEKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAzMiwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9hYm91dCIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjEsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvcHJpdmFjeSIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMTksCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvdGVybXMiLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMgogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDE5LAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3RvdWNoLXR5cGluZyIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjEsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvb2ZmbGluZSIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjUsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvbWlzc2luZy1wYWdlIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDIKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAxOSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogImNvbXBsZXRlZC1yZXN1bHRzIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDgKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyOSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfQogIF0sCiAgImxpbWl0YXRpb24iOiAiQXV0b21hdGVkIFdDQUctdGFnZ2VkIGNoZWNrcyBvbmx5LiBJbmNvbXBsZXRlIHJ1bGVzIG5lZWQgbWFudWFsIHJldmlldzsgdGhpcyBkb2VzIG5vdCBlc3RhYmxpc2ggbmF0aXZlIHNjcmVlbi1yZWFkZXIgb3IgZnVsbCBXQ0FHIGNvbmZvcm1hbmNlLiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "133fb274c06e7193ffc5-05d84d265c722b26dcc5",
+          "file": "accessibility-audit.spec.ts",
+          "line": 12,
+          "column": 3
+        },
+        {
+          "title": "existing guest pages and completed results meet automated accessibility rules at 1440px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9184,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:50:38.320Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "automated-accessibility-_",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAxNzAKICAgIH0KICBdLAogICJwYXNzZXMiOiAyNywKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_learn",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhcm4iLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDIwCiAgICB9CiAgXSwKICAicGFzc2VzIjogMzAsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_race",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFjZSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDIwLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_ranked",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFua2VkIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMjAsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_stats",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc3RhdHMiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImxhYmVsLWNvbnRlbnQtbmFtZS1taXNtYXRjaCIsCiAgICAgICJub2RlQ291bnQiOiAyNgogICAgfQogIF0sCiAgInBhc3NlcyI6IDIxLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_profile",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJvZmlsZSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDIyLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_leaderboard",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhZGVyYm9hcmQiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFtdLAogICJwYXNzZXMiOiAyMywKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_settings",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc2V0dGluZ3MiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImFyaWEtcHJvaGliaXRlZC1hdHRyIiwKICAgICAgIm5vZGVDb3VudCI6IDIKICAgIH0KICBdLAogICJwYXNzZXMiOiAyNiwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_auth",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYXV0aCIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDIxLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_keyboard-lab",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIva2V5Ym9hcmQtbGFiIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJhcmlhLXByb2hpYml0ZWQtYXR0ciIsCiAgICAgICJub2RlQ291bnQiOiAxCiAgICB9LAogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfSwKICAgIHsKICAgICAgImlkIjogInRoLWhhcy1kYXRhLWNlbGxzIiwKICAgICAgIm5vZGVDb3VudCI6IDEKICAgIH0KICBdLAogICJwYXNzZXMiOiAzMSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_about",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYWJvdXQiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFtdLAogICJwYXNzZXMiOiAyMCwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_privacy",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJpdmFjeSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDE4LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_terms",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdGVybXMiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFtdLAogICJwYXNzZXMiOiAxOCwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_touch-typing",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdG91Y2gtdHlwaW5nIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMjAsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_offline",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvb2ZmbGluZSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDI0LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_missing-page",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbWlzc2luZy1wYWdlIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMTgsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-completed-results",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICJjb21wbGV0ZWQtcmVzdWx0cyIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogNgogICAgfQogIF0sCiAgInBhc3NlcyI6IDI4LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-scope",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZWNlaXB0cyI6IFsKICAgIHsKICAgICAgInJvdXRlIjogIi8iLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDE3MAogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDI3LAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL2xlYXJuIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyMAogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDMwLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3JhY2UiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMjAsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvcmFua2VkIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDIwLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3N0YXRzIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImxhYmVsLWNvbnRlbnQtbmFtZS1taXNtYXRjaCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMjYKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyMSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9wcm9maWxlIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDIyLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL2xlYWRlcmJvYXJkIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDIzLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3NldHRpbmdzIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImFyaWEtcHJvaGliaXRlZC1hdHRyIiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjYsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvYXV0aCIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAyMSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9rZXlib2FyZC1sYWIiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiYXJpYS1wcm9oaWJpdGVkLWF0dHIiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDEKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImlkIjogInRoLWhhcy1kYXRhLWNlbGxzIiwKICAgICAgICAgICJub2RlQ291bnQiOiAxCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMzEsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvYWJvdXQiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMjAsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvcHJpdmFjeSIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAxOCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi90ZXJtcyIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAxOCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi90b3VjaC10eXBpbmciLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMjAsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvb2ZmbGluZSIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAyNCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9taXNzaW5nLXBhZ2UiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMTgsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICJjb21wbGV0ZWQtcmVzdWx0cyIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogNgogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDI4LAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9CiAgXSwKICAibGltaXRhdGlvbiI6ICJBdXRvbWF0ZWQgV0NBRy10YWdnZWQgY2hlY2tzIG9ubHkuIEluY29tcGxldGUgcnVsZXMgbmVlZCBtYW51YWwgcmV2aWV3OyB0aGlzIGRvZXMgbm90IGVzdGFibGlzaCBuYXRpdmUgc2NyZWVuLXJlYWRlciBvciBmdWxsIFdDQUcgY29uZm9ybWFuY2UuIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "133fb274c06e7193ffc5-75a63ad994d07852d843",
+          "file": "accessibility-audit.spec.ts",
+          "line": 12,
+          "column": 3
+        },
+        {
+          "title": "existing guest pages and completed results meet automated accessibility rules at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11264,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:51:07.820Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "automated-accessibility-_",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDU2CiAgICB9CiAgXSwKICAicGFzc2VzIjogMjgsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_learn",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhcm4iLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMjMKICAgIH0KICBdLAogICJwYXNzZXMiOiAzMSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_race",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFjZSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAyCiAgICB9CiAgXSwKICAicGFzc2VzIjogMjEsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_ranked",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFua2VkIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDIKICAgIH0KICBdLAogICJwYXNzZXMiOiAyMSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_stats",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc3RhdHMiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfSwKICAgIHsKICAgICAgImlkIjogImxhYmVsLWNvbnRlbnQtbmFtZS1taXNtYXRjaCIsCiAgICAgICJub2RlQ291bnQiOiAyNgogICAgfQogIF0sCiAgInBhc3NlcyI6IDIyLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_profile",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJvZmlsZSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAyCiAgICB9CiAgXSwKICAicGFzc2VzIjogMjMsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_leaderboard",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhZGVyYm9hcmQiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfQogIF0sCiAgInBhc3NlcyI6IDI0LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_settings",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc2V0dGluZ3MiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiYXJpYS1wcm9oaWJpdGVkLWF0dHIiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfSwKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDIKICAgIH0KICBdLAogICJwYXNzZXMiOiAyNywKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_auth",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYXV0aCIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMjEsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_keyboard-lab",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIva2V5Ym9hcmQtbGFiIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImFyaWEtcHJvaGliaXRlZC1hdHRyIiwKICAgICAgIm5vZGVDb3VudCI6IDEKICAgIH0sCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAyMwogICAgfSwKICAgIHsKICAgICAgImlkIjogInRoLWhhcy1kYXRhLWNlbGxzIiwKICAgICAgIm5vZGVDb3VudCI6IDEKICAgIH0KICBdLAogICJwYXNzZXMiOiAzMiwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_about",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYWJvdXQiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfQogIF0sCiAgInBhc3NlcyI6IDIxLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_privacy",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJpdmFjeSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAyCiAgICB9CiAgXSwKICAicGFzc2VzIjogMTksCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_terms",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdGVybXMiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfQogIF0sCiAgInBhc3NlcyI6IDE5LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_touch-typing",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdG91Y2gtdHlwaW5nIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDIKICAgIH0KICBdLAogICJwYXNzZXMiOiAyMSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_offline",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvb2ZmbGluZSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAyCiAgICB9CiAgXSwKICAicGFzc2VzIjogMjUsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_missing-page",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbWlzc2luZy1wYWdlIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDIKICAgIH0KICBdLAogICJwYXNzZXMiOiAxOSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-completed-results",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICJjb21wbGV0ZWQtcmVzdWx0cyIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiA4CiAgICB9CiAgXSwKICAicGFzc2VzIjogMjksCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-scope",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZWNlaXB0cyI6IFsKICAgIHsKICAgICAgInJvdXRlIjogIi8iLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogNTYKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyOCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9sZWFybiIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyMwogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDMxLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3JhY2UiLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMgogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDIxLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3JhbmtlZCIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjEsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvc3RhdHMiLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImlkIjogImxhYmVsLWNvbnRlbnQtbmFtZS1taXNtYXRjaCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMjYKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyMiwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9wcm9maWxlIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDIKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyMywKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9sZWFkZXJib2FyZCIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjQsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvc2V0dGluZ3MiLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJhcmlhLXByb2hpYml0ZWQtYXR0ciIsCiAgICAgICAgICAibm9kZUNvdW50IjogMgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjcsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvYXV0aCIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDIxLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL2tleWJvYXJkLWxhYiIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImFyaWEtcHJvaGliaXRlZC1hdHRyIiwKICAgICAgICAgICJub2RlQ291bnQiOiAxCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDIzCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAidGgtaGFzLWRhdGEtY2VsbHMiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDEKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAzMiwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9hYm91dCIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjEsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvcHJpdmFjeSIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMTksCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvdGVybXMiLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMgogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDE5LAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3RvdWNoLXR5cGluZyIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjEsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvb2ZmbGluZSIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjUsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvbWlzc2luZy1wYWdlIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDIKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAxOSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogImNvbXBsZXRlZC1yZXN1bHRzIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDgKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyOSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfQogIF0sCiAgImxpbWl0YXRpb24iOiAiQXV0b21hdGVkIFdDQUctdGFnZ2VkIGNoZWNrcyBvbmx5LiBJbmNvbXBsZXRlIHJ1bGVzIG5lZWQgbWFudWFsIHJldmlldzsgdGhpcyBkb2VzIG5vdCBlc3RhYmxpc2ggbmF0aXZlIHNjcmVlbi1yZWFkZXIgb3IgZnVsbCBXQ0FHIGNvbmZvcm1hbmNlLiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "133fb274c06e7193ffc5-16cdd3257c953912dd13",
+          "file": "accessibility-audit.spec.ts",
+          "line": 12,
+          "column": 3
+        },
+        {
+          "title": "existing guest pages and completed results meet automated accessibility rules at 1440px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 13259,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:51:19.750Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "automated-accessibility-_",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAxNjcKICAgIH0KICBdLAogICJwYXNzZXMiOiAyNywKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_learn",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhcm4iLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDIwCiAgICB9CiAgXSwKICAicGFzc2VzIjogMzAsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_race",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFjZSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDIwLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_ranked",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFua2VkIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMjAsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_stats",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc3RhdHMiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImxhYmVsLWNvbnRlbnQtbmFtZS1taXNtYXRjaCIsCiAgICAgICJub2RlQ291bnQiOiAyNgogICAgfQogIF0sCiAgInBhc3NlcyI6IDIxLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_profile",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJvZmlsZSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDIyLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_leaderboard",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhZGVyYm9hcmQiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFtdLAogICJwYXNzZXMiOiAyMywKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_settings",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc2V0dGluZ3MiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImFyaWEtcHJvaGliaXRlZC1hdHRyIiwKICAgICAgIm5vZGVDb3VudCI6IDIKICAgIH0KICBdLAogICJwYXNzZXMiOiAyNiwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_auth",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYXV0aCIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDIxLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_keyboard-lab",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIva2V5Ym9hcmQtbGFiIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJhcmlhLXByb2hpYml0ZWQtYXR0ciIsCiAgICAgICJub2RlQ291bnQiOiAxCiAgICB9LAogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfSwKICAgIHsKICAgICAgImlkIjogInRoLWhhcy1kYXRhLWNlbGxzIiwKICAgICAgIm5vZGVDb3VudCI6IDEKICAgIH0KICBdLAogICJwYXNzZXMiOiAzMSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_about",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYWJvdXQiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFtdLAogICJwYXNzZXMiOiAyMCwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_privacy",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJpdmFjeSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDE4LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_terms",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdGVybXMiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFtdLAogICJwYXNzZXMiOiAxOCwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_touch-typing",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdG91Y2gtdHlwaW5nIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMjAsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_offline",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvb2ZmbGluZSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDI0LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_missing-page",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbWlzc2luZy1wYWdlIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMTgsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-completed-results",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICJjb21wbGV0ZWQtcmVzdWx0cyIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogNgogICAgfQogIF0sCiAgInBhc3NlcyI6IDI4LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-scope",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZWNlaXB0cyI6IFsKICAgIHsKICAgICAgInJvdXRlIjogIi8iLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDE2NwogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDI3LAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL2xlYXJuIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyMAogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDMwLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3JhY2UiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMjAsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvcmFua2VkIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDIwLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3N0YXRzIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImxhYmVsLWNvbnRlbnQtbmFtZS1taXNtYXRjaCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMjYKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyMSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9wcm9maWxlIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDIyLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL2xlYWRlcmJvYXJkIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDIzLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3NldHRpbmdzIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImFyaWEtcHJvaGliaXRlZC1hdHRyIiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjYsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvYXV0aCIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAyMSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9rZXlib2FyZC1sYWIiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiYXJpYS1wcm9oaWJpdGVkLWF0dHIiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDEKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImlkIjogInRoLWhhcy1kYXRhLWNlbGxzIiwKICAgICAgICAgICJub2RlQ291bnQiOiAxCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMzEsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvYWJvdXQiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMjAsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvcHJpdmFjeSIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAxOCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi90ZXJtcyIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAxOCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi90b3VjaC10eXBpbmciLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMjAsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvb2ZmbGluZSIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAyNCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9taXNzaW5nLXBhZ2UiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMTgsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICJjb21wbGV0ZWQtcmVzdWx0cyIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogNgogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDI4LAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9CiAgXSwKICAibGltaXRhdGlvbiI6ICJBdXRvbWF0ZWQgV0NBRy10YWdnZWQgY2hlY2tzIG9ubHkuIEluY29tcGxldGUgcnVsZXMgbmVlZCBtYW51YWwgcmV2aWV3OyB0aGlzIGRvZXMgbm90IGVzdGFibGlzaCBuYXRpdmUgc2NyZWVuLXJlYWRlciBvciBmdWxsIFdDQUcgY29uZm9ybWFuY2UuIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "133fb274c06e7193ffc5-a7d31bfb2277a168def3",
+          "file": "accessibility-audit.spec.ts",
+          "line": 12,
+          "column": 3
+        },
+        {
+          "title": "existing guest pages and completed results meet automated accessibility rules at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 16880,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:52:07.766Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "automated-accessibility-_",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDUyCiAgICB9CiAgXSwKICAicGFzc2VzIjogMjgsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_learn",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhcm4iLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMjMKICAgIH0KICBdLAogICJwYXNzZXMiOiAzMSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_race",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFjZSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAyCiAgICB9CiAgXSwKICAicGFzc2VzIjogMjEsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_ranked",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFua2VkIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDIKICAgIH0KICBdLAogICJwYXNzZXMiOiAyMSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_stats",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc3RhdHMiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfSwKICAgIHsKICAgICAgImlkIjogImxhYmVsLWNvbnRlbnQtbmFtZS1taXNtYXRjaCIsCiAgICAgICJub2RlQ291bnQiOiAyNgogICAgfQogIF0sCiAgInBhc3NlcyI6IDIyLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_profile",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJvZmlsZSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAyCiAgICB9CiAgXSwKICAicGFzc2VzIjogMjMsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_leaderboard",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhZGVyYm9hcmQiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfQogIF0sCiAgInBhc3NlcyI6IDI0LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_settings",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc2V0dGluZ3MiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiYXJpYS1wcm9oaWJpdGVkLWF0dHIiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfSwKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDIKICAgIH0KICBdLAogICJwYXNzZXMiOiAyNywKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_auth",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYXV0aCIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMjEsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_keyboard-lab",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIva2V5Ym9hcmQtbGFiIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImFyaWEtcHJvaGliaXRlZC1hdHRyIiwKICAgICAgIm5vZGVDb3VudCI6IDEKICAgIH0sCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAyMwogICAgfSwKICAgIHsKICAgICAgImlkIjogInRoLWhhcy1kYXRhLWNlbGxzIiwKICAgICAgIm5vZGVDb3VudCI6IDEKICAgIH0KICBdLAogICJwYXNzZXMiOiAzMiwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_about",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYWJvdXQiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfQogIF0sCiAgInBhc3NlcyI6IDIxLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_privacy",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJpdmFjeSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAyCiAgICB9CiAgXSwKICAicGFzc2VzIjogMTksCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_terms",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdGVybXMiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfQogIF0sCiAgInBhc3NlcyI6IDE5LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_touch-typing",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdG91Y2gtdHlwaW5nIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDIKICAgIH0KICBdLAogICJwYXNzZXMiOiAyMSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_offline",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvb2ZmbGluZSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAyCiAgICB9CiAgXSwKICAicGFzc2VzIjogMjUsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_missing-page",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbWlzc2luZy1wYWdlIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDIKICAgIH0KICBdLAogICJwYXNzZXMiOiAxOSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-completed-results",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICJjb21wbGV0ZWQtcmVzdWx0cyIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiA4CiAgICB9CiAgXSwKICAicGFzc2VzIjogMjksCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-scope",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZWNlaXB0cyI6IFsKICAgIHsKICAgICAgInJvdXRlIjogIi8iLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogNTIKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyOCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9sZWFybiIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyMwogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDMxLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3JhY2UiLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMgogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDIxLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3JhbmtlZCIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjEsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvc3RhdHMiLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImlkIjogImxhYmVsLWNvbnRlbnQtbmFtZS1taXNtYXRjaCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMjYKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyMiwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9wcm9maWxlIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDIKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyMywKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9sZWFkZXJib2FyZCIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjQsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvc2V0dGluZ3MiLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJhcmlhLXByb2hpYml0ZWQtYXR0ciIsCiAgICAgICAgICAibm9kZUNvdW50IjogMgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjcsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvYXV0aCIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDIxLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL2tleWJvYXJkLWxhYiIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImFyaWEtcHJvaGliaXRlZC1hdHRyIiwKICAgICAgICAgICJub2RlQ291bnQiOiAxCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDIzCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAidGgtaGFzLWRhdGEtY2VsbHMiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDEKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAzMiwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9hYm91dCIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjEsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvcHJpdmFjeSIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMTksCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvdGVybXMiLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMgogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDE5LAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3RvdWNoLXR5cGluZyIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjEsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvb2ZmbGluZSIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjUsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvbWlzc2luZy1wYWdlIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDIKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAxOSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogImNvbXBsZXRlZC1yZXN1bHRzIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDgKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyOSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfQogIF0sCiAgImxpbWl0YXRpb24iOiAiQXV0b21hdGVkIFdDQUctdGFnZ2VkIGNoZWNrcyBvbmx5LiBJbmNvbXBsZXRlIHJ1bGVzIG5lZWQgbWFudWFsIHJldmlldzsgdGhpcyBkb2VzIG5vdCBlc3RhYmxpc2ggbmF0aXZlIHNjcmVlbi1yZWFkZXIgb3IgZnVsbCBXQ0FHIGNvbmZvcm1hbmNlLiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "133fb274c06e7193ffc5-4e62c8a0a63f970fa52c",
+          "file": "accessibility-audit.spec.ts",
+          "line": 12,
+          "column": 3
+        },
+        {
+          "title": "existing guest pages and completed results meet automated accessibility rules at 1440px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12812,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:52:25.616Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "automated-accessibility-_",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAxNjYKICAgIH0KICBdLAogICJwYXNzZXMiOiAyNywKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_learn",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhcm4iLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDIwCiAgICB9CiAgXSwKICAicGFzc2VzIjogMzAsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_race",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFjZSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDIwLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_ranked",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFua2VkIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMjAsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_stats",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc3RhdHMiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImxhYmVsLWNvbnRlbnQtbmFtZS1taXNtYXRjaCIsCiAgICAgICJub2RlQ291bnQiOiAyNgogICAgfQogIF0sCiAgInBhc3NlcyI6IDIxLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_profile",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJvZmlsZSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDIyLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_leaderboard",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhZGVyYm9hcmQiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFtdLAogICJwYXNzZXMiOiAyMywKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_settings",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc2V0dGluZ3MiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImFyaWEtcHJvaGliaXRlZC1hdHRyIiwKICAgICAgIm5vZGVDb3VudCI6IDIKICAgIH0KICBdLAogICJwYXNzZXMiOiAyNiwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_auth",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYXV0aCIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDIxLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_keyboard-lab",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIva2V5Ym9hcmQtbGFiIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJhcmlhLXByb2hpYml0ZWQtYXR0ciIsCiAgICAgICJub2RlQ291bnQiOiAxCiAgICB9LAogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfSwKICAgIHsKICAgICAgImlkIjogInRoLWhhcy1kYXRhLWNlbGxzIiwKICAgICAgIm5vZGVDb3VudCI6IDEKICAgIH0KICBdLAogICJwYXNzZXMiOiAzMSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_about",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYWJvdXQiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFtdLAogICJwYXNzZXMiOiAyMCwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_privacy",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJpdmFjeSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDE4LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_terms",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdGVybXMiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFtdLAogICJwYXNzZXMiOiAxOCwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_touch-typing",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdG91Y2gtdHlwaW5nIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMjAsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_offline",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvb2ZmbGluZSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDI0LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_missing-page",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbWlzc2luZy1wYWdlIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMTgsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-completed-results",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICJjb21wbGV0ZWQtcmVzdWx0cyIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogNgogICAgfQogIF0sCiAgInBhc3NlcyI6IDI4LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-scope",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZWNlaXB0cyI6IFsKICAgIHsKICAgICAgInJvdXRlIjogIi8iLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDE2NgogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDI3LAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL2xlYXJuIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyMAogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDMwLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3JhY2UiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMjAsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvcmFua2VkIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDIwLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3N0YXRzIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImxhYmVsLWNvbnRlbnQtbmFtZS1taXNtYXRjaCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMjYKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyMSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9wcm9maWxlIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDIyLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL2xlYWRlcmJvYXJkIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDIzLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3NldHRpbmdzIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImFyaWEtcHJvaGliaXRlZC1hdHRyIiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjYsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvYXV0aCIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAyMSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9rZXlib2FyZC1sYWIiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiYXJpYS1wcm9oaWJpdGVkLWF0dHIiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDEKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImlkIjogInRoLWhhcy1kYXRhLWNlbGxzIiwKICAgICAgICAgICJub2RlQ291bnQiOiAxCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMzEsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvYWJvdXQiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMjAsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvcHJpdmFjeSIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAxOCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi90ZXJtcyIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAxOCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi90b3VjaC10eXBpbmciLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMjAsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvb2ZmbGluZSIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAyNCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9taXNzaW5nLXBhZ2UiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMTgsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICJjb21wbGV0ZWQtcmVzdWx0cyIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogNgogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDI4LAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9CiAgXSwKICAibGltaXRhdGlvbiI6ICJBdXRvbWF0ZWQgV0NBRy10YWdnZWQgY2hlY2tzIG9ubHkuIEluY29tcGxldGUgcnVsZXMgbmVlZCBtYW51YWwgcmV2aWV3OyB0aGlzIGRvZXMgbm90IGVzdGFibGlzaCBuYXRpdmUgc2NyZWVuLXJlYWRlciBvciBmdWxsIFdDQUcgY29uZm9ybWFuY2UuIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "133fb274c06e7193ffc5-1f0ea335d03887e1b838",
+          "file": "accessibility-audit.spec.ts",
+          "line": 12,
+          "column": 3
+        },
+        {
+          "title": "existing guest pages and completed results meet automated accessibility rules at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 18293,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:53:05.967Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "automated-accessibility-_",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDQyCiAgICB9CiAgXSwKICAicGFzc2VzIjogMjgsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_learn",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhcm4iLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMjkKICAgIH0KICBdLAogICJwYXNzZXMiOiAzMSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_race",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFjZSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAyCiAgICB9CiAgXSwKICAicGFzc2VzIjogMjEsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_ranked",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFua2VkIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDIKICAgIH0KICBdLAogICJwYXNzZXMiOiAyMSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_stats",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc3RhdHMiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfSwKICAgIHsKICAgICAgImlkIjogImxhYmVsLWNvbnRlbnQtbmFtZS1taXNtYXRjaCIsCiAgICAgICJub2RlQ291bnQiOiAyNgogICAgfQogIF0sCiAgInBhc3NlcyI6IDIyLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_profile",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJvZmlsZSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAyCiAgICB9CiAgXSwKICAicGFzc2VzIjogMjMsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_leaderboard",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhZGVyYm9hcmQiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfQogIF0sCiAgInBhc3NlcyI6IDI0LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_settings",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc2V0dGluZ3MiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiYXJpYS1wcm9oaWJpdGVkLWF0dHIiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfSwKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDIKICAgIH0KICBdLAogICJwYXNzZXMiOiAyNywKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_auth",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYXV0aCIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMjEsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_keyboard-lab",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIva2V5Ym9hcmQtbGFiIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImFyaWEtcHJvaGliaXRlZC1hdHRyIiwKICAgICAgIm5vZGVDb3VudCI6IDEKICAgIH0sCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAyOAogICAgfSwKICAgIHsKICAgICAgImlkIjogInRoLWhhcy1kYXRhLWNlbGxzIiwKICAgICAgIm5vZGVDb3VudCI6IDEKICAgIH0KICBdLAogICJwYXNzZXMiOiAzMiwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_about",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYWJvdXQiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfQogIF0sCiAgInBhc3NlcyI6IDIxLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_privacy",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJpdmFjeSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAyCiAgICB9CiAgXSwKICAicGFzc2VzIjogMTksCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_terms",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdGVybXMiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfQogIF0sCiAgInBhc3NlcyI6IDE5LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_touch-typing",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdG91Y2gtdHlwaW5nIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDIKICAgIH0KICBdLAogICJwYXNzZXMiOiAyMSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_offline",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvb2ZmbGluZSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAyCiAgICB9CiAgXSwKICAicGFzc2VzIjogMjUsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_missing-page",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbWlzc2luZy1wYWdlIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDIKICAgIH0KICBdLAogICJwYXNzZXMiOiAxOSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-completed-results",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICJjb21wbGV0ZWQtcmVzdWx0cyIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiA4CiAgICB9CiAgXSwKICAicGFzc2VzIjogMjcsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-scope",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZWNlaXB0cyI6IFsKICAgIHsKICAgICAgInJvdXRlIjogIi8iLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogNDIKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyOCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9sZWFybiIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyOQogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDMxLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3JhY2UiLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMgogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDIxLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3JhbmtlZCIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjEsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvc3RhdHMiLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImlkIjogImxhYmVsLWNvbnRlbnQtbmFtZS1taXNtYXRjaCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMjYKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyMiwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9wcm9maWxlIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDIKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyMywKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9sZWFkZXJib2FyZCIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjQsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvc2V0dGluZ3MiLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJhcmlhLXByb2hpYml0ZWQtYXR0ciIsCiAgICAgICAgICAibm9kZUNvdW50IjogMgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjcsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvYXV0aCIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDIxLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL2tleWJvYXJkLWxhYiIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImFyaWEtcHJvaGliaXRlZC1hdHRyIiwKICAgICAgICAgICJub2RlQ291bnQiOiAxCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDI4CiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAidGgtaGFzLWRhdGEtY2VsbHMiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDEKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAzMiwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9hYm91dCIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjEsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvcHJpdmFjeSIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMTksCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvdGVybXMiLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMgogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDE5LAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3RvdWNoLXR5cGluZyIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjEsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvb2ZmbGluZSIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjUsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvbWlzc2luZy1wYWdlIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDIKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAxOSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogImNvbXBsZXRlZC1yZXN1bHRzIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDgKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyNywKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfQogIF0sCiAgImxpbWl0YXRpb24iOiAiQXV0b21hdGVkIFdDQUctdGFnZ2VkIGNoZWNrcyBvbmx5LiBJbmNvbXBsZXRlIHJ1bGVzIG5lZWQgbWFudWFsIHJldmlldzsgdGhpcyBkb2VzIG5vdCBlc3RhYmxpc2ggbmF0aXZlIHNjcmVlbi1yZWFkZXIgb3IgZnVsbCBXQ0FHIGNvbmZvcm1hbmNlLiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "133fb274c06e7193ffc5-92bcd8932aa746e3b6d7",
+          "file": "accessibility-audit.spec.ts",
+          "line": 12,
+          "column": 3
+        },
+        {
+          "title": "existing guest pages and completed results meet automated accessibility rules at 1440px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 23798,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:53:24.431Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "automated-accessibility-_",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAxNzEKICAgIH0KICBdLAogICJwYXNzZXMiOiAyNywKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_learn",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhcm4iLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDIwCiAgICB9CiAgXSwKICAicGFzc2VzIjogMzAsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_race",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFjZSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDIwLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_ranked",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFua2VkIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMjAsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_stats",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc3RhdHMiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImxhYmVsLWNvbnRlbnQtbmFtZS1taXNtYXRjaCIsCiAgICAgICJub2RlQ291bnQiOiAyNgogICAgfQogIF0sCiAgInBhc3NlcyI6IDIxLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_profile",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJvZmlsZSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDIyLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_leaderboard",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhZGVyYm9hcmQiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFtdLAogICJwYXNzZXMiOiAyMywKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_settings",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc2V0dGluZ3MiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImFyaWEtcHJvaGliaXRlZC1hdHRyIiwKICAgICAgIm5vZGVDb3VudCI6IDIKICAgIH0KICBdLAogICJwYXNzZXMiOiAyNiwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_auth",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYXV0aCIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDIxLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_keyboard-lab",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIva2V5Ym9hcmQtbGFiIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJhcmlhLXByb2hpYml0ZWQtYXR0ciIsCiAgICAgICJub2RlQ291bnQiOiAxCiAgICB9LAogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfSwKICAgIHsKICAgICAgImlkIjogInRoLWhhcy1kYXRhLWNlbGxzIiwKICAgICAgIm5vZGVDb3VudCI6IDEKICAgIH0KICBdLAogICJwYXNzZXMiOiAzMSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_about",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYWJvdXQiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFtdLAogICJwYXNzZXMiOiAyMCwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_privacy",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJpdmFjeSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDE4LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_terms",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdGVybXMiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFtdLAogICJwYXNzZXMiOiAxOCwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_touch-typing",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdG91Y2gtdHlwaW5nIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMjAsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_offline",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvb2ZmbGluZSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDI0LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_missing-page",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbWlzc2luZy1wYWdlIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMTgsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-completed-results",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICJjb21wbGV0ZWQtcmVzdWx0cyIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogNgogICAgfQogIF0sCiAgInBhc3NlcyI6IDI4LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-scope",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZWNlaXB0cyI6IFsKICAgIHsKICAgICAgInJvdXRlIjogIi8iLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDE3MQogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDI3LAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL2xlYXJuIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyMAogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDMwLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3JhY2UiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMjAsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvcmFua2VkIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDIwLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3N0YXRzIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImxhYmVsLWNvbnRlbnQtbmFtZS1taXNtYXRjaCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMjYKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyMSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9wcm9maWxlIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDIyLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL2xlYWRlcmJvYXJkIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDIzLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3NldHRpbmdzIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImFyaWEtcHJvaGliaXRlZC1hdHRyIiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjYsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvYXV0aCIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAyMSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9rZXlib2FyZC1sYWIiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiYXJpYS1wcm9oaWJpdGVkLWF0dHIiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDEKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMgogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImlkIjogInRoLWhhcy1kYXRhLWNlbGxzIiwKICAgICAgICAgICJub2RlQ291bnQiOiAxCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMzEsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvYWJvdXQiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMjAsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvcHJpdmFjeSIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAxOCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi90ZXJtcyIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAxOCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi90b3VjaC10eXBpbmciLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMjAsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvb2ZmbGluZSIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAyNCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9taXNzaW5nLXBhZ2UiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMTgsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICJjb21wbGV0ZWQtcmVzdWx0cyIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogNgogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDI4LAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9CiAgXSwKICAibGltaXRhdGlvbiI6ICJBdXRvbWF0ZWQgV0NBRy10YWdnZWQgY2hlY2tzIG9ubHkuIEluY29tcGxldGUgcnVsZXMgbmVlZCBtYW51YWwgcmV2aWV3OyB0aGlzIGRvZXMgbm90IGVzdGFibGlzaCBuYXRpdmUgc2NyZWVuLXJlYWRlciBvciBmdWxsIFdDQUcgY29uZm9ybWFuY2UuIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "133fb274c06e7193ffc5-0f42c3c1ad5d27b7d4d6",
+          "file": "accessibility-audit.spec.ts",
+          "line": 12,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "title": "account-workspace.spec.ts",
+      "file": "account-workspace.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "cross-tab account change discards a previous owner's unsaved private passage",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 960,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:50:47.850Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "68f92e732e60f967432a-a7a6b19535a033118932",
+          "file": "account-workspace.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "cross-tab account change discards a previous owner's unsaved private passage",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2213,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:51:33.555Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "68f92e732e60f967432a-fb4522d5d03264c45068",
+          "file": "account-workspace.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "cross-tab account change discards a previous owner's unsaved private passage",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1950,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:52:38.792Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "68f92e732e60f967432a-c364852d7b718d4d979f",
+          "file": "account-workspace.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "cross-tab account change discards a previous owner's unsaved private passage",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3167,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:53:48.566Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "68f92e732e60f967432a-ea3e42a05a3f9b4011a3",
+          "file": "account-workspace.spec.ts",
+          "line": 4,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "input-guardrails.spec.ts",
+      "file": "input-guardrails.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "ordinary-clock cold startup and reload reach editable practice without timer instrumentation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1260,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:50:48.863Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "ordinary-clock-workspace-startup",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZWNlaXB0cyI6IFsKICAgIHsKICAgICAgImF0dGVtcHQiOiAiY29sZCIsCiAgICAgICJyZWFkeUFuZElucHV0RWxhcHNlZE1zIjogNjQzLAogICAgICAiY2xvY2siOiAib3JkaW5hcnkgYnJvd3NlciBjbG9jazsgUGxheXdyaWdodCBjbG9jayBpcyBub3QgaW5zdGFsbGVkIiwKICAgICAgInRpbWVPcmlnaW4iOiAxNzkyNDMyMjQ4OTYxLjIsCiAgICAgICJwZXJmb3JtYW5jZU5vdyI6IDY0NC44MDAwMDAwMTE5MjA5LAogICAgICAibmF2aWdhdGlvblR5cGUiOiAibmF2aWdhdGUiCiAgICB9LAogICAgewogICAgICAiYXR0ZW1wdCI6ICJyZWxvYWQiLAogICAgICAicmVhZHlBbmRJbnB1dEVsYXBzZWRNcyI6IDQzMCwKICAgICAgImNsb2NrIjogIm9yZGluYXJ5IGJyb3dzZXIgY2xvY2s7IFBsYXl3cmlnaHQgY2xvY2sgaXMgbm90IGluc3RhbGxlZCIsCiAgICAgICJ0aW1lT3JpZ2luIjogMTc5MjQzMjI0OTYyNy4yLAogICAgICAicGVyZm9ybWFuY2VOb3ciOiA0MjcuNzAwMDAwMDE3ODgxNCwKICAgICAgIm5hdmlnYXRpb25UeXBlIjogInJlbG9hZCIKICAgIH0KICBdLAogICJwYWdlRXJyb3JzIjogW10KfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ecbefbc50305442035b0-8fcd0b0d45d0ce9d491c",
+          "file": "input-guardrails.spec.ts",
+          "line": 184,
+          "column": 1
+        },
+        {
+          "title": "ordinary-clock cold startup and reload reach editable practice without timer instrumentation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1992,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:51:35.864Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "ordinary-clock-workspace-startup",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZWNlaXB0cyI6IFsKICAgIHsKICAgICAgImF0dGVtcHQiOiAiY29sZCIsCiAgICAgICJyZWFkeUFuZElucHV0RWxhcHNlZE1zIjogOTUzLAogICAgICAiY2xvY2siOiAib3JkaW5hcnkgYnJvd3NlciBjbG9jazsgUGxheXdyaWdodCBjbG9jayBpcyBub3QgaW5zdGFsbGVkIiwKICAgICAgInRpbWVPcmlnaW4iOiAxNzkyNDMyMjk2MTY5LjEsCiAgICAgICJwZXJmb3JtYW5jZU5vdyI6IDk0NC41LAogICAgICAibmF2aWdhdGlvblR5cGUiOiAibmF2aWdhdGUiCiAgICB9LAogICAgewogICAgICAiYXR0ZW1wdCI6ICJyZWxvYWQiLAogICAgICAicmVhZHlBbmRJbnB1dEVsYXBzZWRNcyI6IDYzNCwKICAgICAgImNsb2NrIjogIm9yZGluYXJ5IGJyb3dzZXIgY2xvY2s7IFBsYXl3cmlnaHQgY2xvY2sgaXMgbm90IGluc3RhbGxlZCIsCiAgICAgICJ0aW1lT3JpZ2luIjogMTc5MjQzMjI5NzEzOS4xLAogICAgICAicGVyZm9ybWFuY2VOb3ciOiA2MzYuOTAwMDAwMDA1OTYwNSwKICAgICAgIm5hdmlnYXRpb25UeXBlIjogInJlbG9hZCIKICAgIH0KICBdLAogICJwYWdlRXJyb3JzIjogW10KfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ecbefbc50305442035b0-ca92dc7960b72b359fc0",
+          "file": "input-guardrails.spec.ts",
+          "line": 184,
+          "column": 1
+        },
+        {
+          "title": "ordinary-clock cold startup and reload reach editable practice without timer instrumentation",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 2534,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m304\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m304\u001b[39m\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\input-guardrails.spec.ts:193:32",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\input-guardrails.spec.ts",
+                      "column": 32,
+                      "line": 193
+                    },
+                    "snippet": "  191 |       ? await page.goto(\"/\", { waitUntil: \"domcontentloaded\" })\n  192 |       : await page.reload({ waitUntil: \"domcontentloaded\" });\n> 193 |     expect(response?.status()).toBe(200);\n      |                                ^\n  194 |     await expect(page.getByRole(\"group\", { name: \"Test duration\", exact: true })).toBeVisible();\n  195 |     const session = page.getByRole(\"region\", { name: \"Typing session\", exact: true });\n  196 |     await expect(session).toHaveAttribute(\"data-status\", \"ready\");"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\input-guardrails.spec.ts",
+                        "column": 32,
+                        "line": 193
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m304\u001b[39m\n\n  191 |       ? await page.goto(\"/\", { waitUntil: \"domcontentloaded\" })\n  192 |       : await page.reload({ waitUntil: \"domcontentloaded\" });\n> 193 |     expect(response?.status()).toBe(200);\n      |                                ^\n  194 |     await expect(page.getByRole(\"group\", { name: \"Test duration\", exact: true })).toBeVisible();\n  195 |     const session = page.getByRole(\"region\", { name: \"Typing session\", exact: true });\n  196 |     await expect(session).toHaveAttribute(\"data-status\", \"ready\");\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\input-guardrails.spec.ts:193:32"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:52:40.780Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\verified-targeted-artifacts\\input-guardrails-ordinary--60c58-thout-timer-instrumentation-firefox\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\verified-targeted-artifacts\\input-guardrails-ordinary--60c58-thout-timer-instrumentation-firefox\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\verified-targeted-artifacts\\input-guardrails-ordinary--60c58-thout-timer-instrumentation-firefox\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\input-guardrails.spec.ts",
+                    "column": 32,
+                    "line": 193
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "ecbefbc50305442035b0-ed533a908cb90f8f5910",
+          "file": "input-guardrails.spec.ts",
+          "line": 184,
+          "column": 1
+        },
+        {
+          "title": "ordinary-clock cold startup and reload reach editable practice without timer instrumentation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3057,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:53:51.775Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "ordinary-clock-workspace-startup",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZWNlaXB0cyI6IFsKICAgIHsKICAgICAgImF0dGVtcHQiOiAiY29sZCIsCiAgICAgICJyZWFkeUFuZElucHV0RWxhcHNlZE1zIjogMTQ2MSwKICAgICAgImNsb2NrIjogIm9yZGluYXJ5IGJyb3dzZXIgY2xvY2s7IFBsYXl3cmlnaHQgY2xvY2sgaXMgbm90IGluc3RhbGxlZCIsCiAgICAgICJ0aW1lT3JpZ2luIjogMTc5MjQzMjQzMjAwNiwKICAgICAgInBlcmZvcm1hbmNlTm93IjogMTQ4NiwKICAgICAgIm5hdmlnYXRpb25UeXBlIjogIm5hdmlnYXRlIgogICAgfSwKICAgIHsKICAgICAgImF0dGVtcHQiOiAicmVsb2FkIiwKICAgICAgInJlYWR5QW5kSW5wdXRFbGFwc2VkTXMiOiAxMTI3LAogICAgICAiY2xvY2siOiAib3JkaW5hcnkgYnJvd3NlciBjbG9jazsgUGxheXdyaWdodCBjbG9jayBpcyBub3QgaW5zdGFsbGVkIiwKICAgICAgInRpbWVPcmlnaW4iOiAxNzkyNDMyNDMzNTA5LAogICAgICAicGVyZm9ybWFuY2VOb3ciOiAxMTI2LAogICAgICAibmF2aWdhdGlvblR5cGUiOiAicmVsb2FkIgogICAgfQogIF0sCiAgInBhZ2VFcnJvcnMiOiBbXQp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ecbefbc50305442035b0-9127c38b3ec8bad7cabc",
+          "file": "input-guardrails.spec.ts",
+          "line": 184,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "php-account-flow.spec.ts",
+      "file": "php-account-flow.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10951,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:50:50.166Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "session-cookie-policy",
+                      "contentType": "application/json",
+                      "body": "eyJlbWl0dGVkSHR0cE9ubHlBbmRTYW1lU2l0ZUxheCI6dHJ1ZSwiYnJvd3NlclJlcG9ydGVkU2FtZVNpdGUiOlsiTGF4Il0sImxpbWl0YXRpb24iOiJXaW5kb3dzIFdlYktpdCBjYW4gcmVwb3J0IE5vbmUgZGVzcGl0ZSB0aGUgYWN0dWFsIFNhbWVTaXRlPUxheCBoZWFkZXIuIFRoaXMgdmVyaWZpZXMgZW1pdHRlZCBwb2xpY3kgYW5kIEh0dHBPbmx5IHN0b3JhZ2UsIG5vdCBuYXRpdmUgY3Jvc3Mtc2l0ZSBjb29raWUgZW5mb3JjZW1lbnQuIn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "32cd5040f4cf1710e3c6-db4b2c13397c78a62cb0",
+          "file": "php-account-flow.spec.ts",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 14145,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:51:37.919Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "session-cookie-policy",
+                      "contentType": "application/json",
+                      "body": "eyJlbWl0dGVkSHR0cE9ubHlBbmRTYW1lU2l0ZUxheCI6dHJ1ZSwiYnJvd3NlclJlcG9ydGVkU2FtZVNpdGUiOlsiTGF4Il0sImxpbWl0YXRpb24iOiJXaW5kb3dzIFdlYktpdCBjYW4gcmVwb3J0IE5vbmUgZGVzcGl0ZSB0aGUgYWN0dWFsIFNhbWVTaXRlPUxheCBoZWFkZXIuIFRoaXMgdmVyaWZpZXMgZW1pdHRlZCBwb2xpY3kgYW5kIEh0dHBPbmx5IHN0b3JhZ2UsIG5vdCBuYXRpdmUgY3Jvc3Mtc2l0ZSBjb29raWUgZW5mb3JjZW1lbnQuIn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "32cd5040f4cf1710e3c6-11c6dd7f1da946ac4ac5",
+          "file": "php-account-flow.spec.ts",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 3373,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\php-account-flow.spec.ts:37:135",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\php-account-flow.spec.ts",
+                      "column": 135,
+                      "line": 37
+                    },
+                    "snippet": "  35 |     await page.getByRole(\"button\", { name: \"Create Account\", exact: true }).click();\n  36 |     const emittedCookies = (await (await signupResponse).headersArray()).filter(header => header.name.toLowerCase() === 'set-cookie');\n> 37 |     expect(emittedCookies.some(header => /;\\s*HttpOnly(?:;|$)/i.test(header.value) && /;\\s*SameSite=Lax(?:;|$)/i.test(header.value))).toBe(true);\n     |                                                                                                                                       ^\n  38 |     await expect(page).toHaveURL(\"/\");\n  39 |     const signedIn = await session(page);\n  40 |     expect(signedIn.user?.email).toBe(email);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\php-account-flow.spec.ts",
+                        "column": 135,
+                        "line": 37
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  35 |     await page.getByRole(\"button\", { name: \"Create Account\", exact: true }).click();\n  36 |     const emittedCookies = (await (await signupResponse).headersArray()).filter(header => header.name.toLowerCase() === 'set-cookie');\n> 37 |     expect(emittedCookies.some(header => /;\\s*HttpOnly(?:;|$)/i.test(header.value) && /;\\s*SameSite=Lax(?:;|$)/i.test(header.value))).toBe(true);\n     |                                                                                                                                       ^\n  38 |     await expect(page).toHaveURL(\"/\");\n  39 |     const signedIn = await session(page);\n  40 |     expect(signedIn.user?.email).toBe(email);\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\php-account-flow.spec.ts:37:135"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:52:45.222Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\verified-targeted-artifacts\\php-account-flow-real-PHP--b8e61-rences-and-account-deletion-firefox\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\verified-targeted-artifacts\\php-account-flow-real-PHP--b8e61-rences-and-account-deletion-firefox\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\verified-targeted-artifacts\\php-account-flow-real-PHP--b8e61-rences-and-account-deletion-firefox\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\php-account-flow.spec.ts",
+                    "column": 135,
+                    "line": 37
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "32cd5040f4cf1710e3c6-a05a0cb5099e46cddc55",
+          "file": "php-account-flow.spec.ts",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1888,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\php-account-flow.spec.ts:37:135",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\php-account-flow.spec.ts",
+                      "column": 135,
+                      "line": 37
+                    },
+                    "snippet": "  35 |     await page.getByRole(\"button\", { name: \"Create Account\", exact: true }).click();\n  36 |     const emittedCookies = (await (await signupResponse).headersArray()).filter(header => header.name.toLowerCase() === 'set-cookie');\n> 37 |     expect(emittedCookies.some(header => /;\\s*HttpOnly(?:;|$)/i.test(header.value) && /;\\s*SameSite=Lax(?:;|$)/i.test(header.value))).toBe(true);\n     |                                                                                                                                       ^\n  38 |     await expect(page).toHaveURL(\"/\");\n  39 |     const signedIn = await session(page);\n  40 |     expect(signedIn.user?.email).toBe(email);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\php-account-flow.spec.ts",
+                        "column": 135,
+                        "line": 37
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  35 |     await page.getByRole(\"button\", { name: \"Create Account\", exact: true }).click();\n  36 |     const emittedCookies = (await (await signupResponse).headersArray()).filter(header => header.name.toLowerCase() === 'set-cookie');\n> 37 |     expect(emittedCookies.some(header => /;\\s*HttpOnly(?:;|$)/i.test(header.value) && /;\\s*SameSite=Lax(?:;|$)/i.test(header.value))).toBe(true);\n     |                                                                                                                                       ^\n  38 |     await expect(page).toHaveURL(\"/\");\n  39 |     const signedIn = await session(page);\n  40 |     expect(signedIn.user?.email).toBe(email);\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\php-account-flow.spec.ts:37:135"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:53:54.868Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\verified-targeted-artifacts\\php-account-flow-real-PHP--b8e61-rences-and-account-deletion-webkit\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\verified-targeted-artifacts\\php-account-flow-real-PHP--b8e61-rences-and-account-deletion-webkit\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\verified-targeted-artifacts\\php-account-flow-real-PHP--b8e61-rences-and-account-deletion-webkit\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\php-account-flow.spec.ts",
+                    "column": 135,
+                    "line": 37
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "32cd5040f4cf1710e3c6-3834e7224d2bbbe9910f",
+          "file": "php-account-flow.spec.ts",
+          "line": 6,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "profile-identity.spec.ts",
+      "file": "profile-identity.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "a delayed initial profile response keeps the handle unavailable until its identity is loaded",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 797,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:51:01.156Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "24f5df92ce1fdbed1a3a-fff6a407820753050f83",
+          "file": "profile-identity.spec.ts",
+          "line": 37,
+          "column": 1
+        },
+        {
+          "title": "same-account auth refresh preserves the unsaved handle without requesting the profile again",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 796,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:51:01.973Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "24f5df92ce1fdbed1a3a-b202bcf33264a9dc1c74",
+          "file": "profile-identity.spec.ts",
+          "line": 65,
+          "column": 1
+        },
+        {
+          "title": "an initial profile fetch error remains visible and releases handle editing",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 732,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:51:02.784Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "24f5df92ce1fdbed1a3a-5c63f4395657d7fcff4c",
+          "file": "profile-identity.spec.ts",
+          "line": 85,
+          "column": 1
+        },
+        {
+          "title": "a delayed initial profile response keeps the handle unavailable until its identity is loaded",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1181,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:51:52.120Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "24f5df92ce1fdbed1a3a-92c61b32ec8e55490423",
+          "file": "profile-identity.spec.ts",
+          "line": 37,
+          "column": 1
+        },
+        {
+          "title": "same-account auth refresh preserves the unsaved handle without requesting the profile again",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1198,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:51:53.319Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "24f5df92ce1fdbed1a3a-16f6644f04884070181c",
+          "file": "profile-identity.spec.ts",
+          "line": 65,
+          "column": 1
+        },
+        {
+          "title": "an initial profile fetch error remains visible and releases handle editing",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3289,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:51:54.545Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "24f5df92ce1fdbed1a3a-a4399c60b4cb71855ab5",
+          "file": "profile-identity.spec.ts",
+          "line": 85,
+          "column": 1
+        },
+        {
+          "title": "a delayed initial profile response keeps the handle unavailable until its identity is loaded",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3683,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:52:51.365Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "24f5df92ce1fdbed1a3a-83f613fb1f6403bb1626",
+          "file": "profile-identity.spec.ts",
+          "line": 37,
+          "column": 1
+        },
+        {
+          "title": "same-account auth refresh preserves the unsaved handle without requesting the profile again",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1939,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:52:55.598Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "24f5df92ce1fdbed1a3a-a6e0c10e72a881f911f9",
+          "file": "profile-identity.spec.ts",
+          "line": 65,
+          "column": 1
+        },
+        {
+          "title": "an initial profile fetch error remains visible and releases handle editing",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1861,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:52:57.569Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "24f5df92ce1fdbed1a3a-4ec959aee3f1409387b7",
+          "file": "profile-identity.spec.ts",
+          "line": 85,
+          "column": 1
+        },
+        {
+          "title": "a delayed initial profile response keeps the handle unavailable until its identity is loaded",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7458,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('status').filter({ hasText: 'Your public handle is saved.' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('status').filter({ hasText: 'Your public handle is saved.' }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status').filter({ hasText: 'Your public handle is saved.' })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('status').filter({ hasText: 'Your public handle is saved.' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('status').filter({ hasText: 'Your public handle is saved.' }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status').filter({ hasText: 'Your public handle is saved.' })\u001b[22m\n\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\profile-identity.spec.ts:57:96",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\profile-identity.spec.ts",
+                      "column": 96,
+                      "line": 57
+                    },
+                    "snippet": "  55 |     await handle.fill(\"delayed_identity_draft\");\n  56 |     await save.click();\n> 57 |     await expect(page.getByRole(\"status\").filter({ hasText: \"Your public handle is saved.\" })).toBeVisible();\n     |                                                                                                ^\n  58 |     expect(calls.savedHandles).toEqual([\"delayed_identity_draft\"]);\n  59 |     expect(calls.profiles).toBe(1);\n  60 |   } finally {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\profile-identity.spec.ts",
+                        "column": 96,
+                        "line": 57
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('status').filter({ hasText: 'Your public handle is saved.' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('status').filter({ hasText: 'Your public handle is saved.' }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status').filter({ hasText: 'Your public handle is saved.' })\u001b[22m\n\n\n  55 |     await handle.fill(\"delayed_identity_draft\");\n  56 |     await save.click();\n> 57 |     await expect(page.getByRole(\"status\").filter({ hasText: \"Your public handle is saved.\" })).toBeVisible();\n     |                                                                                                ^\n  58 |     expect(calls.savedHandles).toEqual([\"delayed_identity_draft\"]);\n  59 |     expect(calls.profiles).toBe(1);\n  60 |   } finally {\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\profile-identity.spec.ts:57:96"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:53:57.968Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\verified-targeted-artifacts\\profile-identity-a-delayed-71907-ntil-its-identity-is-loaded-webkit\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\verified-targeted-artifacts\\profile-identity-a-delayed-71907-ntil-its-identity-is-loaded-webkit\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\verified-targeted-artifacts\\profile-identity-a-delayed-71907-ntil-its-identity-is-loaded-webkit\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\profile-identity.spec.ts",
+                    "column": 96,
+                    "line": 57
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "24f5df92ce1fdbed1a3a-059aa9a5b080b78052fc",
+          "file": "profile-identity.spec.ts",
+          "line": 37,
+          "column": 1
+        },
+        {
+          "title": "same-account auth refresh preserves the unsaved handle without requesting the profile again",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7037,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m3\u001b[39m\nReceived:   \u001b[31m3\u001b[39m\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m3\u001b[39m\nReceived:   \u001b[31m3\u001b[39m\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\profile-identity.spec.ts:75:43",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\profile-identity.spec.ts",
+                      "column": 43,
+                      "line": 75
+                    },
+                    "snippet": "  73 |   await page.evaluate(() => window.dispatchEvent(new StorageEvent(\"storage\", { key: \"sparowtype:auth-changed\", newValue: \"same-account-refresh\" })));\n  74 |   await refreshed;\n> 75 |   await expect.poll(() => calls.sessions).toBeGreaterThan(beforeRefresh);\n     |                                           ^\n  76 |   // Cross the rendering/effect boundary after the auth response has published.\n  77 |   await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));\n  78 |   await expect(handle).toHaveValue(\"same_account_draft\");"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\profile-identity.spec.ts",
+                        "column": 43,
+                        "line": 75
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m3\u001b[39m\nReceived:   \u001b[31m3\u001b[39m\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate\n\n  73 |   await page.evaluate(() => window.dispatchEvent(new StorageEvent(\"storage\", { key: \"sparowtype:auth-changed\", newValue: \"same-account-refresh\" })));\n  74 |   await refreshed;\n> 75 |   await expect.poll(() => calls.sessions).toBeGreaterThan(beforeRefresh);\n     |                                           ^\n  76 |   // Cross the rendering/effect boundary after the auth response has published.\n  77 |   await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));\n  78 |   await expect(handle).toHaveValue(\"same_account_draft\");\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\profile-identity.spec.ts:75:43"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:54:06.918Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\verified-targeted-artifacts\\profile-identity-same-acco-763f1-equesting-the-profile-again-webkit\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\verified-targeted-artifacts\\profile-identity-same-acco-763f1-equesting-the-profile-again-webkit\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\verified-targeted-artifacts\\profile-identity-same-acco-763f1-equesting-the-profile-again-webkit\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\profile-identity.spec.ts",
+                    "column": 43,
+                    "line": 75
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "24f5df92ce1fdbed1a3a-1274cf21c405c2e01005",
+          "file": "profile-identity.spec.ts",
+          "line": 65,
+          "column": 1
+        },
+        {
+          "title": "an initial profile fetch error remains visible and releases handle editing",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 0,
+                  "status": "timedOut",
+                  "duration": 30469,
+                  "error": {
+                    "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:54:15.147Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\verified-targeted-artifacts\\profile-identity-an-initia-bd0ef-and-releases-handle-editing-webkit\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\verified-targeted-artifacts\\profile-identity-an-initia-bd0ef-and-releases-handle-editing-webkit\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\feature-audit-2026-10-19\\verified-targeted-artifacts\\profile-identity-an-initia-bd0ef-and-releases-handle-editing-webkit\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "24f5df92ce1fdbed1a3a-8133ef8e3320726447d2",
+          "file": "profile-identity.spec.ts",
+          "line": 85,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "secondary-pages.spec.ts",
+      "file": "secondary-pages.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "public information pages have real recovery navigation and distinct metadata",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1035,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:51:03.555Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3de1a71e22fb2b79fb44-5dba22802a17e796478b",
+          "file": "secondary-pages.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "public information pages have real recovery navigation and distinct metadata",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1334,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:51:57.882Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3de1a71e22fb2b79fb44-aeed5118f19d07742909",
+          "file": "secondary-pages.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "public information pages have real recovery navigation and distinct metadata",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2558,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:52:59.473Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3de1a71e22fb2b79fb44-7bbd36f2659e4a2d10ec",
+          "file": "secondary-pages.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "public information pages have real recovery navigation and distinct metadata",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2385,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:54:46.507Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3de1a71e22fb2b79fb44-26b2bd236aa956a0b8dc",
+          "file": "secondary-pages.spec.ts",
+          "line": 10,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "typing-audit-regressions.spec.ts",
+      "file": "typing-audit-regressions.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "a delayed canonical-equivalent learning IME echo counts only one composition",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2108,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:51:04.620Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2e95e0f4854281e63583-393440c185e8bf8d31de",
+          "file": "typing-audit-regressions.spec.ts",
+          "line": 40,
+          "column": 1
+        },
+        {
+          "title": "a delayed canonical-equivalent learning IME echo counts only one composition",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2559,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:51:59.260Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2e95e0f4854281e63583-4ec34e9eebd235ec1371",
+          "file": "typing-audit-regressions.spec.ts",
+          "line": 40,
+          "column": 1
+        },
+        {
+          "title": "a delayed canonical-equivalent learning IME echo counts only one composition",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2449,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:53:02.071Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2e95e0f4854281e63583-24394dcf28d7b482f9ef",
+          "file": "typing-audit-regressions.spec.ts",
+          "line": 40,
+          "column": 1
+        },
+        {
+          "title": "a delayed canonical-equivalent learning IME echo counts only one composition",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2714,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-19T17:54:49.003Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2e95e0f4854281e63583-31eabefd259c6bed4553",
+          "file": "typing-audit-regressions.spec.ts",
+          "line": 40,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-19T17:50:27.591Z",
+    "duration": 264225.46,
+    "expected": 34,
+    "skipped": 0,
+    "unexpected": 6,
+    "flaky": 0
+  }
+}

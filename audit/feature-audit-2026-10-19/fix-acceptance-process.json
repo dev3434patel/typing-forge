@@ -1,0 +1,22 @@
+{
+  "name": "fix-acceptance",
+  "command": [
+    "node",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "e2e/typing-audit-regressions.spec.ts",
+    "e2e/pwa-notices.spec.ts",
+    "e2e/navigation-accessibility.spec.ts",
+    "e2e/auth-flow.spec.ts",
+    "e2e/caret-handoff-readiness.spec.ts",
+    "e2e/accessibility-audit.spec.ts",
+    "--workers=1",
+    "--retries=0",
+    "--reporter=list,json",
+    "--output=audit/feature-audit-2026-10-19/fix-artifacts"
+  ],
+  "exitCode": 1,
+  "durationSeconds": 51.005,
+  "startedUnix": 1792427278.583265,
+  "finishedUnix": 1792427329.588545
+}

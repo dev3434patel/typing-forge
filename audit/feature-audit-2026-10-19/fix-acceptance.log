@@ -1,0 +1,63 @@
+
+Running 20 tests using 1 worker
+
+(node:46212) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 390px (7.3s)
+  ok  2 [chromium] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 1440px (7.4s)
+  ok  3 [chromium] › e2e\auth-flow.spec.ts:8:1 › account form switches between sign in and creation using labelled controls (766ms)
+  ok  4 [chromium] › e2e\auth-flow.spec.ts:20:1 › guest practice remains reachable from the account screen (943ms)
+  ok  5 [chromium] › e2e\auth-flow.spec.ts:25:1 › account entrance respects reduced motion and exposes password-manager semantics (492ms)
+  -   6 [chromium] › e2e\auth-flow.spec.ts:47:1 › real account sign in with dedicated deployment credentials
+  ok  7 [chromium] › e2e\caret-handoff-readiness.spec.ts:10:3 › real delayed workspace within readiness window keeps automatic handoff and first input safe (7.9s)
+  ok  8 [chromium] › e2e\caret-handoff-readiness.spec.ts:10:3 › real delayed workspace after readiness deadline keeps automatic handoff and first input safe (7.4s)
+  ok  9 [chromium] › e2e\caret-handoff-readiness.spec.ts:138:1 › an actual caret module arriving after its import deadline cannot revive decoration or consume the first key (3.6s)
+  ok 10 [chromium] › e2e\navigation-accessibility.spec.ts:9:1 › practice aliases identify the current workspace in desktop and mobile navigation (1.6s)
+  ok 11 [chromium] › e2e\navigation-accessibility.spec.ts:40:1 › keyboard users can pan the narrow keyboard lab diagram (652ms)
+  x  12 [chromium] › e2e\navigation-accessibility.spec.ts:61:1 › the command palette stays inside a landscape phone viewport and supports touch dismissal (635ms)
+(node:44040) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 13 [chromium] › e2e\pwa-notices.spec.ts:40:1 › dismissing installation does not hide a later app update or offline information (523ms)
+  ok 14 [chromium] › e2e\pwa-notices.spec.ts:59:1 › update dismissal does not dismiss installation or a subsequent update (438ms)
+  ok 15 [chromium] › e2e\typing-audit-regressions.spec.ts:20:3 › Quote records the actual Latin content and ignores inactive generated-word toggles (1.6s)
+  ok 16 [chromium] › e2e\typing-audit-regressions.spec.ts:20:3 › Code records the actual Latin content and ignores inactive generated-word toggles (1.5s)
+  ok 17 [chromium] › e2e\typing-audit-regressions.spec.ts:40:1 › a delayed canonical-equivalent learning IME echo counts only one composition (1.3s)
+  ok 18 [chromium] › e2e\typing-audit-regressions.spec.ts:63:1 › a new physical key can immediately repeat a learning composition's letter (1.1s)
+  ok 19 [chromium] › e2e\typing-audit-regressions.spec.ts:87:3 › a virtual key can repeat an IME letter with no keydown and no composition echo (1.1s)
+  ok 20 [chromium] › e2e\typing-audit-regressions.spec.ts:87:3 › a virtual key can repeat an IME letter with legacy keyCode 229 and no composition echo (1.1s)
+
+
+  1) [chromium] › e2e\navigation-accessibility.spec.ts:61:1 › the command palette stays inside a landscape phone viewport and supports touch dismissal 
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 0
+    Received:    -30.48105812072754
+
+      69 |   const bounds = await dialog.boundingBox();
+      70 |   expect(bounds).not.toBeNull();
+    > 71 |   expect(bounds!.y).toBeGreaterThanOrEqual(0);
+         |                     ^
+      72 |   expect(bounds!.y + bounds!.height).toBeLessThanOrEqual(321);
+      73 |   const close = dialog.getByRole("button", { name: "Close", exact: true });
+      74 |   const target = await close.boundingBox();
+        at D:\extra\typing_updated\typing-forge\e2e\navigation-accessibility.spec.ts:71:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\fix-artifacts\navigation-accessibility-t-6c6ff-nd-supports-touch-dismissal-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\feature-audit-2026-10-19\fix-artifacts\navigation-accessibility-t-6c6ff-nd-supports-touch-dismissal-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\fix-artifacts\navigation-accessibility-t-6c6ff-nd-supports-touch-dismissal-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\feature-audit-2026-10-19\fix-artifacts\navigation-accessibility-t-6c6ff-nd-supports-touch-dismissal-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › e2e\navigation-accessibility.spec.ts:61:1 › the command palette stays inside a landscape phone viewport and supports touch dismissal 
+  1 skipped
+  18 passed (50.3s)

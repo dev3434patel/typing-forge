@@ -1,0 +1,812 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: accessibility-audit.spec.ts >> existing guest pages and completed results meet automated accessibility rules at 390px
+- Location: e2e\accessibility-audit.spec.ts:12:3
+
+# Error details
+
+```
+Error: page.addScriptTag: Executing inline script violates the following Content Security Policy directive 'script-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-E3EeTHvx5D/JxHMAmxf9pFfuV6852vl1jPB1znFLMxA='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked.
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e4]:
+  - banner [ref=e5]:
+    - link "Skip to content" [ref=e6] [cursor=pointer]:
+      - /url: "#main-content"
+    - generic [ref=e7]:
+      - link "SparowType home" [ref=e8] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e9]:
+          - generic [ref=e10]: Sparow
+          - generic [ref=e11]: Type
+      - generic [ref=e12]:
+        - button "Switch to light theme" [ref=e13]
+        - link "Settings" [ref=e20] [cursor=pointer]:
+          - /url: /settings
+        - link "Sign in" [ref=e24] [cursor=pointer]:
+          - /url: /auth
+    - navigation "Mobile navigation" [ref=e28]:
+      - link "Test" [ref=e29] [cursor=pointer]:
+        - /url: /
+      - link "Learn" [ref=e32] [cursor=pointer]:
+        - /url: /learn
+      - link "Race" [ref=e36] [cursor=pointer]:
+        - /url: /race
+      - link "Stats" [ref=e46] [cursor=pointer]:
+        - /url: /stats
+      - link "Rankings" [ref=e49] [cursor=pointer]:
+        - /url: /leaderboard
+      - link "Keyboard Lab" [ref=e56] [cursor=pointer]:
+        - /url: /keyboard-lab
+  - main [ref=e59]:
+    - heading "Typing practice" [level=1] [ref=e60]
+    - region "Test configuration" [ref=e61]:
+      - generic [ref=e62]:
+        - group "Test mode" [ref=e63]:
+          - button "Time" [pressed] [ref=e64]
+          - button "Words" [ref=e68]
+          - button "Quote" [ref=e71]
+          - button "Code" [ref=e75]
+          - button "Custom" [ref=e80]
+          - button "Zen" [ref=e84]
+        - group "Test duration" [ref=e87]:
+          - button "15 seconds" [ref=e88]:
+            - text: "15"
+            - generic [ref=e89]: seconds
+          - button "30 seconds" [pressed] [ref=e90]:
+            - text: "30"
+            - generic [ref=e91]: seconds
+          - button "60 seconds" [ref=e92]:
+            - text: "60"
+            - generic [ref=e93]: seconds
+          - button "120 seconds" [ref=e94]:
+            - text: "120"
+            - generic [ref=e95]: seconds
+      - generic [ref=e96]:
+        - generic "Wrong insertion attempts count toward accuracy but do not advance the caret. Compared separately from normal practice." [ref=e97]:
+          - checkbox "Precision mode · stop on errors" [ref=e98]
+          - text: Precision mode · stop on errors
+        - generic [ref=e99]:
+          - text: Language
+          - combobox "Language" [ref=e100]:
+            - option "English" [selected]
+            - option "Español"
+            - option "Français"
+            - option "Deutsch"
+            - option "Português"
+            - option "Italiano"
+            - option "Русский"
+            - option "हिन्दी"
+            - option "العربية"
+            - option "Gujarati transliteration (Latin)"
+        - button "punctuation" [ref=e101]
+        - button "# numbers" [ref=e103]
+    - region "Typing session" [ref=e104]:
+      - generic [ref=e106]:
+        - generic [ref=e107]:
+          - generic [ref=e108]: 30s
+          - generic [ref=e109]: remaining
+        - generic [ref=e110]: —wpm
+      - generic [ref=e112]:
+        - generic [ref=e114]:
+          - generic [ref=e115]:
+            - generic [ref=e116]: p
+            - generic [ref=e117]: e
+            - generic [ref=e118]: r
+            - generic [ref=e119]: s
+            - generic [ref=e120]: o
+            - generic [ref=e121]: "n"
+          - generic [ref=e123]:
+            - generic [ref=e124]: w
+            - generic [ref=e125]: a
+            - generic [ref=e126]: r
+            - generic [ref=e127]: m
+          - generic [ref=e129]:
+            - generic [ref=e130]: r
+            - generic [ref=e131]: e
+            - generic [ref=e132]: "n"
+            - generic [ref=e133]: t
+          - generic [ref=e135]:
+            - generic [ref=e136]: q
+            - generic [ref=e137]: u
+            - generic [ref=e138]: e
+            - generic [ref=e139]: e
+            - generic [ref=e140]: "n"
+          - generic [ref=e142]:
+            - generic [ref=e143]: a
+            - generic [ref=e144]: "n"
+          - generic [ref=e146]:
+            - generic [ref=e147]: f
+            - generic [ref=e148]: o
+            - generic [ref=e149]: o
+            - generic [ref=e150]: t
+          - generic [ref=e152]:
+            - generic [ref=e153]: r
+            - generic [ref=e154]: a
+            - generic [ref=e155]: t
+            - generic [ref=e156]: e
+          - generic [ref=e158]:
+            - generic [ref=e159]: w
+            - generic [ref=e160]: h
+            - generic [ref=e161]: e
+            - generic [ref=e162]: r
+            - generic [ref=e163]: e
+          - generic [ref=e165]:
+            - generic [ref=e166]: c
+            - generic [ref=e167]: a
+            - generic [ref=e168]: l
+            - generic [ref=e169]: m
+          - generic [ref=e171]:
+            - generic [ref=e172]: r
+            - generic [ref=e173]: e
+            - generic [ref=e174]: a
+            - generic [ref=e175]: d
+            - generic [ref=e176]: "y"
+          - generic [ref=e178]:
+            - generic [ref=e179]: q
+            - generic [ref=e180]: u
+            - generic [ref=e181]: i
+            - generic [ref=e182]: t
+            - generic [ref=e183]: e
+          - generic [ref=e185]:
+            - generic [ref=e186]: m
+            - generic [ref=e187]: e
+          - generic [ref=e189]:
+            - generic [ref=e190]: s
+            - generic [ref=e191]: e
+            - generic [ref=e192]: t
+          - generic [ref=e194]:
+            - generic [ref=e195]: h
+            - generic [ref=e196]: o
+            - generic [ref=e197]: m
+            - generic [ref=e198]: e
+          - generic [ref=e200]:
+            - generic [ref=e201]: t
+            - generic [ref=e202]: o
+            - generic [ref=e203]: g
+            - generic [ref=e204]: e
+            - generic [ref=e205]: t
+            - generic [ref=e206]: h
+            - generic [ref=e207]: e
+            - generic [ref=e208]: r
+          - generic [ref=e210]:
+            - generic [ref=e211]: e
+            - generic [ref=e212]: a
+            - generic [ref=e213]: t
+          - generic [ref=e215]:
+            - generic [ref=e216]: d
+            - generic [ref=e217]: a
+            - generic [ref=e218]: "y"
+          - generic [ref=e220]:
+            - generic [ref=e221]: "n"
+            - generic [ref=e222]: o
+            - generic [ref=e223]: w
+          - generic [ref=e225]:
+            - generic [ref=e226]: i
+            - generic [ref=e227]: "n"
+            - generic [ref=e228]: "n"
+            - generic [ref=e229]: a
+            - generic [ref=e230]: t
+            - generic [ref=e231]: e
+          - generic [ref=e233]:
+            - generic [ref=e234]: j
+            - generic [ref=e235]: o
+            - generic [ref=e236]: i
+            - generic [ref=e237]: "n"
+          - generic [ref=e239]:
+            - generic [ref=e240]: o
+            - generic [ref=e241]: "n"
+            - generic [ref=e242]: i
+            - generic [ref=e243]: o
+            - generic [ref=e244]: "n"
+          - generic [ref=e246]:
+            - generic [ref=e247]: d
+            - generic [ref=e248]: a
+            - generic [ref=e249]: r
+            - generic [ref=e250]: k
+          - generic [ref=e252]:
+            - generic [ref=e253]: m
+            - generic [ref=e254]: a
+            - generic [ref=e255]: d
+            - generic [ref=e256]: e
+          - generic [ref=e258]:
+            - generic [ref=e259]: r
+            - generic [ref=e260]: i
+            - generic [ref=e261]: o
+            - generic [ref=e262]: t
+          - generic [ref=e264]:
+            - generic [ref=e265]: s
+            - generic [ref=e266]: p
+            - generic [ref=e267]: e
+            - generic [ref=e268]: e
+            - generic [ref=e269]: d
+          - generic [ref=e271]:
+            - generic [ref=e272]: t
+            - generic [ref=e273]: a
+            - generic [ref=e274]: "n"
+          - generic [ref=e276]:
+            - generic [ref=e277]: s
+            - generic [ref=e278]: u
+            - generic [ref=e279]: r
+            - generic [ref=e280]: e
+          - generic [ref=e282]:
+            - generic [ref=e283]: w
+            - generic [ref=e284]: e
+            - generic [ref=e285]: e
+            - generic [ref=e286]: k
+          - generic [ref=e288]:
+            - generic [ref=e289]: i
+            - generic [ref=e290]: "n"
+            - generic [ref=e291]: t
+            - generic [ref=e292]: o
+          - generic [ref=e294]:
+            - generic [ref=e295]: a
+            - generic [ref=e296]: r
+            - generic [ref=e297]: i
+            - generic [ref=e298]: s
+            - generic [ref=e299]: e
+          - generic [ref=e301]:
+            - generic [ref=e302]: m
+            - generic [ref=e303]: i
+            - generic [ref=e304]: "n"
+            - generic [ref=e305]: e
+          - generic [ref=e307]:
+            - generic [ref=e308]: w
+            - generic [ref=e309]: h
+            - generic [ref=e310]: a
+            - generic [ref=e311]: t
+          - generic [ref=e313]:
+            - generic [ref=e314]: g
+            - generic [ref=e315]: r
+            - generic [ref=e316]: e
+            - generic [ref=e317]: a
+            - generic [ref=e318]: t
+          - generic [ref=e320]:
+            - generic [ref=e321]: p
+            - generic [ref=e322]: l
+            - generic [ref=e323]: a
+            - generic [ref=e324]: "n"
+          - generic [ref=e326]:
+            - generic [ref=e327]: h
+            - generic [ref=e328]: a
+            - generic [ref=e329]: p
+            - generic [ref=e330]: p
+            - generic [ref=e331]: "y"
+          - generic [ref=e333]:
+            - generic [ref=e334]: o
+            - generic [ref=e335]: w
+            - generic [ref=e336]: "n"
+          - generic [ref=e338]:
+            - generic [ref=e339]: t
+            - generic [ref=e340]: o
+            - generic [ref=e341]: "n"
+          - generic [ref=e343]:
+            - generic [ref=e344]: w
+            - generic [ref=e345]: e
+            - generic [ref=e346]: e
+            - generic [ref=e347]: k
+          - generic [ref=e349]:
+            - generic [ref=e350]: g
+            - generic [ref=e351]: r
+            - generic [ref=e352]: e
+            - generic [ref=e353]: a
+            - generic [ref=e354]: t
+          - generic [ref=e356]:
+            - generic [ref=e357]: w
+            - generic [ref=e358]: o
+            - generic [ref=e359]: r
+            - generic [ref=e360]: l
+            - generic [ref=e361]: d
+          - generic [ref=e363]:
+            - generic [ref=e364]: s
+            - generic [ref=e365]: t
+            - generic [ref=e366]: o
+            - generic [ref=e367]: r
+            - generic [ref=e368]: "y"
+          - generic [ref=e370]:
+            - generic [ref=e371]: r
+            - generic [ref=e372]: u
+            - generic [ref=e373]: "n"
+          - generic [ref=e375]:
+            - generic [ref=e376]: a
+            - generic [ref=e377]: "n"
+            - generic [ref=e378]: t
+            - generic [ref=e379]: e
+          - generic [ref=e381]:
+            - generic [ref=e382]: t
+            - generic [ref=e383]: h
+            - generic [ref=e384]: e
+            - generic [ref=e385]: s
+            - generic [ref=e386]: e
+          - generic [ref=e388]:
+            - generic [ref=e389]: b
+            - generic [ref=e390]: l
+            - generic [ref=e391]: u
+            - generic [ref=e392]: e
+          - generic [ref=e394]:
+            - generic [ref=e395]: h
+            - generic [ref=e396]: o
+            - generic [ref=e397]: u
+            - generic [ref=e398]: s
+            - generic [ref=e399]: e
+          - generic [ref=e401]:
+            - generic [ref=e402]: t
+            - generic [ref=e403]: h
+            - generic [ref=e404]: a
+            - generic [ref=e405]: "n"
+          - generic [ref=e407]:
+            - generic [ref=e408]: w
+            - generic [ref=e409]: i
+            - generic [ref=e410]: "n"
+            - generic [ref=e411]: d
+          - generic [ref=e413]:
+            - generic [ref=e414]: w
+            - generic [ref=e415]: a
+            - generic [ref=e416]: l
+            - generic [ref=e417]: k
+          - generic [ref=e419]:
+            - generic [ref=e420]: s
+            - generic [ref=e421]: p
+            - generic [ref=e422]: a
+            - generic [ref=e423]: c
+            - generic [ref=e424]: e
+          - generic [ref=e426]:
+            - generic [ref=e427]: d
+            - generic [ref=e428]: a
+            - generic [ref=e429]: "y"
+          - generic [ref=e431]:
+            - generic [ref=e432]: t
+            - generic [ref=e433]: o
+            - generic [ref=e434]: g
+            - generic [ref=e435]: e
+            - generic [ref=e436]: t
+            - generic [ref=e437]: h
+            - generic [ref=e438]: e
+            - generic [ref=e439]: r
+          - generic [ref=e441]:
+            - generic [ref=e442]: g
+            - generic [ref=e443]: o
+            - generic [ref=e444]: l
+            - generic [ref=e445]: d
+          - generic [ref=e447]:
+            - generic [ref=e448]: j
+            - generic [ref=e449]: o
+            - generic [ref=e450]: "y"
+          - generic [ref=e452]:
+            - generic [ref=e453]: p
+            - generic [ref=e454]: e
+            - generic [ref=e455]: r
+            - generic [ref=e456]: s
+            - generic [ref=e457]: o
+            - generic [ref=e458]: "n"
+          - generic [ref=e460]:
+            - generic [ref=e461]: t
+            - generic [ref=e462]: h
+            - generic [ref=e463]: e
+            - generic [ref=e464]: s
+            - generic [ref=e465]: e
+          - generic [ref=e467]:
+            - generic [ref=e468]: i
+            - generic [ref=e469]: r
+            - generic [ref=e470]: o
+            - generic [ref=e471]: "n"
+          - generic [ref=e473]:
+            - generic [ref=e474]: r
+            - generic [ref=e475]: o
+            - generic [ref=e476]: u
+            - generic [ref=e477]: "n"
+            - generic [ref=e478]: d
+          - generic [ref=e480]:
+            - generic [ref=e481]: t
+            - generic [ref=e482]: e
+            - generic [ref=e483]: a
+          - generic [ref=e485]:
+            - generic [ref=e486]: e
+            - generic [ref=e487]: a
+            - generic [ref=e488]: r
+            - generic [ref=e489]: "n"
+          - generic [ref=e491]:
+            - generic [ref=e492]: s
+            - generic [ref=e493]: e
+            - generic [ref=e494]: a
+            - generic [ref=e495]: t
+          - generic [ref=e497]:
+            - generic [ref=e498]: e
+            - generic [ref=e499]: a
+            - generic [ref=e500]: t
+          - generic [ref=e502]:
+            - generic [ref=e503]: p
+            - generic [ref=e504]: r
+            - generic [ref=e505]: a
+            - generic [ref=e506]: c
+            - generic [ref=e507]: t
+            - generic [ref=e508]: i
+            - generic [ref=e509]: c
+            - generic [ref=e510]: e
+          - generic [ref=e512]:
+            - generic [ref=e513]: r
+            - generic [ref=e514]: a
+            - generic [ref=e515]: i
+            - generic [ref=e516]: s
+            - generic [ref=e517]: e
+          - generic [ref=e519]:
+            - generic [ref=e520]: m
+            - generic [ref=e521]: i
+            - generic [ref=e522]: "n"
+            - generic [ref=e523]: e
+          - generic [ref=e525]:
+            - generic [ref=e526]: r
+            - generic [ref=e527]: o
+            - generic [ref=e528]: a
+            - generic [ref=e529]: d
+          - generic [ref=e531]:
+            - generic [ref=e532]: f
+            - generic [ref=e533]: o
+            - generic [ref=e534]: o
+            - generic [ref=e535]: t
+          - generic [ref=e537]:
+            - generic [ref=e538]: l
+            - generic [ref=e539]: a
+            - generic [ref=e540]: s
+            - generic [ref=e541]: t
+          - generic [ref=e543]:
+            - generic [ref=e544]: "n"
+            - generic [ref=e545]: e
+            - generic [ref=e546]: x
+            - generic [ref=e547]: t
+          - generic [ref=e549]:
+            - generic [ref=e550]: q
+            - generic [ref=e551]: u
+            - generic [ref=e552]: e
+            - generic [ref=e553]: e
+            - generic [ref=e554]: "n"
+          - generic [ref=e556]:
+            - generic [ref=e557]: r
+            - generic [ref=e558]: e
+            - generic [ref=e559]: t
+            - generic [ref=e560]: a
+            - generic [ref=e561]: i
+            - generic [ref=e562]: "n"
+          - generic [ref=e564]:
+            - generic [ref=e565]: a
+            - generic [ref=e566]: r
+            - generic [ref=e567]: i
+            - generic [ref=e568]: s
+            - generic [ref=e569]: e
+          - generic [ref=e571]:
+            - generic [ref=e572]: "n"
+            - generic [ref=e573]: o
+            - generic [ref=e574]: t
+          - generic [ref=e576]:
+            - generic [ref=e577]: t
+            - generic [ref=e578]: h
+            - generic [ref=e579]: e
+            - generic [ref=e580]: s
+            - generic [ref=e581]: e
+          - generic [ref=e583]:
+            - generic [ref=e584]: s
+            - generic [ref=e585]: h
+            - generic [ref=e586]: i
+            - generic [ref=e587]: p
+          - generic [ref=e589]:
+            - generic [ref=e590]: j
+            - generic [ref=e591]: o
+            - generic [ref=e592]: k
+            - generic [ref=e593]: e
+          - generic [ref=e595]:
+            - generic [ref=e596]: t
+            - generic [ref=e597]: o
+            - generic [ref=e598]: o
+          - generic [ref=e600]:
+            - generic [ref=e601]: s
+            - generic [ref=e602]: e
+            - generic [ref=e603]: e
+          - generic [ref=e605]:
+            - generic [ref=e606]: t
+            - generic [ref=e607]: a
+            - generic [ref=e608]: s
+            - generic [ref=e609]: k
+          - generic [ref=e611]:
+            - generic [ref=e612]: w
+            - generic [ref=e613]: e
+            - generic [ref=e614]: s
+            - generic [ref=e615]: t
+          - generic [ref=e617]:
+            - generic [ref=e618]: t
+            - generic [ref=e619]: o
+            - generic [ref=e620]: o
+          - generic [ref=e622]:
+            - generic [ref=e623]: g
+            - generic [ref=e624]: o
+            - generic [ref=e625]: l
+            - generic [ref=e626]: d
+          - generic [ref=e628]:
+            - generic [ref=e629]: a
+            - generic [ref=e630]: i
+            - generic [ref=e631]: r
+          - generic [ref=e633]:
+            - generic [ref=e634]: s
+            - generic [ref=e635]: i
+            - generic [ref=e636]: d
+            - generic [ref=e637]: e
+          - generic [ref=e639]:
+            - generic [ref=e640]: u
+            - generic [ref=e641]: s
+          - generic [ref=e643]:
+            - generic [ref=e644]: q
+            - generic [ref=e645]: u
+            - generic [ref=e646]: i
+            - generic [ref=e647]: e
+            - generic [ref=e648]: t
+          - generic [ref=e650]:
+            - generic [ref=e651]: s
+            - generic [ref=e652]: h
+            - generic [ref=e653]: o
+            - generic [ref=e654]: r
+            - generic [ref=e655]: t
+          - generic [ref=e657]:
+            - generic [ref=e658]: t
+            - generic [ref=e659]: h
+            - generic [ref=e660]: o
+            - generic [ref=e661]: s
+            - generic [ref=e662]: e
+          - generic [ref=e664]:
+            - generic [ref=e665]: a
+            - generic [ref=e666]: t
+          - generic [ref=e668]:
+            - generic [ref=e669]: s
+            - generic [ref=e670]: t
+            - generic [ref=e671]: o
+            - generic [ref=e672]: r
+            - generic [ref=e673]: e
+          - generic [ref=e675]:
+            - generic [ref=e676]: "n"
+            - generic [ref=e677]: e
+            - generic [ref=e678]: w
+          - generic [ref=e680]:
+            - generic [ref=e681]: e
+            - generic [ref=e682]: "y"
+            - generic [ref=e683]: e
+          - generic [ref=e685]:
+            - generic [ref=e686]: s
+            - generic [ref=e687]: a
+            - generic [ref=e688]: v
+            - generic [ref=e689]: e
+          - generic [ref=e691]:
+            - generic [ref=e692]: s
+            - generic [ref=e693]: e
+            - generic [ref=e694]: a
+          - generic [ref=e696]:
+            - generic [ref=e697]: t
+            - generic [ref=e698]: h
+            - generic [ref=e699]: e
+            - generic [ref=e700]: r
+            - generic [ref=e701]: e
+          - generic [ref=e703]:
+            - generic [ref=e704]: b
+            - generic [ref=e705]: l
+            - generic [ref=e706]: u
+            - generic [ref=e707]: e
+          - generic [ref=e709]:
+            - generic [ref=e710]: g
+            - generic [ref=e711]: r
+            - generic [ref=e712]: o
+            - generic [ref=e713]: u
+            - generic [ref=e714]: p
+          - generic [ref=e716]:
+            - generic [ref=e717]: t
+            - generic [ref=e718]: e
+            - generic [ref=e719]: e
+            - generic [ref=e720]: "n"
+          - generic [ref=e722]:
+            - generic [ref=e723]: o
+            - generic [ref=e724]: r
+          - generic [ref=e726]:
+            - generic [ref=e727]: r
+            - generic [ref=e728]: i
+            - generic [ref=e729]: o
+            - generic [ref=e730]: t
+          - generic [ref=e732]:
+            - generic [ref=e733]: s
+            - generic [ref=e734]: h
+            - generic [ref=e735]: o
+            - generic [ref=e736]: w
+          - generic [ref=e738]:
+            - generic [ref=e739]: "y"
+            - generic [ref=e740]: o
+            - generic [ref=e741]: u
+            - generic [ref=e742]: "n"
+            - generic [ref=e743]: g
+          - generic [ref=e745]:
+            - generic [ref=e746]: w
+            - generic [ref=e747]: o
+            - generic [ref=e748]: m
+            - generic [ref=e749]: a
+            - generic [ref=e750]: "n"
+          - generic [ref=e752]:
+            - generic [ref=e753]: t
+            - generic [ref=e754]: h
+            - generic [ref=e755]: i
+            - generic [ref=e756]: "n"
+            - generic [ref=e757]: k
+          - generic [ref=e759]:
+            - generic [ref=e760]: h
+            - generic [ref=e761]: o
+            - generic [ref=e762]: p
+            - generic [ref=e763]: e
+          - generic [ref=e765]:
+            - generic [ref=e766]: r
+            - generic [ref=e767]: a
+            - generic [ref=e768]: c
+            - generic [ref=e769]: e
+          - generic [ref=e771]:
+            - generic [ref=e772]: t
+            - generic [ref=e773]: i
+            - generic [ref=e774]: e
+            - generic [ref=e775]: r
+          - generic [ref=e777]:
+            - generic [ref=e778]: r
+            - generic [ref=e779]: a
+            - generic [ref=e780]: t
+            - generic [ref=e781]: e
+          - generic [ref=e783]:
+            - generic [ref=e784]: "n"
+            - generic [ref=e785]: o
+            - generic [ref=e786]: t
+            - generic [ref=e787]: i
+            - generic [ref=e788]: o
+            - generic [ref=e789]: "n"
+          - generic [ref=e791]:
+            - generic [ref=e792]: "n"
+            - generic [ref=e793]: o
+            - generic [ref=e794]: "n"
+            - generic [ref=e795]: e
+          - generic [ref=e797]:
+            - generic [ref=e798]: t
+            - generic [ref=e799]: h
+            - generic [ref=e800]: e
+            - generic [ref=e801]: r
+            - generic [ref=e802]: e
+          - generic [ref=e804]:
+            - generic [ref=e805]: p
+            - generic [ref=e806]: a
+            - generic [ref=e807]: r
+            - generic [ref=e808]: t
+          - generic [ref=e810]:
+            - generic [ref=e811]: b
+            - generic [ref=e812]: r
+            - generic [ref=e813]: o
+            - generic [ref=e814]: w
+            - generic [ref=e815]: "n"
+          - generic [ref=e817]:
+            - generic [ref=e818]: r
+            - generic [ref=e819]: i
+            - generic [ref=e820]: g
+            - generic [ref=e821]: h
+            - generic [ref=e822]: t
+          - generic [ref=e824]:
+            - generic [ref=e825]: i
+            - generic [ref=e826]: f
+          - generic [ref=e828]:
+            - generic [ref=e829]: s
+            - generic [ref=e830]: a
+            - generic [ref=e831]: "n"
+            - generic [ref=e832]: e
+          - generic [ref=e834]:
+            - generic [ref=e835]: p
+            - generic [ref=e836]: l
+            - generic [ref=e837]: a
+            - generic [ref=e838]: c
+            - generic [ref=e839]: e
+          - generic [ref=e841]:
+            - generic [ref=e842]: "n"
+            - generic [ref=e843]: o
+            - generic [ref=e844]: t
+          - generic [ref=e846]:
+            - generic [ref=e847]: w
+            - generic [ref=e848]: e
+            - generic [ref=e849]: l
+            - generic [ref=e850]: l
+          - generic [ref=e852]:
+            - generic [ref=e853]: s
+            - generic [ref=e854]: c
+            - generic [ref=e855]: h
+            - generic [ref=e856]: o
+            - generic [ref=e857]: o
+            - generic [ref=e858]: l
+        - paragraph [ref=e859]: "Practice passage: person warm rent queen an foot rate where calm ready quite me set home together eat day now innate join onion dark made riot speed tan sure week into arise mine what great plan happy own ton week great world story run ante these blue house than wind walk space day together gold joy person these iron round tea earn seat eat practice raise mine road foot last next queen retain arise not these ship joke too see task west too gold air side us quiet short those at store new eye save sea there blue group teen or riot show young woman think hope race tier rate notion none there part brown right if sane place not well school"
+        - textbox "Typing input" [active] [ref=e860]
+      - generic [ref=e862]:
+        - paragraph [ref=e863]: Type the text above. Wrong letters stay visible; Backspace corrects.
+        - status [ref=e864]
+      - generic [ref=e865]:
+        - paragraph [ref=e866]: Esc pauses · Ctrl+Enter finishes · Tab → Enter restarts · Correct current word only
+        - generic [ref=e867]:
+          - button "Restart with new text" [ref=e868]
+          - button "Show accessible text editor" [ref=e872]
+          - button "Finish" [disabled] [ref=e876]
+      - status [ref=e879]: Ready to type
+  - contentinfo [ref=e880]:
+    - generic [ref=e881]:
+      - generic [ref=e882]:
+        - generic [ref=e883]:
+          - generic [ref=e884]: Sparow
+          - generic [ref=e885]: Type
+        - text: Find your rhythm.
+      - generic [ref=e886]:
+        - link "About & metrics" [ref=e887] [cursor=pointer]:
+          - /url: /about
+        - link "Preferences & data" [ref=e888] [cursor=pointer]:
+          - /url: /settings
+        - link "Touch typing guide" [ref=e889] [cursor=pointer]:
+          - /url: /touch-typing
+        - link "Privacy" [ref=e890] [cursor=pointer]:
+          - /url: /privacy
+        - link "Terms" [ref=e891] [cursor=pointer]:
+          - /url: /terms
+        - link "Offline" [ref=e892] [cursor=pointer]:
+          - /url: /offline
+        - generic [ref=e893]: SparowType © 2026
+```
+
+# Test source
+
+```ts
+  1  | import { expect, test } from "@playwright/test";
+  2  | import axe from "axe-core";
+  3  | import { completeCorrectedCat } from "./helpers";
+  4  | 
+  5  | test.beforeEach(async ({ page }) => {
+  6  |   await page.addInitScript(() =>
+  7  |     localStorage.setItem("sparowtype.opening-animation.enabled", "false"),
+  8  |   );
+  9  | });
+  10 | 
+  11 | for (const width of [390, 1440]) {
+  12 |   test(`existing guest pages and completed results meet automated accessibility rules at ${width}px`, async ({ page }, info) => {
+  13 |     test.setTimeout(120_000);
+  14 |     await page.setViewportSize({ width, height: 900 });
+  15 |     const receipts = [];
+  16 |     for (const route of ["/", "/learn", "/race", "/ranked", "/stats", "/profile", "/leaderboard", "/settings", "/auth", "/keyboard-lab", "/about", "/privacy", "/terms", "/touch-typing", "/offline", "/missing-page", "completed-results"]) {
+  17 |       if (route === "completed-results") await completeCorrectedCat(page);
+  18 |       else await page.goto(route, { waitUntil: "domcontentloaded" });
+  19 |       await expect(page.locator("main#main-content")).toBeVisible();
+> 20 |       await page.addScriptTag({ content: axe.source });
+     |                  ^ Error: page.addScriptTag: Executing inline script violates the following Content Security Policy directive 'script-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-E3EeTHvx5D/JxHMAmxf9pFfuV6852vl1jPB1znFLMxA='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked.
+  21 |       const result = await page.evaluate(async () => {
+  22 |         const engine = (window as Window & { axe: typeof axe }).axe;
+  23 |         const report = await engine.run(document, {
+  24 |           runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"] },
+  25 |         });
+  26 |         return {
+  27 |           violations: report.violations.map(({ id, impact, help, nodes }) => ({
+  28 |             id, impact, help, nodes: nodes.map(({ target, failureSummary }) => ({ target, failureSummary })),
+  29 |           })),
+  30 |           incomplete: report.incomplete.map(({ id, nodes }) => ({ id, nodeCount: nodes.length })),
+  31 |           passes: report.passes.length,
+  32 |           version: engine.version,
+  33 |         };
+  34 |       });
+  35 |       receipts.push({ route, width, ...result });
+  36 |       await info.attach(`automated-accessibility-${route.replaceAll("/", "_") || "home"}`, {
+  37 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: "application/json",
+  38 |       });
+  39 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);
+  40 |     }
+  41 |     await info.attach("automated-accessibility-scope", {
+  42 |       body: JSON.stringify({ receipts, limitation: "Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance." }, null, 2),
+  43 |       contentType: "application/json",
+  44 |     });
+  45 |   });
+  46 | }
+  47 | 
+```

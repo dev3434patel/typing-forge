@@ -7,16 +7,15 @@ import {
 import type { KeyboardSceneDiagnostics } from "../src/components/brand/keyboard-scene";
 import {
   advanceClockedOpeningPreparation,
+  completeClockedOpening,
+  freezeOpeningClock,
   selectDocumentOpeningRenderer,
 } from "./opening-renderer";
 
 const PREFERENCES_KEY = "typingforge:v3:guest:preferences";
 async function holdClock(page: Page) {
   await selectDocumentOpeningRenderer(page);
-  await page.clock.install();
-  await page.clock.pauseAt(
-    new Date((await page.evaluate(() => Date.now())) + 25),
-  );
+  await freezeOpeningClock(page);
 }
 async function firstOpening(page: Page) {
   await holdClock(page);
@@ -50,27 +49,6 @@ async function expectReadyPractice(page: Page) {
     page.getByTestId("typing-target").locator("[data-typed]"),
   ).toHaveCount(0);
   return input;
-}
-async function completeAutomaticOpening(page: Page, duration = 4500) {
-  const opening = page.getByTestId("opening-experience");
-  if (
-    (await opening.getAttribute("data-mode")) === "full" &&
-    (await opening.getAttribute("data-presentation")) === "preparing"
-  ) {
-    const preparation = await advanceClockedOpeningPreparation(page, 20_000);
-    await expect
-      .poll(
-        async () => {
-          await page.clock.runFor(16);
-          return opening.getAttribute("data-presentation");
-        },
-        { timeout: preparation.remainingTimeoutMs, intervals: [100, 250, 500] },
-      )
-      .toBe("playing");
-  }
-  await page.clock.fastForward(duration);
-  // fastForward fires a due finish callback at its destination; run the nested exit timer separately.
-  await page.clock.runFor(200);
 }
 async function requireNativeWebGL(page: Page) {
   const supported = await page.evaluate(() => {
@@ -117,7 +95,7 @@ test("full opening gates practice and returning visitors receive the 900ms wordm
     page.getByRole("textbox", { name: "Typing input", exact: true }),
   ).toHaveCount(0);
   await expect(opening).toHaveAttribute("data-closing", "false");
-  await completeAutomaticOpening(page);
+  await completeClockedOpening(page);
   await expect(await expectReadyPractice(page)).toBeFocused();
   await page.reload({ waitUntil: "domcontentloaded" });
   await expect(opening).toHaveAttribute("data-mode", "returning");
@@ -207,7 +185,7 @@ test("automatic caret handoff leaves the first real keystroke available to pract
     };
   });
   await firstOpening(page);
-  await completeAutomaticOpening(page);
+  await completeClockedOpening(page);
   const input = await expectReadyPractice(page);
   await page.clock.runFor(80);
   await expect(page.locator("html")).toHaveAttribute(
@@ -259,7 +237,7 @@ for (const failure of [
         };
       });
     await firstOpening(page);
-    await completeAutomaticOpening(page);
+    await completeClockedOpening(page);
     const input = await expectReadyPractice(page);
     if (failure === "animation API") {
       await page.clock.runFor(80);
@@ -412,7 +390,7 @@ test("blocked browser storage and unavailable WebGL retain a complete fallback k
     .toBeGreaterThan(0);
   await expect(opening.locator(".awakening-key")).toHaveCount(61);
   await expect(opening.locator(".awakening-fallback")).toBeVisible();
-  await completeAutomaticOpening(page);
+  await completeClockedOpening(page);
   await expectReadyPractice(page);
 });
 

@@ -21,7 +21,11 @@
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui"
+    "test:e2e:ui": "playwright test --ui",
+    "backend:dev": "node scripts/php-server.mjs",
+    "test:php": "node backend/tests/validation-parity.mjs",
+    "build:hosting": "npm run build && node scripts/package-php-hosting.mjs",
+    "backend:db": "node scripts/start-local-mysql.mjs"
   },
   "engines": {
     "node": ">=22.12.0",
@@ -59,7 +63,6 @@
     "@radix-ui/react-toggle": "^1.1.9",
     "@radix-ui/react-toggle-group": "^1.1.10",
     "@radix-ui/react-tooltip": "^1.2.7",
-    "@supabase/supabase-js": "^2.90.1",
     "@tanstack/react-query": "^5.83.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -98,6 +101,7 @@
     "@vitejs/plugin-react-swc": "^4.3.3",
     "@vitest/coverage-v8": "^4.1.12",
     "@vitest/ui": "^4.1.12",
+    "axe-core": "4.14.0",
     "eslint": "^9.32.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",

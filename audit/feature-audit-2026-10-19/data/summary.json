@@ -1,0 +1,89 @@
+{
+  "scope": "Backend, auth and account data quality audit",
+  "date": "2026-10-19",
+  "sourceBase": "28a33e953deda8457ca8630ba1342511c2dbe9f5",
+  "fixes": [
+    {
+      "id": "DATA-01",
+      "regressions": [
+        "new accepted row during final version read survives",
+        "in-flight upload completed during read survives",
+        "old cloud deletion still reconciles and queued evidence stays"
+      ],
+      "resolution": "Reconcile deletion only for rows already synced when the download began",
+      "issue": "Cloud history refresh deleted newly synced results absent from its older read snapshot"
+    },
+    {
+      "id": "DATA-02",
+      "regressions": [
+        "expiry during upload followed by success",
+        "expiry during upload followed by failure"
+      ],
+      "resolution": "Merge acknowledgement with the current record; preserve expired evidence state after failure",
+      "issue": "Late upload response restored expired private replay from its stale sent record"
+    },
+    {
+      "id": "AUTH-01",
+      "regressions": [
+        "persisted session read",
+        "subscribe before read",
+        "newer sign-out",
+        "newer account sign-in",
+        "read rejects after new event",
+        "initial read fails",
+        "disposed callbacks"
+      ],
+      "resolution": "Auth events take precedence over bootstrap; disposed listeners cannot update state; Auth page reuses provider state",
+      "issue": "Asynchronous initial session read could overwrite newer sign-in or sign-out events"
+    },
+    {
+      "regression": "Updated account form browser test; execution coordinated by root",
+      "id": "AUTH-02",
+      "resolution": "Remove ignored collection and metadata, explain public handle is chosen in Profile",
+      "issue": "Signup collected a username ignored by the safe-handle database trigger"
+    }
+  ],
+  "verification": [
+    {
+      "result": "All 17 migrations, integrity/owner/version/period-rankings and legacy upgrade fixtures passed in local PostgreSQL/WASM",
+      "command": "npm run test:database",
+      "limitation": "Not live Supabase Auth, Realtime or concurrent network verification",
+      "exitCode": 0
+    },
+    {
+      "result": "57 tests passed, 0 failed",
+      "command": "vitest run src/services/__tests__ --maxWorkers=1 --reporter=json",
+      "exitCode": 0,
+      "evidence": "after-fix.json"
+    },
+    {
+      "result": "Passed",
+      "command": "tsc -p tsconfig.app.json --noEmit",
+      "exitCode": 0
+    },
+    {
+      "result": "0 errors, 1 pre-existing React Fast Refresh warning in useAuth.tsx",
+      "command": "eslint changed data/auth source and tests",
+      "exitCode": 0
+    }
+  ],
+  "remainingUnverified": [
+    "Dedicated hosted email sign-in and signup confirmation",
+    "Google OAuth provider and redirect configuration",
+    "Two independent authenticated human race participants over Realtime",
+    "Hosted migrations, service credentials and cron jobs",
+    "Live account sync/deletion acceptance with disposable staging accounts",
+    "Remote RLS/JWT and production retention behavior"
+  ],
+  "changedFiles": [
+    "src/services/account-data.ts",
+    "src/services/session-sync.ts",
+    "src/services/auth-state.ts",
+    "src/hooks/useAuth.tsx",
+    "src/pages/Auth.tsx",
+    "src/services/__tests__/account-history-reconciliation.test.ts",
+    "src/services/__tests__/session-sync.test.ts",
+    "src/services/__tests__/auth-state.test.ts",
+    "e2e/auth-flow.spec.ts"
+  ]
+}

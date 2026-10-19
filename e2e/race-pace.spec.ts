@@ -42,7 +42,7 @@ test("gray bot pace moves while the user is idle without creating user input", a
       .evaluate((element) => element.scrollTop),
   ).toBe(0);
   await page.screenshot({
-    path: `audit/race-pace-2026-10-16/bot-${info.project.name}.png`,
+    path: test.info().outputPath(`bot-${info.project.name}.png`),
     fullPage: true,
   });
   await page.getByRole("button", { name: "Finish", exact: true }).click();
@@ -99,7 +99,7 @@ test("opponent progress does not scroll away from a leading user or recolor thei
     ),
   ).toBe(true);
   await page.screenshot({
-    path: `audit/race-pace-2026-10-16/mobile-${info.project.name}.png`,
+    path: test.info().outputPath(`mobile-${info.project.name}.png`),
     fullPage: true,
   });
   await input.press("Backspace");

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { supabase, isSupabaseConfigured } from '@/integrations/supabase/client';
+import { accountApi, ApiError, authService, isBackendConfigured } from '@/services/php-api';
 import { useAuth } from './useAuth';
 import type { TestResult, TypingStats } from '@/lib/typing-engine';
 import type { Keystroke } from '@/lib/professional-accuracy';
@@ -16,13 +16,16 @@ let activeOwner: string | null = null;
 const sync = new SessionSync({
   currentOwner: () => activeOwner,
   upload: async record => {
-    if (!isSupabaseConfigured) return { error: { code: 'backend-unavailable', message: 'Cloud saving is unavailable in this installation. Your local result is retained.' } };
-    const { data, error } = await supabase.auth.getSession();
-    if (error || data.session?.user.id !== record.ownerId) return { error: { code: 'auth-required', status: 401, message: 'Sign in again to sync this account.' } };
-    const response = await supabase.functions.invoke('submit-session', { body: { payloadVersion: record.payloadVersion, clientSessionId: record.clientSessionId, candidate: record.candidate, cloudConsent: record.cloudConsent }, headers: { Authorization: `Bearer ${data.session.access_token}` } });
-    if (response.error) return { error: { code: 'submission-failed', message: response.data?.error ?? response.error.message, status: response.error.context?.status } };
-    if (!response.data?.accepted) return { error: { code: 'invalid-response', message: 'Cloud saving was not acknowledged. The local result is retained.' } };
-    return { accepted: response.data.accepted };
+    if (!isBackendConfigured) return { error: { code: 'backend-unavailable', message: 'Account saving is unavailable in this installation. Your local result is retained.' } };
+    try {
+      const session = await authService.getSession();
+      if (session.user?.id !== record.ownerId) return { error: { code: 'auth-required', status: 401, message: 'Sign in again to sync this account.' } };
+      const response = await accountApi.submit(record.candidate, record.cloudConsent, record.ownerId);
+      if (!response.accepted) return { error: { code: 'invalid-response', message: 'Account saving was not acknowledged. The local result is retained.' } };
+      return { accepted: response.accepted };
+    } catch (error) {
+      return { error: { code: error instanceof ApiError ? error.code : 'submission-failed', message: error instanceof Error ? error.message : 'Account save failed.', status: error instanceof ApiError ? error.status : undefined } };
+    }
   },
 });
 let startup: Promise<unknown> | undefined;
@@ -65,7 +68,7 @@ export function useTestResults() {
     const summary: TestResult = { id: result.clientSessionId, wpm: finite(metrics.wpm), rawWpm: finite(metrics.rawWpm), accuracy: finite(metrics.inputAccuracy), consistency: finite(metrics.consistency), mode: result.configuration.mode, duration: result.elapsedMs / 1000, correctChars: metrics.correct, incorrectChars: metrics.incorrect, totalChars: metrics.retainedUnits, errors: metrics.incorrectAttempts, date: new Date(result.finishedAtWall).toISOString(), wpmHistory: result.timeSeries.map(point => finite(point.wpm)) };
     const privateContent = result.configuration.privacy === 'private-custom' || result.configuration.mode === 'custom' || result.configuration.scoringPolicy === 'free';
     const consent = options.cloudConsent === true;
-    const queued = scope !== 'guest' && (!privateContent || consent) && isSupabaseConfigured&&!options.localOnly;
+    const queued = scope !== 'guest' && (!privateContent || consent) && isBackendConfigured&&!options.localOnly;
     const record: SessionRecord = { schemaVersion: 3, ownerId: scope, clientSessionId: result.clientSessionId, payloadVersion: result.metricsVersion, payloadHash: candidateHash, summary, metricSummary: result.metrics, comparisonKey: result.comparisonKey, personalBestEligible: result.eligibility.eligible, candidate: result, privateContent, cloudConsent: consent, provenance: 'observed', state: queued ? 'queued' : 'local-only', attempts: 0, nextAttemptAt: 0, createdAt: result.finishedAtWall, evidenceExpiresAt: result.finishedAtWall + EVIDENCE_TTL_MS, message: options.localOnly?'Saved personal result on this device. This session is not eligible for cloud ranking.':privateContent && !consent ? 'Private content saved on this device. Cloud storage requires your consent.' : scope === 'guest' ? 'Saved on this device. Sign in to enable account sync.' : queued ? 'Saved on this device; waiting to sync.' : 'Cloud saving is unavailable; saved on this device.' };
     latestId.current = result.clientSessionId;
     await sessionRepository.save(record);

@@ -1,6 +1,6 @@
 # SparowType
 
-A typing practice workspace built with React, TypeScript, Vite, Tailwind CSS and Supabase. The v3 implementation combines timed and finite tests, exact code practice, private custom text, free writing, adaptive learning, labelled local bots and server-owned human races.
+A typing practice workspace built with React, TypeScript, Vite, Tailwind CSS, PHP and MySQL/MariaDB. The v3 implementation combines timed and finite tests, exact code practice, private custom text, free writing, adaptive learning, labelled local bots and server-owned human races.
 
 ## Run locally
 
@@ -8,20 +8,24 @@ Use Node 22.12 or newer and npm 10 or newer.
 
 ```sh
 npm ci
+npm run backend:dev
+# In a second terminal:
 npm run dev
 ```
 
-Open `http://localhost:8080`. Guest practice and local history work without cloud credentials. Copy `.env.example` to `.env` and supply your **public** Supabase URL and publishable key to enable account connections. Never put a service-role key in browser configuration. Existing cloud projects require the v3 migrations and Edge functions before new cloud features work.
+Open `http://localhost:8080`. Import [backend/schema.sql](backend/schema.sql) through XAMPP phpMyAdmin and configure the private `backend/config.php` first. Follow the [PHP/XAMPP and hosting guide](docs/PHP_XAMPP_SETUP.md) for database users, extensions, ports and deployment. Guest typing and device history remain available when the API is offline.
+
+The default API path is `/api`; Vite forwards it to PHP on port 8081. No database password belongs in a `VITE_` variable. Email/password authentication, account history, preferences, ranking challenges and human races use the PHP backend. The old `supabase/` tree is retained for historical SQL and portable replay-reference checks; it is not the active backend.
+
+Build a PHP hosting package with `npm run build:hosting`. Upload its `public_html` contents to the document root and keep `sparowtype-private` outside it. The package contains no local credentials.
 
 ## SparowType identity
 
 SparowType uses a typographic wordmark with self-hosted Sora, Inter and JetBrains Mono. The default dark theme uses #07070A, lime #C6FF3D and violet #7B61FF; light mode and six alternatives are available. The Keyboard Awakens opening assembles a 61-key Three.js keyboard, presses the brand letters, then dissolves into practice. It is deferred, skippable and optional, with a shorter returning visit, reduced motion and a CSS keyboard fallback. Existing v3 storage, metric versions and backend identifiers preserve compatible saved history.
 
-This is a local implementation. [The current performance and verification audit](docs/PERFORMANCE_POLISH_AUDIT_2026-10-16.md) records executable evidence, observed failures and remaining hosted/native acceptance. A finite test suite does not establish universal correctness or educational superiority.
+This is a local implementation. [The current feature and PHP backend audit](docs/FEATURE_AUDIT_2026-10-19.md) records executable evidence, observed failures and remaining hosted/native acceptance. A finite test suite does not establish universal correctness or educational superiority.
 
-<!-- performance-polish-current:start -->
-**Current local verification — 16 October 2026 UTC:** build `28188793dbb56fac3963`; **657 unit tests / 48 files passed**; complete installed Edge **156 passed / 2 skipped / 0 failed / 0 flaky**. Three normal first-visit mobile Lighthouse repeats scored **97 / 96 / 98** for performance, with accessibility, best practices and SEO recorded in the [current audit](docs/PERFORMANCE_POLISH_AUDIT_2026-10-16.md). The actual trace confirms the renderer request followed useful paint in each repeat. Hosted credentials, physical devices, desktop animation smoothness and field INP remain **UNVERIFIED**; skipped checks are not passes. This is a local working tree, not a published release.
-<!-- performance-polish-current:end -->
+**Current verification — 19 October 2026:** **723 unit tests**, **393 PHP replay parity cases with zero mismatches**, native account/race/Apache checks and final four-engine account/profile and actual two-browser human-race confirmations passed. Current full-intro mobile Lighthouse performance is **97 / 97 / 98**, with the other three categories **100** in each run. The [feature audit](docs/FEATURE_AUDIT_2026-10-19.md) records exact build identities, base-plus-targeted browser coverage, capability skips, retained failures, typing-event maxima and remaining host/native gates. Historical outcomes in the [16 October performance report](docs/PERFORMANCE_POLISH_AUDIT_2026-10-16.md) are separate evidence.
 
 ## What changed in v3
 
@@ -37,8 +41,8 @@ This is a local implementation. [The current performance and verification audit]
 - Races show a gray opponent caret and ghost trail on the shared passage, live WPM and an ahead/behind cue. Local bots use their actual canonical position, including corrections; humans use last server-confirmed progress. The user controls passage scrolling.
 - Tab → Enter starts a fresh random-word bot race at the same difficulty, resetting the user, timer and opponent. Test and bot results support the same sequence for the next run; normal Tab/Shift+Tab navigation stays available.
 - Owner-scoped IndexedDB history with visible memory fallback, retryable account queues, consent for private-text uploads, legacy import, expiry and deletion reconciliation.
-- Row-locked room lifecycle, server countdown/deadline and Edge-replayed progress. Ranked challenges use fixed server content and timing. Public identities never derive from an email address.
-- Server-filtered UTC daily/weekly rankings, with the existing all-time endpoint preserved. Apply the included migrations before using the new cloud endpoints.
+- Row-locked room lifecycle, server countdown/deadline and PHP-replayed progress. Ranked challenges use fixed server content and timing. Public identities never derive from an email address.
+- Server-filtered UTC daily/weekly rankings, with the existing all-time endpoint preserved. Import the included MySQL schema before using account endpoints.
 - Privacy, Terms, a touch-typing guide, route metadata and a versioned public offline download. The worker does not cache personalized API responses. Set `SPAROWTYPE_SITE_URL` to the real deployment origin during build to emit a sitemap.
 
 ## Verify
@@ -47,7 +51,7 @@ This is a local implementation. [The current performance and verification audit]
 npm run typecheck
 npm run lint
 npm run test:coverage -- --maxWorkers=2
-npm run test:database
+npm run test:php
 npm run test:content
 npm run build
 npm run check:bundle
@@ -55,14 +59,15 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-The content syntax gate additionally uses Python 3.11+ and Rust. The database compatibility gate replays migrations and authorization assertions under PostgreSQL/WASM with a small Supabase auth fixture. It is useful SQL evidence; it does not replace Supabase Auth/API, Realtime, scheduler or simultaneous-client tests. Browser cloud tests explicitly skip when dedicated test accounts are unavailable. Unit coverage thresholds apply to the specified business-logic modules; browser flows cover the routes.
-
+The content syntax gate additionally uses Python 3.11+ and Rust. `test:php` runs the portable TypeScript/native PHP replay differential corpus. Native HTTP/database and Apache acceptance harnesses are under `backend/tests`; their guarded SQL fixtures require a separate `_audit` or `_test` database. `npm run test:database` retains the historical PostgreSQL/WASM compatibility check. Browser acceptance for synthetic PHP accounts is opt-in with `PHP_E2E_ACCEPTANCE=1`; two-account race browser checks additionally need dedicated credentials. Scoped coverage applies to named business modules, not every UI line.
 To test a static production preview while developing, run `npm run preview -- --host 127.0.0.1 --port 4173`, then set `PLAYWRIGHT_BASE_URL=http://127.0.0.1:4173` before `npm run test:e2e`.
 
 For the cross-engine matrix, install the official Playwright browsers with `npx playwright install chromium firefox webkit`, set `PLAYWRIGHT_BROWSERS=all`, and run `npm run test:e2e -- --workers=1`. Chromium is the local default. CI selects all three engines against the production preview after building. Browser tests use isolated contexts; native hardware/IME and actual cloud-account tests remain separate gates.
 
 ## Implementation and deployment evidence
 
+- [Current feature and PHP migration audit](docs/FEATURE_AUDIT_2026-10-19.md)
+- [XAMPP/phpMyAdmin setup and PHP hosting](docs/PHP_XAMPP_SETUP.md)
 - [Current implementation ledger](docs/IMPLEMENTATION_STATUS.md)
 - [Visible wrong-key feedback and default learning behavior](docs/WRONG_KEY_FEEDBACK_2026-10-16.md)
 - [Accuracy upgrade and your result explained](docs/ACCURACY_UPGRADE_2026-10-15.md)
@@ -75,4 +80,4 @@ For the cross-engine matrix, install the official Playwright browsers with `npx 
 - [Research and full implementation specification](typing-forge-master-prompt.md)
 - [Original audit of the pre-v3 application](CURRENT_PROJECT_AUDIT_2026-10-15.md)
 
-Cloud migrations and Edge code are included but are not automatically deployed to an existing project. The deployment guide lists the remaining environment-dependent checks. Historical audit and accuracy reports in the root describe older code and are retained as historical evidence; the implementation ledger records current verification.
+The PHP package must be configured on the destination host; no hosting deployment is performed automatically. The setup guide and current audit list environment-dependent checks. Historical Supabase migrations and Edge sources are retained as reference. Historical audit and accuracy reports in the root describe older code and are retained as historical evidence; the implementation ledger records current verification.

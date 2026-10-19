@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { User, Target, Save, Loader2 } from 'lucide-react';
 import type { ProfileData } from '@/pages/Profile';
-import { supabase } from '@/integrations/supabase/client';
+import { accountApi } from '@/services/php-api';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -18,8 +18,8 @@ import { z } from 'zod';
 
 const usernameSchema = z.string()
   .min(3, 'Username must be at least 3 characters')
-  .max(50, 'Username must be less than 50 characters')
-  .regex(/^[a-zA-Z0-9_-]+$/, 'Username can only contain letters, numbers, underscore, and hyphen');
+  .max(24, 'Handle must be at most 24 characters')
+  .regex(/^[a-z][a-z0-9_]{2,23}$/, 'Use lowercase letters, numbers and underscores, beginning with a letter');
 
 interface ProfileSettingsProps {
   profile: ProfileData;
@@ -45,17 +45,10 @@ export function ProfileSettings({ profile, onUpdate }: ProfileSettingsProps) {
     setUsernameError(null);
     setSaving(true);
     try {
-      const { error } = await supabase
-        .from('profiles')
-        .update({
-          username: formData.username,
-          target_wpm: formData.target_wpm,
-          theme: formData.theme,
-          updated_at: new Date().toISOString(),
-        })
-        .eq('id', profile.id);
-
-      if (error) throw error;
+      await accountApi.updateProfile(profile.id, formData.username);
+      const preferences = await accountApi.preferences(profile.id);
+      const result = await accountApi.updatePreferences(profile.id, preferences.version, { targetWpm: formData.target_wpm, theme: formData.theme });
+      if (result.conflict) throw new Error('Preferences changed on another device. Reopen settings and try again.');
 
       onUpdate({
         ...profile,

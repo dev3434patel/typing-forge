@@ -1,5 +1,4 @@
 import { expect, test } from "@playwright/test";
-import { mkdir } from "node:fs/promises";
 
 test("manual signals are focus-scoped; Tab, Shift+Tab and Escape leave normally", async ({ page }, testInfo) => {
   await page.goto("/keyboard-lab");
@@ -41,8 +40,7 @@ test("manual signals are focus-scoped; Tab, Shift+Tab and Escape leave normally"
   await expect(
     page.getByRole("status").filter({ hasText: "Paused · focus" }),
   ).toBeVisible();
-  await mkdir("audit/accuracy-research-2026-10-15", { recursive: true });
-  await page.screenshot({ path: `audit/accuracy-research-2026-10-15/keyboard-lab-${testInfo.project.name}.png`, fullPage: true });
+  await page.screenshot({ path: test.info().outputPath(`keyboard-lab-${testInfo.project.name}.png`), fullPage: true });
 });
 
 test("browser layout access happens only after an explicit request and never changes preferences automatically", async ({

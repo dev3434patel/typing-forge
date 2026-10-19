@@ -36,7 +36,8 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from 'recharts';
-import { supabase } from '@/integrations/supabase/client';
+import { accountApi } from '@/services/php-api';
+import { useAuth } from '@/hooks/useAuth';
 import { toast } from 'sonner';
 
 interface TestHistoryProps {
@@ -49,6 +50,7 @@ type SortOrder = 'asc' | 'desc';
 const PAGE_SIZE_OPTIONS = [10, 25, 50, 100];
 
 export function TestHistory({ testHistory: initialHistory }: TestHistoryProps) {
+  const { user } = useAuth();
   const [testHistory, setTestHistory] = useState(initialHistory);
   const [selectedTest, setSelectedTest] = useState<TestSession | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -110,12 +112,9 @@ export function TestHistory({ testHistory: initialHistory }: TestHistoryProps) {
 
   const handleDelete = async (testId: string) => {
     try {
-      const { error } = await supabase
-        .from('test_sessions')
-        .delete()
-        .eq('id', testId);
-
-      if (error) throw error;
+      if (!user) throw new Error('Sign in to delete an account session.');
+      const result = await accountApi.deleteSession(user.id, testId);
+      if (!result.deleted) throw new Error('Deletion was not acknowledged.');
 
       setTestHistory(prev => prev.filter(t => t.id !== testId));
       toast.success('Test deleted successfully');

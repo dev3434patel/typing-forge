@@ -57,7 +57,7 @@ test("desktop starts ready and focused without starting the clock", async ({
   );
   await expectVisibleCaret(page);
   await page.screenshot({
-    path: `audit/typing-experience-2026-10-16/ready-${info.project.name}.png`,
+    path: test.info().outputPath(`ready-${info.project.name}.png`),
     fullPage: true,
   });
 });
@@ -136,7 +136,7 @@ test("whole-word flow rolls by full lines, resizes and returns to the beginning 
     ),
   ).toBe(true);
   await page.screenshot({
-    path: `audit/current-word-correction-2026-10-17/flow-mobile-${info.project.name}.png`,
+    path: test.info().outputPath(`flow-mobile-${info.project.name}.png`),
     fullPage: true,
   });
   // Submitted words are immutable. Returning to the opening line requires a
@@ -326,7 +326,7 @@ test("learning keyboard distinguishes the next key from an actual wrong uppercas
     page.locator(".learn-keyboard [data-expected-key] "),
   ).toHaveCount(1);
   await page.screenshot({
-    path: `audit/typing-experience-2026-10-16/learn-feedback-${info.project.name}.png`,
+    path: test.info().outputPath(`learn-feedback-${info.project.name}.png`),
     fullPage: true,
   });
   await page.getByRole("button", { name: "Hide keyboard" }).click();

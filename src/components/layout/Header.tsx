@@ -11,15 +11,15 @@ import {
   Sun,
   Moon,
 } from "lucide-react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
 import { BrandWordmark } from "@/components/brand/BrandMark";
 import { usePreferences } from "@/contexts/PreferencesContext";
 import { THEMES } from "@/lib/themes";
 const items = [
-  { href: "/", label: "Test", icon: Keyboard },
-  { href: "/learn", label: "Learn", icon: GraduationCap },
+  { href: "/", label: "Test", icon: Keyboard, aliases: ["/typing-test"] },
+  { href: "/learn", label: "Learn", icon: GraduationCap, aliases: ["/typing-practice", "/practice"] },
   { href: "/race", label: "Race", icon: Swords },
   { href: "/stats", label: "Stats", icon: BarChart3 },
   { href: "/leaderboard", label: "Rankings", icon: Trophy },
@@ -30,6 +30,12 @@ export const Header = forwardRef<
   React.HTMLAttributes<HTMLElement>
 >((props, ref) => {
   const { user } = useAuth();
+  const { pathname } = useLocation();
+  const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : "/";
+  const active = (item: (typeof items)[number]) =>
+    item.href === path ||
+    item.aliases?.includes(path) ||
+    (item.href !== "/" && path.startsWith(item.href + "/"));
   const { preferences, updatePreferences } = usePreferences();
   const light = THEMES.find((theme) => theme.id === preferences.theme)?.light ?? false;
   return (
@@ -46,18 +52,16 @@ export const Header = forwardRef<
           <BrandWordmark className="text-lg sm:text-xl" />
         </Link>
         <nav aria-label="Main navigation" className="hidden xl:flex gap-1">
-          {items.map(({ href, label, icon: Icon }) => (
-            <NavLink
-              key={href}
-              to={href}
-              end={href === "/"}
-              className={({ isActive }) =>
-                cn("forge-chip", isActive && "text-primary bg-primary/10")
-              }
+          {items.map((item) => (
+            <Link
+              key={item.href}
+              to={item.href}
+              aria-current={active(item) ? "page" : undefined}
+              className={cn("forge-chip", active(item) && "text-primary bg-primary/10")}
             >
-              <Icon size={15} />
-              {label}
-            </NavLink>
+              <item.icon size={15} />
+              {item.label}
+            </Link>
           ))}
         </nav>
         <div className="flex shrink-0 items-center gap-1">
@@ -100,21 +104,19 @@ export const Header = forwardRef<
         aria-label="Mobile navigation"
         className="xl:hidden flex overflow-x-auto gap-1 px-4 pb-3 scrollbar-hide"
       >
-        {items.map(({ href, label, icon: Icon }) => (
-          <NavLink
-            key={href}
-            end={href === "/"}
-            to={href}
-            className={({ isActive }) =>
-              cn(
-                "forge-chip shrink-0",
-                isActive && "text-primary bg-primary/10",
-              )
-            }
+        {items.map((item) => (
+          <Link
+            key={item.href}
+            to={item.href}
+            aria-current={active(item) ? "page" : undefined}
+            className={cn(
+              "forge-chip shrink-0",
+              active(item) && "text-primary bg-primary/10",
+            )}
           >
-            <Icon size={14} />
-            {label}
-          </NavLink>
+            <item.icon size={14} />
+            {item.label}
+          </Link>
         ))}
       </nav>
     </header>

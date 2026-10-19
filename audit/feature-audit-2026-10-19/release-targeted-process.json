@@ -1,0 +1,26 @@
+{
+  "name": "release-targeted",
+  "command": [
+    "node",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "e2e/profile-identity.spec.ts",
+    "e2e/php-account-flow.spec.ts",
+    "e2e/accessibility-audit.spec.ts",
+    "e2e/account-workspace.spec.ts",
+    "e2e/input-guardrails.spec.ts",
+    "e2e/secondary-pages.spec.ts",
+    "e2e/typing-audit-regressions.spec.ts",
+    "e2e/startup-recovery.spec.ts",
+    "--grep",
+    "delayed initial profile|same-account auth refresh|initial profile fetch error|real PHP account|existing guest pages|cross-tab account change|ordinary-clock cold startup|public information pages|delayed canonical-equivalent|startup recovers",
+    "--workers=1",
+    "--retries=0",
+    "--forbid-only",
+    "--reporter=list,json",
+    "--output=audit/feature-audit-2026-10-19/release-targeted-artifacts"
+  ],
+  "notExecuted": true,
+  "exitCode": 130,
+  "reason": "Verify the WebKit module-preload recovery workaround on a new build before final targeted and intro acceptance."
+}

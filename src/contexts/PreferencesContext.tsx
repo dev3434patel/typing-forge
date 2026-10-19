@@ -10,7 +10,7 @@ import {
 } from "react";
 import { applyTheme } from "@/lib/themes";
 import { useAuth } from "@/hooks/useAuth";
-import { supabase, isSupabaseConfigured } from "@/integrations/supabase/client";
+import { accountApi, isBackendConfigured } from "@/services/php-api";
 import {
   PREFERENCE_DEFAULTS,
   validatePreferences,
@@ -138,32 +138,15 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
     setEntry({ key, envelope: read(key) });
     setReady("");
     let active = true;
-    if (owner === "guest" || !isSupabaseConfigured) {
+    if (owner === "guest" || !isBackendConfigured) {
       setStatus("Preferences saved on this device.");
       setReady(key);
       return;
     }
     setStatus("Checking account preferences…");
-    void Promise.resolve(
-      supabase
-        .from("user_preferences" as never)
-        .select("preferences,version")
-        .eq("user_id", owner)
-        .maybeSingle(),
-    )
-      .then(({ data, error }) => {
+    void accountApi.preferences(owner)
+      .then((cloud) => {
         if (!active || current.current.key !== key) return;
-        if (error) {
-          setStatus(
-            `Preferences saved locally. Account sync unavailable: ${error.message}`,
-          );
-          setReady(key);
-          return;
-        }
-        const cloud = data as unknown as {
-          preferences: unknown;
-          version: number;
-        } | null;
         if (cloud)
           acceptCloud(mergeCloudPreferences(current.current.envelope, cloud));
         setStatus(
@@ -189,7 +172,7 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
     if (
       ready !== key ||
       owner === "guest" ||
-      !isSupabaseConfigured ||
+      !isBackendConfigured ||
       !Object.keys(envelope.pending).length
     )
       return;
@@ -198,29 +181,9 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
       const snapshot = current.current.envelope;
       const sent = { ...snapshot.pending };
       setStatus("Saving preferences to your account…");
-      void Promise.resolve(
-        supabase.rpc(
-          "forge_update_preferences" as never,
-          {
-            p_owner: owner,
-            p_expected_version: snapshot.cloudVersion,
-            p_patch: sent,
-          } as never,
-        ),
-      )
-        .then(({ data, error }) => {
+      void accountApi.updatePreferences(owner, snapshot.cloudVersion, sent)
+        .then((cloud) => {
           if (!active || current.current.key !== key) return;
-          if (error) {
-            setStatus(
-              `Preferences saved locally. Account sync failed: ${error.message}`,
-            );
-            return;
-          }
-          const cloud = data as unknown as {
-            preferences: unknown;
-            version: number;
-            conflict: boolean;
-          };
           if (!cloud) {
             setStatus(
               "Preferences saved locally. The server did not acknowledge the update.",

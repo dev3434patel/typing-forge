@@ -22,7 +22,36 @@ describe('account bound retry queue',()=>{
     const repository=new SessionRepository();await repository.save(row());const upload=vi.fn(async()=>({error:{code:'invalid',message:'Wrong version',status:422}}));const dispatcher=new SessionSync({repository,currentOwner:()=> 'alice',upload,now:()=>100});
     await dispatcher.flush('alice');await dispatcher.flush('alice',true);expect(upload).toHaveBeenCalledTimes(1);expect((await repository.get('alice','one')).state).toBe('rejected');
   });
+  it('keeps a cookie account-swap rejection retryable after the intended owner signs in again',async()=>{
+    const repository=new SessionRepository();await repository.save(row());
+    let attempts=0;
+    const upload=vi.fn(async()=>++attempts===1?{error:{code:'owner-changed',message:'Account changed',status:409}}:{accepted:{canonical:true}});
+    const dispatcher=new SessionSync({repository,currentOwner:()=> 'alice',upload,now:()=>100});
+    await dispatcher.flush('alice');
+    expect((await repository.get('alice','one'))?.state).toBe('auth-required');
+    await dispatcher.flush('alice',true);
+    expect((await repository.get('alice','one'))?.state).toBe('synced');
+    expect(upload).toHaveBeenCalledTimes(2);
+  });
   it('serializes repeated drains and bounds retry delay',async()=>{
     const repository=new SessionRepository();await repository.save(row());const upload=vi.fn(async()=>({accepted:{}}));const dispatcher=new SessionSync({repository,currentOwner:()=> 'alice',upload,now:()=>100});await Promise.all([dispatcher.flush('alice'),dispatcher.flush('alice')]);expect(upload).toHaveBeenCalledTimes(1);expect(retryDelay(100,()=>1)).toBeLessThanOrEqual(375000);
+  });
+  it.each([true,false])('does not restore expired replay when an in-flight upload succeeds=%s',async succeeds=>{
+    const repository=new SessionRepository();await repository.save({...row(),privateContent:true,cloudConsent:true});
+    let acknowledge!:(response:{accepted?:unknown;error?:{code:string;message:string}})=>void;
+    let started!:()=>void;
+    const uploading=new Promise<void>(resolve=>{started=resolve;});
+    const dispatcher=new SessionSync({repository,currentOwner:()=> 'alice',now:()=>100,upload:()=>{
+      started();return new Promise(resolve=>{acknowledge=resolve;});
+    }});
+    const pending=dispatcher.flush('alice');await uploading;
+    await repository.expireEvidence(10001);
+    acknowledge(succeeds?{accepted:{canonical:true}}:{error:{code:'network',message:'Connection lost'}});
+    await pending;
+    const saved=await repository.get('alice','one');
+    expect(saved?.candidate).toBeUndefined();
+    expect(saved?.summary.wpm).toBe(1);
+    expect(saved?.state).toBe(succeeds?'synced':'local-only');
+    if(!succeeds)expect(saved?.errorCode).toBe('evidence-expired');
   });
 });

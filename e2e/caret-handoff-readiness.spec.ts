@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { selectDocumentOpeningRenderer } from "./opening-renderer";
+import { completeClockedOpening, freezeOpeningClock, selectDocumentOpeningRenderer } from "./opening-renderer";
 
 test.use({ serviceWorkers: "block" });
 
@@ -42,10 +42,7 @@ for (const readiness of [
     });
     const errors: string[] = [];
     page.on("pageerror", (error) => errors.push(error.message));
-    await page.clock.install();
-    await page.clock.pauseAt(
-      new Date((await page.evaluate(() => Date.now())) + 25),
-    );
+    await freezeOpeningClock(page);
 
     try {
       await page.goto("/", { waitUntil: "domcontentloaded" });
@@ -54,8 +51,7 @@ for (const readiness of [
       await expect(
         page.getByRole("status").filter({ hasText: "Loading SparowType" }),
       ).toBeVisible();
-      await page.clock.fastForward(4500);
-      await page.clock.runFor(200);
+      await completeClockedOpening(page);
       await expect(opening).toHaveCount(0);
       await expect.poll(() => heldRequests.length).toBe(1);
       await expect(
@@ -184,10 +180,7 @@ test("an actual caret module arriving after its import deadline cannot revive de
   );
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
-  await page.clock.install();
-  await page.clock.pauseAt(
-    new Date((await page.evaluate(() => Date.now())) + 25),
-  );
+  await freezeOpeningClock(page);
   try {
     await page.goto("/", { waitUntil: "domcontentloaded" });
     const opening = page.getByTestId("opening-experience");
@@ -195,8 +188,7 @@ test("an actual caret module arriving after its import deadline cannot revive de
     await expect(
       page.getByRole("status").filter({ hasText: "Loading SparowType" }),
     ).toBeVisible();
-    await page.clock.fastForward(4500);
-    await page.clock.runFor(200);
+    await completeClockedOpening(page);
     await expect(opening).toHaveCount(0);
     await expect.poll(() => heldRequests.length).toBe(1);
     const input = page.getByRole("textbox", {

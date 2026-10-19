@@ -124,7 +124,7 @@ export default function Offline() {
           </p>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
             The worker downloads public program files and a generic shell. It
-            does not cache personalized API responses or Supabase traffic.
+            does not cache authentication or personalized API responses.
             Browser support and installation menus vary; using a normal browser
             tab remains supported.
           </p>

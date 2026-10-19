@@ -312,7 +312,7 @@ export default function Settings() {
             {storageMode === "indexeddb"
               ? "Browser storage is available."
               : "Memory storage only; export before closing."}{" "}
-            Private custom text stays on this device unless you choose cloud
+            Private custom text stays on this device unless you choose account
             storage. Event evidence expires after 90 days; summaries remain.
           </p>
           <div className="flex flex-wrap gap-3">

@@ -113,6 +113,7 @@ function RaceSession({
         room?.expected_text || generatePackText("en", 100, crypto.randomUUID()),
       durationMs: (room?.duration_seconds || 30) * 1000,
       scoringPolicy: "prose",
+      inputMethod: "keyboard",
       language: "en",
       keyboardLayout: preferences.layout,
       contentRevision: room ? "server-race-v1" : "forge-curated-2026.10.15",
@@ -123,10 +124,11 @@ function RaceSession({
     const now = performance.now(),
       serverNow = room?.server_now ? Date.parse(room.server_now) : Date.now(),
       startWall = room?.started_at ? Date.parse(room.started_at) : Date.now(),
-      startMono = now - Math.max(0, serverNow - startWall);
+      startMono = now - Math.max(0, serverNow - startWall),
+      clockOffset = room ? serverNow - Date.now() : 0;
     const controller = new SessionController(config, {
       now: () => performance.now(),
-      wallNow: () => Date.now(),
+      wallNow: () => Date.now() + clockOffset,
     });
     controller.startAt(startMono, startWall);
     return {
@@ -148,9 +150,10 @@ function RaceSession({
     (value: SessionResult) => {
       completed.current = true;
       setResult(value);
-      if (botLevel)
-        void saveSession(value).catch((cause) => setError(String(cause)));
-      else if (roomRef.current)
+      // Keep recoverable local evidence even when a human finish cannot reach
+      // the server. Human room evidence uses its dedicated validation route.
+      void saveSession(value, { localOnly: !botLevel }).catch((cause) => setError(String(cause)));
+      if (!botLevel && roomRef.current)
         void raceService
           .submit(roomRef.current.id, value, true)
           .then(onRoom)
@@ -168,10 +171,9 @@ function RaceSession({
       ["completed", "cancelled", "abandoned"].includes(roomStatus) &&
       !completed.current
     ) {
-      completed.current = true;
-      setResult(bundle.controller.finish("abandoned"));
+      finish(bundle.controller.finish("abandoned"));
     }
-  }, [roomStatus, bundle]);
+  }, [roomStatus, bundle, finish]);
   useEffect(() => {
     if (!botLevel) return;
     const runner = createBot(botLevel, bundle.config.initialTarget, {
@@ -322,7 +324,7 @@ function RaceSession({
             result={result}
             onRestart={botLevel && onRestart ? onRestart : onExit}
             quickRestart={!!botLevel && !!onRestart}
-            saveStatus={botLevel ? syncState : undefined}
+            saveStatus={syncState}
           />
         </>
       ) : (
@@ -383,18 +385,13 @@ export default function Race() {
     if (!roomCode || !userId) return;
     setError("");
     let alive = true;
-    void raceService
-      .get(roomCode)
-      .then((value) => {
-        if (alive) acceptRoom(value);
-      })
-      .catch((cause) => {
-        if (alive) setError(String(cause));
-      });
     const unsubscribe = subscribeRace(
       roomCode,
       (value) => {
-        if (alive) acceptRoom(value);
+        if (alive) {
+          setError("");
+          acceptRoom(value);
+        }
       },
       (cause) => {
         if (alive) setError(cause.message);

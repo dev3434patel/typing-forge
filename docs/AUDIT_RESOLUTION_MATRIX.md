@@ -1,5 +1,7 @@
 # Audit resolution matrix
 
+**19 October update:** npm is the single package manager (`sparowtype` package); the obsolete `bun.lockb` was removed. The running backend is PHP/MySQL, not the historical Supabase stack described in dated findings below. Current acceptance and remaining limits are in [the feature audit](FEATURE_AUDIT_2026-10-19.md).
+
 Audit started **15 October 2026**; follow-up recorded **16 October 2026, Asia/Calcutta**. Baseline: [the original audit](../CURRENT_PROJECT_AUDIT_2026-10-15.md), findings **F01–F35**. Original audit line references describe the earlier working tree; the implementation links below describe v3.
 
 **Assessment:** The central correctness defects have been replaced with a shared replayable session path, and substantial learning, interface, persistence and backend work is implemented. This document does **not** declare every master-prompt requirement complete or the existing hosted application production ready. Backend source is not deployment. PostgreSQL/WASM assertions are not live Supabase HTTP/Auth/Realtime or concurrent-client evidence.

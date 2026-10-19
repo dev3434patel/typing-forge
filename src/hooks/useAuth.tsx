@@ -1,10 +1,10 @@
 import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
-import { User, Session } from '@supabase/supabase-js';
-import { supabase, isSupabaseConfigured } from '@/integrations/supabase/client';
+import { authService, isBackendConfigured, type AuthUser, type AuthSession } from '@/services/php-api';
+import { observeAuthSession } from '@/services/auth-state';
 
 interface AuthContextType {
-  user: User | null;
-  session: Session | null;
+  user: AuthUser | null;
+  session: AuthSession | null;
   loading: boolean;
   signOut: () => Promise<void>;
 }
@@ -17,34 +17,21 @@ const AuthContext = createContext<AuthContextType>({
 });
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [session, setSession] = useState<Session | null>(null);
+  const [user, setUser] = useState<AuthUser | null>(null);
+  const [session, setSession] = useState<AuthSession | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!isSupabaseConfigured) { setLoading(false); return; }
-    let active = true;
-    // Set up auth state listener FIRST
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+    if (!isBackendConfigured) { setLoading(false); return; }
+    return observeAuthSession(authService, session => {
       setSession(session);
       setUser(session?.user ?? null);
       setLoading(false);
     });
-
-    // THEN check for existing session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (!active) return;
-      setSession(session);
-      setUser(session?.user ?? null);
-      setLoading(false);
-    }).catch(() => { if (active) { setSession(null); setUser(null); setLoading(false); } });
-
-    return () => { active = false; subscription.unsubscribe(); };
   }, []);
 
   const signOut = async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) throw error;
+    await authService.signOut(user?.id);
     setUser(null);
     setSession(null);
   };

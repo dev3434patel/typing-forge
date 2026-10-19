@@ -13,9 +13,11 @@ import { THEMES } from "@/lib/themes";
 export function CommandPalette({
   open,
   onOpenChange,
+  onCloseAutoFocus,
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  onCloseAutoFocus?: (event: Event) => void;
 }) {
   const navigate = useNavigate();
   const { updatePreferences } = usePreferences();
@@ -24,7 +26,7 @@ export function CommandPalette({
     navigate(href);
   };
   return (
-    <CommandDialog open={open} onOpenChange={onOpenChange}>
+    <CommandDialog open={open} onOpenChange={onOpenChange} onCloseAutoFocus={onCloseAutoFocus}>
       <DialogTitle className="sr-only">SparowType commands</DialogTitle>
       <DialogDescription className="sr-only">
         Search pages and themes. Use arrow keys and Enter to select.

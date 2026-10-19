@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 const Toaster = lazy(() =>
   import("@/components/ui/toaster").then((module) => ({
@@ -41,8 +41,14 @@ const TouchTyping = lazy(() => import("./pages/TouchTyping"));
 function DeferredCommands() {
   const [loaded, setLoaded] = useState(false);
   const [open, setOpen] = useState(false);
+  const isOpen = useRef(false);
+  const returnFocus = useRef<HTMLElement | null>(null);
   useEffect(() => {
     const show = () => {
+      if (!isOpen.current)
+        returnFocus.current = document.activeElement instanceof HTMLElement
+          ? document.activeElement : null;
+      isOpen.current = true;
       setLoaded(true);
       setOpen(true);
     };
@@ -54,8 +60,10 @@ function DeferredCommands() {
       ) {
         event.preventDefault();
         if (!event.repeat) {
-          setLoaded(true);
-          setOpen((value) => !value);
+          if (isOpen.current) {
+            isOpen.current = false;
+            setOpen(false);
+          } else show();
         }
       }
     };
@@ -68,7 +76,16 @@ function DeferredCommands() {
   }, []);
   return loaded ? (
     <Suspense fallback={null}>
-      <CommandPalette open={open} onOpenChange={setOpen} />
+      <CommandPalette
+        open={open}
+        onOpenChange={(next) => { isOpen.current = next; setOpen(next); }}
+        onCloseAutoFocus={(event) => {
+          event.preventDefault();
+          const target = returnFocus.current;
+          if (target?.isConnected && target.getClientRects().length)
+            target.focus({ preventScroll: true });
+        }}
+      />
     </Suspense>
   ) : null;
 }

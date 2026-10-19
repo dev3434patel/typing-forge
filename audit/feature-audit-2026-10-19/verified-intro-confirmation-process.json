@@ -1,0 +1,22 @@
+{
+  "name": "verified-intro-confirmation",
+  "command": [
+    "node",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "e2e/caret-handoff-readiness.spec.ts",
+    "e2e/opening-single-keyboard.spec.ts",
+    "e2e/opening-worker.spec.ts",
+    "--grep",
+    "real delayed workspace|an actual caret module|normal-clock production worker|native worker transport failure|actual worker WebGL context loss",
+    "--workers=1",
+    "--retries=0",
+    "--forbid-only",
+    "--reporter=list,json",
+    "--output=audit/feature-audit-2026-10-19/verified-intro-confirmation-artifacts"
+  ],
+  "exitCode": 0,
+  "durationSeconds": 133.083,
+  "startedUnix": 1792433246.676467,
+  "finishedUnix": 1792433379.7592673
+}

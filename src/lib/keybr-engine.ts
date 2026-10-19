@@ -120,7 +120,7 @@ function persistEnvelope(envelope: LearningEnvelope): boolean {
 function validEvidence(value: unknown): value is LearningSessionEvidence {
   if (!value || typeof value !== 'object') return false;
   const item = value as LearningSessionEvidence;
-  return item.learningVersion === LEARNING_VERSION && typeof item.sessionId === 'string' && item.sessionId.length > 0 && Number.isFinite(Date.parse(item.completedAt)) && Number.isFinite(item.elapsedMs) && item.elapsedMs >= 0 && item.elapsedMs <= 86_400_000 && !!item.dimensions && ['keyboard', 'composition', 'virtual'].includes(item.dimensions.inputMethod) && ['prose', 'code'].includes(item.dimensions.domain) && typeof item.dimensions.language === 'string' && typeof item.dimensions.layout === 'string' && Number.isFinite(item.targetWpm) && item.targetWpm >= 1 && item.targetWpm <= 500 && Array.isArray(item.attempts) && item.attempts.length <= 100_000 && item.attempts.every(attempt => typeof attempt.expected === 'string' && typeof attempt.typed === 'string' && typeof attempt.correct === 'boolean' && Number.isFinite(attempt.offsetMs) && attempt.offsetMs >= 0 && (attempt.latencyMs === null || Number.isFinite(attempt.latencyMs) && attempt.latencyMs > 0));
+  return item.learningVersion === LEARNING_VERSION && typeof item.sessionId === 'string' && item.sessionId.length > 0 && Number.isFinite(Date.parse(item.completedAt)) && Number.isFinite(item.elapsedMs) && item.elapsedMs >= 0 && item.elapsedMs <= 86_400_000 && !!item.dimensions && ['keyboard', 'composition', 'virtual'].includes(item.dimensions.inputMethod) && ['prose', 'code'].includes(item.dimensions.domain) && typeof item.dimensions.language === 'string' && typeof item.dimensions.layout === 'string' && Number.isFinite(item.targetWpm) && item.targetWpm >= 1 && item.targetWpm <= 500 && Array.isArray(item.attempts) && item.attempts.length <= 100_000 && item.attempts.every(attempt => !!attempt && typeof attempt === 'object' && typeof attempt.expected === 'string' && typeof attempt.typed === 'string' && typeof attempt.correct === 'boolean' && Number.isFinite(attempt.offsetMs) && attempt.offsetMs >= 0 && (attempt.latencyMs === null || Number.isFinite(attempt.latencyMs) && attempt.latencyMs > 0));
 }
 const mean = (values: number[]) => values.length ? values.reduce((sum, value) => sum + value, 0) / values.length : 0;
 function stdDev(values: number[]): number { const average = mean(values); return Math.sqrt(mean(values.map(value => (value - average) ** 2))); }
@@ -171,7 +171,11 @@ export function summarizeLearningAttempts(attempts: LearningAttempt[], targetWPM
   return new Map([...groups].map(([char, observations]) => [char, summarize(char, observations, targetWPM, true)]));
 }
 function initialLetters(pack: ContentPack, envelope: LearningEnvelope, model: string): string[] {
-  return [...new Set(envelope.introduced[model] ?? pack.introductionOrder.slice(0, 6))].filter(char => pack.alphabet.includes(char));
+  const stored = envelope.introduced[model];
+  const valid = Array.isArray(stored) ? stored.filter(char => typeof char === 'string' && pack.alphabet.includes(char)) : [];
+  // An invalid local list must not leave a learner with zero available keys.
+  // Valid introductions and all neighboring session evidence remain intact.
+  return [...new Set(valid.length ? valid : pack.introductionOrder.slice(0, 6))];
 }
 /** Matched sessions rebuild deterministically even when received out of order. */
 function derive(envelope: LearningEnvelope, dimensions: LearningDimensions, targetWpm: number): { stats: Record<string, CharacterConfidence>; introduced: string[] } {

@@ -44,14 +44,18 @@ export class SessionSync {
         catch (error) { response = { error: { code: 'network', message: error instanceof Error ? error.message : 'Connection interrupted.' } }; }
         const failure = response.error;
         // A deletion can occur while the network request is in flight. Its tombstone wins.
-        if(!await repo.get(ownerId,row.clientSessionId))continue;
+        const current = await repo.get(ownerId,row.clientSessionId);
+        if (!current) continue;
         // The old owner's response can update only their record; it never becomes the next owner's data.
         if (!failure && response.accepted !== undefined) {
-          await repo.save({ ...sending, accepted: response.accepted, state: 'synced', nextAttemptAt: 0, message: 'Saved to your account.', errorCode: undefined });
+          // Retention may remove private replay while this request is in flight.
+          // A late acknowledgement updates its summary without restoring the sent evidence.
+          await repo.save({ ...current, accepted: response.accepted, state: 'synced', nextAttemptAt: 0, message: 'Saved to your account.', errorCode: undefined });
         } else {
-          const auth = failure?.status === 401 || failure?.code === 'auth-required';
+          if (!current.candidate) continue;
+          const auth = failure?.status === 401 || ['auth-required', 'owner-changed', 'csrf'].includes(failure?.code ?? '');
           const rejected = [400, 403, 409, 413, 422].includes(failure?.status ?? 0);
-          await repo.save({ ...sending, state: auth ? 'auth-required' : rejected ? 'rejected' : 'retryable-error', nextAttemptAt: now() + retryDelay(sending.attempts, this.options.random), errorCode: failure?.code ?? 'invalid-response', message: auth ? 'Sign in again to sync this account.' : failure?.message ?? 'The server did not acknowledge this save. Your local result is retained.' });
+          await repo.save({ ...current, state: auth ? 'auth-required' : rejected ? 'rejected' : 'retryable-error', nextAttemptAt: now() + retryDelay(current.attempts, this.options.random), errorCode: failure?.code ?? 'invalid-response', message: auth ? 'Sign in again to sync this account.' : failure?.message ?? 'The server did not acknowledge this save. Your local result is retained.' });
           if (auth) break;
         }
       }

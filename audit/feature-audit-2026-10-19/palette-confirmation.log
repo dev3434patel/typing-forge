@@ -1,0 +1,48 @@
+
+Running 1 test using 1 worker
+
+(node:44640) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [chromium] › e2e\navigation-accessibility.spec.ts:61:1 › the command palette stays inside a landscape phone viewport and supports touch dismissal (6.1s)
+
+
+  1) [chromium] › e2e\navigation-accessibility.spec.ts:61:1 › the command palette stays inside a landscape phone viewport and supports touch dismissal 
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator:  getByRole('button', { name: 'Replay opening animation', exact: true })
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeFocused" getByRole('button', { name: 'Replay opening animation', exact: true }) with timeout 5000ms
+      - waiting for getByRole('button', { name: 'Replay opening animation', exact: true })
+        14 × locator resolved to <button type="button" id="sparowtype-replay-opening" class="forge-button-secondary">…</button>
+           - unexpected value "inactive"
+
+
+      80 |   await close.click();
+      81 |   await expect(dialog).toBeHidden();
+    > 82 |   await expect(origin).toBeFocused();
+         |                        ^
+      83 | });
+      84 |
+        at D:\extra\typing_updated\typing-forge\e2e\navigation-accessibility.spec.ts:82:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\palette-artifacts\navigation-accessibility-t-6c6ff-nd-supports-touch-dismissal-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\feature-audit-2026-10-19\palette-artifacts\navigation-accessibility-t-6c6ff-nd-supports-touch-dismissal-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\feature-audit-2026-10-19\palette-artifacts\navigation-accessibility-t-6c6ff-nd-supports-touch-dismissal-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\feature-audit-2026-10-19\palette-artifacts\navigation-accessibility-t-6c6ff-nd-supports-touch-dismissal-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › e2e\navigation-accessibility.spec.ts:61:1 › the command palette stays inside a landscape phone viewport and supports touch dismissal 

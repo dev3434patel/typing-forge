@@ -1,0 +1,101 @@
+{
+  "buildId": "e2078121727b20cfc4d5",
+  "sourceReceipt": "verified-intro.json",
+  "browserExecutedDuringReview": false,
+  "productionChanged": false,
+  "sanitization": "Only fixture names, source lines, monotonic millisecond observations, wordmark text and test assertions are included. No credentials, cookies, tokens, account data or raw network payloads are copied.",
+  "clockSetupFailures": [
+    {
+      "case": "delayed workspace within readiness window",
+      "source": "e2e/caret-handoff-readiness.spec.ts:46",
+      "traceCall": "zbcd@54",
+      "evaluateStartedMs": 267240.366,
+      "pauseStartedMs": 267339.84,
+      "pauseFailedMs": 267414.882
+    },
+    {
+      "case": "delayed workspace after readiness deadline",
+      "source": "e2e/caret-handoff-readiness.spec.ts:46",
+      "traceCall": "ltwp@54",
+      "evaluateStartedMs": 270082.894,
+      "pauseStartedMs": 270163.043,
+      "pauseFailedMs": 270276.371
+    },
+    {
+      "case": "actual caret module arriving after import deadline",
+      "source": "e2e/caret-handoff-readiness.spec.ts:187",
+      "traceCall": "zbzv@54",
+      "evaluateStartedMs": 273179.018,
+      "pauseStartedMs": 273275.402,
+      "pauseFailedMs": 273394.79
+    }
+  ],
+  "clockCause": "All three fail before page.goto. The fixture obtains Date.now() then requests pauseAt(now+25) in a later RPC; observed evaluate-to-pause start gaps are80-99ms, so the requested time is already past. Error is clock.pauseAt: Cannot fast-forward to the past. This is not an app readiness failure.",
+  "clockRepair": "Both setup sites now use the existing freezeOpeningClock helper, which installs a fixed time and pauses60 seconds ahead on the initial blank document. Every gated load, deadline, handoff and first-key assertion remains.",
+  "nativeWordmark": {
+    "case": "normal-clock production worker wordmark and automatic entry",
+    "assertion": "completedWhileOpen must remain true",
+    "observed": {
+      "startedAtMs": 2605,
+      "after2700": {
+        "playing": true,
+        "closing": false,
+        "text": "S"
+      },
+      "completedAtMs": 8846,
+      "completedWhileOpen": false,
+      "closedAtMs": null,
+      "words": [
+        {
+          "text": "S",
+          "atMs": 5294
+        },
+        {
+          "text": "Sp",
+          "atMs": 5377
+        },
+        {
+          "text": "Spa",
+          "atMs": 5467
+        },
+        {
+          "text": "Spar",
+          "atMs": 5559
+        },
+        {
+          "text": "Sparo",
+          "atMs": 5648
+        },
+        {
+          "text": "Sparow",
+          "atMs": 5738
+        },
+        {
+          "text": "SparowT",
+          "atMs": 5828
+        },
+        {
+          "text": "SparowTy",
+          "atMs": 5917
+        },
+        {
+          "text": "SparowTyp",
+          "atMs": 6008
+        },
+        {
+          "text": "SparowType",
+          "atMs": 8846
+        }
+      ]
+    },
+    "intrusiveScreenshot": {
+      "traceCall": "sqyk@3087",
+      "startedMonotonicMs": 358506.683,
+      "nextCallMonotonicMs": 361367.109,
+      "elapsedMs": 2860.426
+    },
+    "diagnosis": "The timeline records normal90ms letters through SparowTyp, followed by a2838ms gap during the screenshot. Final text and closing are observed together. A blocking capture is the proposed source of timer/render coalescing; the failed receipt alone does not establish an unperturbed presentation pass.",
+    "repair": "Remove only the mid-presentation screenshot and retain the existing completed-wordmark screenshot after in-page completion has been observed. Keep completedWhileOpen=true, 61cap desktop full-quality diagnostics, scene lifetime and first-input checks unchanged."
+  },
+  "confirmation": "PENDING root-coordinated targeted all-engine rerun after the other serialized browser suites; do not relabel the original107pass8skip5fail result."
+}

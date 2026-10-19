@@ -1,9 +1,18 @@
 # SparowType v3 — implementation and verification
 
-<!-- performance-polish-current:start -->
-## Performance polish — current local checkpoint, 16 October 2026 UTC
+**Current checkpoint — 19 October 2026:** the active backend is PHP + MySQL/MariaDB, with a phpMyAdmin schema and PHP hosting package. Current fixes, browser outcomes and remaining gates are recorded in [the feature audit](FEATURE_AUDIT_2026-10-19.md); [setup instructions](PHP_XAMPP_SETUP.md) cover local XAMPP and hosting. Dated entries below retain their original historical scope.
 
-The [current complete audit](PERFORMANCE_POLISH_AUDIT_2026-10-16.md) supersedes the retained checkpoint below. Earlier failures keep their original reports and identities.
+- Current public build **`e2078121727b20cfc4d5`**: 86 files / 2,469,070 bytes. Initial practice JavaScript is 133,499 bytes gzip; the full 167,998-byte deferred 3D graph and eight renderer sources retain their quality.
+- **723 unit tests** and **393 native PHP replay parity cases with zero mismatches** passed, alongside 15 account/data, 10 competitive/race and 17 actual Apache check groups.
+- Browser evidence combines broad PHP coverage, a complete Edge checkpoint (**158 passed / 2 skipped**) and final four-engine account/profile, recovery, intro and real two-browser race confirmations. All 23 PHP-era failing checks have later passing confirmations. Eight WebKit worker paths remain unsupported/UNVERIFIED; this is not one clean full all-engine rerun.
+- Three current ordinary first-visit mobile Lighthouse runs scored **97 / 97 / 98 performance**, with **100 accessibility, best practices and SEO** each. The full intro was enabled; raw CLS is about 0.000252, not zero.
+- Exact-input lab runs at 4× CPU retained 247/495 characters, including real portrait/landscape rotation. Observed event p98 was 64/72 ms, maxima 152/264 ms; field INP and physical devices are not certified.
+- The prepared local MariaDB instance on 3308 passed a real graceful shutdown/cold start; normal PHP on 8081 now uses the main database. Public hosting, remote CI, native devices, mail recovery and OAuth remain separately unverified/unavailable as detailed in the audit.
+
+<!-- performance-polish-current:start -->
+## Performance polish — retained checkpoint, 16 October 2026 UTC
+
+The [October 16 complete audit](PERFORMANCE_POLISH_AUDIT_2026-10-16.md) records the historical checkpoint below. The October 19 PHP feature audit above is the current checkpoint. Earlier failures keep their original reports and identities.
 
 - Final local public build **`28188793dbb56fac3963`**: 87 precached files / 2,685,207 public bytes. Compressed JS: 53,570 bytes opening bootstrap, 189,864 bytes complete practice graph, 167,997 bytes shared deferred renderer graph. No commit or deployment is claimed.
 - Source gates: **657 unit tests / 48 files passed**, full TypeScript, build, scoped coverage, content and local database/dependency gates. Coverage used `--maxWorkers=2`, changing concurrency only and retaining the same cases/assertions. An incomplete prior combined revalidation remains recorded; its unfinished coverage/build was not treated as a pass. ESLint retains **0 errors / 9 Fast Refresh warnings**.
