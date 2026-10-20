@@ -1,4 +1,10 @@
-import { memo, useId, useMemo, type CSSProperties } from "react";
+import {
+  memo,
+  useId,
+  useMemo,
+  type CSSProperties,
+  type ReactNode,
+} from "react";
 import { ChevronDown, ChevronUp, Hand, Keyboard } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getContentPack } from "@/lib/content-packs";
@@ -29,6 +35,7 @@ export interface LiveKeyboardProps {
   onVisibilityChange: (visible: boolean) => void;
   onFingerGuideChange?: (visible: boolean) => void;
   adaptive?: boolean;
+  sessionControls?: ReactNode;
 }
 
 export const LiveKeyboard = memo(function LiveKeyboard({
@@ -45,6 +52,7 @@ export const LiveKeyboard = memo(function LiveKeyboard({
   onVisibilityChange,
   onFingerGuideChange,
   adaptive = false,
+  sessionControls,
 }: LiveKeyboardProps) {
   const id = useId();
   const mapping = useMemo(
@@ -101,6 +109,11 @@ export const LiveKeyboard = memo(function LiveKeyboard({
             <span className="live-keyboard-layout">{mapping.label}</span>
           </span>
         </div>
+        {sessionControls && (
+          <div className="live-keyboard-session-controls">
+            {sessionControls}
+          </div>
+        )}
         <div className="live-keyboard-actions">
           {visible && onFingerGuideChange && (
             <button

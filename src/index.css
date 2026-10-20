@@ -508,6 +508,53 @@ html[data-theme="paper"] {
 .typing-controls {
   transition: opacity 150ms ease;
 }
+/* Keep the desktop passage and its live guide together in the available window.
+   Large text and very short/mobile windows retain ordinary document scrolling. */
+@media (min-width: 1024px) {
+  .practice-main:has(.live-keyboard-board) {
+    justify-content: flex-start;
+    min-height: 0;
+    padding-top: 8px;
+    padding-bottom: 32px;
+  }
+  .practice-main:has(.live-keyboard-board) .test-toolbar {
+    margin-bottom: 8px;
+  }
+  .practice-main:has(.live-keyboard-board) .typing-hud {
+    margin-bottom: 4px;
+  }
+  .practice-main:has(.live-keyboard-board) .typing-feedback {
+    margin-top: 8px;
+    min-height: 20px;
+    padding-block: 0;
+  }
+  .practice-main:has(.live-keyboard-board) .typing-feedback-error {
+    min-height: 28px;
+  }
+  .practice-main:has(.live-keyboard-board) .typing-stage,
+  .practice-main:has(.live-keyboard-board) .typing-input {
+    padding-block: 4px;
+  }
+}
+@media (min-width: 1024px) and (max-height: 900px) {
+  .forge-shell:has(.live-keyboard-board) > header > div {
+    height: 64px;
+  }
+}
+@media (min-width: 1024px) and (max-height: 740px) {
+  .forge-shell:has(.live-keyboard-board) > header > div {
+    height: 56px;
+  }
+  .practice-main:has(.live-keyboard-board) {
+    padding-top: 4px;
+  }
+  .practice-main:has(.live-keyboard-board) .test-toolbar {
+    margin-bottom: 4px;
+  }
+  .practice-main:has(.live-keyboard-board) .test-toolbar-options {
+    margin-top: 4px;
+  }
+}
 @media (max-width: 640px) {
   .practice-main {
     justify-content: flex-start;

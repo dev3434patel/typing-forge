@@ -53,7 +53,7 @@ export const Header = forwardRef<
         >
           <BrandWordmark className="text-lg sm:text-xl" />
         </Link>
-        <nav aria-label="Main navigation" className="hidden xl:flex gap-1">
+        <nav aria-label="Main navigation" className="hidden min-[1200px]:flex gap-1">
           {items.map((item) => (
             <Link
               key={item.href}
@@ -104,7 +104,7 @@ export const Header = forwardRef<
       </div>
       <nav
         aria-label="Mobile navigation"
-        className="xl:hidden flex overflow-x-auto gap-1 px-4 pb-3 scrollbar-hide"
+        className="min-[1200px]:hidden flex overflow-x-auto gap-1 px-4 pb-3 scrollbar-hide"
       >
         {items.map((item) => (
           <Link

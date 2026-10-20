@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 import axe from "axe-core";
-import { completeCorrectedCat } from "./helpers";
+import { completeCorrectedCat, settlePageVisuals } from "./helpers";
 
 test.beforeEach(async ({ page }) => {
   await page.addInitScript(() =>
@@ -17,8 +17,7 @@ for (const width of [390, 1440]) {
       if (route === "completed-results") await completeCorrectedCat(page);
       else await page.goto(route, { waitUntil: "domcontentloaded" });
       await expect(page.locator("main#main-content")).toBeVisible();
-      // Measure settled controls rather than a transient, partially opaque entrance frame.
-      if (route === "/auth") await expect(page.locator("main > div")).toHaveCSS("opacity", "1");
+      await settlePageVisuals(page);
       // Evaluate through the test driver; keep the application’s strict script CSP intact.
       await page.evaluate(axe.source);
       const result = await page.evaluate(async () => {

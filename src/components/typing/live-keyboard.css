@@ -14,10 +14,65 @@
   align-items: center;
 }
 .live-keyboard-toolbar {
+  position: relative;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 4px 12px;
   margin-bottom: 8px;
+}
+.live-keyboard-session-controls {
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 1023px) {
+  .live-keyboard-session-controls {
+    flex-shrink: 0;
+  }
+  .live-keyboard .typing-controls,
+  .live-keyboard .typing-controls > div {
+    gap: 0;
+  }
+  .live-keyboard .typing-controls .forge-chip {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    justify-content: center;
+  }
+  .typing-finish-label {
+    display: none;
+  }
+}
+.live-keyboard .typing-controls {
+  position: static;
+  margin: 0;
+  padding: 0;
+  gap: 4px;
+}
+.typing-shortcut-help > summary {
+  list-style: none;
+}
+.typing-shortcut-help > summary::-webkit-details-marker {
+  display: none;
+}
+.typing-shortcut-panel {
+  position: absolute;
+  z-index: 20;
+  right: 0;
+  bottom: calc(100% + 8px);
+  width: min(360px, 100%);
+  max-height: calc(100svh - 120px);
+  overflow: auto;
+  padding: 16px;
+  border: 1px solid var(--forge-borderStrong);
+  border-radius: 12px;
+  background: var(--forge-surface);
+  color: var(--forge-text);
+  box-shadow: 0 12px 28px rgb(0 0 0 / 20%);
+  line-height: 1.8;
+  font-size: 12px;
+}
+.typing-shortcut-panel p + p {
+  margin-top: 12px;
 }
 .live-keyboard-title {
   gap: 8px;
@@ -265,6 +320,52 @@
 .live-keyboard[data-reduced-motion="true"] .live-key {
   transition: none;
   transform: none;
+}
+@media (min-width: 1024px) {
+  .live-keyboard {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 16px;
+    margin-top: 8px;
+  }
+  .live-keyboard-toolbar,
+  .live-keyboard-board {
+    grid-column: 1 / -1;
+  }
+  .live-keyboard-toolbar {
+    margin-bottom: 4px;
+  }
+  .live-keyboard-board {
+    padding: 10px;
+  }
+  .live-keyboard-row + .live-keyboard-row {
+    margin-top: 4px;
+  }
+  .live-keyboard .live-keyboard-board .live-key {
+    height: clamp(26px, 3.6svh, 43px);
+    font-size: clamp(11px, 1.5svh, 13px);
+  }
+  .live-keyboard .live-key-label {
+    gap: clamp(1px, 0.2svh, 3px);
+  }
+  .live-keyboard-feedback {
+    padding-top: 6px;
+  }
+  .live-keyboard-caption {
+    align-self: start;
+    margin-top: 6px;
+  }
+}
+@media (min-width: 1024px) and (max-height: 740px) {
+  .live-keyboard {
+    margin-top: 4px;
+  }
+  .live-keyboard-board {
+    padding: 8px;
+  }
+  .live-keyboard-row + .live-keyboard-row {
+    margin-top: 3px;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .live-key {

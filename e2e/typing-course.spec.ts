@@ -1,7 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import axe from "axe-core";
-import { focusTyping } from "./helpers";
+import { focusTyping, settlePageVisuals } from "./helpers";
 
 const catalog = JSON.parse(readFileSync(new URL("../backend/resources/typing-course-v1.json", import.meta.url), "utf8")) as {
   lessons: { id: string; title: string; durationMs: number | null; variants: { id: string; text: string }[] }[];
@@ -288,13 +288,16 @@ for (const width of [320, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     const receipts: unknown[] = [];
     async function inspect(state: string) {
+      await settlePageVisuals(page);
       await page.evaluate(axe.source);
       const receipt = await page.evaluate(async () => {
         const report = await (window as unknown as Window & { axe: typeof axe }).axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"] } });
-        return { overflow: document.documentElement.scrollWidth > innerWidth + 1, violations: report.violations.map(({ id, nodes }) => ({ id, nodes: nodes.map(node => ({ target: node.target, summary: node.failureSummary })) })), incomplete: report.incomplete.map(rule => rule.id) };
+        const workspace = document.querySelector(".typing-workspace");
+        return { workspaceOpacity: workspace ? getComputedStyle(workspace).opacity : null, overflow: document.documentElement.scrollWidth > innerWidth + 1, violations: report.violations.map(({ id, nodes }) => ({ id, nodes: nodes.map(node => ({ target: node.target, summary: node.failureSummary })) })), incomplete: report.incomplete.map(rule => rule.id) };
       });
       receipts.push({ state, width, ...receipt });
       expect.soft(receipt.overflow, state).toBe(false);
+      if (receipt.workspaceOpacity !== null) expect.soft(receipt.workspaceOpacity, `${state}: settled workspace`).toBe("1");
       expect.soft(receipt.violations, `${state}: ${JSON.stringify(receipt.violations)}`).toEqual([]);
     }
     await page.goto("/lessons"); await inspect("overview");

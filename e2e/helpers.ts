@@ -2,6 +2,19 @@ import { expect, type Page } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import type { SessionResult } from "../src/lib/typing-core";
 
+export async function settlePageVisuals(page: Page) {
+  // Static accessibility readings need the final painted colors, while clocks
+  // and infinite caret animations must remain active during the test.
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+    await Promise.all(
+      document.getAnimations()
+        .filter(animation => animation.effect?.getComputedTiming().iterations !== Infinity)
+        .map(animation => animation.finished.catch(() => undefined)),
+    );
+  });
+}
+
 export async function focusTyping(page: Page) {
   const input = page.getByRole("textbox", {
     name: "Typing input",

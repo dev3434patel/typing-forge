@@ -32,11 +32,15 @@ import { TypingPassage } from "./TypingPassage";
 import { TypingFeedback } from "./TypingFeedback";
 import { OpponentPaceMarker } from "./OpponentPaceMarker";
 import { LiveKeyboard } from "./LiveKeyboard";
+import { TypingShortcutHelp } from "./TypingShortcutHelp";
 import { useLiveKeyboard } from "@/hooks/useLiveKeyboard";
 import { keyboardAttempt } from "@/lib/live-keyboard";
 import { opponentPacePosition, type RacePace } from "@/lib/race-pace";
 import type { KeyboardAudio } from "@/lib/keyboard-audio";
-import { useWordCorrection, WORD_CORRECTION_NOTICE } from "@/hooks/useWordCorrection";
+import {
+  useWordCorrection,
+  WORD_CORRECTION_NOTICE,
+} from "@/hooks/useWordCorrection";
 import {
   typingCaretAnchor,
   typingCaretGeometry,
@@ -93,14 +97,26 @@ export function TypingArea({
     viewport = useRef<HTMLDivElement>(null),
     passage = useRef<HTMLDivElement>(null),
     resumeButton = useRef<HTMLButtonElement>(null);
-  const keyboardInput = useLiveKeyboard(textarea, controller, p.showKeyboard && snapshot.status !== "paused" && snapshot.status !== "finished");
+  const keyboardInput = useLiveKeyboard(
+    textarea,
+    controller,
+    p.showKeyboard &&
+      snapshot.status !== "paused" &&
+      snapshot.status !== "finished",
+  );
   const keyboardSequence = snapshot.events.at(-1)?.sequence ?? -1;
   const lastKeyboardAttempt = useMemo(() => {
     void keyboardSequence;
     return keyboardAttempt(controller.lastInputAttempts);
   }, [controller, keyboardSequence]);
-  const setKeyboardVisible = useCallback((showKeyboard: boolean) => updatePreferences({ showKeyboard }), [updatePreferences]);
-  const setFingerGuideVisible = useCallback((showFingerGuide: boolean) => updatePreferences({ showFingerGuide }), [updatePreferences]);
+  const setKeyboardVisible = useCallback(
+    (showKeyboard: boolean) => updatePreferences({ showKeyboard }),
+    [updatePreferences],
+  );
+  const setFingerGuideVisible = useCallback(
+    (showFingerGuide: boolean) => updatePreferences({ showFingerGuide }),
+    [updatePreferences],
+  );
   const composing = useRef(false),
     provenance = useRef<InputProvenance>("keyboard"),
     finished = useRef(false),
@@ -336,7 +352,8 @@ export function TypingArea({
     update(next);
     setInputHint(touchesPreviousWord ? WORD_CORRECTION_NOTICE : "");
     provenance.current = "keyboard";
-    if (!touchesPreviousWord && (text || oldUnits.length > newUnits.length)) sound();
+    if (!touchesPreviousWord && (text || oldUnits.length > newUnits.length))
+      sound();
   };
   const pack = getContentPack(configuration.language || "en");
   const free = configuration.scoringPolicy === "free";
@@ -353,6 +370,90 @@ export function TypingArea({
   const visibleSlots = snapshot.characters;
   const caretBox =
     caretPosition && typingCaretGeometry(caretPosition, p.caretStyle);
+  const sessionControls = useMemo(
+    () => (
+      <div className="typing-controls flex flex-wrap items-center gap-1">
+        <div className="flex gap-1 items-center">
+          {onRestart && (
+            <button
+              className="forge-icon-button"
+              aria-label="Restart with new text"
+              title={
+                tabIndents
+                  ? "Restart with new text"
+                  : "Restart · Tab then Enter"
+              }
+              onClick={onRestart}
+            >
+              <RotateCcw size={18} />
+            </button>
+          )}
+          <button
+            className="forge-icon-button"
+            aria-label={
+              revealed
+                ? "Hide accessible text editor"
+                : "Show accessible text editor"
+            }
+            aria-pressed={revealed}
+            onClick={() => setRevealed(!revealed)}
+          >
+            {revealed ? <EyeOff size={17} /> : <Eye size={17} />}
+          </button>
+          {snapshot.status === "running" && canPause && (
+            <button
+              className="forge-icon-button"
+              aria-label="Pause practice"
+              onClick={() => update(controller.pause())}
+            >
+              <Pause size={17} />
+            </button>
+          )}
+          <button
+            className="forge-chip"
+            aria-label="Finish"
+            title="Finish practice"
+            disabled={snapshot.status === "ready"}
+            onClick={() => update(controller.finish("manual"))}
+          >
+            <Flag size={15} aria-hidden="true" />
+            <span className="typing-finish-label">Finish</span>
+          </button>
+        </div>
+        <TypingShortcutHelp>
+          <p>
+            {canPause ? "Esc pauses · " : "Shared clock · "}Ctrl+Enter finishes
+            ·
+            {tabIndents
+              ? " Tab indents · Shift+Tab moves focus"
+              : onRestart
+                ? " Tab → Enter restarts"
+                : " Tab moves focus"}
+            {configuration.correctionPolicy === "current-word" &&
+              " · Correct current word only"}
+          </p>
+          {configuration.rejectIncorrect && (
+            <p>
+              Precision mode: incorrect attempts count toward accuracy and keep
+              the caret in place. Type the expected character to continue;
+              Backspace is not required.
+            </p>
+          )}
+        </TypingShortcutHelp>
+      </div>
+    ),
+    [
+      onRestart,
+      tabIndents,
+      revealed,
+      snapshot.status,
+      canPause,
+      controller,
+      update,
+      configuration.correctionPolicy,
+      configuration.rejectIncorrect,
+    ],
+  );
   const clock =
     snapshot.remainingMs !== null
       ? Math.ceil(snapshot.remainingMs / 1000)
@@ -742,74 +843,24 @@ export function TypingArea({
           />
         </div>
       )}
-      <div className="typing-controls flex flex-wrap items-center justify-center gap-3 mt-5">
-        <p id="typing-instructions" className="text-xs text-muted-foreground">
-          {canPause ? "Esc pauses · " : "Shared clock · "}Ctrl+Enter finishes ·
-          {tabIndents
-            ? " Tab indents · Shift+Tab moves focus"
-            : onRestart
-              ? " Tab → Enter restarts"
-              : " Tab moves focus"}
-          {configuration.correctionPolicy === "current-word" && " · Correct current word only"}
-        </p>
-        {configuration.rejectIncorrect && (
-          <p className="text-xs text-muted-foreground mt-2" role="note">
-            Precision mode: incorrect attempts count toward accuracy and keep
-            the caret in place. Type the expected character to continue;
-            Backspace is not required.
-          </p>
-        )}
-        <div className="flex gap-1 items-center">
-          {onRestart && (
-            <button
-              className="forge-icon-button"
-              aria-label="Restart with new text"
-              title={
-                tabIndents
-                  ? "Restart with new text"
-                  : "Restart · Tab then Enter"
-              }
-              onClick={onRestart}
-            >
-              <RotateCcw size={18} />
-            </button>
-          )}
-          <button
-            className="forge-icon-button"
-            aria-label={
-              revealed
-                ? "Hide accessible text editor"
-                : "Show accessible text editor"
-            }
-            aria-pressed={revealed}
-            onClick={() => setRevealed(!revealed)}
-          >
-            {revealed ? <EyeOff size={17} /> : <Eye size={17} />}
-          </button>
-          {snapshot.status === "running" && canPause && (
-            <button
-              className="forge-icon-button"
-              aria-label="Pause practice"
-              onClick={() => update(controller.pause())}
-            >
-              <Pause size={17} />
-            </button>
-          )}
-          <button
-            className="forge-chip"
-            disabled={snapshot.status === "ready"}
-            onClick={() => update(controller.finish("manual"))}
-          >
-            <Flag size={15} />
-            Finish
-          </button>
-        </div>
-      </div>
+      <p id="typing-instructions" className="sr-only">
+        {canPause ? "Esc pauses · " : "Shared clock · "}Ctrl+Enter finishes ·
+        {tabIndents
+          ? " Tab indents · Shift+Tab moves focus"
+          : onRestart
+            ? " Tab → Enter restarts"
+            : " Tab moves focus"}
+        {configuration.correctionPolicy === "current-word" &&
+          " · Correct current word only"}
+      </p>
       <LiveKeyboard
+        sessionControls={sessionControls}
         layout={configuration.keyboardLayout || p.layout}
         language={configuration.language || p.language}
         input={keyboardInput}
-        expectedCharacter={free ? undefined : snapshot.characters[snapshot.cursor]?.expected}
+        expectedCharacter={
+          free ? undefined : snapshot.characters[snapshot.cursor]?.expected
+        }
         lastAttempt={lastKeyboardAttempt}
         lessonKeys={keyboardLessonKeys}
         visible={p.showKeyboard}
