@@ -18,8 +18,11 @@ export function TypingFeedback({
     void lastSequence;
     return feedbackFromAttempts(controller.lastInputAttempts, rejectIncorrect);
   }, [controller, lastSequence, rejectIncorrect]);
+  const recoveryHint = controller.canReopenPreviousWord
+    ? "Backspace returns to the previous incorrect word · Ctrl/Alt + Backspace retypes it."
+    : "";
   const errorText = feedback?.incorrect
-    ? `You typed ${inputUnitLabel(feedback.typed)}. Expected ${inputUnitLabel(feedback.expected)}. ${feedback.rejected ? "Not inserted. Type the expected character to continue." : "Added to your text. Backspace to correct, or keep typing."} ${snapshot.metrics.incorrectAttempts} incorrect attempts so far.`
+    ? `You typed ${inputUnitLabel(feedback.typed)}. Expected ${inputUnitLabel(feedback.expected)}. ${feedback.rejected ? "Not inserted. Type the expected character to continue." : recoveryHint || "Added to your text. Backspace to correct, or keep typing."} ${snapshot.metrics.incorrectAttempts} incorrect attempts so far.`
     : "";
   return (
     <div
@@ -49,7 +52,7 @@ export function TypingFeedback({
             {feedback.incorrect
               ? feedback.rejected
                 ? "Not inserted · type the expected character to continue."
-                : "Added to your text · Backspace to correct, or keep typing."
+                : recoveryHint || "Added to your text · Backspace to correct, or keep typing."
               : "Keep going."}
           </span>
           {feedback.incorrectCount > 1 && (
@@ -61,11 +64,11 @@ export function TypingFeedback({
         </div>
       ) : (
         <p className="text-muted-foreground">
-          {feedback
+          {recoveryHint || (feedback
             ? "Keep going."
             : rejectIncorrect
               ? "Stop on error · type the expected character to continue."
-              : "Type the text above. Wrong letters stay visible; Backspace corrects."}
+              : "Type the text above. Wrong letters stay visible; Backspace corrects.")}
         </p>
       )}
       <span

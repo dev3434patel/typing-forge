@@ -59,6 +59,32 @@ try {
   const timed = catalog.lessons.find(lesson => lesson.durationMs !== null);
   const variant = finite.variants[0];
   {
+    const item = create(finite, variant, { correctionPolicy: 'current-word' });
+    fill(item, finite, variant);
+    capture('historical-current-word-course-still-qualifies', item, true);
+  }
+  {
+    const item = create(finite, variant, { correctionPolicy: 'correct-words-locked' });
+    fill(item, finite, variant);
+    capture('correct-word-locked-course-qualifies-in-separate-cohort', item, true);
+  }
+  assert.notEqual(
+    cases.find(item => item.name === 'historical-current-word-course-still-qualifies').candidate.comparisonKey,
+    cases.find(item => item.name === 'correct-word-locked-course-qualifies-in-separate-cohort').candidate.comparisonKey,
+    'Historical and correct-word-locked course results must retain distinct comparison cohorts.',
+  );
+  {
+    const item = create(finite, variant, { correctionPolicy: 'correct-words-locked' });
+    const firstWord = item.target.split(' ')[0];
+    for (const text of (firstWord[0] === 'x' ? 'z' : 'x') + firstWord.slice(1) + ' ') item.input(text);
+    item.advance(100); item.controller.input({ type: 'delete' });
+    item.advance(100); item.controller.input({ type: 'delete', start: 0, end: firstWord.length });
+    fill(item, finite, variant);
+    const result = capture('course-reopened-incorrect-word-retains-attempt-accuracy', item, true);
+    assert.ok(result.metrics.inputAccuracy < 100);
+    assert.equal(result.metrics.finalTextAccuracy, 100);
+  }
+  {
     const item = create(finite, variant); const wrong = item.target[0] === 'x' ? 'z' : 'x';
     item.input(wrong); item.advance(100); item.controller.input({ type: 'delete', text: '', start: 0, end: 1 });
     fill(item, finite, variant);

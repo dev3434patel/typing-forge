@@ -219,8 +219,10 @@ test("blur preserves input and refocus resumes the same passage", async ({
     .getByRole("button", { name: "Show accessible text editor" })
     .focus();
   await expect(input).not.toBeFocused();
+  await expect(page.getByRole("button", { name: "Continue typing", exact: true }))
+    .toHaveText(/Practice clock continues/);
   await page
-    .getByRole("button", { name: /^Click here or tab to start typing/ })
+    .getByRole("button", { name: "Continue typing", exact: true })
     .click();
   await expect(input).toHaveValue("cx");
   await expect(page.getByTestId("typing-target")).toHaveText(text!);

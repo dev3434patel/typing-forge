@@ -39,7 +39,7 @@ import { opponentPacePosition, type RacePace } from "@/lib/race-pace";
 import type { KeyboardAudio } from "@/lib/keyboard-audio";
 import {
   useWordCorrection,
-  WORD_CORRECTION_NOTICE,
+  wordCorrectionNotice,
 } from "@/hooks/useWordCorrection";
 import {
   typingCaretAnchor,
@@ -97,6 +97,8 @@ export function TypingArea({
     viewport = useRef<HTMLDivElement>(null),
     passage = useRef<HTMLDivElement>(null),
     resumeButton = useRef<HTMLButtonElement>(null);
+  const blurredSelection = useRef<Pick<HTMLTextAreaElement,
+    "selectionStart" | "selectionEnd" | "selectionDirection"> | null>(null);
   const keyboardInput = useLiveKeyboard(
     textarea,
     controller,
@@ -301,6 +303,18 @@ export function TypingArea({
     },
     onNotice: setInputHint,
   });
+  const restoreTypingFocus = () => {
+    const input = textarea.current;
+    if (!input) return;
+    const saved = blurredSelection.current;
+    const start = Math.min(saved?.selectionStart ?? input.value.length, input.value.length);
+    const end = Math.max(start, Math.min(saved?.selectionEnd ?? start, input.value.length));
+    input.focus();
+    // WebKit can move a blurred controlled textarea's caret before its final
+    // character. Restore the actual selection, including intentional edits.
+    input.setSelectionRange(start, end, saved?.selectionDirection ?? "none");
+    wordCorrection.constrainSelection();
+  };
   const commit = (
     newValue: string,
     source: InputProvenance = provenance.current,
@@ -331,6 +345,11 @@ export function TypingArea({
     }
     if (start === end && start === newEnd) return;
     const text = newUnits.slice(start, newEnd).join("");
+    if (!compositionId && source === "keyboard" && start === oldUnits.length && start === end && wordCorrection.ignoreEmptySpace(text, true)) {
+      if (textarea.current) textarea.current.value = controller.currentText;
+      setValue(controller.currentText);
+      return;
+    }
     const touchesPreviousWord = start < controller.editableStart;
     const next = controller.input({
       type: compositionId
@@ -350,7 +369,7 @@ export function TypingArea({
       textarea.current.value = next.finalText;
     setValue(next.finalText);
     update(next);
-    setInputHint(touchesPreviousWord ? WORD_CORRECTION_NOTICE : "");
+    setInputHint(touchesPreviousWord && next.finalText === oldUnits.join("") ? wordCorrectionNotice(controller) : "");
     provenance.current = "keyboard";
     if (!touchesPreviousWord && (text || oldUnits.length > newUnits.length))
       sound();
@@ -431,6 +450,8 @@ export function TypingArea({
                 : " Tab moves focus"}
             {configuration.correctionPolicy === "current-word" &&
               " · Correct current word only"}
+            {configuration.correctionPolicy === "correct-words-locked" &&
+              " · Correct words lock; Backspace can reopen previous mistakes"}
           </p>
           {configuration.rejectIncorrect && (
             <p>
@@ -683,7 +704,10 @@ export function TypingArea({
               setFocused(true);
             }}
             onSelect={wordCorrection.constrainSelection}
-            onBlur={() => {
+            onBlur={(event) => {
+              const input = event.currentTarget;
+              blurredSelection.current = { selectionStart: input.selectionStart,
+                selectionEnd: input.selectionEnd, selectionDirection: input.selectionDirection };
               setFocused(false);
               setCapsLock(null);
             }}
@@ -795,11 +819,12 @@ export function TypingArea({
           {!focused && snapshot.status !== "paused" && (
             <button
               tabIndex={-1}
+              aria-label={snapshot.status === "running" ? "Continue typing" : undefined}
               className="typing-focus-prompt absolute inset-0 flex items-center justify-center gap-3 text-sm text-foreground"
-              onClick={() => textarea.current?.focus()}
+              onClick={restoreTypingFocus}
             >
               <Keyboard size={22} className="text-primary" />
-              <span>Click here or tab to start typing</span>
+              <span>{snapshot.status === "running" ? `${configuration.mode === "race" ? "Race" : "Practice"} clock continues · click or tab to continue` : "Click here or tab to start typing"}</span>
             </button>
           )}
           {snapshot.status === "paused" && (
@@ -813,7 +838,7 @@ export function TypingArea({
                 className="forge-button"
                 onClick={() => {
                   update(controller.resume());
-                  requestAnimationFrame(() => textarea.current?.focus());
+                  requestAnimationFrame(restoreTypingFocus);
                 }}
               >
                 <Play size={15} />
@@ -852,6 +877,8 @@ export function TypingArea({
             : " Tab moves focus"}
         {configuration.correctionPolicy === "current-word" &&
           " · Correct current word only"}
+        {configuration.correctionPolicy === "correct-words-locked" &&
+          " · Correct words lock; Backspace can reopen previous mistakes"}
       </p>
       <LiveKeyboard
         sessionControls={sessionControls}

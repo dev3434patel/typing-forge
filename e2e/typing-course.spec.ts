@@ -209,7 +209,7 @@ test("corrected errors retain their accuracy cost and an early finish never earn
   await expect(page.getByText("0 of 2 checkpoints", { exact: true })).toBeVisible();
 });
 
-test("current-word correction and Tab then Enter preserve the course contract and choose a fresh variant", async ({ page }) => {
+test("correct submitted words stay locked and Tab then Enter preserves the course contract with a fresh variant", async ({ page }) => {
   const input = await start(page);
   await input.pressSequentially("fj ");
   await input.press("Backspace");

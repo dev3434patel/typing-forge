@@ -21,8 +21,9 @@ export interface SessionConfig {
   repeatedContent?: boolean;
   paused?: boolean;
   rejectIncorrect?: boolean;
-  /** Retained word separators commit preceding text; absent preserves legacy editing. */
-  correctionPolicy?: 'current-word';
+  /** Legacy current-word seals every submission. Correct-word locking permits
+   * one previous incorrect prose word to be reopened from an empty current word. */
+  correctionPolicy?: 'current-word' | 'correct-words-locked';
   punctuation?: boolean;
   numbers?: boolean;
   wordCount?: number;

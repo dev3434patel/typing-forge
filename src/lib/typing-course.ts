@@ -85,7 +85,7 @@ export function buildCourseConfiguration(lessonId: string, options: {
     clientSessionId: options.clientSessionId, ownerScope: options.ownerId,
     mode: lesson.durationMs === null ? 'learn' : 'time', initialTarget: target,
     ...(lesson.durationMs === null ? {} : { durationMs: lesson.durationMs }),
-    scoringPolicy: 'prose', correctionPolicy: 'current-word', rejectIncorrect: false,
+    scoringPolicy: 'prose', correctionPolicy: 'correct-words-locked', rejectIncorrect: false,
     language: 'en', script: 'Latin', keyboardLayout: 'qwerty', inputMethod: 'keyboard',
     contentRevision: `${COURSE_VERSION}:${lessonId}:${variantId}`,
     generatorVersion: COURSE_GENERATOR_VERSION, seed: `${lessonId}:${variantId}`,
@@ -122,7 +122,7 @@ export function assessCourseResult(result: SessionResult): CourseAssessment | nu
     result.clientSessionId === config.clientSessionId && config.initialTarget === target && result.initialTarget === target && result.targetText === target &&
     config.mode === (lesson.durationMs === null ? 'learn' : 'time') &&
     (lesson.durationMs === null ? config.durationMs === undefined : config.durationMs === lesson.durationMs) &&
-    config.scoringPolicy === 'prose' && config.correctionPolicy === 'current-word' && config.rejectIncorrect === false &&
+    config.scoringPolicy === 'prose' && ['current-word', 'correct-words-locked'].includes(config.correctionPolicy ?? '') && config.rejectIncorrect === false &&
     config.language === 'en' && config.script === 'Latin' && config.keyboardLayout === 'qwerty' && config.inputMethod === 'keyboard' &&
     config.contentRevision === `${COURSE_VERSION}:${lesson.id}:${variantId}` && config.generatorVersion === COURSE_GENERATOR_VERSION &&
     config.seed === `${lesson.id}:${variantId}` && config.privacy === 'public-corpus' && !config.challengeId && !config.startImmediately &&

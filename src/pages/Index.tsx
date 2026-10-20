@@ -94,7 +94,7 @@ export default function Index() {
     };
   }, [retestId, user?.id]);
   const configuration = useMemo<SessionConfig>(() => {
-    if (retestConfiguration) return { ...retestConfiguration, correctionPolicy: "current-word" };
+    if (retestConfiguration) return retestConfiguration;
     const seed = crypto.randomUUID(),
       mode = settings.mode === "keybr" ? "time" : settings.mode,
       pack = getContentPack(mode === "quote" || mode === "code" ? "en" : p.language);
@@ -131,7 +131,7 @@ export default function Index() {
       clientSessionId: seed,
       ownerScope: user?.id || "guest",
       mode,
-      correctionPolicy: "current-word",
+      correctionPolicy: mode === "code" || mode === "zen" && settings.zenStyle === "free" ? undefined : "correct-words-locked",
       initialTarget,
       durationMs: mode === "time" ? settings.duration * 1000 : undefined,
       scoringPolicy:

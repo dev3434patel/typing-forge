@@ -96,7 +96,7 @@ test("Space commits a correct word while Backspace and word-delete edit only the
   ).toHaveAttribute("data-expected", "q");
 });
 
-test("a submitted wrong word cannot be repaired later and blocked edits do not change result counts", async ({
+test("a correct submitted bridge locks earlier mistakes and blocked edits do not change result counts", async ({
   page,
 }) => {
   const input = await customPractice(page, "cat dog quiet calm");
@@ -397,4 +397,371 @@ test("composition preserves its committed prefix and Tab then Enter resets the w
   await expect(
     page.getByTestId("typing-target").locator('[data-current="true"]'),
   ).toHaveAttribute("data-slot-index", "0");
+});
+
+for (const word of ["cxt", "ca", "catx"]) {
+  test(`Backspace reopens a submitted ${word === "ca" ? "short" : word === "catx" ? "extra-letter" : "mistyped"} word before it can become locked`, async ({
+    page,
+  }) => {
+    const input = await customPractice(page, "cat dog quiet calm");
+    await input.pressSequentially(`${word} `);
+    await expect(page.getByTestId("typing-feedback")).toContainText(
+      "Backspace returns to the previous incorrect word",
+    );
+    await input.press("Backspace");
+    await expect(input).toHaveValue(word);
+    await input.press("Control+Backspace");
+    await expect(input).toHaveValue("");
+    await input.pressSequentially("cat ");
+    await input.press("Backspace");
+    await expect(input).toHaveValue("cat ");
+    await expect(page.getByTestId("typing-input-notice")).toContainText(
+      "Correctly submitted words stay locked",
+    );
+  });
+}
+
+for (const modifier of ["Control", "Alt"]) {
+  test(`${modifier}+Backspace clears the active word before reopening one previous mistake`, async ({
+    page,
+  }) => {
+    const input = await customPractice(page, "cat dog quiet calm");
+    await input.pressSequentially("cat dxg qu");
+    await input.press(`${modifier}+Backspace`);
+    await expect(input).toHaveValue("cat dxg ");
+    await input.press(`${modifier}+Backspace`);
+    await expect(input).toHaveValue("cat ");
+    await input.press(`${modifier}+Backspace`);
+    await expect(input).toHaveValue("cat ");
+  });
+}
+
+test("wrong-word chains reopen one boundary per request and stop at a correct submitted word", async ({
+  page,
+}) => {
+  const input = await customPractice(page, "cat dog quiet calm still");
+  await input.pressSequentially("cat dxg qxiet ");
+  await input.press("Control+Backspace");
+  await expect(input).toHaveValue("cat dxg ");
+  await input.press("Backspace");
+  await expect(input).toHaveValue("cat dxg");
+  await input.press("Control+Backspace");
+  await expect(input).toHaveValue("cat ");
+  await input.press("Backspace");
+  await expect(input).toHaveValue("cat ");
+  await input.press("ControlOrMeta+A");
+  await input.press("Delete");
+  await expect(input).toHaveValue("cat ");
+});
+
+test("a repaired resubmitted word locks while original incorrect attempts remain in exported accuracy", async ({
+  page,
+}) => {
+  const input = await customPractice(page, "cat dog quiet calm");
+  await input.pressSequentially("cxt ");
+  await input.press("Backspace");
+  await expect(input).toHaveValue("cxt");
+  await input.press("Backspace");
+  await input.press("Backspace");
+  await input.pressSequentially("at ");
+  await input.press("Backspace");
+  await expect(input).toHaveValue("cat ");
+  // Complete the finite passage: ending it here would correctly count its
+  // untouched remainder as missed and would not have 100% final accuracy.
+  await input.pressSequentially("dog quiet calm");
+  await expect(
+    page.getByRole("region", { name: "Session results", exact: true }),
+  ).toBeVisible();
+  const result = await exportedResult(page);
+  expect(result.configuration.correctionPolicy).toBe("correct-words-locked");
+  expect(result.finalText).toBe("cat dog quiet calm");
+  expect(result.metrics).toMatchObject({
+    insertionAttempts: 21,
+    correctAttempts: 20,
+    incorrectAttempts: 1,
+    deletionActions: 3,
+    deletedUnits: 3,
+    finalTextAccuracy: 100,
+  });
+  expect(result.metrics.inputAccuracy).toBeCloseTo((20 / 21) * 100);
+});
+
+test("selection and replacement cannot bypass an incorrect submitted boundary", async ({
+  page,
+}) => {
+  const input = await customPractice(page, "cat dog quiet calm");
+  await input.pressSequentially("cxt do");
+  await input.press("ControlOrMeta+A");
+  await expect
+    .poll(() =>
+      input.evaluate(
+        (element) => (element as HTMLTextAreaElement).selectionStart,
+      ),
+    )
+    .toBe(4);
+  await input.press("Delete");
+  await expect(input).toHaveValue("cxt ");
+  await inputFallback(input, "cat ", "insertReplacementText", "a");
+  await expect(input).toHaveValue("cxt ");
+  await input.press("Backspace");
+  await expect(input).toHaveValue("cxt");
+});
+
+test.describe("mobile previous-mistake recovery", () => {
+  test.use({ hasTouch: true, viewport: { width: 390, height: 844 } });
+
+  test("beforeinput and input-only deletion reopen a mistake without a keydown", async ({
+    page,
+  }) => {
+    const input = await customPractice(page, "cat dog quiet calm");
+    await input.pressSequentially("cat dxg ");
+    await nativeDeletion(input, "deleteContentBackward");
+    await expect(input).toHaveValue("cat dxg");
+    await nativeDeletion(input, "deleteWordBackward");
+    await expect(input).toHaveValue("cat ");
+    await nativeDeletion(input, "deleteContentBackward");
+    await expect(input).toHaveValue("cat ");
+    await input.pressSequentially("dxg ");
+    await inputFallback(input, "cat dxg", "deleteContentBackward");
+    await expect(input).toHaveValue("cat dxg");
+    await inputFallback(input, "cat ", "deleteWordBackward");
+    await expect(input).toHaveValue("cat ");
+  });
+
+  test("input-only empty Space is ignored without starting or inflating attempts, but assigned consecutive spaces remain typeable", async ({
+    page,
+  }) => {
+    const input = await customPractice(page, "cat dog quiet calm");
+    const session = page.getByRole("region", {
+      name: "Typing session",
+      exact: true,
+    });
+    await inputFallback(input, " ", "insertText", " ");
+    await expect(input).toHaveValue("");
+    await expect(session).toHaveAttribute("data-status", "ready");
+    await expect(page.getByTestId("typing-input-notice")).toContainText(
+      "Type the word before pressing Space",
+    );
+    await input.pressSequentially("cat ");
+    await inputFallback(input, "cat  ", "insertText", " ");
+    await expect(input).toHaveValue("cat ");
+    await page.getByRole("button", { name: "Finish", exact: true }).click();
+    const result = await exportedResult(page);
+    expect(result.metrics.insertionAttempts).toBe(4);
+    expect(result.metrics.inputAccuracy).toBe(100);
+    const assigned = await customPractice(page, "cat  dog quiet calm");
+    await assigned.pressSequentially("cat ");
+    await inputFallback(assigned, "cat  ", "insertText", " ");
+    await expect(assigned).toHaveValue("cat  ");
+    await expect(
+      page.getByTestId("typing-target").locator('[data-current="true"]'),
+    ).toHaveAttribute("data-expected", "d");
+  });
+});
+
+test("adaptive draft input can reopen an incorrect word and relock its correct replacement", async ({
+  page,
+}) => {
+  await page.goto("/learn?language=en&layout=qwerty");
+  const input = page.getByRole("textbox", {
+    name: "Type the practice text",
+    exact: true,
+  });
+  const target = page.locator(".learn-stream-text");
+  const text = (await target.textContent())!;
+  const word = text.split(" ")[0];
+  const wrong = `${word[0] === "x" ? "z" : "x"}${word.slice(1)}`;
+  await input.focus();
+  await input.pressSequentially(`${wrong} `);
+  await expect(target.locator("[data-typed]")).toHaveCount(word.length + 1);
+  await input.press("Backspace");
+  await expect(target.locator("[data-typed]")).toHaveCount(word.length);
+  await input.press("Control+Backspace");
+  await expect(target.locator("[data-typed]")).toHaveCount(0);
+  await input.pressSequentially(`${word} `);
+  await input.press("Backspace");
+  await expect(target.locator("[data-typed]")).toHaveCount(word.length + 1);
+  await expect(input).toHaveValue("");
+});
+
+test("course practice repairs a prior mistake while preserving the correctly submitted replacement", async ({
+  page,
+}) => {
+  await page.goto("/lessons?lesson=home-anchors");
+  await page.getByRole("button", { name: "Start lesson", exact: true }).click();
+  const input = await focusTyping(page);
+  const target = page.getByTestId("typing-target");
+  const word = (await target.textContent())!.split(" ")[0];
+  await input.pressSequentially(`x${word.slice(1)} `);
+  await input.press("Backspace");
+  await expect(input).toHaveValue(`x${word.slice(1)}`);
+  await input.press("Control+Backspace");
+  await expect(input).toHaveValue("");
+  await input.pressSequentially(`${word} `);
+  await input.press("Backspace");
+  await expect(input).toHaveValue(`${word} `);
+});
+
+test("optional bot accuracy challenge tracks original attempts and resets with a fresh race", async ({
+  page,
+}) => {
+  await page.goto("/race");
+  await page.getByRole("checkbox", { name: /^Accuracy challenge/ }).check();
+  await page
+    .getByRole("button", { name: "Start bot practice", exact: true })
+    .click();
+  const input = await focusTyping(page);
+  const goal = page.getByRole("region", {
+    name: "Accuracy challenge",
+    exact: true,
+  });
+  const progress = goal.getByRole("progressbar");
+  const text = (await page.getByTestId("typing-target").textContent())!;
+  await input.pressSequentially(text.slice(0, 5));
+  await expect(progress).toHaveAttribute("aria-valuenow", "5");
+  await input.press(text[5] === "x" ? "q" : "x");
+  await expect(progress).toHaveAttribute("aria-valuenow", "0");
+  await input.press("Backspace");
+  await expect(progress).toHaveAttribute("aria-valuenow", "0");
+  await page.getByRole("button", { name: "Finger guide", exact: true }).focus();
+  const continueTyping = page.getByRole("button", {
+    name: "Continue typing",
+    exact: true,
+  });
+  await expect(continueTyping).toContainText("Race clock continues");
+  await continueTyping.click();
+  await expect(input).toHaveValue(text.slice(0, 5));
+  await expect
+    .poll(() =>
+      input.evaluate((element) => {
+        const field = element as HTMLTextAreaElement;
+        return [field.selectionStart, field.selectionEnd];
+      }),
+    )
+    .toEqual([5, 5]);
+  await input.pressSequentially(text.slice(5, 30));
+  await expect(progress).toHaveAttribute("aria-valuenow", "25");
+  await expect(goal).toContainText("Goal complete");
+  await page.getByRole("button", { name: "Finish", exact: true }).click();
+  const result = await exportedResult(page);
+  expect(result.metrics.incorrectAttempts).toBe(1);
+  expect(result.metrics.insertionAttempts).toBe(31);
+  expect(result.metrics.inputAccuracy).toBeCloseTo((30 / 31) * 100);
+  await page.getByRole("button", { name: "Next test", exact: true }).click();
+  await expect(input).toHaveValue("");
+  await expect(
+    page
+      .getByRole("region", { name: "Accuracy challenge", exact: true })
+      .getByRole("progressbar"),
+  ).toHaveAttribute("aria-valuenow", "0");
+  await expect(page.getByTestId("opponent-caret")).toHaveCount(1);
+});
+
+test("local bot practice reopens the previous incorrect word without moving the opponent caret", async ({
+  page,
+}) => {
+  await page.goto("/race");
+  await page
+    .getByRole("button", { name: "Start bot practice", exact: true })
+    .click();
+  const input = await focusTyping(page);
+  const word = (await page.getByTestId("typing-target").textContent())!.split(
+    " ",
+  )[0];
+  const wrong = `${word[0] === "x" ? "q" : "x"}${word.slice(1)}`;
+  await input.pressSequentially(`${wrong} `);
+  await input.press("Backspace");
+  await expect(input).toHaveValue(wrong);
+  await input.press("Control+Backspace");
+  await expect(input).toHaveValue("");
+  await expect(page.getByTestId("opponent-caret")).toHaveCount(1);
+  await page.getByRole("button", { name: "Finish", exact: true }).click();
+  const result = await exportedResult(page);
+  expect(result.configuration.correctionPolicy).toBe("correct-words-locked");
+  expect(result.configuration.settings?.localBot).toBe(true);
+  expect(result.finalText).toBe("");
+  expect(result.metrics.incorrectAttempts).toBe(1);
+});
+
+test("focus recovery explains that an active practice clock continues and keeps the passage intact", async ({
+  page,
+}) => {
+  const input = await customPractice(page, "cat dog quiet calm");
+  await input.pressSequentially("ca");
+  const session = page.getByRole("region", {
+    name: "Typing session",
+    exact: true,
+  });
+  const sessionId = await session.getAttribute("data-session-id");
+  await page.getByRole("button", { name: "Finger guide", exact: true }).focus();
+  const continueTyping = page.getByRole("button", {
+    name: "Continue typing",
+    exact: true,
+  });
+  await expect(continueTyping).toContainText("Practice clock continues");
+  await expect(session).toHaveAttribute("data-status", "running");
+  await continueTyping.click();
+  await expect(input).toBeFocused();
+  await expect(input).toHaveValue("ca");
+  await expect(session).toHaveAttribute("data-session-id", sessionId!);
+  await input.press("Backspace");
+  await expect(input).toHaveValue("c");
+});
+
+test("toolbar focus recovery preserves the end caret after correcting a wrong character", async ({
+  page,
+}) => {
+  const input = await customPractice(
+    page,
+    "two every voice sane slow who wide quiet calm",
+  );
+  await input.pressSequentially("two ex");
+  await input.press("Backspace");
+  await expect(input).toHaveValue("two e");
+  await page.getByRole("button", { name: "Finger guide", exact: true }).focus();
+  await page
+    .getByRole("button", { name: "Continue typing", exact: true })
+    .click();
+  await expect(input).toBeFocused();
+  await expect(input).toHaveValue("two e");
+  await expect
+    .poll(() =>
+      input.evaluate((element) => {
+        const field = element as HTMLTextAreaElement;
+        return [field.selectionStart, field.selectionEnd];
+      }),
+    )
+    .toEqual([5, 5]);
+  await input.pressSequentially("very ");
+  await expect(input).toHaveValue("two every ");
+  await input.press("Backspace");
+  await expect(input).toHaveValue("two every ");
+  await expect(
+    page.getByTestId("typing-target").locator('[data-current="true"]'),
+  ).toHaveAttribute("data-expected", "v");
+});
+
+test("toolbar focus recovery preserves an intentional selection inside the current word", async ({
+  page,
+}) => {
+  const input = await customPractice(page, "cat dog quiet calm");
+  await input.pressSequentially("cat dog");
+  await input.evaluate((element) =>
+    (element as HTMLTextAreaElement).setSelectionRange(5, 6),
+  );
+  await page.getByRole("button", { name: "Finger guide", exact: true }).focus();
+  await page
+    .getByRole("button", { name: "Continue typing", exact: true })
+    .click();
+  await expect(input).toBeFocused();
+  await expect
+    .poll(() =>
+      input.evaluate((element) => {
+        const field = element as HTMLTextAreaElement;
+        return [field.selectionStart, field.selectionEnd];
+      }),
+    )
+    .toEqual([5, 6]);
+  await input.press("o");
+  await expect(input).toHaveValue("cat dog");
 });

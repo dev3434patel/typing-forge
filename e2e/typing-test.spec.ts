@@ -130,11 +130,11 @@ test("code Tab preserves normal focus by default and indents only after opting i
   await input.focus();
   await input.press("ControlOrMeta+A");
   await input.press("Backspace");
-  // Generated indentation advances across whitespace and is committed too.
-  await expect(input).toHaveValue("    ");
+  // Code remains freely editable; deleting indentation retains its provenance.
+  await expect(input).toHaveValue("");
   await page.getByRole("button", { name: "Finish", exact: true }).click();
   const indented = await exportedResult(page);
-  expect(indented.finalText).toBe("    ");
+  expect(indented.finalText).toBe("");
   expect(indented.events[0].provenance).toBe("generated");
   expect(indented.assistance).toContain("generated");
   await page.getByRole("button", { name: "Next test", exact: true }).click();

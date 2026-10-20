@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
-import { mkdtemp, readFile, writeFile, rm } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { mkdtemp, readFile, writeFile, rm, mkdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -100,6 +101,74 @@ try {
       save(`editable-non-ecma-whitespace-${text.codePointAt(0)}-${policy}`,item);
     }
   }
+  // New optional policy has distinct cohorts; historical current-word and
+  // unrestricted fixtures above must retain exactly their original replay.
+  const correctionCases = new Map();
+  function correction(name, text, exercise, expected, overrides = {}) {
+    const item = create({ mode: 'time', durationMs: 30000, correctionPolicy: 'correct-words-locked', ...overrides });
+    for (const unit of graphemes(text)) item.input({ type: 'insert', text: unit });
+    exercise(item);
+    assert.equal(item.controller.currentText, expected, `${name}: portable retained transcript`);
+    item.advance(6000);
+    correctionCases.set(name, save(name, item));
+  }
+  correction('correct-word-remains-locked', 'cat ', item => item.input({ type: 'delete' }), 'cat ');
+  correction('incorrect-word-reopens-retaining-text', 'cxt ', item => item.input({ type: 'delete' }), 'cxt');
+  correction('short-word-reopens', 'c ', item => item.input({ type: 'delete' }), 'c');
+  correction('skipped-word-reopens', ' ', item => item.input({ type: 'delete' }), '');
+  correction('extra-word-character-reopens', 'cats ', item => item.input({ type: 'delete' }), 'cats');
+  correction('extra-space-beyond-last-target-is-not-a-correct-submission', 'cat ', item => item.input({ type: 'delete' }), 'cat', { initialTarget: 'cat' });
+  correction('empty-word-whole-delete-clamps-to-one-previous-word', 'cat cxt ', item => item.input({ type: 'delete', start: 0, end: 8 }), 'cat ');
+  correction('nonempty-active-word-delete-cannot-cross-back', 'cat cxt dog', item => item.input({ type: 'delete', start: 0, end: 11 }), 'cat cxt ');
+  correction('consecutive-errors-reopen-one-word-at-a-time', 'cxt dyg ', item => {
+    item.input({ type: 'delete' });
+    item.input({ type: 'delete', start: 0, end: 7 });
+    assert.equal(item.controller.currentText, 'cxt ');
+    item.input({ type: 'delete' });
+  }, 'cxt');
+  correction('correct-word-seals-older-incorrect-prefix', 'cxt dog ', item => item.input({ type: 'delete', start: 0, end: 8 }), 'cxt dog ');
+  correction('corrected-before-submission-word-locks', 'cxt', item => {
+    item.input({ type: 'replace', start: 1, end: 2, text: 'a' });
+    item.input({ type: 'insert', text: ' ' });
+    item.input({ type: 'delete' });
+  }, 'cat ');
+  correction('previous-incorrect-word-replacement-still-blocked', 'cat cxt ', item => item.input({ type: 'replace', start: 4, end: 8, text: 'dog ' }), 'cat cxt ');
+  correction('virtual-incorrect-submission-reopens-without-character-loss', 'c', item => {
+    item.input({ type: 'submit' }); item.input({ type: 'delete', start: 1, end: 1 });
+  }, 'c');
+  correction('virtual-incorrect-submission-whole-delete-clears-word', 'c', item => {
+    item.input({ type: 'submit' }); item.input({ type: 'delete', start: 0, end: 1 });
+  }, '');
+  correction('virtual-correct-submission-remains-locked', 'cat', item => {
+    item.input({ type: 'submit' }); item.input({ type: 'delete' });
+  }, 'cat');
+  correction('repeated-virtual-skips-rewind-one-marker-per-action', 'c', item => {
+    item.input({ type: 'submit' }); item.input({ type: 'submit' });
+    item.input({ type: 'delete', start: 1, end: 1 }); item.input({ type: 'delete', start: 1, end: 1 });
+  }, 'c');
+  correction('unicode-incorrect-word-reopens-at-grapheme-boundary', 'éx ', item => item.input({ type: 'delete' }), 'éx', { initialTarget: 'é 👩‍💻 another' });
+  correction('rejected-space-does-not-create-a-reopen-boundary', 'c ', item => item.input({ type: 'delete' }), '', { rejectIncorrect: true });
+  for (const name of ['corrected-before-submission-word-locks', 'incorrect-word-reopens-retaining-text']) {
+    assert.ok(correctionCases.get(name).metrics.incorrectAttempts > 0, 'Historical wrong attempts remain in input accuracy.');
+  }
+  const virtualReopen = correctionCases.get('virtual-incorrect-submission-reopens-without-character-loss');
+  assert.equal(virtualReopen.metrics.deletionActions, 1);
+  assert.equal(virtualReopen.metrics.deletedUnits, 0);
+  function forbiddenCorrection(name, typed, event) {
+    const item = create({ mode: 'time', durationMs: 30000, correctionPolicy: 'correct-words-locked', ...(event.provenance === 'composition' ? { inputMethod: 'composition' } : {}) });
+    for (const unit of graphemes(typed)) item.input({ type: 'insert', text: unit });
+    item.advance(6000);
+    const candidate = structuredClone(item.controller.finish('manual'));
+    candidate.events.push({ sequence: candidate.events.length, offsetMs: candidate.events.at(-1).offsetMs, provenance: 'keyboard', text: '', ...event });
+    cases.push({ name, candidate, owner, consent: true, reject: true });
+  }
+  forbiddenCorrection('reject-new-policy-correct-prefix-delete', 'cat ', { type: 'delete', start: 0, end: 4 });
+  forbiddenCorrection('reject-new-policy-multiword-delete', 'cxt dyg ', { type: 'delete', start: 0, end: 8 });
+  forbiddenCorrection('reject-new-policy-partial-prefix-delete', 'cxt ', { type: 'delete', start: 0, end: 1 });
+  forbiddenCorrection('reject-new-policy-nonempty-active-word-crossing', 'cxt d', { type: 'delete', start: 0, end: 5 });
+  forbiddenCorrection('reject-new-policy-prefix-replacement', 'cxt ', { type: 'replace', start: 0, end: 4, text: 'cat ' });
+  forbiddenCorrection('reject-new-policy-prefix-composition', 'cxt ', { type: 'composition', start: 0, end: 4, text: 'cat ', provenance: 'composition' });
+  forbiddenCorrection('reject-new-policy-no-op-empty-delete', 'cat ', { type: 'delete', start: 4, end: 4 });
   // Reproducible random edits cover rejected attempts, deletes, extra characters,
   // current-word boundaries, legacy selection replacements and fractional timing.
   let randomState = 0x571930ab;
@@ -117,6 +186,21 @@ try {
     item.advance(5100 + random() * 5000); if (mode === 'time') { item.advance(15000); item.controller.tick(); }
     save(`fuzz-${index}`, item);
   }
+  for (let index = 0; index < 100; index++) {
+    const item = create({ mode: 'time', durationMs: 30000, correctionPolicy: 'correct-words-locked', initialTarget: 'cat dog fox one two three four five six' });
+    item.input({ type: 'insert', text: 'c' });
+    for (let step = 0; step < 55 && !item.controller.result; step++) {
+      const length = graphemes(item.controller.currentText).length;
+      const choice = random();
+      if (choice < .2) item.input({ type: 'delete' }, random() * 250);
+      else if (choice < .3) item.input({ type: 'delete', start: 0, end: length }, random() * 250);
+      else if (choice < .35) item.input({ type: 'insert', start: 0, end: 0, text: 'x' }, random() * 250);
+      else if (choice < .4) item.input({ type: 'submit' }, random() * 250);
+      else if (choice < .43) item.input({ type: 'reject', text: 'z' }, random() * 250);
+      else item.input({ type: 'insert', text: 'cat dog fox'[Math.floor(random() * 11)] ?? 'a' }, random() * 250);
+    }
+    item.advance(6000); save(`correct-word-lock-fuzz-${index}`, item);
+  }
   const good = cases.find(item => item.name === 'corrected-errors-and-batch');
   function tamper(name, mutate, source = good) {
     const value = structuredClone(source); value.name = name; mutate(value); value.reject = true; cases.push(value);
@@ -132,6 +216,8 @@ try {
   tamper('reject-duration', c => c.candidate.elapsedMs += 1);
   for (const value of [[], {}, 123]) tamper(`reject-policy-type-${JSON.stringify(value)}`, c => c.candidate.configuration.scoringPolicy = value);
   tamper('reject-null-duration', c => c.candidate.configuration.durationMs = null);
+  tamper('reject-new-correction-policy-on-code', c => { c.candidate.configuration.correctionPolicy = 'correct-words-locked'; c.candidate.configuration.scoringPolicy = 'code'; });
+  tamper('reject-unknown-correction-policy', c => c.candidate.configuration.correctionPolicy = 'unknown');
   tamper('reject-excessive-input-budget', c => { c.candidate.events = Array.from({length:6},(_,sequence)=>({type:'insert',text:'a'.repeat(4096),sequence,offsetMs:sequence,start:0,end:0,provenance:'keyboard'})); });
   tamper('reject-private-without-consent', c => c.consent = false, cases.find(c => c.name === 'free'));
   tamper('reject-committed-word-edit', c => { const events = c.candidate.events; events.push({type:'delete',text:'',start:0,end:1,sequence:events.length,offsetMs:events.at(-1).offsetMs,provenance:'keyboard'}); });
@@ -168,7 +254,14 @@ try {
     } catch (error) { mismatches.push(error.message); }
   }
   for (const message of mismatches) console.error(message);
-  const report = { cases: cases.length, validReferenceCases: reference.filter(c => c.ok).length, rejectionCases: cases.filter(c => c.reject).length, mismatches: mismatches.length, phpBinary: php, unicode: 'Latin/NFC/Arabic/Devanagari/Gujarati/Bengali/emoji', seed: '0x571930ab' };
+  const sourceHashes = {};
+  for (const file of ['src/lib/typing-core/types.ts','src/lib/typing-core/transcript.ts','src/lib/typing-core/metrics.ts','src/lib/typing-core/session.ts','src/lib/learning-evidence.ts','supabase/functions/_shared/validation.ts','backend/src/SessionValidator.php']) sourceHashes[file] = createHash('sha256').update(await readFile(path.join(root, file))).digest('hex');
+  const report = { date: new Date().toISOString(), scope: 'Pure canonical portable/native PHP differential replay; no HTTP or database mutation', cases: cases.length, validReferenceCases: reference.filter(c => c.ok).length, rejectionCases: cases.filter(c => c.reject).length, mismatches: mismatches.length, phpBinary: php, unicode: 'Latin/NFC/Arabic/Devanagari/Gujarati/Bengali/emoji', seed: '0x571930ab', sourceHashes };
+  if (process.env.SPAROWTYPE_PHP_PARITY_REPORT) {
+    const reportPath = path.resolve(process.env.SPAROWTYPE_PHP_PARITY_REPORT);
+    await mkdir(path.dirname(reportPath), { recursive: true });
+    await writeFile(reportPath, JSON.stringify(report, null, 2) + '\n');
+  }
   console.log(JSON.stringify(report));
   assert.equal(mismatches.length, 0, 'PHP canonical replay must match the portable engine.');
 } finally {

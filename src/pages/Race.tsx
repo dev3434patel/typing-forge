@@ -13,6 +13,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { TypingArea } from "@/components/typing/TypingArea";
 import { SessionResults } from "@/components/typing/SessionResults";
+import { AccuracyChallenge } from "@/components/typing/AccuracyChallenge";
 import {
   SessionController,
   graphemes,
@@ -23,6 +24,10 @@ import {
 import { createBot, BOT_CONFIGS, type BotLevel } from "@/lib/bot-engine";
 import { generatePackText } from "@/lib/content-packs";
 import { opponentPacePosition } from "@/lib/race-pace";
+import {
+  advanceAccuracyChallenge,
+  createAccuracyChallenge,
+} from "@/lib/accuracy-challenge";
 import { useAuth } from "@/hooks/useAuth";
 import { useTestResults } from "@/hooks/useTestResults";
 import { usePreferences } from "@/contexts/PreferencesContext";
@@ -84,6 +89,7 @@ function RaceSession({
   onRoom,
   onRestart,
   autoFocus,
+  accuracyChallenge = false,
 }: {
   room?: RaceRoom;
   botLevel?: BotLevel;
@@ -91,6 +97,7 @@ function RaceSession({
   onRoom: (room: RaceRoom) => void;
   onRestart?: () => void;
   autoFocus?: boolean;
+  accuracyChallenge?: boolean;
 }) {
   const { user } = useAuth(),
     { preferences } = usePreferences(),
@@ -107,7 +114,7 @@ function RaceSession({
     const config: SessionConfig = {
       clientSessionId: crypto.randomUUID(),
       mode: "race",
-      correctionPolicy: "current-word",
+      correctionPolicy: room ? "current-word" : "correct-words-locked",
       ownerScope: user?.id || "guest",
       initialTarget:
         room?.expected_text || generatePackText("en", 100, crypto.randomUUID()),
@@ -143,16 +150,45 @@ function RaceSession({
     latest = useRef<SessionSnapshot | null>(null),
     posting = useRef(false),
     completed = useRef(false);
+  const challengeRef = useRef(
+    createAccuracyChallenge(bundle.config.clientSessionId),
+  );
+  const [challenge, setChallenge] = useState(challengeRef.current);
+  const recordChallenge = useCallback(
+    (value: SessionSnapshot) => {
+      if (!botLevel || !accuracyChallenge) return;
+      const sequence = value.events.at(-1)?.sequence;
+      // Timer refreshes repeat the last sequence. Avoid reading or recounting its
+      // attempt batch, including when React invokes a callback more than once.
+      if (
+        sequence === undefined ||
+        sequence <= challengeRef.current.lastSequence
+      )
+        return;
+      const next = advanceAccuracyChallenge(
+        challengeRef.current,
+        bundle.config.clientSessionId,
+        sequence,
+        bundle.controller.lastInputAttempts,
+      );
+      challengeRef.current = next;
+      setChallenge(next);
+    },
+    [accuracyChallenge, botLevel, bundle],
+  );
   roomRef.current = room;
   const roomStatus = room?.status,
     raceId = room?.id;
   const finish = useCallback(
     (value: SessionResult) => {
+      recordChallenge(value);
       completed.current = true;
       setResult(value);
       // Keep recoverable local evidence even when a human finish cannot reach
       // the server. Human room evidence uses its dedicated validation route.
-      void saveSession(value, { localOnly: !botLevel }).catch((cause) => setError(String(cause)));
+      void saveSession(value, { localOnly: !botLevel }).catch((cause) =>
+        setError(String(cause)),
+      );
       if (!botLevel && roomRef.current)
         void raceService
           .submit(roomRef.current.id, value, true)
@@ -163,7 +199,7 @@ function RaceSession({
             ),
           );
     },
-    [botLevel, saveSession, onRoom],
+    [botLevel, saveSession, onRoom, recordChallenge],
   );
   useEffect(() => {
     if (
@@ -250,17 +286,22 @@ function RaceSession({
           : (room?.host_progress ?? 0),
         wpm: isHost ? (room?.opponent_wpm ?? null) : (room?.host_wpm ?? null),
       };
-  const snapshot = useCallback((value: SessionSnapshot) => {
-    latest.current = value;
-    setOwn({
-      progress: value.characters.length
-        ? (value.metrics.correct /
-            value.characters.filter((slot) => slot.expected !== null).length) *
-          100
-        : 0,
-      wpm: value.metrics.wpm,
-    });
-  }, []);
+  const snapshot = useCallback(
+    (value: SessionSnapshot) => {
+      latest.current = value;
+      recordChallenge(value);
+      setOwn({
+        progress: value.characters.length
+          ? (value.metrics.correct /
+              value.characters.filter((slot) => slot.expected !== null)
+                .length) *
+            100
+          : 0,
+        wpm: value.metrics.wpm,
+      });
+    },
+    [recordChallenge],
+  );
   return (
     <div className="space-y-6">
       <div className="grid sm:grid-cols-2 gap-4">
@@ -277,6 +318,9 @@ function RaceSession({
           rival
         />
       </div>
+      {botLevel && accuracyChallenge && (
+        <AccuracyChallenge state={challenge} finished={!!result} />
+      )}
       {error && (
         <div role="alert" className="panel p-4 text-sm text-destructive">
           {error}
@@ -360,6 +404,7 @@ export default function Race() {
     [mountedRace, setMountedRace] = useState<string | null>(null),
     [bot, setBot] = useState<BotLevel | null>(null),
     [botAttempt, setBotAttempt] = useState(0),
+    [accuracyChallenge, setAccuracyChallenge] = useState(false),
     [difficulty, setDifficulty] = useState<BotLevel>("intermediate"),
     [code, setCode] = useState(""),
     [busy, setBusy] = useState(false),
@@ -486,6 +531,7 @@ export default function Race() {
           <RaceSession
             key={`bot:${bot}:${botAttempt}`}
             botLevel={bot}
+            accuracyChallenge={accuracyChallenge}
             onExit={exit}
             onRoom={acceptRoom}
             onRestart={retryBot}
@@ -592,6 +638,23 @@ export default function Race() {
                     </option>
                   ))}
                 </select>
+              </label>
+              <label className="mb-6 flex min-h-11 cursor-pointer items-start gap-3 rounded-lg border border-border p-3">
+                <input
+                  type="checkbox"
+                  className="mt-1 h-4 w-4 shrink-0 accent-primary"
+                  checked={accuracyChallenge}
+                  onChange={(event) =>
+                    setAccuracyChallenge(event.target.checked)
+                  }
+                />
+                <span className="text-sm">
+                  Accuracy challenge
+                  <span className="mt-1 block text-xs leading-relaxed text-muted-foreground">
+                    Optional: 25 correct characters in a row. Errors restart the
+                    chain; your typing accuracy stays based on every attempt.
+                  </span>
+                </span>
               </label>
               <button
                 className="forge-button w-full"

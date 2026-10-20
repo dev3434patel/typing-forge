@@ -2,6 +2,10 @@ import { useCallback, useEffect, useRef, type KeyboardEvent, type RefObject } fr
 import { graphemes, utf16ToGraphemeOffset, type SessionController, type SessionSnapshot } from "@/lib/typing-core";
 
 export const WORD_CORRECTION_NOTICE = "Previous words are locked. You can correct only the current word.";
+export const CORRECT_WORD_CORRECTION_NOTICE = "Correctly submitted words stay locked. Backspace can reopen only the previous incorrect word.";
+export function wordCorrectionNotice(controller: SessionController) {
+  return controller.configuration.correctionPolicy === "correct-words-locked" ? CORRECT_WORD_CORRECTION_NOTICE : WORD_CORRECTION_NOTICE;
+}
 const compositionDeletion = (inputType: string) => inputType === "deleteCompositionText" || inputType === "deleteByComposition";
 
 interface Options {
@@ -20,7 +24,7 @@ export function useWordCorrection(options: Options) {
   const callbacks = useRef(options);
   callbacks.current = options;
   const { controller, inputRef } = options;
-  const enabled = controller.configuration.correctionPolicy === "current-word";
+  const enabled = controller.configuration.correctionPolicy !== undefined;
   const boundary = useRef({ controller, start: -1, offset: 0 });
   const boundaryOffset = useCallback(() => {
     const start = controller.editableStart;
@@ -59,10 +63,14 @@ export function useWordCorrection(options: Options) {
     const end = current.draft ? units.length : Math.max(start, utf16ToGraphemeOffset(text, input.selectionEnd));
     if (start === end && (inputType === "deleteByCut" || inputType === "deleteByDrag")) return;
     const forward = inputType.endsWith("Forward");
-    const deletionStart = start === end && !forward ? Math.max(floor, wholeWord ? floor : start - 1) : start;
-    const deletionEnd = start === end && forward ? Math.min(units.length, wholeWord ? units.length : end + 1) : end;
-    if (deletionStart === deletionEnd) {
-      if (floor > 0) current.onNotice(WORD_CORRECTION_NOTICE);
+    const previous = start === end && start === floor && floor === units.length && !forward
+      ? controller.previousWordCorrection : null;
+    const reopens = previous !== null && !previous.correct;
+    const deletionStart = reopens ? wholeWord ? previous.start : previous.separator === "submit" ? units.length : units.length - 1
+      : start === end && !forward ? Math.max(floor, wholeWord ? floor : start - 1) : start;
+    const deletionEnd = reopens ? units.length : start === end && forward ? Math.min(units.length, wholeWord ? units.length : end + 1) : end;
+    if (deletionStart === deletionEnd && !(reopens && previous.separator === "submit")) {
+      if (floor > 0) current.onNotice(wordCorrectionNotice(controller));
       constrainSelection();
       return;
     }
@@ -76,6 +84,19 @@ export function useWordCorrection(options: Options) {
     current.onNotice("");
   }, [controller, inputRef, constrainSelection]);
 
+  const ignoreEmptySpace = useCallback((text: string, canonicalEndInsertion = false) => {
+    const current = callbacks.current;
+    const input = inputRef.current;
+    if (text !== " " || controller.configuration.correctionPolicy !== "correct-words-locked" ||
+      current.composing.current || !input || controller.editableStart !== graphemes(controller.currentText).length ||
+      !canonicalEndInsertion && !current.draft && (input.selectionStart !== input.selectionEnd || input.selectionEnd !== controller.currentText.length)) return false;
+    const snapshot = controller.snapshot();
+    // Custom passages may intentionally contain consecutive spaces.
+    if (snapshot.characters[snapshot.cursor]?.expected === " ") return false;
+    current.onNotice("Type the word before pressing Space.");
+    return true;
+  }, [controller, inputRef]);
+
   useEffect(() => {
     const input = inputRef.current;
     if (!enabled || !input) return;
@@ -85,19 +106,25 @@ export function useWordCorrection(options: Options) {
         if (!event.cancelable) return; // The normalized edit path still enforces the prefix.
         event.preventDefault();
         remove(event.inputType, event.inputType.includes("Word") || event.inputType.includes("Line"));
+      } else if (event.inputType === "insertText" && event.data === " " && event.cancelable && ignoreEmptySpace(event.data)) {
+        event.preventDefault();
       } else constrainSelection();
     };
     input.addEventListener("beforeinput", beforeInput);
     return () => input.removeEventListener("beforeinput", beforeInput);
-  }, [enabled, inputRef, remove, constrainSelection]);
+  }, [enabled, inputRef, remove, constrainSelection, ignoreEmptySpace]);
 
   const handleKeyDown = useCallback((event: KeyboardEvent<HTMLTextAreaElement>) => {
     if (!enabled || callbacks.current.composing.current || event.nativeEvent.isComposing || event.keyCode === 229) return false;
+    if (event.key === " " && !event.ctrlKey && !event.altKey && !event.metaKey && ignoreEmptySpace(" ")) {
+      event.preventDefault();
+      return true;
+    }
     if (event.key !== "Backspace" && event.key !== "Delete") return false;
     event.preventDefault();
     remove(event.key === "Delete" ? "deleteContentForward" : "deleteContentBackward", event.ctrlKey || event.altKey || event.metaKey);
     return true;
-  }, [enabled, remove]);
+  }, [enabled, remove, ignoreEmptySpace]);
 
   const handleInputDeletion = useCallback((inputType: string, isComposing = false) => {
     if (!enabled || !inputType.startsWith("delete") || callbacks.current.composing.current || isComposing || compositionDeletion(inputType)) return false;
@@ -105,5 +132,5 @@ export function useWordCorrection(options: Options) {
     return true;
   }, [enabled, remove]);
 
-  return { constrainSelection, handleKeyDown, handleInputDeletion };
+  return { constrainSelection, handleKeyDown, handleInputDeletion, ignoreEmptySpace };
 }

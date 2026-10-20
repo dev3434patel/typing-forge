@@ -26,7 +26,7 @@ export async function focusTyping(page: Page) {
     !(await input.evaluate((element) => element === document.activeElement))
   ) {
     await page
-      .getByRole("button", { name: /^Click here or tab to start typing/ })
+      .getByRole("button", { name: /^(Click here or tab to start typing|Continue typing)/ })
       .click();
   }
   await expect(input).toBeFocused();

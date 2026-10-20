@@ -83,7 +83,7 @@ describe('versioned English QWERTY curriculum', () => {
     const b = buildCourseConfiguration('home-anchors', { ownerId: 'bob', clientSessionId: 'two', variantId: 'a' });
     expect(a.initialTarget).toBe(b.initialTarget);
     expect(a.contentRevision).toBe('typing-course-v1:home-anchors:a');
-    expect(a).toMatchObject({ mode: 'learn', scoringPolicy: 'prose', correctionPolicy: 'current-word', keyboardLayout: 'qwerty', language: 'en', inputMethod: 'keyboard' });
+    expect(a).toMatchObject({ mode: 'learn', scoringPolicy: 'prose', correctionPolicy: 'correct-words-locked', keyboardLayout: 'qwerty', language: 'en', inputMethod: 'keyboard' });
     expect(() => buildCourseConfiguration('missing', { ownerId: 'alice', clientSessionId: 'bad' })).toThrow('known');
     expect(() => buildCourseConfiguration('home-anchors', { ownerId: '', clientSessionId: 'bad' })).toThrow('workspace');
     expect(() => getCourseTarget(COURSE_LESSONS[0], 'bad' as CourseVariantId)).toThrow('variant');

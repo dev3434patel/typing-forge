@@ -298,11 +298,11 @@ test("empty and multiline free writing use the same static end anchor through de
     await expectGeometry(page, "underline", "multiline landscape", receipts);
     await input.press("ControlOrMeta+A");
     await input.press("Backspace");
-    await expect(input).toHaveValue("cat\nquiet calm clear ");
+    await expect(input).toHaveValue("");
     const currentWordCleared = await expectGeometry(
       page,
       "underline",
-      "committed lines remain after current-word deletion",
+      "free writing clears all lines without losing its end anchor",
       receipts,
     );
     expect(currentWordCleared.source).toBe("static-end-anchor");
@@ -312,7 +312,7 @@ test("empty and multiline free writing use the same static end anchor through de
         .evaluate(
           (element) =>
             element.querySelector("[data-caret-end-anchor]") ===
-            (window as Window & { originalFreeCaretAnchor: Element })
+            (window as unknown as Window & { originalFreeCaretAnchor: Element })
               .originalFreeCaretAnchor,
         ),
     ).toBe(true);

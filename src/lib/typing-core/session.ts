@@ -1,6 +1,6 @@
 import type { FinishReason, NormalizedEdit, PauseInterval, SessionClock, SessionConfig, SessionEvent, SessionResult, SessionSnapshot, TargetSegment } from './types.ts';
 import { activeOffset, calculateMetrics, replaySession } from './metrics.ts';
-import { applyEvent, emptyTranscript, targetGraphemes, normalizeTarget, SEGMENTATION_POLICY, validateEvent, type Attempt } from './transcript.ts';
+import { applyEvent, emptyTranscript, targetGraphemes, normalizeTarget, previousCommittedWord, SEGMENTATION_POLICY, validateEvent, type Attempt } from './transcript.ts';
 
 function freeze<T>(value: T): T {
   if (value && typeof value === 'object' && !Object.isFrozen(value)) {
@@ -24,7 +24,7 @@ export function comparisonContent(config: SessionConfig): { contentId: string | 
 }
 export function comparisonKey(config: SessionConfig): string {
   const content = comparisonContent(config);
-  return JSON.stringify({ version: 'forge-v3', comparisonPolicy: 'forge-cohorts-v2', contentId: content.contentId, sessionId: content.sessionId, policy: config.scoringPolicy ?? (config.mode === 'code' ? 'code' : 'prose'), mode: config.mode, durationMs: config.durationMs ?? null, words: config.wordCount ?? null, language: config.language ?? 'en', script: config.script ?? 'Latin', layout: config.keyboardLayout ?? 'qwerty', method: config.inputMethod ?? 'keyboard', punctuation: !!config.punctuation, numbers: !!config.numbers, codeLanguage: config.codeLanguage ?? null, corpus: config.contentRevision ?? 'unspecified', generator: config.generatorVersion ?? 'unspecified', segmentation: SEGMENTATION_POLICY, repeated: !!config.repeatedContent, paused: !!config.paused, rejectionPolicy: !!config.rejectIncorrect, ...(config.correctionPolicy === 'current-word' ? { correctionPolicy: config.correctionPolicy } : {}) });
+  return JSON.stringify({ version: 'forge-v3', comparisonPolicy: 'forge-cohorts-v2', contentId: content.contentId, sessionId: content.sessionId, policy: config.scoringPolicy ?? (config.mode === 'code' ? 'code' : 'prose'), mode: config.mode, durationMs: config.durationMs ?? null, words: config.wordCount ?? null, language: config.language ?? 'en', script: config.script ?? 'Latin', layout: config.keyboardLayout ?? 'qwerty', method: config.inputMethod ?? 'keyboard', punctuation: !!config.punctuation, numbers: !!config.numbers, codeLanguage: config.codeLanguage ?? null, corpus: config.contentRevision ?? 'unspecified', generator: config.generatorVersion ?? 'unspecified', segmentation: SEGMENTATION_POLICY, repeated: !!config.repeatedContent, paused: !!config.paused, rejectionPolicy: !!config.rejectIncorrect, ...(config.correctionPolicy !== undefined ? { correctionPolicy: config.correctionPolicy } : {}) });
 }
 /** Monotonic clock and wall clock are injected; the core has no browser or persistence dependency. */
 export class SessionController {
@@ -44,11 +44,12 @@ export class SessionController {
 
   constructor(config: SessionConfig, private readonly clock: SessionClock) {
     if (!config.clientSessionId || config.clientSessionId.length > 200) throw new Error('Session ID is required');
-    if (config.correctionPolicy !== undefined && config.correctionPolicy !== 'current-word') throw new Error('Unknown correction policy');
+    if (config.correctionPolicy !== undefined && !['current-word', 'correct-words-locked'].includes(config.correctionPolicy)) throw new Error('Unknown correction policy');
     if (config.initialTarget.length > 1_000_000) throw new Error('Target exceeds the session resource limit');
     if (config.durationMs !== undefined && (!Number.isFinite(config.durationMs) || config.durationMs <= 0 || config.durationMs > 86_400_000)) throw new Error('Duration must be greater than zero and at most one day');
     if (config.mode === 'time' && !config.durationMs) throw new Error('Timed tests require a duration');
     const policy = config.scoringPolicy ?? (config.mode === 'code' ? 'code' : 'prose');
+    if (config.correctionPolicy === 'correct-words-locked' && policy !== 'prose') throw new Error('Correct-word locking requires prose scoring');
     this.configuration = freeze(copy({ ...config, scoringPolicy: policy, initialTarget: normalizeTarget(config.initialTarget, policy) }));
     this.target = this.configuration.initialTarget;
     if (config.startImmediately) this.start(this.readNow());
@@ -59,6 +60,8 @@ export class SessionController {
   get currentText(): string { return this.state.units.join(''); }
   /** Earliest retained grapheme that may be corrected in this session. */
   get editableStart(): number { return this.state.editableStart; }
+  get previousWordCorrection() { return previousCommittedWord(this.state, this.target, this.configuration); }
+  get canReopenPreviousWord(): boolean { return this.previousWordCorrection?.correct === false; }
   /** Read-only view feedback from the actual last edit, without replaying or rescoring. */
   get lastInputAttempts(): readonly Attempt[] {
     const event = this.transcriptEvents.at(-1);
@@ -112,11 +115,15 @@ export class SessionController {
     const event: SessionEvent = { ...edit, text, start, end, sequence: this.transcriptEvents.length, offsetMs: this.startMono === null ? 0 : now - this.startMono, provenance: edit.provenance ?? (edit.type === 'composition' ? 'composition' : 'keyboard') };
     // Reject malformed ranges before clipping a valid word-delete operation.
     validateEvent(event, this.state);
-    if (this.configuration.correctionPolicy === 'current-word') {
+    if (this.configuration.correctionPolicy !== undefined) {
       if (edit.type === 'delete') {
-        if (end <= this.state.editableStart) return this.snapshot(now);
-        start = Math.max(start, this.state.editableStart);
-        if (start === end) return this.snapshot(now);
+        const previous = this.previousWordCorrection;
+        const reopens = end === length && previous !== null && !previous.correct &&
+          (start < this.state.editableStart || previous.separator === 'submit' && start === this.state.editableStart);
+        const floor = reopens ? previous.start : this.state.editableStart;
+        if (end <= floor && !(reopens && previous.separator === 'submit' && start === end)) return this.snapshot(now);
+        start = Math.max(start, floor);
+        if (start === end && !reopens) return this.snapshot(now);
       } else if (start < this.state.editableStart) return this.snapshot(now);
     }
     if (this.startMono === null && text && edit.type !== 'delete' && edit.type !== 'submit') this.start(now);

@@ -188,6 +188,52 @@ export interface TranscriptState {
 export function emptyTranscript(): TranscriptState {
   return { units: [], editableStart: 0, attempts: [], correctAttemptCount: 0, deletionActions: 0, deletedUnits: 0, lastSequence: -1, lastOffsetMs: 0, compositionGroups: new Set(), submissions: [] };
 }
+export interface PreviousCommittedWord {
+  start: number;
+  end: number;
+  separator: 'space' | 'submit';
+  wordIndex: number;
+  correct: boolean;
+}
+const previousWordCache = new WeakMap<TranscriptState, {
+  sequence: number; targetText: string; boundary: Readonly<PreviousCommittedWord> | null;
+}>();
+/** Compare retained graphemes only at an empty active-word boundary. Timer
+ * snapshots reuse the result; ordinary nonempty input takes the constant-time exit.
+ */
+export function previousCommittedWord(state: TranscriptState, targetText: string, config: SessionConfig): Readonly<PreviousCommittedWord> | null {
+  if (config.correctionPolicy !== 'correct-words-locked' || state.units.length !== state.editableStart) return null;
+  const cached = previousWordCache.get(state);
+  if (cached?.sequence === state.lastSequence && cached.targetText === targetText) return cached.boundary;
+  let wordIndex = 0, start = 0, submissionIndex = 0;
+  let previous: Omit<PreviousCommittedWord, 'correct'> | null = null;
+  for (let position = 0; position <= state.units.length; position++) {
+    while (submissionIndex < state.submissions.length && state.submissions[submissionIndex] === position) {
+      previous = { start, end: position, separator: 'submit', wordIndex: wordIndex++ };
+      start = position;
+      submissionIndex++;
+    }
+    if (state.units[position] === ' ') {
+      previous = { start, end: position, separator: 'space', wordIndex: wordIndex++ };
+      start = position + 1;
+    }
+  }
+  const target = targetGraphemes(targetText);
+  const word = previous ? targetWords(target)[previous.wordIndex] : undefined;
+  const correct = !!previous && !!word && (previous.separator === 'submit' || word.separator !== null) &&
+    previous.end - previous.start === word.end - word.start &&
+    state.units.slice(previous.start, previous.end).every((unit, index) => unit === target[word.start + index]);
+  const boundary = previous ? Object.freeze({ ...previous, correct }) : null;
+  previousWordCache.set(state, { sequence: state.lastSequence, targetText, boundary });
+  return boundary;
+}
+function activeWordStart(state: TranscriptState): number {
+  let start = state.submissions.at(-1) ?? 0;
+  for (let index = state.units.length - 1; index >= 0; index--) {
+    if (state.units[index] === ' ') { start = Math.max(start, index + 1); break; }
+  }
+  return start;
+}
 export function validateEvent(event: SessionEvent, state: TranscriptState): void {
   if (!Number.isInteger(event.sequence) || event.sequence <= state.lastSequence) throw new Error('Event sequence must increase');
   if (!Number.isFinite(event.offsetMs) || event.offsetMs < state.lastOffsetMs || event.offsetMs < 0) throw new Error('Event time must be finite and monotonic');
@@ -216,14 +262,19 @@ function reconcileGraphemeBoundaries(state: TranscriptState, cursor: number, pol
 /** Mutates only the supplied transient replay state. Submitted correctness flags are never used. */
 export function applyEvent(state: TranscriptState, event: SessionEvent, targetText: string, config: SessionConfig): void {
   validateEvent(event, state);
-  if (config.correctionPolicy !== undefined && config.correctionPolicy !== 'current-word') throw new Error('Unknown correction policy');
-  const lockWords = config.correctionPolicy === 'current-word';
-  if (lockWords && event.start < state.editableStart) throw new Error('Submitted words cannot be edited');
+  if (config.correctionPolicy !== undefined && !['current-word', 'correct-words-locked'].includes(config.correctionPolicy)) throw new Error('Unknown correction policy');
+  const policy = config.scoringPolicy ?? (config.mode === 'code' ? 'code' : 'prose');
+  if (config.correctionPolicy === 'correct-words-locked' && policy !== 'prose') throw new Error('Correct-word locking requires prose scoring');
+  const lockWords = config.correctionPolicy !== undefined;
+  const previous = previousCommittedWord(state, targetText, config);
+  const reopens = event.type === 'delete' && event.end === state.units.length && previous !== null && !previous.correct &&
+    event.start >= previous.start && (event.start < state.editableStart || previous.separator === 'submit' && event.start === state.editableStart);
+  if (lockWords && event.start < state.editableStart && !reopens) throw new Error('Submitted words cannot be edited');
+  if (config.correctionPolicy === 'correct-words-locked' && event.type === 'delete' && event.start === event.end && !reopens) throw new Error('Empty deletion does not reopen an incorrect word');
   state.lastSequence = event.sequence;
   state.lastOffsetMs = event.offsetMs;
   if (event.compositionId && state.compositionGroups.has(event.compositionId)) return;
   if (event.compositionId) state.compositionGroups.add(event.compositionId);
-  const policy = config.scoringPolicy ?? (config.mode === 'code' ? 'code' : 'prose');
   const target = targetGraphemes(targetText);
   const words = policy === 'prose' ? targetWords(target) : [];
   if (event.type === 'submit') {
@@ -235,6 +286,10 @@ export function applyEvent(state: TranscriptState, event: SessionEvent, targetTe
   }
   const inserted = graphemes(normalizeTarget(event.text, policy));
   if (state.units.length - (event.end - event.start) + inserted.length > 1_000_000 || state.attempts.length + inserted.length > 1_000_000) throw new Error('Transcript resource limit exceeded');
+  if (reopens && previous.separator === 'submit') {
+    const marker = state.submissions.lastIndexOf(state.editableStart);
+    if (marker >= 0) state.submissions.splice(marker, 1);
+  }
   if (event.type === 'delete' && event.end === event.start) state.deletionActions++;
   if (event.type !== 'reject' && event.end > event.start) {
     state.submissions = state.submissions.filter(position => position <= event.start || position > event.end).map(position => position > event.end ? position - (event.end - event.start) : position);
@@ -274,6 +329,7 @@ export function applyEvent(state: TranscriptState, event: SessionEvent, targetTe
   // The event range is one atomic insertion. Re-segment after the complete edit so
   // a cluster joining the untouched suffix cannot move later text in the batch.
   reconcileGraphemeBoundaries(state, cursor, policy, event.start);
+  if (reopens) state.editableStart = activeWordStart(state);
 }
 export function segmentPrecedesEvent(segment: TargetSegment, event: SessionEvent): boolean {
   return segment.offsetMs < event.offsetMs || (segment.offsetMs === event.offsetMs && (segment.afterSequence ?? -1) < event.sequence);

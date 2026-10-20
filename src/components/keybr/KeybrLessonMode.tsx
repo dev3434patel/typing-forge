@@ -145,7 +145,7 @@ export function KeybrLessonMode({
         {
           clientSessionId: crypto.randomUUID(),
           mode: "learn",
-          correctionPolicy: "current-word",
+          correctionPolicy: "correct-words-locked",
           initialTarget: lesson.text,
           rejectIncorrect: policy === "stop",
           ownerScope: owner,
@@ -465,7 +465,7 @@ export function KeybrLessonMode({
       setDraft("");
       return;
     }
-    commit(text);
+    if (!wordCorrection.ignoreEmptySpace(text)) commit(text);
     setDraft("");
   };
   const handleCompositionEnd = (
@@ -789,7 +789,7 @@ export function KeybrLessonMode({
           Click the lesson and start typing.{" "}
           {policy === "stop"
             ? "Stop on error is enabled: your pressed key appears below and your cursor waits for the expected key."
-            : "Your actual input appears as you type, including mistakes. Backspace corrects only the current word; previous words lock when you press Space. Every original mistake remains in attempt accuracy."}{" "}
+            : "Your actual input stays visible, including mistakes. Correct words lock after Space; Backspace can reopen a previous incorrect word. Original mistakes remain in attempt accuracy."}{" "}
           Escape releases focus. Tab moves to the next control.
         </p>
         <p
@@ -880,7 +880,7 @@ export function KeybrLessonMode({
         )}
         <p className="learn-shortcuts">
           <kbd>esc</kbd> release focus<span>·</span>
-          <kbd>tab</kbd> next control<span>·</span>Backspace corrects current word
+          <kbd>tab</kbd> next control<span>·</span>Correct words lock · previous mistakes can be reopened
         </p>
       </section>
       {!focusedPractice && (

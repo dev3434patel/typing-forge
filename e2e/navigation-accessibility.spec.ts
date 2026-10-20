@@ -8,7 +8,7 @@ test.beforeEach(async ({ page }) => {
 
 async function navigationForViewport(page: Page, requestedWidth: number, stage: string) {
   const receipt = await page.evaluate(() => {
-    const query = "(min-width:80rem)";
+    const query = "(min-width:1200px)";
     return {
       query,
       matches: matchMedia(query).matches,

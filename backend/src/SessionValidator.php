@@ -148,6 +148,39 @@ final class SessionValidator
         return $words;
     }
 
+    /** The previous word may be reopened only from an empty active prose word. */
+    private function previousCommittedWord(array $state, array $target, array $config): ?array
+    {
+        if (($config['correctionPolicy'] ?? null) !== 'correct-words-locked' || self::policy($config) !== 'prose' || count($state['units']) !== $state['editableStart']) return null;
+        $wordIndex = 0;
+        $start = 0;
+        $previous = null;
+        $submissionIndex = 0;
+        $length = count($state['units']);
+        for ($position = 0; $position <= $length; $position++) {
+            while ($submissionIndex < count($state['submissions']) && $state['submissions'][$submissionIndex] === $position) {
+                $previous = ['start' => $start, 'end' => $position, 'separator' => 'submit', 'wordIndex' => $wordIndex++];
+                $start = $position;
+                $submissionIndex++;
+            }
+            if ($position < $length && $state['units'][$position] === ' ') {
+                $previous = ['start' => $start, 'end' => $position, 'separator' => 'space', 'wordIndex' => $wordIndex++];
+                $start = $position + 1;
+            }
+        }
+        if ($previous === null) return null;
+        $word = self::words($target)[$previous['wordIndex']] ?? null;
+        $previous['correct'] = $word !== null && ($previous['separator'] === 'submit' || $word['separator'] !== null) && array_slice($state['units'], $previous['start'], $previous['end'] - $previous['start']) === array_slice($target, $word['start'], $word['end'] - $word['start']);
+        return $previous;
+    }
+
+    private static function activeWordStart(array $state): int
+    {
+        $start = $state['submissions'] ? max($state['submissions']) : 0;
+        foreach ($state['units'] as $position => $unit) if ($unit === ' ') $start = max($start, $position + 1);
+        return $start;
+    }
+
     private function apply(array &$state, array $event, string $targetText, array $config): void
     {
         self::check(self::integer($event['sequence'] ?? null) && $event['sequence'] > $state['lastSequence'], 'Event sequence must increase.');
@@ -156,8 +189,16 @@ final class SessionValidator
         self::check(in_array($event['type'] ?? null, ['insert', 'replace', 'delete', 'reject', 'submit', 'composition'], true), 'Unknown edit operation.');
         self::check(is_string($event['text'] ?? null), 'Edit text must be a string.');
         self::check(!in_array($event['type'], ['delete', 'submit'], true) || $event['text'] === '', 'Deletion or submission cannot insert text.');
-        $lock = ($config['correctionPolicy'] ?? null) === 'current-word';
-        self::check(!$lock || $event['start'] >= $state['editableStart'], 'Submitted words cannot be edited.');
+        $correctionPolicy = $config['correctionPolicy'] ?? null;
+        self::check($correctionPolicy === null || in_array($correctionPolicy, ['current-word', 'correct-words-locked'], true), 'Unsupported correction policy.');
+        $policy = self::policy($config);
+        self::check($correctionPolicy !== 'correct-words-locked' || $policy === 'prose', 'Correct-word locking requires prose scoring.');
+        $lock = in_array($correctionPolicy, ['current-word', 'correct-words-locked'], true);
+        $target = $this->units($targetText);
+        $previous = $this->previousCommittedWord($state, $target, $config);
+        $reopen = $event['type'] === 'delete' && $event['end'] === count($state['units']) && $previous !== null && !$previous['correct'] && $event['start'] >= $previous['start'] && ($event['start'] < $state['editableStart'] || $previous['separator'] === 'submit' && $event['start'] === $state['editableStart']);
+        self::check(!$lock || $event['start'] >= $state['editableStart'] || $reopen, 'Submitted words cannot be edited.');
+        self::check($correctionPolicy !== 'correct-words-locked' || $event['type'] !== 'delete' || $event['start'] !== $event['end'] || $reopen, 'Empty deletion does not reopen an incorrect word.');
         $state['lastSequence'] = $event['sequence'];
         $state['lastOffsetMs'] = $event['offsetMs'];
         $composition = $event['compositionId'] ?? null;
@@ -171,8 +212,6 @@ final class SessionValidator
         if ($hasCompositionId) {
             $state['compositionGroups'][$composition] = true;
         }
-        $policy = self::policy($config);
-        $target = $this->units($targetText);
         $words = $policy === 'prose' ? self::words($target) : [];
         if ($event['type'] === 'submit') {
             self::check($policy === 'prose', 'Word submission requires prose scoring.');
@@ -185,6 +224,16 @@ final class SessionValidator
         }
         $inserted = $this->units($this->normalize($event['text'], $policy));
         self::check(count($state['units']) - ($event['end'] - $event['start']) + count($inserted) <= 1000000 && count($state['attempts']) + count($inserted) <= 1000000, 'Transcript resource limit exceeded.');
+        if ($reopen && $previous['separator'] === 'submit') {
+            // A virtual separator has no retained character to remove. Rewind
+            // exactly one latest marker, including repeated skipped words.
+            for ($index = count($state['submissions']) - 1; $index >= 0; $index--) {
+                if ($state['submissions'][$index] === $state['editableStart']) {
+                    array_splice($state['submissions'], $index, 1);
+                    break;
+                }
+            }
+        }
         if ($event['type'] === 'delete' && $event['end'] === $event['start']) {
             $state['deletionActions']++;
         }
@@ -232,6 +281,7 @@ final class SessionValidator
             $state['editableStart'] = $positionAfterMerge($state['editableStart']);
             $state['units'] = $this->units($this->normalize(implode('', $old), $policy));
         }
+        if ($reopen) $state['editableStart'] = self::activeWordStart($state);
     }
 
     private function align(array $target, array $typed, string $policy, bool $finiteFinal, array $submissions): array
@@ -437,7 +487,8 @@ final class SessionValidator
         self::check(($candidate['initialTarget'] ?? null) === ($config['initialTarget'] ?? null), 'Initial target identity mismatch.');
         self::check(in_array($config['mode'] ?? null, ['time', 'words', 'quote', 'code', 'zen', 'custom', 'learn', 'learning', 'race'], true), 'Unsupported mode.');
         self::check(in_array(self::policy($config), ['prose', 'code', 'free'], true), 'Unsupported scoring policy.');
-        self::check(!array_key_exists('correctionPolicy', $config) || $config['correctionPolicy'] === 'current-word', 'Unsupported correction policy.');
+        self::check(!array_key_exists('correctionPolicy', $config) || in_array($config['correctionPolicy'], ['current-word', 'correct-words-locked'], true), 'Unsupported correction policy.');
+        self::check(($config['correctionPolicy'] ?? null) !== 'correct-words-locked' || self::policy($config) === 'prose', 'Correct-word locking requires prose scoring.');
         foreach (['initialTarget' => $config['initialTarget'] ?? null, 'targetText' => $candidate['targetText'] ?? null, 'finalText' => $candidate['finalText'] ?? null] as $value) { self::check(is_string($value) && self::length($value) <= 40000, 'Text exceeds the server validation limit.'); }
         $course = CourseAssessment::configuration($candidate);
         $elapsed = $candidate['elapsedMs'] ?? null; $wall = $candidate['wallDurationMs'] ?? null;
