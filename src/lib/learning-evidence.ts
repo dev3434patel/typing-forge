@@ -56,7 +56,7 @@ export function learningEvidenceFromResult(result: SessionResult): LearningSessi
   });
   return {
     learningVersion: LEARNING_VERSION, sessionId: result.clientSessionId, completedAt: new Date(result.finishedAtWall).toISOString(), elapsedMs: result.elapsedMs, dimensions, attempts,
-    assessment: ['learn', 'learning'].includes(result.configuration.mode) && result.finishReason === 'completed' && settings.review !== true && !result.assistance.some(source => ['paste', 'drop', 'autocorrect', 'generated'].includes(source)),
+    assessment: ['learn', 'learning'].includes(result.configuration.mode) && result.finishReason === 'completed' && settings.review !== true && !Object.prototype.hasOwnProperty.call(settings, 'course') && !result.assistance.some(source => ['paste', 'drop', 'autocorrect', 'generated'].includes(source)),
     targetWpm, ...(typeof settings.sourceResultId === 'string' ? { sourceResultId: settings.sourceResultId } : {}),
   };
 }

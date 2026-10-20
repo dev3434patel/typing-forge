@@ -54,6 +54,8 @@ jobs:
       SPAROWTYPE_DB_PASSWORD: ci-local-sparowtype
       SPAROWTYPE_APP_KEY: ci-only-non-production-application-secret-1234567890
       SPAROWTYPE_CONFIG_FILE: backend/config.example.php
+      SPAROWTYPE_COURSE_TEST_REPORT: ${{ runner.temp }}/php-course-assessment.json
+      SPAROWTYPE_COURSE_HTTP_REPORT: ${{ runner.temp }}/php-course-lifecycle.json
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -66,6 +68,8 @@ jobs:
           extensions: pdo_mysql, intl, mbstring
       - run: npm ci
       - run: npm run test:php
+      - name: Verify all curriculum variants and native course assessment parity
+        run: npm run test:course-php
       - run: php backend/tests/password-policy.php
       - run: php backend/bin/install-schema.php --config=backend/config.example.php --database=sparowtype_audit --install
       - name: Start local PHP API and run native lifecycle acceptance
@@ -77,6 +81,16 @@ jobs:
           done
           node --experimental-transform-types backend/tests/data-lifecycle.mjs
           node --experimental-transform-types backend/tests/race-lifecycle.mjs
+          SPAROWTYPE_COURSE_HTTP_ACCEPTANCE=1 npm run test:course-http
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-course-receipts
+          path: |
+            ${{ runner.temp }}/php-course-assessment.json
+            ${{ runner.temp }}/php-course-lifecycle.json
+          if-no-files-found: ignore
+          retention-days: 7
   legacy-edge-reference:
     runs-on: ubuntu-latest
     steps:

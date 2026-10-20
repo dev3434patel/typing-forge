@@ -1,6 +1,6 @@
 # SparowType
 
-A typing practice workspace built with React, TypeScript, Vite, Tailwind CSS, PHP and MySQL/MariaDB. The v3 implementation combines timed and finite tests, exact code practice, private custom text, free writing, adaptive learning, labelled local bots and server-owned human races.
+A typing practice workspace built with React, TypeScript, Vite, Tailwind CSS, PHP and MySQL/MariaDB. The v3 implementation combines timed and finite tests, exact code practice, private custom text, free writing, adaptive learning, a structured typing course, labelled local bots and server-owned human races.
 
 ## Run locally
 
@@ -23,9 +23,21 @@ Build a PHP hosting package with `npm run build:hosting`. Upload its `public_htm
 
 SparowType uses a typographic wordmark with self-hosted Sora, Inter and JetBrains Mono. The default dark theme uses #07070A, lime #C6FF3D and violet #7B61FF; light mode and six alternatives are available. The Keyboard Awakens opening assembles a 61-key Three.js keyboard, presses the brand letters, then dissolves into practice. It is deferred, skippable and optional, with a shorter returning visit, reduced motion and a CSS keyboard fallback. Existing v3 storage, metric versions and backend identifiers preserve compatible saved history.
 
-This is a local implementation. [The current feature and PHP backend audit](docs/FEATURE_AUDIT_2026-10-19.md) records executable evidence, observed failures and remaining hosted/native acceptance. A finite test suite does not establish universal correctness or educational superiority.
+This is a local implementation. [The current learning and keyboard audit](docs/LEARNING_UPGRADE_AUDIT_2026-10-20.md) records executable evidence, observed failures and remaining hosted/native acceptance. A finite test suite does not establish universal correctness or educational superiority.
 
-**Current verification — 19 October 2026:** **723 unit tests**, **393 PHP replay parity cases with zero mismatches**, native account/race/Apache checks and final four-engine account/profile and actual two-browser human-race confirmations passed. Current full-intro mobile Lighthouse performance is **97 / 97 / 98**, with the other three categories **100** in each run. The [feature audit](docs/FEATURE_AUDIT_2026-10-19.md) records exact build identities, base-plus-targeted browser coverage, capability skips, retained failures, typing-event maxima and remaining host/native gates. Historical outcomes in the [16 October performance report](docs/PERFORMANCE_POLISH_AUDIT_2026-10-16.md) are separate evidence.
+**Current verification — 20 October 2026:** **824 unit tests**, **393 PHP replay parity cases with zero mismatches**, **136 native PHP course cases covering all 108 passages**, and native course/account/race/Apache acceptance passed. The [learning upgrade audit](docs/LEARNING_UPGRADE_AUDIT_2026-10-20.md) records final build identities, browser coverage, performance measurements, retained failures and remaining gates.
+
+Final mobile Lighthouse with the full normal intro scored **98 / 98 / 97 performance**, with **100 accessibility, best practices and SEO** in all three runs. Final accessibility/navigation confirmation passed 24/24 cases across Chromium, installed Edge, Firefox and WebKit; the broader selected existing-flow scope has 203 passing confirmations and one capability skip across its documented runs. Exact-input lab checks retained every character at 4× CPU, including a viewport rotation. These are finite local checks, with native-device, manual accessibility and production gates still explicit in the audit.
+
+**Previous baseline — 19 October 2026:** 723 unit tests and full-intro mobile Lighthouse performance 97 / 97 / 98, with the other three categories 100 in each run. Those scores describe the earlier build. The [previous feature audit](docs/FEATURE_AUDIT_2026-10-19.md) retains its exact coverage and limitations.
+
+## Structured learning and live keyboard
+
+Open `/lessons` for 36 lessons in six chapters, with 108 original passages. Thirty sequential foundations progress from home-row anchors through the alphabet, capitals, numbers and punctuation. A separate six-lesson speed ladder runs from 15 to 80 WPM, with its first lesson available immediately. Each lesson needs two qualifying, distinct passage variants; corrected mistakes still count against input accuracy. A speed checkpoint requires a complete, uninterrupted 30-second assessment. English / US QWERTY is the first formal course; adaptive practice retains its existing language and layout options.
+
+The live keyboard below practice distinguishes the expected character, the actual physical key held and an incorrect committed character. It provides layout references and finger hints without claiming to detect real finger placement. Keyboard and finger-guide visibility are independent saved preferences. The same component serves tests, races, adaptive practice and the course.
+
+Course progress comes from owned session evidence and server-accepted receipts, survives permitted replay expiry, and reconciles session/account deletion. Local checkpoints remain visibly unverified until account acceptance. The [research and implementation plan](docs/LEARNING_UPGRADE_PLAN_2026-10-20.md) explains the progression and source material.
 
 ## What changed in v3
 
@@ -52,6 +64,7 @@ npm run typecheck
 npm run lint
 npm run test:coverage -- --maxWorkers=2
 npm run test:php
+npm run test:course-php
 npm run test:content
 npm run build
 npm run check:bundle
@@ -59,14 +72,16 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-The content syntax gate additionally uses Python 3.11+ and Rust. `test:php` runs the portable TypeScript/native PHP replay differential corpus. Native HTTP/database and Apache acceptance harnesses are under `backend/tests`; their guarded SQL fixtures require a separate `_audit` or `_test` database. `npm run test:database` retains the historical PostgreSQL/WASM compatibility check. Browser acceptance for synthetic PHP accounts is opt-in with `PHP_E2E_ACCEPTANCE=1`; two-account race browser checks additionally need dedicated credentials. Scoped coverage applies to named business modules, not every UI line.
+The content syntax gate additionally uses Python 3.11+ and Rust. `test:php` runs the portable TypeScript/native PHP replay differential corpus; `test:course-php` verifies shared-catalog course grading. Native HTTP/database and Apache acceptance harnesses are under `backend/tests`; their guarded SQL fixtures require a separate `_audit` or `_test` database. Follow the setup guide before running `test:course-http`. `npm run test:database` retains the historical PostgreSQL/WASM compatibility check. Browser acceptance for synthetic PHP accounts is opt-in with `PHP_E2E_ACCEPTANCE=1`; two-account race browser checks additionally need dedicated credentials. Scoped coverage applies to named business modules, not every UI line.
 To test a static production preview while developing, run `npm run preview -- --host 127.0.0.1 --port 4173`, then set `PLAYWRIGHT_BASE_URL=http://127.0.0.1:4173` before `npm run test:e2e`.
 
 For the cross-engine matrix, install the official Playwright browsers with `npx playwright install chromium firefox webkit`, set `PLAYWRIGHT_BROWSERS=all`, and run `npm run test:e2e -- --workers=1`. Chromium is the local default. CI selects all three engines against the production preview after building. Browser tests use isolated contexts; native hardware/IME and actual cloud-account tests remain separate gates.
 
 ## Implementation and deployment evidence
 
-- [Current feature and PHP migration audit](docs/FEATURE_AUDIT_2026-10-19.md)
+- [Current learning and keyboard audit](docs/LEARNING_UPGRADE_AUDIT_2026-10-20.md)
+- [Learning research and implementation plan](docs/LEARNING_UPGRADE_PLAN_2026-10-20.md)
+- [Previous feature and PHP migration audit](docs/FEATURE_AUDIT_2026-10-19.md)
 - [XAMPP/phpMyAdmin setup and PHP hosting](docs/PHP_XAMPP_SETUP.md)
 - [Current implementation ledger](docs/IMPLEMENTATION_STATUS.md)
 - [Visible wrong-key feedback and default learning behavior](docs/WRONG_KEY_FEEDBACK_2026-10-16.md)

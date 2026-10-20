@@ -1,0 +1,293 @@
+.live-keyboard {
+  width: 100%;
+  max-width: 760px;
+  min-width: 0;
+  margin: 28px auto 0;
+  color: var(--forge-secondary);
+  font-size: 11px;
+}
+.live-keyboard-toolbar,
+.live-keyboard-actions,
+.live-keyboard-title,
+.live-keyboard-control {
+  display: flex;
+  align-items: center;
+}
+.live-keyboard-toolbar {
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-bottom: 8px;
+}
+.live-keyboard-title {
+  gap: 8px;
+  min-height: 44px;
+  color: var(--forge-text);
+  font-weight: 500;
+}
+.live-keyboard-layout {
+  margin-left: 9px;
+  color: var(--forge-muted);
+  font-size: 10px;
+  font-weight: 400;
+}
+.live-keyboard-actions {
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.live-keyboard-control {
+  min-height: 44px;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  gap: 6px;
+  color: var(--forge-secondary);
+  font-size: 11px;
+}
+.live-keyboard-control:hover,
+.live-keyboard-control[aria-pressed="true"] {
+  background: var(--forge-raised);
+  color: var(--forge-text);
+}
+.live-keyboard-control:focus-visible {
+  outline: 2px solid var(--forge-accent);
+  outline-offset: 2px;
+}
+.live-keyboard-board {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: clamp(7px, 1.6vw, 13px);
+  background: linear-gradient(
+    160deg,
+    var(--forge-raised),
+    var(--forge-surface)
+  );
+  border: 1px solid var(--forge-borderStrong);
+  border-radius: 14px;
+  box-shadow:
+    0 4px 0 var(--forge-surface),
+    0 8px 18px rgb(0 0 0 / 9%);
+}
+.live-keyboard-row {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: clamp(2px, 0.55vw, 5px);
+  width: 100%;
+}
+.live-keyboard-row + .live-keyboard-row {
+  margin-top: clamp(3px, 0.6vw, 6px);
+}
+.live-key {
+  position: relative;
+  flex: var(--key-units) 1 0;
+  min-width: 0;
+  height: clamp(26px, 5.8vw, 43px);
+  display: grid;
+  place-items: center;
+  padding: 0 1px 2px;
+  border: 1px solid var(--forge-borderStrong);
+  border-bottom-width: 3px;
+  border-radius: clamp(4px, 0.7vw, 7px);
+  color: var(--forge-secondary);
+  background: var(--forge-surface);
+  font: 400 clamp(10px, 1.8vw, 13px) var(--font-mono);
+  line-height: 1;
+  transition:
+    border-color 90ms ease,
+    transform 90ms ease;
+}
+.live-key-label {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+.live-key-label-wide {
+  font-family: "Inter Variable", system-ui, sans-serif;
+  font-size: clamp(7px, 1.25vw, 10px);
+}
+.live-key-alternate {
+  color: var(--forge-muted);
+  font-size: 0.68em;
+}
+.live-key-label [data-selected="true"] {
+  color: inherit;
+}
+.live-key[data-locked="true"],
+.live-character[data-locked="true"] {
+  border-style: dashed;
+  background: transparent;
+}
+.live-key[data-expected-key="true"],
+.live-character[data-expected-key="true"] {
+  color: var(--forge-accent);
+  border-color: var(--forge-accent);
+  outline: 1px solid var(--forge-accent);
+  outline-offset: 1px;
+}
+.live-key[data-shift-guide="true"] {
+  color: var(--forge-accent);
+  border-color: var(--forge-accent);
+  border-style: dashed;
+}
+.live-key[data-toggled="true"] {
+  color: var(--forge-accent);
+  border-color: var(--forge-accent);
+}
+.live-key[data-pressed-key="true"] {
+  color: var(--forge-accentInk);
+  background: var(--forge-accent);
+  border-color: var(--forge-accent);
+  border-bottom-width: 1px;
+  transform: translateY(2px);
+}
+.live-key[data-pressed-key="true"] .live-key-alternate {
+  color: inherit;
+}
+.live-key[data-incorrect-key="true"],
+.live-character[data-incorrect-key="true"] {
+  color: var(--forge-error);
+  background: var(--forge-errorSurface);
+  border-color: var(--forge-error);
+}
+.live-key[data-pressed-key="true"][data-incorrect-key="true"] {
+  box-shadow: inset 0 0 0 1px var(--forge-error);
+}
+.live-key-home {
+  position: absolute;
+  bottom: 4px;
+  width: 24%;
+  max-width: 10px;
+  height: 2px;
+  border-radius: 1px;
+  background: currentColor;
+  opacity: 0.7;
+}
+.live-key-mastered {
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--forge-success);
+}
+.live-keyboard-native {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+.live-character {
+  min-width: 28px;
+  min-height: 32px;
+  padding: 4px 8px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--forge-borderStrong);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  color: var(--forge-secondary);
+}
+.live-keyboard-feedback {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 7px 16px;
+  padding: 14px 2px 0;
+}
+.live-keyboard-feedback p {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 5px;
+  min-width: 0;
+  margin: 0;
+  line-height: 1.7;
+}
+.live-keyboard-feedback kbd {
+  color: var(--forge-text);
+  font: 500 12px var(--font-mono);
+  overflow-wrap: anywhere;
+}
+.live-keyboard-feedback [data-incorrect="true"],
+.live-keyboard-feedback [data-incorrect="true"] kbd {
+  color: var(--forge-error);
+}
+.live-keyboard-finger {
+  margin-left: 3px;
+  color: var(--forge-secondary);
+}
+.live-keyboard-next-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  align-self: center;
+  border: 1px solid var(--forge-accent);
+  border-radius: 2px;
+  margin-right: 2px;
+}
+.live-keyboard-caption {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin-top: 8px;
+  color: var(--forge-muted);
+  font-size: 10px;
+  line-height: 1.6;
+}
+.live-keyboard-legend {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+}
+.live-keyboard-legend i {
+  width: 6px;
+  height: 6px;
+  margin-left: 5px;
+  border-radius: 2px;
+}
+.live-legend-next {
+  border: 1px solid var(--forge-accent);
+}
+.live-legend-held {
+  background: var(--forge-accent);
+}
+.live-legend-error {
+  background: var(--forge-error);
+}
+.live-keyboard[data-reduced-motion="true"] .live-key {
+  transition: none;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .live-key {
+    transition: none;
+    transform: none !important;
+  }
+}
+@media (max-width: 400px) {
+  .live-keyboard {
+    margin-top: 20px;
+  }
+  .live-keyboard-title {
+    gap: 5px;
+  }
+  .live-keyboard-layout {
+    margin-left: 5px;
+  }
+  .live-keyboard-control {
+    padding-inline: 6px;
+    font-size: 10px;
+  }
+  .live-keyboard-finger {
+    flex-basis: 100%;
+    margin-left: 13px;
+  }
+}

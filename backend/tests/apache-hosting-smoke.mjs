@@ -7,7 +7,7 @@ import { readdir, writeFile } from 'node:fs/promises';
 const base = process.env.SPAROWTYPE_HOSTING_TEST_URL || 'http://127.0.0.1:8091';
 const checks = [];
 let html;
-for (const route of ['/', '/learn', '/race/ABC123', '/settings']) {
+for (const route of ['/', '/learn', '/lessons', '/race/ABC123', '/settings']) {
   const response = await fetch(base + route);
   const body = await response.text();
   assert.equal(response.status, 200, route);
@@ -35,11 +35,12 @@ assert.equal(health.status, 200);
 assert.equal(healthBody.ok, true);
 assert.equal(healthBody.backend, 'php-mysql');
 checks.push({ route: '/api/health', status: health.status, nativeBackend: true });
-for (const route of ['/private-probe/schema.sql', '/private-probe/config.example.php', '/private-probe/src/AuthService.php', '/sparowtype-private/config.example.php']) {
+for (const route of ['/private-probe/schema.sql', '/private-probe/config.example.php', '/private-probe/config.php', '/private-probe/src/AuthService.php', '/private-probe/resources/typing-course-v1.json', '/sparowtype-private/config.example.php']) {
   const response = await fetch(base + route);
   const body = await response.text();
   // Unknown SPA URLs may legitimately resolve to the public index shell.
   assert([200, 403, 404].includes(response.status), route);
+  if (route.startsWith('/private-probe/')) assert([403, 404].includes(response.status), 'The private test alias must deny source, configuration and curriculum files.');
   if (response.status === 200) assert.match(body, /<div id="root"/);
   assert.doesNotMatch(body, /<\?php|CREATE TABLE|password_hash VARCHAR/);
   checks.push({ route, status: response.status, privateSourceExposed: false });

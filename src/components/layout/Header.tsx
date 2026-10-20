@@ -6,6 +6,7 @@ import {
   User,
   Swords,
   GraduationCap,
+  BookOpen,
   Settings2,
   Command,
   Sun,
@@ -20,6 +21,7 @@ import { THEMES } from "@/lib/themes";
 const items = [
   { href: "/", label: "Test", icon: Keyboard, aliases: ["/typing-test"] },
   { href: "/learn", label: "Learn", icon: GraduationCap, aliases: ["/typing-practice", "/practice"] },
+  { href: "/lessons", label: "Lessons", icon: BookOpen },
   { href: "/race", label: "Race", icon: Swords },
   { href: "/stats", label: "Stats", icon: BarChart3 },
   { href: "/leaderboard", label: "Rankings", icon: Trophy },

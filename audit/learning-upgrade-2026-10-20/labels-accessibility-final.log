@@ -1,0 +1,293 @@
+
+Running 24 tests using 1 worker
+
+(node:52004) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 390px (6.6s)
+  ok  2 [chromium] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 1440px (8.7s)
+  ok  3 [chromium] › e2e\typing-course.spec.ts:149:1 › the full course has 36 lessons, two independent entry paths and honest locked previews (659ms)
+  ok  4 [chromium] › e2e\typing-course.spec.ts:264:1 › lesson navigation restores focus and scroll, handles invalid links and keeps global layout preferences (968ms)
+  x   5 [chromium] › e2e\typing-course.spec.ts:286:3 › course overview, preview, active keyboard and result fit and pass automated accessibility at 320px (6.6s)
+(node:24104) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   6 [chromium] › e2e\typing-course.spec.ts:286:3 › course overview, preview, active keyboard and result fit and pass automated accessibility at 1440px (7.0s)
+(node:54404) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  7 [edge] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 390px (6.7s)
+  ok  8 [edge] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 1440px (6.8s)
+  ok  9 [edge] › e2e\typing-course.spec.ts:149:1 › the full course has 36 lessons, two independent entry paths and honest locked previews (901ms)
+  ok 10 [edge] › e2e\typing-course.spec.ts:264:1 › lesson navigation restores focus and scroll, handles invalid links and keeps global layout preferences (1.3s)
+  ok 11 [edge] › e2e\typing-course.spec.ts:286:3 › course overview, preview, active keyboard and result fit and pass automated accessibility at 320px (6.4s)
+  x  12 [edge] › e2e\typing-course.spec.ts:286:3 › course overview, preview, active keyboard and result fit and pass automated accessibility at 1440px (7.2s)
+(node:43188) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 13 [firefox] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 390px (12.1s)
+  ok 14 [firefox] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 1440px (9.8s)
+  ok 15 [firefox] › e2e\typing-course.spec.ts:149:1 › the full course has 36 lessons, two independent entry paths and honest locked previews (1.1s)
+  ok 16 [firefox] › e2e\typing-course.spec.ts:264:1 › lesson navigation restores focus and scroll, handles invalid links and keeps global layout preferences (1.9s)
+  x  17 [firefox] › e2e\typing-course.spec.ts:286:3 › course overview, preview, active keyboard and result fit and pass automated accessibility at 320px (7.9s)
+(node:13184) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  18 [firefox] › e2e\typing-course.spec.ts:286:3 › course overview, preview, active keyboard and result fit and pass automated accessibility at 1440px (10.0s)
+(node:51916) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 19 [webkit] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 390px (12.9s)
+  ok 20 [webkit] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 1440px (13.2s)
+  ok 21 [webkit] › e2e\typing-course.spec.ts:149:1 › the full course has 36 lessons, two independent entry paths and honest locked previews (1.7s)
+  ok 22 [webkit] › e2e\typing-course.spec.ts:264:1 › lesson navigation restores focus and scroll, handles invalid links and keeps global layout preferences (2.8s)
+  ok 23 [webkit] › e2e\typing-course.spec.ts:286:3 › course overview, preview, active keyboard and result fit and pass automated accessibility at 320px (8.5s)
+  ok 24 [webkit] › e2e\typing-course.spec.ts:286:3 › course overview, preview, active keyboard and result fit and pass automated accessibility at 1440px (9.0s)
+
+
+  1) [chromium] › e2e\typing-course.spec.ts:286:3 › course overview, preview, active keyboard and result fit and pass automated accessibility at 320px 
+
+    Error: overview: [{"id":"label-content-name-mismatch","nodes":[{"target":["button[aria-labelledby=\"lesson-label-home-anchors\"]"],"summary":"Fix any of the following:\n  Text inside the element is not included in the accessible name"}]}]
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 14
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "id": "label-content-name-mismatch",
+    +     "nodes": Array [
+    +       Object {
+    +         "summary": "Fix any of the following:
+    +   Text inside the element is not included in the accessible name",
+    +         "target": Array [
+    +           "button[aria-labelledby=\"lesson-label-home-anchors\"]",
+    +         ],
+    +       },
+    +     ],
+    +   },
+    + ]
+
+      296 |       receipts.push({ state, width, ...receipt });
+      297 |       expect.soft(receipt.overflow, state).toBe(false);
+    > 298 |       expect.soft(receipt.violations, `${state}: ${JSON.stringify(receipt.violations)}`).toEqual([]);
+          |                                                                                          ^
+      299 |     }
+      300 |     await page.goto("/lessons"); await inspect("overview");
+      301 |     await page.getByRole("button", { name: "Start learning", exact: true }).click(); await inspect("preview");
+        at inspect (D:\extra\typing_updated\typing-forge\e2e\typing-course.spec.ts:298:90)
+        at D:\extra\typing_updated\typing-forge\e2e\typing-course.spec.ts:300:34
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\typing-course-course-overv-ac753-ated-accessibility-at-320px-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\typing-course-course-overv-ac753-ated-accessibility-at-320px-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\typing-course-course-overv-ac753-ated-accessibility-at-320px-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\typing-course-course-overv-ac753-ated-accessibility-at-320px-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › e2e\typing-course.spec.ts:286:3 › course overview, preview, active keyboard and result fit and pass automated accessibility at 1440px 
+
+    Error: overview: [{"id":"label-content-name-mismatch","nodes":[{"target":["button[aria-labelledby=\"lesson-label-home-anchors\"]"],"summary":"Fix any of the following:\n  Text inside the element is not included in the accessible name"}]}]
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 14
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "id": "label-content-name-mismatch",
+    +     "nodes": Array [
+    +       Object {
+    +         "summary": "Fix any of the following:
+    +   Text inside the element is not included in the accessible name",
+    +         "target": Array [
+    +           "button[aria-labelledby=\"lesson-label-home-anchors\"]",
+    +         ],
+    +       },
+    +     ],
+    +   },
+    + ]
+
+      296 |       receipts.push({ state, width, ...receipt });
+      297 |       expect.soft(receipt.overflow, state).toBe(false);
+    > 298 |       expect.soft(receipt.violations, `${state}: ${JSON.stringify(receipt.violations)}`).toEqual([]);
+          |                                                                                          ^
+      299 |     }
+      300 |     await page.goto("/lessons"); await inspect("overview");
+      301 |     await page.getByRole("button", { name: "Start learning", exact: true }).click(); await inspect("preview");
+        at inspect (D:\extra\typing_updated\typing-forge\e2e\typing-course.spec.ts:298:90)
+        at D:\extra\typing_updated\typing-forge\e2e\typing-course.spec.ts:300:34
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\typing-course-course-overv-1558d-ted-accessibility-at-1440px-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\typing-course-course-overv-1558d-ted-accessibility-at-1440px-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\typing-course-course-overv-1558d-ted-accessibility-at-1440px-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\typing-course-course-overv-1558d-ted-accessibility-at-1440px-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [edge] › e2e\typing-course.spec.ts:286:3 › course overview, preview, active keyboard and result fit and pass automated accessibility at 1440px 
+
+    Error: overview: [{"id":"label-content-name-mismatch","nodes":[{"target":["button[aria-labelledby=\"lesson-label-home-anchors\"]"],"summary":"Fix any of the following:\n  Text inside the element is not included in the accessible name"}]}]
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 14
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "id": "label-content-name-mismatch",
+    +     "nodes": Array [
+    +       Object {
+    +         "summary": "Fix any of the following:
+    +   Text inside the element is not included in the accessible name",
+    +         "target": Array [
+    +           "button[aria-labelledby=\"lesson-label-home-anchors\"]",
+    +         ],
+    +       },
+    +     ],
+    +   },
+    + ]
+
+      296 |       receipts.push({ state, width, ...receipt });
+      297 |       expect.soft(receipt.overflow, state).toBe(false);
+    > 298 |       expect.soft(receipt.violations, `${state}: ${JSON.stringify(receipt.violations)}`).toEqual([]);
+          |                                                                                          ^
+      299 |     }
+      300 |     await page.goto("/lessons"); await inspect("overview");
+      301 |     await page.getByRole("button", { name: "Start learning", exact: true }).click(); await inspect("preview");
+        at inspect (D:\extra\typing_updated\typing-forge\e2e\typing-course.spec.ts:298:90)
+        at D:\extra\typing_updated\typing-forge\e2e\typing-course.spec.ts:300:34
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\typing-course-course-overv-1558d-ted-accessibility-at-1440px-edge\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\typing-course-course-overv-1558d-ted-accessibility-at-1440px-edge\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\typing-course-course-overv-1558d-ted-accessibility-at-1440px-edge\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\typing-course-course-overv-1558d-ted-accessibility-at-1440px-edge\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [firefox] › e2e\typing-course.spec.ts:286:3 › course overview, preview, active keyboard and result fit and pass automated accessibility at 320px 
+
+    Error: overview: [{"id":"label-content-name-mismatch","nodes":[{"target":["button[aria-labelledby=\"lesson-label-home-anchors\"]"],"summary":"Fix any of the following:\n  Text inside the element is not included in the accessible name"}]}]
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 14
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "id": "label-content-name-mismatch",
+    +     "nodes": Array [
+    +       Object {
+    +         "summary": "Fix any of the following:
+    +   Text inside the element is not included in the accessible name",
+    +         "target": Array [
+    +           "button[aria-labelledby=\"lesson-label-home-anchors\"]",
+    +         ],
+    +       },
+    +     ],
+    +   },
+    + ]
+
+      296 |       receipts.push({ state, width, ...receipt });
+      297 |       expect.soft(receipt.overflow, state).toBe(false);
+    > 298 |       expect.soft(receipt.violations, `${state}: ${JSON.stringify(receipt.violations)}`).toEqual([]);
+          |                                                                                          ^
+      299 |     }
+      300 |     await page.goto("/lessons"); await inspect("overview");
+      301 |     await page.getByRole("button", { name: "Start learning", exact: true }).click(); await inspect("preview");
+        at inspect (D:\extra\typing_updated\typing-forge\e2e\typing-course.spec.ts:298:90)
+        at D:\extra\typing_updated\typing-forge\e2e\typing-course.spec.ts:300:34
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\typing-course-course-overv-ac753-ated-accessibility-at-320px-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\typing-course-course-overv-ac753-ated-accessibility-at-320px-firefox\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\typing-course-course-overv-ac753-ated-accessibility-at-320px-firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\typing-course-course-overv-ac753-ated-accessibility-at-320px-firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [firefox] › e2e\typing-course.spec.ts:286:3 › course overview, preview, active keyboard and result fit and pass automated accessibility at 1440px 
+
+    Error: overview: [{"id":"label-content-name-mismatch","nodes":[{"target":["button[aria-labelledby=\"lesson-label-home-anchors\"]"],"summary":"Fix any of the following:\n  Text inside the element is not included in the accessible name"}]}]
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 14
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "id": "label-content-name-mismatch",
+    +     "nodes": Array [
+    +       Object {
+    +         "summary": "Fix any of the following:
+    +   Text inside the element is not included in the accessible name",
+    +         "target": Array [
+    +           "button[aria-labelledby=\"lesson-label-home-anchors\"]",
+    +         ],
+    +       },
+    +     ],
+    +   },
+    + ]
+
+      296 |       receipts.push({ state, width, ...receipt });
+      297 |       expect.soft(receipt.overflow, state).toBe(false);
+    > 298 |       expect.soft(receipt.violations, `${state}: ${JSON.stringify(receipt.violations)}`).toEqual([]);
+          |                                                                                          ^
+      299 |     }
+      300 |     await page.goto("/lessons"); await inspect("overview");
+      301 |     await page.getByRole("button", { name: "Start learning", exact: true }).click(); await inspect("preview");
+        at inspect (D:\extra\typing_updated\typing-forge\e2e\typing-course.spec.ts:298:90)
+        at D:\extra\typing_updated\typing-forge\e2e\typing-course.spec.ts:300:34
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\typing-course-course-overv-1558d-ted-accessibility-at-1440px-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\typing-course-course-overv-1558d-ted-accessibility-at-1440px-firefox\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\typing-course-course-overv-1558d-ted-accessibility-at-1440px-firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\typing-course-course-overv-1558d-ted-accessibility-at-1440px-firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5 failed
+    [chromium] › e2e\typing-course.spec.ts:286:3 › course overview, preview, active keyboard and result fit and pass automated accessibility at 320px 
+    [chromium] › e2e\typing-course.spec.ts:286:3 › course overview, preview, active keyboard and result fit and pass automated accessibility at 1440px 
+    [edge] › e2e\typing-course.spec.ts:286:3 › course overview, preview, active keyboard and result fit and pass automated accessibility at 1440px 
+    [firefox] › e2e\typing-course.spec.ts:286:3 › course overview, preview, active keyboard and result fit and pass automated accessibility at 320px 
+    [firefox] › e2e\typing-course.spec.ts:286:3 › course overview, preview, active keyboard and result fit and pass automated accessibility at 1440px 
+  19 passed (2.7m)

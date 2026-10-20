@@ -1,0 +1,358 @@
+
+Running 4 tests using 1 worker
+
+(node:33808) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [chromium] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 390px (7.1s)
+(node:29604) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 [chromium] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 1440px (7.5s)
+(node:46528) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  3 [edge] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 390px (7.7s)
+(node:46716) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  4 [edge] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 1440px (8.1s)
+
+
+  1) [chromium] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 390px 
+
+    Error: / at 390px: [{"id":"label-content-name-mismatch","impact":"serious","help":"Elements must have their visible text as part of their accessible name","nodes":[{"target":["button[aria-label=\"Finger guide\"]"],"failureSummary":"Fix any of the following:\n  Text inside the element is not included in the accessible name"}]}]
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 16
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "help": "Elements must have their visible text as part of their accessible name",
+    +     "id": "label-content-name-mismatch",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Text inside the element is not included in the accessible name",
+    +         "target": Array [
+    +           "button[aria-label=\"Finger guide\"]",
+    +         ],
+    +       },
+    +     ],
+    +   },
+    + ]
+
+      40 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: "application/json",
+      41 |       });
+    > 42 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);
+         |                                                                                                      ^
+      43 |     }
+      44 |     await info.attach("automated-accessibility-scope", {
+      45 |       body: JSON.stringify({ receipts, limitation: "Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance." }, null, 2),
+        at D:\extra\typing_updated\typing-forge\e2e\accessibility-audit.spec.ts:42:102
+
+    Error: /learn at 390px: [{"id":"label-content-name-mismatch","impact":"serious","help":"Elements must have their visible text as part of their accessible name","nodes":[{"target":["button[aria-label=\"Finger guide\"]"],"failureSummary":"Fix any of the following:\n  Text inside the element is not included in the accessible name"}]}]
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 16
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "help": "Elements must have their visible text as part of their accessible name",
+    +     "id": "label-content-name-mismatch",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Text inside the element is not included in the accessible name",
+    +         "target": Array [
+    +           "button[aria-label=\"Finger guide\"]",
+    +         ],
+    +       },
+    +     ],
+    +   },
+    + ]
+
+      40 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: "application/json",
+      41 |       });
+    > 42 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);
+         |                                                                                                      ^
+      43 |     }
+      44 |     await info.attach("automated-accessibility-scope", {
+      45 |       body: JSON.stringify({ receipts, limitation: "Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance." }, null, 2),
+        at D:\extra\typing_updated\typing-forge\e2e\accessibility-audit.spec.ts:42:102
+
+    attachment #19: screenshot (image/png) ─────────────────────────────────────────────────────────
+    test-results\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-chromium\error-context.md
+
+    attachment #21: trace (application/zip) ────────────────────────────────────────────────────────
+    test-results\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 1440px 
+
+    Error: / at 1440px: [{"id":"label-content-name-mismatch","impact":"serious","help":"Elements must have their visible text as part of their accessible name","nodes":[{"target":["button[aria-label=\"Finger guide\"]"],"failureSummary":"Fix any of the following:\n  Text inside the element is not included in the accessible name"}]}]
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 16
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "help": "Elements must have their visible text as part of their accessible name",
+    +     "id": "label-content-name-mismatch",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Text inside the element is not included in the accessible name",
+    +         "target": Array [
+    +           "button[aria-label=\"Finger guide\"]",
+    +         ],
+    +       },
+    +     ],
+    +   },
+    + ]
+
+      40 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: "application/json",
+      41 |       });
+    > 42 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);
+         |                                                                                                      ^
+      43 |     }
+      44 |     await info.attach("automated-accessibility-scope", {
+      45 |       body: JSON.stringify({ receipts, limitation: "Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance." }, null, 2),
+        at D:\extra\typing_updated\typing-forge\e2e\accessibility-audit.spec.ts:42:102
+
+    Error: /learn at 1440px: [{"id":"label-content-name-mismatch","impact":"serious","help":"Elements must have their visible text as part of their accessible name","nodes":[{"target":["button[aria-label=\"Finger guide\"]"],"failureSummary":"Fix any of the following:\n  Text inside the element is not included in the accessible name"}]}]
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 16
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "help": "Elements must have their visible text as part of their accessible name",
+    +     "id": "label-content-name-mismatch",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Text inside the element is not included in the accessible name",
+    +         "target": Array [
+    +           "button[aria-label=\"Finger guide\"]",
+    +         ],
+    +       },
+    +     ],
+    +   },
+    + ]
+
+      40 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: "application/json",
+      41 |       });
+    > 42 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);
+         |                                                                                                      ^
+      43 |     }
+      44 |     await info.attach("automated-accessibility-scope", {
+      45 |       body: JSON.stringify({ receipts, limitation: "Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance." }, null, 2),
+        at D:\extra\typing_updated\typing-forge\e2e\accessibility-audit.spec.ts:42:102
+
+    attachment #19: screenshot (image/png) ─────────────────────────────────────────────────────────
+    test-results\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-chromium\error-context.md
+
+    attachment #21: trace (application/zip) ────────────────────────────────────────────────────────
+    test-results\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [edge] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 390px 
+
+    Error: / at 390px: [{"id":"label-content-name-mismatch","impact":"serious","help":"Elements must have their visible text as part of their accessible name","nodes":[{"target":["button[aria-label=\"Finger guide\"]"],"failureSummary":"Fix any of the following:\n  Text inside the element is not included in the accessible name"}]}]
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 16
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "help": "Elements must have their visible text as part of their accessible name",
+    +     "id": "label-content-name-mismatch",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Text inside the element is not included in the accessible name",
+    +         "target": Array [
+    +           "button[aria-label=\"Finger guide\"]",
+    +         ],
+    +       },
+    +     ],
+    +   },
+    + ]
+
+      40 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: "application/json",
+      41 |       });
+    > 42 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);
+         |                                                                                                      ^
+      43 |     }
+      44 |     await info.attach("automated-accessibility-scope", {
+      45 |       body: JSON.stringify({ receipts, limitation: "Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance." }, null, 2),
+        at D:\extra\typing_updated\typing-forge\e2e\accessibility-audit.spec.ts:42:102
+
+    Error: /learn at 390px: [{"id":"label-content-name-mismatch","impact":"serious","help":"Elements must have their visible text as part of their accessible name","nodes":[{"target":["button[aria-label=\"Finger guide\"]"],"failureSummary":"Fix any of the following:\n  Text inside the element is not included in the accessible name"}]}]
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 16
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "help": "Elements must have their visible text as part of their accessible name",
+    +     "id": "label-content-name-mismatch",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Text inside the element is not included in the accessible name",
+    +         "target": Array [
+    +           "button[aria-label=\"Finger guide\"]",
+    +         ],
+    +       },
+    +     ],
+    +   },
+    + ]
+
+      40 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: "application/json",
+      41 |       });
+    > 42 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);
+         |                                                                                                      ^
+      43 |     }
+      44 |     await info.attach("automated-accessibility-scope", {
+      45 |       body: JSON.stringify({ receipts, limitation: "Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance." }, null, 2),
+        at D:\extra\typing_updated\typing-forge\e2e\accessibility-audit.spec.ts:42:102
+
+    attachment #19: screenshot (image/png) ─────────────────────────────────────────────────────────
+    test-results\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-edge\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-edge\error-context.md
+
+    attachment #21: trace (application/zip) ────────────────────────────────────────────────────────
+    test-results\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-edge\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-edge\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [edge] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 1440px 
+
+    Error: / at 1440px: [{"id":"label-content-name-mismatch","impact":"serious","help":"Elements must have their visible text as part of their accessible name","nodes":[{"target":["button[aria-label=\"Finger guide\"]"],"failureSummary":"Fix any of the following:\n  Text inside the element is not included in the accessible name"}]}]
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 16
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "help": "Elements must have their visible text as part of their accessible name",
+    +     "id": "label-content-name-mismatch",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Text inside the element is not included in the accessible name",
+    +         "target": Array [
+    +           "button[aria-label=\"Finger guide\"]",
+    +         ],
+    +       },
+    +     ],
+    +   },
+    + ]
+
+      40 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: "application/json",
+      41 |       });
+    > 42 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);
+         |                                                                                                      ^
+      43 |     }
+      44 |     await info.attach("automated-accessibility-scope", {
+      45 |       body: JSON.stringify({ receipts, limitation: "Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance." }, null, 2),
+        at D:\extra\typing_updated\typing-forge\e2e\accessibility-audit.spec.ts:42:102
+
+    Error: /learn at 1440px: [{"id":"label-content-name-mismatch","impact":"serious","help":"Elements must have their visible text as part of their accessible name","nodes":[{"target":["button[aria-label=\"Finger guide\"]"],"failureSummary":"Fix any of the following:\n  Text inside the element is not included in the accessible name"}]}]
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 16
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "help": "Elements must have their visible text as part of their accessible name",
+    +     "id": "label-content-name-mismatch",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "failureSummary": "Fix any of the following:
+    +   Text inside the element is not included in the accessible name",
+    +         "target": Array [
+    +           "button[aria-label=\"Finger guide\"]",
+    +         ],
+    +       },
+    +     ],
+    +   },
+    + ]
+
+      40 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: "application/json",
+      41 |       });
+    > 42 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);
+         |                                                                                                      ^
+      43 |     }
+      44 |     await info.attach("automated-accessibility-scope", {
+      45 |       body: JSON.stringify({ receipts, limitation: "Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance." }, null, 2),
+        at D:\extra\typing_updated\typing-forge\e2e\accessibility-audit.spec.ts:42:102
+
+    attachment #19: screenshot (image/png) ─────────────────────────────────────────────────────────
+    test-results\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-edge\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-edge\error-context.md
+
+    attachment #21: trace (application/zip) ────────────────────────────────────────────────────────
+    test-results\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-edge\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-edge\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4 failed
+    [chromium] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 390px 
+    [chromium] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 1440px 
+    [edge] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 390px 
+    [edge] › e2e\accessibility-audit.spec.ts:12:3 › existing guest pages and completed results meet automated accessibility rules at 1440px 

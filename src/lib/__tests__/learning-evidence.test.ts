@@ -44,4 +44,14 @@ describe('Canonical learning evidence projection', () => {
     controller.input({ type: 'insert', text: 'e' });
     expect(learningEvidenceFromResult(controller.finish('manual')).assessment).toBe(false);
   });
+  it('retains course key observations without granting adaptive mastery checkpoints', () => {
+    let time = 0;
+    const controller = new SessionController({ clientSessionId: 'course-evidence', mode: 'learn', initialTarget: 'fj fj', keyboardLayout: 'qwerty', language: 'en', settings: { course: { courseId: 'typing-course-v1', lessonId: 'home-anchors', variantId: 'a', assessmentVersion: 'typing-course-assessment-v1' } } }, { now: () => time, wallNow: () => 1_760_000_000_000 + time });
+    for (const text of 'fj fj') { time += 200; controller.input({ type: 'insert', text }); }
+    const evidence = learningEvidenceFromResult(controller.result!);
+    expect(evidence.assessment).toBe(false);
+    expect(evidence.attempts).toHaveLength(5);
+    expect(evidence.attempts.every(attempt => attempt.correct)).toBe(true);
+    expect(evidence.attempts.filter(attempt => attempt.latencyMs !== null)).toHaveLength(4);
+  });
 });

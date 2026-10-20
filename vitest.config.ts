@@ -22,6 +22,8 @@ export default defineConfig({
         "src/lib/content-packs.ts",
         "src/lib/session-diagnostics.ts",
         "src/lib/keyboard-lab.ts",
+        "src/lib/live-keyboard.ts",
+        "src/lib/typing-course.ts",
         "src/services/session-repository.ts",
         "src/services/session-sync.ts",
         "supabase/functions/_shared/validation.ts",

@@ -31,6 +31,10 @@ export const PUBLIC_SEO_ROUTES: Readonly<Record<string, PageSeo>> = {
     "Adaptive typing practice",
     "Build touch typing skills with lessons that use observed key accuracy and timing. Introduce new letters as your evidence grows.",
   ),
+  "/lessons": page(
+    "Learn to type: structured typing lessons",
+    "Learn English QWERTY touch typing through 36 lessons, guided keyboard practice, accuracy checkpoints and a 15 to 80 WPM speed path.",
+  ),
   "/typing-practice": page(
     "Practice typing with purpose",
     "Use adaptive typing lessons, targeted keys and a daily practice goal. Start with a manageable set of letters and grow steadily.",

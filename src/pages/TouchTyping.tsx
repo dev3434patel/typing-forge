@@ -41,6 +41,12 @@ export default function TouchTyping() {
             2. Work with a small set of letters
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            New to the keyboard? Follow the structured English/QWERTY course from
+            home-row keys through punctuation, then train sustained speed. Each
+            lesson explains its targets and needs two qualifying passages to complete.
+          </p>
+          <Link className="forge-button mt-5" to="/lessons">Explore typing lessons</Link>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
             Use adaptive practice to build familiarity before adding complexity.
             Read the next part of the word, type at a manageable pace, and
             reduce speed when errors repeat. The learning model uses actual

@@ -2,8 +2,8 @@ import { resolveThemeId } from '@/lib/themes';
 import { CONTENT_PACKS,LAYOUTS } from '@/lib/content-packs';
 import type { Preferences } from '@/contexts/PreferencesContext';
 export interface PreferenceEnvelope {schemaVersion:3;values:Preferences;pending:Partial<Preferences>;cloudVersion:number;updatedAt:number}
-export const PREFERENCE_DEFAULTS:Preferences={theme:'sparow-dark',targetWpm:35,language:'en',layout:'qwerty',fontSize:26,caretStyle:'line',smoothCaret:true,sound:false,soundPack:'soft',reducedMotion:false,volume:.2,dailyGoalMinutes:10,liveStats:true,focusMode:false,paceCaret:false};
-const boolKeys=['smoothCaret','sound','reducedMotion','liveStats','focusMode','paceCaret'] as const;
+export const PREFERENCE_DEFAULTS:Preferences={theme:'sparow-dark',targetWpm:35,language:'en',layout:'qwerty',fontSize:26,caretStyle:'line',smoothCaret:true,sound:false,soundPack:'soft',reducedMotion:false,volume:.2,dailyGoalMinutes:10,liveStats:true,focusMode:false,paceCaret:false,showKeyboard:true,showFingerGuide:true};
+const boolKeys=['smoothCaret','sound','reducedMotion','liveStats','focusMode','paceCaret','showKeyboard','showFingerGuide'] as const;
 export function validatePreferences(input:unknown):Preferences {
   const value=input&&typeof input==='object'?input as Record<string,unknown>:{};
   const valid={...PREFERENCE_DEFAULTS};

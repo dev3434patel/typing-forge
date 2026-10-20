@@ -21,6 +21,32 @@ describe('owner scoped session repository',()=>{
     const repo=new SessionRepository();await repo.save({...record(),privateContent:true,cloudConsent:true});await repo.expireEvidence(10001);
     const row=await repo.get('alice','one');expect(row.candidate).toBeUndefined();expect(row.state).toBe('local-only');expect(row.errorCode).toBe('evidence-expired');expect(row.summary.wpm).toBe(12);
   });
+  it('expires rejected replay without erasing the terminal server decision',async()=>{
+    const repo=new SessionRepository();
+    await repo.save({...record(),state:'rejected',errorCode:'validation',message:'The server rejected this input evidence.'});
+    await repo.expireEvidence(10001);
+    const row=await repo.get('alice','one');
+    expect(row.candidate).toBeUndefined();
+    expect(row).toMatchObject({state:'rejected',errorCode:'validation',message:'The server rejected this input evidence.',payloadHash:'immutable',summary:{wpm:12}});
+    await repo.expireEvidence(20000);
+    expect(await repo.get('alice','one')).toEqual(row);
+  });
+  it.each(['local-only','queued','syncing','retryable-error','auth-required'] as const)('keeps the expiry policy for %s replay unchanged',async state=>{
+    const repo=new SessionRepository();await repo.save({...record(),state});
+    await repo.expireEvidence(10001);
+    expect(await repo.get('alice','one')).toMatchObject({state:'local-only',errorCode:'evidence-expired',provenance:'observed'});
+    expect((await repo.get('alice','one')).candidate).toBeUndefined();
+  });
+  it('preserves accepted account decisions and guest import provenance after replay expiry',async()=>{
+    const repo=new SessionRepository();const accepted={eligibility:{eligible:false},serverReceipt:'retained'};
+    await repo.save({...record(),state:'synced',accepted,message:'Saved to your account.'});
+    await repo.save({...record('guest'),state:'local-only'});await repo.importGuest('bob');
+    await repo.expireEvidence(10001);
+    expect(await repo.get('alice','one')).toMatchObject({state:'synced',accepted,message:'Saved to your account.'});
+    const imported=await repo.get('bob','guest-import:one');
+    expect(imported).toMatchObject({ownerId:'bob',provenance:'guest-import',state:'local-only',errorCode:'evidence-expired'});
+    expect(imported.candidate).toBeUndefined();expect(imported.accepted).toBeUndefined();
+  });
   it('imports legacy history nondestructively and restartably, rejecting corrupt records',async()=>{
     const repo=new SessionRepository();localStorage.setItem('typingmaster_history',JSON.stringify([summary,{...summary,id:'corrupt',wpm:'bad'}]));
     expect(await repo.migrateLegacy(localStorage)).toEqual({imported:1,invalid:1});expect(await repo.migrateLegacy(localStorage)).toEqual({imported:0,invalid:1});

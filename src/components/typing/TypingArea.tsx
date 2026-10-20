@@ -2,6 +2,7 @@ import {
   useCallback,
   useEffect,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
   type CSSProperties,
@@ -30,6 +31,9 @@ import { cn } from "@/lib/utils";
 import { TypingPassage } from "./TypingPassage";
 import { TypingFeedback } from "./TypingFeedback";
 import { OpponentPaceMarker } from "./OpponentPaceMarker";
+import { LiveKeyboard } from "./LiveKeyboard";
+import { useLiveKeyboard } from "@/hooks/useLiveKeyboard";
+import { keyboardAttempt } from "@/lib/live-keyboard";
 import { opponentPacePosition, type RacePace } from "@/lib/race-pace";
 import type { KeyboardAudio } from "@/lib/keyboard-audio";
 import { useWordCorrection, WORD_CORRECTION_NOTICE } from "@/hooks/useWordCorrection";
@@ -49,6 +53,8 @@ interface Props {
   onSnapshot?: (snapshot: SessionSnapshot) => void;
   opponentPace?: RacePace;
   autoFocus?: boolean;
+  /** Logical characters already introduced by a structured lesson. */
+  keyboardLessonKeys?: readonly string[];
 }
 const number = (value: number | null, decimals = 0) =>
   value === null ? "—" : value.toFixed(decimals);
@@ -62,8 +68,9 @@ export function TypingArea({
   onSnapshot,
   opponentPace,
   autoFocus,
+  keyboardLessonKeys,
 }: Props) {
-  const { preferences: p } = usePreferences();
+  const { preferences: p, updatePreferences } = usePreferences();
   const [controller] = useState(
     () =>
       supplied ??
@@ -86,6 +93,14 @@ export function TypingArea({
     viewport = useRef<HTMLDivElement>(null),
     passage = useRef<HTMLDivElement>(null),
     resumeButton = useRef<HTMLButtonElement>(null);
+  const keyboardInput = useLiveKeyboard(textarea, controller, p.showKeyboard && snapshot.status !== "paused" && snapshot.status !== "finished");
+  const keyboardSequence = snapshot.events.at(-1)?.sequence ?? -1;
+  const lastKeyboardAttempt = useMemo(() => {
+    void keyboardSequence;
+    return keyboardAttempt(controller.lastInputAttempts);
+  }, [controller, keyboardSequence]);
+  const setKeyboardVisible = useCallback((showKeyboard: boolean) => updatePreferences({ showKeyboard }), [updatePreferences]);
+  const setFingerGuideVisible = useCallback((showFingerGuide: boolean) => updatePreferences({ showFingerGuide }), [updatePreferences]);
   const composing = useRef(false),
     provenance = useRef<InputProvenance>("keyboard"),
     finished = useRef(false),
@@ -790,6 +805,19 @@ export function TypingArea({
           </button>
         </div>
       </div>
+      <LiveKeyboard
+        layout={configuration.keyboardLayout || p.layout}
+        language={configuration.language || p.language}
+        input={keyboardInput}
+        expectedCharacter={free ? undefined : snapshot.characters[snapshot.cursor]?.expected}
+        lastAttempt={lastKeyboardAttempt}
+        lessonKeys={keyboardLessonKeys}
+        visible={p.showKeyboard}
+        fingerGuide={p.showFingerGuide}
+        reducedMotion={p.reducedMotion}
+        onVisibilityChange={setKeyboardVisible}
+        onFingerGuideChange={setFingerGuideVisible}
+      />
       <span role="status" className="sr-only">
         {snapshot.status === "finished"
           ? "Test complete"

@@ -1,6 +1,6 @@
 # SparowType: PHP + MySQL setup
 
-Updated 19 October 2026. The active app uses PHP and MySQL/MariaDB. phpMyAdmin imports and manages the database; PHP serves the API. Node is needed for frontend development/builds, not on the hosting server. The old `supabase/` directory is retained as historical implementation and replay-reference material; it is not the running backend.
+Updated 20 October 2026. The active app uses PHP and MySQL/MariaDB. phpMyAdmin imports and manages the database; PHP serves the API. Node is needed for frontend development/builds, not on the hosting server. The old `supabase/` directory is retained as historical implementation and replay-reference material; it is not the running backend.
 
 ## Requirements
 
@@ -85,6 +85,7 @@ hosting-build/
     bootstrap.php
     config.example.php
     schema.sql
+    resources/typing-course-v1.json
     src/
     public/
     bin/cleanup.php
@@ -92,6 +93,8 @@ hosting-build/
 ```
 
 Upload the **contents** of `public_html` into your domain document root. Put `sparowtype-private` beside that document root, preserving the relative directory layout. The API wrapper loads that private directory. The build script excludes local config files, test data, session files and database storage. No credentials are copied into the package.
+
+Learn Typing uses the same versioned `backend/resources/typing-course-v1.json` catalog in the frontend build and native PHP assessment. The hosting package includes it as `sparowtype-private/resources/typing-course-v1.json`. Deploy the matching frontend, PHP sources and catalog together; missing or mismatched curriculum files cannot establish a valid course result. The course adds no SQL columns or schema migration: an existing initialized PHP database continues using its current session and preference tables. Do not reimport the initial schema into a populated database to add this feature.
 
 Rebuilding stages a fresh package. A previous `hosting-build` is preserved under ignored `hosting-archive`; upload only the newly generated `hosting-build`, never the archive. This prevents obsolete assets or credentials manually placed in an old package from leaking into a new delivery.
 
@@ -117,12 +120,15 @@ php /absolute/private/path/sparowtype-private/bin/cleanup.php
 
 It expires retained input evidence and removes stale operational records. Account summaries and deletion receipts have distinct lifetimes; see the schema and cleanup source. The default raw evidence lifetime is 90 days. Custom/private text uploads require explicit consent. The service worker excludes API responses from its public offline cache.
 
+Course grading is a small derived record stored in the existing session's `accepted.course` summary. It contains lesson/variant identity, measured metrics, input method and qualification checks. Account history restores that record after raw replay expiry; the originating device also retains its derived course summary. Raw replay expiry therefore does not erase course progress. Deleting a session removes its contribution to course progress, and account deletion removes the account's stored assessments. Previously downloaded exports remain under the user's control. Course qualification flags and thresholds submitted by the browser are not trusted: PHP uses the shared catalog and canonical replay. Public course grades do not create ranked leaderboard scores.
+
 Back up the database and private config through your hosting tools. Upgrade PHP/MariaDB through the hosting provider. The SQL is an initial schema, not a mechanism for silently upgrading arbitrarily modified databases.
 
 ## Verification commands
 
 ```sh
 npm run test:php
+npm run test:course-php
 npm run typecheck
 npm run lint
 npm run test:run
@@ -131,5 +137,13 @@ npm run check:bundle
 ```
 
 `test:php` compares native PHP replay to the existing portable TypeScript engine across deterministic valid, malformed and random-edit evidence. Actual HTTP/database acceptance scripts live under `backend/tests/`; they require an isolated test database/config and must not run against user production data. Real browser acceptance uses a separate opt-in `PHP_E2E_ACCEPTANCE=1` flow and creates/deletes only its own synthetic account.
+
+`test:course-php` checks all 108 authored passages and course assessment boundaries through real TypeScript/native PHP replay without connecting to a database. `test:course-http` is separately opt-in: create an isolated `_audit` or `_test` database, import its schema, and configure both the PHP API process and test terminal with the same `SPAROWTYPE_CONFIG_FILE`. Set `SPAROWTYPE_COURSE_HTTP_ACCEPTANCE=1`, then run `npm run test:course-http`; `SPAROWTYPE_TEST_API_URL` can select its loopback API address. The prepared checkout's separate configuration is `backend/audit-config.local.php`. Stop the normal account API before starting the audit API on its port. The harness verifies the dedicated database/session configuration before creating its uniquely reserved test account and cleans only that account. It checks course restoration, replay expiry, deletion, input integrity and keyboard preference types without resetting rate limits. Native CI includes both course gates; a configured workflow is not evidence that remote CI or public hosting has passed.
+
+## Course qualification scope
+
+The current course teaches English on a QWERTY reference keyboard: 30 foundation lessons and six 30-second speed steps from 15 to 80 WPM. Each lesson has three authored variants; progress requires qualifying attempts on two distinct variants and the lesson's prerequisites. Grades use the catalog's accuracy, attempt, active-duration and speed requirements. Finite lessons require the complete correct target; speed steps require the full unpaused deadline and correct processed text. Corrected errors remain in input accuracy. Explicit pauses are allowed for finite accuracy practice.
+
+Qualifications require individual keyboard input. Composition, virtual input and bulk edits can remain recorded practice with their actual input method, but do not qualify for this course. Course observations do not grant adaptive letter-unlock assessments. Other languages/layouts remain separate practice capabilities; this curriculum does not certify their proficiency. Browser transcripts also cannot prove human input, physical finger placement or educational effectiveness.
 
 Implementation references checked 19 October 2026: [PHP Unicode normalization](https://www.php.net/manual/en/class.normalizer.php), [grapheme boundaries](https://www.php.net/manual/en/intlbreakiterator.createcharacterinstance.php), [session security settings](https://www.php.net/manual/en/session.security.ini.php).

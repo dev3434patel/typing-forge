@@ -183,6 +183,7 @@ final class DataService
                 'personalBestEligible' => $validated['personalBestEligible'], 'finishedAtWall' => $candidate['finishedAtWall'],
                 'eligibility' => ['eligible' => $ranked, 'reasons' => $reasons, 'verification' => 'php-replayed', 'automationRisk' => 'Browser transcripts cannot prove human input.'],
                 'challengeId' => $challengeId, 'learningEvidence' => $learning, 'acceptedAt' => Database::iso(Database::timestamp()),
+                ...(isset($validated['course']) ? ['course' => $validated['course']] : []),
             ], $overrides);
             // The server owns these identities even for a caller-supplied race summary.
             $accepted['payloadHash'] = $hash;
@@ -365,7 +366,7 @@ final class DataService
             'soundPack' => ['soft','mechanical','typewriter','arcade','minimal'],
         ];
         $numbers = ['targetWpm'=>[10,200], 'fontSize'=>[18,40], 'volume'=>[0,1], 'dailyGoalMinutes'=>[1,120]];
-        $booleans = ['smoothCaret','sound','reducedMotion','liveStats','focusMode','paceCaret'];
+        $booleans = ['smoothCaret','sound','reducedMotion','liveStats','focusMode','paceCaret','showKeyboard','showFingerGuide'];
         foreach ($patch as $key => $value) {
             if ($key === 'theme') {
                 if ($value === 'forge-dark') $patch[$key] = $value = 'sparow-dark';

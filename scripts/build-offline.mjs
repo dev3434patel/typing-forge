@@ -8,6 +8,7 @@ const publicRoutes = [
   "/",
   "/typing-test",
   "/learn",
+  "/lessons",
   "/typing-practice",
   "/practice",
   "/touch-typing",

@@ -1,5 +1,5 @@
 import { expect, test as base } from "@playwright/test";
-import { completeCorrectedCat } from "./helpers";
+import { completeCorrectedCat, focusTyping } from "./helpers";
 import { INTRO_ENABLED_STORAGE_KEY } from "../src/lib/opening-experience";
 import { startPwaStaticServer } from "./pwa-static-server";
 
@@ -107,6 +107,14 @@ test("public app download supports a real server outage and clearing preserves r
       exact: true,
     }),
   ).toBeVisible();
+  await page.goto("/lessons?lesson=home-anchors");
+  await page.getByRole("button", { name: "Start lesson", exact: true }).click();
+  const courseInput = await focusTyping(page);
+  const coursePassage = (await page.getByTestId("typing-target").textContent())!;
+  await courseInput.pressSequentially(coursePassage, { delay: 65 });
+  await expect(page.getByRole("heading", { name: "Checkpoint earned.", exact: true })).toBeVisible();
+  await page.reload();
+  await expect(page.getByText("1 of 2 checkpoints", { exact: true })).toBeVisible();
   await page.goto("/profile");
   await expect(
     page.getByRole("heading", {
@@ -138,7 +146,8 @@ test("public app download supports a real server outage and clearing preserves r
     name: "Completed sessions, most recent first",
     exact: true,
   });
-  await expect(table.getByRole("row")).toHaveCount(3);
-  await expect(table.getByRole("row").nth(1)).toContainText("75.0%");
+  await expect(table.getByRole("row")).toHaveCount(4);
+  await expect(table.getByRole("row").nth(1)).toContainText("100.0%");
   await expect(table.getByRole("row").nth(2)).toContainText("75.0%");
+  await expect(table.getByRole("row").nth(3)).toContainText("75.0%");
 });

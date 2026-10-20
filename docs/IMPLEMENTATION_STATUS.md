@@ -1,6 +1,14 @@
 # SparowType v3 — implementation and verification
 
-**Current checkpoint — 19 October 2026:** the active backend is PHP + MySQL/MariaDB, with a phpMyAdmin schema and PHP hosting package. Current fixes, browser outcomes and remaining gates are recorded in [the feature audit](FEATURE_AUDIT_2026-10-19.md); [setup instructions](PHP_XAMPP_SETUP.md) cover local XAMPP and hosting. Dated entries below retain their original historical scope.
+**Current checkpoint — 20 October 2026:** the [learning and live keyboard audit](LEARNING_UPGRADE_AUDIT_2026-10-20.md) records the new structured course, shared keyboard, current build measurements and remaining gates. The [research and plan](LEARNING_UPGRADE_PLAN_2026-10-20.md) preceded implementation. PHP + MySQL/MariaDB remains the active backend; [setup instructions](PHP_XAMPP_SETUP.md) cover XAMPP and hosting.
+
+- 36 course lessons, six chapters and 108 original passages; 30 sequential foundations plus an independently accessible 15–80 WPM speed ladder. Two distinct qualifying variants are required per lesson. The first formal course teaches English / US QWERTY.
+- One live keyboard below Test, Race, adaptive Learn and course practice, with actual held-key feedback, expected-character guidance, wrong-character feedback and independently saved finger hints.
+- Canonical replay and server-derived durable course receipts determine progress. Rejected results stay rejected after replay expiry; evidence deletion reconciles progress. Course practice cannot silently unlock adaptive assessments.
+- 824 unit tests, 393 native PHP replay cases and 136 native course cases passed. The current audit distinguishes exact browser/build coverage and fresh measurements from the older checkpoints below.
+- The canonical typing engine and full 3D intro sources remain unchanged from main baseline `9fc87e2`. No schema migration is required; deploy the shared course catalog with the updated PHP files.
+
+**Previous checkpoint — 19 October 2026:** the active backend is PHP + MySQL/MariaDB, with a phpMyAdmin schema and PHP hosting package. Earlier fixes, browser outcomes and remaining gates are recorded in [the feature audit](FEATURE_AUDIT_2026-10-19.md). The figures in the following six bullets describe that earlier build, not the October 20 upgrade.
 
 - Current public build **`e2078121727b20cfc4d5`**: 86 files / 2,469,070 bytes. Initial practice JavaScript is 133,499 bytes gzip; the full 167,998-byte deferred 3D graph and eight renderer sources retain their quality.
 - **723 unit tests** and **393 native PHP replay parity cases with zero mismatches** passed, alongside 15 account/data, 10 competitive/race and 17 actual Apache check groups.

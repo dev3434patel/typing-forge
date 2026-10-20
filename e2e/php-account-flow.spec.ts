@@ -66,9 +66,20 @@ test("real PHP account signup, replay upload, independent-device history/prefere
     expect(history.sessions[0].metrics.incorrectAttempts).toBe(1);
     expect(history.sessions[0].metrics.inputAccuracy).toBeCloseTo(100 * passage.length / (passage.length + 1));
 
+    await page.goto("/lessons?lesson=home-anchors");
+    await page.getByRole("button", { name: "Start lesson", exact: true }).click();
+    const courseInput = await focusTyping(page);
+    const coursePassage = (await page.getByTestId("typing-target").textContent())!;
+    await courseInput.pressSequentially(coursePassage, { delay: 70 });
+    await expect(page.getByRole("heading", { name: "Checkpoint earned.", exact: true })).toBeVisible();
+    await expect(page.getByText("Saved to your account.", { exact: true })).toBeVisible({ timeout: 20000 });
+    await expect(page.getByText("1 of 2 checkpoints", { exact: true })).toBeVisible();
+
     await page.goto("/settings");
     await page.getByRole("button", { name: "Aa bb Paper", exact: true }).click();
     await page.getByRole("combobox", { name: "Keyboard layout", exact: true }).selectOption("dvorak");
+    await page.getByRole("checkbox", { name: "Live keyboard", exact: true }).uncheck();
+    await page.getByRole("checkbox", { name: "Finger guide", exact: true }).uncheck();
     await expect(page.getByText("Preferences saved to your account.", { exact: true })).toBeVisible({ timeout: 10000 });
     await page.goto("/profile");
     await page.getByRole("textbox", { name: "Handle", exact: true }).fill(`qa_${randomUUID().replaceAll("-", "").slice(0, 16)}`);
@@ -83,10 +94,14 @@ test("real PHP account signup, replay upload, independent-device history/prefere
     current = await second.newPage();
     await signIn(current);
     await current.goto("/profile");
-    await expect(current.getByText("1 saved sessions", { exact: false })).toBeVisible({ timeout: 10000 });
+    await expect(current.getByText("2 saved sessions", { exact: false })).toBeVisible({ timeout: 10000 });
+    await current.goto("/lessons?lesson=home-anchors");
+    await expect(current.getByText("1 of 2 checkpoints", { exact: true })).toBeVisible({ timeout: 10000 });
     await current.goto("/settings");
     await expect(current.locator("html")).toHaveAttribute("data-theme", "paper");
     await expect(current.getByRole("combobox", { name: "Keyboard layout", exact: true })).toHaveValue("dvorak");
+    await expect(current.getByRole("checkbox", { name: "Live keyboard", exact: true })).not.toBeChecked();
+    await expect(current.getByRole("checkbox", { name: "Finger guide", exact: true })).not.toBeChecked();
     await current.goto("/profile");
     await current.getByLabel("Type DELETE to enable this action", { exact: true }).fill("DELETE");
     await current.getByRole("button", { name: "Permanently delete account", exact: true }).click();

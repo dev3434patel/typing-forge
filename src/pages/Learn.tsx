@@ -49,6 +49,10 @@ export default function Learn() {
             Adjust target and daily goal
           </Link>
         </div>
+        <nav aria-label="Learning paths" className="mb-7 flex flex-wrap items-center gap-2 text-sm">
+          <Link to="/learn" aria-current="page" className="forge-chip bg-primary/10 text-primary">Adaptive practice</Link>
+          <Link to="/lessons" className="forge-chip">Step-by-step lessons <span aria-hidden="true">↗</span></Link>
+        </nav>
         <KeybrLessonMode
           focusKeys={focusKeys}
           sourceResultId={params.get("source") ?? undefined}

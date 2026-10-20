@@ -5,7 +5,7 @@ test('learning shows the pressed wrong letter and advances by default, with corr
   await page.goto('/learn');
   await expect(page.getByLabel('Correction policy')).toHaveValue('correct');
   const input = page.getByRole('textbox', { name: 'Type the practice text' });
-  const target = page.locator('[aria-label="Adaptive typing lesson"] div[aria-hidden="true"][dir]');
+  const target = page.locator('[aria-label="Adaptive typing lesson"] .learn-stream-text');
   const text = await target.textContent();
   expect(text).toBeTruthy();
   const wrong = text![0] === 'x' ? 'z' : 'x';
@@ -37,7 +37,7 @@ test('learning records rejected attempts and saves exactly one immutable result'
   await page.getByLabel('Correction policy').selectOption('stop');
   const input = page.getByRole('textbox', { name: 'Type the practice text' });
   await expect(input).toBeVisible();
-  const text = await page.locator('[aria-label="Adaptive typing lesson"] div[aria-hidden="true"][dir]').textContent();
+  const text = await page.locator('[aria-label="Adaptive typing lesson"] .learn-stream-text').textContent();
   expect(text).toBeTruthy();
   const wrong = text![0] === 'x' ? 'z' : 'x';
   await input.focus();
@@ -47,7 +47,7 @@ test('learning records rejected attempts and saves exactly one immutable result'
   await expect(page.getByTestId('typing-feedback')).toContainText(wrong);
   await expect(page.getByTestId('typing-feedback')).toContainText('Not inserted');
   await expect(page.locator('[aria-label="Adaptive typing lesson"] [data-current="true"]')).toHaveAttribute('data-expected', text![0]);
-  await expect(page.locator('[aria-label="Adaptive typing lesson"] div[aria-hidden="true"][dir]')).toHaveText(text!);
+  await expect(page.locator('[aria-label="Adaptive typing lesson"] .learn-stream-text')).toHaveText(text!);
   await expect(input).toHaveValue('');
   await input.pressSequentially(text!, { delay: 3 });
   await expect(page.getByRole('region', { name: 'Session results' })).toBeVisible();
@@ -66,7 +66,7 @@ test('learning records rejected attempts and saves exactly one immutable result'
 test('learning preserves wrong-key feedback when one stop-mode input batch ends correctly', async ({ page }) => {
   await page.goto('/learn?language=en');
   await page.getByLabel('Correction policy').selectOption('stop');
-  const target = page.locator('[aria-label="Adaptive typing lesson"] div[aria-hidden="true"][dir]');
+  const target = page.locator('[aria-label="Adaptive typing lesson"] .learn-stream-text');
   const first = await target.locator('[data-slot-index="0"]').getAttribute('data-expected');
   const second = await target.locator('[data-slot-index="1"]').getAttribute('data-expected');
   expect(first).toBeTruthy();
@@ -96,22 +96,26 @@ test('learning preserves wrong-key feedback when one stop-mode input batch ends 
 
 test('Tab leaves the learning input without generating another lesson', async ({ page }) => {
   await page.goto('/learn');
-  const target = page.locator('[aria-label="Adaptive typing lesson"] div[aria-hidden="true"][dir]');
+  const target = page.locator('[aria-label="Adaptive typing lesson"] .learn-stream-text');
   const before = await target.textContent();
   const input = page.getByRole('textbox', { name: 'Type the practice text' });
   await input.focus();
   await input.press('Tab');
   await expect(input).not.toBeFocused();
   await expect(target).toHaveText(before!);
+  await expect(page.getByRole('button', { name: 'Finger guide', exact: true })).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(page.getByRole('button', { name: 'Hide keyboard', exact: true })).toBeFocused();
+  await page.keyboard.press('Tab');
   await expect(page.getByLabel('Correction policy')).toBeFocused();
 });
 
 test('Arabic lesson uses RTL native characters and composition has no invented key timing', async ({ page }) => {
   await page.goto('/learn?language=ar&layout=native');
-  await expect(page.locator('[aria-label="Adaptive typing lesson"] div[aria-hidden="true"][dir="rtl"]')).toBeVisible();
+  await expect(page.locator('[aria-label="Adaptive typing lesson"] .learn-stream-text[dir="rtl"]')).toBeVisible();
   await page.getByLabel('Input method', { exact: true }).selectOption('composition');
   const input = page.getByRole('textbox', { name: 'Type the practice text' });
-  const text = await page.locator('[aria-label="Adaptive typing lesson"] div[aria-hidden="true"][dir]').textContent();
+  const text = await page.locator('[aria-label="Adaptive typing lesson"] .learn-stream-text').textContent();
   await input.evaluate((element, content) => {
     element.dispatchEvent(new CompositionEvent('compositionstart', { bubbles: true, data: '' }));
     element.dispatchEvent(new CompositionEvent('compositionend', { bubbles: true, data: content }));
@@ -128,7 +132,7 @@ for (const language of ['en', 'es', 'fr', 'de', 'pt', 'it', 'ru', 'hi', 'ar', 'g
     await page.goto(`/learn?language=${language}`);
     const input = page.getByRole('textbox', { name: 'Type the practice text' });
     await expect(input).toBeVisible();
-    const text = await page.locator('[aria-label="Adaptive typing lesson"] div[aria-hidden="true"][dir]').textContent();
+    const text = await page.locator('[aria-label="Adaptive typing lesson"] .learn-stream-text').textContent();
     expect(text?.length).toBeGreaterThan(0);
     if (language === 'hi' || language === 'ar') {
       await input.evaluate((element, content) => {

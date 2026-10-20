@@ -7,7 +7,7 @@ const output = await mkdtemp(path.join(root, '.hosting-stage-'));
 await mkdir(path.join(output, 'public_html/api'), { recursive: true });
 await mkdir(path.join(output, 'sparowtype-private'), { recursive: true });
 await cp(path.join(root, 'dist'), path.join(output, 'public_html'), { recursive: true });
-for (const source of ['src', 'bin', 'public', 'bootstrap.php', 'config.example.php', 'schema.sql', 'UNICODE-LICENSE.txt', '.htaccess']) {
+for (const source of ['src', 'bin', 'public', 'resources', 'bootstrap.php', 'config.example.php', 'schema.sql', 'UNICODE-LICENSE.txt', '.htaccess']) {
   await cp(path.join(root, 'backend', source), path.join(output, 'sparowtype-private', source), { recursive: true });
 }
 await writeFile(path.join(output, 'public_html/api/index.php'), `<?php\ndeclare(strict_types=1);\nrequire dirname(__DIR__, 2).'/sparowtype-private/public/index.php';\n`);

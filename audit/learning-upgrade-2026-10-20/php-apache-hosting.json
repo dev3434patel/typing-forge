@@ -1,0 +1,124 @@
+{
+  "date": "2026-10-20T14:00:53.771Z",
+  "server": "isolated Apache2.4 + native mod_php8.2 + MariaDB PDO",
+  "build": {
+    "version": "06321d4a7fe5350a2f16",
+    "publicFiles": 94,
+    "bytes": 2564259
+  },
+  "checks": [
+    {
+      "route": "/",
+      "status": 200,
+      "spa": true,
+      "securityHeaders": true
+    },
+    {
+      "route": "/learn",
+      "status": 200,
+      "spa": true,
+      "securityHeaders": true
+    },
+    {
+      "route": "/lessons",
+      "status": 200,
+      "spa": true,
+      "securityHeaders": true
+    },
+    {
+      "route": "/race/ABC123",
+      "status": 200,
+      "spa": true,
+      "securityHeaders": true
+    },
+    {
+      "route": "/settings",
+      "status": 200,
+      "spa": true,
+      "securityHeaders": true
+    },
+    {
+      "route": "/assets/index-Cs0Srnvm.js",
+      "status": 200,
+      "correctMime": true,
+      "bytes": 161812
+    },
+    {
+      "route": "/assets/keyboard-layout-C21F3kj3.js",
+      "status": 200,
+      "correctMime": true,
+      "bytes": 983
+    },
+    {
+      "route": "/assets/App-iPFYmiqX.css",
+      "status": 200,
+      "correctMime": true,
+      "bytes": 122871
+    },
+    {
+      "route": "/api/health",
+      "status": 200,
+      "nativeBackend": true
+    },
+    {
+      "route": "/private-probe/schema.sql",
+      "status": 403,
+      "privateSourceExposed": false
+    },
+    {
+      "route": "/private-probe/config.example.php",
+      "status": 403,
+      "privateSourceExposed": false
+    },
+    {
+      "route": "/private-probe/config.php",
+      "status": 403,
+      "privateSourceExposed": false
+    },
+    {
+      "route": "/private-probe/src/AuthService.php",
+      "status": 403,
+      "privateSourceExposed": false
+    },
+    {
+      "route": "/private-probe/resources/typing-course-v1.json",
+      "status": 403,
+      "privateSourceExposed": false
+    },
+    {
+      "route": "/sparowtype-private/config.example.php",
+      "status": 200,
+      "privateSourceExposed": false
+    },
+    {
+      "route": "/index.html",
+      "status": 200,
+      "cacheControl": "no-cache"
+    },
+    {
+      "route": "/sw.js",
+      "status": 200,
+      "cacheControl": "no-cache"
+    },
+    {
+      "route": "/offline-build.json",
+      "status": 200,
+      "cacheControl": "no-cache"
+    },
+    {
+      "route": "/api/auth/session",
+      "status": 200,
+      "csrfPresent": true,
+      "httpOnlyCookie": true,
+      "noStore": true
+    },
+    {
+      "route": "/api/auth/signup",
+      "status": 403,
+      "missingCsrfBlocked": true
+    }
+  ],
+  "passed": 20,
+  "failed": 0,
+  "externalDeployment": false
+}

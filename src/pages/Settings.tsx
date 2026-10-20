@@ -273,6 +273,16 @@ export default function Settings() {
               "Pace guide",
               "Show your target pace during practice.",
             )}
+            {toggle(
+              "showKeyboard",
+              "Live keyboard",
+              "Show the keyboard below practice, including held keys, the next character and your actual input.",
+            )}
+            {toggle(
+              "showFingerGuide",
+              "Finger guide",
+              "Suggest a finger and opposite Shift from your selected reference layout. Finger placement is not detected.",
+            )}
             {toggle("sound", "Typing sound", "A subtle click. Off by default.")}
             {typeof AudioContext !== "function" && (
               <p role="status" className="mt-3 text-xs text-muted-foreground">

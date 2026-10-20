@@ -9,6 +9,16 @@ describe('local first versioned preference reconciliation',()=>{
 });
 
 describe('legacy theme preference migration', () => {
+  it('defaults both keyboard guides on, validates explicit choices and syncs them without overwriting newer edits', () => {
+    expect(validatePreferences({})).toMatchObject({showKeyboard:true,showFingerGuide:true});
+    expect(validatePreferences({showKeyboard:false,showFingerGuide:false})).toMatchObject({showKeyboard:false,showFingerGuide:false});
+    expect(validatePreferences({showKeyboard:'no',showFingerGuide:null})).toMatchObject({showKeyboard:true,showFingerGuide:true});
+    const entry={...local(),values:{...PREFERENCE_DEFAULTS,showKeyboard:false},pending:{showKeyboard:false,showFingerGuide:false}};
+    const merged=mergeCloudPreferences(entry,{preferences:{showKeyboard:true,showFingerGuide:true},version:3});
+    expect(merged.values).toMatchObject({showKeyboard:false,showFingerGuide:false});
+    const acknowledged=acknowledgePreferences(merged,{showFingerGuide:false},{preferences:{showKeyboard:true,showFingerGuide:false},version:4});
+    expect(acknowledged.pending).toEqual({showKeyboard:false});
+  });
   it('accepts the standard Workman layout in saved preferences', () => {
     expect(validatePreferences({layout:'workman'}).layout).toBe('workman');
   });

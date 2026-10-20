@@ -23,6 +23,7 @@ const CommandPalette = lazy(() =>
   })),
 );
 const Learn = lazy(() => import("./pages/Learn"));
+const Lessons = lazy(() => import("./pages/Lessons"));
 const Index = lazy(() => import("./pages/Index"));
 const Stats = lazy(() => import("./pages/Stats"));
 const Leaderboard = lazy(() => import("./pages/Leaderboard"));
@@ -133,6 +134,7 @@ export default function App() {
                   <Route path="/" element={<Index />} />
                   <Route path="/typing-test" element={<Index />} />
                   <Route path="/learn" element={<Learn />} />
+                  <Route path="/lessons" element={<Lessons />} />
                   <Route path="/typing-practice" element={<Learn />} />
                   <Route path="/practice" element={<Learn />} />
                   <Route path="/touch-typing" element={<TouchTyping />} />

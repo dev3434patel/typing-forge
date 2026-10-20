@@ -1,0 +1,866 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\extra\\typing_updated\\typing-forge\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "e2e/accessibility-audit.spec.ts",
+      "--workers=1",
+      "--retries=0",
+      "--reporter=list,json"
+    ],
+    "configFile": "D:\\extra\\typing_updated\\typing-forge\\playwright.config.ts",
+    "rootDir": "D:/extra/typing_updated/typing-forge/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "edge",
+        "name": "edge",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "edge",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36 Edg/156.0.8078.4",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium",
+          "channel": "msedge"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "edge"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "accessibility-audit.spec.ts",
+      "file": "accessibility-audit.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "existing guest pages and completed results meet automated accessibility rules at 390px",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7123,
+                  "error": {
+                    "message": "Error: / at 390px: [{\"id\":\"label-content-name-mismatch\",\"impact\":\"serious\",\"help\":\"Elements must have their visible text as part of their accessible name\",\"nodes\":[{\"target\":[\"button[aria-label=\\\"Finger guide\\\"]\"],\"failureSummary\":\"Fix any of the following:\\n  Text inside the element is not included in the accessible name\"}]}]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 16\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"help\": \"Elements must have their visible text as part of their accessible name\",\u001b[39m\n\u001b[31m+     \"id\": \"label-content-name-mismatch\",\u001b[39m\n\u001b[31m+     \"impact\": \"serious\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Text inside the element is not included in the accessible name\",\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"button[aria-label=\\\"Finger guide\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: / at 390px: [{\"id\":\"label-content-name-mismatch\",\"impact\":\"serious\",\"help\":\"Elements must have their visible text as part of their accessible name\",\"nodes\":[{\"target\":[\"button[aria-label=\\\"Finger guide\\\"]\"],\"failureSummary\":\"Fix any of the following:\\n  Text inside the element is not included in the accessible name\"}]}]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 16\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"help\": \"Elements must have their visible text as part of their accessible name\",\u001b[39m\n\u001b[31m+     \"id\": \"label-content-name-mismatch\",\u001b[39m\n\u001b[31m+     \"impact\": \"serious\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Text inside the element is not included in the accessible name\",\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"button[aria-label=\\\"Finger guide\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts:42:102",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts",
+                      "column": 102,
+                      "line": 42
+                    },
+                    "snippet": "  40 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: \"application/json\",\n  41 |       });\n> 42 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);\n     |                                                                                                      ^\n  43 |     }\n  44 |     await info.attach(\"automated-accessibility-scope\", {\n  45 |       body: JSON.stringify({ receipts, limitation: \"Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance.\" }, null, 2),"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts",
+                        "column": 102,
+                        "line": 42
+                      },
+                      "message": "Error: / at 390px: [{\"id\":\"label-content-name-mismatch\",\"impact\":\"serious\",\"help\":\"Elements must have their visible text as part of their accessible name\",\"nodes\":[{\"target\":[\"button[aria-label=\\\"Finger guide\\\"]\"],\"failureSummary\":\"Fix any of the following:\\n  Text inside the element is not included in the accessible name\"}]}]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 16\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"help\": \"Elements must have their visible text as part of their accessible name\",\u001b[39m\n\u001b[31m+     \"id\": \"label-content-name-mismatch\",\u001b[39m\n\u001b[31m+     \"impact\": \"serious\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Text inside the element is not included in the accessible name\",\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"button[aria-label=\\\"Finger guide\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  40 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: \"application/json\",\n  41 |       });\n> 42 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);\n     |                                                                                                      ^\n  43 |     }\n  44 |     await info.attach(\"automated-accessibility-scope\", {\n  45 |       body: JSON.stringify({ receipts, limitation: \"Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance.\" }, null, 2),\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts:42:102"
+                    },
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts",
+                        "column": 102,
+                        "line": 42
+                      },
+                      "message": "Error: /learn at 390px: [{\"id\":\"label-content-name-mismatch\",\"impact\":\"serious\",\"help\":\"Elements must have their visible text as part of their accessible name\",\"nodes\":[{\"target\":[\"button[aria-label=\\\"Finger guide\\\"]\"],\"failureSummary\":\"Fix any of the following:\\n  Text inside the element is not included in the accessible name\"}]}]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 16\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"help\": \"Elements must have their visible text as part of their accessible name\",\u001b[39m\n\u001b[31m+     \"id\": \"label-content-name-mismatch\",\u001b[39m\n\u001b[31m+     \"impact\": \"serious\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Text inside the element is not included in the accessible name\",\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"button[aria-label=\\\"Finger guide\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  40 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: \"application/json\",\n  41 |       });\n> 42 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);\n     |                                                                                                      ^\n  43 |     }\n  44 |     await info.attach(\"automated-accessibility-scope\", {\n  45 |       body: JSON.stringify({ receipts, limitation: \"Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance.\" }, null, 2),\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts:42:102"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T14:45:08.305Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "automated-accessibility-_",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbCiAgICB7CiAgICAgICJpZCI6ICJsYWJlbC1jb250ZW50LW5hbWUtbWlzbWF0Y2giLAogICAgICAiaW1wYWN0IjogInNlcmlvdXMiLAogICAgICAiaGVscCI6ICJFbGVtZW50cyBtdXN0IGhhdmUgdGhlaXIgdmlzaWJsZSB0ZXh0IGFzIHBhcnQgb2YgdGhlaXIgYWNjZXNzaWJsZSBuYW1lIiwKICAgICAgIm5vZGVzIjogWwogICAgICAgIHsKICAgICAgICAgICJ0YXJnZXQiOiBbCiAgICAgICAgICAgICJidXR0b25bYXJpYS1sYWJlbD1cIkZpbmdlciBndWlkZVwiXSIKICAgICAgICAgIF0sCiAgICAgICAgICAiZmFpbHVyZVN1bW1hcnkiOiAiRml4IGFueSBvZiB0aGUgZm9sbG93aW5nOlxuICBUZXh0IGluc2lkZSB0aGUgZWxlbWVudCBpcyBub3QgaW5jbHVkZWQgaW4gdGhlIGFjY2Vzc2libGUgbmFtZSIKICAgICAgICB9CiAgICAgIF0KICAgIH0KICBdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogNTMKICAgIH0KICBdLAogICJwYXNzZXMiOiAyOSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_learn",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhcm4iLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFsKICAgIHsKICAgICAgImlkIjogImxhYmVsLWNvbnRlbnQtbmFtZS1taXNtYXRjaCIsCiAgICAgICJpbXBhY3QiOiAic2VyaW91cyIsCiAgICAgICJoZWxwIjogIkVsZW1lbnRzIG11c3QgaGF2ZSB0aGVpciB2aXNpYmxlIHRleHQgYXMgcGFydCBvZiB0aGVpciBhY2Nlc3NpYmxlIG5hbWUiLAogICAgICAibm9kZXMiOiBbCiAgICAgICAgewogICAgICAgICAgInRhcmdldCI6IFsKICAgICAgICAgICAgImJ1dHRvblthcmlhLWxhYmVsPVwiRmluZ2VyIGd1aWRlXCJdIgogICAgICAgICAgXSwKICAgICAgICAgICJmYWlsdXJlU3VtbWFyeSI6ICJGaXggYW55IG9mIHRoZSBmb2xsb3dpbmc6XG4gIFRleHQgaW5zaWRlIHRoZSBlbGVtZW50IGlzIG5vdCBpbmNsdWRlZCBpbiB0aGUgYWNjZXNzaWJsZSBuYW1lIgogICAgICAgIH0KICAgICAgXQogICAgfQogIF0sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiA0MQogICAgfQogIF0sCiAgInBhc3NlcyI6IDMxLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_race",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFjZSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAzCiAgICB9CiAgXSwKICAicGFzc2VzIjogMjEsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_ranked",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFua2VkIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDMKICAgIH0KICBdLAogICJwYXNzZXMiOiAyMSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_stats",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc3RhdHMiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMwogICAgfSwKICAgIHsKICAgICAgImlkIjogImxhYmVsLWNvbnRlbnQtbmFtZS1taXNtYXRjaCIsCiAgICAgICJub2RlQ291bnQiOiAyNgogICAgfQogIF0sCiAgInBhc3NlcyI6IDIyLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_profile",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJvZmlsZSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAzCiAgICB9CiAgXSwKICAicGFzc2VzIjogMjMsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_leaderboard",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhZGVyYm9hcmQiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMwogICAgfQogIF0sCiAgInBhc3NlcyI6IDI0LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_settings",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc2V0dGluZ3MiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiYXJpYS1wcm9oaWJpdGVkLWF0dHIiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfSwKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDMKICAgIH0KICBdLAogICJwYXNzZXMiOiAyNywKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_auth",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYXV0aCIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMjEsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_keyboard-lab",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIva2V5Ym9hcmQtbGFiIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImFyaWEtcHJvaGliaXRlZC1hdHRyIiwKICAgICAgIm5vZGVDb3VudCI6IDEKICAgIH0sCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAyNAogICAgfSwKICAgIHsKICAgICAgImlkIjogInRoLWhhcy1kYXRhLWNlbGxzIiwKICAgICAgIm5vZGVDb3VudCI6IDEKICAgIH0KICBdLAogICJwYXNzZXMiOiAzMiwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_about",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYWJvdXQiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMwogICAgfQogIF0sCiAgInBhc3NlcyI6IDIxLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_privacy",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJpdmFjeSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAzCiAgICB9CiAgXSwKICAicGFzc2VzIjogMTksCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_terms",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdGVybXMiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMwogICAgfQogIF0sCiAgInBhc3NlcyI6IDE5LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_touch-typing",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdG91Y2gtdHlwaW5nIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDMKICAgIH0KICBdLAogICJwYXNzZXMiOiAyMSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_offline",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvb2ZmbGluZSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAzCiAgICB9CiAgXSwKICAicGFzc2VzIjogMjUsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_missing-page",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbWlzc2luZy1wYWdlIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDMKICAgIH0KICBdLAogICJwYXNzZXMiOiAxOSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-completed-results",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICJjb21wbGV0ZWQtcmVzdWx0cyIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiA5CiAgICB9CiAgXSwKICAicGFzc2VzIjogMjksCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-scope",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZWNlaXB0cyI6IFsKICAgIHsKICAgICAgInJvdXRlIjogIi8iLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJsYWJlbC1jb250ZW50LW5hbWUtbWlzbWF0Y2giLAogICAgICAgICAgImltcGFjdCI6ICJzZXJpb3VzIiwKICAgICAgICAgICJoZWxwIjogIkVsZW1lbnRzIG11c3QgaGF2ZSB0aGVpciB2aXNpYmxlIHRleHQgYXMgcGFydCBvZiB0aGVpciBhY2Nlc3NpYmxlIG5hbWUiLAogICAgICAgICAgIm5vZGVzIjogWwogICAgICAgICAgICB7CiAgICAgICAgICAgICAgInRhcmdldCI6IFsKICAgICAgICAgICAgICAgICJidXR0b25bYXJpYS1sYWJlbD1cIkZpbmdlciBndWlkZVwiXSIKICAgICAgICAgICAgICBdLAogICAgICAgICAgICAgICJmYWlsdXJlU3VtbWFyeSI6ICJGaXggYW55IG9mIHRoZSBmb2xsb3dpbmc6XG4gIFRleHQgaW5zaWRlIHRoZSBlbGVtZW50IGlzIG5vdCBpbmNsdWRlZCBpbiB0aGUgYWNjZXNzaWJsZSBuYW1lIgogICAgICAgICAgICB9CiAgICAgICAgICBdCiAgICAgICAgfQogICAgICBdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDUzCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjksCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvbGVhcm4iLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJsYWJlbC1jb250ZW50LW5hbWUtbWlzbWF0Y2giLAogICAgICAgICAgImltcGFjdCI6ICJzZXJpb3VzIiwKICAgICAgICAgICJoZWxwIjogIkVsZW1lbnRzIG11c3QgaGF2ZSB0aGVpciB2aXNpYmxlIHRleHQgYXMgcGFydCBvZiB0aGVpciBhY2Nlc3NpYmxlIG5hbWUiLAogICAgICAgICAgIm5vZGVzIjogWwogICAgICAgICAgICB7CiAgICAgICAgICAgICAgInRhcmdldCI6IFsKICAgICAgICAgICAgICAgICJidXR0b25bYXJpYS1sYWJlbD1cIkZpbmdlciBndWlkZVwiXSIKICAgICAgICAgICAgICBdLAogICAgICAgICAgICAgICJmYWlsdXJlU3VtbWFyeSI6ICJGaXggYW55IG9mIHRoZSBmb2xsb3dpbmc6XG4gIFRleHQgaW5zaWRlIHRoZSBlbGVtZW50IGlzIG5vdCBpbmNsdWRlZCBpbiB0aGUgYWNjZXNzaWJsZSBuYW1lIgogICAgICAgICAgICB9CiAgICAgICAgICBdCiAgICAgICAgfQogICAgICBdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDQxCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMzEsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvcmFjZSIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAzCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjEsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvcmFua2VkIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDMKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyMSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9zdGF0cyIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAzCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAibGFiZWwtY29udGVudC1uYW1lLW1pc21hdGNoIiwKICAgICAgICAgICJub2RlQ291bnQiOiAyNgogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDIyLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3Byb2ZpbGUiLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMwogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDIzLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL2xlYWRlcmJvYXJkIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDMKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyNCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9zZXR0aW5ncyIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImFyaWEtcHJvaGliaXRlZC1hdHRyIiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDMKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyNywKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9hdXRoIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMjEsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIva2V5Ym9hcmQtbGFiIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiYXJpYS1wcm9oaWJpdGVkLWF0dHIiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDEKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMjQKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJ0aC1oYXMtZGF0YS1jZWxscyIsCiAgICAgICAgICAibm9kZUNvdW50IjogMQogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDMyLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL2Fib3V0IiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDMKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyMSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9wcml2YWN5IiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDMKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAxOSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi90ZXJtcyIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAzCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMTksCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvdG91Y2gtdHlwaW5nIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDMKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyMSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9vZmZsaW5lIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDMKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyNSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9taXNzaW5nLXBhZ2UiLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMwogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDE5LAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiY29tcGxldGVkLXJlc3VsdHMiLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogOQogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDI5LAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9CiAgXSwKICAibGltaXRhdGlvbiI6ICJBdXRvbWF0ZWQgV0NBRy10YWdnZWQgY2hlY2tzIG9ubHkuIEluY29tcGxldGUgcnVsZXMgbmVlZCBtYW51YWwgcmV2aWV3OyB0aGlzIGRvZXMgbm90IGVzdGFibGlzaCBuYXRpdmUgc2NyZWVuLXJlYWRlciBvciBmdWxsIFdDQUcgY29uZm9ybWFuY2UuIgp9"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts",
+                    "column": 102,
+                    "line": 42
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "133fb274c06e7193ffc5-05d84d265c722b26dcc5",
+          "file": "accessibility-audit.spec.ts",
+          "line": 12,
+          "column": 3
+        },
+        {
+          "title": "existing guest pages and completed results meet automated accessibility rules at 1440px",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7550,
+                  "error": {
+                    "message": "Error: / at 1440px: [{\"id\":\"label-content-name-mismatch\",\"impact\":\"serious\",\"help\":\"Elements must have their visible text as part of their accessible name\",\"nodes\":[{\"target\":[\"button[aria-label=\\\"Finger guide\\\"]\"],\"failureSummary\":\"Fix any of the following:\\n  Text inside the element is not included in the accessible name\"}]}]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 16\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"help\": \"Elements must have their visible text as part of their accessible name\",\u001b[39m\n\u001b[31m+     \"id\": \"label-content-name-mismatch\",\u001b[39m\n\u001b[31m+     \"impact\": \"serious\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Text inside the element is not included in the accessible name\",\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"button[aria-label=\\\"Finger guide\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: / at 1440px: [{\"id\":\"label-content-name-mismatch\",\"impact\":\"serious\",\"help\":\"Elements must have their visible text as part of their accessible name\",\"nodes\":[{\"target\":[\"button[aria-label=\\\"Finger guide\\\"]\"],\"failureSummary\":\"Fix any of the following:\\n  Text inside the element is not included in the accessible name\"}]}]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 16\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"help\": \"Elements must have their visible text as part of their accessible name\",\u001b[39m\n\u001b[31m+     \"id\": \"label-content-name-mismatch\",\u001b[39m\n\u001b[31m+     \"impact\": \"serious\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Text inside the element is not included in the accessible name\",\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"button[aria-label=\\\"Finger guide\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts:42:102",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts",
+                      "column": 102,
+                      "line": 42
+                    },
+                    "snippet": "  40 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: \"application/json\",\n  41 |       });\n> 42 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);\n     |                                                                                                      ^\n  43 |     }\n  44 |     await info.attach(\"automated-accessibility-scope\", {\n  45 |       body: JSON.stringify({ receipts, limitation: \"Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance.\" }, null, 2),"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts",
+                        "column": 102,
+                        "line": 42
+                      },
+                      "message": "Error: / at 1440px: [{\"id\":\"label-content-name-mismatch\",\"impact\":\"serious\",\"help\":\"Elements must have their visible text as part of their accessible name\",\"nodes\":[{\"target\":[\"button[aria-label=\\\"Finger guide\\\"]\"],\"failureSummary\":\"Fix any of the following:\\n  Text inside the element is not included in the accessible name\"}]}]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 16\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"help\": \"Elements must have their visible text as part of their accessible name\",\u001b[39m\n\u001b[31m+     \"id\": \"label-content-name-mismatch\",\u001b[39m\n\u001b[31m+     \"impact\": \"serious\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Text inside the element is not included in the accessible name\",\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"button[aria-label=\\\"Finger guide\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  40 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: \"application/json\",\n  41 |       });\n> 42 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);\n     |                                                                                                      ^\n  43 |     }\n  44 |     await info.attach(\"automated-accessibility-scope\", {\n  45 |       body: JSON.stringify({ receipts, limitation: \"Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance.\" }, null, 2),\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts:42:102"
+                    },
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts",
+                        "column": 102,
+                        "line": 42
+                      },
+                      "message": "Error: /learn at 1440px: [{\"id\":\"label-content-name-mismatch\",\"impact\":\"serious\",\"help\":\"Elements must have their visible text as part of their accessible name\",\"nodes\":[{\"target\":[\"button[aria-label=\\\"Finger guide\\\"]\"],\"failureSummary\":\"Fix any of the following:\\n  Text inside the element is not included in the accessible name\"}]}]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 16\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"help\": \"Elements must have their visible text as part of their accessible name\",\u001b[39m\n\u001b[31m+     \"id\": \"label-content-name-mismatch\",\u001b[39m\n\u001b[31m+     \"impact\": \"serious\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Text inside the element is not included in the accessible name\",\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"button[aria-label=\\\"Finger guide\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  40 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: \"application/json\",\n  41 |       });\n> 42 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);\n     |                                                                                                      ^\n  43 |     }\n  44 |     await info.attach(\"automated-accessibility-scope\", {\n  45 |       body: JSON.stringify({ receipts, limitation: \"Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance.\" }, null, 2),\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts:42:102"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T14:45:17.027Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "automated-accessibility-_",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogWwogICAgewogICAgICAiaWQiOiAibGFiZWwtY29udGVudC1uYW1lLW1pc21hdGNoIiwKICAgICAgImltcGFjdCI6ICJzZXJpb3VzIiwKICAgICAgImhlbHAiOiAiRWxlbWVudHMgbXVzdCBoYXZlIHRoZWlyIHZpc2libGUgdGV4dCBhcyBwYXJ0IG9mIHRoZWlyIGFjY2Vzc2libGUgbmFtZSIsCiAgICAgICJub2RlcyI6IFsKICAgICAgICB7CiAgICAgICAgICAidGFyZ2V0IjogWwogICAgICAgICAgICAiYnV0dG9uW2FyaWEtbGFiZWw9XCJGaW5nZXIgZ3VpZGVcIl0iCiAgICAgICAgICBdLAogICAgICAgICAgImZhaWx1cmVTdW1tYXJ5IjogIkZpeCBhbnkgb2YgdGhlIGZvbGxvd2luZzpcbiAgVGV4dCBpbnNpZGUgdGhlIGVsZW1lbnQgaXMgbm90IGluY2x1ZGVkIGluIHRoZSBhY2Nlc3NpYmxlIG5hbWUiCiAgICAgICAgfQogICAgICBdCiAgICB9CiAgXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDE3MgogICAgfQogIF0sCiAgInBhc3NlcyI6IDI4LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_learn",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhcm4iLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbCiAgICB7CiAgICAgICJpZCI6ICJsYWJlbC1jb250ZW50LW5hbWUtbWlzbWF0Y2giLAogICAgICAiaW1wYWN0IjogInNlcmlvdXMiLAogICAgICAiaGVscCI6ICJFbGVtZW50cyBtdXN0IGhhdmUgdGhlaXIgdmlzaWJsZSB0ZXh0IGFzIHBhcnQgb2YgdGhlaXIgYWNjZXNzaWJsZSBuYW1lIiwKICAgICAgIm5vZGVzIjogWwogICAgICAgIHsKICAgICAgICAgICJ0YXJnZXQiOiBbCiAgICAgICAgICAgICJidXR0b25bYXJpYS1sYWJlbD1cIkZpbmdlciBndWlkZVwiXSIKICAgICAgICAgIF0sCiAgICAgICAgICAiZmFpbHVyZVN1bW1hcnkiOiAiRml4IGFueSBvZiB0aGUgZm9sbG93aW5nOlxuICBUZXh0IGluc2lkZSB0aGUgZWxlbWVudCBpcyBub3QgaW5jbHVkZWQgaW4gdGhlIGFjY2Vzc2libGUgbmFtZSIKICAgICAgICB9CiAgICAgIF0KICAgIH0KICBdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMzMKICAgIH0KICBdLAogICJwYXNzZXMiOiAzMCwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_race",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFjZSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDIwLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_ranked",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFua2VkIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMjAsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_stats",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc3RhdHMiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImxhYmVsLWNvbnRlbnQtbmFtZS1taXNtYXRjaCIsCiAgICAgICJub2RlQ291bnQiOiAyNgogICAgfQogIF0sCiAgInBhc3NlcyI6IDIxLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_profile",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJvZmlsZSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDIyLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_leaderboard",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhZGVyYm9hcmQiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFtdLAogICJwYXNzZXMiOiAyMywKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_settings",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc2V0dGluZ3MiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImFyaWEtcHJvaGliaXRlZC1hdHRyIiwKICAgICAgIm5vZGVDb3VudCI6IDIKICAgIH0KICBdLAogICJwYXNzZXMiOiAyNiwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_auth",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYXV0aCIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDIxLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_keyboard-lab",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIva2V5Ym9hcmQtbGFiIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJhcmlhLXByb2hpYml0ZWQtYXR0ciIsCiAgICAgICJub2RlQ291bnQiOiAxCiAgICB9LAogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfSwKICAgIHsKICAgICAgImlkIjogInRoLWhhcy1kYXRhLWNlbGxzIiwKICAgICAgIm5vZGVDb3VudCI6IDEKICAgIH0KICBdLAogICJwYXNzZXMiOiAzMSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_about",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYWJvdXQiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFtdLAogICJwYXNzZXMiOiAyMCwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_privacy",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJpdmFjeSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDE4LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_terms",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdGVybXMiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFtdLAogICJwYXNzZXMiOiAxOCwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_touch-typing",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdG91Y2gtdHlwaW5nIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMjAsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_offline",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvb2ZmbGluZSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDI0LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_missing-page",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbWlzc2luZy1wYWdlIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMTgsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-completed-results",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICJjb21wbGV0ZWQtcmVzdWx0cyIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogNgogICAgfQogIF0sCiAgInBhc3NlcyI6IDI4LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-scope",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZWNlaXB0cyI6IFsKICAgIHsKICAgICAgInJvdXRlIjogIi8iLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAibGFiZWwtY29udGVudC1uYW1lLW1pc21hdGNoIiwKICAgICAgICAgICJpbXBhY3QiOiAic2VyaW91cyIsCiAgICAgICAgICAiaGVscCI6ICJFbGVtZW50cyBtdXN0IGhhdmUgdGhlaXIgdmlzaWJsZSB0ZXh0IGFzIHBhcnQgb2YgdGhlaXIgYWNjZXNzaWJsZSBuYW1lIiwKICAgICAgICAgICJub2RlcyI6IFsKICAgICAgICAgICAgewogICAgICAgICAgICAgICJ0YXJnZXQiOiBbCiAgICAgICAgICAgICAgICAiYnV0dG9uW2FyaWEtbGFiZWw9XCJGaW5nZXIgZ3VpZGVcIl0iCiAgICAgICAgICAgICAgXSwKICAgICAgICAgICAgICAiZmFpbHVyZVN1bW1hcnkiOiAiRml4IGFueSBvZiB0aGUgZm9sbG93aW5nOlxuICBUZXh0IGluc2lkZSB0aGUgZWxlbWVudCBpcyBub3QgaW5jbHVkZWQgaW4gdGhlIGFjY2Vzc2libGUgbmFtZSIKICAgICAgICAgICAgfQogICAgICAgICAgXQogICAgICAgIH0KICAgICAgXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAxNzIKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyOCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9sZWFybiIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJsYWJlbC1jb250ZW50LW5hbWUtbWlzbWF0Y2giLAogICAgICAgICAgImltcGFjdCI6ICJzZXJpb3VzIiwKICAgICAgICAgICJoZWxwIjogIkVsZW1lbnRzIG11c3QgaGF2ZSB0aGVpciB2aXNpYmxlIHRleHQgYXMgcGFydCBvZiB0aGVpciBhY2Nlc3NpYmxlIG5hbWUiLAogICAgICAgICAgIm5vZGVzIjogWwogICAgICAgICAgICB7CiAgICAgICAgICAgICAgInRhcmdldCI6IFsKICAgICAgICAgICAgICAgICJidXR0b25bYXJpYS1sYWJlbD1cIkZpbmdlciBndWlkZVwiXSIKICAgICAgICAgICAgICBdLAogICAgICAgICAgICAgICJmYWlsdXJlU3VtbWFyeSI6ICJGaXggYW55IG9mIHRoZSBmb2xsb3dpbmc6XG4gIFRleHQgaW5zaWRlIHRoZSBlbGVtZW50IGlzIG5vdCBpbmNsdWRlZCBpbiB0aGUgYWNjZXNzaWJsZSBuYW1lIgogICAgICAgICAgICB9CiAgICAgICAgICBdCiAgICAgICAgfQogICAgICBdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDMzCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMzAsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvcmFjZSIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAyMCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9yYW5rZWQiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMjAsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvc3RhdHMiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAibGFiZWwtY29udGVudC1uYW1lLW1pc21hdGNoIiwKICAgICAgICAgICJub2RlQ291bnQiOiAyNgogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDIxLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3Byb2ZpbGUiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMjIsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvbGVhZGVyYm9hcmQiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMjMsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvc2V0dGluZ3MiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiYXJpYS1wcm9oaWJpdGVkLWF0dHIiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDIKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyNiwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9hdXRoIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDIxLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL2tleWJvYXJkLWxhYiIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJhcmlhLXByb2hpYml0ZWQtYXR0ciIsCiAgICAgICAgICAibm9kZUNvdW50IjogMQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAidGgtaGFzLWRhdGEtY2VsbHMiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDEKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAzMSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9hYm91dCIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAyMCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9wcml2YWN5IiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDE4LAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3Rlcm1zIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDE4LAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3RvdWNoLXR5cGluZyIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAyMCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9vZmZsaW5lIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDI0LAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL21pc3NpbmctcGFnZSIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAxOCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogImNvbXBsZXRlZC1yZXN1bHRzIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiA2CiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjgsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0KICBdLAogICJsaW1pdGF0aW9uIjogIkF1dG9tYXRlZCBXQ0FHLXRhZ2dlZCBjaGVja3Mgb25seS4gSW5jb21wbGV0ZSBydWxlcyBuZWVkIG1hbnVhbCByZXZpZXc7IHRoaXMgZG9lcyBub3QgZXN0YWJsaXNoIG5hdGl2ZSBzY3JlZW4tcmVhZGVyIG9yIGZ1bGwgV0NBRyBjb25mb3JtYW5jZS4iCn0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts",
+                    "column": 102,
+                    "line": 42
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "133fb274c06e7193ffc5-75a63ad994d07852d843",
+          "file": "accessibility-audit.spec.ts",
+          "line": 12,
+          "column": 3
+        },
+        {
+          "title": "existing guest pages and completed results meet automated accessibility rules at 390px",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7701,
+                  "error": {
+                    "message": "Error: / at 390px: [{\"id\":\"label-content-name-mismatch\",\"impact\":\"serious\",\"help\":\"Elements must have their visible text as part of their accessible name\",\"nodes\":[{\"target\":[\"button[aria-label=\\\"Finger guide\\\"]\"],\"failureSummary\":\"Fix any of the following:\\n  Text inside the element is not included in the accessible name\"}]}]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 16\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"help\": \"Elements must have their visible text as part of their accessible name\",\u001b[39m\n\u001b[31m+     \"id\": \"label-content-name-mismatch\",\u001b[39m\n\u001b[31m+     \"impact\": \"serious\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Text inside the element is not included in the accessible name\",\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"button[aria-label=\\\"Finger guide\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: / at 390px: [{\"id\":\"label-content-name-mismatch\",\"impact\":\"serious\",\"help\":\"Elements must have their visible text as part of their accessible name\",\"nodes\":[{\"target\":[\"button[aria-label=\\\"Finger guide\\\"]\"],\"failureSummary\":\"Fix any of the following:\\n  Text inside the element is not included in the accessible name\"}]}]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 16\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"help\": \"Elements must have their visible text as part of their accessible name\",\u001b[39m\n\u001b[31m+     \"id\": \"label-content-name-mismatch\",\u001b[39m\n\u001b[31m+     \"impact\": \"serious\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Text inside the element is not included in the accessible name\",\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"button[aria-label=\\\"Finger guide\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts:42:102",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts",
+                      "column": 102,
+                      "line": 42
+                    },
+                    "snippet": "  40 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: \"application/json\",\n  41 |       });\n> 42 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);\n     |                                                                                                      ^\n  43 |     }\n  44 |     await info.attach(\"automated-accessibility-scope\", {\n  45 |       body: JSON.stringify({ receipts, limitation: \"Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance.\" }, null, 2),"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts",
+                        "column": 102,
+                        "line": 42
+                      },
+                      "message": "Error: / at 390px: [{\"id\":\"label-content-name-mismatch\",\"impact\":\"serious\",\"help\":\"Elements must have their visible text as part of their accessible name\",\"nodes\":[{\"target\":[\"button[aria-label=\\\"Finger guide\\\"]\"],\"failureSummary\":\"Fix any of the following:\\n  Text inside the element is not included in the accessible name\"}]}]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 16\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"help\": \"Elements must have their visible text as part of their accessible name\",\u001b[39m\n\u001b[31m+     \"id\": \"label-content-name-mismatch\",\u001b[39m\n\u001b[31m+     \"impact\": \"serious\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Text inside the element is not included in the accessible name\",\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"button[aria-label=\\\"Finger guide\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  40 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: \"application/json\",\n  41 |       });\n> 42 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);\n     |                                                                                                      ^\n  43 |     }\n  44 |     await info.attach(\"automated-accessibility-scope\", {\n  45 |       body: JSON.stringify({ receipts, limitation: \"Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance.\" }, null, 2),\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts:42:102"
+                    },
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts",
+                        "column": 102,
+                        "line": 42
+                      },
+                      "message": "Error: /learn at 390px: [{\"id\":\"label-content-name-mismatch\",\"impact\":\"serious\",\"help\":\"Elements must have their visible text as part of their accessible name\",\"nodes\":[{\"target\":[\"button[aria-label=\\\"Finger guide\\\"]\"],\"failureSummary\":\"Fix any of the following:\\n  Text inside the element is not included in the accessible name\"}]}]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 16\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"help\": \"Elements must have their visible text as part of their accessible name\",\u001b[39m\n\u001b[31m+     \"id\": \"label-content-name-mismatch\",\u001b[39m\n\u001b[31m+     \"impact\": \"serious\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Text inside the element is not included in the accessible name\",\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"button[aria-label=\\\"Finger guide\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  40 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: \"application/json\",\n  41 |       });\n> 42 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);\n     |                                                                                                      ^\n  43 |     }\n  44 |     await info.attach(\"automated-accessibility-scope\", {\n  45 |       body: JSON.stringify({ receipts, limitation: \"Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance.\" }, null, 2),\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts:42:102"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T14:45:26.093Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "automated-accessibility-_",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbCiAgICB7CiAgICAgICJpZCI6ICJsYWJlbC1jb250ZW50LW5hbWUtbWlzbWF0Y2giLAogICAgICAiaW1wYWN0IjogInNlcmlvdXMiLAogICAgICAiaGVscCI6ICJFbGVtZW50cyBtdXN0IGhhdmUgdGhlaXIgdmlzaWJsZSB0ZXh0IGFzIHBhcnQgb2YgdGhlaXIgYWNjZXNzaWJsZSBuYW1lIiwKICAgICAgIm5vZGVzIjogWwogICAgICAgIHsKICAgICAgICAgICJ0YXJnZXQiOiBbCiAgICAgICAgICAgICJidXR0b25bYXJpYS1sYWJlbD1cIkZpbmdlciBndWlkZVwiXSIKICAgICAgICAgIF0sCiAgICAgICAgICAiZmFpbHVyZVN1bW1hcnkiOiAiRml4IGFueSBvZiB0aGUgZm9sbG93aW5nOlxuICBUZXh0IGluc2lkZSB0aGUgZWxlbWVudCBpcyBub3QgaW5jbHVkZWQgaW4gdGhlIGFjY2Vzc2libGUgbmFtZSIKICAgICAgICB9CiAgICAgIF0KICAgIH0KICBdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogNTMKICAgIH0KICBdLAogICJwYXNzZXMiOiAyOSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_learn",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhcm4iLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFsKICAgIHsKICAgICAgImlkIjogImxhYmVsLWNvbnRlbnQtbmFtZS1taXNtYXRjaCIsCiAgICAgICJpbXBhY3QiOiAic2VyaW91cyIsCiAgICAgICJoZWxwIjogIkVsZW1lbnRzIG11c3QgaGF2ZSB0aGVpciB2aXNpYmxlIHRleHQgYXMgcGFydCBvZiB0aGVpciBhY2Nlc3NpYmxlIG5hbWUiLAogICAgICAibm9kZXMiOiBbCiAgICAgICAgewogICAgICAgICAgInRhcmdldCI6IFsKICAgICAgICAgICAgImJ1dHRvblthcmlhLWxhYmVsPVwiRmluZ2VyIGd1aWRlXCJdIgogICAgICAgICAgXSwKICAgICAgICAgICJmYWlsdXJlU3VtbWFyeSI6ICJGaXggYW55IG9mIHRoZSBmb2xsb3dpbmc6XG4gIFRleHQgaW5zaWRlIHRoZSBlbGVtZW50IGlzIG5vdCBpbmNsdWRlZCBpbiB0aGUgYWNjZXNzaWJsZSBuYW1lIgogICAgICAgIH0KICAgICAgXQogICAgfQogIF0sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiA0MQogICAgfQogIF0sCiAgInBhc3NlcyI6IDMxLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_race",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFjZSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAzCiAgICB9CiAgXSwKICAicGFzc2VzIjogMjEsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_ranked",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFua2VkIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDMKICAgIH0KICBdLAogICJwYXNzZXMiOiAyMSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_stats",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc3RhdHMiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMwogICAgfSwKICAgIHsKICAgICAgImlkIjogImxhYmVsLWNvbnRlbnQtbmFtZS1taXNtYXRjaCIsCiAgICAgICJub2RlQ291bnQiOiAyNgogICAgfQogIF0sCiAgInBhc3NlcyI6IDIyLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_profile",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJvZmlsZSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAzCiAgICB9CiAgXSwKICAicGFzc2VzIjogMjMsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_leaderboard",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhZGVyYm9hcmQiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMwogICAgfQogIF0sCiAgInBhc3NlcyI6IDI0LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_settings",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc2V0dGluZ3MiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiYXJpYS1wcm9oaWJpdGVkLWF0dHIiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfSwKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDMKICAgIH0KICBdLAogICJwYXNzZXMiOiAyNywKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_auth",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYXV0aCIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMjEsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_keyboard-lab",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIva2V5Ym9hcmQtbGFiIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImFyaWEtcHJvaGliaXRlZC1hdHRyIiwKICAgICAgIm5vZGVDb3VudCI6IDEKICAgIH0sCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAyNAogICAgfSwKICAgIHsKICAgICAgImlkIjogInRoLWhhcy1kYXRhLWNlbGxzIiwKICAgICAgIm5vZGVDb3VudCI6IDEKICAgIH0KICBdLAogICJwYXNzZXMiOiAzMiwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_about",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYWJvdXQiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMwogICAgfQogIF0sCiAgInBhc3NlcyI6IDIxLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_privacy",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJpdmFjeSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAzCiAgICB9CiAgXSwKICAicGFzc2VzIjogMTksCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_terms",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdGVybXMiLAogICJ3aWR0aCI6IDM5MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMwogICAgfQogIF0sCiAgInBhc3NlcyI6IDE5LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_touch-typing",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdG91Y2gtdHlwaW5nIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDMKICAgIH0KICBdLAogICJwYXNzZXMiOiAyMSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_offline",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvb2ZmbGluZSIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiAzCiAgICB9CiAgXSwKICAicGFzc2VzIjogMjUsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_missing-page",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbWlzc2luZy1wYWdlIiwKICAid2lkdGgiOiAzOTAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDMKICAgIH0KICBdLAogICJwYXNzZXMiOiAxOSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-completed-results",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICJjb21wbGV0ZWQtcmVzdWx0cyIsCiAgIndpZHRoIjogMzkwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICJub2RlQ291bnQiOiA5CiAgICB9CiAgXSwKICAicGFzc2VzIjogMjksCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-scope",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZWNlaXB0cyI6IFsKICAgIHsKICAgICAgInJvdXRlIjogIi8iLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJsYWJlbC1jb250ZW50LW5hbWUtbWlzbWF0Y2giLAogICAgICAgICAgImltcGFjdCI6ICJzZXJpb3VzIiwKICAgICAgICAgICJoZWxwIjogIkVsZW1lbnRzIG11c3QgaGF2ZSB0aGVpciB2aXNpYmxlIHRleHQgYXMgcGFydCBvZiB0aGVpciBhY2Nlc3NpYmxlIG5hbWUiLAogICAgICAgICAgIm5vZGVzIjogWwogICAgICAgICAgICB7CiAgICAgICAgICAgICAgInRhcmdldCI6IFsKICAgICAgICAgICAgICAgICJidXR0b25bYXJpYS1sYWJlbD1cIkZpbmdlciBndWlkZVwiXSIKICAgICAgICAgICAgICBdLAogICAgICAgICAgICAgICJmYWlsdXJlU3VtbWFyeSI6ICJGaXggYW55IG9mIHRoZSBmb2xsb3dpbmc6XG4gIFRleHQgaW5zaWRlIHRoZSBlbGVtZW50IGlzIG5vdCBpbmNsdWRlZCBpbiB0aGUgYWNjZXNzaWJsZSBuYW1lIgogICAgICAgICAgICB9CiAgICAgICAgICBdCiAgICAgICAgfQogICAgICBdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDUzCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjksCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvbGVhcm4iLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJsYWJlbC1jb250ZW50LW5hbWUtbWlzbWF0Y2giLAogICAgICAgICAgImltcGFjdCI6ICJzZXJpb3VzIiwKICAgICAgICAgICJoZWxwIjogIkVsZW1lbnRzIG11c3QgaGF2ZSB0aGVpciB2aXNpYmxlIHRleHQgYXMgcGFydCBvZiB0aGVpciBhY2Nlc3NpYmxlIG5hbWUiLAogICAgICAgICAgIm5vZGVzIjogWwogICAgICAgICAgICB7CiAgICAgICAgICAgICAgInRhcmdldCI6IFsKICAgICAgICAgICAgICAgICJidXR0b25bYXJpYS1sYWJlbD1cIkZpbmdlciBndWlkZVwiXSIKICAgICAgICAgICAgICBdLAogICAgICAgICAgICAgICJmYWlsdXJlU3VtbWFyeSI6ICJGaXggYW55IG9mIHRoZSBmb2xsb3dpbmc6XG4gIFRleHQgaW5zaWRlIHRoZSBlbGVtZW50IGlzIG5vdCBpbmNsdWRlZCBpbiB0aGUgYWNjZXNzaWJsZSBuYW1lIgogICAgICAgICAgICB9CiAgICAgICAgICBdCiAgICAgICAgfQogICAgICBdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDQxCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMzEsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvcmFjZSIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAzCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjEsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvcmFua2VkIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDMKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyMSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9zdGF0cyIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAzCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAibGFiZWwtY29udGVudC1uYW1lLW1pc21hdGNoIiwKICAgICAgICAgICJub2RlQ291bnQiOiAyNgogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDIyLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3Byb2ZpbGUiLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMwogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDIzLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL2xlYWRlcmJvYXJkIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDMKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyNCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9zZXR0aW5ncyIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImFyaWEtcHJvaGliaXRlZC1hdHRyIiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDMKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyNywKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9hdXRoIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMjEsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIva2V5Ym9hcmQtbGFiIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiYXJpYS1wcm9oaWJpdGVkLWF0dHIiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDEKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMjQKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJ0aC1oYXMtZGF0YS1jZWxscyIsCiAgICAgICAgICAibm9kZUNvdW50IjogMQogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDMyLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL2Fib3V0IiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDMKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyMSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9wcml2YWN5IiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDMKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAxOSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi90ZXJtcyIsCiAgICAgICJ3aWR0aCI6IDM5MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAzCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMTksCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvdG91Y2gtdHlwaW5nIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDMKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyMSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9vZmZsaW5lIiwKICAgICAgIndpZHRoIjogMzkwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDMKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyNSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9taXNzaW5nLXBhZ2UiLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogMwogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDE5LAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiY29tcGxldGVkLXJlc3VsdHMiLAogICAgICAid2lkdGgiOiAzOTAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJjb2xvci1jb250cmFzdCIsCiAgICAgICAgICAibm9kZUNvdW50IjogOQogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDI5LAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9CiAgXSwKICAibGltaXRhdGlvbiI6ICJBdXRvbWF0ZWQgV0NBRy10YWdnZWQgY2hlY2tzIG9ubHkuIEluY29tcGxldGUgcnVsZXMgbmVlZCBtYW51YWwgcmV2aWV3OyB0aGlzIGRvZXMgbm90IGVzdGFibGlzaCBuYXRpdmUgc2NyZWVuLXJlYWRlciBvciBmdWxsIFdDQUcgY29uZm9ybWFuY2UuIgp9"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-edge\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-edge\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-edge\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts",
+                    "column": 102,
+                    "line": 42
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "133fb274c06e7193ffc5-16cdd3257c953912dd13",
+          "file": "accessibility-audit.spec.ts",
+          "line": 12,
+          "column": 3
+        },
+        {
+          "title": "existing guest pages and completed results meet automated accessibility rules at 1440px",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "edge",
+              "projectName": "edge",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 8137,
+                  "error": {
+                    "message": "Error: / at 1440px: [{\"id\":\"label-content-name-mismatch\",\"impact\":\"serious\",\"help\":\"Elements must have their visible text as part of their accessible name\",\"nodes\":[{\"target\":[\"button[aria-label=\\\"Finger guide\\\"]\"],\"failureSummary\":\"Fix any of the following:\\n  Text inside the element is not included in the accessible name\"}]}]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 16\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"help\": \"Elements must have their visible text as part of their accessible name\",\u001b[39m\n\u001b[31m+     \"id\": \"label-content-name-mismatch\",\u001b[39m\n\u001b[31m+     \"impact\": \"serious\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Text inside the element is not included in the accessible name\",\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"button[aria-label=\\\"Finger guide\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: / at 1440px: [{\"id\":\"label-content-name-mismatch\",\"impact\":\"serious\",\"help\":\"Elements must have their visible text as part of their accessible name\",\"nodes\":[{\"target\":[\"button[aria-label=\\\"Finger guide\\\"]\"],\"failureSummary\":\"Fix any of the following:\\n  Text inside the element is not included in the accessible name\"}]}]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 16\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"help\": \"Elements must have their visible text as part of their accessible name\",\u001b[39m\n\u001b[31m+     \"id\": \"label-content-name-mismatch\",\u001b[39m\n\u001b[31m+     \"impact\": \"serious\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Text inside the element is not included in the accessible name\",\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"button[aria-label=\\\"Finger guide\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts:42:102",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts",
+                      "column": 102,
+                      "line": 42
+                    },
+                    "snippet": "  40 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: \"application/json\",\n  41 |       });\n> 42 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);\n     |                                                                                                      ^\n  43 |     }\n  44 |     await info.attach(\"automated-accessibility-scope\", {\n  45 |       body: JSON.stringify({ receipts, limitation: \"Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance.\" }, null, 2),"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts",
+                        "column": 102,
+                        "line": 42
+                      },
+                      "message": "Error: / at 1440px: [{\"id\":\"label-content-name-mismatch\",\"impact\":\"serious\",\"help\":\"Elements must have their visible text as part of their accessible name\",\"nodes\":[{\"target\":[\"button[aria-label=\\\"Finger guide\\\"]\"],\"failureSummary\":\"Fix any of the following:\\n  Text inside the element is not included in the accessible name\"}]}]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 16\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"help\": \"Elements must have their visible text as part of their accessible name\",\u001b[39m\n\u001b[31m+     \"id\": \"label-content-name-mismatch\",\u001b[39m\n\u001b[31m+     \"impact\": \"serious\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Text inside the element is not included in the accessible name\",\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"button[aria-label=\\\"Finger guide\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  40 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: \"application/json\",\n  41 |       });\n> 42 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);\n     |                                                                                                      ^\n  43 |     }\n  44 |     await info.attach(\"automated-accessibility-scope\", {\n  45 |       body: JSON.stringify({ receipts, limitation: \"Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance.\" }, null, 2),\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts:42:102"
+                    },
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts",
+                        "column": 102,
+                        "line": 42
+                      },
+                      "message": "Error: /learn at 1440px: [{\"id\":\"label-content-name-mismatch\",\"impact\":\"serious\",\"help\":\"Elements must have their visible text as part of their accessible name\",\"nodes\":[{\"target\":[\"button[aria-label=\\\"Finger guide\\\"]\"],\"failureSummary\":\"Fix any of the following:\\n  Text inside the element is not included in the accessible name\"}]}]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 16\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"help\": \"Elements must have their visible text as part of their accessible name\",\u001b[39m\n\u001b[31m+     \"id\": \"label-content-name-mismatch\",\u001b[39m\n\u001b[31m+     \"impact\": \"serious\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Text inside the element is not included in the accessible name\",\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"button[aria-label=\\\"Finger guide\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  40 |         body: JSON.stringify(receipts.at(-1), null, 2), contentType: \"application/json\",\n  41 |       });\n> 42 |       expect.soft(result.violations, `${route} at ${width}px: ${JSON.stringify(result.violations)}`).toEqual([]);\n     |                                                                                                      ^\n  43 |     }\n  44 |     await info.attach(\"automated-accessibility-scope\", {\n  45 |       body: JSON.stringify({ receipts, limitation: \"Automated WCAG-tagged checks only. Incomplete rules need manual review; this does not establish native screen-reader or full WCAG conformance.\" }, null, 2),\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts:42:102"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T14:45:36.039Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "automated-accessibility-_",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogWwogICAgewogICAgICAiaWQiOiAibGFiZWwtY29udGVudC1uYW1lLW1pc21hdGNoIiwKICAgICAgImltcGFjdCI6ICJzZXJpb3VzIiwKICAgICAgImhlbHAiOiAiRWxlbWVudHMgbXVzdCBoYXZlIHRoZWlyIHZpc2libGUgdGV4dCBhcyBwYXJ0IG9mIHRoZWlyIGFjY2Vzc2libGUgbmFtZSIsCiAgICAgICJub2RlcyI6IFsKICAgICAgICB7CiAgICAgICAgICAidGFyZ2V0IjogWwogICAgICAgICAgICAiYnV0dG9uW2FyaWEtbGFiZWw9XCJGaW5nZXIgZ3VpZGVcIl0iCiAgICAgICAgICBdLAogICAgICAgICAgImZhaWx1cmVTdW1tYXJ5IjogIkZpeCBhbnkgb2YgdGhlIGZvbGxvd2luZzpcbiAgVGV4dCBpbnNpZGUgdGhlIGVsZW1lbnQgaXMgbm90IGluY2x1ZGVkIGluIHRoZSBhY2Nlc3NpYmxlIG5hbWUiCiAgICAgICAgfQogICAgICBdCiAgICB9CiAgXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgIm5vZGVDb3VudCI6IDE2NQogICAgfQogIF0sCiAgInBhc3NlcyI6IDI4LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_learn",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhcm4iLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbCiAgICB7CiAgICAgICJpZCI6ICJsYWJlbC1jb250ZW50LW5hbWUtbWlzbWF0Y2giLAogICAgICAiaW1wYWN0IjogInNlcmlvdXMiLAogICAgICAiaGVscCI6ICJFbGVtZW50cyBtdXN0IGhhdmUgdGhlaXIgdmlzaWJsZSB0ZXh0IGFzIHBhcnQgb2YgdGhlaXIgYWNjZXNzaWJsZSBuYW1lIiwKICAgICAgIm5vZGVzIjogWwogICAgICAgIHsKICAgICAgICAgICJ0YXJnZXQiOiBbCiAgICAgICAgICAgICJidXR0b25bYXJpYS1sYWJlbD1cIkZpbmdlciBndWlkZVwiXSIKICAgICAgICAgIF0sCiAgICAgICAgICAiZmFpbHVyZVN1bW1hcnkiOiAiRml4IGFueSBvZiB0aGUgZm9sbG93aW5nOlxuICBUZXh0IGluc2lkZSB0aGUgZWxlbWVudCBpcyBub3QgaW5jbHVkZWQgaW4gdGhlIGFjY2Vzc2libGUgbmFtZSIKICAgICAgICB9CiAgICAgIF0KICAgIH0KICBdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMzMKICAgIH0KICBdLAogICJwYXNzZXMiOiAzMCwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_race",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFjZSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDIwLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_ranked",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcmFua2VkIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMjAsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_stats",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc3RhdHMiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImxhYmVsLWNvbnRlbnQtbmFtZS1taXNtYXRjaCIsCiAgICAgICJub2RlQ291bnQiOiAyNgogICAgfQogIF0sCiAgInBhc3NlcyI6IDIxLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_profile",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJvZmlsZSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDIyLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_leaderboard",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbGVhZGVyYm9hcmQiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFtdLAogICJwYXNzZXMiOiAyMywKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_settings",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvc2V0dGluZ3MiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFsKICAgIHsKICAgICAgImlkIjogImFyaWEtcHJvaGliaXRlZC1hdHRyIiwKICAgICAgIm5vZGVDb3VudCI6IDIKICAgIH0KICBdLAogICJwYXNzZXMiOiAyNiwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_auth",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYXV0aCIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDIxLAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_keyboard-lab",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIva2V5Ym9hcmQtbGFiIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbCiAgICB7CiAgICAgICJpZCI6ICJhcmlhLXByb2hpYml0ZWQtYXR0ciIsCiAgICAgICJub2RlQ291bnQiOiAxCiAgICB9LAogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogMgogICAgfSwKICAgIHsKICAgICAgImlkIjogInRoLWhhcy1kYXRhLWNlbGxzIiwKICAgICAgIm5vZGVDb3VudCI6IDEKICAgIH0KICBdLAogICJwYXNzZXMiOiAzMSwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_about",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvYWJvdXQiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFtdLAogICJwYXNzZXMiOiAyMCwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_privacy",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvcHJpdmFjeSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDE4LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_terms",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdGVybXMiLAogICJ3aWR0aCI6IDE0NDAsCiAgInZpb2xhdGlvbnMiOiBbXSwKICAiaW5jb21wbGV0ZSI6IFtdLAogICJwYXNzZXMiOiAxOCwKICAidmVyc2lvbiI6ICI0LjE0LjAiCn0="
+                    },
+                    {
+                      "name": "automated-accessibility-_touch-typing",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvdG91Y2gtdHlwaW5nIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMjAsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-_offline",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvb2ZmbGluZSIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogW10sCiAgInBhc3NlcyI6IDI0LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-_missing-page",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICIvbWlzc2luZy1wYWdlIiwKICAid2lkdGgiOiAxNDQwLAogICJ2aW9sYXRpb25zIjogW10sCiAgImluY29tcGxldGUiOiBbXSwKICAicGFzc2VzIjogMTgsCiAgInZlcnNpb24iOiAiNC4xNC4wIgp9"
+                    },
+                    {
+                      "name": "automated-accessibility-completed-results",
+                      "contentType": "application/json",
+                      "body": "ewogICJyb3V0ZSI6ICJjb21wbGV0ZWQtcmVzdWx0cyIsCiAgIndpZHRoIjogMTQ0MCwKICAidmlvbGF0aW9ucyI6IFtdLAogICJpbmNvbXBsZXRlIjogWwogICAgewogICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAibm9kZUNvdW50IjogNgogICAgfQogIF0sCiAgInBhc3NlcyI6IDI4LAogICJ2ZXJzaW9uIjogIjQuMTQuMCIKfQ=="
+                    },
+                    {
+                      "name": "automated-accessibility-scope",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZWNlaXB0cyI6IFsKICAgIHsKICAgICAgInJvdXRlIjogIi8iLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAibGFiZWwtY29udGVudC1uYW1lLW1pc21hdGNoIiwKICAgICAgICAgICJpbXBhY3QiOiAic2VyaW91cyIsCiAgICAgICAgICAiaGVscCI6ICJFbGVtZW50cyBtdXN0IGhhdmUgdGhlaXIgdmlzaWJsZSB0ZXh0IGFzIHBhcnQgb2YgdGhlaXIgYWNjZXNzaWJsZSBuYW1lIiwKICAgICAgICAgICJub2RlcyI6IFsKICAgICAgICAgICAgewogICAgICAgICAgICAgICJ0YXJnZXQiOiBbCiAgICAgICAgICAgICAgICAiYnV0dG9uW2FyaWEtbGFiZWw9XCJGaW5nZXIgZ3VpZGVcIl0iCiAgICAgICAgICAgICAgXSwKICAgICAgICAgICAgICAiZmFpbHVyZVN1bW1hcnkiOiAiRml4IGFueSBvZiB0aGUgZm9sbG93aW5nOlxuICBUZXh0IGluc2lkZSB0aGUgZWxlbWVudCBpcyBub3QgaW5jbHVkZWQgaW4gdGhlIGFjY2Vzc2libGUgbmFtZSIKICAgICAgICAgICAgfQogICAgICAgICAgXQogICAgICAgIH0KICAgICAgXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAxNjUKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyOCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9sZWFybiIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJsYWJlbC1jb250ZW50LW5hbWUtbWlzbWF0Y2giLAogICAgICAgICAgImltcGFjdCI6ICJzZXJpb3VzIiwKICAgICAgICAgICJoZWxwIjogIkVsZW1lbnRzIG11c3QgaGF2ZSB0aGVpciB2aXNpYmxlIHRleHQgYXMgcGFydCBvZiB0aGVpciBhY2Nlc3NpYmxlIG5hbWUiLAogICAgICAgICAgIm5vZGVzIjogWwogICAgICAgICAgICB7CiAgICAgICAgICAgICAgInRhcmdldCI6IFsKICAgICAgICAgICAgICAgICJidXR0b25bYXJpYS1sYWJlbD1cIkZpbmdlciBndWlkZVwiXSIKICAgICAgICAgICAgICBdLAogICAgICAgICAgICAgICJmYWlsdXJlU3VtbWFyeSI6ICJGaXggYW55IG9mIHRoZSBmb2xsb3dpbmc6XG4gIFRleHQgaW5zaWRlIHRoZSBlbGVtZW50IGlzIG5vdCBpbmNsdWRlZCBpbiB0aGUgYWNjZXNzaWJsZSBuYW1lIgogICAgICAgICAgICB9CiAgICAgICAgICBdCiAgICAgICAgfQogICAgICBdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiY29sb3ItY29udHJhc3QiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDMzCiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMzAsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvcmFjZSIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAyMCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9yYW5rZWQiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMjAsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvc3RhdHMiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAibGFiZWwtY29udGVudC1uYW1lLW1pc21hdGNoIiwKICAgICAgICAgICJub2RlQ291bnQiOiAyNgogICAgICAgIH0KICAgICAgXSwKICAgICAgInBhc3NlcyI6IDIxLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3Byb2ZpbGUiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMjIsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvbGVhZGVyYm9hcmQiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFtdLAogICAgICAicGFzc2VzIjogMjMsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0sCiAgICB7CiAgICAgICJyb3V0ZSI6ICIvc2V0dGluZ3MiLAogICAgICAid2lkdGgiOiAxNDQwLAogICAgICAidmlvbGF0aW9ucyI6IFtdLAogICAgICAiaW5jb21wbGV0ZSI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAiYXJpYS1wcm9oaWJpdGVkLWF0dHIiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDIKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAyNiwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9hdXRoIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDIxLAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL2tleWJvYXJkLWxhYiIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogWwogICAgICAgIHsKICAgICAgICAgICJpZCI6ICJhcmlhLXByb2hpYml0ZWQtYXR0ciIsCiAgICAgICAgICAibm9kZUNvdW50IjogMQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiAyCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAidGgtaGFzLWRhdGEtY2VsbHMiLAogICAgICAgICAgIm5vZGVDb3VudCI6IDEKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwYXNzZXMiOiAzMSwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9hYm91dCIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAyMCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9wcml2YWN5IiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDE4LAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3Rlcm1zIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDE4LAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL3RvdWNoLXR5cGluZyIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAyMCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogIi9vZmZsaW5lIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbXSwKICAgICAgInBhc3NlcyI6IDI0LAogICAgICAidmVyc2lvbiI6ICI0LjE0LjAiCiAgICB9LAogICAgewogICAgICAicm91dGUiOiAiL21pc3NpbmctcGFnZSIsCiAgICAgICJ3aWR0aCI6IDE0NDAsCiAgICAgICJ2aW9sYXRpb25zIjogW10sCiAgICAgICJpbmNvbXBsZXRlIjogW10sCiAgICAgICJwYXNzZXMiOiAxOCwKICAgICAgInZlcnNpb24iOiAiNC4xNC4wIgogICAgfSwKICAgIHsKICAgICAgInJvdXRlIjogImNvbXBsZXRlZC1yZXN1bHRzIiwKICAgICAgIndpZHRoIjogMTQ0MCwKICAgICAgInZpb2xhdGlvbnMiOiBbXSwKICAgICAgImluY29tcGxldGUiOiBbCiAgICAgICAgewogICAgICAgICAgImlkIjogImNvbG9yLWNvbnRyYXN0IiwKICAgICAgICAgICJub2RlQ291bnQiOiA2CiAgICAgICAgfQogICAgICBdLAogICAgICAicGFzc2VzIjogMjgsCiAgICAgICJ2ZXJzaW9uIjogIjQuMTQuMCIKICAgIH0KICBdLAogICJsaW1pdGF0aW9uIjogIkF1dG9tYXRlZCBXQ0FHLXRhZ2dlZCBjaGVja3Mgb25seS4gSW5jb21wbGV0ZSBydWxlcyBuZWVkIG1hbnVhbCByZXZpZXc7IHRoaXMgZG9lcyBub3QgZXN0YWJsaXNoIG5hdGl2ZSBzY3JlZW4tcmVhZGVyIG9yIGZ1bGwgV0NBRyBjb25mb3JtYW5jZS4iCn0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-edge\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-edge\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\accessibility-audit-existi-147dd-cessibility-rules-at-1440px-edge\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\accessibility-audit.spec.ts",
+                    "column": 102,
+                    "line": 42
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "133fb274c06e7193ffc5-a7d31bfb2277a168def3",
+          "file": "accessibility-audit.spec.ts",
+          "line": 12,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-20T14:45:07.331Z",
+    "duration": 38195.106,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 4,
+    "flaky": 0
+  }
+}

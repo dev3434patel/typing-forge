@@ -439,6 +439,7 @@ final class SessionValidator
         self::check(in_array(self::policy($config), ['prose', 'code', 'free'], true), 'Unsupported scoring policy.');
         self::check(!array_key_exists('correctionPolicy', $config) || $config['correctionPolicy'] === 'current-word', 'Unsupported correction policy.');
         foreach (['initialTarget' => $config['initialTarget'] ?? null, 'targetText' => $candidate['targetText'] ?? null, 'finalText' => $candidate['finalText'] ?? null] as $value) { self::check(is_string($value) && self::length($value) <= 40000, 'Text exceeds the server validation limit.'); }
+        $course = CourseAssessment::configuration($candidate);
         $elapsed = $candidate['elapsedMs'] ?? null; $wall = $candidate['wallDurationMs'] ?? null;
         self::check(self::number($elapsed) && $elapsed >= 0 && $elapsed <= 600000, 'Server sessions must be at most ten minutes.');
         self::check(self::number($wall) && $wall >= $elapsed, 'Invalid wall duration.');
@@ -505,7 +506,7 @@ final class SessionValidator
         $keys = $this->deriveKeys($candidate, $replay['attempts']);
         // Persist canonical server projections, including the chart, rather than client chart values.
         $candidate['metrics'] = $replay['metrics']; $candidate['timeSeries'] = $replay['timeSeries']; $candidate['characters'] = $replay['characters']; $candidate['cursor'] = $replay['cursor'];
-        return ['candidate' => $candidate, 'replay' => $replay, 'metrics' => $replay['metrics'], 'timeSeries' => $replay['timeSeries'], 'comparisonKey' => $comparison, 'keySummaries' => $keys, 'learningEvidence' => $this->learningEvidence($candidate, $replay['attempts']), 'lateTargetExtension' => $late, 'personalBestEligible' => $eligible, 'payloadHash' => 'sha256:' . hash('sha256', self::stablePayload($candidate))];
+        return ['candidate' => $candidate, 'replay' => $replay, 'metrics' => $replay['metrics'], 'timeSeries' => $replay['timeSeries'], 'comparisonKey' => $comparison, 'keySummaries' => $keys, 'learningEvidence' => $this->learningEvidence($candidate, $replay['attempts']), 'lateTargetExtension' => $late, 'personalBestEligible' => $eligible, 'payloadHash' => 'sha256:' . hash('sha256', self::stablePayload($candidate)), ...($course === null ? [] : ['course' => CourseAssessment::assess($candidate, $replay['metrics'], $course)])];
     }
 
     private function deriveKeys(array $candidate, array $attempts): array
@@ -535,7 +536,7 @@ final class SessionValidator
 
     private function learningEvidence(array $candidate, array $attempts): array
     {
-        $config = $candidate['configuration']; $settings = $config['settings'] ?? [];
+        $config = $candidate['configuration']; $settings = is_array($config['settings'] ?? null) ? $config['settings'] : [];
         $composition = ($config['inputMethod'] ?? null) === 'composition'; $assisted = false;
         foreach ($candidate['events'] as $event) {
             $composition = $composition || $event['provenance'] === 'composition';
@@ -556,6 +557,6 @@ final class SessionValidator
         }
         $stamp = (int)$candidate['finishedAtWall']; $seconds = (int)floor($stamp / 1000); $millis = $stamp - $seconds * 1000;
         $targetWpm = $settings['targetWpm'] ?? null;
-        return ['learningVersion' => 'forge-learn-v3', 'sessionId' => $candidate['clientSessionId'], 'completedAt' => gmdate('Y-m-d\TH:i:s', $seconds) . sprintf('.%03dZ', $millis), 'elapsedMs' => $candidate['elapsedMs'], 'dimensions' => ['language' => $config['language'] ?? 'en', 'layout' => $config['keyboardLayout'] ?? 'qwerty', 'domain' => ($config['scoringPolicy'] ?? null) === 'code' ? 'code' : 'prose', 'inputMethod' => $composition ? 'composition' : (($config['inputMethod'] ?? null) === 'virtual' ? 'virtual' : 'keyboard')], 'attempts' => $evidence, 'assessment' => in_array($config['mode'], ['learn', 'learning'], true) && $candidate['finishReason'] === 'completed' && ($settings['review'] ?? false) !== true && !$assisted, 'targetWpm' => self::number($targetWpm) ? min(500, max(1, $targetWpm)) : 35, ...(is_string($settings['sourceResultId'] ?? null) ? ['sourceResultId' => $settings['sourceResultId']] : [])];
+        return ['learningVersion' => 'forge-learn-v3', 'sessionId' => $candidate['clientSessionId'], 'completedAt' => gmdate('Y-m-d\TH:i:s', $seconds) . sprintf('.%03dZ', $millis), 'elapsedMs' => $candidate['elapsedMs'], 'dimensions' => ['language' => $config['language'] ?? 'en', 'layout' => $config['keyboardLayout'] ?? 'qwerty', 'domain' => ($config['scoringPolicy'] ?? null) === 'code' ? 'code' : 'prose', 'inputMethod' => $composition ? 'composition' : (($config['inputMethod'] ?? null) === 'virtual' ? 'virtual' : 'keyboard')], 'attempts' => $evidence, 'assessment' => in_array($config['mode'], ['learn', 'learning'], true) && $candidate['finishReason'] === 'completed' && ($settings['review'] ?? false) !== true && !array_key_exists('course', $settings) && !$assisted, 'targetWpm' => self::number($targetWpm) ? min(500, max(1, $targetWpm)) : 35, ...(is_string($settings['sourceResultId'] ?? null) ? ['sourceResultId' => $settings['sourceResultId']] : [])];
     }
 }

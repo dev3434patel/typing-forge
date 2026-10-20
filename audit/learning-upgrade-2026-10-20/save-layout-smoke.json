@@ -1,0 +1,280 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\extra\\typing_updated\\typing-forge\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "e2e/typing-course.spec.ts",
+      "--grep",
+      "an older|accessibility at 1440px",
+      "--workers=1",
+      "--retries=0",
+      "--reporter=list,json"
+    ],
+    "configFile": "D:\\extra\\typing_updated\\typing-forge\\playwright.config.ts",
+    "rootDir": "D:/extra/typing_updated/typing-forge/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "typing-course.spec.ts",
+      "file": "typing-course.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "an older failed course save cannot mark a newly saved result as failed",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10778,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T14:14:04.463Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "course-save-order",
+                      "contentType": "application/json",
+                      "body": "eyJvbGRlcklkIjoiMDUzMzIzYjQtMGVkZC00NGE5LWE3ODktZDllMjZlODFkNjg3IiwibmV3ZXJJZCI6ImIzOGUxYTg4LWFmMGQtNDE5NC05NGQwLTJkZDRlNmFiY2EyYiIsIm9sZFNhdmUiOiJyZWplY3RlZCBhZnRlciBjdXJyZW50IHNhdmVkIiwiY3VycmVudFN0YXR1c1VuYWZmZWN0ZWQiOnRydWV9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f0620a3ddfefdc4e6694-2737f4d861aefa7dcde1",
+          "file": "typing-course.spec.ts",
+          "line": 98,
+          "column": 1
+        },
+        {
+          "title": "an older successful course save cannot finish a newer pending save or supply its status",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 16064,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.course-full-result')\nExpected substring: \u001b[32m\"This attempt has not been saved yet.\"\u001b[39m\nReceived string:    \u001b[31m\"View full session resultsSession completelearn · English · qwerty · forge-v3Personal best · +1.8 wpmWords per minute157credited word speedInput accuracy100.0%59 / 59 insertion attemptsYour rhythm● WPM● Raw● Errors1s2s3s4s4.5s04080120160View accessible chart dataCumulative speed and bucket errors by elapsed secondsSecondsWPMRawErrors1.0156.0156.002.0156.0156.003.0160.0160.004.0156.0156.004.5157.5157.50Correct-character WPM157How it’s measuredCorrect retained characters ÷ 5 ÷ elapsed minutes. Word-credit WPM remains the comparable headline metric.Raw WPM157How it’s measuredRetained characters ÷ 5 ÷ elapsed minutes.Attempt rate157How it’s measuredAll inserted units ÷ 5 ÷ elapsed minutes.Consistency—How it’s measuredVariation of duration-weighted attempt buckets. Requires five seconds and five attempts.5s burst—How it’s measuredHighest complete five-second attempt window.Final accuracy100%How it’s measuredFinal text correctness. Corrected mistakes remain in input accuracy.Duration4.5sHow it’s measuredActual active duration including idle time. Paused intervals are excluded.Every number, explainedAccuracy of your attempts and correctness of the final text answer different questions. Displayed values are rounded; exports retain precision.Check your keyboard →Input accuracy59 correct ÷ 59 insertion attempts × 100 = 100.0%Final text accuracy59 correct ÷ 59 processed positions × 100 = 100.0%Credited WPM59 credited characters ÷ 5 ÷ 0.0749317 minutes = 157.5 WPMRaw WPM59 retained characters ÷ 5 ÷ 0.0749317 minutes = 157.5 WPMAttempt rate59 inserted characters ÷ 5 ÷ 0.0749317 minutes = 157.5 WPM0 incorrect insertion attempts remain in input accuracy even after corrections. Final text has 0 incorrect, 0 extra and 0 missed positions. 0 untouched future positions are excluded. Deletions are separate actions.WPM credits eligible words, not raw speed multiplied by accuracy. Character totals and insertion attempts can differ after edits or word skips. Consistency describes your rhythm under Forge’s formula; it is not an accuracy score or directly interchangeable with another site’s consistency.Inspect session evidenceCharacters, accounted for59correct0incorrect0extra0missed0 untyped · 0 deletion actions · 0 deleted charactersPractice insightEvery insertion attempt matched its expected character. Keep that deliberate rhythm in your next session.Build accuracy with a focused lessonFinal-text keyboard mapMeasured final characters only. Untyped keys have no color.qwertyuiopasdfghjklzxcvbnmSession details & comparison eligibility Available for comparable personal bests. Local evidence is unverified until accepted by the server.10/20/2026, 7:44:25 PM · completed · metrics forge-v3Saving this attempt on this device…Next testRepeat passageShare imageExport JSON\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" locator('.course-full-result') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.course-full-result')\u001b[22m\n\u001b[2m    2 × locator resolved to <details open=\"\" class=\"course-full-result\">…</details>\u001b[22m\n\u001b[2m      - unexpected value \"View full session resultsLoading session details…\"\u001b[22m\n\u001b[2m    11 × locator resolved to <details open=\"\" class=\"course-full-result\">…</details>\u001b[22m\n\u001b[2m       - unexpected value \"View full session resultsSession completelearn · English · qwerty · forge-v3Personal best · +1.8 wpmWords per minute157credited word speedInput accuracy100.0%59 / 59 insertion attemptsYour rhythm● WPM● Raw● Errors1s2s3s4s4.5s04080120160View accessible chart dataCumulative speed and bucket errors by elapsed secondsSecondsWPMRawErrors1.0156.0156.002.0156.0156.003.0160.0160.004.0156.0156.004.5157.5157.50Correct-character WPM157How it’s measuredCorrect retained characters ÷ 5 ÷ elapsed minutes. Word-credit WPM remains the comparable headline metric.Raw WPM157How it’s measuredRetained characters ÷ 5 ÷ elapsed minutes.Attempt rate157How it’s measuredAll inserted units ÷ 5 ÷ elapsed minutes.Consistency—How it’s measuredVariation of duration-weighted attempt buckets. Requires five seconds and five attempts.5s burst—How it’s measuredHighest complete five-second attempt window.Final accuracy100%How it’s measuredFinal text correctness. Corrected mistakes remain in input accuracy.Duration4.5sHow it’s measuredActual active duration including idle time. Paused intervals are excluded.Every number, explainedAccuracy of your attempts and correctness of the final text answer different questions. Displayed values are rounded; exports retain precision.Check your keyboard →Input accuracy59 correct ÷ 59 insertion attempts × 100 = 100.0%Final text accuracy59 correct ÷ 59 processed positions × 100 = 100.0%Credited WPM59 credited characters ÷ 5 ÷ 0.0749317 minutes = 157.5 WPMRaw WPM59 retained characters ÷ 5 ÷ 0.0749317 minutes = 157.5 WPMAttempt rate59 inserted characters ÷ 5 ÷ 0.0749317 minutes = 157.5 WPM0 incorrect insertion attempts remain in input accuracy even after corrections. Final text has 0 incorrect, 0 extra and 0 missed positions. 0 untouched future positions are excluded. Deletions are separate actions.WPM credits eligible words, not raw speed multiplied by accuracy. Character totals and insertion attempts can differ after edits or word skips. Consistency describes your rhythm under Forge’s formula; it is not an accuracy score or directly interchangeable with another site’s consistency.Inspect session evidenceCharacters, accounted for59correct0incorrect0extra0missed0 untyped · 0 deletion actions · 0 deleted charactersPractice insightEvery insertion attempt matched its expected character. Keep that deliberate rhythm in your next session.Build accuracy with a focused lessonFinal-text keyboard mapMeasured final characters only. Untyped keys have no color.qwertyuiopasdfghjklzxcvbnmSession details & comparison eligibility Available for comparable personal bests. Local evidence is unverified until accepted by the server.10/20/2026, 7:44:25 PM · completed · metrics forge-v3Saving this attempt on this device…Next testRepeat passageShare imageExport JSON\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.course-full-result')\nExpected substring: \u001b[32m\"This attempt has not been saved yet.\"\u001b[39m\nReceived string:    \u001b[31m\"View full session resultsSession completelearn · English · qwerty · forge-v3Personal best · +1.8 wpmWords per minute157credited word speedInput accuracy100.0%59 / 59 insertion attemptsYour rhythm● WPM● Raw● Errors1s2s3s4s4.5s04080120160View accessible chart dataCumulative speed and bucket errors by elapsed secondsSecondsWPMRawErrors1.0156.0156.002.0156.0156.003.0160.0160.004.0156.0156.004.5157.5157.50Correct-character WPM157How it’s measuredCorrect retained characters ÷ 5 ÷ elapsed minutes. Word-credit WPM remains the comparable headline metric.Raw WPM157How it’s measuredRetained characters ÷ 5 ÷ elapsed minutes.Attempt rate157How it’s measuredAll inserted units ÷ 5 ÷ elapsed minutes.Consistency—How it’s measuredVariation of duration-weighted attempt buckets. Requires five seconds and five attempts.5s burst—How it’s measuredHighest complete five-second attempt window.Final accuracy100%How it’s measuredFinal text correctness. Corrected mistakes remain in input accuracy.Duration4.5sHow it’s measuredActual active duration including idle time. Paused intervals are excluded.Every number, explainedAccuracy of your attempts and correctness of the final text answer different questions. Displayed values are rounded; exports retain precision.Check your keyboard →Input accuracy59 correct ÷ 59 insertion attempts × 100 = 100.0%Final text accuracy59 correct ÷ 59 processed positions × 100 = 100.0%Credited WPM59 credited characters ÷ 5 ÷ 0.0749317 minutes = 157.5 WPMRaw WPM59 retained characters ÷ 5 ÷ 0.0749317 minutes = 157.5 WPMAttempt rate59 inserted characters ÷ 5 ÷ 0.0749317 minutes = 157.5 WPM0 incorrect insertion attempts remain in input accuracy even after corrections. Final text has 0 incorrect, 0 extra and 0 missed positions. 0 untouched future positions are excluded. Deletions are separate actions.WPM credits eligible words, not raw speed multiplied by accuracy. Character totals and insertion attempts can differ after edits or word skips. Consistency describes your rhythm under Forge’s formula; it is not an accuracy score or directly interchangeable with another site’s consistency.Inspect session evidenceCharacters, accounted for59correct0incorrect0extra0missed0 untyped · 0 deletion actions · 0 deleted charactersPractice insightEvery insertion attempt matched its expected character. Keep that deliberate rhythm in your next session.Build accuracy with a focused lessonFinal-text keyboard mapMeasured final characters only. Untyped keys have no color.qwertyuiopasdfghjklzxcvbnmSession details & comparison eligibility Available for comparable personal bests. Local evidence is unverified until accepted by the server.10/20/2026, 7:44:25 PM · completed · metrics forge-v3Saving this attempt on this device…Next testRepeat passageShare imageExport JSON\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" locator('.course-full-result') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.course-full-result')\u001b[22m\n\u001b[2m    2 × locator resolved to <details open=\"\" class=\"course-full-result\">…</details>\u001b[22m\n\u001b[2m      - unexpected value \"View full session resultsLoading session details…\"\u001b[22m\n\u001b[2m    11 × locator resolved to <details open=\"\" class=\"course-full-result\">…</details>\u001b[22m\n\u001b[2m       - unexpected value \"View full session resultsSession completelearn · English · qwerty · forge-v3Personal best · +1.8 wpmWords per minute157credited word speedInput accuracy100.0%59 / 59 insertion attemptsYour rhythm● WPM● Raw● Errors1s2s3s4s4.5s04080120160View accessible chart dataCumulative speed and bucket errors by elapsed secondsSecondsWPMRawErrors1.0156.0156.002.0156.0156.003.0160.0160.004.0156.0156.004.5157.5157.50Correct-character WPM157How it’s measuredCorrect retained characters ÷ 5 ÷ elapsed minutes. Word-credit WPM remains the comparable headline metric.Raw WPM157How it’s measuredRetained characters ÷ 5 ÷ elapsed minutes.Attempt rate157How it’s measuredAll inserted units ÷ 5 ÷ elapsed minutes.Consistency—How it’s measuredVariation of duration-weighted attempt buckets. Requires five seconds and five attempts.5s burst—How it’s measuredHighest complete five-second attempt window.Final accuracy100%How it’s measuredFinal text correctness. Corrected mistakes remain in input accuracy.Duration4.5sHow it’s measuredActual active duration including idle time. Paused intervals are excluded.Every number, explainedAccuracy of your attempts and correctness of the final text answer different questions. Displayed values are rounded; exports retain precision.Check your keyboard →Input accuracy59 correct ÷ 59 insertion attempts × 100 = 100.0%Final text accuracy59 correct ÷ 59 processed positions × 100 = 100.0%Credited WPM59 credited characters ÷ 5 ÷ 0.0749317 minutes = 157.5 WPMRaw WPM59 retained characters ÷ 5 ÷ 0.0749317 minutes = 157.5 WPMAttempt rate59 inserted characters ÷ 5 ÷ 0.0749317 minutes = 157.5 WPM0 incorrect insertion attempts remain in input accuracy even after corrections. Final text has 0 incorrect, 0 extra and 0 missed positions. 0 untouched future positions are excluded. Deletions are separate actions.WPM credits eligible words, not raw speed multiplied by accuracy. Character totals and insertion attempts can differ after edits or word skips. Consistency describes your rhythm under Forge’s formula; it is not an accuracy score or directly interchangeable with another site’s consistency.Inspect session evidenceCharacters, accounted for59correct0incorrect0extra0missed0 untyped · 0 deletion actions · 0 deleted charactersPractice insightEvery insertion attempt matched its expected character. Keep that deliberate rhythm in your next session.Build accuracy with a focused lessonFinal-text keyboard mapMeasured final characters only. Untyped keys have no color.qwertyuiopasdfghjklzxcvbnmSession details & comparison eligibility Available for comparable personal bests. Local evidence is unverified until accepted by the server.10/20/2026, 7:44:25 PM · completed · metrics forge-v3Saving this attempt on this device…Next testRepeat passageShare imageExport JSON\"\u001b[22m\n\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\typing-course.spec.ts:138:53",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\typing-course.spec.ts",
+                      "column": 53,
+                      "line": 138
+                    },
+                    "snippet": "  136 |   await expect(page.getByRole(\"button\", { name: \"Start the next passage\", exact: true })).toBeDisabled();\n  137 |   await page.getByText(\"View full session results\", { exact: true }).click();\n> 138 |   await expect(page.locator(\".course-full-result\")).toContainText(\"This attempt has not been saved yet.\");\n      |                                                     ^\n  139 |   await page.evaluate(() => (window as unknown as CourseSaveWindow).courseSaveGate.release(1));\n  140 |   await expect(page.locator(\".course-save-status\")).toContainText(\"Saved on this device.\");\n  141 |   await expect(page.locator(\".course-save-status\")).toHaveAttribute(\"data-session-id\", newerId);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\typing-course.spec.ts",
+                        "column": 53,
+                        "line": 138
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.course-full-result')\nExpected substring: \u001b[32m\"This attempt has not been saved yet.\"\u001b[39m\nReceived string:    \u001b[31m\"View full session resultsSession completelearn · English · qwerty · forge-v3Personal best · +1.8 wpmWords per minute157credited word speedInput accuracy100.0%59 / 59 insertion attemptsYour rhythm● WPM● Raw● Errors1s2s3s4s4.5s04080120160View accessible chart dataCumulative speed and bucket errors by elapsed secondsSecondsWPMRawErrors1.0156.0156.002.0156.0156.003.0160.0160.004.0156.0156.004.5157.5157.50Correct-character WPM157How it’s measuredCorrect retained characters ÷ 5 ÷ elapsed minutes. Word-credit WPM remains the comparable headline metric.Raw WPM157How it’s measuredRetained characters ÷ 5 ÷ elapsed minutes.Attempt rate157How it’s measuredAll inserted units ÷ 5 ÷ elapsed minutes.Consistency—How it’s measuredVariation of duration-weighted attempt buckets. Requires five seconds and five attempts.5s burst—How it’s measuredHighest complete five-second attempt window.Final accuracy100%How it’s measuredFinal text correctness. Corrected mistakes remain in input accuracy.Duration4.5sHow it’s measuredActual active duration including idle time. Paused intervals are excluded.Every number, explainedAccuracy of your attempts and correctness of the final text answer different questions. Displayed values are rounded; exports retain precision.Check your keyboard →Input accuracy59 correct ÷ 59 insertion attempts × 100 = 100.0%Final text accuracy59 correct ÷ 59 processed positions × 100 = 100.0%Credited WPM59 credited characters ÷ 5 ÷ 0.0749317 minutes = 157.5 WPMRaw WPM59 retained characters ÷ 5 ÷ 0.0749317 minutes = 157.5 WPMAttempt rate59 inserted characters ÷ 5 ÷ 0.0749317 minutes = 157.5 WPM0 incorrect insertion attempts remain in input accuracy even after corrections. Final text has 0 incorrect, 0 extra and 0 missed positions. 0 untouched future positions are excluded. Deletions are separate actions.WPM credits eligible words, not raw speed multiplied by accuracy. Character totals and insertion attempts can differ after edits or word skips. Consistency describes your rhythm under Forge’s formula; it is not an accuracy score or directly interchangeable with another site’s consistency.Inspect session evidenceCharacters, accounted for59correct0incorrect0extra0missed0 untyped · 0 deletion actions · 0 deleted charactersPractice insightEvery insertion attempt matched its expected character. Keep that deliberate rhythm in your next session.Build accuracy with a focused lessonFinal-text keyboard mapMeasured final characters only. Untyped keys have no color.qwertyuiopasdfghjklzxcvbnmSession details & comparison eligibility Available for comparable personal bests. Local evidence is unverified until accepted by the server.10/20/2026, 7:44:25 PM · completed · metrics forge-v3Saving this attempt on this device…Next testRepeat passageShare imageExport JSON\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" locator('.course-full-result') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.course-full-result')\u001b[22m\n\u001b[2m    2 × locator resolved to <details open=\"\" class=\"course-full-result\">…</details>\u001b[22m\n\u001b[2m      - unexpected value \"View full session resultsLoading session details…\"\u001b[22m\n\u001b[2m    11 × locator resolved to <details open=\"\" class=\"course-full-result\">…</details>\u001b[22m\n\u001b[2m       - unexpected value \"View full session resultsSession completelearn · English · qwerty · forge-v3Personal best · +1.8 wpmWords per minute157credited word speedInput accuracy100.0%59 / 59 insertion attemptsYour rhythm● WPM● Raw● Errors1s2s3s4s4.5s04080120160View accessible chart dataCumulative speed and bucket errors by elapsed secondsSecondsWPMRawErrors1.0156.0156.002.0156.0156.003.0160.0160.004.0156.0156.004.5157.5157.50Correct-character WPM157How it’s measuredCorrect retained characters ÷ 5 ÷ elapsed minutes. Word-credit WPM remains the comparable headline metric.Raw WPM157How it’s measuredRetained characters ÷ 5 ÷ elapsed minutes.Attempt rate157How it’s measuredAll inserted units ÷ 5 ÷ elapsed minutes.Consistency—How it’s measuredVariation of duration-weighted attempt buckets. Requires five seconds and five attempts.5s burst—How it’s measuredHighest complete five-second attempt window.Final accuracy100%How it’s measuredFinal text correctness. Corrected mistakes remain in input accuracy.Duration4.5sHow it’s measuredActual active duration including idle time. Paused intervals are excluded.Every number, explainedAccuracy of your attempts and correctness of the final text answer different questions. Displayed values are rounded; exports retain precision.Check your keyboard →Input accuracy59 correct ÷ 59 insertion attempts × 100 = 100.0%Final text accuracy59 correct ÷ 59 processed positions × 100 = 100.0%Credited WPM59 credited characters ÷ 5 ÷ 0.0749317 minutes = 157.5 WPMRaw WPM59 retained characters ÷ 5 ÷ 0.0749317 minutes = 157.5 WPMAttempt rate59 inserted characters ÷ 5 ÷ 0.0749317 minutes = 157.5 WPM0 incorrect insertion attempts remain in input accuracy even after corrections. Final text has 0 incorrect, 0 extra and 0 missed positions. 0 untouched future positions are excluded. Deletions are separate actions.WPM credits eligible words, not raw speed multiplied by accuracy. Character totals and insertion attempts can differ after edits or word skips. Consistency describes your rhythm under Forge’s formula; it is not an accuracy score or directly interchangeable with another site’s consistency.Inspect session evidenceCharacters, accounted for59correct0incorrect0extra0missed0 untyped · 0 deletion actions · 0 deleted charactersPractice insightEvery insertion attempt matched its expected character. Keep that deliberate rhythm in your next session.Build accuracy with a focused lessonFinal-text keyboard mapMeasured final characters only. Untyped keys have no color.qwertyuiopasdfghjklzxcvbnmSession details & comparison eligibility Available for comparable personal bests. Local evidence is unverified until accepted by the server.10/20/2026, 7:44:25 PM · completed · metrics forge-v3Saving this attempt on this device…Next testRepeat passageShare imageExport JSON\"\u001b[22m\n\n\n  136 |   await expect(page.getByRole(\"button\", { name: \"Start the next passage\", exact: true })).toBeDisabled();\n  137 |   await page.getByText(\"View full session results\", { exact: true }).click();\n> 138 |   await expect(page.locator(\".course-full-result\")).toContainText(\"This attempt has not been saved yet.\");\n      |                                                     ^\n  139 |   await page.evaluate(() => (window as unknown as CourseSaveWindow).courseSaveGate.release(1));\n  140 |   await expect(page.locator(\".course-save-status\")).toContainText(\"Saved on this device.\");\n  141 |   await expect(page.locator(\".course-save-status\")).toHaveAttribute(\"data-session-id\", newerId);\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\typing-course.spec.ts:138:53"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T14:14:15.509Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\typing-course-an-older-suc-9df42-g-save-or-supply-its-status-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\typing-course-an-older-suc-9df42-g-save-or-supply-its-status-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\test-results\\typing-course-an-older-suc-9df42-g-save-or-supply-its-status-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\typing-course.spec.ts",
+                    "column": 53,
+                    "line": 138
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "f0620a3ddfefdc4e6694-166292f8eb21ac0baaff",
+          "file": "typing-course.spec.ts",
+          "line": 120,
+          "column": 1
+        },
+        {
+          "title": "course overview, preview, active keyboard and result fit and pass automated accessibility at 1440px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6709,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T14:14:32.885Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "course-responsive-accessibility",
+                      "contentType": "application/json",
+                      "body": "W3sic3RhdGUiOiJvdmVydmlldyIsIndpZHRoIjoxNDQwLCJvdmVyZmxvdyI6ZmFsc2UsInZpb2xhdGlvbnMiOltdLCJpbmNvbXBsZXRlIjpbImFyaWEtcHJvaGliaXRlZC1hdHRyIiwiY29sb3ItY29udHJhc3QiXX0seyJzdGF0ZSI6InByZXZpZXciLCJ3aWR0aCI6MTQ0MCwib3ZlcmZsb3ciOmZhbHNlLCJ2aW9sYXRpb25zIjpbXSwiaW5jb21wbGV0ZSI6WyJhcmlhLXByb2hpYml0ZWQtYXR0ciJdfSx7InN0YXRlIjoiYWN0aXZlIiwid2lkdGgiOjE0NDAsIm92ZXJmbG93IjpmYWxzZSwidmlvbGF0aW9ucyI6W10sImluY29tcGxldGUiOlsiY29sb3ItY29udHJhc3QiXX0seyJzdGF0ZSI6InRlY2huaXF1ZS1kaXNjbG9zdXJlIiwid2lkdGgiOjE0NDAsIm92ZXJmbG93IjpmYWxzZSwidmlvbGF0aW9ucyI6W10sImluY29tcGxldGUiOlsiY29sb3ItY29udHJhc3QiXX0seyJzdGF0ZSI6InJlc3VsdCIsIndpZHRoIjoxNDQwLCJvdmVyZmxvdyI6ZmFsc2UsInZpb2xhdGlvbnMiOltdLCJpbmNvbXBsZXRlIjpbXX1d"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f0620a3ddfefdc4e6694-21cb666c4860df2643a6",
+          "file": "typing-course.spec.ts",
+          "line": 281,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-20T14:14:03.491Z",
+    "duration": 36361.712999999996,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

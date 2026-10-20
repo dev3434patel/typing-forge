@@ -38,6 +38,7 @@ export function CommandPalette({
           {[
             ["Practice", "/"],
             ["Adaptive learning", "/learn"],
+            ["Typing course and lessons", "/lessons"],
             ["Race", "/race"],
             ["Progress and history", "/stats"],
             ["Rankings", "/leaderboard"],

@@ -38,6 +38,8 @@ export interface Preferences {
   liveStats: boolean;
   focusMode: boolean;
   paceCaret: boolean;
+  showKeyboard: boolean;
+  showFingerGuide: boolean;
 }
 export const DEFAULT_PREFERENCES = PREFERENCE_DEFAULTS;
 const memory = new Map<string, PreferenceEnvelope>();

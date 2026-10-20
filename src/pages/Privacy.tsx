@@ -17,7 +17,7 @@ export default function Privacy() {
     ],
     [
       "Result and replay evidence",
-      "A completed session can contain its target, typed text, timed edits, assistance flags and derived metrics. Raw replay evidence is scheduled to expire after 90 days. Summary history and public-corpus learning projections, including ordered expected/typed keys and timing, can remain until you delete the session or account. These learning records can reconstruct portions of public practiced text; replay expiry does not delete all character-level learning data. Private custom passages and free writing do not receive this public-corpus projection. Browser expiry runs when the app is open; server expiry runs when account history is accessed and through the host’s cleanup command. Downloaded exports remain wherever you save them.",
+      "A completed session can contain its target, typed text, timed edits, assistance flags and derived metrics. Raw replay evidence is scheduled to expire after 90 days. Summary history and public-corpus learning projections, including ordered expected/typed keys and timing, can remain until you delete the session or account. Learn Typing keeps a small course grading record, including the lesson, result and qualification checks, until you delete the session or account; raw replay expiry does not erase that progress. These learning records can reconstruct portions of public practiced text; replay expiry does not delete all character-level learning data. Private custom passages and free writing do not receive this public-corpus projection. Browser expiry runs when the app is open; server expiry runs when account history is accessed and through the host’s cleanup command. Downloaded exports remain wherever you save them.",
     ],
     [
       "Public results",
@@ -51,7 +51,7 @@ export default function Privacy() {
           </h1>
           <p className="mt-4 text-muted-foreground leading-relaxed">
             A clear account of what this app stores, what can leave this device,
-            and the controls available to you. Updated 19 October 2026.
+            and the controls available to you. Updated 20 October 2026.
           </p>
         </div>
         {sections.map(([title, text]) => (

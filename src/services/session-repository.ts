@@ -1,5 +1,6 @@
 import type { TestResult } from '@/lib/typing-engine';
 import type { SessionMetricValues } from '@/lib/typing-core/types';
+import type { CourseAssessment } from '@/lib/typing-course';
 
 export const STORAGE_VERSION = 3;
 export const EVIDENCE_TTL_MS = 90 * 24 * 60 * 60 * 1000;
@@ -13,6 +14,8 @@ export interface SessionRecord {
   payloadHash: string;
   summary: TestResult;
   metricSummary?: SessionMetricValues;
+  /** Personal course assessment retained after raw replay expiry; not a ranked certificate. */
+  courseEvidence?: CourseAssessment;
   comparisonKey?: string;
   personalBestEligible?: boolean;
   /** Original candidate is never replaced by the server's accepted result. */
@@ -162,7 +165,8 @@ export class SessionRepository {
     for (const row of this.memory.values()) {
       if (row.evidenceExpiresAt > now || row.candidate === undefined) continue;
       const next = { ...row, candidate: undefined };
-      if (next.state !== 'synced') Object.assign(next, { state: 'local-only', errorCode: 'evidence-expired', message: 'Replay evidence expired. The personal summary is retained; cloud validation is unavailable.' });
+      // Retention removes raw input without reversing a terminal validation decision.
+      if (next.state !== 'synced' && next.state !== 'rejected') Object.assign(next, { state: 'local-only', errorCode: 'evidence-expired', message: 'Replay evidence expired. The personal summary is retained; cloud validation is unavailable.' });
       await this.save(next);
     }
   }

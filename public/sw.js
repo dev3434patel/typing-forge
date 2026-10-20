@@ -7,6 +7,7 @@ const PUBLIC_ROUTES = new Set([
   "/",
   "/typing-test",
   "/learn",
+  "/lessons",
   "/typing-practice",
   "/practice",
   "/touch-typing",

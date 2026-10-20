@@ -12,7 +12,6 @@ import {
 import {
   ArrowRight,
   Check,
-  Keyboard,
   Pause,
   Play,
   RotateCcw,
@@ -24,7 +23,7 @@ import type { KeyboardAudio } from "@/lib/keyboard-audio";
 import { useWordCorrection } from "@/hooks/useWordCorrection";
 import { CompositionEchoGuard } from "@/lib/composition-echo";
 import { SessionController, type SessionResult } from "@/lib/typing-core";
-import { getContentPack, getLayout } from "@/lib/content-packs";
+import { getContentPack } from "@/lib/content-packs";
 import {
   summarizeLearningAttempts,
   generateKeybrLesson,
@@ -44,6 +43,9 @@ import { KeybrResults } from "./KeybrResults";
 import { sessionRepository } from "@/services/session-repository";
 import { TypingPassage } from "@/components/typing/TypingPassage";
 import { TypingFeedback } from "@/components/typing/TypingFeedback";
+import { LiveKeyboard } from "@/components/typing/LiveKeyboard";
+import { useLiveKeyboard } from "@/hooks/useLiveKeyboard";
+import { keyboardAttempt } from "@/lib/live-keyboard";
 
 interface Props {
   focusKeys?: string[];
@@ -56,94 +58,6 @@ type CorrectionPolicy = "stop" | "correct";
 const format = (number: number | null) =>
   number === null ? "—" : Math.round(number).toString();
 
-function LessonKeyboard({
-  language,
-  layout,
-  stats,
-  expected,
-  pressed,
-  incorrect,
-}: {
-  language: string;
-  layout: string;
-  stats: CharacterConfidence[];
-  expected?: string | null;
-  pressed?: string;
-  incorrect: boolean;
-}) {
-  const pack = getContentPack(language);
-  const mapping = getLayout(pack.script === "Latin" ? layout : "native");
-  const mapped = mapping.rows.length > 0;
-  const rows = mapped ? mapping.rows : [pack.introductionOrder];
-  // Keycaps show the base Latin key; retain the exact entered case in text/feedback.
-  const pressedKey = mapped ? pressed?.toLocaleLowerCase(pack.id) : pressed;
-  return (
-    <div
-      className="learn-keyboard"
-      data-mapped={mapped}
-      style={
-        {
-          "--learn-key-columns": Math.max(1, ...rows.map((row) => row.length)),
-        } as CSSProperties
-      }
-      role="img"
-      aria-label={`${mapping.label} logical keyboard. Expected ${expected === " " ? "Space" : (expected ?? "end of passage")}.${pressed ? ` Last input ${pressed === " " ? "Space" : pressed}${incorrect ? ", incorrect" : ""}.` : ""}`}
-    >
-      <div className="learn-keyboard-rows" lang={pack.id}>
-        {rows.map((row, index) => (
-          <div className="learn-keyboard-row" key={index}>
-            {row.map((char) => {
-              const stat = stats.find((item) => item.char === char);
-              return (
-                <span
-                  key={char}
-                  data-key={char}
-                  data-expected-key={expected === char || undefined}
-                  data-pressed-key={pressedKey === char || undefined}
-                  className={cn(
-                    "learn-key",
-                    !stat?.isUnlocked && "learn-key-locked",
-                    stat?.mastered && "learn-key-mastered",
-                    expected === char && "learn-key-expected",
-                    pressedKey === char &&
-                      (incorrect ? "learn-key-incorrect" : "learn-key-pressed"),
-                  )}
-                >
-                  {char}
-                </span>
-              );
-            })}
-          </div>
-        ))}
-        {mapped && (
-          <div className="learn-keyboard-row">
-            <span
-              data-key=" "
-              data-expected-key={expected === " " || undefined}
-              data-pressed-key={pressed === " " || undefined}
-              className={cn(
-                "learn-key learn-space-key",
-                expected === " " && "learn-key-expected",
-                pressed === " " &&
-                  (incorrect ? "learn-key-incorrect" : "learn-key-pressed"),
-              )}
-            >
-              space
-            </span>
-          </div>
-        )}
-      </div>
-      <p className="learn-keyboard-caption">
-        {mapped
-          ? mapping.label
-          : "Native character view · no physical layout mapping"}
-        <span aria-hidden="true"> · </span>Outlined: next character
-        <span aria-hidden="true"> · </span>Red: your incorrect input
-      </p>
-    </div>
-  );
-}
-
 export function KeybrLessonMode({
   focusKeys,
   sourceResultId,
@@ -153,7 +67,7 @@ export function KeybrLessonMode({
 }: Props) {
   const { user } = useAuth();
   const owner = user?.id ?? "guest";
-  const { preferences } = usePreferences();
+  const { preferences, updatePreferences } = usePreferences();
   const { saveSession, syncState, retrySync } = useTestResults();
   const pack = getContentPack(language ?? preferences.language);
   const selectedLayout =
@@ -162,7 +76,6 @@ export function KeybrLessonMode({
   const [review, setReview] = useState(false);
   const [method, setMethod] =
     useState<LearningDimensions["inputMethod"]>("keyboard");
-  const [showKeyboard, setShowKeyboard] = useState(true);
   const [focused, setFocused] = useState(false);
   const [capsLock, setCapsLock] = useState<boolean | null>(null);
   const [selectedFocus, setSelectedFocus] = useState<string | null>(null);
@@ -288,6 +201,9 @@ export function KeybrLessonMode({
     perCharMetrics: Map<string, CharacterConfidence>;
   } | null>(null);
   const lessonFinished = finished !== null;
+  const keyboardInput = useLiveKeyboard(inputRef, session.controller, preferences.showKeyboard && !lessonFinished && view.status !== "paused" && view.status !== "finished");
+  const setKeyboardVisible = useCallback((showKeyboard: boolean) => updatePreferences({ showKeyboard }), [updatePreferences]);
+  const setFingerGuideVisible = useCallback((showFingerGuide: boolean) => updatePreferences({ showFingerGuide }), [updatePreferences]);
   const caretFontSize = useRef(preferences.fontSize);
   caretFontSize.current = preferences.fontSize;
   const startLesson = useCallback(
@@ -577,9 +493,13 @@ export function KeybrLessonMode({
   }, [owner, today, revision]);
   const goalMs = preferences.dailyGoalMinutes * 60_000;
   const masteredCount = stats.filter((stat) => stat.mastered).length;
-  const attempts = session.controller.lastInputAttempts;
-  const observed =
-    attempts.filter((attempt) => !attempt.correct).at(-1) ?? attempts.at(-1);
+  const keyboardSequence = view.events.at(-1)?.sequence ?? -1;
+  const lastKeyboardAttempt = useMemo(() => {
+    void keyboardSequence;
+    return keyboardAttempt(session.controller.lastInputAttempts);
+  }, [session.controller, keyboardSequence]);
+  const knownKeyboardKeys = useMemo(() => stats.filter(stat => stat.isUnlocked).map(stat => stat.char), [stats]);
+  const masteredKeyboardKeys = useMemo(() => stats.filter(stat => stat.mastered).map(stat => stat.char), [stats]);
   const focusedPractice = preferences.focusMode && view.status === "running";
   // Revision intentionally refreshes session-derived data after completion/deletion.
   const goal = (
@@ -850,16 +770,21 @@ export function KeybrLessonMode({
             Caps Lock is on.
           </p>
         )}
-        {showKeyboard && (
-          <LessonKeyboard
-            language={pack.id}
-            layout={selectedLayout}
-            stats={stats}
-            expected={view.characters[view.cursor]?.expected}
-            pressed={observed?.typed}
-            incorrect={observed ? !observed.correct : false}
-          />
-        )}
+        <LiveKeyboard
+          adaptive
+          language={pack.id}
+          layout={selectedLayout}
+          input={keyboardInput}
+          expectedCharacter={view.characters[view.cursor]?.expected}
+          lastAttempt={lastKeyboardAttempt}
+          lessonKeys={knownKeyboardKeys}
+          masteredKeys={masteredKeyboardKeys}
+          visible={preferences.showKeyboard}
+          fingerGuide={preferences.showFingerGuide}
+          reducedMotion={preferences.reducedMotion}
+          onVisibilityChange={setKeyboardVisible}
+          onFingerGuideChange={setFingerGuideVisible}
+        />
         <p id="lesson-instructions" className="sr-only">
           Click the lesson and start typing.{" "}
           {policy === "stop"
@@ -939,15 +864,6 @@ export function KeybrLessonMode({
               <ArrowRight className="ml-2 size-4" />
             </Button>
           )}
-          <button
-            type="button"
-            className="learn-keyboard-toggle"
-            aria-pressed={showKeyboard}
-            onClick={() => setShowKeyboard((value) => !value)}
-          >
-            <Keyboard className="size-3.5" />
-            {showKeyboard ? "Hide keyboard" : "Show keyboard"}
-          </button>
         </div>
         {method === "composition" && (
           <p className="text-xs text-muted-foreground">

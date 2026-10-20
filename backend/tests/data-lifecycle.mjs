@@ -85,11 +85,14 @@ try {
   passed('public handles are validated and uniquely owned');
   let pref = (await alice.expect('GET', '/preferences')).value;
   assert.equal(pref.version, 0);
-  pref = (await alice.expect('POST', '/preferences', { expectedOwner: alice.user.id, expectedVersion: 0, patch: { theme: 'sparow-light', soundPack: 'arcade', reducedMotion: true } })).value;
+  pref = (await alice.expect('POST', '/preferences', { expectedOwner: alice.user.id, expectedVersion: 0, patch: { theme: 'sparow-light', soundPack: 'arcade', reducedMotion: true, showKeyboard: false, showFingerGuide: true } })).value;
   assert.equal(pref.version, 1); assert.equal(pref.conflict, false);
+  assert.equal(pref.preferences.showKeyboard, false); assert.equal(pref.preferences.showFingerGuide, true);
   const stale = (await alice.expect('POST', '/preferences', { expectedOwner: alice.user.id, expectedVersion: 0, patch: { theme: 'ember' } })).value;
   assert.equal(stale.conflict, true); assert.equal(stale.preferences.theme, 'sparow-light');
   await alice.expect('POST', '/preferences', { expectedOwner: alice.user.id, expectedVersion: 1, patch: { volume: 'loud' } }, 422);
+  await alice.expect('POST', '/preferences', { expectedOwner: alice.user.id, expectedVersion: 1, patch: { showKeyboard: 'true' } }, 422);
+  await alice.expect('POST', '/preferences', { expectedOwner: alice.user.id, expectedVersion: 1, patch: { showFingerGuide: 1 } }, 422);
   passed('preference optimistic locking, valid choices and invalid-type rejection');
   const evidence = candidate(alice.user.id);
   const accepted = (await alice.expect('POST', '/sessions', { candidate: evidence, cloudConsent: false })).value.accepted;
