@@ -1,0 +1,191 @@
+{
+  "recordedAt": "2026-10-20T18:54:32.520Z",
+  "releaseRevision": "after4",
+  "scope": "Explicit frontend-only Vercel root and GitHub Pages project-subpath contracts; PHP default remains separate.",
+  "runtime": {
+    "expected": 40,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "engines": [
+      "Chromium",
+      "Microsoft Edge",
+      "Firefox",
+      "Playwright WebKit"
+    ],
+    "casesPerEngine": 10,
+    "checks": [
+      "direct nested directory routes and refresh",
+      "asset/font/manifest/base boundaries",
+      "disabled auth/ranked/human with usable local bot",
+      "corrected guest session saves, history, JSON export, preference persistence",
+      "local structured-course checkpoint",
+      "service-worker scope and game/local routes during a real origin outage"
+    ],
+    "network": "Every case asserts no application API, external-origin or out-of-base request; no API mocks or live backend are used."
+  },
+  "focusedUnits": {
+    "passed": 89,
+    "files": 7,
+    "receipt": "static-focused-tests-after4.log"
+  },
+  "testCollection": {
+    "status": "PASS",
+    "tests": 266,
+    "files": 48,
+    "receipt": "static-full-test-collection.log",
+    "note": "Collected the entire existing Playwright suite after fixing Node import compatibility. Optional static suites require their dedicated outputs flag."
+  },
+  "typecheck": {
+    "status": "PASS",
+    "receipt": "checks-final-source-summary-20261020T182118Z.json",
+    "exitCode": 0
+  },
+  "integratedSourceGates": {
+    "status": "passed",
+    "count": 3,
+    "unitTests": 953,
+    "unitFiles": 68,
+    "receipt": "checks-final-source-summary-20261020T182118Z.json",
+    "provenance": "Executed sequentially by ui_quality after the final game assistance fix; this summary references that receipt without claiming another run."
+  },
+  "scopedLint": {
+    "status": "PASS",
+    "receipt": "static-eslint-final.log"
+  },
+  "artifacts": [
+    {
+      "directory": "dist-static-vercel",
+      "target": "vercel",
+      "base": "/",
+      "build": {
+        "version": "6eece66c8d6c4ad12554",
+        "publicFiles": 101,
+        "bytes": 2596370
+      },
+      "checksPassed": 13,
+      "checksTotal": 13
+    },
+    {
+      "directory": "dist-static-pages",
+      "target": "github-pages",
+      "base": "/sparowtype-static-audit/",
+      "build": {
+        "version": "93b5e932f69784d33f9a",
+        "publicFiles": 101,
+        "bytes": 2597967
+      },
+      "checksPassed": 15,
+      "checksTotal": 15
+    }
+  ],
+  "actionPins": {
+    "passed": 5,
+    "total": 5,
+    "receipt": "static-action-pins.json",
+    "remoteExecution": "UNVERIFIED"
+  },
+  "gameAxe": {
+    "expected": 4,
+    "unexpected": 0,
+    "statesPerCase": 3,
+    "widths": [
+      390,
+      1440
+    ],
+    "targets": [
+      "vercel",
+      "github-pages"
+    ],
+    "engine": "Chromium",
+    "defaultAxeRuleSet": true
+  },
+  "rendering": {
+    "renderingChunksByteIdenticalAcrossTargets": true,
+    "renderingChunksByteIdenticalFromCheckpoint": true,
+    "bridgeLogicIdenticalAcrossTargets": true,
+    "note": "Raw bridge hashes differ because a hashed bootstrap import follows the bundle graph. The normalized comparison replaces exactly that one from\"./index-HASH.js\" specifier; rendering scene/bloom/Three.js hashes are compared without normalization."
+  },
+  "brandLifecycleRepair": "The worker bridge intentionally gained synchronous pending-startup termination. Rendering scene, bloom and Three.js chunks remain byte-identical; root separately reports15 other brand source files unchanged. This report does not claim the bridge source is unchanged.",
+  "preservedCheckpoints": {
+    "after1": "static-after1-preservation.json",
+    "note": "Earlier40-case static acceptance is a checkpoint, not the final release. Parent viewport review subsequently found header clipping; final source includes the compact header repair, worker bridge lifecycle repair and game assistance-evidence fix. No after2/after3 static builds were produced."
+  },
+  "preservedFailures": [
+    {
+      "receipt": "static-focused-tests-initial.log",
+      "cause": "New CacheStorage fixture returned one consumed Response repeatedly; corrected fixture to clone responses like the browser Cache API. No production cache change needed."
+    },
+    {
+      "receipt": "static-chromium-initial.json",
+      "unexpected": 2,
+      "expected": 8,
+      "cause": "New test expected 75%; UI correctly formats 75.0%. Assertion now targets the precise correct cell."
+    },
+    {
+      "cause": "Root full-suite collection found unguarded import.meta.env in the new deployment helper; guarded Node imports, added a plain-Node subprocess regression and recollected the full suite successfully. That guard emitted identical bundles at the pre-semantic checkpoint."
+    },
+    {
+      "receipt": "static-artifacts-overbroad-bridge-comparison.json",
+      "cause": "The initial global comparison incorrectly required bridge bytes to match even when hashed bootstrap import names changed. Final evidence preserves raw bridge hashes and narrowly normalizes just that one import; actual rendering chunks are compared without normalization."
+    }
+  ],
+  "baselinePreviewPreservedDuringStaticWork": {
+    "version": "7f5214eec1843304c7a0",
+    "receipt": "static-verification-summary-pre-semantic.json"
+  },
+  "productionBuildObservedAfterRootIntegration": {
+    "version": "ebda64060759b5fed25a",
+    "publicFiles": 101,
+    "bytes": 2612258
+  },
+  "outputIsolation": "This agent built only dist-static-vercel and dist-static-pages; root owns the subsequent production dist build.",
+  "sourceStabilityReceipt": "static-after4-source-end.json",
+  "postAcceptanceHostingChanges": {
+    "vercelPermissionsPolicy": {
+      "receipt": "vercel-header-verification.json",
+      "scope": "The camera/microphone/geolocation/gyroscope restriction was restored after static acceptance. Only staged configuration is checked; local directory-server tests do not claim actual Vercel response-header verification. Compiled assets are unchanged."
+    },
+    "phpPackagingRetry": {
+      "receipt": "hosting-package-verification.json",
+      "scope": "A bounded Windows-only retry was added to the same atomic directory rename. Root recreated and byte-checked the fresh hosting package; this helper change does not alter compiled web assets."
+    },
+    "viteDevelopmentFileBoundary": {
+      "receipt": "dev-file-boundary-after.json",
+      "scope": "After static acceptance, Vite development-only fs.deny gained private PHP configuration/storage and generated hosting paths while retaining installed Vite defaults. A fresh nonsecret canary verifies the HTTP boundary; the public course catalog/module and isolated API proxy remain available. No actual private file was requested. Static acceptance predates this dev-only configuration change; root separately verifies final production asset identity."
+    }
+  },
+  "limitations": [
+    "No external Vercel or GitHub Pages deployment performed.",
+    "No hosted Actions run, custom-domain DNS or TLS verified.",
+    "Playwright WebKit is not a real iOS hardware acceptance test.",
+    "Browser persistence/offline availability remains subject to storage permissions and eviction.",
+    "Static builds intentionally cannot authenticate, sync, validate ranked scores or host human rooms.",
+    "Project paths share browser-origin storage and are not a personal-data security boundary."
+  ],
+  "sourceHashes": {
+    "build/deployment-config.mjs": "375f0717dff4f34e15cfee0e9c03407b05f488554748f3dda18877642cb5561f",
+    "src/lib/deployment.ts": "17ac0d00946089feb133f7bdf68ff5494d710d5a94527b91388cd8842acc9790",
+    "src/lib/pwa.ts": "d8beb07eff3336aa1a22065b0e2d74eb75f679af5e247400cb906e6f3c178543",
+    "src/lib/seo.ts": "21666dae1c4a02b0b94f2685ff5bdf783684bb8d1ea617b6545c86ef061e58f1",
+    "src/lib/opening-experience.ts": "502ee54f8956a1b0299290c2a7c94b3f3dccb14d56a8828f1b30ad272e8149ff",
+    "src/services/php-api.ts": "fd89db089a11782a10c4d9413f240d69696b2a108ad2a5b65cb85b140832ecae",
+    "src/App.tsx": "7e3aca95b5045f9d155dca330e1f1b4ec6f43ec8687739f66d7af9bedc9114e0",
+    "src/components/layout/Header.tsx": "fe7aee1e4dad4a3ba258fd33da60d063ac7d0de3c467443cfe6115eb3619ff4c",
+    "src/index.css": "70c72f7e085ee90ea5d1cb7b74d56f72a52842b39017335e300ea14fdd17f30d",
+    "src/components/brand/keyboard-scene-bridge.ts": "d4fb9e37ee7a84c9e2e37fc0196a91091b30ffa7ed1931ff478941b95e43a614",
+    "src/lib/typing-game.ts": "ff477f1c4321c174c2f47b6ebbfe6c1d23bd0fe6d7f3328728e31766b9dd58d0",
+    "src/components/games/SignalRun.tsx": "8f5dfd5e73c1c5591ba7e17fd74fa9a633c6acc0387b4ed55ac7e38ace0a30a2",
+    "src/components/games/SignalScene.tsx": "13e437f8a08c0fab5b6abfdcb2d6a1a9ef090a068535f2bdbf9750e4b2679347",
+    "vite.config.ts": "c8c7e083ed182f7927eb8a6a86cd81e6dc78d896eed0e5d6c55029580f2e1409",
+    "public/sw.js": "6c9ff6503b6079513f587217ead8ac19f2137293c9c4cc318ea3ed261f352151",
+    "scripts/build-frontend.mjs": "c3b15015c985c9a2ac689bdd04e9a33da1c22dc2c9ccdd22281a6eae45958f42",
+    "scripts/build-offline.mjs": "62c4b7a6856ed888e550fe6ac09c48c48f71b33f5fbb1fb298550e8853108257",
+    "scripts/test-frontend.mjs": "86faac0a2f5f2b83ad8f6a0fe68f4f54fca9aa82c7cb68492caad71b3b39051d",
+    "vercel.json": "592606e20ede7b73dde5bc931ce4c584b43f131c353a6fd6642d342158205ad1",
+    ".github/workflows/github-pages.yml": "719a084207b26e5523331fd4326e99d003d281a0d6f6254152a0fc9bf82e0a1f",
+    "e2e/frontend-static-server.ts": "ce3fd172b88281f1cc4e867cd5002824623b37f8dc7cc65c1c079479fc5bbb7f",
+    "e2e/frontend-deployment.spec.ts": "d50ab652e43fa52049aa52a8dea4f4ba85126dc12ee095153991a755e9416071",
+    "e2e/frontend-game-accessibility.spec.ts": "02db4dc14f5c9d2199533a0d764bcdef24cbd39b38ab971bb0e855b48f973591"
+  }
+}

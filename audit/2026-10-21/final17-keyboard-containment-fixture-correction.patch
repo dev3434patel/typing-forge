@@ -1,0 +1,88 @@
+--- before17/e2e/live-keyboard.spec.ts
++++ corrected17/e2e/live-keyboard.spec.ts
+@@ -1,5 +1,5 @@
+ import { expect, test, type Locator } from "@playwright/test";
+-import { customPractice, focusTyping, settlePageVisuals } from "./helpers";
++import { customPractice, exportedResult, focusTyping, settlePageVisuals } from "./helpers";
+ import { THEMES } from "../src/lib/themes";
+ 
+ test.beforeEach(async ({ page }) => {
+@@ -482,7 +482,7 @@
+       await toolbar.locator('.typing-shortcut-help > summary').click();
+       const panel = toolbar.locator('.typing-shortcut-panel');
+       await expect(panel).toBeVisible();
+-      const overlay = await panel.evaluate(element => {
++      const readOverlay = () => panel.evaluate(element => {
+         const box = element.getBoundingClientRect();
+         const board = document.querySelector('[data-testid="live-keyboard-board"]')!.getBoundingClientRect();
+         const left = Math.max(box.left, board.left), right = Math.min(box.right, board.right);
+@@ -494,13 +494,26 @@
+           withinViewport: box.left >= -0.02 && box.right <= innerWidth + 0.02 &&
+             box.top >= -0.02 && box.bottom <= innerHeight + 0.02 };
+       });
++      // Visibility can precede React's native details onToggle notification.
++      // Keep the same strict hit/overlap/viewport contract and wait for the
++      // production layout effect to finish placing the panel.
++      await expect.poll(readOverlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
++      const overlay = await readOverlay();
+       expect(overlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
++      const overlayGeometry = await panel.evaluate(element => {
++        const rect = (node: Element) => {
++          const box = node.getBoundingClientRect();
++          return { left: box.left, top: box.top, right: box.right, bottom: box.bottom, width: box.width, height: box.height };
++        };
++        return { panel: rect(element), board: rect(document.querySelector('[data-testid="live-keyboard-board"]')!),
++          viewport: { width: innerWidth, height: innerHeight } };
++      });
+       await panel.focus();
+       await page.keyboard.press('Escape');
+       await expect(panel).not.toBeVisible();
+       await expect(toolbar.locator('.typing-shortcut-help > summary')).toBeFocused();
+       await info.attach(`keyboard-containment-${style.toLowerCase()}`, { contentType: 'application/json',
+-        body: JSON.stringify({ baseline, ink, ripple, overlay, nativeInput: 'c then Backspace',
++        body: JSON.stringify({ baseline, ink, ripple, overlay, overlayGeometry, nativeInput: 'c then Backspace',
+           limitation: 'Geometry, active pseudo-element and hit-test checks; no animated pixel-identity or physical-phone claim.' }) });
+     } finally {
+       if (!page.isClosed()) {
+@@ -531,17 +544,38 @@
+   // Native Latin key input is an actual wrong attempt in this Arabic lesson;
+   // it is not used to claim a physical Arabic key or an IME composition.
+   await input.press('x');
+-  await expect(input).toHaveValue('x');
++  // Adaptive input is a temporary native draft. Its committed character is
++  // rendered in the passage while the textarea intentionally clears.
++  await expect(input).toHaveValue('');
+   await expect(page.getByTestId('keyboard-last-input')).toContainText('Typed x');
++  const committed = page.locator('.learn-stream-text [data-slot-index="0"]');
++  await expect(committed).toHaveAttribute('data-typed', 'x');
++  await expect(committed).toHaveAttribute('data-status', 'incorrect');
++  await expect(committed.locator('[data-typed-glyph]')).toHaveText('x');
++  await expect(committed.locator('[data-typed-glyph]')).toBeVisible();
+   await expect(board.locator('[data-pressed-key]')).toHaveCount(0);
+   expectSameKeyboardLayout(before, await containmentShape(board));
+   await page.setViewportSize({ width: 844, height: 390 });
+-  await expect(input).toHaveValue('x');
++  await expect(input).toHaveValue('');
++  await expect(committed).toHaveAttribute('data-typed', 'x');
++  await expect(committed.locator('[data-typed-glyph]')).toBeVisible();
+   const rotated = await containmentShape(board);
+   expect(rotated.fits).toBe(true);
+   expect(rotated.documentFits).toBe(true);
+   expect(rotated.keys.map(key => key.code)).toEqual(before.keys.map(key => key.code));
++  await page.getByRole('button', { name: 'Finish practice', exact: true }).click();
++  await expect(page.getByRole('region', { name: 'Session results', exact: true })).toBeVisible();
++  const result = await exportedResult(page);
++  expect(result.finalText).toBe('x');
++  expect(result.metrics.insertionAttempts).toBe(1);
++  expect(result.metrics.correctAttempts).toBe(0);
++  expect(result.metrics.incorrectAttempts).toBe(1);
++  expect(result.metrics.inputAccuracy).toBe(0);
++  expect(result.events).toHaveLength(1);
++  expect(result.events[0]).toMatchObject({ text: 'x', provenance: 'keyboard' });
+   await info.attach('keyboard-containment-native', { contentType: 'application/json',
+-    body: JSON.stringify({ before, rotated, actualWrongInput: 'x', inferredPhysicalArabicKey: false,
++    body: JSON.stringify({ before, rotated, actualWrongInput: 'x', draftClearedAfterCommit: true,
++      retainedAttempts: result.metrics.insertionAttempts, incorrectAttempts: result.metrics.incorrectAttempts,
++      finalTextExact: result.finalText === 'x', inferredPhysicalArabicKey: false,
+       limitation: 'Desktop native key events with responsive viewports; physical mobile/IME use remains separately unverified.' }) });
+ });

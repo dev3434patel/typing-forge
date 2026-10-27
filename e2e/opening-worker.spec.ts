@@ -18,6 +18,8 @@ interface WorkerRecord {
   received: WorkerReceipt[];
   terminated: number;
   terminatedAtMs: number | null;
+  disposeTaskOpen: boolean;
+  terminatedInDisposeTask: boolean | null;
 }
 interface FallbackAnimationSample {
   id: number;
@@ -109,12 +111,20 @@ async function observeNativeWorker(page: Page, info: TestInfo) {
           received: [],
           terminated: 0,
           terminatedAtMs: null,
+          disposeTaskOpen: false,
+          terminatedInDisposeTask: null,
         };
         audit.records.push(record);
         audit.workers.push(worker);
         worker.postMessage = new Proxy(worker.postMessage, {
           apply(method, receiver, argumentsList) {
             const data = argumentsList[0] as WorkerReceipt;
+            if (data.type === "dispose") {
+              record.disposeTaskOpen = true;
+              queueMicrotask(() => {
+                record.disposeTaskOpen = false;
+              });
+            }
             record.sent.push({
               type: data.type,
               atMs: performance.now(),
@@ -130,6 +140,7 @@ async function observeNativeWorker(page: Page, info: TestInfo) {
           apply(method, receiver, argumentsList) {
             record.terminated++;
             record.terminatedAtMs = performance.now();
+            record.terminatedInDisposeTask = record.disposeTaskOpen;
             return Reflect.apply(method, receiver, argumentsList);
           },
         });
@@ -262,7 +273,10 @@ async function readyPractice(page: Page) {
 }
 async function expectWorkerClosed(
   page: Page,
-  policy: "acknowledged" | "watchdog-allowed" = "acknowledged",
+  policy:
+    | "acknowledged"
+    | "watchdog-allowed"
+    | "startup-immediate" = "acknowledged",
 ) {
   await expect.poll(async () => (await records(page))[0]?.terminated).toBe(1);
   await expect
@@ -282,8 +296,23 @@ async function expectWorkerClosed(
     record.received.some((receipt) => receipt.type === "disposed") &&
     record.received.some((receipt) => receipt.diagnostics?.disposed);
   const elapsedMs = record.terminatedAtMs - dispose.atMs;
+  const readyBeforeDispose = record.received.some(
+    (receipt) => receipt.type === "ready" &&
+      receipt.atMs !== undefined && receipt.atMs <= dispose.atMs!,
+  );
   let path = "acknowledged-disposal";
-  if (policy === "acknowledged" || acknowledged) {
+  if (
+    policy === "startup-immediate" ||
+    (policy === "watchdog-allowed" && !readyBeforeDispose)
+  ) {
+    expect(readyBeforeDispose).toBe(false);
+    // This is a same-task ownership assertion, independent of timer cadence.
+    // Retain the existing upper latency bound rather than hiding a slow cancel.
+    expect(record.terminatedInDisposeTask).toBe(true);
+    expect(elapsedMs).toBeGreaterThanOrEqual(0);
+    expect(elapsedMs).toBeLessThanOrEqual(1000);
+    path = "immediate-startup-termination-no-disposal-acknowledgement";
+  } else if (policy === "acknowledged" || acknowledged) {
     expect(acknowledged).toBe(true);
   } else {
     // A busy GPU worker gets a200ms disposal grace period before termination.
@@ -300,6 +329,8 @@ async function expectWorkerClosed(
       disposeAtMs: dispose.atMs,
       terminatedAtMs: record.terminatedAtMs,
       elapsedMs,
+      readyBeforeDispose,
+      terminatedInDisposeTask: record.terminatedInDisposeTask,
       terminated: record.terminated,
       liveNativeWorkers: page
         .workers()
@@ -739,7 +770,7 @@ test("skipping while the native worker entry is blocked terminates startup and p
     // Firefox retains a protocol worker entry while its test-intercepted request
     // is pending. Release it only after native termination has been observed.
     release();
-    await expectWorkerClosed(page, "watchdog-allowed");
+    await expectWorkerClosed(page, "startup-immediate");
     expect((await records(page))[0].received.some(receipt => receipt.type === 'ready')).toBe(false);
     const input = await readyPractice(page);
     await input.pressSequentially("x");

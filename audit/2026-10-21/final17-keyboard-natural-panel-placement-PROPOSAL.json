@@ -1,0 +1,29 @@
+{
+  "recordedAt": "2026-10-22T20:52:58.840691+00:00",
+  "status": "PREPARED_ONLY_NOT_APPLIED_NOT_RUN",
+  "actualE2ESha256": "5126a827a1d50f1e41acdeaa3305111c811bc3b4f46f9bd3ca7b539c645740f7",
+  "actualE2EUnchangedAfterPreparation": true,
+  "proposalPatch": "final17-keyboard-natural-panel-placement-PROPOSAL.patch",
+  "proposalSha256": "5716b7b801c4dd9c306df0340493bb62d07b531e0e0379c70c40059a25644c29",
+  "scope": "Only the three new mapped containment cases; native case, existing tests, helpers, product/CSS, budgets and0.02px tolerances unchanged.",
+  "witness": {
+    "source": "src/components/typing/TypingShortcutHelp.tsx placePanel",
+    "supportedBehavior": "If above fits within the visual viewport, preferredTop selects above. Otherwise the function chooses below or the greater space and clamps within the viewport. Actual board overlap is not guaranteed by this public behavior.",
+    "retainedFailure": "Mapped fresh confirmation asserted unconditional overlap even when the actual panel was visibly above the toolbar/board; polling cannot make that valid placement intersect."
+  },
+  "newAssertions": [
+    "Always hit-test actual panel center and require the panel to contain the hit element.",
+    "Always retain original strict viewport bounds check.",
+    "Measure and record natural overlapsBoard from actual rect intersection.",
+    "When natural overlap exists, independently require the real intersection point to hit the panel.",
+    "When no overlap exists, report intersectionHitPanel=null and overlapHitTestExercised=false; do not claim paint-order intersection coverage.",
+    "Wait for actual placement using the unchanged default5000ms expect.poll budget, then reassert and capture geometry."
+  ],
+  "notClaimed": [
+    "No forced board overlap",
+    "No CSS injection or placement alteration",
+    "No unperformed overlapping-pixel or animated pixel-identity assertion",
+    "No product fix or passing browser result"
+  ],
+  "applyOnlyAfter": "Parent announces91712 complete and authorizes the test-only correction."
+}

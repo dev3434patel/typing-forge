@@ -1,0 +1,108 @@
+{
+  "capturedAt": "2026-10-22T19:51:58.689Z",
+  "status": "PASS-SCOPED",
+  "beforeFile": "audit/2026-10-21/final15-source.json",
+  "afterFile": "audit/2026-10-21/final16-source.json",
+  "expectedBuild": "8ac2a0d9602ec9263118",
+  "scope": "Exact source15-to16 flat live alignment plus instantaneous physical-feedback border delta. session.ts intentionally changes hash; semantic preservation is bound to its owner reverse-edit receipt, never inferred from a whole-core unchanged claim. No browser, latency, Lighthouse or hosted result is inferred.",
+  "expectedChangedSourceFiles": [
+    "src/components/typing/live-keyboard.css",
+    "src/lib/typing-core/__tests__/live-projection.test.ts",
+    "src/lib/typing-core/session.ts"
+  ],
+  "before": {
+    "version": "7ef96ccd3c02d170a757",
+    "publicFiles": 133,
+    "bytes": 2930175
+  },
+  "after": {
+    "version": "8ac2a0d9602ec9263118",
+    "publicFiles": 133,
+    "bytes": 2930416
+  },
+  "beforeSourceFiles": 498,
+  "afterSourceFiles": 498,
+  "addedSourceFiles": [],
+  "removedSourceFiles": [],
+  "modifiedSourceFiles": [
+    "src/components/typing/live-keyboard.css",
+    "src/lib/typing-core/__tests__/live-projection.test.ts",
+    "src/lib/typing-core/session.ts"
+  ],
+  "changedSourceFiles": [
+    "src/components/typing/live-keyboard.css",
+    "src/lib/typing-core/__tests__/live-projection.test.ts",
+    "src/lib/typing-core/session.ts"
+  ],
+  "unchangedSourceFiles": 495,
+  "sourceReceiptSha256": {
+    "before": "db7d827683602a3e23e00e3ba5d38cbc2ebc329665e20c5b5fb6f7689508073a",
+    "after": "5746abf4b8c6cd325e6ea9acad1cc329515b6ee7845444b75db03fe53596220d"
+  },
+  "currentFrozenSource": {
+    "sourceFile": "audit/2026-10-21/final16-source.json",
+    "expectedBuild": "8ac2a0d9602ec9263118",
+    "compared": 498,
+    "mismatches": []
+  },
+  "componentIntegrity": {
+    "php": {
+      "compared": 37,
+      "changed": [],
+      "unchanged": true
+    },
+    "pwa": {
+      "compared": 5,
+      "changed": [],
+      "unchanged": true
+    },
+    "threeAndOpeningRenderer": {
+      "compared": 21,
+      "changed": [],
+      "unchanged": true
+    },
+    "cssExceptAuthorizedKeyboardFeedback": {
+      "compared": 11,
+      "changed": [],
+      "unchanged": true
+    },
+    "canonicalCoreExceptAuthorizedSessionAndUnit": {
+      "compared": 12,
+      "changed": [],
+      "unchanged": true
+    },
+    "metricsReplayTranscriptModules": {
+      "compared": 9,
+      "changed": [],
+      "unchanged": true
+    },
+    "caretGeometry": {
+      "compared": 7,
+      "changed": [],
+      "unchanged": true
+    },
+    "keyboardSubscriptionsAndRows": {
+      "compared": 5,
+      "changed": [],
+      "unchanged": true
+    },
+    "practiceRaceAndClockControllers": {
+      "compared": 5,
+      "changed": [],
+      "unchanged": true
+    }
+  },
+  "authorizedSessionChange": {
+    "file": "src/lib/typing-core/session.ts",
+    "hashChanged": true,
+    "proof": "audit/2026-10-21/final16-flat-alignment-source-review.json",
+    "proofSha256": "ae53cc18097c121df242e7d8285d425180034e0b8dca194aa003dc1b120e28dd",
+    "baselineSessionSha256": "c21ce6b38ce3dee2fee11557d94e03c4309b8f7c52d1b05fac665fb5943b04f7",
+    "currentSessionSha256": "8238f5b70cac38b82c7337c7a1f2275ba5ed5a4794fc06ed78c5063653ac3a34",
+    "reversedSessionSha256": "c21ce6b38ce3dee2fee11557d94e03c4309b8f7c52d1b05fac665fb5943b04f7",
+    "reverseEditRestoresExact15Session": true,
+    "genericFreezeUnchanged": true,
+    "canonicalMathReplayTimingRestoredByReverse": true,
+    "limitation": "Reverse-edit source fidelity is not browser or latency proof. Canonical session file is deliberately not labeled unchanged."
+  }
+}

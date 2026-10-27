@@ -6,6 +6,7 @@ import {
   useState,
   type RefObject,
 } from "react";
+import { canReuseOpponentPoint, type OpponentLayoutRevision } from "./opponent-caret-layout";
 
 interface Props {
   position: number;
@@ -13,6 +14,11 @@ interface Props {
   passageRef: RefObject<HTMLDivElement>;
   revision: string;
   ownCursor: number;
+  targetText: string;
+  scoringPolicy: string;
+  rtl: boolean;
+  composing: boolean;
+  sessionKey: string;
   fontSize: number;
   smooth: boolean;
 }
@@ -24,6 +30,11 @@ export function OpponentPaceMarker({
   passageRef,
   revision,
   ownCursor,
+  targetText,
+  scoringPolicy,
+  rtl,
+  composing,
+  sessionKey,
   fontSize,
   smooth,
 }: Props) {
@@ -35,10 +46,15 @@ export function OpponentPaceMarker({
   } | null>(null);
   const latest = useRef({ position, fontSize });
   latest.current = { position, fontSize };
+  const previousLayout = useRef<OpponentLayoutRevision>();
+  const hasMeasuredPoint = useRef(false);
   const measurePoint = useCallback(() => {
     const viewport = viewportRef.current;
     const passage = passageRef.current;
-    if (!viewport || !passage) return;
+    if (!viewport || !passage) {
+      hasMeasuredPoint.current = false;
+      return;
+    }
     const { position: currentPosition, fontSize: currentFontSize } =
       latest.current;
     const slot =
@@ -46,6 +62,7 @@ export function OpponentPaceMarker({
         `[data-slot-index="${currentPosition}"][data-expected]`,
       ) ?? passage.querySelector<HTMLElement>("[data-opponent-end-anchor]");
     if (!slot) {
+      hasMeasuredPoint.current = false;
       setPoint(null);
       return;
     }
@@ -58,6 +75,8 @@ export function OpponentPaceMarker({
       height: Math.max(currentFontSize, rect.height),
       visible: rect.top >= bounds.top - 1 && rect.bottom <= bounds.bottom + 1,
     };
+    hasMeasuredPoint.current = rect.height > 0 && bounds.width > 0 && bounds.height > 0 &&
+      [next.x, next.y, next.height, rect.bottom, bounds.top, bounds.bottom].every(Number.isFinite);
     setPoint((previous) =>
       previous?.x === next.x &&
       previous.y === next.y &&
@@ -68,8 +87,11 @@ export function OpponentPaceMarker({
     );
   }, [viewportRef, passageRef]);
   useLayoutEffect(() => {
-    measurePoint();
-  }, [measurePoint, position, revision, ownCursor, fontSize]);
+    const next = { position, revision, ownCursor, targetText, scoringPolicy, rtl, composing, sessionKey, fontSize };
+    const reuse = hasMeasuredPoint.current && canReuseOpponentPoint(previousLayout.current, next);
+    previousLayout.current = next;
+    if (!reuse) measurePoint();
+  }, [measurePoint, position, revision, ownCursor, targetText, scoringPolicy, rtl, composing, sessionKey, fontSize]);
   // Parent host refs are attached after child layout effects on a fresh mount.
   // Keep this initial passive measurement, and subscribe once for those nodes.
   useEffect(() => {
@@ -84,12 +106,24 @@ export function OpponentPaceMarker({
     const observer = new ResizeObserver(measure);
     observer.observe(viewport);
     observer.observe(passage);
+    const styles = new MutationObserver(measure);
+    styles.observe(document.documentElement, { attributes: true, attributeFilter: ["style", "class"] });
     viewport.addEventListener("scroll", measure, { passive: true });
+    window.addEventListener("resize", measure);
+    window.visualViewport?.addEventListener("resize", measure);
+    document.fonts.addEventListener("loadingdone", measure);
+    document.fonts.addEventListener("loadingerror", measure);
     void document.fonts.ready.then(measure);
     return () => {
       active = false;
       observer.disconnect();
+      styles.disconnect();
       viewport.removeEventListener("scroll", measure);
+      window.removeEventListener("resize", measure);
+      window.visualViewport?.removeEventListener("resize", measure);
+      document.fonts.removeEventListener("loadingdone", measure);
+      document.fonts.removeEventListener("loadingerror", measure);
+      hasMeasuredPoint.current = false;
     };
   }, [measurePoint, viewportRef, passageRef]);
   if (!point) return null;

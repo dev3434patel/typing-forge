@@ -1,0 +1,159 @@
+{
+  "recordedAt": "2026-10-20T19:04:57.520741+00:00",
+  "build": "ebda64060759b5fed25a",
+  "method": "Read-only source and retained trace/HAR inspection. No browser/build.",
+  "cases": [
+    {
+      "artifact": "audit/mobile-games-static-2026-10-20/.playwright-artifacts-after-4-browser-ordinary/keyboard-viewport-all-keyb-8d7c4--font-26-with-update-banner-webkit",
+      "title": "keyboard-viewport.spec.ts >> all keyboard rows stay reachable by normal scrolling at 390x844, font 26, with update banner",
+      "failure": "live-keyboard-board absent at unchanged5000ms assertion; geometry assertions were never reached",
+      "expectStartMs": 1762983.502,
+      "expectEndMs": 1768027.424,
+      "networkStatuses": {
+        "200": 32,
+        "304": 1
+      },
+      "applicationModuleFailures": [],
+      "lateProviderRequests": [],
+      "applicationPageErrors": 0
+    },
+    {
+      "artifact": "audit/mobile-games-static-2026-10-20/.playwright-artifacts-after-4-browser-ordinary/keyboard-viewport-all-keyb-a7c78--font-26-with-update-banner-webkit",
+      "title": "keyboard-viewport.spec.ts >> all keyboard rows stay reachable by normal scrolling at 844x390, font 26, with update banner",
+      "failure": "live-keyboard-board absent at unchanged5000ms assertion; geometry assertions were never reached",
+      "expectStartMs": 1768733.584,
+      "expectEndMs": 1773750.588,
+      "networkStatuses": {
+        "200": 32,
+        "304": 1
+      },
+      "applicationModuleFailures": [],
+      "lateProviderRequests": [],
+      "applicationPageErrors": 0
+    },
+    {
+      "artifact": "audit/mobile-games-static-2026-10-20/.playwright-artifacts-after-4-browser-ordinary/keyboard-viewport-all-keyb-dfa2f-nt-26-without-update-banner-webkit",
+      "title": "keyboard-viewport.spec.ts >> all keyboard rows stay reachable by normal scrolling at 844x390, font 26, without update banner",
+      "failure": "live-keyboard-board absent at unchanged5000ms assertion; geometry assertions were never reached",
+      "expectStartMs": 1769933.425,
+      "expectEndMs": 1774953.05,
+      "networkStatuses": {
+        "200": 35,
+        "304": 1
+      },
+      "applicationModuleFailures": [],
+      "lateProviderRequests": [],
+      "applicationPageErrors": 0,
+      "lateActualInputSnapshot": {
+        "atMs": 1775317.588,
+        "afterExpectationMs": 364.53799999994226,
+        "meaning": "Positive proof that the actual typing DOM appeared after the assertion deadline; this case was not permanently stuck."
+      }
+    },
+    {
+      "artifact": "audit/mobile-games-static-2026-10-20/.playwright-artifacts-after-4-browser-ordinary/keyboard-viewport-whole-ke-222b9-0-at-100-with-update-banner-webkit",
+      "title": "keyboard-viewport.spec.ts >> whole keyboard and feedback fit 1810x900 at 100% with update banner",
+      "failure": "live-keyboard-board absent at unchanged5000ms assertion; geometry assertions were never reached",
+      "expectStartMs": 1750428.896,
+      "expectEndMs": 1755449.834,
+      "networkStatuses": {
+        "200": 35,
+        "304": 1
+      },
+      "applicationModuleFailures": [],
+      "lateProviderRequests": [
+        {
+          "path": "/fonts/inter-latin-wght-normal.woff2",
+          "atMs": 1755929.127,
+          "status": 200
+        },
+        {
+          "path": "/fonts/jetbrains-mono-latin-wght-normal.woff2",
+          "atMs": 1755929.198,
+          "status": 200
+        },
+        {
+          "path": "/fonts/inter-cyrillic-wght-normal.woff2",
+          "atMs": 1755938.429,
+          "status": 200
+        },
+        {
+          "path": "/api/auth/session",
+          "atMs": 1755947.795,
+          "status": 200
+        }
+      ],
+      "applicationPageErrors": 0
+    },
+    {
+      "artifact": "audit/mobile-games-static-2026-10-20/.playwright-artifacts-after-4-browser-ordinary/keyboard-viewport-whole-ke-3fdce-t-100-without-update-banner-webkit",
+      "title": "keyboard-viewport.spec.ts >> whole keyboard and feedback fit 1810x900 at 100% without update banner",
+      "failure": "live-keyboard-board absent at unchanged5000ms assertion; geometry assertions were never reached",
+      "expectStartMs": 1750179.901,
+      "expectEndMs": 1755207.091,
+      "networkStatuses": {
+        "200": 31,
+        "304": 1
+      },
+      "applicationModuleFailures": [],
+      "lateProviderRequests": [],
+      "applicationPageErrors": 0
+    },
+    {
+      "artifact": "audit/mobile-games-static-2026-10-20/.playwright-artifacts-after-4-browser-ordinary/keyboard-viewport-whole-ke-99fb1-0-at-100-with-update-banner-webkit",
+      "title": "keyboard-viewport.spec.ts >> whole keyboard and feedback fit 1440x900 at 100% with update banner",
+      "failure": "live-keyboard-board absent at unchanged5000ms assertion; geometry assertions were never reached",
+      "expectStartMs": 1718871.364,
+      "expectEndMs": 1723905.72,
+      "networkStatuses": {
+        "200": 32,
+        "304": 1,
+        "-1": 3
+      },
+      "applicationModuleFailures": [],
+      "lateProviderRequests": [
+        {
+          "path": "/fonts/inter-latin-wght-normal.woff2",
+          "atMs": 1724506.481,
+          "status": 200
+        },
+        {
+          "path": "/fonts/jetbrains-mono-latin-wght-normal.woff2",
+          "atMs": 1724506.685,
+          "status": -1
+        },
+        {
+          "path": "/fonts/inter-cyrillic-wght-normal.woff2",
+          "atMs": 1724581.225,
+          "status": -1
+        },
+        {
+          "path": "/api/auth/session",
+          "atMs": 1724602.299,
+          "status": -1
+        }
+      ],
+      "applicationPageErrors": 0
+    }
+  ],
+  "interpretation": "These are real startup/readiness assertion failures, not keyboard geometry failures. No application JS resource failure or pageerror was captured. HTTP200 does not prove module evaluation or CSS-load promise settlement; traces do not expose the module-loader promises, so their root cause remains UNPROVEN. One case positively recovers after the deadline.",
+  "architecture": {
+    "confirmed": "Original loadWorkspace cached Promise.all(importApp, importIndex), coupling every deep route to an unused home chunk. Root authorized a deterministic route-isolation repair.",
+    "currentSource": "Only actual local home / or /typing-test (including Pages base/trailing slash) retains concurrent App+Index preparation. Other routes await App only. Cache/retry semantics unchanged.6focused units/type/lint pass; browser acceptance pending after5.",
+    "limits": "No claim that this unused-dependency repair caused or resolves all observed Firefox/WebKit stalls. Home preparation remains concurrent as before."
+  },
+  "webkit270357": {
+    "source": "https://bugs.webkit.org/show_bug.cgi?id=270357",
+    "verified": "Primary report describes a failed modulepreload response cached as an error, immediate Importing a module script failed on later import, and no new network request. Marked fixed with2026-10-10 commit323305.",
+    "comparison": "No such failed application module request or rejection was recorded in these six cases; current runner inclusion of that upstream patch was not established. Do not assign this bug as their cause."
+  },
+  "additionalQuietTargetsObserved": [
+    "Firefox: pt content completes through the actual learning input adapter (textContent stalled after input visibility, then context teardown)",
+    "WebKit: learning shows the pressed wrong letter and advances by default, with corrections still counted",
+    "WebKit: learning records rejected attempts and saves exactly one immutable result",
+    "WebKit: five-row keyboard fits320px and its key text stays readable across every theme",
+    "WebKit: adaptive native insertReplacementText preserves actual provenance and assessment eligibility",
+    "WebKit: public app download supports a real server outage and clearing preserves real history"
+  ],
+  "limits": "The last three newly observed WebKit timeouts were not diagnosed by this receipt. Use final ordinary JSON for complete exact targets; this is a partial-run triage snapshot. All earlier failure receipts remain unchanged."
+}

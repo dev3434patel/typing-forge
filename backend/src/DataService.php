@@ -7,7 +7,22 @@ use PDOException;
 
 final class DataService
 {
+    private ?float $requestReceivedAt = null;
+
     public function __construct(private PDO $db, private SessionValidator $validator, private array $config) {}
+
+    /** Freeze this request's server clock before replay or feature/owner locks.
+     * The HTTP dispatcher calls this after authentication. Direct service
+     * callers use the same capture before preflight; no client value is read.
+     */
+    public function captureRequestReceipt(): float
+    {
+        if ($this->requestReceivedAt !== null) return $this->requestReceivedAt;
+        $value = $this->db->query('SELECT UNIX_TIMESTAMP(UTC_TIMESTAMP(3))*1000')->fetchColumn();
+        if (!is_numeric($value) || !is_finite((float) $value))
+            throw new ApiException(503, 'receipt-clock', 'The server could not establish this request’s receipt time. Your result remains local.');
+        return $this->requestReceivedAt = (float) $value;
+    }
 
     public function profile(array $user): array
     {
@@ -135,7 +150,10 @@ final class DataService
         if ($challengeId !== null && !is_string($challengeId)) throw new ApiException(422, 'challenge-id', 'A challenge identifier must be text.');
         $localBot = ($settings['localBot'] ?? false) === true && is_string($challengeId) && str_starts_with($challengeId, 'local-bot:');
         if (($configuration['mode'] ?? null) === 'race' && !$localBot) throw new ApiException(422, 'race-endpoint', 'Human race evidence must be submitted through its room.');
-        if ($challengeId && !$localBot) CompetitiveInputPolicy::preflight($candidate);
+        if ($challengeId && !$localBot) {
+            $this->captureRequestReceipt();
+            CompetitiveInputPolicy::preflight($candidate);
+        }
         $validated = $this->validator->validate($candidate, $user['id'], ($body['cloudConsent'] ?? false) === true);
         return ['accepted' => $this->commitValidated($user, $candidate, $validated)];
     }
@@ -143,6 +161,9 @@ final class DataService
     /** Reused inside the race transaction; its caller owns any existing transaction. */
     public function commitValidated(array $user, array $candidate, array $validated, array $overrides = []): array
     {
+        $configuration = $candidate['configuration'];
+        if (!empty($configuration['challengeId']) && !isset($overrides['raceId']) && ($configuration['settings']['localBot'] ?? false) !== true)
+            $this->captureRequestReceipt();
         $ownsTransaction = !$this->db->inTransaction();
         if ($ownsTransaction) $this->db->beginTransaction();
         try {
@@ -224,6 +245,7 @@ final class DataService
             $remove->execute([$user['id'], $clientId]);
             $raceEvidence = $this->db->prepare('UPDATE race_outcomes SET transcript_events=NULL WHERE user_id=? AND client_session_id=?');
             $raceEvidence->execute([$user['id'], $clientId]);
+            $this->clearArenaEvidence('UPDATE arena_members SET events_json=NULL,evidence_json=NULL WHERE user_id=? AND client_session_id=?', [$user['id'], $clientId]);
             $this->bumpVersion($user['id']);
             $this->db->commit();
             return ['deleted' => true];
@@ -315,12 +337,15 @@ final class DataService
         }
         if (($config['privacy'] ?? null) !== 'public-corpus' || ($config['correctionPolicy'] ?? null) !== 'current-word' || ($config['paused'] ?? false) !== false) throw new ApiException(422, 'challenge-configuration', 'Ranked challenges require the public corpus and current-word correction policy.');
         $start = (new \DateTimeImmutable($challenge['starts_at'], new \DateTimeZone('UTC')))->format('U.u') * 1000;
-        $now = (float) $this->db->query('SELECT UNIX_TIMESTAMP(UTC_TIMESTAMP(3))*1000')->fetchColumn();
+        // Delivery is measured at authenticated receipt, never after expensive
+        // replay/lock waits. Legacy issued clocks retain their original check.
+        $now = ChallengeTimingPolicy::firstInput($issued) ? $this->captureRequestReceipt() : (float) $this->db->query('SELECT UNIX_TIMESTAMP(UTC_TIMESTAMP(3))*1000')->fetchColumn();
         $deadline = (new \DateTimeImmutable($challenge['deadline_at'], new \DateTimeZone('UTC')))->format('U.u') * 1000;
         $expires = (new \DateTimeImmutable($challenge['expires_at'], new \DateTimeZone('UTC')))->format('U.u') * 1000;
+        ChallengeTimingPolicy::validate($issued, $candidate, $start, $deadline, $expires, $now);
         $keyboardOnly = true;
         foreach ($candidate['events'] as $event) if ($event['provenance'] !== 'keyboard') { $keyboardOnly = false; break; }
-        if ($challenge['consumed_by'] !== null || $now < $deadline || $now > $expires || $candidate['targetText'] !== $challenge['target_text'] || $candidate['issuedTargetSegments'] || $candidate['pauseIntervals'] || !$keyboardOnly || $config['mode'] !== 'time' || ($config['scoringPolicy'] ?? 'prose') !== 'prose' || ($config['durationMs'] ?? null) !== $issued['durationMs'] || $candidate['elapsedMs'] !== $issued['durationMs'] || ($config['contentRevision'] ?? null) !== $issued['contentRevision'] || ($config['keyboardLayout'] ?? null) !== 'qwerty' || ($config['inputMethod'] ?? null) !== 'keyboard' || ($config['language'] ?? null) !== 'en' || ($config['punctuation'] ?? false) || ($config['numbers'] ?? false) || ($config['repeatedContent'] ?? false) || ($config['rejectIncorrect'] ?? false) || abs(($candidate['startedAtWall'] ?? 0) - $start) > 0.01) {
+        if ($challenge['consumed_by'] !== null || $candidate['targetText'] !== $challenge['target_text'] || $candidate['issuedTargetSegments'] || $candidate['pauseIntervals'] || !$keyboardOnly || $config['mode'] !== 'time' || ($config['scoringPolicy'] ?? 'prose') !== 'prose' || ($config['durationMs'] ?? null) !== $issued['durationMs'] || $candidate['elapsedMs'] !== $issued['durationMs'] || ($config['contentRevision'] ?? null) !== $issued['contentRevision'] || ($config['keyboardLayout'] ?? null) !== 'qwerty' || ($config['inputMethod'] ?? null) !== 'keyboard' || ($config['language'] ?? null) !== 'en' || ($config['punctuation'] ?? false) || ($config['numbers'] ?? false) || ($config['repeatedContent'] ?? false) || ($config['rejectIncorrect'] ?? false)) {
             throw new ApiException(422, 'challenge-mismatch', 'Challenge timing, content or input rules do not match.');
         }
         CompetitiveInputPolicy::enforceRates($metrics);
@@ -347,6 +372,17 @@ final class DataService
         $statement->execute([$owner]);
         $race = $this->db->prepare('UPDATE race_outcomes SET transcript_events=NULL WHERE user_id=? AND transcript_events IS NOT NULL AND accepted_at<=?');
         $race->execute([$owner, Database::timestamp((microtime(true) - (int) $this->config['evidence_retention_days'] * 86400) * 1000)]);
+        $this->clearArenaEvidence('UPDATE arena_members SET events_json=NULL,evidence_json=NULL WHERE user_id=? AND (events_json IS NOT NULL OR evidence_json IS NOT NULL) AND finished_at<=?', [$owner, Database::timestamp((microtime(true) - (int) $this->config['evidence_retention_days'] * 86400) * 1000)]);
+    }
+
+    private function clearArenaEvidence(string $sql, array $parameters): void
+    {
+        try { $statement = $this->db->prepare($sql); $statement->execute($parameters); }
+        catch (\PDOException $error) {
+            // Old installations have no arena evidence before migration005.
+            // Preserve their existing history/delete flows; all other SQL errors remain visible.
+            if ((int)($error->errorInfo[1] ?? 0) !== 1146) throw $error;
+        }
     }
 
     private function integer(mixed $value, int $min, int $max, string $name): int
@@ -359,7 +395,7 @@ final class DataService
     {
         if (!is_array($patch) || array_is_list($patch) && $patch !== [] || strlen(Database::json($patch)) > 32768) throw new ApiException(422, 'preferences', 'Preference patch must be an object under 32 KB.');
         $enum = [
-            'theme' => ['sparow-dark','sparow-light','graphite','midnight-blue','ember','mono-ink','paper','aurora'],
+            'theme' => ['sparow-dark','sparow-light','graphite','midnight-blue','ember','mono-ink','paper','aurora','skyline','lavender','rose','citrus','mint','ocean','peach','iris','forge-amber','orchid','ice','sand','high-contrast'],
             'language' => ['en','es','fr','de','pt','it','ru','hi','ar','gu-Latn'],
             'layout' => ['qwerty','dvorak','colemak','colemak-dh','workman','azerty','qwertz','native'],
             'caretStyle' => ['line','block','underline','outline'],

@@ -1,0 +1,50 @@
+{
+  "recordedAt": "2026-10-23",
+  "status": "FAILED_CASES_RETAINED_NO_PRODUCT_FIX_ESTABLISHED",
+  "scope": "Read-only retained guest trace/error-context inspection. No browser, test, build, source or fixture edit.",
+  "cases": [
+    {
+      "file": "e2e/games.spec.ts:133",
+      "title": "calm game starts deliberately, opens word gates and moves through all three stages",
+      "project": "webkit",
+      "failure": "Original30000ms whole-test deadline expired during a real Enter action.",
+      "observedState": "13 of18 gates;100.0% input accuracy; next word fully entered and Word ready. Open the gate. The input was enabled and active.",
+      "nativeTimingWitness": {
+        "fourCharacterTypingExampleMs": 3438.081,
+        "earlierFourCharacterTypingExampleMs": 1268.364,
+        "enterExamplesMs": [418.83, 1093.22, 168.46, 437.137, 867.449, 746.152, 179.73],
+        "lastNativeEnterStartMs": 1811370.507,
+        "lastNativeEnterEndMs": 1811550.237,
+        "testAfterHooksStartMs": 1811543.933
+      },
+      "conclusion": "The error text does not show a30s Enter deadlock. The accumulated original action budget expired during an in-flight key command. No incorrect gate, attempt accuracy, disabled-input or stage-state assertion failed. The trace does not establish why earlier native interactions were slow.",
+      "otherObservation": "One real guest auth/session request returned500. This is recorded, not established as the later typing slowdown cause. No page-error event was recorded."
+    },
+    {
+      "file": "e2e/keyboard-lab.spec.ts:162",
+      "title": "repeated transitions produce a measured pair drill and targeted learning link",
+      "project": "webkit",
+      "failure": "Learn heading absent within original5000ms after Continue in Learn.",
+      "passedBeforeFailure": [
+        "Eight actual native letters accepted by the transition input",
+        "a-to-b pair count4 and measured ms displayed",
+        "Practice a-to-b generated exact ab ab ba aba ab ba ab drill",
+        "Continue in Learn href included keys=ab",
+        "Learning storage remained empty before navigation"
+      ],
+      "traceClockMs": {
+        "continueClickStart": 1840286.948,
+        "continueClickEnd": 1841763.84,
+        "learnImportRequestStart": 1841734.787,
+        "headingAssertionStart": 1841841.367,
+        "headingAssertionEnd": 1846963.114
+      },
+      "observedState": "Outer route Suspense fallback Loading your workspace.",
+      "networkWitness": "Recorded Learn and dependency responses have HTTP200 statuses, but HAR total durations around888000ms extend far beyond this trace. They cannot be used as actual module-completion timestamps. No page-error event was recorded.",
+      "conclusion": "The pair-drill functionality and link contract reached their assertions successfully. The failing stage is route/module readiness after navigation. No exact import/evaluation or driver cause is proved; do not claim a completed module merely from HTTP200."
+    }
+  ],
+  "nextVerification": "Exact original cases on the declared artifact, serially with unchanged timeouts and real native actions. Any instrumentation is a separate diagnostic, not replacement acceptance.",
+  "proposalState": "The source17 containment E2E patch remains audit-only and unapplied. No new source fix is justified by these two receipts.",
+  "privacy": "Only controlled-guest action timings and aggregate state retained here. Raw trace bodies, credentials and private account data remain excluded."
+}

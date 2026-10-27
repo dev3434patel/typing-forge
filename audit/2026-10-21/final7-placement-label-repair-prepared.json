@@ -1,0 +1,23 @@
+{
+  "status": "PREPARED-NOT-RUN",
+  "authorization": "Coordinator explicitly authorized a separate repair confirmation after actual fresh DOM probe; no hidden automatic retry.",
+  "expectedBuild": "f3ac03affbc33168655a",
+  "originalDriver": "audit/2026-10-21/standalone-placement-real135-final7.mjs",
+  "originalSha256": "3b545e5ca0178f53ba200dd3c54f2ae13b5ddcb3f59acbb3c881b930c596a7b2",
+  "confirmationDriver": "audit/2026-10-21/standalone-placement-real135-final7-label-confirmation.mjs",
+  "confirmationSha256": "f62209730ec12fed395f6eaeec4ce53aca50d42ad6ccbcaaa43ae076edf9786f",
+  "changes": [
+    "--- standalone-placement-real135-final7.mjs\n",
+    "+++ standalone-placement-real135-final7-label-confirmation.mjs\n",
+    "@@ -231,3 +231,3 @@\n",
+    "     stage = 'verify private free-practice goal excludes placement evidence';",
+    "-    await studio.getByLabel('Practice type', { exact: true }).selectOption('home-row');",
+    "+    await studio.getByRole('combobox', { name: 'Practice type', exact: true }).selectOption('home-row');",
+    "     await studio.getByRole('button', { name: 'Start free practice', exact: true }).click();"
+  ],
+  "scope": "Exactly one locator changes: getByLabel exact to getByRole combobox exact. Every timing/assertion/watchdog/clock/input/canonical persistence/privacy/goal check is unchanged.",
+  "domProbe": "audit/2026-10-21/final7-placement-label-dom-probe.json",
+  "originalFailedReceipt": "audit/2026-10-21/final7-placement-real135-first-raw.json",
+  "confirmationPrefix": "final7-placement-real135-confirmation",
+  "automaticRetries": 0
+}

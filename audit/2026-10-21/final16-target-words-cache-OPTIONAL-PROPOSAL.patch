@@ -1,0 +1,28 @@
+--- a/src/lib/typing-core/transcript.ts
++++ b/src/lib/typing-core/transcript.ts
+@@ -59,7 +59,11 @@
+   reason: WordCreditReason;
+ }
+ interface Word { start: number; end: number; separator: number | null }
+-function targetWords(target: readonly string[]): Word[] {
++const targetWordCache = new WeakMap<readonly string[], readonly Readonly<Word>[]>();
++function targetWords(target: readonly string[]): readonly Readonly<Word>[] {
++  const cacheable = Object.isFrozen(target);
++  const cached = cacheable ? targetWordCache.get(target) : undefined;
++  if (cached) return cached;
+   const words: Word[] = [];
+   let start = 0;
+   for (let i = 0; i <= target.length; i++) {
+@@ -68,7 +72,11 @@
+       start = i + 1;
+     }
+   }
+-  return words;
++  if (!cacheable) return words;
++  for (let index = 0; index < words.length; index++) Object.freeze(words[index]);
++  const frozen = Object.freeze(words);
++  targetWordCache.set(target, frozen);
++  return frozen;
+ }
+ /** A submitted short word consumes its own target slot, preserving later word alignment. */
+ export function alignTranscript(target: readonly string[], typed: string[], policy: ScoringPolicy, finiteFinal = false, submissions: number[] = [], options: { includeWords?: boolean } = {}): Alignment {

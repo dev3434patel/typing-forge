@@ -1,0 +1,60 @@
+--- a/e2e/live-keyboard.spec.ts
++++ b/e2e/live-keyboard.spec.ts
+@@ -474,8 +474,9 @@
+       await input.press('Backspace');
+       await expect(input).toHaveValue('');
+ 
+-      // Real rotation and scrolling put the external toolbar panel over the
+-      // board. Hit testing catches a new board stacking context covering it.
++      // Real rotation and scrolling exercise the external toolbar panel.
++      // Its supported placement may be above the board; always test its center,
++      // and test board stacking separately whenever actual bounds intersect.
+       await page.setViewportSize({ width: 844, height: 390 });
+       const toolbar = page.getByTestId('live-keyboard').locator('.live-keyboard-toolbar');
+       await toolbar.evaluate(element => element.scrollIntoView({ block: 'start' }));
+@@ -487,19 +488,27 @@
+         const board = document.querySelector('[data-testid="live-keyboard-board"]')!.getBoundingClientRect();
+         const left = Math.max(box.left, board.left), right = Math.min(box.right, board.right);
+         const top = Math.max(box.top, board.top), bottom = Math.min(box.bottom, board.bottom);
+-        const x = (left + right) / 2, y = (top + bottom) / 2;
+-        const hit = document.elementFromPoint(x, y);
+-        return { overlapsBoard: right - left > 1 && bottom - top > 1,
+-          hitPanel: !!hit && element.contains(hit),
++        const overlapsBoard = right - left > 1 && bottom - top > 1;
++        const centerHit = document.elementFromPoint((box.left + box.right) / 2, (box.top + box.bottom) / 2);
++        const intersectionHit = overlapsBoard ? document.elementFromPoint((left + right) / 2, (top + bottom) / 2) : null;
++        return { overlapsBoard,
++          hitPanel: !!centerHit && element.contains(centerHit),
++          intersectionHitPanel: overlapsBoard ? !!intersectionHit && element.contains(intersectionHit) : null,
+           withinViewport: box.left >= -0.02 && box.right <= innerWidth + 0.02 &&
+             box.top >= -0.02 && box.bottom <= innerHeight + 0.02 };
+       });
+       // Visibility can precede React's native details onToggle notification.
+-      // Keep the same strict hit/overlap/viewport contract and wait for the
+-      // production layout effect to finish placing the panel.
+-      await expect.poll(readOverlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
++      // Wait for placement, preserving strict center visibility/viewport checks.
++      // A valid above-toolbar placement need not intersect the keyboard.
++      await expect.poll(async () => {
++        const actual = await readOverlay();
++        return { hitPanel: actual.hitPanel, withinViewport: actual.withinViewport,
++          actualOverlapUnblocked: !actual.overlapsBoard || actual.intersectionHitPanel === true };
++      }).toEqual({ hitPanel: true, withinViewport: true, actualOverlapUnblocked: true });
+       const overlay = await readOverlay();
+-      expect(overlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
++      expect(overlay.hitPanel).toBe(true);
++      expect(overlay.withinViewport).toBe(true);
++      if (overlay.overlapsBoard) expect(overlay.intersectionHitPanel).toBe(true);
+       const overlayGeometry = await panel.evaluate(element => {
+         const rect = (node: Element) => {
+           const box = node.getBoundingClientRect();
+@@ -513,7 +522,8 @@
+       await expect(panel).not.toBeVisible();
+       await expect(toolbar.locator('.typing-shortcut-help > summary')).toBeFocused();
+       await info.attach(`keyboard-containment-${style.toLowerCase()}`, { contentType: 'application/json',
+-        body: JSON.stringify({ baseline, ink, ripple, overlay, overlayGeometry, nativeInput: 'c then Backspace',
++        body: JSON.stringify({ baseline, ink, ripple, overlay, overlayGeometry,
++          overlapHitTestExercised: overlay.overlapsBoard, nativeInput: 'c then Backspace',
+           limitation: 'Geometry, active pseudo-element and hit-test checks; no animated pixel-identity or physical-phone claim.' }) });
+     } finally {
+       if (!page.isClosed()) {

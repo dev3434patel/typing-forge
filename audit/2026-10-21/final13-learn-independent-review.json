@@ -1,0 +1,38 @@
+{
+  "status": "READ-ONLY-NO-CONCRETE-BLOCKER",
+  "build": {
+    "version": "b00993b05c14117dca60",
+    "publicFiles": 134,
+    "bytes": 2927284
+  },
+  "scope": "Independent source review of Learn source13 native geometry, bounded cache use, invalidation/lifecycle and prepared real-input regression. No tests, browser, build, profiling or product/test edits by this reviewer.",
+  "findings": [],
+  "reviewedInvariants": [
+    "Capture stores Learn actual positive finite union rectangles in content coordinates; it does not apply Test caret width/height clamps. Zero-width/unusable captures keep the original native Learn geometry path.",
+    "Cached neutral values pass through the unchanged learningCaretGeometry formula, preserving native fractional dimensions, minimum2px display width, all4 caret styles, RTL line offset and the existing +1px row tolerance/fontSize*1.85 scroll rule.",
+    "The shared cache admits only exact correct ASCII prose prefixes and contiguous verified target identities, bounded128 anchors and complete words<=64; errors/extras/replacements/deletions/unsupported text cannot silently use an old map.",
+    "The latest incorrect or non-keyboard attempt invalidates capture whenever measurement runs. A rejected stop-on-error attempt that leaves the displayed prefix unchanged does not change glyph geometry; its attempts and timing remain canonical.",
+    "Composition start explicitly invalidates; active composition and committed non-keyboard evidence keep native fallback. Deletion is independently caught by the cache transition rule even when the last insertion-attempt batch is empty.",
+    "Controller, focus, status, completion, target, font size/family, direction and composition changes are represented in lifecycle/state invalidation. Same-text restarts do not inherit old controller boxes.",
+    "Own stage scroll retains content-coordinate boxes and resets desired-scroll bookkeeping on unexpected user scroll. Font loadingdone/loadingerror, root style/class/theme, resize and visual viewport changes invalidate and measure. Observer/font ownership remains stable and cleanup detaches/guards callbacks.",
+    "The stable empty passage marker is layout-equivalent; the pace callback remains enabled only when requested and changes with its actual visible position/status. No learning, correction, attempt, timing or score path was replaced."
+  ],
+  "preparedRegressionScope": "Existing observer E2E adds a real Learn measured-read budget across spaces, idle DOM stability, native font/error/deletion/rotation geometry and exact exported attempts. Preparing or reviewing this definition is not a browser pass.",
+  "sourceHashes": {
+    "src/components/keybr/KeybrLessonMode.tsx": "49973686fcbe42607022caae71b10bf2d5719d1c7885cad257c9c32bd8a8cdae",
+    "src/lib/learning-caret-geometry.ts": "283a2ca639a74314ea44be0a3cb8a8d6bc61da7fd371832b2766bd24cb3a6829",
+    "src/lib/__tests__/learning-caret-geometry.test.ts": "60bda1b841246d91e3e85955cbbe5f0e3177b96ec3315c3910aee82b053e58e6",
+    "e2e/typing-observer-ownership.spec.ts": "69206ab3a34fa9c6265d52c608c2d1f4447ce03bce48bed04d47a220521f3ef5"
+  },
+  "reviewedFrozenSourceMatches": {
+    "src/components/keybr/KeybrLessonMode.tsx": true,
+    "src/lib/learning-caret-geometry.ts": true,
+    "src/lib/__tests__/learning-caret-geometry.test.ts": true
+  },
+  "otherEvidence": "Owner reports114 focused cases and scoped checks; root source13 gates/package and current four-engine fidelity run are separate receipts. This note does not relabel those results.",
+  "remainingAcceptance": [
+    "Current original-budget browser fidelity completion",
+    "Declared quiet mobile input/latency and full-quality animation measurements"
+  ],
+  "allOwnedJobsStopped": true
+}

@@ -13,6 +13,24 @@ describe('owner scoped session repository',()=>{
     expect((await repo.list('alice')).length).toBe(1);await repo.clear('alice');expect((await repo.list('bob')).length).toBe(1);
     expect(await repo.importGuest('alice')).toBe(1);expect(await repo.importGuest('alice')).toBe(0);expect((await repo.list('alice'))[0].provenance).toBe('guest-import');
   });
+  it('invalidates a pending new-session writer before taking a clear snapshot', async () => {
+    const repo = new SessionRepository();
+    const revision = repo.ownerRevision('alice');
+    const clearing = repo.clear('alice');
+    await expect(repo.save(record('alice', 'not-in-the-snapshot'), revision)).rejects.toThrow('reset');
+    await clearing;
+    expect(await repo.list('alice')).toEqual([]);
+    await repo.save(record('alice', 'new-attempt'));
+    expect((await repo.list('alice')).map(row => row.clientSessionId)).toEqual(['new-attempt']);
+  });
+  it('rejects an old observed controller even if it finishes after another tab reset', async () => {
+    const repo = new SessionRepository();
+    const at = Date.now();
+    localStorage.setItem('sparowtype.workspace-reset.v1:alice', JSON.stringify({ ownerId: 'alice', id: 'other-tab-reset', at }));
+    await expect(repo.save({ ...record(), createdAt: at + 1000, candidate: { startedAtWall: at - 5000 } })).rejects.toThrow('reset');
+    await repo.save({ ...record('alice', 'fresh'), createdAt: at + 2000, candidate: { startedAtWall: at + 1000 } });
+    expect((await repo.list('alice')).map(row => row.clientSessionId)).toEqual(['fresh']);
+  });
   it('enforces private content storage consent at the repository boundary',async()=>{
     const repo=new SessionRepository();await expect(repo.save({...record(),privateContent:true})).rejects.toThrow('consent');
     await repo.save({...record(),privateContent:true,state:'local-only'});expect((await repo.list('alice'))[0].state).toBe('local-only');

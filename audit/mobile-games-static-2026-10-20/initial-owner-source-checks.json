@@ -1,0 +1,41 @@
+{
+  "completedAt": "2026-10-20T19:41:19.370959+00:00",
+  "sourceFrozen": true,
+  "scope": "Central initial cookie-owner preparation for owner-scoped routes only; no auth/API/intro/renderer/timeout change. Prior course-specific candidate reverted before this check.",
+  "checks": [
+    {
+      "command": "npx vitest run src/components/layout/AccountWorkspace.test.tsx src/pages/Lessons.test.tsx --maxWorkers=1 --reporter=dot",
+      "exitCode": 0,
+      "passed": 45,
+      "files": 2,
+      "newAccountWorkspaceTests": 33,
+      "existingLessonsTests": 12
+    },
+    {
+      "command": "npx eslint src/components/layout/AccountWorkspace.tsx src/components/layout/AccountWorkspace.test.tsx e2e/account-workspace.spec.ts",
+      "exitCode": 0,
+      "warnings": 0
+    },
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "configs": [
+        "app",
+        "node",
+        "domain",
+        "portable"
+      ]
+    }
+  ],
+  "sourceSha256": {
+    "src/components/layout/AccountWorkspace.tsx": "6008a42d4faebb97b17f9ced2049f6de48e413f2d93633a48a51f160b08b100c",
+    "src/components/layout/AccountWorkspace.test.tsx": "40806dea698274b96128f5d4761e60eb4631a4ea0cd93f54b32640ace8a5e667",
+    "e2e/account-workspace.spec.ts": "d23a1b8414d0acba5d0dce8095bbb766f6e930140f1e2639e1fbaad0d9381fb7"
+  },
+  "preparedBrowserCases": {
+    "lateAccountAndGuestAcrossFiveWorkspaces": 10,
+    "publicPendingAuthSafety": 1,
+    "browserExecuted": false
+  },
+  "knownLimit": "Configured backend bootstrap retains its existing 15-second request timeout if unreachable. Backend-disabled/static installations mount immediately. Original native course failure schedule is unproven; deterministic source hazard regression is prepared."
+}

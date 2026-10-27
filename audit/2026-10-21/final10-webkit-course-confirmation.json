@@ -1,0 +1,529 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\extra\\typing_updated\\typing-forge\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "e2e/typing-course.spec.ts",
+      "--workers=1",
+      "--retries=0",
+      "--reporter=list,json",
+      "--output=D:\\extra\\typing_updated\\typing-forge\\audit\\2026-10-21/.playwright-artifacts-final10-webkit-course-confirmation"
+    ],
+    "configFile": "D:\\extra\\typing_updated\\typing-forge\\playwright.config.ts",
+    "rootDir": "D:/extra/typing_updated/typing-forge/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/audit/2026-10-21/.playwright-artifacts-final10-webkit-course-confirmation",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-10-21\\.playwright-artifacts-final10-webkit-course-confirmation",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "webkit",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Safari/605.1.15",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1792,
+            "height": 1120
+          },
+          "deviceScaleFactor": 2,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "webkit"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "webkit"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "typing-course.spec.ts",
+      "file": "typing-course.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "an older failed course save cannot mark a newly saved result as failed",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15122,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T19:35:36.221Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "course-save-order",
+                      "contentType": "application/json",
+                      "body": "eyJvbGRlcklkIjoiZmRiYzE0YWMtMTdlNS00N2YwLWJmOWYtNWRhMDAyMGQ5YTBlIiwibmV3ZXJJZCI6IjI4OTIzZTk1LTU1NzEtNDQ1MC04MzQ3LTFmZTU4NWM2N2Y5NyIsIm9sZFNhdmUiOiJyZWplY3RlZCBhZnRlciBjdXJyZW50IHNhdmVkIiwiY3VycmVudFN0YXR1c1VuYWZmZWN0ZWQiOnRydWV9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f0620a3ddfefdc4e6694-7a5106426ed1c246614c",
+          "file": "typing-course.spec.ts",
+          "line": 98,
+          "column": 1
+        },
+        {
+          "title": "an older successful course save cannot finish a newer pending save or supply its status",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 16241,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T19:35:51.455Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "course-save-order",
+                      "contentType": "application/json",
+                      "body": "eyJvbGRlcklkIjoiOTY3OTU4ZGUtZjZhMi00NjU1LTllOGYtYWIwMzQ1NDk0OGRiIiwibmV3ZXJJZCI6IjNiODgyYmFiLWU0N2EtNGE4NS05MzY5LTlmMmY3NWM1YzYwNCIsIm9sZFNhdmUiOiJyZXNvbHZlZCB3aGlsZSBjdXJyZW50IHBlbmRpbmciLCJzY29wZWREZXRhaWxlZFN0YXR1cyI6dHJ1ZSwiY3VycmVudFNhdmVSZWxlYXNlZFNlcGFyYXRlbHkiOnRydWV9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f0620a3ddfefdc4e6694-fdd45f527a0322ded61a",
+          "file": "typing-course.spec.ts",
+          "line": 120,
+          "column": 1
+        },
+        {
+          "title": "the full course has 36 lessons, two independent entry paths and honest locked previews",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2439,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T19:36:07.712Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f0620a3ddfefdc4e6694-bd441f11119dce64debd",
+          "file": "typing-course.spec.ts",
+          "line": 149,
+          "column": 1
+        },
+        {
+          "title": "two different measured passages unlock the next lesson; repetition, reload and reset are truthful",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 24026,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T19:36:10.165Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f0620a3ddfefdc4e6694-b73c3e10200bed9c8488",
+          "file": "typing-course.spec.ts",
+          "line": 168,
+          "column": 1
+        },
+        {
+          "title": "corrected errors retain their accuracy cost and an early finish never earns a checkpoint",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10491,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T19:36:34.203Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f0620a3ddfefdc4e6694-52d94953f6baf418459a",
+          "file": "typing-course.spec.ts",
+          "line": 193,
+          "column": 1
+        },
+        {
+          "title": "correct submitted words stay locked and Tab then Enter preserves the course contract with a fresh variant",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2935,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T19:36:44.710Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f0620a3ddfefdc4e6694-656b0eeac296cd1a0dc8",
+          "file": "typing-course.spec.ts",
+          "line": 212,
+          "column": 1
+        },
+        {
+          "title": "a real uninterrupted 30-second speed assessment includes idle time and saves its checkpoint",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 50000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 32379,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T19:36:47.658Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "natural-speed-clock",
+                      "contentType": "application/json",
+                      "body": "eyJkcml2ZXJXYWxsTXMiOjMwMzkwLjk2MzYwMDAwMDAwMywiY2hhcmFjdGVycyI6ODksImFjY2VsZXJhdGVkQ2xvY2siOmZhbHNlfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f0620a3ddfefdc4e6694-8aacf89120e77e7a2f9a",
+          "file": "typing-course.spec.ts",
+          "line": 234,
+          "column": 1
+        },
+        {
+          "title": "paused speed practice cannot qualify and never describes the attempt as uninterrupted",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 14368,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T19:37:20.050Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f0620a3ddfefdc4e6694-df2483c06d891ec77183",
+          "file": "typing-course.spec.ts",
+          "line": 248,
+          "column": 1
+        },
+        {
+          "title": "lesson navigation restores focus and scroll, handles invalid links and keeps global layout preferences",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3666,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T19:37:34.433Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f0620a3ddfefdc4e6694-a80e559ed42dcd9509c6",
+          "file": "typing-course.spec.ts",
+          "line": 264,
+          "column": 1
+        },
+        {
+          "title": "course overview, preview, active keyboard and result fit and pass automated accessibility at 320px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9448,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T19:37:38.122Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "course-responsive-accessibility",
+                      "contentType": "application/json",
+                      "body": "W3sic3RhdGUiOiJvdmVydmlldyIsIndpZHRoIjozMjAsIndvcmtzcGFjZU9wYWNpdHkiOm51bGwsIm92ZXJmbG93IjpmYWxzZSwidmlvbGF0aW9ucyI6W10sImluY29tcGxldGUiOltdfSx7InN0YXRlIjoicHJldmlldyIsIndpZHRoIjozMjAsIndvcmtzcGFjZU9wYWNpdHkiOm51bGwsIm92ZXJmbG93IjpmYWxzZSwidmlvbGF0aW9ucyI6W10sImluY29tcGxldGUiOlsiYXJpYS1wcm9oaWJpdGVkLWF0dHIiLCJjb2xvci1jb250cmFzdCJdfSx7InN0YXRlIjoiYWN0aXZlIiwid2lkdGgiOjMyMCwid29ya3NwYWNlT3BhY2l0eSI6IjEiLCJvdmVyZmxvdyI6ZmFsc2UsInZpb2xhdGlvbnMiOltdLCJpbmNvbXBsZXRlIjpbImNvbG9yLWNvbnRyYXN0Il19LHsic3RhdGUiOiJ0ZWNobmlxdWUtZGlzY2xvc3VyZSIsIndpZHRoIjozMjAsIndvcmtzcGFjZU9wYWNpdHkiOiIxIiwib3ZlcmZsb3ciOmZhbHNlLCJ2aW9sYXRpb25zIjpbXSwiaW5jb21wbGV0ZSI6WyJjb2xvci1jb250cmFzdCJdfSx7InN0YXRlIjoicmVzdWx0Iiwid2lkdGgiOjMyMCwid29ya3NwYWNlT3BhY2l0eSI6bnVsbCwib3ZlcmZsb3ciOmZhbHNlLCJ2aW9sYXRpb25zIjpbXSwiaW5jb21wbGV0ZSI6WyJjb2xvci1jb250cmFzdCJdfV0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f0620a3ddfefdc4e6694-dbe065eb99b082a804bf",
+          "file": "typing-course.spec.ts",
+          "line": 286,
+          "column": 3
+        },
+        {
+          "title": "course overview, preview, active keyboard and result fit and pass automated accessibility at 1440px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12100,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T19:37:47.583Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "course-responsive-accessibility",
+                      "contentType": "application/json",
+                      "body": "W3sic3RhdGUiOiJvdmVydmlldyIsIndpZHRoIjoxNDQwLCJ3b3Jrc3BhY2VPcGFjaXR5IjpudWxsLCJvdmVyZmxvdyI6ZmFsc2UsInZpb2xhdGlvbnMiOltdLCJpbmNvbXBsZXRlIjpbImFyaWEtcHJvaGliaXRlZC1hdHRyIiwiY29sb3ItY29udHJhc3QiXX0seyJzdGF0ZSI6InByZXZpZXciLCJ3aWR0aCI6MTQ0MCwid29ya3NwYWNlT3BhY2l0eSI6bnVsbCwib3ZlcmZsb3ciOmZhbHNlLCJ2aW9sYXRpb25zIjpbXSwiaW5jb21wbGV0ZSI6WyJhcmlhLXByb2hpYml0ZWQtYXR0ciJdfSx7InN0YXRlIjoiYWN0aXZlIiwid2lkdGgiOjE0NDAsIndvcmtzcGFjZU9wYWNpdHkiOiIxIiwib3ZlcmZsb3ciOmZhbHNlLCJ2aW9sYXRpb25zIjpbXSwiaW5jb21wbGV0ZSI6WyJjb2xvci1jb250cmFzdCJdfSx7InN0YXRlIjoidGVjaG5pcXVlLWRpc2Nsb3N1cmUiLCJ3aWR0aCI6MTQ0MCwid29ya3NwYWNlT3BhY2l0eSI6IjEiLCJvdmVyZmxvdyI6ZmFsc2UsInZpb2xhdGlvbnMiOltdLCJpbmNvbXBsZXRlIjpbImNvbG9yLWNvbnRyYXN0Il19LHsic3RhdGUiOiJyZXN1bHQiLCJ3aWR0aCI6MTQ0MCwid29ya3NwYWNlT3BhY2l0eSI6bnVsbCwib3ZlcmZsb3ciOmZhbHNlLCJ2aW9sYXRpb25zIjpbXSwiaW5jb21wbGV0ZSI6W119XQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f0620a3ddfefdc4e6694-9e40aca31e3574142db5",
+          "file": "typing-course.spec.ts",
+          "line": 286,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-21T19:35:35.437Z",
+    "duration": 144435.816,
+    "expected": 11,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

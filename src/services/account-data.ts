@@ -2,6 +2,7 @@ import { accountApi, authService, isBackendConfigured } from './php-api';
 import { payloadIdentity, sessionRepository, type SessionRecord } from './session-repository';
 import { reconcileLearningSessions } from '@/lib/keybr-engine';
 import type { LearningSessionEvidence } from '@/lib/learning-evidence';
+import { completeWorkspaceExport } from './workspace-extras';
 
 async function authenticatedOwner(ownerId: string) {
   if (!isBackendConfigured) throw new Error('Account operations are unavailable in this installation.');
@@ -12,7 +13,9 @@ async function authenticatedOwner(ownerId: string) {
 
 export async function downloadAccountHistory(ownerId: string, attempt = 0): Promise<void> {
   if (!isBackendConfigured || ownerId === 'guest') return;
+  const revision = sessionRepository.ownerRevision(ownerId);
   await authenticatedOwner(ownerId);
+  if (revision !== sessionRepository.ownerRevision(ownerId)) throw new Error('The workspace was reset while history was downloading. Reopen it to refresh account history.');
   // Only rows accepted before this snapshot are eligible for deletion. A new
   // upload can legitimately be absent from the pages already being downloaded.
   const previouslySynced = (await sessionRepository.list(ownerId)).filter(row => row.state === 'synced');
@@ -43,16 +46,17 @@ export async function downloadAccountHistory(ownerId: string, attempt = 0): Prom
   }
   const { version: finalVersion } = await accountApi.dataVersion(ownerId);
   await authenticatedOwner(ownerId);
+  if (revision !== sessionRepository.ownerRevision(ownerId)) throw new Error('The workspace was reset while history was downloading. Reopen it to refresh account history.');
   if (changed || finalVersion !== initialVersion) {
     if (attempt < 2) return downloadAccountHistory(ownerId, attempt + 1);
     throw new Error('Account history changed during download. Reopen this page to reconcile the latest version.');
   }
   for (const row of pending) {
     if (await sessionRepository.get(ownerId, row.clientSessionId) || await sessionRepository.isDeleted(ownerId, row.clientSessionId)) continue;
-    await sessionRepository.save(row);
+    await sessionRepository.save(row, revision);
   }
   for (const row of previouslySynced) if (!cloudIds.has(row.clientSessionId)) await sessionRepository.remove(ownerId, row.clientSessionId);
-  reconcileLearningSessions([...learning.values()], ownerId, finalVersion);
+  if (revision === sessionRepository.ownerRevision(ownerId)) reconcileLearningSessions([...learning.values()], ownerId, finalVersion);
 }
 
 export async function deleteSession(ownerId: string, sessionId: string): Promise<void> {
@@ -79,8 +83,9 @@ export async function deleteAccount(ownerId: string): Promise<void> {
   else await authService.refresh();
 }
 
-export function exportHistory(records: SessionRecord[]) {
-  const blob = new Blob([JSON.stringify({ format: 'typing-forge-export', schemaVersion: 3, exportedAt: new Date().toISOString(), sessions: records }, null, 2)], { type: 'application/json' });
+export async function exportHistory(ownerId: string, records: SessionRecord[]) {
+  const data = await completeWorkspaceExport(ownerId, records);
+  const blob = new Blob([JSON.stringify({ format: 'typing-forge-export', schemaVersion: 3, exportedAt: new Date().toISOString(), ...data }, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;

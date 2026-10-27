@@ -1,0 +1,88 @@
+
+Running 2 tests using 1 worker
+
+(node:54284) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [chromium] › e2e\account-workspace.spec.ts:36:5 › initial owner readiness protects Test with a delayed account session (5.8s)
+(node:26352) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 [chromium] › e2e\account-workspace.spec.ts:36:5 › initial owner readiness protects Lessons with a delayed account session (5.4s)
+
+
+  1) [chromium] › e2e\account-workspace.spec.ts:36:5 › initial owner readiness protects Test with a delayed account session 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('status', { name: 'Preparing account workspace', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('status', { name: 'Preparing account workspace', exact: true }) with timeout 5000ms
+      - waiting for getByRole('status', { name: 'Preparing account workspace', exact: true })
+
+
+      40 |         await page.goto(route);
+      41 |         await fixture.observed;
+    > 42 |         await expect(page.getByRole("status", { name: "Preparing account workspace", exact: true })).toBeVisible();
+         |                                                                                                      ^
+      43 |         await expect(page.locator("#main-content")).toHaveCount(0);
+      44 |         await expect(page.locator(".typing-workspace, [aria-label='Adaptive typing lesson'], .course-preview, [aria-label='Signal Run game']")).toHaveCount(0);
+      45 |         await expect(page.getByRole("button", { name: "Start bot practice", exact: true })).toHaveCount(0);
+        at D:\extra\typing_updated\typing-forge\e2e\account-workspace.spec.ts:42:102
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\mobile-games-static-2026-10-20\.playwright-artifacts-before-initial-owner-fix\account-workspace-initial--b4712-h-a-delayed-account-session-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\mobile-games-static-2026-10-20\.playwright-artifacts-before-initial-owner-fix\account-workspace-initial--b4712-h-a-delayed-account-session-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\mobile-games-static-2026-10-20\.playwright-artifacts-before-initial-owner-fix\account-workspace-initial--b4712-h-a-delayed-account-session-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\mobile-games-static-2026-10-20\.playwright-artifacts-before-initial-owner-fix\account-workspace-initial--b4712-h-a-delayed-account-session-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › e2e\account-workspace.spec.ts:36:5 › initial owner readiness protects Lessons with a delayed account session 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('status', { name: 'Preparing account workspace', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('status', { name: 'Preparing account workspace', exact: true }) with timeout 5000ms
+      - waiting for getByRole('status', { name: 'Preparing account workspace', exact: true })
+
+
+      40 |         await page.goto(route);
+      41 |         await fixture.observed;
+    > 42 |         await expect(page.getByRole("status", { name: "Preparing account workspace", exact: true })).toBeVisible();
+         |                                                                                                      ^
+      43 |         await expect(page.locator("#main-content")).toHaveCount(0);
+      44 |         await expect(page.locator(".typing-workspace, [aria-label='Adaptive typing lesson'], .course-preview, [aria-label='Signal Run game']")).toHaveCount(0);
+      45 |         await expect(page.getByRole("button", { name: "Start bot practice", exact: true })).toHaveCount(0);
+        at D:\extra\typing_updated\typing-forge\e2e\account-workspace.spec.ts:42:102
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\mobile-games-static-2026-10-20\.playwright-artifacts-before-initial-owner-fix\account-workspace-initial--6fb4b-h-a-delayed-account-session-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\mobile-games-static-2026-10-20\.playwright-artifacts-before-initial-owner-fix\account-workspace-initial--6fb4b-h-a-delayed-account-session-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\mobile-games-static-2026-10-20\.playwright-artifacts-before-initial-owner-fix\account-workspace-initial--6fb4b-h-a-delayed-account-session-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\mobile-games-static-2026-10-20\.playwright-artifacts-before-initial-owner-fix\account-workspace-initial--6fb4b-h-a-delayed-account-session-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › e2e\account-workspace.spec.ts:36:5 › initial owner readiness protects Test with a delayed account session 
+    [chromium] › e2e\account-workspace.spec.ts:36:5 › initial owner readiness protects Lessons with a delayed account session 

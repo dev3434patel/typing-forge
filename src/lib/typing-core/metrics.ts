@@ -1,5 +1,5 @@
 import type { PauseInterval, SessionConfig, SessionEvent, SessionMetricValues, TargetSegment, TimeSample } from './types.ts';
-import { alignTranscript, applyEvent, emptyTranscript, targetGraphemes, normalizeTarget, segmentPrecedesEvent, type TranscriptState, type WordCreditTrace } from './transcript.ts';
+import { alignTranscript, applyEvent, emptyTranscript, targetGraphemes, normalizeTarget, segmentPrecedesEvent, type Alignment, type TranscriptState, type WordCreditTrace } from './transcript.ts';
 
 export function activeOffset(offsetMs: number, pauses: PauseInterval[] = []): number {
   if (!Number.isFinite(offsetMs) || offsetMs < 0) throw new Error('Event time must be finite and non-negative');
@@ -41,16 +41,22 @@ function rhythm(attempts: Array<{ offsetMs: number }>, elapsedMs: number): { con
 }
 export function calculateMetrics(
   config: SessionConfig, targetText: string, state: TranscriptState, elapsedMs: number,
-  options: { finiteFinal?: boolean; pauseIntervals?: PauseInterval[]; includeRhythm?: boolean } = {},
+  options: { finiteFinal?: boolean; pauseIntervals?: PauseInterval[]; includeRhythm?: boolean; alignment?: Alignment } = {},
 ): { metrics: SessionMetricValues; characters: ReturnType<typeof alignTranscript>['characters']; cursor: number } {
   if (!Number.isFinite(elapsedMs) || elapsedMs < 0 || elapsedMs > 86_400_000) throw new Error('Elapsed duration must be finite and within one day');
   const policy = config.scoringPolicy ?? (config.mode === 'code' ? 'code' : 'prose');
-  const aligned = alignTranscript(targetGraphemes(targetText), state.units, policy, options.finiteFinal, state.submissions);
-  const count = (status: string) => aligned.characters.filter(char => char.status === status).length;
-  const correct = policy === 'free' ? 0 : count('correct');
-  const incorrect = policy === 'free' ? 0 : count('incorrect');
-  const extra = policy === 'free' ? state.units.length : count('extra');
-  const missed = policy === 'free' ? 0 : count('missed');
+  const aligned = options.alignment ?? alignTranscript(targetGraphemes(targetText), state.units, policy, options.finiteFinal, state.submissions);
+  let correct = 0, incorrect = 0, missed = 0, untyped = 0;
+  let extra = policy === 'free' ? state.units.length : 0;
+  if (policy !== 'free') aligned.characters.forEach(char => {
+    switch (char.status) {
+      case 'correct': correct++; break;
+      case 'incorrect': incorrect++; break;
+      case 'extra': extra++; break;
+      case 'missed': missed++; break;
+      case 'untyped': untyped++; break;
+    }
+  });
   const correctAttempts = state.correctAttemptCount;
   const incorrectAttempts = state.attempts.length - correctAttempts;
   const attempts = options.includeRhythm === false ? [] : state.attempts.map(attempt => ({ ...attempt, offsetMs: activeOffset(attempt.offsetMs, options.pauseIntervals) }));
@@ -63,7 +69,7 @@ export function calculateMetrics(
     inputAccuracy: policy === 'free' || !state.attempts.length ? null : correctAttempts / state.attempts.length * 100,
     finalTextAccuracy: policy === 'free' || !totalFinal ? null : correct / totalFinal * 100,
     ...(options.includeRhythm === false ? { consistency: null, peakFiveSecondWpm: null } : rhythm(attempts, elapsedMs)),
-    correct, incorrect, extra, missed, untyped: policy === 'free' ? 0 : count('untyped'),
+    correct, incorrect, extra, missed, untyped,
     creditedUnits: policy === 'free' ? 0 : aligned.creditedUnits,
     retainedUnits: state.units.length,
     correctAttempts, incorrectAttempts, insertionAttempts: state.attempts.length,
@@ -90,9 +96,11 @@ function prepareReplay(config: SessionConfig, events: SessionEvent[], elapsedMs:
   }
   if (segments && reconstructed !== targetText) throw new Error('Issued target does not reconstruct the final target');
   const pauses = options.pauseIntervals ?? [];
+  const anchors = pauses.some(pause => pause.afterSequence !== undefined) ? new Map(events.map(event => [event.sequence, event])) : null;
   let pauseEnd = 0;
   for (const pause of pauses) {
     if (!Number.isFinite(pause.startMs) || !Number.isFinite(pause.endMs) || pause.startMs < pauseEnd || pause.endMs < pause.startMs) throw new Error('Pause intervals must be finite, ordered and non-overlapping');
+    if (pause.afterSequence !== undefined && (!Number.isInteger(pause.afterSequence) || pause.afterSequence < 0 || anchors?.get(pause.afterSequence)?.offsetMs !== pause.startMs)) throw new Error('A pause sequence anchor must reference input at its exact start timestamp');
     pauseEnd = pause.endMs;
   }
   const state = emptyTranscript();
@@ -109,7 +117,7 @@ function prepareReplay(config: SessionConfig, events: SessionEvent[], elapsedMs:
     previousOffset = event.offsetMs;
     const active = activeOffset(event.offsetMs, pauses);
     if (active > elapsedMs || (config.durationMs !== undefined && active >= config.durationMs)) continue;
-    if (pauses.some(pause => event.offsetMs >= pause.startMs && event.offsetMs < pause.endMs)) throw new Error('Scored event occurred during a pause');
+    if (pauses.some(pause => event.offsetMs >= pause.startMs && event.offsetMs < pause.endMs && !(event.offsetMs === pause.startMs && pause.afterSequence !== undefined && event.sequence <= pause.afterSequence))) throw new Error('Scored event occurred during a pause');
     while (segments && segmentIndex < segments.length && segmentPrecedesEvent(segments[segmentIndex], event)) issuedTarget += segments[segmentIndex++].text;
     applyEvent(state, event, issuedTarget, config);
     accepted.push({ event, targetText: issuedTarget });

@@ -1,0 +1,107 @@
+
+Running 16 tests using 1 worker
+
+(node:20956) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   1 [chromium] › e2e\pwa-snapshot-consistency.spec.ts:194:1 › actual PWA consumers read a snapshot published before their first render (0ms)
+  -   2 [chromium] › e2e\pwa-snapshot-consistency.spec.ts:205:1 › actual PWA consumers recover a publication between render and passive subscription
+  -   3 [chromium] › e2e\pwa-snapshot-consistency.spec.ts:221:1 › actual PWA consumers observe a publication after both subscriptions exist
+  -   4 [chromium] › e2e\pwa-snapshot-consistency.spec.ts:235:1 › actual PWA consumers release both subscriptions when unmounted
+(node:12432) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   5 [edge] › e2e\pwa-snapshot-consistency.spec.ts:194:1 › actual PWA consumers read a snapshot published before their first render (1ms)
+  -   6 [edge] › e2e\pwa-snapshot-consistency.spec.ts:205:1 › actual PWA consumers recover a publication between render and passive subscription
+  -   7 [edge] › e2e\pwa-snapshot-consistency.spec.ts:221:1 › actual PWA consumers observe a publication after both subscriptions exist
+  -   8 [edge] › e2e\pwa-snapshot-consistency.spec.ts:235:1 › actual PWA consumers release both subscriptions when unmounted
+(node:40136) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   9 [firefox] › e2e\pwa-snapshot-consistency.spec.ts:194:1 › actual PWA consumers read a snapshot published before their first render (0ms)
+  -  10 [firefox] › e2e\pwa-snapshot-consistency.spec.ts:205:1 › actual PWA consumers recover a publication between render and passive subscription
+  -  11 [firefox] › e2e\pwa-snapshot-consistency.spec.ts:221:1 › actual PWA consumers observe a publication after both subscriptions exist
+  -  12 [firefox] › e2e\pwa-snapshot-consistency.spec.ts:235:1 › actual PWA consumers release both subscriptions when unmounted
+(node:24308) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  13 [webkit] › e2e\pwa-snapshot-consistency.spec.ts:194:1 › actual PWA consumers read a snapshot published before their first render (1ms)
+  -  14 [webkit] › e2e\pwa-snapshot-consistency.spec.ts:205:1 › actual PWA consumers recover a publication between render and passive subscription
+  -  15 [webkit] › e2e\pwa-snapshot-consistency.spec.ts:221:1 › actual PWA consumers observe a publication after both subscriptions exist
+  -  16 [webkit] › e2e\pwa-snapshot-consistency.spec.ts:235:1 › actual PWA consumers release both subscriptions when unmounted
+
+
+  1) [chromium] › e2e\pwa-snapshot-consistency.spec.ts:194:1 › actual PWA consumers read a snapshot published before their first render 
+
+    Error: Expected one in-memory fixture bundle.
+
+      118 |     },
+      119 |   });
+    > 120 |   if (Array.isArray(bundle) || !("output" in bundle)) throw new Error("Expected one in-memory fixture bundle.");
+          |                                                             ^
+      121 |   const chunks = bundle.output.filter(output => output.type === "chunk");
+      122 |   if (chunks.length !== 1) throw new Error("Expected one self-contained fixture script.");
+      123 |   const javascript = chunks[0].code;
+        at startSnapshotFixture (D:\extra\typing_updated\typing-forge\e2e\pwa-snapshot-consistency.spec.ts:120:61)
+        at D:\extra\typing_updated\typing-forge\e2e\pwa-snapshot-consistency.spec.ts:159:40
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final18-pwa-before-fix-jsx-corrected\pwa-snapshot-consistency-a-8e065-d-before-their-first-render-chromium\error-context.md
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final18-pwa-before-fix-jsx-corrected\pwa-snapshot-consistency-a-8e065-d-before-their-first-render-chromium\error-context.md
+
+  2) [edge] › e2e\pwa-snapshot-consistency.spec.ts:194:1 › actual PWA consumers read a snapshot published before their first render 
+
+    Error: Expected one in-memory fixture bundle.
+
+      118 |     },
+      119 |   });
+    > 120 |   if (Array.isArray(bundle) || !("output" in bundle)) throw new Error("Expected one in-memory fixture bundle.");
+          |                                                             ^
+      121 |   const chunks = bundle.output.filter(output => output.type === "chunk");
+      122 |   if (chunks.length !== 1) throw new Error("Expected one self-contained fixture script.");
+      123 |   const javascript = chunks[0].code;
+        at startSnapshotFixture (D:\extra\typing_updated\typing-forge\e2e\pwa-snapshot-consistency.spec.ts:120:61)
+        at D:\extra\typing_updated\typing-forge\e2e\pwa-snapshot-consistency.spec.ts:159:40
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final18-pwa-before-fix-jsx-corrected\pwa-snapshot-consistency-a-8e065-d-before-their-first-render-edge\error-context.md
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final18-pwa-before-fix-jsx-corrected\pwa-snapshot-consistency-a-8e065-d-before-their-first-render-edge\error-context.md
+
+  3) [firefox] › e2e\pwa-snapshot-consistency.spec.ts:194:1 › actual PWA consumers read a snapshot published before their first render 
+
+    Error: Expected one in-memory fixture bundle.
+
+      118 |     },
+      119 |   });
+    > 120 |   if (Array.isArray(bundle) || !("output" in bundle)) throw new Error("Expected one in-memory fixture bundle.");
+          |                                                             ^
+      121 |   const chunks = bundle.output.filter(output => output.type === "chunk");
+      122 |   if (chunks.length !== 1) throw new Error("Expected one self-contained fixture script.");
+      123 |   const javascript = chunks[0].code;
+        at startSnapshotFixture (D:\extra\typing_updated\typing-forge\e2e\pwa-snapshot-consistency.spec.ts:120:61)
+        at D:\extra\typing_updated\typing-forge\e2e\pwa-snapshot-consistency.spec.ts:159:40
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final18-pwa-before-fix-jsx-corrected\pwa-snapshot-consistency-a-8e065-d-before-their-first-render-firefox\error-context.md
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final18-pwa-before-fix-jsx-corrected\pwa-snapshot-consistency-a-8e065-d-before-their-first-render-firefox\error-context.md
+
+  4) [webkit] › e2e\pwa-snapshot-consistency.spec.ts:194:1 › actual PWA consumers read a snapshot published before their first render 
+
+    Error: Expected one in-memory fixture bundle.
+
+      118 |     },
+      119 |   });
+    > 120 |   if (Array.isArray(bundle) || !("output" in bundle)) throw new Error("Expected one in-memory fixture bundle.");
+          |                                                             ^
+      121 |   const chunks = bundle.output.filter(output => output.type === "chunk");
+      122 |   if (chunks.length !== 1) throw new Error("Expected one self-contained fixture script.");
+      123 |   const javascript = chunks[0].code;
+        at startSnapshotFixture (D:\extra\typing_updated\typing-forge\e2e\pwa-snapshot-consistency.spec.ts:120:61)
+        at D:\extra\typing_updated\typing-forge\e2e\pwa-snapshot-consistency.spec.ts:159:40
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final18-pwa-before-fix-jsx-corrected\pwa-snapshot-consistency-a-8e065-d-before-their-first-render-webkit\error-context.md
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final18-pwa-before-fix-jsx-corrected\pwa-snapshot-consistency-a-8e065-d-before-their-first-render-webkit\error-context.md
+
+  4 failed
+    [chromium] › e2e\pwa-snapshot-consistency.spec.ts:194:1 › actual PWA consumers read a snapshot published before their first render 
+    [edge] › e2e\pwa-snapshot-consistency.spec.ts:194:1 › actual PWA consumers read a snapshot published before their first render 
+    [firefox] › e2e\pwa-snapshot-consistency.spec.ts:194:1 › actual PWA consumers read a snapshot published before their first render 
+    [webkit] › e2e\pwa-snapshot-consistency.spec.ts:194:1 › actual PWA consumers read a snapshot published before their first render 
+  12 did not run

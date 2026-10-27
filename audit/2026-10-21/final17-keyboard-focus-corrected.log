@@ -1,0 +1,423 @@
+
+Running 16 tests using 1 worker
+
+(node:22292) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   1 [chromium] › e2e\live-keyboard.spec.ts:396:3 › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable (1.8s)
+(node:47768) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   2 [chromium] › e2e\live-keyboard.spec.ts:396:3 › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable (1.6s)
+(node:55172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  3 [chromium] › e2e\live-keyboard.spec.ts:396:3 › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable (1.9s)
+  x   4 [chromium] › e2e\live-keyboard.spec.ts:516:1 › layout-contained native character board retains its intrinsic rows and actual input after rotation (5.7s)
+(node:51568) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  5 [edge] › e2e\live-keyboard.spec.ts:396:3 › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable (2.4s)
+  x   6 [edge] › e2e\live-keyboard.spec.ts:396:3 › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable (1.8s)
+(node:49900) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   7 [edge] › e2e\live-keyboard.spec.ts:396:3 › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable (2.6s)
+(node:13968) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   8 [edge] › e2e\live-keyboard.spec.ts:516:1 › layout-contained native character board retains its intrinsic rows and actual input after rotation (5.8s)
+(node:54664) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   9 [firefox] › e2e\live-keyboard.spec.ts:396:3 › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable (9.1s)
+(node:38624) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  10 [firefox] › e2e\live-keyboard.spec.ts:396:3 › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable (5.8s)
+(node:35904) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  11 [firefox] › e2e\live-keyboard.spec.ts:396:3 › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable (7.4s)
+(node:33024) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  12 [firefox] › e2e\live-keyboard.spec.ts:516:1 › layout-contained native character board retains its intrinsic rows and actual input after rotation (7.2s)
+(node:27092) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 13 [webkit] › e2e\live-keyboard.spec.ts:396:3 › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable (4.2s)
+  ok 14 [webkit] › e2e\live-keyboard.spec.ts:396:3 › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable (4.1s)
+  x  15 [webkit] › e2e\live-keyboard.spec.ts:396:3 › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable (4.0s)
+(node:14180) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  16 [webkit] › e2e\live-keyboard.spec.ts:516:1 › layout-contained native character board retains its intrinsic rows and actual input after rotation (6.7s)
+
+
+  1) [chromium] › e2e\live-keyboard.spec.ts:396:3 › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "hitPanel": true,
+    -   "overlapsBoard": true,
+    +   "hitPanel": false,
+    +   "overlapsBoard": false,
+        "withinViewport": true,
+      }
+
+      495 |             box.top >= -0.02 && box.bottom <= innerHeight + 0.02 };
+      496 |       });
+    > 497 |       expect(overlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+          |                       ^
+      498 |       await panel.focus();
+      499 |       await page.keyboard.press('Escape');
+      500 |       await expect(panel).not.toBeVisible();
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:497:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-4460a-tside-shortcut-panel-usable-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-4460a-tside-shortcut-panel-usable-chromium\error-context.md
+
+  2) [chromium] › e2e\live-keyboard.spec.ts:396:3 › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "hitPanel": true,
+    -   "overlapsBoard": true,
+    +   "hitPanel": false,
+    +   "overlapsBoard": false,
+        "withinViewport": true,
+      }
+
+      495 |             box.top >= -0.02 && box.bottom <= innerHeight + 0.02 };
+      496 |       });
+    > 497 |       expect(overlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+          |                       ^
+      498 |       await panel.focus();
+      499 |       await page.keyboard.press('Escape');
+      500 |       await expect(panel).not.toBeVisible();
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:497:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-66b4b-tside-shortcut-panel-usable-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-66b4b-tside-shortcut-panel-usable-chromium\error-context.md
+
+  3) [chromium] › e2e\live-keyboard.spec.ts:516:1 › layout-contained native character board retains its intrinsic rows and actual input after rotation 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator:  getByRole('textbox', { name: 'Type the practice text', exact: true })
+    Expected: "x"
+    Received: ""
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveValue" getByRole('textbox', { name: 'Type the practice text', exact: true }) with timeout 5000ms
+      - waiting for getByRole('textbox', { name: 'Type the practice text', exact: true })
+        14 × locator resolved to <textarea autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off" aria-label="Type the practice text" aria-describedby="lesson-instructions lesson-feedback lesson-passage" class="absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0"></textarea>
+           - unexpected value ""
+
+
+      532 |   // it is not used to claim a physical Arabic key or an IME composition.
+      533 |   await input.press('x');
+    > 534 |   await expect(input).toHaveValue('x');
+          |                       ^
+      535 |   await expect(page.getByTestId('keyboard-last-input')).toContainText('Typed x');
+      536 |   await expect(board.locator('[data-pressed-key]')).toHaveCount(0);
+      537 |   expectSameKeyboardLayout(before, await containmentShape(board));
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:534:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-e3942-actual-input-after-rotation-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-e3942-actual-input-after-rotation-chromium\error-context.md
+
+  4) [edge] › e2e\live-keyboard.spec.ts:396:3 › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "hitPanel": true,
+    -   "overlapsBoard": true,
+    +   "hitPanel": false,
+    +   "overlapsBoard": false,
+        "withinViewport": true,
+      }
+
+      495 |             box.top >= -0.02 && box.bottom <= innerHeight + 0.02 };
+      496 |       });
+    > 497 |       expect(overlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+          |                       ^
+      498 |       await panel.focus();
+      499 |       await page.keyboard.press('Escape');
+      500 |       await expect(panel).not.toBeVisible();
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:497:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-66b4b-tside-shortcut-panel-usable-edge\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-66b4b-tside-shortcut-panel-usable-edge\error-context.md
+
+  5) [edge] › e2e\live-keyboard.spec.ts:396:3 › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "hitPanel": true,
+    -   "overlapsBoard": true,
+    +   "hitPanel": false,
+    +   "overlapsBoard": false,
+        "withinViewport": true,
+      }
+
+      495 |             box.top >= -0.02 && box.bottom <= innerHeight + 0.02 };
+      496 |       });
+    > 497 |       expect(overlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+          |                       ^
+      498 |       await panel.focus();
+      499 |       await page.keyboard.press('Escape');
+      500 |       await expect(panel).not.toBeVisible();
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:497:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-ec6d2-tside-shortcut-panel-usable-edge\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-ec6d2-tside-shortcut-panel-usable-edge\error-context.md
+
+  6) [edge] › e2e\live-keyboard.spec.ts:516:1 › layout-contained native character board retains its intrinsic rows and actual input after rotation 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator:  getByRole('textbox', { name: 'Type the practice text', exact: true })
+    Expected: "x"
+    Received: ""
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveValue" getByRole('textbox', { name: 'Type the practice text', exact: true }) with timeout 5000ms
+      - waiting for getByRole('textbox', { name: 'Type the practice text', exact: true })
+        14 × locator resolved to <textarea autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off" aria-label="Type the practice text" aria-describedby="lesson-instructions lesson-feedback lesson-passage" class="absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0"></textarea>
+           - unexpected value ""
+
+
+      532 |   // it is not used to claim a physical Arabic key or an IME composition.
+      533 |   await input.press('x');
+    > 534 |   await expect(input).toHaveValue('x');
+          |                       ^
+      535 |   await expect(page.getByTestId('keyboard-last-input')).toContainText('Typed x');
+      536 |   await expect(board.locator('[data-pressed-key]')).toHaveCount(0);
+      537 |   expectSameKeyboardLayout(before, await containmentShape(board));
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:534:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-e3942-actual-input-after-rotation-edge\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-e3942-actual-input-after-rotation-edge\error-context.md
+
+  7) [firefox] › e2e\live-keyboard.spec.ts:396:3 › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "hitPanel": true,
+    -   "overlapsBoard": true,
+    +   "hitPanel": false,
+    +   "overlapsBoard": false,
+        "withinViewport": true,
+      }
+
+      495 |             box.top >= -0.02 && box.bottom <= innerHeight + 0.02 };
+      496 |       });
+    > 497 |       expect(overlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+          |                       ^
+      498 |       await panel.focus();
+      499 |       await page.keyboard.press('Escape');
+      500 |       await expect(panel).not.toBeVisible();
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:497:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-4460a-tside-shortcut-panel-usable-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-4460a-tside-shortcut-panel-usable-firefox\error-context.md
+
+  8) [firefox] › e2e\live-keyboard.spec.ts:396:3 › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "hitPanel": true,
+    -   "overlapsBoard": true,
+    +   "hitPanel": false,
+    +   "overlapsBoard": false,
+        "withinViewport": true,
+      }
+
+      495 |             box.top >= -0.02 && box.bottom <= innerHeight + 0.02 };
+      496 |       });
+    > 497 |       expect(overlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+          |                       ^
+      498 |       await panel.focus();
+      499 |       await page.keyboard.press('Escape');
+      500 |       await expect(panel).not.toBeVisible();
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:497:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-66b4b-tside-shortcut-panel-usable-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-66b4b-tside-shortcut-panel-usable-firefox\error-context.md
+
+  9) [firefox] › e2e\live-keyboard.spec.ts:396:3 › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "hitPanel": true,
+    -   "overlapsBoard": true,
+    +   "hitPanel": false,
+    +   "overlapsBoard": false,
+        "withinViewport": true,
+      }
+
+      495 |             box.top >= -0.02 && box.bottom <= innerHeight + 0.02 };
+      496 |       });
+    > 497 |       expect(overlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+          |                       ^
+      498 |       await panel.focus();
+      499 |       await page.keyboard.press('Escape');
+      500 |       await expect(panel).not.toBeVisible();
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:497:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-ec6d2-tside-shortcut-panel-usable-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-ec6d2-tside-shortcut-panel-usable-firefox\error-context.md
+
+  10) [firefox] › e2e\live-keyboard.spec.ts:516:1 › layout-contained native character board retains its intrinsic rows and actual input after rotation 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator:  getByRole('textbox', { name: 'Type the practice text', exact: true })
+    Expected: "x"
+    Received: ""
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveValue" getByRole('textbox', { name: 'Type the practice text', exact: true }) with timeout 5000ms
+      - waiting for getByRole('textbox', { name: 'Type the practice text', exact: true })
+        11 × locator resolved to <textarea autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off" aria-label="Type the practice text" aria-describedby="lesson-instructions lesson-feedback lesson-passage" class="absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0"></textarea>
+           - unexpected value ""
+
+
+      532 |   // it is not used to claim a physical Arabic key or an IME composition.
+      533 |   await input.press('x');
+    > 534 |   await expect(input).toHaveValue('x');
+          |                       ^
+      535 |   await expect(page.getByTestId('keyboard-last-input')).toContainText('Typed x');
+      536 |   await expect(board.locator('[data-pressed-key]')).toHaveCount(0);
+      537 |   expectSameKeyboardLayout(before, await containmentShape(board));
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:534:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-e3942-actual-input-after-rotation-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-e3942-actual-input-after-rotation-firefox\error-context.md
+
+  11) [webkit] › e2e\live-keyboard.spec.ts:396:3 › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "hitPanel": true,
+    -   "overlapsBoard": true,
+    +   "hitPanel": false,
+    +   "overlapsBoard": false,
+        "withinViewport": true,
+      }
+
+      495 |             box.top >= -0.02 && box.bottom <= innerHeight + 0.02 };
+      496 |       });
+    > 497 |       expect(overlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+          |                       ^
+      498 |       await panel.focus();
+      499 |       await page.keyboard.press('Escape');
+      500 |       await expect(panel).not.toBeVisible();
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:497:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-ec6d2-tside-shortcut-panel-usable-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-ec6d2-tside-shortcut-panel-usable-webkit\error-context.md
+
+  12) [webkit] › e2e\live-keyboard.spec.ts:516:1 › layout-contained native character board retains its intrinsic rows and actual input after rotation 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator:  getByRole('textbox', { name: 'Type the practice text', exact: true })
+    Expected: "x"
+    Received: ""
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveValue" getByRole('textbox', { name: 'Type the practice text', exact: true }) with timeout 5000ms
+      - waiting for getByRole('textbox', { name: 'Type the practice text', exact: true })
+        14 × locator resolved to <textarea autocorrect="off" autocomplete="off" spellcheck="false" autocapitalize="off" aria-label="Type the practice text" aria-describedby="lesson-instructions lesson-feedback lesson-passage" class="absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0"></textarea>
+           - unexpected value ""
+
+
+      532 |   // it is not used to claim a physical Arabic key or an IME composition.
+      533 |   await input.press('x');
+    > 534 |   await expect(input).toHaveValue('x');
+          |                       ^
+      535 |   await expect(page.getByTestId('keyboard-last-input')).toContainText('Typed x');
+      536 |   await expect(board.locator('[data-pressed-key]')).toHaveCount(0);
+      537 |   expectSameKeyboardLayout(before, await containmentShape(board));
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:534:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-e3942-actual-input-after-rotation-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final17-keyboard-focus-corrected\live-keyboard-layout-conta-e3942-actual-input-after-rotation-webkit\error-context.md
+
+  12 failed
+    [chromium] › e2e\live-keyboard.spec.ts:396:3 › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable 
+    [chromium] › e2e\live-keyboard.spec.ts:396:3 › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable 
+    [chromium] › e2e\live-keyboard.spec.ts:516:1 › layout-contained native character board retains its intrinsic rows and actual input after rotation 
+    [edge] › e2e\live-keyboard.spec.ts:396:3 › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable 
+    [edge] › e2e\live-keyboard.spec.ts:396:3 › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable 
+    [edge] › e2e\live-keyboard.spec.ts:516:1 › layout-contained native character board retains its intrinsic rows and actual input after rotation 
+    [firefox] › e2e\live-keyboard.spec.ts:396:3 › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable 
+    [firefox] › e2e\live-keyboard.spec.ts:396:3 › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable 
+    [firefox] › e2e\live-keyboard.spec.ts:396:3 › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable 
+    [firefox] › e2e\live-keyboard.spec.ts:516:1 › layout-contained native character board retains its intrinsic rows and actual input after rotation 
+    [webkit] › e2e\live-keyboard.spec.ts:396:3 › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable 
+    [webkit] › e2e\live-keyboard.spec.ts:516:1 › layout-contained native character board retains its intrinsic rows and actual input after rotation 
+  4 passed (1.5m)

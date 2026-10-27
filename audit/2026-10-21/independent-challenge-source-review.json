@@ -1,0 +1,183 @@
+{
+  "status": "PASS",
+  "observation": "SOURCE_CHECKS_ONLY",
+  "at": "2026-10-21T18:41:37.5993045Z",
+  "scope": "Versioned independent ranked/private-duel first-input policy; live human race and Arena unchanged",
+  "sourceFrozen": true,
+  "owner": "final_release_review",
+  "checks": [
+    {
+      "passed": 90,
+      "failed": 0,
+      "name": "Focused TypeScript tests",
+      "receipt": "audit/2026-10-21/independent-challenge-first-input-unit.json",
+      "files": 3
+    },
+    {
+      "newTimingCohortCases": 53,
+      "note": "77 nonthrowing rule evaluations and36 expected exceptions; nonthrowing resume predicates include expected false values. These are not77 accepted server sessions.",
+      "passed": 113,
+      "name": "Actual PHP pure contract/replay",
+      "retainedLegacyCases": 60,
+      "failed": 0,
+      "receipt": "audit/2026-10-21/independent-challenge-first-input-php.json"
+    },
+    {
+      "name": "Scoped ESLint",
+      "result": "PASS"
+    },
+    {
+      "name": "Application TypeScript noEmit",
+      "result": "PASS"
+    },
+    {
+      "name": "Changed PHP syntax and native script syntax",
+      "result": "PASS"
+    },
+    {
+      "name": "Focused git diff --check",
+      "result": "PASS"
+    },
+    {
+      "executed": 0,
+      "listed": 8,
+      "name": "Playwright discovery",
+      "result": "NOT_RUN",
+      "file": "e2e/independent-challenge-timing.spec.ts"
+    }
+  ],
+  "contract": {
+    "duelRevision": "forge-social-duel-en-v2",
+    "marker": "first-input-v1",
+    "transport": "No activation round trip on first input",
+    "receiptGraceMs": 3000,
+    "firstEvent": "Nonempty keyboard character at offset0; empty pre-start edits cannot become scored evidence",
+    "cohortPinning": "Same-duel existing configuration is selected under the duel row lock; a v1 participant pins a later participant to v1",
+    "receiptWindow": "candidate start plus duration through that time plus3000ms, never later than stored expires_at plus3000ms",
+    "serverProof": "Replay consistency only; not physical-first-key or human-input proof",
+    "unknownPolicy": "REJECT",
+    "legacy": "Absent marker preserves original exact fixed-server start",
+    "latest": "stored expires_at minus full duration inclusive",
+    "earliest": "stored starts_at inclusive",
+    "rankedRevision": "forge-ranked-en-v2"
+  },
+  "pending": [
+    "Root fresh build and full source gates",
+    "Root four-engine execution of eight new UI fixture cases",
+    "Root fresh owned isolated social/race HTTP lifecycle",
+    "No hosted/native device or field-INP claim"
+  ],
+  "knownLimitations": [
+    "The client observes its first character; server replay cannot prove physical input or absence of rehearsal during preparation",
+    "New receipt delivery beyond3000ms leaves evidence local; exact retry of an already accepted immutable receipt remains idempotent",
+    "Response midpoint calibration has bounded-by-network uncertainty; early receipts remain rejected rather than shortening the fixed duration"
+  ],
+  "safety": {
+    "stagingOrCommitPerformed": false,
+    "nativeHttpExecuted": false,
+    "browserExecuted": false,
+    "servicesStartedOrStopped": false,
+    "childCommandsRemaining": 0,
+    "privateConfigRead": false,
+    "databaseReadOrModified": false,
+    "buildExecuted": false
+  },
+  "files": [
+    {
+      "sha256": "75faf3a12fabb0949400bcade2ba1d36ddb2e5a22f061dd35a4d82e216f1786a",
+      "path": "backend/src/ChallengeTimingPolicy.php"
+    },
+    {
+      "sha256": "625622b3649c65ccf5af8f4cd19b10d58875dab592420965d457559bedd52937",
+      "path": "backend/src/DataService.php"
+    },
+    {
+      "sha256": "984a5b4ceea0887739c70d743f61c321bd0a8dd86e3b63e46c7ecbd60eb10b2d",
+      "path": "backend/src/RaceService.php"
+    },
+    {
+      "sha256": "7b8889819e9eb10f402b0adc44f2bfbe0d2e356218eb9ec0b2de95ce5d46179f",
+      "path": "backend/src/SocialDuelRules.php"
+    },
+    {
+      "sha256": "46ed64bcdc624e0433a23f532c011c5c15d7edb6765fd905d40ae540cf3da1ca",
+      "path": "backend/src/SocialService.php"
+    },
+    {
+      "sha256": "b6a690a1cc8463d031ddbc0705c726fb2f9917bf19642583b3dadb07e2cc2b6a",
+      "path": "backend/tests/challenge-timing-cases.mjs"
+    },
+    {
+      "sha256": "e4beb11ee0fde3cf8f74d84acbea4b6c68b691cfab0081c8542b6b5c37c33519",
+      "path": "backend/tests/social-duel-driver.php"
+    },
+    {
+      "sha256": "06cedd18a0b0d1d2c35b7f8262b48f4160e0e9903bd3b8e4810ee0609910e315",
+      "path": "backend/tests/social-duel-parity.mjs"
+    },
+    {
+      "sha256": "bc99f8dfad3454ac716b2092408c3726c3daf87b4c79cc9e79769333e68078a1",
+      "path": "backend/tests/race-lifecycle.mjs"
+    },
+    {
+      "sha256": "713492aa1bba4882356c69a50a8d9a222a2dd8b444f2738ed040cb181b2e245e",
+      "path": "backend/tests/race-fixtures.php"
+    },
+    {
+      "sha256": "8fda23888523b169ee108e69b387d4b410a9e72631c5a54e59885e22581324f7",
+      "path": "backend/tests/pack-social-lifecycle.mjs"
+    },
+    {
+      "sha256": "4d6de449ff26556b10565a6d8e41f6ad0d492cd58520fb0f5354200182b10a0e",
+      "path": "backend/tests/pack-social-fixture.php"
+    },
+    {
+      "sha256": "23477b640696d2004713bc12fcd5789cb6344d1c9b8a31b5ad1d3af479353e2e",
+      "path": "src/lib/challenge-timing.ts"
+    },
+    {
+      "sha256": "a72ac6b10b83c71ca6b5fffdaa20554a44d06fea21c0257fc7c13ee162c9caf5",
+      "path": "src/lib/__tests__/challenge-timing.test.ts"
+    },
+    {
+      "sha256": "b2dbd4b33b313e04a3c41ad203a94dc973504d52c9b14a22e92253c9f30b635e",
+      "path": "src/hooks/useIssuedChallengeCountdown.ts"
+    },
+    {
+      "sha256": "b08f65d79126393ec003c1f53b5161ff8819d6f5a076888d2156769178613090",
+      "path": "src/domain/progression/social.ts"
+    },
+    {
+      "sha256": "30b7aa1ab43b52da2f3426bcd6da300fd866a50b42cde2ce2848161fe6894d53",
+      "path": "src/domain/progression/social.test.ts"
+    },
+    {
+      "sha256": "51dbc3486c2a592a8830e16fd733f40b9bb910bb5340355bad3d2f8aff08100f",
+      "path": "src/services/challenge-service.ts"
+    },
+    {
+      "sha256": "87bcb6d7cbe450f4a656b94911754bf6aae3ba5ab1ee60a621c6ea81c5947931",
+      "path": "src/pages/Ranked.tsx"
+    },
+    {
+      "sha256": "8429bd07cc4abe8fd9a5d33c8194f8cbe9ab62a6673f9a129afd5c9b847df961",
+      "path": "src/pages/Friends.tsx"
+    },
+    {
+      "sha256": "78ecdcfed59511b744302636612c14d4f89b479f89895790e2e1900630a19166",
+      "path": "src/components/progression/DuelAttempt.tsx"
+    },
+    {
+      "sha256": "7790700ada1bb22588cbba6df837c8602125e3989a322a6ed84ede52b3c80e38",
+      "path": "e2e/independent-challenge-timing.spec.ts"
+    },
+    {
+      "sha256": "d946578b0541db0c56a4c15b5e9b15c96297c1430d795659eb495dae6a6d18e4",
+      "path": "docs/INDEPENDENT_CHALLENGE_TIMING.md"
+    },
+    {
+      "sha256": "8da1392b07bc5df56e3ba3c7219bc8dfeb448f463b49c9c3821f1a429651c2d8",
+      "path": "docs/SOCIAL_DUELS.md"
+    }
+  ]
+}

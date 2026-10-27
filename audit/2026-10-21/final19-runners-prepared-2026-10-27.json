@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "preparedAt": "2026-10-26T19:18:11.5206202Z",
+  "status": "PREPARED-NOT-RUN",
+  "scope": "New audit-only runners, a read-only inventory/raw-count summarizer, and a latest coordination-doc update. No application/E2E edits, builds, browser/native/test jobs, private config/storage reads, existing-receipt changes, or Git index mutations.",
+  "actual19Build": null,
+  "requiredBuildEnvironment": "SPAROWTYPE_FINAL19_BUILD_ID must be the actual final19-source.json/dist identity after root builds and freezes19; never guessed.",
+  "sourceFile": "audit/2026-10-21/final19-source.json",
+  "adapters": [
+    {
+      "prepared": "run-final19-browser-matrix.mjs",
+      "reference": "run-final18-browser-matrix.mjs",
+      "referenceNormalizedSha256": "e0e4059654e6c55e9a33d9cd9109de4a80a20cfbbee57be5a09bd9924dbe8d68",
+      "preparedNormalizedSha256": "abf02d16c606c237587a721b81b98c50e2e2659310ceef1f49363d37525914a6",
+      "exactReverseIdentity": true,
+      "changes": "Only final18->final19 and FINAL18->FINAL19 references",
+      "syntaxChecked": true,
+      "executed": false
+    },
+    {
+      "prepared": "run-browser-checkpoint-final19.mjs",
+      "reference": "run-browser-checkpoint-final18.mjs",
+      "referenceNormalizedSha256": "27d08699f2efdbfa6d5ca423f95afea3b17acae1329028400d726a8a961fbb8b",
+      "preparedNormalizedSha256": "442591a23208d18d1b5bbbc189f407174a64147cd1c21ac1e21503b957584845",
+      "exactReverseIdentity": true,
+      "changes": "Only final18->final19 and FINAL18->FINAL19 references",
+      "syntaxChecked": true,
+      "executed": false
+    },
+    {
+      "prepared": "run-final19-static.mjs",
+      "reference": "run-final18-static.mjs",
+      "referenceNormalizedSha256": "81602f4b5955e445982c136c93a3865426b93ee2f05ad6f66de672a225594f0d",
+      "preparedNormalizedSha256": "2665268126bceee93636342f0a7e39ba2bd9a5789c6b27d6b929c695d9baf869",
+      "exactReverseIdentity": true,
+      "changes": "Only final18->final19 and FINAL18->FINAL19 references",
+      "syntaxChecked": true,
+      "executed": false
+    },
+    {
+      "prepared": "run-final19-native-browser.mjs",
+      "reference": "run-final18-native-browser.mjs",
+      "referenceNormalizedSha256": "7c05625b2493caca88e7111f6d71d4225a608f92eb7729a964cf40c95d7b446d",
+      "preparedNormalizedSha256": "895b3c24d7062b9dd86d34b804de50c0639da7a849a8c8df45334a44f176f29a",
+      "exactReverseIdentity": true,
+      "changes": "Only final18->final19 and FINAL18->FINAL19 references",
+      "syntaxChecked": true,
+      "executed": false
+    },
+    {
+      "prepared": "run-mobile-workspaces-static-final19.mjs",
+      "reference": "run-mobile-workspaces-static-final18.mjs",
+      "referenceNormalizedSha256": "83cb396f38840f9b97b70b76a4756868cfcc00618fc485fa33c43b30bb49fd43",
+      "preparedNormalizedSha256": "c0ba6484868d9762934e0e281454f2eecf3d1638dc33f1c59fef7a9692d3eec2",
+      "exactReverseIdentity": true,
+      "changes": "Only final18->final19 and FINAL18->FINAL19 references",
+      "syntaxChecked": true,
+      "executed": false
+    },
+    {
+      "prepared": "measure-mobile-workspaces-static-final19.mjs",
+      "reference": "measure-mobile-workspaces-static-final18.mjs",
+      "referenceNormalizedSha256": "b76c9215ee9fa418d1a9c43c0355f8bc39189edcf75f4c00d1b29f6dd4dccabd",
+      "preparedNormalizedSha256": "5e9075af456334a49f72d8ddf2774f388fd29b03a0cee4700f676ac9b8e15a6e",
+      "exactReverseIdentity": true,
+      "changes": "Only final18->final19 and FINAL18->FINAL19 references",
+      "syntaxChecked": true,
+      "executed": false
+    },
+    {
+      "prepared": "standalone-placement-real135-final19.mjs",
+      "reference": "standalone-placement-real135-final18.mjs",
+      "referenceNormalizedSha256": "6600eedc6dea54d8209ca7e95e8af775694c3a19471b33dcd069754cef818f5a",
+      "preparedNormalizedSha256": "158150d0d2c8dd6d4f4c36f03490d24d554c5bffaab1221219e92d32ad7d879d",
+      "exactReverseIdentity": true,
+      "changes": "Only final18->final19 and FINAL18->FINAL19 references",
+      "syntaxChecked": true,
+      "executed": false
+    }
+  ],
+  "additionalFiles": [
+    {
+      "path": "summarize-final19-receipts.mjs",
+      "purpose": "Read-only public receipt inventory and raw browser count reconciliation; explicitly not a substitute acceptance verifier or complete-release claim.",
+      "syntaxChecked": true,
+      "executed": false
+    }
+  ],
+  "preservedContracts": {
+    "assertions": true,
+    "deadlines": true,
+    "retries": 0,
+    "matrixFiles": 63,
+    "partition": {
+      "newFeatures": 11,
+      "firstInputTiming": 1,
+      "existing": 42,
+      "isolated": 9
+    },
+    "workersPerMatrixBatch": 1,
+    "allFourEngines": [
+      "chromium",
+      "edge",
+      "firefox",
+      "webkit"
+    ],
+    "threeDimensionalQuality": "No renderer or product edit by this preparation.",
+    "nativeCases": 16,
+    "staticCases": {
+      "gameAccessibility": 16,
+      "artifact": 67,
+      "deployment": 56
+    },
+    "mobileCases": 4,
+    "placementMinimumRealSeconds": 135,
+    "placementMaximumJourneyMs": 210000
+  },
+  "executionDetails": [
+    "Matrix: require SPAROWTYPE_AUDIT_BROWSERS=chromium,edge,firefox,webkit and unset SPAROWTYPE_STATIC_OUTPUTS. Run node audit/2026-10-21/run-final19-browser-matrix.mjs final19.",
+    "Static: require SPAROWTYPE_STATIC_ACCEPTANCE=1 and actual FINAL19_BUILD_ID. Run default prefix final19 so the mobile wrapper finds dist-static-final19-vercel and final19-static-artifacts.json.",
+    "Mobile: after static success set SPAROWTYPE_MOBILE_STATIC_ACCEPTANCE=1 plus actual FINAL19_BUILD_ID and actual Vercel artifact SPAROWTYPE_FINAL19_STATIC_BUILD_ID.",
+    "Native: root-owned new Apache/PDO/MariaDB instance; prepare-browser stdin protocol; explicit SPAROWTYPE_FINAL19_NATIVE_BROWSER_WINDOW=1 and SPAROWTYPE_PACK_BROWSER_READY public receipt. Avoid capacity load before browser seeding; keep production rate limits; renew own15min hold as needed; cleanup exact owner after16.",
+    "Placement retains original SPAROWTYPE_FINAL19_BUILD alias, without _ID. Set it to the same actual build ID, opt in SPAROWTYPE_PLACEMENT_ACCEPTANCE=1, and use --prefix final19-placement-real135.",
+    "Summarizer: node audit/2026-10-21/summarize-final19-receipts.mjs after completed receipts, with actual FINAL19_BUILD_ID. It prints JSON only, never launches validation jobs."
+  ],
+  "reconciliationBlockers": [
+    "Do not use source18 acceptance verifier for19: it pins the18 actual build and18 paths/count assumptions. The new summarizer is intentionally inventory/raw reconciliation, not a replacement comprehensive release gate.",
+    "Existing18 verifier also references a missing final18-artifact-independent-extraction.json rather than the available final18-artifact-pwa-repaired-independent-extraction.json; no historical receipt was renamed or rewritten.",
+    "Source19 product/test inventory and actual frozen build are pending root/gaming repairs; source-gate unit/test counts must come from actual19 output, not2811 historical18 cases.",
+    "Source19 matched input and normal full-quality Lighthouse require fresh results; no18 performance carry-forward.",
+    "Hosted provider behavior, physical OS keyboards/native AT, field INP and original capacity failures remain separate/unverified or failed."
+  ],
+  "syntaxChecksPerformed": 8,
+  "browserBuildOrTestJobsExecuted": 0,
+  "existingReceiptsPreserved": true,
+  "indexChanged": false
+}

@@ -1,0 +1,124 @@
+{
+  "status": "PASS",
+  "observation": "FOCUSED_SOURCE_PROTOCOL_CHECKS_ONLY",
+  "at": "2026-10-21T18:55:52.8426359Z",
+  "historicalNativeReceipt": "audit/2026-10-21/pack-backend-4713470e7684e99f-race.json",
+  "historicalNativeStatus": "FAILED retained unchanged",
+  "historicalBrowserReceipt": "audit/2026-10-21/final8-independent-front-summary.json",
+  "historicalBrowserStatus": "FAILED28passed4failed retained unchanged",
+  "causalPath": [
+    "DataService.submit runs canonical replay before commitValidated",
+    "commitValidated takes account and immutable-receipt locks before redeemChallenge",
+    "Old redeemChallenge sampled database UTC at that late stage and treated server processing as delivery",
+    "SocialService can additionally wait for its feature advisory and account/duel locks before calling submit"
+  ],
+  "fix": [
+    "Capture DB UTC once after authenticated request dispatch, before feature rate/replay/transaction waits",
+    "Direct competitive DataService callers capture before preflight; direct Social duel-submit freezes before feature locks",
+    "Private immutable per-request capture has no client setter or body timestamp fallback",
+    "New v2 checks the captured receipt; old v1 still checks redemption-time UTC",
+    "Input duration,3000ms transport allowance, owner/receipt/consumption locks, source/config binding and competitive limits unchanged"
+  ],
+  "purePhp": {
+    "result": "PASS",
+    "failures": 0,
+    "cases": 124,
+    "double": "PDO protocol only; no configuration/SQL/network connection",
+    "controlledDelayMs": [
+      10000,
+      20000
+    ],
+    "receipt": "audit/2026-10-21/independent-challenge-request-receipt-php.json",
+    "otherRegression": [
+      "timely owner-lock delay",
+      "authenticated capture preserved over feature delay",
+      "nested transaction rollback ownership",
+      "exact3000ms receipt endpoint",
+      "late receipt rejected",
+      "early receipt remains rejected despite later processing",
+      "client-forged receipt ignored",
+      "invalid server clock fails closed",
+      "legacy redemption clock retained",
+      "legacy expiry not relaxed"
+    ],
+    "actualProductionClasses": [
+      "DataService",
+      "SessionValidator",
+      "CompetitiveInputPolicy",
+      "ChallengeTimingPolicy"
+    ],
+    "countMeaning": "82 nonthrowing rule evaluations and42 expected exceptions; these are not82 accepted server sessions",
+    "rateRegression": "900 individual canonical edits with timely arrival and simulated server processing still reject competitive-rate, not challenge-mismatch",
+    "addedRegressionCases": 11
+  },
+  "fixtureCorrection": {
+    "assertions": [
+      "exact owner/sessionId/timeZone body keys",
+      "owner equals signed-in fixture owner",
+      "sessionId equals actual typing region canonical identity",
+      "Idempotency-Key equals session:<sessionId>",
+      "valid IANA zone",
+      "session submission candidate owner and identity match the observed session"
+    ],
+    "diagnosis": "audit/2026-10-21/final8-independent-front-fixture-diagnosis.json",
+    "response": "503; local reference retained; no verified award invented",
+    "declaredRoute": "POST /progression/claim",
+    "unchanged": "All timing actions, durations, assertions, engine matrix and unexpected-request guard",
+    "confirmation": "NOT_RUN by this agent; root-declared confirmation required"
+  },
+  "checks": {
+    "changedPhpSyntax": "PASS",
+    "scopedEslint": "PASS",
+    "nativeScriptSyntax": "PASS",
+    "focusedDiffCheck": "PASS"
+  },
+  "scopeLimits": [
+    "Historic native failure timing was not instrumented into individual replay/lock durations; the causal code path and controlled-clock regression are verified",
+    "No fresh HTTP/SQL lifecycle or browser result claimed for this fix",
+    "No hosted/server queue latency or physical-input proof"
+  ],
+  "safety": {
+    "serviceStartedOrStopped": false,
+    "stagingOrCommitPerformed": false,
+    "browserExecuted": false,
+    "nativeHttpExecuted": false,
+    "originalDatabaseReadOrModified": false,
+    "childJobsRemaining": 0,
+    "buildExecuted": false,
+    "privateConfigRead": false
+  },
+  "files": [
+    {
+      "path": "backend/public/index.php",
+      "sha256": "38f145838535359dc4bbec6f328441edb2a78438fbf85c033e058432a47a99b8"
+    },
+    {
+      "path": "backend/src/DataService.php",
+      "sha256": "46269db8b3dcb2a3e649c2744697b459ac33bdea86ba47607cd32fe278809fa9"
+    },
+    {
+      "path": "backend/src/SocialService.php",
+      "sha256": "8250bafc44ce0231f9b414395ea8581199d62777366da437ba7883630d894940"
+    },
+    {
+      "path": "backend/tests/challenge-receipt-double.php",
+      "sha256": "58c69e850d6001cdaffd2211b0034c7673bbf2a9fb11c74196d5a41dfcf4e4ad"
+    },
+    {
+      "path": "backend/tests/social-duel-driver.php",
+      "sha256": "e99dc374676981c42a606783e4dc4a30f3e9ced7487acc9ed157551a0c506c0a"
+    },
+    {
+      "path": "backend/tests/challenge-timing-cases.mjs",
+      "sha256": "00dc9207e4d02845ef4fb891370e095ed30dc36a1ad00e3f27316a4fb2b59892"
+    },
+    {
+      "path": "backend/tests/social-duel-parity.mjs",
+      "sha256": "0956e7e432d939be9d333fe6f5289d1eff510cb0c2b777202282a357851bfeb4"
+    },
+    {
+      "path": "e2e/independent-challenge-timing.spec.ts",
+      "sha256": "6aca16177bd464e1e3b9262191b0c24e1521d661c987089a043945507be8b25b"
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "totals": {
+    "total": 16,
+    "passed": 9,
+    "failed": 4,
+    "skipped": 3,
+    "flaky": 0
+  },
+  "projects": [
+    {
+      "project": "chromium",
+      "total": 4,
+      "passed": 3,
+      "failed": 1,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "edge",
+      "total": 4,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 3,
+      "flaky": 0
+    },
+    {
+      "project": "firefox",
+      "total": 4,
+      "passed": 3,
+      "failed": 1,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "webkit",
+      "total": 4,
+      "passed": 3,
+      "failed": 1,
+      "skipped": 0,
+      "flaky": 0
+    }
+  ],
+  "reportedStats": {
+    "expected": 9,
+    "unexpected": 4,
+    "skipped": 3,
+    "flaky": 0
+  },
+  "countsAgreeWithReport": true,
+  "failures": [
+    {
+      "project": "chromium",
+      "title": "pwa-snapshot-consistency.spec.ts › actual PWA consumers recover a publication between render and passive subscription",
+      "file": "pwa-snapshot-consistency.spec.ts",
+      "line": 207,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toEqual(expected) // deep equality - Expected - 4 + Received + 4 Object { - \"bannerInstall\": true, - \"offlineAvailable\": true, - \"offlineInstall\": true, - \"offlineReady\": true, + \"bannerInstall\": false, + \"offlineAvailable\": false, + \"offlineInstall\": false, + \"offlineReady\": false, } Call Log: - Timeout 5000ms exceeded while waiting on the predicate 184 | offlineReady: (await offline.getByRole(\"status\").textContent()) ==="
+      ]
+    },
+    {
+      "project": "edge",
+      "title": "pwa-snapshot-consistency.spec.ts › actual PWA consumers read a snapshot published before their first render",
+      "file": "pwa-snapshot-consistency.spec.ts",
+      "line": 196,
+      "attempts": 1,
+      "attemptStatuses": [
+        "timedOut"
+      ],
+      "messages": [
+        "\"beforeAll\" hook timeout of 30000ms exceeded. 159 | test.use({ serviceWorkers: \"block\" }); 160 | let fixture: Awaited<ReturnType<typeof startSnapshotFixture>>; > 161 | test.beforeAll(async () => { fixture = await startSnapshotFixture(); }); | ^ 162 | test.afterAll(async () => { await fixture?.stop(); }); 163 | 164 | async function probe(page: Page): Promise<Probe> { at D:\\extra\\typing_updated\\typing-forge\\e2e\\pwa-snapshot-consistency.spec.ts:161:"
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "pwa-snapshot-consistency.spec.ts › actual PWA consumers recover a publication between render and passive subscription",
+      "file": "pwa-snapshot-consistency.spec.ts",
+      "line": 207,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toEqual(expected) // deep equality - Expected - 4 + Received + 4 Object { - \"bannerInstall\": true, - \"offlineAvailable\": true, - \"offlineInstall\": true, - \"offlineReady\": true, + \"bannerInstall\": false, + \"offlineAvailable\": false, + \"offlineInstall\": false, + \"offlineReady\": false, } Call Log: - Timeout 5000ms exceeded while waiting on the predicate 184 | offlineReady: (await offline.getByRole(\"status\").textContent()) ==="
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "pwa-snapshot-consistency.spec.ts › actual PWA consumers recover a publication between render and passive subscription",
+      "file": "pwa-snapshot-consistency.spec.ts",
+      "line": 207,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toEqual(expected) // deep equality - Expected - 4 + Received + 4 Object { - \"bannerInstall\": true, - \"offlineAvailable\": true, - \"offlineInstall\": true, - \"offlineReady\": true, + \"bannerInstall\": false, + \"offlineAvailable\": false, + \"offlineInstall\": false, + \"offlineReady\": false, } Call Log: - Timeout 5000ms exceeded while waiting on the predicate 184 | offlineReady: (await offline.getByRole(\"status\").textContent()) ==="
+      ]
+    }
+  ],
+  "flakyCases": [],
+  "skippedCases": [
+    {
+      "project": "edge",
+      "title": "pwa-snapshot-consistency.spec.ts › actual PWA consumers recover a publication between render and passive subscription",
+      "file": "pwa-snapshot-consistency.spec.ts",
+      "line": 207,
+      "reasons": []
+    },
+    {
+      "project": "edge",
+      "title": "pwa-snapshot-consistency.spec.ts › actual PWA consumers observe a publication after both subscriptions exist",
+      "file": "pwa-snapshot-consistency.spec.ts",
+      "line": 223,
+      "reasons": []
+    },
+    {
+      "project": "edge",
+      "title": "pwa-snapshot-consistency.spec.ts › actual PWA consumers release both subscriptions when unmounted",
+      "file": "pwa-snapshot-consistency.spec.ts",
+      "line": 237,
+      "reasons": []
+    }
+  ],
+  "skipReasons": [
+    {
+      "reason": "No skip/fixme reason was recorded in the JSON report.",
+      "count": 3,
+      "projects": [
+        "edge"
+      ]
+    }
+  ],
+  "expectedFailures": [],
+  "globalErrors": [],
+  "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+}

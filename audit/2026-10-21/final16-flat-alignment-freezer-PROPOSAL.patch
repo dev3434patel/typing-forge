@@ -1,0 +1,30 @@
+--- a/src/lib/typing-core/session.ts
++++ b/src/lib/typing-core/session.ts
+@@ -9,6 +9,18 @@
+     Object.freeze(value);
+   }
+   return value;
++}
++/** Alignment owns flat primitive leaves; retain publication immutability without
++ * allocating Object.values arrays and recursive closures for each slot.
++ * Keep generic deep freezing for configuration and independently replayed results.
++ */
++function freezePresentationAlignment(value: Alignment): Alignment {
++  for (let index = 0; index < value.characters.length; index++) Object.freeze(value.characters[index]);
++  Object.freeze(value.characters);
++  Object.freeze(value.mapping);
++  for (let index = 0; index < value.words.length; index++) Object.freeze(value.words[index]);
++  Object.freeze(value.words);
++  return Object.freeze(value);
+ }
+ function copy<T>(value: T): T { return JSON.parse(JSON.stringify(value)) as T; }
+ /** Only named public fixed passages share passage-level comparison cohorts.
+@@ -156,7 +168,7 @@
+     // this controller; replay/final validation still independently reconstructs
+     // the transcript, and every edit/issued target invalidates this projection.
+     if (this.presentationAlignment?.sequence !== this.state.lastSequence || this.presentationAlignment.target !== this.target) {
+-      this.presentationAlignment = { sequence: this.state.lastSequence, target: this.target, value: freeze(alignTranscript(targetGraphemes(this.target), this.state.units, this.configuration.scoringPolicy!, false, this.state.submissions)) };
++      this.presentationAlignment = { sequence: this.state.lastSequence, target: this.target, value: freezePresentationAlignment(alignTranscript(targetGraphemes(this.target), this.state.units, this.configuration.scoringPolicy!, false, this.state.submissions)) };
+     }
+     const calculated = calculateMetrics(this.configuration, this.target, this.state, elapsedMs, { pauseIntervals: this.intervals(now), includeRhythm: false, alignment: this.presentationAlignment.value });
+     return { status: this.status, finalText: this.state.units.join(''), targetText: this.target, elapsedMs, wallDurationMs: this.startMono === null ? 0 : now - this.startMono, remainingMs: this.configuration.durationMs === undefined ? null : Math.max(0, this.configuration.durationMs - elapsedMs), cursor: calculated.cursor, characters: calculated.characters, metrics: calculated.metrics, events: this.transcriptEvents.map(event => ({ ...event })) };

@@ -1,0 +1,77 @@
+{
+  "status": "PASS-SCOPED",
+  "at": "2026-10-21T19:15:51.9969176Z",
+  "scope": "Source10 calculateMetrics status-count optimization only; no browser/build/performance execution",
+  "productionFiles": [
+    "src/lib/typing-core/metrics.ts"
+  ],
+  "testFiles": [
+    "src/lib/typing-core/__tests__/status-counts.test.ts"
+  ],
+  "metricsSha256": "de11128e062997daa61a621cd992e475ddd07934b26192508164b27b7a71e976",
+  "change": "Five filter-and-length traversals/temporary arrays become one exact-status forEach pass; free policy still bypasses classification and uses retained units as extra",
+  "fidelity": [
+    "Unknown statuses remain ignored",
+    "Sparse holes remain skipped by forEach as by filter",
+    "Free writing never reads statuses",
+    "Five integer counts, formula/arithmetic order and result key order are preserved",
+    "Alignment object characters/cursor returned unchanged",
+    "Existing replay fixture bytes not regenerated"
+  ],
+  "checks": {
+    "strictPortableTypeScript": "PASS",
+    "coreUnits": {
+      "goldenFixtures": 38,
+      "files": 8,
+      "passed": 150,
+      "receipt": "audit/2026-10-21/final10-metrics-core-unit.json",
+      "failed": 0,
+      "newStatusEdgeTests": 9,
+      "goldenSuiteTests": 39
+    },
+    "nativeReplay": {
+      "mismatches": 0,
+      "receipt": "audit/2026-10-21/final10-metrics-native-parity.json",
+      "cases": 533,
+      "valid": 499,
+      "rejections": 34
+    },
+    "scopedDiffCheck": "PASS",
+    "scopedEslint": "PASS"
+  },
+  "independentReview": {
+    "result": "No material fidelity issue found",
+    "scope": "Authorized narrow read-only calculateMetrics diff; older prepareReplay hunks excluded",
+    "jobsRunByReviewer": 0,
+    "confirmed": [
+      "Five exact strict status labels",
+      "No unknown fallback increment",
+      "forEach sparse-hole behavior",
+      "Free bypass/retained extra",
+      "Unchanged integer/formula/arithmetic/key order/characters/cursor"
+    ],
+    "reviewer": "data_quality"
+  },
+  "independentRootScrollReview": {
+    "scope": "Root source10 TypingArea own-container scroll handling only",
+    "testInspection": "Wrapped52-character word warms native anchors;46 more real characters bring total47, actual scroll/current-glyph containment/zero glyph reads asserted, then56 total attempts exported at100% accuracy",
+    "execution": "NOT_RUN by this reviewer",
+    "reason": "Anchors are content-relative and caret/text share the same scrolling containing block. Expected viewport scroll keeps geometry; user scroll clears desired positioning so next input restores its active row. Ancestor/resize/font/style/focus/error invalidation remains.",
+    "result": "No concrete blocker",
+    "reviewer": "final_release_review"
+  },
+  "limits": [
+    "Focused counts overlap integrated suites; do not sum them into product totals",
+    "No measured speedup or field-INP claim",
+    "Source9 failed input reports retained; source10 performance awaits root"
+  ],
+  "safety": {
+    "privateConfigRead": false,
+    "databaseTouched": false,
+    "performanceExecuted": false,
+    "buildExecuted": false,
+    "browserExecuted": false,
+    "childJobsRemaining": 0,
+    "stagingPerformed": false
+  }
+}

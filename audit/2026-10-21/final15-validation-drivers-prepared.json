@@ -1,0 +1,76 @@
+{
+  "preparedAt": "2026-10-22T19:22:47.964465+00:00",
+  "status": "PREPARED-NOT-RUN",
+  "actualBuildId": null,
+  "actualBuildIdPolicy": "No placeholder identity. Execution requires real SPAROWTYPE_FINAL15_BUILD_ID; placement uses SPAROWTYPE_FINAL15_BUILD and mobile additionally requires SPAROWTYPE_FINAL15_STATIC_BUILD_ID after artifacts exist.",
+  "records": [
+    {
+      "from": "audit/2026-10-21/run-final14-static.mjs",
+      "to": "audit/2026-10-21/run-final15-static.mjs",
+      "originalSha256": "c3aec0fdd377659526f978593f8c6f07eb2f52f1c71407b146f8247fd5afc263",
+      "revisedSha256": "53970e27336822616e80fab37d0b09c2e4bcba90c4768721cb926c4794cfff39",
+      "referenceReplacementOnly": true,
+      "reverseExact": true,
+      "additionalLaunchGuards": []
+    },
+    {
+      "from": "audit/2026-10-21/run-mobile-workspaces-static-final14.mjs",
+      "to": "audit/2026-10-21/run-mobile-workspaces-static-final15.mjs",
+      "originalSha256": "4789189b041beae70e92477e9f42d669473770f765194d693d6982a2a93942c6",
+      "revisedSha256": "a9231edcc29b14238fdbd36d939822f192f0c86b9217c392697f9ce4b01907e6",
+      "referenceReplacementOnly": true,
+      "reverseExact": true,
+      "additionalLaunchGuards": []
+    },
+    {
+      "from": "audit/2026-10-21/measure-mobile-workspaces-static-final14.mjs",
+      "to": "audit/2026-10-21/measure-mobile-workspaces-static-final15.mjs",
+      "originalSha256": "f164b43e665aacd67744a02d0ba7524d28fbe613bcc9f568bbdbb4ec4d33b6ab",
+      "revisedSha256": "12a70eda6f73a950836d6d7985867ce5d9e5cf762a9f89e3b04edb244d906766",
+      "referenceReplacementOnly": true,
+      "reverseExact": true,
+      "additionalLaunchGuards": []
+    },
+    {
+      "from": "audit/2026-10-21/standalone-placement-real135-final14.mjs",
+      "to": "audit/2026-10-21/standalone-placement-real135-final15.mjs",
+      "originalSha256": "bb8e21604a6136d004de64c60adea39bf18a1f6129b007b4adefd6bc98bc2f79",
+      "revisedSha256": "3a3d2e9fe6f19b913a955960c6f883dfa39525820892167a765db0d52e5dd2c2",
+      "referenceReplacementOnly": true,
+      "reverseExact": true,
+      "additionalLaunchGuards": []
+    },
+    {
+      "from": "audit/2026-10-21/run-final14-native-browser.mjs",
+      "to": "audit/2026-10-21/run-final15-native-browser.mjs",
+      "originalSha256": "f9a02c5dfc26e121c54a3d0504820e8ce5b98db2ba7ac26c205e7bae174c6fe0",
+      "revisedSha256": "e853641d47d2ec15f3ddc1f5f5a51cd8234643ecd2ad9049f33842993067a035",
+      "referenceReplacementOnly": true,
+      "reverseExact": true,
+      "additionalLaunchGuards": []
+    },
+    {
+      "from": "audit/2026-10-21/run-final14-browser-matrix.mjs",
+      "to": "audit/2026-10-21/run-final15-browser-matrix.mjs",
+      "originalSha256": "40135983a1632e536faae30ce2ec95d04f95ec89ca5a6dd51cca5720ebc5798b",
+      "revisedSha256": "41261123c64a993a0435d559099c09a44309674e37968f04a526498e2d3bd8ee",
+      "referenceReplacementOnly": false,
+      "reverseExact": false,
+      "additionalLaunchGuards": [
+        "Require actual final15 build ID, matching frozen source and normal dist before any child launch.",
+        "Reject inherited narrow browser selection and any SPAROWTYPE_STATIC_OUTPUTS; static tests/PNGs remain exclusively owned by dedicated runner.",
+        "Restrict output prefix to final15. No test selection, actions, assertions, timing budgets, worker counts or retry policy changed."
+      ]
+    }
+  ],
+  "scope": "Audit-only checkpoint/output reference clones from14. Matrix additionally fails closed on missing build/source identity, non-four-engine selection or static-output environment. No runner executed, services started, or source/build/browser result claimed.",
+  "dedicatedStaticScope": {
+    "deploymentCases": 56,
+    "gameAxeCases": 16,
+    "artifactChecks": 67,
+    "workers": 1,
+    "automaticRetries": 0
+  },
+  "matrixPolicy": "Leave SPAROWTYPE_STATIC_OUTPUTS unset; explicit SPAROWTYPE_AUDIT_BROWSERS=chromium,edge,firefox,webkit. Static artifacts execute separately with unique15 screenshot paths. Native credential cases require the separately owned fresh instance and native wrapper.",
+  "priorEvidencePreserved": true
+}

@@ -1,0 +1,85 @@
+{
+  "declaredAt": "2026-10-22T20:45:06.315Z",
+  "status": "FAILED",
+  "build": {
+    "version": "0572d723495d6be303a8",
+    "publicFiles": 133,
+    "bytes": 2930646
+  },
+  "source": {
+    "sourceFile": "audit/2026-10-21/final17-source.json",
+    "expectedBuild": "0572d723495d6be303a8",
+    "compared": 499,
+    "mismatches": []
+  },
+  "expectedCases": 16,
+  "browsers": [
+    "chromium",
+    "edge",
+    "firefox",
+    "webkit"
+  ],
+  "workers": 1,
+  "automaticRetries": 0,
+  "tracing": "off",
+  "instrumentationChanged": true,
+  "filter": "^layout-contained ",
+  "inputs": {
+    "e2e/live-keyboard.spec.ts": "b2402d9856e849fddb57bfd9b847960de3537007f869f8bbf908ad2347bece78",
+    "e2e/helpers.ts": "7268814993da0db90cec40266fc8aabb391d3f649d43add1dd55c5be370d2e7d",
+    "playwright.config.ts": "9a1c2658bfe18bcf8acf34e61144e17309abe257717f2cf882d05791457a1a32"
+  },
+  "scope": "Only the four new native keyboard containment regressions, each in four engines. No full-suite, latency, physical-device or animated pixel-identity claim.",
+  "command": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "e2e/live-keyboard.spec.ts",
+    "--grep",
+    "^layout-contained ",
+    "--workers=1",
+    "--retries=0",
+    "--trace=off",
+    "--reporter=list,json",
+    "--output=audit/2026-10-21/.playwright-artifacts-final17-keyboard-focus"
+  ],
+  "exitCode": 1,
+  "summary": {
+    "totals": {
+      "total": 0,
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    "projects": [],
+    "reportedStats": {
+      "expected": 0,
+      "unexpected": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    "countsAgreeWithReport": true,
+    "failures": [],
+    "flakyCases": [],
+    "skippedCases": [],
+    "skipReasons": [],
+    "expectedFailures": [],
+    "globalErrors": [
+      "Error: No tests found. Make sure that arguments are regular expressions matching test files. You may need to escape symbols like \"$\" or \"*\" and quote the arguments."
+    ],
+    "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+  },
+  "error": {
+    "name": "AssertionError",
+    "message": "Expected values to be strictly equal:\n\n0 !== 16\n"
+  },
+  "sourceAfter": {
+    "sourceFile": "audit/2026-10-21/final17-source.json",
+    "expectedBuild": "0572d723495d6be303a8",
+    "compared": 499,
+    "mismatches": []
+  },
+  "inputsUnchanged": true,
+  "finishedAt": "2026-10-22T20:45:07.244Z"
+}

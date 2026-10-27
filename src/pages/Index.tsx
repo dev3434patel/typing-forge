@@ -20,11 +20,10 @@ import { useAuth } from "@/hooks/useAuth";
 import { useTestResults } from "@/hooks/useTestResults";
 import {
   getContentPack,
-  generatePackText,
-  seededRandom,
 } from "@/lib/content-packs";
 import { getRandomCodeSnippet } from "@/lib/content-library";
 import { getRandomQuote } from "@/lib/quotes";
+import { CLASSIC_CONTENT_VERSION, generateConfiguredWords, sanitizeCustomPassage } from '@/lib/content-policy';
 import type {
   SessionConfig,
   SessionResult,
@@ -51,6 +50,11 @@ export default function Index() {
     [error, setError] = useState("");
   const saved = useRef(new Set<string>()),
     appendCounter = useRef(0);
+  useEffect(() => sessionRepository.subscribe(event => {
+    if (event.type !== 'remove' || event.ownerId !== (user?.id ?? 'guest') || event.sessionId !== result?.clientSessionId) return;
+    setResult(null); setCustom(''); setCustomReady(false); setRepeat(null); setNonce(value => value + 1);
+    setError('This session was deleted from your workspace. Start a fresh practice.');
+  }), [user?.id, result?.clientSessionId]);
   const [retestConfiguration, setRetestConfiguration] =
     useState<SessionConfig | null>(null);
   const retestId = params.get("retest");
@@ -100,19 +104,8 @@ export default function Index() {
       pack = getContentPack(mode === "quote" || mode === "code" ? "en" : p.language);
     const generatedWords = ["time", "words", "zen"].includes(mode) &&
       !(mode === "zen" && settings.zenStyle === "free");
-    const random = seededRandom(seed);
     const words = (count: number) =>
-      generatePackText(p.language, count, seed)
-        .split(" ")
-        .map((word) =>
-          settings.numbers && random() < 0.1
-            ? String(Math.floor(random() * 1000))
-            : word +
-              (settings.punctuation && random() < 0.15
-                ? [".", ",", "!", "?"][Math.floor(random() * 4)]
-                : ""),
-        )
-        .join(" ");
+      generateConfiguredWords(p.language, count, seed, { classic: settings.wordPool === 'classic200', numbers: settings.numbers, punctuation: settings.punctuation });
     const passage = mode === "quote" ? getRandomQuote(seed, settings.quoteLength) : null,
       snippet =
         mode === "code" ? getRandomCodeSnippet(settings.codeLanguage) : null;
@@ -144,8 +137,8 @@ export default function Index() {
       keyboardLayout: p.layout,
       script: pack.script,
       inputMethod: "keyboard-or-composition",
-      contentRevision: passage?.revision ?? snippet?.revision ?? pack.revision,
-      generatorVersion: "forge-content-v1",
+      contentRevision: passage?.revision ?? snippet?.revision ?? (generatedWords && settings.wordPool === 'classic200' && p.language === 'en' ? CLASSIC_CONTENT_VERSION : pack.revision),
+      generatorVersion: "forge-content-v2",
       seed,
       punctuation: generatedWords && settings.punctuation,
       numbers: generatedWords && settings.numbers,
@@ -321,7 +314,10 @@ export default function Index() {
               <button
                 className="forge-button mt-4"
                 disabled={!custom.trim()}
-                onClick={() => setCustomReady(true)}
+                onClick={() => {
+                  try { const clean = sanitizeCustomPassage(custom); setCustom(clean.text); setError(clean.removedControls ? `${clean.removedControls} unsupported control characters were removed.` : ''); setCustomReady(true); }
+                  catch (cause) { setError(cause instanceof Error ? cause.message : 'Check your custom passage.'); }
+                }}
               >
                 Start private practice
                 <ArrowUpRight size={16} />
@@ -339,10 +335,11 @@ export default function Index() {
                 ["time", "zen"].includes(configuration.mode) &&
                 configuration.scoringPolicy === "prose"
                   ? () =>
-                      generatePackText(
+                      generateConfiguredWords(
                         configuration.language || "en",
                         80,
                         `${configuration.seed}:${++appendCounter.current}`,
+                        { classic: configuration.contentRevision === CLASSIC_CONTENT_VERSION, numbers: configuration.numbers, punctuation: configuration.punctuation },
                       )
                   : undefined
               }

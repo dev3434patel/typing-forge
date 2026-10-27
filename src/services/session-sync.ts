@@ -24,7 +24,7 @@ export class SessionSync {
     const repo = this.options.repository ?? sessionRepository;
     const now = this.options.now ?? Date.now;
     try {
-      await repo.expireEvidence(now());
+      await repo.expireEvidence(now(), ownerId);
       const rows = await repo.list(ownerId);
       for (const row of rows.reverse()) {
         if (!['queued', 'retryable-error', 'auth-required', 'syncing'].includes(row.state)) continue;

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "buildId": "8ac2a0d9602ec9263118",
+  "status": "FAILED",
+  "observation": "PARTIAL",
+  "scope": "Read-only diagnosis of two finalized WebKit failure artifacts while the existing batch is still running. This is not a finalized batch or full-matrix outcome.",
+  "source": "e2e/caret-geometry.spec.ts:145",
+  "originalWholeTestBudgetMs": 30000,
+  "originalConfiguredTypingDelayMs": 2,
+  "timelineClock": "Playwright trace monotonic milliseconds; values are not wall-clock timestamps.",
+  "cases": [
+    {
+      "name": "line caret follows the actual LTR character edge through input and rotation",
+      "project": "webkit",
+      "status": "timedOut",
+      "nativeTyping": { "start": 1549395.750, "end": 1573895.298, "durationMs": 24499.548, "insertedTextLength": 55, "locatorResolvedAt": 1549448.059, "typingLogAt": 1549450.503, "nativeActionReportedError": false },
+      "exactInputValueAssertion": "PASS — 55 characters",
+      "retainedGeometryReceipts": ["initial", "55 committed characters", "portrait", "landscape"],
+      "retainedGeometryResult": "All four corresponding poll assertions completed without error, with matching measured native geometry within the unchanged one-pixel tolerance.",
+      "pendingFailure": { "operation": "page.setViewportSize", "sourceLine": 170, "requestedViewport": { "width": 320, "height": 780 }, "testStepStart": 1577436.282, "testStepEnd": 1578096.472 },
+      "notReached": ["narrow viewport Backspace", "54-character value assertion", "narrow after deletion geometry assertion"],
+      "frameSnapshotsDuringNativeTyping": 2
+    },
+    {
+      "name": "block caret follows the actual LTR character edge through input and rotation",
+      "project": "webkit",
+      "status": "timedOut",
+      "nativeTyping": { "start": 1579158.952, "end": 1605373.788, "durationMs": 26214.836, "insertedTextLength": 55, "locatorResolvedAt": 1579172.295, "typingLogAt": 1579174.773, "nativeActionReportedError": false },
+      "exactInputValueAssertion": "PASS — 55 characters",
+      "retainedGeometryReceipts": ["initial", "55 committed characters"],
+      "retainedGeometryResult": "Both corresponding poll assertions completed without error, with matching measured native geometry within the unchanged one-pixel tolerance.",
+      "pendingFailure": { "operation": "page.setViewportSize", "sourceLine": 166, "requestedViewport": { "width": 390, "height": 844 }, "testStepStart": 1606760.121, "testStepEnd": 1607096.038 },
+      "notReached": ["portrait geometry assertion", "landscape viewport and geometry", "narrow deletion and geometry assertions"],
+      "frameSnapshotsDuringNativeTyping": 2
+    }
+  ],
+  "interpretation": {
+    "proven": "Most of each unchanged whole-test budget was consumed inside the native typing action after its locator resolved. All geometry and exact-input assertions that were reached passed. The recorded failure is the whole-test deadline during a later resize; no caret-position discrepancy is recorded.",
+    "unproven": ["application hot-path cost versus browser-protocol cost", "per-keystroke processing timings", "concurrent browser workload contribution", "trace or screencast overhead contribution"],
+    "instrumentationObservation": "The retained traces contain screencast frames and DOM snapshots. Their existence is not evidence of the time spent recording them.",
+    "traceOffConfirmationPolicy": "A separately declared trace-off run may retain the same assertions, timeouts, workers and zero retries, but must record its changed instrumentation and keep these original failures. It cannot establish that tracing caused the original failures, particularly if product source also changes."
+  },
+  "privacy": "Only predefined UI labels, numeric geometry, action durations, input lengths, and test identities were inspected or retained. No input passage, full DOM, request headers, cookies, credential values, or private response bodies are copied here.",
+  "sourceOrTestEdits": false,
+  "rerunPerformed": false,
+  "ownedServicesStarted": false,
+  "originalFailuresRetained": true
+}

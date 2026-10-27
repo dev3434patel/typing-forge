@@ -1,0 +1,155 @@
+.signal-game {
+  --signal-ink: hsl(var(--primary));
+}
+.signal-scene {
+  position: relative;
+  overflow: hidden;
+  min-height: 180px;
+  border-radius: 1rem;
+  background:
+    radial-gradient(
+      ellipse at 70% 0%,
+      hsl(var(--primary) / 0.1),
+      transparent 65%
+    ),
+    hsl(var(--background));
+}
+.signal-scene[data-stage="1"] {
+  --signal-ink: var(--text-accent-2);
+}
+.signal-scene[data-stage="2"] {
+  --signal-ink: hsl(var(--ui-success));
+}
+.signal-landscape {
+  display: block;
+  width: 100%;
+  height: clamp(160px, 23vw, 230px);
+}
+.signal-mountain-far {
+  fill: var(--signal-ink);
+  opacity: 0.055;
+}
+.signal-mountain-near {
+  fill: var(--signal-ink);
+  opacity: 0.07;
+}
+.signal-route {
+  stroke: var(--signal-ink);
+  stroke-width: 1;
+  stroke-dasharray: 3 7;
+  opacity: 0.3;
+}
+.signal-beacon > circle:first-child {
+  fill: hsl(var(--card));
+  stroke: var(--signal-ink);
+  stroke-opacity: 0.3;
+}
+.signal-beacon > circle:nth-child(2) {
+  fill: hsl(var(--muted-foreground));
+  opacity: 0.35;
+}
+.signal-beacon > path {
+  stroke: var(--signal-ink);
+  stroke-width: 1.5;
+  opacity: 0.3;
+}
+.signal-beacon.is-lit > circle:first-child {
+  fill: var(--signal-ink);
+  fill-opacity: 0.13;
+  stroke-opacity: 1;
+}
+.signal-beacon.is-lit > circle:nth-child(2),
+.signal-beacon.is-lit > path {
+  fill: var(--signal-ink);
+  opacity: 1;
+}
+.signal-craft {
+  fill: hsl(var(--primary));
+  stroke: hsl(var(--primary));
+}
+.signal-craft-tail {
+  stroke: hsl(var(--primary));
+  opacity: 0.4;
+}
+.signal-moon {
+  fill: var(--signal-ink);
+  opacity: 0.13;
+}
+.signal-stars {
+  stroke: var(--signal-ink);
+  opacity: 0.5;
+}
+.signal-scene-caption {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  position: absolute;
+  inset: 1rem 1.25rem auto;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+}
+.signal-target {
+  font-family: var(--font-mono);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  overflow-wrap: anywhere;
+}
+.signal-target-character {
+  color: hsl(var(--muted-foreground));
+}
+.signal-target-character[data-state="correct"] {
+  color: hsl(var(--primary));
+}
+.signal-target-character[data-state="incorrect"] {
+  color: hsl(var(--destructive));
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+}
+.signal-target-character[data-current="true"] {
+  border-bottom: 2px solid hsl(var(--primary));
+}
+.signal-stage {
+  border-top: 2px solid hsl(var(--ui-border));
+}
+.signal-stage[data-current="true"] {
+  border-color: hsl(var(--primary));
+}
+.signal-stage[data-complete="true"] {
+  border-color: hsl(var(--ui-success));
+}
+.signal-game input {
+  font-family: var(--font-mono);
+  font-size: 1.125rem;
+}
+.signal-gate-entry {
+  animation: signal-gate-entry 0.2s ease-out both;
+}
+@keyframes signal-gate-entry {
+  from {
+    opacity: 0.35;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .signal-gate-entry {
+    animation: none;
+  }
+}
+.signal-game[data-reduced-motion="true"] .signal-gate-entry {
+  animation: none;
+}
+@media (max-width: 440px) {
+  .signal-scene-caption {
+    inset: 0.8rem 0.9rem auto;
+    font-size: 0.58rem;
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "status": "PREPARED-NOT-RUN",
+  "preparedAt": "2026-10-21T19:10:08.541558+00:00",
+  "scope": "Clone-only source10 normalized delta and gate pointers. No product files read/edited, tests, syntax checks, builds, browsers, PHP or services run.",
+  "before": "audit/2026-10-21/final9-source.json",
+  "beforeBuild": "349a107f388a8cc499fe",
+  "after": "audit/2026-10-21/final10-source.json",
+  "requiredActualBuildIdEnvironment": "SPAROWTYPE_FINAL10_BUILD_ID",
+  "deltaTool": "audit/2026-10-21/compare-final10-source.mjs",
+  "deltaToolSha256": "40d6fff615fd052b806d5318ebaadf657119a7837715de52b1d2072b01908cea",
+  "from": "audit/2026-10-21/compare-final9-source.mjs",
+  "fromSha256": "40aeaf11b3190f48d3fa9861020bda3f50250b4dda0c1c26c298429bcf97fb5a",
+  "deltaPreparationDiff": [
+    "--- compare-final9-source.mjs\n",
+    "+++ compare-final10-source.mjs\n",
+    "@@ -4,11 +4,11 @@\n",
+    " ",
+    "-// Read-only product inspection. Run only after the coordinator freezes9;",
+    "+// Read-only product inspection. Run only after the coordinator freezes10;",
+    " // this creates one exclusive audit receipt and never builds or edits sources.",
+    "-const expectedBuild = process.env.SPAROWTYPE_FINAL9_BUILD_ID;",
+    "-assert.match(expectedBuild ?? '', /^[a-f0-9]{20}$/, 'Actual frozen final9 build ID is required.');",
+    "-const beforeFile = 'audit/2026-10-21/final8-source.json';",
+    "-const afterFile = 'audit/2026-10-21/final9-source.json';",
+    "-const output = 'audit/2026-10-21/final9-source-delta.json';",
+    "+const expectedBuild = process.env.SPAROWTYPE_FINAL10_BUILD_ID;",
+    "+assert.match(expectedBuild ?? '', /^[a-f0-9]{20}$/, 'Actual frozen final10 build ID is required.');",
+    "+const beforeFile = 'audit/2026-10-21/final9-source.json';",
+    "+const afterFile = 'audit/2026-10-21/final10-source.json';",
+    "+const output = 'audit/2026-10-21/final10-source-delta.json';",
+    " const handle = await open(output, 'wx');",
+    "-const report = { status: 'FAILED', capturedAt: new Date().toISOString(), beforeFile, afterFile, expectedBuild, scope: 'Normalized frozen-source hash delta only. Source9 follows the retained source8 native failure and is intended to capture server-owned HTTP receipt time before expensive validation/locks. Actual PHP/core/game changes are listed for release-owner review; a source delta alone does not establish the repair. No browser, build, database, live API, performance or visual acceptance. Prior failures remain unchanged.' };",
+    "+const report = { status: 'FAILED', capturedAt: new Date().toISOString(), beforeFile, afterFile, expectedBuild, scope: 'Normalized frozen-source hash delta only. Source10 follows the retained source9 input-tail failure. Intended scope is keyboard leaf memoization, internal-scroll caret-cache invalidation and formula-identical metric count traversal. Actual changed files require release-owner review; a source delta alone does not establish metric equivalence or improved latency. No browser, build, database, live API, performance or visual acceptance. Prior failures remain unchanged.' };",
+    " try {",
+    "@@ -43,5 +43,4 @@\n",
+    "   report.unchangedSourceFiles = names.length - changed.length;",
+    "-  report.nonCaretChangesForTimingReview = unexpected;",
+    "+  report.nonCaretChangesForPerformanceReview = unexpected;",
+    "   report.deltaScopeRequiresReleaseOwnerReview = true;",
+    "-  report.expectedChangedSourceFiles = ['backend/public/index.php', 'backend/src/DataService.php', 'backend/src/SocialService.php'];",
+    "   report.renderingSourcesChanged = changed.some(file => file.startsWith('src/components/brand/'));",
+    "@@ -52,5 +51,4 @@\n",
+    "   assert.equal(removed.length, 0, 'Source removal is outside this repair.');",
+    "-  assert.deepEqual(changed, report.expectedChangedSourceFiles, 'Source9 must contain only the declared authenticated receipt-capture repair.');",
+    "   assert.equal(report.renderingSourcesChanged, false);",
+    "-  assert.equal(report.canonicalEngineSourcesChanged, false);",
+    "+  assert.equal(report.phpSourcesChanged, false);",
+    "   report.status = 'PASS-SCOPED';"
+  ],
+  "expectedScope": [
+    "LiveKeyboard leaf memoization",
+    "Canonical metric count one-pass traversal with unchanged formulas/evidence contract",
+    "Internal native caret scroll cache invalidation preserving user/ancestor-scroll invalidation"
+  ],
+  "invariants": [
+    "No renderer source change",
+    "No PHP source change",
+    "No removed source files",
+    "Actual full normalized delta listed for independent release-owner review; no guessed file count"
+  ],
+  "rootCoordinatedGatePointers": [
+    {
+      "id": "12-source-commands",
+      "argv": [
+        "node",
+        "audit/2026-10-21/run-source-gates.mjs",
+        "final10"
+      ]
+    },
+    {
+      "id": "build",
+      "argv": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "log": "audit/2026-10-21/final10-build.log"
+    },
+    {
+      "id": "freeze",
+      "argv": [
+        "node",
+        "audit/2026-10-21/freeze-source.mjs",
+        "final10"
+      ],
+      "requires": "Preview serves newly emitted public bytes"
+    },
+    {
+      "id": "delta",
+      "argv": [
+        "node",
+        "audit/2026-10-21/compare-final10-source.mjs"
+      ],
+      "requires": "Actual20hex SPAROWTYPE_FINAL10_BUILD_ID and accepted final10-source.json"
+    },
+    {
+      "id": "bundle",
+      "argv": [
+        "node",
+        "scripts/check-bundle.mjs"
+      ],
+      "stdoutReceipt": "audit/2026-10-21/final10-bundle.json"
+    },
+    {
+      "id": "hosting-package",
+      "argv": [
+        "node",
+        "scripts/package-php-hosting.mjs"
+      ],
+      "log": "audit/2026-10-21/final10-hosting-build.log"
+    },
+    {
+      "id": "hosting-structure",
+      "argv": [
+        "node",
+        "audit/2026-10-21/verify-hosting.mjs",
+        "--prefix",
+        "final10",
+        "--source",
+        "audit/2026-10-21/final10-source.json"
+      ]
+    }
+  ],
+  "priorFailuresRetained": [
+    "audit/2026-10-21/final9-input-results.json",
+    "audit/2026-10-21/final9-independent-front-summary.json"
+  ],
+  "notClaimed": [
+    "No source10 frozen identity/gate/pass yet",
+    "No benchmark result substituted or filtered",
+    "No browser confirmation of corrected1ms fixture yet"
+  ],
+  "execution": "Only coordinator-authorized windows may run any listed command; preparation does not invoke them."
+}

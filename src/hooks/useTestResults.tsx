@@ -22,6 +22,7 @@ const sync = new SessionSync({
       if (session.user?.id !== record.ownerId) return { error: { code: 'auth-required', status: 401, message: 'Sign in again to sync this account.' } };
       const response = await accountApi.submit(record.candidate, record.cloudConsent, record.ownerId);
       if (!response.accepted) return { error: { code: 'invalid-response', message: 'Account saving was not acknowledged. The local result is retained.' } };
+      void import('@/services/progression-service').then(module => module.syncProgression(record.ownerId)).catch(() => undefined);
       return { accepted: response.accepted };
     } catch (error) {
       return { error: { code: error instanceof ApiError ? error.code : 'submission-failed', message: error instanceof Error ? error.message : 'Account save failed.', status: error instanceof ApiError ? error.status : undefined } };
@@ -29,7 +30,9 @@ const sync = new SessionSync({
   },
 });
 let startup: Promise<unknown> | undefined;
-function initializeHistory() { return startup ??= sessionRepository.migrateLegacy().then(() => sessionRepository.expireEvidence()); }
+function initializeHistory() {
+  return startup ??= sessionRepository.migrateLegacy().then(() => sessionRepository.expireEvidence()).catch(error => { startup = undefined; throw error; });
+}
 const legacyIds = new WeakMap<object, string>();
 const finite = (value: number | null | undefined) => typeof value === 'number' && Number.isFinite(value) ? value : 0;
 
@@ -55,14 +58,15 @@ export function useTestResults() {
   useEffect(() => {
     let alive = true;
     activeOwner = user?.id ?? null;
-    void initializeHistory().then(() => sync.flush(ownerId));
+    const failure = (cause: unknown) => { if (alive && currentOwner.current === ownerId) setSyncState({ state: 'retryable-error', message: cause instanceof Error ? cause.message : 'Device history could not be refreshed.', storageMode: sessionRepository.storageMode }); };
+    void initializeHistory().then(() => sync.flush(ownerId)).catch(failure);
     const unsubscribe = sessionRepository.subscribe(event => {
       if (event.ownerId !== ownerId || event.sessionId !== latestId.current) return;
       void sessionRepository.get(ownerId, event.sessionId).then(row => {
         if (alive && row && currentOwner.current === ownerId && event.sessionId === latestId.current) setSyncState({ state: row.state, message: sessionRepository.storageError ?? row.message ?? row.state, storageMode: sessionRepository.storageMode, sessionId: row.clientSessionId });
       });
     });
-    const resume = () => { void sessionRepository.expireEvidence().then(()=>sync.flush(ownerId)); };
+    const resume = () => { void sessionRepository.expireEvidence(Date.now(), ownerId).then(()=>sync.flush(ownerId)).catch(failure); };
     const timer = setInterval(resume, 15_000);
     globalThis.addEventListener?.('online', resume);
     return () => { alive = false; unsubscribe(); clearInterval(timer); globalThis.removeEventListener?.('online', resume); };
@@ -70,6 +74,7 @@ export function useTestResults() {
 
   const saveSession = useCallback(async (result: SessionResult, options: { cloudConsent?: boolean;localOnly?:boolean } = {}): Promise<TestResult> => {
     const scope = result.ownerScope || ownerId;
+    const revision = sessionRepository.ownerRevision(scope);
     const publish = beginSave(scope, result.clientSessionId);
     await initializeHistory();
     const existing = await sessionRepository.get(scope, result.clientSessionId);
@@ -84,27 +89,32 @@ export function useTestResults() {
     }
     const courseEvidence = result.configuration.settings?.course !== undefined
       ? (await import('@/lib/typing-course')).assessCourseResult(result) ?? undefined : undefined;
+    const training = result.configuration.settings?.training as { kind?: string } | undefined;
+    const placementEvidence = training?.kind === 'placement'
+      ? (await import('@/domain/training/placement')).placementPartFromResult(result) ?? undefined : undefined;
     const metrics = result.metrics;
     const summary: TestResult = { id: result.clientSessionId, wpm: finite(metrics.wpm), rawWpm: finite(metrics.rawWpm), accuracy: finite(metrics.inputAccuracy), consistency: finite(metrics.consistency), mode: result.configuration.mode, duration: result.elapsedMs / 1000, correctChars: metrics.correct, incorrectChars: metrics.incorrect, totalChars: metrics.retainedUnits, errors: metrics.incorrectAttempts, date: new Date(result.finishedAtWall).toISOString(), wpmHistory: result.timeSeries.map(point => finite(point.wpm)) };
     const privateContent = result.configuration.privacy === 'private-custom' || result.configuration.mode === 'custom' || result.configuration.scoringPolicy === 'free';
     const consent = options.cloudConsent === true;
     const queued = scope !== 'guest' && (!privateContent || consent) && isBackendConfigured&&!options.localOnly;
-    const record: SessionRecord = { schemaVersion: 3, ownerId: scope, clientSessionId: result.clientSessionId, payloadVersion: result.metricsVersion, payloadHash: candidateHash, summary, metricSummary: result.metrics, courseEvidence, comparisonKey: result.comparisonKey, personalBestEligible: result.eligibility.eligible, candidate: result, privateContent, cloudConsent: consent, provenance: 'observed', state: queued ? 'queued' : 'local-only', attempts: 0, nextAttemptAt: 0, createdAt: result.finishedAtWall, evidenceExpiresAt: result.finishedAtWall + EVIDENCE_TTL_MS, message: options.localOnly?'Saved personal result on this device. This session is not eligible for cloud ranking.':privateContent && !consent ? 'Private content saved on this device. Cloud storage requires your consent.' : scope === 'guest' ? 'Saved on this device. Sign in to enable account sync.' : queued ? 'Saved on this device; waiting to sync.' : 'Cloud saving is unavailable; saved on this device.' };
-    await sessionRepository.save(record);
+    const record: SessionRecord = { schemaVersion: 3, ownerId: scope, clientSessionId: result.clientSessionId, payloadVersion: result.metricsVersion, payloadHash: candidateHash, summary, metricSummary: result.metrics, courseEvidence, placementEvidence, comparisonKey: result.comparisonKey, personalBestEligible: result.eligibility.eligible, candidate: result, privateContent, cloudConsent: consent, provenance: 'observed', state: queued ? 'queued' : 'local-only', attempts: 0, nextAttemptAt: 0, createdAt: result.finishedAtWall, evidenceExpiresAt: result.finishedAtWall + EVIDENCE_TTL_MS, message: options.localOnly?'Saved personal result on this device. This session is not eligible for cloud ranking.':privateContent && !consent ? 'Private content saved on this device. Cloud storage requires your consent.' : scope === 'guest' ? 'Saved on this device. Sign in to enable account sync.' : queued ? 'Saved on this device; waiting to sync.' : 'Cloud saving is unavailable; saved on this device.' };
+    await sessionRepository.save(record, revision);
     publish(record);
+    void import('@/services/progression-service').then(module => module.claimProgression(result, { localOnly: options.localOnly })).catch(() => undefined);
     if (queued) void sync.flush(scope);
     return summary;
   }, [ownerId, beginSave]);
 
   /** Compatibility preserves observed legacy numbers; they never masquerade as v3 replay. */
   const saveResult = useCallback(async (stats: ExtendedTypingStats, mode: string, _configuredDuration: number): Promise<TestResult> => {
+    const revision = sessionRepository.ownerRevision(ownerId);
     const id = stats.clientSessionId ?? legacyIds.get(stats) ?? crypto.randomUUID(); legacyIds.set(stats, id);
     const publish = beginSave(ownerId, id);
     await initializeHistory();
     const previous = await sessionRepository.get(ownerId, id); if (previous) { publish(previous); return previous.summary; }
     const summary: TestResult = { id, wpm: finite(stats.wpm), rawWpm: finite(stats.rawWpm), accuracy: finite(stats.accuracy), consistency: finite(stats.consistency), mode, duration: finite(stats.elapsedTime), correctChars: stats.correctChars, incorrectChars: stats.incorrectChars, totalChars: stats.totalChars, errors: stats.errors, date: new Date().toISOString(), wpmHistory: stats.wpmHistory };
     const record: SessionRecord = { schemaVersion: 3, ownerId, clientSessionId: id, summary, payloadVersion: 'legacy-unverified', payloadHash: await payloadIdentity(summary), privateContent: mode === 'custom' || mode === 'zen', cloudConsent: false, provenance: 'legacy', state: 'local-only', attempts: 0, nextAttemptAt: 0, createdAt: Date.now(), evidenceExpiresAt: 0, message: 'Saved locally with legacy metrics. Excluded from verified rankings.' };
-    await sessionRepository.save(record);
+    await sessionRepository.save(record, revision);
     publish(record);
     return summary;
   }, [ownerId, beginSave]);

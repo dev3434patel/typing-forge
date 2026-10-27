@@ -1,0 +1,56 @@
+{
+  "capturedAt": "2026-10-21T20:04:48.657Z",
+  "status": "PASS-SCOPED-SOURCE-UNIT-TYPES-FROZEN",
+  "scope": "Only the cache helper and its existing unit file. Root owns TypingArea collection/invalidation and native acceptance. No browser/build/profile/metric/3D changes in this work.",
+  "files": [
+    {
+      "file": "src/components/typing/typing-caret-cache.ts",
+      "sha256": "60f3684640bd1c1be44c42697f50271dbc3cc9419a2473b4709b1213668d96d4"
+    },
+    {
+      "file": "src/components/typing/typing-caret-cache.test.ts",
+      "sha256": "0dba84df616bce469e1e5f7764135d43cd7f2ffb15eeb205d5200214a02162a9"
+    }
+  ],
+  "api": {
+    "exportedConstant": "MAX_CACHED_FORWARD_GLYPHS=128",
+    "newMethod": "storeForward(state,slots,lineHeight):boolean",
+    "legacy": "canCache/store retain whole-word<=64 semantics; callers need not change their existing contract.",
+    "read": "Base eligibility now permits actual cached ASCII space boxes. Oversized current words remain native, as do nonterminal bounds failures, Unicode, RTL, code/free and active composition."
+  },
+  "invariants": [
+    "At most128 contiguous native slots begin exactly at the current canonical cursor.",
+    "Each expected value/index is checked against the unchanged target. Every nonspace slot belongs to an entire word<=64.",
+    "Finite positive actual supplied anchor boxes and line height are required. Inputs are copied; no glyph advance or trailing/end box is guessed.",
+    "Invalid capture rejects atomically and clears old entries. Partial valid contiguous windows are allowed and miss at their first uncaptured index.",
+    "Existing geometry/style/font/target checks and single-correct-character transition guard remain; deletion, replacement, errors, composition and explicit invalidation miss."
+  ],
+  "checks": [
+    {
+      "command": "npx vitest run src/components/typing/typing-caret-cache.test.ts src/components/typing/typing-caret-geometry.test.ts",
+      "result": "88/88 PASS;42 prior cases +46 new forward-window cases;2files"
+    },
+    {
+      "command": "npx tsc -p tsconfig.app.json --noEmit",
+      "exitCode": 0
+    },
+    {
+      "command": "npx eslint src/components/typing/typing-caret-cache.ts src/components/typing/typing-caret-cache.test.ts",
+      "exitCode": 0
+    }
+  ],
+  "independentReview": "final_release_review inspected helper source and found no material blocker. Root was reminded to reject raw zero/non-finite fragments before typingCaretAnchor clamps dimensions.",
+  "pending": [
+    "Root native collector integration and exact source12 freeze",
+    "Four-engine geometry/input/observer regressions",
+    "Declared unchanged-protocol native input performance and Lighthouse; source11 failures112/104/104ms remain preserved and are not relabelled"
+  ],
+  "performanceRisk": "A larger synchronous native capture may create a refill spike. Only real measurements establish improvement; bounded source correctness and88 unit passes are not an INP claim.",
+  "jobs": {
+    "allOwnedExited": true,
+    "browser": false,
+    "build": false,
+    "profile": false
+  },
+  "sourceFrozen": true
+}

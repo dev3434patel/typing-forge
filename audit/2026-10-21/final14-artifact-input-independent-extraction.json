@@ -1,0 +1,155 @@
+{
+  "status": "PARTIAL",
+  "capturedAt": "2026-10-22T19:09:52.200789+00:00",
+  "reportLocalDate": "2026-10-23",
+  "scope": "Independent read-only extraction of completed source14 artifact/delta/bundle/structural package and matched input receipts, with explicitly separate instrumented diagnostic. No build, tests, browser, profiling, native services or full source-hash job performed.",
+  "sourceGateExtraction": "audit/2026-10-21/final14-source-independent-extraction.json",
+  "artifact": {
+    "status": "PASS-SCOPED",
+    "build": {
+      "version": "945bd4aa37e6b3c9ec40",
+      "publicFiles": 133,
+      "bytes": 2929557
+    },
+    "sourceFiles": 498,
+    "recordedServedMatchesLocal": true,
+    "sourceReceipt": "audit/2026-10-21/final14-source.json"
+  },
+  "delta": {
+    "receipt": "audit/2026-10-21/final14-source-delta.json",
+    "changedFiles": [
+      "public/sw.js",
+      "src/components/typing/LiveKeyboard.test.tsx",
+      "src/components/typing/LiveKeyboard.tsx",
+      "src/components/typing/ObservedLiveKeyboard.tsx",
+      "src/hooks/useLiveKeyboard.ts",
+      "src/lib/__tests__/pressed-key-store.test.ts",
+      "src/lib/__tests__/pwa-lifecycle.test.ts",
+      "src/lib/__tests__/pwa-worker.test.ts",
+      "src/lib/pressed-key-store.ts",
+      "src/lib/pwa.ts",
+      "src/main.tsx"
+    ],
+    "modified": 9,
+    "added": 2,
+    "unchanged": 487,
+    "componentIntegrity": {
+      "php": {
+        "compared": 37,
+        "changed": [],
+        "unchanged": true
+      },
+      "canonicalEngine": {
+        "compared": 14,
+        "changed": [],
+        "unchanged": true
+      },
+      "renderer": {
+        "compared": 21,
+        "changed": [],
+        "unchanged": true
+      },
+      "css": {
+        "compared": 12,
+        "changed": [],
+        "unchanged": true
+      },
+      "caretGeometry": {
+        "compared": 7,
+        "changed": [],
+        "unchanged": true
+      },
+      "practiceAndRaceControllers": {
+        "compared": 5,
+        "changed": [],
+        "unchanged": true
+      }
+    }
+  },
+  "introIntegrity": {
+    "fullIntroSourceUnchangedAgainstRepositoryHead": false,
+    "source13To14RendererUnchanged": true,
+    "allHeadIntroSourcesUnchangedClaimed": false,
+    "scope": "The global false flag includes earlier changes versus repositoryHEAD. The release-specific renderer proof is source13-to14; no all-HEAD-unchanged claim is made."
+  },
+  "bundle": {
+    "bootstrapJsGzipBytes": 56266,
+    "initialPracticeJsGzipBytes": 164312,
+    "maxFeatureJsGzipBytes": 108534,
+    "introDeferredJsGzipBytes": 168003,
+    "arcadeRouteGzipBytes": 10529,
+    "arcadePlayerGzipBytes": 25293,
+    "dashboardRouteGzipBytes": 23180
+  },
+  "package": {
+    "receipt": "audit/2026-10-21/final14-hosting-package-verification.json",
+    "checks": 27,
+    "passed": 27,
+    "publicFilesCompared": 142,
+    "packageFiles": 185
+  },
+  "matchedInput": {
+    "status": "FAILED",
+    "functionalIntegrity": "PASS-SCOPED",
+    "receipt": "audit/2026-10-21/final14-input-results.json",
+    "protocolDeclaredAt": "2026-10-22T19:04:15.008Z",
+    "target": "Every one of the three p98 values must be <100ms.",
+    "failedRuns": 2,
+    "passedRuns": 1,
+    "p98Ms": [
+      112,
+      88,
+      104
+    ],
+    "maxMs": [
+      192,
+      120,
+      144
+    ],
+    "exactAttemptsEach": 495,
+    "inputAccuracyEach": 100,
+    "rotationRetainedAll": true,
+    "errors": [
+      [],
+      [],
+      []
+    ],
+    "automaticRetries": 0,
+    "resultFiltering": false,
+    "driverExitIsNotLatencyGate": true
+  },
+  "instrumentedDiagnostic": {
+    "status": "OBSERVATION-ONLY",
+    "receipt": "audit/2026-10-21/final14-caret-reads-diagnostic.json",
+    "readCountsReceipt": "audit/2026-10-21/final14-caret-reads-diagnostic-reads.json",
+    "p98Ms": 104,
+    "maxMs": 240,
+    "attempts": 495,
+    "inputAccuracy": 100,
+    "nativeGeometryCounts": {
+      "getClientRects": 1109,
+      "getBoundingClientRect": 84
+    },
+    "zeroWidthQueries": 0,
+    "zeroWidthForwardSpaces": 0,
+    "notAcceptance": true
+  },
+  "boundedTimingSourceReview": {
+    "files": [
+      "src/lib/pressed-key-store.ts",
+      "src/hooks/useLiveKeyboard.ts",
+      "src/components/typing/ObservedLiveKeyboard.tsx",
+      "src/main.tsx"
+    ],
+    "finding": "No additional confirmed severe timing defect in the changed observer/store path. Store publishes physical-code booleans, and the hook changes visual subscriptions; neither introduces clock-origin/controller calls or native-input prevention. Canonical engine and practice/race controller hashes are unchanged.",
+    "limits": "Source-only review does not rule out all timing/performance defects; current2/3 latency failure and pending real browser acceptance remain."
+  },
+  "limits": [
+    "Static14 running at extraction; no finished static or browser outcome inferred.",
+    "Mobile/real135/full62-file matrix/Lighthouse14 NOT-RUN at extraction.",
+    "Focused PWA106/keyboard96/SSR31 overlap integrated2786 tests; no invented total.",
+    "Current matched input FAILED2/3; instrumented104/240 does not replace112/88/104 acceptance.",
+    "Source13 fidelity/input failures, earlier static/mobile/capacity failures remain unchanged.",
+    "No physical-device, fieldINP, hosted/deployment or commit/sync claim."
+  ]
+}

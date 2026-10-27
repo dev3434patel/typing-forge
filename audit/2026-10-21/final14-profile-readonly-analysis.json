@@ -1,0 +1,67 @@
+{
+  "capturedAt": "2026-10-22T19:11:36.8425737Z",
+  "status": "READONLY-DIAGNOSTIC-CAUSE-NOT-PROVEN",
+  "build": "945bd4aa37e6b3c9ec40",
+  "instrumentedP98": 104,
+  "instrumentedMax": 240,
+  "exactChars": 495,
+  "accuracy": 100,
+  "geometry": {
+    "getBoundingClientRect": 84,
+    "atLengths": [
+      1,
+      129,
+      247,
+      248,
+      251,
+      252,
+      253,
+      286,
+      287,
+      415
+    ],
+    "getClientRects": 1109,
+    "resultTransitionBoundingReadsAt494": 70,
+    "zeroWidth": 0
+  },
+  "mappings": [
+    {
+      "precision": "Verified compiled function structure only, no source maps",
+      "sampledSelfHits": 193,
+      "frame": "TypingArea-Cl7MyGZ1.js:0:9110",
+      "source": "src/components/typing/TypingArea.tsx measureCaret callback, including bounded forward collection"
+    },
+    {
+      "sampledSelfHits": 85,
+      "frame": "typing-caret-cache-agunTc4O.js:5:10809",
+      "source": "src/components/typing/LiveKeyboard.tsx physical row mapper"
+    },
+    {
+      "sampledSelfHits": 93,
+      "frame": "typing-caret-cache-agunTc4O.js:5:2131",
+      "source": "src/components/typing/typing-passage-model.ts grouping and slot view comparison"
+    },
+    {
+      "sampledSelfHits": 107,
+      "frame": "session-Ci9XKjiq.js:0:167",
+      "source": "src/lib/typing-core/session.ts recursive freeze"
+    },
+    {
+      "sampledSelfHits": 155,
+      "frame": "index-CJb-INf1.js:1:8281",
+      "source": "React JSX runtime props creation"
+    },
+    {
+      "sampledSelfHits": 57,
+      "frame": "metrics-CtMP21gb.js:0:1196",
+      "source": "src/lib/typing-core/metrics.ts calculateMetrics"
+    }
+  ],
+  "unattributed": {
+    "programSampledHits": 12715,
+    "cause": "UNPROVEN: cannot equate program samples with layout, paint, protocol, GPU or system load"
+  },
+  "nextStep": "One declared LoAF/EventTiming/native-duration diagnostic prepared, not run. Do not relax geometry guards; no zero-width cache-stop evidence in this run.",
+  "possibleNarrowCandidate": "Only if native-vs-JS timing supports it: replace JS-filter TreeWalker traversal during cache refills with a bounded selection of actual glyph nodes while retaining exact indexes/expected/status/long-word/positive-fragment checks. Current callback self samples do not yet prove traversal rather than forced layout is responsible.",
+  "noProductEdits": true
+}

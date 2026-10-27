@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { Link } from "react-router-dom";
 import { Download, RefreshCw, WifiOff, X } from "lucide-react";
 import {
@@ -9,10 +9,9 @@ import {
   subscribePwa,
 } from "@/lib/pwa";
 export function PwaStatus() {
-  const [state, setState] = useState(getPwaState);
+  const state = useSyncExternalStore(subscribePwa, getPwaState, getPwaState);
   const [installLater, setInstallLater] = useState(false);
   const [updateLater, setUpdateLater] = useState(false);
-  useEffect(() => subscribePwa(() => setState(getPwaState())), []);
   useEffect(() => startPwa(), []);
   useEffect(() => {
     if (!state.updateAvailable) setUpdateLater(false);

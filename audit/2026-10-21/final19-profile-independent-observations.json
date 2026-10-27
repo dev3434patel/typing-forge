@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-10-26T20:03:22.772Z",
+  "status": "DIAGNOSTIC-ONLY-NOT-ACCEPTANCE",
+  "build": "de097acba6969d580cc8",
+  "publicInputs": [
+    {
+      "path": "final19-cpu-loaf-profile.json",
+      "sha256": "0cded7c953c0d7b8ace0b03785d69878f651e37e5c8c40c8323fa4350e66de78"
+    },
+    {
+      "path": "final19-cpu-loaf-profile-protocol.json",
+      "sha256": "49b54a408d05ab88597429cd9d4c863becb86bc43163ba84d33d730a3c6be6c9"
+    },
+    {
+      "path": "final19-cpu-loaf-profile-timeline.json",
+      "sha256": "053389b676e9c04198e4af7c53be17300ebe22187462418f103fc740cd221e69"
+    },
+    {
+      "path": "final19-cpu-loaf-profile-stacks.json",
+      "sha256": "5ec6108c6546ac2fb82a0f3c56c20247e589d093146a33e3d77b8e4abb3b7ccc"
+    }
+  ],
+  "diagnostic": {
+    "p98Ms": 56,
+    "maxMs": 112,
+    "attempts": 495,
+    "exact": true,
+    "accuracy": 100,
+    "beforeInputEvents": 495,
+    "rotationRetained": true,
+    "errors": 0,
+    "eventEntries": 2446,
+    "eventAndLoafSupported": {
+      "event": true,
+      "loaf": true
+    },
+    "capped": {
+      "events": false,
+      "frames": false,
+      "geometry": false
+    }
+  },
+  "ordinaryAcceptance": {
+    "receipt": "final19-input-results.json",
+    "status": "FAILED-2-OF-3-LATENCY",
+    "p98Ms": [
+      104,
+      104,
+      88
+    ],
+    "maxMs": [
+      208,
+      264,
+      216
+    ],
+    "diagnosticDoesNotReplace": true
+  },
+  "observations": [
+    {
+      "fact": "Public stack summary reports unchanged navigation and zero signed backsteps.",
+      "samples": 5995,
+      "categoriesAreSampleCountsNotTime": {
+        "program": 3779,
+        "idle": 538,
+        "garbageCollector": 49,
+        "compiledJs": 1456,
+        "otherNativeOrUnattributed": 173
+      }
+    },
+    {
+      "fact": "Of 12 selected slow keypress/input windows, 10 precede the last keypress; 7 have 1–27.9ms processing. Others: 33.6/40.5/47.4ms. This is a bounded selection.",
+      "nonfinal": 10,
+      "below29ms": 7
+    },
+    {
+      "fact": "Last keypress/input processing overlaps at 81.3/78.2ms. Shared sampled ancestry includes finish/result, serialization, storage and vendor effects; do not sum these windows.",
+      "finalProcessingMs": [
+        {
+          "event": "keypress",
+          "ms": 81.3
+        },
+        {
+          "event": "input",
+          "ms": 78.2
+        }
+      ]
+    },
+    {
+      "fact": "The 112ms maximum includes a keyup with 1.8ms processing and 74ms through presentation; event duration is not one JS handler."
+    }
+  ],
+  "compiledFrames": [
+    {
+      "asset": "index-CUvI9NF_.js",
+      "line0": 4,
+      "column0": 15029,
+      "identification": "Ke: stable recursive JSON serialization with sorted entries; Po requests SHA-256.",
+      "hashMatchesFrozenHostingReceipt": true
+    },
+    {
+      "asset": "index-CUvI9NF_.js",
+      "line0": 4,
+      "column0": 7164,
+      "identification": "Canonical-edit branch recomputes word/column position from retained units and submissions.",
+      "hashMatchesFrozenHostingReceipt": true
+    },
+    {
+      "asset": "index-CnrPFhsz.js",
+      "line0": 8,
+      "column0": 27658,
+      "identification": "za: recursive flags/tag/effects traversal; React commit-family inference from compiled code, not source maps.",
+      "hashMatchesFrozenHostingReceipt": true
+    }
+  ],
+  "limits": [
+    "Profiling changes observation conditions. Its 56ms p98 is not an acceptance rerun or proof that ordinary 104ms misses were repaired.",
+    "Samples and overlap establish co-occurrence, not one-function causality. Program/native/presentation samples cannot be assigned wholesale to app code.",
+    "Quantized 104ms exceeds the sub-100 target; it does not isolate an exact 4ms culprit. No blind change to canonical math, clocks or 3D quality is justified."
+  ],
+  "rawCpuProfileRead": false,
+  "privateConfigOrStorageRead": false,
+  "newJobsRun": false,
+  "sourceOrTestChanged": false
+}

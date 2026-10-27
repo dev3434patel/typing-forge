@@ -1,0 +1,1930 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-10-27T13:20:29.322Z",
+  "reportLocalDate": "2026-10-27",
+  "status": "PARTIAL",
+  "build": "de097acba6969d580cc8",
+  "completeReleaseClaimed": false,
+  "source": {
+    "files": 502,
+    "mismatches": []
+  },
+  "rows": [
+    {
+      "feature": "Frozen source identity",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-source.json"
+      ],
+      "result": {
+        "build": "de097acba6969d580cc8",
+        "sourceFiles": 502,
+        "mismatches": [],
+        "assets": 133,
+        "bytes": 2960785
+      }
+    },
+    {
+      "feature": "3D and opening source retained from18",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-source.json",
+        "final18-source.json"
+      ],
+      "result": {
+        "brandFiles": 21,
+        "changedBrandFiles": [],
+        "gitHeadIntroComparisonFlag": false,
+        "meaning": "The old HEAD comparison includes a prior bridge change. Direct18-to19 brand comparison is authoritative here; hosting/static rows separately reconcile emitted visual bytes."
+      }
+    },
+    {
+      "feature": "Confirmed source gates",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-confirmed-source-gates.json",
+        "final19-confirmed-coverage.log",
+        "final19-confirmed-dependencies.log"
+      ],
+      "result": {
+        "commands": 12,
+        "passing": 12,
+        "expectedTests": 2822,
+        "expectedTestFiles": 113,
+        "productionVulnerabilities": 0
+      }
+    },
+    {
+      "feature": "Separate final CI compatibility and fixture lint",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-final-ci-compatibility.json",
+        "final19-final-database-compatibility.log",
+        "final19-final-fixture-lint.log"
+      ],
+      "result": {
+        "commands": [
+          {
+            "name": "database-compatibility",
+            "exitCode": 0
+          },
+          {
+            "name": "fixture-lint",
+            "exitCode": 0
+          }
+        ],
+        "separateFromOriginal12": true,
+        "scope": "Actual legacy PostgreSQL/WASM compatibility and modified E2E lint, not additional native-backend or typing cases."
+      }
+    },
+    {
+      "feature": "Initial source19 source gate: historical failure",
+      "status": "FAILED",
+      "receipts": [
+        "final19-source-gates.json"
+      ],
+      "result": {
+        "historicalStatus": "FAILED",
+        "retentionVerified": true,
+        "meaning": "Original high Zod audit failure remains FAILED; confirmed source gate is separate."
+      }
+    },
+    {
+      "feature": "Matrix: new-features",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-new-features.json",
+        "final19-new-features-protocol.json"
+      ],
+      "result": {
+        "total": 204,
+        "passed": 204,
+        "failed": 0,
+        "skipped": 0,
+        "flaky": 0,
+        "expectedFailures": 0,
+        "retriedResults": 0,
+        "projects": {
+          "chromium": {
+            "total": 51,
+            "passed": 51,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0,
+            "expectedFailures": 0
+          },
+          "edge": {
+            "total": 51,
+            "passed": 51,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0,
+            "expectedFailures": 0
+          },
+          "firefox": {
+            "total": 51,
+            "passed": 51,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0,
+            "expectedFailures": 0
+          },
+          "webkit": {
+            "total": 51,
+            "passed": 51,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0,
+            "expectedFailures": 0
+          }
+        },
+        "duplicate": false,
+        "statsAgree": true,
+        "globalErrors": 0
+      }
+    },
+    {
+      "feature": "Matrix: existing",
+      "status": "PARTIAL",
+      "receipts": [
+        "final19-existing.json",
+        "final19-existing-protocol.json"
+      ],
+      "result": {
+        "total": 988,
+        "passed": 972,
+        "failed": 0,
+        "skipped": 16,
+        "flaky": 0,
+        "expectedFailures": 0,
+        "retriedResults": 0,
+        "projects": {
+          "chromium": {
+            "total": 247,
+            "passed": 243,
+            "failed": 0,
+            "skipped": 4,
+            "flaky": 0,
+            "expectedFailures": 0
+          },
+          "edge": {
+            "total": 247,
+            "passed": 243,
+            "failed": 0,
+            "skipped": 4,
+            "flaky": 0,
+            "expectedFailures": 0
+          },
+          "firefox": {
+            "total": 247,
+            "passed": 243,
+            "failed": 0,
+            "skipped": 4,
+            "flaky": 0,
+            "expectedFailures": 0
+          },
+          "webkit": {
+            "total": 247,
+            "passed": 243,
+            "failed": 0,
+            "skipped": 4,
+            "flaky": 0,
+            "expectedFailures": 0
+          }
+        },
+        "duplicate": false,
+        "statsAgree": true,
+        "globalErrors": 0
+      }
+    },
+    {
+      "feature": "Matrix: isolated",
+      "status": "FAILED",
+      "receipts": [
+        "final19-isolated.json",
+        "final19-isolated-protocol.json"
+      ],
+      "result": {
+        "total": 228,
+        "passed": 213,
+        "failed": 6,
+        "skipped": 9,
+        "flaky": 0,
+        "expectedFailures": 0,
+        "retriedResults": 0,
+        "projects": {
+          "chromium": {
+            "total": 57,
+            "passed": 56,
+            "failed": 1,
+            "skipped": 0,
+            "flaky": 0,
+            "expectedFailures": 0
+          },
+          "edge": {
+            "total": 57,
+            "passed": 57,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0,
+            "expectedFailures": 0
+          },
+          "firefox": {
+            "total": 57,
+            "passed": 52,
+            "failed": 5,
+            "skipped": 0,
+            "flaky": 0,
+            "expectedFailures": 0
+          },
+          "webkit": {
+            "total": 57,
+            "passed": 48,
+            "failed": 0,
+            "skipped": 9,
+            "flaky": 0,
+            "expectedFailures": 0
+          }
+        },
+        "duplicate": false,
+        "statsAgree": true,
+        "globalErrors": 0
+      }
+    },
+    {
+      "feature": "Matrix: first-input-timing",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-first-input-timing.json",
+        "final19-first-input-timing-protocol.json"
+      ],
+      "result": {
+        "total": 32,
+        "passed": 32,
+        "failed": 0,
+        "skipped": 0,
+        "flaky": 0,
+        "expectedFailures": 0,
+        "retriedResults": 0,
+        "projects": {
+          "chromium": {
+            "total": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0,
+            "expectedFailures": 0
+          },
+          "edge": {
+            "total": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0,
+            "expectedFailures": 0
+          },
+          "firefox": {
+            "total": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0,
+            "expectedFailures": 0
+          },
+          "webkit": {
+            "total": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0,
+            "expectedFailures": 0
+          }
+        },
+        "duplicate": false,
+        "statsAgree": true,
+        "globalErrors": 0
+      }
+    },
+    {
+      "feature": "Original full matrix reconciliation",
+      "status": "FAILED",
+      "receipts": [
+        "final19-browser-matrix.json"
+      ],
+      "result": {
+        "originalStatus": "FAILED",
+        "specFiles": 63,
+        "inlineCountsAgree": true,
+        "batches": [
+          {
+            "id": "new-features",
+            "status": "PASS-SCOPED",
+            "counts": {
+              "total": 204,
+              "passed": 204,
+              "failed": 0,
+              "skipped": 0,
+              "flaky": 0,
+              "expectedFailures": 0,
+              "retriedResults": 0,
+              "projects": {
+                "chromium": {
+                  "total": 51,
+                  "passed": 51,
+                  "failed": 0,
+                  "skipped": 0,
+                  "flaky": 0,
+                  "expectedFailures": 0
+                },
+                "edge": {
+                  "total": 51,
+                  "passed": 51,
+                  "failed": 0,
+                  "skipped": 0,
+                  "flaky": 0,
+                  "expectedFailures": 0
+                },
+                "firefox": {
+                  "total": 51,
+                  "passed": 51,
+                  "failed": 0,
+                  "skipped": 0,
+                  "flaky": 0,
+                  "expectedFailures": 0
+                },
+                "webkit": {
+                  "total": 51,
+                  "passed": 51,
+                  "failed": 0,
+                  "skipped": 0,
+                  "flaky": 0,
+                  "expectedFailures": 0
+                }
+              },
+              "duplicate": false,
+              "statsAgree": true,
+              "globalErrors": 0
+            }
+          },
+          {
+            "id": "existing",
+            "status": "PARTIAL",
+            "counts": {
+              "total": 988,
+              "passed": 972,
+              "failed": 0,
+              "skipped": 16,
+              "flaky": 0,
+              "expectedFailures": 0,
+              "retriedResults": 0,
+              "projects": {
+                "chromium": {
+                  "total": 247,
+                  "passed": 243,
+                  "failed": 0,
+                  "skipped": 4,
+                  "flaky": 0,
+                  "expectedFailures": 0
+                },
+                "edge": {
+                  "total": 247,
+                  "passed": 243,
+                  "failed": 0,
+                  "skipped": 4,
+                  "flaky": 0,
+                  "expectedFailures": 0
+                },
+                "firefox": {
+                  "total": 247,
+                  "passed": 243,
+                  "failed": 0,
+                  "skipped": 4,
+                  "flaky": 0,
+                  "expectedFailures": 0
+                },
+                "webkit": {
+                  "total": 247,
+                  "passed": 243,
+                  "failed": 0,
+                  "skipped": 4,
+                  "flaky": 0,
+                  "expectedFailures": 0
+                }
+              },
+              "duplicate": false,
+              "statsAgree": true,
+              "globalErrors": 0
+            }
+          },
+          {
+            "id": "isolated",
+            "status": "FAILED",
+            "counts": {
+              "total": 228,
+              "passed": 213,
+              "failed": 6,
+              "skipped": 9,
+              "flaky": 0,
+              "expectedFailures": 0,
+              "retriedResults": 0,
+              "projects": {
+                "chromium": {
+                  "total": 57,
+                  "passed": 56,
+                  "failed": 1,
+                  "skipped": 0,
+                  "flaky": 0,
+                  "expectedFailures": 0
+                },
+                "edge": {
+                  "total": 57,
+                  "passed": 57,
+                  "failed": 0,
+                  "skipped": 0,
+                  "flaky": 0,
+                  "expectedFailures": 0
+                },
+                "firefox": {
+                  "total": 57,
+                  "passed": 52,
+                  "failed": 5,
+                  "skipped": 0,
+                  "flaky": 0,
+                  "expectedFailures": 0
+                },
+                "webkit": {
+                  "total": 57,
+                  "passed": 48,
+                  "failed": 0,
+                  "skipped": 9,
+                  "flaky": 0,
+                  "expectedFailures": 0
+                }
+              },
+              "duplicate": false,
+              "statsAgree": true,
+              "globalErrors": 0
+            }
+          },
+          {
+            "id": "first-input-timing",
+            "status": "PASS-SCOPED",
+            "counts": {
+              "total": 32,
+              "passed": 32,
+              "failed": 0,
+              "skipped": 0,
+              "flaky": 0,
+              "expectedFailures": 0,
+              "retriedResults": 0,
+              "projects": {
+                "chromium": {
+                  "total": 8,
+                  "passed": 8,
+                  "failed": 0,
+                  "skipped": 0,
+                  "flaky": 0,
+                  "expectedFailures": 0
+                },
+                "edge": {
+                  "total": 8,
+                  "passed": 8,
+                  "failed": 0,
+                  "skipped": 0,
+                  "flaky": 0,
+                  "expectedFailures": 0
+                },
+                "firefox": {
+                  "total": 8,
+                  "passed": 8,
+                  "failed": 0,
+                  "skipped": 0,
+                  "flaky": 0,
+                  "expectedFailures": 0
+                },
+                "webkit": {
+                  "total": 8,
+                  "passed": 8,
+                  "failed": 0,
+                  "skipped": 0,
+                  "flaky": 0,
+                  "expectedFailures": 0
+                }
+              },
+              "duplicate": false,
+              "statsAgree": true,
+              "globalErrors": 0
+            }
+          }
+        ],
+        "skippedAreUnverified": true
+      }
+    },
+    {
+      "feature": "Separate animation-teardown-confirmation",
+      "status": "FAILED",
+      "receipts": [
+        "final19-animation-teardown-confirmation.json",
+        "final19-animation-teardown-confirmation-protocol.json"
+      ],
+      "result": {
+        "reportedStatus": "FAILED",
+        "counts": {
+          "total": 4,
+          "passed": 3,
+          "failed": 1,
+          "skipped": 0,
+          "flaky": 0,
+          "expectedFailures": 0,
+          "retriedResults": 0,
+          "projects": {
+            "chromium": {
+              "total": 1,
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0,
+              "flaky": 0,
+              "expectedFailures": 0
+            },
+            "edge": {
+              "total": 1,
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0,
+              "flaky": 0,
+              "expectedFailures": 0
+            },
+            "firefox": {
+              "total": 1,
+              "passed": 0,
+              "failed": 1,
+              "skipped": 0,
+              "flaky": 0,
+              "expectedFailures": 0
+            },
+            "webkit": {
+              "total": 1,
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0,
+              "flaky": 0,
+              "expectedFailures": 0
+            }
+          },
+          "duplicate": false,
+          "statsAgree": true,
+          "globalErrors": 0
+        },
+        "originalEvidenceHashesMatch": true,
+        "originalFailuresRemain": true,
+        "stageAndCause": "Separate observation; no replacement of the original full matrix or causal attribution."
+      }
+    },
+    {
+      "feature": "Separate worker-readiness-confirmation",
+      "status": "PARTIAL",
+      "receipts": [
+        "final19-worker-readiness-confirmation.json",
+        "final19-worker-readiness-confirmation-protocol.json"
+      ],
+      "result": {
+        "reportedStatus": "PARTIAL-CAPABILITY-SKIPS",
+        "counts": {
+          "total": 16,
+          "passed": 12,
+          "failed": 0,
+          "skipped": 4,
+          "flaky": 0,
+          "expectedFailures": 0,
+          "retriedResults": 0,
+          "projects": {
+            "chromium": {
+              "total": 4,
+              "passed": 4,
+              "failed": 0,
+              "skipped": 0,
+              "flaky": 0,
+              "expectedFailures": 0
+            },
+            "edge": {
+              "total": 4,
+              "passed": 4,
+              "failed": 0,
+              "skipped": 0,
+              "flaky": 0,
+              "expectedFailures": 0
+            },
+            "firefox": {
+              "total": 4,
+              "passed": 4,
+              "failed": 0,
+              "skipped": 0,
+              "flaky": 0,
+              "expectedFailures": 0
+            },
+            "webkit": {
+              "total": 4,
+              "passed": 0,
+              "failed": 0,
+              "skipped": 4,
+              "flaky": 0,
+              "expectedFailures": 0
+            }
+          },
+          "duplicate": false,
+          "statsAgree": true,
+          "globalErrors": 0
+        },
+        "originalEvidenceHashesMatch": true,
+        "originalFailuresRemain": true,
+        "stageAndCause": "Separate observation; no replacement of the original full matrix or causal attribution."
+      }
+    },
+    {
+      "feature": "Separate animation-clock-fixture-confirmation",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-animation-clock-fixture-confirmation.json",
+        "final19-animation-clock-fixture-confirmation-protocol.json"
+      ],
+      "result": {
+        "reportedStatus": "PASS-SCOPED",
+        "counts": {
+          "total": 4,
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0,
+          "expectedFailures": 0,
+          "retriedResults": 0,
+          "projects": {
+            "chromium": {
+              "total": 1,
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0,
+              "flaky": 0,
+              "expectedFailures": 0
+            },
+            "edge": {
+              "total": 1,
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0,
+              "flaky": 0,
+              "expectedFailures": 0
+            },
+            "firefox": {
+              "total": 1,
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0,
+              "flaky": 0,
+              "expectedFailures": 0
+            },
+            "webkit": {
+              "total": 1,
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0,
+              "flaky": 0,
+              "expectedFailures": 0
+            }
+          },
+          "duplicate": false,
+          "statsAgree": true,
+          "globalErrors": 0
+        },
+        "originalEvidenceHashesMatch": true,
+        "originalFailuresRemain": true,
+        "stageAndCause": "Separate observation; no replacement of the original full matrix or causal attribution."
+      }
+    },
+    {
+      "feature": "Separate mobile-fallback-clock-fixture-confirmation",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-mobile-fallback-clock-fixture-confirmation.json",
+        "final19-mobile-fallback-clock-fixture-confirmation-protocol.json"
+      ],
+      "result": {
+        "reportedStatus": "PASS-SCOPED",
+        "counts": {
+          "total": 4,
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0,
+          "expectedFailures": 0,
+          "retriedResults": 0,
+          "projects": {
+            "chromium": {
+              "total": 1,
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0,
+              "flaky": 0,
+              "expectedFailures": 0
+            },
+            "edge": {
+              "total": 1,
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0,
+              "flaky": 0,
+              "expectedFailures": 0
+            },
+            "firefox": {
+              "total": 1,
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0,
+              "flaky": 0,
+              "expectedFailures": 0
+            },
+            "webkit": {
+              "total": 1,
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0,
+              "flaky": 0,
+              "expectedFailures": 0
+            }
+          },
+          "duplicate": false,
+          "statsAgree": true,
+          "globalErrors": 0
+        },
+        "originalEvidenceHashesMatch": true,
+        "originalFailuresRemain": true,
+        "stageAndCause": "Separate observation; no replacement of the original full matrix or causal attribution."
+      }
+    },
+    {
+      "feature": "Exact follow-up of original six failed cases",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-isolated-failure-followup.json"
+      ],
+      "result": {
+        "originalMatrixStatus": "FAILED",
+        "originals": 6,
+        "exactLaterPasses": 6,
+        "evidenceHashesMatch": true,
+        "cleanFullMatrixRerun": false
+      }
+    },
+    {
+      "feature": "Mobile input and PWA focus",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-mobile-pwa-focus.json",
+        "final19-mobile-pwa-focus-protocol.json"
+      ],
+      "result": {
+        "total": 48,
+        "passed": 48,
+        "failed": 0,
+        "skipped": 0,
+        "flaky": 0,
+        "expectedFailures": 0,
+        "retriedResults": 0,
+        "projects": {
+          "chromium": {
+            "total": 12,
+            "passed": 12,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0,
+            "expectedFailures": 0
+          },
+          "edge": {
+            "total": 12,
+            "passed": 12,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0,
+            "expectedFailures": 0
+          },
+          "firefox": {
+            "total": 12,
+            "passed": 12,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0,
+            "expectedFailures": 0
+          },
+          "webkit": {
+            "total": 12,
+            "passed": 12,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0,
+            "expectedFailures": 0
+          }
+        },
+        "duplicate": false,
+        "statsAgree": true,
+        "globalErrors": 0
+      }
+    },
+    {
+      "feature": "Current acceptance fixture publication state",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-new-features-protocol.json",
+        "final19-fixture-delta-review.json"
+      ],
+      "result": {
+        "changedFiles": [
+          {
+            "path": "e2e/opening-renderer.ts",
+            "recordedSha256": [
+              "25131eb375ca59bf22d7ba2aa695cd60dd7d086aa7a9681d56199d10533aa764",
+              "dbddae0518f86baf838d67e1a62f8060018a1805e1059f49cb8f8eef5e30325c"
+            ],
+            "currentSha256": "dbddae0518f86baf838d67e1a62f8060018a1805e1059f49cb8f8eef5e30325c"
+          },
+          {
+            "path": "e2e/viewport-acceptance.spec.ts",
+            "recordedSha256": [
+              "02ef3c07e9db9b4f1f037f2403a3cc484597c9f854c30b31989be5588251728d",
+              "d66540d0fdd897cd58882cd30135ea7f9aff1422b691e1848771b160a05a3f12"
+            ],
+            "currentSha256": "d66540d0fdd897cd58882cd30135ea7f9aff1422b691e1848771b160a05a3f12"
+          }
+        ],
+        "reviewed": true,
+        "reviewReceipt": "final19-fixture-delta-review.json",
+        "scope": "Current fixture review does not rerun original cases or erase their failures. Product source remains independently hash-checked."
+      }
+    },
+    {
+      "feature": "Matched typing correctness",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-input-results.json",
+        "final19-input-1.json",
+        "final19-input-2.json",
+        "final19-input-3.json"
+      ],
+      "result": {
+        "runs": [
+          {
+            "exact": true,
+            "attempts": 495,
+            "accuracy": 100,
+            "rotationRetained": true,
+            "errors": 0
+          },
+          {
+            "exact": true,
+            "attempts": 495,
+            "accuracy": 100,
+            "rotationRetained": true,
+            "errors": 0
+          },
+          {
+            "exact": true,
+            "attempts": 495,
+            "accuracy": 100,
+            "rotationRetained": true,
+            "errors": 0
+          }
+        ]
+      }
+    },
+    {
+      "feature": "Matched typing latency",
+      "status": "FAILED",
+      "receipts": [
+        "final19-input-results.json",
+        "final19-input-1.json",
+        "final19-input-2.json",
+        "final19-input-3.json"
+      ],
+      "result": {
+        "p98Ms": [
+          104,
+          104,
+          88
+        ],
+        "maxMs": [
+          208,
+          264,
+          216
+        ],
+        "criterion": "Every declared run p98 <100ms; original104/104/88ms failures are retained.",
+        "scope": "Thresholded, quantized Event Timing; not field INP."
+      }
+    },
+    {
+      "feature": "Full-quality mobile Lighthouse",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-mobile-results.json",
+        "final19-mobile-1.report.json",
+        "final19-mobile-2.report.json",
+        "final19-mobile-3.report.json"
+      ],
+      "result": {
+        "scores": [
+          {
+            "performance": 96,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          {
+            "performance": 98,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          }
+        ],
+        "medianPerformance": 97,
+        "lcpMs": [
+          2391,
+          2265.3185,
+          2270.3514999999998
+        ],
+        "cls": [
+          0.0002518372664675856,
+          0.0002518372664675856,
+          0.0002518372664675856
+        ],
+        "criteria": {
+          "performanceMedianMinimum": 95,
+          "otherCategoriesEach": 100,
+          "lcpMaximumMs": 2500,
+          "clsMaximum": 0.05
+        },
+        "protocolDeclaresFullNormalIntro": true,
+        "physicalOrFieldClaim": false
+      }
+    },
+    {
+      "feature": "Bundle budgets",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-bundle.json"
+      ],
+      "result": {
+        "gzipBytes": {
+          "initialPracticeJsGzipBytes": 165066,
+          "maxFeatureJsGzipBytes": 108534,
+          "introDeferredJsGzipBytes": 168000,
+          "arcadeRouteGzipBytes": 10527,
+          "arcadePlayerGzipBytes": 25701,
+          "dashboardRouteGzipBytes": 23192
+        },
+        "caps": {
+          "initialPracticeJsGzipBytes": 200000,
+          "maxFeatureJsGzipBytes": 150000,
+          "introDeferredJsGzipBytes": 220000,
+          "arcadeRouteGzipBytes": 90000,
+          "arcadePlayerGzipBytes": 90000,
+          "dashboardRouteGzipBytes": 120000
+        }
+      }
+    },
+    {
+      "feature": "Hosting structure",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-hosting-package-verification.json"
+      ],
+      "result": {
+        "checks": 27,
+        "passed": 27,
+        "qualityByteComparisons": 5
+      }
+    },
+    {
+      "feature": "Static artifact verification",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-static-artifacts.json"
+      ],
+      "result": {
+        "checks": 67,
+        "artifacts": [
+          {
+            "target": "vercel",
+            "base": "/",
+            "build": {
+              "version": "c0f5de44ead4d6773b3c",
+              "publicFiles": 134,
+              "bytes": 2923637
+            }
+          },
+          {
+            "target": "github-pages",
+            "base": "/sparowtype-static-audit/",
+            "build": {
+              "version": "57986a6ec97311117ed6",
+              "publicFiles": 134,
+              "bytes": 2925025
+            }
+          }
+        ]
+      }
+    },
+    {
+      "feature": "Static deployment",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-static-deployment-raw.json",
+        "final19-static-process.json"
+      ],
+      "result": {
+        "total": 56,
+        "passed": 56,
+        "failed": 0,
+        "skipped": 0,
+        "flaky": 0,
+        "expectedFailures": 0,
+        "retriedResults": 0,
+        "projects": {
+          "chromium": {
+            "total": 14,
+            "passed": 14,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0,
+            "expectedFailures": 0
+          },
+          "edge": {
+            "total": 14,
+            "passed": 14,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0,
+            "expectedFailures": 0
+          },
+          "firefox": {
+            "total": 14,
+            "passed": 14,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0,
+            "expectedFailures": 0
+          },
+          "webkit": {
+            "total": 14,
+            "passed": 14,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0,
+            "expectedFailures": 0
+          }
+        },
+        "duplicate": false,
+        "statsAgree": true,
+        "globalErrors": 0
+      }
+    },
+    {
+      "feature": "Static game-accessibility",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-static-game-accessibility-raw.json",
+        "final19-static-process.json"
+      ],
+      "result": {
+        "total": 16,
+        "passed": 16,
+        "failed": 0,
+        "skipped": 0,
+        "flaky": 0,
+        "expectedFailures": 0,
+        "retriedResults": 0,
+        "projects": {
+          "chromium": {
+            "total": 4,
+            "passed": 4,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0,
+            "expectedFailures": 0
+          },
+          "edge": {
+            "total": 4,
+            "passed": 4,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0,
+            "expectedFailures": 0
+          },
+          "firefox": {
+            "total": 4,
+            "passed": 4,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0,
+            "expectedFailures": 0
+          },
+          "webkit": {
+            "total": 4,
+            "passed": 4,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0,
+            "expectedFailures": 0
+          }
+        },
+        "duplicate": false,
+        "statsAgree": true,
+        "globalErrors": 0
+      }
+    },
+    {
+      "feature": "Four mobile workspaces: function",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "mobile-workspaces-final19-static.json",
+        "mobile-workspaces-final19-static-process.json"
+      ],
+      "result": {
+        "cases": [
+          {
+            "id": "learn",
+            "passed": true,
+            "attempts": 115,
+            "accuracy": 100
+          },
+          {
+            "id": "course",
+            "passed": true,
+            "attempts": 59,
+            "accuracy": 100
+          },
+          {
+            "id": "local-bot",
+            "passed": true,
+            "attempts": 100,
+            "accuracy": 100
+          },
+          {
+            "id": "games",
+            "passed": true,
+            "attempts": 99,
+            "accuracy": 100
+          }
+        ],
+        "apiRequests": 0
+      }
+    },
+    {
+      "feature": "Four mobile workspaces: latency",
+      "status": "FAILED",
+      "receipts": [
+        "mobile-workspaces-final19-static.json",
+        "mobile-workspaces-final19-static-process.json"
+      ],
+      "result": {
+        "p98Ms": [
+          {
+            "id": "learn",
+            "value": 96
+          },
+          {
+            "id": "course",
+            "value": 48
+          },
+          {
+            "id": "local-bot",
+            "value": 104
+          },
+          {
+            "id": "games",
+            "value": 24
+          }
+        ],
+        "criterion": "Every workspace p98 <100ms, functional pass kept separate."
+      }
+    },
+    {
+      "feature": "Arcade native-input correctness",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-arcade-mobile.json"
+      ],
+      "result": {
+        "correctAttempts": 151,
+        "wrongAttempts": 1,
+        "prefixRetained": true
+      }
+    },
+    {
+      "feature": "Arcade mobile latency",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-arcade-mobile.json"
+      ],
+      "result": {
+        "p98Ms": 48,
+        "maxMs": 64
+      }
+    },
+    {
+      "feature": "Arcade controlled PNG provenance",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-arcade-mobile.json"
+      ],
+      "result": {
+        "images": [
+          {
+            "path": "final19-arcade-mobile-390-partial-target.png",
+            "exists": true,
+            "validPng": true,
+            "bytes": 73705,
+            "sha256": "287f3c2797a6617fa92a3daa3b09dc8cb1e29c7207f5d8087e2a7f9af2090cd6",
+            "width": 358,
+            "height": 1427
+          },
+          {
+            "path": "final19-arcade-mobile-1440-partial-target.png",
+            "exists": true,
+            "validPng": true,
+            "bytes": 80843,
+            "sha256": "8d9f4e026e11d4d3c91e8fa717d4934646a84a23039f21c7d794d315891bd2ae",
+            "width": 1088,
+            "height": 1236
+          }
+        ],
+        "manualVisualReview": "Reported root views are reconciled separately below; this program does not itself inspect images."
+      }
+    },
+    {
+      "feature": "Controlled screenshot provenance and reported manual views",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-visual-review.json"
+      ],
+      "result": {
+        "files": 18,
+        "hashesAndDimensionsMatch": true,
+        "reportedRootManualViews": 4,
+        "staticManualViews": 2,
+        "arcadeElementManualViews": 2,
+        "scope": "Four reported root views, not manual inspection of all18. Arcade captures are player elements, not full pages."
+      }
+    },
+    {
+      "feature": "Boss Duel original attempt retained",
+      "status": "FAILED",
+      "receipts": [
+        "boss-duel-final19.json"
+      ],
+      "result": {
+        "originalStatus": "FAILED",
+        "completed": false,
+        "watchdogExpired": true,
+        "wordsTypedBeforeFailure": 73,
+        "canonicalDurationEvidence": false,
+        "scope": "Original interrupted/watchdog result remains; a separate resumed prefix cannot replace it."
+      }
+    },
+    {
+      "feature": "Boss Duel real 90-second native mission",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "boss-duel-final19-resumed.json",
+        "boss-duel-final19-resumed-evidence.json",
+        "boss-duel-final19-resumed-run-protocol.json"
+      ],
+      "result": {
+        "reportedStatus": "PASS-SCOPED",
+        "activeMs": 90012.80000001192,
+        "nativeInputSpanMs": 78251.89999999106,
+        "words": 74,
+        "correctAttempts": 349,
+        "wallMs": 91720.53189999999,
+        "manualEndRunClicked": false,
+        "virtualClockUsed": false,
+        "assertions": "Completed PASS-SCOPED runner plus independently reconciled duration, native counts, local evidence and outcome conditions; no timeout-reason assumption.",
+        "performanceClaim": false
+      }
+    },
+    {
+      "feature": "Placement original attempt retained",
+      "status": "FAILED",
+      "receipts": [
+        "final19-placement-real135-raw.json"
+      ],
+      "result": {
+        "originalStatus": "FAILED",
+        "preliminaryChecksPassed": 4,
+        "completedParts": 0,
+        "scope": "Initial failed audit attempt remains separate from an encoding-corrected confirmation."
+      }
+    },
+    {
+      "feature": "Real 135-second placement journey",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-placement-real135-encoding-confirmation-raw.json"
+      ],
+      "result": {
+        "checks": 82,
+        "passed": 82,
+        "parts": 3,
+        "journeyMs": 139866.5906
+      }
+    },
+    {
+      "feature": "Native PHP/MariaDB 16 and owner cleanup",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-native-browser.json",
+        "pack-native-1ae16aa20bd12d94-1793106281509-browser.json",
+        "pack-backend-1ae16aa20bd12d94-browser-ready.json",
+        "pack-backend-1ae16aa20bd12d94-protocol.json",
+        "pack-backend-1ae16aa20bd12d94-provision.json",
+        "pack-backend-1ae16aa20bd12d94-apache-runtime.json",
+        "pack-backend-1ae16aa20bd12d94-cleanup.json"
+      ],
+      "result": {
+        "counts": {
+          "total": 16,
+          "passed": 16,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0,
+          "expectedFailures": 0,
+          "retriedResults": 0,
+          "projects": {
+            "chromium": {
+              "total": 4,
+              "passed": 4,
+              "failed": 0,
+              "skipped": 0,
+              "flaky": 0,
+              "expectedFailures": 0
+            },
+            "edge": {
+              "total": 4,
+              "passed": 4,
+              "failed": 0,
+              "skipped": 0,
+              "flaky": 0,
+              "expectedFailures": 0
+            },
+            "firefox": {
+              "total": 4,
+              "passed": 4,
+              "failed": 0,
+              "skipped": 0,
+              "flaky": 0,
+              "expectedFailures": 0
+            },
+            "webkit": {
+              "total": 4,
+              "passed": 4,
+              "failed": 0,
+              "skipped": 0,
+              "flaky": 0,
+              "expectedFailures": 0
+            }
+          },
+          "duplicate": false,
+          "statsAgree": true,
+          "globalErrors": 0
+        },
+        "durationMs": 259588.834,
+        "freshPublicOwnerProof": true,
+        "sameOwnerCleanup": true,
+        "ownerReceipt": "pack-backend-1ae16aa20bd12d94-browser-ready.json",
+        "privateConfigurationReadByReconciler": false
+      }
+    },
+    {
+      "feature": "Current native module HTTP contracts and cleanup",
+      "status": "PASS-SCOPED",
+      "receipts": [
+        "final19-native-modules.json",
+        "pack-backend-64bf786613b7d7d5-protocol.json",
+        "pack-backend-64bf786613b7d7d5-provision.json",
+        "pack-backend-64bf786613b7d7d5-apache-runtime.json",
+        "pack-backend-64bf786613b7d7d5-summary.json",
+        "pack-backend-64bf786613b7d7d5-cleanup.json"
+      ],
+      "result": {
+        "suites": [
+          {
+            "name": "progression",
+            "status": "PASS",
+            "checkGroups": 7
+          },
+          {
+            "name": "social",
+            "status": "PASS",
+            "checkGroups": 8
+          },
+          {
+            "name": "classroom",
+            "status": "PASS",
+            "checkGroups": 9
+          },
+          {
+            "name": "arena-http",
+            "status": "PASS",
+            "checkGroups": 29
+          },
+          {
+            "name": "password",
+            "status": "PASS",
+            "checkGroups": null
+          }
+        ],
+        "freshOwner": "64bf786613b7d7d5",
+        "ownerReceiptVerified": true,
+        "originalPrivateConfigurationRead": false,
+        "capacityClaim": false
+      }
+    },
+    {
+      "feature": "Hosted providers, physical keyboards, assistive technology and field INP",
+      "status": "UNVERIFIED",
+      "receipts": [],
+      "result": "Local automation and laboratory observations do not certify these external/device scopes."
+    }
+  ],
+  "witnesses": [
+    {
+      "path": "final19-source.json",
+      "state": "READ",
+      "bytes": 57082,
+      "sha256": "38bebc6045040cc52fec97d12f58351668f9d4c346257df7cf49e27193bb089f"
+    },
+    {
+      "path": "final18-source.json",
+      "state": "READ",
+      "bytes": 56729,
+      "sha256": "7f74d42d8e7bbbffb2bf809f7e5a5177bcdadda560e700abf00bd985088eb770"
+    },
+    {
+      "path": "final19-confirmed-source-gates.json",
+      "state": "READ",
+      "bytes": 4089,
+      "sha256": "b1229193cfee7781cffd8ba989ae12ddc375e580382f3b69a5bc29ffe41ad34c"
+    },
+    {
+      "path": "final19-source-gates.json",
+      "state": "READ",
+      "bytes": 3953,
+      "sha256": "77b39c557a8b15c89fc6144d85b3a5a6e9b2004c227c842ff3d5372163b83bce"
+    },
+    {
+      "path": "final19-confirmed-coverage.log",
+      "state": "READ",
+      "bytes": 6087,
+      "sha256": "25dc0397d299dfb836bd06abd6a62e8b3f258fca32f055f5e8bf617835314e29"
+    },
+    {
+      "path": "final19-confirmed-dependencies.log",
+      "state": "READ",
+      "bytes": 365,
+      "sha256": "a85e1242917ec7a5e4582d88e60361d2e3121b463847c45a300820b82baa010f"
+    },
+    {
+      "path": "final19-final-ci-compatibility.json",
+      "state": "READ",
+      "bytes": 911,
+      "sha256": "0fdff2e4c3c17eb214ac78481f7bf38388674dcac29f72408376c69e2929511d"
+    },
+    {
+      "path": "final19-final-database-compatibility.log",
+      "state": "READ",
+      "bytes": 1397,
+      "sha256": "9306c36a0053654cac64249983d930b0ddb6d25f34c7faa61395d8d895c82c89"
+    },
+    {
+      "path": "final19-final-fixture-lint.log",
+      "state": "READ",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "final19-browser-matrix.json",
+      "state": "READ",
+      "bytes": 28649,
+      "sha256": "5eb2df2bd7cae3f291d4e0858422d4df2d183e076d94274915757a1575a8c393"
+    },
+    {
+      "path": "final19-new-features.json",
+      "state": "READ",
+      "bytes": 333841,
+      "sha256": "1898e8fd18625b226ee4a54f237540d8761f65bfc61802ac5c64dc44b05c777f"
+    },
+    {
+      "path": "final19-new-features-protocol.json",
+      "state": "READ",
+      "bytes": 10421,
+      "sha256": "f5d5d6fc38c5122f9bab2d012e498c5a28e65c25137dd5da0b1d267a90328a0d"
+    },
+    {
+      "path": "final19-existing.json",
+      "state": "READ",
+      "bytes": 3010479,
+      "sha256": "6ead160a5c68c2cff07e3ef18610277104ba8f850783d15d5ea350455b3391f9"
+    },
+    {
+      "path": "final19-existing-protocol.json",
+      "state": "READ",
+      "bytes": 15684,
+      "sha256": "66ebbfae2c8157288261a330c34b3cf4672a0fbb7f7b8a75baeec743050ed51e"
+    },
+    {
+      "path": "final19-isolated.json",
+      "state": "READ",
+      "bytes": 1845378,
+      "sha256": "c13fb3d98eba1c33c2356a74d9c61b4639de334bdf653cab55f2226ae1be58b8"
+    },
+    {
+      "path": "final19-isolated-protocol.json",
+      "state": "READ",
+      "bytes": 10258,
+      "sha256": "4e43f8891309193c3955451a629dc4149a7df0f06dc4f6ad79604ac6f43903dc"
+    },
+    {
+      "path": "final19-first-input-timing.json",
+      "state": "READ",
+      "bytes": 44183,
+      "sha256": "e49a9f00f3daa7e12e9502c9c551d6b59b37353ff6a742282b93049b00749202"
+    },
+    {
+      "path": "final19-first-input-timing-protocol.json",
+      "state": "READ",
+      "bytes": 8866,
+      "sha256": "3a9feb6de14e8fae9205e3a5ba90a1d1d39d273102cdc9ae91fa2c63fec287fe"
+    },
+    {
+      "path": "final19-animation-teardown-confirmation-protocol.json",
+      "state": "READ",
+      "bytes": 10444,
+      "sha256": "c61fa88b313faeaeb2abc84c7ca65a5f01d3d7914f7670a327bb21c655fe44cf"
+    },
+    {
+      "path": "final19-animation-teardown-confirmation.json",
+      "state": "READ",
+      "bytes": 27582,
+      "sha256": "fd97fdb8ddee2a75bb880eb902fcedcd6078dfec8df1fe1cff8153aa2abe38b2"
+    },
+    {
+      "path": "final19-isolated.log",
+      "state": "READ",
+      "bytes": 68044,
+      "sha256": "c0fa3db3b5ddfc0187aa32157ca55ce0da2107394eabd4f9ff11678f3b3a87f5"
+    },
+    {
+      "path": "final19-isolated-summary.json",
+      "state": "READ",
+      "bytes": 10276,
+      "sha256": "3740f957514982e5652ed30615b84598672db70a6b674a6ad6266a8f043cb3a0"
+    },
+    {
+      "path": "final19-worker-readiness-confirmation-protocol.json",
+      "state": "READ",
+      "bytes": 12069,
+      "sha256": "9378c74e9a634c55d5b5831476eb81125ff1beaf06992513a029b0a8854a32d1"
+    },
+    {
+      "path": "final19-worker-readiness-confirmation.json",
+      "state": "READ",
+      "bytes": 704580,
+      "sha256": "e8f2f4d087a2ad84f3be4a094b59444bb5a010514ffa58ffc6a88b9f74ca8de6"
+    },
+    {
+      "path": "final19-animation-clock-fixture-confirmation-protocol.json",
+      "state": "READ",
+      "bytes": 11690,
+      "sha256": "ce0f9c6a18a66ff73f5ce4f30c3bbc39f37018f89e36d3a4eec45e350c7148f3"
+    },
+    {
+      "path": "final19-animation-clock-fixture-confirmation.json",
+      "state": "READ",
+      "bytes": 20850,
+      "sha256": "c91903accf53fc2ff5ffc0742ac269664d99a8086d6b24b54fab68bc71634c6d"
+    },
+    {
+      "path": "final19-clock-fixture-liveness-diagnostic.json",
+      "state": "READ",
+      "bytes": 8469,
+      "sha256": "67edc24dccee935f2c414e8d55b86d40f2272ea32a5f1a79735a2db7daea6249"
+    },
+    {
+      "path": "final19-clock-fixture-liveness.patch",
+      "state": "READ",
+      "bytes": 3491,
+      "sha256": "ed54f4969e9c5165a5110935088b1c8920ad215e907cf947c7d856c5c8eae75f"
+    },
+    {
+      "path": "final19-mobile-fallback-clock-fixture-confirmation-protocol.json",
+      "state": "READ",
+      "bytes": 11729,
+      "sha256": "161c42eec50eaf9d2c66db46b661919288a3f5d71abb30981f0007faadbdae53"
+    },
+    {
+      "path": "final19-mobile-fallback-clock-fixture-confirmation.json",
+      "state": "READ",
+      "bytes": 844442,
+      "sha256": "806b8c48756981d0163c669f824372efdb6cce99d6284b452351d9c8c345f320"
+    },
+    {
+      "path": "final19-isolated-failure-followup.json",
+      "state": "READ",
+      "bytes": 26959,
+      "sha256": "600daee6e83bda9c45d4e11b44a639cea4fdde376cfaaa3c1076df75c6bab9cd"
+    },
+    {
+      "path": "final19-firefox-original-raw-extraction.json",
+      "state": "READ",
+      "bytes": 22259,
+      "sha256": "f8a7953cda20dfade22466dd3b1ac933c73da515bcb402cfa20a556c3da9c699"
+    },
+    {
+      "path": "final19-worker-readiness-confirmation-summary.json",
+      "state": "READ",
+      "bytes": 2902,
+      "sha256": "2be0e308bbd48e332c07a7d5c2d3faab0e7313db3d49027c168046dfb07db5f3"
+    },
+    {
+      "path": "final19-animation-clock-fixture-confirmation-summary.json",
+      "state": "READ",
+      "bytes": 1095,
+      "sha256": "724f10f13b8b86d39a4d379d3850971d22cae7b21e2041af144d87ff1d400250"
+    },
+    {
+      "path": "final19-mobile-fallback-clock-fixture-confirmation-summary.json",
+      "state": "READ",
+      "bytes": 1095,
+      "sha256": "724f10f13b8b86d39a4d379d3850971d22cae7b21e2041af144d87ff1d400250"
+    },
+    {
+      "path": "final19-mobile-pwa-focus.json",
+      "state": "READ",
+      "bytes": 102039,
+      "sha256": "4e648753c82d96c560c4a5ee914332d31b7d67dad735ca499c37d430797131d6"
+    },
+    {
+      "path": "final19-mobile-pwa-focus-protocol.json",
+      "state": "READ",
+      "bytes": 9039,
+      "sha256": "35e8f2779f1c19ec31de9fa5b1557144d8042af9a079968f1172b04d2016bea5"
+    },
+    {
+      "path": "final19-fixture-delta-review.json",
+      "state": "READ",
+      "bytes": 3821,
+      "sha256": "da1ebd65b392d31db968d5bb68e6905a78db2059b662176971e4aaa2361a5419"
+    },
+    {
+      "path": "final19-input-results.json",
+      "state": "READ",
+      "bytes": 1902,
+      "sha256": "15608c5f0301c724998fa4ea40a1b06a2a137a718700c06677a218f8538b6362"
+    },
+    {
+      "path": "final19-input-1.json",
+      "state": "READ",
+      "bytes": 2144,
+      "sha256": "7e2e48208db670b6ba822d562490dabbc1af33e7ad57d2df116243004e2ab406"
+    },
+    {
+      "path": "final19-input-2.json",
+      "state": "READ",
+      "bytes": 2046,
+      "sha256": "301d74bd770ddd27be4fff68faaf2bd2877e5c92232f22cda4bb4ea4bc83e063"
+    },
+    {
+      "path": "final19-input-3.json",
+      "state": "READ",
+      "bytes": 1716,
+      "sha256": "3387d098606d02a756b18e2a9a496c11ddb8bad0d62a9795b65b88206bde6d5d"
+    },
+    {
+      "path": "final19-mobile-results.json",
+      "state": "READ",
+      "bytes": 3007,
+      "sha256": "5f96adccc0921a07ea1343134aa6fc1e7792774fe4e4e71ac059a0128ee7ae99"
+    },
+    {
+      "path": "final19-mobile-1.report.json",
+      "state": "READ",
+      "bytes": 452874,
+      "sha256": "6fc14d661a650d12e692b53f644f6cc04e62a99326b9f7c0d49d81d1e98513ca"
+    },
+    {
+      "path": "final19-mobile-2.report.json",
+      "state": "READ",
+      "bytes": 462393,
+      "sha256": "9b21384692d49731adbc533a2991e3b6b4ef129a75593c97391545906a56f343"
+    },
+    {
+      "path": "final19-mobile-3.report.json",
+      "state": "READ",
+      "bytes": 461379,
+      "sha256": "7fb2fdb445a34c2f10e2ef41674436fbd1fac875acffc7c78b6ebbb792414fd7"
+    },
+    {
+      "path": "final19-bundle.json",
+      "state": "READ",
+      "bytes": 4484,
+      "sha256": "945753c2a448e2ec8a7e1010a04cc8b86dae95685bf5b64059207bf5f45b0cd6"
+    },
+    {
+      "path": "final19-hosting-package-verification.json",
+      "state": "READ",
+      "bytes": 38604,
+      "sha256": "ce60bb647977000167d63919fdb31affff58d4cc6f85039d55e6b767cc3be908"
+    },
+    {
+      "path": "final19-static-artifacts.json",
+      "state": "READ",
+      "bytes": 28128,
+      "sha256": "b61b68bde18b3521949e4b205813bd13ffe09791f330f164dd8246859f550c4f"
+    },
+    {
+      "path": "final19-static-process.json",
+      "state": "READ",
+      "bytes": 10596,
+      "sha256": "40e2ce483dfb6d174f7e1a599d2fc99db2ab9b90130801c84a7bccdab3826bb2"
+    },
+    {
+      "path": "final19-static-deployment-raw.json",
+      "state": "READ",
+      "bytes": 1683557,
+      "sha256": "689d0598aa84d1e2800509aa15f63241e44c7a1c1e64a4f13a7575e0a07ac1d2"
+    },
+    {
+      "path": "final19-static-game-accessibility-raw.json",
+      "state": "READ",
+      "bytes": 39447,
+      "sha256": "ecc3109f118f91195be5311c9700c398f3b1410fa41e02c7323cf4c3cdb431ad"
+    },
+    {
+      "path": "mobile-workspaces-final19-static.json",
+      "state": "READ",
+      "bytes": 8419,
+      "sha256": "bd866aa82e9666e40dd8017c085a35322cf06901370f79a312d6905eef19128d"
+    },
+    {
+      "path": "mobile-workspaces-final19-static-process.json",
+      "state": "READ",
+      "bytes": 64375,
+      "sha256": "ba6a3a830ce082fdb0ad7af838dd5003902bb2305fe376e9c18c4301e10f0f7c"
+    },
+    {
+      "path": "final19-arcade-mobile.json",
+      "state": "READ",
+      "bytes": 4033,
+      "sha256": "ec77dab786f1b58b31015d99fdd58dabea966048e5a06ca503e208e2e7b2739d"
+    },
+    {
+      "path": "final19-visual-review.json",
+      "state": "READ",
+      "bytes": 6560,
+      "sha256": "cc6cc2aaa9eaf674a4df9354fb019e1721d2cff099d84f6c0d7951b4a9c7c8cb"
+    },
+    {
+      "path": "boss-duel-final19.json",
+      "state": "READ",
+      "bytes": 4710,
+      "sha256": "f6866314d1bacb132294d7795e59e7079141f4c2680e22485aa587bf75c0d741"
+    },
+    {
+      "path": "boss-duel-final19-resumed.json",
+      "state": "READ",
+      "bytes": 5708,
+      "sha256": "5348d83af44b3c5a7dbe2becfbb0da81652b933b632e2b5ed25126c07c3c543b"
+    },
+    {
+      "path": "boss-duel-final19-resumed-evidence.json",
+      "state": "READ",
+      "bytes": 183393,
+      "sha256": "b4945e7977b993dd93e5327e0f974710625ee17977f7ba65224d809bb6783553"
+    },
+    {
+      "path": "boss-duel-final19-resumed-run-protocol.json",
+      "state": "READ",
+      "bytes": 3028,
+      "sha256": "f52881df4c4b03ec24e89f969fdeb99d3fe1857cee7d921ba9cff8af676eb6da"
+    },
+    {
+      "path": "boss-duel-final19-prepared.json",
+      "state": "READ",
+      "bytes": 3872,
+      "sha256": "c568a881199c2a27c529bc6f97563aff15bfadf1f60673dc7c9c17c902364a71"
+    },
+    {
+      "path": "boss-duel-final19-protocol.json",
+      "state": "READ",
+      "bytes": 2215,
+      "sha256": "1867823ee2f6ca9cbab7acdf2b9979edd13b0d4cb8a0680808619548a18ebaa1"
+    },
+    {
+      "path": "final19-placement-real135-encoding-confirmation-raw.json",
+      "state": "READ",
+      "bytes": 11199,
+      "sha256": "eab98707b5edaa3e8cdf2efb85ee52c5963ffafb54a3622118866354a0ea1afd"
+    },
+    {
+      "path": "final19-placement-real135-raw.json",
+      "state": "READ",
+      "bytes": 1757,
+      "sha256": "4d799ec08b950b22492e42916b5994bea4aedb521abf304b4878d14c814f6d59"
+    },
+    {
+      "path": "final19-native-browser.json",
+      "state": "READ",
+      "bytes": 4321,
+      "sha256": "71121630c290735dc97ec3f42f16c0c2d1e03e8a95d1b27e4c20740f18abada1"
+    },
+    {
+      "path": "pack-native-1ae16aa20bd12d94-1793106281509-browser.json",
+      "state": "READ",
+      "bytes": 62751,
+      "sha256": "e7985ad46bbb2386b9e36ab79e537e26ac9f8544fc40c4d29e3feb3e33aad2a7"
+    },
+    {
+      "path": "pack-backend-1ae16aa20bd12d94-browser-ready.json",
+      "state": "READ",
+      "bytes": 392,
+      "sha256": "c4fcf1be2450c1982415d75f1eb6085bc998af9797f9376ab3e8be67b1a00f73"
+    },
+    {
+      "path": "pack-backend-1ae16aa20bd12d94-protocol.json",
+      "state": "READ",
+      "bytes": 648,
+      "sha256": "563d8360342be69b8b7437ce71aa1dad16bfed7b58538db3882ef1e0fdcc68ae"
+    },
+    {
+      "path": "pack-backend-1ae16aa20bd12d94-provision.json",
+      "state": "READ",
+      "bytes": 368,
+      "sha256": "ede1f7dcdee195f50931f5db3411c64ff6b5d41039192a939f640eb20b670340"
+    },
+    {
+      "path": "pack-backend-1ae16aa20bd12d94-apache-runtime.json",
+      "state": "READ",
+      "bytes": 297,
+      "sha256": "9cbe0422efc52cc0d29906680762781aa2030c688c72bd68bb1ee7ebcce86222"
+    },
+    {
+      "path": "pack-backend-1ae16aa20bd12d94-cleanup.json",
+      "state": "READ",
+      "bytes": 486,
+      "sha256": "dc459e34cc3c2e2b8c62138331f77b16e13958042221899c1d274157503fe888"
+    },
+    {
+      "path": "final19-native-modules.json",
+      "state": "READ",
+      "bytes": 4151,
+      "sha256": "fb6723f28876cf09a1ccc06f91e3e74a2cb9930c4e78813f4898ec495b4a9665"
+    },
+    {
+      "path": "pack-backend-64bf786613b7d7d5-protocol.json",
+      "state": "READ",
+      "bytes": 664,
+      "sha256": "9aa1aa274f41fe1cffe353376442291458553407ab63f92c8357674a5016d4a5"
+    },
+    {
+      "path": "pack-backend-64bf786613b7d7d5-provision.json",
+      "state": "READ",
+      "bytes": 367,
+      "sha256": "da3dccfb8a18dd7b216e5f5d77482a6af6b1f8d71971f10de5c8913834bf18b1"
+    },
+    {
+      "path": "pack-backend-64bf786613b7d7d5-apache-runtime.json",
+      "state": "READ",
+      "bytes": 297,
+      "sha256": "fe3e6099c7cd55a983652924be1c43fbc26e6404fa252059aae8d91b6410b0d7"
+    },
+    {
+      "path": "pack-backend-64bf786613b7d7d5-summary.json",
+      "state": "READ",
+      "bytes": 834,
+      "sha256": "27b7b4b325beb64fc1e9c1799da6962a250f27f1d7bc438645cefdb9e2521147"
+    },
+    {
+      "path": "pack-backend-64bf786613b7d7d5-cleanup.json",
+      "state": "READ",
+      "bytes": 486,
+      "sha256": "979db4d21014d8dd1c49778e854a976ecdbdc44bfd6d056ba90a4afd0b1407cd"
+    }
+  ],
+  "limitations": [
+    "No test, browser, service, build, Git or deployment action was run by this reconciler.",
+    "Every skip, missing receipt, active receipt and failed latency criterion remains visible; historical failures are not overwritten.",
+    "Public receipt reconciliation is not a fresh runtime rerun, complete secret scan, manual visual review or universal perfection claim."
+  ]
+}

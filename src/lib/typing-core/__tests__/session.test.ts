@@ -7,6 +7,33 @@ function fixture(target: string, overrides: Partial<SessionConfig> = {}) {
   return { session, at(value: number) { now = value; }, insert(text: string, at: number) { now = at; return session.input({ type: 'insert', text }); } };
 }
 describe('forge-v3 golden metrics', () => {
+  it('keeps first-input timing idle through preparation, empty edits and clock ticks', () => {
+    const test = fixture('cat dog');
+    expect(test.session.timingOrigin).toBeNull();
+    test.at(600_000);
+    expect(test.session.tick()).toMatchObject({ status: 'ready', elapsedMs: 0, remainingMs: 30000 });
+    test.session.input({ type: 'delete' });
+    test.session.input({ type: 'replace', text: '' });
+    expect(test.session.timingOrigin).toBeNull();
+    expect(test.insert('x', 600_100)).toMatchObject({ status: 'running', elapsedMs: 0, remainingMs: 30000 });
+    expect(test.session.timingOrigin).toEqual({ monotonic: 600_100, wall: 1700000600100 });
+    test.at(630_099);
+    expect(test.session.tick().status).toBe('running');
+    test.at(630_100);
+    expect(test.session.tick()).toMatchObject({ status: 'finished', elapsedMs: 30000, finishReason: 'timeout' });
+    expect(test.session.result!.startedAtWall).toBe(1700000600100);
+  });
+  it('exposes an independent clock-origin copy including literal zero without extra clock reads', () => {
+    let reads = 0;
+    const controller = new SessionController({ clientSessionId: 'origin', mode: 'zen', initialTarget: 'cat' }, { now: () => { reads++; return 0; }, wallNow: () => 0 });
+    expect(controller.timingOrigin).toBeNull();
+    controller.input({ type: 'insert', text: 'c' }, 0);
+    const origin = controller.timingOrigin!;
+    expect(origin).toEqual({ monotonic: 0, wall: 0 });
+    Object.assign(origin, { monotonic: 999, wall: 999 });
+    expect(controller.timingOrigin).toEqual({ monotonic: 0, wall: 0 });
+    expect(reads).toBe(0);
+  });
   it('reads retained edit text without consuming clock samples or changing evidence', () => {
     let reads = 0;
     const session = new SessionController(

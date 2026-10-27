@@ -1,0 +1,5059 @@
+{
+  "declaredAt": "2026-10-22T18:42:56.384Z",
+  "status": "DIAGNOSTIC-COMPLETED",
+  "kind": "deliberate-diagnostic-not-acceptance",
+  "expectedBuild": "b00993b05c14117dca60",
+  "automaticRetries": 0,
+  "pageErrorFiltering": false,
+  "scope": "Owned loopback server, fresh guest WebKit contexts, tiny same-origin controls and unchanged frozen dist. API is an explicit unavailable 503 fixture; this is not native-backend or static-deployment acceptance.",
+  "protocol": {
+    "maxWallMs": 180000,
+    "nativeWrappers": "ENTER ONLY. Reflect.apply original method and return its original result unchanged; no settlement handler attached.",
+    "heldNavigationBoundary": "Server has received replacement-document request; response is withheld until old-document calls finish or the bounded cell fails.",
+    "outcomeHandling": "Fixture operations catch their own results deliberately; all native pageerror and console-error events remain in ledger.",
+    "privateData": "No accounts, credentials, cookies, headers, cache contents, raw trace or query parameters are saved."
+  },
+  "cells": [
+    {
+      "label": "tiny-no-navigation-control",
+      "startedAtMs": 1590.562,
+      "status": "OBSERVED",
+      "operations": {
+        "expectedOldDocument": "u4w7ebdh",
+        "actualDocument": "u4w7ebdh",
+        "rows": [
+          {
+            "api": "CacheStorage.keys",
+            "outcome": "fulfilled",
+            "resultType": "object"
+          },
+          {
+            "api": "CacheStorage.open",
+            "outcome": "fulfilled",
+            "resultType": "object"
+          },
+          {
+            "api": "Cache.match",
+            "outcome": "fulfilled",
+            "resultType": "object"
+          },
+          {
+            "api": "ServiceWorkerContainer.register",
+            "outcome": "fulfilled",
+            "resultType": "object"
+          }
+        ]
+      },
+      "finishedAtMs": 2326.742,
+      "pageErrors": []
+    },
+    {
+      "label": "tiny-held-replacement-cache-and-register",
+      "startedAtMs": 2329.818,
+      "status": "OBSERVED",
+      "operations": {
+        "expectedOldDocument": "hnxil7rr",
+        "actualDocument": "hnxil7rr",
+        "rows": [
+          {
+            "api": "CacheStorage.keys",
+            "outcome": "fulfilled",
+            "resultType": "object"
+          },
+          {
+            "api": "CacheStorage.open",
+            "outcome": "fulfilled",
+            "resultType": "object"
+          },
+          {
+            "api": "ServiceWorkerContainer.register",
+            "outcome": "rejected-caught-by-fixture",
+            "name": "SecurityError",
+            "message": "Script http://127.0.0.1:5236/__diag/held/worker.js load failed"
+          },
+          {
+            "api": "Cache.match",
+            "outcome": "fulfilled",
+            "resultType": "object"
+          }
+        ]
+      },
+      "navigation": {
+        "outcome": "loaded"
+      },
+      "boundary": "All four old-document calls initiated after replacement request ingress, before response release.",
+      "finishedAtMs": 2649.495,
+      "pageErrors": [
+        {
+          "atMs": 2604.276,
+          "name": "Cannot load http",
+          "message": "/127.0.0.1:5236/__diag/held/worker.js due to access control checks."
+        }
+      ]
+    },
+    {
+      "label": "tiny-inflight-registration-script-held-then-replacement",
+      "startedAtMs": 2655.764,
+      "status": "OBSERVED",
+      "registration": {
+        "outcome": "rejected-caught-by-fixture",
+        "name": "TypeError",
+        "message": "Script http://127.0.0.1:5236/__diag/inflight/worker.js load failed"
+      },
+      "navigation": {
+        "outcome": "loaded"
+      },
+      "boundary": "Worker response released while replacement response is still held; registration started before replacement ingress.",
+      "finishedAtMs": 2914.96,
+      "pageErrors": []
+    },
+    {
+      "label": "frozen-app-original-rapid-hard-navigation-sequence",
+      "startedAtMs": 2916.521,
+      "status": "OBSERVED",
+      "routes": [
+        {
+          "path": "/auth",
+          "reload": false,
+          "status": 200,
+          "visibleWithinOriginal5000ms": true
+        },
+        {
+          "path": "/ranked",
+          "reload": false,
+          "status": 200,
+          "visibleWithinOriginal5000ms": true
+        },
+        {
+          "path": "/race",
+          "reload": false,
+          "status": 200,
+          "visibleWithinOriginal5000ms": true
+        },
+        {
+          "path": "/leaderboard",
+          "reload": false,
+          "status": 200,
+          "visibleWithinOriginal5000ms": true
+        },
+        {
+          "path": "/",
+          "reload": false,
+          "status": 200,
+          "visibleWithinOriginal5000ms": true
+        },
+        {
+          "path": "/",
+          "reload": true,
+          "status": 200,
+          "visibleWithinOriginal5000ms": true
+        },
+        {
+          "path": "/learn",
+          "reload": false,
+          "status": 200,
+          "visibleWithinOriginal5000ms": true
+        },
+        {
+          "path": "/learn",
+          "reload": true,
+          "status": 200,
+          "visibleWithinOriginal5000ms": true
+        },
+        {
+          "path": "/lessons",
+          "reload": false,
+          "status": 200,
+          "visibleWithinOriginal5000ms": true
+        },
+        {
+          "path": "/lessons",
+          "reload": true,
+          "status": 200,
+          "visibleWithinOriginal5000ms": true
+        },
+        {
+          "path": "/games",
+          "reload": false,
+          "status": 200,
+          "visibleWithinOriginal5000ms": true
+        },
+        {
+          "path": "/games",
+          "reload": true,
+          "status": 200,
+          "visibleWithinOriginal5000ms": true
+        },
+        {
+          "path": "/stats",
+          "reload": false,
+          "status": 200,
+          "visibleWithinOriginal5000ms": true
+        },
+        {
+          "path": "/stats",
+          "reload": true,
+          "status": 200,
+          "visibleWithinOriginal5000ms": true
+        },
+        {
+          "path": "/settings",
+          "reload": false,
+          "status": 200,
+          "visibleWithinOriginal5000ms": true
+        },
+        {
+          "path": "/settings",
+          "reload": true,
+          "status": 200,
+          "visibleWithinOriginal5000ms": true
+        },
+        {
+          "path": "/keyboard-lab",
+          "reload": false,
+          "status": 200,
+          "visibleWithinOriginal5000ms": true
+        },
+        {
+          "path": "/keyboard-lab",
+          "reload": true,
+          "status": 200,
+          "visibleWithinOriginal5000ms": true
+        },
+        {
+          "path": "/privacy",
+          "reload": false,
+          "status": 200,
+          "visibleWithinOriginal5000ms": true
+        },
+        {
+          "path": "/privacy",
+          "reload": true,
+          "status": 200,
+          "visibleWithinOriginal5000ms": true
+        }
+      ],
+      "navigationCount": 20,
+      "failedRouteObservations": 0,
+      "attribution": "Native API entry caller stacks, lifecycle events and all pageerrors are retained. Original promises and error propagation are not intercepted.",
+      "finishedAtMs": 15456.328,
+      "pageErrors": []
+    }
+  ],
+  "events": [
+    {
+      "receivedAtMs": 2214.331,
+      "cell": "tiny-no-navigation-control",
+      "type": "document-created",
+      "documentId": "jwru0ky9",
+      "timeOrigin": 1792694578452,
+      "at": 141,
+      "path": "blank",
+      "readyState": "complete",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 2222.161,
+      "cell": "tiny-no-navigation-control",
+      "type": "lifecycle",
+      "documentId": "jwru0ky9",
+      "timeOrigin": 1792694578452,
+      "at": 153,
+      "path": "blank",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 2222.351,
+      "cell": "tiny-no-navigation-control",
+      "type": "lifecycle",
+      "documentId": "jwru0ky9",
+      "timeOrigin": 1792694578452,
+      "at": 153,
+      "path": "blank",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 2227.114,
+      "cell": "tiny-no-navigation-control",
+      "type": "document-created",
+      "documentId": "u4w7ebdh",
+      "timeOrigin": 1792694578578,
+      "at": 31,
+      "path": "/__diag/control/old.html",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 2241.004,
+      "cell": "tiny-no-navigation-control",
+      "type": "lifecycle",
+      "documentId": "u4w7ebdh",
+      "timeOrigin": 1792694578578,
+      "at": 43,
+      "path": "/__diag/control/old.html",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 2257.917,
+      "cell": "tiny-no-navigation-control",
+      "type": "native-entry",
+      "documentId": "u4w7ebdh",
+      "timeOrigin": 1792694578578,
+      "at": 61,
+      "path": "/__diag/control/old.html",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "evaluate@\n@"
+    },
+    {
+      "receivedAtMs": 2286.719,
+      "cell": "tiny-no-navigation-control",
+      "type": "native-entry",
+      "documentId": "u4w7ebdh",
+      "timeOrigin": 1792694578578,
+      "at": 90,
+      "path": "/__diag/control/old.html",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@\n@\nevaluate@\n@"
+    },
+    {
+      "receivedAtMs": 2286.752,
+      "cell": "tiny-no-navigation-control",
+      "type": "native-entry",
+      "documentId": "u4w7ebdh",
+      "timeOrigin": 1792694578578,
+      "at": 90,
+      "path": "/__diag/control/old.html",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "@\n@\nevaluate@\n@"
+    },
+    {
+      "receivedAtMs": 2287.078,
+      "cell": "tiny-no-navigation-control",
+      "type": "native-entry",
+      "documentId": "u4w7ebdh",
+      "timeOrigin": 1792694578578,
+      "at": 90,
+      "path": "/__diag/control/old.html",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@\n@\nevaluate@\n@"
+    },
+    {
+      "receivedAtMs": 2287.275,
+      "cell": "tiny-no-navigation-control",
+      "type": "native-entry",
+      "documentId": "u4w7ebdh",
+      "timeOrigin": 1792694578578,
+      "at": 91,
+      "path": "/__diag/control/old.html",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "ServiceWorkerContainer.register",
+      "caller": "@\n@\nevaluate@\n@"
+    },
+    {
+      "receivedAtMs": 2545.649,
+      "cell": "tiny-held-replacement-cache-and-register",
+      "type": "document-created",
+      "documentId": "ocvoa5e4",
+      "timeOrigin": 1792694578882,
+      "at": 44,
+      "path": "blank",
+      "readyState": "complete",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 2549.212,
+      "cell": "tiny-held-replacement-cache-and-register",
+      "type": "lifecycle",
+      "documentId": "ocvoa5e4",
+      "timeOrigin": 1792694578882,
+      "at": 45,
+      "path": "blank",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "beforeunload",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 2553.607,
+      "cell": "tiny-held-replacement-cache-and-register",
+      "type": "lifecycle",
+      "documentId": "ocvoa5e4",
+      "timeOrigin": 1792694578882,
+      "at": 53,
+      "path": "blank",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 2553.73,
+      "cell": "tiny-held-replacement-cache-and-register",
+      "type": "lifecycle",
+      "documentId": "ocvoa5e4",
+      "timeOrigin": 1792694578882,
+      "at": 53,
+      "path": "blank",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 2561.75,
+      "cell": "tiny-held-replacement-cache-and-register",
+      "type": "document-created",
+      "documentId": "hnxil7rr",
+      "timeOrigin": 1792694578928,
+      "at": 12,
+      "path": "/__diag/held/old.html",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 2563.442,
+      "cell": "tiny-held-replacement-cache-and-register",
+      "type": "lifecycle",
+      "documentId": "hnxil7rr",
+      "timeOrigin": 1792694578928,
+      "at": 15,
+      "path": "/__diag/held/old.html",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 2570.442,
+      "cell": "tiny-held-replacement-cache-and-register",
+      "type": "native-entry",
+      "documentId": "hnxil7rr",
+      "timeOrigin": 1792694578928,
+      "at": 24,
+      "path": "/__diag/held/old.html",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "evaluate@\n@"
+    },
+    {
+      "receivedAtMs": 2597.052,
+      "cell": "tiny-held-replacement-cache-and-register",
+      "type": "lifecycle",
+      "documentId": "hnxil7rr",
+      "timeOrigin": 1792694578928,
+      "at": 51,
+      "path": "/__diag/held/old.html",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "beforeunload",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 2602.151,
+      "cell": "tiny-held-replacement-cache-and-register",
+      "type": "native-entry",
+      "documentId": "hnxil7rr",
+      "timeOrigin": 1792694578928,
+      "at": 56,
+      "path": "/__diag/held/old.html",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@\n@\nevaluate@\n@"
+    },
+    {
+      "receivedAtMs": 2602.666,
+      "cell": "tiny-held-replacement-cache-and-register",
+      "type": "native-entry",
+      "documentId": "hnxil7rr",
+      "timeOrigin": 1792694578928,
+      "at": 56,
+      "path": "/__diag/held/old.html",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "@\n@\nevaluate@\n@"
+    },
+    {
+      "receivedAtMs": 2602.728,
+      "cell": "tiny-held-replacement-cache-and-register",
+      "type": "native-entry",
+      "documentId": "hnxil7rr",
+      "timeOrigin": 1792694578928,
+      "at": 56,
+      "path": "/__diag/held/old.html",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@\n@\nevaluate@\n@"
+    },
+    {
+      "receivedAtMs": 2602.789,
+      "cell": "tiny-held-replacement-cache-and-register",
+      "type": "native-entry",
+      "documentId": "hnxil7rr",
+      "timeOrigin": 1792694578928,
+      "at": 56,
+      "path": "/__diag/held/old.html",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "ServiceWorkerContainer.register",
+      "caller": "@\n@\nevaluate@\n@"
+    },
+    {
+      "receivedAtMs": 2604.276,
+      "cell": "tiny-held-replacement-cache-and-register",
+      "type": "pageerror",
+      "name": "Cannot load http",
+      "message": "/127.0.0.1:5236/__diag/held/worker.js due to access control checks.",
+      "stack": ""
+    },
+    {
+      "receivedAtMs": 2630.673,
+      "cell": "tiny-held-replacement-cache-and-register",
+      "type": "lifecycle",
+      "documentId": "hnxil7rr",
+      "timeOrigin": 1792694578928,
+      "at": 83,
+      "path": "/__diag/held/old.html",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 2631.192,
+      "cell": "tiny-held-replacement-cache-and-register",
+      "type": "lifecycle",
+      "documentId": "hnxil7rr",
+      "timeOrigin": 1792694578928,
+      "at": 84,
+      "path": "/__diag/held/old.html",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 2636.705,
+      "cell": "tiny-held-replacement-cache-and-register",
+      "type": "document-created",
+      "documentId": "petxwl94",
+      "timeOrigin": 1792694578980,
+      "at": 37,
+      "path": "/__diag/held/replacement.html",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 2641.746,
+      "cell": "tiny-held-replacement-cache-and-register",
+      "type": "lifecycle",
+      "documentId": "petxwl94",
+      "timeOrigin": 1792694578980,
+      "at": 40,
+      "path": "/__diag/held/replacement.html",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 2847.799,
+      "cell": "tiny-inflight-registration-script-held-then-replacement",
+      "type": "document-created",
+      "documentId": "wwg3d7bq",
+      "timeOrigin": 1792694579201,
+      "at": 29,
+      "path": "blank",
+      "readyState": "complete",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 2850.312,
+      "cell": "tiny-inflight-registration-script-held-then-replacement",
+      "type": "lifecycle",
+      "documentId": "wwg3d7bq",
+      "timeOrigin": 1792694579201,
+      "at": 31,
+      "path": "blank",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 2850.647,
+      "cell": "tiny-inflight-registration-script-held-then-replacement",
+      "type": "lifecycle",
+      "documentId": "wwg3d7bq",
+      "timeOrigin": 1792694579201,
+      "at": 32,
+      "path": "blank",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 2853.604,
+      "cell": "tiny-inflight-registration-script-held-then-replacement",
+      "type": "document-created",
+      "documentId": "nagh1u86",
+      "timeOrigin": 1792694579228,
+      "at": 7,
+      "path": "/__diag/inflight/old.html",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 2857.259,
+      "cell": "tiny-inflight-registration-script-held-then-replacement",
+      "type": "lifecycle",
+      "documentId": "nagh1u86",
+      "timeOrigin": 1792694579228,
+      "at": 9,
+      "path": "/__diag/inflight/old.html",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 2861.417,
+      "cell": "tiny-inflight-registration-script-held-then-replacement",
+      "type": "native-entry",
+      "documentId": "nagh1u86",
+      "timeOrigin": 1792694579228,
+      "at": 15,
+      "path": "/__diag/inflight/old.html",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "evaluate@\n@"
+    },
+    {
+      "receivedAtMs": 2891.957,
+      "cell": "tiny-inflight-registration-script-held-then-replacement",
+      "type": "native-entry",
+      "documentId": "nagh1u86",
+      "timeOrigin": 1792694579228,
+      "at": 45,
+      "path": "/__diag/inflight/old.html",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "ServiceWorkerContainer.register",
+      "caller": "evaluate@\n@"
+    },
+    {
+      "receivedAtMs": 2895.02,
+      "cell": "tiny-inflight-registration-script-held-then-replacement",
+      "type": "lifecycle",
+      "documentId": "nagh1u86",
+      "timeOrigin": 1792694579228,
+      "at": 49,
+      "path": "/__diag/inflight/old.html",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "beforeunload",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 2906.529,
+      "cell": "tiny-inflight-registration-script-held-then-replacement",
+      "type": "lifecycle",
+      "documentId": "nagh1u86",
+      "timeOrigin": 1792694579228,
+      "at": 60,
+      "path": "/__diag/inflight/old.html",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 2906.702,
+      "cell": "tiny-inflight-registration-script-held-then-replacement",
+      "type": "lifecycle",
+      "documentId": "nagh1u86",
+      "timeOrigin": 1792694579228,
+      "at": 60,
+      "path": "/__diag/inflight/old.html",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 2908.723,
+      "cell": "tiny-inflight-registration-script-held-then-replacement",
+      "type": "document-created",
+      "documentId": "trmquhch",
+      "timeOrigin": 1792694579278,
+      "at": 13,
+      "path": "/__diag/inflight/replacement.html",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 2911.09,
+      "cell": "tiny-inflight-registration-script-held-then-replacement",
+      "type": "lifecycle",
+      "documentId": "trmquhch",
+      "timeOrigin": 1792694579278,
+      "at": 14,
+      "path": "/__diag/inflight/replacement.html",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 3096.749,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "document-created",
+      "documentId": "51a1er35",
+      "timeOrigin": 1792694579448,
+      "at": 29,
+      "path": "blank",
+      "readyState": "complete",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 3097.163,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "51a1er35",
+      "timeOrigin": 1792694579448,
+      "at": 31,
+      "path": "blank",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "beforeunload",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 3102.436,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "51a1er35",
+      "timeOrigin": 1792694579448,
+      "at": 37,
+      "path": "blank",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 3102.595,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "51a1er35",
+      "timeOrigin": 1792694579448,
+      "at": 37,
+      "path": "blank",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 3104.946,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "document-created",
+      "documentId": "43791pt2",
+      "timeOrigin": 1792694579480,
+      "at": 7,
+      "path": "/auth",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 3199.809,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "43791pt2",
+      "timeOrigin": 1792694579480,
+      "at": 92,
+      "path": "/auth",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 3592.38,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "43791pt2",
+      "timeOrigin": 1792694579480,
+      "at": 494,
+      "path": "/auth",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "ServiceWorkerContainer.register",
+      "caller": "Rl@<owned-origin>/assets/index-Hu7fxlfa.js:9:24393\nGn@<owned-origin>/assets/index-Hu7fxlfa.js:9:42612\n@<owned-origin>/assets/index-Hu7fxlfa.js:9:40900\nZe@<owned-origin>/assets/index-Hu7fxlfa.js:2:10333"
+    },
+    {
+      "receivedAtMs": 3600.213,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "receivedAtMs": 3652.859,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "43791pt2",
+      "timeOrigin": 1792694579480,
+      "at": 555,
+      "path": "/auth",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 3774.97,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "43791pt2",
+      "timeOrigin": 1792694579480,
+      "at": 676,
+      "path": "/auth",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\nb@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2898"
+    },
+    {
+      "receivedAtMs": 3775.004,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "43791pt2",
+      "timeOrigin": 1792694579480,
+      "at": 676,
+      "path": "/auth",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\nb@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2898"
+    },
+    {
+      "receivedAtMs": 3775.358,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "43791pt2",
+      "timeOrigin": 1792694579480,
+      "at": 677,
+      "path": "/auth",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\nb@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2898"
+    },
+    {
+      "receivedAtMs": 3775.389,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "43791pt2",
+      "timeOrigin": 1792694579480,
+      "at": 677,
+      "path": "/auth",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\nb@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2898"
+    },
+    {
+      "receivedAtMs": 3790.808,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "43791pt2",
+      "timeOrigin": 1792694579480,
+      "at": 692,
+      "path": "/auth",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325"
+    },
+    {
+      "receivedAtMs": 3791.093,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "43791pt2",
+      "timeOrigin": 1792694579480,
+      "at": 692,
+      "path": "/auth",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325"
+    },
+    {
+      "receivedAtMs": 3791.241,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "43791pt2",
+      "timeOrigin": 1792694579480,
+      "at": 693,
+      "path": "/auth",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325"
+    },
+    {
+      "receivedAtMs": 3791.268,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "43791pt2",
+      "timeOrigin": 1792694579480,
+      "at": 693,
+      "path": "/auth",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325"
+    },
+    {
+      "receivedAtMs": 3806.825,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "43791pt2",
+      "timeOrigin": 1792694579480,
+      "at": 708,
+      "path": "/auth",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325"
+    },
+    {
+      "receivedAtMs": 3806.862,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "43791pt2",
+      "timeOrigin": 1792694579480,
+      "at": 708,
+      "path": "/auth",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325"
+    },
+    {
+      "receivedAtMs": 3806.967,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "43791pt2",
+      "timeOrigin": 1792694579480,
+      "at": 708,
+      "path": "/auth",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325"
+    },
+    {
+      "receivedAtMs": 3806.991,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "43791pt2",
+      "timeOrigin": 1792694579480,
+      "at": 708,
+      "path": "/auth",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325"
+    },
+    {
+      "receivedAtMs": 3837.782,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "43791pt2",
+      "timeOrigin": 1792694579480,
+      "at": 739,
+      "path": "/auth",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325"
+    },
+    {
+      "receivedAtMs": 3837.97,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "43791pt2",
+      "timeOrigin": 1792694579480,
+      "at": 739,
+      "path": "/auth",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325"
+    },
+    {
+      "receivedAtMs": 3838,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "43791pt2",
+      "timeOrigin": 1792694579480,
+      "at": 739,
+      "path": "/auth",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325"
+    },
+    {
+      "receivedAtMs": 3838.024,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "43791pt2",
+      "timeOrigin": 1792694579480,
+      "at": 739,
+      "path": "/auth",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325"
+    },
+    {
+      "receivedAtMs": 4100.645,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "43791pt2",
+      "timeOrigin": 1792694579480,
+      "at": 1001,
+      "path": "/auth",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "beforeunload",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 4109.489,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "43791pt2",
+      "timeOrigin": 1792694579480,
+      "at": 1011,
+      "path": "/auth",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 4109.561,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "43791pt2",
+      "timeOrigin": 1792694579480,
+      "at": 1011,
+      "path": "/auth",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 4113.957,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "document-created",
+      "documentId": "b73b2tix",
+      "timeOrigin": 1792694580482,
+      "at": 13,
+      "path": "/ranked",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 4171.002,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "b73b2tix",
+      "timeOrigin": 1792694580482,
+      "at": 68,
+      "path": "/ranked",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 4370.144,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "b73b2tix",
+      "timeOrigin": 1792694580482,
+      "at": 269,
+      "path": "/ranked",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "ServiceWorkerContainer.register",
+      "caller": "Rl@<owned-origin>/assets/index-Hu7fxlfa.js:9:24393\nGn@<owned-origin>/assets/index-Hu7fxlfa.js:9:42612\n@<owned-origin>/assets/index-Hu7fxlfa.js:9:40900\nZe@<owned-origin>/assets/index-Hu7fxlfa.js:2:10333"
+    },
+    {
+      "receivedAtMs": 4374.474,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "receivedAtMs": 4386.125,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "b73b2tix",
+      "timeOrigin": 1792694580482,
+      "at": 285,
+      "path": "/ranked",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 4398.89,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "b73b2tix",
+      "timeOrigin": 1792694580482,
+      "at": 298,
+      "path": "/ranked",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 4423.588,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "b73b2tix",
+      "timeOrigin": 1792694580482,
+      "at": 317,
+      "path": "/ranked",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 4445.023,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "b73b2tix",
+      "timeOrigin": 1792694580482,
+      "at": 344,
+      "path": "/ranked",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 4542.453,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "b73b2tix",
+      "timeOrigin": 1792694580482,
+      "at": 442,
+      "path": "/ranked",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "beforeunload",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 4549.14,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "b73b2tix",
+      "timeOrigin": 1792694580482,
+      "at": 449,
+      "path": "/ranked",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 4549.641,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "b73b2tix",
+      "timeOrigin": 1792694580482,
+      "at": 449,
+      "path": "/ranked",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 4553.189,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "document-created",
+      "documentId": "wpg4hm65",
+      "timeOrigin": 1792694580925,
+      "at": 9,
+      "path": "/race",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 4586.588,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "wpg4hm65",
+      "timeOrigin": 1792694580925,
+      "at": 43,
+      "path": "/race",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 4806.253,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "wpg4hm65",
+      "timeOrigin": 1792694580925,
+      "at": 262,
+      "path": "/race",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "ServiceWorkerContainer.register",
+      "caller": "Rl@<owned-origin>/assets/index-Hu7fxlfa.js:9:24393\nGn@<owned-origin>/assets/index-Hu7fxlfa.js:9:42612\n@<owned-origin>/assets/index-Hu7fxlfa.js:9:40900\nZe@<owned-origin>/assets/index-Hu7fxlfa.js:2:10333"
+    },
+    {
+      "receivedAtMs": 4810.484,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "receivedAtMs": 4823.361,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "wpg4hm65",
+      "timeOrigin": 1792694580925,
+      "at": 278,
+      "path": "/race",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 4883.997,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "wpg4hm65",
+      "timeOrigin": 1792694580925,
+      "at": 339,
+      "path": "/race",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 4895.719,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "wpg4hm65",
+      "timeOrigin": 1792694580925,
+      "at": 351,
+      "path": "/race",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 4959.708,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "wpg4hm65",
+      "timeOrigin": 1792694580925,
+      "at": 414,
+      "path": "/race",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 5441.446,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "wpg4hm65",
+      "timeOrigin": 1792694580925,
+      "at": 897,
+      "path": "/race",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "beforeunload",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 5448.59,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "wpg4hm65",
+      "timeOrigin": 1792694580925,
+      "at": 905,
+      "path": "/race",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 5448.64,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "wpg4hm65",
+      "timeOrigin": 1792694580925,
+      "at": 905,
+      "path": "/race",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 5452.888,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "document-created",
+      "documentId": "1pz8ycm3",
+      "timeOrigin": 1792694581823,
+      "at": 10,
+      "path": "/leaderboard",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 5493.273,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "1pz8ycm3",
+      "timeOrigin": 1792694581823,
+      "at": 51,
+      "path": "/leaderboard",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 5743.798,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "1pz8ycm3",
+      "timeOrigin": 1792694581823,
+      "at": 300,
+      "path": "/leaderboard",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "ServiceWorkerContainer.register",
+      "caller": "Rl@<owned-origin>/assets/index-Hu7fxlfa.js:9:24393\nGn@<owned-origin>/assets/index-Hu7fxlfa.js:9:42612\n@<owned-origin>/assets/index-Hu7fxlfa.js:9:40900\nZe@<owned-origin>/assets/index-Hu7fxlfa.js:2:10333"
+    },
+    {
+      "receivedAtMs": 5764.875,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "receivedAtMs": 5766.254,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "receivedAtMs": 5769.691,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "1pz8ycm3",
+      "timeOrigin": 1792694581823,
+      "at": 328,
+      "path": "/leaderboard",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 5772.003,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "1pz8ycm3",
+      "timeOrigin": 1792694581823,
+      "at": 330,
+      "path": "/leaderboard",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "beforeunload",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 5776.079,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "1pz8ycm3",
+      "timeOrigin": 1792694581823,
+      "at": 335,
+      "path": "/leaderboard",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 5776.49,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "1pz8ycm3",
+      "timeOrigin": 1792694581823,
+      "at": 335,
+      "path": "/leaderboard",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 5780.679,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "document-created",
+      "documentId": "iu496ghx",
+      "timeOrigin": 1792694582154,
+      "at": 8,
+      "path": "/",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 5819.532,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "iu496ghx",
+      "timeOrigin": 1792694582154,
+      "at": 46,
+      "path": "/",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 6021.43,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "iu496ghx",
+      "timeOrigin": 1792694582154,
+      "at": 248,
+      "path": "/",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "ServiceWorkerContainer.register",
+      "caller": "Rl@<owned-origin>/assets/index-Hu7fxlfa.js:9:24393\nGn@<owned-origin>/assets/index-Hu7fxlfa.js:9:42612\n@<owned-origin>/assets/index-Hu7fxlfa.js:9:40900\nZe@<owned-origin>/assets/index-Hu7fxlfa.js:2:10333"
+    },
+    {
+      "receivedAtMs": 6026.358,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "receivedAtMs": 6036.306,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "iu496ghx",
+      "timeOrigin": 1792694582154,
+      "at": 263,
+      "path": "/",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 6051.424,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "iu496ghx",
+      "timeOrigin": 1792694582154,
+      "at": 278,
+      "path": "/",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 6063.531,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "iu496ghx",
+      "timeOrigin": 1792694582154,
+      "at": 290,
+      "path": "/",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 6500.41,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "iu496ghx",
+      "timeOrigin": 1792694582154,
+      "at": 728,
+      "path": "/",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "beforeunload",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 6501.906,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "iu496ghx",
+      "timeOrigin": 1792694582154,
+      "at": 729,
+      "path": "/",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 6509.281,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "iu496ghx",
+      "timeOrigin": 1792694582154,
+      "at": 737,
+      "path": "/",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 6509.825,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "iu496ghx",
+      "timeOrigin": 1792694582154,
+      "at": 738,
+      "path": "/",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 6519.994,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "document-created",
+      "documentId": "vxm1537p",
+      "timeOrigin": 1792694582883,
+      "at": 19,
+      "path": "/",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 6569.854,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "vxm1537p",
+      "timeOrigin": 1792694582883,
+      "at": 64,
+      "path": "/",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 6798.545,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "vxm1537p",
+      "timeOrigin": 1792694582883,
+      "at": 297,
+      "path": "/",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "ServiceWorkerContainer.register",
+      "caller": "Rl@<owned-origin>/assets/index-Hu7fxlfa.js:9:24393\nGn@<owned-origin>/assets/index-Hu7fxlfa.js:9:42612\n@<owned-origin>/assets/index-Hu7fxlfa.js:9:40900\nZe@<owned-origin>/assets/index-Hu7fxlfa.js:2:10333"
+    },
+    {
+      "receivedAtMs": 6805.863,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "receivedAtMs": 6816.182,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "vxm1537p",
+      "timeOrigin": 1792694582883,
+      "at": 313,
+      "path": "/",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 6830.109,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "vxm1537p",
+      "timeOrigin": 1792694582883,
+      "at": 328,
+      "path": "/",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 6844.352,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "vxm1537p",
+      "timeOrigin": 1792694582883,
+      "at": 342,
+      "path": "/",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 7207.712,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "vxm1537p",
+      "timeOrigin": 1792694582883,
+      "at": 706,
+      "path": "/",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "beforeunload",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 7208.53,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "vxm1537p",
+      "timeOrigin": 1792694582883,
+      "at": 707,
+      "path": "/",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 7216.497,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "vxm1537p",
+      "timeOrigin": 1792694582883,
+      "at": 715,
+      "path": "/",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 7217.158,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "vxm1537p",
+      "timeOrigin": 1792694582883,
+      "at": 716,
+      "path": "/",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 7225.847,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "document-created",
+      "documentId": "0lqrx6vl",
+      "timeOrigin": 1792694583590,
+      "at": 18,
+      "path": "/learn",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 7269.894,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "0lqrx6vl",
+      "timeOrigin": 1792694583590,
+      "at": 61,
+      "path": "/learn",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 7502.394,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "0lqrx6vl",
+      "timeOrigin": 1792694583590,
+      "at": 294,
+      "path": "/learn",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "ServiceWorkerContainer.register",
+      "caller": "Rl@<owned-origin>/assets/index-Hu7fxlfa.js:9:24393\nGn@<owned-origin>/assets/index-Hu7fxlfa.js:9:42612\n@<owned-origin>/assets/index-Hu7fxlfa.js:9:40900\nZe@<owned-origin>/assets/index-Hu7fxlfa.js:2:10333"
+    },
+    {
+      "receivedAtMs": 7507.485,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "receivedAtMs": 7519.135,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "0lqrx6vl",
+      "timeOrigin": 1792694583590,
+      "at": 310,
+      "path": "/learn",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 7565.665,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "0lqrx6vl",
+      "timeOrigin": 1792694583590,
+      "at": 357,
+      "path": "/learn",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 7582.037,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "0lqrx6vl",
+      "timeOrigin": 1792694583590,
+      "at": 373,
+      "path": "/learn",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 7898.454,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "0lqrx6vl",
+      "timeOrigin": 1792694583590,
+      "at": 691,
+      "path": "/learn",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "beforeunload",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 7904.751,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "0lqrx6vl",
+      "timeOrigin": 1792694583590,
+      "at": 696,
+      "path": "/learn",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 7908.082,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "0lqrx6vl",
+      "timeOrigin": 1792694583590,
+      "at": 700,
+      "path": "/learn",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 7908.684,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "0lqrx6vl",
+      "timeOrigin": 1792694583590,
+      "at": 701,
+      "path": "/learn",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 7915.814,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "document-created",
+      "documentId": "r9autiaq",
+      "timeOrigin": 1792694584281,
+      "at": 17,
+      "path": "/learn",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 7959.94,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "r9autiaq",
+      "timeOrigin": 1792694584281,
+      "at": 56,
+      "path": "/learn",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 8138.607,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "r9autiaq",
+      "timeOrigin": 1792694584281,
+      "at": 239,
+      "path": "/learn",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "ServiceWorkerContainer.register",
+      "caller": "Rl@<owned-origin>/assets/index-Hu7fxlfa.js:9:24393\nGn@<owned-origin>/assets/index-Hu7fxlfa.js:9:42612\n@<owned-origin>/assets/index-Hu7fxlfa.js:9:40900\nZe@<owned-origin>/assets/index-Hu7fxlfa.js:2:10333"
+    },
+    {
+      "receivedAtMs": 8142.853,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "receivedAtMs": 8156.841,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "r9autiaq",
+      "timeOrigin": 1792694584281,
+      "at": 256,
+      "path": "/learn",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 8216.174,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "r9autiaq",
+      "timeOrigin": 1792694584281,
+      "at": 316,
+      "path": "/learn",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 8236.158,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "r9autiaq",
+      "timeOrigin": 1792694584281,
+      "at": 336,
+      "path": "/learn",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 8501.402,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "r9autiaq",
+      "timeOrigin": 1792694584281,
+      "at": 602,
+      "path": "/learn",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "beforeunload",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 8507.977,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "r9autiaq",
+      "timeOrigin": 1792694584281,
+      "at": 609,
+      "path": "/learn",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 8508.145,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "r9autiaq",
+      "timeOrigin": 1792694584281,
+      "at": 609,
+      "path": "/learn",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 8517.031,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "document-created",
+      "documentId": "zajjbq4u",
+      "timeOrigin": 1792694584883,
+      "at": 16,
+      "path": "/lessons",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 8569.678,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "zajjbq4u",
+      "timeOrigin": 1792694584883,
+      "at": 63,
+      "path": "/lessons",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 8794.97,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "zajjbq4u",
+      "timeOrigin": 1792694584883,
+      "at": 293,
+      "path": "/lessons",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "ServiceWorkerContainer.register",
+      "caller": "Rl@<owned-origin>/assets/index-Hu7fxlfa.js:9:24393\nGn@<owned-origin>/assets/index-Hu7fxlfa.js:9:42612\n@<owned-origin>/assets/index-Hu7fxlfa.js:9:40900\nZe@<owned-origin>/assets/index-Hu7fxlfa.js:2:10333"
+    },
+    {
+      "receivedAtMs": 8803.257,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "receivedAtMs": 8817.62,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "zajjbq4u",
+      "timeOrigin": 1792694584883,
+      "at": 314,
+      "path": "/lessons",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 8875.181,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "zajjbq4u",
+      "timeOrigin": 1792694584883,
+      "at": 373,
+      "path": "/lessons",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 8897.757,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "zajjbq4u",
+      "timeOrigin": 1792694584883,
+      "at": 395,
+      "path": "/lessons",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 9062.073,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "zajjbq4u",
+      "timeOrigin": 1792694584883,
+      "at": 559,
+      "path": "/lessons",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 9134.347,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "zajjbq4u",
+      "timeOrigin": 1792694584883,
+      "at": 629,
+      "path": "/lessons",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "beforeunload",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 9155.806,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "zajjbq4u",
+      "timeOrigin": 1792694584883,
+      "at": 654,
+      "path": "/lessons",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 9156.002,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "zajjbq4u",
+      "timeOrigin": 1792694584883,
+      "at": 654,
+      "path": "/lessons",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 9162.799,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "document-created",
+      "documentId": "imxjxiz4",
+      "timeOrigin": 1792694585513,
+      "at": 32,
+      "path": "/lessons",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 9202.428,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "imxjxiz4",
+      "timeOrigin": 1792694585513,
+      "at": 70,
+      "path": "/lessons",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 9401.444,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "imxjxiz4",
+      "timeOrigin": 1792694585513,
+      "at": 269,
+      "path": "/lessons",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "ServiceWorkerContainer.register",
+      "caller": "Rl@<owned-origin>/assets/index-Hu7fxlfa.js:9:24393\nGn@<owned-origin>/assets/index-Hu7fxlfa.js:9:42612\n@<owned-origin>/assets/index-Hu7fxlfa.js:9:40900\nZe@<owned-origin>/assets/index-Hu7fxlfa.js:2:10333"
+    },
+    {
+      "receivedAtMs": 9407.284,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "receivedAtMs": 9417.568,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "imxjxiz4",
+      "timeOrigin": 1792694585513,
+      "at": 285,
+      "path": "/lessons",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 9480.556,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "imxjxiz4",
+      "timeOrigin": 1792694585513,
+      "at": 349,
+      "path": "/lessons",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 9499.039,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "imxjxiz4",
+      "timeOrigin": 1792694585513,
+      "at": 367,
+      "path": "/lessons",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 9666.113,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "imxjxiz4",
+      "timeOrigin": 1792694585513,
+      "at": 534,
+      "path": "/lessons",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 9717.093,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "imxjxiz4",
+      "timeOrigin": 1792694585513,
+      "at": 585,
+      "path": "/lessons",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "beforeunload",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 9753.511,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "imxjxiz4",
+      "timeOrigin": 1792694585513,
+      "at": 621,
+      "path": "/lessons",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 9753.813,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "imxjxiz4",
+      "timeOrigin": 1792694585513,
+      "at": 622,
+      "path": "/lessons",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 9762.413,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "document-created",
+      "documentId": "0zvw576g",
+      "timeOrigin": 1792694586099,
+      "at": 45,
+      "path": "/games",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 9813.978,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "0zvw576g",
+      "timeOrigin": 1792694586099,
+      "at": 92,
+      "path": "/games",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 10029.056,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "0zvw576g",
+      "timeOrigin": 1792694586099,
+      "at": 308,
+      "path": "/games",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "ServiceWorkerContainer.register",
+      "caller": "Rl@<owned-origin>/assets/index-Hu7fxlfa.js:9:24393\nGn@<owned-origin>/assets/index-Hu7fxlfa.js:9:42612\n@<owned-origin>/assets/index-Hu7fxlfa.js:9:40900\nZe@<owned-origin>/assets/index-Hu7fxlfa.js:2:10333"
+    },
+    {
+      "receivedAtMs": 10041.616,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "0zvw576g",
+      "timeOrigin": 1792694586099,
+      "at": 324,
+      "path": "/games",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 10043.618,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "receivedAtMs": 10056.249,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "0zvw576g",
+      "timeOrigin": 1792694586099,
+      "at": 338,
+      "path": "/games",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 10067.238,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "0zvw576g",
+      "timeOrigin": 1792694586099,
+      "at": 350,
+      "path": "/games",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 10129.648,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "0zvw576g",
+      "timeOrigin": 1792694586099,
+      "at": 412,
+      "path": "/games",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 10342.666,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "0zvw576g",
+      "timeOrigin": 1792694586099,
+      "at": 625,
+      "path": "/games",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "beforeunload",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 10359.604,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "0zvw576g",
+      "timeOrigin": 1792694586099,
+      "at": 642,
+      "path": "/games",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 10361.916,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "0zvw576g",
+      "timeOrigin": 1792694586099,
+      "at": 644,
+      "path": "/games",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 10370.26,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "document-created",
+      "documentId": "pdc0876o",
+      "timeOrigin": 1792694586725,
+      "at": 27,
+      "path": "/games",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 10417.349,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "pdc0876o",
+      "timeOrigin": 1792694586725,
+      "at": 73,
+      "path": "/games",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 10649.661,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "pdc0876o",
+      "timeOrigin": 1792694586725,
+      "at": 306,
+      "path": "/games",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "ServiceWorkerContainer.register",
+      "caller": "Rl@<owned-origin>/assets/index-Hu7fxlfa.js:9:24393\nGn@<owned-origin>/assets/index-Hu7fxlfa.js:9:42612\n@<owned-origin>/assets/index-Hu7fxlfa.js:9:40900\nZe@<owned-origin>/assets/index-Hu7fxlfa.js:2:10333"
+    },
+    {
+      "receivedAtMs": 10655.809,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "receivedAtMs": 10666.924,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "pdc0876o",
+      "timeOrigin": 1792694586725,
+      "at": 323,
+      "path": "/games",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 10722.831,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "pdc0876o",
+      "timeOrigin": 1792694586725,
+      "at": 379,
+      "path": "/games",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 10738.661,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "pdc0876o",
+      "timeOrigin": 1792694586725,
+      "at": 395,
+      "path": "/games",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 10772.927,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "pdc0876o",
+      "timeOrigin": 1792694586725,
+      "at": 425,
+      "path": "/games",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 11291.034,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "pdc0876o",
+      "timeOrigin": 1792694586725,
+      "at": 948,
+      "path": "/games",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "beforeunload",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 11301.256,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "pdc0876o",
+      "timeOrigin": 1792694586725,
+      "at": 957,
+      "path": "/games",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 11301.315,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "pdc0876o",
+      "timeOrigin": 1792694586725,
+      "at": 958,
+      "path": "/games",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 11306.822,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "document-created",
+      "documentId": "lah73wdh",
+      "timeOrigin": 1792694587673,
+      "at": 15,
+      "path": "/stats",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 11366.772,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "lah73wdh",
+      "timeOrigin": 1792694587673,
+      "at": 72,
+      "path": "/stats",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 11578.351,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "lah73wdh",
+      "timeOrigin": 1792694587673,
+      "at": 286,
+      "path": "/stats",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "ServiceWorkerContainer.register",
+      "caller": "Rl@<owned-origin>/assets/index-Hu7fxlfa.js:9:24393\nGn@<owned-origin>/assets/index-Hu7fxlfa.js:9:42612\n@<owned-origin>/assets/index-Hu7fxlfa.js:9:40900\nZe@<owned-origin>/assets/index-Hu7fxlfa.js:2:10333"
+    },
+    {
+      "receivedAtMs": 11583.208,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "receivedAtMs": 11595.262,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "lah73wdh",
+      "timeOrigin": 1792694587673,
+      "at": 303,
+      "path": "/stats",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 11621.419,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "lah73wdh",
+      "timeOrigin": 1792694587673,
+      "at": 328,
+      "path": "/stats",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 11626.23,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "lah73wdh",
+      "timeOrigin": 1792694587673,
+      "at": 333,
+      "path": "/stats",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 11652.872,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "lah73wdh",
+      "timeOrigin": 1792694587673,
+      "at": 361,
+      "path": "/stats",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 11806.475,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "lah73wdh",
+      "timeOrigin": 1792694587673,
+      "at": 514,
+      "path": "/stats",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "beforeunload",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 11815.786,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "lah73wdh",
+      "timeOrigin": 1792694587673,
+      "at": 524,
+      "path": "/stats",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 11815.831,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "lah73wdh",
+      "timeOrigin": 1792694587673,
+      "at": 524,
+      "path": "/stats",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 11821.234,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "document-created",
+      "documentId": "hdahz3pm",
+      "timeOrigin": 1792694588188,
+      "at": 15,
+      "path": "/stats",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 11864.938,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "hdahz3pm",
+      "timeOrigin": 1792694588188,
+      "at": 55,
+      "path": "/stats",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 12073.653,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "hdahz3pm",
+      "timeOrigin": 1792694588188,
+      "at": 268,
+      "path": "/stats",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "ServiceWorkerContainer.register",
+      "caller": "Rl@<owned-origin>/assets/index-Hu7fxlfa.js:9:24393\nGn@<owned-origin>/assets/index-Hu7fxlfa.js:9:42612\n@<owned-origin>/assets/index-Hu7fxlfa.js:9:40900\nZe@<owned-origin>/assets/index-Hu7fxlfa.js:2:10333"
+    },
+    {
+      "receivedAtMs": 12078.557,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "receivedAtMs": 12094.661,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "hdahz3pm",
+      "timeOrigin": 1792694588188,
+      "at": 284,
+      "path": "/stats",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 12133.763,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "hdahz3pm",
+      "timeOrigin": 1792694588188,
+      "at": 327,
+      "path": "/stats",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 12156.397,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "hdahz3pm",
+      "timeOrigin": 1792694588188,
+      "at": 349,
+      "path": "/stats",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 12269.942,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "hdahz3pm",
+      "timeOrigin": 1792694588188,
+      "at": 460,
+      "path": "/stats",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 12303.99,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "hdahz3pm",
+      "timeOrigin": 1792694588188,
+      "at": 498,
+      "path": "/stats",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "beforeunload",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 12313.532,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "hdahz3pm",
+      "timeOrigin": 1792694588188,
+      "at": 508,
+      "path": "/stats",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 12313.78,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "hdahz3pm",
+      "timeOrigin": 1792694588188,
+      "at": 508,
+      "path": "/stats",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 12321.123,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "document-created",
+      "documentId": "gkbfqo0i",
+      "timeOrigin": 1792694588687,
+      "at": 14,
+      "path": "/settings",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 12380.145,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "gkbfqo0i",
+      "timeOrigin": 1792694588687,
+      "at": 69,
+      "path": "/settings",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 12604.131,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "gkbfqo0i",
+      "timeOrigin": 1792694588687,
+      "at": 298,
+      "path": "/settings",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "ServiceWorkerContainer.register",
+      "caller": "Rl@<owned-origin>/assets/index-Hu7fxlfa.js:9:24393\nGn@<owned-origin>/assets/index-Hu7fxlfa.js:9:42612\n@<owned-origin>/assets/index-Hu7fxlfa.js:9:40900\nZe@<owned-origin>/assets/index-Hu7fxlfa.js:2:10333"
+    },
+    {
+      "receivedAtMs": 12613.21,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "receivedAtMs": 12621.572,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "gkbfqo0i",
+      "timeOrigin": 1792694588687,
+      "at": 315,
+      "path": "/settings",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 12662.586,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "gkbfqo0i",
+      "timeOrigin": 1792694588687,
+      "at": 357,
+      "path": "/settings",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 12683.712,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "gkbfqo0i",
+      "timeOrigin": 1792694588687,
+      "at": 378,
+      "path": "/settings",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 12822.181,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "gkbfqo0i",
+      "timeOrigin": 1792694588687,
+      "at": 512,
+      "path": "/settings",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 12892.507,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "gkbfqo0i",
+      "timeOrigin": 1792694588687,
+      "at": 587,
+      "path": "/settings",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "beforeunload",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 12920.758,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "gkbfqo0i",
+      "timeOrigin": 1792694588687,
+      "at": 613,
+      "path": "/settings",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 12920.957,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "gkbfqo0i",
+      "timeOrigin": 1792694588687,
+      "at": 614,
+      "path": "/settings",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 12932.068,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "document-created",
+      "documentId": "rr2o4upm",
+      "timeOrigin": 1792694589275,
+      "at": 38,
+      "path": "/settings",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 12985.239,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "rr2o4upm",
+      "timeOrigin": 1792694589275,
+      "at": 87,
+      "path": "/settings",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 13196.956,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "rr2o4upm",
+      "timeOrigin": 1792694589275,
+      "at": 303,
+      "path": "/settings",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "ServiceWorkerContainer.register",
+      "caller": "Rl@<owned-origin>/assets/index-Hu7fxlfa.js:9:24393\nGn@<owned-origin>/assets/index-Hu7fxlfa.js:9:42612\n@<owned-origin>/assets/index-Hu7fxlfa.js:9:40900\nZe@<owned-origin>/assets/index-Hu7fxlfa.js:2:10333"
+    },
+    {
+      "receivedAtMs": 13201.565,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "receivedAtMs": 13214.679,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "rr2o4upm",
+      "timeOrigin": 1792694589275,
+      "at": 321,
+      "path": "/settings",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 13260.719,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "rr2o4upm",
+      "timeOrigin": 1792694589275,
+      "at": 365,
+      "path": "/settings",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 13281.697,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "rr2o4upm",
+      "timeOrigin": 1792694589275,
+      "at": 387,
+      "path": "/settings",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 13447.069,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "rr2o4upm",
+      "timeOrigin": 1792694589275,
+      "at": 550,
+      "path": "/settings",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 13496.123,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "rr2o4upm",
+      "timeOrigin": 1792694589275,
+      "at": 603,
+      "path": "/settings",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "beforeunload",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 13505.756,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "rr2o4upm",
+      "timeOrigin": 1792694589275,
+      "at": 610,
+      "path": "/settings",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 13505.803,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "rr2o4upm",
+      "timeOrigin": 1792694589275,
+      "at": 611,
+      "path": "/settings",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 13509.584,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "document-created",
+      "documentId": "c4pq6uqq",
+      "timeOrigin": 1792694589878,
+      "at": 13,
+      "path": "/keyboard-lab",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 13565.057,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "c4pq6uqq",
+      "timeOrigin": 1792694589878,
+      "at": 64,
+      "path": "/keyboard-lab",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 13792.277,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "c4pq6uqq",
+      "timeOrigin": 1792694589878,
+      "at": 295,
+      "path": "/keyboard-lab",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "ServiceWorkerContainer.register",
+      "caller": "Rl@<owned-origin>/assets/index-Hu7fxlfa.js:9:24393\nGn@<owned-origin>/assets/index-Hu7fxlfa.js:9:42612\n@<owned-origin>/assets/index-Hu7fxlfa.js:9:40900\nZe@<owned-origin>/assets/index-Hu7fxlfa.js:2:10333"
+    },
+    {
+      "receivedAtMs": 13798.297,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "receivedAtMs": 13807.97,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "c4pq6uqq",
+      "timeOrigin": 1792694589878,
+      "at": 310,
+      "path": "/keyboard-lab",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 13851.564,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "c4pq6uqq",
+      "timeOrigin": 1792694589878,
+      "at": 354,
+      "path": "/keyboard-lab",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 13870.36,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "c4pq6uqq",
+      "timeOrigin": 1792694589878,
+      "at": 373,
+      "path": "/keyboard-lab",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 14061.853,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "c4pq6uqq",
+      "timeOrigin": 1792694589878,
+      "at": 565,
+      "path": "/keyboard-lab",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "beforeunload",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 14067.538,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "c4pq6uqq",
+      "timeOrigin": 1792694589878,
+      "at": 570,
+      "path": "/keyboard-lab",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 14073.704,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "c4pq6uqq",
+      "timeOrigin": 1792694589878,
+      "at": 575,
+      "path": "/keyboard-lab",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 14073.742,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "c4pq6uqq",
+      "timeOrigin": 1792694589878,
+      "at": 576,
+      "path": "/keyboard-lab",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 14078.444,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "document-created",
+      "documentId": "lhs225ib",
+      "timeOrigin": 1792694590444,
+      "at": 16,
+      "path": "/keyboard-lab",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 14117.949,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "lhs225ib",
+      "timeOrigin": 1792694590444,
+      "at": 55,
+      "path": "/keyboard-lab",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 14318.54,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "lhs225ib",
+      "timeOrigin": 1792694590444,
+      "at": 256,
+      "path": "/keyboard-lab",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "ServiceWorkerContainer.register",
+      "caller": "Rl@<owned-origin>/assets/index-Hu7fxlfa.js:9:24393\nGn@<owned-origin>/assets/index-Hu7fxlfa.js:9:42612\n@<owned-origin>/assets/index-Hu7fxlfa.js:9:40900\nZe@<owned-origin>/assets/index-Hu7fxlfa.js:2:10333"
+    },
+    {
+      "receivedAtMs": 14324.165,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "receivedAtMs": 14334.538,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "lhs225ib",
+      "timeOrigin": 1792694590444,
+      "at": 272,
+      "path": "/keyboard-lab",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 14376.88,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "lhs225ib",
+      "timeOrigin": 1792694590444,
+      "at": 314,
+      "path": "/keyboard-lab",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.open",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 14395.301,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "lhs225ib",
+      "timeOrigin": 1792694590444,
+      "at": 333,
+      "path": "/keyboard-lab",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 14524.238,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "lhs225ib",
+      "timeOrigin": 1792694590444,
+      "at": 461,
+      "path": "/keyboard-lab",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "Cache.match",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 14557.566,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "lhs225ib",
+      "timeOrigin": 1792694590444,
+      "at": 495,
+      "path": "/keyboard-lab",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "beforeunload",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 14590.202,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "lhs225ib",
+      "timeOrigin": 1792694590444,
+      "at": 528,
+      "path": "/keyboard-lab",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 14590.935,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "lhs225ib",
+      "timeOrigin": 1792694590444,
+      "at": 529,
+      "path": "/keyboard-lab",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 14601.652,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "document-created",
+      "documentId": "tjv7dzxq",
+      "timeOrigin": 1792694590940,
+      "at": 43,
+      "path": "/privacy",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 14654.715,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "tjv7dzxq",
+      "timeOrigin": 1792694590940,
+      "at": 91,
+      "path": "/privacy",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 14973.995,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "tjv7dzxq",
+      "timeOrigin": 1792694590940,
+      "at": 414,
+      "path": "/privacy",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "ServiceWorkerContainer.register",
+      "caller": "Rl@<owned-origin>/assets/index-Hu7fxlfa.js:9:24393\nGn@<owned-origin>/assets/index-Hu7fxlfa.js:9:42612\n@<owned-origin>/assets/index-Hu7fxlfa.js:9:40900\nZe@<owned-origin>/assets/index-Hu7fxlfa.js:2:10333"
+    },
+    {
+      "receivedAtMs": 14978.974,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "receivedAtMs": 15027.006,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "tjv7dzxq",
+      "timeOrigin": 1792694590940,
+      "at": 469,
+      "path": "/privacy",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "beforeunload",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 15035.831,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "tjv7dzxq",
+      "timeOrigin": 1792694590940,
+      "at": 474,
+      "path": "/privacy",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "CacheStorage.keys",
+      "caller": "@<owned-origin>/assets/pwa-7MIZVbD8.js:1:2325\n@<owned-origin>/assets/pwa-7MIZVbD8.js:1:3113"
+    },
+    {
+      "receivedAtMs": 15038.242,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "tjv7dzxq",
+      "timeOrigin": 1792694590940,
+      "at": 480,
+      "path": "/privacy",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pagehide",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 15038.281,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "tjv7dzxq",
+      "timeOrigin": 1792694590940,
+      "at": 480,
+      "path": "/privacy",
+      "readyState": "complete",
+      "visibility": "hidden",
+      "event": "visibilitychange",
+      "persisted": null
+    },
+    {
+      "receivedAtMs": 15043.532,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "document-created",
+      "documentId": "05jl3jwc",
+      "timeOrigin": 1792694591410,
+      "at": 16,
+      "path": "/privacy",
+      "readyState": "loading",
+      "visibility": "visible"
+    },
+    {
+      "receivedAtMs": 15086.397,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "lifecycle",
+      "documentId": "05jl3jwc",
+      "timeOrigin": 1792694591410,
+      "at": 54,
+      "path": "/privacy",
+      "readyState": "complete",
+      "visibility": "visible",
+      "event": "pageshow",
+      "persisted": false
+    },
+    {
+      "receivedAtMs": 15420.142,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "native-entry",
+      "documentId": "05jl3jwc",
+      "timeOrigin": 1792694591410,
+      "at": 392,
+      "path": "/privacy",
+      "readyState": "complete",
+      "visibility": "visible",
+      "api": "ServiceWorkerContainer.register",
+      "caller": "Rl@<owned-origin>/assets/index-Hu7fxlfa.js:9:24393\nGn@<owned-origin>/assets/index-Hu7fxlfa.js:9:42612\n@<owned-origin>/assets/index-Hu7fxlfa.js:9:40900\nZe@<owned-origin>/assets/index-Hu7fxlfa.js:2:10333"
+    },
+    {
+      "receivedAtMs": 15437.327,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    }
+  ],
+  "requests": [
+    {
+      "atMs": 2209.415,
+      "cell": "tiny-no-navigation-control",
+      "path": "/__diag/control/old.html",
+      "status": 200,
+      "finishedAtMs": 2211.81
+    },
+    {
+      "atMs": 2293.112,
+      "cell": "tiny-no-navigation-control",
+      "path": "/__diag/control/worker.js",
+      "status": 200,
+      "finishedAtMs": 2293.882
+    },
+    {
+      "atMs": 2547.531,
+      "cell": "tiny-held-replacement-cache-and-register",
+      "path": "/__diag/held/old.html",
+      "status": 200,
+      "finishedAtMs": 2548.552
+    },
+    {
+      "atMs": 2597.684,
+      "cell": "tiny-held-replacement-cache-and-register",
+      "path": "/__diag/held/replacement.html",
+      "status": 200,
+      "finishedAtMs": 2625.468
+    },
+    {
+      "atMs": 2846.443,
+      "cell": "tiny-inflight-registration-script-held-then-replacement",
+      "path": "/__diag/inflight/old.html",
+      "status": 200,
+      "finishedAtMs": 2846.991
+    },
+    {
+      "atMs": 2892.529,
+      "cell": "tiny-inflight-registration-script-held-then-replacement",
+      "path": "/__diag/inflight/worker.js",
+      "status": null
+    },
+    {
+      "atMs": 2899.525,
+      "cell": "tiny-inflight-registration-script-held-then-replacement",
+      "path": "/__diag/inflight/replacement.html",
+      "status": 200,
+      "finishedAtMs": 2904.42
+    },
+    {
+      "atMs": 3097.503,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/auth",
+      "status": 200,
+      "finishedAtMs": 3100.179
+    },
+    {
+      "atMs": 3107.635,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/fonts/sora-latin-wght-normal.woff2",
+      "status": 200,
+      "finishedAtMs": 3109.5
+    },
+    {
+      "atMs": 3110.549,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/site.webmanifest",
+      "status": 200,
+      "finishedAtMs": 3113.15
+    },
+    {
+      "atMs": 3112.159,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/index-Hu7fxlfa.js",
+      "status": 200,
+      "finishedAtMs": 3114.615
+    },
+    {
+      "atMs": 3112.57,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/keyboard-layout-C21F3kj3.js",
+      "status": 200,
+      "finishedAtMs": 3114.889
+    },
+    {
+      "atMs": 3219.788,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/index-CGn1jJi0.js",
+      "status": 200,
+      "finishedAtMs": 3223.148
+    },
+    {
+      "atMs": 3219.988,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/content-packs-xYdkiJY8.js",
+      "status": 200,
+      "finishedAtMs": 3222.554
+    },
+    {
+      "atMs": 3220.098,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/App-C6QhrfOt.css",
+      "status": 200,
+      "finishedAtMs": 3224.694
+    },
+    {
+      "atMs": 3252.373,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/App-CoDY0c1h.js",
+      "status": 200,
+      "finishedAtMs": 3254.116
+    },
+    {
+      "atMs": 3355.156,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/PwaStatus-DP19O8Yr.js",
+      "status": 200,
+      "finishedAtMs": 3358.74
+    },
+    {
+      "atMs": 3355.419,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/index-Hu7fxlfa.js",
+      "status": 200,
+      "finishedAtMs": 3359.125
+    },
+    {
+      "atMs": 3355.763,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/pwa-7MIZVbD8.js",
+      "status": 200,
+      "finishedAtMs": 3359.376
+    },
+    {
+      "atMs": 3357.126,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/createLucideIcon-BIXytS4b.js",
+      "status": 200,
+      "finishedAtMs": 3361.232
+    },
+    {
+      "atMs": 3357.253,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/x-B5zb5i2N.js",
+      "status": 200,
+      "finishedAtMs": 3360.523
+    },
+    {
+      "atMs": 3357.371,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/download-O7MRGMcB.js",
+      "status": 200,
+      "finishedAtMs": 3360.953
+    },
+    {
+      "atMs": 3359.838,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/index-XwygSNVl.css",
+      "status": 200,
+      "finishedAtMs": 3363.06
+    },
+    {
+      "atMs": 3371.754,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/fonts/inter-latin-wght-normal.woff2",
+      "status": 200,
+      "finishedAtMs": 3373.21
+    },
+    {
+      "atMs": 3387.466,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Auth-DQDZ9HA8.js",
+      "status": 200,
+      "finishedAtMs": 3391.261
+    },
+    {
+      "atMs": 3387.722,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/button-IlWcjM2g.js",
+      "status": 200,
+      "finishedAtMs": 3390.717
+    },
+    {
+      "atMs": 3388.39,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/index-DrIEWNcn.js",
+      "status": 200,
+      "finishedAtMs": 3390.913
+    },
+    {
+      "atMs": 3388.533,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/index-Drd88ecX.js",
+      "status": 200,
+      "finishedAtMs": 3391.398
+    },
+    {
+      "atMs": 3389.466,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/utils-d2XQ1MEC.js",
+      "status": 200,
+      "finishedAtMs": 3391.54
+    },
+    {
+      "atMs": 3389.588,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/index-DKMcZxRg.js",
+      "status": 200,
+      "finishedAtMs": 3391.878
+    },
+    {
+      "atMs": 3391.659,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/index-unIW2Fm6.js",
+      "status": 200,
+      "finishedAtMs": 3394.576
+    },
+    {
+      "atMs": 3392.316,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/lock-BfmdeSCZ.js",
+      "status": 200,
+      "finishedAtMs": 3395.275
+    },
+    {
+      "atMs": 3598.606,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/api/auth/session",
+      "status": 503,
+      "finishedAtMs": 3598.851
+    },
+    {
+      "atMs": 3599.075,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/sw.js",
+      "status": 200,
+      "finishedAtMs": 3600.722
+    },
+    {
+      "atMs": 3654.854,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/_offline-recovery.html",
+      "status": 200,
+      "finishedAtMs": 3657.582
+    },
+    {
+      "atMs": 3655.099,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/About-BZ7e_qDU.js",
+      "status": 200,
+      "finishedAtMs": 3657.147
+    },
+    {
+      "atMs": 3655.235,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/App-C6QhrfOt.css",
+      "status": 200,
+      "finishedAtMs": 3657.88
+    },
+    {
+      "atMs": 3655.353,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/App-CoDY0c1h.js",
+      "status": 200,
+      "finishedAtMs": 3657.345
+    },
+    {
+      "atMs": 3656.386,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/ArcadePage-ChkW2Gst.css",
+      "status": 200,
+      "finishedAtMs": 3658.65
+    },
+    {
+      "atMs": 3656.533,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/ArcadePage-acltBT8I.js",
+      "status": 200,
+      "finishedAtMs": 3658.264
+    },
+    {
+      "atMs": 3661.802,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/ArcadePlayer-D9Qzpts7.js",
+      "status": 200,
+      "finishedAtMs": 3663.266
+    },
+    {
+      "atMs": 3662.069,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Arena-LT2D1Dfc.js",
+      "status": 200,
+      "finishedAtMs": 3663.049
+    },
+    {
+      "atMs": 3663.4,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Auth-DQDZ9HA8.js",
+      "status": 200,
+      "finishedAtMs": 3666.064
+    },
+    {
+      "atMs": 3663.609,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Classroom-De-lkOzF.js",
+      "status": 200,
+      "finishedAtMs": 3665.756
+    },
+    {
+      "atMs": 3663.759,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/CommandPalette-DNChiy4I.js",
+      "status": 200,
+      "finishedAtMs": 3665.354
+    },
+    {
+      "atMs": 3664.062,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/DuelAttempt-BacKsHwL.js",
+      "status": 200,
+      "finishedAtMs": 3665.554
+    },
+    {
+      "atMs": 3664.298,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Footer-CCk0_uxQ.js",
+      "status": 200,
+      "finishedAtMs": 3666.491
+    },
+    {
+      "atMs": 3664.422,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Friends-CUpMSxkP.js",
+      "status": 200,
+      "finishedAtMs": 3666.643
+    },
+    {
+      "atMs": 3666.25,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Games-6wmuXr_L.js",
+      "status": 200,
+      "finishedAtMs": 3668.927
+    },
+    {
+      "atMs": 3666.751,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Games-CGLw_3iz.css",
+      "status": 200,
+      "finishedAtMs": 3670.93
+    },
+    {
+      "atMs": 3667.05,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Index-iDCVuQIn.js",
+      "status": 200,
+      "finishedAtMs": 3669.197
+    },
+    {
+      "atMs": 3667.728,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/KeyboardLab-CcNJNaQx.js",
+      "status": 200,
+      "finishedAtMs": 3669.833
+    },
+    {
+      "atMs": 3667.889,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Leaderboard-CLDZfPqp.js",
+      "status": 200,
+      "finishedAtMs": 3669.467
+    },
+    {
+      "atMs": 3667.998,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Learn-D6hId1WA.css",
+      "status": 200,
+      "finishedAtMs": 3671.867
+    },
+    {
+      "atMs": 3670.204,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Learn-R5H_t_lB.js",
+      "status": 200,
+      "finishedAtMs": 3672.541
+    },
+    {
+      "atMs": 3670.647,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Lessons-C9g1A4l3.js",
+      "status": 200,
+      "finishedAtMs": 3673.049
+    },
+    {
+      "atMs": 3671.165,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Lessons-CAPN-WR7.css",
+      "status": 200,
+      "finishedAtMs": 3674.223
+    },
+    {
+      "atMs": 3671.308,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/LetterProgressPanel-CLPb3oRj.js",
+      "status": 200,
+      "finishedAtMs": 3673.552
+    },
+    {
+      "atMs": 3671.556,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/LocalReminderRuntime-Bdymx_r8.js",
+      "status": 200,
+      "finishedAtMs": 3674.038
+    },
+    {
+      "atMs": 3672.15,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/NotFound-DkLho0xa.js",
+      "status": 200,
+      "finishedAtMs": 3674.878
+    },
+    {
+      "atMs": 3673.273,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Offline-BpJwbS5k.js",
+      "status": 200,
+      "finishedAtMs": 3675.768
+    },
+    {
+      "atMs": 3673.774,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Privacy-D_Qk9dWv.js",
+      "status": 200,
+      "finishedAtMs": 3676.199
+    },
+    {
+      "atMs": 3674.318,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Profile-DJvAiVMS.js",
+      "status": 200,
+      "finishedAtMs": 3676.337
+    },
+    {
+      "atMs": 3674.628,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/ProfileAppearance-DPVan69n.js",
+      "status": 200,
+      "finishedAtMs": 3676.6
+    },
+    {
+      "atMs": 3675.134,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Progression-Bm8sgK46.js",
+      "status": 200,
+      "finishedAtMs": 3677.416
+    },
+    {
+      "atMs": 3675.458,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/PwaStatus-DP19O8Yr.js",
+      "status": 200,
+      "finishedAtMs": 3677.953
+    },
+    {
+      "atMs": 3676.005,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Race-p1y089Tp.js",
+      "status": 200,
+      "finishedAtMs": 3678.71
+    },
+    {
+      "atMs": 3676.702,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Ranked-B5HEN022.js",
+      "status": 200,
+      "finishedAtMs": 3679.046
+    },
+    {
+      "atMs": 3676.932,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/SessionInsightsPanel-CElvWTkx.js",
+      "status": 200,
+      "finishedAtMs": 3679.691
+    },
+    {
+      "atMs": 3677.174,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/SessionResults-BKjJAhZ8.js",
+      "status": 200,
+      "finishedAtMs": 3680.185
+    },
+    {
+      "atMs": 3678.098,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Settings-DyGQHtCV.js",
+      "status": 200,
+      "finishedAtMs": 3681.493
+    },
+    {
+      "atMs": 3678.481,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Stats-D3nj1zat.js",
+      "status": 200,
+      "finishedAtMs": 3682.318
+    },
+    {
+      "atMs": 3679.34,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/StatsSpeedChart-ulIwdEHL.js",
+      "status": 200,
+      "finishedAtMs": 3683.487
+    },
+    {
+      "atMs": 3680.806,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Studio-BPi8zNnu.css",
+      "status": 200,
+      "finishedAtMs": 3685.057
+    },
+    {
+      "atMs": 3681.109,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Studio-sUnUPQjt.js",
+      "status": 200,
+      "finishedAtMs": 3684.16
+    },
+    {
+      "atMs": 3682.642,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/Terms-BgJHRHkg.js",
+      "status": 200,
+      "finishedAtMs": 3685.77
+    },
+    {
+      "atMs": 3682.909,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/TouchTyping-BCovsm-H.js",
+      "status": 200,
+      "finishedAtMs": 3686.605
+    },
+    {
+      "atMs": 3683.043,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/TypingArea-DnWZYhkV.js",
+      "status": 200,
+      "finishedAtMs": 3687.188
+    },
+    {
+      "atMs": 3683.863,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/arrow-right-BZ38epOJ.js",
+      "status": 200,
+      "finishedAtMs": 3687.85
+    },
+    {
+      "atMs": 3685.39,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/arrow-up-right-DxQfEDhX.js",
+      "status": 200,
+      "finishedAtMs": 3688.534
+    },
+    {
+      "atMs": 3686.24,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/button-IlWcjM2g.js",
+      "status": 200,
+      "finishedAtMs": 3688.906
+    },
+    {
+      "atMs": 3686.85,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/calendar-qHXkz0Pn.js",
+      "status": 200,
+      "finishedAtMs": 3689.386
+    },
+    {
+      "atMs": 3687.613,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/caret-handoff-Bo5AUEQO.js",
+      "status": 200,
+      "finishedAtMs": 3689.81
+    },
+    {
+      "atMs": 3688.179,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/challenge-timing-BxCLrTN0.js",
+      "status": 200,
+      "finishedAtMs": 3690.083
+    },
+    {
+      "atMs": 3688.323,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/check--g0ez_bD.js",
+      "status": 200,
+      "finishedAtMs": 3690.221
+    },
+    {
+      "atMs": 3689.039,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/clock-3-B2I-V-5S.js",
+      "status": 200,
+      "finishedAtMs": 3690.569
+    },
+    {
+      "atMs": 3689.561,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/composition-echo-3wx55gok.js",
+      "status": 200,
+      "finishedAtMs": 3691.872
+    },
+    {
+      "atMs": 3690.382,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/content-packs-xYdkiJY8.js",
+      "status": 200,
+      "finishedAtMs": 3692.494
+    },
+    {
+      "atMs": 3690.777,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/createLucideIcon-BIXytS4b.js",
+      "status": 200,
+      "finishedAtMs": 3693.087
+    },
+    {
+      "atMs": 3691.077,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/dashboard-sJvyFrhk.js",
+      "status": 200,
+      "finishedAtMs": 3693.214
+    },
+    {
+      "atMs": 3691.293,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/dialog-CszcXmP7.js",
+      "status": 200,
+      "finishedAtMs": 3693.745
+    },
+    {
+      "atMs": 3691.6,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/download-O7MRGMcB.js",
+      "status": 200,
+      "finishedAtMs": 3694.066
+    },
+    {
+      "atMs": 3692.632,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/evidence-policy-DPUBgzfl.js",
+      "status": 200,
+      "finishedAtMs": 3694.96
+    },
+    {
+      "atMs": 3692.88,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/finger-map-ByR5UOq4.js",
+      "status": 200,
+      "finishedAtMs": 3696.424
+    },
+    {
+      "atMs": 3694.236,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/flag-DNdNPhpH.js",
+      "status": 200,
+      "finishedAtMs": 3697.085
+    },
+    {
+      "atMs": 3694.373,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/generateCategoricalChart-CiVk6BiN.js",
+      "status": 200,
+      "finishedAtMs": 3698.803
+    },
+    {
+      "atMs": 3694.555,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/history-model-Cg8nY6dX.js",
+      "status": 200,
+      "finishedAtMs": 3697.394
+    },
+    {
+      "atMs": 3694.67,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/index-CGn1jJi0.js",
+      "status": 200,
+      "finishedAtMs": 3697.84
+    },
+    {
+      "atMs": 3696.033,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/index-DKMcZxRg.js",
+      "status": 200,
+      "finishedAtMs": 3700.068
+    },
+    {
+      "atMs": 3696.831,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/index-DrIEWNcn.js",
+      "status": 200,
+      "finishedAtMs": 3700.349
+    },
+    {
+      "atMs": 3699.129,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/index-Drd88ecX.js",
+      "status": 200,
+      "finishedAtMs": 3702.024
+    },
+    {
+      "atMs": 3699.328,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/index-Hu7fxlfa.js",
+      "status": 200,
+      "finishedAtMs": 3702.481
+    },
+    {
+      "atMs": 3699.759,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/index-XwygSNVl.css",
+      "status": 200,
+      "finishedAtMs": 3704.148
+    },
+    {
+      "atMs": 3700.528,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/index-lhFHRFjh.js",
+      "status": 200,
+      "finishedAtMs": 3703.953
+    },
+    {
+      "atMs": 3701.638,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/index-unIW2Fm6.js",
+      "status": 200,
+      "finishedAtMs": 3704.382
+    },
+    {
+      "atMs": 3703.09,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/keyboard-audio-CkcWSiE5.js",
+      "status": 200,
+      "finishedAtMs": 3705.742
+    },
+    {
+      "atMs": 3703.247,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/keyboard-bloom-CFGEPK_L.js",
+      "status": 200,
+      "finishedAtMs": 3705.552
+    },
+    {
+      "atMs": 3703.372,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/keyboard-lab-UzEVr6VM.js",
+      "status": 200,
+      "finishedAtMs": 3706.013
+    },
+    {
+      "atMs": 3704.725,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/keyboard-layout-C21F3kj3.js",
+      "status": 200,
+      "finishedAtMs": 3707.121
+    },
+    {
+      "atMs": 3705.138,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/keyboard-render-worker-oeYyHX4e.js",
+      "status": 200,
+      "finishedAtMs": 3708.418
+    },
+    {
+      "atMs": 3705.286,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/keyboard-scene-DYowRFwC.js",
+      "status": 200,
+      "finishedAtMs": 3708.106
+    },
+    {
+      "atMs": 3706.177,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/keyboard-scene-bridge-D2CPjQ99.js",
+      "status": 200,
+      "finishedAtMs": 3709.224
+    },
+    {
+      "atMs": 3706.565,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/keybr-engine-ClBDaVDn.js",
+      "status": 200,
+      "finishedAtMs": 3710.22
+    },
+    {
+      "atMs": 3706.833,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/live-keyboard-BC8ynRIi.js",
+      "status": 200,
+      "finishedAtMs": 3710.37
+    },
+    {
+      "atMs": 3707.643,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/local-adapter-D7X_Egle.js",
+      "status": 200,
+      "finishedAtMs": 3711.797
+    },
+    {
+      "atMs": 3709.354,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/lock-BfmdeSCZ.js",
+      "status": 200,
+      "finishedAtMs": 3713.755
+    },
+    {
+      "atMs": 3709.68,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/metrics-pgam_ldE.js",
+      "status": 200,
+      "finishedAtMs": 3714.273
+    },
+    {
+      "atMs": 3709.975,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/pause-BJ-hKDzO.js",
+      "status": 200,
+      "finishedAtMs": 3715.27
+    },
+    {
+      "atMs": 3711.261,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/placement-q7QsZZHR.js",
+      "status": 200,
+      "finishedAtMs": 3715.618
+    },
+    {
+      "atMs": 3713.014,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/play-Bmw62xUq.js",
+      "status": 200,
+      "finishedAtMs": 3716.379
+    },
+    {
+      "atMs": 3713.282,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/practice-style-AFDeWHzT.js",
+      "status": 200,
+      "finishedAtMs": 3716.574
+    },
+    {
+      "atMs": 3714.866,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/progression-service-B55rHyyf.js",
+      "status": 200,
+      "finishedAtMs": 3717.072
+    },
+    {
+      "atMs": 3715.025,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/progression-storage-BaAJtERX.js",
+      "status": 200,
+      "finishedAtMs": 3717.238
+    },
+    {
+      "atMs": 3715.865,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/pwa-7MIZVbD8.js",
+      "status": 200,
+      "finishedAtMs": 3718.174
+    },
+    {
+      "atMs": 3716.146,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/records-C0RZ2ML7.js",
+      "status": 200,
+      "finishedAtMs": 3718.478
+    },
+    {
+      "atMs": 3716.781,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/reminders-CI2LqXB-.js",
+      "status": 200,
+      "finishedAtMs": 3718.998
+    },
+    {
+      "atMs": 3717.441,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/rotate-ccw-7bmv0FuU.js",
+      "status": 200,
+      "finishedAtMs": 3719.39
+    },
+    {
+      "atMs": 3717.757,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/season-customization-waN5yPvc.js",
+      "status": 200,
+      "finishedAtMs": 3719.571
+    },
+    {
+      "atMs": 3717.911,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/session-ROujSjT7.js",
+      "status": 200,
+      "finishedAtMs": 3719.771
+    },
+    {
+      "atMs": 3718.572,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/shield-check-BRLHUK9J.js",
+      "status": 200,
+      "finishedAtMs": 3720.416
+    },
+    {
+      "atMs": 3718.783,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/sparkles-B7DCNMkf.js",
+      "status": 200,
+      "finishedAtMs": 3721.569
+    },
+    {
+      "atMs": 3719.21,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/target-Ch4nCSgX.js",
+      "status": 200,
+      "finishedAtMs": 3721.942
+    },
+    {
+      "atMs": 3719.894,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/three.module-ytFXl0Cs.js",
+      "status": 200,
+      "finishedAtMs": 3723.28
+    },
+    {
+      "atMs": 3720.583,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/timer-DqMkeolI.js",
+      "status": 200,
+      "finishedAtMs": 3722.378
+    },
+    {
+      "atMs": 3720.773,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/toaster-BFXoNhJ3.js",
+      "status": 200,
+      "finishedAtMs": 3722.562
+    },
+    {
+      "atMs": 3721.231,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/typing-caret-cache-BI7bAuEd.js",
+      "status": 200,
+      "finishedAtMs": 3722.935
+    },
+    {
+      "atMs": 3724.975,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/typing-caret-cache-BVBW2Gmz.css",
+      "status": 200,
+      "finishedAtMs": 3727.703
+    },
+    {
+      "atMs": 3725.499,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/typing-course-B8IxZcdz.js",
+      "status": 200,
+      "finishedAtMs": 3727.024
+    },
+    {
+      "atMs": 3725.674,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/useCountdownClock-CyPkthnn.js",
+      "status": 200,
+      "finishedAtMs": 3727.186
+    },
+    {
+      "atMs": 3725.796,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/useIssuedChallengeCountdown-DxmXmAmF.js",
+      "status": 200,
+      "finishedAtMs": 3727.329
+    },
+    {
+      "atMs": 3725.903,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/useTestResults-CvpaUQXL.js",
+      "status": 200,
+      "finishedAtMs": 3727.556
+    },
+    {
+      "atMs": 3726.104,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/utils-d2XQ1MEC.js",
+      "status": 200,
+      "finishedAtMs": 3727.848
+    },
+    {
+      "atMs": 3728.006,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/workspace-extras-C5MF5Wzl.js",
+      "status": 200,
+      "finishedAtMs": 3731.464
+    },
+    {
+      "atMs": 3728.178,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/assets/x-B5zb5i2N.js",
+      "status": 200,
+      "finishedAtMs": 3732.079
+    },
+    {
+      "atMs": 3728.315,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/favicon.ico",
+      "status": 200,
+      "finishedAtMs": 3733.194
+    },
+    {
+      "atMs": 3728.461,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/fonts/fonts.css",
+      "status": 200,
+      "finishedAtMs": 3733.032
+    },
+    {
+      "atMs": 3728.673,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/fonts/inter-cyrillic-ext-wght-normal.woff2",
+      "status": 200,
+      "finishedAtMs": 3733.512
+    },
+    {
+      "atMs": 3728.921,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/fonts/inter-cyrillic-wght-normal.woff2",
+      "status": 200,
+      "finishedAtMs": 3733.798
+    },
+    {
+      "atMs": 3732.6,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/fonts/inter-greek-ext-wght-normal.woff2",
+      "status": 200,
+      "finishedAtMs": 3737.21
+    },
+    {
+      "atMs": 3732.774,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/fonts/inter-greek-wght-normal.woff2",
+      "status": 200,
+      "finishedAtMs": 3737.425
+    },
+    {
+      "atMs": 3734.66,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/fonts/inter-latin-ext-wght-normal.woff2",
+      "status": 200,
+      "finishedAtMs": 3739.92
+    },
+    {
+      "atMs": 3734.969,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/fonts/inter-latin-wght-normal.woff2",
+      "status": 200,
+      "finishedAtMs": 3738.296
+    },
+    {
+      "atMs": 3735.116,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/fonts/inter-vietnamese-wght-normal.woff2",
+      "status": 200,
+      "finishedAtMs": 3738.913
+    },
+    {
+      "atMs": 3735.245,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/fonts/jetbrains-mono-cyrillic-ext-wght-normal.woff2",
+      "status": 200,
+      "finishedAtMs": 3739.109
+    },
+    {
+      "atMs": 3737.909,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/fonts/jetbrains-mono-cyrillic-wght-normal.woff2",
+      "status": 200,
+      "finishedAtMs": 3741.313
+    },
+    {
+      "atMs": 3738.596,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/fonts/jetbrains-mono-greek-wght-normal.woff2",
+      "status": 200,
+      "finishedAtMs": 3741.645
+    },
+    {
+      "atMs": 3739.341,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/fonts/jetbrains-mono-latin-ext-wght-normal.woff2",
+      "status": 200,
+      "finishedAtMs": 3743.023
+    },
+    {
+      "atMs": 3739.619,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/fonts/jetbrains-mono-latin-wght-normal.woff2",
+      "status": 200,
+      "finishedAtMs": 3743.278
+    },
+    {
+      "atMs": 3740.182,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/fonts/jetbrains-mono-vietnamese-wght-normal.woff2",
+      "status": 200,
+      "finishedAtMs": 3743.555
+    },
+    {
+      "atMs": 3740.466,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/fonts/sora-latin-ext-wght-normal.woff2",
+      "status": 200,
+      "finishedAtMs": 3743.901
+    },
+    {
+      "atMs": 3742.241,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/fonts/sora-latin-wght-normal.woff2",
+      "status": 200,
+      "finishedAtMs": 3746.263
+    },
+    {
+      "atMs": 3742.606,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/icon-192.png",
+      "status": 200,
+      "finishedAtMs": 3746.86
+    },
+    {
+      "atMs": 3744.201,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/icon-512.png",
+      "status": 200,
+      "finishedAtMs": 3747.697
+    },
+    {
+      "atMs": 3744.397,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/index.html",
+      "status": 200,
+      "finishedAtMs": 3748.59
+    },
+    {
+      "atMs": 3744.569,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/og-sparowtype.png",
+      "status": 200,
+      "finishedAtMs": 3748.939
+    },
+    {
+      "atMs": 3744.689,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/placeholder.svg",
+      "status": 200,
+      "finishedAtMs": 3748.383
+    },
+    {
+      "atMs": 3747.202,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/site.webmanifest",
+      "status": 200,
+      "finishedAtMs": 3749.511
+    },
+    {
+      "atMs": 3747.9,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/sparowtype.svg",
+      "status": 200,
+      "finishedAtMs": 3749.965
+    },
+    {
+      "atMs": 4103.528,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/ranked",
+      "status": 200,
+      "finishedAtMs": 4105.394
+    },
+    {
+      "atMs": 4371.427,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/api/auth/session",
+      "status": 503,
+      "finishedAtMs": 4371.661
+    },
+    {
+      "atMs": 4808.027,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/api/auth/session",
+      "status": 503,
+      "finishedAtMs": 4808.309
+    },
+    {
+      "atMs": 5127.844,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/sw.js",
+      "status": 200,
+      "finishedAtMs": 5128.971
+    },
+    {
+      "atMs": 5746.535,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/api/leaderboards/cohorts",
+      "status": 503,
+      "finishedAtMs": 5746.861
+    },
+    {
+      "atMs": 5746.984,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/api/auth/session",
+      "status": 503,
+      "finishedAtMs": 5747.12
+    },
+    {
+      "atMs": 6023.758,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/api/auth/session",
+      "status": 503,
+      "finishedAtMs": 6024.038
+    },
+    {
+      "atMs": 6466.409,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/sw.js",
+      "status": 200,
+      "finishedAtMs": 6467.512
+    },
+    {
+      "atMs": 6801.695,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/api/auth/session",
+      "status": 503,
+      "finishedAtMs": 6801.954
+    },
+    {
+      "atMs": 7504.74,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/api/auth/session",
+      "status": 503,
+      "finishedAtMs": 7505.031
+    },
+    {
+      "atMs": 7528.171,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/sw.js",
+      "status": 200,
+      "finishedAtMs": 7529.255
+    },
+    {
+      "atMs": 8140.635,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/api/auth/session",
+      "status": 503,
+      "finishedAtMs": 8140.869
+    },
+    {
+      "atMs": 8798.548,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/api/auth/session",
+      "status": 503,
+      "finishedAtMs": 8798.92
+    },
+    {
+      "atMs": 8933.882,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/sw.js",
+      "status": 200,
+      "finishedAtMs": 8935.625
+    },
+    {
+      "atMs": 9404.703,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/api/auth/session",
+      "status": 503,
+      "finishedAtMs": 9404.952
+    },
+    {
+      "atMs": 10034.992,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/api/auth/session",
+      "status": 503,
+      "finishedAtMs": 10035.337
+    },
+    {
+      "atMs": 10158.299,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/sw.js",
+      "status": 200,
+      "finishedAtMs": 10159.944
+    },
+    {
+      "atMs": 10652.406,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/api/auth/session",
+      "status": 503,
+      "finishedAtMs": 10652.724
+    },
+    {
+      "atMs": 11292.234,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/stats",
+      "status": 200,
+      "finishedAtMs": 11295.011
+    },
+    {
+      "atMs": 11372.289,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/sw.js",
+      "status": 200,
+      "finishedAtMs": 11373.508
+    },
+    {
+      "atMs": 11580.698,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/api/auth/session",
+      "status": 503,
+      "finishedAtMs": 11580.912
+    },
+    {
+      "atMs": 11808.592,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/stats",
+      "status": 200,
+      "finishedAtMs": 11810.485
+    },
+    {
+      "atMs": 12075.57,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/api/auth/session",
+      "status": 503,
+      "finishedAtMs": 12075.833
+    },
+    {
+      "atMs": 12305.772,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/settings",
+      "status": 200,
+      "finishedAtMs": 12308.058
+    },
+    {
+      "atMs": 12609.94,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/api/auth/session",
+      "status": 503,
+      "finishedAtMs": 12610.294
+    },
+    {
+      "atMs": 12833.994,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/sw.js",
+      "status": 200,
+      "finishedAtMs": 12837.006
+    },
+    {
+      "atMs": 12895.85,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/settings",
+      "status": 200,
+      "finishedAtMs": 12899.093
+    },
+    {
+      "atMs": 13198.84,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/api/auth/session",
+      "status": 503,
+      "finishedAtMs": 13199.047
+    },
+    {
+      "atMs": 13795.823,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/api/auth/session",
+      "status": 503,
+      "finishedAtMs": 13796.097
+    },
+    {
+      "atMs": 13927.49,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/sw.js",
+      "status": 200,
+      "finishedAtMs": 13928.894
+    },
+    {
+      "atMs": 14321.064,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/api/auth/session",
+      "status": 503,
+      "finishedAtMs": 14321.294
+    },
+    {
+      "atMs": 14975.94,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/api/auth/session",
+      "status": 503,
+      "finishedAtMs": 14976.224
+    },
+    {
+      "atMs": 15092.99,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/sw.js",
+      "status": 200,
+      "finishedAtMs": 15094.348
+    },
+    {
+      "atMs": 15422.261,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "path": "/api/auth/session",
+      "status": 503,
+      "finishedAtMs": 15422.55
+    }
+  ],
+  "actions": [
+    {
+      "atMs": 2597.837,
+      "cell": "tiny-held-replacement-cache-and-register",
+      "action": "replacement-request-arrived-response-held"
+    },
+    {
+      "atMs": 2899.585,
+      "cell": "tiny-inflight-registration-script-held-then-replacement",
+      "action": "worker-and-replacement-requests-arrived-both-responses-held"
+    },
+    {
+      "atMs": 3091.147,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "action": "hard-goto",
+      "path": "/auth",
+      "endMs": 4095.731
+    },
+    {
+      "atMs": 4095.796,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "action": "hard-goto",
+      "path": "/ranked",
+      "endMs": 4538.861
+    },
+    {
+      "atMs": 4538.886,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "action": "hard-goto",
+      "path": "/race",
+      "endMs": 5433.701
+    },
+    {
+      "atMs": 5433.724,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "action": "hard-goto",
+      "path": "/leaderboard",
+      "endMs": 5767.219
+    },
+    {
+      "atMs": 5767.242,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "action": "hard-goto",
+      "path": "/",
+      "endMs": 6367.397
+    },
+    {
+      "atMs": 6367.417,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "action": "hard-reload",
+      "path": "/",
+      "endMs": 7069.598
+    },
+    {
+      "atMs": 7069.63,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "action": "hard-goto",
+      "path": "/learn",
+      "endMs": 7799.47
+    },
+    {
+      "atMs": 7799.501,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "action": "hard-reload",
+      "path": "/learn",
+      "endMs": 8415.504
+    },
+    {
+      "atMs": 8415.529,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "action": "hard-goto",
+      "path": "/lessons",
+      "endMs": 9071.28
+    },
+    {
+      "atMs": 9071.487,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "action": "hard-reload",
+      "path": "/lessons",
+      "endMs": 9665.023
+    },
+    {
+      "atMs": 9665.064,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "action": "hard-goto",
+      "path": "/games",
+      "endMs": 10287.882
+    },
+    {
+      "atMs": 10287.91,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "action": "hard-reload",
+      "path": "/games",
+      "endMs": 11286.884
+    },
+    {
+      "atMs": 11286.891,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "action": "hard-goto",
+      "path": "/stats",
+      "endMs": 11765.882
+    },
+    {
+      "atMs": 11765.888,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "action": "hard-reload",
+      "path": "/stats",
+      "endMs": 12265.825
+    },
+    {
+      "atMs": 12265.833,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "action": "hard-goto",
+      "path": "/settings",
+      "endMs": 12838.147
+    },
+    {
+      "atMs": 12838.155,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "action": "hard-reload",
+      "path": "/settings",
+      "endMs": 13473.72
+    },
+    {
+      "atMs": 13473.726,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "action": "hard-goto",
+      "path": "/keyboard-lab",
+      "endMs": 14056.734
+    },
+    {
+      "atMs": 14056.741,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "action": "hard-reload",
+      "path": "/keyboard-lab",
+      "endMs": 14550.484
+    },
+    {
+      "atMs": 14550.502,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "action": "hard-goto",
+      "path": "/privacy",
+      "endMs": 15023.275
+    },
+    {
+      "atMs": 15023.28,
+      "cell": "frozen-app-original-rapid-hard-navigation-sequence",
+      "action": "hard-reload",
+      "path": "/privacy",
+      "endMs": 15446.312
+    }
+  ],
+  "cleanup": {
+    "ownedBrowserClosed": true,
+    "ownedServerClosed": true,
+    "originalServicesUntouched": true
+  },
+  "sourceBefore": {
+    "sourceFile": "audit/2026-10-21/final13-source.json",
+    "expectedBuild": "b00993b05c14117dca60",
+    "compared": 496,
+    "mismatches": []
+  },
+  "fixture": {
+    "originAlias": "<owned-origin>",
+    "newRandomPort": true,
+    "originalServicesUntouched": true
+  },
+  "browser": {
+    "engine": "webkit",
+    "version": "27.2",
+    "package": "playwright 1.64.1 (installed)",
+    "configuredRevision": "2370"
+  },
+  "controlValid": true,
+  "sourceAfter": {
+    "sourceFile": "audit/2026-10-21/final13-source.json",
+    "expectedBuild": "b00993b05c14117dca60",
+    "compared": 496,
+    "mismatches": []
+  },
+  "artifactIntegrity": {
+    "files": 143,
+    "byteHashesUnchanged": true,
+    "observedBuild": "b00993b05c14117dca60"
+  },
+  "finishedAt": "2026-10-22T18:43:12.613Z",
+  "elapsedMs": 16229.525,
+  "nativePageErrorCount": 1,
+  "causality": "Interpret exact per-cell native entry/lifecycle/error order; analogous upstream behavior alone is not same-operation proof. No production fix or acceptance claim is made by this diagnostic."
+}

@@ -76,6 +76,20 @@ try {
     const item = create(); item.input({ type: 'insert', text: 'c' }); item.advance(300); item.controller.pause(); item.advance(2000); item.controller.resume();
     item.input({ type: 'insert', text: 'at dog fox' }); item.advance(1000); save('pause-latency', item);
   }
+  for (const prefix of ['c', 'ca', 'cat']) {
+    const item = create({ mode: 'time', durationMs: 30000 });
+    for (const unit of prefix) item.input({ type: 'insert', text: unit }, 0);
+    item.controller.pause(); item.advance(2000); item.controller.resume();
+    item.input({ type: 'insert', text: ' ' }, 0); item.advance(6000);
+    const candidate = save(`coarse-clock-pause-${prefix.length}`, item);
+    for (const anchor of [-1, .5, 999]) {
+      const forged = structuredClone(candidate); forged.clientSessionId += `-anchor-${String(anchor).replace('.', '_')}`; forged.configuration.clientSessionId = forged.clientSessionId; forged.pauseIntervals[0].afterSequence = anchor;
+      cases.push({ name: `coarse-clock-invalid-anchor-${prefix.length}-${anchor}`, candidate: forged, owner, consent: true, reject: true });
+    }
+  }
+  {
+    const item = create({ mode: 'time', durationMs: 30000 }); item.input({ type: 'insert', text: 'c' }, 0); item.controller.pause(); item.advance(2000); save('coarse-clock-finish-while-paused', item);
+  }
   {
     const item = create({ mode: 'time', durationMs: 15000, initialTarget: 'cat' });
     item.input({ type: 'insert', text: 'cat' }); item.controller.appendTarget(' dog'); item.input({ type: 'insert', text: ' dog' }); item.advance(15000); item.controller.tick(); save('ordered-target-extension', item);

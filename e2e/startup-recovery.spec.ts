@@ -162,3 +162,41 @@ test("startup recovers from real workspace script and stylesheet failures at 320
     }
   }
 });
+
+test("an unavailable home-page chunk does not block account access or local history", async ({
+  page,
+}, info) => {
+  await page.addInitScript(() =>
+    localStorage.setItem("sparowtype.opening-animation.enabled", "false"),
+  );
+  const homeChunk = /\/assets\/Index-[^/]+\.js(?:\?.*)?$/;
+  const blocked: string[] = [];
+  await page.route(homeChunk, async (route) => {
+    blocked.push(route.request().url());
+    await route.abort("failed");
+  });
+
+  await page.goto("/auth", { waitUntil: "domcontentloaded" });
+  await expect(page.getByRole("heading", { name: "Welcome Back", exact: true })).toBeVisible();
+  await expect(page.getByLabel("Email", { exact: true })).toBeEditable();
+  await expect(page.getByLabel("Password", { exact: true })).toBeEditable();
+  expect(blocked).toEqual([]);
+
+  await page.goto("/stats", { waitUntil: "domcontentloaded" });
+  await expect(page.locator("main#main-content")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Progress you can measure.", exact: true })).toBeVisible();
+  expect(blocked).toEqual([]);
+
+  // Positive control: the same real network blocker must reject the route that
+  // actually needs Index, rather than silently failing to match its asset.
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  const recovery = page.locator("main.app-recovery");
+  await expect(recovery.getByRole("heading", { name: "Let’s get you back to practice.", exact: true })).toBeVisible();
+  await expect(recovery.getByRole("button", { name: "Reload SparowType", exact: true })).toBeEnabled();
+  expect(blocked.length).toBeGreaterThan(0);
+  expect(blocked.every((url) => homeChunk.test(url))).toBe(true);
+  await info.attach("unavailable-home-chunk-route-isolation", {
+    body: JSON.stringify({ independentRoutes: ["/auth", "/stats"], blockedOnlyWhenHomeRequested: blocked }),
+    contentType: "application/json",
+  });
+});

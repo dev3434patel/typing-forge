@@ -21,7 +21,9 @@ describe('Sparow theme compatibility', () => {
   it('uses the lime identity and preserves all alternate palettes', () => {
     expect(THEMES.slice(0, 2).map(theme => theme.id)).toEqual(['sparow-dark', 'sparow-light']);
     expect(THEMES[0].colors.accent.toLowerCase()).toBe('#c6ff3d');
-    expect(THEMES.slice(2).map(theme => theme.id)).toEqual(['graphite', 'midnight-blue', 'ember', 'mono-ink', 'paper', 'aurora']);
+    expect(THEMES.slice(2, 8).map(theme => theme.id)).toEqual(['graphite', 'midnight-blue', 'ember', 'mono-ink', 'paper', 'aurora']);
+    expect(THEMES.length).toBeGreaterThanOrEqual(20);
+    expect(new Set(THEMES.map(theme => theme.id)).size).toBe(THEMES.length);
     for (const theme of THEMES) expect(contrast(theme.colors.accent, theme.colors.surface)).toBeGreaterThanOrEqual(4.5);
   });
   it('retains the requested dark palette and transparent border alpha', () => {

@@ -181,7 +181,7 @@ describe("renderer worker ownership and recovery", () => {
     handle.dispose();
   });
 
-  it("aborts pending initialization and waits for actual worker disposal acknowledgement", async () => {
+  it("aborts pending initialization synchronously without depending on a timer or acknowledgement", async () => {
     const cancellation = new AbortController(),
       settings = options();
     const pending = createOpeningKeyboardScene(canvas(), {
@@ -192,20 +192,60 @@ describe("renderer worker ownership and recovery", () => {
     const rejected = expect(pending).rejects.toMatchObject({
       name: "AbortError",
     });
+    const schedule = vi.spyOn(window, "setTimeout");
     cancellation.abort();
+    expect(worker.messages.at(-1)).toEqual({ type: "dispose" });
+    expect(worker.terminate).toHaveBeenCalledOnce();
+    expect(schedule).not.toHaveBeenCalled();
+    cancellation.abort();
+    // Already-queued replies must neither create a replacement owner nor
+    // terminate the cancelled worker a second time.
+    worker.reply({ type: "ready", diagnostics: diagnostics() });
+    worker.reply({ type: "failure", message: "Late preparation failure" });
+    worker.reply({ type: "disposed" });
     await rejected;
+    expect(worker.terminate).toHaveBeenCalledOnce();
+    expect(settings.onDiagnostics).not.toHaveBeenCalled();
+    expect(settings.replaceCanvas).not.toHaveBeenCalled();
+    expect(createKeyboardScene).not.toHaveBeenCalled();
+  });
+
+  it("gives a ready scene its existing disposal grace and terminates once after acknowledgement", async () => {
+    const pending = createOpeningKeyboardScene(canvas(), options());
+    const worker = RendererWorker.instances[0];
+    worker.reply({ type: "ready", diagnostics: diagnostics() });
+    const handle = await pending;
+    const schedule = vi.spyOn(window, "setTimeout");
+    handle.dispose();
     expect(worker.messages.at(-1)).toEqual({ type: "dispose" });
     expect(worker.terminate).not.toHaveBeenCalled();
+    expect(schedule).toHaveBeenCalledWith(expect.any(Function), 200);
     worker.reply({
       type: "diagnostics",
       diagnostics: diagnostics({ disposed: true }),
     });
     worker.reply({ type: "disposed" });
-    expect(settings.onDiagnostics).toHaveBeenLastCalledWith(
-      expect.objectContaining({ disposed: true }),
-    );
+    handle.dispose();
     expect(worker.terminate).toHaveBeenCalledOnce();
-    expect(createKeyboardScene).not.toHaveBeenCalled();
+  });
+
+  it("retains the 200ms watchdog for an unacknowledged ready scene", async () => {
+    const pending = createOpeningKeyboardScene(canvas(), options());
+    const worker = RendererWorker.instances[0];
+    worker.reply({ type: "ready", diagnostics: diagnostics() });
+    const handle = await pending;
+    let watchdog: (() => void) | undefined;
+    vi.spyOn(window, "setTimeout").mockImplementation((callback, delay) => {
+      expect(delay).toBe(200);
+      watchdog = callback as () => void;
+      return 123 as unknown as ReturnType<typeof window.setTimeout>;
+    });
+    handle.dispose();
+    expect(worker.terminate).not.toHaveBeenCalled();
+    expect(watchdog).toBeTypeOf("function");
+    watchdog!();
+    worker.reply({ type: "disposed" });
+    expect(worker.terminate).toHaveBeenCalledOnce();
   });
 
   it("preserves the running timeline and real progress after a worker context failure", async () => {

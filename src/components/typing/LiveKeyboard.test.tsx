@@ -1,7 +1,10 @@
 import { renderToStaticMarkup } from "react-dom/server";
+import { createHash } from "node:crypto";
 import { describe, expect, it } from "vitest";
 import { LiveKeyboard } from "./LiveKeyboard";
-import { EMPTY_KEYBOARD_INPUT } from "@/lib/live-keyboard";
+import { EMPTY_KEYBOARD_INPUT, liveKeyboardLayout } from "@/lib/live-keyboard";
+import { PressedKeyStore } from "@/lib/pressed-key-store";
+import keyboardMarkup from "./__fixtures__/live-keyboard-render-v1.json";
 
 const render = (
   props: Partial<React.ComponentProps<typeof LiveKeyboard>> = {},
@@ -18,6 +21,29 @@ const render = (
     />,
   );
 describe("shared live keyboard rendering", () => {
+  it.each(["qwerty", "dvorak", "colemak", "workman", "azerty", "qwertz"])("preserves first/last legacy held keys in every %s row", (layout) => {
+    const mapping = liveKeyboardLayout(layout, "en");
+    expect(mapping.rows.every((row) => row.length <= 14)).toBe(true);
+    const codes = mapping.rows.flatMap((row) => [row[0].code, row.at(-1)!.code]);
+    const html = render({ layout, input: { ...EMPTY_KEYBOARD_INPUT, pressedCodes: codes } });
+    const held = [...html.matchAll(/data-key-code="([^"]+)"[^>]*data-pressed-key="true"/g)].map((match) => match[1]);
+    expect(held).toEqual(codes);
+  });
+  it.each(keyboardMarkup.cases)("preserves exact pre-optimization markup for $id", ({ props, sha256 }) => {
+    // The fixture was captured from the component whose bytes match the
+    // frozen final9 source. These include complete attributes and captions,
+    // not just selected label substrings or a changed implementation snapshot.
+    const html = render(props as Partial<React.ComponentProps<typeof LiveKeyboard>>);
+    expect(createHash("sha256").update(html).digest("hex")).toBe(sha256);
+  });
+  it.each(keyboardMarkup.cases)("preserves identical store-backed SSR markup for $id", ({ props, sha256 }) => {
+    const input = props.input ?? EMPTY_KEYBOARD_INPUT;
+    const html = render({
+      ...props as Partial<React.ComponentProps<typeof LiveKeyboard>>,
+      pressedStore: new PressedKeyStore(input.pressedCodes),
+    });
+    expect(createHash("sha256").update(html).digest("hex")).toBe(sha256);
+  });
   it("shows the needed opposite Shift for Caps Lock lowercase and symbols, but not already-capitalized letters", () => {
     const caps = { ...EMPTY_KEYBOARD_INPUT, capsLock: true };
     for (const expectedCharacter of ["a", "!"]) {

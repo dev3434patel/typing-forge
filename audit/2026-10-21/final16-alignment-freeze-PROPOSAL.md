@@ -1,0 +1,22 @@
+# Source16 candidate review — proposal only
+
+Status: **NOT APPLIED / NOT TESTED / NOT BUILT**. Parent approval is required before production changes. Current accepted source identity remains source15 `7ef96ccd3c02d170a757`; its input target failed112/120/112ms. A sampled freeze stack is evidence of repeated work, not proof that this change fixes the slow-event tail.
+
+The primary [flat-freezer patch](final16-flat-alignment-freezer-PROPOSAL.patch) changes only `session.ts`: add a private specialized freezer and use it only for the live presentation alignment produced by the existing canonical `alignTranscript`. No mapping, slot, word-credit, metric, clock, event, evidence, schema or comparison-cohort formula changes. Generic recursive freezing remains in place for configuration and independently replayed final/checkpoint results. Final replay and PHP validation remain independent and unchanged.
+
+`CharacterSlot` has exactly primitive `index`, `expected`, `typed`, `status` values. Mapping entries are number/null. Current live alignment omits word tracing, so `words` is empty; freezing each flat `WordCreditTrace` also handles a future traced call without leaving its current primitive fields mutable. Freeze every slot/word object, all three arrays, and the top alignment. No properties are removed, rewritten or reordered. No new slot reuse/pooling or correct-prefix scoring path is introduced.
+
+The important limitation is shape evolution: if a nested object is ever added to a slot or word trace, this private flat freezer must change. A type/shape regression should make that assumption explicit. It is safe only for the internally constructed canonical alignment, not a general replacement for deep freezing arbitrary callers' objects.
+
+The optional [target-word cache patch](final16-target-words-cache-OPTIONAL-PROPOSAL.patch) is separate and should remain out unless profile attribution supports its allocation cost. It caches only metadata for **already frozen target-array identities** in a WeakMap; mutable public `alignTranscript` target arrays bypass caching. Metadata words/array are frozen. Keys are weak, values contain numeric bounds only, and target append creates a new target identity. Current three consumers read word fields and never mutate them. Algorithm and numeric boundaries are unchanged, including empty/leading/trailing/consecutive literal-space words. It does not cache retained input or extend weak-key lifetime. It adds per-call frozen checks and can regress an unprofiled path; do not bundle it merely because it is available.
+
+Meaningful verification after approval:
+
+1. A live snapshot's character array and every slot remain frozen; push, index replacement and slot-field mutation throw. Old snapshots stay byte/value-identical after later correct insertion, wrong replacement, deletion, retyped correction, virtual word submission/reopen and target extension. The fresh edit snapshot must carry correct new values without mutating old publications.
+2. Time-only tick returns the same frozen character-array identity while rates/elapsed change. Input edits invalidate the cached projection. Do not freeze unrelated currently mutable snapshot wrappers/metric objects as an accidental API change.
+3. Compare all metric fields, slots, cursor and text to independently replayed canonical snapshots at the same real/injected elapsed values for prose/code/free, corrected historical mistakes, extra/skipped words, virtual submissions, punctuation, numbers and Unicode grapheme merges. Preserve attempt counters and correction policies.
+4. Finite manual finish leaves previous live untyped slots unchanged, while final replay creates missed slots and deeply freezes result/config/events. Timed result cutoffs, pause anchors and first-input origins remain unchanged.
+5. For the optional cache, frozen target arrays cover empty strings, leading/trailing/consecutive spaces and append-created identities. Mutating an unfrozen target array between calls must change output; no stale identity cache is allowed. Include submission/extra-word alignment and existing PHP differential corpus.
+6. Run matched input acceptance after fresh source gates/build. Retain all failures and all three attempts; no speedup, every-run<100ms, fieldINP, or hosted claim follows from unit parity alone.
+
+No product or test file was changed by this proposal; no command executed either patch. The audit diff files are review material only.

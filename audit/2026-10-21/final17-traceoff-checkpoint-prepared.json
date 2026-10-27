@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "preparedAt": "2026-10-22T20:33:34.346Z",
+  "status": "NOT-RUN",
+  "scope": "Audit-only text preparation; no product, E2E, config or generic/16 runner changes. No Playwright execution.",
+  "generic": {
+    "path": "audit/2026-10-21/run-browser-checkpoint.mjs",
+    "rawSha256": "dd20bbde74f0af9d0fc5af6b8f4e940dca4ae5e71ef458fcba7d8f0f348d2049",
+    "normalizedSha256": "dd20bbde74f0af9d0fc5af6b8f4e940dca4ae5e71ef458fcba7d8f0f348d2049",
+    "unchanged": true
+  },
+  "helper": {
+    "path": "audit/2026-10-21/run-browser-checkpoint-final17.mjs",
+    "normalizedSha256": "0eacc52190343f647774708faebef38028974abde9e62b1b8f597fbb56090190",
+    "exactChanges": [
+      {
+        "before": "'--retries=0', '--reporter=list,json'",
+        "after": "'--retries=0', '--trace=off', '--reporter=list,json'"
+      },
+      {
+        "before": "const protocol = { declaredAt:",
+        "after": "assert.match(await readFile('playwright.config.ts', 'utf8'), /trace:\\s*[\"']retain-on-failure[\"']/);\nassert.match(await readFile('playwright.config.ts', 'utf8'), /screenshot:\\s*[\"']only-on-failure[\"']/);\nconst protocol = { declaredAt:"
+      },
+      {
+        "before": "browsers, workers, automaticRetries: 0, scope:",
+        "after": "browsers, workers, automaticRetries: 0, tracing: 'off', configuredTracing: 'retain-on-failure', instrumentationChanged: true, failureScreenshots: 'only-on-failure', instrumentationScope: 'Separate declared functional validation configuration. Original failures and traces remain retained; this change does not establish that tracing caused them.', scope:"
+      }
+    ],
+    "reverseNormalizedSha256": "dd20bbde74f0af9d0fc5af6b8f4e940dca4ae5e71ef458fcba7d8f0f348d2049",
+    "reverseRestoresGenericExactly": true
+  },
+  "matrix": {
+    "path": "audit/2026-10-21/run-final17-browser-matrix.mjs",
+    "beforeRawSha256": "31383cb53fa5c71dffa3be6e19232aff0cfa5db860df2c23965e4867d9de6d89",
+    "beforeNormalizedSha256": "31383cb53fa5c71dffa3be6e19232aff0cfa5db860df2c23965e4867d9de6d89",
+    "afterNormalizedSha256": "0896632f1fb29005a7a6cd9393b89c784cc0302722e60ace08bc780dcdee9210",
+    "exactChange": {
+      "before": "`${directory}/run-browser-checkpoint.mjs`",
+      "after": "`${directory}/run-browser-checkpoint-final17.mjs`"
+    },
+    "reverseRestoresPrepared17MatrixExactly": true
+  },
+  "declaredInstrumentation": {
+    "tracing": "off",
+    "originalConfiguration": "retain-on-failure",
+    "instrumentationChanged": true,
+    "failureScreenshots": "only-on-failure",
+    "automaticRetries": 0
+  },
+  "unchanged": [
+    "assertions",
+    "test deadlines",
+    "expectation deadlines",
+    "batch worker counts",
+    "four-engine requirement",
+    "source/dependency hash checks",
+    "build identity guards",
+    "exact spec partition",
+    "automatic retry count"
+  ],
+  "qualification": "A future pass applies to this separately declared instrumentation configuration. It cannot relabel source16 failures or prove trace overhead caused any original failure.",
+  "actualBuildIdentity": null,
+  "execution": "NOT-RUN — actual frozen final17 build ID is required by the matrix wrapper."
+}

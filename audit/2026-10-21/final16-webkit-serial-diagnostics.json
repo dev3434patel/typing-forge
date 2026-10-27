@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "buildId": "8ac2a0d9602ec9263118",
+  "status": "FAILED",
+  "observation": "PARTIAL",
+  "scope": "Read-only inspection of both failures in the separately declared original-instrumentation source16 WebKit serial confirmation. No rerun, product edit, test edit or service execution was performed by this review.",
+  "rawReport": "final16-webkit-serial-confirmation.json",
+  "summary": "final16-webkit-serial-confirmation-summary.json",
+  "reportedTotals": { "total": 26, "passed": 24, "failed": 2, "skipped": 0, "flaky": 0 },
+  "originalBatchFailuresRetained": true,
+  "timelineClock": "Playwright trace monotonic milliseconds; values are not wall-clock timestamps.",
+  "cases": [
+    {
+      "file": "e2e/arcade-offline.spec.ts:13",
+      "name": "all eight arcade URLs survive a real HTTP outage without caching API or private room documents",
+      "status": "failed",
+      "failedAssertion": "Public download: available was not visible within its unchanged5000ms expectation budget.",
+      "assertion": { "nativeStart": 24646.288, "nativeEnd": 29660.420, "observedDurationMs": 5014.132, "configuredBudgetMs": 5000 },
+      "failureScreenshot": { "page": "Your offline workspace", "connection": "online", "publicDownload": "preparing", "message": "The public app download has not finished. Keep this page open while connected." },
+      "networkObservedByDocumentTrace": { "responses": 21, "allStatuses": 200, "recordedFailedResponses": 0, "workerScript": { "start": 24580.284, "end": 24589.915, "durationMs": 9.631, "status": 200 } },
+      "notReached": ["controller readiness assertion", "owned server shutdown", "HTTP outage verification", "offline Arcade hub", "all eight offline games", "private-route cache exclusion assertions"],
+      "nativeErrorWitness": "No pageError event or Context-is-stopped/access-control/Cache-API error text was observed in this trace; one ordinary console warning was present.",
+      "unproven": ["worker installation completion time", "worker-owned precache response timings", "readiness request/reply timing", "message timeout or cancellation", "stale revision suppression"],
+      "conclusion": "This confirmation failed earlier than the original Arcade-hub deadline. A successful sw.js response and a rendered preparing state do not establish whether installation was still pending or a readiness probe failed. No concrete new PWA source bug is demonstrated.",
+      "cause": "UNPROVEN"
+    },
+    {
+      "file": "e2e/caret-geometry.spec.ts:145",
+      "name": "outline caret follows the actual RTL character edge through input and rotation",
+      "status": "failed",
+      "wholeTestBudgetMs": 30000,
+      "nativeTyping": { "start": 114220.867, "end": 132427.768, "durationMs": 18206.901, "insertedTextLength": 55, "configuredDelayMs": 2, "nativeActionReportedError": false },
+      "exactInputValueAssertion": "PASS — 55 characters",
+      "passedGeometryStages": ["initial", "55 committed characters", "portrait"],
+      "pendingLandscapeGeometry": { "pollStart": 137790.192, "pollEnd": 139393.726, "cutByWholeTestDeadline": true, "inFlightEvaluateStart": 137791.129, "inFlightEvaluateEnd": 140443.937, "afterHooksStarted": 139395.516, "retainedGeometryReceipt": null, "status": "UNVERIFIED" },
+      "notReached": ["narrow viewport deletion", "54-character value assertion", "narrow after deletion geometry assertion"],
+      "consoleObservation": "One standard failed-resource console message referred to the local /api/auth/session endpoint. It was not a native Cache-API/Context-stopped/access-control error. No causal link to the timeout is established.",
+      "conclusion": "The original whole-test deadline expired while a geometry evaluation was still in flight. Reached geometry checks passed; the incomplete landscape receipt does not show a caret-position discrepancy or prove that landscape geometry was correct.",
+      "cause": "UNPROVEN"
+    }
+  ],
+  "privacy": "Only predefined labels, test identities, action lengths/timings, public route names, statuses and numeric geometry were inspected. No credential values, request bodies, headers, cookies, full DOM or input passage are copied into this receipt.",
+  "sourceOrTestEdits": false,
+  "rerunPerformed": false,
+  "ownedServicesStarted": false
+}

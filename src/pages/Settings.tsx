@@ -17,7 +17,9 @@ import {
   LAYOUTS as KEYBOARD_LAYOUTS,
 } from "@/lib/content-packs";
 import { useSessionHistory } from "@/hooks/useTestResults";
+import { completeWorkspaceExport } from "@/services/workspace-extras";
 import { Download, RotateCcw, Check, Play } from "lucide-react";
+import { Link } from 'react-router-dom';
 export function downloadJson(value: unknown, filename: string) {
   const url = URL.createObjectURL(
     new Blob([JSON.stringify(value, null, 2)], { type: "application/json" }),
@@ -36,7 +38,7 @@ export default function Settings() {
       storageAvailable,
       preferenceSyncStatus,
     } = usePreferences(),
-    { records, storageMode } = useSessionHistory();
+    { records, storageMode, ownerId } = useSessionHistory();
   const [notice, setNotice] = useState("");
   const [openingEnabled, setOpeningEnabled] = useState(getOpeningAnimationEnabled);
   useEffect(() => {
@@ -97,6 +99,7 @@ export default function Settings() {
         <p role="status" className="text-xs text-muted-foreground -mt-6 mb-8">
           {preferenceSyncStatus}
         </p>
+        <Link className="forge-button-secondary mb-8" to="/studio">Open practice studio · themes, fonts and interface language</Link>
         {!storageAvailable && (
           <p role="status" className="text-destructive mb-4">
             Preference storage is unavailable. Changes apply for this visit.
@@ -255,8 +258,8 @@ export default function Settings() {
             )}
             {toggle(
               "focusMode",
-              "Focus mode",
-              "Keep supporting details quiet during your test.",
+              "Adaptive focus mode",
+              "Hide supporting progress while an adaptive practice lesson is running.",
             )}
             {toggle(
               "smoothCaret",
@@ -328,19 +331,22 @@ export default function Settings() {
           <div className="flex flex-wrap gap-3">
             <button
               className="forge-button-secondary"
-              onClick={() => {
+              onClick={async () => {
+                try {
+                const data = await completeWorkspaceExport(ownerId, records);
                 downloadJson(
                   {
                     version: 3,
                     exportedAt: new Date().toISOString(),
                     preferences: p,
-                    sessions: records,
+                    ...data,
                   },
                   "sparowtype-export.json",
                 );
                 setNotice(
                   "Export prepared. It includes your private session text when available.",
                 );
+                } catch (cause) { setNotice(cause instanceof Error ? cause.message : 'Workspace export failed. Existing data is retained.'); }
               }}
             >
               <Download size={16} />

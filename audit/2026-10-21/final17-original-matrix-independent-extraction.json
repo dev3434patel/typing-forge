@@ -1,0 +1,372 @@
+{
+  "capturedAt": "2026-10-23T14:45:44.212682+00:00",
+  "reportLocalDate": "2026-10-23",
+  "status": "FAILED",
+  "scope": "Read-only extraction of completed ORIGINAL17 full62/four-engine matrix; no browser/build/test/native/service/source execution. Later confirmations must be separate lineage and cannot rewrite this original result.",
+  "build": {
+    "version": "0572d723495d6be303a8",
+    "publicFiles": 133,
+    "bytes": 2930646
+  },
+  "filesCoveredExactlyOnce": 62,
+  "batches": [
+    {
+      "id": "new-features",
+      "status": "FAILED",
+      "totals": {
+        "total": 204,
+        "passed": 196,
+        "failed": 8,
+        "skipped": 0,
+        "flaky": 0
+      },
+      "projects": [
+        {
+          "project": "chromium",
+          "total": 51,
+          "passed": 49,
+          "failed": 2,
+          "skipped": 0,
+          "flaky": 0
+        },
+        {
+          "project": "edge",
+          "total": 51,
+          "passed": 51,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0
+        },
+        {
+          "project": "firefox",
+          "total": 51,
+          "passed": 48,
+          "failed": 3,
+          "skipped": 0,
+          "flaky": 0
+        },
+        {
+          "project": "webkit",
+          "total": 51,
+          "passed": 48,
+          "failed": 3,
+          "skipped": 0,
+          "flaky": 0
+        }
+      ],
+      "integrity": {
+        "buildUnchanged": true,
+        "testsUnchanged": true,
+        "dependenciesUnchanged": true
+      },
+      "finishedAt": "2026-10-23T12:59:35.781Z",
+      "skipReasons": []
+    },
+    {
+      "id": "existing",
+      "status": "FAILED",
+      "totals": {
+        "total": 964,
+        "passed": 943,
+        "failed": 5,
+        "skipped": 16,
+        "flaky": 0
+      },
+      "projects": [
+        {
+          "project": "chromium",
+          "total": 241,
+          "passed": 237,
+          "failed": 0,
+          "skipped": 4,
+          "flaky": 0
+        },
+        {
+          "project": "edge",
+          "total": 241,
+          "passed": 236,
+          "failed": 1,
+          "skipped": 4,
+          "flaky": 0
+        },
+        {
+          "project": "firefox",
+          "total": 241,
+          "passed": 236,
+          "failed": 1,
+          "skipped": 4,
+          "flaky": 0
+        },
+        {
+          "project": "webkit",
+          "total": 241,
+          "passed": 234,
+          "failed": 3,
+          "skipped": 4,
+          "flaky": 0
+        }
+      ],
+      "integrity": {
+        "buildUnchanged": true,
+        "testsUnchanged": true,
+        "dependenciesUnchanged": true
+      },
+      "finishedAt": "2026-10-23T13:26:41.109Z",
+      "skipReasons": [
+        {
+          "reason": "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used.",
+          "count": 4,
+          "projects": [
+            "chromium",
+            "edge",
+            "firefox",
+            "webkit"
+          ]
+        },
+        {
+          "reason": "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account.",
+          "count": 4,
+          "projects": [
+            "chromium",
+            "edge",
+            "firefox",
+            "webkit"
+          ]
+        },
+        {
+          "reason": "Requires two dedicated accounts on the explicit PHP acceptance deployment.",
+          "count": 4,
+          "projects": [
+            "chromium",
+            "edge",
+            "firefox",
+            "webkit"
+          ]
+        },
+        {
+          "reason": "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization.",
+          "count": 4,
+          "projects": [
+            "chromium",
+            "edge",
+            "firefox",
+            "webkit"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "isolated",
+      "status": "FAILED",
+      "totals": {
+        "total": 212,
+        "passed": 199,
+        "failed": 4,
+        "skipped": 9,
+        "flaky": 0
+      },
+      "projects": [
+        {
+          "project": "chromium",
+          "total": 53,
+          "passed": 52,
+          "failed": 1,
+          "skipped": 0,
+          "flaky": 0
+        },
+        {
+          "project": "edge",
+          "total": 53,
+          "passed": 52,
+          "failed": 1,
+          "skipped": 0,
+          "flaky": 0
+        },
+        {
+          "project": "firefox",
+          "total": 53,
+          "passed": 52,
+          "failed": 1,
+          "skipped": 0,
+          "flaky": 0
+        },
+        {
+          "project": "webkit",
+          "total": 53,
+          "passed": 43,
+          "failed": 1,
+          "skipped": 9,
+          "flaky": 0
+        }
+      ],
+      "integrity": {
+        "buildUnchanged": true,
+        "testsUnchanged": true,
+        "dependenciesUnchanged": true
+      },
+      "finishedAt": "2026-10-23T13:38:39.546Z",
+      "skipReasons": [
+        {
+          "reason": "UNVERIFIED: this browser runner exposes no standard AudioContext API; this is not a native Safari capability claim.",
+          "count": 1,
+          "projects": [
+            "webkit"
+          ]
+        },
+        {
+          "reason": "UNVERIFIED: this runner has no native transferable-canvas worker API.",
+          "count": 1,
+          "projects": [
+            "webkit"
+          ]
+        },
+        {
+          "reason": "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently.",
+          "count": 7,
+          "projects": [
+            "webkit"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "first-input-timing",
+      "status": "PASS-SCOPED",
+      "totals": {
+        "total": 32,
+        "passed": 32,
+        "failed": 0,
+        "skipped": 0,
+        "flaky": 0
+      },
+      "projects": [
+        {
+          "project": "chromium",
+          "total": 8,
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0
+        },
+        {
+          "project": "edge",
+          "total": 8,
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0
+        },
+        {
+          "project": "firefox",
+          "total": 8,
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0
+        },
+        {
+          "project": "webkit",
+          "total": 8,
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0
+        }
+      ],
+      "integrity": {
+        "buildUnchanged": true,
+        "testsUnchanged": true,
+        "dependenciesUnchanged": true
+      },
+      "finishedAt": "2026-10-23T13:39:49.841Z",
+      "skipReasons": []
+    }
+  ],
+  "totals": {
+    "total": 1412,
+    "passed": 1370,
+    "failed": 17,
+    "skipped": 25,
+    "flaky": 0
+  },
+  "projects": {
+    "chromium": {
+      "total": 353,
+      "passed": 346,
+      "failed": 3,
+      "skipped": 4,
+      "flaky": 0
+    },
+    "edge": {
+      "total": 353,
+      "passed": 347,
+      "failed": 2,
+      "skipped": 4,
+      "flaky": 0
+    },
+    "firefox": {
+      "total": 353,
+      "passed": 344,
+      "failed": 5,
+      "skipped": 4,
+      "flaky": 0
+    },
+    "webkit": {
+      "total": 353,
+      "passed": 333,
+      "failed": 7,
+      "skipped": 13,
+      "flaky": 0
+    }
+  },
+  "automaticRetries": 0,
+  "tracing": "off",
+  "instrumentationChanged": true,
+  "finishedAt": "2026-10-23T13:39:49.957Z",
+  "skipClassification": {
+    "credentialGated": 16,
+    "webkitAudioContext": 1,
+    "webkitNativeTransferableCanvasWorker": 8,
+    "total": 25,
+    "status": "UNVERIFIED/SKIPPED,not feature/native/Safari passes"
+  },
+  "firstInputTiming": {
+    "status": "PASS-SCOPED",
+    "cases": 32,
+    "projects": "8passes ineach ofChromium,Edge,Firefox,WebKit",
+    "scope": "Declared canonical first-attempt timing fixture/native-input cases only; real native backend/human-room andlablatency remain separate."
+  },
+  "isolatedFailureDiagnostic": "audit/2026-10-21/final17-isolated-late-caret-diagnostic-corrected.json",
+  "nextCandidate18": {
+    "status": "PLANNED/NOT-RUN",
+    "sourceReviewConfirmedGap": "PwaStatus andOffline useState-initial-snapshot +passive-effect-subscribe without an intervening re-read; a commit-time publication can be missed.",
+    "proposedProductionPaths": [
+      "src/components/layout/PwaStatus.tsx",
+      "src/pages/Offline.tsx"
+    ],
+    "newFixture": "e2e/pwa-snapshot-consistency.spec.ts",
+    "controlledBaselineOrRepairedObservation": "NOT-RUN/awaitingactualreceipt",
+    "causalityForOriginalWebKitFailures": "UNPROVEN",
+    "plannedFixtureOnlyChanges": [
+      "Font test select an interior i/l/r/t with original>.5widthchange/<.75caret bounds unchanged.",
+      "Three caret fault variants blockserviceworkers andwitnessactualchunkinterception; auditproposalnotappliedbyextractor."
+    ]
+  },
+  "other17Acceptance": {
+    "static": "NOT-RUN",
+    "mobileFourWorkspaces": "NOT-RUN",
+    "native16": "NOT-RUN",
+    "placementReal135": "NOT-RUN"
+  },
+  "receiptRawSha256": {
+    "final17-browser-matrix.json": "b039fc2fd5831e2f859ec3e85d61d4d1184048710e94613195569fe195787a9f",
+    "final17-new-features-summary.json": "65dabf7d27338723d220aa1f6cd3a59b123ece46dd7d62def2face44e6131c0a",
+    "final17-new-features-protocol.json": "e13df317978c520560816a1ee547f77f0a993ba9bbe7480ec346d31ddc56d423",
+    "final17-existing-summary.json": "91e3a6040fb56c174536ac8c21ac4e09394d813d3dd67da5bd8e608a7a3ee80d",
+    "final17-existing-protocol.json": "30aac3225da28ae64d09ddb4b81be8606d32d3b2799f7b1716927ec9589ae6fe",
+    "final17-isolated-summary.json": "6b8ae242d64ddea015cbe846b849aab0b39ec225cf7c0e66e912291672a9bf5e",
+    "final17-isolated-protocol.json": "23b324b360a1f52b14b0ac7fcc58625ee48efcd52a1ea2535f297ed3cccdf195",
+    "final17-first-input-timing-summary.json": "da624b94a709988fdb258d48a31cd7bf45f9662d53fcbc668ae07a41def50e97",
+    "final17-first-input-timing-protocol.json": "910af9fc43a75a0cb9547fcd9d09c75cacc3aae679d717f544d468a594c4de8d"
+  }
+}

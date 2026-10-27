@@ -33,13 +33,18 @@ try {
         echo \SparowType\Database::json(['database' => $database, 'empty' => true, 'imported' => false]).PHP_EOL;
         exit;
     }
-    $schema = file_get_contents(dirname(__DIR__).'/schema.sql');
-    if ($schema === false) throw new RuntimeException('The schema file could not be read.');
+    $sources = ['schema.sql', 'migrations/002-progression.sql', 'migrations/003_classroom.sql', 'migrations/004_social.sql', 'migrations/005_arena.sql'];
+    $sql = [];
+    foreach ($sources as $source) {
+        $contents = file_get_contents(dirname(__DIR__).'/'.$source);
+        if (!is_string($contents) || trim($contents) === '') throw new RuntimeException('A required schema source could not be read: '.$source);
+        $sql[] = $contents;
+    }
     // MySQL DDL commits implicitly. A failure is reported visibly; the next run
     // refuses the partial database rather than pretending it was a clean import.
-    $db->exec($schema);
+    foreach ($sql as $source) $db->exec($source);
     $version = $db->query('SELECT MAX(version) FROM schema_metadata')->fetchColumn();
-    echo \SparowType\Database::json(['database' => $database, 'imported' => true, 'schemaVersion' => (int) $version, 'usersCreated' => 0]).PHP_EOL;
+    echo \SparowType\Database::json(['database' => $database, 'imported' => true, 'schemaVersion' => (int) $version, 'sources' => $sources, 'usersCreated' => 0]).PHP_EOL;
 } catch (Throwable $error) {
     fwrite(STDERR, 'Schema initialization failed: '.$error->getMessage().PHP_EOL);
     exit(1);

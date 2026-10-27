@@ -69,6 +69,41 @@ async function fixture() {
   return directory;
 }
 describe("offline build artifacts", () => {
+  it("generates real static route entries, scoped offline paths and a matching Pages manifest", async () => {
+    const directory = await fixture();
+    await buildOffline(directory, {
+      SPAROWTYPE_DEPLOY_TARGET: "github-pages",
+      SPAROWTYPE_BASE_PATH: "/project/",
+      SPAROWTYPE_SITE_URL: "https://owner.github.io/project/",
+    });
+    const worker = await readFile(path.join(directory, "sw.js"), "utf8");
+    expect(worker).toContain('"/project/assets/main-123.js"');
+    expect(worker).toContain('const APP_BASE_PATH = "/project/"');
+    expect(worker).not.toContain("__SPAROWTYPE_");
+    const manifest = JSON.parse(
+      await readFile(path.join(directory, "site.webmanifest"), "utf8"),
+    );
+    expect(manifest).toMatchObject({
+      id: "/project/",
+      scope: "/project/",
+      start_url: "/project/",
+    });
+    expect(
+      await readFile(path.join(directory, "games/index.html"), "utf8"),
+    ).toContain("https://owner.github.io/project/games");
+    expect(
+      await readFile(path.join(directory, "stats/index.html"), "utf8"),
+    ).toContain("noindex,nofollow");
+    expect(
+      await readFile(path.join(directory, "404.html"), "utf8"),
+    ).not.toContain('rel="canonical"');
+    const sitemap = await readFile(path.join(directory, "sitemap.xml"), "utf8");
+    expect(sitemap).toContain("https://owner.github.io/project/lessons");
+    expect(sitemap).not.toContain("https://owner.github.io/lessons");
+    expect(
+      await readFile(path.join(directory, "_offline-recovery.html"), "utf8"),
+    ).toContain('href="/project/learn"');
+  });
   it("injects a deterministic public file list without private files or invented sitemap origin", async () => {
     delete process.env.SPAROWTYPE_SITE_URL;
     const directory = await fixture();
@@ -144,17 +179,20 @@ describe("offline build artifacts", () => {
     expect(worker).toContain("/fonts/fixture.woff2");
   });
   it("emits only public sitemap routes with the explicitly configured origin", async () => {
-    process.env.SPAROWTYPE_SITE_URL = "https://example.test/subpath";
+    process.env.SPAROWTYPE_SITE_URL = "https://example.test/subpath/";
     const directory = await fixture();
-    expect((await buildOffline(directory)).sitemap).toBe(true);
+    expect(
+      (await buildOffline(directory, { SPAROWTYPE_BASE_PATH: "/subpath/" }))
+        .sitemap,
+    ).toBe(true);
     const sitemap = await readFile(path.join(directory, "sitemap.xml"), "utf8");
-    expect(sitemap).toContain("https://example.test/touch-typing");
+    expect(sitemap).toContain("https://example.test/subpath/touch-typing");
     expect(sitemap).not.toMatch(
       /profile|settings|auth|stats|private|leaderboard/,
     );
     expect(
       await readFile(path.join(directory, "robots.txt"), "utf8"),
-    ).toContain("Sitemap: https://example.test/sitemap.xml");
+    ).toContain("Sitemap: https://example.test/subpath/sitemap.xml");
   });
   it("rejects invalid or credential-bearing deployment origins", async () => {
     process.env.SPAROWTYPE_SITE_URL = "https://person:secret@example.test";

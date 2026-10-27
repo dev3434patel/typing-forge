@@ -1,0 +1,84 @@
+{
+  "preparedAt": "2026-10-22T20:06:09.787658+00:00",
+  "status": "PLANNED-NOT-WRITTEN-NOT-RUN",
+  "scope": "Proposed correctness/memory-bound tests for root-reviewed factory-only word metadata cache. No source/test implementation or acceptance job; thresholds4096/512 remain proposed engineering choices.",
+  "cases": [
+    {
+      "id": "factory-empty",
+      "targetUnits": 0,
+      "words": 1,
+      "expected": "Same empty-target alignment/replay; one immutable numeric metadata record may be cached."
+    },
+    {
+      "id": "unit-cap-inclusive",
+      "targetUnits": 4096,
+      "words": 1,
+      "expected": "Metadata eligible only for factory-owned array; repeated align/replay exact parity, at most one bounded Word-array cache write."
+    },
+    {
+      "id": "unit-cap-exclusive",
+      "targetUnits": 4097,
+      "words": 1,
+      "expected": "No metadata-array cache write, exact ordinary algorithm fallback."
+    },
+    {
+      "id": "word-cap-inclusive",
+      "construction": "512 nonempty words separated by511 literal spaces;<=4096 graphemes",
+      "words": 512,
+      "expected": "Bounded immutable metadata may be cached; all indices/word credit/mapping/slots match independent existing alignment."
+    },
+    {
+      "id": "word-cap-exclusive",
+      "construction": "513 nonempty words separated by512 spaces;<=4096 graphemes",
+      "words": 513,
+      "expected": "No Word-array cache write; marker removed, exact fallback retained."
+    },
+    {
+      "id": "all-space-bound",
+      "targetUnits": 4096,
+      "words": 4097,
+      "expected": "Never retain4097 Word objects through metadata cache; empty-word/separator credit identical to original."
+    },
+    {
+      "id": "spaces-around-boundary",
+      "construction": "511/512 all-space units plus leading/trailing/consecutive-space prose",
+      "expected": "512/513 Word boundary respected, no empty-word removal or naive creditedUnits=typedLength shortcut."
+    },
+    {
+      "id": "external-mutable",
+      "construction": "Public alignTranscript target array mutates between calls",
+      "expected": "No factory branding/cache write; output responds to actual new boundaries."
+    },
+    {
+      "id": "external-frozen-accessor",
+      "construction": "Frozen public array with getter index toggling letter vs U+0020 only between calls",
+      "expected": "No cache write; each call equals fresh dense content snapshot and original algorithm. Object.isFrozen alone never qualifies."
+    },
+    {
+      "id": "issued-target-append",
+      "construction": "Factory target and append-created new identity, replay under issued-segment history",
+      "expected": "Separate bounds per immutable target; old publications unchanged and canonical replay/metrics/evidence exact."
+    },
+    {
+      "id": "unicode-ime-rtl",
+      "construction": "NFC combining accents,emojiZWJ,Devanagari,Arabic; composition corrections",
+      "expected": "Grapheme-index metadata and literal-space splitting unchanged; no retained input or timing model cached."
+    },
+    {
+      "id": "lifetime-and-values",
+      "construction": "Create17 distinct ordinary targets and keep/drop external factory-array references",
+      "expected": "No new strong global target owner; cached values contain numeric bounds only, never key/text/owner/events. Do not assert nondeterministic GC timing or an absolute global16-key bound."
+    }
+  ],
+  "memoryBoundaryObservation": "If root approves, scoped unit spy on WeakMap.prototype.set can forward every call unchanged and filter only the exact returned factory target identity. Assert zero Word-array writes for oversized/external targets and bounded/frozen numeric Word-array writes for eligible ones. Restore spy in finally; no production test-only exports or heap-GC stopwatch assertions. This observes the explicit retention contract rather than trusting matching output alone.",
+  "parity": "Compare full alignment/mapping/cursor/processed/creditedUnits and independent canonical replay metrics; retain native533 corpus and existing golden/IME/correction cases.",
+  "futureGuards": [
+    "Only targetGraphemes itself can brand new dense frozen arrays; arbitrary frozen or mutable public arrays bypass.",
+    "Word values remain primitive numeric start/end/separator bounds; adding strings/nested fields requires review.",
+    "Length/word caps checked before retention; no target-word text or owner/session evidence duplicated.",
+    "Any measured timing benefit requires new source gates/build and allthree declared matched input attempts; current16 latency failure remains."
+  ],
+  "executionPerformed": false,
+  "sourceFilesEdited": 0,
+  "testFilesEdited": 0
+}

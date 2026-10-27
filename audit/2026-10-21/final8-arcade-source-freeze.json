@@ -1,0 +1,121 @@
+{
+  "status": "PASS-SCOPED-SOURCE-FREEZE",
+  "capturedAt": "2026-10-21T18:36:17.639460+00:00",
+  "capturedLocal": "2026-10-22T00:06:17.639460+05:30",
+  "scope": "Owned Arcade first-input source and focused native unit/lint confirmation only. Not a global final8 freeze, full source gate, build, browser, native device, backend or performance acceptance.",
+  "timingContract": {
+    "armed": "Play prepares phase=playing and the visible first target while canonical timingOrigin is null.",
+    "startsOn": "First nonempty canonical insertion/rejection/committed composition, including an incorrect first attempt.",
+    "doesNotStartOn": [
+      "Play/focus/buttons/modifier keys",
+      "empty edit/deletion/unlock/submit",
+      "assistance metadata without text",
+      "pause/resume before first attempt"
+    ],
+    "world": "Entity/spawn/snake/lava/BOT/ghost/boss progress and rhythm metronome wait for canonical start; world origin and excluded pauses derive from SessionController.timingOrigin/snapshot.",
+    "clockScope": "Legacy human Race/Arena unchanged by this assignment."
+  },
+  "sourceFiles": [
+    {
+      "file": "src/games/engine/arcade-machine.ts",
+      "bytes": 22965,
+      "sha256": "b16169fd741b016675b1c275fbbaf97bb904144f8a907c8edaa94d340904a3ed",
+      "normalizedLfSha256": "b16169fd741b016675b1c275fbbaf97bb904144f8a907c8edaa94d340904a3ed"
+    },
+    {
+      "file": "src/games/engine/canonical-bridge.ts",
+      "bytes": 4016,
+      "sha256": "4eab5deddc4ec2ae784c6f85f832df2d55a4998d24cd25165ce16417e2b3ea26",
+      "normalizedLfSha256": "4eab5deddc4ec2ae784c6f85f832df2d55a4998d24cd25165ce16417e2b3ea26"
+    },
+    {
+      "file": "src/games/engine/types.ts",
+      "bytes": 2561,
+      "sha256": "450cf11c911a88851b815e06e6b342f2912744486d6c50480eb6f53744975ce8",
+      "normalizedLfSha256": "450cf11c911a88851b815e06e6b342f2912744486d6c50480eb6f53744975ce8"
+    },
+    {
+      "file": "src/games/ui/ArcadePlayer.tsx",
+      "bytes": 13895,
+      "sha256": "9a0c8237468561b3a3ad801ed9cc087dd89c056cd6b433a8a0dd65dc40ab48f3",
+      "normalizedLfSha256": "9a0c8237468561b3a3ad801ed9cc087dd89c056cd6b433a8a0dd65dc40ab48f3"
+    },
+    {
+      "file": "src/games/engine/__tests__/canonical.test.ts",
+      "bytes": 4702,
+      "sha256": "f040063ba206015b235f54ab88140c6d90e97cf6cc0122535d214c475b1efb38",
+      "normalizedLfSha256": "f040063ba206015b235f54ab88140c6d90e97cf6cc0122535d214c475b1efb38"
+    },
+    {
+      "file": "src/games/engine/__tests__/modes.test.ts",
+      "bytes": 13410,
+      "sha256": "df57cb2a50e2bbec869eaefb0b0cb51edddcc072895125af89280f8b483400f9",
+      "normalizedLfSha256": "df57cb2a50e2bbec869eaefb0b0cb51edddcc072895125af89280f8b483400f9"
+    },
+    {
+      "file": "src/games/engine/__tests__/first-input.test.ts",
+      "bytes": 7606,
+      "sha256": "167324a8812a8b4a1ae7fe29341712d46dbb5d512505f973dc2b14bf95400fd6",
+      "normalizedLfSha256": "167324a8812a8b4a1ae7fe29341712d46dbb5d512505f973dc2b14bf95400fd6"
+    },
+    {
+      "file": "e2e/arcade.spec.ts",
+      "bytes": 8304,
+      "sha256": "bd2a83fd2a7065d17769d6c8f74d1e433a9f847766a2bce686e012178e317750",
+      "normalizedLfSha256": "bd2a83fd2a7065d17769d6c8f74d1e433a9f847766a2bce686e012178e317750"
+    }
+  ],
+  "checks": [
+    {
+      "id": "first-focused-command",
+      "status": "FAILED-BEFORE-COLLECTION",
+      "log": "audit/2026-10-21/final8-arcade-first-input-first.log",
+      "reason": "Installed Vitest4 rejects --minWorkers; no product test was collected."
+    },
+    {
+      "id": "corrected-three-file-command",
+      "status": "PASS-SCOPED",
+      "files": 3,
+      "tests": 331,
+      "log": "audit/2026-10-21/final8-arcade-first-input-confirmation.log",
+      "scope": "Before the additional wrong-composition identity regression; not the final total."
+    },
+    {
+      "id": "complete-owned-games-suite",
+      "status": "PASS-SCOPED",
+      "exitCode": 0,
+      "files": 7,
+      "tests": 577,
+      "log": "audit/2026-10-21/final8-arcade-all-units.log",
+      "includes": "All eight modes/deadlines, pre-first long idle/pause/actions, wrong/composition start, canonical replay, 10000 deterministic simulation seeds, records/native guards."
+    },
+    {
+      "id": "scoped-eslint",
+      "status": "PASS-SCOPED",
+      "exitCode": 0,
+      "errors": 0,
+      "warnings": 0,
+      "log": "audit/2026-10-21/final8-arcade-scoped-lint.log",
+      "logBytes": 0
+    },
+    {
+      "id": "owned-files-diff-check",
+      "status": "PASS-SCOPED",
+      "exitCode": 0
+    }
+  ],
+  "e2eChange": "Existing eight portrait/landscape Arcade cases now explicitly focus/Shift/empty-Backspace, retain0.0s through150ms pretyping idle, and verify first real event offset0/startImmediately=false after native wrong+correct input. Same case definitions/count; no browser execution in this assignment.",
+  "ownedProcessCheck": {
+    "checkedAt": "2026-10-21T18:35:35.3964410+00:00",
+    "matchingOwnedCommands": 0,
+    "processIds": [],
+    "method": "Read-only Win32 process inventory limited to the unique placement DOM/135s filenames and scoped src/games Vitest/ESLint commands. No stop or configuration change."
+  },
+  "remaining": [
+    "Global final8 type/lint/coverage/PHP/content/dependency gates",
+    "Frozen final8 artifact and exact delta",
+    "Actual eight-mode/browser responsive/IME/input verification",
+    "Fresh full-intro Lighthouse and input latency measurements"
+  ],
+  "privacy": "No live backend/user DB, private configuration, cookies, credential or typed passage is included."
+}

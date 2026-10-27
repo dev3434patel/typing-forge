@@ -1,0 +1,146 @@
+{
+  "declaredAt": "2026-10-21T15:00:07.061Z",
+  "status": "FAILED",
+  "build": {
+    "version": "f3ac03affbc33168655a",
+    "publicFiles": 132,
+    "bytes": 2910866
+  },
+  "source": {
+    "sourceFile": "audit/2026-10-21/final7-source.json",
+    "expectedBuild": "f3ac03affbc33168655a",
+    "compared": 483,
+    "mismatches": []
+  },
+  "stages": [
+    {
+      "id": "typing",
+      "args": [
+        "audit/2026-10-21/run-input-final.mjs",
+        "final7"
+      ]
+    },
+    {
+      "id": "workspaces",
+      "args": [
+        "audit/2026-10-21/measure-mobile-workspaces.mjs",
+        "mobile-workspaces-final7",
+        "audit/2026-10-21/mobile-workspaces-final7-protocol.json"
+      ]
+    },
+    {
+      "id": "lighthouse",
+      "args": [
+        "audit/2026-10-21/run-final-lighthouse.mjs",
+        "final7-mobile"
+      ]
+    }
+  ],
+  "automaticRetries": 0,
+  "resultFiltering": false,
+  "qualityOverrides": false,
+  "method": "Sequential matched4xCPU typing runs, four mobile workspaces, then three fresh full-quality intro Lighthouse runs. Lighthouse enforces30quiet seconds before each run. No other audit browser/build/native/load jobs are permitted.",
+  "processes": [
+    {
+      "id": "typing",
+      "startedAt": "2026-10-21T15:00:07.419Z",
+      "args": [
+        "audit/2026-10-21/run-input-final.mjs",
+        "final7"
+      ],
+      "log": "audit/2026-10-21/final7-measurements-typing.log",
+      "exitCode": 0,
+      "durationMs": 102459.352,
+      "finishedAt": "2026-10-21T15:01:49.877Z",
+      "status": "PASS-SCOPED"
+    },
+    {
+      "id": "workspaces",
+      "startedAt": "2026-10-21T15:01:50.310Z",
+      "args": [
+        "audit/2026-10-21/measure-mobile-workspaces.mjs",
+        "mobile-workspaces-final7",
+        "audit/2026-10-21/mobile-workspaces-final7-protocol.json"
+      ],
+      "log": "audit/2026-10-21/final7-measurements-workspaces.log",
+      "exitCode": 1,
+      "durationMs": 24325.64009999999,
+      "finishedAt": "2026-10-21T15:02:14.636Z",
+      "status": "FAILED"
+    },
+    {
+      "id": "lighthouse",
+      "startedAt": "2026-10-21T15:02:15.004Z",
+      "args": [
+        "audit/2026-10-21/run-final-lighthouse.mjs",
+        "final7-mobile"
+      ],
+      "log": "audit/2026-10-21/final7-measurements-lighthouse.log",
+      "exitCode": 0,
+      "durationMs": 190287.11690000002,
+      "finishedAt": "2026-10-21T15:05:25.291Z",
+      "status": "PASS-SCOPED"
+    }
+  ],
+  "typingGate": {
+    "status": "FAILED",
+    "runs": [
+      {
+        "run": 1,
+        "build": "f3ac03affbc33168655a",
+        "exact": true,
+        "attempts": 495,
+        "accuracy": 100,
+        "p98Ms": 96,
+        "maxMs": 296,
+        "rotation": {
+          "beforeLength": 247,
+          "afterLength": 247,
+          "retainedExactly": true,
+          "overflow": false
+        },
+        "errors": []
+      },
+      {
+        "run": 2,
+        "build": "f3ac03affbc33168655a",
+        "exact": true,
+        "attempts": 495,
+        "accuracy": 100,
+        "p98Ms": 104,
+        "maxMs": 288,
+        "rotation": {
+          "beforeLength": 247,
+          "afterLength": 247,
+          "retainedExactly": true,
+          "overflow": false
+        },
+        "errors": []
+      },
+      {
+        "run": 3,
+        "build": "f3ac03affbc33168655a",
+        "exact": true,
+        "attempts": 495,
+        "accuracy": 100,
+        "p98Ms": 96,
+        "maxMs": 216,
+        "rotation": {
+          "beforeLength": 247,
+          "afterLength": 247,
+          "retainedExactly": true,
+          "overflow": false
+        },
+        "errors": []
+      }
+    ],
+    "scope": "Thresholded/quantized local lab Event Timing, not field INP or native mobile input."
+  },
+  "sourceAfter": {
+    "sourceFile": "audit/2026-10-21/final7-source.json",
+    "expectedBuild": "f3ac03affbc33168655a",
+    "compared": 483,
+    "mismatches": []
+  },
+  "finishedAt": "2026-10-21T15:05:25.686Z"
+}

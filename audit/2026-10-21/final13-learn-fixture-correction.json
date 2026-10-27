@@ -1,0 +1,78 @@
+{
+  "capturedAt": "2026-10-22T18:34:16.224Z",
+  "status": "CONFIRMED-FIXTURE-CORRECTION-NOT-RERUN",
+  "sourceBuild": "b00993b05c14117dca60",
+  "originalReport": "audit/2026-10-21/final13-typing-fidelity.json",
+  "originalSummary": "audit/2026-10-21/final13-typing-fidelity-summary.json",
+  "originalOutcomes": {
+    "total": 308,
+    "passed": 307,
+    "failed": 1,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "originalFailure": [
+    {
+      "project": "webkit",
+      "title": "typing-observer-ownership.spec.ts › Learn reuses measured glyph windows across spaces and preserves native caret geometry after font, error and rotation changes",
+      "file": "typing-observer-ownership.spec.ts",
+      "line": 239,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(locator).toHaveAttribute(expected) failed Locator: locator('.learn-stream [data-slot-index=\"60\"]') Expected: \"incorrect\" Received: \"untyped\" Timeout: 5000ms Call log: - Expect \"toHaveAttribute\" locator('.learn-stream [data-slot-index=\"60\"]') with timeout 5000ms - waiting for locator('.learn-stream [data-slot-index=\"60\"]') 14 × locator resolved to <span data-expected=\" \" data-current=\"true\" data-slot-index=\"60\" data-status=\"untyped\" "
+      ]
+    }
+  ],
+  "retainedTraceEvidence": {
+    "scope": "Read-only single retained guest WebKit trace/error-context, no raw trace copied.",
+    "targetIndex": 60,
+    "targetExpected": " ",
+    "targetStatus": "untyped",
+    "lastNativeInput": "x",
+    "feedback": "You typed x. Expected Space. Added to your text.1incorrect attempt.",
+    "priorStages": "Warm-window zero-read, idle-DOM and font/native-geometry assertions completed before the incorrect-slot expectation."
+  },
+  "diagnosis": "At a prose word boundary, a non-space letter is extra and the target-space slot remains untyped. The fixture chose a separator then incorrectly demanded an incorrect target-space slot. This is not evidence of an input or caret product defect.",
+  "change": {
+    "file": "e2e/typing-observer-ownership.spec.ts",
+    "sha256": "1329b00dd9ab31408d896a86477156bf13a3c37672994619373757dedde241c8",
+    "targetSelection": "Backtrack from the same<=60 prefix until both expected glyph and preceding glyph are alphabetic. Explicit assertions reject separator/newline/empty-word targets.",
+    "cleanup": "Native getBoundingClientRect measurement monkeypatch is restored in finally even if typing or warm-window assertions fail.",
+    "unchanged": "Native input delay, exact0glyph-read budget, idle DOM0, actualfont width>0.5, geometry<0.75, wrong/deletion/rotation, observer lifecycle and exacttext/attempt/error/delete export assertions. No timeout, retry or threshold change."
+  },
+  "productFiles": [
+    {
+      "file": "src/components/keybr/KeybrLessonMode.tsx",
+      "frozenHash": "49973686fcbe42607022caae71b10bf2d5719d1c7885cad257c9c32bd8a8cdae",
+      "rawSha256": "20fadff93a1fb79fc119c80a9cb9f72127f58bae2edc9d292e3d7664f20df872",
+      "lfNormalizedSha256": "49973686fcbe42607022caae71b10bf2d5719d1c7885cad257c9c32bd8a8cdae",
+      "normalizedContentMatchesFrozen13": true
+    },
+    {
+      "file": "src/lib/learning-caret-geometry.ts",
+      "frozenHash": "283a2ca639a74314ea44be0a3cb8a8d6bc61da7fd371832b2766bd24cb3a6829",
+      "rawSha256": "283a2ca639a74314ea44be0a3cb8a8d6bc61da7fd371832b2766bd24cb3a6829",
+      "lfNormalizedSha256": "283a2ca639a74314ea44be0a3cb8a8d6bc61da7fd371832b2766bd24cb3a6829",
+      "normalizedContentMatchesFrozen13": true
+    },
+    {
+      "file": "src/lib/__tests__/learning-caret-geometry.test.ts",
+      "frozenHash": "60bda1b841246d91e3e85955cbbe5f0e3177b96ec3315c3910aee82b053e58e6",
+      "rawSha256": "60bda1b841246d91e3e85955cbbe5f0e3177b96ec3315c3910aee82b053e58e6",
+      "lfNormalizedSha256": "60bda1b841246d91e3e85955cbbe5f0e3177b96ec3315c3910aee82b053e58e6",
+      "normalizedContentMatchesFrozen13": true
+    }
+  ],
+  "initialLocalReceiptAttempt": {
+    "status": "FAILED-RAW-BYTE-CHECK",
+    "explanation": "KeybrLessonMode.tsx has CRLF working-tree endings. RawSHA differs; LF-normalized source exactly matches frozen13. Other two Learn product/helper test files match raw and normalized. This review did not change any product file or line endings."
+  },
+  "diffCheckExitCode": 0,
+  "productEdits": false,
+  "helperEdits": false,
+  "browserBuildOrTestJobs": false,
+  "confirmation": "Pending parent-coordinated browser confirmation. Original307/308 failure preserved."
+}

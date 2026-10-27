@@ -1,7 +1,7 @@
 import { expect, test, type Page, type TestInfo } from "@playwright/test";
 import { focusTyping } from "./helpers";
 import { waitForLayoutFonts } from "./layout-fonts";
-import { selectDocumentOpeningRenderer } from "./opening-renderer";
+import { advanceClockedOpeningPreparation, selectDocumentOpeningRenderer } from "./opening-renderer";
 
 const PREFERENCES_KEY = "typingforge:v3:guest:preferences";
 const VIEWPORTS = [
@@ -289,10 +289,11 @@ test("390px full mobile fallback contains every key and keeps controls separate"
   await page.goto("/", { waitUntil: "domcontentloaded" });
   const opening = page.getByTestId("opening-experience");
   await expect(opening).toHaveAttribute("data-mode", "full");
-  await page.clock.runFor(100);
-  await expect(opening).toHaveAttribute("data-renderer", "fallback", {
-    timeout: 15_000,
-  });
+  const preparation = await advanceClockedOpeningPreparation(page, 15_000);
+  await expect.poll(async () => {
+    await page.clock.runFor(16);
+    return opening.getAttribute("data-renderer");
+  }, { timeout: preparation.remainingTimeoutMs }).toBe("fallback");
   await page.clock.fastForward(2750);
   // Freeze CSS motion at the assembled moment; inspect the fallback's actual layout.
   await opening.evaluate((element) => {

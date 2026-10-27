@@ -39,7 +39,7 @@ export function ProfileSettings({ profile, onUpdate }: ProfileSettingsProps) {
   const handleSave = async () => {
     const result = usernameSchema.safeParse(formData.username);
     if (!result.success) {
-      setUsernameError(result.error.errors[0].message);
+      setUsernameError(result.error.issues[0].message);
       return;
     }
     setUsernameError(null);

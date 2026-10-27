@@ -1,0 +1,78 @@
+{
+  "capturedAt": "2026-10-23T15:04:04.665564+00:00",
+  "reportLocalDate": "2026-10-23",
+  "status": "PASS-SCOPED-SOURCE-REVIEW-RUNTIME-PENDING",
+  "scope": "Read-only exact2-file React snapshot-consumer repair; no source/E2E edit,test/build/browser/native/servicejob. Actual18integratedgates/build/repairedruntimepending.",
+  "baselineSource": "audit/2026-10-21/final17-source.json",
+  "baselineBuild": {
+    "version": "0572d723495d6be303a8",
+    "publicFiles": 133,
+    "bytes": 2930646
+  },
+  "current18Build": null,
+  "files": [
+    {
+      "file": "src/components/layout/PwaStatus.tsx",
+      "baselineNormalizedSha256": "bf532b12b82b313e1564aa135fe58e389be9757d69899193721405754581e1b6",
+      "currentNormalizedSha256": "b82dcab8c12a50bf7a5d565e108b58f80c7ac15a1d1b7d6071abd6d766d4bd11",
+      "reverseNormalizedSha256": "bf532b12b82b313e1564aa135fe58e389be9757d69899193721405754581e1b6",
+      "reverseRestoresExact17": true,
+      "exactReverseChanges": [
+        {
+          "from": "import { useEffect, useState, useSyncExternalStore } from \"react\";",
+          "to": "import { useEffect, useState } from \"react\";"
+        },
+        {
+          "from": "  const state = useSyncExternalStore(subscribePwa, getPwaState, getPwaState);",
+          "to": "  const [state, setState] = useState(getPwaState);"
+        },
+        {
+          "from": "  const [updateLater, setUpdateLater] = useState(false);\n",
+          "to": "  const [updateLater, setUpdateLater] = useState(false);\n  useEffect(() => subscribePwa(() => setState(getPwaState())), []);\n"
+        }
+      ],
+      "actualPatch": "--- a/src/components/layout/PwaStatus.tsx\n+++ b/src/components/layout/PwaStatus.tsx\n@@ -1,4 +1,4 @@\n-import { useEffect, useState } from \"react\";\n+import { useEffect, useState, useSyncExternalStore } from \"react\";\n import { Link } from \"react-router-dom\";\n import { Download, RefreshCw, WifiOff, X } from \"lucide-react\";\n import {\n@@ -9,10 +9,9 @@\n   subscribePwa,\n } from \"@/lib/pwa\";\n export function PwaStatus() {\n-  const [state, setState] = useState(getPwaState);\n+  const state = useSyncExternalStore(subscribePwa, getPwaState, getPwaState);\n   const [installLater, setInstallLater] = useState(false);\n   const [updateLater, setUpdateLater] = useState(false);\n-  useEffect(() => subscribePwa(() => setState(getPwaState())), []);\n   useEffect(() => startPwa(), []);\n   useEffect(() => {\n     if (!state.updateAvailable) setUpdateLater(false);\n"
+    },
+    {
+      "file": "src/pages/Offline.tsx",
+      "baselineNormalizedSha256": "b386ead506d0da9ea0e8184afc6de293ca0ad81b462b4efb8a0ec1cffc20ba1b",
+      "currentNormalizedSha256": "701b54740a396d2e09cf921e0ac575e94feb2d2a03596d8038c2e32b3e95a94e",
+      "reverseNormalizedSha256": "b386ead506d0da9ea0e8184afc6de293ca0ad81b462b4efb8a0ec1cffc20ba1b",
+      "reverseRestoresExact17": true,
+      "exactReverseChanges": [
+        {
+          "from": "import { useState, useSyncExternalStore } from \"react\";",
+          "to": "import { useEffect, useState } from \"react\";"
+        },
+        {
+          "from": "  const state = useSyncExternalStore(subscribePwa, getPwaState, getPwaState);",
+          "to": "  const [state, setState] = useState(getPwaState);"
+        },
+        {
+          "from": "  const [busy, setBusy] = useState(false);\n",
+          "to": "  const [busy, setBusy] = useState(false);\n  useEffect(() => subscribePwa(() => setState(getPwaState())), []);\n"
+        }
+      ],
+      "actualPatch": "--- a/src/pages/Offline.tsx\n+++ b/src/pages/Offline.tsx\n@@ -1,4 +1,4 @@\n-import { useEffect, useState } from \"react\";\n+import { useState, useSyncExternalStore } from \"react\";\n import { Link } from \"react-router-dom\";\n import { Header } from \"@/components/layout/Header\";\n import { Footer } from \"@/components/layout/Footer\";\n@@ -11,9 +11,8 @@\n   subscribePwa,\n } from \"@/lib/pwa\";\n export default function Offline() {\n-  const [state, setState] = useState(getPwaState);\n+  const state = useSyncExternalStore(subscribePwa, getPwaState, getPwaState);\n   const [busy, setBusy] = useState(false);\n-  useEffect(() => subscribePwa(() => setState(getPwaState())), []);\n   const clear = async () => {\n     setBusy(true);\n     try {\n"
+    }
+  ],
+  "sourceScope": {
+    "baselineFilesCompared": 499,
+    "modifiedPaths": [
+      "src/components/layout/PwaStatus.tsx",
+      "src/pages/Offline.tsx"
+    ],
+    "unchangedFiles": 497,
+    "noNewSourceOrDependencyByThisRepair": true,
+    "normalization": "Sameexplicittext-extensionCRLF/LFandbinaryrawpolicyasfrozenmanifest."
+  },
+  "semanticReview": [
+    "StablemodulegetPwaState returns samecurrentstateobjectuntilupdate allocatesnewstate andnotifieslisteners; suitablecachedsnapshotidentity.",
+    "StablemodulesubscribePwa returns itsmatchingunsubscribe; no newlistenerownership/lifecyclehelper introduced.",
+    "OnlyReactimport/state-read/subscription mechanism changes; completeothercomponentmarkup/classes/copy/buttons/dismissal/busy/startPwa codeexact17byreverseproof.",
+    "PHP/typingcore/metrics/caret/CSS/3D/worker/storebackend sourcehashes unchanged."
+  ],
+  "controlledOldRegression": "audit/2026-10-21/final18-pwa-old-baseline-independent-extraction.json",
+  "repairedControlledRuntime": "PENDING/NOT-RUN",
+  "sourceGatesBuildPerformance": "RUNNING/PENDING perroot; no resultsinferred."
+}

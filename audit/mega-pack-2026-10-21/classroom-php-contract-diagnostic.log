@@ -1,0 +1,20 @@
+file:///D:/extra/typing_updated/typing-forge/backend/tests/classroom-contract.mjs:8
+  if (run.status !== 0) throw new Error(`Pure classroom PHP harness failed: ${run.stderr || run.stdout.slice(-2000)}`);
+                              ^
+
+Error: Pure classroom PHP harness failed: 
+Fatal error: Uncaught InvalidArgumentException: Private content requires explicit server-storage consent. in D:\extra\typing_updated\typing-forge\backend\src\SessionValidator.php:15
+Stack trace:
+#0 D:\extra\typing_updated\typing-forge\backend\src\SessionValidator.php(520): SparowType\SessionValidator::check(false, 'Private content...')
+#1 D:\extra\typing_updated\typing-forge\backend\tests\classroom-contract.php(17): SparowType\SessionValidator->validate(Array, '22222222-2222-4...')
+#2 D:\extra\typing_updated\typing-forge\backend\tests\classroom-contract.php(19): {closure}()
+#3 {main}
+  thrown in D:\extra\typing_updated\typing-forge\backend\src\SessionValidator.php on line 15
+
+    at call (file:///D:/extra/typing_updated/typing-forge/backend/tests/classroom-contract.mjs:8:31)
+    at file:///D:/extra/typing_updated/typing-forge/backend/tests/classroom-contract.mjs:18:18
+    at ModuleJob.run (node:internal/modules/esm/module_job:345:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.20.0

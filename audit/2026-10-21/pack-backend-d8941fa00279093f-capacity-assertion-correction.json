@@ -1,0 +1,63 @@
+{
+  "checkedAt": "2026-10-21T13:35:24.9557909Z",
+  "kind": "retained-capacity-assertion-correction",
+  "source": "audit/2026-10-21/pack-backend-d8941fa00279093f-arena-load-raw.json",
+  "declaredRooms": 50,
+  "declaredSeats": 400,
+  "allocatedRooms": 46,
+  "occupiedSeats": 368,
+  "exactRoomAssertion": false,
+  "exactSeatAssertion": false,
+  "originalRawReportModified": false,
+  "explanation": "Original assertion used sparse Array.every after four create conflicts; holes were skipped. Corrected harness densifies all50 indices and requires exact50 rooms/400 seats. Original failed status and false-positive assertion retained.",
+  "phaseStatuses": [
+    {
+      "phaseStatus": "create, 200",
+      "count": 46
+    },
+    {
+      "phaseStatus": "create, 409",
+      "count": 4
+    },
+    {
+      "phaseStatus": "get, 200",
+      "count": 46
+    },
+    {
+      "phaseStatus": "get, 403",
+      "count": 1
+    },
+    {
+      "phaseStatus": "join, 200",
+      "count": 322
+    },
+    {
+      "phaseStatus": "join, 409",
+      "count": 1
+    },
+    {
+      "phaseStatus": "leave, 200",
+      "count": 40
+    },
+    {
+      "phaseStatus": "leave, 429",
+      "count": 328
+    },
+    {
+      "phaseStatus": "ready, 200",
+      "count": 368
+    },
+    {
+      "phaseStatus": "spectate, 200",
+      "count": 1
+    },
+    {
+      "phaseStatus": "submit, 200",
+      "count": 297
+    },
+    {
+      "phaseStatus": "submit, 422",
+      "count": 71
+    }
+  ]
+}

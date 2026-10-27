@@ -6,12 +6,14 @@ const Toaster = lazy(() =>
   })),
 );
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { AuthProvider } from "@/hooks/useAuth";
+import { AuthProvider, useAuth } from "@/hooks/useAuth";
 import { PreferencesProvider } from "@/contexts/PreferencesContext";
 import { ErrorBoundary } from "@/components/layout/ErrorBoundary";
 import { AccountWorkspace } from "@/components/layout/AccountWorkspace";
 import "./index.css";
 import { applyRouteSeo } from "@/lib/seo";
+import { APP_ROUTER_BASENAME } from "@/lib/deployment";
+import { getUiLocale, setUiLocale } from '@/i18n';
 const PwaStatus = lazy(() =>
   import("@/components/layout/PwaStatus").then((module) => ({
     default: module.PwaStatus,
@@ -30,6 +32,7 @@ const Leaderboard = lazy(() => import("./pages/Leaderboard"));
 const Profile = lazy(() => import("./pages/Profile"));
 const Auth = lazy(() => import("./pages/Auth"));
 const Race = lazy(() => import("./pages/Race"));
+const Games = lazy(() => import("./pages/Games"));
 const Ranked = lazy(() => import("./pages/Ranked"));
 const Settings = lazy(() => import("./pages/Settings"));
 const About = lazy(() => import("./pages/About"));
@@ -39,6 +42,25 @@ const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Offline = lazy(() => import("./pages/Offline"));
 const TouchTyping = lazy(() => import("./pages/TouchTyping"));
+const Studio = lazy(() => import("./pages/Studio"));
+const Progression = lazy(() => import("./pages/Progression"));
+const Classroom = lazy(() => import("./pages/Classroom"));
+const Friends = lazy(() => import('./pages/Friends'));
+const Arena = lazy(() => import('./pages/Arena'));
+const ArcadePage = lazy(() => import("./games/ui/ArcadePage"));
+const LocalReminderRuntime = lazy(() => import('./components/progression/LocalReminderRuntime'));
+function DeferredEngagement() {
+  const owner = useAuth().user?.id ?? 'guest';
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    const prepare = () => {
+      try { if (JSON.parse(localStorage.getItem(`sparowtype.reminders.v1:${encodeURIComponent(owner)}`) || 'null')?.enabled === true) setLoaded(true); } catch { /* No reminder without explicit stored consent. */ }
+    };
+    window.addEventListener('pointerdown', prepare, { once: true }); window.addEventListener('keydown', prepare, { once: true }); window.addEventListener('sparowtype:reminders-changed', prepare);
+    return () => { window.removeEventListener('pointerdown', prepare); window.removeEventListener('keydown', prepare); window.removeEventListener('sparowtype:reminders-changed', prepare); };
+  }, [owner]);
+  return loaded ? <Suspense fallback={null}><LocalReminderRuntime /></Suspense> : null;
+}
 function DeferredCommands() {
   const [loaded, setLoaded] = useState(false);
   const [open, setOpen] = useState(false);
@@ -101,6 +123,9 @@ function Notifications() {
 function RouteEffects() {
   const { pathname } = useLocation();
   useEffect(() => {
+    setUiLocale(getUiLocale());
+  }, []);
+  useEffect(() => {
     window.scrollTo(0, 0);
     applyRouteSeo(pathname, window.location.origin);
   }, [pathname]);
@@ -113,9 +138,10 @@ export default function App() {
         <PreferencesProvider>
           <Notifications />
           {/* Replace the active typing route immediately while a lazy destination loads. */}
-          <BrowserRouter useTransitions={false}>
+          <BrowserRouter basename={APP_ROUTER_BASENAME} useTransitions={false}>
             <RouteEffects />
             <DeferredCommands />
+            <DeferredEngagement />
             <Suspense fallback={null}>
               <PwaStatus />
             </Suspense>
@@ -146,6 +172,15 @@ export default function App() {
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/auth" element={<Auth />} />
                   <Route path="/race" element={<Race />} />
+                  <Route path="/games" element={<Games />} />
+                  <Route path="/arcade" element={<ArcadePage />} />
+                  <Route path="/arcade/:gameId" element={<ArcadePage />} />
+                  <Route path="/progression" element={<Progression />} />
+                  <Route path="/studio" element={<Studio />} />
+                  <Route path="/classroom" element={<Classroom />} />
+                  <Route path="/friends" element={<Friends />} />
+                  <Route path="/arena" element={<Arena />} />
+                  <Route path="/arena/:roomCode" element={<Arena />} />
                   <Route path="/race/:roomCode" element={<Race />} />
                   <Route path="/ranked" element={<Ranked />} />
                   <Route path="/settings" element={<Settings />} />

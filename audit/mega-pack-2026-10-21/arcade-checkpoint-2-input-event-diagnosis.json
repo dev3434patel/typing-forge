@@ -1,0 +1,16 @@
+{
+  "build": "51b97d40b55f32b75c09",
+  "originalFailuresPreserved": true,
+  "assertion": "empty native backward deletion unlocks the current target after pause/resume",
+  "observed": "Checkpoint2 still shows the current target after locator.dispatchEvent beforeinput.",
+  "installedDriverEvidence": {
+    "file": "node_modules/playwright-core/lib/coreBundle.js",
+    "function": "InjectedScript.dispatchEvent(node,type,eventInitObj)",
+    "beforeinputMapping": "absent",
+    "fallbackConstructor": "Event",
+    "consequence": "Event constructor ignores InputEvent-specific inputType/isComposing fields. Existing fixture sends undefined inputType."
+  },
+  "requiredFixtureCorrection": "Construct an actual InputEvent inside input.evaluate; keep the unlock assertion and record event.constructor.name/inputType.",
+  "productGuard": "Native beforeinput listener retained; unrelated generic Events must not be interpreted as deletion.",
+  "browserConfirmation": "PENDING coordinated run; no retries or assertion relaxation"
+}

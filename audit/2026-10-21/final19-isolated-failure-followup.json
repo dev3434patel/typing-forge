@@ -1,0 +1,697 @@
+{
+  "capturedAt": "2026-10-27T12:55:04.751Z",
+  "clientDate": "2026-10-27",
+  "status": "FOLLOWUP-SCOPED-ORIGINAL-MATRIX-FAILED",
+  "immutableCheckpoint": true,
+  "build": "de097acba6969d580cc8",
+  "originalMatrix": {
+    "status": "FAILED",
+    "filesCoveredExactlyOnce": 63,
+    "totals": {
+      "total": 1452,
+      "passed": 1421,
+      "failed": 6,
+      "skipped": 25,
+      "flaky": 0
+    }
+  },
+  "originalIsolated": {
+    "totals": {
+      "total": 228,
+      "passed": 213,
+      "failed": 6,
+      "skipped": 9,
+      "flaky": 0
+    },
+    "projects": [
+      {
+        "project": "chromium",
+        "total": 57,
+        "passed": 56,
+        "failed": 1,
+        "skipped": 0,
+        "flaky": 0
+      },
+      {
+        "project": "edge",
+        "total": 57,
+        "passed": 57,
+        "failed": 0,
+        "skipped": 0,
+        "flaky": 0
+      },
+      {
+        "project": "firefox",
+        "total": 57,
+        "passed": 52,
+        "failed": 5,
+        "skipped": 0,
+        "flaky": 0
+      },
+      {
+        "project": "webkit",
+        "total": 57,
+        "passed": 48,
+        "failed": 0,
+        "skipped": 9,
+        "flaky": 0
+      }
+    ]
+  },
+  "originalFailuresMappedExactlyOnce": 6,
+  "caseMappings": [
+    {
+      "original": {
+        "report": "audit/2026-10-21/final19-isolated.json",
+        "specId": "cdb3def3b8cc319ba88c-917255648962c14c8ed7",
+        "project": "firefox",
+        "file": "e2e/opening-experience.spec.ts",
+        "line": 211,
+        "title": "caret handoff animation API preserves input and the real caret",
+        "reportedOutcome": "unexpected",
+        "expectedStatus": "passed",
+        "attemptCount": 1,
+        "results": [
+          {
+            "status": "timedOut",
+            "retry": 0,
+            "durationMs": 43304,
+            "startTime": "2026-10-26T20:34:18.844Z",
+            "attachmentNames": [
+              "clocked-renderer-paint-preparation",
+              "caret-handoff-injection-witness",
+              "screenshot",
+              "error-context"
+            ]
+          }
+        ],
+        "failureStage": "Original raw result failed only in30000ms browsercontextteardown/browserContext.close; no body assertionfailure was recorded."
+      },
+      "laterConfirmation": {
+        "report": "audit/2026-10-21/final19-animation-clock-fixture-confirmation.json",
+        "protocol": "audit/2026-10-21/final19-animation-clock-fixture-confirmation-protocol.json",
+        "specId": "cdb3def3b8cc319ba88c-917255648962c14c8ed7",
+        "project": "firefox",
+        "file": "e2e/opening-experience.spec.ts",
+        "line": 211,
+        "title": "caret handoff animation API preserves input and the real caret",
+        "reportedOutcome": "expected",
+        "expectedStatus": "passed",
+        "attemptCount": 1,
+        "results": [
+          {
+            "status": "passed",
+            "retry": 0,
+            "durationMs": 3948,
+            "startTime": "2026-10-27T12:51:23.066Z",
+            "attachmentNames": [
+              "clocked-renderer-paint-preparation",
+              "caret-handoff-injection-witness"
+            ]
+          }
+        ],
+        "completedStage": "Fault-route andanimationfailure witnesses, firstx retained, no decorativecaret, realcaret visible and no pageerrors all completed after the test-only clock repair.",
+        "productionBuildIdentical": true,
+        "fixtureRevision": "Reviewed fixture-only clock scheduling repair; original assertions and real-time deadlines retained.",
+        "paintPreparation": {
+          "nativePaint": {
+            "supported": true,
+            "observed": true,
+            "startTime": 121
+          },
+          "schedulingPath": "independent-native-paint-witness-then-existing-1000ms-capability-fallback-and-400ms-idle-window-until-actual-playback",
+          "preparationClockBudgetMs": 1500,
+          "clockAdvancedMs": 560,
+          "originalTimeoutMs": 20000,
+          "remainingTimeoutMs": 17907
+        },
+        "injectionWitness": {
+          "variant": "animation API",
+          "routeHits": 1,
+          "serviceWorkers": "block"
+        }
+      },
+      "disposition": "FOLLOWUP-PASS-SCOPED; original failed case remains failed and is never replaced in full-matrix totals.",
+      "intermediateUnchangedConfirmation": {
+        "report": "audit/2026-10-21/final19-animation-teardown-confirmation.json",
+        "specId": "cdb3def3b8cc319ba88c-917255648962c14c8ed7",
+        "project": "firefox",
+        "file": "e2e/opening-experience.spec.ts",
+        "line": 211,
+        "title": "caret handoff animation API preserves input and the real caret",
+        "reportedOutcome": "unexpected",
+        "expectedStatus": "passed",
+        "attemptCount": 1,
+        "results": [
+          {
+            "status": "failed",
+            "retry": 0,
+            "durationMs": 56469,
+            "startTime": "2026-10-26T20:50:22.252Z",
+            "attachmentNames": [
+              "clocked-renderer-paint-preparation",
+              "error-context"
+            ]
+          }
+        ],
+        "failureStage": "Different earlier body failure: expectedplaying, receivedpreparing within the unchanged20000ms preparationbudget, followed bycontextteardown/runtime errors.",
+        "paintPreparation": {
+          "nativePaint": {
+            "supported": true,
+            "observed": true,
+            "startTime": 742
+          },
+          "schedulingPath": "genuine-paint-observer-then-existing-400ms-idle-window",
+          "clockAdvancedMs": 500,
+          "originalTimeoutMs": 20000,
+          "remainingTimeoutMs": 19204
+        },
+        "causalQualification": "The500ms branch and source scheduling gap motivated a bounded fixture liveness repair; retainedSWGL/Juggler errors and failurecauses are not conclusively attributed."
+      }
+    },
+    {
+      "original": {
+        "report": "audit/2026-10-21/final19-isolated.json",
+        "specId": "3553ead040fdbe829e1a-6fc992e55d9667f26a6e",
+        "project": "firefox",
+        "file": "e2e/opening-worker.spec.ts",
+        "line": 364,
+        "title": "default native worker draws the complete keyboard while document tasks, resize and skip remain responsive",
+        "reportedOutcome": "unexpected",
+        "expectedStatus": "passed",
+        "attemptCount": 1,
+        "results": [
+          {
+            "status": "failed",
+            "retry": 0,
+            "durationMs": 6133,
+            "startTime": "2026-10-26T20:37:27.917Z",
+            "attachmentNames": [
+              "screenshot",
+              "native-worker-receipts",
+              "error-context"
+            ]
+          }
+        ],
+        "failureStage": "Initial worker ready predicate: expectedtrue, receivedfalse within5000ms; resize, closure and finaltyping assertions were not reached."
+      },
+      "laterConfirmation": {
+        "report": "audit/2026-10-21/final19-worker-readiness-confirmation.json",
+        "protocol": "audit/2026-10-21/final19-worker-readiness-confirmation-protocol.json",
+        "specId": "3553ead040fdbe829e1a-6fc992e55d9667f26a6e",
+        "project": "firefox",
+        "file": "e2e/opening-worker.spec.ts",
+        "line": 364,
+        "title": "default native worker draws the complete keyboard while document tasks, resize and skip remain responsive",
+        "reportedOutcome": "expected",
+        "expectedStatus": "passed",
+        "attemptCount": 1,
+        "results": [
+          {
+            "status": "passed",
+            "retry": 0,
+            "durationMs": 5320,
+            "startTime": "2026-10-26T20:53:24.012Z",
+            "attachmentNames": [
+              "document-task-and-paint-during-worker",
+              "native-worker-shutdown",
+              "native-worker-receipts"
+            ]
+          }
+        ],
+        "completedStage": "Original full-quality ready evidence, desktop61-key instancing, document tasks/paint, mobile resize, realworker closure and firsttypingkey all completed in the unchanged focused case.",
+        "productionBuildIdentical": true,
+        "fixtureRevision": "Original test/helper hashes unchanged at the worker confirmation."
+      },
+      "disposition": "FOLLOWUP-PASS-SCOPED; original failed case remains failed and is never replaced in full-matrix totals."
+    },
+    {
+      "original": {
+        "report": "audit/2026-10-21/final19-isolated.json",
+        "specId": "3553ead040fdbe829e1a-976a554d465d8d91acc1",
+        "project": "firefox",
+        "file": "e2e/opening-worker.spec.ts",
+        "line": 461,
+        "title": "native worker acknowledges real resource disposal at an explicitly idle renderer boundary",
+        "reportedOutcome": "unexpected",
+        "expectedStatus": "passed",
+        "attemptCount": 1,
+        "results": [
+          {
+            "status": "failed",
+            "retry": 0,
+            "durationMs": 7976,
+            "startTime": "2026-10-26T20:37:36.393Z",
+            "attachmentNames": [
+              "screenshot",
+              "native-worker-receipts",
+              "error-context"
+            ]
+          }
+        ],
+        "failureStage": "Initial worker ready predicate within5000ms, before the idle-boundary hold and disposalacknowledgement."
+      },
+      "laterConfirmation": {
+        "report": "audit/2026-10-21/final19-worker-readiness-confirmation.json",
+        "protocol": "audit/2026-10-21/final19-worker-readiness-confirmation-protocol.json",
+        "specId": "3553ead040fdbe829e1a-976a554d465d8d91acc1",
+        "project": "firefox",
+        "file": "e2e/opening-worker.spec.ts",
+        "line": 461,
+        "title": "native worker acknowledges real resource disposal at an explicitly idle renderer boundary",
+        "reportedOutcome": "expected",
+        "expectedStatus": "passed",
+        "attemptCount": 1,
+        "results": [
+          {
+            "status": "passed",
+            "retry": 0,
+            "durationMs": 3001,
+            "startTime": "2026-10-26T20:53:30.189Z",
+            "attachmentNames": [
+              "native-worker-shutdown",
+              "native-idle-boundary-acknowledgement",
+              "native-worker-receipts"
+            ]
+          }
+        ],
+        "completedStage": "Actual native ready/full-quality draw, test-owned idle-frame boundary, explicit disposal acknowledgement, zero liveworkers and firsttypingkey completed in the unchanged focused case.",
+        "productionBuildIdentical": true,
+        "fixtureRevision": "Original test/helper hashes unchanged at the worker confirmation."
+      },
+      "disposition": "FOLLOWUP-PASS-SCOPED; original failed case remains failed and is never replaced in full-matrix totals."
+    },
+    {
+      "original": {
+        "report": "audit/2026-10-21/final19-isolated.json",
+        "specId": "3553ead040fdbe829e1a-dc8291f22d857d5d89aa",
+        "project": "firefox",
+        "file": "e2e/opening-worker.spec.ts",
+        "line": 1039,
+        "title": "actual worker WebGL context loss during preparation recovers with a fresh canvas and keeps practice usable",
+        "reportedOutcome": "unexpected",
+        "expectedStatus": "passed",
+        "attemptCount": 1,
+        "results": [
+          {
+            "status": "timedOut",
+            "retry": 0,
+            "durationMs": 30552,
+            "startTime": "2026-10-26T20:38:13.696Z",
+            "attachmentNames": [
+              "screenshot",
+              "native-worker-receipts",
+              "error-context"
+            ]
+          }
+        ],
+        "failureStage": "Actual loss-request andcontextLost receipts were observed, but the main-threadrecovery latch didnot arrive before the30000ms whole-test deadline."
+      },
+      "laterConfirmation": {
+        "report": "audit/2026-10-21/final19-worker-readiness-confirmation.json",
+        "protocol": "audit/2026-10-21/final19-worker-readiness-confirmation-protocol.json",
+        "specId": "3553ead040fdbe829e1a-dc8291f22d857d5d89aa",
+        "project": "firefox",
+        "file": "e2e/opening-worker.spec.ts",
+        "line": 1039,
+        "title": "actual worker WebGL context loss during preparation recovers with a fresh canvas and keeps practice usable",
+        "reportedOutcome": "expected",
+        "expectedStatus": "passed",
+        "attemptCount": 1,
+        "results": [
+          {
+            "status": "passed",
+            "retry": 0,
+            "durationMs": 4065,
+            "startTime": "2026-10-26T20:53:33.204Z",
+            "attachmentNames": [
+              "native-worker-receipts",
+              "native-document-recovery"
+            ]
+          }
+        ],
+        "completedStage": "Actual native loss, fresh main-threadWebGL recovery latch with61keys/positiveframes/drawcalls, exactlyonecanvas, terminatedworker and readypractice completed in the unchanged focused case.",
+        "productionBuildIdentical": true,
+        "fixtureRevision": "Original test/helper hashes unchanged at the worker confirmation."
+      },
+      "disposition": "FOLLOWUP-PASS-SCOPED; original failed case remains failed and is never replaced in full-matrix totals."
+    },
+    {
+      "original": {
+        "report": "audit/2026-10-21/final19-isolated.json",
+        "specId": "3553ead040fdbe829e1a-a08fd399356f95c8714b",
+        "project": "firefox",
+        "file": "e2e/opening-worker.spec.ts",
+        "line": 1045,
+        "title": "actual worker WebGL context loss after live frames recovers with a fresh canvas and keeps practice usable",
+        "reportedOutcome": "unexpected",
+        "expectedStatus": "passed",
+        "attemptCount": 1,
+        "results": [
+          {
+            "status": "failed",
+            "retry": 0,
+            "durationMs": 13337,
+            "startTime": "2026-10-26T20:38:45.875Z",
+            "attachmentNames": [
+              "screenshot",
+              "native-worker-receipts",
+              "native-fallback-animation-actions",
+              "error-context"
+            ]
+          }
+        ],
+        "failureStage": "Initial worker ready predicate within5000ms after capability detection; live-loss injection and recovery assertions were not reached."
+      },
+      "laterConfirmation": {
+        "report": "audit/2026-10-21/final19-worker-readiness-confirmation.json",
+        "protocol": "audit/2026-10-21/final19-worker-readiness-confirmation-protocol.json",
+        "specId": "3553ead040fdbe829e1a-a08fd399356f95c8714b",
+        "project": "firefox",
+        "file": "e2e/opening-worker.spec.ts",
+        "line": 1045,
+        "title": "actual worker WebGL context loss after live frames recovers with a fresh canvas and keeps practice usable",
+        "reportedOutcome": "expected",
+        "expectedStatus": "passed",
+        "attemptCount": 1,
+        "results": [
+          {
+            "status": "passed",
+            "retry": 0,
+            "durationMs": 6485,
+            "startTime": "2026-10-26T20:53:37.283Z",
+            "attachmentNames": [
+              "native-hidden-fallback-phase",
+              "native-fallback-resume-phase",
+              "native-worker-receipts",
+              "native-document-recovery",
+              "native-fallback-animation-actions"
+            ]
+          }
+        ],
+        "completedStage": "Native readyframe,61pausedfallbackphase samples, actual live-loss request, original-timelinefallbackresume, freshWebGLdocumentrecovery and readypractice completed in the unchanged focused case.",
+        "productionBuildIdentical": true,
+        "fixtureRevision": "Original test/helper hashes unchanged at the worker confirmation."
+      },
+      "disposition": "FOLLOWUP-PASS-SCOPED; original failed case remains failed and is never replaced in full-matrix totals."
+    },
+    {
+      "original": {
+        "report": "audit/2026-10-21/final19-isolated.json",
+        "specId": "92b624811bde7b69ba9f-d27fee9df53ae474fdc6",
+        "project": "chromium",
+        "file": "e2e/viewport-acceptance.spec.ts",
+        "line": 267,
+        "title": "390px full mobile fallback contains every key and keeps controls separate",
+        "reportedOutcome": "unexpected",
+        "expectedStatus": "passed",
+        "attemptCount": 1,
+        "results": [
+          {
+            "status": "failed",
+            "retry": 0,
+            "durationMs": 15320,
+            "startTime": "2026-10-26T20:29:30.021Z",
+            "attachmentNames": [
+              "screenshot",
+              "error-context"
+            ]
+          }
+        ],
+        "failureStage": "Renderer-readiness assertion at15000ms: expectedfallback, receivedloading;61-key/geometry/skip assertions were not reached."
+      },
+      "laterConfirmation": {
+        "report": "audit/2026-10-21/final19-mobile-fallback-clock-fixture-confirmation.json",
+        "protocol": "audit/2026-10-21/final19-mobile-fallback-clock-fixture-confirmation-protocol.json",
+        "specId": "92b624811bde7b69ba9f-d27fee9df53ae474fdc6",
+        "project": "chromium",
+        "file": "e2e/viewport-acceptance.spec.ts",
+        "line": 267,
+        "title": "390px full mobile fallback contains every key and keeps controls separate",
+        "reportedOutcome": "expected",
+        "expectedStatus": "passed",
+        "attemptCount": 1,
+        "results": [
+          {
+            "status": "passed",
+            "retry": 0,
+            "durationMs": 762,
+            "startTime": "2026-10-27T12:51:39.040Z",
+            "attachmentNames": [
+              "clocked-renderer-paint-preparation",
+              "mobile-full-fallback",
+              "viewport-geometry"
+            ]
+          }
+        ],
+        "completedStage": "Fullmode/actualfallback, original2750msassembledadvance,61keys, originalkey/control/viewportgeometry, and skip-keynonleak assertions all completed after the test-only clock repair.",
+        "productionBuildIdentical": true,
+        "fixtureRevision": "Reviewed fixture-only clock scheduling repair; original assertions and real-time deadlines retained."
+      },
+      "disposition": "FOLLOWUP-PASS-SCOPED; original failed case remains failed and is never replaced in full-matrix totals."
+    }
+  ],
+  "confirmationScopes": {
+    "worker": {
+      "report": "audit/2026-10-21/final19-worker-readiness-confirmation.json",
+      "status": "PARTIAL-CAPABILITY-SKIPS",
+      "totals": {
+        "total": 16,
+        "passed": 12,
+        "failed": 0,
+        "skipped": 4,
+        "flaky": 0
+      },
+      "projects": [
+        {
+          "project": "chromium",
+          "total": 4,
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0
+        },
+        {
+          "project": "edge",
+          "total": 4,
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0
+        },
+        {
+          "project": "firefox",
+          "total": 4,
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0
+        },
+        {
+          "project": "webkit",
+          "total": 4,
+          "passed": 0,
+          "failed": 0,
+          "skipped": 4,
+          "flaky": 0
+        }
+      ],
+      "automaticRetries": 0,
+      "sourceFilesCompared": 502,
+      "sourceMismatches": [],
+      "integrity": {
+        "localBuildUnchanged": true,
+        "servedBuildUnchanged": true,
+        "sourcesUnchanged": true,
+        "testsUnchanged": true,
+        "dependenciesUnchanged": true,
+        "originalEvidenceUnchanged": true,
+        "exactSixteenCases": true,
+        "fourExactCasesPerEngine": true,
+        "noRetries": true,
+        "noExpectedFailures": true,
+        "countsAgreeWithReport": true,
+        "noGlobalErrors": true
+      }
+    },
+    "animation": {
+      "report": "audit/2026-10-21/final19-animation-clock-fixture-confirmation.json",
+      "status": "PASS-SCOPED",
+      "totals": {
+        "total": 4,
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0,
+        "flaky": 0
+      },
+      "projects": [
+        {
+          "project": "chromium",
+          "total": 1,
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0
+        },
+        {
+          "project": "edge",
+          "total": 1,
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0
+        },
+        {
+          "project": "firefox",
+          "total": 1,
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0
+        },
+        {
+          "project": "webkit",
+          "total": 1,
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0
+        }
+      ],
+      "automaticRetries": 0,
+      "sourceFilesCompared": 502,
+      "sourceMismatches": [],
+      "integrity": {
+        "localBuildUnchanged": true,
+        "servedBuildUnchanged": true,
+        "sourcesUnchanged": true,
+        "testsUnchanged": true,
+        "dependenciesUnchanged": true,
+        "originalEvidenceUnchanged": true,
+        "exactFourCases": true,
+        "oneExactCasePerEngine": true,
+        "noRetries": true,
+        "noExpectedFailures": true,
+        "countsAgreeWithReport": true,
+        "noGlobalErrors": true
+      }
+    },
+    "fallback": {
+      "report": "audit/2026-10-21/final19-mobile-fallback-clock-fixture-confirmation.json",
+      "status": "PASS-SCOPED",
+      "totals": {
+        "total": 4,
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0,
+        "flaky": 0
+      },
+      "projects": [
+        {
+          "project": "chromium",
+          "total": 1,
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0
+        },
+        {
+          "project": "edge",
+          "total": 1,
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0
+        },
+        {
+          "project": "firefox",
+          "total": 1,
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0
+        },
+        {
+          "project": "webkit",
+          "total": 1,
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0
+        }
+      ],
+      "automaticRetries": 0,
+      "sourceFilesCompared": 502,
+      "sourceMismatches": [],
+      "integrity": {
+        "localBuildUnchanged": true,
+        "servedBuildUnchanged": true,
+        "sourcesUnchanged": true,
+        "testsUnchanged": true,
+        "dependenciesUnchanged": true,
+        "originalEvidenceUnchanged": true,
+        "exactFourCases": true,
+        "oneExactCasePerEngine": true,
+        "noRetries": true,
+        "noExpectedFailures": true,
+        "countsAgreeWithReport": true,
+        "noGlobalErrors": true
+      }
+    }
+  },
+  "testOnlyPatch": {
+    "path": "audit/2026-10-21/final19-clock-fixture-liveness.patch",
+    "sha256": "ed54f4969e9c5165a5110935088b1c8920ad215e907cf947c7d856c5c8eae75f",
+    "productionSourceChanged": false,
+    "rendererQualityChanged": false,
+    "assertionsChanged": false,
+    "realDeadlinesChanged": false,
+    "changedFixtureFiles": [
+      {
+        "file": "e2e/opening-renderer.ts",
+        "sha256": "dbddae0518f86baf838d67e1a62f8060018a1805e1059f49cb8f8eef5e30325c"
+      },
+      {
+        "file": "e2e/viewport-acceptance.spec.ts",
+        "sha256": "d66540d0fdd897cd58882cd30135ea7f9aff1422b691e1848771b160a05a3f12"
+      }
+    ],
+    "qualification": "Drive the existing1000ms capabilityfallback plus400ms idlewindow with maximum1500ms paused-clock allowance; stop early only when actualproduct playback proves readiness. No synthetic paint is published."
+  },
+  "capabilityScope": {
+    "workerCasesSelected": 16,
+    "workerCasesPassed": 12,
+    "webkitWorkerCasesSkipped": 4,
+    "skipsArePasses": false,
+    "reason": "Existing native transferable-canvas API capability guard; document renderer checks are separate.",
+    "originalFullMatrixSkippedCases": 25,
+    "originalIsolatedSkippedCases": 9
+  },
+  "limits": [
+    "The original full63-spec matrix remainsFAILED; no recomputed union or new full-matrix pass is claimed.",
+    "Follow-up passes are scoped to these selected cases and declared fixture revisions.",
+    "Unchanged worker confirmation passing doesnot prove the cause of the original worker failures.",
+    "A fixture scheduling repair doesnot establish that all originalteardown/runtime errors came from paused-clock starvation.",
+    "PhysicaliOS/Android devices, nativeSafari, nativeassistive technology and fieldINP remainUNVERIFIED."
+  ],
+  "rawAndProtocolHashes": {
+    "audit/2026-10-21/final19-source.json": "38bebc6045040cc52fec97d12f58351668f9d4c346257df7cf49e27193bb089f",
+    "audit/2026-10-21/final19-browser-matrix.json": "5eb2df2bd7cae3f291d4e0858422d4df2d183e076d94274915757a1575a8c393",
+    "audit/2026-10-21/final19-isolated.json": "c13fb3d98eba1c33c2356a74d9c61b4639de334bdf653cab55f2226ae1be58b8",
+    "audit/2026-10-21/final19-isolated-protocol.json": "4e43f8891309193c3955451a629dc4149a7df0f06dc4f6ad79604ac6f43903dc",
+    "audit/2026-10-21/final19-isolated-summary.json": "3740f957514982e5652ed30615b84598672db70a6b674a6ad6266a8f043cb3a0",
+    "audit/2026-10-21/final19-animation-teardown-confirmation.json": "fd97fdb8ddee2a75bb880eb902fcedcd6078dfec8df1fe1cff8153aa2abe38b2",
+    "audit/2026-10-21/final19-animation-teardown-confirmation-protocol.json": "c61fa88b313faeaeb2abc84c7ca65a5f01d3d7914f7670a327bb21c655fe44cf",
+    "audit/2026-10-21/final19-firefox-original-raw-extraction.json": "f8a7953cda20dfade22466dd3b1ac933c73da515bcb402cfa20a556c3da9c699",
+    "audit/2026-10-21/final19-clock-fixture-liveness-diagnostic.json": "67edc24dccee935f2c414e8d55b86d40f2272ea32a5f1a79735a2db7daea6249",
+    "audit/2026-10-21/final19-worker-readiness-confirmation.json": "e8f2f4d087a2ad84f3be4a094b59444bb5a010514ffa58ffc6a88b9f74ca8de6",
+    "audit/2026-10-21/final19-worker-readiness-confirmation-protocol.json": "9378c74e9a634c55d5b5831476eb81125ff1beaf06992513a029b0a8854a32d1",
+    "audit/2026-10-21/final19-worker-readiness-confirmation-summary.json": "2be0e308bbd48e332c07a7d5c2d3faab0e7313db3d49027c168046dfb07db5f3",
+    "audit/2026-10-21/final19-animation-clock-fixture-confirmation.json": "c91903accf53fc2ff5ffc0742ac269664d99a8086d6b24b54fab68bc71634c6d",
+    "audit/2026-10-21/final19-animation-clock-fixture-confirmation-protocol.json": "ce0f9c6a18a66ff73f5ce4f30c3bbc39f37018f89e36d3a4eec45e350c7148f3",
+    "audit/2026-10-21/final19-animation-clock-fixture-confirmation-summary.json": "724f10f13b8b86d39a4d379d3850971d22cae7b21e2041af144d87ff1d400250",
+    "audit/2026-10-21/final19-mobile-fallback-clock-fixture-confirmation.json": "806b8c48756981d0163c669f824372efdb6cce99d6284b452351d9c8c345f320",
+    "audit/2026-10-21/final19-mobile-fallback-clock-fixture-confirmation-protocol.json": "161c42eec50eaf9d2c66db46b661919288a3f5d71abb30981f0007faadbdae53",
+    "audit/2026-10-21/final19-mobile-fallback-clock-fixture-confirmation-summary.json": "724f10f13b8b86d39a4d379d3850971d22cae7b21e2041af144d87ff1d400250"
+  }
+}

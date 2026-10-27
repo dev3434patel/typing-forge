@@ -1,0 +1,107 @@
+
+> sparowtype@3.0.0 test:run
+> vitest run src/lib/__tests__/deployment.test.ts src/lib/__tests__/pwa-build.test.ts src/lib/__tests__/pwa-worker.test.ts src/lib/__tests__/pwa-lifecycle.test.ts src/lib/__tests__/pwa.test.ts src/lib/__tests__/seo.test.ts src/services/__tests__/php-api.test.ts --maxWorkers=1 --reporter=verbose
+
+
+ RUN  v4.1.12 D:/extra/typing_updated/typing-forge
+
+ ✓ src/lib/__tests__/deployment.test.ts > explicit deployment contracts > can be imported by a plain Node tool without Vite's import.meta.env 126ms
+ ✓ src/lib/__tests__/deployment.test.ts > explicit deployment contracts > retains the PHP root API by default 1ms
+ ✓ src/lib/__tests__/deployment.test.ts > explicit deployment contracts > forcibly disables inherited API credentials/URLs in vercel output 0ms
+ ✓ src/lib/__tests__/deployment.test.ts > explicit deployment contracts > forcibly disables inherited API credentials/URLs in github-pages output 0ms
+ ✓ src/lib/__tests__/deployment.test.ts > explicit deployment contracts > derives project, user and custom-domain Pages locations without a hardcoded account 1ms
+ ✓ src/lib/__tests__/deployment.test.ts > explicit deployment contracts > rejects unsafe/ambiguous asset base https://host/ 1ms
+ ✓ src/lib/__tests__/deployment.test.ts > explicit deployment contracts > rejects unsafe/ambiguous asset base //host/ 0ms
+ ✓ src/lib/__tests__/deployment.test.ts > explicit deployment contracts > rejects unsafe/ambiguous asset base /../secret/ 0ms
+ ✓ src/lib/__tests__/deployment.test.ts > explicit deployment contracts > rejects unsafe/ambiguous asset base /a/%2e%2e/ 0ms
+ ✓ src/lib/__tests__/deployment.test.ts > explicit deployment contracts > rejects unsafe/ambiguous asset base /a?x=y 0ms
+ ✓ src/lib/__tests__/deployment.test.ts > explicit deployment contracts > rejects unsafe/ambiguous asset base /a\b/ 0ms
+ ✓ src/lib/__tests__/deployment.test.ts > explicit deployment contracts > rejects mismatched canonical base and unsafe publication URLs 0ms
+ ✓ src/lib/__tests__/deployment.test.ts > explicit deployment contracts > keeps router, assets, origin-safe route detection and SEO inside the project path 26ms
+ ✓ src/lib/__tests__/deployment.test.ts > explicit deployment contracts > makes every static API request fail locally without a fetch or auth probe 28ms
+ ✓ src/lib/__tests__/deployment.test.ts > explicit deployment contracts > does not treat another Pages installation's cache as this app's download 26ms
+ ✓ src/lib/__tests__/pwa-build.test.ts > offline build artifacts > generates real static route entries, scoped offline paths and a matching Pages manifest 68ms
+ ✓ src/lib/__tests__/pwa-build.test.ts > offline build artifacts > injects a deterministic public file list without private files or invented sitemap origin 40ms
+ ✓ src/lib/__tests__/pwa-build.test.ts > offline build artifacts > changes its version when actual public app bytes change 48ms
+ ✓ src/lib/__tests__/pwa-build.test.ts > offline build artifacts > preserves inlined public font faces in recovery and accounts for their bytes 68ms
+ ✓ src/lib/__tests__/pwa-build.test.ts > offline build artifacts > emits only public sitemap routes with the explicitly configured origin 23ms
+ ✓ src/lib/__tests__/pwa-build.test.ts > offline build artifacts > rejects invalid or credential-bearing deployment origins 11ms
+ ✓ src/lib/__tests__/pwa-build.test.ts > offline build artifacts > removes an earlier sitemap when a later build has no configured origin 65ms
+ ✓ src/lib/__tests__/pwa-build.test.ts > offline build artifacts > requires actual emitted JavaScript before claiming an offline build 12ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > keeps a Pages installation inside its scope and reopens local games/stats offline 23ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > prepares only the exact public build list with omitted credentials 3ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > refuses an unprocessed build template rather than claiming offline readiness 2ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > does not intercept API or cross-origin request https://project.supabase.co/rest/v1/results 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > does not intercept API or cross-origin request /api/sessions 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > does not intercept API or cross-origin request /auth/v1/token 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > does not intercept API or cross-origin request /rest/v1/profile 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > does not intercept API or cross-origin request /functions/v1/submit-session 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > does not intercept API or cross-origin request /storage/v1/object/private 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > does not intercept API or cross-origin request /realtime/v1/websocket 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > does not intercept POST, authorized assets, private API data or query-bearing assets 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > can reopen public app shell for / offline 2ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > can reopen public app shell for /typing-test offline 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > can reopen public app shell for /learn offline 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > can reopen public app shell for /typing-practice offline 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > can reopen public app shell for /touch-typing offline 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > can reopen public app shell for /offline offline 2ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > uses generic offline recovery for uncached private/unknown document /profile 3ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > uses generic offline recovery for uncached private/unknown document /auth 2ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > uses generic offline recovery for uncached private/unknown document /settings 2ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > uses generic offline recovery for uncached private/unknown document /stats 3ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > uses generic offline recovery for uncached private/unknown document /race/private-room-id 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > uses generic offline recovery for uncached private/unknown document /unknown 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > passes through online documents without caching their personalized response 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > keeps explicitly offline private/unknown hard navigation /profile generic even if HTTP fetch could return 200 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > keeps explicitly offline private/unknown hard navigation /auth generic even if HTTP fetch could return 200 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > keeps explicitly offline private/unknown hard navigation /settings generic even if HTTP fetch could return 200 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > keeps explicitly offline private/unknown hard navigation /stats generic even if HTTP fetch could return 200 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > keeps explicitly offline private/unknown hard navigation /race/private-room-id generic even if HTTP fetch could return 200 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > keeps explicitly offline private/unknown hard navigation /unknown generic even if HTTP fetch could return 200 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > keeps offline API and authorization requests outside navigation recovery 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > waits for explicit activation of an installed update 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > retains two previous public builds and never deletes another cache namespace 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > serves a previously installed lazy chunk for an older open tab without a new cache write 1ms
+ ✓ src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > has a truthful network-unavailable response when no public fallback remains 1ms
+ ✓ src/lib/__tests__/pwa-lifecycle.test.ts > offline download lifecycle > waits for a pending registration, unregisters it, and then removes only public files 9ms
+ ✓ src/lib/__tests__/pwa-lifecycle.test.ts > offline download lifecycle > waits for an active installer to finish writing before reporting removal 122ms
+ ✓ src/lib/__tests__/pwa-lifecycle.test.ts > offline download lifecycle > does not claim removal when an installer fails to settle 4ms
+ ✓ src/lib/__tests__/pwa-lifecycle.test.ts > offline download lifecycle > bounds a stuck registration and can remove its late result on retry 2ms
+ ✓ src/lib/__tests__/pwa-lifecycle.test.ts > offline download lifecycle > can clear old public files even if the pending registration fails 1ms
+ ✓ src/services/__tests__/php-api.test.ts > PHP cookie and CSRF transport > bootstraps a guest CSRF token and binds a write to its expected owner without bearer tokens 29ms
+ ✓ src/services/__tests__/php-api.test.ts > PHP cookie and CSRF transport > uses rotated authentication CSRF for subsequent writes 2ms
+ ✓ src/services/__tests__/php-api.test.ts > PHP cookie and CSRF transport > refreshes stale CSRF once while keeping the intended owner immutable 4ms
+ ✓ src/services/__tests__/php-api.test.ts > PHP cookie and CSRF transport > does not retry a rejected ownership request 2ms
+ ✓ src/services/__tests__/php-api.test.ts > PHP cookie and CSRF transport > binds protected reads to their expected owner and leaves public reads public 1ms
+ ✓ src/services/__tests__/php-api.test.ts > PHP cookie and CSRF transport > reports a non-JSON PHP error without exposing its response body 2ms
+ ✓ src/services/__tests__/php-api.test.ts > PHP cookie and CSRF transport > supports a hosting subdirectory and an explicit disabled backend 1ms
+ ✓ src/services/__tests__/php-api.test.ts > PHP cookie and CSRF transport > publishes server-discovered session expiry so the previous account cannot trap sign-in navigation 1ms
+ ✓ src/lib/__tests__/pwa.test.ts > public offline download controls > recognizes only the dedicated public cache namespace 2ms
+ ✓ src/lib/__tests__/pwa.test.ts > public offline download controls > requires both generic shell and recovery page before saying a download exists 19ms
+ ✓ src/lib/__tests__/pwa.test.ts > public offline download controls > does not treat another cache containing similar filenames as an app download 1ms
+ ✓ src/lib/__tests__/pwa.test.ts > public offline download controls > reports unavailable storage as unprepared rather than throwing or inventing readiness 0ms
+ ✓ src/lib/__tests__/pwa.test.ts > public offline download controls > clears only public app files without accessing history, preferences or other app caches 1ms
+ ✓ src/lib/__tests__/seo.test.ts > public and private route metadata > gives public intent pages distinct titles and descriptions 2ms
+ ✓ src/lib/__tests__/seo.test.ts > public and private route metadata > does not index or canonicalize private/operational path /profile 1ms
+ ✓ src/lib/__tests__/seo.test.ts > public and private route metadata > does not index or canonicalize private/operational path /stats 0ms
+ ✓ src/lib/__tests__/seo.test.ts > public and private route metadata > does not index or canonicalize private/operational path /settings 0ms
+ ✓ src/lib/__tests__/seo.test.ts > public and private route metadata > does not index or canonicalize private/operational path /auth 0ms
+ ✓ src/lib/__tests__/seo.test.ts > public and private route metadata > does not index or canonicalize private/operational path /ranked 0ms
+ ✓ src/lib/__tests__/seo.test.ts > public and private route metadata > does not index or canonicalize private/operational path /leaderboard 0ms
+ ✓ src/lib/__tests__/seo.test.ts > public and private route metadata > does not index or canonicalize private/operational path /race 0ms
+ ✓ src/lib/__tests__/seo.test.ts > public and private route metadata > does not index or canonicalize private/operational path /race/room-private-id 1ms
+ ✓ src/lib/__tests__/seo.test.ts > public and private route metadata > does not index or canonicalize private/operational path /offline 0ms
+ ✓ src/lib/__tests__/seo.test.ts > public and private route metadata > does not index or canonicalize private/operational path /unknown 0ms
+ ✓ src/lib/__tests__/seo.test.ts > public and private route metadata > canonicalizes aliases to existing public workspaces 1ms
+ ✓ src/lib/__tests__/seo.test.ts > public and private route metadata > uses the supplied actual origin and removes trailing route slashes 0ms
+ ✓ src/lib/__tests__/seo.test.ts > public and private route metadata > rejects an unsafe or invalid canonical origin not a URL 0ms
+ ✓ src/lib/__tests__/seo.test.ts > public and private route metadata > rejects an unsafe or invalid canonical origin javascript:alert(1) 0ms
+ ✓ src/lib/__tests__/seo.test.ts > public and private route metadata > rejects an unsafe or invalid canonical origin file:///private 0ms
+ ✓ src/lib/__tests__/seo.test.ts > public and private route metadata > rejects an unsafe or invalid canonical origin https://name:secret@example.test 0ms
+ ✓ src/lib/__tests__/seo.test.ts > public and private route metadata > never reflects arbitrary private paths or query values into metadata 0ms
+
+ Test Files  7 passed (7)
+      Tests  94 passed (94)
+   Start at  00:44:14
+   Duration  2.40s (transform 177ms, setup 121ms, import 139ms, tests 830ms, environment 1ms)
+

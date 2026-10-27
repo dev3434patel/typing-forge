@@ -1,0 +1,106 @@
+{
+  "status": "PASS-SCOPED",
+  "capturedAt": "2026-10-22T19:04:16.009597+00:00",
+  "reportLocalDate": "2026-10-23",
+  "scope": "Independent read-only extraction of completed final14 source-gate receipts only. No unit, native HTTP/SQL, browser, build, hashing or performance job performed. Artifact/delta/browser/performance results are not inferred.",
+  "sourceGate": {
+    "file": "audit/2026-10-21/final14-source-gates.json",
+    "commands": 12,
+    "allExitZero": true,
+    "automaticRetries": 0,
+    "finishedAt": "2026-10-22T19:03:02.843Z"
+  },
+  "unit": {
+    "passed": 2786,
+    "files": 110,
+    "coveragePercent": {
+      "statements": 90.37,
+      "branches": 86.59,
+      "functions": 92.11,
+      "lines": 96.15
+    },
+    "receipt": "audit/2026-10-21/final14-coverage.log"
+  },
+  "typescript": {
+    "configurations": [
+      "app",
+      "node",
+      "domain",
+      "portable"
+    ],
+    "status": "PASS",
+    "receipt": "audit/2026-10-21/final14-typecheck.log"
+  },
+  "lint": {
+    "errors": 0,
+    "baselineWarnings": 9,
+    "receipt": "audit/2026-10-21/final14-lint.log"
+  },
+  "nativePure": {
+    "canonicalReplay": {
+      "cases": 533,
+      "validReference": 499,
+      "rejection": 34,
+      "mismatches": 0
+    },
+    "course": {
+      "cases": 139,
+      "acceptedCases": 122,
+      "rejectionCases": 17,
+      "failures": 0
+    },
+    "progression": {
+      "cases": 87,
+      "accepted": 83,
+      "rejected": 4,
+      "canonicalProjections": 47,
+      "failures": 0
+    },
+    "classroom": {
+      "passed": 14,
+      "failed": 0
+    },
+    "socialChallengeRules": {
+      "cases": 124,
+      "nonthrowingEvaluations": 82,
+      "expectedExceptions": 42,
+      "failures": 0,
+      "notHttpAcceptedSessions": true
+    },
+    "arena": {
+      "passed": 72,
+      "failed": 0
+    },
+    "humanRaceClock": {
+      "passed": 5,
+      "total": 5
+    }
+  },
+  "content": {
+    "status": "passed",
+    "examples": 20
+  },
+  "productionDependencies": {
+    "command": "npm audit --omit=dev --json",
+    "vulnerabilities": 0
+  },
+  "sourceReceiptSha256": "251ba2964f3fe3b7176bfad267a86dacfb5ff98aedf833bf1b72f05016693763",
+  "artifactIdentity": {
+    "status": "NOT-EXAMINED",
+    "reason": "Coordinator build/freeze underway; source-only extraction does not guess or promote an identity."
+  },
+  "sourceDelta": "NOT-EXAMINED",
+  "focusedEvidence": {
+    "keyboardReview": "audit/2026-10-21/final14-keyboard-subscription-review.json",
+    "keyboardMarkupParity": "audit/2026-10-21/final14-keyboard-markup-parity.json",
+    "pwaReview": "audit/2026-10-21/final14-pwa-source-review.json",
+    "scope": "Focused tests and SSR comparisons overlap integrated tests; no summed total or browser/performance claim."
+  },
+  "limits": [
+    "Counts overlap; pure native rules are not accepted HTTP sessions.",
+    "Current source14 browser/static/mobile/real-duration/input/Lighthouse not established by source-only gates.",
+    "Source13 original fidelity307/308 and input168/160/184 failures, all earlier static/mobile/capacity failures remain unchanged.",
+    "Prepared62-file matrix is not execution; coordinator will explicitly select all four engines and inspect actual summaries.",
+    "No source mutation, deployment or commit/sync claim."
+  ]
+}

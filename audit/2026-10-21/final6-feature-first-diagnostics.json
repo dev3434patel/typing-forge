@@ -1,0 +1,142 @@
+{
+  "capturedAt": "2026-10-21T13:55:12.232Z",
+  "status": "PARTIAL",
+  "build": {
+    "version": "3ffaa0a179b47e336a2d",
+    "publicFiles": 132,
+    "bytes": 2910866
+  },
+  "scope": "Read-only sanitized diagnostics of current failed guest-fixture traces. Original tests remain FAILED; no product/test edit, browser job, rerun, timeout relaxation or filtered pass claim.",
+  "matrixStillRunning": true,
+  "logFile": "audit/2026-10-21/final6-new-features.log",
+  "highestLoggedCase": 186,
+  "failedLogLines": [
+    "  x   55 [edge] › e2e\\arcade.spec.ts:16:1 › arcade catalog exposes eight original local games without loading the player before interaction (37.4s)",
+    "  x   56 [edge] › e2e\\arcade.spec.ts:25:3 › Word Invaders retains real attempts and exports local canonical evidence in portrait (42.8s)",
+    "  x   94 [edge] › e2e\\progression.spec.ts:20:1 › fallback reload preserves existing receipt awards without rewarding twice (30.4s)",
+    "  x   93 [edge] › e2e\\progression.spec.ts:7:1 › guest progression starts honestly, daily reroll persists and never calls account claims (31.5s)"
+  ],
+  "cases": [
+    {
+      "number": 55,
+      "project": "edge",
+      "title": "arcade catalog exposes eight original local games without loading the player before interaction",
+      "testOutcome": "FAILED",
+      "failureStage": "beforeEach page fixture: BrowserContext.newPage",
+      "testError": "Test timeout of30000ms exceeded while running beforeEach hook.",
+      "artifact": "audit/2026-10-21/.playwright-artifacts-final6-new-features/arcade-arcade-catalog-expo-7cbc5-e-player-before-interaction-edge",
+      "observed": {
+        "newPageCall": "ykjv@193",
+        "newPageStartedTraceMs": 79226.063,
+        "completedBeforeTestTimeout": false,
+        "pageCreatedEventBeforeTimeout": false,
+        "networkRecords": 0,
+        "appNavigationAttempted": false,
+        "catalogAssertionsExecuted": false
+      },
+      "applicationConclusion": "No application document or catalog code ran in the recorded failure. This is a page-creation/driver-stage failure; its underlying runtime cause remains unproven.",
+      "runtimeCause": "UNPROVEN"
+    },
+    {
+      "number": 56,
+      "project": "edge",
+      "title": "Word Invaders retains real attempts and exports local canonical evidence in portrait",
+      "testOutcome": "FAILED",
+      "failureStage": "JSON export click/download completion after actual native input and visible result",
+      "testError": "Test timeout of30000ms exceeded; download.path:canceled during timeout cleanup.",
+      "artifact": "audit/2026-10-21/.playwright-artifacts-final6-new-features/arcade-Word-Invaders-retai-fedaf-onical-evidence-in-portrait-edge",
+      "observed": {
+        "routeHeadingReady": true,
+        "gameInputEnabled": true,
+        "wrongAttemptFeedbackAsserted": true,
+        "correctWordTypedAndDraftCleared": true,
+        "endRunAndResultVisible": true,
+        "exportClickCall": "ivzo@532",
+        "exportClickStartedTraceMs": 120900.315,
+        "downloadEventTraceMs": 120941.409,
+        "downloadScheme": "blob:local-origin",
+        "suggestedFilename": "sparowtype-word-invaders-local.json",
+        "clickResolvedTraceMs": 162495.298,
+        "testTimeoutTraceMs": 149943.869,
+        "recordedNetworkResponses": "All recorded resources HTTP200; no missing App/ArcadePlayer chunk.",
+        "consoleMessages": [
+          "Service Worker registration blocked by Playwright"
+        ],
+        "pageErrorEventObserved": false,
+        "exportedMetricsReadByTest": false
+      },
+      "applicationConclusion": "App/game loading, native typing and result rendering completed. A native download event occurred before the export action stalled. Canonical export contents were not verified by this failed case. No cold-lazy-load defect is established.",
+      "runtimeCause": "UNPROVEN"
+    },
+    {
+      "number": 93,
+      "project": "edge",
+      "title": "guest progression starts honestly, daily reroll persists and never calls account claims",
+      "testOutcome": "FAILED",
+      "failureStage": "overall30s test budget after slow reload; no wrong XP/reroll assertion recorded",
+      "testError": "Test timeout of30000ms exceeded.",
+      "artifact": "audit/2026-10-21/.playwright-artifacts-final6-new-features/progression-guest-progress-6a6bf--never-calls-account-claims-edge",
+      "observed": {
+        "initialHeadingAndZeroXpAsserted": true,
+        "rerollClickedAndDisabledAsserted": true,
+        "reloadCall": "daxp@2697",
+        "reloadStartedTraceMs": 208090.993,
+        "reloadCompletedTraceMs": 236276.461,
+        "reloadDurationMs": 28185.468,
+        "finalSnapshot": "Level1Hunter;0lifetimeXP;Rerollusedtoday disabled.",
+        "postReloadDisabledAssertionCompletedTraceMs": 238018.298,
+        "postReloadZeroXpAssertionCompletedTraceMs": 238041.187,
+        "networkSummary": {
+          "recordedResources": 208,
+          "status200": 178,
+          "statusMinusOneIncomplete": 30,
+          "slowReloadDocumentHttp200TotalMs": 27884.621,
+          "serviceWorkerInstallTrafficObserved": true,
+          "indexCacheRequestReceiveMs": [
+            28986.659,
+            29057.715
+          ]
+        },
+        "pageErrorEventObserved": false
+      },
+      "applicationConclusion": "The retained final UI has the expected zero-XP and used-reroll state. The test still failed its overall budget. Slow document/cache transfers are recorded; server, browser scheduling, SW interaction and resource-pressure causation are not separated by this trace.",
+      "runtimeCause": "UNPROVEN"
+    },
+    {
+      "number": 94,
+      "project": "edge",
+      "title": "fallback reload preserves existing receipt awards without rewarding twice",
+      "testOutcome": "FAILED",
+      "failureStage": "initial progression readiness before any reward/reload assertions",
+      "testError": "Expected100lifetimeXP not found (configured5s expect); call consumed27875.496ms in retained trace.",
+      "artifact": "audit/2026-10-21/.playwright-artifacts-final6-new-features/progression-fallback-reloa-c55d1-rds-without-rewarding-twice-edge",
+      "observed": {
+        "initialNavigationDurationMs": 171.72,
+        "documentHttpStatus": 200,
+        "assertionCall": "xksl@1943",
+        "assertionStartedTraceMs": 207996.581,
+        "assertionCompletedTraceMs": 235872.077,
+        "assertionDurationMs": 27875.496,
+        "snapshotAtFailure": "Typing workspace:Preparing your typing workspace...",
+        "authFixtureFulfillStartedTraceMs": 235789.895,
+        "authFixtureFulfillCompletedTraceMs": 235922.119,
+        "progressionChunkRequestedTraceMs": 235761.494,
+        "progressionChunkHttpStatus": 200,
+        "networkSummary": {
+          "recordedResources": 171,
+          "status200": 37,
+          "statusMinusOneIncomplete": 134
+        },
+        "pageErrorEventObserved": false,
+        "fallbackRewardMathOrIdempotencyReached": false
+      },
+      "applicationConclusion": "Failure is late bootstrap/readiness rather than an observed100XP arithmetic mismatch. The request/action timing stalled for much longer than the configured assertion window. HTTP200 alone does not establish timely module evaluation or driver responsiveness; the root cause is not proven.",
+      "runtimeCause": "UNPROVEN"
+    }
+  ],
+  "untriagedFailedLogLines": [],
+  "privacy": "No trace bodies, request/response headers, cookies, CSRF values, email addresses or credentials are copied. Only stage/timing/status summaries and ignored artifact references are retained.",
+  "machineContext": "Low free memory was observed separately by the coordinator; it is context, not an established cause of these failures.",
+  "runtimeCause": "UNPROVEN",
+  "nextVerification": "Coordinator-declared exact affected cases serially on the same artifact, original budgets/retries0, preserving these first failures and all raw receipts."
+}

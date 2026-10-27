@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "at": "2026-10-20T20:55:14.269Z",
+  "scope": "Opt-in isolated native classroom PHP/PDO HTTP lifecycle with one synthetic teacher and narrow cookie student capabilities",
+  "guardedTarget": {
+    "database": "sparow_pack_cf3ca6cb25abe4f2_audit",
+    "port": 5673,
+    "api": "http://127.0.0.1:5674/api",
+    "sessionNamespaceMatched": true
+  },
+  "checks": [
+    {
+      "name": "one synthetic teacher account created only after isolated schema, port and cookie guards",
+      "status": "PASS"
+    },
+    {
+      "name": "teacher actions require authentication, CSRF and matching owner; private code contains 128 random bits",
+      "status": "PASS"
+    },
+    {
+      "name": "guest student capability is idempotent, cannot silently orphan an alias, and grants no account identity",
+      "status": "PASS"
+    },
+    {
+      "name": "an independent real SQL member lock fences assignment reads; join resumes after release without duplicating an assignment",
+      "status": "PASS"
+    },
+    {
+      "name": "sharing requires capability and explicit consent; altered assignment is rejected, canonical replay is accepted once and conflicting evidence is rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "teacher receives exact weighted aggregate facts without code, email, passage or keystroke logs; next assignment receives a new identity",
+      "status": "PASS"
+    },
+    {
+      "name": "student leave deletes membership and aggregate receipts and revokes the narrow capability",
+      "status": "PASS"
+    },
+    {
+      "name": "authenticated students can join and leave without resetting general account authentication",
+      "status": "PASS"
+    },
+    {
+      "name": "explicit class deletion and owned teacher-account deletion cascade only the synthetic classroom data",
+      "status": "PASS"
+    }
+  ],
+  "passed": 9,
+  "failed": 0,
+  "failure": null,
+  "cleanup": {
+    "deletedOwnSyntheticAccounts": 0
+  },
+  "credentialsOrCookiesEmitted": false,
+  "rateCountersReset": false,
+  "userDatabaseTouched": false
+}

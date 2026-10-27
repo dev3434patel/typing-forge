@@ -1,0 +1,26 @@
+{
+  "capturedAt": "2026-10-21T19:49:25.993521+00:00",
+  "status": "PREPARED-NOT-RUN",
+  "scope": "Audit helper preparation only; no product/source/test edit, checker execution, syntax command, build, browser, native service or database job performed.",
+  "helper": "audit/2026-10-21/compare-final11-source.mjs",
+  "helperSha256": "6ceacd43f74393ed6e71ed7caf7c7e1d7ae877d39f86a3cdada7b6a70f484340",
+  "beforeSource": "audit/2026-10-21/final10-source.json",
+  "beforeBuild": "a3b43501c012b6bbaf6c",
+  "afterSource": "audit/2026-10-21/final11-source.json",
+  "actualAfterBuild": "NOT-YET-FROZEN",
+  "commandAfterCoordinatorAuthorization": "node audit/2026-10-21/compare-final11-source.mjs",
+  "requiredEnvironment": "SPAROWTYPE_FINAL11_BUILD_ID must equal the actual frozen 20-hex build identity.",
+  "exclusiveOutput": "audit/2026-10-21/final11-source-delta.json",
+  "exactExpectedChangedFiles": [
+    "public/sw.js",
+    "src/lib/__tests__/pwa-worker.test.ts"
+  ],
+  "testPathConfirmation": "Confirmed directly by final_release_review before preparation; existing test file only.",
+  "requirements": [
+    "Both expected files change, no additions/removals/unexpected changes.",
+    "PHP, canonical typing engine, renderer, interactive UI and every non-worker application source hash stay identical.",
+    "No guessed source11 identity, build/test count or performance result.",
+    "Source10 original failures and any separate confirmations remain independently retained.",
+    "Hash identity may support component reuse scope; no new duration/browser result is manufactured."
+  ]
+}

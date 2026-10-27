@@ -1,0 +1,105 @@
+{
+  "preparedAt": "2026-10-26T20:02:51.158Z",
+  "status": "PREPARED-NOT-RUN",
+  "expectedBuild": "de097acba6969d580cc8",
+  "sourceRecord": {
+    "path": "audit/2026-10-21/final19-source.json",
+    "sha256": "38bebc6045040cc52fec97d12f58351668f9d4c346257df7cf49e27193bb089f"
+  },
+  "command": "SPAROWTYPE_FINAL19_BUILD=de097acba6969d580cc8 node audit/2026-10-21/run-boss-duel-duration-final19.mjs",
+  "originalProtocolPreparationTimestampRetained": "2026-10-21T15:46:22.723Z",
+  "changes": [
+    {
+      "from": "final10",
+      "to": "final19",
+      "reason": "Frozen source file, default output prefix, protocol path and build error namespace."
+    },
+    {
+      "from": "FINAL10",
+      "to": "FINAL19",
+      "reason": "Explicit supplied frozen-build environment variable."
+    }
+  ],
+  "files": [
+    {
+      "role": "original runner",
+      "path": "audit/2026-10-21/run-boss-duel-duration-final10.mjs",
+      "sha256": "a162131384c810254d0dc5d073b0179cec49e79ad2d74d550b2a3454dc9e4907",
+      "bytes": 14282
+    },
+    {
+      "role": "new runner",
+      "path": "audit/2026-10-21/run-boss-duel-duration-final19.mjs",
+      "sha256": "ef616bb7bc3726013efc3e1a195065808980404e7d8c700569d118bcdb6c5096",
+      "bytes": 14282
+    },
+    {
+      "role": "original protocol",
+      "path": "audit/2026-10-21/boss-duel-final10-protocol.json",
+      "sha256": "44d859b0c8078a5b58a357e3f02b1ec5e47f0f34442b8b695aa3905f7e40c3f3",
+      "bytes": 2215
+    },
+    {
+      "role": "new protocol",
+      "path": "audit/2026-10-21/boss-duel-final19-protocol.json",
+      "sha256": "1867823ee2f6ca9cbab7acdf2b9979edd13b0d4cb8a0680808619548a18ebaa1",
+      "bytes": 2215
+    }
+  ],
+  "reversal": {
+    "runnerByteExact": true,
+    "protocolByteExact": true,
+    "runnerReversedSha256": "a162131384c810254d0dc5d073b0179cec49e79ad2d74d550b2a3454dc9e4907",
+    "protocolReversedSha256": "44d859b0c8078a5b58a357e3f02b1ec5e47f0f34442b8b695aa3905f7e40c3f3",
+    "replacements": [
+      {
+        "from": "final10",
+        "to": "final19",
+        "reason": "Frozen source file, default output prefix, protocol path and build error namespace.",
+        "runnerOccurrences": 3,
+        "protocolOccurrences": 1
+      },
+      {
+        "from": "FINAL10",
+        "to": "FINAL19",
+        "reason": "Explicit supplied frozen-build environment variable.",
+        "runnerOccurrences": 2,
+        "protocolOccurrences": 1
+      }
+    ]
+  },
+  "preserved": {
+    "assertionCalls": 53,
+    "playwrightExpectCalls": 12,
+    "expectedActiveDurationMs": 90000,
+    "acceptedActiveDurationMs": [
+      90000,
+      93000
+    ],
+    "realTypingWindowMs": 80000,
+    "minimumNativeTypingSpanMs": 75000,
+    "totalWatchdogMs": 105000,
+    "nativePressSequentiallyCalls": 1,
+    "noEndRunClicked": true,
+    "noVirtualClock": true,
+    "normalGameMotion": true,
+    "fixedGuestBotBaselineWpm": 35,
+    "noRetriesOrFiltering": true,
+    "noProductionOrTestMutations": true
+  },
+  "staticDomReview": {
+    "result": "No obsolete DOM fixture found from source review.",
+    "witnesses": [
+      "ArcadePage still exposes Boss Duel exact heading, normal/mission setup, declared 35 WPM practice baseline and Play Boss Duel.",
+      "ArcadePlayer still exposes BOT boss · 105% of 35 WPM baseline, actual target alternative list, native input, Arcade result region and Export canonical game JSON.",
+      "New matched-prefix markup is inside a separate feedback paragraph; the unchanged target-menu word reader remains plain original text.",
+      "Boss Duel still expires from the real canonical elapsed clock at90000ms; no cosmetic or manual end substitute is used."
+    ],
+    "scope": "Static source inspection only, not executed browser behavior."
+  },
+  "execution": {
+    "browser": "NOT-RUN",
+    "syntaxCheck": "NOT-RUN",
+    "currentFullMatrix": "No required spec added or changed mid-run."
+  }
+}

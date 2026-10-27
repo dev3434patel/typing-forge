@@ -1,0 +1,247 @@
+{
+  "declaredAt": "2026-10-22T20:50:09.678Z",
+  "status": "FAILED",
+  "build": {
+    "version": "0572d723495d6be303a8",
+    "publicFiles": 133,
+    "bytes": 2930646
+  },
+  "source": {
+    "sourceFile": "audit/2026-10-21/final17-source.json",
+    "expectedBuild": "0572d723495d6be303a8",
+    "compared": 499,
+    "mismatches": []
+  },
+  "expectedCases": 16,
+  "browsers": [
+    "chromium",
+    "edge",
+    "firefox",
+    "webkit"
+  ],
+  "workers": 1,
+  "automaticRetries": 0,
+  "tracing": "off",
+  "instrumentationChanged": true,
+  "filter": "layout-contained ",
+  "inputs": {
+    "e2e/live-keyboard.spec.ts": "5126a827a1d50f1e41acdeaa3305111c811bc3b4f46f9bd3ca7b539c645740f7",
+    "e2e/helpers.ts": "7268814993da0db90cec40266fc8aabb391d3f649d43add1dd55c5be370d2e7d",
+    "playwright.config.ts": "9a1c2658bfe18bcf8acf34e61144e17309abe257717f2cf882d05791457a1a32"
+  },
+  "scope": "Only the four new native keyboard containment regressions, each in four engines. No full-suite, latency, physical-device or animated pixel-identity claim.",
+  "command": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "e2e/live-keyboard.spec.ts",
+    "--grep",
+    "layout-contained ",
+    "--workers=1",
+    "--retries=0",
+    "--trace=off",
+    "--reporter=list,json",
+    "--output=audit/2026-10-21/.playwright-artifacts-final17-keyboard-fixture-confirmation"
+  ],
+  "exitCode": 1,
+  "summary": {
+    "totals": {
+      "total": 16,
+      "passed": 6,
+      "failed": 10,
+      "skipped": 0,
+      "flaky": 0
+    },
+    "projects": [
+      {
+        "project": "chromium",
+        "total": 4,
+        "passed": 1,
+        "failed": 3,
+        "skipped": 0,
+        "flaky": 0
+      },
+      {
+        "project": "edge",
+        "total": 4,
+        "passed": 1,
+        "failed": 3,
+        "skipped": 0,
+        "flaky": 0
+      },
+      {
+        "project": "firefox",
+        "total": 4,
+        "passed": 1,
+        "failed": 3,
+        "skipped": 0,
+        "flaky": 0
+      },
+      {
+        "project": "webkit",
+        "total": 4,
+        "passed": 3,
+        "failed": 1,
+        "skipped": 0,
+        "flaky": 0
+      }
+    ],
+    "reportedStats": {
+      "expected": 6,
+      "unexpected": 10,
+      "skipped": 0,
+      "flaky": 0
+    },
+    "countsAgreeWithReport": true,
+    "failures": [
+      {
+        "project": "chromium",
+        "title": "live-keyboard.spec.ts › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable",
+        "file": "live-keyboard.spec.ts",
+        "line": 396,
+        "attempts": 1,
+        "attemptStatuses": [
+          "failed"
+        ],
+        "messages": [
+          "Error: expect(received).toEqual(expected) // deep equality - Expected - 2 + Received + 2 Object { - \"hitPanel\": true, - \"overlapsBoard\": true, + \"hitPanel\": false, + \"overlapsBoard\": false, \"withinViewport\": true, } Call Log: - Timeout 5000ms exceeded while waiting on the predicate 498 | // Keep the same strict hit/overlap/viewport contract and wait for the 499 | // production layout effect to finish placing the panel. > 500 | await expect.poll(r"
+        ]
+      },
+      {
+        "project": "chromium",
+        "title": "live-keyboard.spec.ts › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable",
+        "file": "live-keyboard.spec.ts",
+        "line": 396,
+        "attempts": 1,
+        "attemptStatuses": [
+          "failed"
+        ],
+        "messages": [
+          "Error: expect(received).toEqual(expected) // deep equality - Expected - 2 + Received + 2 Object { - \"hitPanel\": true, - \"overlapsBoard\": true, + \"hitPanel\": false, + \"overlapsBoard\": false, \"withinViewport\": true, } Call Log: - Timeout 5000ms exceeded while waiting on the predicate 498 | // Keep the same strict hit/overlap/viewport contract and wait for the 499 | // production layout effect to finish placing the panel. > 500 | await expect.poll(r"
+        ]
+      },
+      {
+        "project": "chromium",
+        "title": "live-keyboard.spec.ts › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable",
+        "file": "live-keyboard.spec.ts",
+        "line": 396,
+        "attempts": 1,
+        "attemptStatuses": [
+          "failed"
+        ],
+        "messages": [
+          "Error: expect(received).toEqual(expected) // deep equality - Expected - 2 + Received + 2 Object { - \"hitPanel\": true, - \"overlapsBoard\": true, + \"hitPanel\": false, + \"overlapsBoard\": false, \"withinViewport\": true, } Call Log: - Timeout 5000ms exceeded while waiting on the predicate 498 | // Keep the same strict hit/overlap/viewport contract and wait for the 499 | // production layout effect to finish placing the panel. > 500 | await expect.poll(r"
+        ]
+      },
+      {
+        "project": "edge",
+        "title": "live-keyboard.spec.ts › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable",
+        "file": "live-keyboard.spec.ts",
+        "line": 396,
+        "attempts": 1,
+        "attemptStatuses": [
+          "failed"
+        ],
+        "messages": [
+          "Error: expect(received).toEqual(expected) // deep equality - Expected - 2 + Received + 2 Object { - \"hitPanel\": true, - \"overlapsBoard\": true, + \"hitPanel\": false, + \"overlapsBoard\": false, \"withinViewport\": true, } Call Log: - Timeout 5000ms exceeded while waiting on the predicate 498 | // Keep the same strict hit/overlap/viewport contract and wait for the 499 | // production layout effect to finish placing the panel. > 500 | await expect.poll(r"
+        ]
+      },
+      {
+        "project": "edge",
+        "title": "live-keyboard.spec.ts › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable",
+        "file": "live-keyboard.spec.ts",
+        "line": 396,
+        "attempts": 1,
+        "attemptStatuses": [
+          "failed"
+        ],
+        "messages": [
+          "Error: expect(received).toEqual(expected) // deep equality - Expected - 2 + Received + 2 Object { - \"hitPanel\": true, - \"overlapsBoard\": true, + \"hitPanel\": false, + \"overlapsBoard\": false, \"withinViewport\": true, } Call Log: - Timeout 5000ms exceeded while waiting on the predicate 498 | // Keep the same strict hit/overlap/viewport contract and wait for the 499 | // production layout effect to finish placing the panel. > 500 | await expect.poll(r"
+        ]
+      },
+      {
+        "project": "edge",
+        "title": "live-keyboard.spec.ts › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable",
+        "file": "live-keyboard.spec.ts",
+        "line": 396,
+        "attempts": 1,
+        "attemptStatuses": [
+          "failed"
+        ],
+        "messages": [
+          "Error: expect(received).toEqual(expected) // deep equality - Expected - 2 + Received + 2 Object { - \"hitPanel\": true, - \"overlapsBoard\": true, + \"hitPanel\": false, + \"overlapsBoard\": false, \"withinViewport\": true, } Call Log: - Timeout 5000ms exceeded while waiting on the predicate 498 | // Keep the same strict hit/overlap/viewport contract and wait for the 499 | // production layout effect to finish placing the panel. > 500 | await expect.poll(r"
+        ]
+      },
+      {
+        "project": "firefox",
+        "title": "live-keyboard.spec.ts › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable",
+        "file": "live-keyboard.spec.ts",
+        "line": 396,
+        "attempts": 1,
+        "attemptStatuses": [
+          "failed"
+        ],
+        "messages": [
+          "Error: expect(received).toEqual(expected) // deep equality - Expected - 2 + Received + 2 Object { - \"hitPanel\": true, - \"overlapsBoard\": true, + \"hitPanel\": false, + \"overlapsBoard\": false, \"withinViewport\": true, } Call Log: - Timeout 5000ms exceeded while waiting on the predicate 498 | // Keep the same strict hit/overlap/viewport contract and wait for the 499 | // production layout effect to finish placing the panel. > 500 | await expect.poll(r"
+        ]
+      },
+      {
+        "project": "firefox",
+        "title": "live-keyboard.spec.ts › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable",
+        "file": "live-keyboard.spec.ts",
+        "line": 396,
+        "attempts": 1,
+        "attemptStatuses": [
+          "failed"
+        ],
+        "messages": [
+          "Error: expect(received).toEqual(expected) // deep equality - Expected - 2 + Received + 2 Object { - \"hitPanel\": true, - \"overlapsBoard\": true, + \"hitPanel\": false, + \"overlapsBoard\": false, \"withinViewport\": true, } Call Log: - Timeout 5000ms exceeded while waiting on the predicate 498 | // Keep the same strict hit/overlap/viewport contract and wait for the 499 | // production layout effect to finish placing the panel. > 500 | await expect.poll(r"
+        ]
+      },
+      {
+        "project": "firefox",
+        "title": "live-keyboard.spec.ts › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable",
+        "file": "live-keyboard.spec.ts",
+        "line": 396,
+        "attempts": 1,
+        "attemptStatuses": [
+          "failed"
+        ],
+        "messages": [
+          "Error: expect(received).toEqual(expected) // deep equality - Expected - 2 + Received + 2 Object { - \"hitPanel\": true, - \"overlapsBoard\": true, + \"hitPanel\": false, + \"overlapsBoard\": false, \"withinViewport\": true, } Call Log: - Timeout 5000ms exceeded while waiting on the predicate 498 | // Keep the same strict hit/overlap/viewport contract and wait for the 499 | // production layout effect to finish placing the panel. > 500 | await expect.poll(r"
+        ]
+      },
+      {
+        "project": "webkit",
+        "title": "live-keyboard.spec.ts › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable",
+        "file": "live-keyboard.spec.ts",
+        "line": 396,
+        "attempts": 1,
+        "attemptStatuses": [
+          "failed"
+        ],
+        "messages": [
+          "Error: expect(received).toEqual(expected) // deep equality - Expected - 2 + Received + 2 Object { - \"hitPanel\": true, - \"overlapsBoard\": true, + \"hitPanel\": false, + \"overlapsBoard\": false, \"withinViewport\": true, } Call Log: - Timeout 5000ms exceeded while waiting on the predicate 498 | // Keep the same strict hit/overlap/viewport contract and wait for the 499 | // production layout effect to finish placing the panel. > 500 | await expect.poll(r"
+        ]
+      }
+    ],
+    "flakyCases": [],
+    "skippedCases": [],
+    "skipReasons": [],
+    "expectedFailures": [],
+    "globalErrors": [],
+    "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+  },
+  "error": {
+    "name": "AssertionError",
+    "message": "Expected values to be strictly equal:\n\n1 !== 0\n"
+  },
+  "sourceAfter": {
+    "sourceFile": "audit/2026-10-21/final17-source.json",
+    "expectedBuild": "0572d723495d6be303a8",
+    "compared": 499,
+    "mismatches": []
+  },
+  "inputsUnchanged": true,
+  "finishedAt": "2026-10-22T20:52:10.909Z"
+}

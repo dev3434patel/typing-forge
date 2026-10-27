@@ -1,0 +1,64 @@
+# Arcade engine and local game contracts
+
+## Latest enhancement: 27 October 2026
+
+The source19 integration adds direct matched-prefix and next-grapheme feedback to the current Canvas target, with equivalent DOM text and an exact-character count. Remaining letters stay legible; phantom memory masks stay masked. Whole-label repaint clips preserve text shaping and mirror for RTL direction. New text uses the established theme accent ink. The source19 code also makes insertion feedback explicit: correct and incorrect recorded insertions can sound, while deletion and ignored input stay silent. Canonical metrics, first-character timing and the 3D opening quality are unchanged by these game edits.
+
+**79 focused tests passed across five files**, including the new feedback regressions plus canonical scoring, native input guards and first-input timing. This is a scoped unit result. The final19 integrated browser matrix, mobile Event Timing, screenshots and full-quality opening acceptance remain **pending** until the coordinated release receipts record them. Historical failures and limits below remain historical; they are not replaced with a whole-product pass.
+
+See [the 27 October gaming review](research/GAMING_REVIEW_2026-10-27.md) for verified ZType, Monkeytype and Keybr sources, exact fixes, the bounded mobile audit protocol and remaining game-depth work. See [the release audit](MEGA_PACK_AUDIT_2026-10-21.md) and [status matrix](STATUS_MATRIX.md) for the authoritative current build acceptance.
+
+## Original implementation scope
+
+Implemented 2026-10-21. Scope: the eight `/arcade` games. The existing `/games` Signal Run and the three-dimensional opening renderer are separate and unchanged by this slice.
+
+## Input and measured results
+
+`CanonicalGameBridge` owns a normal `SessionController`. Every insertion, rejected letter, deletion, composition and autocorrect marker enters that controller. Its metric formulas are unchanged. A game word is issued before its first attempt. Completion records a non-inserting `submit` event, so automatic word completion does not invent Space attempts or credited characters. Original errors remain in attempt accuracy after correction. Arcade score, powerups, bot progress, rhythm combo, particles and car boosts never modify canonical metrics.
+
+Configuration declares `mode: zen`, public original English targets, the selected keyboard layout, strict current-word correction and reject-incorrect behavior. `settings.arcadeGame` identifies the mode for progression; `settings.localOnly` is true. Finished evidence contains the real canonical session plus a separate bounded game-event stream. Saving uses the repository's explicit `localOnly` option. Composition and autocorrect retain their assistance provenance and cannot become an unassisted verified result merely by being played in a game.
+
+The native textarea supports actual keyboard input, mobile `beforeinput` deletion, active-word selection, IME composition and its possible trailing input echo. Paste and drop are blocked. Backspace unlocks an empty target. Escape, window blur and document hiding pause; resume is explicit. Same-clock input followed immediately by pause uses the canonical `afterSequence` pause boundary, with no artificial timestamp adjustment.
+
+The model accepts at most20,000 insertion attempts, including unmatched first keys, and refuses an oversized batch atomically. Entity capacity is18 on the declared mobile layout and30 on desktop. Game events are capped at6,000; Snake length at120; Endless practice has a five-minute safety bound.
+
+## Eight original games
+
+| Route ID | Mechanics and boundaries |
+| --- | --- |
+| `word-invaders` | Nearest matching first-letter lock, three hull points, waves, a three-phase boss every fifth wave, phase accuracy gate90%, earned Slow-Mo6s/Bomb/Shield and a20s visual-score combo. Bombs create no typing credit. History median determines pace; measured average accuracy changes the original vocabulary range. |
+| `ghost-gp` | Optional own public-corpus canonical replay and five explicitly labelled modelled bots. Own ghost position comes from replayed credited-character samples. Draft and nitro alter presentation only; the accessible track and final metrics remain real typed progress. Private custom passages are excluded from the replay picker. |
+| `daily-gauntlet` | SHA-256 of `SparowType-gauntlet-YYYY-MM-DD` chooses40 original words for the UTC date. Mission deadlines are120/90/60s. Every attempt is LOCAL PRACTICE. A server-issued daily contract, one-attempt verified ranking and online daily board are unavailable. |
+| `rhythm-typing` | 90/110/130BPM; Normal combo window±120ms, Easy±180ms, Hard±90ms. Words remain typeable after the beat. Timing changes rhythm combo only. Visual beat ring and optional original oscillator kick/hat/bass backing are independent of correctness. |
+| `key-tower` | Three lanes; Runner, Tank, Splitter and memory-preview Phantom enemies. Easy never generates Phantom. Every six completed words opens a five-second interval for spending earned scrap on lane towers. Scrap is separate from account Keys; no paid powerup is required. |
+| `snake-words` | Exact direction words steer and grow the snake; Hard includes literal `rise/drop/west/east` synonyms. The next word is displayed with its food marker. A completed word collects that typing target immediately. Easy wraps; other difficulties charge hull for wall contact. Self-intersection ends the run. Movement speeds up every five foods. |
+| `lava-rise` | Completed words add platforms. Actual insertion-attempt accuracy over the preceding60s controls lava rise, including unmatched first keys. The relationship is visible in the instructions and state. |
+| `boss-duel` | A90s exam against a labelled BOT pace of105% of the non-arcade measured median; absent history uses the explicitly stated35WPM baseline. Winning requires the full90s, more correct-character progress and at least95% attempt accuracy. Both variant selections use the fixed90s exam; this is stated in setup. |
+
+All modes expose Easy/Normal/Hard and Mission/Endless setup, local bests, canonical JSON export and a spoiler-free image. Boss Duel's fixed exam duration is an explicit exception to the general Endless duration. Daily verified competition is an explicit unsupported server capability, not a simulated leaderboard.
+
+## Rendering, audio and ownership
+
+The fixed loop updates at60Hz, caps catch-up at five steps and renders with `requestAnimationFrame`. Canonical timing uses the controller's monotonic clock rather than accumulated animation frames. Entities and particles are pooled. Particle caps are120/300; sustained frames below45FPS for three seconds reduce visual capacity only. A40ms visual hit-stop and4px/180ms camera shake are suppressed by Focus Mode and reduced motion. Reduced motion provides a static target layout; the DOM target list remains available to assistive technology. Available targets are never dozens of focusable keys.
+
+The WebAudio context is created only after a pointer/key gesture or an explicit sound-enable action; sound starts muted. Oscillator voices are capped at16 and disposed on unmount. Audio preference corruption defaults to muted. The game chunks are dynamically imported only when their route is reached and the player engine only after Play. No game engine import was added to the initial typing practice page.
+
+These platform choices follow the browser contracts documented by [MDN requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame), [compositionend](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionend_event) and [WebAudio best practices](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Best_practices) (consulted2026-10-21). A browser API contract is not evidence of testing a physical device.
+
+Persistence key: `sparowtype.arcade.v1:${encodeURIComponent(owner)}`. An explicit owner is mandatory. `arcadeData.export(owner)` returns that owner's aggregate bests, at most six canonical game replays within the shared90-day raw-evidence lifetime, any preserved recovery text, and a storage warning when applicable. Aggregate bests may remain until deletion; their original raw replay expires. Read, export, maintenance and ghost-construction paths reject expired evidence. Writable storage is pruned; blocked storage keeps expired replay content out of the returned in-memory/export data and reports that persistent expiry could not be confirmed. Corrupt envelopes remain explicit recovery data and require repair/clear before their persistent cleanup can be confirmed.
+
+`arcadeData.expire(owner, now)` uses the same lightweight evidence-policy constant as the canonical repository. Existing owner maintenance invokes it lazily; a new typing-page visit does not download the arcade to perform an absent-key check. `removeSession(owner, id)` removes duplicated raw evidence and any aggregate best whose source is that session. It does not invent a replacement best from an unarchived older result. Selected ghost runs are discarded if their precise ordinary-history or arcade source is deleted or expires; unrelated source deletion does not interrupt them.
+
+`.clear(owner)` clears that owner only, notifies active runs so they are discarded, and clears in-memory state even if durable storage is blocked. Captured owner revision prevents a pre-clear run from restoring deleted records. Real cross-tab storage events invalidate cached bests and discard active runs; persistent key absence never resurrects a cached ghost. A blocked persistent deletion throws an actionable error and hides old records in the current tab; the UI does not claim a confirmed durable wipe. Corrupt/unknown records can be exported and are never silently overwritten. Quota failures keep the new result in the current tab with an explicit warning. Same-document and cross-tab updates refresh the local board. Clearing only the arcade key is distinct from deleting all canonical practice history in the workspace data controls.
+
+## Verification receipts and limits
+
+`audit/mega-pack-2026-10-21/arcade-evidence-final-units.log`:555/555 unit cases across six files. This includes30 contract cases for each game, subsystem seed/cap/clock/audio preference cases, ownership/recovery/expiry/removal tests, native input event guards, exact canonical independent replay checks and a10,000-seed paired deterministic fuzz case with12 fixed frames per seed. The fuzz scope covers bounded state and identical seed+input schedules; it is not an endurance or physical-device test. Earlier530-test and570-combined-game/arena receipts remain historical snapshots.
+
+`arcade-evidence-final-lint-2.log`: scoped ESLint passed without warnings. `arcade-evidence-final-typecheck.log`: app TypeScript passed. `e2e/arcade.spec.ts` contains10 browser cases: catalog isolation, eight real-typing/export/mobile-view/axe journeys, and pause/mobile-delete/reduced-motion input. Two separately prepared `arcade-data-isolation.spec.ts` journeys cover actual cross-tab key deletion and ordinary canonical-history source deletion; their release browser result remains NOT-RUN until a coordinated receipt exists.
+
+Checkpoint2 (`51b97d40b55f32b75c09`) passed36/40 game browser cases across Chromium, Edge, Firefox and WebKit: every eight-mode journey and catalog case passed. The four remaining failures came from the fixture sending a generic `Event` with no `inputType`; the corrected fixture retains that event as a negative control and then dispatches an actual `InputEvent`. Confirmation is pending. Checkpoint1 also exposed a real WebKit internal-button blur/toolbar-click problem; its source fix was confirmed by all four affected portrait journeys at checkpoint2. Native beforeinput guards remain necessary for real mobile deletion without keydown.
+
+The checkpoint2 bundle receipt measures the entire added player static graph at23,699 gzip bytes, an upper bound for the engine below its60,000-byte cap; catalog route9,252 bytes. The initial practice graph excludes the arcade. This is recorded in `arcade-engine-budget-checkpoint-2.json`; no artificial engine-only byte count is asserted. Lighthouse remains NOT-RUN for this game checkpoint. Final release results must be recorded separately. Physical mobile keyboards, native screen readers and GPU/device endurance remain UNVERIFIED. No online-game verification, anti-cheat proof or worldwide ranking is claimed.
+
+Retained earlier attempts: the original197-test run exposed a real same-clock pause-boundary bug; root fixed the canonical TS/PHP contract and the direct regression was restored. An intermediate tower-test helper used an unbounded fixture loop and was stopped; it was replaced with a finite six-target fixture. Neither receipt is erased or presented as a product pass.

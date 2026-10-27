@@ -1,0 +1,114 @@
+{
+  "preparedAt": "2026-10-22T20:11:55.801824+00:00",
+  "status": "PREPARED-NOT-RUN",
+  "actualBuildId": null,
+  "actualBuildIdPolicy": "Execution requires real SPAROWTYPE_FINAL17_BUILD_ID after freeze; placement uses SPAROWTYPE_FINAL17_BUILD; mobile additionally uses actual SPAROWTYPE_FINAL17_STATIC_BUILD_ID from completed dedicated static artifacts. No guessed ID.",
+  "records": [
+    {
+      "from": "audit/2026-10-21/run-final16-static.mjs",
+      "to": "audit/2026-10-21/run-final17-static.mjs",
+      "originalSha256": "17ced434471fb4ec8149854d21e82026f2aa83b72acc0efcf1ebcf638dbc8b97",
+      "revisedSha256": "7cd5bb2810d135108d6bd734ada836d72b0a53c29639c1ec143bc58b53fdebc1",
+      "referenceReplacementOnly": true,
+      "reverseExact": true
+    },
+    {
+      "from": "audit/2026-10-21/run-mobile-workspaces-static-final16.mjs",
+      "to": "audit/2026-10-21/run-mobile-workspaces-static-final17.mjs",
+      "originalSha256": "181e8f1369b09486ae49960823369906eb32285e4b265ae034402a80ddfdf26a",
+      "revisedSha256": "e753c04629329020831ecd77295a2ad339a0919a0e2634d063d69a878649b12e",
+      "referenceReplacementOnly": true,
+      "reverseExact": true
+    },
+    {
+      "from": "audit/2026-10-21/measure-mobile-workspaces-static-final16.mjs",
+      "to": "audit/2026-10-21/measure-mobile-workspaces-static-final17.mjs",
+      "originalSha256": "7e2f9afd3bf02c8a2ca3d41a837ce10a9d6bf8f638f5a1c59d9b707d0bd964b3",
+      "revisedSha256": "aa2fec83ec90f96db5c761b7ce81501a4bb9bc7a8799b4461878e683990c33a7",
+      "referenceReplacementOnly": true,
+      "reverseExact": true
+    },
+    {
+      "from": "audit/2026-10-21/standalone-placement-real135-final16.mjs",
+      "to": "audit/2026-10-21/standalone-placement-real135-final17.mjs",
+      "originalSha256": "909a3a1cfeccf59b27435c683c4838162731b83d5a25536768660bdce03d91be",
+      "revisedSha256": "9debc30b327a2b5df001dc2a31885b9ad3c30154d1503fb9135718050f20162f",
+      "referenceReplacementOnly": true,
+      "reverseExact": true
+    },
+    {
+      "from": "audit/2026-10-21/run-final16-browser-matrix.mjs",
+      "to": "audit/2026-10-21/run-final17-browser-matrix.mjs",
+      "originalSha256": "4371a5409eee74a1e61bf743c268863f1f92151f4952230e870f8d520b187412",
+      "revisedSha256": "31383cb53fa5c71dffa3be6e19232aff0cfa5db860df2c23965e4867d9de6d89",
+      "referenceReplacementOnly": true,
+      "reverseExact": true
+    },
+    {
+      "from": "audit/2026-10-21/run-final16-native-browser.mjs",
+      "to": "audit/2026-10-21/run-final17-native-browser.mjs",
+      "originalSha256": "7335eac77e5df613f44a5a124bd4fa04d5eb2afc2ba1f0bd9e0c39ca185a1b88",
+      "revisedSha256": "303ef6f284a73367228f5d85b12c38d4a5aebb48574965c742a7569305c52cc6",
+      "referenceReplacementOnly": true,
+      "reverseExact": true
+    }
+  ],
+  "testsAssertionsActionsBudgetsWorkerRetryPolicyChanged": false,
+  "productionOrE2eFilesEdited": false,
+  "testsBuildBrowsersServicesExecuted": false,
+  "matrix": {
+    "currentSpecFiles": 62,
+    "everySourceSpecCoveredExactlyOnceGuardRetained": true,
+    "explicitFourEnginesRequired": true,
+    "inheritedStaticOutputsRejected": true,
+    "executionPlan": "Full17 matrix may not be scheduled; preparation does not mean execution or promotion of full16 evidence."
+  },
+  "staticScope": {
+    "artifactChecks": 67,
+    "deploymentCases": 56,
+    "gameAxeCases": 16,
+    "engines": [
+      "chromium",
+      "edge",
+      "firefox",
+      "webkit"
+    ],
+    "workers": 1,
+    "retries": 0,
+    "uniqueScreenshotAndReportPaths": true
+  },
+  "mobileScope": {
+    "cases": 4,
+    "caseTimeoutMs": 33000,
+    "watchdogMs": 145000,
+    "functionalAndP98Separate": true
+  },
+  "placementScope": {
+    "realParts": 3,
+    "eachActiveMs": 45000,
+    "wholeWatchdogMs": 210000,
+    "expectedNamedChecks": 82,
+    "clockMutation": false,
+    "automaticRetries": 0
+  },
+  "nativeScope": {
+    "expectedCases": 16,
+    "engines": [
+      "chromium",
+      "edge",
+      "firefox",
+      "webkit"
+    ],
+    "workers": 1,
+    "retries": 0,
+    "servicesStartedByWrapper": false,
+    "cleanupRequiredSeparately": true
+  },
+  "priorEvidencePreserved": [
+    "final16-source.json",
+    "final16-input-results.json",
+    "final16-browser-matrix.json",
+    "all16 batch receipts and failures"
+  ],
+  "scope": "Six exact reference/output-number clones only. No source17 correctness, static/mobile/placement/native/browser/Lighthouse/latency outcome established."
+}

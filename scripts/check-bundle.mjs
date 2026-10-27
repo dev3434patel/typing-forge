@@ -110,11 +110,39 @@ const report = {
     introDeferredJsGzipBytes: 220_000,
   },
 };
+function deferredGraphGzip(entry) {
+  const visited = new Set();
+  function visit(key) {
+    const item = manifest[key];
+    if (!item || files.has(item.file) || visited.has(item.file)) return;
+    visited.add(item.file);
+    (item.imports || []).forEach(visit);
+  }
+  visit(entry);
+  return Promise.all([...visited].map(async file => gzipSync(await readFile(path.join(root, file))).length)).then(sizes => sizes.reduce((sum, size) => sum + size, 0));
+}
+function requiredEntry(source, name) {
+  if (manifest[source]) return source;
+  const found = Object.entries(manifest).find(([, item]) => item.name === name && item.isDynamicEntry);
+  if (!found) throw new Error(`Missing required feature bundle: ${source}`);
+  return found[0];
+}
+report.arcadeRouteGzipBytes = await deferredGraphGzip(requiredEntry('src/games/ui/ArcadePage.tsx', 'ArcadePage'));
+report.arcadePlayerGzipBytes = await deferredGraphGzip(requiredEntry('src/games/ui/ArcadePlayer.tsx', 'ArcadePlayer'));
+report.dashboardRouteGzipBytes = await deferredGraphGzip('src/pages/Stats.tsx');
+report.budgets.arcadeRouteGzipBytes = 90_000;
+report.budgets.arcadePlayerGzipBytes = 90_000;
+report.budgets.dashboardRouteGzipBytes = 120_000;
+report.arcadeAbsentFromInitialPractice = ![...files].some(file => /ArcadePage|arcade|game-engine/i.test(file));
 console.log(JSON.stringify(report, null, 2));
 if (
   report.initialPracticeJsGzipBytes >
     report.budgets.initialPracticeJsGzipBytes ||
   report.maxFeatureJsGzipBytes > report.budgets.featureJsGzipBytes ||
-  report.introDeferredJsGzipBytes > report.budgets.introDeferredJsGzipBytes
+  report.introDeferredJsGzipBytes > report.budgets.introDeferredJsGzipBytes ||
+  report.arcadeRouteGzipBytes > report.budgets.arcadeRouteGzipBytes ||
+  report.arcadePlayerGzipBytes > report.budgets.arcadePlayerGzipBytes ||
+  report.dashboardRouteGzipBytes > report.budgets.dashboardRouteGzipBytes ||
+  !report.arcadeAbsentFromInitialPractice
 )
   process.exitCode = 1;

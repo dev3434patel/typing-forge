@@ -1,0 +1,161 @@
+{
+  "totals": {
+    "total": 196,
+    "passed": 187,
+    "failed": 0,
+    "skipped": 9,
+    "flaky": 0
+  },
+  "projects": [
+    {
+      "project": "chromium",
+      "total": 49,
+      "passed": 49,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "edge",
+      "total": 49,
+      "passed": 49,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "firefox",
+      "total": 49,
+      "passed": 49,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "webkit",
+      "total": 49,
+      "passed": 40,
+      "failed": 0,
+      "skipped": 9,
+      "flaky": 0
+    }
+  ],
+  "reportedStats": {
+    "expected": 187,
+    "unexpected": 0,
+    "skipped": 9,
+    "flaky": 0
+  },
+  "countsAgreeWithReport": true,
+  "failures": [],
+  "flakyCases": [],
+  "skippedCases": [
+    {
+      "project": "webkit",
+      "title": "input-guardrails.spec.ts › supported typing audio creates one context on input and disposes it on navigation",
+      "file": "input-guardrails.spec.ts",
+      "line": 95,
+      "reasons": [
+        "UNVERIFIED: this browser runner exposes no standard AudioContext API; this is not a native Safari capability claim."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "opening-single-keyboard.spec.ts › the normal-clock production worker shows the creative 3D keyboard through wordmark typing and automatic entry",
+      "file": "opening-single-keyboard.spec.ts",
+      "line": 240,
+      "reasons": [
+        "UNVERIFIED: this runner has no native transferable-canvas worker API."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "opening-worker.spec.ts › default native worker draws the complete keyboard while document tasks, resize and skip remain responsive",
+      "file": "opening-worker.spec.ts",
+      "line": 364,
+      "reasons": [
+        "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "opening-worker.spec.ts › native worker acknowledges real resource disposal at an explicitly idle renderer boundary",
+      "file": "opening-worker.spec.ts",
+      "line": 461,
+      "reasons": [
+        "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "opening-worker.spec.ts › five consecutive native-worker startup reloads close each prior owner and final skip closes the last worker",
+      "file": "opening-worker.spec.ts",
+      "line": 591,
+      "reasons": [
+        "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "opening-worker.spec.ts › skipping while the native worker entry is blocked terminates startup and preserves the first typing key",
+      "file": "opening-worker.spec.ts",
+      "line": 742,
+      "reasons": [
+        "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "opening-worker.spec.ts › a native worker transport failure replaces the transferred canvas with the complete real document renderer",
+      "file": "opening-worker.spec.ts",
+      "line": 797,
+      "reasons": [
+        "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "opening-worker.spec.ts › actual worker WebGL context loss during preparation recovers with a fresh canvas and keeps practice usable",
+      "file": "opening-worker.spec.ts",
+      "line": 1039,
+      "reasons": [
+        "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "opening-worker.spec.ts › actual worker WebGL context loss after live frames recovers with a fresh canvas and keeps practice usable",
+      "file": "opening-worker.spec.ts",
+      "line": 1045,
+      "reasons": [
+        "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+      ]
+    }
+  ],
+  "skipReasons": [
+    {
+      "reason": "UNVERIFIED: this browser runner exposes no standard AudioContext API; this is not a native Safari capability claim.",
+      "count": 1,
+      "projects": [
+        "webkit"
+      ]
+    },
+    {
+      "reason": "UNVERIFIED: this runner has no native transferable-canvas worker API.",
+      "count": 1,
+      "projects": [
+        "webkit"
+      ]
+    },
+    {
+      "reason": "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently.",
+      "count": 7,
+      "projects": [
+        "webkit"
+      ]
+    }
+  ],
+  "expectedFailures": [],
+  "globalErrors": [],
+  "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+}

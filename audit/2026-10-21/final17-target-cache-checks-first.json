@@ -1,0 +1,80 @@
+{
+  "capturedAt": "2026-10-22T20:41:01.257126+00:00",
+  "reportLocalDate": "2026-10-23",
+  "status": "PASS-SCOPED",
+  "scope": "One focused core command, then domain TypeScript, app TypeScript and scoped ESLint sequentially; no browser/build/native SQL/performance job.",
+  "automaticRetries": 0,
+  "core": {
+    "files": 9,
+    "passed": 169,
+    "failed": 0,
+    "newCases": 12
+  },
+  "results": [
+    {
+      "id": "core-first",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/lib/typing-core/__tests__",
+        "--maxWorkers=2"
+      ],
+      "log": "audit/2026-10-21/final17-target-cache-core-first.log",
+      "exitCode": 0,
+      "logRawSha256": "f1ec3f445a54f6a0aa8b65ff1be4e1d3438f9f01e1789c58a0733892298dd329"
+    },
+    {
+      "id": "domain-first",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "-p",
+        "tsconfig.domain.json",
+        "--noEmit"
+      ],
+      "log": "audit/2026-10-21/final17-target-cache-domain-first.log",
+      "exitCode": 0,
+      "logRawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "app-first",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "-p",
+        "tsconfig.app.json",
+        "--noEmit"
+      ],
+      "log": "audit/2026-10-21/final17-target-cache-app-first.log",
+      "exitCode": 0,
+      "logRawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "lint-first",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/lib/typing-core/transcript.ts",
+        "src/lib/typing-core/__tests__/transcript-target-cache.test.ts"
+      ],
+      "log": "audit/2026-10-21/final17-target-cache-lint-first.log",
+      "exitCode": 0,
+      "logRawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "scopeDiffCheck": {
+    "exitCode": 0,
+    "paths": [
+      "src/lib/typing-core/transcript.ts",
+      "src/lib/typing-core/__tests__/transcript-target-cache.test.ts"
+    ]
+  },
+  "notRun": [
+    "Integrated source17 gates",
+    "Native PHP differential parity",
+    "Source17 build",
+    "Browser acceptance",
+    "Runtime latency/memory/GC measurement"
+  ]
+}

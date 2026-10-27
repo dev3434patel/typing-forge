@@ -7,6 +7,11 @@
     "types": []
   },
   "include": [
+    "src/domain/**/*.ts",
+    "src/games/engine/*.ts",
+    "src/games/modes/*.ts",
+    "src/lib/content-policy.ts",
+    "src/lib/practice-style.ts",
     "src/lib/typing-core/*.ts",
     "src/lib/session-diagnostics.ts",
     "src/lib/typing-feedback.ts",
@@ -24,5 +29,6 @@
     "src/services/history-model.ts",
     "src/services/session-repository.ts",
     "src/services/session-sync.ts"
-  ]
+  ],
+  "exclude": ["**/*.test.ts", "**/*.spec.ts"]
 }

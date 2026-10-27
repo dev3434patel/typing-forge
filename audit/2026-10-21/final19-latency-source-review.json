@@ -1,0 +1,207 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-10-27T12:56:22.034Z",
+  "status": "READ-ONLY-DIAGNOSTIC-NOT-ACCEPTANCE",
+  "build": {
+    "version": "de097acba6969d580cc8",
+    "publicFiles": 133,
+    "bytes": 2960785
+  },
+  "publicInputs": [
+    {
+      "path": "final19-profile-independent-observations.json",
+      "sha256": "883379a71d6f892089b1e8832c5db9a3ebb6c640e981794d7c0c26386a4f2a74"
+    },
+    {
+      "path": "final19-cpu-loaf-profile-stacks.json",
+      "sha256": "5ec6108c6546ac2fb82a0f3c56c20247e589d093146a33e3d77b8e4abb3b7ccc"
+    },
+    {
+      "path": "final19-cpu-loaf-profile-timeline.json",
+      "sha256": "053389b676e9c04198e4af7c53be17300ebe22187462418f103fc740cd221e69"
+    },
+    {
+      "path": "final19-cpu-loaf-profile.json",
+      "sha256": "0cded7c953c0d7b8ace0b03785d69878f651e37e5c8c40c8323fa4350e66de78"
+    },
+    {
+      "path": "final19-input-results.json",
+      "sha256": "15608c5f0301c724998fa4ea40a1b06a2a137a718700c06677a218f8538b6362"
+    },
+    {
+      "path": "final19-source.json",
+      "sha256": "38bebc6045040cc52fec97d12f58351668f9d4c346257df7cf49e27193bb089f"
+    }
+  ],
+  "sourceHashes": [
+    {
+      "path": "src/lib/typing-core/session.ts",
+      "sha256": "8238f5b70cac38b82c7337c7a1f2275ba5ed5a4794fc06ed78c5063653ac3a34",
+      "normalizedSha256": "8238f5b70cac38b82c7337c7a1f2275ba5ed5a4794fc06ed78c5063653ac3a34",
+      "matchesFrozen": true
+    },
+    {
+      "path": "src/lib/typing-core/transcript.ts",
+      "sha256": "11532bcf96ddcf0f1eb77c9b73ef6c37af6ae88afd6643b7622eef21fcc8140b",
+      "normalizedSha256": "11532bcf96ddcf0f1eb77c9b73ef6c37af6ae88afd6643b7622eef21fcc8140b",
+      "matchesFrozen": true
+    },
+    {
+      "path": "src/lib/typing-core/metrics.ts",
+      "sha256": "de11128e062997daa61a621cd992e475ddd07934b26192508164b27b7a71e976",
+      "normalizedSha256": "de11128e062997daa61a621cd992e475ddd07934b26192508164b27b7a71e976",
+      "matchesFrozen": true
+    },
+    {
+      "path": "src/components/typing/TypingArea.tsx",
+      "sha256": "ccbe77a2b2524409f65542a15a54c3871028b1cfb2f2f6ef076d7a707fcaa4a5",
+      "normalizedSha256": "ccbe77a2b2524409f65542a15a54c3871028b1cfb2f2f6ef076d7a707fcaa4a5",
+      "matchesFrozen": true
+    },
+    {
+      "path": "src/components/typing/TypingPassage.tsx",
+      "sha256": "5f9df6976d2a32b5f444ce80206d1818cde71b587431b6655261c5eb21ab1386",
+      "normalizedSha256": "5f9df6976d2a32b5f444ce80206d1818cde71b587431b6655261c5eb21ab1386",
+      "matchesFrozen": true
+    },
+    {
+      "path": "src/components/typing/typing-passage-model.ts",
+      "sha256": "403983e3aa3cfe1cd45f31d90ac4f8c19d9287696a225d1c7a592c2419625a5e",
+      "normalizedSha256": "403983e3aa3cfe1cd45f31d90ac4f8c19d9287696a225d1c7a592c2419625a5e",
+      "matchesFrozen": true
+    },
+    {
+      "path": "src/components/typing/typing-caret-cache.ts",
+      "sha256": "60f3684640bd1c1be44c42697f50271dbc3cc9419a2473b4709b1213668d96d4",
+      "normalizedSha256": "60f3684640bd1c1be44c42697f50271dbc3cc9419a2473b4709b1213668d96d4",
+      "matchesFrozen": true
+    },
+    {
+      "path": "src/components/typing/ObservedLiveKeyboard.tsx",
+      "sha256": "1ad8db6a5c8c701d14f339ef0bd62c6f2f24950c2aeab1b2b74ec57485ee1ced",
+      "normalizedSha256": "1ad8db6a5c8c701d14f339ef0bd62c6f2f24950c2aeab1b2b74ec57485ee1ced",
+      "matchesFrozen": true
+    }
+  ],
+  "ordinaryAcceptance": {
+    "receipt": "final19-input-results.json",
+    "status": "FAILED-2-OF-3-LATENCY",
+    "p98Ms": [
+      104,
+      104,
+      88
+    ],
+    "maxMs": [
+      208,
+      264,
+      216
+    ],
+    "threshold": "p98 <100ms in every ordinary run",
+    "notReplacedByDiagnostic": true
+  },
+  "instrumentedDiagnostic": {
+    "p98Ms": 56,
+    "maxMs": 112,
+    "attempts": 495,
+    "exactRetainedText": true,
+    "inputAccuracy": 100,
+    "rotationRetained": true,
+    "errors": 0,
+    "scope": "One instrumented CPU/LoAF session; instrumentation changes observation conditions. It is not an acceptance rerun."
+  },
+  "hotPathReview": [
+    {
+      "file": "src/lib/typing-core/transcript.ts",
+      "observation": "The factory-branded target-word WeakMap cache is eligible for the495-ASCII-unit benchmark target, within4096target units and512target words. No repeated cold word parsing was established."
+    },
+    {
+      "file": "src/lib/typing-core/transcript.ts",
+      "observation": "previousCommittedWord takes a constant-time exit for a nonempty active word; its boundary cache is keyed by state sequence and target. applyEvent still scans retained prefix in locateCursor; this is actual O(n) work, but the public selected-window stacks do not establish it as the nonfinal latency cause."
+    },
+    {
+      "file": "src/lib/typing-core/session.ts",
+      "observation": "snapshot reuses its immutable alignment for timer-only updates. Edits necessarily create a new alignment, public event copies and derived presentation; removing these without a validated contract would change ownership or semantics."
+    },
+    {
+      "file": "src/components/typing/TypingArea.tsx",
+      "observation": "commit diffs native graphemes, updates canonical state and publishes controlled input/snapshot. Multiple linear operations remain, but the selected profile does not identify one as dominant in the ordinary failed runs."
+    },
+    {
+      "file": "src/components/typing/typing-passage-model.ts",
+      "observation": "The passage model reuses unchanged immutable chunks/blocks. ObservedLiveKeyboard and code-specific press subscriptions already isolate physical press/release from the whole passage."
+    }
+  ],
+  "profileLimits": {
+    "sampleCount": 5995,
+    "programSamples": 3779,
+    "idleSamples": 538,
+    "compiledJsSamples": 1456,
+    "garbageCollectorSamples": 49,
+    "otherNativeOrUnattributedSamples": 173,
+    "selectedSlowKeypressAndInputWindows": 12,
+    "nonfinalSelectedWindows": 10,
+    "nonfinalWindowsWithProcessingBelow29ms": 7,
+    "finalKeyProcessingMs": [
+      81.3,
+      78.2
+    ],
+    "overlappingFinalWindowsMustNotBeSummed": true,
+    "finalSerializationLeafSamplesPerOverlappingWindow": 7,
+    "finalLocateCursorLeafSamplesPerOverlappingWindow": 3,
+    "maxKeyup": {
+      "durationMs": 112,
+      "processingMs": 1.8,
+      "throughPresentationMs": 74
+    },
+    "interpretation": "Sample counts are not elapsed function time or invocation counts. Overlap identifies co-occurrence. Final-only serialization/prefix scans do not explain the ten nonfinal selected windows or ordinary p98 failures."
+  },
+  "caretObservation": {
+    "file": "src/components/typing/TypingArea.tsx",
+    "measuredNativeGeometryTotalMs": 55.50000000372529,
+    "diagnosticActiveDurationMs": 9303.699999999255,
+    "firstCharacterCalls": 258,
+    "refillInputLengths": [
+      248,
+      251,
+      253,
+      254,
+      255,
+      285,
+      286,
+      287
+    ],
+    "refillCallsByInputLength": {
+      "248": 129,
+      "251": 129,
+      "253": 129,
+      "254": 129,
+      "255": 129,
+      "285": 129,
+      "286": 129,
+      "287": 129
+    },
+    "observation": "The public timeline records repeated bounded128-slot cache refill bursts around the declared rotation. Synchronous measure() is shared by ResizeObserver, window.resize, visualViewport.resize, root style/class mutations and font events.",
+    "attribution": "UNPROVEN: receipts do not identify the invalidation source for each refill or show that duplicate notifications caused the ordinary104ms p98.",
+    "decision": "No coalescing or cache-bound change applied. Blindly deferring invalidation can preserve stale caret geometry after font, viewport, scroll or direction changes. Additional origin-specific instrumentation would be needed before proposing a narrow repair."
+  },
+  "conclusion": {
+    "clearCausalOptimizationIdentified": false,
+    "sourceHotfixRecommended": false,
+    "acceptanceClaim": false,
+    "ordinaryLatencyStillFailed": true,
+    "noQualityOrMetricReduction": true,
+    "noBlanketRetryRecommended": true,
+    "reason": "The104ms quantized observation exceeds the target, but does not identify an exact4ms culprit. Current evidence does not justify changing canonical math, timing, 3D quality or correctness boundaries merely to chase one timing bin."
+  },
+  "activity": {
+    "sourceEdits": 0,
+    "testEdits": 0,
+    "driverEdits": 0,
+    "browserJobs": 0,
+    "buildJobs": 0,
+    "testJobs": 0,
+    "rawCpuProfileRead": false,
+    "privateConfigOrStorageRead": false,
+    "onlyNewOutput": "audit/2026-10-21/final19-latency-source-review.json"
+  }
+}

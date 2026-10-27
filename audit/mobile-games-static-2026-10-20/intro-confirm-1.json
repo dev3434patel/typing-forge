@@ -1,0 +1,210 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\extra\\typing_updated\\typing-forge\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "e2e/opening-worker.spec.ts",
+      "--grep",
+      "five consecutive native-worker startup reloads",
+      "--workers=1",
+      "--reporter=list,json",
+      "--output=audit/mobile-games-static-2026-10-20/.playwright-artifacts-intro-confirm-1"
+    ],
+    "configFile": "D:\\extra\\typing_updated\\typing-forge\\playwright.config.ts",
+    "rootDir": "D:/extra/typing_updated/typing-forge/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/audit/mobile-games-static-2026-10-20/.playwright-artifacts-intro-confirm-1",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\audit\\mobile-games-static-2026-10-20\\.playwright-artifacts-intro-confirm-1",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "opening-worker.spec.ts",
+      "file": "opening-worker.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "five consecutive native-worker startup reloads close each prior owner and final skip closes the last worker",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "browser-runtime-version",
+                  "description": "156.0.8078.4"
+                },
+                {
+                  "type": "scope",
+                  "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+                },
+                {
+                  "type": "scope",
+                  "description": "Native startup ownership includes pending GPU preparation. Dedicated quality and idle-acknowledgement cases separately require the complete desktop61-key full-quality draw."
+                },
+                {
+                  "type": "limitation",
+                  "description": "Five actual reloads and native worker closure/ownership are finite lifecycle evidence, not a universal heap/GPU-memory leak guarantee."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6815,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T18:12:44.470Z",
+                  "annotations": [
+                    {
+                      "type": "browser-runtime-version",
+                      "description": "156.0.8078.4"
+                    },
+                    {
+                      "type": "scope",
+                      "description": "Native Worker and OffscreenCanvas, normal clocks; no renderer mock or document-renderer override."
+                    },
+                    {
+                      "type": "scope",
+                      "description": "Native startup ownership includes pending GPU preparation. Dedicated quality and idle-acknowledgement cases separately require the complete desktop61-key full-quality draw."
+                    },
+                    {
+                      "type": "limitation",
+                      "description": "Five actual reloads and native worker closure/ownership are finite lifecycle evidence, not a universal heap/GPU-memory leak guarantee."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "native-worker-shutdown",
+                      "contentType": "application/json",
+                      "body": "eyJwYXRoIjoid2F0Y2hkb2ctdGVybWluYXRpb24tbm8tZGlzcG9zYWwtYWNrbm93bGVkZ2VtZW50IiwicG9saWN5Ijoid2F0Y2hkb2ctYWxsb3dlZCIsImRpc3Bvc2VBdE1zIjoxMjI4LjEwMDAwMDAyMzg0MTksInRlcm1pbmF0ZWRBdE1zIjoxNTcwLjIwMDAwMDA0NzY4MzcsImVsYXBzZWRNcyI6MzQyLjEwMDAwMDAyMzg0MTg2LCJ0ZXJtaW5hdGVkIjoxLCJsaXZlTmF0aXZlV29ya2VycyI6MH0="
+                    },
+                    {
+                      "name": "five-native-worker-reload-cycles",
+                      "contentType": "application/json",
+                      "body": "ewogICJzY29wZSI6ICJOYXRpdmUgc3RhcnR1cCBvd25lcnNoaXAsIGluY2x1ZGluZyBwZW5kaW5nIEdQVSBwcmVwYXJhdGlvbiIsCiAgImluaXRpYWxPd25lcnNoaXAiOiB7CiAgICAibmF0aXZlUHVibGlzaGVkIjogMSwKICAgICJsaXZlV29ya2VycyI6IDEsCiAgICAibWF4aW11bUxpdmUiOiAxLAogICAgImNvbmZpZ3VyYXRpb24iOiB7CiAgICAgICJ0eXBlIjogImluaXRpYWxpemUiLAogICAgICAiYXRNcyI6IDE5My4zMDAwMDAwMTE5MjA5MywKICAgICAgInZpZXdwb3J0IjogewogICAgICAgICJ3aWR0aCI6IDEyODAsCiAgICAgICAgImhlaWdodCI6IDcyMCwKICAgICAgICAicGl4ZWxSYXRpbyI6IDEKICAgICAgfSwKICAgICAgImxvd1Bvd2VyIjogZmFsc2UsCiAgICAgICJmaW5lUG9pbnRlciI6IHRydWUKICAgIH0KICB9LAogICJpbml0aWFsIjogWwogICAgewogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3My9hc3NldHMva2V5Ym9hcmQtcmVuZGVyLXdvcmtlci1vZVl5SFg0ZS5qcyIsCiAgICAgICJzZW50IjogWwogICAgICAgIHsKICAgICAgICAgICJ0eXBlIjogImluaXRpYWxpemUiLAogICAgICAgICAgImF0TXMiOiAxOTMuMzAwMDAwMDExOTIwOTMsCiAgICAgICAgICAidmlld3BvcnQiOiB7CiAgICAgICAgICAgICJ3aWR0aCI6IDEyODAsCiAgICAgICAgICAgICJoZWlnaHQiOiA3MjAsCiAgICAgICAgICAgICJwaXhlbFJhdGlvIjogMQogICAgICAgICAgfSwKICAgICAgICAgICJsb3dQb3dlciI6IGZhbHNlLAogICAgICAgICAgImZpbmVQb2ludGVyIjogdHJ1ZQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgInR5cGUiOiAicmVzaXplIiwKICAgICAgICAgICJhdE1zIjogMjI5LjUsCiAgICAgICAgICAidmlld3BvcnQiOiB7CiAgICAgICAgICAgICJ3aWR0aCI6IDEyODAsCiAgICAgICAgICAgICJoZWlnaHQiOiA3MjAsCiAgICAgICAgICAgICJwaXhlbFJhdGlvIjogMQogICAgICAgICAgfQogICAgICAgIH0KICAgICAgXSwKICAgICAgInJlY2VpdmVkIjogW10sCiAgICAgICJ0ZXJtaW5hdGVkIjogMCwKICAgICAgInRlcm1pbmF0ZWRBdE1zIjogbnVsbAogICAgfQogIF0sCiAgImN5Y2xlcyI6IFsKICAgIHsKICAgICAgInJlbG9hZCI6IDEsCiAgICAgICJyZWNvcmRzIjogWwogICAgICAgIHsKICAgICAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTczL2Fzc2V0cy9rZXlib2FyZC1yZW5kZXItd29ya2VyLW9lWXlIWDRlLmpzIiwKICAgICAgICAgICJzZW50IjogWwogICAgICAgICAgICB7CiAgICAgICAgICAgICAgInR5cGUiOiAiaW5pdGlhbGl6ZSIsCiAgICAgICAgICAgICAgImF0TXMiOiA4OC41OTk5OTk5NjQyMzcyMSwKICAgICAgICAgICAgICAidmlld3BvcnQiOiB7CiAgICAgICAgICAgICAgICAid2lkdGgiOiAxMjgwLAogICAgICAgICAgICAgICAgImhlaWdodCI6IDcyMCwKICAgICAgICAgICAgICAgICJwaXhlbFJhdGlvIjogMQogICAgICAgICAgICAgIH0sCiAgICAgICAgICAgICAgImxvd1Bvd2VyIjogZmFsc2UsCiAgICAgICAgICAgICAgImZpbmVQb2ludGVyIjogdHJ1ZQogICAgICAgICAgICB9LAogICAgICAgICAgICB7CiAgICAgICAgICAgICAgInR5cGUiOiAicmVzaXplIiwKICAgICAgICAgICAgICAiYXRNcyI6IDkyLjY5OTk5OTk4ODA3OTA3LAogICAgICAgICAgICAgICJ2aWV3cG9ydCI6IHsKICAgICAgICAgICAgICAgICJ3aWR0aCI6IDEyODAsCiAgICAgICAgICAgICAgICAiaGVpZ2h0IjogNzIwLAogICAgICAgICAgICAgICAgInBpeGVsUmF0aW8iOiAxCiAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CiAgICAgICAgICBdLAogICAgICAgICAgInJlY2VpdmVkIjogW10sCiAgICAgICAgICAidGVybWluYXRlZCI6IDAsCiAgICAgICAgICAidGVybWluYXRlZEF0TXMiOiBudWxsCiAgICAgICAgfQogICAgICBdLAogICAgICAicHJpb3JXb3JrZXJzQ2xvc2VkIjogMSwKICAgICAgImxpdmVXb3JrZXJzIjogMQogICAgfSwKICAgIHsKICAgICAgInJlbG9hZCI6IDIsCiAgICAgICJyZWNvcmRzIjogWwogICAgICAgIHsKICAgICAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTczL2Fzc2V0cy9rZXlib2FyZC1yZW5kZXItd29ya2VyLW9lWXlIWDRlLmpzIiwKICAgICAgICAgICJzZW50IjogWwogICAgICAgICAgICB7CiAgICAgICAgICAgICAgInR5cGUiOiAiaW5pdGlhbGl6ZSIsCiAgICAgICAgICAgICAgImF0TXMiOiA3OS44OTk5OTk5NzYxNTgxNCwKICAgICAgICAgICAgICAidmlld3BvcnQiOiB7CiAgICAgICAgICAgICAgICAid2lkdGgiOiAxMjgwLAogICAgICAgICAgICAgICAgImhlaWdodCI6IDcyMCwKICAgICAgICAgICAgICAgICJwaXhlbFJhdGlvIjogMQogICAgICAgICAgICAgIH0sCiAgICAgICAgICAgICAgImxvd1Bvd2VyIjogZmFsc2UsCiAgICAgICAgICAgICAgImZpbmVQb2ludGVyIjogdHJ1ZQogICAgICAgICAgICB9LAogICAgICAgICAgICB7CiAgICAgICAgICAgICAgInR5cGUiOiAicmVzaXplIiwKICAgICAgICAgICAgICAiYXRNcyI6IDg0LjE5OTk5OTk4ODA3OTA3LAogICAgICAgICAgICAgICJ2aWV3cG9ydCI6IHsKICAgICAgICAgICAgICAgICJ3aWR0aCI6IDEyODAsCiAgICAgICAgICAgICAgICAiaGVpZ2h0IjogNzIwLAogICAgICAgICAgICAgICAgInBpeGVsUmF0aW8iOiAxCiAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CiAgICAgICAgICBdLAogICAgICAgICAgInJlY2VpdmVkIjogW10sCiAgICAgICAgICAidGVybWluYXRlZCI6IDAsCiAgICAgICAgICAidGVybWluYXRlZEF0TXMiOiBudWxsCiAgICAgICAgfQogICAgICBdLAogICAgICAicHJpb3JXb3JrZXJzQ2xvc2VkIjogMiwKICAgICAgImxpdmVXb3JrZXJzIjogMQogICAgfSwKICAgIHsKICAgICAgInJlbG9hZCI6IDMsCiAgICAgICJyZWNvcmRzIjogWwogICAgICAgIHsKICAgICAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTczL2Fzc2V0cy9rZXlib2FyZC1yZW5kZXItd29ya2VyLW9lWXlIWDRlLmpzIiwKICAgICAgICAgICJzZW50IjogWwogICAgICAgICAgICB7CiAgICAgICAgICAgICAgInR5cGUiOiAiaW5pdGlhbGl6ZSIsCiAgICAgICAgICAgICAgImF0TXMiOiA4My44MDAwMDAwMTE5MjA5MywKICAgICAgICAgICAgICAidmlld3BvcnQiOiB7CiAgICAgICAgICAgICAgICAid2lkdGgiOiAxMjgwLAogICAgICAgICAgICAgICAgImhlaWdodCI6IDcyMCwKICAgICAgICAgICAgICAgICJwaXhlbFJhdGlvIjogMQogICAgICAgICAgICAgIH0sCiAgICAgICAgICAgICAgImxvd1Bvd2VyIjogZmFsc2UsCiAgICAgICAgICAgICAgImZpbmVQb2ludGVyIjogdHJ1ZQogICAgICAgICAgICB9LAogICAgICAgICAgICB7CiAgICAgICAgICAgICAgInR5cGUiOiAicmVzaXplIiwKICAgICAgICAgICAgICAiYXRNcyI6IDkyLjA5OTk5OTk2NDIzNzIxLAogICAgICAgICAgICAgICJ2aWV3cG9ydCI6IHsKICAgICAgICAgICAgICAgICJ3aWR0aCI6IDEyODAsCiAgICAgICAgICAgICAgICAiaGVpZ2h0IjogNzIwLAogICAgICAgICAgICAgICAgInBpeGVsUmF0aW8iOiAxCiAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CiAgICAgICAgICBdLAogICAgICAgICAgInJlY2VpdmVkIjogW10sCiAgICAgICAgICAidGVybWluYXRlZCI6IDAsCiAgICAgICAgICAidGVybWluYXRlZEF0TXMiOiBudWxsCiAgICAgICAgfQogICAgICBdLAogICAgICAicHJpb3JXb3JrZXJzQ2xvc2VkIjogMywKICAgICAgImxpdmVXb3JrZXJzIjogMQogICAgfSwKICAgIHsKICAgICAgInJlbG9hZCI6IDQsCiAgICAgICJyZWNvcmRzIjogWwogICAgICAgIHsKICAgICAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTczL2Fzc2V0cy9rZXlib2FyZC1yZW5kZXItd29ya2VyLW9lWXlIWDRlLmpzIiwKICAgICAgICAgICJzZW50IjogWwogICAgICAgICAgICB7CiAgICAgICAgICAgICAgInR5cGUiOiAiaW5pdGlhbGl6ZSIsCiAgICAgICAgICAgICAgImF0TXMiOiAxMjkzLjA5OTk5OTk2NDIzNzIsCiAgICAgICAgICAgICAgInZpZXdwb3J0IjogewogICAgICAgICAgICAgICAgIndpZHRoIjogMTI4MCwKICAgICAgICAgICAgICAgICJoZWlnaHQiOiA3MjAsCiAgICAgICAgICAgICAgICAicGl4ZWxSYXRpbyI6IDEKICAgICAgICAgICAgICB9LAogICAgICAgICAgICAgICJsb3dQb3dlciI6IGZhbHNlLAogICAgICAgICAgICAgICJmaW5lUG9pbnRlciI6IHRydWUKICAgICAgICAgICAgfSwKICAgICAgICAgICAgewogICAgICAgICAgICAgICJ0eXBlIjogInJlc2l6ZSIsCiAgICAgICAgICAgICAgImF0TXMiOiAxMzE1LjM5OTk5OTk3NjE1ODEsCiAgICAgICAgICAgICAgInZpZXdwb3J0IjogewogICAgICAgICAgICAgICAgIndpZHRoIjogMTI4MCwKICAgICAgICAgICAgICAgICJoZWlnaHQiOiA3MjAsCiAgICAgICAgICAgICAgICAicGl4ZWxSYXRpbyI6IDEKICAgICAgICAgICAgICB9CiAgICAgICAgICAgIH0KICAgICAgICAgIF0sCiAgICAgICAgICAicmVjZWl2ZWQiOiBbXSwKICAgICAgICAgICJ0ZXJtaW5hdGVkIjogMCwKICAgICAgICAgICJ0ZXJtaW5hdGVkQXRNcyI6IG51bGwKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJwcmlvcldvcmtlcnNDbG9zZWQiOiA0LAogICAgICAibGl2ZVdvcmtlcnMiOiAxCiAgICB9LAogICAgewogICAgICAicmVsb2FkIjogNSwKICAgICAgInJlY29yZHMiOiBbCiAgICAgICAgewogICAgICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzMvYXNzZXRzL2tleWJvYXJkLXJlbmRlci13b3JrZXItb2VZeUhYNGUuanMiLAogICAgICAgICAgInNlbnQiOiBbCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAidHlwZSI6ICJpbml0aWFsaXplIiwKICAgICAgICAgICAgICAiYXRNcyI6IDU0NC45MDAwMDAwMzU3NjI4LAogICAgICAgICAgICAgICJ2aWV3cG9ydCI6IHsKICAgICAgICAgICAgICAgICJ3aWR0aCI6IDEyODAsCiAgICAgICAgICAgICAgICAiaGVpZ2h0IjogNzIwLAogICAgICAgICAgICAgICAgInBpeGVsUmF0aW8iOiAxCiAgICAgICAgICAgICAgfSwKICAgICAgICAgICAgICAibG93UG93ZXIiOiBmYWxzZSwKICAgICAgICAgICAgICAiZmluZVBvaW50ZXIiOiB0cnVlCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAidHlwZSI6ICJyZXNpemUiLAogICAgICAgICAgICAgICJhdE1zIjogNTQ4LAogICAgICAgICAgICAgICJ2aWV3cG9ydCI6IHsKICAgICAgICAgICAgICAgICJ3aWR0aCI6IDEyODAsCiAgICAgICAgICAgICAgICAiaGVpZ2h0IjogNzIwLAogICAgICAgICAgICAgICAgInBpeGVsUmF0aW8iOiAxCiAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CiAgICAgICAgICBdLAogICAgICAgICAgInJlY2VpdmVkIjogW10sCiAgICAgICAgICAidGVybWluYXRlZCI6IDAsCiAgICAgICAgICAidGVybWluYXRlZEF0TXMiOiBudWxsCiAgICAgICAgfQogICAgICBdLAogICAgICAicHJpb3JXb3JrZXJzQ2xvc2VkIjogNSwKICAgICAgImxpdmVXb3JrZXJzIjogMQogICAgfQogIF0sCiAgInN0YXJ0ZWQiOiBbCiAgICB7CiAgICAgICJzZXF1ZW5jZSI6IDEsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTczL2Fzc2V0cy9rZXlib2FyZC1yZW5kZXItd29ya2VyLW9lWXlIWDRlLmpzIiwKICAgICAgInN0YXJ0ZWRBdE5vZGVNcyI6IDEyMzMuMjE1NgogICAgfSwKICAgIHsKICAgICAgInNlcXVlbmNlIjogMiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzMvYXNzZXRzL2tleWJvYXJkLXJlbmRlci13b3JrZXItb2VZeUhYNGUuanMiLAogICAgICAic3RhcnRlZEF0Tm9kZU1zIjogMTM2OS40NzIyCiAgICB9LAogICAgewogICAgICAic2VxdWVuY2UiOiAzLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3My9hc3NldHMva2V5Ym9hcmQtcmVuZGVyLXdvcmtlci1vZVl5SFg0ZS5qcyIsCiAgICAgICJzdGFydGVkQXROb2RlTXMiOiAxNDkwLjkyNzYKICAgIH0sCiAgICB7CiAgICAgICJzZXF1ZW5jZSI6IDQsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTczL2Fzc2V0cy9rZXlib2FyZC1yZW5kZXItd29ya2VyLW9lWXlIWDRlLmpzIiwKICAgICAgInN0YXJ0ZWRBdE5vZGVNcyI6IDE3MTEuMDk5NQogICAgfSwKICAgIHsKICAgICAgInNlcXVlbmNlIjogNSwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzMvYXNzZXRzL2tleWJvYXJkLXJlbmRlci13b3JrZXItb2VZeUhYNGUuanMiLAogICAgICAic3RhcnRlZEF0Tm9kZU1zIjogMzE0Ny41MjMKICAgIH0sCiAgICB7CiAgICAgICJzZXF1ZW5jZSI6IDYsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTczL2Fzc2V0cy9rZXlib2FyZC1yZW5kZXItd29ya2VyLW9lWXlIWDRlLmpzIiwKICAgICAgInN0YXJ0ZWRBdE5vZGVNcyI6IDQzOTIuNDk3CiAgICB9CiAgXSwKICAiY2xvc2VkIjogWwogICAgewogICAgICAic2VxdWVuY2UiOiAxLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3My9hc3NldHMva2V5Ym9hcmQtcmVuZGVyLXdvcmtlci1vZVl5SFg0ZS5qcyIsCiAgICAgICJjbG9zZWRBdE5vZGVNcyI6IDEyNzIuMTAxNgogICAgfSwKICAgIHsKICAgICAgInNlcXVlbmNlIjogMiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzMvYXNzZXRzL2tleWJvYXJkLXJlbmRlci13b3JrZXItb2VZeUhYNGUuanMiLAogICAgICAiY2xvc2VkQXROb2RlTXMiOiAxNDEwLjg3NjYKICAgIH0sCiAgICB7CiAgICAgICJzZXF1ZW5jZSI6IDMsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTczL2Fzc2V0cy9rZXlib2FyZC1yZW5kZXItd29ya2VyLW9lWXlIWDRlLmpzIiwKICAgICAgImNsb3NlZEF0Tm9kZU1zIjogMTYzMC4xMgogICAgfSwKICAgIHsKICAgICAgInNlcXVlbmNlIjogNCwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzMvYXNzZXRzL2tleWJvYXJkLXJlbmRlci13b3JrZXItb2VZeUhYNGUuanMiLAogICAgICAiY2xvc2VkQXROb2RlTXMiOiAxODQ5LjgzNwogICAgfSwKICAgIHsKICAgICAgInNlcXVlbmNlIjogNSwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzMvYXNzZXRzL2tleWJvYXJkLXJlbmRlci13b3JrZXItb2VZeUhYNGUuanMiLAogICAgICAiY2xvc2VkQXROb2RlTXMiOiAzODQ1LjEyNzMKICAgIH0sCiAgICB7CiAgICAgICJzZXF1ZW5jZSI6IDYsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTczL2Fzc2V0cy9rZXlib2FyZC1yZW5kZXItd29ya2VyLW9lWXlIWDRlLmpzIiwKICAgICAgImNsb3NlZEF0Tm9kZU1zIjogNjkxMy4xOTk1CiAgICB9CiAgXSwKICAibWF4aW11bUxpdmUiOiAxCn0="
+                    },
+                    {
+                      "name": "native-worker-receipts",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTczL2Fzc2V0cy9rZXlib2FyZC1yZW5kZXItd29ya2VyLW9lWXlIWDRlLmpzIiwKICAgICJzZW50IjogWwogICAgICB7CiAgICAgICAgInR5cGUiOiAiaW5pdGlhbGl6ZSIsCiAgICAgICAgImF0TXMiOiA1NDQuOTAwMDAwMDM1NzYyOCwKICAgICAgICAidmlld3BvcnQiOiB7CiAgICAgICAgICAid2lkdGgiOiAxMjgwLAogICAgICAgICAgImhlaWdodCI6IDcyMCwKICAgICAgICAgICJwaXhlbFJhdGlvIjogMQogICAgICAgIH0sCiAgICAgICAgImxvd1Bvd2VyIjogZmFsc2UsCiAgICAgICAgImZpbmVQb2ludGVyIjogdHJ1ZQogICAgICB9LAogICAgICB7CiAgICAgICAgInR5cGUiOiAicmVzaXplIiwKICAgICAgICAiYXRNcyI6IDU0OCwKICAgICAgICAidmlld3BvcnQiOiB7CiAgICAgICAgICAid2lkdGgiOiAxMjgwLAogICAgICAgICAgImhlaWdodCI6IDcyMCwKICAgICAgICAgICJwaXhlbFJhdGlvIjogMQogICAgICAgIH0KICAgICAgfSwKICAgICAgewogICAgICAgICJ0eXBlIjogImRpc3Bvc2UiLAogICAgICAgICJhdE1zIjogMTIyOC4xMDAwMDAwMjM4NDE5CiAgICAgIH0KICAgIF0sCiAgICAicmVjZWl2ZWQiOiBbXSwKICAgICJ0ZXJtaW5hdGVkIjogMSwKICAgICJ0ZXJtaW5hdGVkQXRNcyI6IDE1NzAuMjAwMDAwMDQ3NjgzNwogIH0KXQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3553ead040fdbe829e1a-4add5822bca81c582f64",
+          "file": "opening-worker.spec.ts",
+          "line": 560,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-20T18:12:43.733Z",
+    "duration": 7855.632,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

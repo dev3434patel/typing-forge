@@ -1,0 +1,167 @@
+{
+  "totals": {
+    "total": 204,
+    "passed": 196,
+    "failed": 8,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "projects": [
+    {
+      "project": "chromium",
+      "total": 51,
+      "passed": 49,
+      "failed": 2,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "edge",
+      "total": 51,
+      "passed": 51,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "firefox",
+      "total": 51,
+      "passed": 48,
+      "failed": 3,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "webkit",
+      "total": 51,
+      "passed": 48,
+      "failed": 3,
+      "skipped": 0,
+      "flaky": 0
+    }
+  ],
+  "reportedStats": {
+    "expected": 196,
+    "unexpected": 8,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "countsAgreeWithReport": true,
+  "failures": [
+    {
+      "project": "firefox",
+      "title": "arcade-data-isolation.spec.ts › cross-tab arcade deletion discards the active run without resurrecting bests or touching another owner",
+      "file": "arcade-data-isolation.spec.ts",
+      "line": 5,
+      "attempts": 1,
+      "attemptStatuses": [
+        "timedOut"
+      ],
+      "messages": [
+        "Test timeout of 30000ms exceeded.",
+        "Error: browserContext.close: Protocol error (Browser.removeBrowserContext): can't access property \"_maybeDontRestoreTabs\", this[#windows][aWindow.__SSi] is undefined",
+        "Error: page.goto: Test timeout of 30000ms exceeded. Call log: - navigating to \"http://127.0.0.1:4173/arcade\", waiting until \"load\" 17 | await page.locator('.arcade-target-alternative summary').click(); const next = (await page.locator('.arcade-target-alternative li').first().textContent())!.split(' · ')[0]; 18 | await input.focus(); await input.pressSequentially(next[0]); await expect(input).toHaveValue(next[0]); > 19 | const other = await contex"
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "arcade-data-isolation.spec.ts › deleting an ordinary canonical session in another tab stops only the selected history ghost",
+      "file": "arcade-data-isolation.spec.ts",
+      "line": 33,
+      "attempts": 1,
+      "attemptStatuses": [
+        "timedOut"
+      ],
+      "messages": [
+        "Test timeout of 30000ms exceeded.",
+        "Error: page.goto: Test timeout of 30000ms exceeded. Call log: - navigating to \"http://127.0.0.1:4173/arcade/ghost-gp\", waiting until \"load\" 37 | const practiceInput = await focusTyping(page), passage = (await page.getByTestId('typing-target').textContent())!; await practiceInput.pressSequentially(passage, { delay: 20 }); 38 | await expect(page.getByRole('region', { name: 'Session results', exact: true })).toBeVisible(); > 39 | await page.goto('/a"
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "arcade-offline.spec.ts › all eight arcade URLs survive a real HTTP outage without caching API or private room documents",
+      "file": "arcade-offline.spec.ts",
+      "line": 13,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(locator).toBeVisible() failed Locator: getByText(/Public download: available/) Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByText(/Public download: available/) with timeout 5000ms - waiting for getByText(/Public download: available/) 16 | await page.goto('/offline'); 17 | test.skip(!(await page.evaluate(() => 'serviceWorker' in navigator && 'caches' in window)), 'UNVERIFIED: serv"
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "arcade-offline.spec.ts › all eight arcade URLs survive a real HTTP outage without caching API or private room documents",
+      "file": "arcade-offline.spec.ts",
+      "line": 13,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(locator).toBeVisible() failed Locator: getByRole('heading', { name: 'Word Invaders', exact: true }) Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByRole('heading', { name: 'Word Invaders', exact: true }) with timeout 5000ms - waiting for getByRole('heading', { name: 'Word Invaders', exact: true }) 24 | for (const game of GAMES) { 25 | await page.goto(`/arcade/${game.id}`); > 26 | a"
+      ]
+    },
+    {
+      "project": "chromium",
+      "title": "arena.spec.ts › eight-member UI uses actual native canonical typing after the issued countdown and preserves strict rules",
+      "file": "arena.spec.ts",
+      "line": 41,
+      "attempts": 1,
+      "attemptStatuses": [
+        "timedOut"
+      ],
+      "messages": [
+        "Test timeout of 30000ms exceeded.",
+        "Error: expect(locator).toBeVisible() failed Locator: getByRole('textbox', { name: 'Typing input', exact: true }) Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms - waiting for getByRole('textbox', { name: 'Typing input', exact: true }) at helpers.ts:36 34 | exact: true, 35 | }); > 36 | await expect(input).toBeVisible(); | "
+      ]
+    },
+    {
+      "project": "chromium",
+      "title": "arena.spec.ts › failed leave retains room recovery and spectator view exposes public progress",
+      "file": "arena.spec.ts",
+      "line": 64,
+      "attempts": 1,
+      "attemptStatuses": [
+        "timedOut"
+      ],
+      "messages": [
+        "Test timeout of 30000ms exceeded.",
+        "Error: locator.fill: Test timeout of 30000ms exceeded. Call log: - waiting for getByLabel('Eight-character room code') 64 | test('failed leave retains room recovery and spectator view exposes public progress', async ({ page, baseURL }) => { 65 | await arenaFixture(page, baseURL!, { leaveFailure: true }); await page.goto('/arena'); > 66 | await page.getByLabel('Eight-character room code').fill('ABCD1234'); await page.getByRole('button', { name: 'S"
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "progression-extras.spec.ts › earned theme and frame apply, persist on the real profile and return to default appearance",
+      "file": "progression-extras.spec.ts",
+      "line": 17,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(locator).toContainText(expected) failed Locator: getByRole('region', { name: 'Your practice identity', exact: true }) Expected substring: \"A clear space for your next practice.\" Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toContainText\" getByRole('region', { name: 'Your practice identity', exact: true }) with timeout 5000ms - waiting for getByRole('region', { name: 'Your practice identity', exact: true }) 30 | aw"
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "progression.spec.ts › fallback reload preserves existing receipt awards without rewarding twice",
+      "file": "progression.spec.ts",
+      "line": 20,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(locator).toBeVisible() failed Locator: getByText('100 lifetime XP') Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByText('100 lifetime XP') with timeout 5000ms - waiting for getByText('100 lifetime XP') 29 | const before = await page.getByRole('table', { name: 'Latest 30 Keys transactions' }).innerText(); 30 | await page.reload(); > 31 | await expect(page.getByText('100 lifetime XP"
+      ]
+    }
+  ],
+  "flakyCases": [],
+  "skippedCases": [],
+  "skipReasons": [],
+  "expectedFailures": [],
+  "globalErrors": [],
+  "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+}

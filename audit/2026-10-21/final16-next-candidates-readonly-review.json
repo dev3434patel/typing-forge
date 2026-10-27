@@ -1,0 +1,47 @@
+{
+  "reviewedAt": "2026-10-22T19:57:42.4582527Z",
+  "status": "READONLY-PROPOSALS-NOT-IMPLEMENTED",
+  "scope": "Source16 full62-file four-engine matrix in progress; no source/test/CSS edits, browser, build, benchmark or heavy checks",
+  "historicalGate": "Source16 matched104/112/80ms p98; all495exact100percent. Gate remains FAILED2of3; correctness work retained.",
+  "targetWords": {
+    "proposal": "audit/2026-10-21/final16-target-words-cache-OPTIONAL-PROPOSAL.patch",
+    "source": "src/lib/typing-core/transcript.ts",
+    "confirmedScope": "Repeated deterministic targetWords segmentation allocates numeric boundary objects per canonical alignment.",
+    "requiredGuards": [
+      "Cache only exact array identities minted by targetGraphemes using private WeakSet/prepopulation; Object.isFrozen alone insufficient for frozen getter/proxy targets",
+      "WeakMap keys must not be retained by values; values numeric start/end/separator only and frozen",
+      "Independent modest target/word-count cache cap; current16entry text cache permits1Mgrapheme inputs and full metadata retention could add significant memory",
+      "Target append/new identity invalidates naturally; mutable/external/accessor/proxy/oversized inputs take unchanged native path",
+      "Preserve literal-space empty/leading/trailing/consecutive boundaries, code/free/Unicode/submission/extra semantics exactly"
+    ],
+    "performance": "Potential allocation reduction only; no demonstrated slow-tail dominance or acceptance speedup"
+  },
+  "resultHash": {
+    "evidence": "audit/2026-10-21/final15-cpu-loaf-native-confirmation-stacks.json",
+    "source": [
+      "src/hooks/useTestResults.tsx:75",
+      "src/services/session-repository.ts:45",
+      "src/services/session-repository.ts:170"
+    ],
+    "witness": "Final315ms keypress processing contains stableJson/payloadIdentity and resultsave plus React mutation; not all tail events",
+    "guardedProposal": "Move completed immutable-result serialization beyond the native input microtask using a bounded genuine task/render yield, without changing canonical stop time or exact payload bytes",
+    "requiredGuards": [
+      "Capture result scope, ownerRevision and pending save identity before yielding",
+      "Never call saved/synced until actual repository/serverack; UI shows pending and canonical export remains available",
+      "Retain old-completion persistence while latest version/current owner gates publication only",
+      "Recheck owner reset and per-session tombstones after delay, preserve expected revision at repository.save",
+      "Do not cancel completed saves merely because React view unmounts or next test starts",
+      "Do not incrementally serialize mutable external input without capturing one immutable candidate for both hash and saved evidence",
+      "Keep stableJson order/SHA format unchanged; compare exact old/new strings/hashes across existing corpus and private/settings/Unicode cases"
+    ],
+    "nonDropIn": "scheduleAfterFirstPaint tracks document FCP and is cancellable idle warmup; it does not guarantee a result paint or durable completed-save lifetime",
+    "performance": "One final event cannot by itself guarantee p98 margin; normal native/frame work remains partly unattributed"
+  },
+  "verificationBeforeAnyClaim": [
+    "Owner-reset/deletion-during-yield and two rapid results reverse completion status ordering",
+    "No pre-ack success, lost result on view switch, guest/account leakage or deleted evidence resurrection",
+    "Primitive cache size/lifetime/mutable/accessor and empty-word tests; canonical TS/PHP parity unchanged",
+    "Fresh frozen build then declared exact normal input3/mobile4 without retries/filtering/threshold changes"
+  ],
+  "ownedJobsExited": true
+}

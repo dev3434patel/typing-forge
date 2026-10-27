@@ -54,4 +54,17 @@ describe('Canonical learning evidence projection', () => {
     expect(evidence.attempts.every(attempt => attempt.correct)).toBe(true);
     expect(evidence.attempts.filter(attempt => attempt.latencyMs !== null)).toHaveLength(4);
   });
+  it('retains a single-unit native replacement as autocorrect without awarding individual-key timing or mastery', () => {
+    const { controller, advance } = session('eat');
+    controller.input({ type: 'insert', text: 'e', provenance: 'keyboard' }); advance(200);
+    controller.input({ type: 'insert', text: 'a', provenance: 'autocorrect' }); advance(200);
+    controller.input({ type: 'insert', text: 't', provenance: 'keyboard' });
+    const result = controller.result!;
+    expect(result.assistance).toContain('autocorrect');
+    expect(result.metrics.inputAccuracy).toBe(100);
+    const evidence = learningEvidenceFromResult(result);
+    expect(evidence.assessment).toBe(false);
+    expect(evidence.attempts[1]).toMatchObject({ typed: 'a', correct: true, attributable: false, latencyMs: null, classification: 'unattributable' });
+    expect(evidence.attempts[2]).toMatchObject({ attributable: false, latencyMs: null });
+  });
 });

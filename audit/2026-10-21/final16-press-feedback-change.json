@@ -1,0 +1,39 @@
+{
+  "capturedAt": "2026-10-22T19:49:09.9492146Z",
+  "status": "FROZEN-EXACT-CSS-CHANGE-BROWSER-UNVERIFIED",
+  "file": "src/components/typing/live-keyboard.css",
+  "baselineFreeze": "audit/2026-10-21/final15-source.json",
+  "baselineNormalizedSha256": "b7451b5aaa7d6aec3a7ded8ab40ef251f200c2d230297213330005f44b05d504",
+  "currentNormalizedSha256": "bc5fa25b74b4da3546440178616d72dc562f249aac70cf9814022c1a7d108316",
+  "baselineMatchesFrozen15": true,
+  "reverseEditRestoresExactBaseline": true,
+  "onlyChange": "Remove border-color90ms ease; retain transform90ms ease",
+  "cascadeReview": "No normal Learn/adaptive border-color transition override. learn-workspace.css76 animates passage filter/opacity; learn-key240 disables transitions only within reduced-motion. Shared live-key reduced-motion suppression remains.",
+  "preserved": [
+    "Geometry/borders/depth3px→1px/translateY2px",
+    "90ms transform easing and ripple",
+    "Keyboard labels/held/errors/expected/mastery/fingers/Shift/Caps/IME/aria",
+    "Engine/clock/scoring/caret/cache/PWA/3D"
+  ],
+  "intentionalDifference": "Border color becomes immediate like background; intermediate border interpolation is deliberately removed, no animated-pixel identity claim",
+  "e2e": {
+    "name": "key feedback borders match their state immediately while press motion and settled bounds remain",
+    "proof": [
+      "MutationObserver samples computed real border/background in DOM-update microtask, avoiding90ms IPC wait concealing interpolation",
+      "Native wrongx/Backspace/correcta verifies immediate error/clear/accent token colors",
+      "Actual transform CSSTransition duration90ms and settled translatedown2px/release0px",
+      "Settled key width/height/row-relativetop stay within0.02px",
+      "Native finalas export retains3attempts1mistake66.666percent original accuracy"
+    ],
+    "status": "PREPARED-NOT-RUN",
+    "file": "e2e/typing-render-budget.spec.ts"
+  },
+  "checks": {
+    "performance": "NOT RUN",
+    "exactReverseFidelity": "PASS",
+    "browser": "NOT RUN",
+    "scopedLint": "NOT RUN - held while dataagent focused core jobs active"
+  },
+  "productOtherEdits": [],
+  "ownedJobsExited": true
+}

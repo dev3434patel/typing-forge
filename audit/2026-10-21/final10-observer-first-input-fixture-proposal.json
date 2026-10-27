@@ -1,0 +1,29 @@
+{
+  "capturedAt": "2026-10-21T19:19:53.650Z",
+  "status": "PROPOSED-NOT-APPLIED",
+  "file": "e2e/typing-observer-ownership.spec.ts",
+  "currentSha256": "7caafb8405d505c041f39347a7df0265823052d97db48b3c5624bc93360b9cac",
+  "activeSuite": "final10-experience672: all e2e source hashes frozen during execution",
+  "diagnosis": "The bot observer test focuses an empty ready local practice input and waits for bot progress before making any text attempt. This conflicts with the accepted first-character policy: focus/modifiers/navigation leave both local clocks and bot progress unstarted. Source Race.tsx starts the bot only when the own controller exposes timingOrigin.",
+  "confirmedStaleExpectation": {
+    "oldStage": "poll opponent data-position >0 immediately after focusTyping, before pressSequentially",
+    "productFirstInputContract": "Own first nonempty accepted/rejected text attempt starts both local bot clocks at exact own timingOrigin",
+    "independentUpdatedFixtures": [
+      "e2e/race-mode.spec.ts",
+      "e2e/race-pace.spec.ts"
+    ]
+  },
+  "proposedChange": "Assert ready/empty/bot0, obtain unchanged generated target/count, type exactly its first native character before the original bot-motion poll; retain remaining native input as slice(1,count).",
+  "preserved": [
+    "Total inserted target characters remains count:1+(count−1).",
+    "Single Backspace still retains target prefix count−1.",
+    "Initial bot-motion assertion and later movement beyond initialPosition remain.",
+    "Native ResizeObserver/scroll subscription snapshots, exact observer counts, disconnect counts, resize and leave assertions remain unchanged.",
+    "No timeout, retry, target, product policy, keyboard size or visual quality changes."
+  ],
+  "patch": "*** Begin Patch\n*** Update File: e2e/typing-observer-ownership.spec.ts\n@@\n   const input = await focusTyping(page);\n   const marker = page.getByTestId(\"opponent-caret\");\n+  await expect(page.getByRole(\"region\", { name: \"Typing session\", exact: true })).toHaveAttribute(\"data-status\", \"ready\");\n+  await expect(marker).toHaveAttribute(\"data-position\", \"0\");\n+  await expect(input).toHaveValue(\"\");\n+  const text = await page.getByTestId(\"typing-target\").textContent();\n+  const position = Math.min(100, text!.length - 2);\n+  const count = text![position - 1] === \" \" ? position - 1 : position;\n+  await input.pressSequentially(text!.slice(0, 1), { delay: 3 });\n   await expect\n@@\n-  const text = await page.getByTestId(\"typing-target\").textContent();\n-  const position = Math.min(100, text!.length - 2);\n-  const count = text![position - 1] === \" \" ? position - 1 : position;\n-  await input.pressSequentially(text!.slice(0, count), { delay: 3 });\n+  await input.pressSequentially(text!.slice(1, count), { delay: 3 });\n*** End Patch\n",
+  "allowedOnlyAfter": "Parent confirms active672 suite has completely exited; then apply fixture-only patch and declare separate confirmation. This proposal does not modify E2E or runtime files.",
+  "browsersExecuted": false,
+  "testsExecuted": false,
+  "buildsExecuted": false
+}

@@ -1,0 +1,143 @@
+--- a/e2e/opening-experience.spec.ts
++++ b/e2e/opening-experience.spec.ts
+@@ -200,67 +200,85 @@
+   ).not.toHaveCSS("visibility", "hidden");
+ });
+ 
+-for (const failure of [
+-  "blocked chunk",
+-  "late chunk",
+-  "animation API",
+-] as const) {
+-  test(`caret handoff ${failure} preserves input and the real caret`, async ({
+-    page,
+-  }) => {
+-    const errors: string[] = [];
+-    page.on("pageerror", (error) => errors.push(error.message));
+-    let release = () => {};
+-    if (failure === "blocked chunk")
+-      await page.route(/\/assets\/caret-handoff[^/]*\.js/, (route) =>
+-        route.abort(),
+-      );
+-    if (failure === "late chunk") {
++test.describe("caret handoff fault injection", () => {
++  test.use({ serviceWorkers: "block" });
++
++  for (const failure of [
++    "blocked chunk",
++    "late chunk",
++    "animation API",
++  ] as const) {
++    test(`caret handoff ${failure} preserves input and the real caret`, async ({
++      page,
++    }) => {
++      const errors: string[] = [];
++      page.on("pageerror", (error) => errors.push(error.message));
++      const handoffChunk = /\/assets\/caret-handoff[^/]*\.js/;
++      let routeHits = 0;
++      let release = () => {};
+       const gate = new Promise<void>((resolve) => {
+         release = resolve;
+       });
+-      await page.route(/\/assets\/caret-handoff[^/]*\.js/, async (route) => {
+-        await gate;
++      // Observe before navigation can request the dynamic chunk. A rejection is
++      // still awaited below; this handler only prevents an unrelated early test
++      // failure from creating an unhandled promise during context cleanup.
++      const lateResponse = failure === "late chunk"
++        ? page.waitForResponse(handoffChunk)
++        : null;
++      void lateResponse?.catch(() => undefined);
++      await page.route(handoffChunk, async (route) => {
++        routeHits++;
++        if (failure === "blocked chunk") {
++          await route.abort();
++          return;
++        }
++        if (failure === "late chunk") await gate;
+         await route.continue();
+       });
+-    }
+-    if (failure === "animation API")
+-      await page.addInitScript(() => {
+-        const original = Element.prototype.animate;
+-        Element.prototype.animate = function (...args) {
+-          if (this.classList.contains("awakening-handoff")) {
+-            document.documentElement.dataset.handoffAnimationFailure =
+-              "exercised";
+-            throw new Error("Unavailable animation");
+-          }
+-          return Reflect.apply(original, this, args);
+-        };
++      if (failure === "animation API")
++        await page.addInitScript(() => {
++          const original = Element.prototype.animate;
++          Element.prototype.animate = function (...args) {
++            if (this.classList.contains("awakening-handoff")) {
++              document.documentElement.dataset.handoffAnimationFailure =
++                "exercised";
++              throw new Error("Unavailable animation");
++            }
++            return Reflect.apply(original, this, args);
++          };
++        });
++      await firstOpening(page);
++      await completeClockedOpening(page);
++      const input = await expectReadyPractice(page);
++      await expect.poll(() => routeHits).toBeGreaterThan(0);
++      await test.info().attach("caret-handoff-injection-witness", {
++        contentType: "application/json",
++        body: JSON.stringify({ variant: failure, routeHits, serviceWorkers: "block" }),
+       });
+-    await firstOpening(page);
+-    await completeClockedOpening(page);
+-    const input = await expectReadyPractice(page);
+-    if (failure === "animation API") {
+-      await page.clock.runFor(80);
+-      await expect(page.locator("html")).toHaveAttribute(
+-        "data-handoff-animation-failure",
+-        "exercised",
+-      );
+-    }
+-    await input.pressSequentially("x");
+-    if (failure === "late chunk") {
+-      const response = page.waitForResponse(/\/assets\/caret-handoff[^/]*\.js/);
+-      release();
+-      await response;
+-    }
+-    await page.clock.runFor(100);
+-    await expect(input).toHaveValue("x");
+-    await expect(page.locator(".awakening-handoff")).toHaveCount(0);
+-    await expect(
+-      page.getByTestId("typing-viewport").locator(":scope > .forge-caret"),
+-    ).not.toHaveCSS("visibility", "hidden");
+-    expect(errors).toEqual([]);
+-  });
+-}
++      if (failure === "animation API") {
++        await page.clock.runFor(80);
++        await expect(page.locator("html")).toHaveAttribute(
++          "data-handoff-animation-failure",
++          "exercised",
++        );
++      }
++      await input.pressSequentially("x");
++      if (failure === "late chunk") {
++        release();
++        const response = await lateResponse!;
++        expect(response.ok()).toBe(true);
++      }
++      await page.clock.runFor(100);
++      await expect(input).toHaveValue("x");
++      await expect(page.locator(".awakening-handoff")).toHaveCount(0);
++      await expect(
++        page.getByTestId("typing-viewport").locator(":scope > .forge-caret"),
++      ).not.toHaveCSS("visibility", "hidden");
++      expect(errors).toEqual([]);
++    });
++  }
++
++});
+ 
+ test.describe("touch entry", () => {
+   test.use({ hasTouch: true });

@@ -1,0 +1,601 @@
+{
+  "declaredAt": "2026-10-20T18:28:24.911Z",
+  "phase": "after-4",
+  "build": {
+    "version": "ebda64060759b5fed25a",
+    "publicFiles": 101,
+    "bytes": 2612258
+  },
+  "baseURL": "http://127.0.0.1:4173",
+  "browsers": [
+    "chromium",
+    "edge",
+    "firefox",
+    "webkit"
+  ],
+  "automaticRetries": 0,
+  "partition": {
+    "declaredAt": "2026-10-20T18:20:21.600Z",
+    "scope": "Exact disjoint complete source-file partition; this is a recommendation and does not execute Playwright.",
+    "automaticRetries": 0,
+    "ordinary": {
+      "workers": 2,
+      "fileCount": 42,
+      "files": [
+        "e2e/accessibility-audit.spec.ts",
+        "e2e/account-workspace.spec.ts",
+        "e2e/auth-flow.spec.ts",
+        "e2e/caret-geometry.spec.ts",
+        "e2e/content-options.spec.ts",
+        "e2e/countdown-clock.spec.ts",
+        "e2e/current-word-correction.spec.ts",
+        "e2e/frontend-deployment.spec.ts",
+        "e2e/frontend-game-accessibility.spec.ts",
+        "e2e/game-data-controls.spec.ts",
+        "e2e/games.spec.ts",
+        "e2e/keyboard-lab.spec.ts",
+        "e2e/keyboard-viewport.spec.ts",
+        "e2e/leaderboard-periods.spec.ts",
+        "e2e/leaderboard.spec.ts",
+        "e2e/learning-v3.spec.ts",
+        "e2e/live-keyboard.spec.ts",
+        "e2e/mobile-input-integrity.spec.ts",
+        "e2e/mode-matrix.spec.ts",
+        "e2e/navigation-accessibility.spec.ts",
+        "e2e/offline-pwa.spec.ts",
+        "e2e/php-account-flow.spec.ts",
+        "e2e/php-human-race.spec.ts",
+        "e2e/profile-flow.spec.ts",
+        "e2e/profile-identity.spec.ts",
+        "e2e/pwa-notices.spec.ts",
+        "e2e/quick-restart.spec.ts",
+        "e2e/race-mode.spec.ts",
+        "e2e/race-pace.spec.ts",
+        "e2e/responsive-layout.spec.ts",
+        "e2e/responsive-pages.spec.ts",
+        "e2e/result-evidence.spec.ts",
+        "e2e/secondary-pages.spec.ts",
+        "e2e/sparowtype-brand.spec.ts",
+        "e2e/startup-recovery.spec.ts",
+        "e2e/stats-dashboard.spec.ts",
+        "e2e/typing-audit-regressions.spec.ts",
+        "e2e/typing-course.spec.ts",
+        "e2e/typing-experience.spec.ts",
+        "e2e/typing-observer-ownership.spec.ts",
+        "e2e/typing-test.spec.ts",
+        "e2e/wrong-key-feedback.spec.ts"
+      ]
+    },
+    "isolated": {
+      "workers": 1,
+      "fileCount": 8,
+      "files": [
+        "e2e/caret-handoff-readiness.spec.ts",
+        "e2e/input-guardrails.spec.ts",
+        "e2e/opening-experience.spec.ts",
+        "e2e/opening-low-power.spec.ts",
+        "e2e/opening-single-keyboard.spec.ts",
+        "e2e/opening-worker.spec.ts",
+        "e2e/typing-render-budget.spec.ts",
+        "e2e/viewport-acceptance.spec.ts"
+      ],
+      "reason": "All native/document GPU intro ownership, readiness, fallback, reload shutdown and intro viewport tests run serially. The complete input guardrail and passage-render budget files also run serially to isolate ordinary-clock startup/audio/deadline and real-presentation-tick assertions."
+    },
+    "allSpecFiles": 50,
+    "allFilesCoveredExactlyOnce": true,
+    "limits": "Capability/backend/static-artifact skips remain skips with their real suite annotations. File counts are not expanded test-case counts; Playwright collection determines loop-expanded cases. No source assertions/timeouts/retries are relaxed. Production built artifact and execution receipts must be recorded separately."
+  },
+  "groups": [
+    {
+      "group": "ordinary",
+      "code": 1,
+      "durationMs": 2351085.5371,
+      "logFile": "D:\\extra\\typing_updated\\typing-forge\\audit\\mobile-games-static-2026-10-20/after-4-browser-ordinary.log",
+      "reportFile": "D:\\extra\\typing_updated\\typing-forge\\audit\\mobile-games-static-2026-10-20/after-4-browser-ordinary.json",
+      "summary": {
+        "totals": {
+          "total": 868,
+          "passed": 833,
+          "failed": 19,
+          "skipped": 16,
+          "flaky": 0
+        },
+        "projects": [
+          {
+            "project": "chromium",
+            "total": 217,
+            "passed": 213,
+            "failed": 0,
+            "skipped": 4,
+            "flaky": 0
+          },
+          {
+            "project": "edge",
+            "total": 217,
+            "passed": 213,
+            "failed": 0,
+            "skipped": 4,
+            "flaky": 0
+          },
+          {
+            "project": "firefox",
+            "total": 217,
+            "passed": 207,
+            "failed": 6,
+            "skipped": 4,
+            "flaky": 0
+          },
+          {
+            "project": "webkit",
+            "total": 217,
+            "passed": 200,
+            "failed": 13,
+            "skipped": 4,
+            "flaky": 0
+          }
+        ],
+        "reportedStats": {
+          "expected": 833,
+          "unexpected": 19,
+          "skipped": 16,
+          "flaky": 0
+        },
+        "countsAgreeWithReport": true,
+        "failures": [
+          {
+            "project": "firefox",
+            "title": "accessibility-audit.spec.ts › existing guest pages and completed results meet automated accessibility rules at 390px",
+            "file": "accessibility-audit.spec.ts",
+            "line": 12,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(locator).toBeVisible() failed Locator: locator('main#main-content') Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" locator('main#main-content') with timeout 5000ms - waiting for locator('main#main-content') 17 | if (route === \"completed-results\") await completeCorrectedCat(page); 18 | else await page.goto(route, { waitUntil: \"domcontentloaded\" }); > 19 | await expect(page.locator(\"main"
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "auth-flow.spec.ts › account form switches between sign in and creation using labelled controls",
+            "file": "auth-flow.spec.ts",
+            "line": 15,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Test timeout of 30000ms exceeded.",
+              "Tearing down \"context\" exceeded the test timeout of 30000ms.",
+              "Error: browserContext.close: Test timeout of 30000ms exceeded. Browser logs: <launching> C:\\Users\\DELL\\AppData\\Local\\ms-playwright\\firefox-1555\\firefox\\firefox.exe -no-remote -headless -profile C:\\Users\\DELL\\AppData\\Local\\Temp\\playwright_firefoxdev_profile-hQ0OnO -juggler-pipe -silent <launched> pid=42424 [pid=42424][err] *** You are running in headless mode. [pid=42424][err] JavaScript warning: resource://services-settings/Utils.sys.mjs, line 12"
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "current-word-correction.spec.ts › Backspace reopens a submitted extra-letter word before it can become locked",
+            "file": "current-word-correction.spec.ts",
+            "line": 403,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Test timeout of 30000ms exceeded.",
+              "Error: locator.pressSequentially: Test timeout of 30000ms exceeded. Call log: - waiting for getByRole('textbox', { name: 'Typing input', exact: true }) - locator resolved to <textarea dir=\"ltr\" autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" maxlength=\"100000\" autocapitalize=\"off\" aria-label=\"Typing input\" aria-describedby=\"typing-instructions typing-passage typing-feedback\" class=\"typing-input absolute inset-0 w-full h-full resize-none b"
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "current-word-correction.spec.ts › a repaired resubmitted word locks while original incorrect attempts remain in exported accuracy",
+            "file": "current-word-correction.spec.ts",
+            "line": 457,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Test timeout of 30000ms exceeded."
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "keyboard-viewport.spec.ts › whole keyboard and feedback fit 1920x900 at 100% with update banner",
+            "file": "keyboard-viewport.spec.ts",
+            "line": 350,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Tearing down \"context\" exceeded the test timeout of 30000ms.",
+              "Error: browserContext.close: Test ended. Browser logs: [pid=28704][out] ERROR: Component returned failure code: 0x804b001b (NS_ERROR_INVALID_CONTENT_ENCODING) [nsIStreamListener.onDataAvailable] convertString@chrome://juggler/content/NetworkObserver.js:1076:13 [pid=28704][out] getBase64EncodedResponse@chrome://juggler/content/NetworkObserver.js:965:18 [pid=28704][out] getResponseBody@chrome://juggler/content/NetworkObserver.js:94:34 [pid=28704][o"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "keyboard-viewport.spec.ts › whole keyboard and feedback fit 1440x900 at 100% with update banner",
+            "file": "keyboard-viewport.spec.ts",
+            "line": 350,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(locator).toBeVisible() failed Locator: getByTestId('live-keyboard-board') Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByTestId('live-keyboard-board') with timeout 5000ms - waiting for getByTestId('live-keyboard-board') 80 | ); 81 | await page.goto(\"/\"); > 82 | await expect(page.getByTestId(\"live-keyboard-board\")).toBeVisible(); | ^ 83 | const banner = page.getByRole(\"complementar"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "keyboard-viewport.spec.ts › whole keyboard and feedback fit 1810x900 at 100% without update banner",
+            "file": "keyboard-viewport.spec.ts",
+            "line": 350,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(locator).toBeVisible() failed Locator: getByTestId('live-keyboard-board') Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByTestId('live-keyboard-board') with timeout 5000ms - waiting for getByTestId('live-keyboard-board') 80 | ); 81 | await page.goto(\"/\"); > 82 | await expect(page.getByTestId(\"live-keyboard-board\")).toBeVisible(); | ^ 83 | const banner = page.getByRole(\"complementar"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "keyboard-viewport.spec.ts › whole keyboard and feedback fit 1810x900 at 100% with update banner",
+            "file": "keyboard-viewport.spec.ts",
+            "line": 350,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(locator).toBeVisible() failed Locator: getByTestId('live-keyboard-board') Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByTestId('live-keyboard-board') with timeout 5000ms - waiting for getByTestId('live-keyboard-board') 80 | ); 81 | await page.goto(\"/\"); > 82 | await expect(page.getByTestId(\"live-keyboard-board\")).toBeVisible(); | ^ 83 | const banner = page.getByRole(\"complementar"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "keyboard-viewport.spec.ts › all keyboard rows stay reachable by normal scrolling at 390x844, font 26, with update banner",
+            "file": "keyboard-viewport.spec.ts",
+            "line": 425,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(locator).toBeVisible() failed Locator: getByTestId('live-keyboard-board') Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByTestId('live-keyboard-board') with timeout 5000ms - waiting for getByTestId('live-keyboard-board') 80 | ); 81 | await page.goto(\"/\"); > 82 | await expect(page.getByTestId(\"live-keyboard-board\")).toBeVisible(); | ^ 83 | const banner = page.getByRole(\"complementar"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "keyboard-viewport.spec.ts › all keyboard rows stay reachable by normal scrolling at 844x390, font 26, without update banner",
+            "file": "keyboard-viewport.spec.ts",
+            "line": 425,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(locator).toBeVisible() failed Locator: getByTestId('live-keyboard-board') Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByTestId('live-keyboard-board') with timeout 5000ms - waiting for getByTestId('live-keyboard-board') 80 | ); 81 | await page.goto(\"/\"); > 82 | await expect(page.getByTestId(\"live-keyboard-board\")).toBeVisible(); | ^ 83 | const banner = page.getByRole(\"complementar"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "keyboard-viewport.spec.ts › all keyboard rows stay reachable by normal scrolling at 844x390, font 26, with update banner",
+            "file": "keyboard-viewport.spec.ts",
+            "line": 425,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(locator).toBeVisible() failed Locator: getByTestId('live-keyboard-board') Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByTestId('live-keyboard-board') with timeout 5000ms - waiting for getByTestId('live-keyboard-board') 80 | ); 81 | await page.goto(\"/\"); > 82 | await expect(page.getByTestId(\"live-keyboard-board\")).toBeVisible(); | ^ 83 | const banner = page.getByRole(\"complementar"
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "learning-v3.spec.ts › pt content completes through the actual learning input adapter",
+            "file": "learning-v3.spec.ts",
+            "line": 131,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Test timeout of 30000ms exceeded.",
+              "Tearing down \"context\" exceeded the test timeout of 30000ms.",
+              "Error: locator.focus: Test timeout of 30000ms exceeded. Call log: - waiting for getByRole('textbox', { name: 'Type the practice text' }) 141 | }, text!); 142 | } else { > 143 | await input.focus(); | ^ 144 | await input.pressSequentially(text!); 145 | } 146 | await expect(page.getByRole('region', { name: 'Session results' })).toBeVisible(); at D:\\extra\\typing_updated\\typing-forge\\e2e\\learning-v3.spec.ts:143:19"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "learning-v3.spec.ts › learning shows the pressed wrong letter and advances by default, with corrections still counted",
+            "file": "learning-v3.spec.ts",
+            "line": 4,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Test timeout of 30000ms exceeded.",
+              "Error: locator.pressSequentially: Test timeout of 30000ms exceeded. Call log: - waiting for getByRole('textbox', { name: 'Type the practice text' }) - locator resolved to <textarea autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" autocapitalize=\"off\" aria-label=\"Type the practice text\" aria-describedby=\"lesson-instructions lesson-feedback lesson-passage\" class=\"absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0\"></textarea> - e"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "learning-v3.spec.ts › learning records rejected attempts and saves exactly one immutable result",
+            "file": "learning-v3.spec.ts",
+            "line": 35,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Test timeout of 30000ms exceeded.",
+              "Error: locator.pressSequentially: Test timeout of 30000ms exceeded. Call log: - waiting for getByRole('textbox', { name: 'Type the practice text' }) - locator resolved to <textarea autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" autocapitalize=\"off\" aria-label=\"Type the practice text\" aria-describedby=\"lesson-instructions lesson-feedback lesson-passage\" class=\"absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0\"></textarea> - e"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "live-keyboard.spec.ts › five-row keyboard fits 320px and its key text stays readable across every theme",
+            "file": "live-keyboard.spec.ts",
+            "line": 228,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Test timeout of 60000ms exceeded.",
+              "Error: locator.click: Test timeout of 60000ms exceeded. Call log: - waiting for getByRole('button', { name: 'Mono ink' }) 234 | for (const theme of THEMES) { 235 | await page.goto(\"/settings\"); > 236 | await page.getByRole(\"button\", { name: theme.name, exact: false }).click(); | ^ 237 | const typingInput = await customPractice(page, \"1 calm words\"); 238 | const board = page.getByTestId(\"live-keyboard-board\"); 239 | await expect(board).toBeVisible"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "mobile-input-integrity.spec.ts › adaptive native insertReplacementText preserves actual provenance and assessment eligibility",
+            "file": "mobile-input-integrity.spec.ts",
+            "line": 11,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Test timeout of 30000ms exceeded.",
+              "Error: locator.pressSequentially: Test timeout of 30000ms exceeded. Call log: - waiting for getByRole('textbox', { name: 'Type the practice text', exact: true }) - locator resolved to <textarea autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" autocapitalize=\"off\" aria-label=\"Type the practice text\" aria-describedby=\"lesson-instructions lesson-feedback lesson-passage\" class=\"absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0\"></"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "offline-pwa.spec.ts › public app download supports a real server outage and clearing preserves real history",
+            "file": "offline-pwa.spec.ts",
+            "line": 28,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Test timeout of 30000ms exceeded.",
+              "Error: expect(locator).toHaveCount(expected) failed Locator: getByRole('table', { name: 'Completed sessions, most recent first', exact: true }).getByRole('row') Expected: 4 Received: 0 Call log: - Expect \"toHaveCount\" getByRole('table', { name: 'Completed sessions, most recent first', exact: true }).getByRole('row') with timeout 5000ms - waiting for getByRole('table', { name: 'Completed sessions, most recent first', exact: true }).getByRole('row'"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "typing-course.spec.ts › a real uninterrupted 30-second speed assessment includes idle time and saves its checkpoint",
+            "file": "typing-course.spec.ts",
+            "line": 234,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(locator).toBeVisible() failed Locator: getByRole('heading', { name: 'Checkpoint earned.', exact: true }) Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByRole('heading', { name: 'Checkpoint earned.', exact: true }) with timeout 5000ms - waiting for getByRole('heading', { name: 'Checkpoint earned.', exact: true }) 239 | await input.pressSequentially(text, { delay: 65 }); 240 | await "
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "typing-experience.spec.ts › sustained typing reuses its layout observer and keeps the caret through resize and deletion",
+            "file": "typing-experience.spec.ts",
+            "line": 161,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Test timeout of 30000ms exceeded.",
+              "Error: locator.pressSequentially: Test timeout of 30000ms exceeded. Call log: - waiting for getByRole('textbox', { name: 'Typing input', exact: true }) - locator resolved to <textarea dir=\"ltr\" autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" maxlength=\"100000\" autocapitalize=\"off\" aria-label=\"Typing input\" aria-describedby=\"typing-instructions typing-passage typing-feedback\" class=\"typing-input absolute inset-0 w-full h-full resize-none b"
+            ]
+          }
+        ],
+        "flakyCases": [],
+        "skippedCases": [
+          {
+            "project": "chromium",
+            "title": "auth-flow.spec.ts › real account sign in with dedicated deployment credentials",
+            "file": "auth-flow.spec.ts",
+            "line": 54,
+            "reasons": [
+              "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used."
+            ]
+          },
+          {
+            "project": "edge",
+            "title": "auth-flow.spec.ts › real account sign in with dedicated deployment credentials",
+            "file": "auth-flow.spec.ts",
+            "line": 54,
+            "reasons": [
+              "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used."
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "auth-flow.spec.ts › real account sign in with dedicated deployment credentials",
+            "file": "auth-flow.spec.ts",
+            "line": 54,
+            "reasons": [
+              "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "auth-flow.spec.ts › real account sign in with dedicated deployment credentials",
+            "file": "auth-flow.spec.ts",
+            "line": 54,
+            "reasons": [
+              "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used."
+            ]
+          },
+          {
+            "project": "chromium",
+            "title": "php-account-flow.spec.ts › real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+            "file": "php-account-flow.spec.ts",
+            "line": 6,
+            "reasons": [
+              "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account."
+            ]
+          },
+          {
+            "project": "edge",
+            "title": "php-account-flow.spec.ts › real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+            "file": "php-account-flow.spec.ts",
+            "line": 6,
+            "reasons": [
+              "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account."
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "php-account-flow.spec.ts › real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+            "file": "php-account-flow.spec.ts",
+            "line": 6,
+            "reasons": [
+              "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "php-account-flow.spec.ts › real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+            "file": "php-account-flow.spec.ts",
+            "line": 6,
+            "reasons": [
+              "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account."
+            ]
+          },
+          {
+            "project": "chromium",
+            "title": "php-human-race.spec.ts › real two-browser PHP human race shares opponent pace and settles server results",
+            "file": "php-human-race.spec.ts",
+            "line": 5,
+            "reasons": [
+              "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+            ]
+          },
+          {
+            "project": "edge",
+            "title": "php-human-race.spec.ts › real two-browser PHP human race shares opponent pace and settles server results",
+            "file": "php-human-race.spec.ts",
+            "line": 5,
+            "reasons": [
+              "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "php-human-race.spec.ts › real two-browser PHP human race shares opponent pace and settles server results",
+            "file": "php-human-race.spec.ts",
+            "line": 5,
+            "reasons": [
+              "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "php-human-race.spec.ts › real two-browser PHP human race shares opponent pace and settles server results",
+            "file": "php-human-race.spec.ts",
+            "line": 5,
+            "reasons": [
+              "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+            ]
+          },
+          {
+            "project": "chromium",
+            "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+            "file": "race-mode.spec.ts",
+            "line": 50,
+            "reasons": [
+              "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+            ]
+          },
+          {
+            "project": "edge",
+            "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+            "file": "race-mode.spec.ts",
+            "line": 50,
+            "reasons": [
+              "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+            "file": "race-mode.spec.ts",
+            "line": 50,
+            "reasons": [
+              "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+            "file": "race-mode.spec.ts",
+            "line": 50,
+            "reasons": [
+              "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+            ]
+          }
+        ],
+        "skipReasons": [
+          {
+            "reason": "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used.",
+            "count": 4,
+            "projects": [
+              "chromium",
+              "edge",
+              "firefox",
+              "webkit"
+            ]
+          },
+          {
+            "reason": "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account.",
+            "count": 4,
+            "projects": [
+              "chromium",
+              "edge",
+              "firefox",
+              "webkit"
+            ]
+          },
+          {
+            "reason": "Requires two dedicated accounts on the explicit PHP acceptance deployment.",
+            "count": 4,
+            "projects": [
+              "chromium",
+              "edge",
+              "firefox",
+              "webkit"
+            ]
+          },
+          {
+            "reason": "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization.",
+            "count": 4,
+            "projects": [
+              "chromium",
+              "edge",
+              "firefox",
+              "webkit"
+            ]
+          }
+        ],
+        "expectedFailures": [],
+        "globalErrors": [],
+        "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+      }
+    }
+  ],
+  "completed": false
+}

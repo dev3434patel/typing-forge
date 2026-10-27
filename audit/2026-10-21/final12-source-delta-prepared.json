@@ -1,0 +1,27 @@
+{
+  "capturedAt": "2026-10-21T20:02:42.961764+00:00",
+  "status": "PREPARED-NOT-RUN",
+  "scope": "Audit helper preparation only. No checker/syntax/build/unit/browser/native/database job performed; no product or test source edited.",
+  "helper": "audit/2026-10-21/compare-final12-source.mjs",
+  "helperSha256": "e1459e7df60bd1751e4dc9c78ecb6e5c840c65649bd65a29320b2885bd2d1d0a",
+  "beforeSource": "audit/2026-10-21/final11-source.json",
+  "beforeBuild": "12fb668d18c84968bd70",
+  "beforeSourceFiles": 494,
+  "afterSource": "audit/2026-10-21/final12-source.json",
+  "actualAfterBuild": "NOT-YET-FROZEN",
+  "commandAfterCoordinatorAuthorization": "node audit/2026-10-21/compare-final12-source.mjs",
+  "requiredEnvironment": "SPAROWTYPE_FINAL12_BUILD_ID must equal the actual newly frozen20-hex build.",
+  "exclusiveOutput": "audit/2026-10-21/final12-source-delta.json",
+  "exactExpectedChangedFiles": [
+    "src/components/typing/TypingArea.tsx",
+    "src/components/typing/typing-caret-cache.ts",
+    "src/components/typing/typing-caret-cache.test.ts"
+  ],
+  "pathConfirmation": "Parent owns TypingArea caller; ui_quality confirmed both existing cache files directly.",
+  "requirements": [
+    "Exactly three modified existing source files; no additions/removals or unexpected delta.",
+    "All491 other frozen source hashes unchanged; PHP/canonical metrics/timing/SW/renderer and other application source groups are checked independently.",
+    "Actual source12 identity, integrated tests, geometry/browser/static/duration and performance remain unverified until separately measured.",
+    "Source11 input failures and all earlier original failures remain unchanged; no best-score selection or transferred pass."
+  ]
+}

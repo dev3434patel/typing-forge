@@ -1,0 +1,57 @@
+{
+  "status": "PARTIAL-CAUSAL-DIAGNOSIS",
+  "scope": "Read-only extraction of one explicitly declared WebKit account diagnostic; no rerun or production change. Timings are observer stage intervals in the test process, not backend response-time or typing-latency measurements.",
+  "build": "7ef96ccd3c02d170a757",
+  "diagnosticReport": "pack-native-account-diagnostic-1fa109e36edd27b0-1792698256383-browser.json",
+  "originalFailedReport": "pack-native-c48590d21c3228d3-1792697330136-browser.json",
+  "originalNativeOutcomeUnchanged": "FAILED15/16; WebKit account90304ms whole-test timeout. Exact pending operation and cause remain UNPROVEN because original capture has no action steps or trace.",
+  "diagnostic": {
+    "outcome": "PASS1/1",
+    "testResultDurationMs": 48723,
+    "reportGlobalDurationMs": 50301.65,
+    "deadlineMs": 90000,
+    "retry": 0,
+    "errors": [],
+    "stageEntries": 77,
+    "assertionsAndActions": "Original account flow and assertions retained; only explicitly enabled synchronous operation aliases/timestamps were added."
+  },
+  "accountDeletionWitness": {
+    "normalUiDeletionReached": true,
+    "stages": [
+      { "stage": "second.profile-deletion.goto", "atMs": 45726.069 },
+      { "stage": "second.profile-deletion.fill-confirmation", "atMs": 45911.358 },
+      { "stage": "second.profile-deletion.click-delete", "atMs": 46962.875 },
+      { "stage": "second.profile-deletion.expect-guest", "atMs": 47422.852 },
+      { "stage": "second.profile-deletion.expect-empty-session", "atMs": 47846.224 },
+      { "stage": "session.response", "atMs": 47870.551 },
+      { "stage": "workflow.complete", "atMs": 47872.573 },
+      { "stage": "cleanup.close-second-context", "atMs": 47872.707 },
+      { "stage": "cleanup.complete", "atMs": 48168.950 }
+    ],
+    "interpretation": "workflow.complete occurs after the guest-heading and user-null assertions and owner=null assignment. No cleanup.owner-session or fallback owner-delete stage appears; successful deletion was the normal UI path, not cleanup compensation."
+  },
+  "largestObservedIntervals": [
+    { "stage": "first.lesson.type-passage", "next": "first.lesson.expect-checkpoint", "durationMs": 11240.816, "qualification": "Native pressSequentially includes the unchanged deliberate70ms/key delay and browser/app processing; this is not a backend stall witness." },
+    { "stage": "first.words.type-rest", "next": "first.words.expect-results", "durationMs": 9371.010, "qualification": "Native pressSequentially includes the unchanged deliberate70ms/key delay and browser/app processing." },
+    { "stage": "first.lesson.start", "next": "first.lesson.focus-input", "durationMs": 2481.355 },
+    { "stage": "first.words.expect-saved", "next": "first.words.request-history", "durationMs": 1863.503 },
+    { "stage": "second.profile-history.expect-two-sessions", "next": "second.lesson.goto", "durationMs": 1644.649 },
+    { "stage": "first.words.select-mode", "next": "first.words.select-count", "durationMs": 1643.230 }
+  ],
+  "conclusion": "The diagnostic provides a complete successful account-delete witness but does not reproduce the original timeout or identify its cause. No concrete product/backend fix is justified by this separate passing run alone. Preserve the original failure and retain future acceptance receipts independently.",
+  "ownedServiceCleanup": {
+    "receipt": "pack-backend-1fa109e36edd27b0-cleanup.json",
+    "recordedAt": "2026-10-22T19:45:28.415Z",
+    "ownProcessesStopped": true,
+    "apacheResidualPids": [],
+    "ownTemporaryDirectoryRemoved": true,
+    "gracefulDatabaseShutdown": true,
+    "gracefulApacheShutdown": true,
+    "originalConfigRead": false,
+    "originalDatabasePortUntouched": 3308,
+    "originalApiPortUntouched": 8081,
+    "originalPreviewPortUntouched": 4173
+  },
+  "privacy": "Only predefined stage aliases, counts and monotonic durations were extracted. No credentials, cookies, account identifiers, private URLs, request bodies or headers are included.",
+  "originalServicesPrivateConfigurationDatabaseTouchedByAnalysis": false
+}

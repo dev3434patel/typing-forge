@@ -1,0 +1,140 @@
+{
+  "status": "PREPARED-NOT-RUN",
+  "preparedAt": "2026-10-21T15:18:25.365671+00:00",
+  "scope": "Source-only preparation. No source gates, syntax checks, builds, browsers, DB or services executed by this preparation.",
+  "actualFinal8BuildId": null,
+  "requiredFreeze": "audit/2026-10-21/final8-source.json",
+  "originalStaticRunner": "audit/2026-10-21/run-final7-static.mjs",
+  "originalSha256": "253c9bcfc5b104dec70336dd08397b0ee7c6510c29aea1d8094fc91673554567",
+  "staticRunner": "audit/2026-10-21/run-final8-static.mjs",
+  "staticRunnerSha256": "1409fe757f7757b1ec94ea2b01a22881fb16e4ca3da7ca68ec8508d5067f4bab",
+  "staticRunnerDiff": [
+    "--- run-final7-static.mjs\n",
+    "+++ run-final8-static.mjs\n",
+    "@@ -11,8 +11,9 @@\n",
+    " process.chdir(root);",
+    "-const prefix = process.argv[2] || 'final7';",
+    "-assert.match(prefix, /^final7(?:-[a-z0-9]+)*$/);",
+    "-assert.equal(process.argv.length <= 3, true, 'Only an optional unique final7 prefix is accepted.');",
+    "+const prefix = process.argv[2] || 'final8';",
+    "+assert.match(prefix, /^final8(?:-[a-z0-9]+)*$/);",
+    "+assert.equal(process.argv.length <= 3, true, 'Only an optional unique final8 prefix is accepted.');",
+    " const audit = path.join(root, 'audit/2026-10-21');",
+    "-const sourceFile = 'audit/2026-10-21/final7-source.json';",
+    "-const expectedBuild = 'f3ac03affbc33168655a';",
+    "+const sourceFile = 'audit/2026-10-21/final8-source.json';",
+    "+const expectedBuild = process.env.SPAROWTYPE_FINAL8_BUILD_ID;",
+    "+assert.match(expectedBuild ?? '', /^[a-f0-9]{20}$/, 'Supply the actual frozen final8 build ID explicitly after source/build acceptance.');",
+    " const directories = [`dist-static-${prefix}-vercel`, `dist-static-${prefix}-pages`];",
+    "@@ -31,5 +32,5 @@\n",
+    " assert.equal(initial.frozen.local.version, expectedBuild);",
+    "-assert.deepEqual(initial.receipt.mismatches, [], 'The product must still match the declared final7 source.');",
+    "+assert.deepEqual(initial.receipt.mismatches, [], 'The product must still match the declared final8 source.');",
+    " const defaultBuild = await readFile('dist/offline-build.json');",
+    "-assert.deepEqual(JSON.parse(defaultBuild), initial.frozen.local, 'The default artifact must remain final7.');",
+    "+assert.deepEqual(JSON.parse(defaultBuild), initial.frozen.local, 'The default artifact must remain final8.');",
+    " for (const file of [...directories, runDirectory, screenshotDirectory, protocolPath, summaryPath, generatedConfigPath, verifierReportPath]) {"
+  ],
+  "staticCases": {
+    "deployment": 56,
+    "gameAccessibility": 16,
+    "browsers": [
+      "chromium",
+      "edge",
+      "firefox",
+      "webkit"
+    ],
+    "workers": 1,
+    "retries": 0
+  },
+  "staticInvariant": "Only final7-to-final8 output/source/prefix references and explicit fail-closed build-ID input change. Existing deployment/axe test actions, assertions, limits and generated output-only adapter remain intact.",
+  "rootCoordinatedSequence": [
+    {
+      "id": "source-gates",
+      "argv": [
+        "node",
+        "audit/2026-10-21/run-source-gates.mjs",
+        "final8"
+      ],
+      "commands": 12,
+      "outputs": "audit/2026-10-21/final8-source-gates.json and unique per-command logs/native receipts"
+    },
+    {
+      "id": "build",
+      "argv": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "log": "audit/2026-10-21/final8-build.log"
+    },
+    {
+      "id": "freeze",
+      "argv": [
+        "node",
+        "audit/2026-10-21/freeze-source.mjs",
+        "final8"
+      ],
+      "output": "audit/2026-10-21/final8-source.json",
+      "requires": "127.0.0.1:4173 preview serves the newly emitted offline-build identity; no existing receipt may be replaced"
+    },
+    {
+      "id": "bundle",
+      "argv": [
+        "node",
+        "scripts/check-bundle.mjs"
+      ],
+      "stdoutReceipt": "audit/2026-10-21/final8-bundle.json"
+    },
+    {
+      "id": "hosting-package",
+      "argv": [
+        "node",
+        "scripts/package-php-hosting.mjs"
+      ],
+      "log": "audit/2026-10-21/final8-hosting-build.log"
+    },
+    {
+      "id": "hosting-structure",
+      "argv": [
+        "node",
+        "audit/2026-10-21/verify-hosting.mjs",
+        "--prefix",
+        "final8",
+        "--source",
+        "audit/2026-10-21/final8-source.json"
+      ]
+    },
+    {
+      "id": "static-exclusive-window",
+      "argv": [
+        "node",
+        "audit/2026-10-21/run-final8-static.mjs"
+      ],
+      "environment": {
+        "SPAROWTYPE_STATIC_ACCEPTANCE": "1",
+        "SPAROWTYPE_FINAL8_BUILD_ID": "Derived from accepted final8-source.json.local.version; required20hex and checked against frozen/default artifact"
+      },
+      "powershellBuildIdAssignment": "$env:SPAROWTYPE_FINAL8_BUILD_ID=(Get-Content audit/2026-10-21/final8-source.json -Raw | ConvertFrom-Json).local.version"
+    }
+  ],
+  "hold": [
+    "Coordinator authorizes each execution window separately. No script is executed by preparation.",
+    "Placement and Boss8 clones await actual frozen8 ID.",
+    "No source7 pass or failure is relabeled as source8 acceptance."
+  ],
+  "sourceGateIds": [
+    "typecheck",
+    "lint",
+    "coverage",
+    "php-replay",
+    "php-course",
+    "php-progression",
+    "php-classroom",
+    "php-social",
+    "php-arena",
+    "php-race-clock",
+    "content",
+    "dependencies"
+  ]
+}

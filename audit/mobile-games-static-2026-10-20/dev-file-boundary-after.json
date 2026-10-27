@@ -1,0 +1,147 @@
+{
+  "recordedAt": "2026-10-20T18:53:53.560Z",
+  "phase": "after",
+  "viteVersion": "7.3.7",
+  "projectConfiguredHost": "::",
+  "host": "127.0.0.1",
+  "port": 4271,
+  "scope": "Loaded project server/proxy options with render-only plugins omitted and dependency prebundling disabled; loopback HTTP only, no browser/build.",
+  "effectiveDeny": [
+    ".env",
+    ".env.*",
+    "*.{crt,pem}",
+    "**/.git/**",
+    "**/backend/config.php",
+    "**/backend/*-config.local.php",
+    "**/backend/storage/**",
+    "**/hosting-build/**",
+    "**/hosting-archive/**",
+    "**/.hosting-stage-*/**"
+  ],
+  "canary": {
+    "type": "fresh nonsecret text",
+    "location": "ignored backend/storage",
+    "sha256": "a71c48492c4495418699b657c9fd8e09c1dbd144bca9d7f524695ca84b55b7b7"
+  },
+  "checks": [
+    {
+      "route": "backend-storage-canary",
+      "status": 403,
+      "exposesCanary": false
+    },
+    {
+      "route": "backend-storage-canary-query",
+      "status": 403,
+      "exposesCanary": false
+    },
+    {
+      "route": "raw-fs-canary",
+      "status": 403,
+      "exposesCanary": false
+    },
+    {
+      "route": "raw-fs-canary-query",
+      "status": 403,
+      "exposesCanary": false
+    },
+    {
+      "route": "backend-storage-canary-windows-uppercase",
+      "status": 403,
+      "exposesCanary": false
+    },
+    {
+      "route": "raw-fs-canary-windows-uppercase",
+      "status": 403,
+      "exposesCanary": false
+    },
+    {
+      "route": "backend-storage-canary-encoded-directory",
+      "status": 403,
+      "exposesCanary": false
+    },
+    {
+      "route": "raw-fs-canary-encoded-directory",
+      "status": 403,
+      "exposesCanary": false
+    },
+    {
+      "route": "api-proxy-to-isolated-fixture-only",
+      "status": 200,
+      "correctFixture": true
+    },
+    {
+      "route": "public-course-catalog",
+      "status": 200,
+      "correctPublicResource": true
+    },
+    {
+      "route": "public-course-catalog-module",
+      "status": 200,
+      "correctPublicResource": true
+    },
+    {
+      "route": "backend-main-config-policy",
+      "denied": true,
+      "scope": "Vite pathname policy only; no file read or HTTP request"
+    },
+    {
+      "route": "backend-local-config-policy",
+      "denied": true,
+      "scope": "Vite pathname policy only; no file read or HTTP request"
+    },
+    {
+      "route": "backend-storage-policy",
+      "denied": true,
+      "scope": "Vite pathname policy only; no file read or HTTP request"
+    },
+    {
+      "route": "hosting-package-policy",
+      "denied": true,
+      "scope": "Vite pathname policy only; no file read or HTTP request"
+    },
+    {
+      "route": "hosting-archive-policy",
+      "denied": true,
+      "scope": "Vite pathname policy only; no file read or HTTP request"
+    },
+    {
+      "route": "hosting-staging-policy",
+      "denied": true,
+      "scope": "Vite pathname policy only; no file read or HTTP request"
+    },
+    {
+      "route": "default-env-policy",
+      "denied": true,
+      "scope": "Vite pathname policy only; no file read or HTTP request"
+    },
+    {
+      "route": "default-env-variant-policy",
+      "denied": true,
+      "scope": "Vite pathname policy only; no file read or HTTP request"
+    },
+    {
+      "route": "default-certificate-policy",
+      "denied": true,
+      "scope": "Vite pathname policy only; no file read or HTTP request"
+    },
+    {
+      "route": "default-private-key-policy",
+      "denied": true,
+      "scope": "Vite pathname policy only; no file read or HTTP request"
+    },
+    {
+      "route": "default-git-policy",
+      "denied": true,
+      "scope": "Vite pathname policy only; no file read or HTTP request"
+    },
+    {
+      "route": "installed-vite-default-deny-preserved",
+      "preserved": true
+    }
+  ],
+  "proxyRequests": [
+    "/api/dev-boundary-fixture"
+  ],
+  "realConfigOrUserDataRequested": false,
+  "cleanup": "Owned canary and both disposable loopback servers are removed in finally."
+}

@@ -22,7 +22,7 @@ import { cn } from "@/lib/utils";
 import type { KeyboardAudio } from "@/lib/keyboard-audio";
 import { useWordCorrection } from "@/hooks/useWordCorrection";
 import { CompositionEchoGuard } from "@/lib/composition-echo";
-import { SessionController, type SessionResult } from "@/lib/typing-core";
+import { SessionController, type SessionResult, type InputProvenance } from "@/lib/typing-core";
 import { getContentPack } from "@/lib/content-packs";
 import {
   summarizeLearningAttempts,
@@ -43,9 +43,10 @@ import { KeybrResults } from "./KeybrResults";
 import { sessionRepository } from "@/services/session-repository";
 import { TypingPassage } from "@/components/typing/TypingPassage";
 import { TypingFeedback } from "@/components/typing/TypingFeedback";
-import { LiveKeyboard } from "@/components/typing/LiveKeyboard";
-import { useLiveKeyboard } from "@/hooks/useLiveKeyboard";
+import { ObservedLiveKeyboard } from "@/components/typing/ObservedLiveKeyboard";
 import { keyboardAttempt } from "@/lib/live-keyboard";
+import { learningCaretContentBox, learningCaretGeometry, learningCaretGeometryFromContentBox } from "@/lib/learning-caret-geometry";
+import { TypingCaretWordCache, caretCacheWordRange, MAX_CACHED_FORWARD_GLYPHS, type CaretLayoutState, type MeasuredCaretWordSlot } from "@/components/typing/typing-caret-cache";
 
 interface Props {
   focusKeys?: string[];
@@ -102,12 +103,7 @@ export function KeybrLessonMode({
   const [draft, setDraft] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [revision, setRevision] = useState(0);
-  const [caret, setCaret] = useState<{
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-  } | null>(null);
+  const caretRef = useRef<HTMLSpanElement>(null);
   useEffect(() => {
     if (!preferences.sound) return;
     let active = true;
@@ -201,11 +197,14 @@ export function KeybrLessonMode({
     perCharMetrics: Map<string, CharacterConfidence>;
   } | null>(null);
   const lessonFinished = finished !== null;
-  const keyboardInput = useLiveKeyboard(inputRef, session.controller, preferences.showKeyboard && !lessonFinished && view.status !== "paused" && view.status !== "finished");
+  const caretCache = useRef(new TypingCaretWordCache());
+  const caretLayout = useRef<{ state: CaretLayoutState; controller: SessionController }>();
+  const caretScrollTop = useRef<number | null>(null);
+  const caretLifecycle = useRef({ controller: session.controller, focused, lessonFinished, status: view.status });
   const setKeyboardVisible = useCallback((showKeyboard: boolean) => updatePreferences({ showKeyboard }), [updatePreferences]);
   const setFingerGuideVisible = useCallback((showFingerGuide: boolean) => updatePreferences({ showFingerGuide }), [updatePreferences]);
-  const caretFontSize = useRef(preferences.fontSize);
-  caretFontSize.current = preferences.fontSize;
+  const caretPreferences = useRef({ fontSize: preferences.fontSize, style: preferences.caretStyle, direction: pack.direction });
+  caretPreferences.current = { fontSize: preferences.fontSize, style: preferences.caretStyle, direction: pack.direction };
   const startLesson = useCallback(
     (retry = false) => {
       const next = createLesson(
@@ -281,46 +280,84 @@ export function KeybrLessonMode({
     stageRef.current?.scrollIntoView({ block: "center", behavior: "instant" });
   }, [view.status]);
   const measureCaret = useCallback(() => {
-    const container = stageRef.current,
-      marker = container?.querySelector('[data-current="true"]');
-    if (!container || !marker) {
-      setCaret(null);
+    const container = stageRef.current, layout = caretLayout.current;
+    const caret = caretRef.current;
+    if (!caret) return;
+    if (!container || !layout) {
+      caret.style.setProperty("--learn-caret-visible", "hidden");
       return;
     }
-    let boundary = container.getBoundingClientRect(),
-      rect = marker.getBoundingClientRect();
-    const lineHeight = caretFontSize.current * 1.85;
-    const targetTop = rect.top - boundary.top + container.scrollTop;
-    const nextScroll = Math.max(
-      0,
-      Math.floor((targetTop + 1) / lineHeight) * lineHeight - lineHeight,
-    );
-    if (container.scrollTop !== nextScroll) container.scrollTop = nextScroll;
-    boundary = container.getBoundingClientRect();
-    rect = marker.getBoundingClientRect();
-    const next = {
-      x: rect.left - boundary.left + container.scrollLeft,
-      y: rect.top - boundary.top + container.scrollTop,
-      width: Math.max(rect.width, 2),
-      height: rect.height,
-    };
-    setCaret((previous) =>
-      previous?.x === next.x &&
-      previous.y === next.y &&
-      previous.width === next.width &&
-      previous.height === next.height
-        ? previous
-        : next,
-    );
+    const state = { ...layout.state, composing: composed.current };
+    const allowed = !layout.controller.lastInputAttempts.some(attempt => !attempt.correct || attempt.provenance !== "keyboard");
+    if (!allowed) caretCache.current.invalidate();
+    const cached = allowed ? caretCache.current.read(state) : null;
+    let next = cached ? learningCaretGeometryFromContentBox(cached.anchor, caretPreferences.current) : null;
+    if (!next) {
+      const text = container.querySelector(".learn-stream-text");
+      const marker = text?.querySelector<HTMLElement>('[data-current="true"]');
+      if (!marker) { caret.style.setProperty("--learn-caret-visible", "hidden"); return; }
+      // Keep Learn's existing union bounds, including its exact native fallback
+      // for RTL, composition, mistakes and zero-width whitespace.
+      const boundary = container.getBoundingClientRect(), markerBounds = marker.getBoundingClientRect();
+      const scrollTop = container.scrollTop, scrollLeft = container.scrollLeft;
+      next = learningCaretGeometry({ boundary, marker: markerBounds, scrollTop, scrollLeft, ...caretPreferences.current });
+      if (text && allowed && caretCache.current.canCache(state)) {
+        const slots: MeasuredCaretWordSlot[] = [];
+        for (const node of text.querySelectorAll<HTMLElement>("[data-slot-index]")) {
+          const index = Number(node.dataset.slotIndex);
+          if (index < state.cursor) continue;
+          if (slots.length >= MAX_CACHED_FORWARD_GLYPHS) break;
+          const expected = state.targetText[index];
+          if (index !== state.cursor + slots.length || node.dataset.expected !== expected ||
+            !["correct", "untyped"].includes(node.dataset.status) ||
+            (expected !== " " && !caretCacheWordRange(state.targetText, index))) break;
+          const bounds = node === marker ? markerBounds : node.getBoundingClientRect();
+          const anchor = learningCaretContentBox({ boundary, marker: bounds, scrollTop, scrollLeft });
+          if (!anchor) break;
+          slots.push({ index, expected, anchor });
+        }
+        caretCache.current.storeForward(state, slots, caretPreferences.current.fontSize * 1.85);
+      }
+    }
+    if (!next) {
+      caret.style.setProperty("--learn-caret-visible", "hidden");
+      return;
+    }
+    caret.style.setProperty("--learn-caret-x", `${next.x}px`);
+    caret.style.setProperty("--learn-caret-y", `${next.y}px`);
+    caret.style.setProperty("--learn-caret-width", `${next.width}px`);
+    caret.style.setProperty("--learn-caret-height", `${next.height}px`);
+    caret.style.setProperty("--learn-caret-visible", "visible");
+    if (caretScrollTop.current !== next.scrollTop) {
+      container.scrollTop = next.scrollTop;
+      caretScrollTop.current = next.scrollTop;
+    }
   }, []);
   useLayoutEffect(() => {
+    const previous = caretLifecycle.current;
+    if (previous.controller !== session.controller || previous.focused !== focused ||
+      previous.lessonFinished !== lessonFinished || previous.status !== view.status) {
+      caretCache.current.invalidate(); caretScrollTop.current = null;
+    }
+    caretLifecycle.current = { controller: session.controller, focused, lessonFinished, status: view.status };
+    caretLayout.current = { controller: session.controller, state: {
+      targetText: view.targetText, finalText: view.finalText, cursor: view.cursor,
+      fontSize: preferences.fontSize, fontKey: `${pack.id}:${pack.font}`, scoringPolicy: "prose",
+      rtl: pack.direction === "rtl", composing: composed.current,
+    } };
     measureCaret();
   }, [
     measureCaret,
     view.cursor,
     view.finalText,
+    view.targetText,
+    view.status,
     session.controller,
     preferences.fontSize,
+    preferences.caretStyle,
+    pack.direction,
+    pack.id,
+    pack.font,
     focused,
     lessonFinished,
   ]);
@@ -329,18 +366,38 @@ export function KeybrLessonMode({
     const text = container?.querySelector(".learn-stream-text");
     if (!container || !text) return;
     let active = true;
+    const invalidate = () => { caretCache.current.invalidate(); caretScrollTop.current = null; };
     const measure = () => {
-      if (active) measureCaret();
+      if (active) { invalidate(); measureCaret(); }
     };
     // A keystroke measures the committed marker above. Observe each real lesson
     // stage once, keeping font/resize ownership stable while its text changes.
     const observer = new ResizeObserver(measure);
     observer.observe(container);
     observer.observe(text);
+    const styles = new MutationObserver(measure);
+    styles.observe(document.documentElement, { attributes: true, attributeFilter: ["style", "class", "data-theme"] });
+    const scroll = (event: Event) => {
+      if (event.target === container) {
+        if (container.scrollTop !== caretScrollTop.current) caretScrollTop.current = null;
+      } else if (event.target === document || event.target instanceof Element && event.target.contains(container)) invalidate();
+    };
+    window.addEventListener("scroll", scroll, true);
+    window.addEventListener("resize", measure);
+    window.visualViewport?.addEventListener("resize", measure);
+    document.fonts.addEventListener("loadingdone", measure);
+    document.fonts.addEventListener("loadingerror", measure);
     void document.fonts.ready.then(measure);
     return () => {
       active = false;
       observer.disconnect();
+      styles.disconnect();
+      window.removeEventListener("scroll", scroll, true);
+      window.removeEventListener("resize", measure);
+      window.visualViewport?.removeEventListener("resize", measure);
+      document.fonts.removeEventListener("loadingdone", measure);
+      document.fonts.removeEventListener("loadingerror", measure);
+      invalidate();
     };
   }, [measureCaret, session.controller, lessonFinished]);
   useEffect(
@@ -398,7 +455,7 @@ export function KeybrLessonMode({
   );
 
   const commit = useCallback(
-    (text: string, composition = false) => {
+    (text: string, provenance: InputProvenance = "keyboard") => {
       if (
         !text ||
         session.controller.result ||
@@ -407,10 +464,10 @@ export function KeybrLessonMode({
         return;
       playSound();
       const next = session.controller.input({
-        type: composition ? "composition" : "insert",
+        type: provenance === "composition" ? "composition" : "insert",
         text,
-        provenance: composition ? "composition" : "keyboard",
-        ...(composition ? { compositionId: crypto.randomUUID() } : {}),
+        provenance,
+        ...(provenance === "composition" ? { compositionId: crypto.randomUUID() } : {}),
       });
       setView(next);
       setError(null);
@@ -465,7 +522,7 @@ export function KeybrLessonMode({
       setDraft("");
       return;
     }
-    if (!wordCorrection.ignoreEmptySpace(text)) commit(text);
+    if (!wordCorrection.ignoreEmptySpace(text)) commit(text, native.inputType === "insertReplacementText" ? "autocorrect" : "keyboard");
     setDraft("");
   };
   const handleCompositionEnd = (
@@ -474,7 +531,7 @@ export function KeybrLessonMode({
     composed.current = false;
     const text = event.data || event.currentTarget.value;
     compositionEcho.current.remember(text);
-    commit(text, true);
+    commit(text, "composition");
     setDraft("");
   };
   const stats = useMemo(() => {
@@ -501,6 +558,12 @@ export function KeybrLessonMode({
   const knownKeyboardKeys = useMemo(() => stats.filter(stat => stat.isUnlocked).map(stat => stat.char), [stats]);
   const masteredKeyboardKeys = useMemo(() => stats.filter(stat => stat.mastered).map(stat => stat.char), [stats]);
   const focusedPractice = preferences.focusMode && view.status === "running";
+  const passageMarker = useMemo(() => <span className="learn-caret-marker" />, []);
+  const pacePosition = Math.floor((view.elapsedMs * preferences.targetWpm * 5) / 60000);
+  const paceMarker = useCallback((slot: SessionResult["characters"][number]) =>
+    view.status === "running" && slot.index === pacePosition
+      ? <span className="pointer-events-none absolute inset-0 border-b border-dashed border-muted-foreground" /> : null,
+  [view.status, pacePosition]);
   // Revision intentionally refreshes session-derived data after completion/deletion.
   const goal = (
     <div className="rounded-xl border border-border bg-card p-4">
@@ -636,8 +699,9 @@ export function KeybrLessonMode({
             )}
             onClick={() => inputRef.current?.focus()}
           >
-            {caret && focused && (
+            {focused && (
               <span
+                ref={caretRef}
                 aria-hidden="true"
                 className={cn(
                   "learn-caret pointer-events-none absolute left-0 top-0 motion-reduce:!transition-none",
@@ -647,10 +711,10 @@ export function KeybrLessonMode({
                   preferences.caretStyle === "block" && "rounded-sm opacity-25",
                 )}
                 style={{
-                  width: preferences.caretStyle === "line" ? 2 : caret.width,
-                  height:
-                    preferences.caretStyle === "underline" ? 2 : caret.height,
-                  transform: `translate3d(${caret.x + (preferences.caretStyle === "line" && pack.direction === "rtl" ? caret.width : 0)}px, ${caret.y + (preferences.caretStyle === "underline" ? caret.height - 2 : 0)}px, 0)`,
+                  width: "var(--learn-caret-width, 2px)",
+                  height: "var(--learn-caret-height, 0px)",
+                  visibility: "var(--learn-caret-visible, hidden)" as CSSProperties["visibility"],
+                  transform: "translate3d(var(--learn-caret-x, 0px), var(--learn-caret-y, 0px), 0)",
                   transition:
                     preferences.smoothCaret && !preferences.reducedMotion
                       ? "transform 85ms linear"
@@ -668,17 +732,8 @@ export function KeybrLessonMode({
               <TypingPassage
                 slots={view.characters}
                 cursor={view.cursor}
-                marker={<span className="learn-caret-marker" />}
-                renderBefore={(slot) =>
-                  preferences.paceCaret &&
-                  view.status === "running" &&
-                  slot.index ===
-                    Math.floor(
-                      (view.elapsedMs * preferences.targetWpm * 5) / 60000,
-                    ) ? (
-                    <span className="pointer-events-none absolute inset-0 border-b border-dashed border-muted-foreground" />
-                  ) : null
-                }
+                marker={passageMarker}
+                renderBefore={preferences.paceCaret ? paceMarker : undefined}
               />
             </div>
           </div>
@@ -700,6 +755,7 @@ export function KeybrLessonMode({
             onChange={handleInput}
             onCompositionStart={() => {
               compositionEcho.current.reset();
+              caretCache.current.invalidate();
               composed.current = true;
             }}
             onCompositionEnd={handleCompositionEnd}
@@ -770,11 +826,13 @@ export function KeybrLessonMode({
             Caps Lock is on.
           </p>
         )}
-        <LiveKeyboard
+        <ObservedLiveKeyboard
           adaptive
+          inputRef={inputRef}
+          sessionKey={session.controller}
+          observe={preferences.showKeyboard && !lessonFinished && view.status !== "paused" && view.status !== "finished"}
           language={pack.id}
           layout={selectedLayout}
-          input={keyboardInput}
           expectedCharacter={view.characters[view.cursor]?.expected}
           lastAttempt={lastKeyboardAttempt}
           lessonKeys={knownKeyboardKeys}

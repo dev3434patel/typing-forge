@@ -1,0 +1,73 @@
+{
+  "totals": {
+    "total": 4,
+    "passed": 3,
+    "failed": 1,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "projects": [
+    {
+      "project": "chromium",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "edge",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "firefox",
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "webkit",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    }
+  ],
+  "reportedStats": {
+    "expected": 3,
+    "unexpected": 1,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "countsAgreeWithReport": true,
+  "failures": [
+    {
+      "project": "firefox",
+      "title": "opening-experience.spec.ts › caret handoff fault injection › caret handoff animation API preserves input and the real caret",
+      "file": "opening-experience.spec.ts",
+      "line": 211,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBe(expected) // Object.is equality Expected: \"playing\" Received: \"preparing\" Call Log: - Timeout 19196ms exceeded while waiting on the predicate at opening-renderer.ts:135 133 | await page.clock.runFor(16); 134 | return opening.getAttribute(\"data-presentation\"); > 135 | }, { timeout: preparation.remainingTimeoutMs, intervals: [100, 250, 500] }).toBe(\"playing\"); | ^ 136 | } 137 | await page.clock.fastForward(duration); 13",
+        "Tearing down \"context\" exceeded the test timeout of 30000ms.",
+        "Error: browserContext.close: Test ended. Browser logs: <launching> C:\\Users\\DELL\\AppData\\Local\\ms-playwright\\firefox-1555\\firefox\\firefox.exe -no-remote -headless -profile C:\\Users\\DELL\\AppData\\Local\\Temp\\playwright_firefoxdev_profile-4vWvQ0 -juggler-pipe -silent <launched> pid=21464 [pid=21464][err] *** You are running in headless mode. [pid=21464][err] JavaScript warning: resource://services-settings/Utils.sys.mjs, line 125: unreachable code af"
+      ]
+    }
+  ],
+  "flakyCases": [],
+  "skippedCases": [],
+  "skipReasons": [],
+  "expectedFailures": [],
+  "globalErrors": [],
+  "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+}

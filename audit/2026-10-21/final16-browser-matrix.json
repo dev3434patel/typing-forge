@@ -1,0 +1,223 @@
+{
+  "declaredAt": "2026-10-22T19:55:48.259Z",
+  "status": "PARTIAL",
+  "build": {
+    "version": "8ac2a0d9602ec9263118",
+    "publicFiles": 133,
+    "bytes": 2930416
+  },
+  "browsers": [
+    "chromium",
+    "edge",
+    "firefox",
+    "webkit"
+  ],
+  "automaticRetries": 0,
+  "filesCoveredExactlyOnce": 62,
+  "batches": [
+    {
+      "id": "new-features",
+      "files": [
+        "e2e/arcade.spec.ts",
+        "e2e/arena.spec.ts",
+        "e2e/studio-polish.spec.ts",
+        "e2e/learning-analytics-v2.spec.ts",
+        "e2e/classroom-lite.spec.ts",
+        "e2e/progression.spec.ts",
+        "e2e/workspace-reset.spec.ts",
+        "e2e/progression-extras.spec.ts",
+        "e2e/friends.spec.ts",
+        "e2e/arcade-data-isolation.spec.ts",
+        "e2e/arcade-offline.spec.ts"
+      ],
+      "workers": 2
+    },
+    {
+      "id": "existing",
+      "files": [
+        "e2e/accessibility-audit.spec.ts",
+        "e2e/account-workspace.spec.ts",
+        "e2e/auth-flow.spec.ts",
+        "e2e/caret-geometry.spec.ts",
+        "e2e/content-options.spec.ts",
+        "e2e/countdown-clock.spec.ts",
+        "e2e/current-word-correction.spec.ts",
+        "e2e/frontend-deployment.spec.ts",
+        "e2e/frontend-game-accessibility.spec.ts",
+        "e2e/game-data-controls.spec.ts",
+        "e2e/games.spec.ts",
+        "e2e/keyboard-lab.spec.ts",
+        "e2e/keyboard-viewport.spec.ts",
+        "e2e/leaderboard-periods.spec.ts",
+        "e2e/leaderboard.spec.ts",
+        "e2e/learning-v3.spec.ts",
+        "e2e/live-keyboard.spec.ts",
+        "e2e/mobile-input-integrity.spec.ts",
+        "e2e/mode-matrix.spec.ts",
+        "e2e/navigation-accessibility.spec.ts",
+        "e2e/offline-pwa.spec.ts",
+        "e2e/php-account-flow.spec.ts",
+        "e2e/php-human-race.spec.ts",
+        "e2e/profile-flow.spec.ts",
+        "e2e/profile-identity.spec.ts",
+        "e2e/pwa-notices.spec.ts",
+        "e2e/quick-restart.spec.ts",
+        "e2e/race-mode.spec.ts",
+        "e2e/race-pace.spec.ts",
+        "e2e/responsive-layout.spec.ts",
+        "e2e/responsive-pages.spec.ts",
+        "e2e/result-evidence.spec.ts",
+        "e2e/secondary-pages.spec.ts",
+        "e2e/sparowtype-brand.spec.ts",
+        "e2e/startup-recovery.spec.ts",
+        "e2e/stats-dashboard.spec.ts",
+        "e2e/typing-audit-regressions.spec.ts",
+        "e2e/typing-course.spec.ts",
+        "e2e/typing-experience.spec.ts",
+        "e2e/typing-observer-ownership.spec.ts",
+        "e2e/typing-test.spec.ts",
+        "e2e/wrong-key-feedback.spec.ts"
+      ],
+      "workers": 2
+    },
+    {
+      "id": "isolated",
+      "files": [
+        "e2e/caret-handoff-readiness.spec.ts",
+        "e2e/input-guardrails.spec.ts",
+        "e2e/opening-experience.spec.ts",
+        "e2e/opening-low-power.spec.ts",
+        "e2e/opening-single-keyboard.spec.ts",
+        "e2e/opening-worker.spec.ts",
+        "e2e/typing-render-budget.spec.ts",
+        "e2e/viewport-acceptance.spec.ts"
+      ],
+      "workers": 1
+    },
+    {
+      "id": "first-input-timing",
+      "files": [
+        "e2e/independent-challenge-timing.spec.ts"
+      ],
+      "workers": 2
+    }
+  ],
+  "results": [
+    {
+      "id": "new-features",
+      "exitCode": 1,
+      "summary": {
+        "totals": {
+          "total": 204,
+          "passed": 200,
+          "failed": 4,
+          "skipped": 0,
+          "flaky": 0
+        },
+        "projects": [
+          {
+            "project": "chromium",
+            "total": 51,
+            "passed": 51,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "edge",
+            "total": 51,
+            "passed": 51,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "firefox",
+            "total": 51,
+            "passed": 51,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "webkit",
+            "total": 51,
+            "passed": 47,
+            "failed": 4,
+            "skipped": 0,
+            "flaky": 0
+          }
+        ],
+        "reportedStats": {
+          "expected": 200,
+          "unexpected": 4,
+          "skipped": 0,
+          "flaky": 0
+        },
+        "countsAgreeWithReport": true,
+        "failures": [
+          {
+            "project": "webkit",
+            "title": "arcade-data-isolation.spec.ts › cross-tab arcade deletion discards the active run without resurrecting bests or touching another owner",
+            "file": "arcade-data-isolation.spec.ts",
+            "line": 5,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(locator).toBeVisible() failed Locator: getByRole('heading', { name: 'Eight ways to find your flow.', exact: true }) Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByRole('heading', { name: 'Eight ways to find your flow.', exact: true }) with timeout 5000ms - waiting for getByRole('heading', { name: 'Eight ways to find your flow.', exact: true }) 17 | await page.locator('.arcade-targ"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "arcade-data-isolation.spec.ts › deleting an ordinary canonical session in another tab stops only the selected history ghost",
+            "file": "arcade-data-isolation.spec.ts",
+            "line": 33,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Test timeout of 30000ms exceeded.",
+              "Error: expect(locator).toBeVisible() failed Locator: getByRole('region', { name: 'Session results', exact: true }) Expected: visible Error: element(s) not found Call log: - Expect \"toBeVisible\" getByRole('region', { name: 'Session results', exact: true }) with timeout 5000ms - waiting for getByRole('region', { name: 'Session results', exact: true }) - Test timeout of 30000ms exceeded. 36 | await page.goto('/'); await page.getByRole('group', { nam"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "arcade-offline.spec.ts › all eight arcade URLs survive a real HTTP outage without caching API or private room documents",
+            "file": "arcade-offline.spec.ts",
+            "line": 13,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(locator).toBeVisible() failed Locator: getByRole('heading', { name: 'Eight ways to find your flow.', exact: true }) Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByRole('heading', { name: 'Eight ways to find your flow.', exact: true }) with timeout 5000ms - waiting for getByRole('heading', { name: 'Eight ways to find your flow.', exact: true }) 21 | await expect(fetch(`${offlineSer"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "arcade.spec.ts › Ghost GP retains real attempts and exports local canonical evidence in landscape",
+            "file": "arcade.spec.ts",
+            "line": 25,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(locator).toBeEnabled() failed Locator: getByRole('textbox', { name: 'Arcade typing input', exact: true }) Expected: enabled Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeEnabled\" getByRole('textbox', { name: 'Arcade typing input', exact: true }) with timeout 5000ms - waiting for getByRole('textbox', { name: 'Arcade typing input', exact: true }) 31 | await page.getByRole('button', { name: `Play ${game.name}`, ex"
+            ]
+          }
+        ],
+        "flakyCases": [],
+        "skippedCases": [],
+        "skipReasons": [],
+        "expectedFailures": [],
+        "globalErrors": [],
+        "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+      }
+    }
+  ],
+  "scope": "Full source-file partition; native credential cases require the separately guarded16-case backend run. Static artifacts have their separate root/subpath execution. Conditional skips remain explicit."
+}

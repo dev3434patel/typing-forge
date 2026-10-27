@@ -1,0 +1,26 @@
+{
+  "preparedAt": "2026-10-22T19:11:36.7861585Z",
+  "status": "PREPARED-NOT-RUN",
+  "driver": "audit/2026-10-21/profile-loaf-native-final14.mjs",
+  "driverSha256": "1cf4907d5f16f806a18ec30620e5c186232b3f53037a29354dc78a789a6b13a0",
+  "expectedBuild": "945bd4aa37e6b3c9ec40",
+  "syntaxCheck": "node --check PASS",
+  "browserJobsLaunched": 0,
+  "productChanges": [],
+  "originalActions": "495 native characters, CPU4,0delay, real390x844→844x390 rotation, fonts/finite-animations settled, original exact export/attempts/accuracy/error/overflow assertions",
+  "instrumentation": [
+    "Bounded numeric EventTiming start/duration/processingStart/processingEnd/interactionId",
+    "LoAF start/duration/renderStart/styleAndLayoutStart/blockingDuration and script forcedStyleAndLayoutDuration when supported",
+    "Native geometry call start/end/duration and textarea UTF16 length, unchanged receiver/arguments/return identity and no additional geometry calls",
+    "Processing-window and full-presentation-window interval overlap; co-occurrence not independent causal attribution",
+    "No text, account identifiers, credentials or arbitrary/private URLs collected"
+  ],
+  "cleanup": "Observers drained/disconnected and native descriptors restored before original export; original150s watchdog/browser finally retained",
+  "commandPowerShell": "$env:SPAROWTYPE_LOAF_DIAGNOSTIC=\"1\"; node audit/2026-10-21/profile-loaf-native-final14.mjs",
+  "limitations": [
+    "Instrumented timing is not acceptance",
+    "LoAF50ms/EventTiming16ms thresholds censor shorter work",
+    "Native intervals and LoAF fields cannot alone assign all GPU/paint/system work",
+    "Final unfinished-frame observer delivery can remain absent without changing original actions"
+  ]
+}

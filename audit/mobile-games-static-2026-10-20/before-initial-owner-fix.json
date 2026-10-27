@@ -1,0 +1,275 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\extra\\typing_updated\\typing-forge\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "e2e/account-workspace.spec.ts",
+      "--grep",
+      "initial owner readiness protects (Test|Lessons) with a delayed account session",
+      "--workers=1",
+      "--retries=0",
+      "--reporter=list,json",
+      "--output=D:\\extra\\typing_updated\\typing-forge\\audit\\mobile-games-static-2026-10-20/.playwright-artifacts-before-initial-owner-fix"
+    ],
+    "configFile": "D:\\extra\\typing_updated\\typing-forge\\playwright.config.ts",
+    "rootDir": "D:/extra/typing_updated/typing-forge/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/audit/mobile-games-static-2026-10-20/.playwright-artifacts-before-initial-owner-fix",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\audit\\mobile-games-static-2026-10-20\\.playwright-artifacts-before-initial-owner-fix",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "account-workspace.spec.ts",
+      "file": "account-workspace.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "initial owner readiness protects Test with a delayed account session",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5841,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('status', { name: 'Preparing account workspace', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('status', { name: 'Preparing account workspace', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status', { name: 'Preparing account workspace', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('status', { name: 'Preparing account workspace', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('status', { name: 'Preparing account workspace', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status', { name: 'Preparing account workspace', exact: true })\u001b[22m\n\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\account-workspace.spec.ts:42:102",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\account-workspace.spec.ts",
+                      "column": 102,
+                      "line": 42
+                    },
+                    "snippet": "  40 |         await page.goto(route);\n  41 |         await fixture.observed;\n> 42 |         await expect(page.getByRole(\"status\", { name: \"Preparing account workspace\", exact: true })).toBeVisible();\n     |                                                                                                      ^\n  43 |         await expect(page.locator(\"#main-content\")).toHaveCount(0);\n  44 |         await expect(page.locator(\".typing-workspace, [aria-label='Adaptive typing lesson'], .course-preview, [aria-label='Signal Run game']\")).toHaveCount(0);\n  45 |         await expect(page.getByRole(\"button\", { name: \"Start bot practice\", exact: true })).toHaveCount(0);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\account-workspace.spec.ts",
+                        "column": 102,
+                        "line": 42
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('status', { name: 'Preparing account workspace', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('status', { name: 'Preparing account workspace', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status', { name: 'Preparing account workspace', exact: true })\u001b[22m\n\n\n  40 |         await page.goto(route);\n  41 |         await fixture.observed;\n> 42 |         await expect(page.getByRole(\"status\", { name: \"Preparing account workspace\", exact: true })).toBeVisible();\n     |                                                                                                      ^\n  43 |         await expect(page.locator(\"#main-content\")).toHaveCount(0);\n  44 |         await expect(page.locator(\".typing-workspace, [aria-label='Adaptive typing lesson'], .course-preview, [aria-label='Signal Run game']\")).toHaveCount(0);\n  45 |         await expect(page.getByRole(\"button\", { name: \"Start bot practice\", exact: true })).toHaveCount(0);\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\account-workspace.spec.ts:42:102"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T19:41:25.548Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\mobile-games-static-2026-10-20\\.playwright-artifacts-before-initial-owner-fix\\account-workspace-initial--b4712-h-a-delayed-account-session-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\mobile-games-static-2026-10-20\\.playwright-artifacts-before-initial-owner-fix\\account-workspace-initial--b4712-h-a-delayed-account-session-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\mobile-games-static-2026-10-20\\.playwright-artifacts-before-initial-owner-fix\\account-workspace-initial--b4712-h-a-delayed-account-session-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\account-workspace.spec.ts",
+                    "column": 102,
+                    "line": 42
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "68f92e732e60f967432a-aa42bc79ebf74d8d14e6",
+          "file": "account-workspace.spec.ts",
+          "line": 36,
+          "column": 5
+        },
+        {
+          "title": "initial owner readiness protects Lessons with a delayed account session",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5444,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('status', { name: 'Preparing account workspace', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('status', { name: 'Preparing account workspace', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status', { name: 'Preparing account workspace', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('status', { name: 'Preparing account workspace', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('status', { name: 'Preparing account workspace', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status', { name: 'Preparing account workspace', exact: true })\u001b[22m\n\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\account-workspace.spec.ts:42:102",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\account-workspace.spec.ts",
+                      "column": 102,
+                      "line": 42
+                    },
+                    "snippet": "  40 |         await page.goto(route);\n  41 |         await fixture.observed;\n> 42 |         await expect(page.getByRole(\"status\", { name: \"Preparing account workspace\", exact: true })).toBeVisible();\n     |                                                                                                      ^\n  43 |         await expect(page.locator(\"#main-content\")).toHaveCount(0);\n  44 |         await expect(page.locator(\".typing-workspace, [aria-label='Adaptive typing lesson'], .course-preview, [aria-label='Signal Run game']\")).toHaveCount(0);\n  45 |         await expect(page.getByRole(\"button\", { name: \"Start bot practice\", exact: true })).toHaveCount(0);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\account-workspace.spec.ts",
+                        "column": 102,
+                        "line": 42
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('status', { name: 'Preparing account workspace', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('status', { name: 'Preparing account workspace', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status', { name: 'Preparing account workspace', exact: true })\u001b[22m\n\n\n  40 |         await page.goto(route);\n  41 |         await fixture.observed;\n> 42 |         await expect(page.getByRole(\"status\", { name: \"Preparing account workspace\", exact: true })).toBeVisible();\n     |                                                                                                      ^\n  43 |         await expect(page.locator(\"#main-content\")).toHaveCount(0);\n  44 |         await expect(page.locator(\".typing-workspace, [aria-label='Adaptive typing lesson'], .course-preview, [aria-label='Signal Run game']\")).toHaveCount(0);\n  45 |         await expect(page.getByRole(\"button\", { name: \"Start bot practice\", exact: true })).toHaveCount(0);\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\account-workspace.spec.ts:42:102"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T19:41:32.726Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\mobile-games-static-2026-10-20\\.playwright-artifacts-before-initial-owner-fix\\account-workspace-initial--6fb4b-h-a-delayed-account-session-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\mobile-games-static-2026-10-20\\.playwright-artifacts-before-initial-owner-fix\\account-workspace-initial--6fb4b-h-a-delayed-account-session-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\mobile-games-static-2026-10-20\\.playwright-artifacts-before-initial-owner-fix\\account-workspace-initial--6fb4b-h-a-delayed-account-session-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\account-workspace.spec.ts",
+                    "column": 102,
+                    "line": 42
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "68f92e732e60f967432a-2d4d00fa9b58ea72215d",
+          "file": "account-workspace.spec.ts",
+          "line": 36,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-20T19:41:24.363Z",
+    "duration": 14104.838,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

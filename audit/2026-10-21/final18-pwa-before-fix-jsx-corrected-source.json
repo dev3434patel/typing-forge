@@ -1,0 +1,51 @@
+{
+  "status": "FAILED",
+  "declaredAt": "2026-10-23T14:50:47.743Z",
+  "sourceBefore": {
+    "sourceFile": "audit/2026-10-21/final17-source.json",
+    "expectedBuild": "0572d723495d6be303a8",
+    "compared": 499,
+    "mismatches": []
+  },
+  "manifestSha256Before": "b3dec473bddd9f8790bd47f5a96d8d3ba02d23e16135bb778edadb2a4e40d42c",
+  "spec": "e2e/pwa-snapshot-consistency.spec.ts",
+  "specHash": "2a0dfef0a87a97d7d146f56ad9eb2154e7d7d08e95ea526e78fc545635d2c228",
+  "expectedCases": 16,
+  "scope": "Deterministic real React consumer/store-boundary regression against unchanged source17 components. Owned controlled store and layout stubs; not a native PWA or hosted/device check.",
+  "expectedOldOutcome": "Exactly four render-to-passive-gap failures; twelve before-render/after-subscription/unmount controls pass.",
+  "exitCode": 1,
+  "totals": {
+    "total": 16,
+    "passed": 0,
+    "failed": 4,
+    "skipped": 12,
+    "flaky": 0
+  },
+  "failureTitles": [
+    {
+      "project": "chromium",
+      "title": "pwa-snapshot-consistency.spec.ts › actual PWA consumers read a snapshot published before their first render"
+    },
+    {
+      "project": "edge",
+      "title": "pwa-snapshot-consistency.spec.ts › actual PWA consumers read a snapshot published before their first render"
+    },
+    {
+      "project": "firefox",
+      "title": "pwa-snapshot-consistency.spec.ts › actual PWA consumers read a snapshot published before their first render"
+    },
+    {
+      "project": "webkit",
+      "title": "pwa-snapshot-consistency.spec.ts › actual PWA consumers read a snapshot published before their first render"
+    }
+  ],
+  "sourceAfter": {
+    "sourceFile": "audit/2026-10-21/final17-source.json",
+    "expectedBuild": "0572d723495d6be303a8",
+    "compared": 499,
+    "mismatches": []
+  },
+  "manifestSha256After": "b3dec473bddd9f8790bd47f5a96d8d3ba02d23e16135bb778edadb2a4e40d42c",
+  "specUnchanged": true,
+  "finishedAt": "2026-10-23T14:52:12.832Z"
+}

@@ -8,6 +8,11 @@ use SparowType\Database;
 use SparowType\RaceService;
 use SparowType\Security;
 use SparowType\SessionValidator;
+use SparowType\ProgressionService;
+use SparowType\ClassroomService;
+use SparowType\RaceStream;
+use SparowType\SocialService;
+use SparowType\ArenaService;
 
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store, private');
@@ -28,7 +33,7 @@ try {
     $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
     if ($method === 'OPTIONS') {
         header('Access-Control-Allow-Methods: GET, POST, DELETE, OPTIONS');
-        header('Access-Control-Allow-Headers: Content-Type, X-CSRF-Token');
+        header('Access-Control-Allow-Headers: Content-Type, X-CSRF-Token, Idempotency-Key');
         header('Access-Control-Max-Age: 600');
         http_response_code(204);
         exit;
@@ -80,10 +85,53 @@ try {
         $result = $data->cohorts();
     } elseif ($method === 'GET' && $path === '/leaderboards') {
         $result = $data->leaderboards($auth->user(), $_GET);
+    } elseif ($method === 'POST' && $path === '/classroom/student/join') {
+        Security::rate($db, $config, 'classroom-join', 10, 60);
+        $result = (new ClassroomService($db, $validator))->join($body);
+    } elseif ($method === 'POST' && $path === '/classroom/student/progress') {
+        Security::rate($db, $config, 'classroom-progress', 30, 60);
+        $result = (new ClassroomService($db, $validator))->progress($body);
+    } elseif ($method === 'POST' && $path === '/classroom/student/leave') {
+        $result = (new ClassroomService($db, $validator))->leave();
     } else {
         $user = $auth->requireUser();
+        if ($method === 'POST' && in_array($path, ['/sessions', '/social/duel-submit'], true)) $data->captureRequestReceipt();
         if ($method === 'GET' && isset($_GET['expectedOwner'])) Security::owner($_GET, $user['id']);
         if ($method === 'GET' && $path === '/profile') $result = $data->profile($user);
+        elseif ($method === 'GET' && $path === '/progression') $result = (new ProgressionService($db, $validator))->get($user);
+        elseif ($method === 'GET' && $path === '/social') $result = (new SocialService($db, $validator, $data))->list($user);
+        elseif ($method === 'POST' && preg_match('~^/social/(request|accept|remove|block|unblock|report|duel-create|duel-accept|duel-cancel|duel-start|duel-submit)$~D', $path, $match)) {
+            Security::owner($body, $user['id'], false);
+            Security::rate($db, $config, 'social-write', 30, 60, $user['id']);
+            $result = (new SocialService($db, $validator, $data))->handle($match[1], $body, $user);
+        } elseif ($method === 'POST' && preg_match('~^/arena/(create|join|get|ready|submit|leave|rematch|match|spectate|appeal)$~D', $path, $match)) {
+            Security::owner($body, $user['id'], false);
+            Security::rate($db, $config, 'arena-write', 300, 60, $user['id']);
+            $result = (new ArenaService($db, $validator, $data))->handle($match[1], $body, $user);
+        }
+        elseif ($method === 'GET' && $path === '/classroom') $result = (new ClassroomService($db, $validator))->list($user);
+        elseif ($method === 'GET' && $path === '/race/transport') $result = RaceStream::capabilities($config);
+        elseif ($method === 'GET' && $path === '/race/stream') {
+            Security::owner($_GET, $user['id'], false);
+            Security::rate($db, $config, 'race-stream', 30, 60, $user['id']);
+            (new RaceStream($db, new RaceService($db, $validator, $data), $config))->run($user, $_GET);
+            exit;
+        }
+        elseif ($method === 'POST' && in_array($path, ['/classroom/create', '/classroom/delete'], true)) {
+            Security::owner($body, $user['id'], false);
+            Security::rate($db, $config, 'classroom-manage', 30, 60, $user['id']);
+            $classroom = new ClassroomService($db, $validator);
+            $result = $path === '/classroom/create' ? $classroom->create($body, $user) : $classroom->remove($body, $user);
+        }
+        elseif ($method === 'POST' && $path === '/progression/claim') {
+            Security::owner($body, $user['id'], false);
+            Security::rate($db, $config, 'progression-claim', 120, 60, $user['id']);
+            $result = (new ProgressionService($db, $validator))->claim($user, $body, $_SERVER['HTTP_IDEMPOTENCY_KEY'] ?? '');
+        } elseif ($method === 'POST' && $path === '/progression/command') {
+            Security::owner($body, $user['id'], false);
+            Security::rate($db, $config, 'progression-command', 60, 60, $user['id']);
+            $result = (new ProgressionService($db, $validator))->command($user, $body, $_SERVER['HTTP_IDEMPOTENCY_KEY'] ?? '');
+        }
         elseif ($method === 'POST' && $path === '/profile') $result = $data->updateProfile($user, $body);
         elseif ($method === 'GET' && $path === '/preferences') $result = $data->preferences($user);
         elseif ($method === 'POST' && $path === '/preferences') $result = $data->updatePreferences($user, $body);

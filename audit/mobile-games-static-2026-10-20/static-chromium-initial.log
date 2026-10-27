@@ -1,0 +1,107 @@
+
+> sparowtype@3.0.0 test:frontend
+> node scripts/test-frontend.mjs --reporter=list,json --output audit/mobile-games-static-2026-10-20/static-chromium-initial-artifacts
+
+
+Running 10 tests using 1 worker
+
+(node:14016) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › e2e\frontend-deployment.spec.ts:57:5 › dist-static-vercel › real nested route files, fonts, manifest, metadata and unknown HTTP404 (3.0s)
+  ok  2 [chromium] › e2e\frontend-deployment.spec.ts:111:5 › dist-static-vercel › account, human rooms and rankings are unavailable honestly while bot practice starts (1.1s)
+  x   3 [chromium] › e2e\frontend-deployment.spec.ts:150:5 › dist-static-vercel › guest correction evidence saves, exports and appears in local history (7.0s)
+(node:53548) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  4 [chromium] › e2e\frontend-deployment.spec.ts:199:5 › dist-static-vercel › a structured lesson saves local checkpoint evidence (5.4s)
+  ok  5 [chromium] › e2e\frontend-deployment.spec.ts:219:5 › dist-static-vercel › a completed public download reopens the game and local pages during a real origin outage (1.6s)
+  ok  6 [chromium] › e2e\frontend-deployment.spec.ts:57:5 › dist-static-pages › real nested route files, fonts, manifest, metadata and unknown HTTP404 (2.8s)
+  ok  7 [chromium] › e2e\frontend-deployment.spec.ts:111:5 › dist-static-pages › account, human rooms and rankings are unavailable honestly while bot practice starts (1.1s)
+  x   8 [chromium] › e2e\frontend-deployment.spec.ts:150:5 › dist-static-pages › guest correction evidence saves, exports and appears in local history (7.2s)
+(node:22288) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  9 [chromium] › e2e\frontend-deployment.spec.ts:199:5 › dist-static-pages › a structured lesson saves local checkpoint evidence (5.4s)
+  ok 10 [chromium] › e2e\frontend-deployment.spec.ts:219:5 › dist-static-pages › a completed public download reopens the game and local pages during a real origin outage (1.5s)
+
+
+  1) [chromium] › e2e\frontend-deployment.spec.ts:150:5 › dist-static-vercel › guest correction evidence saves, exports and appears in local history 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('row').filter({ hasText: 'custom' })
+    Expected substring: "75%"
+    Received string:    "10/20/2026, 11:17:57 PMcustom121.375.0%0.3slocal only"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" getByRole('row').filter({ hasText: 'custom' }) with timeout 5000ms
+      - waiting for getByRole('row').filter({ hasText: 'custom' })
+        12 × locator resolved to <tr class="border-b last:border-0">…</tr>
+           - unexpected value "10/20/2026, 11:17:57 PMcustom121.375.0%0.3slocal only"
+
+
+      178 |       await expect(
+      179 |         page.getByRole("row").filter({ hasText: "custom" }),
+    > 180 |       ).toContainText("75%");
+          |         ^
+      181 |       await goto(page, "settings");
+      182 |       const pending = page.waitForEvent("download");
+      183 |       await page
+        at D:\extra\typing_updated\typing-forge\e2e\frontend-deployment.spec.ts:180:9
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\mobile-games-static-2026-10-20\static-chromium-initial-artifacts\frontend-deployment-dist-s-950d5-nd-appears-in-local-history-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\mobile-games-static-2026-10-20\static-chromium-initial-artifacts\frontend-deployment-dist-s-950d5-nd-appears-in-local-history-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\mobile-games-static-2026-10-20\static-chromium-initial-artifacts\frontend-deployment-dist-s-950d5-nd-appears-in-local-history-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\mobile-games-static-2026-10-20\static-chromium-initial-artifacts\frontend-deployment-dist-s-950d5-nd-appears-in-local-history-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › e2e\frontend-deployment.spec.ts:150:5 › dist-static-pages › guest correction evidence saves, exports and appears in local history 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('row').filter({ hasText: 'custom' })
+    Expected substring: "75%"
+    Received string:    "10/20/2026, 11:18:16 PMcustom113.075.0%0.3slocal only"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" getByRole('row').filter({ hasText: 'custom' }) with timeout 5000ms
+      - waiting for getByRole('row').filter({ hasText: 'custom' })
+        12 × locator resolved to <tr class="border-b last:border-0">…</tr>
+           - unexpected value "10/20/2026, 11:18:16 PMcustom113.075.0%0.3slocal only"
+
+
+      178 |       await expect(
+      179 |         page.getByRole("row").filter({ hasText: "custom" }),
+    > 180 |       ).toContainText("75%");
+          |         ^
+      181 |       await goto(page, "settings");
+      182 |       const pending = page.waitForEvent("download");
+      183 |       await page
+        at D:\extra\typing_updated\typing-forge\e2e\frontend-deployment.spec.ts:180:9
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\mobile-games-static-2026-10-20\static-chromium-initial-artifacts\frontend-deployment-dist-s-37ee0-nd-appears-in-local-history-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\mobile-games-static-2026-10-20\static-chromium-initial-artifacts\frontend-deployment-dist-s-37ee0-nd-appears-in-local-history-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\mobile-games-static-2026-10-20\static-chromium-initial-artifacts\frontend-deployment-dist-s-37ee0-nd-appears-in-local-history-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\mobile-games-static-2026-10-20\static-chromium-initial-artifacts\frontend-deployment-dist-s-37ee0-nd-appears-in-local-history-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › e2e\frontend-deployment.spec.ts:150:5 › dist-static-vercel › guest correction evidence saves, exports and appears in local history 
+    [chromium] › e2e\frontend-deployment.spec.ts:150:5 › dist-static-pages › guest correction evidence saves, exports and appears in local history 
+  8 passed (39.5s)

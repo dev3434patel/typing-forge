@@ -15,8 +15,16 @@ test("real two-browser PHP human race shares opponent pace and settles server re
   const peer = await peerContext.newPage();
   let roomId: string | undefined;
   const pageErrors: string[] = [];
+  const diagnostic = process.env.SPAROWTYPE_NATIVE_TIMING_AUDIT === "1";
+  const timings: { page: string; path: string; event: string; at: number; status?: number }[] = [];
   for (const target of [page, peer]) {
     target.on("pageerror", error => pageErrors.push(error.message));
+    if (diagnostic) {
+      const label = target === page ? "host" : "peer";
+      target.on("request", request => timings.push({ page: label, path: new URL(request.url()).pathname, event: "request", at: Date.now() }));
+      target.on("response", response => timings.push({ page: label, path: new URL(response.url()).pathname, event: "response", at: Date.now(), status: response.status() }));
+      target.on("requestfailed", request => timings.push({ page: label, path: new URL(request.url()).pathname, event: "requestfailed", at: Date.now() }));
+    }
     await target.addInitScript(() => localStorage.setItem("sparowtype.opening-animation.enabled", "false"));
   }
   const signIn = async (target: Page, email: string, password: string) => {
@@ -25,7 +33,31 @@ test("real two-browser PHP human race shares opponent pace and settles server re
     await target.getByLabel("Password", { exact: true }).fill(password);
     await target.getByRole("button", { name: "Sign In", exact: true }).click();
     await expect(target).toHaveURL("/");
-    await expect(target.getByRole("link", { name: "Account", exact: true })).toBeVisible();
+    try {
+      await expect(target.getByRole("link", { name: "Account", exact: true })).toBeVisible();
+    } catch (originalError) {
+      if (diagnostic) {
+        const capture = () => target.evaluate(() => ({
+          at: Date.now(), path: location.pathname,
+          visibleText: document.body.innerText.slice(0, 1500),
+          controller: navigator.serviceWorker?.controller ? { path: new URL(navigator.serviceWorker.controller.scriptURL).pathname, state: navigator.serviceWorker.controller.state } : null,
+          resources: performance.getEntriesByType("resource").map(entry => {
+            const value = entry as PerformanceResourceTiming;
+            return { path: new URL(value.name).pathname, start: value.startTime, duration: value.duration, transferSize: value.transferSize, initiator: value.initiatorType };
+          }),
+        }));
+        const failedAt = await capture();
+        const followUpStarted = Date.now();
+        let settledAfterFailure = false;
+        try { await target.getByRole("link", { name: "Account", exact: true }).waitFor({ state: "visible", timeout: 10_000 }); settledAfterFailure = true; } catch { /* Keep the original5s assertion failure regardless of follow-up. */ }
+        await info.attach("cold-home-diagnostic", { contentType: "application/json", body: JSON.stringify({
+          originalAssertionMs: 5000, originalFailurePreserved: true,
+          failedAt, settledAfterFailure, followUpMs: Date.now() - followUpStarted,
+          afterFollowUp: await capture(), timings, pageErrors,
+        }) });
+      }
+      throw originalError;
+    }
     await target.goto("/race");
   };
   try {

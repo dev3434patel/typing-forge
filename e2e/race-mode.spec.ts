@@ -1,6 +1,40 @@
 import { test, expect } from "@playwright/test";
 import { focusTyping, exportedResult } from "./helpers";
 
+test("local bot practice keeps both racers ready through idle focus and non-text keys until the first native attempt", async ({ page }) => {
+  await page.goto("/race");
+  await page.getByRole("combobox", { name: "Difficulty", exact: true }).selectOption("pro");
+  await page.getByRole("button", { name: "Start bot practice", exact: true }).click();
+  const input = await focusTyping(page);
+  const session = page.getByRole("region", { name: "Typing session", exact: true });
+  const clock = page.locator(".typing-hud .text-3xl");
+  const marker = page.getByTestId("opponent-caret");
+  await expect(session).toHaveAttribute("data-status", "ready");
+  await expect(clock).toHaveText("30s");
+  await input.press("Shift");
+  await input.press("Backspace");
+  await input.press("ArrowLeft");
+  await page.waitForTimeout(1200);
+  await expect(session).toHaveAttribute("data-status", "ready");
+  await expect(clock).toHaveText("30s");
+  await expect(marker).toHaveAttribute("data-position", "0");
+  await expect(input).toHaveValue("");
+  const expected = await page.getByTestId("typing-target").locator('[data-current="true"]').getAttribute("data-expected");
+  const wrong = expected === "x" ? "z" : "x";
+  await input.pressSequentially(wrong);
+  await expect(session).toHaveAttribute("data-status", "running");
+  await expect(input).toHaveValue(wrong);
+  await expect.poll(async () => Number(await marker.getAttribute("data-position"))).toBeGreaterThan(0);
+  await page.getByRole("button", { name: "Finish", exact: true }).click();
+  const result = await exportedResult(page);
+  expect(result.configuration.settings?.timingPolicy).toBe("first-input-v1");
+  expect(result.configuration.generatorVersion).toBe("local-bot-first-input-v1");
+  expect(result.metrics.insertionAttempts).toBe(1);
+  expect(result.metrics.incorrectAttempts).toBe(1);
+  expect(result.events[0].offsetMs).toBe(0);
+  expect(result.startedAtWall).toBeGreaterThan(0);
+});
+
 test("a guest can finish clearly labelled local bot practice", async ({
   page,
 }) => {

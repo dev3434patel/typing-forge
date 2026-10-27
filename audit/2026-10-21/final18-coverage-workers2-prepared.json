@@ -1,0 +1,113 @@
+{
+  "preparedAt": "2026-10-23T15:17:31.411732+00:00",
+  "reportLocalDate": "2026-10-23",
+  "status": "PREPARED-NOT-EXECUTED",
+  "scope": "Audit-only separately declared one-run fullcoverage confirmation andlater read-only composite. No tests, syntax/typecheck, browser/build/native/service job executed bypreparer. No source/E2E/package/config edits.",
+  "actualFrozenBuild": {
+    "version": "e8451e7c13b09318a1ef",
+    "publicFiles": 133,
+    "bytes": 2930598
+  },
+  "sourceReceipt": "audit/2026-10-21/final18-source.json",
+  "scripts": {
+    "run-final18-coverage-workers2-confirmation.mjs": "9629994c35e662fe6716fdcade3c2a484122c2008db64e1e2e5f884683a39e54",
+    "compose-final18-source-gates-confirmed.mjs": "3023545196ec32cc2dff7f1e5459e0eba8de00f304460ca151a1a7e614eca3ef",
+    "coverage-confirmation-support.mjs": "e8cc43eb6f08a4dd94e6b48bb21818c4e390a4357dbf57dadc01894e6b300ae4"
+  },
+  "originalFailure": {
+    "file": "audit/2026-10-21/final18-source-gates.json",
+    "rawSha256": "f44acd2fe76d72e60f7fa9fbf4d0d2ad797c69b441c42da34401e238e8b67519",
+    "status": "FAILED",
+    "coverageRow": {
+      "id": "coverage",
+      "command": "npm run test:coverage",
+      "startedAt": "2026-10-23T15:04:21.988Z",
+      "finishedAt": "2026-10-23T15:06:33.428Z",
+      "durationMs": 131438.32540000003,
+      "exitCode": 1,
+      "status": "FAILED",
+      "file": "audit/2026-10-21/final18-coverage.log"
+    },
+    "coverageLogRawSha256": "e30a25fc0430af4251b7452b0024dd63784e81ff7440756636abadd6ae2473cb",
+    "unitCounts": {
+      "passed": 2797,
+      "failed": 14,
+      "total": 2811,
+      "files": 111,
+      "failedFiles": 9
+    },
+    "otherRows": "11originalPASS rows remainunchanged/notrerun."
+  },
+  "command": [
+    "node",
+    "audit/2026-10-21/run-final18-coverage-workers2-confirmation.mjs"
+  ],
+  "requiredEnvironment": {
+    "SPAROWTYPE_FINAL18_BUILD_ID": "e8451e7c13b09318a1ef",
+    "SPAROWTYPE_FINAL18_COVERAGE_CONFIRM": "1"
+  },
+  "profile": {
+    "maxWorkers": 2,
+    "automaticRetries": 0,
+    "timeoutsChanged": false,
+    "assertionsChanged": false,
+    "casesFiltered": false,
+    "coverageProviderFloorsIncludeExcludeUnchanged": true,
+    "reporterOnlyChanges": "Default+JSON output,unique raw/log andfresh ignored reportspath.",
+    "baseCommand": "package test:coverage mustremainexact vitest run --coverage"
+  },
+  "inputBindings": "499source hashes(normalizedtext/binaryraw) plus111unit rawfiles and16configuration/package-lock/criticalrunner-package metadata inputs,before andafter. Installedfullnode_modulestree isnotcontenthashed.",
+  "reports": {
+    "confirmation": "final18-coverage-workers2-confirmation.json",
+    "raw": "final18-coverage-workers2-raw.json",
+    "log": "final18-coverage-workers2.log",
+    "coverageDirectory": ".final18-coverage-workers2/",
+    "ignoredPattern": "audit/**/.final*"
+  },
+  "guards": [
+    "All output/reportpaths mustnotalreadyexist; no priorreceipt/reportdir replaced.",
+    "Actual18source frozen499 andserved/localmetadata match; mismatchesreject beforetestlaunch.",
+    "Original12gates mustbecomplete withonlycoveragefailed;originalfailedreceipt/logSHA retained/comparedafter.",
+    "Full111file/2811case rawJSON andsameunit inventory mustpass;zeroskip/failed andoriginalcoveragefloors required.",
+    "No retry,timeoutoverride,casename/filefilter,testmutation,dependencychange orservices."
+  ],
+  "composite": {
+    "command": [
+      "node",
+      "audit/2026-10-21/compose-final18-source-gates-confirmed.mjs"
+    ],
+    "onlyAfter": "ExplicitcompletedPASS-SCOPED confirmation withunchangedsource/inputs/rawlogbindings.",
+    "output": "final18-source-gates-confirmed.json",
+    "sourceFields": [
+      "build",
+      "sourceBefore",
+      "sourceAfter",
+      "currentSource",
+      "sourceManifestSha256",
+      "sourceUnchanged",
+      "inputsUnchanged"
+    ],
+    "originalFields": [
+      "originalGate.file",
+      "originalGate.status=FAILED",
+      "originalGate.rawSha256",
+      "originalGate.coverageRow",
+      "originalGate.coverageLogSha256"
+    ],
+    "coverageFields": [
+      "coverageConfirmation.file",
+      "coverageConfirmation.rawSha256",
+      "coverageConfirmation.rawReport",
+      "coverageConfirmation.rawReportSha256",
+      "coverageConfirmation.log",
+      "coverageConfirmation.logSha256",
+      "coverageConfirmation.profile",
+      "coverageConfirmation.summary",
+      "coverageConfirmation.coveragePercent"
+    ],
+    "results": "Exactly11 original passingrows JSON-identical plusreplacementcoverage row idcoverage/confirmationReceipt/file/startfinish/exit0/statusPASS-SCOPED/maxWorkers2/originalFailurePreserved;originalreceipt remainsFAILED."
+  },
+  "executionPerformed": false,
+  "syntaxCheckPerformed": false,
+  "performanceCausality": "A later worker2pass willnotprovewhy original14timeouts occurred;profile changeexplicit andoldfailureretained."
+}

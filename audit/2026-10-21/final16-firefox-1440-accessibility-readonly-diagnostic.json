@@ -1,0 +1,35 @@
+{
+  "recordedAt": "2026-10-23",
+  "status": "ACTUAL_STARTUP_ASSERTION_FAILURE_CAUSE_UNPROVEN",
+  "scope": "Read-only inspection of the original Firefox guest trace, error context and existing source. No test, browser, build, product or fixture edit.",
+  "test": "existing guest pages and completed results meet automated accessibility rules at 1440px",
+  "project": "firefox",
+  "source": "e2e/accessibility-audit.spec.ts:19",
+  "route": "/",
+  "failedAssertion": "main#main-content visible within original5000ms",
+  "axeReached": false,
+  "axeViolation": null,
+  "completedRouteScans": 0,
+  "snapshot": "Bootstrap main Typing workspace with Preparing your typing workspace status.",
+  "traceClockMs": {
+    "navigationStart": 911304.911,
+    "navigationDomContentLoadedEnd": 911661.1,
+    "nativeAssertionStart": 911817.789,
+    "nativeAssertionEnd": 917017.641,
+    "testDriverAssertionEnd": 920035.183,
+    "lastRecordedAppModuleRequestStart": 911884.485,
+    "lastRecordedAppModuleResponseEnd": 912083.013
+  },
+  "network": {
+    "observedResources": 32,
+    "documentAndRecordedScriptStylesheetResponses": "HTTP200",
+    "failedScriptRecorded": false,
+    "pageErrorRecorded": false,
+    "incompleteImages": ["/icon-192.png", "/sparowtype.svg"],
+    "incompleteImageMeaning": "These two resource snapshots have status-1 and no completed duration. They are not proof of why App or Index did not evaluate/render."
+  },
+  "sourceRelationship": "The Home bootstrap intentionally awaits concurrent App and Index imports in src/workspace-loader.ts. The observed snapshot precedes the actual route landmark and account-preparation boundary. Successful requests do not prove module-promise settlement.",
+  "conclusion": "Retain as a genuine startup/readiness assertion failure. It is not an axe violation. Existing evidence supports no accessibility CSS/markup fix and does not prove an application import bug, renderer/driver fault or resource-pressure cause.",
+  "proposedNextVerification": "The exact original case serially against the declared artifact and unchanged budgets. Any passive import-settlement or scheduling diagnostic must be separately declared and cannot replace this failure.",
+  "privateBoundary": "No raw trace bodies, tokens, account details or user text copied into this public aggregate."
+}

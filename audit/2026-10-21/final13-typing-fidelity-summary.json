@@ -1,0 +1,71 @@
+{
+  "totals": {
+    "total": 308,
+    "passed": 307,
+    "failed": 1,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "projects": [
+    {
+      "project": "chromium",
+      "total": 77,
+      "passed": 77,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "edge",
+      "total": 77,
+      "passed": 77,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "firefox",
+      "total": 77,
+      "passed": 77,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "webkit",
+      "total": 77,
+      "passed": 76,
+      "failed": 1,
+      "skipped": 0,
+      "flaky": 0
+    }
+  ],
+  "reportedStats": {
+    "expected": 307,
+    "unexpected": 1,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "countsAgreeWithReport": true,
+  "failures": [
+    {
+      "project": "webkit",
+      "title": "typing-observer-ownership.spec.ts › Learn reuses measured glyph windows across spaces and preserves native caret geometry after font, error and rotation changes",
+      "file": "typing-observer-ownership.spec.ts",
+      "line": 239,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(locator).toHaveAttribute(expected) failed Locator: locator('.learn-stream [data-slot-index=\"60\"]') Expected: \"incorrect\" Received: \"untyped\" Timeout: 5000ms Call log: - Expect \"toHaveAttribute\" locator('.learn-stream [data-slot-index=\"60\"]') with timeout 5000ms - waiting for locator('.learn-stream [data-slot-index=\"60\"]') 14 × locator resolved to <span data-expected=\" \" data-current=\"true\" data-slot-index=\"60\" data-status=\"untyped\" "
+      ]
+    }
+  ],
+  "flakyCases": [],
+  "skippedCases": [],
+  "skipReasons": [],
+  "expectedFailures": [],
+  "globalErrors": [],
+  "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+}

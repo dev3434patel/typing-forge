@@ -181,6 +181,110 @@ for (const style of ["line", "block", "outline", "underline"] as const) {
   }
 }
 
+test("a native font-family switch invalidates cached glyph boxes without a text-block resize", async ({ page }) => {
+  await seedPreferences(page, "outline");
+  await page.setViewportSize({ width: 1024, height: 900 });
+  const input = await customPractice(page, "WiWiWiWi calm");
+  await page.evaluate(async () => { await document.fonts.ready; });
+  const receipts: Array<{ label: string; geometry: GeometryReceipt }> = [];
+  const previousFamily = await page.evaluate(() => document.documentElement.style.getPropertyValue("--font-mono"));
+  const block = () => page.getByTestId("typing-target").evaluate(element => {
+    const rect = element.getBoundingClientRect();
+    return { width: rect.width, height: rect.height };
+  });
+  try {
+    await input.pressSequentially("Wi");
+    const before = await expectGeometry(page, "outline", "original cached W", receipts);
+    const beforeBlock = await block();
+    await page.evaluate(() => document.documentElement.style.setProperty("--font-mono", "serif"));
+    const after = await expectGeometry(page, "outline", "native serif W after family switch", receipts);
+    const afterBlock = await block();
+    expect(Math.abs(after.fragment.width - before.fragment.width)).toBeGreaterThan(1);
+    expect(Math.abs(afterBlock.width - beforeBlock.width)).toBeLessThanOrEqual(1);
+    expect(Math.abs(afterBlock.height - beforeBlock.height)).toBeLessThanOrEqual(1);
+    await input.press("W");
+    await expect(input).toHaveValue("WiW");
+    await expectGeometry(page, "outline", "narrow serif i from recaptured word", receipts);
+    await input.press("x");
+    await expect(input).toHaveValue("WiWx");
+    await expectGeometry(page, "outline", "incorrect native glyph fallback", receipts);
+    await input.press("Backspace");
+    await input.press("i");
+    await expect(input).toHaveValue("WiWi");
+    await expectGeometry(page, "outline", "corrected native word recaptured", receipts);
+  } finally {
+    await page.evaluate(value => {
+      if (value) document.documentElement.style.setProperty("--font-mono", value);
+      else document.documentElement.style.removeProperty("--font-mono");
+    }, previousFamily);
+    await test.info().attach("font-family-caret-invalidation", {
+      contentType: "application/json", body: JSON.stringify({ receipts }),
+    });
+  }
+});
+
+for (const family of ["default", "serif"] as const) {
+  test(`measured forward anchors cross correct words and spaces with ${family} glyphs, then recover from errors and rotation`, async ({ page }) => {
+    await seedPreferences(page, "outline");
+    await page.setViewportSize({ width: 1024, height: 900 });
+    const text = Array(6).fill("calm hands build steady rhythm. Wi 12").join(" ");
+    const prefix = "calm hands build steady";
+    const input = await customPractice(page, text);
+    const receipts: Array<{ label: string; geometry: GeometryReceipt }> = [];
+    await page.evaluate(async (family) => {
+      await document.fonts.ready;
+      if (family === "serif") document.documentElement.style.setProperty("--font-mono", "serif");
+      await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+    }, family);
+    await expectGeometry(page, "outline", "native initial family", receipts);
+    await input.press("c");
+    await page.evaluate(async () => {
+      await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+      const target = document.querySelector('[data-testid="typing-target"]')!;
+      const native = Element.prototype.getClientRects;
+      const receipt = { reads: 0 };
+      Element.prototype.getClientRects = function () {
+        if (this.hasAttribute("data-slot-index") && target.contains(this)) receipt.reads++;
+        return native.call(this);
+      };
+      Object.assign(window, { forwardCaretReceipt: { native, receipt } });
+    });
+    let reads = -1;
+    try {
+      await input.pressSequentially(prefix.slice(1));
+    } finally {
+      reads = await page.evaluate(() => {
+        const observed = (window as Window & {
+          forwardCaretReceipt: { native: typeof Element.prototype.getClientRects; receipt: { reads: number } };
+        }).forwardCaretReceipt;
+        Element.prototype.getClientRects = observed.native;
+        return observed.receipt.reads;
+      });
+    }
+    expect(reads).toBe(0);
+    await expect(input).toHaveValue(prefix);
+    const space = await expectGeometry(page, "outline", "cached native space after three word transitions", receipts);
+    expect(space.currentExpected).toBe(" ");
+    await input.press("x");
+    await expect(input).toHaveValue(`${prefix}x`);
+    await expectGeometry(page, "outline", "extra-letter native fallback", receipts);
+    await input.press("Backspace");
+    await expect(input).toHaveValue(prefix);
+    await expectGeometry(page, "outline", "deletion restores native space", receipts);
+    await input.press("Space");
+    await page.setViewportSize({ width: 390, height: 844 });
+    await expectGeometry(page, "outline", "portrait recaptures forward glyphs", receipts);
+    await input.pressSequentially(text.slice(prefix.length + 1, 170));
+    await expect(input).toHaveValue(text.slice(0, 170));
+    await expectGeometry(page, "outline", "multiword progress beyond one cache window", receipts);
+    await page.setViewportSize({ width: 844, height: 390 });
+    await expectGeometry(page, "outline", "landscape native recapture", receipts);
+    await test.info().attach("native-forward-word-space-geometry", {
+      contentType: "application/json", body: JSON.stringify({ family, reads, prefix, retainedCharacters: 170, receipts }),
+    });
+  });
+}
+
 test("a prompted code newline uses its first actual client fragment before entering the next line", async ({
   page,
 }) => {

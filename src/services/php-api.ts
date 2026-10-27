@@ -1,6 +1,7 @@
 import type { LearningSessionEvidence } from "@/lib/learning-evidence";
 import type { SessionMetricValues } from "@/lib/typing-core/types";
 import type { TestResult } from "@/lib/typing-engine";
+import { FRONTEND_ONLY } from "@/lib/deployment";
 
 export interface AuthUser { id: string; email: string; handle: string; created_at: string }
 export interface AuthSession { user: AuthUser | null; csrfToken: string }
@@ -9,6 +10,7 @@ export interface ApiRequestOptions {
   body?: unknown;
   expectedOwner?: string;
   signal?: AbortSignal;
+  headers?: Record<string, string>;
 }
 export class ApiError extends Error {
   constructor(public readonly code: string, message: string, public readonly status: number) {
@@ -17,7 +19,7 @@ export class ApiError extends Error {
   }
 }
 
-const configuredBase = import.meta.env.VITE_API_BASE_URL?.trim() || "/api";
+const configuredBase = FRONTEND_ONLY ? "disabled" : import.meta.env.VITE_API_BASE_URL?.trim() || "/api";
 export const isBackendConfigured = configuredBase !== "disabled" && (() => {
   if (configuredBase.startsWith("/") && !configuredBase.startsWith("//")) return true;
   try { return ["http:", "https:"].includes(new URL(configuredBase).protocol); } catch { return false; }
@@ -49,7 +51,7 @@ async function request<T>(path: string, options: ApiRequestOptions, csrfRetry: b
       method,
       credentials: "include",
       cache: "no-store",
-      headers: { Accept: "application/json", ...(mutating ? { "Content-Type": "application/json", "X-CSRF-Token": csrfToken } : {}) },
+      headers: { ...options.headers, Accept: "application/json", ...(mutating ? { "Content-Type": "application/json", "X-CSRF-Token": csrfToken } : {}) },
       ...(mutating ? { body: JSON.stringify(body ?? {}) } : {}),
       signal: controller.signal,
     });

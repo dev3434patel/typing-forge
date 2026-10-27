@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "preparedAt": "2026-10-22T20:42:06.160044+00:00",
+  "status": "PASS-FINITE-PATTERNS",
+  "scope": "Finite public patch inventory only; not a complete secret audit, staging action or product validation. Values are never included.",
+  "exactPatchAllowlist": [
+    {
+      "path": "audit/2026-10-21/final16-flat-alignment-freezer-PROPOSAL.patch",
+      "bytes": 2438,
+      "sha256": "b9bc033dff640c5b30e458e5e42fc5cad38d3bafcd3e29e62854a877c665ca49",
+      "changedPaths": [],
+      "patternHitTypes": []
+    },
+    {
+      "path": "audit/2026-10-21/final16-target-words-cache-OPTIONAL-PROPOSAL.patch",
+      "bytes": 1252,
+      "sha256": "47b712657ec1e17e6d258d46c148f66743e2140d205fadec4f567f9804160489",
+      "changedPaths": [],
+      "patternHitTypes": []
+    },
+    {
+      "path": "audit/2026-10-21/final17-target-word-cache-FACTORY-BOUNDED-PROPOSAL.patch",
+      "bytes": 1814,
+      "sha256": "b3a789794e976bfda4131f708352bd2d83e9a9d1917c6a97ff6ac711b3c41010",
+      "changedPaths": [],
+      "patternHitTypes": []
+    },
+    {
+      "path": "audit/2026-10-21/final17-result-hash-deferral-PROPOSAL.patch",
+      "bytes": 4585,
+      "sha256": "7bb961c2ad3df50698ef9c4ce9b051bf0d1d177ad8c2a40bb0815580447482f6",
+      "changedPaths": [
+        "src/lib/typing-core/session.ts",
+        "src/lib/final-result-yield.ts",
+        "src/hooks/useTestResults.tsx"
+      ],
+      "patternHitTypes": []
+    },
+    {
+      "path": "audit/2026-10-21/final17-keyboard-containment-css-actual.patch",
+      "bytes": 298,
+      "sha256": "e19fe4d4fb6f8a98601c392a6a5dfdf52644bb36bfbac56c45ae517fd9244040",
+      "changedPaths": [],
+      "patternHitTypes": []
+    },
+    {
+      "path": "audit/2026-10-21/final17-keyboard-containment-e2e-actual.patch",
+      "bytes": 12908,
+      "sha256": "3747a6d6c531798ee4b906d7b22b3d5d1f941ba085d615d919a64b7b8fa69d28",
+      "changedPaths": [],
+      "patternHitTypes": []
+    },
+    {
+      "path": "audit/2026-10-21/final17-keyboard-containment-e2e-PROPOSAL.patch",
+      "bytes": 13036,
+      "sha256": "61c2f2e27f27160955bc5363c3a23812f5629bb472c34a2c7248e7abbf2aaf47",
+      "changedPaths": [],
+      "patternHitTypes": []
+    }
+  ],
+  "newSinceEarlierThreePathInventory": [
+    "final17-result-hash-deferral-PROPOSAL.patch",
+    "final17-keyboard-containment-css-actual.patch",
+    "final17-keyboard-containment-e2e-actual.patch",
+    "final17-keyboard-containment-e2e-PROPOSAL.patch"
+  ],
+  "patterns": [
+    "private-key-pem",
+    "github-token",
+    "aws-access-key",
+    "provider-secret-key",
+    "jwt-shaped-literal",
+    "credential-url",
+    "literal-sensitive-assignment",
+    "private-config-or-storage-path"
+  ],
+  "referencesInFinal17TopLevelDocs": [
+    {
+      "document": "final17-keyboard-containment-e2e-preparation.json",
+      "patches": [
+        "final17-keyboard-containment-e2e-PROPOSAL.patch"
+      ]
+    },
+    {
+      "document": "final17-target-word-cache-PROPOSAL-REVIEW.json",
+      "patches": [
+        "final17-target-word-cache-FACTORY-BOUNDED-PROPOSAL.patch"
+      ]
+    },
+    {
+      "document": "final17-target-word-cache-PROPOSAL-REVIEW.md",
+      "patches": [
+        "final17-target-word-cache-FACTORY-BOUNDED-PROPOSAL.patch"
+      ]
+    }
+  ],
+  "stagingRecipe": "If later authorized, add only these exact paths after rechecking their hashes. Do not recursively force-add audit directories; do not include traces, archives, private backend configuration/storage or generated audit-instance folders.",
+  "sourceOrTestEdits": false,
+  "staged": false,
+  "browserOrBuildRun": false
+}

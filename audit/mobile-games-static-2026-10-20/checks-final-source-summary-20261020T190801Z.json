@@ -1,0 +1,98 @@
+{
+  "startedAt": "2026-10-20T19:08:01.9660678Z",
+  "completedAt": "2026-10-20T19:10:36.7964451Z",
+  "sourceHead": "dcf4580cd58c7c811422fbbd956ae827c54f048e",
+  "scope": "Final integrated source checks: app/node/domain/portable typecheck, lint and full configured coverage. No browser/build/HTTP/database jobs. Earlier native parity/content/audit receipts are retained.",
+  "status": "passed",
+  "checks": [
+    {
+      "name": "typecheck",
+      "command": "npm run typecheck",
+      "startedAt": "2026-10-20T19:08:02.0411128Z",
+      "durationSeconds": 26.236,
+      "exitCode": 0,
+      "log": "checks-final-typecheck-20261020T190801Z.log",
+      "tail": [
+        "",
+        "> sparowtype@3.0.0 typecheck",
+        "> tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.node.json --noEmit && npm run typecheck:domain",
+        "",
+        "",
+        "> sparowtype@3.0.0 typecheck:domain",
+        "> tsc -p tsconfig.domain.json --noEmit && tsc -p tsconfig.portable.json --noEmit",
+        ""
+      ]
+    },
+    {
+      "name": "lint",
+      "command": "npm run lint",
+      "startedAt": "2026-10-20T19:08:28.3746198Z",
+      "durationSeconds": 99.702,
+      "exitCode": 0,
+      "log": "checks-final-lint-20261020T190801Z.log",
+      "tail": [
+        "D:\\extra\\typing_updated\\typing-forge\\src\\components\\ui\\navigation-menu.tsx",
+        "  111:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components",
+        "",
+        "D:\\extra\\typing_updated\\typing-forge\\src\\components\\ui\\sidebar.tsx",
+        "  636:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components",
+        "",
+        "D:\\extra\\typing_updated\\typing-forge\\src\\components\\ui\\sonner.tsx",
+        "  27:19  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components",
+        "",
+        "D:\\extra\\typing_updated\\typing-forge\\src\\components\\ui\\toggle.tsx",
+        "  37:18  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components",
+        "",
+        "D:\\extra\\typing_updated\\typing-forge\\src\\hooks\\useAuth.tsx",
+        "  46:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components",
+        "",
+        "D:\\extra\\typing_updated\\typing-forge\\src\\pages\\Settings.tsx",
+        "  22:17  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components",
+        "",
+        "\u2716 9 problems (0 errors, 9 warnings)",
+        ""
+      ]
+    },
+    {
+      "name": "coverage",
+      "command": "npm run test:coverage -- --maxWorkers=2",
+      "startedAt": "2026-10-20T19:10:08.1102882Z",
+      "durationSeconds": 28.665,
+      "exitCode": 0,
+      "log": "checks-final-coverage-20261020T190801Z.log",
+      "tail": [
+        "  ...iagnostics.ts |   96.66 |    97.29 |      75 |   96.66 | 64                ",
+        "  typing-course.ts |   98.61 |    96.35 |     100 |   99.09 | 196               ",
+        "  typing-game.ts   |   97.22 |    93.24 |     100 |     100 | ...40,183,287-297 ",
+        " ...ib/typing-core |   93.25 |    89.62 |   98.86 |   99.79 |                   ",
+        "  metrics.ts       |    96.5 |    88.16 |     100 |     100 | ...00,112,122,157 ",
+        "  session.ts       |   89.38 |    89.93 |     100 |     100 | ...14,216,220,223 ",
+        "  transcript.ts    |   94.89 |    90.12 |   96.87 |   99.52 | 32                ",
+        " src/services      |   73.06 |       80 |      72 |   83.03 |                   ",
+        "  ...repository.ts |   67.87 |    76.08 |   67.44 |   78.68 | ...01,109-115,195 ",
+        "  session-sync.ts  |   90.69 |    83.63 |     100 |   94.11 | 36-37             ",
+        " ...ctions/_shared |   96.74 |    93.42 |   84.61 |   97.84 |                   ",
+        "  validation.ts    |   96.74 |    93.42 |   84.61 |   97.84 | 15-16             ",
+        "-------------------|---------|----------|---------|---------|-------------------",
+        "",
+        "=============================== Coverage summary ===============================",
+        "Statements   : 92.13% ( 1863/2022 )",
+        "Branches     : 89.31% ( 2007/2247 )",
+        "Functions    : 93.25% ( 387/415 )",
+        "Lines        : 96.94% ( 1492/1539 )",
+        "================================================================================"
+      ]
+    }
+  ],
+  "receiptDisposition": "Completed successfully at 19:10:36Z before the later stop request; not interrupted. Retained as pre-ignore-repair final-source run; superseded by complete 191056Z rerun after precise ESLint output ignores.",
+  "measurements": {
+    "tests": {
+      "passed": 959,
+      "files": 69
+    },
+    "lint": {
+      "errors": 0,
+      "warnings": 9
+    }
+  }
+}

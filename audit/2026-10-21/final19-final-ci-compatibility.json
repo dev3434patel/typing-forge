@@ -1,0 +1,30 @@
+{
+  "declaredAt": "2026-10-27T13:12:28.654Z",
+  "build": "de097acba6969d580cc8",
+  "status": "PASS-SCOPED",
+  "scope": "Legacy PostgreSQL/WASM compatibility gate and lint after the two E2E fixture edits; no private database or configuration.",
+  "results": [
+    {
+      "name": "database-compatibility",
+      "args": [
+        "supabase/tests/compatibility-check.mjs",
+        "node_modules/@electric-sql/pglite"
+      ],
+      "exitCode": 0,
+      "durationMs": 3857.1825,
+      "log": "audit/2026-10-21/final19-final-database-compatibility.log"
+    },
+    {
+      "name": "fixture-lint",
+      "args": [
+        "node_modules/eslint/bin/eslint.js",
+        "e2e/opening-renderer.ts",
+        "e2e/viewport-acceptance.spec.ts"
+      ],
+      "exitCode": 0,
+      "durationMs": 24977.4706,
+      "log": "audit/2026-10-21/final19-final-fixture-lint.log"
+    }
+  ],
+  "finishedAt": "2026-10-27T13:12:57.497Z"
+}

@@ -11,6 +11,7 @@ import {
   Command,
   Sun,
   Moon,
+  Gamepad2,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
@@ -18,11 +19,14 @@ import { cn } from "@/lib/utils";
 import { BrandWordmark } from "@/components/brand/BrandMark";
 import { usePreferences } from "@/contexts/PreferencesContext";
 import { THEMES } from "@/lib/themes";
+import { useTranslation } from '@/i18n';
+import type { MessageId } from '@/i18n/messages';
 const items = [
   { href: "/", label: "Test", icon: Keyboard, aliases: ["/typing-test"] },
   { href: "/learn", label: "Learn", icon: GraduationCap, aliases: ["/typing-practice", "/practice"] },
   { href: "/lessons", label: "Lessons", icon: BookOpen },
   { href: "/race", label: "Race", icon: Swords },
+  { href: "/games", label: "Games", icon: Gamepad2 },
   { href: "/stats", label: "Stats", icon: BarChart3 },
   { href: "/leaderboard", label: "Rankings", icon: Trophy },
   { href: "/keyboard-lab", label: "Keyboard Lab", icon: Keyboard },
@@ -32,6 +36,8 @@ export const Header = forwardRef<
   React.HTMLAttributes<HTMLElement>
 >((props, ref) => {
   const { user } = useAuth();
+  const { t } = useTranslation();
+  const messageKeys: Record<string, MessageId> = { Test: 'test', Learn: 'learn', Lessons: 'lessons', Race: 'race', Games: 'games', Stats: 'stats', Rankings: 'rankings', 'Keyboard Lab': 'keyboardLab' };
   const { pathname } = useLocation();
   const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : "/";
   const active = (item: (typeof items)[number]) =>
@@ -53,7 +59,7 @@ export const Header = forwardRef<
         >
           <BrandWordmark className="text-lg sm:text-xl" />
         </Link>
-        <nav aria-label="Main navigation" className="hidden min-[1200px]:flex gap-1">
+        <nav aria-label="Main navigation" className="forge-main-navigation hidden min-[1200px]:flex gap-0.5 shrink-0">
           {items.map((item) => (
             <Link
               key={item.href}
@@ -62,7 +68,7 @@ export const Header = forwardRef<
               className={cn("forge-chip", active(item) && "text-primary bg-primary/10")}
             >
               <item.icon size={15} />
-              {item.label}
+              {t(messageKeys[item.label])}
             </Link>
           ))}
         </nav>
@@ -117,7 +123,7 @@ export const Header = forwardRef<
             )}
           >
             <item.icon size={14} />
-            {item.label}
+            {t(messageKeys[item.label])}
           </Link>
         ))}
       </nav>

@@ -1,0 +1,106 @@
+{
+  "status": "PARTIAL",
+  "reviewKind": "Read-only source and preserved receipt analysis; no new load, browser, PHP test, service or schema execution",
+  "sourceBuild": "3ffaa0a179b47e336a2d",
+  "runtimeSourceChanged": false,
+  "receipt": "audit/2026-10-21/pack-backend-4678b38b84a8bd3f-arena-load-raw.json",
+  "declaration": "audit/2026-10-21/pack-backend-4678b38b84a8bd3f-capacity-declaration.json",
+  "capacityOutcome": {
+    "status": "FAILED",
+    "allocatedRooms": 50,
+    "occupiedSeats": 400,
+    "concurrency": 20,
+    "totalRequests": 1653,
+    "successfulRequests": 1196,
+    "successfulRequestP95Ms": 767.405999999999,
+    "declaredP95TargetMs": 150,
+    "statusCounts": { "200": 1196, "403": 1, "409": 1, "429": 455 },
+    "expectedNegativeChecks": ["One ninth-seat join409", "One outsider member get403"],
+    "createConflictsObserved": 0,
+    "evidence422Observed": 0,
+    "retries": 0,
+    "limitsRelaxed": false,
+    "quantileMethod": "Same nearest-rank formula as the declared harness: sorted successful latencies[ceil(n * 0.95) - 1]. Errors remain in raw evidence and make overall status FAILED."
+  },
+  "perPhase": [
+    { "phase": "create", "requests": 50, "successes": 50, "http429": 0, "successfulP95Ms": 103.37660000000005 },
+    { "phase": "join", "requests": 351, "successes": 350, "http429": 0, "successfulP95Ms": 88.32030000000009, "otherStatus": { "409": 1 } },
+    { "phase": "get", "requests": 51, "successes": 50, "http429": 0, "successfulP95Ms": 52.023299999999836, "otherStatus": { "403": 1 } },
+    { "phase": "spectate", "requests": 1, "successes": 1, "http429": 0, "successfulP95Ms": 46.16940000000068, "sampleLimitation": "One request; this is not a spectator capacity estimate." },
+    { "phase": "ready", "requests": 400, "successes": 400, "http429": 0, "successfulP95Ms": 95.84230000000025 },
+    { "phase": "submit", "requests": 400, "successes": 345, "http429": 55, "successfulP50Ms": 658.7786999999989, "successfulP95Ms": 868.3140000000021, "successfulMinMs": 267.1324000000004, "successfulMaxMs": 1206.8826000000008 },
+    { "phase": "leave", "requests": 400, "successes": 0, "http429": 400, "successfulP95Ms": null }
+  ],
+  "measuredConclusions": [
+    "Replay submission is the substantially slower measured phase. Successful room allocation is not a latency or complete-lifecycle capacity pass.",
+    "The single-IP trial exceeds the unchanged 1200 requests/IP/minute policy. All455 HTTP429 responses remain failures in the capacity outcome.",
+    "The shared IP API limiter is applied before authenticated Arena handling. Its SQL UPSERT updates the same bucket row for these same-IP requests. This establishes a serialization point, not its measured share of request latency."
+  ],
+  "sourceObservations": [
+    {
+      "paths": [
+        { "path": "backend/public/index.php", "line": 47 },
+        { "path": "backend/public/index.php", "line": 108 },
+        { "path": "backend/src/Security.php", "line": 57 },
+        { "path": "backend/src/Security.php", "line": 65 }
+      ],
+      "observation": "Global1200/IP/minute API bucket plus300/IP/account/minute Arena bucket remain unchanged. Rate accounting uses an atomic SQL UPSERT followed by an attempts read."
+    },
+    {
+      "paths": [
+        { "path": "backend/src/ArenaService.php", "line": 14 },
+        { "path": "backend/src/ArenaService.php", "line": 16 },
+        { "path": "backend/src/ArenaService.php", "line": 28 },
+        { "path": "backend/src/ArenaService.php", "line": 36 },
+        { "path": "backend/src/ArenaService.php", "line": 42 },
+        { "path": "backend/src/ArenaService.php", "line": 46 }
+      ],
+      "observation": "Actor account, room and member FOR UPDATE locks remain held across validation, authoritative replay, writes, settlement and public response serialization. Competing requests in the same room serialize. Cost attribution requires lock-wait and stage timing evidence."
+    },
+    {
+      "paths": [
+        { "path": "backend/src/ArenaEvidence.php", "line": 15 },
+        { "path": "backend/src/ArenaEvidence.php", "line": 29 },
+        { "path": "backend/src/SessionValidator.php", "line": 554 },
+        { "path": "backend/src/SessionValidator.php", "line": 435 },
+        { "path": "backend/src/SessionValidator.php", "line": 445 }
+      ],
+      "observation": "validate replays evidence at the candidate elapsed duration to verify the submitted transcript and metrics. ArenaEvidence then replays at authoritative server elapsed duration. These durations can differ; the first metrics and chart cannot simply replace the authoritative projections. Each replay also reconstructs per-second samples."
+    },
+    {
+      "paths": [
+        { "path": "src/services/arena-service.ts", "line": 25 },
+        { "path": "src/services/arena-service.ts", "line": 33 },
+        { "path": "src/pages/Arena.tsx", "line": 65 }
+      ],
+      "observation": "Active/countdown clients poll after roughly1000ms plus request completion; active typing checkpoints attempt every1000ms without overlapping another checkpoint. Large groups behind one public IP can exceed the global1200/minute budget even while every account remains within its individual budget. Exact production request rate depends on latency, visibility and state."
+    }
+  ],
+  "scopeLimitations": {
+    "harnessPath": "audit/mega-pack-2026-10-21/run-arena-load.mjs",
+    "syntheticEventsPerAccount": 10,
+    "submissionRoundsPerAccount": 1,
+    "authenticationEndpointPerformance": "NOT-MEASURED; sessions were guard-provisioned synthetic fixtures",
+    "sustainedGrowing120SecondEvidence": "NOT-RUN",
+    "cpuProfile": "NOT-RUN",
+    "sqlWaitAndQueryProfile": "NOT-RUN",
+    "transportStageTimings": "NOT-RUN",
+    "productionHostingAndMultiRegion": "UNVERIFIED",
+    "hardwareContext": "Retained declaration records20 logical CPUs,16.85GB total memory and1.21GB free memory. Resource pressure is context, not a proven cause of the submit latency."
+  },
+  "unverifiedConcurrencyRisk": {
+    "status": "UNVERIFIED",
+    "path": "backend/src/ArenaService.php",
+    "line": 154,
+    "hypothesis": "A final nonhost rematch vote may create the new host/member FK rows while holding the old room lock. An implicit InnoDB FK read could wait for a different actor's users FOR UPDATE lock while that actor waits for the old room. A simultaneous host poll/final-vote native test is needed to establish whether this potential cycle occurs. The sequential rematch functional check does not cover it.",
+    "observedDefectClaim": false,
+    "newConfirmedCorrectnessBlocker": false
+  },
+  "safeNextStep": [
+    "Declare a separate profiling protocol using an isolated owned backend, fixed concurrency, realistic growing native-compatible evidence, all successful and failed statuses, and unchanged existing rate/deadline/validation limits. Preserve every current failed receipt.",
+    "Capture per-request limiter, account-lock wait, room-lock wait, canonical validation, authoritative projection, persistence and serialization durations, plus SQL waits and a CPU profile. Do not infer a dominant cause from end-to-end latency alone.",
+    "If profiles support it, cache immutable target preprocessing or share validated replay state while recomputing metrics at the authoritative elapsed duration. Preserve exact grapheme, correction, prefix, timing, idempotency, deletion and quarantine contracts.",
+    "Any later move of expensive validation outside the transaction must re-lock and revalidate account existence/auth epoch, room version/status/deadline and immutable member prefix before commit. Test concurrent submissions, deletion and rematch paths against real SQL.",
+    "Treat the same-NAT rate-policy/product capacity conflict as an explicit future architecture decision. Do not raise or disable the limiter solely to turn this failed test into a pass. Evaluate authenticated quotas plus independent edge abuse controls under a separately reviewed policy and trusted proxy configuration."
+  ]
+}

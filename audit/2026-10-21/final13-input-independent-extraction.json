@@ -1,0 +1,86 @@
+{
+  "status": "FAILED",
+  "capturedAt": "2026-10-22T18:39:23.972579+00:00",
+  "reportLocalDate": "2026-10-23",
+  "scope": "Independent read-only classification of the completed source13 three-run matched input receipt. No new browser, timing, build, test, native or source-hashing job performed.",
+  "receipt": "audit/2026-10-21/final13-input-results.json",
+  "protocolDeclaredAt": "2026-10-22T18:34:45.279Z",
+  "build": {
+    "version": "b00993b05c14117dca60",
+    "publicFiles": 134,
+    "bytes": 2927284
+  },
+  "functionalIntegrity": "PASS-SCOPED",
+  "latencyTarget": "Every one of the three observed typing-event p98 values must be <100ms.",
+  "latencyFailedRuns": 3,
+  "runs": [
+    {
+      "run": 1,
+      "build": "b00993b05c14117dca60",
+      "exact": true,
+      "attempts": 495,
+      "accuracy": 100,
+      "p98Ms": 168,
+      "maxMs": 376,
+      "rotation": {
+        "beforeLength": 247,
+        "afterLength": 247,
+        "retainedExactly": true,
+        "overflow": false
+      },
+      "errors": []
+    },
+    {
+      "run": 2,
+      "build": "b00993b05c14117dca60",
+      "exact": true,
+      "attempts": 495,
+      "accuracy": 100,
+      "p98Ms": 160,
+      "maxMs": 360,
+      "rotation": {
+        "beforeLength": 247,
+        "afterLength": 247,
+        "retainedExactly": true,
+        "overflow": false
+      },
+      "errors": []
+    },
+    {
+      "run": 3,
+      "build": "b00993b05c14117dca60",
+      "exact": true,
+      "attempts": 495,
+      "accuracy": 100,
+      "p98Ms": 184,
+      "maxMs": 488,
+      "rotation": {
+        "beforeLength": 247,
+        "afterLength": 247,
+        "retainedExactly": true,
+        "overflow": false
+      },
+      "errors": []
+    }
+  ],
+  "automaticRetries": 0,
+  "resultFiltering": false,
+  "driverExitInterpretation": "The coordinator-reported runner exit0 establishes only its functional checks. It is not a latency gate; all three retained p98 values miss the declared target.",
+  "priorSource12": {
+    "receipt": "audit/2026-10-21/final12-input-results.json",
+    "protocolDeclaredAt": "2026-10-21T20:08:36.380Z",
+    "p98Ms": [
+      72,
+      64,
+      64
+    ],
+    "scope": "Historical pass on its own build/date, not current source13 acceptance."
+  },
+  "limits": [
+    "Source13 compiled/source evidence retains21OctUTC timestamps; this input protocol actually began22OctUTC, while the user report date is23OctAsia/Calcutta. Historical evidence paths/timestamps are not rewritten.",
+    "Same declared driver and4xCPU protocol does not establish a controlled same-host-state causal A/B across dates. Cause remains unproven.",
+    "Thresholded/quantized lab Event Timing is not fieldINP or physical-device behavior.",
+    "Exact input/rotation and exit0 do not turn the FAILED3/3 latency target into a pass.",
+    "Source13 static/mobile/placement/Lighthouse NOT-RUN; original fidelity307/308 and earlier failures remain unchanged."
+  ]
+}

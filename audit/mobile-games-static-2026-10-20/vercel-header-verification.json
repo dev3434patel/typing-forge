@@ -1,0 +1,75 @@
+{
+  "checkedAt": "2026-10-20T18:41:04.396Z",
+  "scope": "Non-browser configuration review of staged vercel.json only; no build, HTTP request or remote deployment.",
+  "source": ":vercel.json",
+  "stagedSha256": "592606e20ede7b73dde5bc931ce4c584b43f131c353a6fd6642d342158205ad1",
+  "passed": 14,
+  "total": 14,
+  "checks": [
+    {
+      "name": "valid JSON",
+      "pass": true
+    },
+    {
+      "name": "Vite framework",
+      "pass": true
+    },
+    {
+      "name": "tested static build command exists",
+      "pass": true
+    },
+    {
+      "name": "dist output",
+      "pass": true
+    },
+    {
+      "name": "SPA rewrite",
+      "pass": true
+    },
+    {
+      "name": "X-Content-Type-Options",
+      "pass": true
+    },
+    {
+      "name": "Referrer-Policy",
+      "pass": true
+    },
+    {
+      "name": "X-Frame-Options",
+      "pass": true
+    },
+    {
+      "name": "Permissions-Policy",
+      "pass": true
+    },
+    {
+      "name": "Content-Security-Policy",
+      "pass": true
+    },
+    {
+      "name": "/sw.js no-cache",
+      "pass": true
+    },
+    {
+      "name": "/offline-build.json no-cache",
+      "pass": true
+    },
+    {
+      "name": "/index.html no-cache",
+      "pass": true
+    },
+    {
+      "name": "working JSON matches staged config",
+      "pass": true
+    }
+  ],
+  "requiredGlobalHeaders": {
+    "X-Content-Type-Options": "nosniff",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "X-Frame-Options": "DENY",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=(), gyroscope=()",
+    "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https: wss:; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'"
+  },
+  "servedVercelResponseHeaders": "UNVERIFIED",
+  "postAcceptanceNote": "Permissions-Policy was restored after static acceptance. The local directory-server browser tests did not simulate or verify Vercel response headers; compiled web assets are unchanged by this hosting configuration edit."
+}

@@ -1,0 +1,17 @@
+{
+  "recordedAt": "2026-10-20T20:12:31.066Z",
+  "status": "FAILED",
+  "command": "npm run test:run -- src/domain/analytics/error-classifier.test.ts src/domain/training/training.test.ts src/domain/analytics/analytics.test.ts src/lib/__tests__/typing-course.test.ts src/hooks/useTestResults.test.ts --maxWorkers=1 --reporter=dot",
+  "exitCode": 1,
+  "files": 5,
+  "passed": 300,
+  "failed": 4,
+  "cause": "Four new analytics tampering tests attempted to mutate deliberately frozen SessionController result objects. Test fixture now structuredClones its result before intentional tampering. Production immutability is preserved.",
+  "failures": [
+    "malformed replay fixture sequence mutation",
+    "share fixture metric mutation",
+    "practice-assist fixture configuration mutation",
+    "composition fixture provenance mutation"
+  ],
+  "productionFailureClaimed": false
+}

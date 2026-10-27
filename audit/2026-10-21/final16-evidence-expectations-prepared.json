@@ -1,0 +1,165 @@
+{
+  "preparedAt": "2026-10-22T19:52:35.895513+00:00",
+  "status": "PREPARED-NOT-RUN",
+  "scope": "Read-only independent16 evidence reconciliation protocol. Preparation is not completion; missing files remain NOT-RUN, failures remain FAILED, and conditional skips remain explicit. No runner will launch tests/builds/browsers/services or read private configuration.",
+  "actualBuildId": null,
+  "requiredBuildEnvironment": "SPAROWTYPE_FINAL16_BUILD_ID must contain the actual frozen20hex identity; never use a placeholder.",
+  "completedSourceExtraction": "audit/2026-10-21/final16-source-independent-extraction.json",
+  "expectedGates": {
+    "source": {
+      "receipt": "final16-source-gates.json",
+      "commands": 12,
+      "allExitZero": true,
+      "automaticRetries": 0,
+      "scope": "Source-only; raw unit/PHP counts independently extracted."
+    },
+    "staticArtifacts": {
+      "receipt": "final16-static-artifacts.json",
+      "passed": 67,
+      "sourceBuildMustMatchNormalFrozenBuild": true,
+      "dedicatedStaticIdentitiesFromArtifacts": true
+    },
+    "staticDeployment": {
+      "receipt": "final16-static-process.json",
+      "total": 56,
+      "passed": 56,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "globalErrors": 0,
+      "engines": [
+        "chromium",
+        "edge",
+        "firefox",
+        "webkit"
+      ],
+      "casesPerEngine": 14,
+      "automaticRetries": 0
+    },
+    "gameAxe": {
+      "receipt": "final16-static-process.json",
+      "section": "game-accessibility",
+      "total": 16,
+      "passed": 16,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "casesPerEngine": 4,
+      "requestedWidths": [
+        390,
+        1440
+      ],
+      "scope": "Actual engine scopes only; PlaywrightWebKit is not nativeSafari."
+    },
+    "mobileFunctional": {
+      "receipt": "mobile-workspaces-final16-static.json",
+      "process": "mobile-workspaces-final16-static-process.json",
+      "caseIds": [
+        "learn",
+        "course",
+        "local-bot",
+        "games"
+      ],
+      "allExactActualAttempts": true,
+      "inputAccuracy": 100,
+      "apiRequests": 0,
+      "pageErrors": 0,
+      "consoleErrors": 0,
+      "overflow": false,
+      "ownChildrenAndServerExited": true,
+      "scope": "One actual run per workspace; functional target distinct from latency."
+    },
+    "mobileLatency": {
+      "receipt": "mobile-workspaces-final16-static.json",
+      "eachWorkspaceP98StrictlyUnderMs": 100,
+      "reportEveryAttemptAndMaximum": true,
+      "fieldInpClaim": false
+    },
+    "matchedInputFunctional": {
+      "receipt": "final16-input-results.json",
+      "runs": 3,
+      "eachRunAttempts": 495,
+      "eachRunAccuracy": 100,
+      "rotationRetainedBeforeAndAfter": 247,
+      "errors": 0,
+      "overflow": false,
+      "filtering": false,
+      "automaticRetries": 0
+    },
+    "matchedInputLatency": {
+      "receipt": "final16-input-results.json",
+      "everyRunP98StrictlyUnderMs": 100,
+      "reportEveryRunMaximum": true,
+      "fieldInpClaim": false
+    },
+    "lighthouse": {
+      "receipt": "final16-mobile-results.json",
+      "runs": 3,
+      "medianPerformanceAtLeast": 95,
+      "eachAccessibility": 100,
+      "eachBestPractices": 100,
+      "eachSeo": 100,
+      "eachLcpAtMostMs": 2500,
+      "eachClsAtMost": 0.05,
+      "introSkipped": false,
+      "qualityOverrides": false,
+      "quietBeforeEachSeconds": 30,
+      "automaticRetries": 0,
+      "scoreFiltering": false
+    },
+    "fullMatrix": {
+      "receipt": "final16-browser-matrix.json",
+      "sourceSpecPartitionExactlyOnce": 62,
+      "engines": [
+        "chromium",
+        "edge",
+        "firefox",
+        "webkit"
+      ],
+      "failed": 0,
+      "flaky": 0,
+      "automaticRetries": 0,
+      "conditionalSkips": "List actual skipped cases/reasons per batch/engine. A scoped passing run with skips is not every feature passed. Native credential cases have a separate real16 gate.",
+      "SPAROWTYPE_STATIC_OUTPUTS": "Must remain unset; dedicated root/Pages static runner exclusively owns those cases/screenshots."
+    },
+    "nativeBrowser": {
+      "receipt": "final16-native-browser.json",
+      "expected": 16,
+      "passed": 16,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "engines": [
+        "chromium",
+        "edge",
+        "firefox",
+        "webkit"
+      ],
+      "automaticRetries": 0,
+      "cleanup": "Derive same owned pack-backend-<id>-cleanup.json from wrapper readyReceipt; own processes stopped gracefully,residual[],own temporary directory removed,originalConfigReadfalse. No original service health inference."
+    },
+    "realPlacement": {
+      "receiptDefault": "final16-placement-real135-confirmation-raw.json",
+      "actualReceiptPathMayBeExplicitlyOverridden": true,
+      "passedNamedChecks": 82,
+      "failedNamedChecks": 0,
+      "parts": 3,
+      "eachCanonicalActiveMs": 45000,
+      "eachObservedRealAtLeastMs": 45000,
+      "guidancePersistedAfterReload": true,
+      "courseCheckpoints": 0,
+      "privateGoalQualification": false,
+      "ownedBrowserClosed": true,
+      "scope": "Ordinary real clocks/native UI; no fake completion, seeded records or virtualclock. Three45s parts (135s total) plus overhead are functional duration, not a latency test."
+    }
+  },
+  "reportPolicy": {
+    "missingReceipt": "NOT-RUN",
+    "runningOrPartialReceipt": "PARTIAL",
+    "failedTarget": "FAILED",
+    "completedScopedGate": "PASS-SCOPED",
+    "overall": "PARTIAL unless all declared evidence completed; even clean measured gates do not erase literal/unshipped/hosted/physical/capacity limitations.",
+    "historicalResultsNeverPromoted": true,
+    "noMissingCompletedFilesFabricated": true
+  }
+}

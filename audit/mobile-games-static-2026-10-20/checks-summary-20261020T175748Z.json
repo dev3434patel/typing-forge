@@ -1,0 +1,374 @@
+{
+  "startedAt": "2026-10-20T17:57:48.2776421Z",
+  "completedAt": "2026-10-20T17:59:45.9494459Z",
+  "sourceHead": "dcf4580cd58c7c811422fbbd956ae827c54f048e",
+  "scope": "Sequential source checks; no browser, build or HTTP/database mutation. test:database uses the historical isolated WASM compatibility fixture.",
+  "status": "passed",
+  "checks": [
+    {
+      "name": "typecheck",
+      "command": "npm run typecheck",
+      "startedAt": "2026-10-20T17:57:48.3395847Z",
+      "durationSeconds": 16.542,
+      "exitCode": 0,
+      "log": "checks-typecheck-20261020T175748Z.log",
+      "tail": [
+        "",
+        "> sparowtype@3.0.0 typecheck",
+        "> tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.node.json --noEmit && npm run typecheck:domain",
+        "",
+        "",
+        "> sparowtype@3.0.0 typecheck:domain",
+        "> tsc -p tsconfig.domain.json --noEmit && tsc -p tsconfig.portable.json --noEmit",
+        ""
+      ]
+    },
+    {
+      "name": "lint",
+      "command": "npm run lint",
+      "startedAt": "2026-10-20T17:58:04.9585154Z",
+      "durationSeconds": 49.509,
+      "exitCode": 0,
+      "log": "checks-lint-20261020T175748Z.log",
+      "tail": [
+        "",
+        "D:\\extra\\typing_updated\\typing-forge\\src\\components\\ui\\sidebar.tsx",
+        "  636:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components",
+        "",
+        "D:\\extra\\typing_updated\\typing-forge\\src\\components\\ui\\sonner.tsx",
+        "  27:19  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components",
+        "",
+        "D:\\extra\\typing_updated\\typing-forge\\src\\components\\ui\\toggle.tsx",
+        "  37:18  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components",
+        "",
+        "D:\\extra\\typing_updated\\typing-forge\\src\\hooks\\useAuth.tsx",
+        "  46:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components",
+        "",
+        "D:\\extra\\typing_updated\\typing-forge\\src\\pages\\Settings.tsx",
+        "  22:17  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components",
+        "",
+        "✖ 9 problems (0 errors, 9 warnings)",
+        ""
+      ]
+    },
+    {
+      "name": "coverage",
+      "command": "npm run test:coverage -- --maxWorkers=2",
+      "startedAt": "2026-10-20T17:58:54.4902830Z",
+      "durationSeconds": 24.54,
+      "exitCode": 0,
+      "log": "checks-coverage-20261020T175748Z.log",
+      "tail": [
+        "  typing-game.ts   |   97.22 |    92.85 |     100 |     100 | ...40,183,281-291 ",
+        " ...ib/typing-core |   93.25 |    89.62 |   98.86 |   99.79 |                   ",
+        "  metrics.ts       |    96.5 |    88.16 |     100 |     100 | ...00,112,122,157 ",
+        "  session.ts       |   89.38 |    89.93 |     100 |     100 | ...14,216,220,223 ",
+        "  transcript.ts    |   94.89 |    90.12 |   96.87 |   99.52 | 32                ",
+        " src/services      |   73.06 |       80 |      72 |   83.03 |                   ",
+        "  ...repository.ts |   67.87 |    76.08 |   67.44 |   78.68 | ...01,109-115,195 ",
+        "  session-sync.ts  |   90.69 |    83.63 |     100 |   94.11 | 36-37             ",
+        " ...ctions/_shared |   96.74 |    93.42 |   84.61 |   97.84 |                   ",
+        "  validation.ts    |   96.74 |    93.42 |   84.61 |   97.84 | 15-16             ",
+        "-------------------|---------|----------|---------|---------|-------------------",
+        "",
+        "=============================== Coverage summary ===============================",
+        "Statements   : 92.13% ( 1863/2022 )",
+        "Branches     : 89.3% ( 2003/2243 )",
+        "Functions    : 93.25% ( 387/415 )",
+        "Lines        : 96.94% ( 1491/1538 )",
+        "================================================================================"
+      ]
+    },
+    {
+      "name": "database-portable",
+      "command": "npm run test:database",
+      "startedAt": "2026-10-20T17:59:19.0490799Z",
+      "durationSeconds": 4.484,
+      "exitCode": 0,
+      "log": "checks-database-portable-20261020T175748Z.log",
+      "tail": [
+        "Replayed 20260112195233_30e84053-274e-4d7b-a11e-2fd6f53ef710.sql",
+        "Replayed 20260112195838_f15b4374-e640-484c-b853-b1e7d11f0358.sql",
+        "Replayed 20260112202820_6c0a35f1-976e-478b-9408-63db6356f5ea.sql",
+        "Replayed 20260112203830_8771865b-0f66-4562-91d1-3af18262a9d2.sql",
+        "Replayed 20260123144927_251c9dd5-b537-4d22-b391-1be4e32188fc.sql",
+        "Replayed 20260209193256_67c13f03-2d0a-4d67-8ee8-7002dffac8dc.sql",
+        "Replayed 20261015090000_forge_v3_integrity.sql",
+        "Replayed 20261015091000_forge_race_protocol.sql",
+        "Replayed 20261015092000_forge_account_cleanup.sql",
+        "Replayed 20261015093000_forge_ranking_reads.sql",
+        "Replayed 20261015094000_forge_preference_versions.sql",
+        "Replayed 20261015095000_forge_owner_intent.sql",
+        "Replayed 20261016143000_sparow_preferences.sql",
+        "Replayed 20261016150000_sparow_period_rankings.sql",
+        "PostgreSQL compatibility replay + SQL integrity assertions passed.",
+        "Owner-intent deletion, matched-duration rooms and one-use challenge assertions passed.",
+        "UTC period rankings, bounded pagination, rejected periods, public aggregate privacy and owner/version-checked sound/reduced-motion preference assertions passed.",
+        "Legacy upgrade fixture passed: history preserved, scores quarantined, handles safe, old rooms cancelled."
+      ]
+    },
+    {
+      "name": "content",
+      "command": "npm run test:content",
+      "startedAt": "2026-10-20T17:59:23.5467568Z",
+      "durationSeconds": 7.895,
+      "exitCode": 0,
+      "log": "checks-content-20261020T175748Z.log",
+      "tail": [
+        "    },",
+        "    {",
+        "      \"check\": \"Portable SELECT/CTE subset syntax via SQLite EXPLAIN\",",
+        "      \"passed\": 4",
+        "    },",
+        "    {",
+        "      \"check\": \"PostgreSQL/WASM syntax and planning via PGlite EXPLAIN, no exercise execution\",",
+        "      \"passed\": 4,",
+        "      \"runtime\": \"PostgreSQL 18.6 (PGlite 0.5.10) on wasm32-unknown-emscripten, compiled by emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 6.0.5 (1db513782be24469589d7cb8a1f1834e9a33f271), 32-bit\",",
+        "      \"limitation\": \"Disposable in-memory PostgreSQL parser/planner evidence; live native Supabase Auth/API/Realtime and concurrency remain separate release gates.\"",
+        "    },",
+        "    {",
+        "      \"check\": \"Rust metadata compilation, no executable output/execution\",",
+        "      \"passed\": 4,",
+        "      \"runtime\": \"rustc 1.91.0 (f8297e351 2025-10-28)\"",
+        "    }",
+        "  ]",
+        "}"
+      ]
+    },
+    {
+      "name": "php-parity",
+      "command": "npm run test:php",
+      "startedAt": "2026-10-20T17:59:31.4639300Z",
+      "durationSeconds": 4.424,
+      "exitCode": 0,
+      "log": "checks-php-parity-20261020T175748Z.log",
+      "tail": [
+        "",
+        "> sparowtype@3.0.0 test:php",
+        "> node backend/tests/validation-parity.mjs",
+        "",
+        "{\"date\":\"2026-10-20T17:59:35.842Z\",\"scope\":\"Pure canonical portable/native PHP differential replay; no HTTP or database mutation\",\"cases\":520,\"validReferenceCases\":495,\"rejectionCases\":25,\"mismatches\":0,\"phpBinary\":\"C:/xampp/php/php.exe\",\"unicode\":\"Latin/NFC/Arabic/Devanagari/Gujarati/Bengali/emoji\",\"seed\":\"0x571930ab\",\"sourceHashes\":{\"src/lib/typing-core/types.ts\":\"c95e4aaa007fce5b25f5bc35442806bc37a82d700c2f3c682d28ce7cef0921aa\",\"src/lib/typing-core/transcript.ts\":\"f0d5e8763e3d04461dbd5b7aeefc90a22c93686ba1280c973a4e02ef481149ad\",\"src/lib/typing-core/metrics.ts\":\"c58cd97ebf341b755f06c1a8c26befc8b6660082202692b67fbe7e2fa7f78c9d\",\"src/lib/typing-core/session.ts\":\"3a1c8838d9bcc0036157cb491371eab550de078cfafc7a85874ef0f4854b22b1\",\"src/lib/learning-evidence.ts\":\"498d2d8abe625cdc4ba665d47a1220588e6a7b74bebc2c54df255e0f34524076\",\"supabase/functions/_shared/validation.ts\":\"007fdacccd5756a225f10227d5f31e2c734a10bd115a37e7587c80c41c4bd8da\",\"backend/src/SessionValidator.php\":\"367493ae3769c2928f5a9b943d333e2270a40e7d708afe34724197cb53fad1f1\"}}"
+      ]
+    },
+    {
+      "name": "php-course",
+      "command": "npm run test:course-php",
+      "startedAt": "2026-10-20T17:59:35.9096028Z",
+      "durationSeconds": 7.2,
+      "exitCode": 0,
+      "log": "checks-php-course-20261020T175748Z.log",
+      "tail": [
+        "{",
+        "  \"date\": \"2026-10-20T17:59:43.050Z\",",
+        "  \"scope\": \"Pure canonical browser-session -> native PHP replay, without HTTP/database mutations\",",
+        "  \"catalogLessons\": 36,",
+        "  \"originalVariants\": 108,",
+        "  \"cases\": 139,",
+        "  \"acceptedCases\": 122,",
+        "  \"rejectionCases\": 17,",
+        "  \"failures\": [],",
+        "  \"passed\": true,",
+        "  \"sourceHashes\": {",
+        "    \"backend/resources/typing-course-v1.json\": \"fc4dd602a730f0916b5fb214d7ffcf8efb5b6907e06894ba00e489f61ef6cb39\",",
+        "    \"src/lib/typing-course.ts\": \"303790d412ec07868ba73fae0cd18800020574618659b37e62d9a5d75ad3af7e\",",
+        "    \"backend/src/CourseAssessment.php\": \"224f3b3ca7192089ff04027a9e8411573565a1e3bc2e3b1180b509e72bfe1795\",",
+        "    \"backend/src/SessionValidator.php\": \"367493ae3769c2928f5a9b943d333e2270a40e7d708afe34724197cb53fad1f1\"",
+        "  },",
+        "  \"automatedInputProofClaimed\": false",
+        "}"
+      ]
+    },
+    {
+      "name": "dependency-audit",
+      "command": "npm audit --omit=dev --audit-level=high",
+      "startedAt": "2026-10-20T17:59:43.1331375Z",
+      "durationSeconds": 2.807,
+      "exitCode": 0,
+      "log": "checks-dependency-audit-20261020T175748Z.log",
+      "tail": [
+        "found 0 vulnerabilities"
+      ]
+    }
+  ],
+  "measurements": {
+    "unitTests": {
+      "passed": 948,
+      "filesPassed": 68
+    },
+    "coverage": {
+      "lines": {
+        "total": 1538,
+        "covered": 1491,
+        "skipped": 0,
+        "pct": 96.94
+      },
+      "statements": {
+        "total": 2022,
+        "covered": 1863,
+        "skipped": 0,
+        "pct": 92.13
+      },
+      "functions": {
+        "total": 415,
+        "covered": 387,
+        "skipped": 0,
+        "pct": 93.25
+      },
+      "branches": {
+        "total": 2243,
+        "covered": 2003,
+        "skipped": 0,
+        "pct": 89.3
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": "Unknown"
+      }
+    },
+    "featureCoverage": [
+      {
+        "file": "src/lib/countdown-clock.ts",
+        "lines": {
+          "total": 15,
+          "covered": 15,
+          "skipped": 0,
+          "pct": 100
+        },
+        "functions": {
+          "total": 4,
+          "covered": 4,
+          "skipped": 0,
+          "pct": 100
+        },
+        "statements": {
+          "total": 17,
+          "covered": 16,
+          "skipped": 0,
+          "pct": 94.11
+        },
+        "branches": {
+          "total": 10,
+          "covered": 9,
+          "skipped": 0,
+          "pct": 90
+        }
+      },
+      {
+        "file": "src/lib/typing-game-records.ts",
+        "lines": {
+          "total": 30,
+          "covered": 30,
+          "skipped": 0,
+          "pct": 100
+        },
+        "functions": {
+          "total": 8,
+          "covered": 8,
+          "skipped": 0,
+          "pct": 100
+        },
+        "statements": {
+          "total": 34,
+          "covered": 34,
+          "skipped": 0,
+          "pct": 100
+        },
+        "branches": {
+          "total": 50,
+          "covered": 50,
+          "skipped": 0,
+          "pct": 100
+        }
+      },
+      {
+        "file": "src/lib/typing-game.ts",
+        "lines": {
+          "total": 65,
+          "covered": 65,
+          "skipped": 0,
+          "pct": 100
+        },
+        "functions": {
+          "total": 14,
+          "covered": 14,
+          "skipped": 0,
+          "pct": 100
+        },
+        "statements": {
+          "total": 72,
+          "covered": 70,
+          "skipped": 0,
+          "pct": 97.22
+        },
+        "branches": {
+          "total": 70,
+          "covered": 65,
+          "skipped": 0,
+          "pct": 92.85
+        }
+      },
+      {
+        "file": "src/services/game-data.ts",
+        "lines": {
+          "total": 9,
+          "covered": 9,
+          "skipped": 0,
+          "pct": 100
+        },
+        "functions": {
+          "total": 4,
+          "covered": 4,
+          "skipped": 0,
+          "pct": 100
+        },
+        "statements": {
+          "total": 9,
+          "covered": 9,
+          "skipped": 0,
+          "pct": 100
+        },
+        "branches": {
+          "total": 8,
+          "covered": 8,
+          "skipped": 0,
+          "pct": 100
+        }
+      }
+    ],
+    "lint": {
+      "errors": 0,
+      "existingFastRefreshWarnings": 9
+    },
+    "portableDatabase": {
+      "passed": true,
+      "scope": "Disposable historical PostgreSQL/WASM compatibility fixture; no user database."
+    },
+    "content": {
+      "passed": true,
+      "uniqueExamples": 20
+    },
+    "nativePhp": {
+      "parity": {
+        "cases": 520,
+        "accepted": 495,
+        "rejected": 25,
+        "mismatches": 0,
+        "receipt": "checks-php-parity-20261020T175748Z.json"
+      },
+      "course": {
+        "cases": 139,
+        "accepted": 122,
+        "rejected": 17,
+        "failures": [],
+        "receipt": "checks-php-course-20261020T175748Z.json"
+      }
+    },
+    "productionDependencies": {
+      "vulnerabilities": 0
+    },
+    "browserJobsPerformed": false,
+    "httpOrUserDatabaseTestsPerformed": false
+  }
+}

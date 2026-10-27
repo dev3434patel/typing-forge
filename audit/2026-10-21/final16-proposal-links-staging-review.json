@@ -1,0 +1,61 @@
+{
+  "capturedAt": "2026-10-22T20:05:22.688253+00:00",
+  "status": "PASS-SCOPED-READ-ONLY-PROPOSAL-INVENTORY",
+  "scope": "Three explicit new source-only diff artifacts inspected as UTF-8 text and finite secret patterns, plus direct proposal references. No patch applied, staging/deletion/source/E2E edits or jobs. This is not a repository-wide secret guarantee.",
+  "curatedExtensionGap": ".patch is omitted by current curated staging extension policy; explicit allowlisting these exact paths avoids broken proposal Markdown/JSON references.",
+  "exactPublicPatchCandidates": [
+    {
+      "path": "audit/2026-10-21/final16-flat-alignment-freezer-PROPOSAL.patch",
+      "bytes": 2438,
+      "sha256": "b9bc033dff640c5b30e458e5e42fc5cad38d3bafcd3e29e62854a877c665ca49",
+      "utf8TextOnly": true,
+      "finiteSecretPatternMatches": 0,
+      "productionPathsInDiff": [
+        "src/lib/typing-core/session.ts"
+      ],
+      "publicEvidenceSafeContent": true,
+      "applicationApproval": "Historical proposed variant; actual16 implementation is recorded in final16-flat-alignment-source-review.json and includes the later compile-time flat-leaf guard. Do not substitute proposal for actual code."
+    },
+    {
+      "path": "audit/2026-10-21/final16-target-words-cache-OPTIONAL-PROPOSAL.patch",
+      "bytes": 1252,
+      "sha256": "47b712657ec1e17e6d258d46c148f66743e2140d205fadec4f567f9804160489",
+      "utf8TextOnly": true,
+      "finiteSecretPatternMatches": 0,
+      "productionPathsInDiff": [
+        "src/lib/typing-core/transcript.ts"
+      ],
+      "publicEvidenceSafeContent": true,
+      "applicationApproval": "SUPERSEDED/REJECTED eligibility: Object.isFrozen alone is unsafe for public accessor-backed arrays. Historical proposal evidence only; never apply this version."
+    },
+    {
+      "path": "audit/2026-10-21/final17-target-word-cache-FACTORY-BOUNDED-PROPOSAL.patch",
+      "bytes": 1814,
+      "sha256": "b3a789794e976bfda4131f708352bd2d83e9a9d1917c6a97ff6ac711b3c41010",
+      "utf8TextOnly": true,
+      "finiteSecretPatternMatches": 0,
+      "productionPathsInDiff": [
+        "src/lib/typing-core/transcript.ts"
+      ],
+      "publicEvidenceSafeContent": true,
+      "applicationApproval": "CURRENT REVIEW-ONLY CANDIDATE; factory marker plus4096/512 bounds, not approved/applied/tested/built."
+    }
+  ],
+  "publicLabelRequirement": "Retain every artifact as review/history evidence, with the rejected optional16 version clearly labeled SUPERSEDED/DO NOT APPLY. Filenames and this guide are not authorization to apply a patch.",
+  "referenceFiles": [
+    "audit/2026-10-21/final16-alignment-freeze-PROPOSAL.json",
+    "audit/2026-10-21/final16-alignment-freeze-PROPOSAL.md",
+    "audit/2026-10-21/final16-next-candidates-readonly-review.json",
+    "audit/2026-10-21/final17-target-word-cache-PROPOSAL-REVIEW.json",
+    "audit/2026-10-21/final17-target-word-cache-PROPOSAL-REVIEW.md"
+  ],
+  "historicalOtherPatch": {
+    "path": "audit/implementation-baseline/user-working-tree.patch",
+    "linkedFrom": "docs/IMPLEMENTATION_STATUS.md",
+    "alreadyTracked": true,
+    "contentReviewedHere": false,
+    "newStagingApproval": false,
+    "note": "Existing tracked historical user baseline; no need to include via the new-patch allowlist. Not read or changed by this inventory."
+  },
+  "limitations": "Finite patterns and manual source-only inspection do not prove absence of every secret, binary/OCR or personal-data category. No external publication performed."
+}

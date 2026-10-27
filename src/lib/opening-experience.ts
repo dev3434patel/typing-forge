@@ -1,3 +1,5 @@
+import { localRoutePath } from "./deployment";
+
 export const INTRO_ENABLED_STORAGE_KEY = "sparowtype.opening-animation.enabled";
 export const INTRO_SEEN_SESSION_KEY = "sparowtype.opening-animation.seen";
 export const INTRO_REPLAY_EVENT = "sparowtype:replay-intro";
@@ -69,9 +71,10 @@ export function shouldShowOpeningExperience(): boolean {
 }
 
 export function getOpeningMode(reducedMotion = false): OpeningMode {
+  const route = typeof window === "undefined" ? null : localRoutePath(window.location.pathname);
   if (
     typeof window === "undefined" ||
-    !["/", "/typing-test"].includes(window.location.pathname) ||
+    route === null || !["/", "/typing-test"].includes(route.replace(/\/$/, "") || "/") ||
     !getOpeningAnimationEnabled()
   )
     return "off";

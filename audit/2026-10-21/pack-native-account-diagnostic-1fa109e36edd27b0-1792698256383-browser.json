@@ -1,0 +1,398 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\extra\\typing_updated\\typing-forge\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "e2e/php-account-flow.spec.ts",
+      "--grep",
+      "real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+      "--workers=1",
+      "--retries=0",
+      "--trace=off",
+      "--reporter=json",
+      "--output",
+      "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-10-21\\.playwright-artifacts-pack-native-1fa109e36edd27b0-1792698256383"
+    ],
+    "configFile": "D:\\extra\\typing_updated\\typing-forge\\playwright.config.ts",
+    "rootDir": "D:/extra/typing_updated/typing-forge/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/audit/2026-10-21/.playwright-artifacts-pack-native-1fa109e36edd27b0-1792698256383",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-10-21\\.playwright-artifacts-pack-native-1fa109e36edd27b0-1792698256383",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "webkit",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:10313",
+          "trace": "off",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Safari/605.1.15",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1792,
+            "height": 1120
+          },
+          "deviceScaleFactor": 2,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "webkit"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "webkit"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "php-account-flow.spec.ts",
+      "file": "php-account-flow.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 48723,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"test.begin\",\"elapsedMs\":0.051}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.init-script\",\"elapsedMs\":0.964}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.goto-auth\",\"elapsedMs\":15.886}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.signup.switch-form\",\"elapsedMs\":115.558}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.signup.fill-email\",\"elapsedMs\":1414.392}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.signup.fill-password\",\"elapsedMs\":1483.468}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.signup.click-create\",\"elapsedMs\":1549.124}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.signup.await-response\",\"elapsedMs\":1831.576}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.signup.read-cookie-headers\",\"elapsedMs\":2100.389}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.signup.expect-home-url\",\"elapsedMs\":2105.84}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.signup.read-session\",\"elapsedMs\":2239.745}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"session.request\",\"elapsedMs\":2239.898}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"session.response\",\"elapsedMs\":2296.385}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.signup.read-cookie-policy\",\"elapsedMs\":2298.69}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.signup.attach-cookie-policy\",\"elapsedMs\":2305.335}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.words.select-mode\",\"elapsedMs\":2307.172}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.words.select-count\",\"elapsedMs\":3950.402}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.words.focus-input\",\"elapsedMs\":4639.567}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.words.read-passage\",\"elapsedMs\":4873.878}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.words.type-wrong-prefix\",\"elapsedMs\":4912.508}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.words.correct-backspace\",\"elapsedMs\":5376.409}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.words.type-rest\",\"elapsedMs\":5615.521}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.words.expect-results\",\"elapsedMs\":14986.531}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.words.expect-saved\",\"elapsedMs\":15197.01}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.words.request-history\",\"elapsedMs\":17060.513}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.words.read-history\",\"elapsedMs\":17110.515}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.lesson.goto\",\"elapsedMs\":17114.493}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.lesson.start\",\"elapsedMs\":17296.476}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.lesson.focus-input\",\"elapsedMs\":19777.831}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.lesson.read-passage\",\"elapsedMs\":20014.166}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.lesson.type-passage\",\"elapsedMs\":20027.534}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.lesson.expect-checkpoint\",\"elapsedMs\":31268.35}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.lesson.expect-saved\",\"elapsedMs\":31404.591}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.lesson.expect-progress\",\"elapsedMs\":31825.783}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.settings.goto\",\"elapsedMs\":31842.34}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.settings.select-paper\",\"elapsedMs\":31956.138}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.settings.select-dvorak\",\"elapsedMs\":33512.688}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.settings.hide-keyboard\",\"elapsedMs\":33707.183}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.settings.hide-finger-guide\",\"elapsedMs\":34261.14}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.settings.expect-saved\",\"elapsedMs\":34583.281}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.profile.goto\",\"elapsedMs\":35946.31}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.profile.fill-handle\",\"elapsedMs\":36041.696}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.profile.save-handle\",\"elapsedMs\":37123.746}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.profile.expect-handle-saved\",\"elapsedMs\":37463.915}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.profile.sign-out\",\"elapsedMs\":37660.798}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"first.profile.expect-guest\",\"elapsedMs\":38201.529}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.create-context\",\"elapsedMs\":38466.421}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.init-script\",\"elapsedMs\":38480.812}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.create-page\",\"elapsedMs\":38482.343}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.signin.begin\",\"elapsedMs\":38783.514}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.signin.goto-auth\",\"elapsedMs\":38783.725}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.signin.fill-email\",\"elapsedMs\":38903.054}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.signin.fill-password\",\"elapsedMs\":39870.136}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.signin.click\",\"elapsedMs\":39957.621}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.signin.expect-home-url\",\"elapsedMs\":40265.018}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.signin.expect-account-link\",\"elapsedMs\":40691.099}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.signin.complete\",\"elapsedMs\":41100.85}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.profile-history.goto\",\"elapsedMs\":41100.931}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.profile-history.expect-two-sessions\",\"elapsedMs\":41452.538}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.lesson.goto\",\"elapsedMs\":43097.187}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.lesson.expect-progress\",\"elapsedMs\":43202.906}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.settings.goto\",\"elapsedMs\":44335.107}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.settings.expect-paper\",\"elapsedMs\":44525.141}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.settings.expect-dvorak\",\"elapsedMs\":45555.618}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.settings.expect-keyboard-hidden\",\"elapsedMs\":45616.504}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.settings.expect-finger-guide-hidden\",\"elapsedMs\":45683.388}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.profile-deletion.goto\",\"elapsedMs\":45726.069}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.profile-deletion.fill-confirmation\",\"elapsedMs\":45911.358}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.profile-deletion.click-delete\",\"elapsedMs\":46962.875}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.profile-deletion.expect-guest\",\"elapsedMs\":47422.852}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"second.profile-deletion.expect-empty-session\",\"elapsedMs\":47846.224}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"session.request\",\"elapsedMs\":47846.317}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"session.response\",\"elapsedMs\":47870.551}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"workflow.complete\",\"elapsedMs\":47872.573}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"cleanup.begin\",\"elapsedMs\":47872.656}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"cleanup.close-second-context\",\"elapsedMs\":47872.707}\n"
+                    },
+                    {
+                      "text": "{\"type\":\"native-account-stage\",\"stage\":\"cleanup.complete\",\"elapsedMs\":48168.95}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T19:44:18.375Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "session-cookie-policy",
+                      "contentType": "application/json",
+                      "body": "eyJlbWl0dGVkSHR0cE9ubHlBbmRTYW1lU2l0ZUxheCI6dHJ1ZSwiYnJvd3NlclJlcG9ydGVkU2FtZVNpdGUiOlsiTm9uZSJdLCJsaW1pdGF0aW9uIjoiV2luZG93cyBXZWJLaXQgY2FuIHJlcG9ydCBOb25lIGRlc3BpdGUgdGhlIGFjdHVhbCBTYW1lU2l0ZT1MYXggaGVhZGVyLiBUaGlzIHZlcmlmaWVzIGVtaXR0ZWQgcG9saWN5IGFuZCBIdHRwT25seSBzdG9yYWdlLCBub3QgbmF0aXZlIGNyb3NzLXNpdGUgY29va2llIGVuZm9yY2VtZW50LiJ9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "32cd5040f4cf1710e3c6-3834e7224d2bbbe9910f",
+          "file": "php-account-flow.spec.ts",
+          "line": 6,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-22T19:44:17.159Z",
+    "duration": 50301.65,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

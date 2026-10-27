@@ -1,0 +1,211 @@
+{
+  "recordedAt": "2026-10-23T14:49:54.6481016Z",
+  "status": "READ_ONLY_DIAGNOSIS_COMPLETE_ORIGINAL_RUN_FAILED",
+  "scope": "Final17 existing-suite five failures only. Raw report, summary, protocol and controlled guest failure DOM/screenshots. No browser, retry, build, test, production edit, private trace or credential inspection.",
+  "inputs": [
+    "audit/2026-10-21/final17-existing.json",
+    "audit/2026-10-21/final17-existing-summary.json",
+    "audit/2026-10-21/final17-existing-protocol.json"
+  ],
+  "build": "0572d723495d6be303a8",
+  "totals": {
+    "total": 964,
+    "passed": 943,
+    "failed": 5,
+    "skipped": 16,
+    "flaky": 0,
+    "retries": 0
+  },
+  "projects": [
+    {
+      "project": "chromium",
+      "total": 241,
+      "passed": 237,
+      "failed": 0,
+      "skipped": 4
+    },
+    {
+      "project": "edge",
+      "total": 241,
+      "passed": 236,
+      "failed": 1,
+      "skipped": 4
+    },
+    {
+      "project": "firefox",
+      "total": 241,
+      "passed": 236,
+      "failed": 1,
+      "skipped": 4
+    },
+    {
+      "project": "webkit",
+      "total": 241,
+      "passed": 234,
+      "failed": 3,
+      "skipped": 4
+    }
+  ],
+  "integrity": {
+    "buildUnchanged": true,
+    "testsUnchanged": true,
+    "dependenciesUnchanged": true
+  },
+  "evidenceLimits": "Trace mode was off and report steps are absent. Terminal DOM/screenshot and source control flow cannot reconstruct exact action, lazy-module evaluation, store-publication or renderer scheduling times. Resource-pressure causality is unproven.",
+  "failures": [
+    {
+      "project": "webkit",
+      "file": "e2e/offline-pwa.spec.ts",
+      "definitionLine": 28,
+      "assertionLine": 129,
+      "title": "public app download supports a real server outage and clearing preserves real history",
+      "status": "timedOut",
+      "durationMs": 30408,
+      "startTime": "2026-10-23T13:22:02.715Z",
+      "exactFailure": "Whole test 30000ms deadline expired at Remove offline download locator.click(), after locator resolved and while waiting for visible, enabled and stable.",
+      "artifact": "audit/2026-10-21/.playwright-artifacts-final17-existing/offline-pwa-public-app-dow-7dc17-ring-preserves-real-history-webkit/error-context.md",
+      "terminalEvidence": "Loaded Offline page states Connection: online and Public download: available. Remove offline download is visible and enabled in DOM and screenshot; no obstructing overlay observed in the terminal screenshot.",
+      "earlierAssertionsReached": [
+        "Real public download/controller and cache privacy checks",
+        "Corrected local test saved",
+        "Owned HTTP server stopped and independent outage confirmed",
+        "Second corrected test saved during real outage",
+        "Offline guide rendered",
+        "Course first checkpoint and reload progress retained",
+        "Private profile route connection fallback",
+        "Owned server resumed and Offline page loaded"
+      ],
+      "notReached": [
+        "Clear handler completion",
+        "Public cache removed",
+        "Post-clear history preservation assertions"
+      ],
+      "classification": "WHOLE_TEST_DEADLINE_AT_CLICK_CAUSE_UNPROVEN",
+      "conclusion": "No proof of a stuck clear handler, cache deletion defect or fixture-only defect. A visible terminal button does not establish its state throughout the click wait."
+    },
+    {
+      "project": "webkit",
+      "file": "e2e/pwa-notices.spec.ts",
+      "definitionLine": 40,
+      "assertionLine": 45,
+      "title": "dismissing installation does not hide a later app update or offline information",
+      "status": "failed",
+      "durationMs": 6737,
+      "startTime": "2026-10-23T13:22:18.631Z",
+      "exactFailure": "Initial Install app button inside App availability aside was absent for the original 5000ms assertion.",
+      "artifact": "audit/2026-10-21/.playwright-artifacts-final17-existing/pwa-notices-dismissing-ins-43249-date-or-offline-information-webkit/error-context.md",
+      "terminalEvidence": "Offline page is loaded with Public download: preparing. Neither the availability banner nor the Offline page's Install app button is present.",
+      "fixtureEvidence": "Controlled addInitScript dispatches a beforeinstallprompt Event with callable prompt() and resolved dismissed userChoice. This does not depend on native browser installation support.",
+      "notReached": [
+        "Dismiss install",
+        "Later app update availability",
+        "Offline information independence"
+      ],
+      "classification": "INITIAL_INSTALL_NOTIFICATION_NOT_REFLECTED_CAUSE_UNPROVEN",
+      "conclusion": "The two consumer components independently contain a render-to-passive-subscribe missed-notification window, but the historical publication/subscription schedule was not recorded. The source hazard is confirmed; its causality for this failure remains UNPROVEN."
+    },
+    {
+      "project": "edge",
+      "received": 0.234375,
+      "durationMs": 2488,
+      "startTime": "2026-10-23T13:08:17.56Z",
+      "file": "e2e/typing-observer-ownership.spec.ts",
+      "definitionLine": 239,
+      "assertionLine": 306,
+      "title": "Learn reuses measured glyph windows across spaces and preserves native caret geometry after font, error and rotation changes",
+      "status": "failed",
+      "exactFailure": "Absolute current glyph width difference after Georgia font switch must exceed 0.5 CSS pixels.",
+      "expectedMinimumExclusive": 0.5,
+      "artifact": "audit/2026-10-21/.playwright-artifacts-final17-existing/typing-observer-ownership--11c43--error-and-rotation-changes-edge/error-context.md",
+      "passedBeforeFailure": [
+        "Warm-window native glyph reads remain 0",
+        "Idle passage mutations remain 0",
+        "Initial measured native caret alignment",
+        "Actual computed Georgia font family",
+        "Post-font native caret max geometry error remains below 0.75 CSS pixels"
+      ],
+      "notReached": [
+        "Wrong glyph invalidation",
+        "Deletion invalidation",
+        "Rotation geometry",
+        "Final export and attempt evidence"
+      ],
+      "classification": "FONT_MAGNITUDE_PRECONDITION_NOT_GUARANTEED_BY_ARBITRARY_ALPHA_GLYPH",
+      "conclusion": "The selected glyph changed width by approximately 0.234 CSS pixels. The assertion failed on the intended size of the font perturbation, not on native caret alignment. Preserve the strict >0.5 perturbation and choose an explicitly different-width inside-word glyph; no product defect is demonstrated."
+    },
+    {
+      "project": "firefox",
+      "received": 0.2333221435546875,
+      "durationMs": 4543,
+      "startTime": "2026-10-23T13:16:44.546Z",
+      "file": "e2e/typing-observer-ownership.spec.ts",
+      "definitionLine": 239,
+      "assertionLine": 306,
+      "title": "Learn reuses measured glyph windows across spaces and preserves native caret geometry after font, error and rotation changes",
+      "status": "failed",
+      "exactFailure": "Absolute current glyph width difference after Georgia font switch must exceed 0.5 CSS pixels.",
+      "expectedMinimumExclusive": 0.5,
+      "artifact": "audit/2026-10-21/.playwright-artifacts-final17-existing/typing-observer-ownership--11c43--error-and-rotation-changes-firefox/error-context.md",
+      "passedBeforeFailure": [
+        "Warm-window native glyph reads remain 0",
+        "Idle passage mutations remain 0",
+        "Initial measured native caret alignment",
+        "Actual computed Georgia font family",
+        "Post-font native caret max geometry error remains below 0.75 CSS pixels"
+      ],
+      "notReached": [
+        "Wrong glyph invalidation",
+        "Deletion invalidation",
+        "Rotation geometry",
+        "Final export and attempt evidence"
+      ],
+      "classification": "FONT_MAGNITUDE_PRECONDITION_NOT_GUARANTEED_BY_ARBITRARY_ALPHA_GLYPH",
+      "conclusion": "The selected glyph changed width by approximately 0.234 CSS pixels. The assertion failed on the intended size of the font perturbation, not on native caret alignment. Preserve the strict >0.5 perturbation and choose an explicitly different-width inside-word glyph; no product defect is demonstrated."
+    },
+    {
+      "project": "webkit",
+      "received": 0.23867034912109375,
+      "durationMs": 4069,
+      "startTime": "2026-10-23T13:26:04.504Z",
+      "file": "e2e/typing-observer-ownership.spec.ts",
+      "definitionLine": 239,
+      "assertionLine": 306,
+      "title": "Learn reuses measured glyph windows across spaces and preserves native caret geometry after font, error and rotation changes",
+      "status": "failed",
+      "exactFailure": "Absolute current glyph width difference after Georgia font switch must exceed 0.5 CSS pixels.",
+      "expectedMinimumExclusive": 0.5,
+      "artifact": "audit/2026-10-21/.playwright-artifacts-final17-existing/typing-observer-ownership--11c43--error-and-rotation-changes-webkit/error-context.md",
+      "passedBeforeFailure": [
+        "Warm-window native glyph reads remain 0",
+        "Idle passage mutations remain 0",
+        "Initial measured native caret alignment",
+        "Actual computed Georgia font family",
+        "Post-font native caret max geometry error remains below 0.75 CSS pixels"
+      ],
+      "notReached": [
+        "Wrong glyph invalidation",
+        "Deletion invalidation",
+        "Rotation geometry",
+        "Final export and attempt evidence"
+      ],
+      "classification": "FONT_MAGNITUDE_PRECONDITION_NOT_GUARANTEED_BY_ARBITRARY_ALPHA_GLYPH",
+      "conclusion": "The selected glyph changed width by approximately 0.234 CSS pixels. The assertion failed on the intended size of the font perturbation, not on native caret alignment. Preserve the strict >0.5 perturbation and choose an explicitly different-width inside-word glyph; no product defect is demonstrated."
+    }
+  ],
+  "sourceHazard": {
+    "status": "CONFIRMED_BY_SOURCE_REVIEW_REGRESSION_BASELINE_PENDING",
+    "files": [
+      "src/components/layout/PwaStatus.tsx",
+      "src/pages/Offline.tsx",
+      "src/lib/pwa.ts",
+      "src/main.tsx",
+      "src/App.tsx"
+    ],
+    "mechanism": "Both consumers initialize state from getPwaState during render, then subscribe in passive effects without an immediate reread. A stable external-store publication between those operations has no listeners and need not trigger another publication.",
+    "context": "PWA lifetime starts before createRoot. The lazy banner and Offline route mount independently, so early lifecycle initialization does not close consumer subscription gaps.",
+    "proposedProductionFixOwner": "Parent: useSyncExternalStore(subscribePwa, getPwaState, getPwaState) in the two components only, after deterministic negative regression proof.",
+    "regression": "e2e/pwa-snapshot-consistency.spec.ts uses actual components, real ReactDOM/MemoryRouter, controlled stable store and sibling layout-effect publication. Historical first bundle attempt failed collection before any test because esbuild was not a root dependency; Vite-only harness correction is frozen separately."
+  },
+  "skippedScope": "Sixteen cases are four explicitly credential-required flows across four engines. They are skipped, not passed: dedicated account sign-in, PHP account lifecycle, two-human UI race and two-account API race.",
+  "disposition": "Original five failed outcomes remain unchanged. Parent owns exact serial confirmations and production changes. This report does not claim all features pass or identify a browser infrastructure root cause."
+}

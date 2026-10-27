@@ -1,0 +1,155 @@
+{
+  "status": "PARTIAL",
+  "recordedAt": "2026-10-21T14:50:36.709Z",
+  "expectedBuild": "f3ac03affbc33168655a",
+  "sourceIntegrity": {
+    "sourceFile": "audit/2026-10-21/final7-source.json",
+    "expectedBuild": "f3ac03affbc33168655a",
+    "compared": 483,
+    "mismatches": []
+  },
+  "preparedDriverChanges": [],
+  "static": {
+    "status": "FAILED",
+    "summary": "audit/2026-10-21/final7-static-process.json",
+    "builds": [
+      {
+        "name": "build-vercel",
+        "status": "PASS-SCOPED",
+        "exitCode": 0
+      },
+      {
+        "name": "build-pages",
+        "status": "PASS-SCOPED",
+        "exitCode": 0
+      }
+    ],
+    "artifactChecks": {
+      "status": "PASS-SCOPED",
+      "pass": 67,
+      "total": 67
+    },
+    "deployment": {
+      "raw": "audit/2026-10-21/final7-static-deployment-raw.json",
+      "total": 56,
+      "pass": 55,
+      "fail": 1,
+      "skip": 0,
+      "flaky": 0,
+      "projects": {
+        "chromium": {
+          "total": 14,
+          "pass": 14,
+          "fail": 0,
+          "skip": 0,
+          "flaky": 0
+        },
+        "edge": {
+          "total": 14,
+          "pass": 14,
+          "fail": 0,
+          "skip": 0,
+          "flaky": 0
+        },
+        "firefox": {
+          "total": 14,
+          "pass": 14,
+          "fail": 0,
+          "skip": 0,
+          "flaky": 0
+        },
+        "webkit": {
+          "total": 14,
+          "pass": 13,
+          "fail": 1,
+          "skip": 0,
+          "flaky": 0
+        }
+      },
+      "errors": 0,
+      "error": {
+        "name": "AssertionError",
+        "message": "deployment: exact declared case/project coverage without skips, retries or failures"
+      }
+    },
+    "gameAccessibility": {
+      "raw": "audit/2026-10-21/final7-static-game-accessibility-raw.json",
+      "total": 16,
+      "pass": 16,
+      "fail": 0,
+      "skip": 0,
+      "flaky": 0,
+      "projects": {
+        "chromium": {
+          "total": 4,
+          "pass": 4,
+          "fail": 0,
+          "skip": 0,
+          "flaky": 0
+        },
+        "edge": {
+          "total": 4,
+          "pass": 4,
+          "fail": 0,
+          "skip": 0,
+          "flaky": 0
+        },
+        "firefox": {
+          "total": 4,
+          "pass": 4,
+          "fail": 0,
+          "skip": 0,
+          "flaky": 0
+        },
+        "webkit": {
+          "total": 4,
+          "pass": 4,
+          "fail": 0,
+          "skip": 0,
+          "flaky": 0
+        }
+      },
+      "errors": 0
+    },
+    "ownedChildProcessExited": true
+  },
+  "boss": {
+    "status": "PASS-SCOPED",
+    "summary": "audit/2026-10-21/boss-duel-final7.json",
+    "completed": true,
+    "measured": {
+      "activeDurationMs": 90003.19999998808,
+      "correctAttempts": 357,
+      "insertionAttempts": 357,
+      "incorrectAttempts": 0,
+      "inputAccuracy": 100,
+      "creditedUnits": 357,
+      "canonicalWpm": 47.59830761573552,
+      "correctCharacterWpm": 47.59830761573552,
+      "completedWords": 75,
+      "native": {
+        "beforeInputs": 357,
+        "insertedUnits": 357,
+        "firstInputAt": 435.19999998807907,
+        "lastInputAt": 79410.30000001192,
+        "windowBlurs": 0,
+        "hiddenEvents": 0
+      },
+      "outcome": "Duel won: more measured progress and at least 95% accuracy.",
+      "wonFromMeasuredEvidence": true,
+      "declaredBotBaselineWpm": 35,
+      "botMultiplier": 1.05,
+      "bossCorrectCharacterThreshold": 275.625,
+      "manualEndRunClicked": false,
+      "virtualClockUsed": false
+    },
+    "watchdogExpired": false
+  },
+  "execution": {
+    "automaticRetries": 0,
+    "resultFiltering": false,
+    "runtimeOrE2EChanges": false,
+    "ownJobsExited": true
+  },
+  "remaining": "One WebKit Pages native service-worker registration pageerror remains retained for independent diagnosis. No all-pass release claim."
+}

@@ -1,2 +1,9 @@
 # Preserve original audit receipts and file hashes across operating systems.
-audit/** -text
+audit/** -text whitespace=cr-at-eol
+
+# Keep generated terminal/HTML output and historical patch bytes hash-identical.
+audit/**/*.log -whitespace
+audit/**/*.html -whitespace
+audit/**/*.patch -whitespace
+# This audit harness embeds the original PowerShell source verbatim.
+audit/2026-10-21/pack-apache-runtime.mjs -whitespace

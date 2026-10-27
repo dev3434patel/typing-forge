@@ -1,0 +1,36 @@
+{
+  "candidate": "75b0ca89254fc510f652",
+  "stats": {
+    "startTime": "2026-10-20T19:31:01.178Z",
+    "duration": 17482.370000000003,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "rows": [
+    {
+      "title": "real account sign in with dedicated deployment credentials",
+      "project": "firefox",
+      "status": "passed",
+      "retry": 0,
+      "duration": 3685,
+      "errors": []
+    },
+    {
+      "title": "real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+      "project": "firefox",
+      "status": "failed",
+      "retry": 0,
+      "duration": 11484,
+      "errors": [
+        {
+          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('textbox', { name: 'Typing input', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('textbox', { name: 'Typing input', exact: true })\u001b[22m\n\n\n   at helpers.ts:36\n\n  34 |     exact: true,\n  35 |   });\n> 36 |   await expect(input).toBeVisible();\n     |                       ^\n  37 |   // Desktop starts focused; touch devices retain the explicit keyboard activation.\n  38 |   if (\n  39 |     !(await input.evaluate((element) => element === document.activeElement))\n    at focusTyping (D:\\extra\\typing_updated\\typing-forge\\e2e\\helpers.ts:36:23)\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\php-account-flow.spec.ts:71:31"
+        }
+      ]
+    }
+  ],
+  "passwordsPresentBeforeDefensivePass": false,
+  "generatedAccountPasswordPresent": false,
+  "traceZipReferenced": false
+}

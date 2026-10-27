@@ -1,0 +1,242 @@
+{
+  "totals": {
+    "total": 228,
+    "passed": 213,
+    "failed": 6,
+    "skipped": 9,
+    "flaky": 0
+  },
+  "projects": [
+    {
+      "project": "chromium",
+      "total": 57,
+      "passed": 56,
+      "failed": 1,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "edge",
+      "total": 57,
+      "passed": 57,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "firefox",
+      "total": 57,
+      "passed": 52,
+      "failed": 5,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "webkit",
+      "total": 57,
+      "passed": 48,
+      "failed": 0,
+      "skipped": 9,
+      "flaky": 0
+    }
+  ],
+  "reportedStats": {
+    "expected": 213,
+    "unexpected": 6,
+    "skipped": 9,
+    "flaky": 0
+  },
+  "countsAgreeWithReport": true,
+  "failures": [
+    {
+      "project": "firefox",
+      "title": "opening-experience.spec.ts › caret handoff fault injection › caret handoff animation API preserves input and the real caret",
+      "file": "opening-experience.spec.ts",
+      "line": 211,
+      "attempts": 1,
+      "attemptStatuses": [
+        "timedOut"
+      ],
+      "messages": [
+        "Tearing down \"context\" exceeded the test timeout of 30000ms.",
+        "Error: browserContext.close: Test ended. Browser logs: [pid=40740][err] EventListener.handleEvent*op@http://127.0.0.1:4173/assets/index-CnrPFhsz.js:9:77359 [pid=40740][err] @http://127.0.0.1:4173/assets/index-CnrPFhsz.js:9:82808 [pid=40740][err] [pid=40740][err] JavaScript error: chrome://juggler/content/Helper.js, line 82: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIWebProgress.removeProgressListener] [pi"
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "opening-worker.spec.ts › default native worker draws the complete keyboard while document tasks, resize and skip remain responsive",
+      "file": "opening-worker.spec.ts",
+      "line": 364,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false Call Log: - Timeout 5000ms exceeded while waiting on the predicate 248 | ), 249 | ) > 250 | .toBe(true); | ^ 251 | } 252 | async function firstWorkerInitialized(page: Page) { 253 | await expect at firstWorkerReady (D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:250:6) at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:381:9"
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "opening-worker.spec.ts › native worker acknowledges real resource disposal at an explicitly idle renderer boundary",
+      "file": "opening-worker.spec.ts",
+      "line": 461,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false Call Log: - Timeout 5000ms exceeded while waiting on the predicate 248 | ), 249 | ) > 250 | .toBe(true); | ^ 251 | } 252 | async function firstWorkerInitialized(page: Page) { 253 | await expect at firstWorkerReady (D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:250:6) at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:542:9"
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "opening-worker.spec.ts › actual worker WebGL context loss during preparation recovers with a fresh canvas and keeps practice usable",
+      "file": "opening-worker.spec.ts",
+      "line": 1039,
+      "attempts": 1,
+      "attemptStatuses": [
+        "timedOut"
+      ],
+      "messages": [
+        "Test timeout of 30000ms exceeded.",
+        "Error: page.waitForFunction: Test timeout of 30000ms exceeded. 783 | async function expectRecoveredDocumentScene(page: Page) { 784 | const opening = page.getByTestId(\"opening-experience\"); > 785 | await page.waitForFunction(() => Boolean((window as AuditedWindow).recoveredDocumentScene)); | ^ 786 | const recovered = await page.evaluate(() => (window as AuditedWindow).recoveredDocumentScene!); 787 | expect(recovered.diagnostics.thread).toBe('main-"
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "opening-worker.spec.ts › actual worker WebGL context loss after live frames recovers with a fresh canvas and keeps practice usable",
+      "file": "opening-worker.spec.ts",
+      "line": 1045,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false Call Log: - Timeout 5000ms exceeded while waiting on the predicate 248 | ), 249 | ) > 250 | .toBe(true); | ^ 251 | } 252 | async function firstWorkerInitialized(page: Page) { 253 | await expect at firstWorkerReady (D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:250:6) at nativeContextLoss (D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-w"
+      ]
+    },
+    {
+      "project": "chromium",
+      "title": "viewport-acceptance.spec.ts › 390px full mobile fallback contains every key and keeps controls separate",
+      "file": "viewport-acceptance.spec.ts",
+      "line": 267,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(locator).toHaveAttribute(expected) failed Locator: getByTestId('opening-experience') Expected: \"fallback\" Received: \"loading\" Timeout: 15000ms Call log: - Expect \"toHaveAttribute\" getByTestId('opening-experience') with timeout 15000ms - waiting for getByTestId('opening-experience') 33 × locator resolved to <main data-mode=\"full\" class=\"awakening\" data-closing=\"false\" data-renderer=\"loading\" data-presentation=\"preparing\" data-testid="
+      ]
+    }
+  ],
+  "flakyCases": [],
+  "skippedCases": [
+    {
+      "project": "webkit",
+      "title": "input-guardrails.spec.ts › supported typing audio creates one context on input and disposes it on navigation",
+      "file": "input-guardrails.spec.ts",
+      "line": 95,
+      "reasons": [
+        "UNVERIFIED: this browser runner exposes no standard AudioContext API; this is not a native Safari capability claim."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "opening-single-keyboard.spec.ts › the normal-clock production worker shows the creative 3D keyboard through wordmark typing and automatic entry",
+      "file": "opening-single-keyboard.spec.ts",
+      "line": 240,
+      "reasons": [
+        "UNVERIFIED: this runner has no native transferable-canvas worker API."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "opening-worker.spec.ts › default native worker draws the complete keyboard while document tasks, resize and skip remain responsive",
+      "file": "opening-worker.spec.ts",
+      "line": 364,
+      "reasons": [
+        "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "opening-worker.spec.ts › native worker acknowledges real resource disposal at an explicitly idle renderer boundary",
+      "file": "opening-worker.spec.ts",
+      "line": 461,
+      "reasons": [
+        "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "opening-worker.spec.ts › five consecutive native-worker startup reloads close each prior owner and final skip closes the last worker",
+      "file": "opening-worker.spec.ts",
+      "line": 591,
+      "reasons": [
+        "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "opening-worker.spec.ts › skipping while the native worker entry is blocked terminates startup and preserves the first typing key",
+      "file": "opening-worker.spec.ts",
+      "line": 742,
+      "reasons": [
+        "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "opening-worker.spec.ts › a native worker transport failure replaces the transferred canvas with the complete real document renderer",
+      "file": "opening-worker.spec.ts",
+      "line": 797,
+      "reasons": [
+        "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "opening-worker.spec.ts › actual worker WebGL context loss during preparation recovers with a fresh canvas and keeps practice usable",
+      "file": "opening-worker.spec.ts",
+      "line": 1039,
+      "reasons": [
+        "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "opening-worker.spec.ts › actual worker WebGL context loss after live frames recovers with a fresh canvas and keeps practice usable",
+      "file": "opening-worker.spec.ts",
+      "line": 1045,
+      "reasons": [
+        "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+      ]
+    }
+  ],
+  "skipReasons": [
+    {
+      "reason": "UNVERIFIED: this browser runner exposes no standard AudioContext API; this is not a native Safari capability claim.",
+      "count": 1,
+      "projects": [
+        "webkit"
+      ]
+    },
+    {
+      "reason": "UNVERIFIED: this runner has no native transferable-canvas worker API.",
+      "count": 1,
+      "projects": [
+        "webkit"
+      ]
+    },
+    {
+      "reason": "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently.",
+      "count": 7,
+      "projects": [
+        "webkit"
+      ]
+    }
+  ],
+  "expectedFailures": [],
+  "globalErrors": [],
+  "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+}

@@ -1,0 +1,32 @@
+{
+  "preparedAt": "2026-10-22T20:11:55.802824+00:00",
+  "status": "PREPARED-NOT-RUN",
+  "checker": "audit/2026-10-21/compare-final17-source.mjs",
+  "checkerSha256": "1a159f007b6f6ea7fc158cb397824589adf1256177dc094f566a01c3d74facd4",
+  "baselineFile": "audit/2026-10-21/final16-source.json",
+  "baselineBuild": "8ac2a0d9602ec9263118",
+  "candidateFile": "audit/2026-10-21/final17-source.json",
+  "candidateBuild": null,
+  "requiredBuildEnvironment": "SPAROWTYPE_FINAL17_BUILD_ID",
+  "expectedChangedSourceFiles": [
+    "src/components/typing/live-keyboard.css",
+    "src/lib/typing-core/__tests__/transcript-target-cache.test.ts",
+    "src/lib/typing-core/transcript.ts"
+  ],
+  "expectedAddedSourceFiles": [
+    "src/lib/typing-core/__tests__/transcript-target-cache.test.ts"
+  ],
+  "expectedRemovedSourceFiles": [],
+  "expectedModifiedSourceFiles": [
+    "src/components/typing/live-keyboard.css",
+    "src/lib/typing-core/transcript.ts"
+  ],
+  "expectedBaselineSources": 498,
+  "expectedCandidateSources": 499,
+  "expectedUnchangedSources": 496,
+  "wholeCoreUnchangedClaimed": false,
+  "semanticFidelity": "transcript.ts changes explicitly; factory metadata behavior/cap guards/original loop parity must be independently reviewed/tested. Exact path hashes do not prove numeric equivalence.",
+  "productionOrE2eFilesEdited": false,
+  "executionPerformed": false,
+  "prior16MatrixEvidenceRetained": true
+}

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import { authService, isBackendConfigured } from '@/services/php-api';
 import { Button } from '@/components/ui/button';
@@ -44,7 +44,7 @@ const Auth = () => {
     } catch (error) {
       if (error instanceof z.ZodError) {
         const newErrors: { email?: string; password?: string } = {};
-        error.errors.forEach((err) => {
+        error.issues.forEach((err) => {
           if (err.path[0] === 'email') newErrors.email = err.message;
           if (err.path[0] === 'password') newErrors.password = err.message;
         });
@@ -198,9 +198,9 @@ const Auth = () => {
         </div>
 
         <div className="mt-6 text-center">
-          <a href="/" className="inline-flex min-h-11 items-center text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link to="/" className="inline-flex min-h-11 items-center text-sm text-muted-foreground hover:text-foreground transition-colors">
             ← Back to typing
-          </a>
+          </Link>
         </div>
       </motion.div>
     </main>

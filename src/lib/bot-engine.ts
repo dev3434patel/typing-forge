@@ -59,7 +59,7 @@ export function createBotState(level: BotLevel, targetText: string, random = Mat
   const config: BotConfig = { ...template, correctionDelay: [...template.correctionDelay], targetWpmMean: Math.max(10, normal(template.targetWpmMean, template.targetWpmStdDev / 2, random)) };
   return { config, targetText, typedText: '', cursorIndex: 0, keystrokes: [], startTime: 0, currentWpm: 0, progress: targetText ? 0 : 100, isFinished: !targetText, correctChars: 0, accuracy: 100 };
 }
-export interface BotRunner { readonly state: BotState; start(): void; tick(): BotState; isFinished(): boolean }
+export interface BotRunner { readonly state: BotState; start(at?: number): void; tick(): BotState; isFinished(): boolean }
 export function createBot(level: BotLevel, targetText: string, dependencies: BotDependencies = {}): BotRunner {
   const now = dependencies.now ?? (() => performance.now());
   const random = dependencies.random ?? Math.random;
@@ -68,10 +68,13 @@ export function createBot(level: BotLevel, targetText: string, dependencies: Bot
   let started = false;
   return {
     get state() { return state; },
-    start() {
+    start(at?: number) {
       if (started) return;
+      const current = now(), origin = at ?? current;
+      if (!Number.isFinite(current) || !Number.isFinite(origin) || origin > current || current - origin > 86_400_000)
+        throw new Error('Bot start must be an already reached monotonic instant within one day');
       started = true;
-      state = { ...state, startTime: now() };
+      state = { ...state, startTime: origin };
       nextTime = state.startTime + getNextKeystrokeDelay(state, random);
     },
     tick() {

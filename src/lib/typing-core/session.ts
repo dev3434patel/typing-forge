@@ -1,6 +1,7 @@
 import type { FinishReason, NormalizedEdit, PauseInterval, SessionClock, SessionConfig, SessionEvent, SessionResult, SessionSnapshot, TargetSegment } from './types.ts';
+import { EVENT_LOG_SCHEMA_VERSION } from './types.ts';
 import { activeOffset, calculateMetrics, replaySession } from './metrics.ts';
-import { applyEvent, emptyTranscript, targetGraphemes, normalizeTarget, previousCommittedWord, SEGMENTATION_POLICY, validateEvent, type Attempt } from './transcript.ts';
+import { alignTranscript, applyEvent, emptyTranscript, targetGraphemes, normalizeTarget, previousCommittedWord, SEGMENTATION_POLICY, validateEvent, type Alignment, type Attempt } from './transcript.ts';
 
 function freeze<T>(value: T): T {
   if (value && typeof value === 'object' && !Object.isFrozen(value)) {
@@ -8,6 +9,24 @@ function freeze<T>(value: T): T {
     Object.freeze(value);
   }
   return value;
+}
+type FlatAlignmentLeaf<T extends { [Key in keyof T]: string | number | boolean | null | undefined }> = T;
+/** Live alignment owns primitive leaves; preserve publication immutability without
+ * recursive Object.values allocations. Configuration and final replay stay deep-frozen.
+ */
+function freezePresentationAlignment(value: Alignment): Alignment {
+  for (let index = 0; index < value.characters.length; index++) {
+    const character: FlatAlignmentLeaf<Alignment['characters'][number]> = value.characters[index];
+    Object.freeze(character);
+  }
+  Object.freeze(value.characters);
+  Object.freeze(value.mapping);
+  for (let index = 0; index < value.words.length; index++) {
+    const word: FlatAlignmentLeaf<Alignment['words'][number]> = value.words[index];
+    Object.freeze(word);
+  }
+  Object.freeze(value.words);
+  return Object.freeze(value);
 }
 function copy<T>(value: T): T { return JSON.parse(JSON.stringify(value)) as T; }
 /** Only named public fixed passages share passage-level comparison cohorts.
@@ -37,10 +56,12 @@ export class SessionController {
   private wallStart: number | null = null;
   private lastNow: number | null = null;
   private pauseStart: number | null = null;
+  private pauseAfterSequence: number | null = null;
   private pauses: PauseInterval[] = [];
   private finalized: SessionResult | null = null;
   private clockAnomaly = false;
   private lateTargetExtension = false;
+  private presentationAlignment: { sequence: number; target: string; value: Alignment } | null = null;
 
   constructor(config: SessionConfig, private readonly clock: SessionClock) {
     if (!config.clientSessionId || config.clientSessionId.length > 200) throw new Error('Session ID is required');
@@ -56,6 +77,10 @@ export class SessionController {
   }
   get status(): SessionSnapshot['status'] { return this.finalized ? 'finished' : this.pauseStart !== null ? 'paused' : this.startMono !== null ? 'running' : 'ready'; }
   get result(): SessionResult | null { return this.finalized; }
+  /** Adapter-only clock origin. Reading it never starts or samples the clock. */
+  get timingOrigin(): Readonly<{ monotonic: number; wall: number }> | null {
+    return this.startMono === null || this.wallStart === null ? null : { monotonic: this.startMono, wall: this.wallStart };
+  }
   /** Canonical retained input for edit diffing; reading text never samples time or rescores. */
   get currentText(): string { return this.state.units.join(''); }
   /** Earliest retained grapheme that may be corrected in this session. */
@@ -97,7 +122,7 @@ export class SessionController {
   }
   private start(now: number): void { this.startMono = now; this.wallStart = this.readWall(); }
   private intervals(now: number): PauseInterval[] {
-    return this.pauseStart === null ? this.pauses : [...this.pauses, { startMs: this.pauseStart, endMs: Math.max(this.pauseStart, now - (this.startMono ?? now)) }];
+    return this.pauseStart === null ? this.pauses : [...this.pauses, { startMs: this.pauseStart, endMs: Math.max(this.pauseStart, now - (this.startMono ?? now)), ...(this.pauseAfterSequence === null ? {} : { afterSequence: this.pauseAfterSequence }) }];
   }
   private elapsed(now: number): number {
     return this.startMono === null ? 0 : activeOffset(Math.max(0, now - this.startMono), this.intervals(now));
@@ -145,7 +170,13 @@ export class SessionController {
     if (this.finalized) return this.finalized;
     const now = this.readNow(at);
     const elapsedMs = this.configuration.durationMs === undefined ? this.elapsed(now) : Math.min(this.elapsed(now), this.configuration.durationMs);
-    const calculated = calculateMetrics(this.configuration, this.target, this.state, elapsedMs, { pauseIntervals: this.intervals(now), includeRhythm: false });
+    // Time changes rates, not retained character alignment. Cache only inside
+    // this controller; replay/final validation still independently reconstructs
+    // the transcript, and every edit/issued target invalidates this projection.
+    if (this.presentationAlignment?.sequence !== this.state.lastSequence || this.presentationAlignment.target !== this.target) {
+      this.presentationAlignment = { sequence: this.state.lastSequence, target: this.target, value: freezePresentationAlignment(alignTranscript(targetGraphemes(this.target), this.state.units, this.configuration.scoringPolicy!, false, this.state.submissions)) };
+    }
+    const calculated = calculateMetrics(this.configuration, this.target, this.state, elapsedMs, { pauseIntervals: this.intervals(now), includeRhythm: false, alignment: this.presentationAlignment.value });
     return { status: this.status, finalText: this.state.units.join(''), targetText: this.target, elapsedMs, wallDurationMs: this.startMono === null ? 0 : now - this.startMono, remainingMs: this.configuration.durationMs === undefined ? null : Math.max(0, this.configuration.durationMs - elapsedMs), cursor: calculated.cursor, characters: calculated.characters, metrics: calculated.metrics, events: this.transcriptEvents.map(event => ({ ...event })) };
   }
   appendTarget(segment: string, at?: number): void {
@@ -167,12 +198,16 @@ export class SessionController {
     const now = this.readNow(at);
     const before = this.tick(now);
     if (before.status === 'finished') return before;
-    if (this.pauseStart === null) this.pauseStart = now - this.startMono;
+    if (this.pauseStart === null) {
+      this.pauseStart = now - this.startMono;
+      const last = this.transcriptEvents.at(-1);
+      this.pauseAfterSequence = last?.offsetMs === this.pauseStart ? last.sequence : null;
+    }
     return this.snapshot(now);
   }
   resume(at?: number): SessionSnapshot {
     const now = this.readNow(at);
-    if (this.pauseStart !== null && this.startMono !== null) { this.pauses.push({ startMs: this.pauseStart, endMs: now - this.startMono }); this.pauseStart = null; }
+    if (this.pauseStart !== null && this.startMono !== null) { this.pauses.push({ startMs: this.pauseStart, endMs: now - this.startMono, ...(this.pauseAfterSequence === null ? {} : { afterSequence: this.pauseAfterSequence }) }); this.pauseStart = null; this.pauseAfterSequence = null; }
     return this.snapshot(now);
   }
   finish(reason: FinishReason = 'manual', at?: number): SessionResult {
@@ -215,6 +250,6 @@ export class SessionController {
     const hasComposition = insertionEvents.some(event => event.provenance === 'composition');
     const inputMethod = hasComposition ? 'composition' : this.configuration.inputMethod === 'keyboard-or-composition' ? 'keyboard' : this.configuration.inputMethod ?? 'keyboard';
     const finalizedConfig = { ...copy(this.configuration), paused: pauseIntervals.length > 0, inputMethod };
-    return freeze({ ...this.snapshot(now), ...replayed, status: final ? 'finished' : this.status, elapsedMs, wallDurationMs, remainingMs: duration === undefined ? null : Math.max(0, duration - elapsedMs), events: events.map(event => ({ ...event })), schemaVersion: 3, metricsVersion: 'forge-v3', learningVersion: 'forge-learn-v3', clientSessionId: this.configuration.clientSessionId, ownerScope: this.configuration.ownerScope ?? 'guest', configuration: finalizedConfig, comparisonKey: comparisonKey(finalizedConfig), initialTarget: this.configuration.initialTarget, issuedTargetSegments: this.issued.map(segment => ({ ...segment })), finalTranscript: replayed.finalText, startedAtWall: this.wallStart, finishedAtWall, pauseIntervals, finishReason: timedOut ? 'timeout' : reason, assistance, eligibility: { eligible: reasons.length === 0, reasons, verification: 'local-unverified' } });
+    return freeze({ ...this.snapshot(now), ...replayed, status: final ? 'finished' : this.status, elapsedMs, wallDurationMs, remainingMs: duration === undefined ? null : Math.max(0, duration - elapsedMs), events: events.map(event => ({ ...event })), schemaVersion: EVENT_LOG_SCHEMA_VERSION, metricsVersion: 'forge-v3', learningVersion: 'forge-learn-v3', clientSessionId: this.configuration.clientSessionId, ownerScope: this.configuration.ownerScope ?? 'guest', configuration: finalizedConfig, comparisonKey: comparisonKey(finalizedConfig), initialTarget: this.configuration.initialTarget, issuedTargetSegments: this.issued.map(segment => ({ ...segment })), finalTranscript: replayed.finalText, startedAtWall: this.wallStart, finishedAtWall, pauseIntervals, finishReason: timedOut ? 'timeout' : reason, assistance, eligibility: { eligible: reasons.length === 0, reasons, verification: 'local-unverified' } });
   }
 }

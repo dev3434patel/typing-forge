@@ -6,14 +6,26 @@ const Segmenter = (Intl as unknown as { Segmenter?: SegmenterConstructor }).Segm
 const segmenter = Segmenter ? new Segmenter('und', { granularity: 'grapheme' }) : null;
 export const SEGMENTATION_POLICY = segmenter ? 'unicode-grapheme-intl-v1' : 'unicode-codepoint-fallback-v1';
 export function graphemes(text: string): string[] {
-  return segmenter ? Array.from(segmenter.segment(text), item => item.segment) : Array.from(text);
+  // Every ASCII unit is a grapheme except the CR+LF pair. Keep that case and
+  // all Unicode on the canonical segmenter; ordinary keyboard input needs no
+  // Intl iterator allocation for the entire retained passage on each edit.
+  for (let index = 0; index < text.length; index++) {
+    const code = text.charCodeAt(index);
+    if (code > 127 || code === 13) return segmenter ? Array.from(segmenter.segment(text), item => item.segment) : Array.from(text);
+  }
+  return text.split('');
 }
 // Bounded deterministic memoization avoids re-segmenting the immutable target on every input.
 const targetCache = new Map<string, readonly string[]>();
+// Null brands a factory-owned immutable target whose bounded word metadata is lazy.
+const targetWordCache = new WeakMap<readonly string[], readonly Readonly<Word>[] | null>();
+const MAX_CACHED_WORD_TARGET_UNITS = 4096;
+const MAX_CACHED_TARGET_WORDS = 512;
 export function targetGraphemes(text: string): readonly string[] {
   const cached = targetCache.get(text);
   if (cached) return cached;
   const result = Object.freeze(graphemes(text));
+  if (result.length <= MAX_CACHED_WORD_TARGET_UNITS) targetWordCache.set(result, null);
   if (targetCache.size >= 16) targetCache.delete(targetCache.keys().next().value!);
   targetCache.set(text, result);
   return result;
@@ -52,7 +64,9 @@ export interface WordCreditTrace {
   reason: WordCreditReason;
 }
 interface Word { start: number; end: number; separator: number | null }
-function targetWords(target: readonly string[]): Word[] {
+function targetWords(target: readonly string[]): readonly Readonly<Word>[] {
+  const cached = targetWordCache.get(target);
+  if (cached) return cached;
   const words: Word[] = [];
   let start = 0;
   for (let i = 0; i <= target.length; i++) {
@@ -60,6 +74,13 @@ function targetWords(target: readonly string[]): Word[] {
       words.push({ start, end: i, separator: i < target.length ? i : null });
       start = i + 1;
     }
+  }
+  if (targetWordCache.has(target)) {
+    if (words.length <= MAX_CACHED_TARGET_WORDS) {
+      for (let index = 0; index < words.length; index++) Object.freeze(words[index]);
+      Object.freeze(words);
+      targetWordCache.set(target, words);
+    } else targetWordCache.delete(target);
   }
   return words;
 }

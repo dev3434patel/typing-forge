@@ -1,0 +1,82 @@
+{
+  "status": "OBSERVATION-ONLY",
+  "capturedAt": "2026-10-21T20:41:18.637409+00:00",
+  "scope": "Independent read-only extraction of an already completed instrumented source12 mobile diagnostic. Samples are not call counts or causal percentages, and instrumented timings are not acceptance. No new profiling/execution performed.",
+  "processReceipt": "audit/2026-10-21/final12-mobile-profile-diagnostic-process.json",
+  "rawDiagnostic": "audit/2026-10-21/final12-mobile-profile-diagnostic.json",
+  "originalAcceptance": "audit/2026-10-21/mobile-workspaces-final12-static.json",
+  "declaredAt": "2026-10-21T20:27:49.070Z",
+  "finishedAt": "2026-10-21T20:28:20.011Z",
+  "ownedServerClosed": true,
+  "diagnosticCases": [
+    {
+      "id": "learn",
+      "attempts": 135,
+      "p98Ms": 136
+    },
+    {
+      "id": "course",
+      "attempts": 59,
+      "p98Ms": 104
+    },
+    {
+      "id": "local-bot",
+      "attempts": 100,
+      "p98Ms": 128
+    },
+    {
+      "id": "games",
+      "attempts": 99,
+      "p98Ms": 40
+    }
+  ],
+  "chunkAssociations": {
+    "assets/ObservedLiveKeyboard-BVBW2Gmz.css": "_ObservedLiveKeyboard-BVBW2Gmz.css",
+    "assets/ObservedLiveKeyboard-CRb4qNb5.js": "_ObservedLiveKeyboard-CRb4qNb5.js",
+    "assets/Learn-BOlw-sT0.js": "src/pages/Learn.tsx",
+    "assets/Race-ouQATkBj.js": "src/pages/Race.tsx"
+  },
+  "mappingScope": "Exact emitted Vite manifest entry/chunk association only. Minified frame offsets do not establish original source function/line mapping; no source map or causal attribution is invented.",
+  "learnSelectedFrames": [
+    {
+      "frame": "(anonymous) http://127.0.0.1:5972/assets/Learn-BOlw-sT0.js:1:9176",
+      "samples": 927
+    },
+    {
+      "frame": "(anonymous) http://127.0.0.1:5972/assets/ObservedLiveKeyboard-CRb4qNb5.js:5:7912",
+      "samples": 120
+    },
+    {
+      "frame": "getBoundingClientRect :-1:-1",
+      "samples": 52
+    }
+  ],
+  "botSelectedFrames": [
+    {
+      "frame": "getBoundingClientRect :-1:-1",
+      "samples": 675
+    },
+    {
+      "frame": "(anonymous) http://127.0.0.1:5972/assets/ObservedLiveKeyboard-CRb4qNb5.js:5:7912",
+      "samples": 65
+    },
+    {
+      "frame": "getClientRects :-1:-1",
+      "samples": 22
+    },
+    {
+      "frame": "(anonymous) http://127.0.0.1:5972/assets/TypingArea-B9f_6w8m.js:0:9872",
+      "samples": 18
+    },
+    {
+      "frame": "(anonymous) http://127.0.0.1:5972/assets/Race-ouQATkBj.js:0:16325",
+      "samples": 13
+    }
+  ],
+  "limits": [
+    "Different random targets produced135/59/100/99 attempts versus original125/59/100/102. These are not identical-workload samples.",
+    "Instrumented p98 values136/104/128/40 do not replace original acceptance120/80/120/32.",
+    "Program/browser/driver/React/layout sampling is not isolated causation or a percentage of product latency.",
+    "No source13 acceptance or fix benefit inferred."
+  ]
+}

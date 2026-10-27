@@ -1,0 +1,52 @@
+{
+  "recordedAt": "2026-10-22T20:53:55.008621+00:00",
+  "status": "FIXTURE_ONLY_FROZEN_NOT_RUN",
+  "modifiedPath": "e2e/live-keyboard.spec.ts",
+  "oldRawSha256": "5126a827a1d50f1e41acdeaa3305111c811bc3b4f46f9bd3ca7b539c645740f7",
+  "newRawSha256": "f5d566e53229e2dcabecb022f7027e347efaf016c99b44eb8247482889650421",
+  "retainedConfirmationResult": {
+    "total": 16,
+    "passed": 6,
+    "failed": 10,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "retainedFailureClass": "All10 failures were mapped cases incorrectly requiring an actual panel/board intersection; all4 native cases passed.",
+  "retainedReceipts": [
+    {
+      "path": "final17-keyboard-fixture-confirmation.json",
+      "sha256": "79de93c6d7383fba5440ec057639cc9563b5b9472c05cd15969ec8b3e3f16ce3"
+    },
+    {
+      "path": "final17-keyboard-fixture-confirmation-raw.json",
+      "sha256": "f5bcfd8d84142263ad373380a8d2deff7b5a69ebd08401ba144570bf89dc5d2e"
+    },
+    {
+      "path": "final17-keyboard-fixture-confirmation.log",
+      "sha256": "f1aae65821efc020c5fe9d8b7579bc143badbc752471acf09e5842876669929a"
+    }
+  ],
+  "productionFrozen17": {
+    "compared": 499,
+    "mismatches": [],
+    "build": "0572d723495d6be303a8"
+  },
+  "sourceWitness": "TypingShortcutHelp.placePanel selects a valid above-toolbar position when it fits. No board overlap is guaranteed.",
+  "correction": [
+    "Always hit-test actual panel center and require panel containment.",
+    "Retain strict original viewport bounds and default5000ms settlement assertion.",
+    "Measure and record overlapsBoard naturally.",
+    "Require intersectionHitPanel only if actual intersection exists.",
+    "Record overlapHitTestExercised=false and intersectionHitPanel=null otherwise; do not claim board-overlap paint-order proof for that case."
+  ],
+  "unchanged": [
+    "Native corrected-draft/glyph/export case byte-identical",
+    "All earlier tests and helper declarations byte-identical",
+    "All499 frozen production source hashes",
+    "Original default test/assertion budgets and0.02px geometry tolerances",
+    "No forced geometry, CSS injection or fake input"
+  ],
+  "receiptPreparationNote": "An initial metadata-only hash scan attempted to decode a binary source file as UTF8 and stopped before writing this receipt. This completed scan hashes binary files as bytes and normalizes text line endings. No source mutation resulted from either scan.",
+  "testsRun": false,
+  "latencyOrPassClaim": false
+}

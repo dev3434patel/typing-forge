@@ -1,0 +1,71 @@
+{
+  "recordedAt": "2026-10-23",
+  "scope": "Read-only review of existing controlled-guest receipts and frozen source16. No browser, build, test or product edit was performed.",
+  "status": "FAILED_CASES_RETAINED_CAUSE_UNPROVEN",
+  "batch": {
+    "report": "final16-new-features.json",
+    "total": 204,
+    "passed": 200,
+    "failed": 4,
+    "skipped": 0,
+    "flaky": 0,
+    "engines": { "chromium": "51/51", "edge": "51/51", "firefox": "51/51", "webkit": "47/51" },
+    "note": "These counts cover only the completed new-features partition, not the ongoing entire release matrix. The other reviewer owns both arcade-data-isolation failures."
+  },
+  "cases": [
+    {
+      "test": "Ghost GP retains real attempts and exports local canonical evidence in landscape",
+      "project": "webkit",
+      "file": "e2e/arcade.spec.ts",
+      "failedAssertion": "Arcade typing input enabled, original 5000ms timeout",
+      "observedStage": "Heading, difficulty and Play succeeded; final snapshot remained Preparing the local game engine.",
+      "traceClockMs": {
+        "playStart": 328389.704,
+        "playEnd": 329137.315,
+        "inputAssertionStart": 329227.979,
+        "inputAssertionEnd": 334329.897,
+        "playerRequestStart": 329059.406,
+        "playerResponseEnd": 329136.602
+      },
+      "networkWitness": "ArcadePlayer, session and composition-echo requests all recorded HTTP200 in 72–77ms, before the input assertion began. No failed graph request or page-error event was recorded in this trace.",
+      "classification": "Actual lazy-player readiness assertion failure. HTTP success alone does not prove module evaluation/import resolution or a renderer/driver cause. No typing or export assertion was reached.",
+      "fix": "No source fix supported yet. Confirm the exact unchanged case serially; if it fails again, use separately declared passive import-promise settlement instrumentation."
+    },
+    {
+      "test": "all eight arcade URLs survive a real HTTP outage without caching API or private room documents",
+      "project": "webkit",
+      "file": "e2e/arcade-offline.spec.ts",
+      "failedAssertion": "Arcade collection heading visible, original 5000ms timeout",
+      "observedStage": "The owned HTTP server was stopped after public-download readiness and service-worker control. The cached arcade navigation succeeded, but the final snapshot remained Loading your workspace.",
+      "traceClockMs": {
+        "arcadeNavigationStart": 304902.43,
+        "arcadeNavigationEnd": 305483.255,
+        "headingAssertionStart": 305576.846,
+        "headingAssertionEnd": 310807.613,
+        "authRequestStart": 306897.007,
+        "authRequestFailureEnd": 308888.091,
+        "routeRequestStart": 308916.653,
+        "lastRouteDependencyResponseEnd": 308928.278
+      },
+      "networkWitness": "Cached document, bootstrap/App and route dependency responses recorded HTTP200. The uncached API auth/session request failed against the intentionally stopped server after 1991.084ms. Route imports began after that failure and finished in 3–7ms; about 1.88s then remained before the heading assertion expired. No page-error event was recorded.",
+      "classification": "Actual offline-route readiness failure. The cache did supply public assets. Account preparation delayed route loading, but the trace does not establish the remaining module/render delay cause or prove a fixture-only defect.",
+      "fix": "Retain the failure and confirm the exact original case serially. Do not cache API/private responses, bypass account hydration globally, increase the assertion budget, or infer that a new preload exclusion is required."
+    }
+  ],
+  "layoutContainmentProposal": {
+    "status": "PROPOSAL_ONLY_NOT_APPLIED_OR_MEASURED",
+    "selector": ".live-keyboard-board",
+    "declaration": "contain: layout",
+    "sourceReview": "No current descendant requires an external absolute/fixed containing block. Home/mastery/ripple children already use relative keycaps; toolbar/help/settings controls are siblings outside the board. Current board does not participate in external baseline alignment.",
+    "specEffects": "Creates an independent formatting context, absolute/fixed containing block and stacking context. Does not enable size or paint containment; visible overflow is treated as ink overflow.",
+    "source": "https://www.w3.org/TR/css-contain-2/#layout-containment",
+    "conclusion": "No concrete current-DOM blocker found. Content-driven size and mapped/native flex contents should remain. This does not eliminate local key-label grid layout, guarantee ancestor invalidation is avoided, or establish a latency benefit.",
+    "requiredVerificationIfAuthorized": "Original four-engine keyboard geometry and interaction assertions, short desktop/mobile layouts, native-character board, multi-key holds, outline/ripple visibility and sibling overlay paint order. Keep size/paint/content containment absent."
+  },
+  "limitations": [
+    "No new runtime observation or browser confirmation was made.",
+    "Network timing comes from recorded request start plus total request duration; HTTP200 is not a module-evaluation timestamp.",
+    "No memory-pressure, GPU, WebKit module-preload or driver-lifecycle causal claim is established by these traces.",
+    "Raw traces remain private ignored artifacts; this report contains no bodies, tokens, user text or account identifiers."
+  ]
+}

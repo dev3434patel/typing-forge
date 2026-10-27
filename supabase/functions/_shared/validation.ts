@@ -58,6 +58,7 @@ export function validateCandidate(input: unknown, owner: string, options: { inte
   let pauseEnd = -1;
   for (const pause of candidate.pauseIntervals) {
     assert(Number.isFinite(pause.startMs) && Number.isFinite(pause.endMs) && pause.startMs >= 0 && pause.startMs >= pauseEnd && pause.endMs >= pause.startMs && pause.endMs <= candidate.wallDurationMs, 'Pause ranges must be ordered, bounded, and non-overlapping.');
+    if (pause.afterSequence !== undefined) assert(Number.isInteger(pause.afterSequence) && pause.afterSequence >= 0 && candidate.events.some(event => event.sequence === pause.afterSequence && event.offsetMs === pause.startMs), 'Pause sequence anchor must reference input at its exact start timestamp.');
     pauseEnd = pause.endMs;
   }
   const activeWallDuration = activeOffset(candidate.wallDurationMs, candidate.pauseIntervals);

@@ -1,0 +1,50 @@
+{
+  "recordedAt": "2026-10-20T18:54:48.800Z",
+  "status": "PASS",
+  "source": "vite.config.ts",
+  "sourceSha256": "c8c7e083ed182f7927eb8a6a86cd81e6dc78d896eed0e5d6c55029580f2e1409",
+  "productChanges": [
+    "Dev-only server.fs.deny: installed four Vite defaults plus six PHP private/config/storage/hosting patterns."
+  ],
+  "runtimeChecks": {
+    "before": "dev-file-boundary-before.json",
+    "fullPluginBefore": "dev-file-boundary-full-plugin-before.json",
+    "after": "dev-file-boundary-after.json",
+    "cleanup": "dev-file-boundary-cleanup.json",
+    "deniedCanaryHttpRequests": 8,
+    "publicCatalogHttpRequests": 2,
+    "isolatedApiProxy": "PASS",
+    "purePathnamePolicyChecks": 11
+  },
+  "nodeTypecheck": {
+    "command": "npx tsc -p tsconfig.node.json --noEmit",
+    "exitCode": 0,
+    "output": "No diagnostics"
+  },
+  "productDiffCheck": {
+    "command": "git diff --check -- vite.config.ts docs/FRONTEND_DEPLOYMENT.md",
+    "exitCode": 0,
+    "note": "Git reported line-ending advisory warnings; no whitespace errors."
+  },
+  "installedDefaults": {
+    "viteVersion": "7.3.7",
+    "source": "node_modules/vite/dist/node/chunks/config.js",
+    "defaultsLine": 25960,
+    "loadingPredicateLine": 22747,
+    "caseInsensitiveDenyMatcherLine": 35916
+  },
+  "preserved": [
+    "API proxy configuration",
+    "public canonical course catalog/module",
+    "existing IPv6 dev bind setting",
+    "all rendering plugins and production app sources"
+  ],
+  "privateDataRequested": false,
+  "privateDataRead": false,
+  "limitations": [
+    "No browser or build run for this development-only change.",
+    "Root owns later actual CLI dev/lesson smoke and production byte comparison.",
+    "The pure private-file pathname checks do not request or open those files.",
+    "Original full-plugin startup was slow but successful; no startup failure is claimed."
+  ]
+}

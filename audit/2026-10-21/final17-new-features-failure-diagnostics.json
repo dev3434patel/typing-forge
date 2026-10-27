@@ -1,0 +1,249 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-10-23T13:02:06.011121+00:00",
+  "buildId": "0572d723495d6be303a8",
+  "status": "FAILED",
+  "observation": "PARTIAL",
+  "scope": "Finalized new-features batch only; the existing/full matrix is not finalized. Read-only raw report/error-context and five controlled-guest screenshot inspection; no rerun or product/test change.",
+  "rawReport": "final17-new-features.json",
+  "protocol": "final17-new-features-protocol.json",
+  "counts": {
+    "actualTests": 204,
+    "passed": 196,
+    "failed": 8,
+    "skipped": 0,
+    "retried": 0,
+    "flaky": 0,
+    "globalErrors": 0,
+    "projects": {
+      "chromium": {
+        "total": 51,
+        "passed": 49,
+        "failed": 2,
+        "skipped": 0,
+        "retried": 0
+      },
+      "edge": {
+        "total": 51,
+        "passed": 51,
+        "failed": 0,
+        "skipped": 0,
+        "retried": 0
+      },
+      "firefox": {
+        "total": 51,
+        "passed": 48,
+        "failed": 3,
+        "skipped": 0,
+        "retried": 0
+      },
+      "webkit": {
+        "total": 51,
+        "passed": 48,
+        "failed": 3,
+        "skipped": 0,
+        "retried": 0
+      }
+    },
+    "rawStats": {
+      "startTime": "2026-10-22T21:01:17.480Z",
+      "duration": 57505690.835,
+      "expected": 196,
+      "skipped": 0,
+      "unexpected": 8,
+      "flaky": 0
+    }
+  },
+  "integrity": {
+    "buildUnchanged": true,
+    "testsUnchanged": true,
+    "dependenciesUnchanged": true
+  },
+  "instrumentation": {
+    "trace": "off",
+    "instrumentationChanged": true,
+    "failureScreenshots": "only-on-failure",
+    "allFailedResultsHaveNoTrace": true,
+    "allFailedResultsHaveNoRecordedSteps": true
+  },
+  "overnightInterval": {
+    "reportedBatchStart": "2026-10-22T21:01:17.480Z",
+    "reportedBatchDurationMs": 57505690.835,
+    "reportedBatchDurationHours": 15.973803009722223,
+    "largestConsecutiveTestStartGapMs": 57066186.0,
+    "gapFrom": "2026-10-22T21:01:45.336000+00:00",
+    "gapTo": "2026-10-23T12:52:51.522000+00:00",
+    "twoChromiumArenaCasesSpanOver15Hours": true,
+    "qualification": "The recorded wall/start/duration interval exceeds15hours and the original30s workflow budgets. No host power/suspension log or per-action trace was captured. Host suspension versus browser/runtime/product attribution is UNPROVEN; this is not evidence of15hours sustained application processing."
+  },
+  "failures": [
+    {
+      "file": "e2e/arcade-data-isolation.spec.ts",
+      "line": 5,
+      "name": "cross-tab arcade deletion discards the active run without resurrecting bests or touching another owner",
+      "project": "firefox",
+      "status": "timedOut",
+      "startTime": "2026-10-23T12:54:44.114Z",
+      "reportedDurationMs": 50295,
+      "retry": 0,
+      "attemptCount": 1,
+      "recordedStepCount": 0,
+      "traceAttachmentPresent": false,
+      "pendingStage": "Second page goto /arcade waiting for load, before cross-tab storage/deletion actions.",
+      "additionalError": "Firefox Browser.removeBrowserContext protocol error during context close: session-restore window metadata was undefined.",
+      "screenshotState": "NOT-CAPTURED",
+      "notEstablished": "Deletion behavior or the native navigation subphase/root cause.",
+      "cause": "UNPROVEN"
+    },
+    {
+      "file": "e2e/arcade-data-isolation.spec.ts",
+      "line": 33,
+      "name": "deleting an ordinary canonical session in another tab stops only the selected history ghost",
+      "project": "firefox",
+      "status": "timedOut",
+      "startTime": "2026-10-23T12:54:44.113Z",
+      "reportedDurationMs": 49767,
+      "retry": 0,
+      "attemptCount": 1,
+      "recordedStepCount": 0,
+      "traceAttachmentPresent": false,
+      "pendingStage": "goto /arcade/ghost-gp waiting for load after ordinary practice Session results became visible.",
+      "screenshotState": "NOT-CAPTURED",
+      "notEstablished": "Ghost selection, canonical-source deletion, or cross-tab discard behavior; those actions were not reached.",
+      "cause": "UNPROVEN"
+    },
+    {
+      "file": "e2e/arcade-offline.spec.ts",
+      "line": 13,
+      "name": "all eight arcade URLs survive a real HTTP outage without caching API or private room documents",
+      "project": "firefox",
+      "status": "failed",
+      "startTime": "2026-10-23T12:55:37.225Z",
+      "reportedDurationMs": 12597,
+      "retry": 0,
+      "attemptCount": 1,
+      "recordedStepCount": 0,
+      "traceAttachmentPresent": false,
+      "failedStage": "Public download: available visibility expectation, original5000ms.",
+      "screenshotState": "NOT-CAPTURED",
+      "notEstablished": "Offline outage/game behavior; controller readiness and server shutdown were not reached.",
+      "cause": "UNPROVEN"
+    },
+    {
+      "file": "e2e/arcade-offline.spec.ts",
+      "line": 13,
+      "name": "all eight arcade URLs survive a real HTTP outage without caching API or private room documents",
+      "project": "webkit",
+      "status": "failed",
+      "startTime": "2026-10-23T12:57:00.698Z",
+      "reportedDurationMs": 8745,
+      "retry": 0,
+      "attemptCount": 1,
+      "recordedStepCount": 0,
+      "traceAttachmentPresent": false,
+      "failedStage": "First offline game Word Invaders heading visibility expectation, original5000ms, source26.",
+      "screenshotState": "Loading your workspace...",
+      "reachedBeforeFailure": [
+        "Public download available",
+        "controller readiness",
+        "owned server stopped",
+        "real HTTP outage assertion",
+        "offline Arcade hub heading"
+      ],
+      "notEstablished": "Worker installation/readiness was not the failed stage in this case; the screenshot does not identify lazy module or rendering cause.",
+      "cause": "UNPROVEN"
+    },
+    {
+      "file": "e2e/arena.spec.ts",
+      "line": 41,
+      "name": "eight-member UI uses actual native canonical typing after the issued countdown and preserves strict rules",
+      "project": "chromium",
+      "status": "timedOut",
+      "startTime": "2026-10-22T21:01:42.158Z",
+      "reportedDurationMs": 57012051,
+      "retry": 0,
+      "attemptCount": 1,
+      "recordedStepCount": 0,
+      "traceAttachmentPresent": false,
+      "pendingStage": "Typing input visibility inside focusTyping after fixture all-ready countdown; original5000ms expectation, interrupted by whole30000ms deadline.",
+      "screenshotState": "Completed eight-member shared-clock fixture room and offline banner.",
+      "notEstablished": "Whether host suspension, browser suspension, or other external/runtime conditions caused the overnight interval.",
+      "cause": "UNPROVEN"
+    },
+    {
+      "file": "e2e/arena.spec.ts",
+      "line": 64,
+      "name": "failed leave retains room recovery and spectator view exposes public progress",
+      "project": "chromium",
+      "status": "timedOut",
+      "startTime": "2026-10-22T21:01:45.336Z",
+      "reportedDurationMs": 57009507,
+      "retry": 0,
+      "attemptCount": 1,
+      "recordedStepCount": 0,
+      "traceAttachmentPresent": false,
+      "pendingStage": "Fill Eight-character room code after spectator-page navigation; whole30000ms deadline.",
+      "screenshotState": "Preparing your typing workspace...",
+      "notEstablished": "Failed-leave recovery and public spectator progress assertions; those later actions were not reached.",
+      "cause": "UNPROVEN"
+    },
+    {
+      "file": "e2e/progression-extras.spec.ts",
+      "line": 17,
+      "name": "earned theme and frame apply, persist on the real profile and return to default appearance",
+      "project": "webkit",
+      "status": "failed",
+      "startTime": "2026-10-23T12:58:36.759Z",
+      "reportedDurationMs": 25795,
+      "retry": 0,
+      "attemptCount": 1,
+      "recordedStepCount": 0,
+      "traceAttachmentPresent": false,
+      "failedStage": "Final profile Your practice identity region expected default-description text after Use default appearance and final goto /profile, original5000ms, source32.",
+      "screenshotState": "Blank dark viewport; no rendered profile region.",
+      "reachedBeforeFailure": [
+        "Aurora palette unlock/equip",
+        "theme attribute aurora",
+        "Orbit frame unlock/equip",
+        "first profile contains Orbit frame",
+        "Use default appearance",
+        "theme attribute sparow-dark"
+      ],
+      "notEstablished": "The captured state does not demonstrate a stale stored frame or incorrect default description; profile content was absent.",
+      "cause": "UNPROVEN"
+    },
+    {
+      "file": "e2e/progression.spec.ts",
+      "line": 20,
+      "name": "fallback reload preserves existing receipt awards without rewarding twice",
+      "project": "webkit",
+      "status": "failed",
+      "startTime": "2026-10-23T12:59:05.638Z",
+      "reportedDurationMs": 8798,
+      "retry": 0,
+      "attemptCount": 1,
+      "recordedStepCount": 0,
+      "traceAttachmentPresent": false,
+      "failedStage": "Second100 lifetime XP visibility assertion after reload, original5000ms, source31.",
+      "screenshotState": "Blank dark viewport; no rendered progression content.",
+      "reachedBeforeFailure": [
+        "initial100 lifetime XP",
+        "Qualified lesson cell",
+        "read transaction table",
+        "reload"
+      ],
+      "notEstablished": "The capture does not demonstrate lost/duplicate persisted XP; post-reload progression content was absent.",
+      "cause": "UNPROVEN"
+    }
+  ],
+  "limits": [
+    "Raw JSON has no recorded action-step timeline. Only per-test start/duration and the terminal assertion/error/source location are available.",
+    "Screenshot text is a state witness, not a timing or causal proof. Missing screenshot/DOM captures are explicitly unobserved.",
+    "No deadline was changed, no failed case was filtered, and no retry was performed by this review.",
+    "Source16 failed raw reports and this source17 failed batch remain retained."
+  ],
+  "privacy": "Only predefined labels, test names, public route paths, timestamps, durations, counts and screenshot-state descriptions are copied; no credential/header/cookie/private body/input transcript is retained.",
+  "sourceOrTestEdits": false,
+  "rerunPerformed": false,
+  "ownedServicesStarted": false
+}

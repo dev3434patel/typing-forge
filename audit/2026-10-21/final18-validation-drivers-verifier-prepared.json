@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "preparedAt": "2026-10-23T14:42:42.835203+00:00",
+  "status": "PREPARED-NOT-RUN",
+  "actualBuild": null,
+  "requiredBuildEnvironment": "SPAROWTYPE_FINAL18_BUILD_ID must be the actual frozen20hex identity after build; no candidate value is guessed.",
+  "knownBaseline17Build": "0572d723495d6be303a8",
+  "scope": "Audit-only future18 runners/verifier. No tests, builds, browser, services, source/E2E/config/index changes or acceptance execution. The new PWA snapshot spec is planned but not assumed implemented or passed.",
+  "outputs": [
+    {
+      "path": "run-final18-static.mjs",
+      "reference": "run-final17-static.mjs",
+      "referenceNormalizedSha256": "7cd5bb2810d135108d6bd734ada836d72b0a53c29639c1ec143bc58b53fdebc1",
+      "preparedNormalizedSha256": "81602f4b5955e445982c136c93a3865426b93ee2f05ad6f66de672a225594f0d",
+      "exactExtraReplacements": [],
+      "reverseRestoresReferenceExactly": true
+    },
+    {
+      "path": "run-mobile-workspaces-static-final18.mjs",
+      "reference": "run-mobile-workspaces-static-final17.mjs",
+      "referenceNormalizedSha256": "e753c04629329020831ecd77295a2ad339a0919a0e2634d063d69a878649b12e",
+      "preparedNormalizedSha256": "83cb396f38840f9b97b70b76a4756868cfcc00618fc485fa33c43b30bb49fd43",
+      "exactExtraReplacements": [],
+      "reverseRestoresReferenceExactly": true
+    },
+    {
+      "path": "measure-mobile-workspaces-static-final18.mjs",
+      "reference": "measure-mobile-workspaces-static-final17.mjs",
+      "referenceNormalizedSha256": "aa2fec83ec90f96db5c761b7ce81501a4bb9bc7a8799b4461878e683990c33a7",
+      "preparedNormalizedSha256": "b76c9215ee9fa418d1a9c43c0355f8bc39189edcf75f4c00d1b29f6dd4dccabd",
+      "exactExtraReplacements": [],
+      "reverseRestoresReferenceExactly": true
+    },
+    {
+      "path": "standalone-placement-real135-final18.mjs",
+      "reference": "standalone-placement-real135-final17.mjs",
+      "referenceNormalizedSha256": "4ecd8e450742880fb850a1d0a4cd2f6fdf8e88fa444734c5f0569dfcc3339686",
+      "preparedNormalizedSha256": "6600eedc6dea54d8209ca7e95e8af775694c3a19471b33dcd069754cef818f5a",
+      "exactExtraReplacements": [],
+      "reverseRestoresReferenceExactly": true
+    },
+    {
+      "path": "run-final18-browser-matrix.mjs",
+      "reference": "run-final17-browser-matrix.mjs",
+      "referenceNormalizedSha256": "0896632f1fb29005a7a6cd9393b89c784cc0302722e60ace08bc780dcdee9210",
+      "preparedNormalizedSha256": "3aa0425407215bf2c8bd5e5397d636e6f556ed68f19d5e994fc4fbcf2e15a9bb",
+      "exactExtraReplacements": [
+        {
+          "before": "{ id: 'existing', files: baseline.ordinary.files, workers: 2 }",
+          "after": "{ id: 'existing', files: [...baseline.ordinary.files, 'e2e/pwa-snapshot-consistency.spec.ts'], workers: 2 }"
+        },
+        {
+          "before": "assert.equal(new Set(all).size, all.length);",
+          "after": "assert.equal(actual.length, 63, 'Source18 includes the new PWA snapshot consistency spec exactly once.');\nassert.equal(new Set(all).size, all.length);"
+        }
+      ],
+      "reverseRestoresReferenceExactly": true
+    },
+    {
+      "path": "run-final18-native-browser.mjs",
+      "reference": "run-final17-native-browser.mjs",
+      "referenceNormalizedSha256": "4eafbb8f031b9dffcca3145b359d1612cf845d76313f4cd24c9b5770d8ed66ae",
+      "preparedNormalizedSha256": "7c05625b2493caca88e7111f6d71d4225a608f92eb7729a964cf40c95d7b446d",
+      "exactExtraReplacements": [],
+      "reverseRestoresReferenceExactly": true
+    },
+    {
+      "path": "run-browser-checkpoint-final18.mjs",
+      "reference": "run-browser-checkpoint-final17.mjs",
+      "referenceNormalizedSha256": "0eacc52190343f647774708faebef38028974abde9e62b1b8f597fbb56090190",
+      "preparedNormalizedSha256": "27d08699f2efdbfa6d5ca423f95afea3b17acae1329028400d726a8a961fbb8b",
+      "exactExtraReplacements": [
+        {
+          "before": "const build = JSON.parse(await readFile('dist/offline-build.json', 'utf8'));",
+          "after": "const build = JSON.parse(await readFile('dist/offline-build.json', 'utf8'));\nconst expectedBuild = process.env.SPAROWTYPE_FINAL18_BUILD_ID;\nassert.match(expectedBuild ?? '', /^[a-f0-9]{20}$/, 'Supply the actual frozen18 build identity.');\nassert.equal(build.version, expectedBuild);"
+        }
+      ],
+      "reverseRestoresReferenceExactly": true
+    },
+    {
+      "path": "verify-final18-acceptance.mjs",
+      "reference": "verify-final17-acceptance.mjs",
+      "referenceNormalizedSha256": "4724c0fd23252ca6d6dcfdec45d1d1252332f95973731311d489190dcade96ea",
+      "preparedNormalizedSha256": "98dfd492d1c4641cd55eabeea4b8cb9d9758f6889053fc0dd5a9f27b95fd6a3d",
+      "derivation": "Version18 references, mandatory unknown actual18 build, exact2 source paths/499samefiles/497unchanged, full63 partition; remove source17-only known-score observations, final17 keyboard confirmation, optional fresh17 union and its output labels. Preserve original timing/performance/static/mobile/native thresholds.",
+      "removed17OnlySectionSha256": "377cbd91447e27751d1f65d1311e2152ac7a07541b618e36572d8300972b3be1",
+      "removed17KeyboardSectionSha256": "93f296b52a98917cc43f0fe41e92c208b63beb040092551122ada193f9db4d6f",
+      "syntaxOrExecutionPerformed": false
+    }
+  ],
+  "plannedSourceDelta": {
+    "beforeFiles": 499,
+    "afterFiles": 499,
+    "modified": [
+      "src/components/layout/PwaStatus.tsx",
+      "src/pages/Offline.tsx"
+    ],
+    "added": [],
+    "removed": [],
+    "unchanged": 497
+  },
+  "plannedMatrix": {
+    "files": 63,
+    "batches": {
+      "new-features": 11,
+      "existing": 43,
+      "isolated": 8,
+      "first-input-timing": 1
+    },
+    "newFile": "e2e/pwa-snapshot-consistency.spec.ts",
+    "engines": [
+      "chromium",
+      "edge",
+      "firefox",
+      "webkit"
+    ],
+    "workers": [
+      2,
+      2,
+      1,
+      2
+    ],
+    "retries": 0,
+    "tracing": "off",
+    "instrumentationChanged": true
+  },
+  "requiredActual18Acceptance": [
+    "all12sourcegates",
+    "freshbuild/bundle/package27/source2delta",
+    "matchedinput3 originalthresholds, no guessed values",
+    "fullintro mobileLighthouse3 originalthresholds, no guessed values",
+    "full63-file four-engine raw matrix",
+    "static67artifact+56deployment+16gameaxe",
+    "mobile4functional and separatep98",
+    "placement82/real3x45s",
+    "actualnative16 plus owncleanup"
+  ],
+  "historical17": "Original failed17 outcomes and unused fresh17 wrapper/union remain unchanged, NOT accepted as source18 runtime evidence.",
+  "syntaxCheckPerformed": false,
+  "executionPerformed": false
+}

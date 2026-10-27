@@ -1,0 +1,22 @@
+{
+  "status": "PASS-SCOPED",
+  "scope": "Pure PDO interaction contract with a simulated independent lock; real SQL concurrency remains a separate HTTP gate.",
+  "passed": 3,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "pending assignment lookup acquires an explicit member FOR UPDATE lock first",
+      "pass": true
+    },
+    {
+      "name": "a blocked independent member lock prevents any pending assignment lookup or mutation",
+      "pass": true
+    },
+    {
+      "name": "a disappeared membership cannot receive or create an assignment",
+      "pass": true
+    }
+  ],
+  "databaseConnected": false,
+  "recordedAt": "2026-10-20T20:52:22.142Z"
+}

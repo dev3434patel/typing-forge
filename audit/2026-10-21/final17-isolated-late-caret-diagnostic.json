@@ -1,0 +1,146 @@
+{
+  "capturedAt": "2026-10-23T14:43:38.045068+00:00",
+  "reportLocalDate": "2026-10-23",
+  "status": "FAILED-OBSERVED-FIXTURE-CONTRACT-GAP",
+  "scope": "Read-only diagnosis of all4 source17 isolated late-chunk failures, retained public fresh-guest screenshots and exact source/test. No browser/test/build/service execution and no src/E2E edits.",
+  "build": {
+    "version": "0572d723495d6be303a8",
+    "publicFiles": 133,
+    "bytes": 2930646
+  },
+  "summary": "audit/2026-10-21/final17-isolated-summary.json",
+  "protocol": "audit/2026-10-21/final17-isolated-protocol.json",
+  "cases": [
+    {
+      "project": "chromium",
+      "status": "timedOut",
+      "durationMs": 30195,
+      "startedAt": "2026-10-23T13:27:15.389Z",
+      "failure": "Original30000ms whole-test deadline expired in page.waitForResponse(/assets/caret-handoff...js/) after native first input.",
+      "screenshot": "audit/2026-10-21/final17-isolated-late-caret-chromium.png",
+      "originalScreenshotSha256": "98f333341611c90db01f8c19b49cfa06bbedca0c8f058bde331ad1980d442a85",
+      "originalDimensions": {
+        "width": 1280,
+        "height": 720
+      },
+      "retainedErrorContextSha256": "714cf4366989c745a4a5898a8c437fb491e69552a21e71d900410870d975e413",
+      "screenshotVisualObservation": {
+        "practiceVisible": true,
+        "firstTypedXVisible": true,
+        "realCaretVisiblyPresent": true,
+        "openingOverlayVisible": false
+      },
+      "postResponseExactValueAndComputedCaretAssertions": "NOT-REACHED; screenshot observation is not a computed-style/late-import proof.",
+      "pageErrorAssertion": "NOT-REACHED after pending response; no zero-page-error claim."
+    },
+    {
+      "project": "edge",
+      "status": "timedOut",
+      "durationMs": 30222,
+      "startedAt": "2026-10-23T13:30:13.192Z",
+      "failure": "Original30000ms whole-test deadline expired in page.waitForResponse(/assets/caret-handoff...js/) after native first input.",
+      "screenshot": "audit/2026-10-21/final17-isolated-late-caret-edge.png",
+      "originalScreenshotSha256": "3f45e30e476a6de1ed47776b91cfaff48dd92242f3021deae8c0eb9ef015c83c",
+      "originalDimensions": {
+        "width": 1280,
+        "height": 720
+      },
+      "retainedErrorContextSha256": "ddcd611db2790c56ee2d26e94b331052cb907fd7c1358ec9b53e5bda596b31a1",
+      "screenshotVisualObservation": {
+        "practiceVisible": true,
+        "firstTypedXVisible": true,
+        "realCaretVisiblyPresent": true,
+        "openingOverlayVisible": false
+      },
+      "postResponseExactValueAndComputedCaretAssertions": "NOT-REACHED; screenshot observation is not a computed-style/late-import proof.",
+      "pageErrorAssertion": "NOT-REACHED after pending response; no zero-page-error claim."
+    },
+    {
+      "project": "firefox",
+      "status": "timedOut",
+      "durationMs": 30324,
+      "startedAt": "2026-10-23T13:32:25.936Z",
+      "failure": "Original30000ms whole-test deadline expired in page.waitForResponse(/assets/caret-handoff...js/) after native first input.",
+      "screenshot": "audit/2026-10-21/final17-isolated-late-caret-firefox.png",
+      "originalScreenshotSha256": "726499148e5a3785aa3301af50ea519a1543ca2e527c85d9f9e557bddfbaa662",
+      "originalDimensions": {
+        "width": 1280,
+        "height": 720
+      },
+      "retainedErrorContextSha256": "6f6711168b4924cc7c111159c8d1e1c458691847e9c8d0a39309c1037de9b81f",
+      "screenshotVisualObservation": {
+        "practiceVisible": true,
+        "firstTypedXVisible": true,
+        "realCaretVisiblyPresent": true,
+        "openingOverlayVisible": false
+      },
+      "postResponseExactValueAndComputedCaretAssertions": "NOT-REACHED; screenshot observation is not a computed-style/late-import proof.",
+      "pageErrorAssertion": "NOT-REACHED after pending response; no zero-page-error claim."
+    },
+    {
+      "project": "webkit",
+      "status": "timedOut",
+      "durationMs": 30523,
+      "startedAt": "2026-10-23T13:36:02.858Z",
+      "failure": "Original30000ms whole-test deadline expired in page.waitForResponse(/assets/caret-handoff...js/) after native first input.",
+      "screenshot": "audit/2026-10-21/final17-isolated-late-caret-webkit.png",
+      "originalScreenshotSha256": "bb5f73497fab15185cb410b1294791458e245e8644f7bfc93e4f19b879ae74b7",
+      "originalDimensions": {
+        "width": 2560,
+        "height": 1440
+      },
+      "retainedErrorContextSha256": "50bc33372e33193482cf2e3d9af7d7913c8c67b242ccf6859d52c9857136b48a",
+      "screenshotVisualObservation": {
+        "practiceVisible": true,
+        "firstTypedXVisible": true,
+        "realCaretVisiblyPresent": true,
+        "openingOverlayVisible": false
+      },
+      "postResponseExactValueAndComputedCaretAssertions": "NOT-REACHED; screenshot observation is not a computed-style/late-import proof.",
+      "pageErrorAssertion": "NOT-REACHED after pending response; no zero-page-error claim."
+    }
+  ],
+  "commonFailure": {
+    "spec": "e2e/opening-experience.spec.ts:208",
+    "failingOperation": "page.waitForResponse atline251",
+    "originalBudgetMs": 30000,
+    "observedBeforeFailure": [
+      "Opening completed and practice visibility/ready assertions passed.",
+      "Native pressSequentially(\"x\") completed before the response observer was installed.",
+      "All4 retained screenshots show the inserted first letter and a visible practice caret."
+    ],
+    "notReached": [
+      "Releasing response followed by100ms clock advance",
+      "Final exact input value assertion",
+      "Decorative handoff count0 assertion",
+      "Computed real caret visibility assertion",
+      "Collected pageErrors empty assertion"
+    ]
+  },
+  "sourceAndArtifactFacts": {
+    "dynamicEntry": {
+      "file": "assets/caret-handoff-Bo5AUEQO.js",
+      "name": "caret-handoff",
+      "src": "src/components/brand/caret-handoff.ts",
+      "isDynamicEntry": true
+    },
+    "dynamicChunkExists": true,
+    "rendererSourceHashesMatchFrozen17": true,
+    "handoffProtection": "OpeningExperience installs keydown/pointer/resize/scroll cancellation before dynamicimport and aborts a pending handoff at1000ms; import completion checks cancellation before creating decoration. Module cleanup restores actual caret visibility.",
+    "fixtureGap": "These3 fault-injection variants allow service workers, route only page-level chunk requests, have no assertion that the injected route actually intercepted a request, and arm the late response wait after intro completion/native typing. A prior or worker-handled response can leave the future-only observer waiting forever.",
+    "defaultServiceWorkers": "Playwright fixture does not override serviceWorkers for these variants; actual worker possession/network route interception was not retained in this trace-off report."
+  },
+  "classification": {
+    "confirmed": "All4 failures were the future-response observation timeout, not a failed product input-retention/caret assertion. Fault-injection interception/readiness is unproven by the current fixture.",
+    "supportedFixtureRepair": "Use serviceWorkers:block only around the3 handoff fault variants, require actual route-hit witness, register the late response observer before navigation/import request, retain every native-input/caret/page-error assertion and existing whole-test deadline/choreography.",
+    "notProven": [
+      "Exact service-worker cache-bypass or early-response schedule in these4 runs",
+      "A product caret/input regression",
+      "That all post-late-response caret behavior is correct",
+      "A general failure of WebKit/Safari or all service-worker requests"
+    ]
+  },
+  "publicScreenshots": "Byte-identical copies of reviewed fresh-guest synthetic/public-corpus failure PNGs only. No auth/cookie/account/private input data; screenshot dimensions recorded without device/DPR inference.",
+  "originalFailuresRetained": true,
+  "patch": "Audit-only proposal will be stored separately; not applied."
+}

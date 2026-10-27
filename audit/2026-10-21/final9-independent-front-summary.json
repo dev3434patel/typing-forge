@@ -1,0 +1,97 @@
+{
+  "totals": {
+    "total": 32,
+    "passed": 29,
+    "failed": 3,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "projects": [
+    {
+      "project": "chromium",
+      "total": 8,
+      "passed": 7,
+      "failed": 1,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "edge",
+      "total": 8,
+      "passed": 7,
+      "failed": 1,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "firefox",
+      "total": 8,
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "webkit",
+      "total": 8,
+      "passed": 7,
+      "failed": 1,
+      "skipped": 0,
+      "flaky": 0
+    }
+  ],
+  "reportedStats": {
+    "expected": 29,
+    "unexpected": 3,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "countsAgreeWithReport": true,
+  "failures": [
+    {
+      "project": "chromium",
+      "title": "independent-challenge-timing.spec.ts › ranked first-input fixture stays ready during idle, starts on a wrong key and preserves the full monotonic duration",
+      "file": "independent-challenge-timing.spec.ts",
+      "line": 74,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBeCloseTo(expected, precision) Expected: 15293 Received: 15292 Expected precision: 1 Expected difference: < 0.05 Received difference: 1 99 | expect(result.startedAtWall).toBeGreaterThanOrEqual(state.issuedAt() + 10000); 100 | expect(result.startedAtWall).toBeLessThan(state.issuedAt() + 60000); > 101 | expect(result.finishedAtWall - result.startedAtWall!).toBeCloseTo(result.wallDurationMs, 1); | ^ 102 | expect(state.issue"
+      ]
+    },
+    {
+      "project": "edge",
+      "title": "independent-challenge-timing.spec.ts › duel first-input fixture stays ready during idle, starts on a wrong key and preserves the full monotonic duration",
+      "file": "independent-challenge-timing.spec.ts",
+      "line": 74,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBeCloseTo(expected, precision) Expected: 30320 Received: 30319 Expected precision: 1 Expected difference: < 0.05 Received difference: 1 99 | expect(result.startedAtWall).toBeGreaterThanOrEqual(state.issuedAt() + 10000); 100 | expect(result.startedAtWall).toBeLessThan(state.issuedAt() + 60000); > 101 | expect(result.finishedAtWall - result.startedAtWall!).toBeCloseTo(result.wallDurationMs, 1); | ^ 102 | expect(state.issue"
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "independent-challenge-timing.spec.ts › ranked first-input fixture stays ready during idle, starts on a wrong key and preserves the full monotonic duration",
+      "file": "independent-challenge-timing.spec.ts",
+      "line": 74,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBeCloseTo(expected, precision) Expected: 15360 Received: 15359 Expected precision: 1 Expected difference: < 0.05 Received difference: 1 99 | expect(result.startedAtWall).toBeGreaterThanOrEqual(state.issuedAt() + 10000); 100 | expect(result.startedAtWall).toBeLessThan(state.issuedAt() + 60000); > 101 | expect(result.finishedAtWall - result.startedAtWall!).toBeCloseTo(result.wallDurationMs, 1); | ^ 102 | expect(state.issue"
+      ]
+    }
+  ],
+  "flakyCases": [],
+  "skippedCases": [],
+  "skipReasons": [],
+  "expectedFailures": [],
+  "globalErrors": [],
+  "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+}

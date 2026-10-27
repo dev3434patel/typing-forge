@@ -103,10 +103,15 @@ export async function createOpeningKeyboardScene(
     options.signal?.removeEventListener("abort", dispose);
     fallback?.dispose();
     if (worker) {
-      // Normally the worker acknowledges real resource disposal. Termination bounds
-      // recovery when a driver is stuck compiling; the browser then owns context release.
+      // An unpublished scene needs no acknowledgement grace: its entry or GPU
+      // preparation may not process messages yet. Terminate in this task so
+      // cancellation does not depend on a document timer; the browser owns
+      // release of any context allocated during the interrupted preparation.
       send({ type: "dispose" });
-      shutdownTimer = window.setTimeout(terminate, 200);
+      if (!ready) terminate();
+      // Ready scenes retain explicit resource disposal, with termination as the
+      // existing bound when a driver cannot acknowledge the request.
+      else shutdownTimer = window.setTimeout(terminate, 200);
     }
     if (!ready) rejectReady(cancelled());
   };

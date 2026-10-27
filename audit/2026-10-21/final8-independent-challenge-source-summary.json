@@ -1,0 +1,42 @@
+{
+  "status": "PASS-SCOPED",
+  "capturedAt": "2026-10-21T18:45:01.078347+00:00",
+  "scope": "Read-only rollup of completed independent-challenge owner receipts; this step runs no tests, browser, PHP HTTP, build or database.",
+  "typescript": {
+    "files": 3,
+    "passed": 90,
+    "failed": 0,
+    "receipt": "audit/2026-10-21/independent-challenge-first-input-unit.json"
+  },
+  "php": {
+    "cases": 113,
+    "nonthrowingEvaluations": 77,
+    "expectedExceptions": 36,
+    "failures": 0,
+    "receipt": "audit/2026-10-21/independent-challenge-first-input-php.json",
+    "meaning": "77 nonthrowing rule evaluations include predicates whose correct result is false; this does not mean77 accepted HTTP/server sessions."
+  },
+  "sourceReview": "audit/2026-10-21/independent-challenge-source-review.json",
+  "contract": {
+    "duelRevision": "forge-social-duel-en-v2",
+    "marker": "first-input-v1",
+    "transport": "No activation round trip on first input",
+    "receiptGraceMs": 3000,
+    "firstEvent": "Nonempty keyboard character at offset0; empty pre-start edits cannot become scored evidence",
+    "cohortPinning": "Same-duel existing configuration is selected under the duel row lock; a v1 participant pins a later participant to v1",
+    "receiptWindow": "candidate start plus duration through that time plus3000ms, never later than stored expires_at plus3000ms",
+    "serverProof": "Replay consistency only; not physical-first-key or human-input proof",
+    "unknownPolicy": "REJECT",
+    "legacy": "Absent marker preserves original exact fixed-server start",
+    "latest": "stored expires_at minus full duration inclusive",
+    "earliest": "stored starts_at inclusive",
+    "rankedRevision": "forge-ranked-en-v2"
+  },
+  "limitations": [
+    "Pure units/native contracts are not hosted or SQL/HTTP acceptance.",
+    "Eight new UI fixture cases are discovery-only until actual coordinated browser execution.",
+    "User-confirmed live human Race/Arena shared room clocks remain unchanged.",
+    "No result is added to integrated unit totals; focused scopes overlap the full source gate."
+  ],
+  "currentIntegratedGate": "audit/2026-10-21/final8-source-gates.json"
+}

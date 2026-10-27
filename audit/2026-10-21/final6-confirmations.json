@@ -1,0 +1,229 @@
+{
+  "declaredAt": "2026-10-21T14:33:05.464Z",
+  "status": "FAILED",
+  "build": {
+    "version": "3ffaa0a179b47e336a2d",
+    "publicFiles": 132,
+    "bytes": 2910866
+  },
+  "originalMatrix": "final6-browser-matrix.json",
+  "source": {
+    "sourceFile": "audit/2026-10-21/final6-source.json",
+    "expectedBuild": "3ffaa0a179b47e336a2d",
+    "compared": 483,
+    "mismatches": []
+  },
+  "workers": 1,
+  "automaticRetries": 0,
+  "timeoutChanges": false,
+  "resultFiltering": false,
+  "stages": [
+    {
+      "id": "edge-confirmation",
+      "browsers": "edge",
+      "files": [
+        "e2e/arcade.spec.ts",
+        "e2e/progression.spec.ts"
+      ],
+      "reason": "Separate serial unchanged-budget observation of the four original Edge failure scopes, including all tests in their affected files."
+    },
+    {
+      "id": "reset-copy-confirmation",
+      "browsers": "chromium,edge,firefox,webkit",
+      "files": [
+        "e2e/game-data-controls.spec.ts"
+      ],
+      "reason": "Exact successful completion-copy assertion updated after the original matrix; all storage and other-owner isolation checks are unchanged."
+    },
+    {
+      "id": "offline-confirmation",
+      "browsers": "firefox,webkit",
+      "files": [
+        "e2e/offline-pwa.spec.ts"
+      ],
+      "reason": "Separate serial unchanged-budget checks of the original full-workflow timeout scopes. The two original failures remain retained."
+    }
+  ],
+  "results": [
+    {
+      "id": "edge-confirmation",
+      "exitCode": 0,
+      "summary": {
+        "totals": {
+          "total": 13,
+          "passed": 13,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0
+        },
+        "projects": [
+          {
+            "project": "edge",
+            "total": 13,
+            "passed": 13,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          }
+        ],
+        "reportedStats": {
+          "expected": 13,
+          "unexpected": 0,
+          "skipped": 0,
+          "flaky": 0
+        },
+        "countsAgreeWithReport": true,
+        "failures": [],
+        "flakyCases": [],
+        "skippedCases": [],
+        "skipReasons": [],
+        "expectedFailures": [],
+        "globalErrors": [],
+        "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+      }
+    },
+    {
+      "id": "reset-copy-confirmation",
+      "exitCode": 0,
+      "summary": {
+        "totals": {
+          "total": 4,
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0
+        },
+        "projects": [
+          {
+            "project": "chromium",
+            "total": 1,
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "edge",
+            "total": 1,
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "firefox",
+            "total": 1,
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "webkit",
+            "total": 1,
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          }
+        ],
+        "reportedStats": {
+          "expected": 4,
+          "unexpected": 0,
+          "skipped": 0,
+          "flaky": 0
+        },
+        "countsAgreeWithReport": true,
+        "failures": [],
+        "flakyCases": [],
+        "skippedCases": [],
+        "skipReasons": [],
+        "expectedFailures": [],
+        "globalErrors": [],
+        "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+      }
+    },
+    {
+      "id": "offline-confirmation",
+      "exitCode": 1,
+      "summary": {
+        "totals": {
+          "total": 2,
+          "passed": 0,
+          "failed": 2,
+          "skipped": 0,
+          "flaky": 0
+        },
+        "projects": [
+          {
+            "project": "firefox",
+            "total": 1,
+            "passed": 0,
+            "failed": 1,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "webkit",
+            "total": 1,
+            "passed": 0,
+            "failed": 1,
+            "skipped": 0,
+            "flaky": 0
+          }
+        ],
+        "reportedStats": {
+          "expected": 0,
+          "unexpected": 2,
+          "skipped": 0,
+          "flaky": 0
+        },
+        "countsAgreeWithReport": true,
+        "failures": [
+          {
+            "project": "firefox",
+            "title": "offline-pwa.spec.ts › public app download supports a real server outage and clearing preserves real history",
+            "file": "offline-pwa.spec.ts",
+            "line": 28,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Test timeout of 30000ms exceeded.",
+              "Error: page.goto: Test timeout of 30000ms exceeded. Call log: - navigating to \"http://127.0.0.1:8842/profile\", waiting until \"load\" 116 | await page.reload(); 117 | await expect(page.getByText(\"1 of 2 checkpoints\", { exact: true })).toBeVisible(); > 118 | await page.goto(\"/profile\"); | ^ 119 | await expect( 120 | page.getByRole(\"heading\", { 121 | name: \"This page needs a connection.\", at D:\\extra\\typing_updated\\typing-forge\\e2e\\offline-pwa.spec.t"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "offline-pwa.spec.ts › public app download supports a real server outage and clearing preserves real history",
+            "file": "offline-pwa.spec.ts",
+            "line": 28,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Test timeout of 30000ms exceeded.",
+              "Error: locator.click: Test timeout of 30000ms exceeded. Call log: - waiting for getByRole('button', { name: 'Remove offline download', exact: true }) - locator resolved to <button class=\"forge-button-secondary\">Remove offline download</button> - attempting click action - waiting for element to be visible, enabled and stable - element is visible, enabled and stable - scrolling into view if needed - done scrolling 127 | await page 128 | .getByRole("
+            ]
+          }
+        ],
+        "flakyCases": [],
+        "skippedCases": [],
+        "skipReasons": [],
+        "expectedFailures": [],
+        "globalErrors": [],
+        "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+      }
+    }
+  ],
+  "scope": "Declared affected-file confirmations, not a rewritten full-suite pass. No original receipt is replaced.",
+  "sourceAfter": {
+    "sourceFile": "audit/2026-10-21/final6-source.json",
+    "expectedBuild": "3ffaa0a179b47e336a2d",
+    "compared": 483,
+    "mismatches": []
+  },
+  "finishedAt": "2026-10-21T14:34:48.901Z"
+}

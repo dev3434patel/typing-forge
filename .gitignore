@@ -11,6 +11,7 @@ lerna-debug.log*
 
 node_modules
 dist
+dist-static-*/
 dist-ssr
 *.local
 
@@ -48,7 +49,17 @@ audit/**/*.tgz
 audit/**/*.7z
 audit/**/verified-head-*/
 audit/**/.playwright-artifacts-*/
+audit/**/static-*-artifacts/
+audit/**/.*.generated.mjs
+audit/**/.final*
+audit/**/*.cpuprofile
 audit/**/firefox-trace-inspection/
+
+# Unreviewed screenshots from the historical API-backed mobile run stay local.
+audit/2026-10-21/mobile-workspaces-final7-course-failure.png
+audit/2026-10-21/mobile-workspaces-final7-games-failure.png
+audit/2026-10-21/mobile-workspaces-final7-learn-failure.png
+audit/2026-10-21/mobile-workspaces-final7-local-bot-failure.png
 
 # PHP credentials and hosting builds are local artifacts.
 backend/config.php

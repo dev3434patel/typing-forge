@@ -1,0 +1,154 @@
+{
+  "capturedAt": "2026-10-21T14:17:06.771913+00:00",
+  "status": "FAILED",
+  "observationStatus": "PARTIAL",
+  "build": "3ffaa0a179b47e336a2d",
+  "scope": "Read-only sanitized trace inspection of the original Firefox existing-feature run. No browser, test, product edit, timeout increase, automatic retry or result rewrite was performed.",
+  "test": {
+    "file": "e2e/offline-pwa.spec.ts",
+    "project": "firefox",
+    "title": "public app download supports a real server outage and clearing preserves real history",
+    "timeoutMs": 30000,
+    "error": "Test timeout of 30000ms exceeded."
+  },
+  "evidence": {
+    "trace": "audit/2026-10-21/.playwright-artifacts-final6-existing/offline-pwa-public-app-dow-7dc17-ring-preserves-real-history-firefox/trace.zip",
+    "traceSha256": "ad84e08c467c5ed1b8cce63756a043a1fef0b056fb56a2ec7d6f028214bd7b2e",
+    "traceFiles": [
+      "test.trace",
+      "1-trace.trace"
+    ],
+    "privacy": "The original trace remains ignored. No raw headers, cookies, session data, credentials, evaluated function bodies or private configuration are copied here."
+  },
+  "timer": {
+    "reference": "First Before Hooks start, not an independently instrumented test-start clock",
+    "beforeHooksStartTraceMs": 897440.455,
+    "afterHooksStartTraceMs": 927450.36,
+    "deltaMs": 30009.905,
+    "actionInFlightAtAfterHooks": "Resumed-server navigation to /offline",
+    "navigationStartTraceMs": 927209.793,
+    "navigationEndTraceMs": 927513.453,
+    "navigationDurationMs": 303.66
+  },
+  "observedStages": [
+    {
+      "label": "Second custom-test home navigation during actual origin outage",
+      "durationMs": 4242.337,
+      "completed": true
+    },
+    {
+      "label": "Choose Custom mode",
+      "durationMs": 2518.054,
+      "completed": true
+    },
+    {
+      "label": "Offline touch-typing navigation",
+      "durationMs": 2177.632,
+      "completed": true
+    },
+    {
+      "label": "Offline lessons navigation",
+      "durationMs": 2151.963,
+      "completed": true
+    },
+    {
+      "label": "Start lesson click",
+      "durationMs": 3547.989,
+      "completed": true
+    },
+    {
+      "label": "Type issued lesson (59 characters; requested delay65ms)",
+      "durationMs": 4867.742,
+      "completed": true
+    },
+    {
+      "label": "Lesson reload",
+      "durationMs": 2172.584,
+      "completed": true
+    },
+    {
+      "label": "Retained checkpoint visibility assertion",
+      "durationMs": 2451.643,
+      "completed": true,
+      "assertionPassed": true
+    },
+    {
+      "label": "Offline private profile navigation",
+      "durationMs": 2098.33,
+      "completed": true
+    },
+    {
+      "label": "Private route recovery heading assertion",
+      "durationMs": 30.268,
+      "completed": true,
+      "assertionPassed": true
+    },
+    {
+      "label": "Navigate to /offline after server resume",
+      "durationMs": 303.66,
+      "completed": true,
+      "overlappedTimeoutCleanup": true
+    },
+    {
+      "label": "Remove offline download click",
+      "durationMs": 108.824,
+      "completedInTestTrace": true,
+      "browserTraceAfterRecordPresent": false,
+      "afterHooksAlreadyStarted": true
+    },
+    {
+      "label": "Offline files removed status assertion",
+      "durationMs": 7.912,
+      "assertionPassedInTestTrace": true,
+      "afterHooksAlreadyStarted": true
+    },
+    {
+      "label": "Cache shell absence evaluation and assertion",
+      "evaluationDurationMs": 5.904,
+      "assertionDurationMs": 0.031,
+      "assertionPassedInTestTrace": true,
+      "afterHooksAlreadyStarted": true
+    },
+    {
+      "label": "Final Stats navigation",
+      "durationMs": 86.067,
+      "completedInTestTrace": true,
+      "afterHooksAlreadyStarted": true
+    },
+    {
+      "label": "History table row count=4 assertion",
+      "durationMs": 268.641,
+      "assertionPassedInTestTrace": true,
+      "afterHooksAlreadyStarted": true
+    },
+    {
+      "label": "First data row accuracy100.0% assertion",
+      "durationMs": 29.115,
+      "assertionPassedInTestTrace": true,
+      "afterHooksAlreadyStarted": true
+    },
+    {
+      "label": "Second data row accuracy75.0% assertion",
+      "durationMs": 11.221,
+      "assertionPassedInTestTrace": true,
+      "afterHooksAlreadyStarted": true
+    },
+    {
+      "label": "Third data row accuracy75.0% assertion",
+      "durationMs": 16.977,
+      "assertionPassedInTestTrace": true,
+      "afterHooksAlreadyStarted": true
+    }
+  ],
+  "finalObservation": {
+    "lastAssertionEndTraceMs": 928053.206,
+    "msFromFirstBeforeHooksStart": 30612.751,
+    "failedTestTraceAssertions": 0,
+    "failedBrowserTraceAfterRecords": 0,
+    "savedDom": "Final Stats page contains three saved sessions",
+    "browserTraceBoundary": "Browser-level trace ends during Remove offline download click; the test-level trace continues with successful post-timeout assertions. Cleanup already began, so this does not convert the overall timed-out run to PASS."
+  },
+  "cause": "UNPROVEN",
+  "conclusion": "The declared workflow exceeded its whole-test30-second budget. No individual failed application assertion is recorded. Accumulated navigations, actions, intentional lesson typing and checkpoint restoration consumed the budget. These timings do not establish the cause of the delays or a specific PWA, network, resource, authentication or data-integrity defect.",
+  "followUp": "A separately declared serial Firefox confirmation with unchanged source/assertions/budgets may be retained as new evidence. The original failed run must remain FAILED."
+}

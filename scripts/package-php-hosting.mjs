@@ -1,13 +1,25 @@
 import { cp, lstat, mkdir, mkdtemp, readFile, rename, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { setTimeout as pause } from 'node:timers/promises';
 
 const root = path.resolve(import.meta.dirname, '..');
+// Windows scanners may briefly hold a freshly copied directory. Retry the same
+// atomic rename only; never merge trees, delete a destination or discard a stage.
+async function renameDirectory(source, target) {
+  for (let attempt = 0; ; attempt++) {
+    try { return await rename(source, target); }
+    catch (error) {
+      if (process.platform !== 'win32' || !['EPERM', 'EACCES', 'EBUSY'].includes(error.code) || attempt >= 4) throw error;
+      await pause([100, 250, 500, 1000][attempt]);
+    }
+  }
+}
 const destination = path.resolve(root, 'hosting-build');
 const output = await mkdtemp(path.join(root, '.hosting-stage-'));
 await mkdir(path.join(output, 'public_html/api'), { recursive: true });
 await mkdir(path.join(output, 'sparowtype-private'), { recursive: true });
 await cp(path.join(root, 'dist'), path.join(output, 'public_html'), { recursive: true });
-for (const source of ['src', 'bin', 'public', 'resources', 'bootstrap.php', 'config.example.php', 'schema.sql', 'UNICODE-LICENSE.txt', '.htaccess']) {
+for (const source of ['src', 'bin', 'public', 'resources', 'migrations', 'bootstrap.php', 'config.example.php', 'schema.sql', 'UNICODE-LICENSE.txt', '.htaccess']) {
   await cp(path.join(root, 'backend', source), path.join(output, 'sparowtype-private', source), { recursive: true });
 }
 await writeFile(path.join(output, 'public_html/api/index.php'), `<?php\ndeclare(strict_types=1);\nrequire dirname(__DIR__, 2).'/sparowtype-private/public/index.php';\n`);
@@ -45,7 +57,7 @@ if (existing) {
   const archive = path.resolve(archiveRoot, `${Date.now()}`);
   if (path.dirname(destination) !== root || path.dirname(archive) !== archiveRoot || path.dirname(archiveRoot) !== root) throw new Error('Hosting output path escaped the workspace.');
   await mkdir(archiveRoot, { recursive: true });
-  await rename(destination, archive);
+  await renameDirectory(destination, archive);
 }
-await rename(output, destination);
+await renameDirectory(output, destination);
 console.log('Hosting package created: hosting-build/public_html + hosting-build/sparowtype-private. No local credentials were copied.');

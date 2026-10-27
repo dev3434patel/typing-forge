@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { Link } from "react-router-dom";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -11,9 +11,8 @@ import {
   subscribePwa,
 } from "@/lib/pwa";
 export default function Offline() {
-  const [state, setState] = useState(getPwaState);
+  const state = useSyncExternalStore(subscribePwa, getPwaState, getPwaState);
   const [busy, setBusy] = useState(false);
-  useEffect(() => subscribePwa(() => setState(getPwaState())), []);
   const clear = async () => {
     setBusy(true);
     try {

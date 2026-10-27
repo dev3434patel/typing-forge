@@ -1,0 +1,68 @@
+diff --git a/e2e/opening-renderer.ts b/e2e/opening-renderer.ts
+index 4a4af94..149fd85 100644
+--- a/e2e/opening-renderer.ts
++++ b/e2e/opening-renderer.ts
+@@ -99,17 +99,27 @@ export async function advanceClockedOpeningPreparation(
+     )
+     .toBe(true);
+   const paint = await readReceipt();
+-  const clockAdvancedMs =
+-    paint.supported && !paint.observationError ? 500 : 1500;
+-  await page.clock.runFor(clockAdvancedMs - 80);
++  // This independent native paint witness does not prove that the product's
++  // later buffered observer received the same entry. In particular, Clock
++  // hides performance.getEntries* and pauses the product's capability timer.
++  // Drive its complete existing 1000ms fallback + 400ms idle window, with
++  // a small scheduling allowance, unless actual product playback proves readiness
++  // earlier. Small steps avoid consuming an already-started choreography.
++  const preparationClockBudgetMs = 1500;
++  let clockAdvancedMs = 80;
++  const opening = page.getByTestId("opening-experience");
++  while (clockAdvancedMs < preparationClockBudgetMs && Date.now() < deadline) {
++    if ((await opening.getAttribute("data-presentation")) === "playing") break;
++    const step = Math.min(80, preparationClockBudgetMs - clockAdvancedMs);
++    await page.clock.runFor(step);
++    clockAdvancedMs += step;
++  }
+   await test.info().attach("clocked-renderer-paint-preparation", {
+     contentType: "application/json",
+     body: JSON.stringify({
+       nativePaint: paint,
+-      schedulingPath:
+-        paint.supported && !paint.observationError
+-          ? "genuine-paint-observer-then-existing-400ms-idle-window"
+-          : "existing-1000ms-capability-fallback-then-400ms-idle-window",
++      schedulingPath: "independent-native-paint-witness-then-existing-1000ms-capability-fallback-and-400ms-idle-window-until-actual-playback",
++      preparationClockBudgetMs,
+       clockAdvancedMs,
+       originalTimeoutMs,
+       remainingTimeoutMs: Math.max(1, deadline - Date.now()),
+diff --git a/e2e/viewport-acceptance.spec.ts b/e2e/viewport-acceptance.spec.ts
+index 19f46e3..37b81b0 100644
+--- a/e2e/viewport-acceptance.spec.ts
++++ b/e2e/viewport-acceptance.spec.ts
+@@ -1,7 +1,7 @@
+ import { expect, test, type Page, type TestInfo } from "@playwright/test";
+ import { focusTyping } from "./helpers";
+ import { waitForLayoutFonts } from "./layout-fonts";
+-import { selectDocumentOpeningRenderer } from "./opening-renderer";
++import { advanceClockedOpeningPreparation, selectDocumentOpeningRenderer } from "./opening-renderer";
+ 
+ const PREFERENCES_KEY = "typingforge:v3:guest:preferences";
+ const VIEWPORTS = [
+@@ -289,10 +289,11 @@ test("390px full mobile fallback contains every key and keeps controls separate"
+   await page.goto("/", { waitUntil: "domcontentloaded" });
+   const opening = page.getByTestId("opening-experience");
+   await expect(opening).toHaveAttribute("data-mode", "full");
+-  await page.clock.runFor(100);
+-  await expect(opening).toHaveAttribute("data-renderer", "fallback", {
+-    timeout: 15_000,
+-  });
++  const preparation = await advanceClockedOpeningPreparation(page, 15_000);
++  await expect.poll(async () => {
++    await page.clock.runFor(16);
++    return opening.getAttribute("data-renderer");
++  }, { timeout: preparation.remainingTimeoutMs }).toBe("fallback");
+   await page.clock.fastForward(2750);
+   // Freeze CSS motion at the assembled moment; inspect the fallback's actual layout.
+   await opening.evaluate((element) => {

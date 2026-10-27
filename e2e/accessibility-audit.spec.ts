@@ -13,7 +13,7 @@ for (const width of [390, 1440]) {
     test.setTimeout(120_000);
     await page.setViewportSize({ width, height: 900 });
     const receipts = [];
-    for (const route of ["/", "/learn", "/race", "/ranked", "/stats", "/profile", "/leaderboard", "/settings", "/auth", "/keyboard-lab", "/about", "/privacy", "/terms", "/touch-typing", "/offline", "/missing-page", "completed-results"]) {
+    for (const route of ["/", "/learn", "/lessons", "/games", "/race", "/ranked", "/stats", "/profile", "/leaderboard", "/settings", "/auth", "/keyboard-lab", "/about", "/privacy", "/terms", "/touch-typing", "/offline", "/missing-page", "completed-results"]) {
       if (route === "completed-results") await completeCorrectedCat(page);
       else await page.goto(route, { waitUntil: "domcontentloaded" });
       await expect(page.locator("main#main-content")).toBeVisible();

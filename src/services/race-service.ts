@@ -1,5 +1,6 @@
-import { apiRequest, authService, isBackendConfigured } from '@/services/php-api';
+import { API_BASE_URL, apiRequest, authService, isBackendConfigured } from '@/services/php-api';
 import type { SessionResult } from '@/lib/typing-core/types';
+import { subscribeRaceTransport, type RaceStreamCapabilities, type RaceTransport } from './race-transport';
 
 export interface RaceRoom {
   id: string; room_code: string; host_id: string; opponent_id: string | null;
@@ -35,7 +36,7 @@ export const raceService = {
 };
 
 /** Authenticated snapshot polling works on ordinary PHP shared hosting. */
-export function subscribeRace(code: string, onRoom: (room: RaceRoom) => void, onError: (error: Error) => void) {
+export function subscribeRacePolling(code: string, onRoom: (room: RaceRoom) => void, onError: (error: Error) => void) {
   let currentVersion = -1;
   let alive = true;
   let refreshing = false;
@@ -73,3 +74,22 @@ export function subscribeRace(code: string, onRoom: (room: RaceRoom) => void, on
     globalThis.document?.removeEventListener('visibilitychange', visible);
   };
 }
+
+/** Negotiate streaming after the immediate snapshot; ordinary PHP polling is always available. */
+export function subscribeRace(code: string, onRoom: (room: RaceRoom) => void, onError: (error: Error) => void) {
+  const ownerId = authService.currentSession()?.user?.id;
+  if (typeof EventSource === 'undefined' || !ownerId) return subscribeRacePolling(code, onRoom, onError);
+  const normalized = code.toUpperCase().trim();
+  return subscribeRaceTransport({
+    ownerId, code: normalized, currentOwner: () => authService.currentSession()?.user?.id ?? null,
+    capabilities: signal => apiRequest<RaceStreamCapabilities>('/race/transport', { expectedOwner: ownerId, signal }),
+    open: () => {
+      const source = new EventSource(`${API_BASE_URL}/race/stream?code=${encodeURIComponent(normalized)}&expectedOwner=${encodeURIComponent(ownerId)}`, { withCredentials: true });
+      return { addEventListener: (type, listener) => source.addEventListener(type, event => listener('data' in event ? { data: String((event as MessageEvent).data) } : {})), close: () => source.close() };
+    },
+    poll: (room, error) => subscribeRacePolling(normalized, room, error),
+    observeOwner: listener => authService.subscribe(() => listener()),
+    ...(typeof document === 'undefined' ? {} : { visibility: { hidden: () => document.hidden, subscribe: listener => { document.addEventListener('visibilitychange', listener); return () => document.removeEventListener('visibilitychange', listener); } } }),
+  }, onRoom, onError);
+}
+export const raceTransport: RaceTransport = { subscribe: subscribeRace, submit: raceService.submit };

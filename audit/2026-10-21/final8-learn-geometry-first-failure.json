@@ -1,0 +1,25 @@
+{
+  "status": "FAILED",
+  "evidenceClass": "Coordinator-reported original unit-tool outcome; raw first-run log was not supplied to this subagent.",
+  "scope": "Original focused Learn native-caret geometry unit attempt only; not a build8 source gate or browser observation.",
+  "cases": {
+    "total": 14,
+    "passed": 13,
+    "failed": 1
+  },
+  "testSource": "src/lib/__tests__/learning-caret-geometry.test.ts:23",
+  "assertion": "does not need a second native read after the stage scrolls",
+  "reportedFloatingPointPair": [
+    151.70000000000002,
+    151.70000000000005
+  ],
+  "diagnosis": "Exact deep-object equality compared mathematically equivalent floating-point y values produced by a different arithmetic order.",
+  "declaredTestRepair": {
+    "y": "expect(after.y).toBeCloseTo(first.y,10)",
+    "allOtherCoordinates": "Exact equality is retained by comparing both objects with y replaced by0.",
+    "runtimeMath": "No rounding or production geometry change is attributed to this assertion repair."
+  },
+  "testSourceSha256": "9f5d81fb1c169819551559ad103ae6dd324e5dcc59556c41346140764e495908",
+  "confirmation": "NOT-RUN by this subagent; subsequent source/unit receipts must establish their own result.",
+  "retention": "Original13/14 failure remains FAILED; this receipt is a transparent report of supplied tool evidence, not reconstructed raw output."
+}

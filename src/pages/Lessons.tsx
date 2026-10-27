@@ -17,6 +17,7 @@ import {
   getCourseLesson, type CourseLesson, type CourseAssessment,
 } from "@/lib/typing-course";
 import { cn } from "@/lib/utils";
+import { TrainingStudio } from "@/components/analytics/TrainingStudio";
 import "./lessons.css";
 
 const DetailedResults = lazy(() => import("@/components/typing/SessionResults").then(module => ({ default: module.SessionResults })));
@@ -246,6 +247,7 @@ export default function Lessons() {
             })}
           </div>
         </section>
+        <TrainingStudio key={`${ownerId}:studio`} owner={ownerId} />
         <section className="course-principles" aria-label="How to make progress">
           <div><Keyboard size={19} aria-hidden="true" /><h3>Feel the keys</h3><p>Use the live guide, settle your hands on F and J, and keep your attention on the passage. Finger hints are a reference, not a sensor.</p></div>
           <div><Target size={19} aria-hidden="true" /><h3>Accuracy leads</h3><p>Correct words lock after Space. If you leave a mistake, empty the next word and use Backspace to return. Editing keeps the original accuracy cost.</p></div>
@@ -268,6 +270,7 @@ export default function Lessons() {
           <div className="course-passage-preview"><div><span>YOUR NEXT PASSAGE</span><span>Variant {selectedProgress?.nextVariantId.toUpperCase()}</span></div><p aria-label="Lesson passage preview">{selected.variants.find(variant => variant.id === selectedProgress?.nextVariantId)?.text}</p><span>Guided keyboard below the passage · correct words lock; previous mistakes can be reopened</span></div>
         </section>}
 
+        {!currentActive && <TrainingStudio key={`${ownerId}:${selected.id}`} owner={ownerId} lessonId={selected.id} focusKeys={selected.focusKeys} />}
         {currentActive && !result && <section className="course-practice" aria-label="Course lesson practice">
           <div className="course-practice-top"><span><Keyboard size={15} aria-hidden="true" /> English · QWERTY · passage {currentActive.variantId.toUpperCase()}</span><span>{selected.minAccuracy}% accuracy{selected.durationMs ? ` · ${selected.targetWpm} WPM · 30 seconds` : " · finish the passage"}</span><details className="course-technique"><summary>Technique &amp; targets <ChevronDown size={14} aria-hidden="true" /></summary><div className="course-technique-body"><p>{selected.guidance}</p><p>{selected.durationMs ? "Complete the full 30 seconds without pausing. Idle time counts." : "Finish the whole passage. Correct words stay locked; Backspace can return to the previous incorrect word."}</p><LessonTargets lesson={selected} /></div></details></div>
           <TypingArea key={currentActive.configuration.clientSessionId} configuration={currentActive.configuration} onTestComplete={complete} onRestart={() => begin((["a", "b", "c"] as const)[((["a", "b", "c"] as const).indexOf(currentActive.variantId) + 1) % 3])} keyboardLessonKeys={knownKeys} autoFocus />

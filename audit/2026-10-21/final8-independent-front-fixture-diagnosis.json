@@ -1,0 +1,31 @@
+{
+  "status": "FAILED",
+  "observation": "CONFIRMED_FIXTURE_OMISSION",
+  "at": "2026-10-21T18:53:24.7108899Z",
+  "originalReport": "audit/2026-10-21/final8-independent-front.json",
+  "originalSummary": "audit/2026-10-21/final8-independent-front-summary.json",
+  "totals": {
+    "skipped": 0,
+    "passed": 28,
+    "retries": 0,
+    "failed": 4,
+    "total": 32
+  },
+  "failedCase": "ranked first-input fixture stays ready during idle, starts on a wrong key and preserves the full monotonic duration",
+  "affectedEngines": [
+    "chromium",
+    "edge",
+    "firefox",
+    "webkit"
+  ],
+  "lastFailedAssertion": "expect(state.unexpected).toEqual([])",
+  "actualUndeclaredRequest": "POST /progression/claim",
+  "priorAssertions": "All earlier ready-idle, wrong-character, fixed duration, first-event offset, accuracy and monotonic wall assertions passed in each failed case before the final undeclared-request assertion",
+  "causalSource": "claimProgression queues an owner-bound reference-only ProgressionAccountAdapter.claim(sessionId,timeZone); the original account fixture declared session/duel submission but omitted this legitimate claim route",
+  "fixtureHashBefore": "7790700ada1bb22588cbba6df837c8602125e3989a322a6ed84ede52b3c80e38",
+  "plannedNarrowFix": "Declare POST /progression/claim, assert exact owner/session reference/IANA zone/idempotency key and absence of raw candidate/reward fields, return explicit503 retaining local evidence; keep unexpected-request assertion and all timing actions/budgets",
+  "productTimerFailureProven": false,
+  "automaticRerun": false,
+  "oldReceiptsPreserved": true,
+  "confirmation": "Pending root-declared source9 confirmation; no pass claimed"
+}

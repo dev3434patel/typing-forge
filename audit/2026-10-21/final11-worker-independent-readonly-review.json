@@ -1,0 +1,55 @@
+{
+  "capturedAt": "2026-10-21T19:52:45.356Z",
+  "status": "READ-ONLY-NO-CONCRETE-BLOCKER-FOUND",
+  "scope": "Independent source-only review of exact source10→source11 worker asset fallback and added actual-template VM cases. No tests, browser/build/profile/performance or native jobs run.",
+  "blockers": [],
+  "exactDelta": {
+    "worker": {
+      "file": "public/sw.js",
+      "frozen10": "597413710c4a9106042d0843cb624eeb0c238c258d4ebab61792890f24758a0b",
+      "current": "abafb1cde8032f9dd4a32483409810a8e9b6b7db15b48131e3ae9885d6154282",
+      "revertOnlyNarrowAssetFallbackMatchesFrozen10": true
+    },
+    "tests": {
+      "file": "src/lib/__tests__/pwa-worker.test.ts",
+      "frozen10": "338d0748a34e9ca3659c9c59b67c7388e3555fe2821b2684902322d5b814841c",
+      "current": "f348d25f81ab668b1789442b6a5d71b48dae6b000f777984f0d85f778e11108c",
+      "removeOnlyNewRegressionBlockMatchesFrozen10": true,
+      "newExpandedCases": 10
+    }
+  },
+  "findings": [
+    {
+      "boundary": "Request eligibility",
+      "result": "Unchanged byte-for-byte after reversing only the final asset respondWith hunk: same-origin GET, authorization/API/base-scope early returns and query/exact manifest/hashed asset guards remain before interception."
+    },
+    {
+      "boundary": "Cache read rejection",
+      "result": "The cache-only try covers keys/open/match failures from publicCacheMatch. A successful cached Response returns immediately; failure or miss reaches exactly fetch(request) using the original request."
+    },
+    {
+      "boundary": "Network error integrity",
+      "result": "fetch(request) lies outside the cache catch. Its rejection propagates from respondWith; no fake successful Response, generic document fallback or swallowed rejection is introduced for an asset."
+    },
+    {
+      "boundary": "Writes and namespaces",
+      "result": "No new runtime cache put/addAll/delete/open operation was added. Existing publicCacheMatch namespace/previous-build behavior and installation/update lifecycle remain unchanged."
+    },
+    {
+      "boundary": "Regression quality",
+      "result": "New actual-template VM cases exercise keys/open/match failures at root and Pages bases, one original network request, unchanged stored paths/content/installation count, cache-hit no-fetch and exact network-rejection identity. Existing query/private/authorization/unknown guards remain in the unchanged test remainder."
+    }
+  ],
+  "addedCoverageReadNotExecuted": {
+    "expandedCases": 10,
+    "reportedOwnerResults": "55/55 focused +scoped lint PASS as parent-provided evidence; not rerun or independently represented as this review execution."
+  },
+  "knownScope": "This is a deterministic online-availability repair. It does not establish which native WebKit Cache API operation emitted the earlier Context is stopped pageerror, does not erase prior failures and does not certify real-browser recovery or performance.",
+  "mutations": {
+    "product": false,
+    "tests": false,
+    "runners": false,
+    "gitStage": false,
+    "reportOnly": true
+  }
+}

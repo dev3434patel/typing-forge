@@ -180,6 +180,52 @@ describe('Forge learning v3', () => {
     expect(getLearningSessions()).toHaveLength(1);
     setter.mockRestore(); resetKeybrProgress();
   });
+  it('keeps a failed learning reset empty when old storage is still readable and preserves another owner', () => {
+    const owner = 'blocked-reset-owner', other = 'preserved-reset-owner';
+    recordLearningSession(lesson(1), owner);
+    recordLearningSession(lesson(2), other);
+    const key = `typingforge:v3:${owner}:learning`, old = localStorage.getItem(key);
+    const remove = localStorage.removeItem.bind(localStorage);
+    const blocked = vi.spyOn(localStorage, 'removeItem').mockImplementation(item => {
+      if (item === key) throw new Error('Deletion denied');
+      remove(item);
+    });
+    try {
+      expect(() => resetKeybrProgress(owner)).toThrow('persistent deletion');
+      expect(localStorage.getItem(key)).toBe(old);
+      expect(getLearningSessions({ owner })).toEqual([]);
+      expect(getCharacterData({ owner })).toEqual({});
+      expect(getLearningSessions({ owner: other }).map(item => item.sessionId)).toEqual(['lesson-2']);
+      recordLearningSession(lesson(3), owner);
+      expect(getLearningSessions({ owner }).map(item => item.sessionId)).toEqual(['lesson-3']);
+    } finally { blocked.mockRestore(); resetKeybrProgress(owner); resetKeybrProgress(other); }
+  });
+  it('retains the empty reset tombstone when deleting only the legacy guest store is blocked', () => {
+    localStorage.setItem('keybr_character_data', JSON.stringify({ z: { isUnlocked: true } }));
+    recordLearningSession(lesson(1));
+    const remove = localStorage.removeItem.bind(localStorage);
+    const blocked = vi.spyOn(localStorage, 'removeItem').mockImplementation(item => {
+      if (item === 'keybr_character_data') throw new Error('Legacy deletion denied');
+      remove(item);
+    });
+    try {
+      expect(() => resetKeybrProgress()).toThrow('persistent deletion');
+      expect(localStorage.getItem('typingforge:v3:guest:learning')).toBeNull();
+      expect(localStorage.getItem('keybr_character_data')).not.toBeNull();
+      expect(getLearningSessions()).toEqual([]);
+      expect(getUnlockedLetters()).not.toContain('z');
+    } finally { blocked.mockRestore(); resetKeybrProgress(); }
+  });
+  it('reads a failed new write ahead of an older durable learning copy', () => {
+    recordLearningSession(lesson(1));
+    const saved = localStorage.getItem('typingforge:v3:guest:learning');
+    const blocked = vi.spyOn(localStorage, 'setItem').mockImplementation(() => { throw new Error('Storage full'); });
+    try {
+      expect(recordLearningSession(lesson(2)).persisted).toBe(false);
+      expect(localStorage.getItem('typingforge:v3:guest:learning')).toBe(saved);
+      expect(getLearningSessions().map(item => item.sessionId)).toEqual(['lesson-1', 'lesson-2']);
+    } finally { blocked.mockRestore(); resetKeybrProgress(); }
+  });
   it('rejects malformed learning evidence', () => {
     expect(() => recordLearningSession({ ...lesson(1), targetWpm: NaN })).toThrow('Invalid learning evidence');
   });
@@ -194,6 +240,8 @@ describe('Seeded adaptive lesson generation', () => {
     expect(first.text.split(' ').every(word => graphemes(word).includes(focus))).toBe(true);
     expect(graphemes(first.text.replace(/ /g, '')).every(char => first.availableLetters.includes(char))).toBe(true);
     expect(first.naturalWordCount + first.phoneticWordCount).toBe(100);
+    expect(first.generatorVersion).toBe('forge-markov-v4');
+    expect(first.phoneticWordCount).toBeGreaterThanOrEqual(20);
   });
   it('clamps pathological requested lengths and labels mixed review explicitly', () => {
     expect(generateKeybrLesson(-3, { seed: 'x' }).text.split(' ')).toHaveLength(1);

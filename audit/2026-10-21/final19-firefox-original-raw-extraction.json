@@ -1,0 +1,538 @@
+{
+  "capturedAt": "2026-10-27T12:50:46.957Z",
+  "clientDate": "2026-10-27",
+  "status": "FAILED-ORIGINAL-RAW-INDEPENDENT-EXTRACTION",
+  "immutableCheckpoint": true,
+  "build": "de097acba6969d580cc8",
+  "source": {
+    "path": "audit/2026-10-21/final19-isolated.json",
+    "sha256": "c13fb3d98eba1c33c2356a74d9c61b4639de334bdf653cab55f2226ae1be58b8"
+  },
+  "originalFailedCases": 5,
+  "automaticRetries": 0,
+  "cases": [
+    {
+      "title": "caret handoff animation API preserves input and the real caret",
+      "file": "opening-experience.spec.ts",
+      "line": 211,
+      "reportedOutcome": "unexpected",
+      "results": [
+        {
+          "status": "timedOut",
+          "durationMs": 43304,
+          "retry": 0,
+          "errors": [
+            "Tearing down \"context\" exceeded the test timeout of 30000ms.",
+            "Error: browserContext.close: Test ended.\n"
+          ],
+          "browserLogSignals": {
+            "jugglerNS_ERROR_FAILURE": true,
+            "scriptTerminatedByTimeout": true,
+            "webglContextLostWarning": true
+          },
+          "attachments": [
+            {
+              "name": "clocked-renderer-paint-preparation",
+              "value": {
+                "nativePaint": {
+                  "supported": true,
+                  "observed": true,
+                  "startTime": 136
+                },
+                "schedulingPath": "genuine-paint-observer-then-existing-400ms-idle-window",
+                "clockAdvancedMs": 500,
+                "originalTimeoutMs": 20000,
+                "remainingTimeoutMs": 19665
+              }
+            },
+            {
+              "name": "caret-handoff-injection-witness",
+              "value": {
+                "variant": "animation API",
+                "routeHits": 1,
+                "serviceWorkers": "block"
+              }
+            }
+          ],
+          "nativeRecoveryLatchAttachmentPresent": false
+        }
+      ]
+    },
+    {
+      "title": "default native worker draws the complete keyboard while document tasks, resize and skip remain responsive",
+      "file": "opening-worker.spec.ts",
+      "line": 364,
+      "reportedOutcome": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "durationMs": 6133,
+          "retry": 0,
+          "errors": [
+            "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate\n\n  248 |       ),\n  249 |     )\n> 250 |     .toBe(true);\n      |      ^\n  251 | }\n  252 | async function firstWorkerInitialized(page: Page) {\n  253 |   await expect\n    at firstWorkerReady (D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:250:6)\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:381:9"
+          ],
+          "browserLogSignals": {
+            "jugglerNS_ERROR_FAILURE": false,
+            "scriptTerminatedByTimeout": false,
+            "webglContextLostWarning": false
+          },
+          "attachments": [
+            {
+              "name": "native-worker-receipts",
+              "value": [
+                {
+                  "url": "http://127.0.0.1:4173/assets/keyboard-render-worker-oeYyHX4e.js",
+                  "sent": [
+                    {
+                      "type": "initialize",
+                      "atMs": 281,
+                      "viewport": {
+                        "width": 1280,
+                        "height": 800,
+                        "pixelRatio": 1
+                      },
+                      "lowPower": false,
+                      "finePointer": true
+                    },
+                    {
+                      "type": "resize",
+                      "atMs": 302,
+                      "viewport": {
+                        "width": 1280,
+                        "height": 800,
+                        "pixelRatio": 1
+                      }
+                    }
+                  ],
+                  "received": [
+                    {
+                      "type": "diagnostics",
+                      "diagnostics": {
+                        "renderer": "webgl2",
+                        "thread": "worker",
+                        "keyCount": 61,
+                        "keycapMeshes": 1,
+                        "tier": "desktop",
+                        "bloom": false,
+                        "environment": true,
+                        "environmentIntensity": 0.35,
+                        "cameraElevationDegrees": 35,
+                        "pixelRatio": 1,
+                        "width": 1280,
+                        "height": 800,
+                        "frames": 0,
+                        "averageFps": 0,
+                        "drawCalls": 0,
+                        "degraded": false,
+                        "contextLost": false,
+                        "disposed": false,
+                        "asyncShaderCompile": false,
+                        "shaderPreparationMs": 0
+                      },
+                      "atMs": 4310
+                    }
+                  ],
+                  "terminated": 0,
+                  "terminatedAtMs": null,
+                  "disposeTaskOpen": false,
+                  "terminatedInDisposeTask": null
+                }
+              ]
+            }
+          ],
+          "nativeRecoveryLatchAttachmentPresent": false
+        }
+      ]
+    },
+    {
+      "title": "native worker acknowledges real resource disposal at an explicitly idle renderer boundary",
+      "file": "opening-worker.spec.ts",
+      "line": 461,
+      "reportedOutcome": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "durationMs": 7976,
+          "retry": 0,
+          "errors": [
+            "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate\n\n  248 |       ),\n  249 |     )\n> 250 |     .toBe(true);\n      |      ^\n  251 | }\n  252 | async function firstWorkerInitialized(page: Page) {\n  253 |   await expect\n    at firstWorkerReady (D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:250:6)\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:542:9"
+          ],
+          "browserLogSignals": {
+            "jugglerNS_ERROR_FAILURE": false,
+            "scriptTerminatedByTimeout": false,
+            "webglContextLostWarning": false
+          },
+          "attachments": [
+            {
+              "name": "native-worker-receipts",
+              "value": [
+                {
+                  "url": "http://127.0.0.1:4173/assets/keyboard-render-worker-oeYyHX4e.js",
+                  "sent": [
+                    {
+                      "type": "initialize",
+                      "atMs": 2142,
+                      "viewport": {
+                        "width": 1280,
+                        "height": 800,
+                        "pixelRatio": 1
+                      },
+                      "lowPower": false,
+                      "finePointer": true
+                    },
+                    {
+                      "type": "resize",
+                      "atMs": 2142,
+                      "viewport": {
+                        "width": 1280,
+                        "height": 800,
+                        "pixelRatio": 1
+                      }
+                    }
+                  ],
+                  "received": [
+                    {
+                      "type": "diagnostics",
+                      "diagnostics": {
+                        "renderer": "webgl2",
+                        "thread": "worker",
+                        "keyCount": 61,
+                        "keycapMeshes": 1,
+                        "tier": "desktop",
+                        "bloom": false,
+                        "environment": true,
+                        "environmentIntensity": 0.35,
+                        "cameraElevationDegrees": 35,
+                        "pixelRatio": 1,
+                        "width": 1280,
+                        "height": 800,
+                        "frames": 0,
+                        "averageFps": 0,
+                        "drawCalls": 0,
+                        "degraded": false,
+                        "contextLost": false,
+                        "disposed": false,
+                        "asyncShaderCompile": false,
+                        "shaderPreparationMs": 0
+                      },
+                      "atMs": 4728
+                    }
+                  ],
+                  "terminated": 0,
+                  "terminatedAtMs": null,
+                  "disposeTaskOpen": false,
+                  "terminatedInDisposeTask": null
+                }
+              ]
+            }
+          ],
+          "nativeRecoveryLatchAttachmentPresent": false
+        }
+      ]
+    },
+    {
+      "title": "actual worker WebGL context loss during preparation recovers with a fresh canvas and keeps practice usable",
+      "file": "opening-worker.spec.ts",
+      "line": 1039,
+      "reportedOutcome": "unexpected",
+      "results": [
+        {
+          "status": "timedOut",
+          "durationMs": 30552,
+          "retry": 0,
+          "errors": [
+            "Test timeout of 30000ms exceeded.",
+            "Error: page.waitForFunction: Test timeout of 30000ms exceeded.\n\n  783 | async function expectRecoveredDocumentScene(page: Page) {\n  784 |   const opening = page.getByTestId(\"opening-experience\");\n> 785 |   await page.waitForFunction(() => Boolean((window as AuditedWindow).recoveredDocumentScene));\n      |              ^\n  786 |   const recovered = await page.evaluate(() => (window as AuditedWindow).recoveredDocumentScene!);\n  787 |   expect(recovered.diagnostics.thread).toBe('main-thread');\n  788 |   expect(recovered.diagnostics.keyCount).toBe(61);\n    at expectRecoveredDocumentScene (D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:785:14)\n    at nativeContextLoss (D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:1036:9)\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:1042:3"
+          ],
+          "browserLogSignals": {
+            "jugglerNS_ERROR_FAILURE": false,
+            "scriptTerminatedByTimeout": false,
+            "webglContextLostWarning": false
+          },
+          "attachments": [
+            {
+              "name": "native-worker-receipts",
+              "value": [
+                {
+                  "url": "http://127.0.0.1:4173/assets/keyboard-render-worker-oeYyHX4e.js",
+                  "sent": [
+                    {
+                      "type": "initialize",
+                      "atMs": 645,
+                      "viewport": {
+                        "width": 1280,
+                        "height": 720,
+                        "pixelRatio": 1
+                      },
+                      "lowPower": false,
+                      "finePointer": true
+                    },
+                    {
+                      "type": "resize",
+                      "atMs": 646,
+                      "viewport": {
+                        "width": 1280,
+                        "height": 720,
+                        "pixelRatio": 1
+                      }
+                    },
+                    {
+                      "type": "progress",
+                      "atMs": 4691
+                    },
+                    {
+                      "type": "start",
+                      "atMs": 4692
+                    },
+                    {
+                      "type": "progress",
+                      "atMs": 4718
+                    }
+                  ],
+                  "received": [
+                    {
+                      "type": "test-context-loss-capability",
+                      "supported": true,
+                      "atMs": 2654
+                    },
+                    {
+                      "type": "diagnostics",
+                      "diagnostics": {
+                        "renderer": "webgl2",
+                        "thread": "worker",
+                        "keyCount": 61,
+                        "keycapMeshes": 1,
+                        "tier": "desktop",
+                        "bloom": false,
+                        "environment": true,
+                        "environmentIntensity": 0.35,
+                        "cameraElevationDegrees": 35,
+                        "pixelRatio": 1,
+                        "width": 1280,
+                        "height": 720,
+                        "frames": 0,
+                        "averageFps": 0,
+                        "drawCalls": 0,
+                        "degraded": false,
+                        "contextLost": false,
+                        "disposed": false,
+                        "asyncShaderCompile": false,
+                        "shaderPreparationMs": 0
+                      },
+                      "atMs": 4578
+                    },
+                    {
+                      "type": "test-native-context-loss-requested",
+                      "atMs": 4661
+                    },
+                    {
+                      "type": "diagnostics",
+                      "diagnostics": {
+                        "renderer": "webgl2",
+                        "thread": "worker",
+                        "keyCount": 61,
+                        "keycapMeshes": 1,
+                        "tier": "desktop",
+                        "bloom": true,
+                        "environment": true,
+                        "environmentIntensity": 0.35,
+                        "cameraElevationDegrees": 34.8,
+                        "pixelRatio": 1,
+                        "width": 1280,
+                        "height": 720,
+                        "frames": 1,
+                        "averageFps": 0,
+                        "drawCalls": 22,
+                        "degraded": false,
+                        "contextLost": false,
+                        "disposed": false,
+                        "asyncShaderCompile": false,
+                        "shaderPreparationMs": 0
+                      },
+                      "atMs": 4690
+                    },
+                    {
+                      "type": "ready",
+                      "diagnostics": {
+                        "renderer": "webgl2",
+                        "thread": "worker",
+                        "keyCount": 61,
+                        "keycapMeshes": 1,
+                        "tier": "desktop",
+                        "bloom": true,
+                        "environment": true,
+                        "environmentIntensity": 0.35,
+                        "cameraElevationDegrees": 34.8,
+                        "pixelRatio": 1,
+                        "width": 1280,
+                        "height": 720,
+                        "frames": 1,
+                        "averageFps": 0,
+                        "drawCalls": 22,
+                        "degraded": false,
+                        "contextLost": false,
+                        "disposed": false,
+                        "asyncShaderCompile": false,
+                        "shaderPreparationMs": 0
+                      },
+                      "atMs": 4691
+                    },
+                    {
+                      "type": "diagnostics",
+                      "diagnostics": {
+                        "renderer": "webgl2",
+                        "thread": "worker",
+                        "keyCount": 61,
+                        "keycapMeshes": 1,
+                        "tier": "desktop",
+                        "bloom": true,
+                        "environment": true,
+                        "environmentIntensity": 0.35,
+                        "cameraElevationDegrees": 34.8,
+                        "pixelRatio": 1,
+                        "width": 1280,
+                        "height": 720,
+                        "frames": 1,
+                        "averageFps": 0,
+                        "drawCalls": 22,
+                        "degraded": false,
+                        "contextLost": true,
+                        "disposed": false,
+                        "asyncShaderCompile": false,
+                        "shaderPreparationMs": 0
+                      },
+                      "atMs": 4717
+                    },
+                    {
+                      "type": "failure",
+                      "message": "Worker WebGL context unavailable",
+                      "atMs": 4719
+                    }
+                  ],
+                  "terminated": 1,
+                  "terminatedAtMs": 4719,
+                  "disposeTaskOpen": false,
+                  "terminatedInDisposeTask": false
+                }
+              ]
+            }
+          ],
+          "nativeRecoveryLatchAttachmentPresent": false
+        }
+      ]
+    },
+    {
+      "title": "actual worker WebGL context loss after live frames recovers with a fresh canvas and keeps practice usable",
+      "file": "opening-worker.spec.ts",
+      "line": 1045,
+      "reportedOutcome": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "durationMs": 13337,
+          "retry": 0,
+          "errors": [
+            "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate\n\n  248 |       ),\n  249 |     )\n> 250 |     .toBe(true);\n      |      ^\n  251 | }\n  252 | async function firstWorkerInitialized(page: Page) {\n  253 |   await expect\n    at firstWorkerReady (D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:250:6)\n    at nativeContextLoss (D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:865:11)\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts:1048:3"
+          ],
+          "browserLogSignals": {
+            "jugglerNS_ERROR_FAILURE": false,
+            "scriptTerminatedByTimeout": false,
+            "webglContextLostWarning": false
+          },
+          "attachments": [
+            {
+              "name": "native-worker-receipts",
+              "value": [
+                {
+                  "url": "http://127.0.0.1:4173/assets/keyboard-render-worker-oeYyHX4e.js",
+                  "sent": [
+                    {
+                      "type": "initialize",
+                      "atMs": 2296,
+                      "viewport": {
+                        "width": 1280,
+                        "height": 720,
+                        "pixelRatio": 1
+                      },
+                      "lowPower": false,
+                      "finePointer": true
+                    },
+                    {
+                      "type": "resize",
+                      "atMs": 2304,
+                      "viewport": {
+                        "width": 1280,
+                        "height": 720,
+                        "pixelRatio": 1
+                      }
+                    },
+                    {
+                      "type": "dispose",
+                      "atMs": 6737
+                    }
+                  ],
+                  "received": [
+                    {
+                      "type": "test-context-loss-capability",
+                      "supported": true,
+                      "atMs": 2981
+                    },
+                    {
+                      "type": "diagnostics",
+                      "diagnostics": {
+                        "renderer": "webgl2",
+                        "thread": "worker",
+                        "keyCount": 61,
+                        "keycapMeshes": 1,
+                        "tier": "desktop",
+                        "bloom": false,
+                        "environment": true,
+                        "environmentIntensity": 0.35,
+                        "cameraElevationDegrees": 35,
+                        "pixelRatio": 1,
+                        "width": 1280,
+                        "height": 720,
+                        "frames": 0,
+                        "averageFps": 0,
+                        "drawCalls": 0,
+                        "degraded": false,
+                        "contextLost": false,
+                        "disposed": false,
+                        "asyncShaderCompile": false,
+                        "shaderPreparationMs": 0
+                      },
+                      "atMs": 5942
+                    }
+                  ],
+                  "terminated": 1,
+                  "terminatedAtMs": 6737,
+                  "disposeTaskOpen": false,
+                  "terminatedInDisposeTask": true
+                }
+              ]
+            },
+            {
+              "name": "native-fallback-animation-actions",
+              "value": []
+            }
+          ],
+          "nativeRecoveryLatchAttachmentPresent": false
+        }
+      ]
+    }
+  ],
+  "stageCounts": {
+    "contextTeardownWithoutRecordedBodyAssertionFailure": 1,
+    "initialWorkerReadyPredicateBeforeAnyDisposalOrLiveLossAssertion": 3,
+    "missingMainThreadRecoveryLatchAfterObservedNativeContextLoss": 1
+  },
+  "qualifications": [
+    "Original case outcomes remain failed; no failed case was replaced by a later confirmation.",
+    "Intermediate worker diagnostics with frames0 and bloomfalse precede first full-quality ready and do not establish that production quality was reduced.",
+    "The preparation-loss case records a ready61-key desktop bloom/environment frame and an actualcontextLost diagnostic, then worker termination once; its required document recovery latch is absent.",
+    "The live-loss case failed before requesting live loss; its afterEach receipt includes immediate startup termination, which is not a leaked-worker finding.",
+    "The animation case has a positive route witness and recorded500ms paint-preparation branch; final raw errors concern context teardown and browserContext.close rather than a body assertion.",
+    "Runtime/Juggler messages are observations without demonstrated causal attribution."
+  ],
+  "privacy": "Extraction includes only five controlled public introduction cases and an explicit JSON attachment allowlist. Browser profile command lines and unrelated cases are excluded."
+}

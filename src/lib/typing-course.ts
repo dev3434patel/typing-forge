@@ -204,6 +204,14 @@ function validAssessment(value: unknown, ownerId: string, sessionId: string): va
     (lesson.targetWpm === 0 || finite(measured.wpm) && measured.wpm + 1e-9 >= lesson.targetWpm);
 }
 
+/** Shared validated summary selection for progress, stars and personal analytics. */
+export function courseAssessmentForRecord(record: SessionRecord, ownerId: string): CourseAssessment | null {
+  if (record.ownerId !== ownerId || record.payloadVersion !== 'forge-v3' || record.provenance !== 'observed' || record.state === 'rejected') return null;
+  const accepted = object(record.accepted) ? record.accepted : null;
+  const assessment = accepted && 'course' in accepted ? accepted.course : record.candidate ? assessCourseResult(record.candidate as SessionResult) : record.courseEvidence;
+  return validAssessment(assessment, ownerId, record.clientSessionId) ? assessment : null;
+}
+
 /** Reconcile only saved current-owner evidence; no independent completion flags exist. */
 export function deriveCourseProgress(records: readonly SessionRecord[], ownerId: string): CourseProgress {
   const lessons: CourseLessonProgress[] = COURSE_LESSONS.map(lesson => ({ lessonId: lesson.id, status: 'locked', unlocked: false, completed: false,
@@ -215,13 +223,8 @@ export function deriveCourseProgress(records: readonly SessionRecord[], ownerId:
   for (const record of [...records].sort((a, b) => a.createdAt - b.createdAt || a.clientSessionId.localeCompare(b.clientSessionId))) {
     if (record.ownerId !== ownerId || record.payloadVersion !== 'forge-v3' || record.provenance !== 'observed' || record.state === 'rejected' || seen.has(record.clientSessionId)) continue;
     seen.add(record.clientSessionId);
-    const accepted = object(record.accepted) ? record.accepted : null;
-    let assessment: unknown;
-    // An accepted server projection is authoritative, including a failed result.
-    if (accepted && 'course' in accepted) assessment = accepted.course;
-    else if (record.candidate) assessment = assessCourseResult(record.candidate as SessionResult);
-    else assessment = record.courseEvidence;
-    if (validAssessment(assessment, ownerId, record.clientSessionId)) observations.push(assessment);
+    const assessment = courseAssessmentForRecord(record, ownerId);
+    if (assessment) observations.push(assessment);
   }
   observations.sort((a, b) => a.completedAt - b.completedAt || a.sessionId.localeCompare(b.sessionId));
   for (const assessment of observations) {

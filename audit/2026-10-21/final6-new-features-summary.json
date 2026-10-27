@@ -1,0 +1,111 @@
+{
+  "totals": {
+    "total": 204,
+    "passed": 200,
+    "failed": 4,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "projects": [
+    {
+      "project": "chromium",
+      "total": 51,
+      "passed": 51,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "edge",
+      "total": 51,
+      "passed": 47,
+      "failed": 4,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "firefox",
+      "total": 51,
+      "passed": 51,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "webkit",
+      "total": 51,
+      "passed": 51,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    }
+  ],
+  "reportedStats": {
+    "expected": 200,
+    "unexpected": 4,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "countsAgreeWithReport": true,
+  "failures": [
+    {
+      "project": "edge",
+      "title": "arcade.spec.ts › arcade catalog exposes eight original local games without loading the player before interaction",
+      "file": "arcade.spec.ts",
+      "line": 16,
+      "attempts": 1,
+      "attemptStatuses": [
+        "timedOut"
+      ],
+      "messages": [
+        "Test timeout of 30000ms exceeded while running \"beforeEach\" hook. 8 | 9 | test.use({ serviceWorkers: 'block' }); > 10 | test.beforeEach(async ({ page, baseURL }) => { | ^ 11 | const api = phpApiBase(baseURL!); 12 | await page.route(`${api.href}**`, route => route.fulfill({ json: { user: null, csrfToken: 'arcade-guest-fixture' } })); 13 | await page.addInitScript(() => localStorage.setItem('sparowtype.opening-animation.enabled', 'false')); at D:\\e"
+      ]
+    },
+    {
+      "project": "edge",
+      "title": "arcade.spec.ts › Word Invaders retains real attempts and exports local canonical evidence in portrait",
+      "file": "arcade.spec.ts",
+      "line": 25,
+      "attempts": 1,
+      "attemptStatuses": [
+        "timedOut"
+      ],
+      "messages": [
+        "Test timeout of 30000ms exceeded.",
+        "Error: download.path: canceled 44 | const downloading = page.waitForEvent('download'); 45 | await page.getByRole('button', { name: 'Export canonical game JSON', exact: true }).click(); > 46 | const download = await downloading, path = await download.path(); expect(path).not.toBeNull(); | ^ 47 | const evidence = JSON.parse(await readFile(path!, 'utf8')) as GameEvidence; 48 | expect(evidence.verification).toBe('local-unverified'); expect(evidence.g"
+      ]
+    },
+    {
+      "project": "edge",
+      "title": "progression.spec.ts › guest progression starts honestly, daily reroll persists and never calls account claims",
+      "file": "progression.spec.ts",
+      "line": 7,
+      "attempts": 1,
+      "attemptStatuses": [
+        "timedOut"
+      ],
+      "messages": [
+        "Test timeout of 30000ms exceeded."
+      ]
+    },
+    {
+      "project": "edge",
+      "title": "progression.spec.ts › fallback reload preserves existing receipt awards without rewarding twice",
+      "file": "progression.spec.ts",
+      "line": 20,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(locator).toBeVisible() failed Locator: getByText('100 lifetime XP') Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByText('100 lifetime XP') with timeout 5000ms - waiting for getByText('100 lifetime XP') 25 | }); 26 | await page.goto('/progression'); > 27 | await expect(page.getByText('100 lifetime XP')).toBeVisible(); | ^ 28 | await expect(page.getByRole('cell', { name: 'Qualified "
+      ]
+    }
+  ],
+  "flakyCases": [],
+  "skippedCases": [],
+  "skipReasons": [],
+  "expectedFailures": [],
+  "globalErrors": [],
+  "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+}

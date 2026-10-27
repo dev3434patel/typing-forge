@@ -1,0 +1,44 @@
+{
+  "recordedAt": "2026-10-20T18:53:51.663Z",
+  "phase": "before",
+  "provenance": "Sanitized transcription of the original full-project-plugin probe stdout returned by tools.write_stdin for session 40176, exit 0. Its per-run JSON was subsequently superseded by the separate loaded-core probe; unknown per-run marker/hash/timestamps are intentionally omitted.",
+  "scope": "Actual project Vite config and all project plugins, disposable loopback server and fresh nonsecret storage canary; startup was slow but completed successfully.",
+  "viteVersion": "7.3.7",
+  "effectiveDeny": [
+    ".env",
+    ".env.*",
+    "*.{crt,pem}",
+    "**/.git/**"
+  ],
+  "checks": [
+    {
+      "route": "backend-storage-canary",
+      "status": 200,
+      "exposesCanary": true
+    },
+    {
+      "route": "backend-storage-canary-query",
+      "status": 200,
+      "exposesCanary": true
+    },
+    {
+      "route": "raw-fs-canary",
+      "status": 200,
+      "exposesCanary": true
+    },
+    {
+      "route": "raw-fs-canary-query",
+      "status": 200,
+      "exposesCanary": true
+    },
+    {
+      "route": "api-proxy-to-isolated-fixture-only",
+      "status": 200,
+      "correctFixture": true
+    }
+  ],
+  "exitCode": 0,
+  "realConfigOrUserDataRequested": false,
+  "cleanup": "Original helper completed its finally cleanup and exited. A later exact-process guarded stop refused because the process had already exited; no process was stopped. Its owned canary was already absent.",
+  "startupFailure": false
+}

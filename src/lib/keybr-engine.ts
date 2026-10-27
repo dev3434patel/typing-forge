@@ -1,5 +1,6 @@
 import { getContentPack, graphemes, seededRandom, type ContentPack } from './content-packs';
 import { sessionRepository, stableJson } from '@/services/session-repository';
+import { generateTrainingDrill, type KeyConfidence } from '@/domain/training/generator';
 
 import { LEARNING_VERSION, LEARNING_INACTIVITY_MS, learningEvidenceFromResult, type LearningDimensions, type LearningAttempt, type LearningSessionEvidence } from './learning-evidence';
 import type { SessionResult } from './typing-core/types';
@@ -68,6 +69,8 @@ interface LearningEnvelope {
   removedSessionIds?: string[];
 }
 const memoryFallback = new Map<string, LearningEnvelope>();
+// A failed write/reset must take precedence over an older readable disk copy.
+const memoryOnlyOwners = new Set<string>();
 export interface LearningOptions { owner?: string; dimensions?: LearningDimensions }
 interface ProgressOptions extends LearningOptions { sessionId?: string; completedAt?: string; elapsedMs?: number; assessment?: boolean; sourceResultId?: string }
 
@@ -85,6 +88,7 @@ function emptyEnvelope(owner: string): LearningEnvelope {
 }
 function loadEnvelope(owner = 'guest'): LearningEnvelope {
   const empty = emptyEnvelope(owner);
+  if (memoryOnlyOwners.has(owner)) return JSON.parse(JSON.stringify(memoryFallback.get(owner) ?? empty)) as LearningEnvelope;
   try {
     const raw = localStorage.getItem(storageKey(owner));
     if (!raw && memoryFallback.has(owner)) return JSON.parse(JSON.stringify(memoryFallback.get(owner))) as LearningEnvelope;
@@ -113,9 +117,10 @@ function persistEnvelope(envelope: LearningEnvelope): boolean {
   try {
     localStorage.setItem(storageKey(envelope.owner), JSON.stringify(envelope));
     memoryFallback.delete(envelope.owner);
+    memoryOnlyOwners.delete(envelope.owner);
     if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('typingforge:learning-updated', { detail: { owner: envelope.owner } }));
     return true;
-  } catch { memoryFallback.set(envelope.owner, JSON.parse(JSON.stringify(envelope)) as LearningEnvelope); return false; }
+  } catch { memoryFallback.set(envelope.owner, JSON.parse(JSON.stringify(envelope)) as LearningEnvelope); memoryOnlyOwners.add(envelope.owner); return false; }
 }
 function validEvidence(value: unknown): value is LearningSessionEvidence {
   if (!value || typeof value !== 'object') return false;
@@ -338,8 +343,15 @@ export function removeLearningSession(sessionId: string, owner = 'guest'): void 
   persistEnvelope(envelope);
 }
 export function resetKeybrProgress(owner = 'guest'): void {
-  memoryFallback.delete(owner);
-  try { localStorage.removeItem(storageKey(owner)); if (owner === 'guest') localStorage.removeItem('keybr_character_data'); } catch { /* Practice can still continue. */ }
+  memoryFallback.set(owner, emptyEnvelope(owner));
+  memoryOnlyOwners.add(owner);
+  let failed = false;
+  for (const key of [storageKey(owner), ...(owner === 'guest' ? ['keybr_character_data'] : [])]) {
+    try { localStorage.removeItem(key); } catch { failed = true; }
+  }
+  if (!failed) { memoryFallback.delete(owner); memoryOnlyOwners.delete(owner); }
+  if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('typingforge:learning-updated', { detail: { owner } }));
+  if (failed) throw new Error('Learning progress was cleared for this visit, but browser storage refused persistent deletion. Stored learning evidence may remain; restore storage access and retry.');
 }
 function isCanonicalResult(value: unknown, owner: string): value is SessionResult {
   if (!value || typeof value !== 'object') return false;
@@ -357,7 +369,8 @@ export async function hydrateLearningFromSessions(owner: string): Promise<void> 
 }
 sessionRepository.subscribe(event => {
   if (event.type === 'remove' && event.sessionId) removeLearningSession(event.sessionId, event.ownerId);
-  if (event.type === 'clear') resetKeybrProgress(event.ownerId);
+  // Workspace clearing invokes resetKeybrProgress through clearWorkspaceExtras,
+  // where a persistent deletion failure is awaited and reported to the user.
   if (event.type === 'save' && event.sessionId) {
     void sessionRepository.get(event.ownerId, event.sessionId).then(record => {
       if (record?.provenance === 'observed' && isCanonicalResult(record.candidate, event.ownerId)) recordLearningSession(learningEvidenceFromResult(record.candidate), event.ownerId);
@@ -365,7 +378,7 @@ sessionRepository.subscribe(event => {
   }
 });
 export interface LessonGenerationOptions extends LearningOptions { seed?: string; focusLetters?: string[]; review?: boolean; targetWpm?: number; targeted?: boolean }
-/** Natural words first; sparse sets use bounded Forge vowel/consonant patterns. */
+/** Natural words plus original English Markov drills; other scripts retain bounded vowel/consonant patterns. */
 export function generateKeybrLesson(wordCount = 40, options: LessonGenerationOptions = {}): KeybrLesson {
   const dimensions = dimensionsOf(options.dimensions);
   const pack = getContentPack(dimensions.language);
@@ -383,7 +396,14 @@ export function generateKeybrLesson(wordCount = 40, options: LessonGenerationOpt
   const vowels = availableLetters.filter(char => /[aeiouyàáâäãåèéêëìíîïòóôöõùúûüаеёиоуыэюяअआइईउऊएऐओऔاوي]/u.test(char));
   const consonants = availableLetters.filter(char => !vowels.includes(char));
   const choose = (items: readonly string[]) => items[Math.floor(random() * items.length)];
-  const fallback = () => {
+  const markov = pack.id === 'en';
+  const measured: KeyConfidence[] = markov ? getAllCharacterStats(options).map(item => ({ key: item.char, accuracy: item.accuracy / 100, smoothedMs: item.avgTimeMs || null, n: item.recentAttempts ?? item.occurrences })) : [];
+  const fallback = (index: number) => {
+    if (markov) {
+      const chars = [...generateTrainingDrill({ seed: `${seed}:${index}`, keys: availableLetters, kind: 'keys', count: 1, weak: measured })];
+      chars[Math.floor(random() * chars.length)] = focus;
+      return chars.join('');
+    }
     const length = 3 + Math.floor(random() * 4);
     const chars = Array.from({ length }, (_, index) => {
       const group = index % 2 === 0 ? consonants : vowels;
@@ -394,8 +414,8 @@ export function generateKeybrLesson(wordCount = 40, options: LessonGenerationOpt
   };
   let naturalWordCount = 0;
   const words = Array.from({ length: Math.max(1, Math.min(2000, Math.floor(wordCount) || 1)) }, (_, index) => {
-    if (natural.length > 0 && (natural.length >= 6 || index % 3 !== 2)) { naturalWordCount++; return choose(natural); }
-    return fallback();
+    if (natural.length > 0 && (markov ? index % 5 !== 4 : natural.length >= 6 || index % 3 !== 2)) { naturalWordCount++; return choose(natural); }
+    return fallback(index);
   });
-  return { text: words.join(' '), availableLetters, focusLetters: review ? [] : [focus], lockedLetters: getLockedLetters(options), seed, generatorVersion: 'forge-pattern-v3', contentRevision: pack.revision, naturalWordCount, phoneticWordCount: words.length - naturalWordCount, review };
+  return { text: words.join(' '), availableLetters, focusLetters: review ? [] : [focus], lockedLetters: getLockedLetters(options), seed, generatorVersion: markov ? 'forge-markov-v4' : 'forge-pattern-v3', contentRevision: pack.revision, naturalWordCount, phoneticWordCount: words.length - naturalWordCount, review };
 }

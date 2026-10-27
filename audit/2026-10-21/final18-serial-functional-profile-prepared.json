@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "preparedAt": "2026-10-23T15:29:10.990465+00:00",
+  "status": "PREPARED-NOT-RUN",
+  "actualBuild": "e8451e7c13b09318a1ef",
+  "scope": "Only future source18 matrix runner and acceptance verifier worker-profile declarations changed. No runner, test, browser, service, verifier or syntax check was executed.",
+  "executionProfile": {
+    "id": "serial-functional-workers1-v1",
+    "workersPerBatch": 1,
+    "batchesRunSequentially": true,
+    "automaticRetries": 0,
+    "tracing": "off",
+    "assertionsChanged": false,
+    "timeoutsChanged": false,
+    "filesFiltered": false
+  },
+  "partition": {
+    "new-features": {
+      "files": 11,
+      "workers": 1
+    },
+    "existing": {
+      "files": 42,
+      "workers": 1
+    },
+    "isolated": {
+      "files": 9,
+      "workers": 1
+    },
+    "first-input-timing": {
+      "files": 1,
+      "workers": 1
+    }
+  },
+  "totalFiles": 63,
+  "engines": [
+    "chromium",
+    "edge",
+    "firefox",
+    "webkit"
+  ],
+  "reason": "Explicit test isolation before first source18 matrix. Earlier default coverage had14 timeouts and the separate worker2 full coverage had1 timeout. These observations do not prove contention caused any historical failure.",
+  "unchanged": [
+    "all63 spec files",
+    "all4 engines",
+    "test actions and assertions",
+    "test deadlines",
+    "automaticRetries0",
+    "traceoff instrumentation",
+    "source18 frozen499 source files",
+    "product/config/dependencies",
+    "source17 actual outcomes"
+  ],
+  "changedFiles": [
+    {
+      "path": "run-final18-browser-matrix.mjs",
+      "beforeSha256": "8b38cf2c96514f1e48bfad54a879a5128723f40c2cac4d83371eb27e12304eb0",
+      "afterSha256": "e0e4059654e6c55e9a33d9cd9109de4a80a20cfbbee57be5a09bd9924dbe8d68"
+    },
+    {
+      "path": "verify-final18-acceptance.mjs",
+      "beforeSha256": "961f59fd4d9eac8d50e9dbcc5592a5bdd39a17527e292d9f78b2251e77b0f349",
+      "afterSha256": "ae99efe62e42388af3489d6d78d30b795bc4e01fd88c35530913b0adfce42dd8"
+    }
+  ],
+  "checkpointHelper": {
+    "path": "run-browser-checkpoint-final18.mjs",
+    "beforeSha256": "27d08699f2efdbfa6d5ca423f95afea3b17acae1329028400d726a8a961fbb8b",
+    "afterSha256": "27d08699f2efdbfa6d5ca423f95afea3b17acae1329028400d726a8a961fbb8b",
+    "unchanged": true
+  },
+  "supersededPreparedPlans": [
+    {
+      "file": "final18-pwa-isolation-partition-prepared.json",
+      "rawSha256": "cb1478913cf2395fa9dae05af4746e50d675a7b1367d0d76b771524043a18c56",
+      "status": "PREPARED-NOT-RUN",
+      "preservedPartition": {
+        "new-features": {
+          "files": 11,
+          "workers": 2
+        },
+        "existing": {
+          "files": 42,
+          "workers": 2
+        },
+        "isolated": {
+          "files": 9,
+          "workers": 1
+        },
+        "first-input-timing": {
+          "files": 1,
+          "workers": 2
+        }
+      },
+      "preservedPlannedFileHashes": [
+        {
+          "path": "run-final18-browser-matrix.mjs",
+          "beforeSha256": "3aa0425407215bf2c8bd5e5397d636e6f556ed68f19d5e994fc4fbcf2e15a9bb",
+          "afterSha256": "8b38cf2c96514f1e48bfad54a879a5128723f40c2cac4d83371eb27e12304eb0"
+        },
+        {
+          "path": "verify-final18-acceptance.mjs",
+          "beforeSha256": "98dfd492d1c4641cd55eabeea4b8cb9d9758f6889053fc0dd5a9f27b95fd6a3d",
+          "afterSha256": "b135dac923b12888727c508da24d26b2dbe1d84cc6d07de9b3f4de580c4409ac"
+        }
+      ]
+    },
+    {
+      "file": "final18-validation-drivers-verifier-prepared.json",
+      "rawSha256": "c022b7132e781733a234957237cec50e4d708db38d9296a658af714c0de9df13",
+      "status": "PREPARED-NOT-RUN",
+      "scope": "Historical initial preparation only; its original partition was previously superseded by the preserved isolation plan."
+    }
+  ],
+  "originalFailuresRetained": true,
+  "matrixOutputAbsentAtPreparation": true,
+  "executionPerformed": false,
+  "syntaxCheckPerformed": false,
+  "sourceOrTestEdits": false,
+  "indexChanged": false
+}

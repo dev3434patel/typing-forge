@@ -1,0 +1,84 @@
+
+Running 2 tests using 1 worker
+
+(node:8928) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [firefox] › e2e\offline-pwa.spec.ts:28:1 › public app download supports a real server outage and clearing preserves real history (30.7s)
+(node:43672) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 [webkit] › e2e\offline-pwa.spec.ts:28:1 › public app download supports a real server outage and clearing preserves real history (30.5s)
+
+
+  1) [firefox] › e2e\offline-pwa.spec.ts:28:1 › public app download supports a real server outage and clearing preserves real history 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+      - navigating to "http://127.0.0.1:8842/profile", waiting until "load"
+
+
+      116 |   await page.reload();
+      117 |   await expect(page.getByText("1 of 2 checkpoints", { exact: true })).toBeVisible();
+    > 118 |   await page.goto("/profile");
+          |              ^
+      119 |   await expect(
+      120 |     page.getByRole("heading", {
+      121 |       name: "This page needs a connection.",
+        at D:\extra\typing_updated\typing-forge\e2e\offline-pwa.spec.ts:118:14
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final6-offline-confirmation\offline-pwa-public-app-dow-7dc17-ring-preserves-real-history-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final6-offline-confirmation\offline-pwa-public-app-dow-7dc17-ring-preserves-real-history-firefox\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final6-offline-confirmation\offline-pwa-public-app-dow-7dc17-ring-preserves-real-history-firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\2026-10-21\.playwright-artifacts-final6-offline-confirmation\offline-pwa-public-app-dow-7dc17-ring-preserves-real-history-firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [webkit] › e2e\offline-pwa.spec.ts:28:1 › public app download supports a real server outage and clearing preserves real history 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Remove offline download', exact: true })
+        - locator resolved to <button class="forge-button-secondary">Remove offline download</button>
+      - attempting click action
+        - waiting for element to be visible, enabled and stable
+        - element is visible, enabled and stable
+        - scrolling into view if needed
+        - done scrolling
+
+
+      127 |   await page
+      128 |     .getByRole("button", { name: "Remove offline download", exact: true })
+    > 129 |     .click();
+          |      ^
+      130 |   await expect(
+      131 |     page
+      132 |       .getByRole("status")
+        at D:\extra\typing_updated\typing-forge\e2e\offline-pwa.spec.ts:129:6
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final6-offline-confirmation\offline-pwa-public-app-dow-7dc17-ring-preserves-real-history-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final6-offline-confirmation\offline-pwa-public-app-dow-7dc17-ring-preserves-real-history-webkit\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final6-offline-confirmation\offline-pwa-public-app-dow-7dc17-ring-preserves-real-history-webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\2026-10-21\.playwright-artifacts-final6-offline-confirmation\offline-pwa-public-app-dow-7dc17-ring-preserves-real-history-webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [firefox] › e2e\offline-pwa.spec.ts:28:1 › public app download supports a real server outage and clearing preserves real history 
+    [webkit] › e2e\offline-pwa.spec.ts:28:1 › public app download supports a real server outage and clearing preserves real history 

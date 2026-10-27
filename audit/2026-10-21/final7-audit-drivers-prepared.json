@@ -1,0 +1,36 @@
+{
+  "status": "PREPARED_NOT_RUN",
+  "preparedAt": "2026-10-21T14:38:50.541Z",
+  "expectedBuild": "f3ac03affbc33168655a",
+  "source": "audit/2026-10-21/final7-source.json",
+  "sourceFiles": 483,
+  "sourceReceiptSha256": "01dec7a4980cbb0b74e214825a76864dbda1b54dfc0904b801fe6b47a15520a3",
+  "buildIdentityBound": true,
+  "syntaxCheck": {
+    "static": 0,
+    "boss": 0
+  },
+  "assertionsAndTimeoutsUnchangedFromFinal6": true,
+  "originalsPreserved": true,
+  "runtimeExecuted": false,
+  "buildsExecuted": false,
+  "browsersExecuted": false,
+  "files": [
+    {
+      "file": "audit/2026-10-21/run-final7-static.mjs",
+      "sha256": "253c9bcfc5b104dec70336dd08397b0ee7c6510c29aea1d8094fc91673554567"
+    },
+    {
+      "file": "audit/2026-10-21/run-boss-duel-duration-final7.mjs",
+      "sha256": "44bc78e2a41c1b54433b89b6f27aa246a3c4216564351ecc2b2de86375a92af4"
+    },
+    {
+      "file": "audit/2026-10-21/boss-duel-final7-protocol.json",
+      "sha256": "d3fbc0e7ad2b7f75b134910fcd7181257de42ed93a036b75d4bb248304ec972f"
+    }
+  ],
+  "commands": [
+    "Set SPAROWTYPE_STATIC_ACCEPTANCE=1 only in the authorized window; node audit/2026-10-21/run-final7-static.mjs final7",
+    "node audit/2026-10-21/run-boss-duel-duration-final7.mjs boss-duel-final7 audit/2026-10-21/boss-duel-final7-protocol.json"
+  ]
+}

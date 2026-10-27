@@ -1,0 +1,181 @@
+{
+  "status": "PARTIAL",
+  "capturedAt": "2026-10-22T19:59:36.766226+00:00",
+  "reportLocalDate": "2026-10-23",
+  "scope": "Read-only extraction of completed16 freeze/delta/budget/structural package/input. No acceptance jobs or current-source rescans performed.",
+  "sourceFile": "audit/2026-10-21/final16-source.json",
+  "sourceCapturedAt": "2026-10-22T19:51:53.890Z",
+  "build": {
+    "version": "8ac2a0d9602ec9263118",
+    "publicFiles": 133,
+    "bytes": 2930416
+  },
+  "served": {
+    "version": "8ac2a0d9602ec9263118",
+    "publicFiles": 133,
+    "bytes": 2930416
+  },
+  "sourceFiles": 498,
+  "delta": {
+    "status": "PASS-SCOPED",
+    "changedSourceFiles": [
+      "src/components/typing/live-keyboard.css",
+      "src/lib/typing-core/__tests__/live-projection.test.ts",
+      "src/lib/typing-core/session.ts"
+    ],
+    "unchangedSourceFiles": 495,
+    "componentIntegrity": {
+      "php": {
+        "compared": 37,
+        "changed": [],
+        "unchanged": true
+      },
+      "pwa": {
+        "compared": 5,
+        "changed": [],
+        "unchanged": true
+      },
+      "threeAndOpeningRenderer": {
+        "compared": 21,
+        "changed": [],
+        "unchanged": true
+      },
+      "cssExceptAuthorizedKeyboardFeedback": {
+        "compared": 11,
+        "changed": [],
+        "unchanged": true
+      },
+      "canonicalCoreExceptAuthorizedSessionAndUnit": {
+        "compared": 12,
+        "changed": [],
+        "unchanged": true
+      },
+      "metricsReplayTranscriptModules": {
+        "compared": 9,
+        "changed": [],
+        "unchanged": true
+      },
+      "caretGeometry": {
+        "compared": 7,
+        "changed": [],
+        "unchanged": true
+      },
+      "keyboardSubscriptionsAndRows": {
+        "compared": 5,
+        "changed": [],
+        "unchanged": true
+      },
+      "practiceRaceAndClockControllers": {
+        "compared": 5,
+        "changed": [],
+        "unchanged": true
+      }
+    }
+  },
+  "sessionReverseFidelity": "audit/2026-10-21/final16-flat-alignment-source-review.json",
+  "bundle": {
+    "bootstrapJsGzipBytes": 56265,
+    "initialPracticeJsGzipBytes": 164609,
+    "maxFeatureJsGzipBytes": 108534,
+    "introDeferredJsGzipBytes": 168001,
+    "arcadeRouteGzipBytes": 10526,
+    "arcadePlayerGzipBytes": 25288,
+    "dashboardRouteGzipBytes": 23191
+  },
+  "hosting": {
+    "status": "PASS-SCOPED",
+    "passed": 27,
+    "total": 27,
+    "publicFilesCompared": 142,
+    "packageFiles": 185,
+    "scope": "Structure/source/private exclusions only, not hosted/packaged frontend Apache runtime."
+  },
+  "input": {
+    "protocol": {
+      "declaredAt": "2026-10-22T19:52:49.837Z",
+      "build": {
+        "version": "8ac2a0d9602ec9263118",
+        "publicFiles": 133,
+        "bytes": 2930416
+      },
+      "runs": 3,
+      "automaticRetries": 0,
+      "resultFiltering": false,
+      "freshProfiles": true,
+      "cpuThrottle": 4,
+      "repetitions": 16,
+      "interCharacterDelayMs": 0,
+      "quietSeconds": 5,
+      "rotation": "390\u00c3\u2014844 to844\u00c3\u2014390 halfway through495 characters",
+      "originalDriver": "audit/correction-experience-2026-10-20/measure-typing.mjs",
+      "originalDriverSha256": "28cf9cb12ccbe2ae8138dc72afd9f936de6865a22e56fd8e90bb4cba40a6be35",
+      "driverOnlyChange": "Report output directory",
+      "scope": "Matched prior lab driver; thresholded/quantized Event Timing, not field INP. Intro disabled only for this isolated input benchmark; separately measured at normal full quality."
+    },
+    "runs": [
+      {
+        "run": 1,
+        "build": "8ac2a0d9602ec9263118",
+        "exact": true,
+        "attempts": 495,
+        "accuracy": 100,
+        "p98Ms": 104,
+        "maxMs": 304,
+        "rotation": {
+          "beforeLength": 247,
+          "afterLength": 247,
+          "retainedExactly": true,
+          "overflow": false
+        },
+        "errors": []
+      },
+      {
+        "run": 2,
+        "build": "8ac2a0d9602ec9263118",
+        "exact": true,
+        "attempts": 495,
+        "accuracy": 100,
+        "p98Ms": 112,
+        "maxMs": 144,
+        "rotation": {
+          "beforeLength": 247,
+          "afterLength": 247,
+          "retainedExactly": true,
+          "overflow": false
+        },
+        "errors": []
+      },
+      {
+        "run": 3,
+        "build": "8ac2a0d9602ec9263118",
+        "exact": true,
+        "attempts": 495,
+        "accuracy": 100,
+        "p98Ms": 80,
+        "maxMs": 184,
+        "rotation": {
+          "beforeLength": 247,
+          "afterLength": 247,
+          "retainedExactly": true,
+          "overflow": false
+        },
+        "errors": []
+      }
+    ],
+    "functional": "PASS-SCOPED3/3 exact495/100%,rotation247 retained,no errors/overflow",
+    "latencyStatus": "FAILED",
+    "failedRuns": 2,
+    "passedRuns": 1,
+    "thresholdMsExclusive": 100,
+    "limits": "Every-run target remains unmet104/112/80ms. Exact input, fastest/median values or functional exit0 do not prove a speedup, every-event<100ms or fieldINP."
+  },
+  "currentOtherGates": {
+    "full62Matrix": "RUNNING-COORDINATOR",
+    "static": "NOT-RUN",
+    "mobile4": "NOT-RUN",
+    "native16": "NOT-RUN",
+    "placement": "NOT-RUN",
+    "Lighthouse": "NOT-RUN"
+  },
+  "priorFailuresPreserved": true
+}

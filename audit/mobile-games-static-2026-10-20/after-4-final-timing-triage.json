@@ -1,0 +1,46 @@
+{
+  "recordedAt": "2026-10-20T19:11:38.894Z",
+  "build": "ebda64060759b5fed25a",
+  "method": "Read-only retained WebKit trace and actual outcome snapshot inspection; no test/budget/product changes.",
+  "cases": [
+    {
+      "title": "a real uninterrupted 30-second speed assessment includes idle time and saves its checkpoint",
+      "artifact": "audit/mobile-games-static-2026-10-20/.playwright-artifacts-after-4-browser-ordinary/typing-course-a-real-unint-6ef38-me-and-saves-its-checkpoint-webkit",
+      "failure": "Checkpoint earned heading absent; completed outcome correctly shows speed criterion unmet",
+      "driver": {
+        "callId": "gafe@5414",
+        "requestedUnits": 89,
+        "requestedDelayMs": 65,
+        "startMs": 2168363.7,
+        "durationMs": 39627.5
+      },
+      "observedOutcome": {
+        "insertionAttempts": 32,
+        "inputAccuracy": 100,
+        "activeDurationMs": 30000,
+        "wpm": 12.8,
+        "targetWpm": 15,
+        "completion": true,
+        "accuracy": true,
+        "evidence": true,
+        "speed": false
+      },
+      "interpretation": "The typing driver crossed the real deadline before delivering the planned evidence. The32 recorded attempts and12.8WPM agree with the shown outcome. No grading defect is demonstrated; do not force qualification or alter the clock. The cause of the long driver action is unproven."
+    },
+    {
+      "title": "sustained typing reuses its layout observer and keeps the caret through resize and deletion",
+      "artifact": "audit/mobile-games-static-2026-10-20/.playwright-artifacts-after-4-browser-ordinary/typing-experience-sustaine-aa38a-through-resize-and-deletion-webkit",
+      "failure": "30000ms global timeout during the first210-character typing action",
+      "driver": {
+        "setupCustomClickMs": 8021.4,
+        "firstTypingCallId": "jcli@4468",
+        "firstTypingStartMs": 2259658.5,
+        "requestedUnits": 210,
+        "requestedDelayMs": 5,
+        "typingCompleted": false
+      },
+      "interpretation": "Approximately13seconds were consumed in setup; the first typing call never completed within the remaining global budget. Retained-value, resize, observer and deletion assertions were not reached, so none of their correctness outcomes can be claimed."
+    }
+  ],
+  "next": "Both exact original cases are included in the separate one-worker final-build quiet confirmation, without retries or relaxed budgets."
+}

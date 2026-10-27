@@ -416,11 +416,21 @@ final class SessionValidator
         $segments = $options['issuedTargetSegments'] ?? [];
         $target = $options['targetText'] ?? $initial . implode('', array_column($segments, 'text'));
         $pauses = $options['pauseIntervals'] ?? []; $finite = $options['finiteFinal'] ?? false;
+        $eventBySequence = array_column($events, null, 'sequence');
+        foreach ($pauses as $pause) {
+            if (array_key_exists('afterSequence', $pause)) {
+                $anchor = $pause['afterSequence'];
+                self::check(is_int($anchor) && $anchor >= 0 && isset($eventBySequence[$anchor]) && $eventBySequence[$anchor]['offsetMs'] == $pause['startMs'], 'Pause sequence anchor must reference input at its exact start timestamp.');
+            }
+        }
         $state = self::state(); $accepted = []; $segmentIndex = 0; $issued = $hasSegments ? $initial : $target;
         foreach ($events as $event) {
             $active = self::activeOffset($event['offsetMs'], $pauses);
             if ($active > $elapsed || (isset($config['durationMs']) && $active >= $config['durationMs'])) { continue; }
-            foreach ($pauses as $pause) { self::check(!($event['offsetMs'] >= $pause['startMs'] && $event['offsetMs'] < $pause['endMs']), 'Scored event occurred during a pause.'); }
+            foreach ($pauses as $pause) {
+                $precedes = $event['offsetMs'] == $pause['startMs'] && isset($pause['afterSequence']) && $event['sequence'] <= $pause['afterSequence'];
+                self::check(!($event['offsetMs'] >= $pause['startMs'] && $event['offsetMs'] < $pause['endMs'] && !$precedes), 'Scored event occurred during a pause.');
+            }
             while ($segmentIndex < count($segments) && self::precedes($segments[$segmentIndex], $event)) { $issued .= $segments[$segmentIndex++]['text']; }
             $this->apply($state, $event, $issued, $config); $accepted[] = ['event' => $event, 'target' => $issued];
         }

@@ -1,5 +1,5 @@
-import { expect, test } from "@playwright/test";
-import { customPractice, focusTyping } from "./helpers";
+import { expect, test, type Locator } from "@playwright/test";
+import { customPractice, exportedResult, focusTyping, settlePageVisuals } from "./helpers";
 import { THEMES } from "../src/lib/themes";
 
 test.beforeEach(async ({ page }) => {
@@ -341,4 +341,251 @@ test("five-row keyboard fits 320px and its key text stays readable across every 
   expect(Math.max(...motion.durations)).toBeLessThanOrEqual(0.00001);
   expect(motion.transform).toBe("none");
   await page.keyboard.up("a");
+});
+
+type KeyboardShape = {
+  width: number;
+  height: number;
+  rows: Array<{ x: number; y: number; width: number; height: number }>;
+  keys: Array<{ code: string; x: number; y: number; width: number; height: number }>;
+  fits: boolean;
+  documentFits: boolean;
+  containment: string;
+};
+
+async function containmentShape(board: Locator): Promise<KeyboardShape> {
+  return board.evaluate(element => {
+    const bounds = element.getBoundingClientRect();
+    const relative = (node: Element) => {
+      const box = node.getBoundingClientRect();
+      return { x: box.left - bounds.left, y: box.top - bounds.top, width: box.width, height: box.height };
+    };
+    const nodes = Array.from(element.querySelectorAll<HTMLElement>('[data-key-code], .live-character'));
+    return {
+      width: bounds.width, height: bounds.height,
+      rows: Array.from(element.querySelectorAll('.live-keyboard-row')).map(relative),
+      keys: nodes.map(node => ({ code: node.dataset.keyCode ?? node.dataset.key ?? '', ...relative(node) })),
+      fits: nodes.every(node => {
+        const box = node.getBoundingClientRect();
+        return box.left >= bounds.left - 0.02 && box.right <= bounds.right + 0.02 &&
+          box.top >= bounds.top - 0.02 && box.bottom <= bounds.bottom + 0.02;
+      }),
+      documentFits: document.documentElement.scrollWidth <= innerWidth + 1,
+      containment: getComputedStyle(element).contain,
+    };
+  });
+}
+
+function expectSameKeyboardLayout(before: KeyboardShape, after: KeyboardShape) {
+  expect(after.keys.map(key => key.code)).toEqual(before.keys.map(key => key.code));
+  expect(after.rows).toHaveLength(before.rows.length);
+  for (const key of ['width', 'height'] as const)
+    expect(Math.abs(after[key] - before[key]), `board ${key}`).toBeLessThanOrEqual(0.02);
+  for (const group of ['rows', 'keys'] as const) {
+    for (let index = 0; index < before[group].length; index++) {
+      for (const dimension of ['x', 'y', 'width', 'height'] as const)
+        expect(Math.abs(after[group][index][dimension] - before[group][index][dimension]),
+          `${group}[${index}] ${dimension}`).toBeLessThanOrEqual(0.02);
+    }
+  }
+  expect(after.fits).toBe(true);
+  expect(after.documentFits).toBe(true);
+}
+
+for (const style of ['Classic', 'Flat', 'Outline'] as const) {
+  test(`layout-contained ${style.toLowerCase()} keyboard keeps native press geometry and the outside shortcut panel usable`, async ({ page }, info) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    // Exercise the public persistent appearance controls, not injected CSS.
+    await page.goto('/studio');
+    await page.getByRole('group', { name: 'Keyboard appearance', exact: true })
+      .getByRole('button', { name: style, exact: true }).click();
+    await page.getByRole('checkbox', { name: 'Key press feedback', exact: true }).check();
+    const input = await customPractice(page, 'cat dog');
+    await expect(page.locator('html')).toHaveAttribute('data-keycaps', style.toLowerCase());
+    await expect(page.locator('html')).toHaveAttribute('data-key-ripple', 'true');
+    const board = page.getByTestId('live-keyboard-board');
+    const key = board.locator('[data-key-code="KeyC"]');
+    await settlePageVisuals(page);
+    const baseline = await containmentShape(board);
+    expect(baseline.containment.split(/\s+/)).toContain('layout');
+    expect(baseline.rows).toHaveLength(5);
+    expect(baseline.keys).toHaveLength(61);
+    expect(baseline.fits).toBe(true);
+    expect(baseline.documentFits).toBe(true);
+    await expect(key).toHaveAttribute('data-expected-key', 'true');
+    const ink = await key.evaluate(element => {
+      const box = element.getBoundingClientRect();
+      const board = element.closest('.live-keyboard-board')!;
+      const bounds = board.getBoundingClientRect();
+      const css = getComputedStyle(element), parent = getComputedStyle(board);
+      const outline = Number.parseFloat(css.outlineWidth) + Number.parseFloat(css.outlineOffset);
+      return { outlineWidth: Number.parseFloat(css.outlineWidth),
+        room: box.left - outline >= bounds.left - 0.02 && box.right + outline <= bounds.right + 0.02 &&
+          box.top - outline >= bounds.top - 0.02 && box.bottom + outline <= bounds.bottom + 0.02,
+        overflowX: parent.overflowX, overflowY: parent.overflowY };
+    });
+    expect(ink.outlineWidth).toBeGreaterThan(0);
+    expect(ink.room).toBe(true);
+    expect(ink.overflowX).toBe('visible');
+    expect(ink.overflowY).toBe('visible');
+    await key.evaluate(element => {
+      const receipt = { activations: [] as Array<{ content: string; animation: string; duration: string; borderStyle: string; motion: Array<{ property: string; duration: number | string | null }> }> };
+      const observer = new MutationObserver(() => {
+        if ((element as HTMLElement).dataset.pressedKey !== 'true') return;
+        const pseudo = getComputedStyle(element, '::after');
+        receipt.activations.push({ content: pseudo.content, animation: pseudo.animationName,
+          duration: pseudo.animationDuration, borderStyle: pseudo.borderTopStyle,
+          motion: element.getAnimations().map(animation => ({ property: 'transitionProperty' in animation ? String(animation.transitionProperty) : 'other', duration: animation.effect?.getComputedTiming().duration ?? null })) });
+      });
+      observer.observe(element, { attributes: true, attributeFilter: ['data-pressed-key'] });
+      Object.assign(window, { keyboardContainmentRipple: { receipt, observer } });
+    });
+    try {
+      await page.keyboard.down('c');
+      await expect(input).toHaveValue('c');
+      await expect(key).toHaveAttribute('data-pressed-key', 'true');
+      await expect.poll(() => key.evaluate(element => {
+        const transform = getComputedStyle(element).transform;
+        return transform === 'none' ? 0 : new DOMMatrixReadOnly(transform).m42;
+      })).toBeCloseTo(2, 2);
+      const held = await containmentShape(board);
+      const pressedIndex = baseline.keys.findIndex(item => item.code === 'KeyC');
+      expect(Math.abs(held.keys[pressedIndex].y - baseline.keys[pressedIndex].y - 2)).toBeLessThanOrEqual(0.02);
+      for (const dimension of ['width', 'height'] as const)
+        expect(Math.abs(held.keys[pressedIndex][dimension] - baseline.keys[pressedIndex][dimension])).toBeLessThanOrEqual(0.02);
+      for (let index = 0; index < baseline.rows.length; index++) {
+        for (const dimension of ['x', 'y', 'width', 'height'] as const)
+          expect(Math.abs(held.rows[index][dimension] - baseline.rows[index][dimension])).toBeLessThanOrEqual(0.02);
+      }
+      await page.keyboard.up('c');
+      await expect.poll(() => key.evaluate(element => {
+        const transform = getComputedStyle(element).transform;
+        return transform === 'none' ? 0 : new DOMMatrixReadOnly(transform).m42;
+      })).toBeCloseTo(0, 2);
+      expectSameKeyboardLayout(baseline, await containmentShape(board));
+      const ripple = await page.evaluate(() => (window as Window & {
+        keyboardContainmentRipple: { receipt: { activations: Array<{ content: string; animation: string; duration: string; borderStyle: string; motion: Array<{ property: string; duration: number | string | null }> }> } };
+      }).keyboardContainmentRipple.receipt);
+      expect(ripple.activations.length).toBeGreaterThan(0);
+      expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' &&
+        value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true);
+      expect(ripple.activations.some(value => value.motion.some(motion => motion.property === 'transform' && motion.duration === 90))).toBe(true);
+      await input.press('Backspace');
+      await expect(input).toHaveValue('');
+
+      // Real rotation and scrolling exercise the external toolbar panel.
+      // Its supported placement may be above the board; always test its center,
+      // and test board stacking separately whenever actual bounds intersect.
+      await page.setViewportSize({ width: 844, height: 390 });
+      const toolbar = page.getByTestId('live-keyboard').locator('.live-keyboard-toolbar');
+      await toolbar.evaluate(element => element.scrollIntoView({ block: 'start' }));
+      await toolbar.locator('.typing-shortcut-help > summary').click();
+      const panel = toolbar.locator('.typing-shortcut-panel');
+      await expect(panel).toBeVisible();
+      const readOverlay = () => panel.evaluate(element => {
+        const box = element.getBoundingClientRect();
+        const board = document.querySelector('[data-testid="live-keyboard-board"]')!.getBoundingClientRect();
+        const left = Math.max(box.left, board.left), right = Math.min(box.right, board.right);
+        const top = Math.max(box.top, board.top), bottom = Math.min(box.bottom, board.bottom);
+        const overlapsBoard = right - left > 1 && bottom - top > 1;
+        const centerHit = document.elementFromPoint((box.left + box.right) / 2, (box.top + box.bottom) / 2);
+        const intersectionHit = overlapsBoard ? document.elementFromPoint((left + right) / 2, (top + bottom) / 2) : null;
+        return { overlapsBoard,
+          hitPanel: !!centerHit && element.contains(centerHit),
+          intersectionHitPanel: overlapsBoard ? !!intersectionHit && element.contains(intersectionHit) : null,
+          withinViewport: box.left >= -0.02 && box.right <= innerWidth + 0.02 &&
+            box.top >= -0.02 && box.bottom <= innerHeight + 0.02 };
+      });
+      // Visibility can precede React's native details onToggle notification.
+      // Wait for placement, preserving strict center visibility/viewport checks.
+      // A valid above-toolbar placement need not intersect the keyboard.
+      await expect.poll(async () => {
+        const actual = await readOverlay();
+        return { hitPanel: actual.hitPanel, withinViewport: actual.withinViewport,
+          actualOverlapUnblocked: !actual.overlapsBoard || actual.intersectionHitPanel === true };
+      }).toEqual({ hitPanel: true, withinViewport: true, actualOverlapUnblocked: true });
+      const overlay = await readOverlay();
+      expect(overlay.hitPanel).toBe(true);
+      expect(overlay.withinViewport).toBe(true);
+      if (overlay.overlapsBoard) expect(overlay.intersectionHitPanel).toBe(true);
+      const overlayGeometry = await panel.evaluate(element => {
+        const rect = (node: Element) => {
+          const box = node.getBoundingClientRect();
+          return { left: box.left, top: box.top, right: box.right, bottom: box.bottom, width: box.width, height: box.height };
+        };
+        return { panel: rect(element), board: rect(document.querySelector('[data-testid="live-keyboard-board"]')!),
+          viewport: { width: innerWidth, height: innerHeight } };
+      });
+      await panel.focus();
+      await page.keyboard.press('Escape');
+      await expect(panel).not.toBeVisible();
+      await expect(toolbar.locator('.typing-shortcut-help > summary')).toBeFocused();
+      await info.attach(`keyboard-containment-${style.toLowerCase()}`, { contentType: 'application/json',
+        body: JSON.stringify({ baseline, ink, ripple, overlay, overlayGeometry,
+          overlapHitTestExercised: overlay.overlapsBoard, nativeInput: 'c then Backspace',
+          limitation: 'Geometry, active pseudo-element and hit-test checks; no animated pixel-identity or physical-phone claim.' }) });
+    } finally {
+      if (!page.isClosed()) {
+        await page.keyboard.up('c');
+        await page.evaluate(() => (window as Window & {
+          keyboardContainmentRipple?: { observer: MutationObserver };
+        }).keyboardContainmentRipple?.observer.disconnect());
+      }
+    }
+  });
+}
+
+test('layout-contained native character board retains its intrinsic rows and actual input after rotation', async ({ page }, info) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/learn?language=ar&layout=native');
+  const board = page.getByTestId('live-keyboard-board');
+  await expect(board).toHaveAttribute('data-mapped', 'false');
+  await expect(board.locator('[data-key-code]')).toHaveCount(0);
+  await expect(board.locator('.live-keyboard-native')).toHaveAttribute('dir', 'rtl');
+  await settlePageVisuals(page);
+  const before = await containmentShape(board);
+  expect(before.containment.split(/\s+/)).toContain('layout');
+  expect(before.keys.length).toBeGreaterThan(1);
+  expect(before.fits).toBe(true);
+  expect(before.documentFits).toBe(true);
+  const input = page.getByRole('textbox', { name: 'Type the practice text', exact: true });
+  await input.focus();
+  // Native Latin key input is an actual wrong attempt in this Arabic lesson;
+  // it is not used to claim a physical Arabic key or an IME composition.
+  await input.press('x');
+  // Adaptive input is a temporary native draft. Its committed character is
+  // rendered in the passage while the textarea intentionally clears.
+  await expect(input).toHaveValue('');
+  await expect(page.getByTestId('keyboard-last-input')).toContainText('Typed x');
+  const committed = page.locator('.learn-stream-text [data-slot-index="0"]');
+  await expect(committed).toHaveAttribute('data-typed', 'x');
+  await expect(committed).toHaveAttribute('data-status', 'incorrect');
+  await expect(committed.locator('[data-typed-glyph]')).toHaveText('x');
+  await expect(committed.locator('[data-typed-glyph]')).toBeVisible();
+  await expect(board.locator('[data-pressed-key]')).toHaveCount(0);
+  expectSameKeyboardLayout(before, await containmentShape(board));
+  await page.setViewportSize({ width: 844, height: 390 });
+  await expect(input).toHaveValue('');
+  await expect(committed).toHaveAttribute('data-typed', 'x');
+  await expect(committed.locator('[data-typed-glyph]')).toBeVisible();
+  const rotated = await containmentShape(board);
+  expect(rotated.fits).toBe(true);
+  expect(rotated.documentFits).toBe(true);
+  expect(rotated.keys.map(key => key.code)).toEqual(before.keys.map(key => key.code));
+  await page.getByRole('button', { name: 'Finish practice', exact: true }).click();
+  await expect(page.getByRole('region', { name: 'Session results', exact: true })).toBeVisible();
+  const result = await exportedResult(page);
+  expect(result.finalText).toBe('x');
+  expect(result.metrics.insertionAttempts).toBe(1);
+  expect(result.metrics.correctAttempts).toBe(0);
+  expect(result.metrics.incorrectAttempts).toBe(1);
+  expect(result.metrics.inputAccuracy).toBe(0);
+  expect(result.events).toHaveLength(1);
+  expect(result.events[0]).toMatchObject({ text: 'x', provenance: 'keyboard' });
+  await info.attach('keyboard-containment-native', { contentType: 'application/json',
+    body: JSON.stringify({ before, rotated, actualWrongInput: 'x', draftClearedAfterCommit: true,
+      retainedAttempts: result.metrics.insertionAttempts, incorrectAttempts: result.metrics.incorrectAttempts,
+      finalTextExact: result.finalText === 'x', inferredPhysicalArabicKey: false,
+      limitation: 'Desktop native key events with responsive viewports; physical mobile/IME use remains separately unverified.' }) });
 });

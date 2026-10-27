@@ -1,0 +1,90 @@
+diff --git a/src/lib/typing-core/session.ts b/src/lib/typing-core/session.ts
+--- a/src/lib/typing-core/session.ts
++++ b/src/lib/typing-core/session.ts
+@@ -2,6 +2,12 @@
+ import { EVENT_LOG_SCHEMA_VERSION } from './types.ts';
+ import { activeOffset, calculateMetrics, replaySession } from './metrics.ts';
+ import { alignTranscript, applyEvent, emptyTranscript, targetGraphemes, normalizeTarget, previousCommittedWord, SEGMENTATION_POLICY, validateEvent, type Alignment, type Attempt } from './transcript.ts';
++
++const finalizedEngineResults = new WeakSet<object>();
++/** External factory brand only; never serialized into canonical evidence. */
++export function isFinalizedEngineResult(value: unknown): value is SessionResult {
++  return value !== null && typeof value === 'object' && finalizedEngineResults.has(value);
++}
+ 
+ function freeze<T>(value: T): T {
+   if (value && typeof value === 'object' && !Object.isFrozen(value)) {
+@@ -215,6 +221,7 @@
+     const now = this.readNow(at);
+     if (reason === 'timeout' && (this.startMono === null || this.configuration.durationMs === undefined || this.elapsed(now) < this.configuration.durationMs)) throw new Error('A timeout requires reaching the configured active deadline');
+     this.finalized = this.buildResult(reason, now, true);
++    finalizedEngineResults.add(this.finalized);
+     return this.finalized;
+   }
+   /** Replayable interim race evidence without finalizing or resetting the live session. */
+diff --git a/src/lib/final-result-yield.ts b/src/lib/final-result-yield.ts
+new file mode 100644
+--- /dev/null
++++ b/src/lib/final-result-yield.ts
+@@ -0,0 +1,41 @@
++/** Give a visible result one bounded paint opportunity before nonessential hashing.
++ * Only callers holding a factory-proven immutable final result may use this yield.
++ * This schedules work; it does not guarantee a paint or unload durability.
++ */
++export function yieldBeforeFinalResultHash(): Promise<void> {
++  if (typeof window === 'undefined' || typeof document === 'undefined' || document.visibilityState !== 'visible') return Promise.resolve();
++  return new Promise(resolve => {
++    let settled = false;
++    let frame: number | undefined;
++    let task: number | undefined;
++    let deadline: number | undefined;
++    const finish = () => {
++      if (settled) return;
++      settled = true;
++      if (frame !== undefined) window.cancelAnimationFrame(frame);
++      if (task !== undefined) window.clearTimeout(task);
++      if (deadline !== undefined) window.clearTimeout(deadline);
++      window.removeEventListener('pagehide', finish);
++      document.removeEventListener('visibilitychange', visibilityChanged);
++      resolve();
++    };
++    const visibilityChanged = () => {
++      if (document.visibilityState !== 'visible') finish();
++    };
++    window.addEventListener('pagehide', finish, { once: true });
++    document.addEventListener('visibilitychange', visibilityChanged);
++    deadline = window.setTimeout(finish, 50);
++    if (typeof window.requestAnimationFrame !== 'function' || typeof window.cancelAnimationFrame !== 'function') {
++      task = window.setTimeout(finish, 0);
++      return;
++    }
++    try {
++      frame = window.requestAnimationFrame(() => {
++        frame = undefined;
++        task = window.setTimeout(finish, 0);
++      });
++    } catch {
++      finish();
++    }
++  });
++}
+diff --git a/src/hooks/useTestResults.tsx b/src/hooks/useTestResults.tsx
+--- a/src/hooks/useTestResults.tsx
++++ b/src/hooks/useTestResults.tsx
+@@ -4,6 +4,8 @@
+ import type { TestResult, TypingStats } from '@/lib/typing-engine';
+ import type { Keystroke } from '@/lib/professional-accuracy';
+ import type { SessionResult } from '@/lib/typing-core/types';
++import { isFinalizedEngineResult } from '@/lib/typing-core/session';
++import { yieldBeforeFinalResultHash } from '@/lib/final-result-yield';
+ import { EVIDENCE_TTL_MS, payloadIdentity, sessionRepository, type SaveState, type SessionRecord } from '@/services/session-repository';
+ import { SessionSync } from '@/services/session-sync';
+ import { downloadAccountHistory } from '@/services/account-data';
+@@ -78,6 +80,7 @@
+     const publish = beginSave(scope, result.clientSessionId);
+     await initializeHistory();
+     const existing = await sessionRepository.get(scope, result.clientSessionId);
++    if (isFinalizedEngineResult(result)) await yieldBeforeFinalResultHash();
+     const candidateHash = await payloadIdentity(result);
+     if (existing) {
+       if (existing.payloadHash !== candidateHash) throw new Error('A completed session cannot be changed. Start a new test.');

@@ -11,6 +11,7 @@ import {
 import { SessionSync } from "../session-sync";
 import { deleteAccount, deleteSession } from "../account-data";
 import { historyForOwner, type SessionHistoryState } from "../history-state";
+import { typingGameStorageKey } from "@/lib/typing-game-records";
 
 const cloud = vi.hoisted(() => ({
   getSession: vi.fn(),
@@ -24,7 +25,7 @@ vi.mock("../php-api", () => ({
   authService: { getSession: cloud.getSession, signOut: cloud.signOut, refresh: cloud.refresh },
   accountApi: { deleteAccount: cloud.deleteAccount, deleteSession: cloud.deleteSession },
 }));
-vi.mock("@/lib/keybr-engine", () => ({ reconcileLearningSessions: vi.fn() }));
+vi.mock("@/lib/keybr-engine", () => ({ reconcileLearningSessions: vi.fn(), resetKeybrProgress: vi.fn() }));
 
 function candidate(): SessionResult {
   let now = 0;
@@ -267,6 +268,15 @@ describe("late acknowledgements and explicit workspace ownership", () => {
     await deleteAccount("alice");
     expect(cloud.deleteAccount).toHaveBeenCalledWith("alice");
     expect(cloud.signOut).toHaveBeenCalledWith("alice");
+  });
+  it("retains game bests when the server has not acknowledged account deletion", async () => {
+    localStorage.setItem(typingGameStorageKey("alice"), "keep until acknowledged");
+    cloud.deleteAccount.mockResolvedValue({ deleted: false });
+    const clear = vi.spyOn(sessionRepository, "clear");
+    await expect(deleteAccount("alice")).rejects.toThrow("not acknowledged");
+    expect(clear).not.toHaveBeenCalled();
+    expect(localStorage.getItem(typingGameStorageKey("alice"))).toBe("keep until acknowledged");
+    expect(cloud.signOut).not.toHaveBeenCalled();
   });
   it("does not clear or sign out a new workspace after an old deletion acknowledgement", async () => {
     cloud.getSession

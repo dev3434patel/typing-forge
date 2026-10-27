@@ -1,0 +1,26 @@
+
+ RUN  v4.1.12 D:/extra/typing_updated/typing-forge
+
+ ❯ src/lib/__tests__/pwa-worker.test.ts (35 tests | 1 failed) 93ms
+     × keeps a Pages installation inside its scope and reopens local games/stats offline 31ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/lib/__tests__/pwa-worker.test.ts > actual service worker public-cache boundary > keeps a Pages installation inside its scope and reopens local games/stats offline
+TypeError: Body is unusable: Body has already been read
+ ❯ src/lib/__tests__/pwa-worker.test.ts:119:74
+    117|     instance.fetchNetwork.mockRejectedValue(new TypeError("offline"));
+    118|     expect(await (await instance.request("/project/games", "navigate")…
+    119|     expect(await (await instance.request("/project/stats", "navigate")…
+       |                                                                          ^
+    120|     expect(instance.request("/project/api/sessions")).toBeUndefined();
+    121|     expect(instance.request("/another-project/assets/main-hash.js")).t…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  1 failed | 79 passed (80)
+   Start at  23:13:45
+   Duration  2.04s (transform 189ms, setup 126ms, import 125ms, tests 667ms, environment 1ms)
+

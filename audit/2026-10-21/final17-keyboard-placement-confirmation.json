@@ -1,0 +1,112 @@
+{
+  "declaredAt": "2026-10-22T20:54:04.021Z",
+  "status": "PASS-SCOPED",
+  "build": {
+    "version": "0572d723495d6be303a8",
+    "publicFiles": 133,
+    "bytes": 2930646
+  },
+  "source": {
+    "sourceFile": "audit/2026-10-21/final17-source.json",
+    "expectedBuild": "0572d723495d6be303a8",
+    "compared": 499,
+    "mismatches": []
+  },
+  "expectedCases": 16,
+  "browsers": [
+    "chromium",
+    "edge",
+    "firefox",
+    "webkit"
+  ],
+  "workers": 1,
+  "automaticRetries": 0,
+  "tracing": "off",
+  "instrumentationChanged": true,
+  "filter": "layout-contained ",
+  "inputs": {
+    "e2e/live-keyboard.spec.ts": "f5d566e53229e2dcabecb022f7027e347efaf016c99b44eb8247482889650421",
+    "e2e/helpers.ts": "7268814993da0db90cec40266fc8aabb391d3f649d43add1dd55c5be370d2e7d",
+    "playwright.config.ts": "9a1c2658bfe18bcf8acf34e61144e17309abe257717f2cf882d05791457a1a32"
+  },
+  "scope": "Only the four new native keyboard containment regressions, each in four engines. No full-suite, latency, physical-device or animated pixel-identity claim.",
+  "command": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "e2e/live-keyboard.spec.ts",
+    "--grep",
+    "layout-contained ",
+    "--workers=1",
+    "--retries=0",
+    "--trace=off",
+    "--reporter=list,json",
+    "--output=audit/2026-10-21/.playwright-artifacts-final17-keyboard-placement-confirmation"
+  ],
+  "exitCode": 0,
+  "summary": {
+    "totals": {
+      "total": 16,
+      "passed": 16,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    "projects": [
+      {
+        "project": "chromium",
+        "total": 4,
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0,
+        "flaky": 0
+      },
+      {
+        "project": "edge",
+        "total": 4,
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0,
+        "flaky": 0
+      },
+      {
+        "project": "firefox",
+        "total": 4,
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0,
+        "flaky": 0
+      },
+      {
+        "project": "webkit",
+        "total": 4,
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0,
+        "flaky": 0
+      }
+    ],
+    "reportedStats": {
+      "expected": 16,
+      "unexpected": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    "countsAgreeWithReport": true,
+    "failures": [],
+    "flakyCases": [],
+    "skippedCases": [],
+    "skipReasons": [],
+    "expectedFailures": [],
+    "globalErrors": [],
+    "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+  },
+  "sourceAfter": {
+    "sourceFile": "audit/2026-10-21/final17-source.json",
+    "expectedBuild": "0572d723495d6be303a8",
+    "compared": 499,
+    "mismatches": []
+  },
+  "inputsUnchanged": true,
+  "finishedAt": "2026-10-22T20:55:01.628Z"
+}

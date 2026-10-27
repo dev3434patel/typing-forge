@@ -1,0 +1,25 @@
+{
+  "capturedAt": "2026-10-22T19:42:19.315174+00:00",
+  "status": "PROPOSAL-ONLY-NOT-APPLIED",
+  "baselineBuild": "7ef96ccd3c02d170a757",
+  "baselineSourceSha256": "c21ce6b38ce3dee2fee11557d94e03c4309b8f7c52d1b05fac665fb5943b04f7",
+  "patches": [
+    {
+      "path": "audit/2026-10-21/final16-flat-alignment-freezer-PROPOSAL.patch",
+      "sha256": "b9bc033dff640c5b30e458e5e42fc5cad38d3bafcd3e29e62854a877c665ca49",
+      "productionPath": "src/lib/typing-core/session.ts",
+      "preferred": true
+    },
+    {
+      "path": "audit/2026-10-21/final16-target-words-cache-OPTIONAL-PROPOSAL.patch",
+      "sha256": "47b712657ec1e17e6d258d46c148f66743e2140d205fadec4f567f9804160489",
+      "productionPath": "src/lib/typing-core/transcript.ts",
+      "optionalOnlyIfProfileSupports": true
+    }
+  ],
+  "review": "audit/2026-10-21/final16-alignment-freeze-PROPOSAL.md",
+  "productionFilesEdited": 0,
+  "testFilesEdited": 0,
+  "testsBuildsBrowsersExecuted": false,
+  "claim": "Flat primitive alignment leaves permit direct freezing; no causality/speedup established. Optional metadata WeakMap preserves frozen-array identity boundaries and mutable-array bypass."
+}

@@ -1,0 +1,52 @@
+{
+  "recordedAt": "2026-10-20T18:51:33.542Z",
+  "phase": "before",
+  "viteVersion": "7.3.7",
+  "projectConfiguredHost": "::",
+  "host": "127.0.0.1",
+  "port": 4271,
+  "scope": "Loaded project server/proxy options with render-only plugins omitted and dependency prebundling disabled; loopback HTTP only, no browser/build.",
+  "effectiveDeny": [
+    ".env",
+    ".env.*",
+    "*.{crt,pem}",
+    "**/.git/**"
+  ],
+  "canary": {
+    "type": "fresh nonsecret text",
+    "location": "ignored backend/storage",
+    "sha256": "03ac2ee9c2cc4d766766e4becf92da2af93ab9f66d2c344049809e9ae10e48f6"
+  },
+  "checks": [
+    {
+      "route": "backend-storage-canary",
+      "status": 200,
+      "exposesCanary": true
+    },
+    {
+      "route": "backend-storage-canary-query",
+      "status": 200,
+      "exposesCanary": true
+    },
+    {
+      "route": "raw-fs-canary",
+      "status": 200,
+      "exposesCanary": true
+    },
+    {
+      "route": "raw-fs-canary-query",
+      "status": 200,
+      "exposesCanary": true
+    },
+    {
+      "route": "api-proxy-to-isolated-fixture-only",
+      "status": 200,
+      "correctFixture": true
+    }
+  ],
+  "proxyRequests": [
+    "/api/dev-boundary-fixture"
+  ],
+  "realConfigOrUserDataRequested": false,
+  "cleanup": "Owned canary and both disposable loopback servers are removed in finally."
+}

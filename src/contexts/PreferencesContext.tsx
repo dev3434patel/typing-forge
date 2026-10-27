@@ -280,9 +280,37 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
     document.documentElement.dataset.reducedMotion = String(
       preferences.reducedMotion,
     );
-  }, [preferences.theme, preferences.fontSize, preferences.reducedMotion]);
+    document.documentElement.dataset.focusMode = String(preferences.focusMode);
+  }, [preferences.theme, preferences.fontSize, preferences.reducedMotion, preferences.focusMode]);
+  useEffect(() => {
+    let active = true;
+    const styleRequest = new AbortController();
+    const refresh = () => {
+      // Import the optional font/theme editor only for an actual local choice.
+      void import('@/services/practice-style').then(module => {
+        if (active) return module.applyPracticeStyle(owner, preferences.theme, styleRequest.signal);
+      }).catch(() => undefined);
+    };
+    let custom = false;
+    try { custom = !!localStorage.getItem(`sparowtype.practice-style.v1:${encodeURIComponent(owner)}`); } catch { /* Defaults work with blocked storage. */ }
+    if (custom) refresh();
+    else {
+      document.documentElement.style.removeProperty('--practice-font');
+      delete document.documentElement.dataset.keycaps;
+      delete document.documentElement.dataset.keyRipple;
+    }
+    window.addEventListener('sparowtype:practice-style', refresh);
+    const storage = (event: StorageEvent) => { if (event.key === `sparowtype.practice-style.v1:${encodeURIComponent(owner)}` || event.key === null) void import('@/services/practice-style').then(module => { if (active) { module.invalidatePracticeStyle(owner); refresh(); } }); };
+    window.addEventListener('storage', storage);
+    return () => { active = false; styleRequest.abort(); window.removeEventListener('sparowtype:practice-style', refresh); window.removeEventListener('storage', storage); };
+  }, [owner, preferences.theme]);
   const updatePreferences = useCallback(
     (patch: Partial<Preferences>) => {
+      if (patch.theme !== undefined) {
+        void import('@/services/practice-style').then(module => {
+          if (module.readPracticeStyle(owner).theme) module.savePracticeStyle(owner, { theme: undefined });
+        }).catch(() => undefined);
+      }
       const previous = current.current.envelope;
       const validPatch = validatePreferencePatch(patch, previous.values);
       const values = validatePreferences({ ...previous.values, ...validPatch });

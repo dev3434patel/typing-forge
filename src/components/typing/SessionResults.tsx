@@ -29,6 +29,9 @@ import { cn } from "@/lib/utils";
 import { learningEvidenceFromResult } from "@/lib/learning-evidence";
 import { sessionView } from "@/services/history-model";
 import { ResultEvidence } from "./ResultEvidence";
+import { SessionInsightsPanel } from "@/components/analytics/SessionInsightsPanel";
+import { privateShareProjection } from "@/domain/analytics/dashboard";
+import { renderShareCard } from "@/domain/analytics/share-card";
 const display = (value: number | null, digits = 0) =>
   value === null ? "—" : value.toFixed(digits);
 function exportResult(result: SessionResult) {
@@ -138,6 +141,7 @@ export function SessionResults({
         : "There are no insertion attempts in this session yet.";
   const share = async () => {
     try {
+      const shareProjection = privateShareProjection(result);
       await document.fonts.ready;
       const canvas = document.createElement("canvas");
       canvas.width = 1200;
@@ -147,43 +151,7 @@ export function SessionResults({
       const styles = getComputedStyle(document.documentElement);
       const color = (name: string, fallback: string) =>
         styles.getPropertyValue(`--forge-${name}`).trim() || fallback;
-      ctx.fillStyle = color("background", "#0B0D12");
-      ctx.fillRect(0, 0, 1200, 630);
-      ctx.fillStyle = "#07070A";
-      ctx.beginPath();
-      ctx.roundRect(54, 45, 245, 60, 12);
-      ctx.fill();
-      ctx.font = "700 26px Sora, sans-serif";
-      let wordmarkX = 70;
-      for (const [index, letter] of [..."SparowType"].entries()) {
-        ctx.fillStyle = index < 6 ? "#EDEDF2" : "#C6FF3D";
-        ctx.fillText(letter, wordmarkX, 85);
-        wordmarkX += ctx.measureText(letter).width - 1.04;
-      }
-      ctx.fillStyle = color("secondary", "#AAB6C6");
-      ctx.font = '20px "Inter Variable", sans-serif';
-      ctx.fillText(
-        `${config.mode} · ${(result.elapsedMs / 1000).toFixed(1)}s · ${getContentPack(config.language || "en").label}`,
-        70,
-        150,
-      );
-      ctx.fillStyle = color("text", "#EEF1F7");
-      ctx.font = '600 140px "JetBrains Mono Variable", monospace';
-      ctx.fillText(display(m.wpm), 65, 340);
-      ctx.font = '24px "Inter Variable", sans-serif';
-      ctx.fillStyle = color("muted", "#8796A8");
-      ctx.fillText("words per minute", 75, 390);
-      ctx.fillStyle = color("accent", "#C6FF3D");
-      ctx.font = '500 72px "JetBrains Mono Variable", monospace';
-      ctx.fillText(`${display(m.inputAccuracy, 1)}%`, 700, 300);
-      ctx.fillStyle = color("muted", "#8796A8");
-      ctx.font = '24px "Inter Variable", sans-serif';
-      ctx.fillText("input accuracy", 705, 355);
-      ctx.fillStyle = color("border", "#2D3746");
-      ctx.fillRect(70, 475, 1060, 1);
-      ctx.fillStyle = color("muted", "#8796A8");
-      ctx.font = '18px "Inter Variable", sans-serif';
-      ctx.fillText("Personal practice · no private text included", 70, 530);
+      renderShareCard(ctx, shareProjection, color);
       canvas.toBlob((blob) => {
         if (!blob) {
           setNotice("Image export failed. Try JSON export.");
@@ -604,6 +572,7 @@ export function SessionResults({
           {result.finishReason} · metrics {result.metricsVersion}
         </p>
       </details>
+      <SessionInsightsPanel result={result} />
       {saveStatus && (
         <div
           role="status"

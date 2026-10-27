@@ -21,7 +21,7 @@ The user's supplied result has consistent input/final accuracy arithmetic. Formu
 | `npm run test:database` | **PASS**: 15 migrations replayed; original SQL authorization/integrity assertions; new owner-intent/matched-duration/one-use challenge assertions; legacy upgrade fixture | `audit/accuracy-research-2026-10-15/database.txt` |
 | `npx vitest run src/services/__tests__ src/integrations/supabase/__tests__/client.test.ts` | **PASS**: 41 tests, 6 files at the data/privacy checkpoint | `audit/accuracy-research-2026-10-15/services.txt` |
 | Deno check of `submit-session`, `race-operation`, `delete-account` | **PASS**: all three entrypoints typechecked; no live requests issued | `audit/accuracy-research-2026-10-15/edge.txt` |
-| Scoped ESLint on changed data/hook/Profile/Edge/test files | **PASS**: zero errors or warnings | `audit/accuracy-research-2026-10-15/data-lint.txt` |
+| Scoped ESLint on changed data/hook/Profile/Edge/test files | **UNVERIFIED**: the historical report stated zero errors/warnings, but its referenced receipt is unavailable | Historical reference `audit/accuracy-research-2026-10-15/data-lint.txt` is missing; no replacement evidence has been invented or restored |
 | `npm run typecheck` | **PASS**: app, tooling, strict domain and portable domain checks | `audit/accuracy-research-2026-10-15/data-typecheck.txt` |
 
 The new trust-boundary test file contains 18 cases. Five owner-intent regressions failed against the earlier source, then passed after the fix. The before/after logs are `trust-before-fix.txt` and `trust-after-fix.txt`; the latter is the 16-case checkpoint before adding two owner-history visibility cases. The full 41-test service log includes all 18.

@@ -1,0 +1,30 @@
+{
+  "preparedAt": "2026-10-22T19:31:38.6372720Z",
+  "status": "PREPARED-NOT-RUN",
+  "driver": "audit/2026-10-21/profile-cpu-loaf-native-final15.mjs",
+  "driverSha256": "5211e9a04907aa77e2aa15734c3fb7ed62f4fc86c8dacabde9d184287afb0b25",
+  "baselineDriver": "audit/2026-10-21/profile-loaf-native-final14.mjs",
+  "baselineSha256": "1cf4907d5f16f806a18ec30620e5c186232b3f53037a29354dc78a789a6b13a0",
+  "expectedBuild": "7ef96ccd3c02d170a757",
+  "syntaxCheck": "PASS",
+  "browserJobsLaunched": 0,
+  "productChanges": [],
+  "preserved": "Original495 CPU4 zero-delay realrotation native input/actions/assertions, unchanged LoAF/native timing/accounting, fonts/finiteanimation settlement, original150s watchdog/browser finally",
+  "additions": [
+    "CDP Performance TimeTicks metrics/NavigationStart before and after paired CPU profiler window",
+    "Raw ignored .cpuprofile retained",
+    "CPU timestamps mapped to document performance clock by startTime plus cumulative timeDeltas minus NavigationStart",
+    "Reject missing/changed navigation, malformed samples/deltas, profile outsideTimeTicks brackets or zero actual-event overlap",
+    "Bounded nested stacks/leaf functions for12 slow keypress/input entries and8 overlappingLoAFframes",
+    "Session ancestry distinguishes snapshot withoutfinish versus finish/result, preserving unattributed program/native counts"
+  ],
+  "outputs": [
+    "final15-cpu-loaf-native-diagnostic-protocol.json",
+    "final15-cpu-loaf-native-diagnostic.json",
+    "final15-cpu-loaf-native-diagnostic-timeline.json",
+    "final15-cpu-loaf-native-diagnostic-stacks.json",
+    "final15-cpu-loaf-native-diagnostic.cpuprofile (ignored)"
+  ],
+  "commandPowerShell": "$env:SPAROWTYPE_CPU_LOAF_DIAGNOSTIC=\"1\"; node audit/2026-10-21/profile-cpu-loaf-native-final15.mjs",
+  "limitations": "Instrumented diagnostics only, no acceptance replacement or latency claim. Asset/source mapping remains compiled function boundaries without precision source maps."
+}

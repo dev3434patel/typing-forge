@@ -1,0 +1,201 @@
+{
+  "totals": {
+    "total": 672,
+    "passed": 661,
+    "failed": 6,
+    "skipped": 5,
+    "flaky": 0
+  },
+  "projects": [
+    {
+      "project": "chromium",
+      "total": 168,
+      "passed": 166,
+      "failed": 1,
+      "skipped": 1,
+      "flaky": 0
+    },
+    {
+      "project": "edge",
+      "total": 168,
+      "passed": 166,
+      "failed": 1,
+      "skipped": 1,
+      "flaky": 0
+    },
+    {
+      "project": "firefox",
+      "total": 168,
+      "passed": 166,
+      "failed": 1,
+      "skipped": 1,
+      "flaky": 0
+    },
+    {
+      "project": "webkit",
+      "total": 168,
+      "passed": 163,
+      "failed": 3,
+      "skipped": 2,
+      "flaky": 0
+    }
+  ],
+  "reportedStats": {
+    "expected": 661,
+    "unexpected": 6,
+    "skipped": 5,
+    "flaky": 0
+  },
+  "countsAgreeWithReport": true,
+  "failures": [
+    {
+      "project": "webkit",
+      "title": "typing-course.spec.ts › the full course has 36 lessons, two independent entry paths and honest locked previews",
+      "file": "typing-course.spec.ts",
+      "line": 149,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(locator).toBeVisible() failed Locator: getByRole('heading', { name: /Find your rhythm/ }) Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByRole('heading', { name: /Find your rhythm/ }) with timeout 5000ms - waiting for getByRole('heading', { name: /Find your rhythm/ }) 149 | test(\"the full course has 36 lessons, two independent entry paths and honest locked previews\", async ({ page "
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "typing-course.spec.ts › paused speed practice cannot qualify and never describes the attempt as uninterrupted",
+      "file": "typing-course.spec.ts",
+      "line": 248,
+      "attempts": 1,
+      "attemptStatuses": [
+        "timedOut"
+      ],
+      "messages": [
+        "Test timeout of 30000ms exceeded.",
+        "Error: locator.pressSequentially: Test timeout of 30000ms exceeded. Call log: - waiting for getByRole('textbox', { name: 'Typing input', exact: true }) - locator resolved to <textarea dir=\"ltr\" autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" maxlength=\"100000\" autocapitalize=\"off\" aria-label=\"Typing input\" aria-describedby=\"typing-instructions typing-passage typing-feedback\" class=\"typing-input absolute inset-0 w-full h-full resize-none b"
+      ]
+    },
+    {
+      "project": "chromium",
+      "title": "typing-observer-ownership.spec.ts › bot and user progress keep native resize and scroll subscriptions stable until leaving the race",
+      "file": "typing-observer-ownership.spec.ts",
+      "line": 180,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBeGreaterThan(expected) Expected: > 0 Received: 0 Call Log: - Timeout 5000ms exceeded while waiting on the predicate 193 | await expect 194 | .poll(async () => Number(await marker.getAttribute(\"data-position\"))) > 195 | .toBeGreaterThan(0); | ^ 196 | const initialPosition = Number(await marker.getAttribute(\"data-position\")); 197 | const before = await readOwnership(page); 198 | expect(before.observers).toHaveLength(2); a"
+      ]
+    },
+    {
+      "project": "edge",
+      "title": "typing-observer-ownership.spec.ts › bot and user progress keep native resize and scroll subscriptions stable until leaving the race",
+      "file": "typing-observer-ownership.spec.ts",
+      "line": 180,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBeGreaterThan(expected) Expected: > 0 Received: 0 Call Log: - Timeout 5000ms exceeded while waiting on the predicate 193 | await expect 194 | .poll(async () => Number(await marker.getAttribute(\"data-position\"))) > 195 | .toBeGreaterThan(0); | ^ 196 | const initialPosition = Number(await marker.getAttribute(\"data-position\")); 197 | const before = await readOwnership(page); 198 | expect(before.observers).toHaveLength(2); a"
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "typing-observer-ownership.spec.ts › bot and user progress keep native resize and scroll subscriptions stable until leaving the race",
+      "file": "typing-observer-ownership.spec.ts",
+      "line": 180,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBeGreaterThan(expected) Expected: > 0 Received: 0 Call Log: - Timeout 5000ms exceeded while waiting on the predicate 193 | await expect 194 | .poll(async () => Number(await marker.getAttribute(\"data-position\"))) > 195 | .toBeGreaterThan(0); | ^ 196 | const initialPosition = Number(await marker.getAttribute(\"data-position\")); 197 | const before = await readOwnership(page); 198 | expect(before.observers).toHaveLength(2); a"
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "typing-observer-ownership.spec.ts › bot and user progress keep native resize and scroll subscriptions stable until leaving the race",
+      "file": "typing-observer-ownership.spec.ts",
+      "line": 180,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBeGreaterThan(expected) Expected: > 0 Received: 0 Call Log: - Timeout 5000ms exceeded while waiting on the predicate 193 | await expect 194 | .poll(async () => Number(await marker.getAttribute(\"data-position\"))) > 195 | .toBeGreaterThan(0); | ^ 196 | const initialPosition = Number(await marker.getAttribute(\"data-position\")); 197 | const before = await readOwnership(page); 198 | expect(before.observers).toHaveLength(2); a"
+      ]
+    }
+  ],
+  "flakyCases": [],
+  "skippedCases": [
+    {
+      "project": "webkit",
+      "title": "input-guardrails.spec.ts › supported typing audio creates one context on input and disposes it on navigation",
+      "file": "input-guardrails.spec.ts",
+      "line": 95,
+      "reasons": [
+        "UNVERIFIED: this browser runner exposes no standard AudioContext API; this is not a native Safari capability claim."
+      ]
+    },
+    {
+      "project": "chromium",
+      "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+      "file": "race-mode.spec.ts",
+      "line": 84,
+      "reasons": [
+        "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+      ]
+    },
+    {
+      "project": "edge",
+      "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+      "file": "race-mode.spec.ts",
+      "line": 84,
+      "reasons": [
+        "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+      "file": "race-mode.spec.ts",
+      "line": 84,
+      "reasons": [
+        "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+      "file": "race-mode.spec.ts",
+      "line": 84,
+      "reasons": [
+        "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+      ]
+    }
+  ],
+  "skipReasons": [
+    {
+      "reason": "UNVERIFIED: this browser runner exposes no standard AudioContext API; this is not a native Safari capability claim.",
+      "count": 1,
+      "projects": [
+        "webkit"
+      ]
+    },
+    {
+      "reason": "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization.",
+      "count": 4,
+      "projects": [
+        "chromium",
+        "edge",
+        "firefox",
+        "webkit"
+      ]
+    }
+  ],
+  "expectedFailures": [],
+  "globalErrors": [],
+  "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+}

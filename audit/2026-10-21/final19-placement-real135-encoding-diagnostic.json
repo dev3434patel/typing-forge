@@ -1,0 +1,87 @@
+{
+  "preparedAt": "2026-10-26T20:58:21.204Z",
+  "status": "PREPARED-NOT-RUN",
+  "build": {
+    "version": "de097acba6969d580cc8",
+    "publicFiles": 133,
+    "bytes": 2960785
+  },
+  "originalAttempt": {
+    "path": "audit/2026-10-21/final19-placement-real135-raw.json",
+    "sha256": "4d799ec08b950b22492e42916b5994bea4aedb521abf304b4878d14c814f6d59",
+    "status": "FAILED",
+    "durationMs": 6949.223900000001,
+    "passedChecks": 4,
+    "failedChecks": 0,
+    "completedParts": 0,
+    "stage": "real placement part 1: native exact input and ordinary 45-second timeout",
+    "code": "operation-failed",
+    "pageErrors": [],
+    "consoleErrorCount": 0,
+    "sourceIntegrity": {
+      "sourceFiles": 502,
+      "mismatches": [],
+      "driverUnchanged": true,
+      "dependenciesUnchanged": true,
+      "servedBuildUnchanged": true
+    }
+  },
+  "diagnosis": {
+    "kind": "Stale audit fixture encoding mismatch",
+    "evidence": "The first awaited placement label demands U+00C2 followed by U+00B7 twice. The frozen TrainingStudio source emits only U+00B7. Four initial checks passed, and the next named check was never reached, so execution could not have reached native typing or a45-second placement result.",
+    "inferenceLimit": "The original error text was intentionally sanitized. No error stack or browser trace identifies the exact thrown Playwright operation; the awaited literal is nevertheless impossible to match against the frozen rendered source. This does not demonstrate a product timing/input defect or success.",
+    "componentFile": "src/components/analytics/TrainingStudio.tsx",
+    "componentSha256": "0e7c77d155d48c47a7c14faa8239c89afc78a9d4f99647b038d9287f5859e496",
+    "componentNormalizedHashMatchesFrozen": true,
+    "expectedLabelCodePoints": [
+      "U+00C2",
+      "U+00B7"
+    ],
+    "actualSeparatorCodePoints": [
+      "U+00B7"
+    ],
+    "occurrences": 3,
+    "affectedExpectations": [
+      "Part header: two separators in the same exact locator.",
+      "Persisted guidance summary: one separator in a later assertion."
+    ]
+  },
+  "repair": {
+    "originalFile": "audit/2026-10-21/standalone-placement-real135-final19.mjs",
+    "repairedFile": "audit/2026-10-21/standalone-placement-real135-final19-encoding.mjs",
+    "originalSha256": "158150d0d2c8dd6d4f4c36f03490d24d554c5bffaab1221219e92d32ad7d879d",
+    "repairedSha256": "a95139e56daaf7c94fd49e7570858565f0e4926fbafd54c3512cd1ca3f73bbae",
+    "byteExactReversal": true,
+    "reversedSha256": "158150d0d2c8dd6d4f4c36f03490d24d554c5bffaab1221219e92d32ad7d879d",
+    "onlyChange": "Remove exactly three stray U+00C2 characters from expected public UI separator literals.",
+    "sourceRecordSha256": "38bebc6045040cc52fec97d12f58351668f9d4c346257df7cf49e27193bb089f",
+    "countedCheckCallSites": 35,
+    "countedAssertCalls": 18,
+    "countedPlaywrightExpectCalls": 15,
+    "allControlsAssertionsAndTimeoutsUnchanged": true,
+    "expectedDynamicChecks": 82,
+    "realParts": 3,
+    "partDurationMs": 45000,
+    "totalRealPlacementMs": 135000,
+    "journeyWatchdogMs": 210000,
+    "noVirtualClockOrManualEnd": true,
+    "noProductionOrE2eChanges": true
+  },
+  "proposedExecution": {
+    "state": "NOT-RUN",
+    "newPrefix": "final19-placement-real135-encoding-confirmation",
+    "environment": {
+      "SPAROWTYPE_PLACEMENT_ACCEPTANCE": "1",
+      "SPAROWTYPE_FINAL19_BUILD": "de097acba6969d580cc8"
+    },
+    "command": "node audit/2026-10-21/standalone-placement-real135-final19-encoding.mjs --prefix final19-placement-real135-encoding-confirmation",
+    "scope": "Same real135-second scenario and82 checks. New unique outputs preserve the original6.949-second failed receipt. This prepared variant is not evidence of a pass."
+  },
+  "bossDriverReadiness": {
+    "driver": "audit/2026-10-21/run-boss-duel-duration-final19.mjs",
+    "status": "STATIC-REVIEW-ONLY",
+    "obsoleteFixtureFound": false,
+    "reason": "Its setup baseline, BOT label, target-menu li text, native input, result region and canonical export button remain exact current source names. The new prefix markup lives in the separate target-feedback paragraph. All53 assertions and12 Playwright expectations, real90-second expiry and105-second watchdog remain unchanged.",
+    "browserExecution": "NOT-RUN"
+  }
+}

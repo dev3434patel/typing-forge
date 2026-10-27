@@ -1,7 +1,10 @@
 /* Build template: scripts/build-offline.mjs injects immutable public asset paths. */
 const BUILD_ID = "__SPAROWTYPE_BUILD__";
 const PRECACHE_PATHS = /*__SPAROWTYPE_PRECACHE__*/ [];
-const CACHE_PREFIX = "sparowtype-public-v1-";
+const APP_BASE_PATH = /*__SPAROWTYPE_BASE__*/ "/";
+const FRONTEND_ONLY = /*__SPAROWTYPE_STATIC__*/ false;
+const appPath = (path) => APP_BASE_PATH + path.replace(/^\/+/, "");
+const CACHE_PREFIX = APP_BASE_PATH === "/" ? "sparowtype-public-v1-" : `sparowtype-public-subpath-${encodeURIComponent(APP_BASE_PATH)}-`;
 const CACHE_NAME = CACHE_PREFIX + BUILD_ID;
 const PUBLIC_ROUTES = new Set([
   "/",
@@ -18,6 +21,19 @@ const PUBLIC_ROUTES = new Set([
   "/offline",
   "/race",
   "/leaderboard",
+  "/games",
+  "/arcade",
+  "/arcade/word-invaders",
+  "/arcade/ghost-gp",
+  "/arcade/daily-gauntlet",
+  "/arcade/rhythm-typing",
+  "/arcade/key-tower",
+  "/arcade/snake-words",
+  "/arcade/lava-rise",
+  "/arcade/boss-duel",
+  ...(FRONTEND_ONLY
+    ? ["/stats", "/settings", "/profile", "/auth", "/ranked", "/studio", "/progression", "/classroom"]
+    : []),
 ]);
 const BYPASS_PREFIXES = [
   "/api",
@@ -46,10 +62,10 @@ async function publicCacheMatch(path) {
 }
 async function documentFallback(pathname) {
   if (PUBLIC_ROUTES.has(pathname)) {
-    const shell = await publicCacheMatch("/index.html");
+    const shell = await publicCacheMatch(appPath("/index.html"));
     if (shell) return shell;
   }
-  const fallback = await publicCacheMatch("/_offline-recovery.html");
+  const fallback = await publicCacheMatch(appPath("/_offline-recovery.html"));
   return (
     fallback ||
     new Response(
@@ -95,10 +111,45 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("message", (event) => {
   if (event.data?.type === "ACTIVATE_UPDATE")
     event.waitUntil(self.skipWaiting());
+  if (
+    event.data?.type === "SPAROWTYPE_PUBLIC_READINESS_V1" &&
+    event.ports?.[0]
+  ) {
+    const port = event.ports[0];
+    event.waitUntil(
+      (async () => {
+        let ready = false;
+        try {
+          for (const name of (await caches.keys()).filter((name) =>
+            name.startsWith(CACHE_PREFIX),
+          )) {
+            if (
+              (await caches.match(appPath("/index.html"), { cacheName: name })) &&
+              (await caches.match(appPath("/_offline-recovery.html"), { cacheName: name }))
+            ) {
+              ready = true;
+              break;
+            }
+          }
+        } catch {
+          // Storage failures never confirm a public download.
+        }
+        try {
+          port.postMessage({ type: "SPAROWTYPE_PUBLIC_READINESS_V1", ready });
+        } catch {
+          // A departing client can close its reply endpoint before this read ends.
+        } finally {
+          port.close();
+        }
+      })(),
+    );
+  }
 });
 self.addEventListener("fetch", (event) => {
   const request = event.request;
   const url = new URL(request.url);
+  if (!url.pathname.startsWith(APP_BASE_PATH)) return;
+  const localPath = "/" + url.pathname.slice(APP_BASE_PATH.length);
   if (
     request.method !== "GET" ||
     url.origin !== self.location.origin ||
@@ -108,15 +159,27 @@ self.addEventListener("fetch", (event) => {
   if (
     BYPASS_PREFIXES.some(
       (prefix) =>
-        url.pathname === prefix || url.pathname.startsWith(prefix + "/"),
+        localPath === prefix || localPath.startsWith(prefix + "/"),
     )
   )
     return;
   if (request.mode === "navigate") {
     const pathname =
-      url.pathname.length > 1 ? url.pathname.replace(/\/+$/, "") : "/";
+      localPath.length > 1 ? localPath.replace(/\/+$/, "") : "/";
     event.respondWith(
       (async () => {
+        // Installed public pages use this worker's versioned app shell. Waiting
+        // for a failed network on every hard navigation makes offline practice
+        // slow even though all required public files are already installed.
+        // New builds still enter through the explicit worker update lifecycle.
+        if (PUBLIC_ROUTES.has(pathname)) {
+          try {
+            const shell = await publicCacheMatch(appPath("/index.html"));
+            if (shell) return shell;
+          } catch {
+            // Unavailable cache storage must not prevent an online navigation.
+          }
+        }
         // An explicitly offline browser can still satisfy fetch from its HTTP
         // cache. Keep private/unknown hard navigations on generic recovery;
         // the public SPA can still expose its local practice/history links.
@@ -137,11 +200,19 @@ self.addEventListener("fetch", (event) => {
     url.search ||
     !(
       PRECACHE_PATHS.includes(url.pathname) ||
-      /^\/assets\/[^/]+\.(?:js|css|woff2?|png|svg|webp|ico)$/.test(url.pathname)
+      /^\/assets\/[^/]+\.(?:js|css|woff2?|png|svg|webp|ico)$/.test(localPath)
     )
   )
     return;
   event.respondWith(
-    (async () => (await publicCacheMatch(url.pathname)) || fetch(request))(),
+    (async () => {
+      try {
+        const cached = await publicCacheMatch(url.pathname);
+        if (cached) return cached;
+      } catch {
+        // Unavailable cache storage must not prevent an online public asset.
+      }
+      return fetch(request);
+    })(),
   );
 });

@@ -1,0 +1,13 @@
+{
+  "capturedAt": "2026-10-22T20:07:24.102021+00:00",
+  "status": "PREPARED-NOT-RUN",
+  "script": "audit/2026-10-21/verify-final16-evidence.mjs",
+  "previousPreparation": "audit/2026-10-21/final16-evidence-verifier-prepared.json",
+  "priorSha256": "0093f6a6e0b94bd32f6ce696b6c6ac493d0828c9cc4aa9674532f564ee2df318",
+  "currentSha256": "fcf21c87fa223adc32976d6ee77750e2aaf4d6f79276c1f40d7fde151a6f65a0",
+  "authorizedAuditOnlyCorrection": "Remove unrequested observedWallMs>=45000 criterion from independent placement gate. Record wall deltas in sanitized part summaries; keep original coordinator real>=45000 and browser monotonic>=45000 assertions exactly.",
+  "reason": "Original declared placement driver records wall deltas without a separate wall threshold. A stricter verifier-only wall check must not become a fabricated product failure.",
+  "sourceOrE2eFilesChanged": false,
+  "verifierOrAcceptanceExecution": false,
+  "allOtherPreparedGateCriteriaUnchanged": true
+}

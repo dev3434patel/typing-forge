@@ -1,0 +1,135 @@
+{
+  "status": "PASS-SCOPED",
+  "declaredAt": "2026-10-21T19:00:17.416Z",
+  "build": {
+    "version": "349a107f388a8cc499fe",
+    "publicFiles": 134,
+    "bytes": 2920921
+  },
+  "scope": "Fresh isolated Apache/PHP/PDO and owned MariaDB. Synthetic guarded HTTP evidence for private duels, ranked challenge timing and retained human race contracts. No physical typing, capacity, original DB migration or hosted acceptance.",
+  "source": {
+    "sourceFile": "audit/2026-10-21/final9-source.json",
+    "expectedBuild": "349a107f388a8cc499fe",
+    "compared": 492,
+    "mismatches": []
+  },
+  "inputs": {
+    "audit/2026-10-21/pack-backend-instance.mjs": "6cb89affee1ba0f5baabafb1fdae536a83baf435cbf6966ac96a18b04a4819b4",
+    "audit/2026-10-21/pack-apache-runtime.mjs": "80dd94f993d853d2057314473855a796e11264323bce64a4a9db97822b6dabe7",
+    "backend/tests/pack-social-lifecycle.mjs": "8fda23888523b169ee108e69b387d4b410a9e72631c5a54e59885e22581324f7",
+    "backend/tests/pack-social-fixture.php": "4d6de449ff26556b10565a6d8e41f6ad0d492cd58520fb0f5354200182b10a0e",
+    "backend/tests/race-lifecycle.mjs": "bc99f8dfad3454ac716b2092408c3726c3daf87b4c79cc9e79769333e68078a1",
+    "backend/tests/race-fixtures.php": "713492aa1bba4882356c69a50a8d9a222a2dd8b444f2738ed040cb181b2e245e"
+  },
+  "suites": [
+    "social",
+    "race"
+  ],
+  "automaticRetries": 0,
+  "resultFiltering": false,
+  "originals": {
+    "configRead": false,
+    "databaseConnected": false,
+    "protectedPorts": [
+      3306,
+      3307,
+      3308,
+      8081,
+      4173
+    ]
+  },
+  "pid": 38168,
+  "exitCode": 0,
+  "events": [
+    {
+      "stage": "ephemeral-initialize",
+      "databasePort": 8195,
+      "apiPort": 8196,
+      "httpRuntime": "apache",
+      "existingDatabaseConnected": false,
+      "existingConfigRead": false
+    },
+    {
+      "stage": "ephemeral-provision",
+      "status": "READY",
+      "database": "sparow_pack_7ed5b0b821a8b8fb_audit",
+      "port": 8195,
+      "schemaVersion": 5,
+      "tables": 26,
+      "migrations": [
+        "002-progression.sql",
+        "003_classroom.sql",
+        "004_social.sql",
+        "005_arena.sql"
+      ],
+      "emptyBeforeSchema": true,
+      "appDmlOnly": true,
+      "existingDatabaseConnected": false,
+      "existingConfigRead": false
+    },
+    {
+      "stage": "ephemeral-api-ready",
+      "httpRuntime": "apache",
+      "auditDatabaseMaxConnections": 64,
+      "apacheThreads": 64,
+      "api": "http://127.0.0.1:8196/api",
+      "database": "sparow_pack_7ed5b0b821a8b8fb_audit",
+      "databasePort": 8195,
+      "databasePid": 28596,
+      "phpPid": 41876,
+      "privateConfigFile": "D:\\extra\\typing_updated\\typing-forge\\backend\\storage\\pack-instance-7ed5b0b821a8b8fb\\app-config.php",
+      "privateDirectory": "D:\\extra\\typing_updated\\typing-forge\\backend\\storage\\pack-instance-7ed5b0b821a8b8fb",
+      "originalDatabasePortUntouched": 3308,
+      "originalApiPortUntouched": 8081,
+      "existingConfigRead": false,
+      "noWindowsServiceCreated": true
+    },
+    {
+      "stage": "ephemeral-suite-start",
+      "name": "social"
+    },
+    {
+      "stage": "ephemeral-suite-complete",
+      "name": "social",
+      "exitCode": 0,
+      "status": "PASS",
+      "checks": 8
+    },
+    {
+      "stage": "ephemeral-suite-start",
+      "name": "race"
+    },
+    {
+      "stage": "ephemeral-suite-complete",
+      "name": "race",
+      "exitCode": 0,
+      "status": "PASS",
+      "checks": 11
+    },
+    {
+      "stage": "ephemeral-cleanup",
+      "date": "2026-10-21T19:00:49.446Z",
+      "ownProcessesStopped": true,
+      "gracefulDatabaseShutdown": true,
+      "forcedOwnDatabaseStop": false,
+      "httpRuntime": "apache",
+      "gracefulApacheShutdown": true,
+      "forcedOwnApacheStop": false,
+      "apacheResidualPids": [],
+      "ownTemporaryDirectoryRemoved": true,
+      "originalDatabasePortUntouched": 3308,
+      "originalApiPortUntouched": 8081,
+      "originalPreviewPortUntouched": 4173,
+      "noWindowsServiceCreated": true,
+      "originalConfigRead": false
+    }
+  ],
+  "sourceAfter": {
+    "sourceFile": "audit/2026-10-21/final9-source.json",
+    "expectedBuild": "349a107f388a8cc499fe",
+    "compared": 492,
+    "mismatches": []
+  },
+  "inputsUnchanged": true,
+  "finishedAt": "2026-10-21T19:00:49.842Z"
+}

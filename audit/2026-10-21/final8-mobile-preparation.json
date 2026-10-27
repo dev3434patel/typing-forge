@@ -1,0 +1,33 @@
+{
+  "preparedAt": "2026-10-21T15:31:39.709Z",
+  "status": "NOT-RUN",
+  "scope": "Reference-only driver clone and explicit-build-bound static wrapper preparation. No browser, build or measurement executed.",
+  "source": {
+    "file": "audit/2026-10-21/measure-mobile-workspaces.mjs",
+    "sha256": "69bc61a77b632524f2bd3e689431413e3ab178119226c3d603b60cb6f8245d6a"
+  },
+  "references": [
+    [
+      "process.argv[2] ?? 'mobile-workspaces'",
+      "process.argv[2] ?? 'mobile-workspaces-final8-static'"
+    ],
+    [
+      "`${directory}/mobile-workspaces-protocol.json`",
+      "`${directory}/mobile-workspaces-final8-static-protocol.json`"
+    ],
+    [
+      "`${directory}/after-1-build.json`",
+      "`${directory}/mobile-workspaces-final8-static-build.json`"
+    ]
+  ],
+  "wrapperBaseline": {
+    "file": "audit/2026-10-21/run-mobile-workspaces-static-final7.mjs",
+    "sha256": "0c3ad7f0ea58932775b81f2d1a2e67ca573c1f5b01015929284acf84971079e6"
+  },
+  "files": {
+    "audit/2026-10-21/measure-mobile-workspaces-static-final8.mjs": "b1b8c3c1bb190262ddc0328cc4ed9691252432618d5b89d7e30ac2fb582beadf",
+    "audit/2026-10-21/run-mobile-workspaces-static-final8.mjs": "dce7ad6a2d9e6081b5e1eade9244d7bc89970017b3dbe427039e74a653c3b275"
+  },
+  "automaticRetries": 0,
+  "thresholdsOrAssertionsChanged": false
+}

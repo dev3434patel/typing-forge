@@ -344,7 +344,7 @@ final class RaceService
         $limit->execute([$owner, Database::timestamp($now - 60000)]);
         if ((int) $limit->fetchColumn() >= 10)
             throw new ApiException(429, 'challenge-rate-limit', 'Please wait before requesting more challenges.');
-        $configuration = ['mode'=>'time','durationMs'=>$duration * 1000,'language'=>'en','keyboardLayout'=>'qwerty','inputMethod'=>'keyboard','scoringPolicy'=>'prose','contentRevision'=>'forge-ranked-en-v1','correctionPolicy'=>'current-word'];
+        $configuration = ['mode'=>'time','durationMs'=>$duration * 1000,'language'=>'en','keyboardLayout'=>'qwerty','inputMethod'=>'keyboard','scoringPolicy'=>'prose','contentRevision'=>'forge-ranked-en-v2','correctionPolicy'=>'current-word','settings'=>['timingPolicy'=>ChallengeTimingPolicy::FIRST_INPUT]];
         $id = Database::uuid();
         $nonce = Database::uuid();
         $target = $this->target();

@@ -1,0 +1,48 @@
+{
+  "capturedAt": "2026-10-22T18:54:26.2270223Z",
+  "status": "FROZEN-SCOPED-CHECKS-PASS-BROWSER-PERFORMANCE-NOT-RUN",
+  "baseline": "audit/2026-10-21/final13-source.json",
+  "sourceHashes": {
+    "src/lib/pressed-key-store.ts": "0fc20f023b5623a35099439e9bcf4497a53d21f46504446214311691120c79c5",
+    "src/lib/__tests__/pressed-key-store.test.ts": "ff1ac295272bbd749290102fc7d5f4715c6cb9566123b125b76e0caad0e197ce",
+    "src/hooks/useLiveKeyboard.ts": "d19a435f39018ab24bb90dfc8e7207e12e944305853546ce12f36b289523c511",
+    "src/components/typing/ObservedLiveKeyboard.tsx": "1ad8db6a5c8c701d14f339ef0bd62c6f2f24950c2aeab1b2b74ec57485ee1ced",
+    "src/components/typing/LiveKeyboard.tsx": "46af2417bbaf28cee5d90dbe334eabba70f7c371da4fa712158a04721ef26286",
+    "src/components/typing/LiveKeyboard.test.tsx": "94e6efc177b17b5774517c3ff65ba715643bc0e345c1daef1da464dad3c0ca73",
+    "e2e/typing-render-budget.spec.ts": "b8d0138a36f47f9533e4bc508746ec1b901e09832329ef9b88fc213a946b050c"
+  },
+  "evidence": {
+    "failedAcceptance": "Original source13 p98 168/160/184ms retained; instrumented144ms is not acceptance",
+    "diagnostic": "audit/2026-10-21/final13-caret-reads-diagnostic-functions.json",
+    "mappedFunction": "LiveKeyboard physical-row mapper, sampled449CPUhits (not call counts)",
+    "nativeGeometry": "982getClientRects at nine textarea lengths; zero zero-width fragments or forward spaces in diagnostic; geometry guards unchanged"
+  },
+  "design": [
+    "One PressedKeyStore per ObservedLiveKeyboard, boolean snapshot per physical code, complete chord replaced atomically before affected-code notifications",
+    "No React parent update on plain physical down/up; semantic focus/dead/composition/CapsLock/Shift metadata retains ordinary parent path",
+    "Memoized Keycap subscribes to its own code with useSyncExternalStore; static input API unchanged when optional store absent",
+    "Owner component/store cleanup on session/enabled/hide/unmount; existing observer window blur, document-hidden, keyup and IME semantics retained",
+    "Canonical expected/actual/error/mastery/finger metadata and all visual CSS, DOM, aria, ripple and reduced-motion behavior unchanged"
+  ],
+  "checks": {
+    "independentReview": "final_release_review read four production files; no concrete blocker",
+    "freshSsr": "31 full HTML byte-identical comparisons against actual archived source13 plus31 store-backed static fixture tests",
+    "nativeE2E": "PREPARED NOT RUN: physical-only two-key chord updates, zero real first-row model map invocations, exact final7 insertion attempts/100percent",
+    "focusedUnits": {
+      "command": "npx vitest run src/lib/__tests__/pressed-key-store.test.ts src/components/typing/LiveKeyboard.test.tsx src/lib/__tests__/live-keyboard.test.ts",
+      "passed": 96,
+      "failed": 0,
+      "files": 3
+    },
+    "appTypeScript": "PASS",
+    "ssrReceipt": "audit/2026-10-21/final14-keyboard-markup-parity.json",
+    "nodeTypeScript": "PASS",
+    "scopedEslint": "PASS0"
+  },
+  "limitations": [
+    "No browser acceptance, profile or performance measurement run for source14; no speed claim",
+    "Canonical input still updates expected/actual keyboard metadata and maps the full keyboard; only physical-only parent passes bypassed",
+    "No CSS geometry, layout, cache, metric, engine or3D changes"
+  ],
+  "ownedJobsExited": true
+}

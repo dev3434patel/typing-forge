@@ -1,0 +1,164 @@
+{
+  "status": "PASS-SCOPED",
+  "capturedAt": "2026-10-21T19:17:07.956672+00:00",
+  "scope": "Independent read-only extraction of completed final10 source, frozen-delta, structural package and native HTTP receipts. No new test, native, browser, build, database or performance job is performed. Runtime conclusions are restricted to the separately completed synthetic isolated HTTP suite.",
+  "sourceGate": {
+    "file": "audit/2026-10-21/final10-source-gates.json",
+    "commands": 12,
+    "allExitZero": true,
+    "automaticRetries": 0,
+    "finishedAt": "2026-10-21T19:13:07.535Z"
+  },
+  "unit": {
+    "passed": 2597,
+    "files": 108,
+    "coveragePercent": {
+      "statements": 90.37,
+      "branches": 86.56,
+      "functions": 92.11,
+      "lines": 96.15
+    },
+    "receipt": "audit/2026-10-21/final10-coverage.log"
+  },
+  "typescript": {
+    "configurations": [
+      "app",
+      "node",
+      "domain",
+      "portable"
+    ],
+    "status": "PASS",
+    "receipt": "audit/2026-10-21/final10-typecheck.log"
+  },
+  "lint": {
+    "errors": 0,
+    "baselineWarnings": 9,
+    "receipt": "audit/2026-10-21/final10-lint.log"
+  },
+  "nativePure": {
+    "canonicalReplay": {
+      "cases": 533,
+      "validReference": 499,
+      "rejection": 34,
+      "mismatches": 0
+    },
+    "course": {
+      "cases": 139,
+      "acceptedCases": 122,
+      "rejectionCases": 17,
+      "failures": 0
+    },
+    "progression": {
+      "cases": 87,
+      "accepted": 83,
+      "rejected": 4,
+      "canonicalProjections": 47,
+      "failures": 0
+    },
+    "classroom": {
+      "passed": 14,
+      "failed": 0
+    },
+    "socialChallengeRules": {
+      "cases": 124,
+      "nonthrowingEvaluations": 82,
+      "expectedExceptions": 42,
+      "failures": 0,
+      "notHttpAcceptedSessions": true
+    },
+    "arena": {
+      "passed": 72,
+      "failed": 0
+    },
+    "humanRaceClock": {
+      "passed": 5,
+      "total": 5
+    }
+  },
+  "content": {
+    "status": "passed",
+    "examples": 20
+  },
+  "productionDependencies": {
+    "command": "npm audit --omit=dev --json",
+    "vulnerabilities": 0
+  },
+  "sourceReceiptSha256": "6ddd2d969af0e976f7c76dcf7d05b29dd34bab30379658dad7ad6839c8039170",
+  "limits": [
+    "Counts overlap; no combined invented test total.",
+    "Native pure rule counts are not accepted HTTP sessions; social82 includes nonthrowing false predicates.",
+    "Native HTTP is synthetic isolated functionality, not capacity, physical typing, hosted or packaged frontend acceptance.",
+    "Source8/9 native/frontend/input failures and all capacity failures remain unchanged.",
+    "Source10 browser run was in progress at extraction; no source10 browser, static, Lighthouse or latency result is inferred."
+  ],
+  "frozenArtifact": {
+    "build": {
+      "version": "a3b43501c012b6bbaf6c",
+      "publicFiles": 134,
+      "bytes": 2921551
+    },
+    "sourceFiles": 494,
+    "servedMatchesLocal": true,
+    "receipt": "audit/2026-10-21/final10-source.json"
+  },
+  "independentDeltaReview": {
+    "receipt": "audit/2026-10-21/final10-source-delta.json",
+    "exactSixReviewedFiles": [
+      "src/components/typing/LiveKeyboard.test.tsx",
+      "src/components/typing/LiveKeyboard.tsx",
+      "src/components/typing/TypingArea.tsx",
+      "src/components/typing/__fixtures__/live-keyboard-render-v1.json",
+      "src/lib/typing-core/__tests__/status-counts.test.ts",
+      "src/lib/typing-core/metrics.ts"
+    ],
+    "matchesExactSix": true,
+    "unchanged": 488,
+    "removed": 0,
+    "phpSourcesChanged": false,
+    "renderingSourcesChanged": false,
+    "canonicalEngineSourcesChanged": true,
+    "metricFormulaEquivalenceScope": "Separate source review and native differential tests; source hashing alone does not prove semantic or performance equivalence.",
+    "originalGenericReviewFieldPreserved": true
+  },
+  "packageStructure": {
+    "passed": 27,
+    "checks": 27,
+    "publicFilesCompared": 143,
+    "packageFiles": 186,
+    "receipt": "audit/2026-10-21/final10-hosting-package-verification.json",
+    "packagedFrontendApacheExecution": false
+  },
+  "nativeHttp": {
+    "status": "PASS-SCOPED",
+    "suites": [
+      {
+        "name": "social",
+        "status": "PASS",
+        "checks": 8,
+        "exitCode": 0
+      },
+      {
+        "name": "race",
+        "status": "PASS",
+        "checks": 11,
+        "exitCode": 0
+      }
+    ],
+    "receipt": "audit/2026-10-21/final10-native.json",
+    "sourceCompared": 494,
+    "sourceMismatches": [],
+    "inputsUnchanged": true,
+    "automaticRetries": 0,
+    "resultFiltering": false,
+    "originalConfigurationRead": false,
+    "originalDatabaseConnected": false,
+    "cleanup": {
+      "date": "2026-10-21T19:14:28.996Z",
+      "ownProcessesStopped": true,
+      "gracefulDatabaseShutdown": true,
+      "gracefulApacheShutdown": true,
+      "apacheResidualPids": [],
+      "ownTemporaryDirectoryRemoved": true
+    }
+  }
+}

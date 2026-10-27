@@ -1,0 +1,33 @@
+{
+  "status": "PASS-SCOPED-READ-ONLY-INVENTORY",
+  "capturedAt": "2026-10-22T19:25:37.810306+00:00",
+  "scope": "Only hidden audit TSX baseline path/hash/Git-boundary inspection; no deletion, ignore edit, staging or process action. Generated .mjs files already match existing audit/**/.*.generated.mjs.",
+  "hiddenTsx": [
+    {
+      "file": "audit/2026-10-21/.final14-LiveKeyboard-baseline.tsx",
+      "sha256": "44f89586d5972feb3ece3d7d63f906ab3517ba503a9820e8e6b114aca3af0f3c",
+      "ignored": false,
+      "tracked": false,
+      "basenameOnlyScope": true
+    },
+    {
+      "file": "audit/2026-10-21/.final15-LiveKeyboard-baseline.tsx",
+      "sha256": "46af2417bbaf28cee5d90dbe334eabba70f7c371da4fa712158a04721ef26286",
+      "ignored": false,
+      "tracked": false,
+      "basenameOnlyScope": true
+    }
+  ],
+  "issue": "Both retained LiveKeyboard comparison baselines are untracked and not ignored; prospective broad staging would include generated historical source copies.",
+  "recommendation": {
+    "preferredIgnorePattern": "audit/**/.final*-LiveKeyboard-baseline.tsx",
+    "reason": "Narrow to hidden checkpoint LiveKeyboard source baselines under audit; existing generated mjs exclusion remains unchanged. Retains local source for reproducibility while excluding generated module copies from Git.",
+    "alternative": "After owner review, remove only the two exact owned baseline paths after verifying their hashes against final14/final15 markup parity receipts; preserve receipts plus archived source identity. No cleanup executed.",
+    "provenance": [
+      "audit/2026-10-21/final14-keyboard-markup-parity.json",
+      "audit/2026-10-21/final15-keyboard-markup-parity.json"
+    ]
+  },
+  "filesDeleted": 0,
+  "gitignoreEdited": false
+}

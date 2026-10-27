@@ -1,0 +1,57 @@
+{
+  "status": "PASS-SCOPED",
+  "sourcePhase": "source11",
+  "scope": "Public worker eligible asset fallback and actual-template VM regression only. No browser, build, Lighthouse, native backend or real hosting claim.",
+  "productionChange": "Keep the existing request eligibility checks. Try the same public cache lookup and return its hit; if cache storage rejects, attempt fetch with the original request outside the cache-only catch. Network rejection still propagates.",
+  "unchangedBoundaries": [
+    "same-origin GET only",
+    "authorization/API/cross-origin/private/query bypass",
+    "exact public precache and asset eligibility",
+    "public cache namespace and previous-build lookup ordering",
+    "installation-only cache writes",
+    "worker lifecycle and update consent",
+    "pageerror assertions and original browser test budgets"
+  ],
+  "checks": [
+    {
+      "command": "npm.cmd run test:run -- src/lib/__tests__/pwa-worker.test.ts --reporter=default --reporter=json --outputFile=audit/2026-10-21/final11-worker-unit.json",
+      "exitCode": 0,
+      "result": "55/55 PASS",
+      "report": "final11-worker-unit.json"
+    },
+    {
+      "command": "npx.cmd eslint public/sw.js src/lib/__tests__/pwa-worker.test.ts",
+      "exitCode": 0,
+      "result": "PASS"
+    },
+    {
+      "command": "git diff --check -- public/sw.js src/lib/__tests__/pwa-worker.test.ts",
+      "exitCode": 0,
+      "result": "PASS; Git printed only its LF-to-CRLF advisory"
+    }
+  ],
+  "addedRegressionCoverage": [
+    "Root and /project/ bases: cache keys rejection falls back to the same network request.",
+    "Root and /project/ bases: cache open rejection falls back to the same network request.",
+    "Root and /project/ bases: cache match rejection falls back to the same network request.",
+    "Each rejected-cache case verifies one network request, unchanged stored asset content/paths/names and exactly the original single installation write.",
+    "Root and /project/ bases: an available public asset cache hit still makes no network request.",
+    "Root and /project/ bases: fallback network rejection remains the exact rejected error, with no invented successful response.",
+    "Existing actual-template query/auth/private/API/unknown/out-of-scope/older-build/lifecycle regressions all remain in the 55 passing tests."
+  ],
+  "sourceHashes": {
+    "public/sw.js": {
+      "source10": "597413710c4a9106042d0843cb624eeb0c238c258d4ebab61792890f24758a0b",
+      "source11": "abafb1cde8032f9dd4a32483409810a8e9b6b7db15b48131e3ae9885d6154282"
+    },
+    "src/lib/__tests__/pwa-worker.test.ts": {
+      "source10": "338d0748a34e9ca3659c9c59b67c7388e3555fe2821b2684902322d5b814841c",
+      "source11": "f348d25f81ab668b1789442b6a5d71b48dae6b000f777984f0d85f778e11108c"
+    }
+  },
+  "priorFailures": "final10-static-webkit-cache-diagnostics.json remains FAILED, with exact Cache API pageerror emitter UNPROVEN. This source-established availability fix does not retroactively prove that failure cause or erase either original browser failure.",
+  "independentReview": "Requested from data-quality agent; source10-to-source11 exact two-file comparison is owned by that agent.",
+  "remainingExecution": "Root owns the full source gates, rebuilt artifact binding and original-budget real browser/performance/static confirmation.",
+  "ownedSourceFrozen": true,
+  "runningChildJobs": 0
+}

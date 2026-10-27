@@ -1,0 +1,60 @@
+{
+  "totals": {
+    "total": 26,
+    "passed": 24,
+    "failed": 2,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "projects": [
+    {
+      "project": "webkit",
+      "total": 26,
+      "passed": 24,
+      "failed": 2,
+      "skipped": 0,
+      "flaky": 0
+    }
+  ],
+  "reportedStats": {
+    "expected": 24,
+    "unexpected": 2,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "countsAgreeWithReport": true,
+  "failures": [
+    {
+      "project": "webkit",
+      "title": "arcade-offline.spec.ts › all eight arcade URLs survive a real HTTP outage without caching API or private room documents",
+      "file": "arcade-offline.spec.ts",
+      "line": 13,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(locator).toBeVisible() failed Locator: getByText(/Public download: available/) Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByText(/Public download: available/) with timeout 5000ms - waiting for getByText(/Public download: available/) 16 | await page.goto('/offline'); 17 | test.skip(!(await page.evaluate(() => 'serviceWorker' in navigator && 'caches' in window)), 'UNVERIFIED: serv"
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "caret-geometry.spec.ts › outline caret follows the actual RTL character edge through input and rotation",
+      "file": "caret-geometry.spec.ts",
+      "line": 145,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: Test timeout of 30000ms exceeded 134 | return geometryErrors(geometry, style); 135 | }) > 136 | .toEqual([]); | ^ 137 | return geometry!; 138 | } finally { 139 | receipts.push({ label, geometry }); at expectGeometry (D:\\extra\\typing_updated\\typing-forge\\e2e\\caret-geometry.spec.ts:136:8) at D:\\extra\\typing_updated\\typing-forge\\e2e\\caret-geometry.spec.ts:169:15"
+      ]
+    }
+  ],
+  "flakyCases": [],
+  "skippedCases": [],
+  "skipReasons": [],
+  "expectedFailures": [],
+  "globalErrors": [],
+  "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+}

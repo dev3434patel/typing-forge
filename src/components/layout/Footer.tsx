@@ -21,6 +21,8 @@ export const Footer = forwardRef<
         <Link to="/privacy" className="inline-flex min-h-11 items-center hover:text-foreground">Privacy</Link>
         <Link to="/terms" className="inline-flex min-h-11 items-center hover:text-foreground">Terms</Link>
         <Link to="/offline" className="inline-flex min-h-11 items-center hover:text-foreground">Offline</Link>
+        <Link to="/progression" className="inline-flex min-h-11 items-center hover:text-foreground">Your journey</Link>
+        <Link to="/classroom" className="inline-flex min-h-11 items-center hover:text-foreground">Classroom</Link>
         <span className="py-3">SparowType © {new Date().getFullYear()}</span>
       </div>
     </div>

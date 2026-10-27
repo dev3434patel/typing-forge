@@ -1,0 +1,31 @@
+{
+  "preparedAt": "2026-10-22T19:39:01.4548005Z",
+  "status": "PREPARED-NOT-RUN",
+  "driver": "audit/2026-10-21/profile-cpu-loaf-native-final15-confirmation.mjs",
+  "driverSha256": "782447828fb8d3ff8714ccfbf1534448b1dfd129291f5362bcf0f03c03b46bb5",
+  "originalFailedDriver": "audit/2026-10-21/profile-cpu-loaf-native-final15.mjs",
+  "originalRawProfile": "audit/2026-10-21/final15-cpu-loaf-native-diagnostic.cpuprofile",
+  "originalRawSha256": "4ef1f310d80a5a254571cc5b487514f498e215772faaa1dd40c931722bd59231",
+  "expectedBuild": "7ef96ccd3c02d170a757",
+  "originalClockAlignment": "UNAVAILABLE - metadata not persisted before first helper exception",
+  "analysisFix": [
+    "Accept finite signed timeDeltas; retain/report backsteps without clamping or reordering",
+    "Persist raw CPU profile immediately afterProfiler.stop",
+    "Drain/disconnect native numeric observers and persist timeline-collected before analysis",
+    "Persist numeric before/afterCDP clock metadata before alignment or stack analysis"
+  ],
+  "originalFailure": {
+    "sampleIndex": 8788,
+    "samples": 20105,
+    "sampleNodePresent": true,
+    "missingNodes": 0,
+    "sampleNode": 801,
+    "deltaMicroseconds": -63,
+    "negativeDeltaCount": 1
+  },
+  "scope": "Only audit analysis/persistence correction. Original495 native input, CPU4, rotation, timing actions, assertions, observer instrumentation and150s watchdog/browser cleanup retained. Original failed protocol/profile unchanged.",
+  "syntax": "node --check PASS",
+  "browserJobsLaunched": 0,
+  "productChanges": [],
+  "commandPowerShell": "$env:SPAROWTYPE_CPU_LOAF_DIAGNOSTIC=\"1\"; node audit/2026-10-21/profile-cpu-loaf-native-final15-confirmation.mjs"
+}

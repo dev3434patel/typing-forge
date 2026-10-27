@@ -49,6 +49,10 @@ export function TestSettings() {
               {label}
             </button>
           ))}
+          <button className="forge-chip" aria-label="Classic60s curated200 preset" aria-pressed={settings.wordPool === 'classic200'} onClick={() => {
+            if (settings.wordPool === 'classic200') setSettings({ wordPool: 'curated' });
+            else { updatePreferences({ language: 'en' }); setSettings({ mode: 'time', duration: 60, wordPool: 'classic200', punctuation: false, numbers: false }); }
+          }}>Classic60s</button>
         </div>
         {["time", "words"].includes(settings.mode) && (
           <div

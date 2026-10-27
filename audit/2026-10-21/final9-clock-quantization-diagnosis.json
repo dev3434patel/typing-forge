@@ -1,0 +1,87 @@
+{
+  "capturedAt": "2026-10-21T19:04:37.214Z",
+  "status": "CONFIRMED-FIXTURE-PRECISION-ONLY",
+  "originalFailureReport": "audit/2026-10-21/final9-independent-front.json",
+  "originalSummary": "audit/2026-10-21/final9-independent-front-summary.json",
+  "originalOutcomes": {
+    "total": 32,
+    "passed": 29,
+    "failed": 3,
+    "skipped": 0,
+    "retries": 0
+  },
+  "actualFailures": [
+    {
+      "project": "chromium",
+      "kind": "ranked",
+      "monotonicWallDurationMs": 15293,
+      "calibratedWallDeltaMs": 15292
+    },
+    {
+      "project": "edge",
+      "kind": "duel",
+      "monotonicWallDurationMs": 30320,
+      "calibratedWallDeltaMs": 30319
+    },
+    {
+      "project": "webkit",
+      "kind": "ranked",
+      "monotonicWallDurationMs": 15360,
+      "calibratedWallDeltaMs": 15359
+    }
+  ],
+  "installedClockEvidence": {
+    "file": "node_modules/playwright-core/lib/coreBundle.js",
+    "marker": "performanceNow: () => Math.ceil(originals.raw.performance.now())",
+    "integerQuantumMs": 1
+  },
+  "productSamplingEvidence": [
+    "challengeResponseClock maps each fresh source now() to a calibrated wall reading; no later Date.now() is used.",
+    "createIssuedChallengeController retains a fixed monotonic/server anchor; its wallNow still samples source now() separately.",
+    "SessionController.input reads monotonic now before start() separately reads wallNow.",
+    "SessionController.buildResult receives an earlier monotonic now for wallDurationMs, then separately reads finishedAtWall."
+  ],
+  "proofScope": "Algebraic examples apply the exact installed Math.ceil sampler and independent endpoint-read order. No browser, build, unit runner, virtual timer or product execution launched.",
+  "examples": [
+    {
+      "name": "start wall read crosses next tick, finish reads share a tick",
+      "startMonotonicRaw": 1500.9,
+      "startWallRaw": 1501.01,
+      "finishMonotonicRaw": 16501.2,
+      "finishWallRaw": 16501.23,
+      "monotonicDuration": 15001,
+      "wallDelta": 15000,
+      "difference": -1,
+      "acceptedByOneTickBound": true
+    },
+    {
+      "name": "finish wall read crosses next tick, start reads share a tick",
+      "startMonotonicRaw": 1500.1,
+      "startWallRaw": 1500.2,
+      "finishMonotonicRaw": 16501.9,
+      "finishWallRaw": 16502.01,
+      "monotonicDuration": 15001,
+      "wallDelta": 15002,
+      "difference": 1,
+      "acceptedByOneTickBound": true
+    },
+    {
+      "name": "two ticks of disagreement remain rejected",
+      "startMonotonicRaw": 1500.1,
+      "startWallRaw": 1500.2,
+      "finishMonotonicRaw": 16501.9,
+      "finishWallRaw": 16503.01,
+      "monotonicDuration": 15001,
+      "wallDelta": 15003,
+      "difference": 2,
+      "acceptedByOneTickBound": false
+    }
+  ],
+  "change": {
+    "file": "e2e/independent-challenge-timing.spec.ts",
+    "before": "toBeCloseTo(wallDurationMs,1) required <0.05ms despite an installed1ms clock quantum",
+    "after": "Explicit absolute calibrated endpoint delta<=1ms;2ms disagreement remains rejected",
+    "unchanged": "All actions, duration/deadline checks, ready-idle assertions, wrong-attempt identity, event offset0, device clock-jump isolation, expiry, owner and request integrity assertions; no production file changed."
+  },
+  "confirmation": "NOT-RUN. Parent will run a separately declared confirmation; all original failures preserved."
+}

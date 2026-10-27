@@ -1,0 +1,18 @@
+{
+  "scope": "S4-S6 local arcade source; no release-browser claim",
+  "games": ["word-invaders", "ghost-gp", "daily-gauntlet", "rhythm-typing", "key-tower", "snake-words", "lava-rise", "boss-duel"],
+  "unit": {"status": "PASS", "files": 6, "passed": 555, "failed": 0, "log": "arcade-evidence-final-units.log", "fuzzSeeds": 10000, "fuzzFramesPerSeed": 12},
+  "lint": {"status": "PASS", "warnings": 0, "log": "arcade-evidence-final-lint-2.log"},
+  "appTypecheck": {"status": "PASS", "log": "arcade-evidence-final-typecheck.log"},
+  "nativeAdapterUnit": {"status": "PASS", "passed": 10, "log": "arena-games-units-final.log"},
+  "browser": {"status": "PARTIAL", "file": "e2e/arcade.spec.ts", "casesPerEngine": 10, "checkpoint2Passed": 36, "checkpoint2Failed": 4, "remainingFailure": "Invalid generic-Event fixture corrected after checkpoint2; confirmation pending.", "receipt": "audit/2026-10-21/feature-checkpoint-2.json"},
+  "bundle": {"status": "PASS-SCOPED", "receipt": "arcade-engine-budget-checkpoint-2.json", "engineUpperBoundGzipBytes": 23699},
+  "lighthouse": "NOT-RUN",
+  "physicalMobileAndScreenReader": "UNVERIFIED",
+  "dailyVerifiedBoard": "UNAVAILABLE; UI labels every attempt LOCAL PRACTICE",
+  "rawReplayRetention": "Shared90-day TTL; aggregate bests remain until deletion, raw expiry/removal failures explicitly reported",
+  "crossTabDataControlBrowser": {"status": "NOT-RUN", "file": "e2e/arcade-data-isolation.spec.ts", "casesPerEngine": 2},
+  "preservedAttempts": ["games-first-unit-attempt.json", "games-units-final-2.log"],
+  "metricFormulasChangedByGames": false,
+  "openingRendererChangedByGames": false
+}

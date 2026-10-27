@@ -1,0 +1,19 @@
+--- a/e2e/typing-observer-ownership.spec.ts
++++ b/e2e/typing-observer-ownership.spec.ts
+@@ -248,11 +248,12 @@
+   });
+   const text = (await page.locator("#lesson-passage").textContent())!;
+   let count = Math.min(60, text.length - 20);
+-  // A wrong letter at a separator is an extra character, not an incorrect
+-  // target-space slot. Exercise replacement geometry inside an actual word.
+-  while (count > 20 && (!/^[A-Za-z]$/.test(text[count]) || !/^[A-Za-z]$/.test(text[count - 1]))) count--;
++  // Exercise replacement inside a word and a serif-sensitive glyph. Some
++  // letters have almost identical native widths in these two font families.
++  // Keep the measured >0.5px font-change assertion meaningful on every engine.
++  while (count > 20 && (!/^[ilrt]$/.test(text[count]) || !/^[A-Za-z]$/.test(text[count - 1]))) count--;
+   expect(count).toBeGreaterThan(20);
+-  expect(text[count]).toMatch(/^[A-Za-z]$/);
++  expect(text[count]).toMatch(/^[ilrt]$/);
+   expect(text[count - 1]).toMatch(/^[A-Za-z]$/);
+   expect(text.slice(1, count).split(" ").length).toBeGreaterThan(2);
+   await input.pressSequentially(text.slice(0, 1));

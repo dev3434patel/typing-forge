@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-10-27T12:51:50.752Z",
+  "status": "PASS-SCOPED-FIXTURE-REVIEW",
+  "build": "de097acba6969d580cc8",
+  "productSourceUnchanged": true,
+  "sourceCompared": 502,
+  "sourceMismatches": [],
+  "guardedInputs": 71,
+  "changes": [
+    {
+      "path": "e2e/opening-renderer.ts",
+      "fromSha256": "25131eb375ca59bf22d7ba2aa695cd60dd7d086aa7a9681d56199d10533aa764",
+      "toSha256": "dbddae0518f86baf838d67e1a62f8060018a1805e1059f49cb8f8eef5e30325c"
+    },
+    {
+      "path": "e2e/viewport-acceptance.spec.ts",
+      "fromSha256": "02ef3c07e9db9b4f1f037f2403a3cc484597c9f854c30b31989be5588251728d",
+      "toSha256": "d66540d0fdd897cd58882cd30135ea7f9aff1422b691e1848771b160a05a3f12"
+    }
+  ],
+  "diagnostic": "audit/2026-10-21/final19-clock-fixture-liveness-diagnostic.json",
+  "publicPatch": {
+    "path": "audit/2026-10-21/final19-clock-fixture-liveness.patch",
+    "sha256": "ed54f4969e9c5165a5110935088b1c8920ad215e907cf947c7d856c5c8eae75f",
+    "reverseApplyCheckPassed": true,
+    "classification": "Fixture-only paused-clock liveness; no product/source/E2E edits by this reviewer."
+  },
+  "review": {
+    "actualContract": "Drive the existing1000ms capability fallback plus400ms idle window in steps until actual playback, within the original real preparation deadlines. Fallback polling shares remaining deadline.",
+    "preserved": "Actual fallback,61keys, assembled2750ms advance, geometry, input/caret and fault assertions remain in the patch context; no production scheduling/quality change.",
+    "causalLimit": "This contract gap does not prove it caused every original browser/runtime failure.",
+    "runtime": "NOT-RUN by this reviewer. Root executes separate exact-four-case confirmations; original outcomes remain FAILED."
+  },
+  "originalEvidence": [
+    {
+      "path": "audit/2026-10-21/final19-browser-matrix.json",
+      "sha256": "5eb2df2bd7cae3f291d4e0858422d4df2d183e076d94274915757a1575a8c393",
+      "unchanged": true
+    },
+    {
+      "path": "audit/2026-10-21/final19-isolated.json",
+      "sha256": "c13fb3d98eba1c33c2356a74d9c61b4639de334bdf653cab55f2226ae1be58b8",
+      "unchanged": true
+    },
+    {
+      "path": "audit/2026-10-21/final19-isolated-protocol.json",
+      "sha256": "4e43f8891309193c3955451a629dc4149a7df0f06dc4f6ad79604ac6f43903dc",
+      "unchanged": true
+    },
+    {
+      "path": "audit/2026-10-21/final19-isolated-summary.json",
+      "sha256": "3740f957514982e5652ed30615b84598672db70a6b674a6ad6266a8f043cb3a0",
+      "unchanged": true
+    },
+    {
+      "path": "audit/2026-10-21/final19-animation-teardown-confirmation.json",
+      "sha256": "fd97fdb8ddee2a75bb880eb902fcedcd6078dfec8df1fe1cff8153aa2abe38b2",
+      "unchanged": true
+    },
+    {
+      "path": "audit/2026-10-21/final19-animation-teardown-confirmation-protocol.json",
+      "sha256": "c61fa88b313faeaeb2abc84c7ca65a5f01d3d7914f7670a327bb21c655fe44cf",
+      "unchanged": true
+    },
+    {
+      "path": "audit/2026-10-21/final19-worker-readiness-confirmation.json",
+      "sha256": "e8f2f4d087a2ad84f3be4a094b59444bb5a010514ffa58ffc6a88b9f74ca8de6",
+      "unchanged": true
+    },
+    {
+      "path": "audit/2026-10-21/final19-worker-readiness-confirmation-protocol.json",
+      "sha256": "9378c74e9a634c55d5b5831476eb81125ff1beaf06992513a029b0a8854a32d1",
+      "unchanged": true
+    }
+  ],
+  "finitePublicScan": {
+    "files": [
+      "audit/2026-10-21/final19-clock-fixture-liveness.patch",
+      "audit/2026-10-21/final19-clock-fixture-liveness-diagnostic.json",
+      "audit/2026-10-21/run-final19-clock-fixture-confirmation.mjs"
+    ],
+    "patternKinds": 8,
+    "findings": 0,
+    "secretValuesPrinted": false
+  },
+  "indexMutation": false,
+  "sourceOrTestEdit": false,
+  "buildOrBrowserOrTestRun": false,
+  "privateConfigOrStorageRead": false
+}

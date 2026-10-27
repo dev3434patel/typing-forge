@@ -1,0 +1,83 @@
+{
+  "stats": {
+    "startTime": "2026-10-20T18:44:14.399Z",
+    "duration": 95002.739,
+    "expected": 7,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "rows": [
+    {
+      "title": "real account sign in with dedicated deployment credentials",
+      "project": "chromium",
+      "status": "passed",
+      "retry": 0,
+      "duration": 2521,
+      "errors": []
+    },
+    {
+      "title": "real account sign in with dedicated deployment credentials",
+      "project": "edge",
+      "status": "passed",
+      "retry": 0,
+      "duration": 1588,
+      "errors": []
+    },
+    {
+      "title": "real account sign in with dedicated deployment credentials",
+      "project": "firefox",
+      "status": "timedOut",
+      "retry": 0,
+      "duration": 58262,
+      "errors": [
+        {
+          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+        },
+        {
+          "message": "Error: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Email', { exact: true })\u001b[22m\n\n\n  54 | test('real account sign in with dedicated deployment credentials', async ({ page }) => {\n  55 |   test.skip(!process.env.FORGE_E2E_AUTH_EMAIL || !process.env.FORGE_E2E_AUTH_PASSWORD, 'Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used.');\n> 56 |   await page.goto('/auth'); await page.getByLabel('Email', { exact: true }).fill(process.env.FORGE_E2E_AUTH_EMAIL!);\n     |                                                                             ^\n  57 |   await page.getByLabel('Password', { exact: true }).fill(process.env.FORGE_E2E_AUTH_PASSWORD!);\n  58 |   await page.getByRole('button', { name: 'Sign In', exact: true }).click(); await expect(page).toHaveURL('/');\n  59 |   await page.goto('/profile'); await expect(page.getByRole('button', { name: 'Sign out', exact: true })).toBeVisible();\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\auth-flow.spec.ts:56:77"
+        }
+      ]
+    },
+    {
+      "title": "real account sign in with dedicated deployment credentials",
+      "project": "webkit",
+      "status": "passed",
+      "retry": 0,
+      "duration": 9533,
+      "errors": []
+    },
+    {
+      "title": "PHP two-account race authorization and server-owned countdown",
+      "project": "chromium",
+      "status": "passed",
+      "retry": 0,
+      "duration": 1347,
+      "errors": []
+    },
+    {
+      "title": "PHP two-account race authorization and server-owned countdown",
+      "project": "edge",
+      "status": "passed",
+      "retry": 0,
+      "duration": 1126,
+      "errors": []
+    },
+    {
+      "title": "PHP two-account race authorization and server-owned countdown",
+      "project": "firefox",
+      "status": "passed",
+      "retry": 0,
+      "duration": 1125,
+      "errors": []
+    },
+    {
+      "title": "PHP two-account race authorization and server-owned countdown",
+      "project": "webkit",
+      "status": "passed",
+      "retry": 0,
+      "duration": 1211,
+      "errors": []
+    }
+  ]
+}

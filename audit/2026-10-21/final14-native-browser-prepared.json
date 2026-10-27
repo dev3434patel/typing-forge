@@ -1,0 +1,43 @@
+{
+  "status": "NOT-RUN",
+  "scope": "Audit-only native browser orchestration preparation; no process, service, database connection, HTTP request, browser or build was started by this preparation.",
+  "wrapper": "run-final14-native-browser.mjs",
+  "existingServiceOwner": "pack-backend-instance.mjs",
+  "existingBrowserRunner": "pack-native-browser.mjs",
+  "binding": "Requires the completed final14-source.json, exact SPAROWTYPE_FINAL14_BUILD_ID and a new guarded pack-backend-ID-browser-ready.json. Existing browser runner also compares local/served build bytes and exact synthetic cookie namespace.",
+  "existingAssertionsOrBudgetsChanged": false,
+  "expectedCases": 16,
+  "engines": ["chromium", "edge", "firefox", "webkit"],
+  "workers": 1,
+  "retries": 0,
+  "traces": false,
+  "caseTitles": [
+    "real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+    "real two-browser PHP human race shares opponent pace and settles server results",
+    "real account sign in with dedicated deployment credentials",
+    "PHP two-account race authorization and server-owned countdown"
+  ],
+  "executionRecipe": [
+    "After root's source14 gates/build/freeze and a separately declared quiet native-browser window, start existing pack-backend-instance.mjs with SPAROWTYPE_PACK_INSTANCE_ACCEPTANCE=1, SPAROWTYPE_PACK_HTTP_RUNTIME=apache, SPAROWTYPE_PACK_APACHE_ACCEPTANCE=1, SPAROWTYPE_PACK_SUITES=password, SPAROWTYPE_PACK_HOLD=1 and SPAROWTYPE_PACK_KEEP_FAILURE=1. The password suite is a small prerequisite, not new HTTP or browser acceptance.",
+    "Wait for its explicit ephemeral-holding event. Send prepare-browser to that exact child's stdin. No browser is launched by prepare-browser; it creates two dedicated synthetic accounts, private browser env and an owned random-port preview.",
+    "Use only the newly emitted public ready receipt. Set SPAROWTYPE_FINAL14_NATIVE_BROWSER_WINDOW=1, SPAROWTYPE_FINAL14_BUILD_ID to the exact new build, and SPAROWTYPE_PACK_BROWSER_READY to that receipt; ensure SPAROWTYPE_PACK_BROWSER_DIAGNOSTIC is unset. Invoke node audit/2026-10-21/run-final14-native-browser.mjs once. Do not print the generated private env.",
+    "The root-owned held backend has a15-minute lease; if a deliberately slow browser run needs it, send renew only to that exact owner's stdin. Renew does not rerun or reset a test/account/rate counter.",
+    "After wrapper exit, send cleanup to the exact held service owner and wait for its cleanup receipt and process exit. Confirm ownProcessesStopped and Apache residualPids empty. Do not claim the entire native stage completed while cleanup is pending.",
+    "The wrapper deliberately delegates all service lifecycle control to the existing tested owner. Do not terminate unrelated node/Apache/MariaDB processes or invoke generic name-based process cleanup. On interrupted execution, retain the original failure and complete that same owner's guarded cleanup. No automatic test retries."
+  ],
+  "ownershipGuards": [
+    "New random loopback ports refuse3306,3307,3308,8081 and4173.",
+    "MariaDB datadir, PID file, process PID and new schema namespace must agree before provisioning or shutdown.",
+    "Apache has its own config/parent-child PID guards; no existing Apache config or Windows service is used.",
+    "Browser runner only opens the current instance's marker-validated browser-env.json, never original backend/config.php or original user database.",
+    "Generated passwords/cookies are excluded from public receipts; traces are off, failure screenshots remain in ignored nested artifacts. Public stdout/report redaction and final credential scan remain mandatory."
+  ],
+  "limitations": [
+    "Prepared wrapper has not been executed or syntax-checked in this no-jobs preparation scope.",
+    "PASS-SCOPED-BROWSER describes the16 selected browser cases only. Service shutdown is separately owned and must be verified before root reports overall completion.",
+    "Actual human race browser tests do not establish capacity targets, production hosting behavior, physical-device input latency or network-wire transport selection."
+  ],
+  "productionSourceEditedByPreparation": false,
+  "originalPrivateConfigurationRead": false,
+  "originalDatabaseConnected": false
+}

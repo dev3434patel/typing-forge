@@ -1,0 +1,86 @@
+{
+  "capturedAt": "2026-10-21T19:34:32.806Z",
+  "status": "APPLIED-FIXTURE-ONLY-NOT-CONFIRMED",
+  "file": "e2e/typing-observer-ownership.spec.ts",
+  "beforeSha256": "7caafb8405d505c041f39347a7df0265823052d97db48b3c5624bc93360b9cac",
+  "afterSha256": "1b90d3a255ab1695540c488b77999da699b0e9f416467a64ed7d279b9dc538aa",
+  "originalReport": "audit/2026-10-21/final10-experience.json",
+  "originalSummary": "audit/2026-10-21/final10-experience-summary.json",
+  "originalBroadOutcomes": {
+    "total": 672,
+    "passed": 661,
+    "failed": 6,
+    "skipped": 5,
+    "flaky": 0
+  },
+  "originalObserverFailures": [
+    {
+      "project": "chromium",
+      "title": "typing-observer-ownership.spec.ts › bot and user progress keep native resize and scroll subscriptions stable until leaving the race",
+      "file": "typing-observer-ownership.spec.ts",
+      "line": 180,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBeGreaterThan(expected) Expected: > 0 Received: 0 Call Log: - Timeout 5000ms exceeded while waiting on the predicate 193 | await expect 194 | .poll(async () => Number(await marker.getAttribute(\"data-position\"))) > 195 | .toBeGreaterThan(0); | ^ 196 | const initialPosition = Number(await marker.getAttribute(\"data-position\")); 197 | const before = await readOwnership(page); 198 | expect(before.observers).toHaveLength(2); a"
+      ]
+    },
+    {
+      "project": "edge",
+      "title": "typing-observer-ownership.spec.ts › bot and user progress keep native resize and scroll subscriptions stable until leaving the race",
+      "file": "typing-observer-ownership.spec.ts",
+      "line": 180,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBeGreaterThan(expected) Expected: > 0 Received: 0 Call Log: - Timeout 5000ms exceeded while waiting on the predicate 193 | await expect 194 | .poll(async () => Number(await marker.getAttribute(\"data-position\"))) > 195 | .toBeGreaterThan(0); | ^ 196 | const initialPosition = Number(await marker.getAttribute(\"data-position\")); 197 | const before = await readOwnership(page); 198 | expect(before.observers).toHaveLength(2); a"
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "typing-observer-ownership.spec.ts › bot and user progress keep native resize and scroll subscriptions stable until leaving the race",
+      "file": "typing-observer-ownership.spec.ts",
+      "line": 180,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBeGreaterThan(expected) Expected: > 0 Received: 0 Call Log: - Timeout 5000ms exceeded while waiting on the predicate 193 | await expect 194 | .poll(async () => Number(await marker.getAttribute(\"data-position\"))) > 195 | .toBeGreaterThan(0); | ^ 196 | const initialPosition = Number(await marker.getAttribute(\"data-position\")); 197 | const before = await readOwnership(page); 198 | expect(before.observers).toHaveLength(2); a"
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "typing-observer-ownership.spec.ts › bot and user progress keep native resize and scroll subscriptions stable until leaving the race",
+      "file": "typing-observer-ownership.spec.ts",
+      "line": 180,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBeGreaterThan(expected) Expected: > 0 Received: 0 Call Log: - Timeout 5000ms exceeded while waiting on the predicate 193 | await expect 194 | .poll(async () => Number(await marker.getAttribute(\"data-position\"))) > 195 | .toBeGreaterThan(0); | ^ 196 | const initialPosition = Number(await marker.getAttribute(\"data-position\")); 197 | const before = await readOwnership(page); 198 | expect(before.observers).toHaveLength(2); a"
+      ]
+    }
+  ],
+  "diagnosis": "All four engines returned BOT position0 at the old pre-input motion poll. The product intentionally remains ready until a text attempt. Focus alone does not start either local clock.",
+  "change": "Assert ready/empty/BOT0, obtain original target/count, insert one first native character before the original BOT>0 poll, then insert the remaining target.slice(1,count).",
+  "preserved": [
+    "Same count total characters and1 Backspace; expected retained text count−1.",
+    "Original before/after exact observer subscription/disconnection and scroll-listener ownership counts.",
+    "Both BOT movement polls, actual resize and Leave race lifecycle assertions.",
+    "Original5s predicate timeout, suite/test budgets, retries0 and all unrelated assertions."
+  ],
+  "diff": "diff --git a/e2e/typing-observer-ownership.spec.ts b/e2e/typing-observer-ownership.spec.ts\nindex 74e23dc..514a768 100644\n--- a/e2e/typing-observer-ownership.spec.ts\n+++ b/e2e/typing-observer-ownership.spec.ts\n@@ -190,6 +190,13 @@ test(\"bot and user progress keep native resize and scroll subscriptions stable u\n     .click();\n   const input = await focusTyping(page);\n   const marker = page.getByTestId(\"opponent-caret\");\n+  await expect(page.getByRole(\"region\", { name: \"Typing session\", exact: true })).toHaveAttribute(\"data-status\", \"ready\");\n+  await expect(marker).toHaveAttribute(\"data-position\", \"0\");\n+  await expect(input).toHaveValue(\"\");\n+  const text = await page.getByTestId(\"typing-target\").textContent();\n+  const position = Math.min(100, text!.length - 2);\n+  const count = text![position - 1] === \" \" ? position - 1 : position;\n+  await input.pressSequentially(text!.slice(0, 1), { delay: 3 });\n   await expect\n     .poll(async () => Number(await marker.getAttribute(\"data-position\")))\n     .toBeGreaterThan(0);\n@@ -203,10 +210,7 @@ test(\"bot and user progress keep native resize and scroll subscriptions stable u\n   ).toBe(true);\n   expect(before.scrollAdds).toBeGreaterThan(0);\n   expect(before.scrollRemoves).toBe(0);\n-  const text = await page.getByTestId(\"typing-target\").textContent();\n-  const position = Math.min(100, text!.length - 2);\n-  const count = text![position - 1] === \" \" ? position - 1 : position;\n-  await input.pressSequentially(text!.slice(0, count), { delay: 3 });\n+  await input.pressSequentially(text!.slice(1, count), { delay: 3 });\n   await input.press(\"Backspace\");\n   await expect(input).toHaveValue(text!.slice(0, count - 1));\n   await page.setViewportSize({ width: 390, height: 844 });\n",
+  "diffCheckExitCode": 0,
+  "productEdits": false,
+  "helperEdits": false,
+  "browsersExecuted": false,
+  "testsExecuted": false,
+  "buildsExecuted": false,
+  "confirmation": "Pending separately declared whole observer file across four engines, worker1/retries0, owned by parent. The two distinct WebKit course failures remain preserved and are not classified by this fixture correction."
+}

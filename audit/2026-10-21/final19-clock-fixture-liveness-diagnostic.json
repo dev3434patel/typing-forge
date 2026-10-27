@@ -1,0 +1,204 @@
+{
+  "capturedAt": "2026-10-27T12:49:48.877Z",
+  "clientDate": "2026-10-27",
+  "status": "FIXTURE-ONLY-REPAIR-PENDING-CONFIRMATION",
+  "immutableCheckpoint": true,
+  "build": "de097acba6969d580cc8",
+  "scope": "Read-only extraction of completed original and unchanged-confirmation reports plus a narrowly reviewed fixture-only paused-clock liveness repair. No browser/build/test was executed by this review. Original failed outcomes remain failed.",
+  "originalMatrix": {
+    "status": "FAILED",
+    "filesCoveredExactlyOnce": 63,
+    "totals": {
+      "total": 1452,
+      "passed": 1421,
+      "failed": 6,
+      "skipped": 25,
+      "flaky": 0
+    }
+  },
+  "originalFirefoxAnimation": {
+    "status": "unexpected",
+    "resultStatus": "timedOut",
+    "durationMs": 43304,
+    "errorStages": [
+      "context teardown exceeded the existing 30000ms deadline",
+      "browserContext.close runtime error"
+    ],
+    "bodyAssertionFailureRecorded": false,
+    "paintPreparation": {
+      "nativePaint": {
+        "supported": true,
+        "observed": true,
+        "startTime": 136
+      },
+      "schedulingPath": "genuine-paint-observer-then-existing-400ms-idle-window",
+      "clockAdvancedMs": 500,
+      "originalTimeoutMs": 20000,
+      "remainingTimeoutMs": 19665
+    },
+    "injectionWitness": {
+      "variant": "animation API",
+      "routeHits": 1,
+      "serviceWorkers": "block"
+    },
+    "qualification": "The original failure remained a teardown failure after ready practice and the injection-route witness. Its final raw report does not record a body assertion failure."
+  },
+  "unchangedFirefoxAnimationConfirmation": {
+    "status": "unexpected",
+    "resultStatus": "failed",
+    "durationMs": 56469,
+    "errorStages": [
+      "body: expected data-presentation playing, received preparing, at opening-renderer.ts line135 within the original20000ms preparation budget",
+      "context teardown exceeded the existing30000ms deadline",
+      "browserContext.close runtime error"
+    ],
+    "paintPreparation": {
+      "nativePaint": {
+        "supported": true,
+        "observed": true,
+        "startTime": 742
+      },
+      "schedulingPath": "genuine-paint-observer-then-existing-400ms-idle-window",
+      "clockAdvancedMs": 500,
+      "originalTimeoutMs": 20000,
+      "remainingTimeoutMs": 19204
+    },
+    "injectionWitness": null,
+    "runtimeSignals": {
+      "softwareCompositorError": true,
+      "jugglerFailure": true
+    },
+    "qualification": "This confirmation failed earlier than the original case. Compositor/Juggler messages are retained observations, not proof of the fixture failure cause."
+  },
+  "originalChromiumMobileFallback": {
+    "status": "unexpected",
+    "durationMs": 15320,
+    "stage": "viewport-acceptance.spec.ts line293, renderer fallback readiness assertion",
+    "expected": "fallback",
+    "received": "loading",
+    "deadlineMs": 15000,
+    "reached": [
+      "full intro mode",
+      "one100ms paused-clock advance"
+    ],
+    "unreached": [
+      "fallback renderer confirmed",
+      "2750ms assembled advance",
+      "61keys",
+      "all key/control/viewport geometry assertions",
+      "first skip key does not leak into practice"
+    ],
+    "screenshot": {
+      "path": "audit/2026-10-21/.playwright-artifacts-final19-isolated/viewport-acceptance-390px--3f1da-and-keeps-controls-separate-chromium/test-failed-1.png",
+      "sha256": "7da7b9ab09407155d479f9be61faab20034107edd01e748d97fe3d11797c27c5",
+      "visuallyReviewed": true,
+      "observation": "Controlled390px introduction at75%Preparing with caret/wordmark, no keyboard; no signed-in identity/private passage."
+    }
+  },
+  "workerConfirmation": {
+    "totals": {
+      "total": 16,
+      "passed": 12,
+      "failed": 0,
+      "skipped": 4,
+      "flaky": 0
+    },
+    "projects": [
+      {
+        "project": "chromium",
+        "total": 4,
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0,
+        "flaky": 0
+      },
+      {
+        "project": "edge",
+        "total": 4,
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0,
+        "flaky": 0
+      },
+      {
+        "project": "firefox",
+        "total": 4,
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0,
+        "flaky": 0
+      },
+      {
+        "project": "webkit",
+        "total": 4,
+        "passed": 0,
+        "failed": 0,
+        "skipped": 4,
+        "flaky": 0
+      }
+    ],
+    "status": "PARTIAL-CAPABILITY-SKIPS",
+    "allSixteenCasesPassed": false,
+    "skipsArePasses": false,
+    "qualification": "Twelve native cases passed and four WebKit native API capability cases remained skipped. This separate confirmation does not overwrite four original Firefox worker failures."
+  },
+  "mechanism": {
+    "productSource": "src/lib/after-first-paint.ts",
+    "productSourceSha256": "ebdb91ec0be40ddb78fe2840e521cbf0cd4e8115e6fad8f36781d00e9ae04723",
+    "existingFallbackMs": 1000,
+    "existingIdleTimeoutMs": 400,
+    "oldFixtureObservedPaintBranchClockAdvanceMs": 500,
+    "oldViewportClockAdvanceMs": 100,
+    "demonstratedContractGap": "An independent native paint observer does not establish that the product buffered observer ran. When it has not,500ms(or100ms) cannot reach the existing1000ms capability fallback plus400ms idle window while the document clock stays paused.",
+    "causalLimit": "The source and actual500ms attachment establish a scheduling path the fixture failed to drive. They do not establish that this path, rather than the retained browser runtime errors or another condition, caused every observed failure."
+  },
+  "repair": {
+    "files": [
+      {
+        "file": "e2e/opening-renderer.ts",
+        "oldSha256": "25131eb375ca59bf22d7ba2aa695cd60dd7d086aa7a9681d56199d10533aa764",
+        "newSha256": "dbddae0518f86baf838d67e1a62f8060018a1805e1059f49cb8f8eef5e30325c"
+      },
+      {
+        "file": "e2e/viewport-acceptance.spec.ts",
+        "oldSha256": "02ef3c07e9db9b4f1f037f2403a3cc484597c9f854c30b31989be5588251728d",
+        "newSha256": "d66540d0fdd897cd58882cd30135ea7f9aff1422b691e1848771b160a05a3f12"
+      }
+    ],
+    "maximumPreparationClockBudgetMs": 1500,
+    "stepMs": 80,
+    "earlyStop": "Only actual product data-presentation=playing, never the independent native paint witness alone.",
+    "realDeadlinesChanged": false,
+    "syntheticPaintPublished": false,
+    "productionSourceChanged": false,
+    "qualityChanged": false,
+    "viewportReadiness": "The same15000ms aggregate readiness budget now drives paused frames while waiting instead of dead-waiting with a frozen clock.",
+    "preservedAssertions": [
+      "full mode",
+      "actual fallback renderer",
+      "original2750ms post-readiness assembled advance",
+      "all61keys",
+      "every original key/control/viewport geometry check",
+      "skip key is absent from practice",
+      "all animation API fault witness/caret/retainedinput/pageerror assertions"
+    ]
+  },
+  "reversiblePatch": {
+    "path": "audit/2026-10-21/final19-clock-fixture-liveness.patch",
+    "sha256": "ed54f4969e9c5165a5110935088b1c8920ad215e907cf947c7d856c5c8eae75f",
+    "reverseApplyCheckPassed": true,
+    "originalBaselinesRemainIgnored": true,
+    "finiteSecretPatternMatches": 0
+  },
+  "originalEvidenceHashes": {
+    "audit/2026-10-21/final19-browser-matrix.json": "5eb2df2bd7cae3f291d4e0858422d4df2d183e076d94274915757a1575a8c393",
+    "audit/2026-10-21/final19-isolated.json": "c13fb3d98eba1c33c2356a74d9c61b4639de334bdf653cab55f2226ae1be58b8",
+    "audit/2026-10-21/final19-isolated-protocol.json": "4e43f8891309193c3955451a629dc4149a7df0f06dc4f6ad79604ac6f43903dc",
+    "audit/2026-10-21/final19-isolated-summary.json": "3740f957514982e5652ed30615b84598672db70a6b674a6ad6266a8f043cb3a0",
+    "audit/2026-10-21/final19-animation-teardown-confirmation.json": "fd97fdb8ddee2a75bb880eb902fcedcd6078dfec8df1fe1cff8153aa2abe38b2",
+    "audit/2026-10-21/final19-animation-teardown-confirmation-protocol.json": "c61fa88b313faeaeb2abc84c7ca65a5f01d3d7914f7670a327bb21c655fe44cf",
+    "audit/2026-10-21/final19-worker-readiness-confirmation.json": "e8f2f4d087a2ad84f3be4a094b59444bb5a010514ffa58ffc6a88b9f74ca8de6",
+    "audit/2026-10-21/final19-worker-readiness-confirmation-protocol.json": "9378c74e9a634c55d5b5831476eb81125ff1beaf06992513a029b0a8854a32d1"
+  },
+  "runtimeConfirmation": "PENDING: root must execute the separate four-engine animation and mobile-fallback confirmations. No pass is claimed for the repaired fixtures."
+}

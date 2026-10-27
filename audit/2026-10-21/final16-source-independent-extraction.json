@@ -1,0 +1,98 @@
+{
+  "status": "PASS-SCOPED",
+  "capturedAt": "2026-10-22T19:52:06.490516+00:00",
+  "reportLocalDate": "2026-10-23",
+  "scope": "Independent read-only extraction of completed16 source gates only. No tests/builds/browser/native HTTP/SQL/profile/service job performed. Candidate artifact identity remains pending root freeze; no runtime or performance acceptance inferred.",
+  "sourceGate": {
+    "file": "audit/2026-10-21/final16-source-gates.json",
+    "commands": 12,
+    "allExitZero": true,
+    "automaticRetries": 0,
+    "finishedAt": "2026-10-22T19:51:29.167Z"
+  },
+  "unit": {
+    "passed": 2799,
+    "files": 110,
+    "coveragePercent": {
+      "statements": 90.35,
+      "branches": 86.59,
+      "functions": 92.12,
+      "lines": 96.09
+    },
+    "receipt": "audit/2026-10-21/final16-coverage.log"
+  },
+  "typescript": {
+    "status": "PASS",
+    "configurations": [
+      "app",
+      "node",
+      "domain",
+      "portable"
+    ],
+    "receipt": "audit/2026-10-21/final16-typecheck.log"
+  },
+  "lint": {
+    "errors": 0,
+    "baselineWarnings": 9,
+    "receipt": "audit/2026-10-21/final16-lint.log"
+  },
+  "nativePure": {
+    "canonicalReplay": {
+      "cases": 533,
+      "validReferenceCases": 499,
+      "rejectionCases": 34,
+      "mismatches": 0
+    },
+    "course": {
+      "cases": 139,
+      "acceptedCases": 122,
+      "rejectionCases": 17,
+      "failures": [],
+      "passed": true
+    },
+    "progression": {
+      "cases": 87,
+      "accepted": 83,
+      "rejected": 4,
+      "canonicalProjections": 47,
+      "failures": 0
+    },
+    "classroom": {
+      "passed": 14,
+      "failed": 0
+    },
+    "social": {
+      "cases": 124,
+      "nonthrowingEvaluations": 82,
+      "expectedExceptions": 42,
+      "failures": 0,
+      "classification": "Not HTTP acceptance; pure PHP rule/replay/PDO protocol double."
+    },
+    "arena": {
+      "passed": 72,
+      "failed": 0
+    },
+    "raceClock": {
+      "total": 5,
+      "passed": 5
+    }
+  },
+  "content": {
+    "passed": 20,
+    "receipt": "audit/2026-10-21/final16-content.log"
+  },
+  "productionDependencies": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "receipt": "audit/2026-10-21/final16-dependencies.log"
+  },
+  "focusedOverlap": "Flat-freezer157/8 focused core cases overlap integrated2799 and must not be added.",
+  "candidateBuild": null,
+  "buildBrowserPerformance": "NOT-RUN/PENDING; do not infer a speedup from source gates."
+}

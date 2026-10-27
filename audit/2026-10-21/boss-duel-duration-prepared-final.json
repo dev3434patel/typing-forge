@@ -1,0 +1,26 @@
+{
+  "preparedAt": "2026-10-21T14:06:12.846Z",
+  "status": "PREPARED-NOT-RUN",
+  "scope": "Standaloneauditdriveronly;notanewspec/productchange.Nobrowserexecution.",
+  "expectedBuild": "3ffaa0a179b47e336a2d",
+  "command": "node audit/2026-10-21/run-boss-duel-duration.mjs boss-duel-final6 audit/2026-10-21/boss-duel-final6-protocol.json",
+  "files": [
+    {
+      "path": "audit/2026-10-21/run-boss-duel-duration.mjs",
+      "sha256": "99b880e76fa4d21a1ab430cd0b555591ab4ad24d31c13cdc3b2f48626b62f068"
+    },
+    {
+      "path": "audit/2026-10-21/boss-duel-final6-protocol.json",
+      "sha256": "7e05fa963070fa67a5c1a40bc808e94af38cf508de08ece6c6f0a90ae235a42f"
+    }
+  ],
+  "supersedesPreparationOnly": "audit/2026-10-21/boss-duel-duration-prepared.json",
+  "preparationChecks": [
+    {
+      "name": "Node syntax check",
+      "exitCode": 0,
+      "scope": "Driver parsing only; no browser executed"
+    }
+  ],
+  "change": "Added direct >=75s span assertion from actual native beforeinput timestamps, in addition to driver elapsed-time bound."
+}

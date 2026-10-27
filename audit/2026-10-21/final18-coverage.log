@@ -1,0 +1,164 @@
+
+> sparowtype@3.0.0 test:coverage
+> vitest run --coverage
+
+
+ RUN  v4.1.12 D:/extra/typing_updated/typing-forge
+      Coverage enabled with v8
+
+ ❯ src/services/__tests__/progression-service.test.ts (8 tests | 1 failed) 7129ms
+   × does not resurrect a completed result when reset happens during asynchronous hashing 5204ms
+ ❯ src/lib/typing-core/__tests__/transcript-target-cache.test.ts (12 tests | 1 failed) 13270ms
+     × keeps all-space and empty-word-heavy targets on exact bounded-retention fallback 7531ms
+ ❯ src/lib/typing-core/__tests__/session.test.ts (28 tests | 1 failed) 16789ms
+     × replays deterministic edit histories with finite counts and conserved retained units 16151ms
+ ❯ src/lib/__tests__/metrics-engine.test.ts (53 tests | 1 failed) 18180ms
+     × should handle very long session (30-minute equivalent) 17891ms
+ ❯ src/domain/analytics/analytics.test.ts (16 tests | 2 failed) 35274ms
+     × requires all3 full placement parts from one explicit run 16068ms
+     × retains bounded placement facts after replay expiry without duplicating keys or passage text 11446ms
+ ❯ src/lib/__tests__/typing-course.test.ts (60 tests | 4 failed) 57198ms
+     × replays all three genuine variants of 'speed-35' into qualifying evidence 6517ms
+     × replays all three genuine variants of 'speed-45' into qualifying evidence 6083ms
+     × replays all three genuine variants of 'speed-60' into qualifying evidence 7108ms
+     × replays all three genuine variants of 'speed-80' into qualifying evidence 10736ms
+ ❯ src/lib/typing-core/__tests__/conformance.test.ts (16 tests | 1 failed) 69907ms
+     × preserves atomic Unicode range edits against an independent string-splice reference 59572ms
+ ❯ src/games/engine/__tests__/fuzz.test.ts (1 test | 1 failed) 70415ms
+   × replays10,000 seeds through12 fixed frames and exact input without non-finite state or entity growth 70404ms
+ ❯ src/domain/progression/progression.test.ts (275 tests | 2 failed) 89956ms
+   × fuzz schedule batch 0: 100 independent schedules 5350ms
+   × fuzz schedule batch 3: 100 independent schedules 5653ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 14 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/domain/analytics/analytics.test.ts > canonical analytics and retained learning projections > requires all3 full placement parts from one explicit run
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/domain/analytics/analytics.test.ts:102:3
+    100|     expect(trainingAchievementFromResult(result)).toMatchObject({ qual…
+    101|   });
+    102|   it('requires all3 full placement parts from one explicit run', () =>…
+       |   ^
+    103|     const parts = [0, 1, 2].map(stage => run(placementConfiguration('a…
+    104|     expect(assessPlacement(parts.slice(0, 2), 'alice')).toBeNull();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/14]⎯
+
+ FAIL  src/domain/analytics/analytics.test.ts > canonical analytics and retained learning projections > retains bounded placement facts after replay expiry without duplicating keys or passage text
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/domain/analytics/analytics.test.ts:110:3
+    108|     expect(assessPlacement(parts, 'bob')).toBeNull();
+    109|   });
+    110|   it('retains bounded placement facts after replay expiry without dupl…
+       |   ^
+    111|     const parts = [0, 1, 2].map(stage => run(placementConfiguration('a…
+    112|     const rows = parts.map(part => record(part, { candidate: undefined…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/14]⎯
+
+ FAIL  src/domain/progression/progression.test.ts > fuzz schedule batch 0: 100 independent schedules
+ FAIL  src/domain/progression/progression.test.ts > fuzz schedule batch 3: 100 independent schedules
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/domain/progression/progression.test.ts:52:51
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/14]⎯
+
+ FAIL  src/lib/__tests__/metrics-engine.test.ts > Edge Cases > should handle very long session (30-minute equivalent)
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/lib/__tests__/metrics-engine.test.ts:323:3
+    321|   });
+    322|
+    323|   it('should handle very long session (30-minute equivalent)', () => {
+       |   ^
+    324|     const keystrokes: KeystrokeRecord[] = [];
+    325|     const thirtyMinutesMs = 30 * 60 * 1000; // 30 minutes
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/14]⎯
+
+ FAIL  src/lib/__tests__/typing-course.test.ts > versioned English QWERTY curriculum > replays all three genuine variants of 'speed-35' into qualifying evidence
+ FAIL  src/lib/__tests__/typing-course.test.ts > versioned English QWERTY curriculum > replays all three genuine variants of 'speed-45' into qualifying evidence
+ FAIL  src/lib/__tests__/typing-course.test.ts > versioned English QWERTY curriculum > replays all three genuine variants of 'speed-60' into qualifying evidence
+ FAIL  src/lib/__tests__/typing-course.test.ts > versioned English QWERTY curriculum > replays all three genuine variants of 'speed-80' into qualifying evidence
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/lib/__tests__/typing-course.test.ts:91:11
+     89|     expect(() => getCourseTarget(COURSE_LESSONS[0], 'bad' as CourseVar…
+     90|   });
+     91|   it.each(COURSE_LESSONS)('replays all three genuine variants of $id i…
+       |           ^
+     92|     for (const variant of lesson.variants) {
+     93|       const result = run(lesson.id, variant.id);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/14]⎯
+
+ FAIL  src/services/__tests__/progression-service.test.ts > does not resurrect a completed result when reset happens during asynchronous hashing
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/services/__tests__/progression-service.test.ts:12:1
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/14]⎯
+
+ FAIL  src/games/engine/__tests__/fuzz.test.ts > replays10,000 seeds through12 fixed frames and exact input without non-finite state or entity growth
+Error: Test timed out in 30000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/games/engine/__tests__/fuzz.test.ts:6:1
+      4| import type { Difficulty } from '../types';
+      5|
+      6| it('replays10,000 seeds through12 fixed frames and exact input without…
+       | ^
+      7|   for (let seed = 0; seed < 10000; seed++) {
+      8|     let now = 0;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/14]⎯
+
+ FAIL  src/lib/typing-core/__tests__/conformance.test.ts > cross-layer attribution, lifecycle and Unicode boundaries > preserves atomic Unicode range edits against an independent string-splice reference
+Error: Test timed out in 30000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/lib/typing-core/__tests__/conformance.test.ts:75:3
+     73|     summary.fixedRegressions.push('Grapheme boundaries are reconciled …
+     74|   });
+     75|   it('preserves atomic Unicode range edits against an independent stri…
+       |   ^
+     76|     const segmenter = new Intl.Segmenter('und', { granularity: 'graphe…
+     77|     const split = (text: string) => Array.from(segmenter.segment(text)…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/14]⎯
+
+ FAIL  src/lib/typing-core/__tests__/session.test.ts > replay trust boundary and seeded invariants > replays deterministic edit histories with finite counts and conserved retained units
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/lib/typing-core/__tests__/session.test.ts:251:3
+    249|     expect(() => replaySession(config, [], Infinity)).toThrow('duratio…
+    250|   });
+    251|   it('replays deterministic edit histories with finite counts and cons…
+       |   ^
+    252|     let seed = 98123;
+    253|     const random = () => { seed = (Math.imul(seed, 1664525) + 10139042…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/14]⎯
+
+ FAIL  src/lib/typing-core/__tests__/transcript-target-cache.test.ts > bounded factory-owned target-word metadata > keeps all-space and empty-word-heavy targets on exact bounded-retention fallback
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/lib/typing-core/__tests__/transcript-target-cache.test.ts:257:3
+    255|   });
+    256|
+    257|   it("keeps all-space and empty-word-heavy targets on exact bounded-re…
+       |   ^
+    258|     const atWordLimit = exerciseFactory(" ".repeat(511), "  ");
+    259|     // Another suite may already have used this literal; an existing e…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/14]⎯
+
+
+ Test Files  9 failed | 102 passed (111)
+      Tests  14 failed | 2797 passed (2811)
+   Start at  20:34:40
+   Duration  111.92s (transform 175.19s, setup 58.50s, import 281.07s, tests 556.52s, environment 177ms)
+

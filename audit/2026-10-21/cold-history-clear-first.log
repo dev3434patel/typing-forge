@@ -1,0 +1,41 @@
+
+ RUN  v4.1.12 D:/extra/typing_updated/typing-forge
+
+ ❯ src/services/__tests__/session-clear-durable.test.ts (2 tests | 2 failed) 10033ms
+     × erases cold raw rows atomically while preserving another owner and a permanent deletion fence 5016ms
+     × reports a durable deletion failure and still clears this visit instead of announcing success 5015ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/services/__tests__/session-clear-durable.test.ts > durable owner deletion before history hydration > erases cold raw rows atomically while preserving another owner and a permanent deletion fence
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/services/__tests__/session-clear-durable.test.ts:41:3
+     39| afterEach(() => vi.unstubAllGlobals());
+     40| describe('durable owner deletion before history hydration', () => {
+     41|   it('erases cold raw rows atomically while preserving another owner a…
+       |   ^
+     42|     const alice = { ...record('alice'), key: 'v3:alice:one', candidate…
+     43|     const bob = { ...record('bob'), key: 'v3:bob:one' };
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/services/__tests__/session-clear-durable.test.ts > durable owner deletion before history hydration > reports a durable deletion failure and still clears this visit instead of announcing success
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/services/__tests__/session-clear-durable.test.ts:56:3
+     54|     repository.dispose(); reopened.dispose();
+     55|   });
+     56|   it('reports a durable deletion failure and still clears this visit i…
+       |   ^
+     57|     const { data, factory } = durableDatabase([{ ...record(), key: 'v3…
+     58|     const repository = new SessionRepository();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  2 failed | 34 passed (36)
+   Start at  19:00:46
+   Duration  10.40s (transform 1.16s, setup 98ms, import 515ms, tests 10.21s, environment 0ms)
+

@@ -1,0 +1,79 @@
+{
+  "capturedAt": "2026-10-26T20:36:39Z",
+  "clientDate": "2026-10-27",
+  "status": "FAILED-TEARDOWN-DIAGNOSTIC",
+  "immutableCheckpoint": true,
+  "build": "de097acba6969d580cc8",
+  "scope": "Read-only inspection of an already completed failed Firefox case while the original serial four-engine matrix continues. No browser, test, build, retry, source edit or timeout change was performed for this diagnostic.",
+  "test": {
+    "file": "e2e/opening-experience.spec.ts",
+    "line": 211,
+    "title": "caret handoff fault injection > caret handoff animation API preserves input and the real caret",
+    "project": "firefox",
+    "logCase": 131,
+    "reportedDurationSeconds": 43.3,
+    "automaticRetries": 0,
+    "workers": 1,
+    "serviceWorkers": "block",
+    "tracing": "off",
+    "configuredDefaultTestTimeoutMs": 30000
+  },
+  "failure": {
+    "stage": "browser context teardown",
+    "exactErrorContext": "Tearing down \"context\" exceeded the test timeout of 30000ms.",
+    "bodyAssertionFailureRecordedInErrorContext": false,
+    "finalRawResultStatus": "PENDING: original batch JSON has not been written at this checkpoint",
+    "cause": "UNVERIFIED: the retained error context identifies the teardown deadline but does not establish why browser context closure exceeded it."
+  },
+  "reachedEvidence": [
+    "The failure screenshot shows the ordinary guest typing workspace after the intro, with an actual incorrect x in the passage and 0% displayed accuracy.",
+    "The screenshot shows the real typing caret beside the first incorrect character, the next expected r key, the visible live keyboard and the practice controls.",
+    "No introduction or decorative handoff overlay is visible in the reviewed screenshot."
+  ],
+  "notEstablishedAtThisCheckpoint": [
+    "The final raw test body errors, assertion completion and in-memory injection-witness attachment are not yet independently extractable from the still-running batch's final JSON.",
+    "A screenshot alone does not establish that the animation API fault-witness attribute or every final assertion passed.",
+    "The screenshot and teardown error do not demonstrate a lost input, an invisible real caret, a production animation defect or a native Safari/mobile keyboard defect."
+  ],
+  "testMechanism": [
+    "The fixture explicitly selects the document renderer and pauses the document clock; native worker behavior is exercised in separate normal-clock tests.",
+    "The caret chunk route is observed before navigation with service workers blocked. The animation variant replaces Element.prototype.animate only for an awakening-handoff element and sets a DOM witness before throwing Unavailable animation.",
+    "After the clocked opening completes, the test requires ready practice, a positive chunk-route witness and the animation-failure witness. It then enters x, advances the clock and checks retained input, absent decoration, real caret visibility and no page errors.",
+    "The production caret handoff catches an animation failure and disposes its decorative element while restoring the target caret's previous visibility. That existing recovery path has not been edited."
+  ],
+  "neighborControls": [
+    { "project": "firefox", "variant": "blocked chunk", "logCase": 129, "status": "PASS", "reportedDurationSeconds": 13.4 },
+    { "project": "firefox", "variant": "late chunk", "logCase": 130, "status": "PASS", "reportedDurationSeconds": 10.7 },
+    { "project": "chromium", "variant": "animation API", "logCase": 17, "status": "PASS", "reportedDurationSeconds": 3.1 },
+    { "project": "edge", "variant": "animation API", "logCase": 74, "status": "PASS", "reportedDurationSeconds": 1.8 }
+  ],
+  "artifacts": {
+    "protocol": {
+      "path": "audit/2026-10-21/final19-isolated-protocol.json",
+      "sha256": "e191eb6273ef09415ae90eb6556bab3a51c9e3b66f851ed64e3518d8e1770d16"
+    },
+    "log": {
+      "path": "audit/2026-10-21/final19-isolated.log",
+      "qualification": "Still being appended by the original batch; no whole-file immutable hash is claimed. Case 131 line reports failure at 43.3 seconds."
+    },
+    "errorContext": {
+      "path": "audit/2026-10-21/.playwright-artifacts-final19-isolated/opening-experience-caret-h-4d2ec-es-input-and-the-real-caret-firefox/error-context.md",
+      "bytes": 452,
+      "sha256": "03e12a5a1d682e49f69cba68c2ea82ee569960ccd5fdcc8fc1d598cbb351d61d"
+    },
+    "screenshot": {
+      "path": "audit/2026-10-21/.playwright-artifacts-final19-isolated/opening-experience-caret-h-4d2ec-es-input-and-the-real-caret-firefox/test-failed-1.png",
+      "bytes": 96560,
+      "sha256": "791aba5dc46ab24fc54ce20140cb55795bb072843db5abcd27ff281045f1e4e2",
+      "visuallyReviewed": true,
+      "content": "Controlled guest workspace with generated public practice text; no signed-in identity or private custom passage is visible.",
+      "publication": "Nested original remains ignored; this receipt records its bounded visual observation and provenance."
+    }
+  },
+  "sourceBindings": {
+    "e2e/opening-experience.spec.ts": "3c77e06798780ec82d47aac0318474a876959704bc955c3b6940f9ebf9974eb0",
+    "e2e/opening-renderer.ts": "25131eb375ca59bf22d7ba2aa695cd60dd7d086aa7a9681d56199d10533aa764",
+    "src/components/brand/caret-handoff.ts": "19c84da9a4567a04a145fec5668a0193d5f29bc7fc3fe2fdc656859a9bc8988b"
+  },
+  "recommendation": "Let the original matrix finish, then independently extract its final raw result and injection-witness attachment. Preserve this failure. Do not modify production handoff behavior or relax deadlines on the basis of a context teardown timeout alone."
+}

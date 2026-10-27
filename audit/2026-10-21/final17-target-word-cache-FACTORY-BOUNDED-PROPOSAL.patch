@@ -1,0 +1,43 @@
+--- a/src/lib/typing-core/transcript.ts
++++ b/src/lib/typing-core/transcript.ts
+@@ -17,10 +17,15 @@
+ }
+ // Bounded deterministic memoization avoids re-segmenting the immutable target on every input.
+ const targetCache = new Map<string, readonly string[]>();
++// Null brands a factory-owned immutable target whose bounded word metadata is lazy.
++const targetWordCache = new WeakMap<readonly string[], readonly Readonly<Word>[] | null>();
++const MAX_CACHED_WORD_TARGET_UNITS = 4096;
++const MAX_CACHED_TARGET_WORDS = 512;
+ export function targetGraphemes(text: string): readonly string[] {
+   const cached = targetCache.get(text);
+   if (cached) return cached;
+   const result = Object.freeze(graphemes(text));
++  if (result.length <= MAX_CACHED_WORD_TARGET_UNITS) targetWordCache.set(result, null);
+   if (targetCache.size >= 16) targetCache.delete(targetCache.keys().next().value!);
+   targetCache.set(text, result);
+   return result;
+@@ -59,7 +64,9 @@
+   reason: WordCreditReason;
+ }
+ interface Word { start: number; end: number; separator: number | null }
+-function targetWords(target: readonly string[]): Word[] {
++function targetWords(target: readonly string[]): readonly Readonly<Word>[] {
++  const cached = targetWordCache.get(target);
++  if (cached) return cached;
+   const words: Word[] = [];
+   let start = 0;
+   for (let i = 0; i <= target.length; i++) {
+@@ -67,6 +74,13 @@
+       words.push({ start, end: i, separator: i < target.length ? i : null });
+       start = i + 1;
+     }
++  }
++  if (targetWordCache.has(target)) {
++    if (words.length <= MAX_CACHED_TARGET_WORDS) {
++      for (let index = 0; index < words.length; index++) Object.freeze(words[index]);
++      Object.freeze(words);
++      targetWordCache.set(target, words);
++    } else targetWordCache.delete(target);
+   }
+   return words;
+ }

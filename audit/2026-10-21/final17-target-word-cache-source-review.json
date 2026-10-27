@@ -1,0 +1,73 @@
+{
+  "capturedAt": "2026-10-22T20:41:01.257126+00:00",
+  "reportLocalDate": "2026-10-23",
+  "status": "PASS-SCOPED",
+  "scope": "Source17 bounded factory-owned target word metadata cache and focused pure invariants only. No measured speedup, integrated17 acceptance or whole-core byte identity is claimed.",
+  "baselineSourceFile": "audit/2026-10-21/final16-source.json",
+  "frozenBaselineBuild": "8ac2a0d9602ec9263118",
+  "candidateBuild": null,
+  "hashNormalization": "UTF-8 source with CRLF normalized to LF, matching frozen-source manifest convention.",
+  "baselineTranscriptSha256": "f0d5e8763e3d04461dbd5b7aeefc90a22c93686ba1280c973a4e02ef481149ad",
+  "currentTranscriptSha256": "11532bcf96ddcf0f1eb77c9b73ef6c37af6ae88afd6643b7622eef21fcc8140b",
+  "reversedTranscriptSha256": "f0d5e8763e3d04461dbd5b7aeefc90a22c93686ba1280c973a4e02ef481149ad",
+  "reverseEditRestoresExact16Transcript": true,
+  "canonicalMathReplayTimingRestoredByReverse": true,
+  "exactReverseReplacements": [
+    {
+      "count": 1,
+      "remove": "// Null brands a factory-owned immutable target whose bounded word metadata is lazy.\nconst targetWordCache = new WeakMap<readonly string[], readonly Readonly<Word>[] | null>();\nconst MAX_CACHED_WORD_TARGET_UNITS = 4096;\nconst MAX_CACHED_TARGET_WORDS = 512;\n",
+      "restore": ""
+    },
+    {
+      "count": 1,
+      "remove": "  if (result.length <= MAX_CACHED_WORD_TARGET_UNITS) targetWordCache.set(result, null);\n",
+      "restore": ""
+    },
+    {
+      "count": 1,
+      "remove": "function targetWords(target: readonly string[]): readonly Readonly<Word>[] {\n  const cached = targetWordCache.get(target);\n  if (cached) return cached;\n",
+      "restore": "function targetWords(target: readonly string[]): Word[] {\n"
+    },
+    {
+      "count": 1,
+      "remove": "  if (targetWordCache.has(target)) {\n    if (words.length <= MAX_CACHED_TARGET_WORDS) {\n      for (let index = 0; index < words.length; index++) Object.freeze(words[index]);\n      Object.freeze(words);\n      targetWordCache.set(target, words);\n    } else targetWordCache.delete(target);\n  }\n",
+      "restore": ""
+    }
+  ],
+  "ownedSourceFiles": [
+    "src/lib/typing-core/transcript.ts",
+    "src/lib/typing-core/__tests__/transcript-target-cache.test.ts"
+  ],
+  "ownedSourceHashes": {
+    "src/lib/typing-core/transcript.ts": "11532bcf96ddcf0f1eb77c9b73ef6c37af6ae88afd6643b7622eef21fcc8140b",
+    "src/lib/typing-core/__tests__/transcript-target-cache.test.ts": "204ee5fae9fb46fcaa289b71e26385a8b5dda9e946f6e0a8d5f05bbb8c62e56d"
+  },
+  "reviewedTestProposalSha256": "ebcc274a8c55100cc4ba32f5eb6958bea52d131458c845bbf97ce898c07dc8c4",
+  "unitMatchesReviewedProposalExceptTwoLineHeader": true,
+  "tests": {
+    "cases": 12,
+    "focusedReceipt": "audit/2026-10-21/final17-target-cache-checks-first.json",
+    "corePassed": 169,
+    "coreFiles": 9,
+    "domainTypeScript": "PASS",
+    "appTypeScript": "PASS",
+    "scopedLint": "PASS"
+  },
+  "cachePolicy": {
+    "eligibility": "Only dense immutable target arrays minted by targetGraphemes; external mutable/frozen/accessor/proxy arrays bypass caching.",
+    "maxTargetGraphemes": 4096,
+    "maxWordRecords": 512,
+    "wordLimitExceeded": "Delete factory null marker, return unchanged native loop output.",
+    "values": "Frozen numeric start/end/separator records; no target text, events, owner or session stored in values.",
+    "memoryLimitScope": "Per eligible target only. Weak keys and existing16-entry strong target cache do not impose a global16-entry cap when external callers retain factory arrays."
+  },
+  "boundariesVerified": [
+    "4096/4097 graphemes",
+    "512/513 nonempty word records",
+    "511/512/4096 literal spaces",
+    "External frozen dynamic getter and proxy behavior",
+    "Independent full Alignment/trace/metrics replay, Unicode/IME/code/free and appended target identities"
+  ],
+  "nativeParity": "NOT-RUN; parent integrated gates will compare PHP reference independently.",
+  "performanceAndGC": "NOT-RUN; no causal latency or retained heap measurement claimed."
+}

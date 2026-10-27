@@ -1,0 +1,391 @@
+
+Running 16 tests using 1 worker
+
+(node:51976) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   1 [chromium] › e2e\live-keyboard.spec.ts:396:3 › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable (7.5s)
+(node:31772) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   2 [chromium] › e2e\live-keyboard.spec.ts:396:3 › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable (6.5s)
+(node:44828) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   3 [chromium] › e2e\live-keyboard.spec.ts:396:3 › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable (7.4s)
+(node:27224) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  4 [chromium] › e2e\live-keyboard.spec.ts:529:1 › layout-contained native character board retains its intrinsic rows and actual input after rotation (2.1s)
+(node:36252) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   5 [edge] › e2e\live-keyboard.spec.ts:396:3 › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable (7.5s)
+(node:12300) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   6 [edge] › e2e\live-keyboard.spec.ts:396:3 › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable (7.5s)
+(node:51108) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   7 [edge] › e2e\live-keyboard.spec.ts:396:3 › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable (7.6s)
+(node:31772) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  8 [edge] › e2e\live-keyboard.spec.ts:529:1 › layout-contained native character board retains its intrinsic rows and actual input after rotation (1.8s)
+(node:13236) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   9 [firefox] › e2e\live-keyboard.spec.ts:396:3 › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable (10.5s)
+(node:13828) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  10 [firefox] › e2e\live-keyboard.spec.ts:396:3 › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable (8.6s)
+(node:43444) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  11 [firefox] › e2e\live-keyboard.spec.ts:396:3 › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable (10.9s)
+(node:49996) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 12 [firefox] › e2e\live-keyboard.spec.ts:529:1 › layout-contained native character board retains its intrinsic rows and actual input after rotation (4.2s)
+(node:44076) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  13 [webkit] › e2e\live-keyboard.spec.ts:396:3 › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable (8.1s)
+(node:11500) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 14 [webkit] › e2e\live-keyboard.spec.ts:396:3 › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable (4.2s)
+  ok 15 [webkit] › e2e\live-keyboard.spec.ts:396:3 › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable (4.1s)
+  ok 16 [webkit] › e2e\live-keyboard.spec.ts:529:1 › layout-contained native character board retains its intrinsic rows and actual input after rotation (2.5s)
+
+
+  1) [chromium] › e2e\live-keyboard.spec.ts:396:3 › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "hitPanel": true,
+    -   "overlapsBoard": true,
+    +   "hitPanel": false,
+    +   "overlapsBoard": false,
+        "withinViewport": true,
+      }
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      498 |       // Keep the same strict hit/overlap/viewport contract and wait for the
+      499 |       // production layout effect to finish placing the panel.
+    > 500 |       await expect.poll(readOverlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+          |                                      ^
+      501 |       const overlay = await readOverlay();
+      502 |       expect(overlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+      503 |       const overlayGeometry = await panel.evaluate(element => {
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:500:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final17-keyboard-fixture-confirmation\live-keyboard-layout-conta-4460a-tside-shortcut-panel-usable-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final17-keyboard-fixture-confirmation\live-keyboard-layout-conta-4460a-tside-shortcut-panel-usable-chromium\error-context.md
+
+  2) [chromium] › e2e\live-keyboard.spec.ts:396:3 › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "hitPanel": true,
+    -   "overlapsBoard": true,
+    +   "hitPanel": false,
+    +   "overlapsBoard": false,
+        "withinViewport": true,
+      }
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      498 |       // Keep the same strict hit/overlap/viewport contract and wait for the
+      499 |       // production layout effect to finish placing the panel.
+    > 500 |       await expect.poll(readOverlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+          |                                      ^
+      501 |       const overlay = await readOverlay();
+      502 |       expect(overlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+      503 |       const overlayGeometry = await panel.evaluate(element => {
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:500:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final17-keyboard-fixture-confirmation\live-keyboard-layout-conta-66b4b-tside-shortcut-panel-usable-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final17-keyboard-fixture-confirmation\live-keyboard-layout-conta-66b4b-tside-shortcut-panel-usable-chromium\error-context.md
+
+  3) [chromium] › e2e\live-keyboard.spec.ts:396:3 › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "hitPanel": true,
+    -   "overlapsBoard": true,
+    +   "hitPanel": false,
+    +   "overlapsBoard": false,
+        "withinViewport": true,
+      }
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      498 |       // Keep the same strict hit/overlap/viewport contract and wait for the
+      499 |       // production layout effect to finish placing the panel.
+    > 500 |       await expect.poll(readOverlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+          |                                      ^
+      501 |       const overlay = await readOverlay();
+      502 |       expect(overlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+      503 |       const overlayGeometry = await panel.evaluate(element => {
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:500:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final17-keyboard-fixture-confirmation\live-keyboard-layout-conta-ec6d2-tside-shortcut-panel-usable-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final17-keyboard-fixture-confirmation\live-keyboard-layout-conta-ec6d2-tside-shortcut-panel-usable-chromium\error-context.md
+
+  4) [edge] › e2e\live-keyboard.spec.ts:396:3 › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "hitPanel": true,
+    -   "overlapsBoard": true,
+    +   "hitPanel": false,
+    +   "overlapsBoard": false,
+        "withinViewport": true,
+      }
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      498 |       // Keep the same strict hit/overlap/viewport contract and wait for the
+      499 |       // production layout effect to finish placing the panel.
+    > 500 |       await expect.poll(readOverlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+          |                                      ^
+      501 |       const overlay = await readOverlay();
+      502 |       expect(overlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+      503 |       const overlayGeometry = await panel.evaluate(element => {
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:500:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final17-keyboard-fixture-confirmation\live-keyboard-layout-conta-4460a-tside-shortcut-panel-usable-edge\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final17-keyboard-fixture-confirmation\live-keyboard-layout-conta-4460a-tside-shortcut-panel-usable-edge\error-context.md
+
+  5) [edge] › e2e\live-keyboard.spec.ts:396:3 › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "hitPanel": true,
+    -   "overlapsBoard": true,
+    +   "hitPanel": false,
+    +   "overlapsBoard": false,
+        "withinViewport": true,
+      }
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      498 |       // Keep the same strict hit/overlap/viewport contract and wait for the
+      499 |       // production layout effect to finish placing the panel.
+    > 500 |       await expect.poll(readOverlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+          |                                      ^
+      501 |       const overlay = await readOverlay();
+      502 |       expect(overlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+      503 |       const overlayGeometry = await panel.evaluate(element => {
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:500:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final17-keyboard-fixture-confirmation\live-keyboard-layout-conta-66b4b-tside-shortcut-panel-usable-edge\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final17-keyboard-fixture-confirmation\live-keyboard-layout-conta-66b4b-tside-shortcut-panel-usable-edge\error-context.md
+
+  6) [edge] › e2e\live-keyboard.spec.ts:396:3 › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "hitPanel": true,
+    -   "overlapsBoard": true,
+    +   "hitPanel": false,
+    +   "overlapsBoard": false,
+        "withinViewport": true,
+      }
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      498 |       // Keep the same strict hit/overlap/viewport contract and wait for the
+      499 |       // production layout effect to finish placing the panel.
+    > 500 |       await expect.poll(readOverlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+          |                                      ^
+      501 |       const overlay = await readOverlay();
+      502 |       expect(overlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+      503 |       const overlayGeometry = await panel.evaluate(element => {
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:500:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final17-keyboard-fixture-confirmation\live-keyboard-layout-conta-ec6d2-tside-shortcut-panel-usable-edge\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final17-keyboard-fixture-confirmation\live-keyboard-layout-conta-ec6d2-tside-shortcut-panel-usable-edge\error-context.md
+
+  7) [firefox] › e2e\live-keyboard.spec.ts:396:3 › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "hitPanel": true,
+    -   "overlapsBoard": true,
+    +   "hitPanel": false,
+    +   "overlapsBoard": false,
+        "withinViewport": true,
+      }
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      498 |       // Keep the same strict hit/overlap/viewport contract and wait for the
+      499 |       // production layout effect to finish placing the panel.
+    > 500 |       await expect.poll(readOverlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+          |                                      ^
+      501 |       const overlay = await readOverlay();
+      502 |       expect(overlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+      503 |       const overlayGeometry = await panel.evaluate(element => {
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:500:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final17-keyboard-fixture-confirmation\live-keyboard-layout-conta-4460a-tside-shortcut-panel-usable-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final17-keyboard-fixture-confirmation\live-keyboard-layout-conta-4460a-tside-shortcut-panel-usable-firefox\error-context.md
+
+  8) [firefox] › e2e\live-keyboard.spec.ts:396:3 › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "hitPanel": true,
+    -   "overlapsBoard": true,
+    +   "hitPanel": false,
+    +   "overlapsBoard": false,
+        "withinViewport": true,
+      }
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      498 |       // Keep the same strict hit/overlap/viewport contract and wait for the
+      499 |       // production layout effect to finish placing the panel.
+    > 500 |       await expect.poll(readOverlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+          |                                      ^
+      501 |       const overlay = await readOverlay();
+      502 |       expect(overlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+      503 |       const overlayGeometry = await panel.evaluate(element => {
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:500:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final17-keyboard-fixture-confirmation\live-keyboard-layout-conta-66b4b-tside-shortcut-panel-usable-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final17-keyboard-fixture-confirmation\live-keyboard-layout-conta-66b4b-tside-shortcut-panel-usable-firefox\error-context.md
+
+  9) [firefox] › e2e\live-keyboard.spec.ts:396:3 › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "hitPanel": true,
+    -   "overlapsBoard": true,
+    +   "hitPanel": false,
+    +   "overlapsBoard": false,
+        "withinViewport": true,
+      }
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      498 |       // Keep the same strict hit/overlap/viewport contract and wait for the
+      499 |       // production layout effect to finish placing the panel.
+    > 500 |       await expect.poll(readOverlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+          |                                      ^
+      501 |       const overlay = await readOverlay();
+      502 |       expect(overlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+      503 |       const overlayGeometry = await panel.evaluate(element => {
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:500:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final17-keyboard-fixture-confirmation\live-keyboard-layout-conta-ec6d2-tside-shortcut-panel-usable-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final17-keyboard-fixture-confirmation\live-keyboard-layout-conta-ec6d2-tside-shortcut-panel-usable-firefox\error-context.md
+
+  10) [webkit] › e2e\live-keyboard.spec.ts:396:3 › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "hitPanel": true,
+    -   "overlapsBoard": true,
+    +   "hitPanel": false,
+    +   "overlapsBoard": false,
+        "withinViewport": true,
+      }
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      498 |       // Keep the same strict hit/overlap/viewport contract and wait for the
+      499 |       // production layout effect to finish placing the panel.
+    > 500 |       await expect.poll(readOverlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+          |                                      ^
+      501 |       const overlay = await readOverlay();
+      502 |       expect(overlay).toEqual({ overlapsBoard: true, hitPanel: true, withinViewport: true });
+      503 |       const overlayGeometry = await panel.evaluate(element => {
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:500:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final17-keyboard-fixture-confirmation\live-keyboard-layout-conta-4460a-tside-shortcut-panel-usable-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final17-keyboard-fixture-confirmation\live-keyboard-layout-conta-4460a-tside-shortcut-panel-usable-webkit\error-context.md
+
+  10 failed
+    [chromium] › e2e\live-keyboard.spec.ts:396:3 › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable 
+    [chromium] › e2e\live-keyboard.spec.ts:396:3 › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable 
+    [chromium] › e2e\live-keyboard.spec.ts:396:3 › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable 
+    [edge] › e2e\live-keyboard.spec.ts:396:3 › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable 
+    [edge] › e2e\live-keyboard.spec.ts:396:3 › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable 
+    [edge] › e2e\live-keyboard.spec.ts:396:3 › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable 
+    [firefox] › e2e\live-keyboard.spec.ts:396:3 › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable 
+    [firefox] › e2e\live-keyboard.spec.ts:396:3 › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable 
+    [firefox] › e2e\live-keyboard.spec.ts:396:3 › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable 
+    [webkit] › e2e\live-keyboard.spec.ts:396:3 › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable 
+  6 passed (2.0m)

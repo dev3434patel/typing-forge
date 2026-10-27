@@ -1,0 +1,46 @@
+{
+  "recordedAt": "2026-10-22T20:18:56.869900+00:00",
+  "status": "PREPARED_NOT_APPLIED_NOT_RUN",
+  "scope": "Audit-only proposal; product, helpers and actual e2e files remain untouched. No test, build or browser executed.",
+  "target": "e2e/live-keyboard.spec.ts",
+  "targetRawSha256Before": "f73838f6012926a919746d9cf2f86f12b4c1481b09e5eaf32de0fd0745387a4d",
+  "targetRawSha256AfterPreparation": "f73838f6012926a919746d9cf2f86f12b4c1481b09e5eaf32de0fd0745387a4d",
+  "targetUnchanged": true,
+  "proposalPatch": "final17-keyboard-containment-e2e-PROPOSAL.patch",
+  "proposalPatchSha256": "61c2f2e27f27160955bc5363c3a23812f5629bb472c34a2c7248e7abbf2aaf47",
+  "additionSource": "final17-keyboard-containment-e2e-addition.txt",
+  "additionSha256": "4d49cd6ecc6473d4f81e8cb3af71308da1091363571fc82abae4ef74d1b613a4",
+  "proposedDefinitionCount": 4,
+  "definitions": [
+    "Mapped Classic390px",
+    "Mapped Flat390px",
+    "Mapped Outline390px",
+    "Native Arabic390px"
+  ],
+  "existingHelpers": [
+    "customPractice",
+    "focusTyping (unchanged existing use)",
+    "settlePageVisuals"
+  ],
+  "assertions": [
+    "real Studio persistent keycap/ripple controls",
+    "all61 mapped keys/five rows and native-character board fit",
+    "positive expected outline room inside board and visible overflow",
+    "native c down/up exact retained input then Backspace",
+    "actual2px transform endpoint and90ms transform animation",
+    "240ms native active pseudo-element ripple",
+    "board/key/row dimensions and settled positions within0.02px",
+    "real landscape rotation and sibling shortcut-panel overlapping board hit-test",
+    "Escape closes shortcut panel and returns summary focus",
+    "native Arabic board keeps actual wrong Latin attempt with no invented physical Arabic key"
+  ],
+  "budgets": "Existing default30s per definition and existing assertion timeouts; no retries or new timeout overrides.",
+  "limitations": [
+    "Prepared source only; no assertion is verified.",
+    "No pixel identity or raster clipping proof; measured ink room, animation state and overlap hit testing cover the specific containment risk.",
+    "Physical phones and native IME behavior remain outside this proposed desktop-engine viewport check.",
+    "Existing keyboard-viewport/caret/first-input suites still required across all4engines.",
+    "The overlap setup is a deliberate realistic rotation+scroll flow; if a future actual receipt has no panel/board intersection, diagnose the fixture rather than weakening paint-order assertions."
+  ],
+  "applyOnlyAfter": "Root source17 authorization after the active frozen source16 matrix completes."
+}

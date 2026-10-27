@@ -1,0 +1,215 @@
+{
+  "totals": {
+    "total": 168,
+    "passed": 156,
+    "failed": 12,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "projects": [
+    {
+      "project": "chromium",
+      "total": 42,
+      "passed": 40,
+      "failed": 2,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "edge",
+      "total": 42,
+      "passed": 40,
+      "failed": 2,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "firefox",
+      "total": 42,
+      "passed": 40,
+      "failed": 2,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "webkit",
+      "total": 42,
+      "passed": 36,
+      "failed": 6,
+      "skipped": 0,
+      "flaky": 0
+    }
+  ],
+  "reportedStats": {
+    "expected": 156,
+    "unexpected": 12,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "countsAgreeWithReport": true,
+  "failures": [
+    {
+      "project": "webkit",
+      "title": "friends.spec.ts › owner-bound friend controls preserve private fields and block both contact and duel views",
+      "file": "friends.spec.ts",
+      "line": 9,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(locator).toBeVisible() failed Locator: getByRole('article').filter({ has: getByRole('heading', { name: 'bob_typist', exact: true }) }).getByText('Practiced recently', { exact: true }) Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByRole('article').filter({ has: getByRole('heading', { name: 'bob_typist', exact: true }) }).getByText('Practiced recently', { exact: true }) with timeout"
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "friends.spec.ts › an incoming request is explicitly accepted and reports carry a fixed category only",
+      "file": "friends.spec.ts",
+      "line": 23,
+      "attempts": 1,
+      "attemptStatuses": [
+        "timedOut"
+      ],
+      "messages": [
+        "Test timeout of 30000ms exceeded.",
+        "Error: locator.click: Test timeout of 30000ms exceeded. Call log: - waiting for getByRole('button', { name: 'Accept request', exact: true }) 24 | const state = snapshot(), writes: { action: string; body: Record<string, unknown> }[] = []; 25 | await page.route('**/api/social**', async route => { if (route.request().method() === 'POST') { const action = route.request().url().split('/').at(-1)!, body = route.request().postDataJSON(); writes.push({ a"
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "friends.spec.ts › service errors remain explicit without inventing empty successful contacts",
+      "file": "friends.spec.ts",
+      "line": 38,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(locator).toContainText(expected) failed Locator: getByRole('alert') Expected substring: \"Private account service unavailable.\" Received string: \"Sign in to use this account workspace.\" Timeout: 5000ms Call log: - Expect \"toContainText\" getByRole('alert') with timeout 5000ms - waiting for getByRole('alert') 8 × locator resolved to <p role=\"alert\" class=\"panel p-4 text-sm text-destructive\">Sign in to use this account workspace.</p> - "
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "friends.spec.ts › an actual issued duel UI waits for its countdown and uses the canonical input",
+      "file": "friends.spec.ts",
+      "line": 43,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(locator).toBeVisible() failed Locator: getByText('Your independent server-timed attempt starts after the countdown.', { exact: true }) Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByText('Your independent server-timed attempt starts after the countdown.', { exact: true }) with timeout 5000ms - waiting for getByText('Your independent server-timed attempt starts after the countdown."
+      ]
+    },
+    {
+      "project": "chromium",
+      "title": "progression-extras.spec.ts › collection and personal appearance have automated accessible surfaces at390px",
+      "file": "progression-extras.spec.ts",
+      "line": 48,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 47 - Array [] + Array [ + Object { + \"description\": \"Ensure ARIA attributes are not prohibited for an element's role\", + \"help\": \"Elements must only use permitted ARIA attributes\", + \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.14/aria-prohibited-attr?application=axeAPI\", + \"id\": \"aria-prohibited-attr\", + \"impact\": \"serious\", + \"nodes\": Array [ + Object "
+      ]
+    },
+    {
+      "project": "chromium",
+      "title": "progression-extras.spec.ts › collection and personal appearance have automated accessible surfaces at1440px",
+      "file": "progression-extras.spec.ts",
+      "line": 48,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 47 - Array [] + Array [ + Object { + \"description\": \"Ensure ARIA attributes are not prohibited for an element's role\", + \"help\": \"Elements must only use permitted ARIA attributes\", + \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.14/aria-prohibited-attr?application=axeAPI\", + \"id\": \"aria-prohibited-attr\", + \"impact\": \"serious\", + \"nodes\": Array [ + Object "
+      ]
+    },
+    {
+      "project": "edge",
+      "title": "progression-extras.spec.ts › collection and personal appearance have automated accessible surfaces at390px",
+      "file": "progression-extras.spec.ts",
+      "line": 48,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 47 - Array [] + Array [ + Object { + \"description\": \"Ensure ARIA attributes are not prohibited for an element's role\", + \"help\": \"Elements must only use permitted ARIA attributes\", + \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.14/aria-prohibited-attr?application=axeAPI\", + \"id\": \"aria-prohibited-attr\", + \"impact\": \"serious\", + \"nodes\": Array [ + Object "
+      ]
+    },
+    {
+      "project": "edge",
+      "title": "progression-extras.spec.ts › collection and personal appearance have automated accessible surfaces at1440px",
+      "file": "progression-extras.spec.ts",
+      "line": 48,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 47 - Array [] + Array [ + Object { + \"description\": \"Ensure ARIA attributes are not prohibited for an element's role\", + \"help\": \"Elements must only use permitted ARIA attributes\", + \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.14/aria-prohibited-attr?application=axeAPI\", + \"id\": \"aria-prohibited-attr\", + \"impact\": \"serious\", + \"nodes\": Array [ + Object "
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "progression-extras.spec.ts › collection and personal appearance have automated accessible surfaces at390px",
+      "file": "progression-extras.spec.ts",
+      "line": 48,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 47 - Array [] + Array [ + Object { + \"description\": \"Ensure ARIA attributes are not prohibited for an element's role\", + \"help\": \"Elements must only use permitted ARIA attributes\", + \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.14/aria-prohibited-attr?application=axeAPI\", + \"id\": \"aria-prohibited-attr\", + \"impact\": \"serious\", + \"nodes\": Array [ + Object "
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "progression-extras.spec.ts › collection and personal appearance have automated accessible surfaces at1440px",
+      "file": "progression-extras.spec.ts",
+      "line": 48,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 47 - Array [] + Array [ + Object { + \"description\": \"Ensure ARIA attributes are not prohibited for an element's role\", + \"help\": \"Elements must only use permitted ARIA attributes\", + \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.14/aria-prohibited-attr?application=axeAPI\", + \"id\": \"aria-prohibited-attr\", + \"impact\": \"serious\", + \"nodes\": Array [ + Object "
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "progression-extras.spec.ts › collection and personal appearance have automated accessible surfaces at390px",
+      "file": "progression-extras.spec.ts",
+      "line": 48,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 47 - Array [] + Array [ + Object { + \"description\": \"Ensure ARIA attributes are not prohibited for an element's role\", + \"help\": \"Elements must only use permitted ARIA attributes\", + \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.14/aria-prohibited-attr?application=axeAPI\", + \"id\": \"aria-prohibited-attr\", + \"impact\": \"serious\", + \"nodes\": Array [ + Object "
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "progression-extras.spec.ts › collection and personal appearance have automated accessible surfaces at1440px",
+      "file": "progression-extras.spec.ts",
+      "line": 48,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 47 - Array [] + Array [ + Object { + \"description\": \"Ensure ARIA attributes are not prohibited for an element's role\", + \"help\": \"Elements must only use permitted ARIA attributes\", + \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.14/aria-prohibited-attr?application=axeAPI\", + \"id\": \"aria-prohibited-attr\", + \"impact\": \"serious\", + \"nodes\": Array [ + Object "
+      ]
+    }
+  ],
+  "flakyCases": [],
+  "skippedCases": [],
+  "skipReasons": [],
+  "expectedFailures": [],
+  "globalErrors": [],
+  "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+}

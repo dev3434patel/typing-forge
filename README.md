@@ -1,6 +1,8 @@
 # SparowType
 
-A typing practice workspace built with React, TypeScript, Vite, Tailwind CSS, PHP and MySQL/MariaDB. The v3 implementation combines timed and finite tests, exact code practice, private custom text, free writing, adaptive learning, a structured typing course, labelled local bots and server-owned human races.
+A typing practice workspace built with React, TypeScript, Vite, Tailwind CSS, PHP and MySQL/MariaDB. It combines replayable typing tests, adaptive practice, a structured course, eight original arcade modes, Signal Run, personal analytics, earned cosmetics and server-owned races. Optional PHP modules add friends, issued duels, eight-player Arena rooms and classroom assignments. Frontend-only builds retain local practice without an account server.
+
+**27 October hotfix audit — PARTIAL:** the [current release audit](docs/RELEASE_AUDIT_2026-10-27.md) records 2,822 passing tests in 113 files and full-quality mobile Lighthouse **96 / 97 / 98**, median **97**, with accessibility, best practices and SEO **100** throughout. The original full browser matrix remains failed; its six failed cases have later scoped passes. The measured capacity benchmark remains failed. Matched typing latency still misses its sub-100-ms p98 target in two of three runs; local-BOT mobile practice also recorded 104 ms. Physical-device, hosted-provider and broader feature-completion limits remain explicit in the report.
 
 ## Run locally
 
@@ -13,17 +15,21 @@ npm run backend:dev
 npm run dev
 ```
 
-Open `http://localhost:8080`. Import [backend/schema.sql](backend/schema.sql) through XAMPP phpMyAdmin and configure the private `backend/config.php` first. Follow the [PHP/XAMPP and hosting guide](docs/PHP_XAMPP_SETUP.md) for database users, extensions, ports and deployment. Guest typing and device history remain available when the API is offline.
+Open `http://localhost:8080`. A fresh PHP installation needs [backend/schema.sql](backend/schema.sql), additive migrations 002–005 and a private `backend/config.php`. Follow the [PHP/XAMPP and hosting guide](docs/PHP_XAMPP_SETUP.md) for the guarded installer or phpMyAdmin import, restricted database users, extensions, ports and deployment. Existing databases use the explicit migration tool; do not reimport the initial schema. Guest typing and device history remain available when the API is offline.
 
 The default API path is `/api`; Vite forwards it to PHP on port 8081. No database password belongs in a `VITE_` variable. Email/password authentication, account history, preferences, ranking challenges and human races use the PHP backend. The old `supabase/` tree is retained for historical SQL and portable replay-reference checks; it is not the active backend.
 
 Build a PHP hosting package with `npm run build:hosting`. Upload its `public_html` contents to the document root and keep `sparowtype-private` outside it. The package contains no local credentials.
 
+For frontend-only Vercel hosting, use `npm run build:vercel`; the checked-in Vercel configuration selects that command. For this repository's GitHub Pages project site, use `npm run build:pages -- --repository dev3434patel/typing-forge`. Local tests, lessons, bots, games, history and exports work without PHP. Account sync, public server rankings and human multiplayer require the backend. Follow the [frontend deployment guide](docs/FRONTEND_DEPLOYMENT.md) for route refreshes, offline scope, canonical URLs and the manual Pages workflow.
+
 ## SparowType identity
 
-SparowType uses a typographic wordmark with self-hosted Sora, Inter and JetBrains Mono. The default dark theme uses #07070A, lime #C6FF3D and violet #7B61FF; light mode and six alternatives are available. The Keyboard Awakens opening assembles a 61-key Three.js keyboard, presses the brand letters, then dissolves into practice. It is deferred, skippable and optional, with a shorter returning visit, reduced motion and a CSS keyboard fallback. Existing v3 storage, metric versions and backend identifiers preserve compatible saved history.
+SparowType uses a typographic wordmark with self-hosted Sora, Inter and JetBrains Mono. The default dark theme uses #07070A, lime #C6FF3D and violet #7B61FF. Studio offers 21 curated themes, bounded local theme/font imports and keyboard/caret choices. The Keyboard Awakens opening assembles a 61-key Three.js keyboard, presses the brand letters, then dissolves into practice. It is deferred, skippable and optional, with a shorter returning visit, reduced motion and a CSS keyboard fallback. Existing v3 storage, metric versions and backend identifiers preserve compatible saved history.
 
-This is a local implementation. The [latest correction-experience audit](docs/CORRECTION_EXPERIENCE_AUDIT_2026-10-20.md), [viewport correction](docs/KEYBOARD_VIEWPORT_FIX_2026-10-20.md) and [learning release audit](docs/LEARNING_UPGRADE_AUDIT_2026-10-20.md) record executable evidence, observed failures and remaining hosted/native acceptance. A finite test suite does not establish universal correctness or educational superiority.
+The [21 October implementation audit](docs/MEGA_PACK_AUDIT_2026-10-21.md) and [status matrix](docs/STATUS_MATRIX.md) distinguish completed checks, failed targets, partial features and unverified hosted/native behavior. Earlier [mobile/Games/static](docs/MOBILE_GAMES_STATIC_AUDIT_2026-10-20.md), [correction](docs/CORRECTION_EXPERIENCE_AUDIT_2026-10-20.md), [viewport](docs/KEYBOARD_VIEWPORT_FIX_2026-10-20.md) and [learning](docs/LEARNING_UPGRADE_AUDIT_2026-10-20.md) reports retain their own build-specific evidence. A finite test suite does not establish universal correctness or educational superiority.
+
+Open `/arcade` for Word Invaders, Ghost GP, Daily Gauntlet, Rhythm Typing, Key Tower, Snake Words, Lava Rise and Boss Duel. Game effects preserve exact insertion-attempt accuracy; local scores and BOT pace stay labelled. `/progression` contains idempotent rewards, quests, private skill diagnostics, seasons and opt-in in-browser reminders. `/studio` controls appearance. `/friends`, `/arena` and server classroom mode explicitly need the PHP service; they do not fabricate remote peers when it is unavailable. Daily Gauntlet is local practice, without a verified daily competition board.
 
 **Correction experience — 20 October 2026:** personal prose, adaptive, course and local bot practice lock correctly submitted words while allowing Backspace to reopen the previous incorrect word from an empty active word. Original mistakes remain in input accuracy. Returning from a toolbar restores the actual caret/selection, including WebKit. An optional local bot accuracy challenge counts 25 consecutive correct inserted characters. Legacy replay and issued competitive contracts remain distinct. Final verification includes **112 browser cases**, **872 unit tests**, **520 PHP replay cases with zero mismatches**, **139 PHP course cases**, and full-intro mobile Lighthouse performance **97 / 97 / 98**, with the other three categories **100**. See the [correction report](docs/CORRECTION_EXPERIENCE_AUDIT_2026-10-20.md) for retained failures, source research, build identity and the remaining throttled-latency/native-device limits.
 
@@ -36,6 +42,8 @@ That learning release's mobile Lighthouse with the full normal intro scored **98
 **Previous baseline — 19 October 2026:** 723 unit tests and full-intro mobile Lighthouse performance 97 / 97 / 98, with the other three categories 100 in each run. Those scores describe the earlier build. The [previous feature audit](docs/FEATURE_AUDIT_2026-10-19.md) retains its exact coverage and limitations.
 
 ## Structured learning and live keyboard
+
+Open `/games` for **Signal Run**, an original three-stage, 18-gate journey with calm and 60-active-second modes. Native text input, IME, correction-aware character accuracy, clean-gate chains and pause/resume support play at your pace. Owner-scoped bests stay local, can be exported or cleared, and remain separate from WPM and ranked results. The [game research and rules](docs/GAMING_RESEARCH_2026-10-20.md) explain the design and its verification limits.
 
 Open `/lessons` for 36 lessons in six chapters, with 108 original passages. Thirty sequential foundations progress from home-row anchors through the alphabet, capitals, numbers and punctuation. A separate six-lesson speed ladder runs from 15 to 80 WPM, with its first lesson available immediately. Each lesson needs two qualifying, distinct passage variants; corrected mistakes still count against input accuracy. A speed checkpoint requires a complete, uninterrupted 30-second assessment. English / US QWERTY is the first formal course; adaptive practice retains its existing language and layout options.
 
@@ -85,6 +93,9 @@ For the cross-engine matrix, install the official Playwright browsers with `npx 
 
 ## Implementation and deployment evidence
 
+- [Current mobile responsiveness, Games and deployment audit](docs/MOBILE_GAMES_STATIC_AUDIT_2026-10-20.md)
+- [Frontend-only Vercel and GitHub Pages deployment](docs/FRONTEND_DEPLOYMENT.md)
+- [Signal Run research, input rules and privacy](docs/GAMING_RESEARCH_2026-10-20.md)
 - [Keyboard viewport correction and regression evidence](docs/KEYBOARD_VIEWPORT_FIX_2026-10-20.md)
 - [Current learning and keyboard audit](docs/LEARNING_UPGRADE_AUDIT_2026-10-20.md)
 - [Learning research and implementation plan](docs/LEARNING_UPGRADE_PLAN_2026-10-20.md)

@@ -1,0 +1,25 @@
+{
+  "capturedAt": "2026-10-22T20:01:06.771025+00:00",
+  "status": "PROPOSAL-ONLY-NOT-APPLIED",
+  "baselineBuild": "8ac2a0d9602ec9263118",
+  "baselineTranscriptSha256": "f0d5e8763e3d04461dbd5b7aeefc90a22c93686ba1280c973a4e02ef481149ad",
+  "review": "audit/2026-10-21/final17-target-word-cache-PROPOSAL-REVIEW.md",
+  "patch": "audit/2026-10-21/final17-target-word-cache-FACTORY-BOUNDED-PROPOSAL.patch",
+  "patchSha256": "b3a789794e976bfda4131f708352bd2d83e9a9d1917c6a97ff6ac711b3c41010",
+  "eligibility": "SingleWeakMap null marker created only for targetGraphemes-factory frozen arrays. Arbitrary frozen/mutable/accessor arrays bypass.",
+  "proposedCaps": {
+    "targetGraphemeUnits": 4096,
+    "wordObjects": 512,
+    "engineeringChoiceNotMeasuredOptimum": true
+  },
+  "weakLifetime": "Weak values contain numeric bounds only, not keys/text/owner. External factory-array holders can retain keys; no absolute global16entry bound claimed.",
+  "sourceFilesEdited": 0,
+  "testFilesEdited": 0,
+  "testsBuildBrowserOrAcceptanceJobs": false,
+  "olderOptional16ProposalSupersededOnlyForEligibility": "Do not apply genericObject.isFrozen cache eligibility.",
+  "causalLatencyBenefit": "UNVERIFIED; source16 input stillFAILED2/3.",
+  "reviewCoordination": [
+    "root requested factory null-marker guard",
+    "ui_quality flagged dynamic accessor safety and oversized target retention"
+  ]
+}

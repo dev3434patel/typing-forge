@@ -14,6 +14,25 @@ test.beforeEach(async ({ page }) => {
   );
 });
 
+test("the test clock ignores preparation and non-text keys and starts on a wrong first character", async ({ page }) => {
+  const input = await customPractice(page, "cat dog");
+  await page.clock.install();
+  await input.press("Shift");
+  await input.press("Backspace");
+  await page.clock.fastForward(90_000);
+  await expect(page.getByRole("region", { name: "Typing session", exact: true })).toHaveAttribute("data-status", "ready");
+  await input.press("x");
+  await expect(page.getByRole("region", { name: "Typing session", exact: true })).toHaveAttribute("data-status", "running");
+  await page.clock.fastForward(1000);
+  await input.press("Control+Enter");
+  const result = await exportedResult(page);
+  expect(result.elapsedMs).toBeGreaterThanOrEqual(1000);
+  expect(result.elapsedMs).toBeLessThan(2000);
+  expect(result.metrics.insertionAttempts).toBe(1);
+  expect(result.metrics.incorrectAttempts).toBe(1);
+  expect(result.events.find(event => event.text === "x")!.offsetMs).toBe(0);
+});
+
 test("a corrected mistake yields 75% input accuracy and perfect final text once", async ({
   page,
 }) => {

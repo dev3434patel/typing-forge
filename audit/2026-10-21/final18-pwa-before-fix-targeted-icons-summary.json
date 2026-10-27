@@ -1,0 +1,110 @@
+{
+  "totals": {
+    "total": 16,
+    "passed": 12,
+    "failed": 4,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "projects": [
+    {
+      "project": "chromium",
+      "total": 4,
+      "passed": 3,
+      "failed": 1,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "edge",
+      "total": 4,
+      "passed": 3,
+      "failed": 1,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "firefox",
+      "total": 4,
+      "passed": 3,
+      "failed": 1,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "webkit",
+      "total": 4,
+      "passed": 3,
+      "failed": 1,
+      "skipped": 0,
+      "flaky": 0
+    }
+  ],
+  "reportedStats": {
+    "expected": 12,
+    "unexpected": 4,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "countsAgreeWithReport": true,
+  "failures": [
+    {
+      "project": "chromium",
+      "title": "pwa-snapshot-consistency.spec.ts › actual PWA consumers recover a publication between render and passive subscription",
+      "file": "pwa-snapshot-consistency.spec.ts",
+      "line": 216,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toEqual(expected) // deep equality - Expected - 4 + Received + 4 Object { - \"bannerInstall\": true, - \"offlineAvailable\": true, - \"offlineInstall\": true, - \"offlineReady\": true, + \"bannerInstall\": false, + \"offlineAvailable\": false, + \"offlineInstall\": false, + \"offlineReady\": false, } Call Log: - Timeout 5000ms exceeded while waiting on the predicate 193 | offlineReady: (await offline.getByRole(\"status\").textContent()) ==="
+      ]
+    },
+    {
+      "project": "edge",
+      "title": "pwa-snapshot-consistency.spec.ts › actual PWA consumers recover a publication between render and passive subscription",
+      "file": "pwa-snapshot-consistency.spec.ts",
+      "line": 216,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toEqual(expected) // deep equality - Expected - 4 + Received + 4 Object { - \"bannerInstall\": true, - \"offlineAvailable\": true, - \"offlineInstall\": true, - \"offlineReady\": true, + \"bannerInstall\": false, + \"offlineAvailable\": false, + \"offlineInstall\": false, + \"offlineReady\": false, } Call Log: - Timeout 5000ms exceeded while waiting on the predicate 193 | offlineReady: (await offline.getByRole(\"status\").textContent()) ==="
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "pwa-snapshot-consistency.spec.ts › actual PWA consumers recover a publication between render and passive subscription",
+      "file": "pwa-snapshot-consistency.spec.ts",
+      "line": 216,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toEqual(expected) // deep equality - Expected - 4 + Received + 4 Object { - \"bannerInstall\": true, - \"offlineAvailable\": true, - \"offlineInstall\": true, - \"offlineReady\": true, + \"bannerInstall\": false, + \"offlineAvailable\": false, + \"offlineInstall\": false, + \"offlineReady\": false, } Call Log: - Timeout 5000ms exceeded while waiting on the predicate 193 | offlineReady: (await offline.getByRole(\"status\").textContent()) ==="
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "pwa-snapshot-consistency.spec.ts › actual PWA consumers recover a publication between render and passive subscription",
+      "file": "pwa-snapshot-consistency.spec.ts",
+      "line": 216,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toEqual(expected) // deep equality - Expected - 4 + Received + 4 Object { - \"bannerInstall\": true, - \"offlineAvailable\": true, - \"offlineInstall\": true, - \"offlineReady\": true, + \"bannerInstall\": false, + \"offlineAvailable\": false, + \"offlineInstall\": false, + \"offlineReady\": false, } Call Log: - Timeout 5000ms exceeded while waiting on the predicate 193 | offlineReady: (await offline.getByRole(\"status\").textContent()) ==="
+      ]
+    }
+  ],
+  "flakyCases": [],
+  "skippedCases": [],
+  "skipReasons": [],
+  "expectedFailures": [],
+  "globalErrors": [],
+  "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+}

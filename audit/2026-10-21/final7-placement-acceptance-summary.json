@@ -1,0 +1,75 @@
+{
+  "status": "PASS-SCOPED",
+  "build": {
+    "version": "f3ac03affbc33168655a",
+    "publicFiles": 132,
+    "bytes": 2910866
+  },
+  "scope": "Real 135-second optional placement UI, canonical owned persistence/reload, no course checkpoint/certification and private-goal isolation. Not a human speed, field latency, PWA, server or course certification test.",
+  "firstAttempt": {
+    "status": "FAILED",
+    "receipt": "audit/2026-10-21/final7-placement-real135-first-raw.json",
+    "passedNamedChecks": 65,
+    "failedNamedChecks": 0,
+    "completedPlacementParts": 3,
+    "failure": {
+      "stage": "verify private free-practice goal excludes placement evidence",
+      "name": "TimeoutError",
+      "code": "operation-failed",
+      "detail": "Named operation failed. Raw passage text, assertion values and request credentials are intentionally omitted."
+    },
+    "overallFailureRetained": true
+  },
+  "probe": {
+    "receipt": "audit/2026-10-21/final7-placement-label-dom-probe.json",
+    "status": "PASS-SCOPED",
+    "exactLabelCount": 0,
+    "exactRoleCount": 1,
+    "roleSelectorSelectsHomeRow": true
+  },
+  "declaredRepair": {
+    "receipt": "audit/2026-10-21/final7-placement-label-repair-prepared.json",
+    "changes": "Exactly one locator; no product, timer, watchdog, accuracy, persistence, goal or checkpoint assertion changes.",
+    "automaticRetries": 0
+  },
+  "confirmation": {
+    "protocol": "audit/2026-10-21/final7-placement-real135-confirmation-protocol.json",
+    "raw": "audit/2026-10-21/final7-placement-real135-confirmation-raw.json",
+    "passed": 82,
+    "failed": 0,
+    "durationMs": 148248.4824,
+    "realPlacementJourneyMs": 139752.964,
+    "parts": 3,
+    "attempts": 296,
+    "accuracy": 100,
+    "guidance": {
+      "version": "placementV1",
+      "parts": 3,
+      "attempts": 296,
+      "medianWpm": 26.4,
+      "inputAccuracy": 100,
+      "qualification": "local-guidance-only",
+      "persistedAfterReload": true,
+      "courseCheckpoints": 0
+    },
+    "privateGoal": {
+      "version": "training-goal-v1",
+      "source": "cold-start",
+      "comparableAttempts": 0,
+      "courseQualification": false
+    },
+    "ownedBrowserClosed": true,
+    "integrity": {
+      "sourceFiles": 483,
+      "mismatches": [],
+      "driverUnchanged": true,
+      "dependenciesUnchanged": true,
+      "servedBuildUnchanged": true
+    }
+  },
+  "privacy": "No raw typing events, passage text, cookies, CSRF values or private identifiers.",
+  "limitations": [
+    "One headless Chromium guest functional run, not physical device, human speed, field latency, PWA, server or certified course evidence.",
+    "Original first combined driver remains FAILED; this is a separately declared audit-locator repair confirmation."
+  ]
+}

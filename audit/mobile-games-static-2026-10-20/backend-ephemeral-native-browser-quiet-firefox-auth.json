@@ -1,0 +1,243 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\extra\\typing_updated\\typing-forge\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "e2e/php-account-flow.spec.ts",
+      "e2e/auth-flow.spec.ts",
+      "--grep",
+      "real PHP account signup, replay upload, independent-device history/preferences and account deletion|real account sign in with dedicated deployment credentials",
+      "--workers=1",
+      "--retries=0",
+      "--trace=off",
+      "--reporter=json",
+      "--output",
+      "D:\\extra\\typing_updated\\typing-forge\\audit\\mobile-games-static-2026-10-20\\.playwright-artifacts-native-http-quiet-firefox-auth-restored"
+    ],
+    "configFile": "D:\\extra\\typing_updated\\typing-forge\\playwright.config.ts",
+    "rootDir": "D:/extra/typing_updated/typing-forge/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/audit/mobile-games-static-2026-10-20/.playwright-artifacts-native-http-quiet-firefox-auth-restored",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\audit\\mobile-games-static-2026-10-20\\.playwright-artifacts-native-http-quiet-firefox-auth-restored",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "firefox",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:6003",
+          "trace": "off",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:157.0) Gecko/20100101 Firefox/157.0",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "firefox"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "firefox"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "auth-flow.spec.ts",
+      "file": "auth-flow.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "real account sign in with dedicated deployment credentials",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3685,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T19:31:02.174Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "df6b40174562c70df515-bc545bcd7e71d597564a",
+          "file": "auth-flow.spec.ts",
+          "line": 54,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "php-account-flow.spec.ts",
+      "file": "php-account-flow.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 11484,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('textbox', { name: 'Typing input', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('textbox', { name: 'Typing input', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('textbox', { name: 'Typing input', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('textbox', { name: 'Typing input', exact: true })\u001b[22m\n\n    at focusTyping (D:\\extra\\typing_updated\\typing-forge\\e2e\\helpers.ts:36:23)\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\php-account-flow.spec.ts:71:31",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\helpers.ts",
+                      "column": 23,
+                      "line": 36
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:36\n\n  34 |     exact: true,\n  35 |   });\n> 36 |   await expect(input).toBeVisible();\n     |                       ^\n  37 |   // Desktop starts focused; touch devices retain the explicit keyboard activation.\n  38 |   if (\n  39 |     !(await input.evaluate((element) => element === document.activeElement))"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\helpers.ts",
+                        "column": 23,
+                        "line": 36
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('textbox', { name: 'Typing input', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('textbox', { name: 'Typing input', exact: true })\u001b[22m\n\n\n   at helpers.ts:36\n\n  34 |     exact: true,\n  35 |   });\n> 36 |   await expect(input).toBeVisible();\n     |                       ^\n  37 |   // Desktop starts focused; touch devices retain the explicit keyboard activation.\n  38 |   if (\n  39 |     !(await input.evaluate((element) => element === document.activeElement))\n    at focusTyping (D:\\extra\\typing_updated\\typing-forge\\e2e\\helpers.ts:36:23)\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\php-account-flow.spec.ts:71:31"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T19:31:06.844Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "session-cookie-policy",
+                      "contentType": "application/json",
+                      "body": "eyJlbWl0dGVkSHR0cE9ubHlBbmRTYW1lU2l0ZUxheCI6dHJ1ZSwiYnJvd3NlclJlcG9ydGVkU2FtZVNpdGUiOlsiTGF4Il0sImxpbWl0YXRpb24iOiJXaW5kb3dzIFdlYktpdCBjYW4gcmVwb3J0IE5vbmUgZGVzcGl0ZSB0aGUgYWN0dWFsIFNhbWVTaXRlPUxheCBoZWFkZXIuIFRoaXMgdmVyaWZpZXMgZW1pdHRlZCBwb2xpY3kgYW5kIEh0dHBPbmx5IHN0b3JhZ2UsIG5vdCBuYXRpdmUgY3Jvc3Mtc2l0ZSBjb29raWUgZW5mb3JjZW1lbnQuIn0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\mobile-games-static-2026-10-20\\.playwright-artifacts-native-http-quiet-firefox-auth-restored\\php-account-flow-real-PHP--b8e61-rences-and-account-deletion-firefox\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\mobile-games-static-2026-10-20\\.playwright-artifacts-native-http-quiet-firefox-auth-restored\\php-account-flow-real-PHP--b8e61-rences-and-account-deletion-firefox\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\helpers.ts",
+                    "column": 23,
+                    "line": 36
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "32cd5040f4cf1710e3c6-a05a0cb5099e46cddc55",
+          "file": "php-account-flow.spec.ts",
+          "line": 6,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-20T19:31:01.178Z",
+    "duration": 17482.370000000003,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

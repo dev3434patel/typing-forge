@@ -24,6 +24,7 @@ import {
 import { createBot, BOT_CONFIGS, type BotLevel } from "@/lib/bot-engine";
 import { generatePackText } from "@/lib/content-packs";
 import { opponentPacePosition } from "@/lib/race-pace";
+import { raceClockAnchor } from "@/lib/race-clock";
 import {
   advanceAccuracyChallenge,
   createAccuracyChallenge,
@@ -31,9 +32,11 @@ import {
 import { useAuth } from "@/hooks/useAuth";
 import { useTestResults } from "@/hooks/useTestResults";
 import { usePreferences } from "@/contexts/PreferencesContext";
+import { useCountdownClock } from "@/hooks/useCountdownClock";
+import { isBackendConfigured } from "@/services/php-api";
 import {
   raceService,
-  subscribeRace,
+  raceTransport,
   type RaceRoom,
 } from "@/services/race-service";
 function Track({
@@ -84,6 +87,7 @@ function Track({
 }
 function RaceSession({
   room,
+  serverOffsetMs = 0,
   botLevel,
   onExit,
   onRoom,
@@ -92,6 +96,7 @@ function RaceSession({
   accuracyChallenge = false,
 }: {
   room?: RaceRoom;
+  serverOffsetMs?: number;
   botLevel?: BotLevel;
   onExit: () => void;
   onRoom: (room: RaceRoom) => void;
@@ -124,32 +129,51 @@ function RaceSession({
       language: "en",
       keyboardLayout: preferences.layout,
       contentRevision: room ? "server-race-v1" : "forge-curated-2026.10.15",
+      ...(botLevel ? { generatorVersion: "local-bot-first-input-v1" } : {}),
       challengeId: room?.id || `local-bot:${botLevel}`,
-      settings: { localBot: !!botLevel },
+      settings: { localBot: !!botLevel, ...(botLevel ? { timingPolicy: "first-input-v1" } : {}) },
       privacy: "public-corpus",
     };
     const now = performance.now(),
-      serverNow = room?.server_now ? Date.parse(room.server_now) : Date.now(),
-      startWall = room?.started_at ? Date.parse(room.started_at) : Date.now(),
-      startMono = now - Math.max(0, serverNow - startWall),
-      clockOffset = room ? serverNow - Date.now() : 0;
+      anchor = room?.started_at
+        ? raceClockAnchor(now, Date.now(), serverOffsetMs, Date.parse(room.started_at))
+        : null,
+      startWall = anchor?.startWall ?? Date.now(),
+      startMono = anchor?.startMono ?? now;
     const controller = new SessionController(config, {
       now: () => performance.now(),
-      wallNow: () => Date.now() + clockOffset,
+      wallNow: anchor ? () => anchor.wallAt(performance.now()) : () => Date.now(),
     });
-    controller.startAt(startMono, startWall);
+    if (room) controller.startAt(startMono, startWall);
+    const runner = botLevel ? createBot(botLevel, config.initialTarget, {
+      now: () => performance.now(),
+    }) : null;
+    const botController = botLevel ? new SessionController(
+      { ...config, clientSessionId: `${config.clientSessionId}-opponent` },
+      { now: () => performance.now(), wallNow: () => Date.now() },
+    ) : null;
     return {
       config,
       controller,
-      startMono,
-      startWall,
+      runner,
+      botController,
       targetUnits: graphemes(config.initialTarget).length,
     };
   });
   const roomRef = useRef(room),
     latest = useRef<SessionSnapshot | null>(null),
     posting = useRef(false),
-    completed = useRef(false);
+    completed = useRef(false),
+    botStarted = useRef(false);
+  const startBotWithFirstInput = useCallback(() => {
+    const origin = bundle.controller.timingOrigin;
+    if (botStarted.current || !origin || !bundle.runner || !bundle.botController) return;
+    // Use the actual accepted attempt's origin, not a later effect/interval.
+    // Rejected precision-mode mistakes also have an origin and start practice.
+    bundle.runner.start(origin.monotonic);
+    bundle.botController.startAt(origin.monotonic, origin.wall);
+    botStarted.current = true;
+  }, [bundle]);
   const challengeRef = useRef(
     createAccuracyChallenge(bundle.config.clientSessionId),
   );
@@ -211,22 +235,11 @@ function RaceSession({
     }
   }, [roomStatus, bundle, finish]);
   useEffect(() => {
-    if (!botLevel) return;
-    const runner = createBot(botLevel, bundle.config.initialTarget, {
-      now: () => performance.now(),
-    });
-    runner.start();
-    const botController = new SessionController(
-      {
-        ...bundle.config,
-        clientSessionId: `${bundle.config.clientSessionId}-opponent`,
-      },
-      { now: () => performance.now(), wallNow: () => Date.now() },
-    );
-    botController.startAt(bundle.startMono, bundle.startWall);
+    if (!botLevel || !bundle.runner || !bundle.botController) return;
+    const { runner, botController } = bundle;
     let processed = 0;
     const timer = setInterval(() => {
-      if (completed.current) return;
+      if (completed.current || !botStarted.current) return;
       const state = runner.tick();
       for (; processed < state.keystrokes.length; processed++) {
         const event = state.keystrokes[processed];
@@ -240,10 +253,7 @@ function RaceSession({
       const snapshot = botController.tick();
       setBotStats({
         progress: snapshot.targetText.length
-          ? (snapshot.metrics.correct /
-              snapshot.characters.filter((slot) => slot.expected !== null)
-                .length) *
-            100
+          ? (snapshot.metrics.correct / bundle.targetUnits) * 100
           : 0,
         wpm: snapshot.metrics.wpm,
         cursor: snapshot.cursor,
@@ -289,18 +299,16 @@ function RaceSession({
   const snapshot = useCallback(
     (value: SessionSnapshot) => {
       latest.current = value;
+      startBotWithFirstInput();
       recordChallenge(value);
       setOwn({
         progress: value.characters.length
-          ? (value.metrics.correct /
-              value.characters.filter((slot) => slot.expected !== null)
-                .length) *
-            100
+          ? (value.metrics.correct / bundle.targetUnits) * 100
           : 0,
         wpm: value.metrics.wpm,
       });
     },
-    [recordChallenge],
+    [recordChallenge, startBotWithFirstInput, bundle.targetUnits],
   );
   return (
     <div className="space-y-6">
@@ -409,10 +417,14 @@ export default function Race() {
     [code, setCode] = useState(""),
     [busy, setBusy] = useState(false),
     [error, setError] = useState(""),
-    [now, setNow] = useState(Date.now()),
     [serverOffset, setServerOffset] = useState(0),
     [copied, setCopied] = useState(false),
     [duration, setDuration] = useState(30);
+  const now = useCountdownClock(
+    room?.status === "countdown" && room.started_at
+      ? Date.parse(room.started_at) - serverOffset
+      : null,
+  );
   const acceptRoom = useCallback((value: RaceRoom) => {
     if (value.server_now)
       setServerOffset(Date.parse(value.server_now) - Date.now());
@@ -423,14 +435,10 @@ export default function Race() {
     );
   }, []);
   useEffect(() => {
-    const timer = setInterval(() => setNow(Date.now()), 100);
-    return () => clearInterval(timer);
-  }, []);
-  useEffect(() => {
     if (!roomCode || !userId) return;
     setError("");
     let alive = true;
-    const unsubscribe = subscribeRace(
+    const unsubscribe = raceTransport.subscribe(
       roomCode,
       (value) => {
         if (alive) {
@@ -541,6 +549,7 @@ export default function Race() {
           <RaceSession
             key={room.id}
             room={room}
+            serverOffsetMs={serverOffset}
             onExit={exit}
             onRoom={acceptRoom}
           />
@@ -667,17 +676,18 @@ export default function Race() {
                 <ArrowRight size={16} />
               </button>
               <p className="text-xs text-muted-foreground mt-4 text-center">
-                30 seconds · local practice · clearly labelled bot
+                30 seconds from your first typed character · local practice · clearly labelled bot
               </p>
             </section>
             <section className="panel min-w-0 p-5 sm:p-7">
               <Users size={24} className="text-primary mb-5" />
               <h2 className="text-xl font-medium">One room. Two racers.</h2>
               <p className="text-sm text-muted-foreground leading-relaxed mt-3 mb-6">
-                A shared passage, server countdown and validated finish. Sign in
-                to create or join a human room.
+                {isBackendConfigured
+                  ? "A shared passage, server countdown and validated finish. Sign in to create or join a human room."
+                  : "Human races require a server. This frontend-only installation supports local bot practice and on-device results."}
               </p>
-              {user ? (
+              {isBackendConfigured && (user ? (
                 <>
                   <label className="text-sm block">
                     Duration
@@ -744,7 +754,7 @@ export default function Race() {
                   Sign in for human races
                   <ArrowRight size={16} />
                 </Link>
-              )}
+              ))}
             </section>
           </div>
         )}

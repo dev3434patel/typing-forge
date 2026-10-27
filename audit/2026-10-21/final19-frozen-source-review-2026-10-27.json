@@ -1,0 +1,333 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-10-26T19:35:27.001Z",
+  "status": "PASS-SCOPED-FROZEN-SOURCE-AND-ARTIFACT-REVIEW",
+  "scope": "Read-only current502-source verification,18-to19 delta/dependency reverse proof, actual19 preserved3D assets and completed public receipts. No browser/build/test/native execution by reviewer. Source and artifact passes do not convert measured latency failures or missing release gates into passes.",
+  "build": {
+    "version": "de097acba6969d580cc8",
+    "publicFiles": 133,
+    "bytes": 2960785
+  },
+  "currentFrozenSource": {
+    "sourceFile": "audit/2026-10-21/final19-source.json",
+    "expectedBuild": "de097acba6969d580cc8",
+    "compared": 502,
+    "mismatches": []
+  },
+  "sourceDelta": {
+    "before": 499,
+    "after": 502,
+    "modified": [
+      "package-lock.json",
+      "package.json",
+      "src/components/profile/ProfileSettings.tsx",
+      "src/components/typing/TypingArea.tsx",
+      "src/games/engine/arcade-machine.ts",
+      "src/games/ui/ArcadePlayer.tsx",
+      "src/games/ui/ArcadeScene.tsx",
+      "src/games/ui/NativeGameInput.tsx",
+      "src/games/ui/arcade.css",
+      "src/pages/Auth.tsx"
+    ],
+    "added": [
+      "src/games/engine/__tests__/edit-feedback.test.ts",
+      "src/games/ui/__tests__/target-feedback.test.ts",
+      "src/games/ui/target-feedback.ts"
+    ],
+    "removed": [],
+    "unchangedExisting": 489
+  },
+  "protectedFamilies": [
+    {
+      "family": "brand",
+      "compared": 21,
+      "changed": [],
+      "unchanged": true
+    },
+    {
+      "family": "typingCore",
+      "compared": 15,
+      "changed": [],
+      "unchanged": true
+    },
+    {
+      "family": "backend",
+      "compared": 37,
+      "changed": [],
+      "unchanged": true
+    },
+    {
+      "family": "timingPolicy",
+      "compared": 6,
+      "changed": [],
+      "unchanged": true
+    },
+    {
+      "family": "keyboardAndCaret",
+      "compared": 31,
+      "changed": [],
+      "unchanged": true
+    }
+  ],
+  "dependencies": {
+    "before": "zod ^3.25.76",
+    "after": "zod 4.6.7",
+    "packageReverseRestores18": true,
+    "lockBaselineMatchesFrozen18": true,
+    "exactLockChanges": [
+      {
+        "path": "packages..dependencies.zod",
+        "before": "^3.25.76",
+        "after": "4.6.7"
+      },
+      {
+        "path": "packages.node_modules/zod.integrity",
+        "before": "sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==",
+        "after": "sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg=="
+      },
+      {
+        "path": "packages.node_modules/zod.resolved",
+        "before": "https://registry.npmjs.org/zod/-/zod-3.25.76.tgz",
+        "after": "https://registry.npmjs.org/zod/-/zod-4.6.7.tgz"
+      },
+      {
+        "path": "packages.node_modules/zod.version",
+        "before": "3.25.76",
+        "after": "4.6.7"
+      }
+    ],
+    "compatibility": [
+      {
+        "file": "src/pages/Auth.tsx",
+        "changedProperty": "ZodError.issues",
+        "reverseRestores18": true
+      },
+      {
+        "file": "src/components/profile/ProfileSettings.tsx",
+        "changedProperty": "ZodError.issues",
+        "reverseRestores18": true
+      }
+    ],
+    "productionAudit": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "advisory": {
+      "url": "https://github.com/advisories/GHSA-mrhx-c7xc-m3w5",
+      "checkedOn": "2026-10-27 Asia/Calcutta",
+      "published": "2026-10-01",
+      "updated": "2026-10-23",
+      "severity": "high",
+      "affected": "<4.6.6",
+      "patched": "4.6.6",
+      "qualification": "Published affected range and fixed release checked directly. Pin4.6.7 is outside that range; no application exploitability test or universal security claim is inferred."
+    }
+  },
+  "threeDimensionalAssets": [
+    {
+      "kind": "bloom",
+      "file": "assets/keyboard-bloom-CFGEPK_L.js",
+      "sha256": "966db3e3d61752514688db63b3d970e1a87e7a66498f5f3f0b93f0085c0c0977",
+      "normalizedBootstrapSpecifierSha256": null,
+      "unchanged": true,
+      "comparison": "Exact filename/raw SHA-256 versus18"
+    },
+    {
+      "kind": "worker",
+      "file": "assets/keyboard-render-worker-oeYyHX4e.js",
+      "sha256": "37b2d1842100f3516e8af626c58d58791c3ff9c6cc970835d5bd3d8ef948be13",
+      "normalizedBootstrapSpecifierSha256": null,
+      "unchanged": true,
+      "comparison": "Exact filename/raw SHA-256 versus18"
+    },
+    {
+      "kind": "scene",
+      "file": "assets/keyboard-scene-DYowRFwC.js",
+      "sha256": "1624b699d9955f32c182e82eb0ac03567c446174bd2b29e649647a6079fe2f44",
+      "normalizedBootstrapSpecifierSha256": null,
+      "unchanged": true,
+      "comparison": "Exact filename/raw SHA-256 versus18"
+    },
+    {
+      "kind": "bridge",
+      "file": "assets/keyboard-scene-bridge-DuJg-moB.js",
+      "sha256": "ac99f7cba083f8633be1237f9e0456fe3bfa4334e11b5bad33e68d91370465c2",
+      "normalizedBootstrapSpecifierSha256": "ba0d3eda5d2d87b18731d257c53a5c050285070940d589b9a5089c8de23f6eb1",
+      "unchanged": true,
+      "comparison": "Replace exactly one generated bootstrap import filename; every other bridge byte compared"
+    },
+    {
+      "kind": "three",
+      "file": "assets/three.module-ytFXl0Cs.js",
+      "sha256": "2b26c8bf33db5d22e8c7d6a8ecd2b2f1ea76ceaf6a3c815f613258f32ac9cf9f",
+      "normalizedBootstrapSpecifierSha256": null,
+      "unchanged": true,
+      "comparison": "Exact filename/raw SHA-256 versus18"
+    }
+  ],
+  "priorReview": {
+    "file": "final19-independent-source-review.json",
+    "preserved": true,
+    "qualification": "Earlier pre-build snapshot/open edge remains immutable; this new receipt binds the actual19 freeze and reviews the subsequently implemented provenance repair."
+  },
+  "sameValueReplacement": {
+    "status": "SOURCE-REPAIRED;FOCUSED-RUNTIME-RECEIPT-SEPARATE",
+    "file": "src/components/typing/TypingArea.tsx",
+    "behavior": "Same-value native replacement restores controlled/native text and records an empty autocorrect replace event. It preserves assistance without adding character attempts or starting the first-input clock. Core metric/timing code is unchanged.",
+    "focusedMobileAndPwaActualTotals": {
+      "total": 48,
+      "passed": 48,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    "qualification": "48case combined suite includes both mobile and controlledPWA tests. It is not48 distinct mobile scenarios or a full matrix/native-device certification."
+  },
+  "sourceGates": {
+    "initial": {
+      "status": "FAILED",
+      "passed": 11,
+      "failed": [
+        "dependencies"
+      ]
+    },
+    "confirmed": {
+      "status": "PASS-SCOPED",
+      "passedCommands": 12,
+      "units": 2822,
+      "files": 113,
+      "coveragePercent": {
+        "statements": 90.44,
+        "branches": 86.65,
+        "functions": 92.13,
+        "lines": 96.11
+      },
+      "automaticRetries": 0
+    }
+  },
+  "hosting": {
+    "status": "PASS-SCOPED",
+    "checks": 27,
+    "passed": 27
+  },
+  "performance": {
+    "input": {
+      "status": "FAILED-2-OF-3-LATENCY-TARGET",
+      "runs": [
+        {
+          "run": 1,
+          "build": "de097acba6969d580cc8",
+          "exact": true,
+          "attempts": 495,
+          "accuracy": 100,
+          "p98Ms": 104,
+          "maxMs": 208,
+          "rotationRetained": true,
+          "overflow": false,
+          "errorCount": 0
+        },
+        {
+          "run": 2,
+          "build": "de097acba6969d580cc8",
+          "exact": true,
+          "attempts": 495,
+          "accuracy": 100,
+          "p98Ms": 104,
+          "maxMs": 264,
+          "rotationRetained": true,
+          "overflow": false,
+          "errorCount": 0
+        },
+        {
+          "run": 3,
+          "build": "de097acba6969d580cc8",
+          "exact": true,
+          "attempts": 495,
+          "accuracy": 100,
+          "p98Ms": 88,
+          "maxMs": 216,
+          "rotationRetained": true,
+          "overflow": false,
+          "errorCount": 0
+        }
+      ],
+      "scope": "Matched4xCPU/fresh-profile quantized laboratory EventTiming; functional preservation is separate from every-run p98<100ms target."
+    },
+    "lighthouse": {
+      "status": "PASS-SCOPED",
+      "medianPerformance": 97,
+      "runs": [
+        {
+          "run": 1,
+          "scores": {
+            "performance": 96,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "lcpMs": 2391,
+          "cls": 0.0002518372664675856,
+          "runtimeError": null
+        },
+        {
+          "run": 2,
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "lcpMs": 2265.3185,
+          "cls": 0.0002518372664675856,
+          "runtimeError": null
+        },
+        {
+          "run": 3,
+          "scores": {
+            "performance": 98,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "lcpMs": 2270.3514999999998,
+          "cls": 0.0002518372664675856,
+          "runtimeError": null
+        }
+      ],
+      "fullQualityNoOverrides": true,
+      "quietBeforeEachSeconds": 30
+    }
+  },
+  "remaining19": {
+    "full63Matrix": "NOT-RUN",
+    "static": "NOT-RUN",
+    "native16": "NOT-RUN",
+    "mobileFourWorkspaces": "NOT-RUN",
+    "placementReal135": "NOT-RUN",
+    "physicalDevicesAndNativeAT": "UNVERIFIED",
+    "hostedDeploymentAndFieldINP": "UNVERIFIED"
+  },
+  "receiptRawSha256": {
+    "final18-source.json": "7f74d42d8e7bbbffb2bf809f7e5a5177bcdadda560e700abf00bd985088eb770",
+    "final19-source.json": "38bebc6045040cc52fec97d12f58351668f9d4c346257df7cf49e27193bb089f",
+    "final19-source-gates.json": "77b39c557a8b15c89fc6144d85b3a5a6e9b2004c227c842ff3d5372163b83bce",
+    "final19-confirmed-source-gates.json": "b1229193cfee7781cffd8ba989ae12ddc375e580382f3b69a5bc29ffe41ad34c",
+    "final19-confirmed-coverage.log": "25dc0397d299dfb836bd06abd6a62e8b3f258fca32f055f5e8bf617835314e29",
+    "final19-confirmed-dependencies.log": "a85e1242917ec7a5e4582d88e60361d2e3121b463847c45a300820b82baa010f",
+    "final19-bundle.json": "945753c2a448e2ec8a7e1010a04cc8b86dae95685bf5b64059207bf5f45b0cd6",
+    "final19-hosting-package-verification.json": "ce60bb647977000167d63919fdb31affff58d4cc6f85039d55e6b767cc3be908",
+    "final19-independent-source-review.json": "721366eb03eed34f8f792ee32e06eae9e4f6e2291cc10ca159c342c6789945ad",
+    "final19-input-results.json": "15608c5f0301c724998fa4ea40a1b06a2a137a718700c06677a218f8538b6362",
+    "final19-mobile-results.json": "5f96adccc0921a07ea1343134aa6fc1e7792774fe4e4e71ac059a0128ee7ae99",
+    "final19-mobile-pwa-focus.json": "4e648753c82d96c560c4a5ee914332d31b7d67dad735ca499c37d430797131d6"
+  },
+  "productionOrE2EEditsByReviewer": false,
+  "oldReceiptsChanged": false,
+  "testsOrBrowsersExecutedByReviewer": 0,
+  "privateConfigOrStorageRead": false,
+  "completeReleaseClaimed": false
+}

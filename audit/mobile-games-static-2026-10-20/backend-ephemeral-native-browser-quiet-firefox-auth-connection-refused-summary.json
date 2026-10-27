@@ -1,0 +1,37 @@
+{
+  "candidate": "75b0ca89254fc510f652",
+  "stats": {
+    "startTime": "2026-10-20T19:27:06.322Z",
+    "duration": 9817.883,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  },
+  "rows": [
+    {
+      "title": "real account sign in with dedicated deployment credentials",
+      "project": "firefox",
+      "status": "failed",
+      "retry": 0,
+      "duration": 3144,
+      "errors": [
+        {
+          "message": "Error: page.goto: NS_ERROR_CONNECTION_REFUSED\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:6003/auth\", waiting until \"load\"\u001b[22m\n\n\n  54 | test('real account sign in with dedicated deployment credentials', async ({ page }) => {\n  55 |   test.skip(!process.env.FORGE_E2E_AUTH_EMAIL || !process.env.FORGE_E2E_AUTH_PASSWORD, 'Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used.');\n> 56 |   await page.goto('/auth'); await page.getByLabel('Email', { exact: true }).fill(process.env.FORGE_E2E_AUTH_EMAIL!);\n     |              ^\n  57 |   await page.getByLabel('Password', { exact: true }).fill(process.env.FORGE_E2E_AUTH_PASSWORD!);\n  58 |   await page.getByRole('button', { name: 'Sign In', exact: true }).click(); await expect(page).toHaveURL('/');\n  59 |   await page.goto('/profile'); await expect(page.getByRole('button', { name: 'Sign out', exact: true })).toBeVisible();\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\auth-flow.spec.ts:56:14"
+        }
+      ]
+    },
+    {
+      "title": "real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+      "project": "firefox",
+      "status": "failed",
+      "retry": 0,
+      "duration": 3044,
+      "errors": [
+        {
+          "message": "Error: page.goto: NS_ERROR_CONNECTION_REFUSED\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:6003/auth\", waiting until \"load\"\u001b[22m\n\n\n  28 |   try {\n  29 |     await page.addInitScript(() => localStorage.setItem(\"sparowtype.opening-animation.enabled\", \"false\"));\n> 30 |     await page.goto(\"/auth\");\n     |                ^\n  31 |     await page.getByRole(\"button\", { name: \"Don't have an account? Sign up\", exact: true }).click();\n  32 |     await page.getByLabel(\"Email\", { exact: true }).fill(email);\n  33 |     await page.getByLabel(\"Password\", { exact: true }).fill(password);\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\php-account-flow.spec.ts:30:16"
+        }
+      ]
+    }
+  ]
+}

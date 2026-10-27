@@ -1,0 +1,139 @@
+{
+  "capturedAt": "2026-10-21T19:01:37.499Z",
+  "status": "READ-ONLY-NO-CONCRETE-BLOCKER-FOUND",
+  "scope": "Static integration review of local first-text timing and explicitly shared human clocks. This is not browser, native HTTP, full-duration or performance acceptance.",
+  "blockers": [],
+  "reviewedFiles": [
+    {
+      "file": "src/lib/typing-core/session.ts",
+      "sha256": "c21ce6b38ce3dee2fee11557d94e03c4309b8f7c52d1b05fac665fb5943b04f7"
+    },
+    {
+      "file": "src/lib/typing-core/__tests__/session.test.ts",
+      "sha256": "8e187634cae6b8e3cff6a96e5c76b5f18697dd346284256dc3cfd18efc16fcc3"
+    },
+    {
+      "file": "src/components/typing/TypingArea.tsx",
+      "sha256": "4e93ea5d11c00918f744f8a20ad8057261e934d8018356971a57f478be3bb48f"
+    },
+    {
+      "file": "src/pages/Index.tsx",
+      "sha256": "d4891ab2adeab68a46e1e81487d8ec1d0c9724f4274a29b8ea630cd600dc2aa3"
+    },
+    {
+      "file": "src/components/keybr/KeybrLessonMode.tsx",
+      "sha256": "4aa69b6d2bf412de83dfa3561b14692570bcb59d7467b1c98beb29582431053a"
+    },
+    {
+      "file": "src/pages/Lessons.tsx",
+      "sha256": "3358d59c863a153da36a2519730734931b89f79b732717fe2a19871ba1c3aef0"
+    },
+    {
+      "file": "src/lib/typing-course.ts",
+      "sha256": "77a1756fde9daf59b3a918424fe99b5caa9bac1bd809e09d38101bf1d118df23"
+    },
+    {
+      "file": "src/pages/Race.tsx",
+      "sha256": "5eaf02ca14ef048308dec65ae3e69e1e232e54334d8942854ab2660c3b34d25a"
+    },
+    {
+      "file": "src/lib/bot-engine.ts",
+      "sha256": "913bd96bdaddf90bd07aa09adb974826a9a84d3c6fb1fe482d9d6508d2edd76f"
+    },
+    {
+      "file": "src/lib/__tests__/bot-engine.test.ts",
+      "sha256": "ededd23c8b41ef912e676c16983ea52b7832a474f32ab52ebe2d217b38558d74"
+    },
+    {
+      "file": "src/lib/typing-game.ts",
+      "sha256": "5cee450a54a0b428a51f512aee641ff2f55caddc83252cfeac19577292ddacf7"
+    },
+    {
+      "file": "src/lib/__tests__/typing-game.test.ts",
+      "sha256": "1513a95e1ba1ec43fc8a4c8a2aff6c91838eed2ecb1a89c53467d21bad5c1565"
+    },
+    {
+      "file": "src/components/games/SignalRun.tsx",
+      "sha256": "074bb221156ea959033378ed86eaad5c419be3565b2e2b2b5bc55f3350da99c0"
+    },
+    {
+      "file": "src/games/engine/canonical-bridge.ts",
+      "sha256": "4eab5deddc4ec2ae784c6f85f832df2d55a4998d24cd25165ce16417e2b3ea26"
+    },
+    {
+      "file": "src/games/engine/arcade-machine.ts",
+      "sha256": "b16169fd741b016675b1c275fbbaf97bb904144f8a907c8edaa94d340904a3ed"
+    },
+    {
+      "file": "src/games/engine/__tests__/first-input.test.ts",
+      "sha256": "167324a8812a8b4a1ae7fe29341712d46dbb5d512505f973dc2b14bf95400fd6"
+    },
+    {
+      "file": "src/games/ui/ArcadePlayer.tsx",
+      "sha256": "9a0c8237468561b3a3ad801ed9cc087dd89c056cd6b433a8a0dd65dc40ab48f3"
+    },
+    {
+      "file": "src/games/ui/NativeGameInput.tsx",
+      "sha256": "eeca5c6a20d340642a28dd56382dca444c02e8b21003021d1ff6ffb4583fd981"
+    },
+    {
+      "file": "src/games/ui/ArcadeScene.tsx",
+      "sha256": "d230094cca89305773570b116c21ad6f5ee5fb013412d590eaec1994f96d0f22"
+    },
+    {
+      "file": "src/pages/Arena.tsx",
+      "sha256": "19615e19ac5ca5143a4487260b96928377b550992c04a8eed7b9ee7a35a115e9"
+    }
+  ],
+  "observations": [
+    {
+      "area": "Canonical/Test",
+      "observed": "The controller remains ready until a nonempty non-delete/non-submit edit passes range/correction validation. Empty edits, setup, target appends and focus do not call start. Wrong/rejected text attempts start the same monotonic origin. Deadline checks occur before accepting subsequent edits. Test configurations and retests do not force immediate start."
+    },
+    {
+      "area": "Adaptive/Course",
+      "observed": "Adaptive creates unstarted canonical controllers and commits actual text/composition only; refresh timer runs only in running status. Course configuration has no immediate start, and Start lesson only mounts TypingArea. Empty-Space/correction paths do not independently start timers."
+    },
+    {
+      "area": "Local bot",
+      "observed": "Only actual human rooms call player.startAt on mount. Local bot runner/controller remain unstarted until onSnapshot sees the player timingOrigin, then both receive that exact monotonic/wall origin synchronously. Interval returns while unstarted. New generator cohort separates earlier view-started local results."
+    },
+    {
+      "area": "Signal Run",
+      "observed": "Launch arms playing with lastAt null. Only nonempty observed inserted units establish lastAt. Pause/resume before any attempts stays unstarted; active pause excludes elapsed time. Exact-deadline edits/submissions and callbacks after completion cannot add attempts."
+    },
+    {
+      "area": "Eight Arcade modes",
+      "observed": "Canonical bridge has startImmediately:false. Initial target setup is visible at elapsed0; step returns while no origin. Wrong unmatched text uses canonical reject and starts; empty, oversized refused edits and assistance metadata do not start. Canonical origin/active elapsed/actual pauses drive world, BOT, ghost and metronome; Canvas reads that active clock. Edit checks current elapsed before accepting late input. Finished phase blocks further game edits."
+    },
+    {
+      "area": "Human Race/Arena",
+      "observed": "These intentionally retain authenticated shared server-clock startAt paths, including idle time; player first text does not restart them. Practice change does not remove those calls."
+    }
+  ],
+  "sourceTestCasesReadNotExecuted": [
+    "Canonical timing origin and zero-origin behavior",
+    "Bot exact player-origin alignment with wrong/rejected first attempts",
+    "Signal Run idle launch, oversized refusal, pre-input pause and deadline guards",
+    "All eight Arcade modes long idle, canonical first-input origin, first wrong input, composition, pre-input pause/resume, oversized refusal and no-input manual end"
+  ],
+  "remainingUnverified": [
+    "No browser event ordering, mobile/IME behavior, timer UI or full-duration flow was executed in this review.",
+    "No native server challenge/race validation or current build/source identity was certified here.",
+    "No INP/FPS/Lighthouse or 3D visual claim follows from source inspection."
+  ],
+  "mutations": {
+    "product": false,
+    "tests": false,
+    "runners": false,
+    "gitStage": false,
+    "reportOnly": true
+  },
+  "jobs": {
+    "browser": false,
+    "build": false,
+    "tests": false,
+    "load": false,
+    "services": false
+  }
+}

@@ -88,9 +88,13 @@ const PassageBlock = memo(function PassageBlock({
 });
 
 /** Word-aware presentation shared by tests and lessons; input remains in the session core. */
-export function TypingPassage(props: Props) {
+export const TypingPassage = memo(function TypingPassage(props: Props) {
   const committedModel = useRef<TypingPassageModel>();
-  const model = buildTypingPassageModel(props.slots, props, committedModel.current);
+  const model = buildTypingPassageModel(
+    props.slots,
+    props,
+    committedModel.current,
+  );
   // Store only committed presentation. An interrupted concurrent render cannot
   // replace the comparison baseline used by the visible passage.
   useEffect(() => {
@@ -108,4 +112,4 @@ export function TypingPassage(props: Props) {
       )}
     </>
   );
-}
+});

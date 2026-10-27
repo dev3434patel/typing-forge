@@ -1,0 +1,310 @@
+{
+  "totals": {
+    "total": 964,
+    "passed": 943,
+    "failed": 5,
+    "skipped": 16,
+    "flaky": 0
+  },
+  "projects": [
+    {
+      "project": "chromium",
+      "total": 241,
+      "passed": 237,
+      "failed": 0,
+      "skipped": 4,
+      "flaky": 0
+    },
+    {
+      "project": "edge",
+      "total": 241,
+      "passed": 236,
+      "failed": 1,
+      "skipped": 4,
+      "flaky": 0
+    },
+    {
+      "project": "firefox",
+      "total": 241,
+      "passed": 236,
+      "failed": 1,
+      "skipped": 4,
+      "flaky": 0
+    },
+    {
+      "project": "webkit",
+      "total": 241,
+      "passed": 234,
+      "failed": 3,
+      "skipped": 4,
+      "flaky": 0
+    }
+  ],
+  "reportedStats": {
+    "expected": 943,
+    "unexpected": 5,
+    "skipped": 16,
+    "flaky": 0
+  },
+  "countsAgreeWithReport": true,
+  "failures": [
+    {
+      "project": "webkit",
+      "title": "offline-pwa.spec.ts › public app download supports a real server outage and clearing preserves real history",
+      "file": "offline-pwa.spec.ts",
+      "line": 28,
+      "attempts": 1,
+      "attemptStatuses": [
+        "timedOut"
+      ],
+      "messages": [
+        "Test timeout of 30000ms exceeded.",
+        "Error: locator.click: Test timeout of 30000ms exceeded. Call log: - waiting for getByRole('button', { name: 'Remove offline download', exact: true }) - locator resolved to <button class=\"forge-button-secondary\">Remove offline download</button> - attempting click action - waiting for element to be visible, enabled and stable 127 | await page 128 | .getByRole(\"button\", { name: \"Remove offline download\", exact: true }) > 129 | .click(); | ^ 130 | aw"
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "pwa-notices.spec.ts › dismissing installation does not hide a later app update or offline information",
+      "file": "pwa-notices.spec.ts",
+      "line": 40,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(locator).toBeVisible() failed Locator: getByRole('complementary', { name: 'App availability', exact: true }).getByRole('button', { name: 'Install app', exact: true }) Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByRole('complementary', { name: 'App availability', exact: true }).getByRole('button', { name: 'Install app', exact: true }) with timeout 5000ms - waiting for getByRole('c"
+      ]
+    },
+    {
+      "project": "edge",
+      "title": "typing-observer-ownership.spec.ts › Learn reuses measured glyph windows across spaces and preserves native caret geometry after font, error and rotation changes",
+      "file": "typing-observer-ownership.spec.ts",
+      "line": 239,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBeGreaterThan(expected) Expected: > 0.5 Received: 0.234375 304 | await expect(page.locator(\".learn-stream-text\")).toHaveCSS(\"font-family\", /Georgia/); 305 | await expectNative(); > 306 | expect(Math.abs((await geometry()).nativeWidth - originalWidth)).toBeGreaterThan(0.5); | ^ 307 | const wrong = text[count] === \"x\" ? \"z\" : \"x\"; 308 | await input.pressSequentially(wrong); 309 | await expect(page.locator(`.learn-stream [d"
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "typing-observer-ownership.spec.ts › Learn reuses measured glyph windows across spaces and preserves native caret geometry after font, error and rotation changes",
+      "file": "typing-observer-ownership.spec.ts",
+      "line": 239,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBeGreaterThan(expected) Expected: > 0.5 Received: 0.2333221435546875 304 | await expect(page.locator(\".learn-stream-text\")).toHaveCSS(\"font-family\", /Georgia/); 305 | await expectNative(); > 306 | expect(Math.abs((await geometry()).nativeWidth - originalWidth)).toBeGreaterThan(0.5); | ^ 307 | const wrong = text[count] === \"x\" ? \"z\" : \"x\"; 308 | await input.pressSequentially(wrong); 309 | await expect(page.locator(`.learn"
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "typing-observer-ownership.spec.ts › Learn reuses measured glyph windows across spaces and preserves native caret geometry after font, error and rotation changes",
+      "file": "typing-observer-ownership.spec.ts",
+      "line": 239,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBeGreaterThan(expected) Expected: > 0.5 Received: 0.23867034912109375 304 | await expect(page.locator(\".learn-stream-text\")).toHaveCSS(\"font-family\", /Georgia/); 305 | await expectNative(); > 306 | expect(Math.abs((await geometry()).nativeWidth - originalWidth)).toBeGreaterThan(0.5); | ^ 307 | const wrong = text[count] === \"x\" ? \"z\" : \"x\"; 308 | await input.pressSequentially(wrong); 309 | await expect(page.locator(`.lear"
+      ]
+    }
+  ],
+  "flakyCases": [],
+  "skippedCases": [
+    {
+      "project": "chromium",
+      "title": "auth-flow.spec.ts › real account sign in with dedicated deployment credentials",
+      "file": "auth-flow.spec.ts",
+      "line": 54,
+      "reasons": [
+        "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used."
+      ]
+    },
+    {
+      "project": "edge",
+      "title": "auth-flow.spec.ts › real account sign in with dedicated deployment credentials",
+      "file": "auth-flow.spec.ts",
+      "line": 54,
+      "reasons": [
+        "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used."
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "auth-flow.spec.ts › real account sign in with dedicated deployment credentials",
+      "file": "auth-flow.spec.ts",
+      "line": 54,
+      "reasons": [
+        "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "auth-flow.spec.ts › real account sign in with dedicated deployment credentials",
+      "file": "auth-flow.spec.ts",
+      "line": 54,
+      "reasons": [
+        "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used."
+      ]
+    },
+    {
+      "project": "chromium",
+      "title": "php-account-flow.spec.ts › real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+      "file": "php-account-flow.spec.ts",
+      "line": 6,
+      "reasons": [
+        "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account."
+      ]
+    },
+    {
+      "project": "edge",
+      "title": "php-account-flow.spec.ts › real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+      "file": "php-account-flow.spec.ts",
+      "line": 6,
+      "reasons": [
+        "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account."
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "php-account-flow.spec.ts › real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+      "file": "php-account-flow.spec.ts",
+      "line": 6,
+      "reasons": [
+        "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "php-account-flow.spec.ts › real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+      "file": "php-account-flow.spec.ts",
+      "line": 6,
+      "reasons": [
+        "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account."
+      ]
+    },
+    {
+      "project": "chromium",
+      "title": "php-human-race.spec.ts › real two-browser PHP human race shares opponent pace and settles server results",
+      "file": "php-human-race.spec.ts",
+      "line": 5,
+      "reasons": [
+        "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+      ]
+    },
+    {
+      "project": "edge",
+      "title": "php-human-race.spec.ts › real two-browser PHP human race shares opponent pace and settles server results",
+      "file": "php-human-race.spec.ts",
+      "line": 5,
+      "reasons": [
+        "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "php-human-race.spec.ts › real two-browser PHP human race shares opponent pace and settles server results",
+      "file": "php-human-race.spec.ts",
+      "line": 5,
+      "reasons": [
+        "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "php-human-race.spec.ts › real two-browser PHP human race shares opponent pace and settles server results",
+      "file": "php-human-race.spec.ts",
+      "line": 5,
+      "reasons": [
+        "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+      ]
+    },
+    {
+      "project": "chromium",
+      "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+      "file": "race-mode.spec.ts",
+      "line": 84,
+      "reasons": [
+        "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+      ]
+    },
+    {
+      "project": "edge",
+      "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+      "file": "race-mode.spec.ts",
+      "line": 84,
+      "reasons": [
+        "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+      "file": "race-mode.spec.ts",
+      "line": 84,
+      "reasons": [
+        "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+      "file": "race-mode.spec.ts",
+      "line": 84,
+      "reasons": [
+        "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+      ]
+    }
+  ],
+  "skipReasons": [
+    {
+      "reason": "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used.",
+      "count": 4,
+      "projects": [
+        "chromium",
+        "edge",
+        "firefox",
+        "webkit"
+      ]
+    },
+    {
+      "reason": "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account.",
+      "count": 4,
+      "projects": [
+        "chromium",
+        "edge",
+        "firefox",
+        "webkit"
+      ]
+    },
+    {
+      "reason": "Requires two dedicated accounts on the explicit PHP acceptance deployment.",
+      "count": 4,
+      "projects": [
+        "chromium",
+        "edge",
+        "firefox",
+        "webkit"
+      ]
+    },
+    {
+      "reason": "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization.",
+      "count": 4,
+      "projects": [
+        "chromium",
+        "edge",
+        "firefox",
+        "webkit"
+      ]
+    }
+  ],
+  "expectedFailures": [],
+  "globalErrors": [],
+  "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+}

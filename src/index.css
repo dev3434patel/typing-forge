@@ -142,7 +142,7 @@
     @apply text-primary bg-primary/10;
   }
   .typing-text {
-    font-family: "JetBrains Mono Variable", "Noto Sans", monospace;
+    font-family: var(--practice-font, "JetBrains Mono Variable"), "Noto Sans", monospace;
     font-size: var(--typing-size);
     line-height: 1.9;
     font-variant-ligatures: none;
@@ -302,6 +302,14 @@
 }
 .practice-shell > header > div {
   max-width: 1216px;
+}
+/* Eight primary destinations fit beside the wordmark and account controls on
+   laptop widths, keeping the practice keyboard below a single header row. */
+.forge-main-navigation .forge-chip {
+  padding-inline: 8px;
+  font-size: 13px;
+  gap: 5px;
+  white-space: nowrap;
 }
 .test-toolbar {
   width: fit-content;
@@ -630,3 +638,7 @@ html[data-reduced-motion="true"] *::after {
   transition-duration: 0.01ms !important;
   scroll-behavior: auto !important;
 }
+html[data-theme="high-contrast"] :focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+html[data-theme="high-contrast"] .panel,
+html[data-theme="high-contrast"] .forge-input,
+html[data-theme="high-contrast"] .live-key { border-width: 2px; }

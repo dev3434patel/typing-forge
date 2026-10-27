@@ -1,0 +1,82 @@
+{
+  "recordedAt": "2026-10-20T18:49:23.627Z",
+  "build": "ebda64060759b5fed25a",
+  "method": "Read-only error-context, test.trace, runtime trace and HAR inspection; no browser launch, fixture change, source edit, retry or performance measurement.",
+  "overall": "Five recorded failures remain failures. No correction-policy or keyboard-geometry mismatch was demonstrated. The /stats readiness failure remains unresolved until quiet confirmation. Host resource starvation is not proven by these traces.",
+  "cases": [
+    {
+      "file": "e2e/accessibility-audit.spec.ts",
+      "title": "existing guest pages and completed results meet automated accessibility rules at 390px",
+      "artifact": "audit/mobile-games-static-2026-10-20/.playwright-artifacts-after-4-browser-ordinary/accessibility-audit-existi-f5b01-ccessibility-rules-at-390px-firefox",
+      "category": "Unresolved actual readiness assertion",
+      "evidence": [
+        "After earlier routes and axe scans completed, goto /stats returned at709576.310ms. main#main-content expect started709697.435 and failed714730.077 with no matching main.",
+        "Final /stats document, App/route CSS and JS, Stats-qmjkzVAX.js and generateCategoricalChart-BxhmpDiX.js all recorded HTTP200/cache responses. Last chart request709973.7ms; no unresolved JavaScript request or application pageerror recorded.",
+        "Last full DOM snapshot709694.919ms shows workspace-loading with Preparing your typing workspace. No later completed DOM snapshot proves eventual recovery."
+      ],
+      "confirmation": "Run the complete same390px multi-route accessibility case, not merely a fresh /stats navigation; preserve the5000ms readiness assertion and all axe checks."
+    },
+    {
+      "file": "e2e/auth-flow.spec.ts",
+      "title": "account form switches between sign in and creation using labelled controls",
+      "artifact": "audit/mobile-games-static-2026-10-20/.playwright-artifacts-after-4-browser-ordinary/auth-flow-account-form-swi-f2758-ion-using-labelled-controls-firefox",
+      "category": "Driver/context stall evidence; application cause unproven",
+      "evidence": [
+        "goto /auth completed714.7ms; Welcome Back expect began764375.1ms but has no runtime after record.",
+        "No frame snapshot beyond about:blank was collected; context teardown exceeded30000ms and the expect error arrived only during later worker cleanup.",
+        "Browser diagnostics include chrome://juggler/content/Helper.js NS_ERROR_FAILURE in nsIWebProgress.removeProgressListener, alongside SWGL framebuffer failure. Classification does not rest on SWGL alone.",
+        "All25 recorded completed network responses were200, including App JS. Only icon-192.png and sparowtype.svg retained status-1; no failed application module response is shown."
+      ],
+      "confirmation": "Run the exact labelled form switch case at normal clocks with one worker, retaining heading, signup/signin, labels and autocomplete assertions; capture context closure as part of the result."
+    },
+    {
+      "file": "e2e/current-word-correction.spec.ts",
+      "title": "Backspace reopens a submitted extra-letter word before it can become locked",
+      "artifact": "audit/mobile-games-static-2026-10-20/.playwright-artifacts-after-4-browser-ordinary/current-word-correction-Ba-ffe6e-before-it-can-become-locked-firefox",
+      "category": "Total test budget consumed before policy sequence finished",
+      "evidence": [
+        "Custom mode click call fojk@4182 took27449.5ms; element was resolved/visible/stable by872694.1ms, performing click873770.9 and click done899789.3ms.",
+        "catx-space insertion then completed418.5ms, correction feedback assertion completed113.3ms, Backspace completed674.1ms. Global30000ms timeout was already reached while subsequent work was still being delivered.",
+        "All36 network responses recorded200; no pageerror or explicit wrong retained-value assertion result was recorded."
+      ],
+      "confirmation": "Run exact extra-letter case alone with unchanged30000ms bound and all reopening/locking expectations. Do not treat the last reported type action as proof that typing itself consumed30seconds."
+    },
+    {
+      "file": "e2e/current-word-correction.spec.ts",
+      "title": "a repaired resubmitted word locks while original incorrect attempts remain in exported accuracy",
+      "artifact": "audit/mobile-games-static-2026-10-20/.playwright-artifacts-after-4-browser-ordinary/current-word-correction-a--52e94-remain-in-exported-accuracy-firefox",
+      "category": "Total test budget consumed before final typing/export",
+      "evidence": [
+        "Custom textarea fill call ciol@52 took25787.6ms; locator resolved908680.9ms but fill action began934292.1ms.",
+        "Subsequent cxt-space/backspaces/at-space sequence and correct-word lock toHaveValue(cat-space) all completed successfully. Final dog quiet calm type began936177.5ms close to global timeout and has no after record.",
+        "All36 network responses recorded200; no application pageerror or accuracy/export mismatch was captured."
+      ],
+      "confirmation": "Run exact repaired-resubmit case alone with unchanged time bound; retain final JSON attempt/accuracy verification because the failed run never reached that evidence."
+    },
+    {
+      "file": "e2e/keyboard-viewport.spec.ts",
+      "title": "whole keyboard and feedback fit 1920x900 at 100% with update banner",
+      "artifact": "audit/mobile-games-static-2026-10-20/.playwright-artifacts-after-4-browser-ordinary/keyboard-viewport-whole-ke-eea73-0-at-100-with-update-banner-firefox",
+      "category": "Context teardown failure after passing product body",
+      "evidence": [
+        "Test body finished all geometry and focused-input assertions in approximately2764ms. Attached actual CSS viewport1920x900 has ready/error/corrected keyboard bottoms770.2166/778.2166/770.2166, all≤900; no document overflow or header overlap.",
+        "The only unfinished action is Close context beginning1008977.3ms. Context teardown exceeded30000ms; subsequent browser cleanup took37755ms.",
+        "No keyboard geometry assertion failed in this trace."
+      ],
+      "confirmation": "Run exact1920x900 banner case unchanged, including successful context teardown; earlier108-case after2 confirmation is separate historical evidence."
+    }
+  ],
+  "suggestedConfirmation": {
+    "browser": "firefox",
+    "workers": 1,
+    "retries": 0,
+    "files": [
+      "e2e/accessibility-audit.spec.ts",
+      "e2e/auth-flow.spec.ts",
+      "e2e/current-word-correction.spec.ts",
+      "e2e/keyboard-viewport.spec.ts"
+    ],
+    "selection": "Exact five titles listed above",
+    "limits": "A quiet pass is additional evidence; it does not erase these retained initial failures or prove their root cause."
+  }
+}

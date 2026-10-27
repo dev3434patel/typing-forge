@@ -1,0 +1,45 @@
+{
+  "recordedAt": "2026-10-23T14:44:40.559100+00:00",
+  "status": "NEW_E2E_BASELINE_READY_NOT_RUN",
+  "path": "e2e/pwa-snapshot-consistency.spec.ts",
+  "sha256": "09da251a80cac38edddd6dc63e71916cd6d55316e201fb7b2341de8cb31766be",
+  "lines": 233,
+  "definitionCount": 4,
+  "expectedFourEngineCases": 16,
+  "sourceComponentsUnmodified": [
+    {
+      "path": "src/components/layout/PwaStatus.tsx",
+      "normalizedSha256": "bf532b12b82b313e1564aa135fe58e389be9757d69899193721405754581e1b6",
+      "matchesFrozen17": true
+    },
+    {
+      "path": "src/pages/Offline.tsx",
+      "normalizedSha256": "b386ead506d0da9ea0e8184afc6de293ca0ad81b462b4efb8a0ec1cffc20ba1b",
+      "matchesFrozen17": true
+    },
+    {
+      "path": "src/lib/pwa.ts",
+      "normalizedSha256": "0ee35f6979f4a2b0207fb339a6f443501073617d0a414435d5d78ebfa3b1b328",
+      "matchesFrozen17": true
+    }
+  ],
+  "scope": "Actual PwaStatus and Offline sources bundled by existing esbuild with realReactDOM/MemoryRouter. Controlled stable external-store boundary and Header/Footer stubs only; owned loopback HTTP server and no actual API/worker/permission/installation request. This is a deterministic client component subscription regression, not full application or visual/performance acceptance.",
+  "scheduleProof": "Sibling useLayoutEffect publishes after component render and before either passive subscription. Journal must show read before publish before subscribe, with zero listeners at publication. Both actual component UIs must reflect the latest store state.",
+  "controls": [
+    "Snapshot published before initial render",
+    "Publication after both passive subscriptions exist",
+    "Unmount removes both listeners; subsequent publication invokes no stale listener"
+  ],
+  "expectedBaseline": "Old useState initializer plus passive subscription is expected to fail only the render-to-subscribe-gap definition in each engine. Other3 controls must pass. Do not annotate the gap as expected failure or discard its failing receipt.",
+  "commandsForParent": [
+    "npx playwright test e2e/pwa-snapshot-consistency.spec.ts --workers=1 --retries=0 --trace=off"
+  ],
+  "limits": "Original default test30s/assertion5s budgets; no test-clock mutation, input simulation, CSS/geometry override or new dependency.",
+  "nextStep": "Parent executes old-source17 baseline first. Only after negative gap proof may parent change the two production consumers to useSyncExternalStore and run confirmation.",
+  "runtimeCausality": "A deterministic component-store gap does not prove it caused the retained WebKit Install app failure. That historical schedule remains UNPROVEN.",
+  "notRun": [
+    "Browser/test collection",
+    "TypeScript/lint/build",
+    "Production modifications"
+  ]
+}

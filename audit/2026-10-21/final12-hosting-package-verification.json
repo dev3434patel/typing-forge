@@ -1,0 +1,1217 @@
+{
+  "declaredAt": "2026-10-21T20:07:47.260Z",
+  "status": "PASS-SCOPED",
+  "checks": [
+    {
+      "name": "current product source matches frozen final identity",
+      "pass": true,
+      "detail": {
+        "sourceFile": "audit/2026-10-21/final12-source.json",
+        "expectedBuild": "2bf79b95e1ee5d93426e",
+        "compared": 494,
+        "mismatches": []
+      }
+    },
+    {
+      "name": "PHP public artifact matches frozen build identity",
+      "pass": true
+    },
+    {
+      "name": "all public build files are byte-identical in package",
+      "pass": true
+    },
+    {
+      "name": "public tree contains only build plus reviewed API wrapper/headers",
+      "pass": true
+    },
+    {
+      "name": "no local config, session store, environment or private key packaged",
+      "pass": true
+    },
+    {
+      "name": "private backend never appears below public_html",
+      "pass": true
+    },
+    {
+      "name": "every shipped backend source/resource/migration byte matches workspace",
+      "pass": true
+    },
+    {
+      "name": "private package includes only explicit reviewed source allowlist",
+      "pass": true
+    },
+    {
+      "name": "002-progression.sql included with frozen hash",
+      "pass": true
+    },
+    {
+      "name": "003_classroom.sql included with frozen hash",
+      "pass": true
+    },
+    {
+      "name": "004_social.sql included with frozen hash",
+      "pass": true
+    },
+    {
+      "name": "005_arena.sql included with frozen hash",
+      "pass": true
+    },
+    {
+      "name": "install-schema.php packaged exactly and frozen",
+      "pass": true
+    },
+    {
+      "name": "install-schema.php references every required additive migration",
+      "pass": true
+    },
+    {
+      "name": "install-schema.php remains CLI-only with explicit config/database choice",
+      "pass": true
+    },
+    {
+      "name": "migrate-schema.php packaged exactly and frozen",
+      "pass": true
+    },
+    {
+      "name": "migrate-schema.php references every required additive migration",
+      "pass": true
+    },
+    {
+      "name": "migrate-schema.php remains CLI-only with explicit config/database choice",
+      "pass": true
+    },
+    {
+      "name": "public API wrapper resolves only sibling private API",
+      "pass": true
+    },
+    {
+      "name": "private directory has Apache deny boundary",
+      "pass": true
+    },
+    {
+      "name": "packaged setup guide is current source guide",
+      "pass": true
+    },
+    {
+      "name": "PHP offline allowlist is exact and retains private boundaries",
+      "pass": true
+    },
+    {
+      "name": "scene quality bytes retained from checkpoint",
+      "pass": true,
+      "detail": "Exact filename, raw bytes and SHA-256 against preserved checkpoint; no normalization."
+    },
+    {
+      "name": "bloom quality bytes retained from checkpoint",
+      "pass": true,
+      "detail": "Exact filename, raw bytes and SHA-256 against preserved checkpoint; no normalization."
+    },
+    {
+      "name": "three quality bytes retained from checkpoint",
+      "pass": true,
+      "detail": "Exact filename, raw bytes and SHA-256 against preserved checkpoint; no normalization."
+    },
+    {
+      "name": "worker quality bytes retained from checkpoint",
+      "pass": true,
+      "detail": "Exact public worker filename and SHA-256 against preserved public-file receipt."
+    },
+    {
+      "name": "bridge quality bytes retained from checkpoint",
+      "pass": true,
+      "detail": "Replace exactly one from\"./index-HASH.js\" bootstrap import. Every other bridge byte remains compared; no logic normalization."
+    }
+  ],
+  "automaticRetries": 0,
+  "resultFiltering": false,
+  "scope": "Fresh PHP package structure, exact public/private-source bytes, additive migrations/CLI and frozen 3D/source integrity only. Apache execution, database installation and remote hosting are not performed.",
+  "source": {
+    "sourceFile": "audit/2026-10-21/final12-source.json",
+    "expectedBuild": "2bf79b95e1ee5d93426e",
+    "compared": 494,
+    "mismatches": []
+  },
+  "build": {
+    "version": "2bf79b95e1ee5d93426e",
+    "publicFiles": 134,
+    "bytes": 2922670
+  },
+  "publicFiles": [
+    {
+      "file": ".vite/manifest.json",
+      "sha256": "210e3b7250f92cd26df8559747e87899b483326afd8a676d085d2701a40f43cc",
+      "pass": true
+    },
+    {
+      "file": "_headers",
+      "sha256": "57db1a499f4524b6ced68b0a8609cdeebfa38547f0468488278541d52495d0b7",
+      "pass": true
+    },
+    {
+      "file": "_offline-recovery.html",
+      "sha256": "4738811fa84d492ef5e97f27da3060fd734097438b2a4af954b5594573cbd542",
+      "pass": true
+    },
+    {
+      "file": "assets/About-DosIP3Og.js",
+      "sha256": "e4babe8ae827847a4b4e3ef461af3850dcb917a699f066d343d724921b078cb5",
+      "pass": true
+    },
+    {
+      "file": "assets/App-C6QhrfOt.css",
+      "sha256": "de31027924ed7bd85788f6c7b4f848e13fa29f7f177e5cb4097a2cb7711d8387",
+      "pass": true
+    },
+    {
+      "file": "assets/App-CY1jtoGo.js",
+      "sha256": "42dc0064054f9c4d00bd31879fd395082c010c1227cba875551316be1eb588cc",
+      "pass": true
+    },
+    {
+      "file": "assets/ArcadePage-CgNXE2p8.js",
+      "sha256": "83edcb5838fb3649a970e3d206e9f60a6490920c37e6591ac39b57ddc7e81358",
+      "pass": true
+    },
+    {
+      "file": "assets/ArcadePage-ChkW2Gst.css",
+      "sha256": "72bfd8dd650104e699dadc0836f0415cee8a781e4c72ea4040f950d9ab4439e0",
+      "pass": true
+    },
+    {
+      "file": "assets/ArcadePlayer-Bzj_SpTL.js",
+      "sha256": "5086550f391f80f29ca8c3231dad6f6e5451957ae98f3602ad613740d3b6a452",
+      "pass": true
+    },
+    {
+      "file": "assets/Arena-BP4IZVW7.js",
+      "sha256": "5c01a0579dee7d4a1600d5e6020f1bab59d8a131fc5e1ca5b67e445e03d8260e",
+      "pass": true
+    },
+    {
+      "file": "assets/Auth-Bu_4gneA.js",
+      "sha256": "4d8da1e12afe6efd8bc46b52a557dead8d5640d2f73c916090effe1a656b151e",
+      "pass": true
+    },
+    {
+      "file": "assets/Classroom-Bg1J3iyM.js",
+      "sha256": "a04e964bcc2ae4541d09e5c311b800d907efbc5decd501f488890c1e1d17ad9a",
+      "pass": true
+    },
+    {
+      "file": "assets/CommandPalette-BYScxYNo.js",
+      "sha256": "9870c9bce6e57436116a3846356ff153414eb2a6da682fe635c8691609670abf",
+      "pass": true
+    },
+    {
+      "file": "assets/DuelAttempt-CBAlpAX4.js",
+      "sha256": "60d340e883e13945f54ad99267bfc5a0f252ffd837870cceb80ae8dd9991e3eb",
+      "pass": true
+    },
+    {
+      "file": "assets/Footer-DUxlCcIs.js",
+      "sha256": "e963a47dd973e6008fea4273b0757c7b907fd9fe808ada0cf09768e4117b8abd",
+      "pass": true
+    },
+    {
+      "file": "assets/Friends-C8eo_ndk.js",
+      "sha256": "58f3e13266978c9dcb46856eccd3aab9353a0ed5d488d8823678b750ee4bd31a",
+      "pass": true
+    },
+    {
+      "file": "assets/Games-CGLw_3iz.css",
+      "sha256": "920a9d3493cb6f46003512b0966d54c6392280240003c6523a3ac2a3751fee85",
+      "pass": true
+    },
+    {
+      "file": "assets/Games-Ce_wvvGb.js",
+      "sha256": "928cda0936e1c0cbb29663fcd2c9c62c093e43d4abcd4c7c11293d0e151fe649",
+      "pass": true
+    },
+    {
+      "file": "assets/Index-DzHqHQX2.js",
+      "sha256": "93e1f4e49ec027d3a2a968683a05e95f5b2c802851285f67349e0dde668606ea",
+      "pass": true
+    },
+    {
+      "file": "assets/KeyboardLab-DL6PIGuf.js",
+      "sha256": "b49a5cc574a016387784d416098a49b0dd9dabff3ae030b4de2bdf93292d1802",
+      "pass": true
+    },
+    {
+      "file": "assets/Leaderboard-B9dwKE0O.js",
+      "sha256": "425b295a7cc74f914dd8e8c05ebbb685321196f4f132837bba9087be5b5a314b",
+      "pass": true
+    },
+    {
+      "file": "assets/Learn-D6hId1WA.css",
+      "sha256": "92dd3f0e918d6e7be190736789185186cbd1f348a04fda5d795fa7965f5f9d5d",
+      "pass": true
+    },
+    {
+      "file": "assets/Learn-DAPS4Hrt.js",
+      "sha256": "af4b87eec97697a7bc244712261bf46f4da67d3496ba50b408c0eff3d33fdbe3",
+      "pass": true
+    },
+    {
+      "file": "assets/Lessons-CAPN-WR7.css",
+      "sha256": "0bc1d4ec24897645fb33994a8e941f835fd0fe653c1f3b9f9725221ed4eecf4e",
+      "pass": true
+    },
+    {
+      "file": "assets/Lessons-CI_Y5FyN.js",
+      "sha256": "d51a07b1c7c8d7e67cf564395fbf03b27e1bf01c1aa98af495f658e6603e2693",
+      "pass": true
+    },
+    {
+      "file": "assets/LetterProgressPanel-0PhcVlkC.js",
+      "sha256": "4b5538d644f50368dec76f67e5389ed6c8bd876fcdb6b4d3a50c531943120d15",
+      "pass": true
+    },
+    {
+      "file": "assets/LocalReminderRuntime-x62qijIB.js",
+      "sha256": "b00c9d841ee7b7343ba30350eb7671f14dde86f16ebc4ae8ef3ebed3e924eeb0",
+      "pass": true
+    },
+    {
+      "file": "assets/NotFound-xYUudaYF.js",
+      "sha256": "bf0416a8d1b11e6f60e571fbcf89040020b2ce5535487477350304f8d06771b9",
+      "pass": true
+    },
+    {
+      "file": "assets/Offline-CcHPih3-.js",
+      "sha256": "516bcd7b08e7fa1ebff84809246ab629501bfc84c143bb2ead9fb2fa079f1af4",
+      "pass": true
+    },
+    {
+      "file": "assets/Privacy-CmeK-Xeu.js",
+      "sha256": "c9eb717b24a00cfec1a4ee75eb5546a0bdbfaf514bdf04564a649694653ef4eb",
+      "pass": true
+    },
+    {
+      "file": "assets/Profile-A9t9ekHD.js",
+      "sha256": "f34cc32a58859dea352fd589a03e4f13389b30e0af0c898d90ecb7bca340da57",
+      "pass": true
+    },
+    {
+      "file": "assets/ProfileAppearance-qPRba73F.js",
+      "sha256": "ad2ca3c6b5234122d24610afbf23df6a72bc7f36caab2296ad6bdfbd4289c024",
+      "pass": true
+    },
+    {
+      "file": "assets/Progression-BArBCbiC.js",
+      "sha256": "26ea6793b510d9050f2581a4f7f6747f376e74d23ca819bc15194623c57befc8",
+      "pass": true
+    },
+    {
+      "file": "assets/PwaStatus-4K_y7qOj.js",
+      "sha256": "c9cedb7a704dc252484b8d50862c5cedef367a0963891a8bf7dab32106e3e2d1",
+      "pass": true
+    },
+    {
+      "file": "assets/Race-CtPcQv_p.js",
+      "sha256": "dfb0c2a638a2326dd00b4b96481c644d45019f2e27e623ccdc83f6300a80d4d8",
+      "pass": true
+    },
+    {
+      "file": "assets/Ranked-H8toJN9p.js",
+      "sha256": "54e171167e6f3b036373fd9971ec42509ccd58d70710556288aefa87f0d4069a",
+      "pass": true
+    },
+    {
+      "file": "assets/SessionInsightsPanel-8QivtM6x.js",
+      "sha256": "f479b5fcdc83fb78833d9765bc3b5cff46036b3cf89b1fa71dfae2a7c94375f4",
+      "pass": true
+    },
+    {
+      "file": "assets/SessionResults-BNHAo96b.js",
+      "sha256": "56a2525d7610546f560395654acd9abacbd6c36828d35954c5276165c837a798",
+      "pass": true
+    },
+    {
+      "file": "assets/Settings-CSEHzg11.js",
+      "sha256": "5e56e0cb7ae2aa15b93099d879ce8f6827101d040e623c5846ac122c3c484d62",
+      "pass": true
+    },
+    {
+      "file": "assets/Stats-BzFkAcYf.js",
+      "sha256": "f5fd16c04c79b120010041a086e328a5f5ec070facb27626a81d5ba24cb3f650",
+      "pass": true
+    },
+    {
+      "file": "assets/StatsSpeedChart-Bs2rnui9.js",
+      "sha256": "688f68e5550b55a72487e2602db6d9235bf9d23913eeb587dc790ec042978789",
+      "pass": true
+    },
+    {
+      "file": "assets/Studio-BPi8zNnu.css",
+      "sha256": "4bac161133e879216aaef87099ae98c3066c147ebfe02ceadc3264f493e50e41",
+      "pass": true
+    },
+    {
+      "file": "assets/Studio-YOGDG7Hq.js",
+      "sha256": "6554ad68ee3c006637e71aecd3006a47126d14eda5e137214670024d017e04b2",
+      "pass": true
+    },
+    {
+      "file": "assets/Terms-BC-rDaRq.js",
+      "sha256": "71d27879a6a8a9225675dfe39ea79f17f5cbd417549a772696cbfacd8c35be4d",
+      "pass": true
+    },
+    {
+      "file": "assets/TouchTyping-CemJoiD5.js",
+      "sha256": "9a2bef79db760bb00712f2f425706619f7557e29aca6a926dc059b98d561e483",
+      "pass": true
+    },
+    {
+      "file": "assets/TypingArea-DhuqFTeH.js",
+      "sha256": "aca1596a687c63a5d7444c43d71855b8f2fdff061a74b3b8d396de654756eaeb",
+      "pass": true
+    },
+    {
+      "file": "assets/arrow-right-D3s7FQVw.js",
+      "sha256": "13b3536cf7c143eb12d4cdec80020c91ef59f58be95f38a6033c51b00c1b1748",
+      "pass": true
+    },
+    {
+      "file": "assets/arrow-up-right-B_YVK2oP.js",
+      "sha256": "2a74aae90cb39569479061299c99eadf6693b56f5f3a094389208bb27175bb64",
+      "pass": true
+    },
+    {
+      "file": "assets/button-BpZfWyOu.js",
+      "sha256": "419fdeab99b06fc5dbac39b70ef4dbdfe0ee43dac23297f7cd5cdd976d30c492",
+      "pass": true
+    },
+    {
+      "file": "assets/calendar-qHXkz0Pn.js",
+      "sha256": "e22474dde5ebf677ae41d07b4911575038614d1609ece81901734a979ced38c7",
+      "pass": true
+    },
+    {
+      "file": "assets/caret-handoff-Bo5AUEQO.js",
+      "sha256": "8ac4d9848755e7ec1eb773ac2eed8c31d1fb07123b57cb086e078228ca408e72",
+      "pass": true
+    },
+    {
+      "file": "assets/challenge-timing-Ch575Hh4.js",
+      "sha256": "48af7f49fdd8c5bdc6623b5280b6331e5d64e033cba894176cc2d426d177128a",
+      "pass": true
+    },
+    {
+      "file": "assets/check-B6Y0heKz.js",
+      "sha256": "71ae3d27d38e5c5798187011ee5a2ed020c97abe62294b7b542631c5c8dfeefc",
+      "pass": true
+    },
+    {
+      "file": "assets/clock-3-77IOO5EJ.js",
+      "sha256": "5645aed7fb1b044e644058b52a3a751da858168fb7495ec30cde42e7a102b4a1",
+      "pass": true
+    },
+    {
+      "file": "assets/composition-echo-3wx55gok.js",
+      "sha256": "26fe8bf48454d2d67706a812a62b50e27605a4dd6bdbe1c245b43e01fdb0fd57",
+      "pass": true
+    },
+    {
+      "file": "assets/content-packs-xYdkiJY8.js",
+      "sha256": "087c06ff9c18845c901f4ee36bab0b0352cb0ec3fc67bd79ce5bacb2dd23bf84",
+      "pass": true
+    },
+    {
+      "file": "assets/createLucideIcon-BLf2wj3X.js",
+      "sha256": "4a3a6ea8691558042b4f2c4e8b8e2c69492b51e66c1e815de20d3eac85d269e9",
+      "pass": true
+    },
+    {
+      "file": "assets/dashboard-C9r7LhLR.js",
+      "sha256": "7c7e76a2c860351bc0e5a5ed11ae1f4a83c3c50e9988c65e7263b33bb9d2d467",
+      "pass": true
+    },
+    {
+      "file": "assets/dialog-D3-ZGALq.js",
+      "sha256": "0e44d13180802ed6915573c6857ad0798c8cd07a75fa3f46505c15c20e9f7c6a",
+      "pass": true
+    },
+    {
+      "file": "assets/download-D2c15jF1.js",
+      "sha256": "7ef6b164b867370d73bad29746c81a43db147397e72022f10fe86eb28836c5c5",
+      "pass": true
+    },
+    {
+      "file": "assets/evidence-policy-DPUBgzfl.js",
+      "sha256": "93fe2d00ae448e8068fcf383e1f4ce6e97b0d00619841295b5332391369e1671",
+      "pass": true
+    },
+    {
+      "file": "assets/finger-map-ByR5UOq4.js",
+      "sha256": "abc5f70113309dca4446ff635ea47e6071ed13e92974031ec00a5d915280016a",
+      "pass": true
+    },
+    {
+      "file": "assets/flag-BBMh42LI.js",
+      "sha256": "fec30bd0285a76086736b56cd4505e092211d54dbbfe8159878331de8c8de5d2",
+      "pass": true
+    },
+    {
+      "file": "assets/generateCategoricalChart-DPMVMeV1.js",
+      "sha256": "e847eee8acd39556bbf3c4b7806d29f50816b93ac5f3de7de584ac4c45d40a73",
+      "pass": true
+    },
+    {
+      "file": "assets/history-model-Cg8nY6dX.js",
+      "sha256": "4bc668f255b81010b9f2529d63ef1413a312160a2a69b925fc96ff8cb6a70369",
+      "pass": true
+    },
+    {
+      "file": "assets/index-C1lKP_J1.js",
+      "sha256": "0680f839d5067daa294a962d7e6c936572974dc144c59517ee0cac2ea6cae4a7",
+      "pass": true
+    },
+    {
+      "file": "assets/index-CVnqDOSH.js",
+      "sha256": "0b146c16d4f98611c2639a3e4ef2d8f742a7ef7ccb15f947a9a15f88816269f3",
+      "pass": true
+    },
+    {
+      "file": "assets/index-Cf4JTti6.js",
+      "sha256": "411d3ef9adc3ea9b3d3c0ec213f72554f65dfb39dee34599e6ca0ca1139acffa",
+      "pass": true
+    },
+    {
+      "file": "assets/index-CfcwTa4K.js",
+      "sha256": "94fd8e9f1212957a458ecdad7950888bac6a5b7290c18f2d1fcdb3ca27319c02",
+      "pass": true
+    },
+    {
+      "file": "assets/index-DKbKLAjg.js",
+      "sha256": "7e447e17792ad3455a1905c76e2ea7e695d483f7f2c52cfee31fe78ce6d3556e",
+      "pass": true
+    },
+    {
+      "file": "assets/index-DnOZiSgp.js",
+      "sha256": "e308468cc2ed65cabe198d6cbaad01510c1f9e1a91a744991772da5e8743e8e8",
+      "pass": true
+    },
+    {
+      "file": "assets/index-Drd88ecX.js",
+      "sha256": "a539db3cdf7aca8fd1a2b068cecae321ea5fd0182a285447c8fd4f57f8e4d184",
+      "pass": true
+    },
+    {
+      "file": "assets/index-XwygSNVl.css",
+      "sha256": "167a5a967a2d03028487103ebf897d2f927a2d2372b46b4ab7a44799b2401d9c",
+      "pass": true
+    },
+    {
+      "file": "assets/keyboard-audio-CkcWSiE5.js",
+      "sha256": "647ea86f23f6e83e30110e29e4846f2532220d49511c7171e23647bc5747880a",
+      "pass": true
+    },
+    {
+      "file": "assets/keyboard-bloom-CFGEPK_L.js",
+      "sha256": "966db3e3d61752514688db63b3d970e1a87e7a66498f5f3f0b93f0085c0c0977",
+      "pass": true
+    },
+    {
+      "file": "assets/keyboard-lab-UzEVr6VM.js",
+      "sha256": "26de248aa14e9509a82fab659c7acec07203dc8d49c7fa673f02ab804937509e",
+      "pass": true
+    },
+    {
+      "file": "assets/keyboard-layout-C21F3kj3.js",
+      "sha256": "105c89037b49c4de07d6e4e3f5f51c34bbdc055c62d05ed64e6054d5b052c461",
+      "pass": true
+    },
+    {
+      "file": "assets/keyboard-render-worker-oeYyHX4e.js",
+      "sha256": "37b2d1842100f3516e8af626c58d58791c3ff9c6cc970835d5bd3d8ef948be13",
+      "pass": true
+    },
+    {
+      "file": "assets/keyboard-scene-DYowRFwC.js",
+      "sha256": "1624b699d9955f32c182e82eb0ac03567c446174bd2b29e649647a6079fe2f44",
+      "pass": true
+    },
+    {
+      "file": "assets/keyboard-scene-bridge-xCkoullr.js",
+      "sha256": "284c0209c7110988ddb37fdbc7596d1a8ea2185a2aaf890e0fcfc3b79d1c34a1",
+      "pass": true
+    },
+    {
+      "file": "assets/keybr-engine-CgIQ5DbV.js",
+      "sha256": "2bbcfff88630274f53435151b9deceff19b2ec166c4cd445454145355b75feed",
+      "pass": true
+    },
+    {
+      "file": "assets/live-keyboard-BC8ynRIi.js",
+      "sha256": "0c788b6905e10cf1d0da70fe9af77c77194dcb6eea8ce56006cc8bc1aafc52d8",
+      "pass": true
+    },
+    {
+      "file": "assets/local-adapter-D7X_Egle.js",
+      "sha256": "467945267fd9f9e5dfd4c888af995e33ea39e84746cc4f6e713417d1488d7e74",
+      "pass": true
+    },
+    {
+      "file": "assets/lock-KcJMN5YZ.js",
+      "sha256": "ba087aef3eee79397f3065f37e49569e4729c0ae52d3ffc704324375b495f7b5",
+      "pass": true
+    },
+    {
+      "file": "assets/metrics-CuYeUm8J.js",
+      "sha256": "0f79b4bfcf0622be754f85cf1d7b5b14672bc36ca831959116bc0c59433120df",
+      "pass": true
+    },
+    {
+      "file": "assets/pause-u7pYfac-.js",
+      "sha256": "75ac3be3b090dd7cd515616b255d877aa06361d2856748ad30cc1d1a12ab2b18",
+      "pass": true
+    },
+    {
+      "file": "assets/placement-B-eZsJfq.js",
+      "sha256": "155d35dc674b465f887e050348945329d530136c1652b308f09cecffe1f519a1",
+      "pass": true
+    },
+    {
+      "file": "assets/play-DObQfHJZ.js",
+      "sha256": "05da47ea7e0da2e31fa8ff62602653ea01087edbe1adebafe405925a2e5436a8",
+      "pass": true
+    },
+    {
+      "file": "assets/practice-style-CE2R3Sfg.js",
+      "sha256": "68a6658e318a47745b178f8efc7dc8133fe869111dbaa783373382089729ea8f",
+      "pass": true
+    },
+    {
+      "file": "assets/progression-service-DECzohtj.js",
+      "sha256": "0477742eb202be8838eb0c85b8f3ccc991f024d87d1a19461016f223ac19ef8d",
+      "pass": true
+    },
+    {
+      "file": "assets/progression-storage-BaAJtERX.js",
+      "sha256": "9709ff465e5e250b3df86cf3766f98577862e7d6fa3a4281c2afdce75f1a4d8b",
+      "pass": true
+    },
+    {
+      "file": "assets/pwa-CaU6HztU.js",
+      "sha256": "59d8efb259d8afdfc28bcf036f34ce5076960677c026458336a6cd4fbe150e67",
+      "pass": true
+    },
+    {
+      "file": "assets/records-DzW9wh5v.js",
+      "sha256": "07fcb8960559a4fbe54129e52ec1e68fba0645196d6156bfb534e260de386e7c",
+      "pass": true
+    },
+    {
+      "file": "assets/reminders-CI2LqXB-.js",
+      "sha256": "66c452732d564611d237b9e28858ab1fa8d8f06c39a41eb05218e6271428883b",
+      "pass": true
+    },
+    {
+      "file": "assets/rotate-ccw-CG942jba.js",
+      "sha256": "66ebfca7a99571f378f776b531b26d58ed1231d400b6ae2e98b13e0402cc9449",
+      "pass": true
+    },
+    {
+      "file": "assets/season-customization-waN5yPvc.js",
+      "sha256": "78f65479607af87ac1747a8aad91020e48d0e439a9898ffbbe119a73318f8507",
+      "pass": true
+    },
+    {
+      "file": "assets/session-DFezVe45.js",
+      "sha256": "98776e62abed8da9594b6684e20c926b0d736d2d84e08187dcd30bb90494ec70",
+      "pass": true
+    },
+    {
+      "file": "assets/shield-check-BtQ2lSUL.js",
+      "sha256": "e44b2e35ec353e0765cbf3ed8b344244ede9decb6ea233d681afe227e69b9371",
+      "pass": true
+    },
+    {
+      "file": "assets/sparkles-DQYD_v_9.js",
+      "sha256": "add8b404aa04fcd4d74fd1797397a9c96960183a7d3a070f94bcb9a92db1af4b",
+      "pass": true
+    },
+    {
+      "file": "assets/target-B_9mKDsY.js",
+      "sha256": "fae8e9072a23350cb741df6c62ad039a9cb4548436a191656e21a3feffb43a29",
+      "pass": true
+    },
+    {
+      "file": "assets/three.module-ytFXl0Cs.js",
+      "sha256": "2b26c8bf33db5d22e8c7d6a8ecd2b2f1ea76ceaf6a3c815f613258f32ac9cf9f",
+      "pass": true
+    },
+    {
+      "file": "assets/timer-DFbfYch_.js",
+      "sha256": "ae2ebbe90dc9ca9bd4c00a915400acd4e9c572a6c99043ec5923410fddfcf603",
+      "pass": true
+    },
+    {
+      "file": "assets/toaster-BYaPqbPE.js",
+      "sha256": "00258268733b311a0c4922a22e715e7cfab563b6cc1dcfb76bcb9ac74788ccc8",
+      "pass": true
+    },
+    {
+      "file": "assets/typing-course-BvBDbz7S.js",
+      "sha256": "ee96aa228dfb1b6cd7d8ba2043212e5806321282164841024ef5538ee6c88d53",
+      "pass": true
+    },
+    {
+      "file": "assets/useCountdownClock-DiCO8Szv.js",
+      "sha256": "5844827840afdc8082c1b720743d1e17200e477b79d4f9ba5af20c265b15e65f",
+      "pass": true
+    },
+    {
+      "file": "assets/useIssuedChallengeCountdown-DrvFV-S-.js",
+      "sha256": "57f1ede5188cfeac073ef9893acb18af37586960c2ce0e0e86764e070c1df81a",
+      "pass": true
+    },
+    {
+      "file": "assets/useTestResults-DOLvV44d.js",
+      "sha256": "9bd9690d02da69eb4bf2801bbc535ca614a8c1619a40d0c04eec3917e9b22a15",
+      "pass": true
+    },
+    {
+      "file": "assets/useWordCorrection-BVBW2Gmz.css",
+      "sha256": "3ebbf81d615314fe3dd1f343df932ed02e40193b381f8f0344181956088026c3",
+      "pass": true
+    },
+    {
+      "file": "assets/useWordCorrection-BolSA5h7.js",
+      "sha256": "99bd058f5c73b93cd1a3e4e038eccb68ddad4e5f392d94019063109288351557",
+      "pass": true
+    },
+    {
+      "file": "assets/utils-d2XQ1MEC.js",
+      "sha256": "1e7512e5695a9a4f9157a2a7eb97213f21adb5539cae51f19c02766aea94ab91",
+      "pass": true
+    },
+    {
+      "file": "assets/workspace-extras-KPz80JDd.js",
+      "sha256": "cf1d2fc87560bc0423c7b7fa709e5e0239c6f081b0165084f1c5a03586c1e80c",
+      "pass": true
+    },
+    {
+      "file": "assets/x-DFcyCh89.js",
+      "sha256": "ff2f5dc909c5c372fdaa38b1789eba2840a21e8f224b921024d20bcf9ed79043",
+      "pass": true
+    },
+    {
+      "file": "deployment.json",
+      "sha256": "497fe23b9f17604dd21a872a233dc11c92e6a38efa4739b9271aeed0f81df8b5",
+      "pass": true
+    },
+    {
+      "file": "favicon.ico",
+      "sha256": "19857910ebc438f4fe09acaafa17e9cb1fc4e8ac15fec9f24a48e2aca9fcb716",
+      "pass": true
+    },
+    {
+      "file": "fonts/fonts.css",
+      "sha256": "928fcb85725d5f40a65d4de5ae6473cbfd6d13a81575c053c9563cbc5e47b4a6",
+      "pass": true
+    },
+    {
+      "file": "fonts/inter-LICENSE.txt",
+      "sha256": "3b0a5fca3d17942cde889069889dedbbbd075e9b599968c82a95f4d944e9b345",
+      "pass": true
+    },
+    {
+      "file": "fonts/inter-cyrillic-ext-wght-normal.woff2",
+      "sha256": "ca157063339ac4ad418f214f3abfed119b0798ab4d377386ce5c9e5a7a435ebd",
+      "pass": true
+    },
+    {
+      "file": "fonts/inter-cyrillic-wght-normal.woff2",
+      "sha256": "71d5ee93cc1e9f1d520a3a8b66456de18c7879d8df09d57fcd2eaff75fef0075",
+      "pass": true
+    },
+    {
+      "file": "fonts/inter-greek-ext-wght-normal.woff2",
+      "sha256": "6e9e020a25f9b56d418f2c085b1d3c09725a4da23fe693a5b463064606732190",
+      "pass": true
+    },
+    {
+      "file": "fonts/inter-greek-wght-normal.woff2",
+      "sha256": "1be3448e292fbf05ffe176fe1e43f135013d50b1e7d324ad1a558f623d3bb6f6",
+      "pass": true
+    },
+    {
+      "file": "fonts/inter-latin-ext-wght-normal.woff2",
+      "sha256": "34b9c504cab7a73e37b746343a449132e56cf7b5481af2cb81dc74dcff25c956",
+      "pass": true
+    },
+    {
+      "file": "fonts/inter-latin-wght-normal.woff2",
+      "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "pass": true
+    },
+    {
+      "file": "fonts/inter-vietnamese-wght-normal.woff2",
+      "sha256": "5c66f9e07e90c6d4ac4922cc68d60de26c17b1858e677fb5e603fce3952b3ff2",
+      "pass": true
+    },
+    {
+      "file": "fonts/jetbrains-mono-LICENSE.txt",
+      "sha256": "403581b69dac5cff4079205e01c6b467e56af449ecbd7247693ddb1baafa005b",
+      "pass": true
+    },
+    {
+      "file": "fonts/jetbrains-mono-cyrillic-ext-wght-normal.woff2",
+      "sha256": "593ccd6fe36e299e151aeae4521be9bfe83ac487d96d7cdb44f50be4a04041c7",
+      "pass": true
+    },
+    {
+      "file": "fonts/jetbrains-mono-cyrillic-wght-normal.woff2",
+      "sha256": "d274604c40757f98f07df623a8b8fb5194508a6fa4f5413a7a107f09e3b7452a",
+      "pass": true
+    },
+    {
+      "file": "fonts/jetbrains-mono-greek-wght-normal.woff2",
+      "sha256": "ee863198077f3093ffa81c072581cc4bd608a04e60a8a9c0b846396ce4f14109",
+      "pass": true
+    },
+    {
+      "file": "fonts/jetbrains-mono-latin-ext-wght-normal.woff2",
+      "sha256": "79bfdab9ba467e26eea4122e6f2567e188dd8a09a8c730d501fc487c4ab99c6e",
+      "pass": true
+    },
+    {
+      "file": "fonts/jetbrains-mono-latin-wght-normal.woff2",
+      "sha256": "18be452724bfdc236c074ca94a249a7f41a86752c7d04ab258ce9ed5651f6a7e",
+      "pass": true
+    },
+    {
+      "file": "fonts/jetbrains-mono-vietnamese-wght-normal.woff2",
+      "sha256": "2288795da89dd97e648954b96e22b4501bd85dfc453264460b252f888b582ca2",
+      "pass": true
+    },
+    {
+      "file": "fonts/sora-LICENSE.txt",
+      "sha256": "1ec9623d38c445eb4dfe5fcc783e0f0ee728cc97ca157ce1f8cb2b3bf9d9b0d9",
+      "pass": true
+    },
+    {
+      "file": "fonts/sora-latin-ext-wght-normal.woff2",
+      "sha256": "c163c536f68befd99a83d4f17e8b88030e7f54229688a45c44f70c7149db7385",
+      "pass": true
+    },
+    {
+      "file": "fonts/sora-latin-wght-normal.woff2",
+      "sha256": "fa26406eeda9a3c6ec3d9ea8813c3045d6dc755e30c716d5c094e8ef43be5a7f",
+      "pass": true
+    },
+    {
+      "file": "icon-192.png",
+      "sha256": "2bff879235e3de20d9957a590c0ef2f645e03dc54e61289b12cca0874227e5b9",
+      "pass": true
+    },
+    {
+      "file": "icon-512.png",
+      "sha256": "c8e02ffc54792807f5c01f1c8014ffe07af75fb8630c4ca2bf3ddfbd565850c8",
+      "pass": true
+    },
+    {
+      "file": "index.html",
+      "sha256": "5f80db756c8b5e4d629d7a94ebc7b171d55a8f2ac7e0fe27f8241ae96ce26b02",
+      "pass": true
+    },
+    {
+      "file": "offline-build.json",
+      "sha256": "6115a5b6ef820fc102449d031b07d6ebcfbdf8fda0f59ddba0bf2449fdfaa1ae",
+      "pass": true
+    },
+    {
+      "file": "og-sparowtype.png",
+      "sha256": "4641c5942811c91a6154a649282cc0472fe4463ba53453c52e3a57c5b75c43ac",
+      "pass": true
+    },
+    {
+      "file": "placeholder.svg",
+      "sha256": "64badf7aabda0b9630b87020ffb6095cb858ccbcf66b355c2aa08b1063954d3b",
+      "pass": true
+    },
+    {
+      "file": "robots.txt",
+      "sha256": "899e734eaef120c4e5bb42983a838716e8eae78369394644237c3d651980c7f2",
+      "pass": true
+    },
+    {
+      "file": "site.webmanifest",
+      "sha256": "02c06737927144bb4714aca32d1d95607bf4eb25deadd87f19538c6fdcfae2a7",
+      "pass": true
+    },
+    {
+      "file": "sparowtype.svg",
+      "sha256": "bf5efee9b93c021766ad7d9857202a139ce9ab4d938c256e1831f7e1653aecfb",
+      "pass": true
+    },
+    {
+      "file": "sw.js",
+      "sha256": "6964af8800fbf8717f6d4bb00ea08a8d6f4d57f7736cb090e3878ec10dbfade6",
+      "pass": true
+    }
+  ],
+  "privateSources": [
+    {
+      "file": "backend/src/ApiException.php",
+      "sha256": "4f231b2c8e2d00716dae49763f7664a4d56430f885b1d58c40892e6a5417ccb9",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/src/ArenaEvidence.php",
+      "sha256": "f2a586b270c60344aaa5024dd49ad588efb5b430255b0ceb219b7cd64fa0e4b1",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/src/ArenaRules.php",
+      "sha256": "abb6f4c82a699e353354efd3600f7c9c8330a8df72a9b290702c5e4cfcf20353",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/src/ArenaService.php",
+      "sha256": "298d232b38236370e41f45d5e2ea2015ed134b4e30581763d76761383743c4b9",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/src/AuthService.php",
+      "sha256": "c2790aa548136a0fee00dc0c32bb4ec2be6b3d0a033f2cfd5992f79442991efd",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/src/ChallengeTimingPolicy.php",
+      "sha256": "75faf3a12fabb0949400bcade2ba1d36ddb2e5a22f061dd35a4d82e216f1786a",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/src/ClassroomService.php",
+      "sha256": "35f957a5ed3f6eb7f11a95aaa2a36fd32c1530efa55760cf827e048f5ff11bab",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/src/CompetitiveInputPolicy.php",
+      "sha256": "4f33803bab70e09ebc5b304ea41c5e2433f7ed080ef5a1a43f97deb640cd5a23",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/src/CourseAssessment.php",
+      "sha256": "224f3b3ca7192089ff04027a9e8411573565a1e3bc2e3b1180b509e72bfe1795",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/src/DataService.php",
+      "sha256": "46269db8b3dcb2a3e649c2744697b459ac33bdea86ba47607cd32fe278809fa9",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/src/Database.php",
+      "sha256": "38e67995661448fb80af94ae81acc2fc844b5ecea15c6313d6fc87135681acb0",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/src/ProgressionCalendar.php",
+      "sha256": "ce871c6f94b8cd64ae518a01704adc18e4d794a6dce1cf54afcfab30234182c3",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/src/ProgressionEngine.php",
+      "sha256": "7d23f85d02dce2a02e9915e8beab417bbcba74557c22048e18d6aabe7076a361",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/src/ProgressionFacts.php",
+      "sha256": "5ae32fd3943fdbd6bb31e7e8996c1118bc2f8fe3c2ca9c2d12dddfa2663a62b3",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/src/ProgressionQuests.php",
+      "sha256": "897cc73353576a8ea8f0f194fe2df44c6de420638fb11c8ff77d79add5af5602",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/src/ProgressionService.php",
+      "sha256": "758f20333d46c929fbf57689fc7068d659eeee6a2eebec5895ab2e87d370ff26",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/src/RaceService.php",
+      "sha256": "984a5b4ceea0887739c70d743f61c321bd0a8dd86e3b63e46c7ecbd60eb10b2d",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/src/RaceStream.php",
+      "sha256": "3249970663b7ebcde1f4e23c82bff1a7db0422b0b33843b6a13dfd9020d4c05d",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/src/Security.php",
+      "sha256": "4c6138ec65074ca9ad8741fde8224ebe97ea785bfb918549f6091c1cee080c68",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/src/SessionValidator.php",
+      "sha256": "de037dd028f796a11d66f48d4adb339223c69e3e5f8771d0f9bd5b36aaa7a1e4",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/src/SocialDuelRules.php",
+      "sha256": "7b8889819e9eb10f402b0adc44f2bfbe0d2e356218eb9ec0b2de95ce5d46179f",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/src/SocialService.php",
+      "sha256": "8250bafc44ce0231f9b414395ea8581199d62777366da437ba7883630d894940",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/src/UnicodeGraphemes.php",
+      "sha256": "091cd87cf485b87aa0a9fd709b86a5462f35923dad4f34a9b0ddb4206b6bc145",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/bin/cleanup.php",
+      "sha256": "176b43c8f229c587b56792e7d2f285f4c3df8c906434da4f5c4659d1f7226324",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/bin/install-schema.php",
+      "sha256": "77b17d597952fefbb75cad7eae67f1ae552367faf38e738e875cf00b0f0eef63",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/bin/migrate-schema.php",
+      "sha256": "29b57b5be80cf2d14aad1173283d1431fc16ef98208d7f5f7c2d307e434d07ae",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/public/.htaccess",
+      "sha256": "f00f2c3074167570ec0ebd65c3cd6bf29667be5bb2e6adf554ef0665124acf01",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/public/index.php",
+      "sha256": "38f145838535359dc4bbec6f328441edb2a78438fbf85c033e058432a47a99b8",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/resources/progression-fingers-v1.json",
+      "sha256": "925af6e6bfd28d7fa544d8f3547c61994f332b7b86fc598cea742cae999bc2b9",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/resources/typing-course-v1.json",
+      "sha256": "fc4dd602a730f0916b5fb214d7ffcf8efb5b6907e06894ba00e489f61ef6cb39",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/migrations/002-progression.sql",
+      "sha256": "2d49893fdc8c8f0dc626e4122b7803fee72d1327483ed55dcb2257b07d7f0427",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/migrations/003_classroom.sql",
+      "sha256": "16d6330ef81c69dbc71fc6e5b8790b5ea03ab9ab9eaf6ace368b3e1dfa164aca",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/migrations/004_social.sql",
+      "sha256": "f4756041284b3ab373dd0fdb7d432847d98b8e1ffd8c404344308ade8e18afaa",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/migrations/005_arena.sql",
+      "sha256": "b61df52810f8e3958a81fdb5947a9b747e29041094b755c8a12161b5182f7301",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/bootstrap.php",
+      "sha256": "1437ca997a919b7a64669dc09690f62cff9cd627626549e06a1c6d9e3482d647",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/config.example.php",
+      "sha256": "7c153791b5250932a46ff22cd6434881358757947df1f73601bb2e9effce1097",
+      "pass": true,
+      "inFrozenSourceManifest": false
+    },
+    {
+      "file": "backend/schema.sql",
+      "sha256": "0223553c2e8bec1504483dc59c41bfe26518891ae475262a81c59b86208b9f3a",
+      "pass": true,
+      "inFrozenSourceManifest": true
+    },
+    {
+      "file": "backend/UNICODE-LICENSE.txt",
+      "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96",
+      "pass": true,
+      "inFrozenSourceManifest": false
+    },
+    {
+      "file": "backend/.htaccess",
+      "sha256": "d501e0a3eebd483de804a75dca4ce8bc6c82ee41faec18cc37c1493acfe81ba3",
+      "pass": true,
+      "inFrozenSourceManifest": false
+    }
+  ],
+  "offlineRouteContract": {
+    "actual": [
+      "/",
+      "/about",
+      "/arcade",
+      "/arcade/boss-duel",
+      "/arcade/daily-gauntlet",
+      "/arcade/ghost-gp",
+      "/arcade/key-tower",
+      "/arcade/lava-rise",
+      "/arcade/rhythm-typing",
+      "/arcade/snake-words",
+      "/arcade/word-invaders",
+      "/games",
+      "/keyboard-lab",
+      "/leaderboard",
+      "/learn",
+      "/lessons",
+      "/offline",
+      "/practice",
+      "/privacy",
+      "/race",
+      "/terms",
+      "/touch-typing",
+      "/typing-practice",
+      "/typing-test"
+    ],
+    "expected": [
+      "/",
+      "/about",
+      "/arcade",
+      "/arcade/boss-duel",
+      "/arcade/daily-gauntlet",
+      "/arcade/ghost-gp",
+      "/arcade/key-tower",
+      "/arcade/lava-rise",
+      "/arcade/rhythm-typing",
+      "/arcade/snake-words",
+      "/arcade/word-invaders",
+      "/games",
+      "/keyboard-lab",
+      "/leaderboard",
+      "/learn",
+      "/lessons",
+      "/offline",
+      "/practice",
+      "/privacy",
+      "/race",
+      "/terms",
+      "/touch-typing",
+      "/typing-practice",
+      "/typing-test"
+    ],
+    "exact": true,
+    "privateOrUnknownExcluded": true
+  },
+  "sceneAssets": [
+    {
+      "file": "assets/keyboard-bloom-CFGEPK_L.js",
+      "kind": "bloom",
+      "bytes": 20277,
+      "gzipBytes": 5073,
+      "sha256": "966db3e3d61752514688db63b3d970e1a87e7a66498f5f3f0b93f0085c0c0977"
+    },
+    {
+      "file": "assets/keyboard-render-worker-oeYyHX4e.js",
+      "kind": "worker",
+      "bytes": 1167,
+      "gzipBytes": 617,
+      "sha256": "37b2d1842100f3516e8af626c58d58791c3ff9c6cc970835d5bd3d8ef948be13"
+    },
+    {
+      "file": "assets/keyboard-scene-DYowRFwC.js",
+      "kind": "scene",
+      "bytes": 71692,
+      "gzipBytes": 28055,
+      "sha256": "1624b699d9955f32c182e82eb0ac03567c446174bd2b29e649647a6079fe2f44"
+    },
+    {
+      "file": "assets/keyboard-scene-bridge-xCkoullr.js",
+      "kind": "bridge",
+      "bytes": 4057,
+      "gzipBytes": 1678,
+      "sha256": "284c0209c7110988ddb37fdbc7596d1a8ea2185a2aaf890e0fcfc3b79d1c34a1",
+      "normalizedBootstrapSpecifierSha256": "ba0d3eda5d2d87b18731d257c53a5c050285070940d589b9a5089c8de23f6eb1",
+      "bootstrapSpecifierCount": 1
+    },
+    {
+      "file": "assets/three.module-ytFXl0Cs.js",
+      "kind": "three",
+      "bytes": 533107,
+      "gzipBytes": 132577,
+      "sha256": "2b26c8bf33db5d22e8c7d6a8ecd2b2f1ea76ceaf6a3c815f613258f32ac9cf9f"
+    }
+  ],
+  "visualComparisons": [
+    {
+      "kind": "scene",
+      "pass": true,
+      "comparison": "Exact filename, raw bytes and SHA-256 against preserved checkpoint; no normalization."
+    },
+    {
+      "kind": "bloom",
+      "pass": true,
+      "comparison": "Exact filename, raw bytes and SHA-256 against preserved checkpoint; no normalization."
+    },
+    {
+      "kind": "three",
+      "pass": true,
+      "comparison": "Exact filename, raw bytes and SHA-256 against preserved checkpoint; no normalization."
+    },
+    {
+      "kind": "worker",
+      "pass": true,
+      "comparison": "Exact public worker filename and SHA-256 against preserved public-file receipt."
+    },
+    {
+      "kind": "bridge",
+      "pass": true,
+      "comparison": "Replace exactly one from\"./index-HASH.js\" bootstrap import. Every other bridge byte remains compared; no logic normalization."
+    }
+  ],
+  "publicFilesCompared": 143,
+  "packageFiles": 186,
+  "finishedAt": "2026-10-21T20:07:53.017Z"
+}

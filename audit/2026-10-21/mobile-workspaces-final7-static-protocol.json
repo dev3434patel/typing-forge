@@ -1,0 +1,60 @@
+{
+  "preparedAt": "2026-10-21T15:08:57.028Z",
+  "status": "DECLARED BEFORE THIS STATIC EXECUTION",
+  "expectedBuild": "dc383279e8a338455910",
+  "origin": "http://127.0.0.1:1146",
+  "browser": "Playwright bundled Chromium",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "isMobile": true,
+  "hasTouch": true,
+  "cpuThrottle": 4,
+  "freshContextPerWorkspace": true,
+  "serviceWorkers": "Blocked to isolate direct served-build input workspaces; offline behavior tested separately",
+  "deviceScaleFactor": 1,
+  "fontAndFiniteAnimationSettlement": true,
+  "clock": "Unmodified performance.now/Date.now; no virtual clock",
+  "input": "Locator.pressSequentially, requested delay 0ms; native Enter for each game gate",
+  "intro": "Disabled only to isolate typing; full quality intro measured separately",
+  "cases": [
+    {
+      "id": "learn",
+      "route": "learn?language=en&layout=qwerty",
+      "input": "Entire initially generated adaptive passage",
+      "evidence": "Actual result JSON export: exact final text, attempts and 100% input accuracy"
+    },
+    {
+      "id": "course",
+      "route": "lessons?lesson=home-anchors",
+      "input": "Whole first guided lesson passage",
+      "evidence": "Actual full session JSON export: exact final text, attempts and 100% input accuracy"
+    },
+    {
+      "id": "local-bot",
+      "route": "race",
+      "input": "First 100 characters of actual generated target, followed by manual Finish",
+      "evidence": "Actual result JSON export: exact retained prefix, attempts, 100% input accuracy and localBot=true; no human room or account"
+    },
+    {
+      "id": "games",
+      "route": "games",
+      "input": "18 actual calm-mode target words, each followed by native Enter",
+      "evidence": "Exact input before every submit, 18/18 gates, 100% attempt accuracy and sanitized owner-local best"
+    }
+  ],
+  "automaticRetries": 0,
+  "resultFiltering": false,
+  "caseTimeoutMs": 33000,
+  "totalWatchdogMs": 145000,
+  "eventTiming": "All observed typing keyboard/input event durations with threshold 16ms; p98/max plus interaction maxima; zero observed entries is not a 0ms claim",
+  "limits": "Local Chromium touch/mobile emulation with lab CPU throttling. Quantized thresholded Event Timing is not field INP or native Android/iOS keyboard acceptance. Requested driver delay is not measured typing speed. One declared run per workspace, no statistical claim. No backend writes or user data.",
+  "buildFile": "audit/2026-10-21/mobile-workspaces-final7-static-build.json",
+  "sourceFile": "audit/2026-10-21/final7-source.json",
+  "sourceExpectedBuild": "f3ac03affbc33168655a",
+  "deploymentMode": "frontend-only-vercel; real API-disabled artifact; no mocks, no PHP, no live account or database",
+  "artifactDirectory": "dist-static-final7-vercel",
+  "originalNormalProtocol": "audit/2026-10-21/mobile-workspaces-final7-protocol.json",
+  "comparability": "Separate explicitly declared frontend-only measurement. The earlier backend-enabled run and all failures remain preserved; this does not replace it or establish field INP."
+}

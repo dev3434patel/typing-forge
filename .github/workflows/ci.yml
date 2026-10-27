@@ -70,6 +70,13 @@ jobs:
       - run: npm run test:php
       - name: Verify all curriculum variants and native course assessment parity
         run: npm run test:course-php
+      - name: Verify pure progression replay, social source binding, classroom, and arena contracts
+        run: |
+          npm run test:progression-php
+          npm run test:social-php
+          npm run test:classroom-php
+          npm run test:arena-php
+          npm run test:race-clock-php
       - run: php backend/tests/password-policy.php
       - run: php backend/bin/install-schema.php --config=backend/config.example.php --database=sparowtype_audit --install
       - name: Start local PHP API and run native lifecycle acceptance

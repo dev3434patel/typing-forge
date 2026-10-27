@@ -1,0 +1,219 @@
+{
+  "capturedAt": "2026-10-21T14:51:56.039853+00:00",
+  "status": "FAILED",
+  "observationStatus": "PARTIAL",
+  "scope": "Read-only independent diagnosis of the original final7 static deployment WebKit Pages failure. No product/test edit, browser job, timeout change, ignored-error filter or result rewrite.",
+  "test": {
+    "file": "e2e/frontend-deployment.spec.ts",
+    "project": "webkit",
+    "directory": "dist-static-final7-pages",
+    "title": "all eight arcade deep links reload and produce real local input evidence under the deployment base",
+    "failureStage": "afterEach errors ledger assertion: expect(errors).toEqual([])"
+  },
+  "staticBuild": {
+    "version": "76fb7fa80271bcffdf36",
+    "publicFiles": 134,
+    "bytes": 2876037
+  },
+  "deployment": {
+    "target": "github-pages",
+    "base": "/sparowtype-static-audit/",
+    "frontendOnly": true,
+    "api": "disabled",
+    "siteUrl": "https://sparowtype-static.invalid/sparowtype-static-audit/"
+  },
+  "evidence": {
+    "ignoredTrace": "audit/2026-10-21/.playwright-artifacts-final7-static-run/deployment/frontend-deployment-dist-s-4eda7-e-under-the-deployment-base-webkit/trace.zip",
+    "traceSha256": "f5530cdf45a0f352a336b13024ba8d1cc61939f99adc7d77915af2c8a66c8e02",
+    "privacy": "No headers, cookies, function bodies, typed passages, raw session logs or credentials are copied here. Original trace remains ignored."
+  },
+  "pageError": {
+    "timeTraceMs": 269824.76,
+    "name": "Cannot load http",
+    "message": "/127.0.0.1:11177/sparowtype-static-audit/sw.js due to access control checks.",
+    "stack": ""
+  },
+  "timing": {
+    "firstWordInvadersReloadBrowserTrace": {
+      "callId": "djma@2068",
+      "method": "reload",
+      "title": null,
+      "startTraceMs": 269787.993,
+      "endTraceMs": 269885.428,
+      "durationMs": 97.435,
+      "error": false
+    },
+    "firstWordInvadersReloadTestTrace": {
+      "callId": "djma@2068",
+      "method": "pw:api",
+      "title": "Reload",
+      "startTraceMs": 269787.734,
+      "endTraceMs": 269889.341,
+      "durationMs": 101.607,
+      "error": false
+    },
+    "errorDuringFirstReload": true,
+    "lastBodyAssertion": {
+      "callId": "djma@2530",
+      "method": "expect",
+      "title": "Expect \"toEqual\"",
+      "startTraceMs": 285959.33,
+      "endTraceMs": 285959.377,
+      "durationMs": 0.047,
+      "error": false
+    },
+    "bodyEvidenceAttachment": {
+      "callId": "djma@2531",
+      "method": "test.attach",
+      "title": "Attach \"static-eight-game-native-evidence\"",
+      "startTraceMs": 285959.563,
+      "endTraceMs": 285959.831,
+      "durationMs": 0.268,
+      "error": false
+    },
+    "afterHooks": {
+      "callId": "djma@2532",
+      "method": "hook",
+      "title": "After Hooks",
+      "startTraceMs": 285959.956,
+      "endTraceMs": 286455.218,
+      "durationMs": 495.262,
+      "error": true
+    },
+    "afterEach": {
+      "callId": "djma@2533",
+      "method": "hook",
+      "title": "afterEach hook",
+      "startTraceMs": 285960.013,
+      "endTraceMs": 285963.702,
+      "durationMs": 3.689,
+      "error": true
+    },
+    "networkLedgerAttachment": {
+      "callId": "djma@2534",
+      "method": "test.attach",
+      "title": "Attach \"static-network-ledger\"",
+      "startTraceMs": 285960.624,
+      "endTraceMs": 285960.828,
+      "durationMs": 0.204,
+      "error": false
+    },
+    "failedLedgerAssertion": {
+      "callId": "djma@2535",
+      "method": "expect",
+      "title": "Expect \"toEqual\"",
+      "startTraceMs": 285961.045,
+      "endTraceMs": 285963.493,
+      "durationMs": 2.448,
+      "error": true
+    },
+    "pageErrorBeforeAfterHooksMs": 16135.196,
+    "serverStopInstrumentation": "No exact stop event was instrumented. Source awaits server.stop() after afterEach starts and before attaching static-network-ledger. Those boundaries are285960.013 and285960.624 trace ms; the pageerror occurred much earlier."
+  },
+  "bodyEvidence": {
+    "mockedApis": false,
+    "realNativeInput": true,
+    "completedGameCount": 8,
+    "measured": [
+      {
+        "gameId": "word-invaders",
+        "path": "/sparowtype-static-audit/arcade/word-invaders/",
+        "attempts": 6,
+        "incorrect": 1,
+        "verification": "local-unverified"
+      },
+      {
+        "gameId": "ghost-gp",
+        "path": "/sparowtype-static-audit/arcade/ghost-gp",
+        "attempts": 5,
+        "incorrect": 1,
+        "verification": "local-unverified"
+      },
+      {
+        "gameId": "daily-gauntlet",
+        "path": "/sparowtype-static-audit/arcade/daily-gauntlet",
+        "attempts": 6,
+        "incorrect": 1,
+        "verification": "local-unverified"
+      },
+      {
+        "gameId": "rhythm-typing",
+        "path": "/sparowtype-static-audit/arcade/rhythm-typing",
+        "attempts": 5,
+        "incorrect": 1,
+        "verification": "local-unverified"
+      },
+      {
+        "gameId": "key-tower",
+        "path": "/sparowtype-static-audit/arcade/key-tower",
+        "attempts": 4,
+        "incorrect": 1,
+        "verification": "local-unverified"
+      },
+      {
+        "gameId": "snake-words",
+        "path": "/sparowtype-static-audit/arcade/snake-words",
+        "attempts": 5,
+        "incorrect": 1,
+        "verification": "local-unverified"
+      },
+      {
+        "gameId": "lava-rise",
+        "path": "/sparowtype-static-audit/arcade/lava-rise",
+        "attempts": 6,
+        "incorrect": 1,
+        "verification": "local-unverified"
+      },
+      {
+        "gameId": "boss-duel",
+        "path": "/sparowtype-static-audit/arcade/boss-duel",
+        "attempts": 6,
+        "incorrect": 1,
+        "verification": "local-unverified"
+      }
+    ],
+    "allGameBodyAssertionsAndExportsCompleted": true,
+    "finalPath": "/sparowtype-static-audit/arcade",
+    "bodyAssertionFailures": 0,
+    "overallTestStillFailed": true
+  },
+  "network": {
+    "traceRecords": 528,
+    "traceStatusCounts": {
+      "301": 1,
+      "200": 527
+    },
+    "swRecords": [
+      {
+        "path": "/sparowtype-static-audit/sw.js",
+        "status": 200,
+        "startTraceMs": 270155.837,
+        "durationMs": 3.354,
+        "waitMs": 2.116,
+        "receiveMs": 1.238
+      }
+    ],
+    "recordedNonSuccessOrRedirectResponses": 0,
+    "ledgerRequests": 177,
+    "ledgerStatusCounts": {
+      "301": 1,
+      "200": 176
+    },
+    "ledgerSwRequests": 8,
+    "ledgerSwStatuses": [
+      200
+    ],
+    "failedRegistrationRequestStatus": "UNVERIFIED: no failing sw.js request or matching cancellation/error response is present in the network trace. The later captured sw.js response is200. The server ledger records eight sw.js responses, all200."
+  },
+  "promiseAndEngineBoundary": {
+    "productRegistrationPromise": "src/lib/pwa.ts already chains .then(...).catch(...).finally(...) on navigator.serviceWorker.register. This inspection does not establish that a Promise escaped that catch.",
+    "selectedTestObservability": "The test listens to pageerror; it does not separately instrument window unhandledrejection or correlate each register Promise/navigation outcome.",
+    "playwrightVersion": "1.64.1",
+    "adapterSource": "node_modules/playwright-core/lib/coreBundle.js:51250",
+    "adapterObservation": "The installed WebKit adapter maps protocol console messages with level=error and source=javascript into pageError using splitErrorMessage; absent protocol stackTrace becomes an empty stack. This explains the recorded error name format, not the root cause.",
+    "consoleTraceReadings": 0,
+    "navigationCancellation": "UNVERIFIED: reload completed without a call error; no canceled request is recorded. Temporal overlap alone does not prove navigation cancellation."
+  },
+  "cause": "UNPROVEN",
+  "conclusion": "The SW access-control pageerror occurred during the first Word Invaders reload, over16 seconds before afterEach/server-stop boundaries. It is not a teardown-only error. Eight game body/evidence/export journeys completed, but the unchanged zero-pageerror gate correctly remains FAILED. These observations do not identify a product, browser, policy or host root cause, and do not certify hosted Pages/Vercel behavior."
+}

@@ -1,0 +1,176 @@
+{
+  "status": "FAILED",
+  "observation": "PARTIAL",
+  "exactEmitterCause": "UNPROVEN",
+  "scope": "Read-only analysis of two retained original-budget WebKit static-deployment failures. No browser/build/new test run, no production/E2E/helper edits and no error suppression.",
+  "privacy": "Only controlled-guest public action/resource timing, path/status, source references and the generic browser error payload are included. No headers, cookies, private codes, raw DOM, request bodies or trace resources are reproduced.",
+  "cases": [
+    {
+      "status": "FAILED",
+      "target": "vercel",
+      "artifactVersion": "858e226c64d2edab3751",
+      "base": "/",
+      "trace": "audit/2026-10-21/.playwright-artifacts-final10-static-run/deployment/frontend-deployment-dist-s-2ceac-etadata-and-unknown-HTTP404-webkit/trace.zip",
+      "traceSha256": "de25d72e7f4037bd442fa23e36c0fa962a18f2f75a710edf7df6371412cbac24",
+      "pageError": {
+        "time": 193425.238,
+        "name": "Cache API operation failed",
+        "message": "Context is stopped",
+        "stack": "",
+        "locationUrl": ""
+      },
+      "navigationAtError": {
+        "route": "/stats",
+        "method": "goto",
+        "browserStart": 193400.324,
+        "browserEnd": 193479.088,
+        "millisecondsAfterStart": 24.914
+      },
+      "lastSuccessfulBodyActionEnd": 197595.982,
+      "afterHooksStart": 197596.289,
+      "afterEachStart": 197596.632,
+      "errorBeforeAfterEachMs": 4171.394,
+      "serverStopEvidence": {
+        "preciseTimestampRecorded": false,
+        "callNotBefore": 197596.632,
+        "completedNotAfter": 197598.109,
+        "basis": "afterEach awaits server.stop() before attaching the static-network-ledger. The pageerror predates the entire afterEach hook."
+      },
+      "errorLedgerAssertion": {
+        "start": 197601.237,
+        "end": 197606.693,
+        "result": "FAILED: expected []; received Context is stopped"
+      },
+      "bodyAssertions": "All test-body actions and assertions completed. The afterEach pageerror assertion failed; its subsequent request-boundary assertion was not reached.",
+      "attachedLedger": {
+        "errors": [
+          "Context is stopped"
+        ],
+        "requestRecords": 192,
+        "finalPath": "/privacy"
+      },
+      "recordedNetwork": {
+        "resourceRecordsIncludingRequestFixture": 588,
+        "httpStatusCounts": {
+          "200": 587,
+          "404": 1
+        },
+        "qualification": "Vercel has only the deliberately requested unknown-route HTTP404; Pages has no recorded HTTP4xx/5xx. Resource success does not identify or disprove a native Cache API exception."
+      },
+      "workerScriptRequest": {
+        "path": "/sw.js",
+        "status": 200,
+        "start": 188565.241,
+        "harDurationMs": 3.633
+      },
+      "interpretation": "A runtime Cache API error is observed during a real hard navigation, before server teardown. The trace supplies no JS stack or source location to identify the precise cache operation or promise owner."
+    },
+    {
+      "status": "FAILED",
+      "target": "github-pages",
+      "artifactVersion": "bb282becc5b27086a5cb",
+      "base": "/sparowtype-static-audit/",
+      "trace": "audit/2026-10-21/.playwright-artifacts-final10-static-run/deployment/frontend-deployment-dist-s-8b8dd-ng-backend-on-direct-reload-webkit/trace.zip",
+      "traceSha256": "7b940e81a350c60712f57b5d8b07c42d929ac8127bcbc7d5cfe1e506a5659462",
+      "pageError": {
+        "time": 298398.726,
+        "name": "Cache API operation failed",
+        "message": "Context is stopped",
+        "stack": "",
+        "locationUrl": ""
+      },
+      "navigationAtError": {
+        "route": "/sparowtype-static-audit/progression",
+        "method": "goto",
+        "browserStart": 298380.183,
+        "browserEnd": 298472.833,
+        "millisecondsAfterStart": 18.543
+      },
+      "lastSuccessfulBodyActionEnd": 303035.835,
+      "afterHooksStart": 303036.121,
+      "afterEachStart": 303036.254,
+      "errorBeforeAfterEachMs": 4637.528,
+      "serverStopEvidence": {
+        "preciseTimestampRecorded": false,
+        "callNotBefore": 303036.254,
+        "completedNotAfter": 303037.917,
+        "basis": "afterEach awaits server.stop() before attaching the static-network-ledger. The pageerror predates the entire afterEach hook."
+      },
+      "errorLedgerAssertion": {
+        "start": 303038.828,
+        "end": 303044.41,
+        "result": "FAILED: expected []; received Context is stopped"
+      },
+      "bodyAssertions": "All test-body actions and assertions completed. The afterEach pageerror assertion failed; its subsequent request-boundary assertion was not reached.",
+      "attachedLedger": {
+        "errors": [
+          "Context is stopped"
+        ],
+        "requestRecords": 174,
+        "finalPath": "/sparowtype-static-audit/arena/"
+      },
+      "recordedNetwork": {
+        "resourceRecordsIncludingRequestFixture": 249,
+        "httpStatusCounts": {
+          "200": 246,
+          "301": 3
+        },
+        "qualification": "Vercel has only the deliberately requested unknown-route HTTP404; Pages has no recorded HTTP4xx/5xx. Resource success does not identify or disprove a native Cache API exception."
+      },
+      "workerScriptRequest": {
+        "path": "/sparowtype-static-audit/sw.js",
+        "status": 200,
+        "start": 297581.252,
+        "harDurationMs": 4.905
+      },
+      "interpretation": "A runtime Cache API error is observed during a real hard navigation, before server teardown. The trace supplies no JS stack or source location to identify the precise cache operation or promise owner."
+    }
+  ],
+  "sourceReview": [
+    {
+      "path": "e2e/frontend-deployment.spec.ts:34",
+      "finding": "server.stop() runs at the beginning of afterEach, before error-ledger attachment/assertion. This does not explain these errors because both precede afterEach by more than four seconds."
+    },
+    {
+      "path": "src/lib/pwa.ts:50",
+      "finding": "Page-side hasOfflineApp encloses its cache keys/open/match awaits in try/catch and returns false on rejection."
+    },
+    {
+      "path": "src/lib/pwa.ts:128",
+      "finding": "The service-worker registration promise chain has a catch handler. The observed payload does not prove an unhandled registration rejection."
+    },
+    {
+      "path": "public/sw.js:145",
+      "finding": "The public document cache-shell lookup already catches unavailable cache storage and continues to network."
+    },
+    {
+      "path": "public/sw.js:174",
+      "finding": "Independent concrete availability gap: the eligible public-asset response awaits publicCacheMatch without a cache-rejection fallback. If keys/open/match rejects, fetch(request) is never attempted even when the network is available. This is a source-established failure path, not proof that it emitted these recorded pageerrors."
+    }
+  ],
+  "proposedNarrowFixNotApplied": {
+    "scope": "public/sw.js eligible asset branch and existing actual-template VM tests only, after an explicit parent source11 fix window.",
+    "behavior": "Try the same public cache lookup and return a cache hit; catch only that lookup failure; then return fetch(request) outside the catch. Preserve original request, network failures, eligibility checks and install-only cache writes.",
+    "regressionPlan": [
+      "Root and subpath bases times keys/open/match rejection: online asset returns network exactly once with the original request.",
+      "Cache contents and installation write count unchanged by runtime fallback.",
+      "Available cache hit still avoids network.",
+      "Network failure remains a rejected request, with no invented successful response.",
+      "Existing query/private/auth/API/cross-origin/out-of-scope bypass and immutable previous-build-cache tests remain required."
+    ],
+    "executionStatus": "NOT RUN; source10 frozen runs are still active."
+  },
+  "limits": [
+    "No evidence links the errors specifically to font loading or IndexedDB.",
+    "No trace event identifies an unhandledrejection handler or its originating promise; pageerror alone does not isolate that ownership.",
+    "Some navigation HAR receive durations exceed the case lifetime; those are excluded from transport timing conclusions.",
+    "A later serial confirmation cannot erase these original failed runs."
+  ],
+  "sourceHashes": {
+    "public/sw.js": "597413710c4a9106042d0843cb624eeb0c238c258d4ebab61792890f24758a0b",
+    "src/lib/pwa.ts": "d8beb07eff3336aa1a22065b0e2d74eb75f679af5e247400cb906e6f3c178543",
+    "src/lib/__tests__/pwa-worker.test.ts": "338d0748a34e9ca3659c9c59b67c7388e3555fe2821b2684902322d5b814841c",
+    "e2e/frontend-deployment.spec.ts": "33de58ef7d065938c742d1778d271c16b2ce8c5f605be9c73afc2f4b2f21f79d"
+  },
+  "originalFailuresRetained": true
+}

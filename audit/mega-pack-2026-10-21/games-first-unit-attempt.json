@@ -1,0 +1,12 @@
+{
+  "command": "npx vitest run src/games/engine/__tests__/primitives.test.ts src/games/engine/__tests__/canonical.test.ts --maxWorkers=1 --reporter=dot",
+  "executedAtLocal": "2026-10-21T01:51:25+05:30",
+  "exitCode": 1,
+  "files": 2,
+  "passed": 196,
+  "failed": 1,
+  "failure": "Scored event occurred during a pause",
+  "case": "excludes deliberate paused time and remains idempotent on finish",
+  "cause": "Reachable same-clock input100ms thenpause100ms boundary. Temporary fixture spacing was reverted after the canonical TS/PHP afterSequence fix. No metric or event timestamp was altered in the final regression.",
+  "resolutionVerification": "Pending scoped game rerun; parent verified533 native parity cases0mismatch separately."
+}

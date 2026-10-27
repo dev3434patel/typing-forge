@@ -1,0 +1,75 @@
+{
+  "preparedAt": "2026-10-21T13:36:39.568Z",
+  "status": "PREPARED-NOT-RUN",
+  "scope": "Owned fixture-backed Arena/Friends responsive WCAG2.2AA coverage. Browser scans and physical assistive technology have not been executed by preparation.",
+  "addedDefinitions": 8,
+  "addedCasesAcrossFourEngines": 32,
+  "collectedTotal": 68,
+  "collectedFiles": 2,
+  "engines": [
+    "chromium",
+    "edge",
+    "firefox",
+    "webkit"
+  ],
+  "widths": [
+    390,
+    1440
+  ],
+  "arenaStates": [
+    "8-member waiting",
+    "own quarantine/review controls",
+    "8-member spectator"
+  ],
+  "friendsStates": [
+    "accepted friend with fixed-category report",
+    "incoming and outgoing requests",
+    "accepted duel controls",
+    "completed duel score table",
+    "blocked account control"
+  ],
+  "scans": {
+    "context": "document",
+    "tags": [
+      "wcag2a",
+      "wcag2aa",
+      "wcag21a",
+      "wcag21aa",
+      "wcag22aa"
+    ],
+    "injection": "page.evaluate(axe.source); CSP unchanged",
+    "settlement": "existing settlePageVisuals",
+    "targets": "Every visible main-route button/input/select/link;44px both dimensions with at most0.02px floating-point tolerance",
+    "horizontalOverflow": "document.scrollWidth<=innerWidth+1"
+  },
+  "preparationChecks": [
+    {
+      "name": "Scoped ESLint on3files",
+      "exitCode": 0,
+      "scope": "Previous preparation; targeted helper correction follows without executing browsers"
+    },
+    {
+      "name": "Playwright collection only; no browser launched",
+      "exitCode": 0,
+      "total": 68,
+      "scope": "Previous preparation; targeted helper correction follows without executing browsers"
+    }
+  ],
+  "automaticRetries": 0,
+  "files": [
+    {
+      "path": "e2e/arena.spec.ts",
+      "sha256": "c3699c1eeee16daa3c83ec0ac220fddad5e9c913c0652629459667bb83c2e41d"
+    },
+    {
+      "path": "e2e/friends.spec.ts",
+      "sha256": "9caa4c1f64515bd871f0faa78b5b98e8912cbdf8c7af1246ec659b2e2214be0b"
+    },
+    {
+      "path": "e2e/route-accessibility-fixture.ts",
+      "sha256": "052b704ead0abb5349447cf7a1f257adb5b284522dec09f62d1d5ba3f111bf4d"
+    }
+  ],
+  "supersedesPreparationOnly": "audit/2026-10-21/arena-friends-accessibility-prepared.json",
+  "change": "Replaced Math.round with strict44px dimensions allowing at most0.02px floating-point tolerance;43.5px now fails."
+}

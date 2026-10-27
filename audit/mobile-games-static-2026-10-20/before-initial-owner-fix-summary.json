@@ -1,0 +1,60 @@
+{
+  "totals": {
+    "total": 2,
+    "passed": 0,
+    "failed": 2,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "projects": [
+    {
+      "project": "chromium",
+      "total": 2,
+      "passed": 0,
+      "failed": 2,
+      "skipped": 0,
+      "flaky": 0
+    }
+  ],
+  "reportedStats": {
+    "expected": 0,
+    "unexpected": 2,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "countsAgreeWithReport": true,
+  "failures": [
+    {
+      "project": "chromium",
+      "title": "account-workspace.spec.ts › initial owner readiness protects Test with a delayed account session",
+      "file": "account-workspace.spec.ts",
+      "line": 36,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(locator).toBeVisible() failed Locator: getByRole('status', { name: 'Preparing account workspace', exact: true }) Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByRole('status', { name: 'Preparing account workspace', exact: true }) with timeout 5000ms - waiting for getByRole('status', { name: 'Preparing account workspace', exact: true }) 40 | await page.goto(route); 41 | await fixtur"
+      ]
+    },
+    {
+      "project": "chromium",
+      "title": "account-workspace.spec.ts › initial owner readiness protects Lessons with a delayed account session",
+      "file": "account-workspace.spec.ts",
+      "line": 36,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(locator).toBeVisible() failed Locator: getByRole('status', { name: 'Preparing account workspace', exact: true }) Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByRole('status', { name: 'Preparing account workspace', exact: true }) with timeout 5000ms - waiting for getByRole('status', { name: 'Preparing account workspace', exact: true }) 40 | await page.goto(route); 41 | await fixtur"
+      ]
+    }
+  ],
+  "flakyCases": [],
+  "skippedCases": [],
+  "skipReasons": [],
+  "expectedFailures": [],
+  "globalErrors": [],
+  "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+}

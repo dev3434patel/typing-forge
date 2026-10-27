@@ -7,12 +7,25 @@ export async function settlePageVisuals(page: Page) {
   // and infinite caret animations must remain active during the test.
   await page.evaluate(async () => {
     await document.fonts.ready;
+    // React/Framer can register an entrance on the first painted frame after
+    // the main landmark appears. Observe it after registration, not beforehand.
+    await new Promise<void>(resolve =>
+      requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
+    );
     await Promise.all(
       document.getAnimations()
         .filter(animation => animation.effect?.getComputedTiming().iterations !== Infinity)
         .map(animation => animation.finished.catch(() => undefined)),
     );
   });
+  // Framer may animate opacity with JavaScript rather than the Web Animations
+  // API. Read the real painted endpoint before sampling static contrast.
+  const accountPanel = page.locator(
+    'main#main-content > div:has(form input#email)',
+  );
+  if (await accountPanel.count()) {
+    await expect(accountPanel).toHaveCSS('opacity', '1');
+  }
 }
 
 export async function focusTyping(page: Page) {

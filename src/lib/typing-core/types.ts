@@ -1,4 +1,5 @@
 /** Forge v3's portable session contract. Offsets and edit ranges are grapheme based. */
+export const EVENT_LOG_SCHEMA_VERSION = 3 as const;
 export type SessionMode = 'time' | 'words' | 'quote' | 'code' | 'zen' | 'custom' | 'learn' | 'learning' | 'race';
 export type ScoringPolicy = 'prose' | 'code' | 'free';
 export type InputProvenance = 'keyboard' | 'composition' | 'paste' | 'drop' | 'autocorrect' | 'generated';
@@ -50,7 +51,11 @@ export interface SessionEvent extends NormalizedEdit {
   text: string;
   provenance: InputProvenance;
 }
-export interface PauseInterval { startMs: number; endMs: number }
+export interface PauseInterval {
+  startMs: number; endMs: number;
+  /** Last input observed before a pause at the same coarse-clock timestamp. */
+  afterSequence?: number;
+}
 export interface TargetSegment {
   offsetMs: number;
   text: string;

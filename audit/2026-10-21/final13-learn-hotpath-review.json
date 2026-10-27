@@ -1,0 +1,78 @@
+{
+  "capturedAt": "2026-10-21T20:37:31.907Z",
+  "status": "SOURCE-FROZEN-FOCUSED-CHECKS-PASS-NATIVE-VERIFICATION-PENDING",
+  "sourcePhase": 13,
+  "scope": "Learn hot path only: component, native caret helper and its unit, plus one focused definition in existing observer E2E. Shared cache/core/metrics/keyboard/3D source unchanged by this work.",
+  "evidence": {
+    "acceptance": "audit/2026-10-21/mobile-workspaces-final12-static.json",
+    "historicalLearn": {
+      "p98ObservedTypingEventDurationMs": 120,
+      "exactAttempts": 125,
+      "inputAccuracy": 100,
+      "pageErrors": 0,
+      "overflow": false
+    },
+    "diagnostic": "audit/2026-10-21/final12-mobile-profile-diagnostic-learn-functions.json",
+    "sourceSupportedHotspot": "Compiled Learn measureCaret callback sampled927 times; native getBoundingClientRect52 samples separately. Samples are not call counts or causal percentages. Source callback unconditionally read scrollTop and two native bounding rectangles after every committed glyph.",
+    "additionalSourceWork": "Fresh marker JSX and renderBefore function prevented passage React.memo from skipping unchanged100ms timer renders."
+  },
+  "changes": [
+    "Reuse unchanged bounded128 TypingCaretWordCache with actual native Learn union rectangles transformed into content coordinates. No measured width/height is replaced by Test caret minimums or estimated glyph advances.",
+    "Feed cached neutral rectangles into the unchanged learningCaretGeometry formula, retaining fractional dimensions, row +1px rule, style/RTL adjustments and native zero-width fallback.",
+    "Preserve native path for unsupported/complex/RTL/oversized words, mistakes/rejected mistakes, non-keyboard composition and all edit/cache-invalid transitions.",
+    "One stable stage ResizeObserver; root font/style and font-load/resize events invalidate; content-coordinate own scroll retains boxes while desired-scroll bookkeeping follows actual scroll. Cleanup releases every listener/observer.",
+    "Keep empty marker element and visible pace-caret behavior; stabilize marker reference and disable pace callback prop when pace is off, allowing unchanged timer snapshots to skip passage reconciliation."
+  ],
+  "files": [
+    {
+      "file": "src/components/keybr/KeybrLessonMode.tsx",
+      "sha256": "20fadff93a1fb79fc119c80a9cb9f72127f58bae2edc9d292e3d7664f20df872"
+    },
+    {
+      "file": "src/lib/learning-caret-geometry.ts",
+      "sha256": "283a2ca639a74314ea44be0a3cb8a8d6bc61da7fd371832b2766bd24cb3a6829"
+    },
+    {
+      "file": "src/lib/__tests__/learning-caret-geometry.test.ts",
+      "sha256": "60bda1b841246d91e3e85955cbbe5f0e3177b96ec3315c3910aee82b053e58e6"
+    },
+    {
+      "file": "e2e/typing-observer-ownership.spec.ts",
+      "sha256": "69206ab3a34fa9c6265d52c608c2d1f4447ce03bce48bed04d47a220521f3ef5"
+    }
+  ],
+  "checks": [
+    {
+      "command": "npx vitest run src/lib/__tests__/learning-caret-geometry.test.ts src/components/typing/typing-caret-cache.test.ts",
+      "exitCode": 0,
+      "passed": 114,
+      "files": 2,
+      "newLearnCases": 19
+    },
+    {
+      "command": "npx eslint src/components/keybr/KeybrLessonMode.tsx src/lib/learning-caret-geometry.ts src/lib/__tests__/learning-caret-geometry.test.ts e2e/typing-observer-ownership.spec.ts",
+      "exitCode": 0
+    },
+    {
+      "command": "npx tsc -p tsconfig.app.json --noEmit",
+      "exitCode": 0
+    }
+  ],
+  "newNativeE2E": {
+    "file": "e2e/typing-observer-ownership.spec.ts",
+    "executed": false,
+    "scope": "One real-input Learn case: warm native measured boxes across spaces without repeated glyph reads, idle-clock DOM stability, real font swap, wrong-key/deletion/rotation geometry against native bounds, stable observer ownership and exact exported evidence."
+  },
+  "risksAndLimits": [
+    "128 native rectangle reads can create a refill spike; only declared native measurements establish improvement.",
+    "Pure geometry checks preserve all4 shapes and both directions; new browser case checks native default line geometry, while unsupported RTL/complex paths stay unchanged native.",
+    "No browser/build/profile/full-suite/field-INP or physical-device claim from this scoped implementation. Source12 performance results remain historical failed targets, not overwritten."
+  ],
+  "independentBotRead": "Reviewed opponent-caret-layout.ts and OpponentPaceMarker.tsx after TS: no concrete blocker identified in same-position exact-prefix measured-point reuse/native invalidation paths.",
+  "jobs": {
+    "allOwnedExited": true,
+    "browsers": false,
+    "builds": false,
+    "profiles": false
+  }
+}

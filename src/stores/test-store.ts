@@ -16,6 +16,7 @@ interface TestSettings {
   tabIndents: boolean;
   precisionMode: boolean;
   zenStyle: 'prompted' | 'free';
+  wordPool: 'curated' | 'classic200';
 }
 
 interface TestState {
@@ -50,6 +51,7 @@ export const useTestStore = create<TestState>((set) => ({
     tabIndents: false,
     precisionMode: false,
     zenStyle: 'prompted',
+    wordPool: 'curated',
   },
   status: 'idle',
   targetText: '',

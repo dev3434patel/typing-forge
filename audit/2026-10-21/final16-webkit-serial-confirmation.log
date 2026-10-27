@@ -1,0 +1,106 @@
+
+Running 26 tests using 1 worker
+
+(node:29320) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [webkit] › e2e\arcade-data-isolation.spec.ts:5:1 › cross-tab arcade deletion discards the active run without resurrecting bests or touching another owner (8.5s)
+  ok  2 [webkit] › e2e\arcade-data-isolation.spec.ts:33:1 › deleting an ordinary canonical session in another tab stops only the selected history ghost (13.8s)
+  x   3 [webkit] › e2e\arcade-offline.spec.ts:13:1 › all eight arcade URLs survive a real HTTP outage without caching API or private room documents (5.9s)
+(node:49096) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  4 [webkit] › e2e\arcade.spec.ts:16:1 › arcade catalog exposes eight original local games without loading the player before interaction (1.6s)
+  ok  5 [webkit] › e2e\arcade.spec.ts:25:3 › Word Invaders retains real attempts and exports local canonical evidence in portrait (3.7s)
+  ok  6 [webkit] › e2e\arcade.spec.ts:25:3 › Ghost GP retains real attempts and exports local canonical evidence in landscape (3.3s)
+  ok  7 [webkit] › e2e\arcade.spec.ts:25:3 › Daily Gauntlet retains real attempts and exports local canonical evidence in portrait (3.0s)
+  ok  8 [webkit] › e2e\arcade.spec.ts:25:3 › Rhythm Typing retains real attempts and exports local canonical evidence in landscape (3.9s)
+  ok  9 [webkit] › e2e\arcade.spec.ts:25:3 › Key Tower Defense retains real attempts and exports local canonical evidence in portrait (3.0s)
+  ok 10 [webkit] › e2e\arcade.spec.ts:25:3 › Snake Words retains real attempts and exports local canonical evidence in landscape (4.1s)
+  ok 11 [webkit] › e2e\arcade.spec.ts:25:3 › Lava Rise retains real attempts and exports local canonical evidence in portrait (3.3s)
+  ok 12 [webkit] › e2e\arcade.spec.ts:25:3 › Boss Duel retains real attempts and exports local canonical evidence in landscape (4.1s)
+  ok 13 [webkit] › e2e\arcade.spec.ts:71:1 › game pause, mobile word-delete fallback and reduced-motion mode keep actual input intact (4.3s)
+  ok 14 [webkit] › e2e\caret-geometry.spec.ts:145:5 › line caret follows the actual LTR character edge through input and rotation (6.6s)
+  ok 15 [webkit] › e2e\caret-geometry.spec.ts:145:5 › line caret follows the actual RTL character edge through input and rotation (5.1s)
+  ok 16 [webkit] › e2e\caret-geometry.spec.ts:145:5 › block caret follows the actual LTR character edge through input and rotation (6.5s)
+  ok 17 [webkit] › e2e\caret-geometry.spec.ts:145:5 › block caret follows the actual RTL character edge through input and rotation (16.2s)
+  ok 18 [webkit] › e2e\caret-geometry.spec.ts:145:5 › outline caret follows the actual LTR character edge through input and rotation (9.4s)
+  x  19 [webkit] › e2e\caret-geometry.spec.ts:145:5 › outline caret follows the actual RTL character edge through input and rotation (32.3s)
+(node:43980) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 20 [webkit] › e2e\caret-geometry.spec.ts:145:5 › underline caret follows the actual LTR character edge through input and rotation (5.4s)
+  ok 21 [webkit] › e2e\caret-geometry.spec.ts:145:5 › underline caret follows the actual RTL character edge through input and rotation (5.1s)
+  ok 22 [webkit] › e2e\caret-geometry.spec.ts:184:1 › a native font-family switch invalidates cached glyph boxes without a text-block resize (4.1s)
+  ok 23 [webkit] › e2e\caret-geometry.spec.ts:227:3 › measured forward anchors cross correct words and spaces with default glyphs, then recover from errors and rotation (9.8s)
+  ok 24 [webkit] › e2e\caret-geometry.spec.ts:227:3 › measured forward anchors cross correct words and spaces with serif glyphs, then recover from errors and rotation (10.4s)
+  ok 25 [webkit] › e2e\caret-geometry.spec.ts:288:1 › a prompted code newline uses its first actual client fragment before entering the next line (5.3s)
+  ok 26 [webkit] › e2e\caret-geometry.spec.ts:345:1 › empty and multiline free writing use the same static end anchor through deletion and rotation (5.9s)
+
+
+  1) [webkit] › e2e\arcade-offline.spec.ts:13:1 › all eight arcade URLs survive a real HTTP outage without caching API or private room documents 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText(/Public download: available/)
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText(/Public download: available/) with timeout 5000ms
+      - waiting for getByText(/Public download: available/)
+
+
+      16 |   await page.goto('/offline');
+      17 |   test.skip(!(await page.evaluate(() => 'serviceWorker' in navigator && 'caches' in window)), 'UNVERIFIED: service-worker/cache APIs unavailable.');
+    > 18 |   await expect(page.getByText(/Public download: available/)).toBeVisible();
+         |                                                              ^
+      19 |   await expect.poll(() => page.evaluate(() => Boolean(navigator.serviceWorker.controller))).toBe(true);
+      20 |   await offlineServer.stop();
+      21 |   await expect(fetch(`${offlineServer.origin}/offline-build.json`, { cache: 'no-store', signal: AbortSignal.timeout(1000) })).rejects.toThrow();
+        at D:\extra\typing_updated\typing-forge\e2e\arcade-offline.spec.ts:18:62
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final16-webkit-serial-confirmation\arcade-offline-all-eight-a-f7f11-I-or-private-room-documents-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final16-webkit-serial-confirmation\arcade-offline-all-eight-a-f7f11-I-or-private-room-documents-webkit\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final16-webkit-serial-confirmation\arcade-offline-all-eight-a-f7f11-I-or-private-room-documents-webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\2026-10-21\.playwright-artifacts-final16-webkit-serial-confirmation\arcade-offline-all-eight-a-f7f11-I-or-private-room-documents-webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [webkit] › e2e\caret-geometry.spec.ts:145:5 › outline caret follows the actual RTL character edge through input and rotation 
+
+    Error: Test timeout of 30000ms exceeded
+
+      134 |         return geometryErrors(geometry, style);
+      135 |       })
+    > 136 |       .toEqual([]);
+          |        ^
+      137 |     return geometry!;
+      138 |   } finally {
+      139 |     receipts.push({ label, geometry });
+        at expectGeometry (D:\extra\typing_updated\typing-forge\e2e\caret-geometry.spec.ts:136:8)
+        at D:\extra\typing_updated\typing-forge\e2e\caret-geometry.spec.ts:169:15
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final16-webkit-serial-confirmation\caret-geometry-outline-car-6b3f4--through-input-and-rotation-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final16-webkit-serial-confirmation\caret-geometry-outline-car-6b3f4--through-input-and-rotation-webkit\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final16-webkit-serial-confirmation\caret-geometry-outline-car-6b3f4--through-input-and-rotation-webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\2026-10-21\.playwright-artifacts-final16-webkit-serial-confirmation\caret-geometry-outline-car-6b3f4--through-input-and-rotation-webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [webkit] › e2e\arcade-offline.spec.ts:13:1 › all eight arcade URLs survive a real HTTP outage without caching API or private room documents 
+    [webkit] › e2e\caret-geometry.spec.ts:145:5 › outline caret follows the actual RTL character edge through input and rotation 
+  24 passed (3.1m)

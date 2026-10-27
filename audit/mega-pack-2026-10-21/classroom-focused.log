@@ -1,0 +1,78 @@
+
+> sparowtype@3.0.0 test:run
+> vitest run src/domain/classroom/classroom.test.ts --maxWorkers=1 --reporter=verbose
+
+
+ RUN  v4.1.12 D:/extra/typing_updated/typing-forge
+
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > accepts a pseudonymous aliasStudent-01 2ms
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > accepts a pseudonymous aliasQuiet Typist 0ms
+ × src/domain/classroom/classroom.test.ts > private bounded classroom data > accepts a pseudonymous aliasविद्यार्थी 3ms
+   → Use a 2–32 character alias, without an email address or markup.
+ × src/domain/classroom/classroom.test.ts > private bounded classroom data > accepts a pseudonymous aliasવિદ્યાર્થી 1ms
+   → Use a 2–32 character alias, without an email address or markup.
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > accepts a pseudonymous aliasPupil.12 0ms
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > rejects identifying or malformed aliasa 1ms
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > rejects identifying or malformed aliastest@example.test 0ms
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > rejects identifying or malformed alias<script> 0ms
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > rejects identifying or malformed aliashttps://site 0ms
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > rejects identifying or malformed aliasx
+name 0ms
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > rejects identifying or malformed aliasxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 0ms
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > uses exactly128bits for local code labels 0ms
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > bounds aggregate mutation{"sessions":-1} 0ms
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > bounds aggregate mutation{"sessions":1001} 0ms
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > bounds aggregate mutation{"correctAttempts":101} 0ms
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > bounds aggregate mutation{"activeMs":null} 0ms
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > bounds aggregate mutation{"insertionAttempts":1.5} 0ms
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > bounds aggregate mutation{"bestWpm":1001} 0ms
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > isolates local owner records and strips unexpected fields 4ms
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > exports no code or member/session identity and forces imports to manual provenance 1ms
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > rejects duplicate aliases, oversized reports and impossible counts 1ms
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > never overwrites corrupt persisted data or makes partial in-memory mutations 1ms
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > keeps memory-only records available to another adapter during the same visit 0ms
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > keeps full-storage fallback without pretending persistence succeeded 0ms
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > prevents a stale adapter from resurrecting owner-cleared data 0ms
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > refuses to overwrite another tab’s updated class 0ms
+ × src/domain/classroom/classroom.test.ts > private bounded classroom data > omits alias from participation summaries unless explicitly opted in 5ms
+   → expected '<!doctype html><html lang="en"><meta …' to contain 'not a verified speed certificate'
+ ✓ src/domain/classroom/classroom.test.ts > private bounded classroom data > escapes certificate text even when handed an unvalidated alias 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/domain/classroom/classroom.test.ts > private bounded classroom data > accepts a pseudonymous aliasविद्यार्थी
+ FAIL  src/domain/classroom/classroom.test.ts > private bounded classroom data > accepts a pseudonymous aliasવિદ્યાર્થી
+Error: Use a 2–32 character alias, without an email address or markup.
+ ❯ classroomAlias src/domain/classroom/model.ts:9:67
+      7| export function classroomAlias(value: string): string {
+      8|   const alias = value.normalize('NFC').trim();
+      9|   if (!/^[\p{L}\p{N}][\p{L}\p{N} _.-]{1,31}$/u.test(alias)) throw new …
+       |                                                                   ^
+     10|   return alias;
+     11| }
+ ❯ src/domain/classroom/classroom.test.ts:10:133
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/domain/classroom/classroom.test.ts > private bounded classroom data > omits alias from participation summaries unless explicitly opted in
+AssertionError: expected '<!doctype html><html lang="en"><meta …' to contain 'not a verified speed certificate'
+
+Expected: "not a verified speed certificate"
+Received: "<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>SparowType practice summary</title><style>body{font-family:system-ui,sans-serif;padding:48px;color:#12151c}main{border:2px solid #27aae1;padding:48px;max-width:900px;margin:auto}h1{font-size:36px}dl{display:grid;grid-template-columns:1fr 1fr;gap:24px}dt{font-size:14px}dd{margin:8px 0;font-size:28px}p{line-height:1.6}@media print{body{padding:0}button{display:none}}</style><main><p>SparowType</p><h1>Practice participation summary</h1><h2>Student-01</h2><dl><div><dt>Practice sessions</dt><dd>1</dd></div><div><dt>Active practice</dt><dd>1.0 minutes</dd></div><div><dt>Input accuracy</dt><dd>98.0%</dd></div><div><dt>Best reported WPM</dt><dd>40.0</dd></div></dl><p>Manually reported local classroom practice. Not a verified speed certificate.</p><p>No email, private class code or typed passage is included.</p></main></html>"
+
+ ❯ src/domain/classroom/classroom.test.ts:68:46
+     66|     expect(certificateFacts(aggregate).alias).toBeNull(); expect(certi…
+     67|     expect(certificateFacts(aggregate, true).alias).toBe(aggregate.ali…
+     68|     expect(certificateHtml(aggregate, true)).toContain('not a verified…
+       |                                              ^
+     69|   });
+     70|   it('escapes certificate text even when handed an unvalidated alias',…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 25 passed (28)
+   Start at  01:58:54
+   Duration  306ms (transform 71ms, setup 36ms, import 66ms, tests 24ms, environment 0ms)
+

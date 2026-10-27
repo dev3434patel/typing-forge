@@ -99,17 +99,27 @@ export async function advanceClockedOpeningPreparation(
     )
     .toBe(true);
   const paint = await readReceipt();
-  const clockAdvancedMs =
-    paint.supported && !paint.observationError ? 500 : 1500;
-  await page.clock.runFor(clockAdvancedMs - 80);
+  // This independent native paint witness does not prove that the product's
+  // later buffered observer received the same entry. In particular, Clock
+  // hides performance.getEntries* and pauses the product's capability timer.
+  // Drive its complete existing 1000ms fallback + 400ms idle window, with
+  // a small scheduling allowance, unless actual product playback proves readiness
+  // earlier. Small steps avoid consuming an already-started choreography.
+  const preparationClockBudgetMs = 1500;
+  let clockAdvancedMs = 80;
+  const opening = page.getByTestId("opening-experience");
+  while (clockAdvancedMs < preparationClockBudgetMs && Date.now() < deadline) {
+    if ((await opening.getAttribute("data-presentation")) === "playing") break;
+    const step = Math.min(80, preparationClockBudgetMs - clockAdvancedMs);
+    await page.clock.runFor(step);
+    clockAdvancedMs += step;
+  }
   await test.info().attach("clocked-renderer-paint-preparation", {
     contentType: "application/json",
     body: JSON.stringify({
       nativePaint: paint,
-      schedulingPath:
-        paint.supported && !paint.observationError
-          ? "genuine-paint-observer-then-existing-400ms-idle-window"
-          : "existing-1000ms-capability-fallback-then-400ms-idle-window",
+      schedulingPath: "independent-native-paint-witness-then-existing-1000ms-capability-fallback-and-400ms-idle-window-until-actual-playback",
+      preparationClockBudgetMs,
       clockAdvancedMs,
       originalTimeoutMs,
       remainingTimeoutMs: Math.max(1, deadline - Date.now()),

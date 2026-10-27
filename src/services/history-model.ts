@@ -9,6 +9,6 @@ export function sessionView(record:SessionRecord) {
 export function localDateKey(date:string|number) {const d=new Date(date);return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
 export function cohortLabel(key:string) {
   if(key==='legacy-unverified')return 'Legacy metrics · personal history';
-  try {const c=JSON.parse(key);return [c.mode,c.durationMs?`${c.durationMs/1000}s`:c.words?`${c.words} words`:null,c.language,c.layout,c.method,c.policy,c.punctuation?'punctuation':null,c.numbers?'numbers':null,c.repeated?'repeated':null].filter(Boolean).join(' · ');} catch{return key;}
+  try {const c=JSON.parse(key);return [c.mode,c.durationMs?`${c.durationMs/1000}s`:c.words?`${c.words} words`:null,c.language,c.layout,c.method,c.policy,c.correctionPolicy,c.punctuation?'punctuation':null,c.numbers?'numbers':null,c.repeated?'repeated':null].filter(Boolean).join(' · ');} catch{return key;}
 }
 export const metricLabel=(value:number|null|undefined,digits=1)=>value===null||value===undefined||!Number.isFinite(value)?'—':value.toFixed(digits);

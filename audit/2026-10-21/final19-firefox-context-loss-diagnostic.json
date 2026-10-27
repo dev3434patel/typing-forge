@@ -1,0 +1,101 @@
+{
+  "capturedAt": "2026-10-26T20:40:05Z",
+  "clientDate": "2026-10-27",
+  "status": "FAILED-DIAGNOSTIC",
+  "immutableCheckpoint": true,
+  "build": "de097acba6969d580cc8",
+  "scope": "Read-only inspection of two retained controlled guest failures while the original serial four-engine matrix continues. No test, browser, retry, build, source edit or deadline change was performed for this diagnostic.",
+  "cases": [
+    {
+      "project": "firefox",
+      "logCase": 150,
+      "file": "e2e/opening-worker.spec.ts",
+      "line": 1039,
+      "title": "actual worker WebGL context loss during preparation recovers with a fresh canvas and keeps practice usable",
+      "reportedDurationSeconds": 30.6,
+      "failureStage": "Waiting for the browser-latched recoveredDocumentScene in expectRecoveredDocumentScene at line 785",
+      "exactErrors": ["Test timeout of 30000ms exceeded.", "Error: page.waitForFunction: Test timeout of 30000ms exceeded."],
+      "deadline": "Unchanged thirty-second whole-test deadline; the recovered-document wait has no separate extended timeout.",
+      "reachedByControlFlow": [
+        "Native transferable-canvas and WEBGL_lose_context capability checks did not skip the case.",
+        "The injected native context-loss request receipt was observed.",
+        "The audited worker's contextLost diagnostic was observed within the existing five-second wait.",
+        "The test entered the recovery helper and waited for the browser-side observer to latch a connected main-thread WebGL canvas with 61 keys, positive frames and positive draw calls while the intro was still open."
+      ],
+      "unreachedAssertions": [
+        "Recovered diagnostics thread, 61 keys, positive frames and draw calls",
+        "Exactly one recovery canvas",
+        "Worker terminated exactly once",
+        "Final readyPractice assertion"
+      ],
+      "screenshotObservation": "Reviewed screenshot shows ordinary guest practice ready at thirty seconds, with a visible caret and live keyboard; no intro or typed characters are visible. This does not prove that a fresh WebGL recovery scene rendered before the intro exited.",
+      "cause": "UNVERIFIED: the required main-thread WebGL recovery latch was absent before the test deadline. Pending raw worker receipts are needed to distinguish recovery failure, readiness timing and observation behavior.",
+      "artifacts": {
+        "errorContext": {
+          "path": "audit/2026-10-21/.playwright-artifacts-final19-isolated/opening-worker-actual-work-fe62f-s-and-keeps-practice-usable-firefox/error-context.md",
+          "sha256": "8ef56aed94aef4d4e6287e534bd0f8da90bddfb3c8e77ad5976a0ac11e087d5c"
+        },
+        "screenshot": {
+          "path": "audit/2026-10-21/.playwright-artifacts-final19-isolated/opening-worker-actual-work-fe62f-s-and-keeps-practice-usable-firefox/test-failed-1.png",
+          "bytes": 102881,
+          "sha256": "4d0ac3d075456899e9cb00428483526eed0ab448d08972fef7c2f126c831a6b3",
+          "visuallyReviewed": true
+        }
+      }
+    },
+    {
+      "project": "firefox",
+      "logCase": 151,
+      "file": "e2e/opening-worker.spec.ts",
+      "line": 1045,
+      "title": "actual worker WebGL context loss after live frames recovers with a fresh canvas and keeps practice usable",
+      "reportedDurationSeconds": 13.3,
+      "failureStage": "firstWorkerReady ready-event predicate at line 250, before the live context-loss injection",
+      "expected": true,
+      "received": false,
+      "predicateDeadlineMs": 5000,
+      "exactDeadlineText": "Timeout 5000ms exceeded while waiting on the predicate",
+      "reachedByControlFlow": [
+        "Native transferable-canvas and WEBGL_lose_context capability checks did not skip the case.",
+        "The worker's context-loss capability receipt was observed before entering firstWorkerReady."
+      ],
+      "unreachedAssertions": [
+        "Positive ready frames and draw calls",
+        "All sixty-one native hidden fallback animations paused with stable phase",
+        "The explicit test-request-native-context-loss message and actual live context loss",
+        "Native context-loss-requested and contextLost receipt checks",
+        "All sixty-one fallback animations resumed on their original timeline",
+        "Fresh main-thread WebGL recovery and final ready practice"
+      ],
+      "screenshotObservation": "Reviewed screenshot shows ordinary guest practice ready at thirty seconds with the real caret, live keyboard and no typed text. It does not establish that the test ever obtained the ready receipt required to inject live loss.",
+      "classification": "A native worker readiness assertion failed. The title mentions recovery, but the live loss and recovery checks were not reached.",
+      "cause": "UNVERIFIED pending final raw native-worker receipts; it is not established as an injected live context-loss failure.",
+      "artifacts": {
+        "errorContext": {
+          "path": "audit/2026-10-21/.playwright-artifacts-final19-isolated/opening-worker-actual-work-63074-s-and-keeps-practice-usable-firefox/error-context.md",
+          "sha256": "adc826240f6cc396bbe3a33e35c0797743d439c3da59ddbec969fcd637e1e305"
+        },
+        "screenshot": {
+          "path": "audit/2026-10-21/.playwright-artifacts-final19-isolated/opening-worker-actual-work-63074-s-and-keeps-practice-usable-firefox/test-failed-1.png",
+          "bytes": 101873,
+          "sha256": "02d3cba88c376227101a6ed1f0e4776f4b2b296194732e22a3ecda7340683dbb",
+          "visuallyReviewed": true
+        }
+      }
+    }
+  ],
+  "artifactPrivacy": "Both screenshots are controlled guest workspaces with generated public passages. No signed-in identity or private custom text is visible. Nested originals remain ignored; no raw private configuration was inspected.",
+  "originalProtocol": {
+    "path": "audit/2026-10-21/final19-isolated-protocol.json",
+    "sha256AtCheckpoint": "e191eb6273ef09415ae90eb6556bab3a51c9e3b66f851ed64e3518d8e1770d16",
+    "workers": 1,
+    "automaticRetries": 0,
+    "tracing": "off"
+  },
+  "sourceBinding": {
+    "file": "e2e/opening-worker.spec.ts",
+    "sha256": "a6a9186ab4d992d4b735a922dd5e9770c62d2fc48a1efcd7a14af929d731fc71"
+  },
+  "finalRawResultStatus": "PENDING: original batch JSON has not been written at this checkpoint",
+  "recommendation": "Preserve all original failures and finish the full matrix. Independently extract native-worker-receipts and any recovered-document-scene attachment from the final JSON. The separate unchanged four-engine confirmation covers these two exact context-loss cases plus the default-worker and idle-boundary cases; its result must not overwrite these failures or relax their deadlines."
+}

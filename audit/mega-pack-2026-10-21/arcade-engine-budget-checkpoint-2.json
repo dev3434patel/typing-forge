@@ -1,0 +1,16 @@
+{
+  "status": "PASS-SCOPED",
+  "build": "51b97d40b55f32b75c09",
+  "sourceReceipt": "audit/2026-10-21/pack-checkpoint-bundle-2.json",
+  "measurement": "Existing bundle checker traverses every static import of ArcadePlayer and sums gzipped chunks, excluding files already in the initial practice graph. Dynamic imports are not traversed by this feature graph.",
+  "allNewPlayerStaticGraphGzipBytes": 23699,
+  "engineOnlyConservativeUpperBoundGzipBytes": 23699,
+  "engineBudgetGzipBytes": 60000,
+  "eachGameBudgetGzipBytes": 90000,
+  "routeStaticGraphGzipBytes": 9252,
+  "initialPracticeJsGzipBytes": 156477,
+  "arcadeAbsentFromInitialPractice": true,
+  "interpretation": "The entire added player graph, including engine and UI for all eight modes, is below the60KB engine cap; no invented independent engine-only byte count is claimed.",
+  "lighthouse": "NOT-RUN for this checkpoint",
+  "finalReleaseBudget": "Must be rechecked if source changes after this checkpoint."
+}

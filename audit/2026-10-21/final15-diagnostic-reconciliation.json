@@ -1,0 +1,41 @@
+{
+  "capturedAt": "2026-10-22T19:43:00.317010+00:00",
+  "status": "DIAGNOSTIC-ONLY",
+  "scope": "Read-only reconciliation of the original failed diagnostic helper and separately declared metadata-first confirmation. No browser/performance rerun, profile processing, product change or acceptance substitution by this extractor.",
+  "originalFailure": {
+    "outcome": "audit/2026-10-21/final15-combined-diagnostic-outcome.json",
+    "rawProfile": "audit/2026-10-21/final15-cpu-loaf-native-diagnostic.cpuprofile",
+    "coordinatorClarification": "One finite negative CPU sample delta of -63 microseconds caused helper rejection; all20105 raw profile nodes were valid. Original clock alignment metadata was not persisted before the exception.",
+    "offlineReceipt": "audit/2026-10-21/final15-cpu-offline-analysis.json",
+    "offlineStatus": "OFFLINE-RECOVERY-NOT-TIME-ALIGNED",
+    "clockAlignment": "UNAVAILABLE: NavigationStart and before/after CDP metrics were not persisted before original helper exception; raw CPU profile contains no document clock origin.",
+    "limits": "Whole-profile ancestry only;121 sampled freeze stacks under snapshot versus1finish is repeated-work evidence, not invocation count, primary-tail proof or causal latency percentage."
+  },
+  "separateConfirmation": {
+    "raw": "audit/2026-10-21/final15-cpu-loaf-native-confirmation.json",
+    "timeline": "audit/2026-10-21/final15-cpu-loaf-native-confirmation-timeline.json",
+    "build": {
+      "version": "7ef96ccd3c02d170a757",
+      "publicFiles": 133,
+      "bytes": 2930175
+    },
+    "exact": true,
+    "attempts": 495,
+    "inputAccuracy": 100,
+    "p98ObservedTypingEventDurationMs": 112,
+    "maxObservedTypingEventDurationMs": 360,
+    "rotation": {
+      "beforeLength": 247,
+      "afterLength": 247,
+      "retainedExactly": true,
+      "overflow": false
+    },
+    "errors": [],
+    "nativeCounts": {
+      "getClientRects": 982,
+      "getBoundingClientRect": 92
+    },
+    "classification": "Instrumented112/max360ms only. Different instrumentation/scheduling means this is not matched acceptance, fieldINP or a speedup."
+  },
+  "preservedAcceptance": "audit/2026-10-21/final15-input-results.json remains FAILED3/3 at112/120/112ms; original diagnostic failure not overwritten."
+}

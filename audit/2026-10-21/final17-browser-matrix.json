@@ -1,0 +1,877 @@
+{
+  "declaredAt": "2026-10-22T21:01:16.610Z",
+  "status": "FAILED",
+  "build": {
+    "version": "0572d723495d6be303a8",
+    "publicFiles": 133,
+    "bytes": 2930646
+  },
+  "browsers": [
+    "chromium",
+    "edge",
+    "firefox",
+    "webkit"
+  ],
+  "automaticRetries": 0,
+  "filesCoveredExactlyOnce": 62,
+  "batches": [
+    {
+      "id": "new-features",
+      "files": [
+        "e2e/arcade.spec.ts",
+        "e2e/arena.spec.ts",
+        "e2e/studio-polish.spec.ts",
+        "e2e/learning-analytics-v2.spec.ts",
+        "e2e/classroom-lite.spec.ts",
+        "e2e/progression.spec.ts",
+        "e2e/workspace-reset.spec.ts",
+        "e2e/progression-extras.spec.ts",
+        "e2e/friends.spec.ts",
+        "e2e/arcade-data-isolation.spec.ts",
+        "e2e/arcade-offline.spec.ts"
+      ],
+      "workers": 2
+    },
+    {
+      "id": "existing",
+      "files": [
+        "e2e/accessibility-audit.spec.ts",
+        "e2e/account-workspace.spec.ts",
+        "e2e/auth-flow.spec.ts",
+        "e2e/caret-geometry.spec.ts",
+        "e2e/content-options.spec.ts",
+        "e2e/countdown-clock.spec.ts",
+        "e2e/current-word-correction.spec.ts",
+        "e2e/frontend-deployment.spec.ts",
+        "e2e/frontend-game-accessibility.spec.ts",
+        "e2e/game-data-controls.spec.ts",
+        "e2e/games.spec.ts",
+        "e2e/keyboard-lab.spec.ts",
+        "e2e/keyboard-viewport.spec.ts",
+        "e2e/leaderboard-periods.spec.ts",
+        "e2e/leaderboard.spec.ts",
+        "e2e/learning-v3.spec.ts",
+        "e2e/live-keyboard.spec.ts",
+        "e2e/mobile-input-integrity.spec.ts",
+        "e2e/mode-matrix.spec.ts",
+        "e2e/navigation-accessibility.spec.ts",
+        "e2e/offline-pwa.spec.ts",
+        "e2e/php-account-flow.spec.ts",
+        "e2e/php-human-race.spec.ts",
+        "e2e/profile-flow.spec.ts",
+        "e2e/profile-identity.spec.ts",
+        "e2e/pwa-notices.spec.ts",
+        "e2e/quick-restart.spec.ts",
+        "e2e/race-mode.spec.ts",
+        "e2e/race-pace.spec.ts",
+        "e2e/responsive-layout.spec.ts",
+        "e2e/responsive-pages.spec.ts",
+        "e2e/result-evidence.spec.ts",
+        "e2e/secondary-pages.spec.ts",
+        "e2e/sparowtype-brand.spec.ts",
+        "e2e/startup-recovery.spec.ts",
+        "e2e/stats-dashboard.spec.ts",
+        "e2e/typing-audit-regressions.spec.ts",
+        "e2e/typing-course.spec.ts",
+        "e2e/typing-experience.spec.ts",
+        "e2e/typing-observer-ownership.spec.ts",
+        "e2e/typing-test.spec.ts",
+        "e2e/wrong-key-feedback.spec.ts"
+      ],
+      "workers": 2
+    },
+    {
+      "id": "isolated",
+      "files": [
+        "e2e/caret-handoff-readiness.spec.ts",
+        "e2e/input-guardrails.spec.ts",
+        "e2e/opening-experience.spec.ts",
+        "e2e/opening-low-power.spec.ts",
+        "e2e/opening-single-keyboard.spec.ts",
+        "e2e/opening-worker.spec.ts",
+        "e2e/typing-render-budget.spec.ts",
+        "e2e/viewport-acceptance.spec.ts"
+      ],
+      "workers": 1
+    },
+    {
+      "id": "first-input-timing",
+      "files": [
+        "e2e/independent-challenge-timing.spec.ts"
+      ],
+      "workers": 2
+    }
+  ],
+  "results": [
+    {
+      "id": "new-features",
+      "exitCode": 1,
+      "summary": {
+        "totals": {
+          "total": 204,
+          "passed": 196,
+          "failed": 8,
+          "skipped": 0,
+          "flaky": 0
+        },
+        "projects": [
+          {
+            "project": "chromium",
+            "total": 51,
+            "passed": 49,
+            "failed": 2,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "edge",
+            "total": 51,
+            "passed": 51,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "firefox",
+            "total": 51,
+            "passed": 48,
+            "failed": 3,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "webkit",
+            "total": 51,
+            "passed": 48,
+            "failed": 3,
+            "skipped": 0,
+            "flaky": 0
+          }
+        ],
+        "reportedStats": {
+          "expected": 196,
+          "unexpected": 8,
+          "skipped": 0,
+          "flaky": 0
+        },
+        "countsAgreeWithReport": true,
+        "failures": [
+          {
+            "project": "firefox",
+            "title": "arcade-data-isolation.spec.ts › cross-tab arcade deletion discards the active run without resurrecting bests or touching another owner",
+            "file": "arcade-data-isolation.spec.ts",
+            "line": 5,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Test timeout of 30000ms exceeded.",
+              "Error: browserContext.close: Protocol error (Browser.removeBrowserContext): can't access property \"_maybeDontRestoreTabs\", this[#windows][aWindow.__SSi] is undefined",
+              "Error: page.goto: Test timeout of 30000ms exceeded. Call log: - navigating to \"http://127.0.0.1:4173/arcade\", waiting until \"load\" 17 | await page.locator('.arcade-target-alternative summary').click(); const next = (await page.locator('.arcade-target-alternative li').first().textContent())!.split(' · ')[0]; 18 | await input.focus(); await input.pressSequentially(next[0]); await expect(input).toHaveValue(next[0]); > 19 | const other = await contex"
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "arcade-data-isolation.spec.ts › deleting an ordinary canonical session in another tab stops only the selected history ghost",
+            "file": "arcade-data-isolation.spec.ts",
+            "line": 33,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Test timeout of 30000ms exceeded.",
+              "Error: page.goto: Test timeout of 30000ms exceeded. Call log: - navigating to \"http://127.0.0.1:4173/arcade/ghost-gp\", waiting until \"load\" 37 | const practiceInput = await focusTyping(page), passage = (await page.getByTestId('typing-target').textContent())!; await practiceInput.pressSequentially(passage, { delay: 20 }); 38 | await expect(page.getByRole('region', { name: 'Session results', exact: true })).toBeVisible(); > 39 | await page.goto('/a"
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "arcade-offline.spec.ts › all eight arcade URLs survive a real HTTP outage without caching API or private room documents",
+            "file": "arcade-offline.spec.ts",
+            "line": 13,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(locator).toBeVisible() failed Locator: getByText(/Public download: available/) Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByText(/Public download: available/) with timeout 5000ms - waiting for getByText(/Public download: available/) 16 | await page.goto('/offline'); 17 | test.skip(!(await page.evaluate(() => 'serviceWorker' in navigator && 'caches' in window)), 'UNVERIFIED: serv"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "arcade-offline.spec.ts › all eight arcade URLs survive a real HTTP outage without caching API or private room documents",
+            "file": "arcade-offline.spec.ts",
+            "line": 13,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(locator).toBeVisible() failed Locator: getByRole('heading', { name: 'Word Invaders', exact: true }) Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByRole('heading', { name: 'Word Invaders', exact: true }) with timeout 5000ms - waiting for getByRole('heading', { name: 'Word Invaders', exact: true }) 24 | for (const game of GAMES) { 25 | await page.goto(`/arcade/${game.id}`); > 26 | a"
+            ]
+          },
+          {
+            "project": "chromium",
+            "title": "arena.spec.ts › eight-member UI uses actual native canonical typing after the issued countdown and preserves strict rules",
+            "file": "arena.spec.ts",
+            "line": 41,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Test timeout of 30000ms exceeded.",
+              "Error: expect(locator).toBeVisible() failed Locator: getByRole('textbox', { name: 'Typing input', exact: true }) Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByRole('textbox', { name: 'Typing input', exact: true }) with timeout 5000ms - waiting for getByRole('textbox', { name: 'Typing input', exact: true }) at helpers.ts:36 34 | exact: true, 35 | }); > 36 | await expect(input).toBeVisible(); | "
+            ]
+          },
+          {
+            "project": "chromium",
+            "title": "arena.spec.ts › failed leave retains room recovery and spectator view exposes public progress",
+            "file": "arena.spec.ts",
+            "line": 64,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Test timeout of 30000ms exceeded.",
+              "Error: locator.fill: Test timeout of 30000ms exceeded. Call log: - waiting for getByLabel('Eight-character room code') 64 | test('failed leave retains room recovery and spectator view exposes public progress', async ({ page, baseURL }) => { 65 | await arenaFixture(page, baseURL!, { leaveFailure: true }); await page.goto('/arena'); > 66 | await page.getByLabel('Eight-character room code').fill('ABCD1234'); await page.getByRole('button', { name: 'S"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "progression-extras.spec.ts › earned theme and frame apply, persist on the real profile and return to default appearance",
+            "file": "progression-extras.spec.ts",
+            "line": 17,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(locator).toContainText(expected) failed Locator: getByRole('region', { name: 'Your practice identity', exact: true }) Expected substring: \"A clear space for your next practice.\" Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toContainText\" getByRole('region', { name: 'Your practice identity', exact: true }) with timeout 5000ms - waiting for getByRole('region', { name: 'Your practice identity', exact: true }) 30 | aw"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "progression.spec.ts › fallback reload preserves existing receipt awards without rewarding twice",
+            "file": "progression.spec.ts",
+            "line": 20,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(locator).toBeVisible() failed Locator: getByText('100 lifetime XP') Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByText('100 lifetime XP') with timeout 5000ms - waiting for getByText('100 lifetime XP') 29 | const before = await page.getByRole('table', { name: 'Latest 30 Keys transactions' }).innerText(); 30 | await page.reload(); > 31 | await expect(page.getByText('100 lifetime XP"
+            ]
+          }
+        ],
+        "flakyCases": [],
+        "skippedCases": [],
+        "skipReasons": [],
+        "expectedFailures": [],
+        "globalErrors": [],
+        "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+      }
+    },
+    {
+      "id": "existing",
+      "exitCode": 1,
+      "summary": {
+        "totals": {
+          "total": 964,
+          "passed": 943,
+          "failed": 5,
+          "skipped": 16,
+          "flaky": 0
+        },
+        "projects": [
+          {
+            "project": "chromium",
+            "total": 241,
+            "passed": 237,
+            "failed": 0,
+            "skipped": 4,
+            "flaky": 0
+          },
+          {
+            "project": "edge",
+            "total": 241,
+            "passed": 236,
+            "failed": 1,
+            "skipped": 4,
+            "flaky": 0
+          },
+          {
+            "project": "firefox",
+            "total": 241,
+            "passed": 236,
+            "failed": 1,
+            "skipped": 4,
+            "flaky": 0
+          },
+          {
+            "project": "webkit",
+            "total": 241,
+            "passed": 234,
+            "failed": 3,
+            "skipped": 4,
+            "flaky": 0
+          }
+        ],
+        "reportedStats": {
+          "expected": 943,
+          "unexpected": 5,
+          "skipped": 16,
+          "flaky": 0
+        },
+        "countsAgreeWithReport": true,
+        "failures": [
+          {
+            "project": "webkit",
+            "title": "offline-pwa.spec.ts › public app download supports a real server outage and clearing preserves real history",
+            "file": "offline-pwa.spec.ts",
+            "line": 28,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Test timeout of 30000ms exceeded.",
+              "Error: locator.click: Test timeout of 30000ms exceeded. Call log: - waiting for getByRole('button', { name: 'Remove offline download', exact: true }) - locator resolved to <button class=\"forge-button-secondary\">Remove offline download</button> - attempting click action - waiting for element to be visible, enabled and stable 127 | await page 128 | .getByRole(\"button\", { name: \"Remove offline download\", exact: true }) > 129 | .click(); | ^ 130 | aw"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "pwa-notices.spec.ts › dismissing installation does not hide a later app update or offline information",
+            "file": "pwa-notices.spec.ts",
+            "line": 40,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(locator).toBeVisible() failed Locator: getByRole('complementary', { name: 'App availability', exact: true }).getByRole('button', { name: 'Install app', exact: true }) Expected: visible Timeout: 5000ms Error: element(s) not found Call log: - Expect \"toBeVisible\" getByRole('complementary', { name: 'App availability', exact: true }).getByRole('button', { name: 'Install app', exact: true }) with timeout 5000ms - waiting for getByRole('c"
+            ]
+          },
+          {
+            "project": "edge",
+            "title": "typing-observer-ownership.spec.ts › Learn reuses measured glyph windows across spaces and preserves native caret geometry after font, error and rotation changes",
+            "file": "typing-observer-ownership.spec.ts",
+            "line": 239,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(received).toBeGreaterThan(expected) Expected: > 0.5 Received: 0.234375 304 | await expect(page.locator(\".learn-stream-text\")).toHaveCSS(\"font-family\", /Georgia/); 305 | await expectNative(); > 306 | expect(Math.abs((await geometry()).nativeWidth - originalWidth)).toBeGreaterThan(0.5); | ^ 307 | const wrong = text[count] === \"x\" ? \"z\" : \"x\"; 308 | await input.pressSequentially(wrong); 309 | await expect(page.locator(`.learn-stream [d"
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "typing-observer-ownership.spec.ts › Learn reuses measured glyph windows across spaces and preserves native caret geometry after font, error and rotation changes",
+            "file": "typing-observer-ownership.spec.ts",
+            "line": 239,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(received).toBeGreaterThan(expected) Expected: > 0.5 Received: 0.2333221435546875 304 | await expect(page.locator(\".learn-stream-text\")).toHaveCSS(\"font-family\", /Georgia/); 305 | await expectNative(); > 306 | expect(Math.abs((await geometry()).nativeWidth - originalWidth)).toBeGreaterThan(0.5); | ^ 307 | const wrong = text[count] === \"x\" ? \"z\" : \"x\"; 308 | await input.pressSequentially(wrong); 309 | await expect(page.locator(`.learn"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "typing-observer-ownership.spec.ts › Learn reuses measured glyph windows across spaces and preserves native caret geometry after font, error and rotation changes",
+            "file": "typing-observer-ownership.spec.ts",
+            "line": 239,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(received).toBeGreaterThan(expected) Expected: > 0.5 Received: 0.23867034912109375 304 | await expect(page.locator(\".learn-stream-text\")).toHaveCSS(\"font-family\", /Georgia/); 305 | await expectNative(); > 306 | expect(Math.abs((await geometry()).nativeWidth - originalWidth)).toBeGreaterThan(0.5); | ^ 307 | const wrong = text[count] === \"x\" ? \"z\" : \"x\"; 308 | await input.pressSequentially(wrong); 309 | await expect(page.locator(`.lear"
+            ]
+          }
+        ],
+        "flakyCases": [],
+        "skippedCases": [
+          {
+            "project": "chromium",
+            "title": "auth-flow.spec.ts › real account sign in with dedicated deployment credentials",
+            "file": "auth-flow.spec.ts",
+            "line": 54,
+            "reasons": [
+              "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used."
+            ]
+          },
+          {
+            "project": "edge",
+            "title": "auth-flow.spec.ts › real account sign in with dedicated deployment credentials",
+            "file": "auth-flow.spec.ts",
+            "line": 54,
+            "reasons": [
+              "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used."
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "auth-flow.spec.ts › real account sign in with dedicated deployment credentials",
+            "file": "auth-flow.spec.ts",
+            "line": 54,
+            "reasons": [
+              "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "auth-flow.spec.ts › real account sign in with dedicated deployment credentials",
+            "file": "auth-flow.spec.ts",
+            "line": 54,
+            "reasons": [
+              "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used."
+            ]
+          },
+          {
+            "project": "chromium",
+            "title": "php-account-flow.spec.ts › real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+            "file": "php-account-flow.spec.ts",
+            "line": 6,
+            "reasons": [
+              "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account."
+            ]
+          },
+          {
+            "project": "edge",
+            "title": "php-account-flow.spec.ts › real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+            "file": "php-account-flow.spec.ts",
+            "line": 6,
+            "reasons": [
+              "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account."
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "php-account-flow.spec.ts › real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+            "file": "php-account-flow.spec.ts",
+            "line": 6,
+            "reasons": [
+              "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "php-account-flow.spec.ts › real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+            "file": "php-account-flow.spec.ts",
+            "line": 6,
+            "reasons": [
+              "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account."
+            ]
+          },
+          {
+            "project": "chromium",
+            "title": "php-human-race.spec.ts › real two-browser PHP human race shares opponent pace and settles server results",
+            "file": "php-human-race.spec.ts",
+            "line": 5,
+            "reasons": [
+              "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+            ]
+          },
+          {
+            "project": "edge",
+            "title": "php-human-race.spec.ts › real two-browser PHP human race shares opponent pace and settles server results",
+            "file": "php-human-race.spec.ts",
+            "line": 5,
+            "reasons": [
+              "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "php-human-race.spec.ts › real two-browser PHP human race shares opponent pace and settles server results",
+            "file": "php-human-race.spec.ts",
+            "line": 5,
+            "reasons": [
+              "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "php-human-race.spec.ts › real two-browser PHP human race shares opponent pace and settles server results",
+            "file": "php-human-race.spec.ts",
+            "line": 5,
+            "reasons": [
+              "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+            ]
+          },
+          {
+            "project": "chromium",
+            "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+            "file": "race-mode.spec.ts",
+            "line": 84,
+            "reasons": [
+              "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+            ]
+          },
+          {
+            "project": "edge",
+            "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+            "file": "race-mode.spec.ts",
+            "line": 84,
+            "reasons": [
+              "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+            "file": "race-mode.spec.ts",
+            "line": 84,
+            "reasons": [
+              "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+            "file": "race-mode.spec.ts",
+            "line": 84,
+            "reasons": [
+              "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+            ]
+          }
+        ],
+        "skipReasons": [
+          {
+            "reason": "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used.",
+            "count": 4,
+            "projects": [
+              "chromium",
+              "edge",
+              "firefox",
+              "webkit"
+            ]
+          },
+          {
+            "reason": "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account.",
+            "count": 4,
+            "projects": [
+              "chromium",
+              "edge",
+              "firefox",
+              "webkit"
+            ]
+          },
+          {
+            "reason": "Requires two dedicated accounts on the explicit PHP acceptance deployment.",
+            "count": 4,
+            "projects": [
+              "chromium",
+              "edge",
+              "firefox",
+              "webkit"
+            ]
+          },
+          {
+            "reason": "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization.",
+            "count": 4,
+            "projects": [
+              "chromium",
+              "edge",
+              "firefox",
+              "webkit"
+            ]
+          }
+        ],
+        "expectedFailures": [],
+        "globalErrors": [],
+        "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+      }
+    },
+    {
+      "id": "isolated",
+      "exitCode": 1,
+      "summary": {
+        "totals": {
+          "total": 212,
+          "passed": 199,
+          "failed": 4,
+          "skipped": 9,
+          "flaky": 0
+        },
+        "projects": [
+          {
+            "project": "chromium",
+            "total": 53,
+            "passed": 52,
+            "failed": 1,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "edge",
+            "total": 53,
+            "passed": 52,
+            "failed": 1,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "firefox",
+            "total": 53,
+            "passed": 52,
+            "failed": 1,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "webkit",
+            "total": 53,
+            "passed": 43,
+            "failed": 1,
+            "skipped": 9,
+            "flaky": 0
+          }
+        ],
+        "reportedStats": {
+          "expected": 199,
+          "unexpected": 4,
+          "skipped": 9,
+          "flaky": 0
+        },
+        "countsAgreeWithReport": true,
+        "failures": [
+          {
+            "project": "chromium",
+            "title": "opening-experience.spec.ts › caret handoff late chunk preserves input and the real caret",
+            "file": "opening-experience.spec.ts",
+            "line": 208,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Test timeout of 30000ms exceeded.",
+              "Error: page.waitForResponse: Test timeout of 30000ms exceeded. =========================== logs =========================== waiting for response /\\/assets\\/caret-handoff[^/]*\\.js/ ============================================================ 249 | await input.pressSequentially(\"x\"); 250 | if (failure === \"late chunk\") { > 251 | const response = page.waitForResponse(/\\/assets\\/caret-handoff[^/]*\\.js/); | ^ 252 | release(); 253 | await response; 254"
+            ]
+          },
+          {
+            "project": "edge",
+            "title": "opening-experience.spec.ts › caret handoff late chunk preserves input and the real caret",
+            "file": "opening-experience.spec.ts",
+            "line": 208,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Test timeout of 30000ms exceeded.",
+              "Error: page.waitForResponse: Test timeout of 30000ms exceeded. =========================== logs =========================== waiting for response /\\/assets\\/caret-handoff[^/]*\\.js/ ============================================================ 249 | await input.pressSequentially(\"x\"); 250 | if (failure === \"late chunk\") { > 251 | const response = page.waitForResponse(/\\/assets\\/caret-handoff[^/]*\\.js/); | ^ 252 | release(); 253 | await response; 254"
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "opening-experience.spec.ts › caret handoff late chunk preserves input and the real caret",
+            "file": "opening-experience.spec.ts",
+            "line": 208,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Test timeout of 30000ms exceeded.",
+              "Error: page.waitForResponse: Test timeout of 30000ms exceeded. =========================== logs =========================== waiting for response /\\/assets\\/caret-handoff[^/]*\\.js/ ============================================================ 249 | await input.pressSequentially(\"x\"); 250 | if (failure === \"late chunk\") { > 251 | const response = page.waitForResponse(/\\/assets\\/caret-handoff[^/]*\\.js/); | ^ 252 | release(); 253 | await response; 254"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "opening-experience.spec.ts › caret handoff late chunk preserves input and the real caret",
+            "file": "opening-experience.spec.ts",
+            "line": 208,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Test timeout of 30000ms exceeded.",
+              "Error: page.waitForResponse: Test timeout of 30000ms exceeded. =========================== logs =========================== waiting for response /\\/assets\\/caret-handoff[^/]*\\.js/ ============================================================ 249 | await input.pressSequentially(\"x\"); 250 | if (failure === \"late chunk\") { > 251 | const response = page.waitForResponse(/\\/assets\\/caret-handoff[^/]*\\.js/); | ^ 252 | release(); 253 | await response; 254"
+            ]
+          }
+        ],
+        "flakyCases": [],
+        "skippedCases": [
+          {
+            "project": "webkit",
+            "title": "input-guardrails.spec.ts › supported typing audio creates one context on input and disposes it on navigation",
+            "file": "input-guardrails.spec.ts",
+            "line": 95,
+            "reasons": [
+              "UNVERIFIED: this browser runner exposes no standard AudioContext API; this is not a native Safari capability claim."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "opening-single-keyboard.spec.ts › the normal-clock production worker shows the creative 3D keyboard through wordmark typing and automatic entry",
+            "file": "opening-single-keyboard.spec.ts",
+            "line": 240,
+            "reasons": [
+              "UNVERIFIED: this runner has no native transferable-canvas worker API."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "opening-worker.spec.ts › default native worker draws the complete keyboard while document tasks, resize and skip remain responsive",
+            "file": "opening-worker.spec.ts",
+            "line": 364,
+            "reasons": [
+              "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "opening-worker.spec.ts › native worker acknowledges real resource disposal at an explicitly idle renderer boundary",
+            "file": "opening-worker.spec.ts",
+            "line": 461,
+            "reasons": [
+              "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "opening-worker.spec.ts › five consecutive native-worker startup reloads close each prior owner and final skip closes the last worker",
+            "file": "opening-worker.spec.ts",
+            "line": 591,
+            "reasons": [
+              "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "opening-worker.spec.ts › skipping while the native worker entry is blocked terminates startup and preserves the first typing key",
+            "file": "opening-worker.spec.ts",
+            "line": 742,
+            "reasons": [
+              "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "opening-worker.spec.ts › a native worker transport failure replaces the transferred canvas with the complete real document renderer",
+            "file": "opening-worker.spec.ts",
+            "line": 797,
+            "reasons": [
+              "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "opening-worker.spec.ts › actual worker WebGL context loss during preparation recovers with a fresh canvas and keeps practice usable",
+            "file": "opening-worker.spec.ts",
+            "line": 1039,
+            "reasons": [
+              "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "opening-worker.spec.ts › actual worker WebGL context loss after live frames recovers with a fresh canvas and keeps practice usable",
+            "file": "opening-worker.spec.ts",
+            "line": 1045,
+            "reasons": [
+              "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+            ]
+          }
+        ],
+        "skipReasons": [
+          {
+            "reason": "UNVERIFIED: this browser runner exposes no standard AudioContext API; this is not a native Safari capability claim.",
+            "count": 1,
+            "projects": [
+              "webkit"
+            ]
+          },
+          {
+            "reason": "UNVERIFIED: this runner has no native transferable-canvas worker API.",
+            "count": 1,
+            "projects": [
+              "webkit"
+            ]
+          },
+          {
+            "reason": "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently.",
+            "count": 7,
+            "projects": [
+              "webkit"
+            ]
+          }
+        ],
+        "expectedFailures": [],
+        "globalErrors": [],
+        "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+      }
+    },
+    {
+      "id": "first-input-timing",
+      "exitCode": 0,
+      "summary": {
+        "totals": {
+          "total": 32,
+          "passed": 32,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0
+        },
+        "projects": [
+          {
+            "project": "chromium",
+            "total": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "edge",
+            "total": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "firefox",
+            "total": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "webkit",
+            "total": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          }
+        ],
+        "reportedStats": {
+          "expected": 32,
+          "unexpected": 0,
+          "skipped": 0,
+          "flaky": 0
+        },
+        "countsAgreeWithReport": true,
+        "failures": [],
+        "flakyCases": [],
+        "skippedCases": [],
+        "skipReasons": [],
+        "expectedFailures": [],
+        "globalErrors": [],
+        "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+      }
+    }
+  ],
+  "scope": "Full source-file partition; native credential cases require the separately guarded16-case backend run. Static artifacts have their separate root/subpath execution. Conditional skips remain explicit.",
+  "finishedAt": "2026-10-23T13:39:49.957Z"
+}

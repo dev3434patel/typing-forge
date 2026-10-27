@@ -1,6 +1,10 @@
 # SparowType v3 — implementation and verification
 
-**Current checkpoint — 20 October 2026:** the [learning and live keyboard audit](LEARNING_UPGRADE_AUDIT_2026-10-20.md) records the new structured course, shared keyboard, current build measurements and remaining gates. The [research and plan](LEARNING_UPGRADE_PLAN_2026-10-20.md) preceded implementation. PHP + MySQL/MariaDB remains the active backend; [setup instructions](PHP_XAMPP_SETUP.md) cover XAMPP and hosting.
+The [21 October mega-pack audit](MEGA_PACK_AUDIT_2026-10-21.md) and [status matrix](STATUS_MATRIX.md) supersede the historical checkpoints below. Their build identities, retained failures and remaining requirements govern current acceptance. Earlier passing scores are not final-build results.
+
+**Latest checkpoint — 20 October 2026:** the [mobile, Games and frontend deployment audit](MOBILE_GAMES_STATIC_AUDIT_2026-10-20.md) records input-rendering improvements, mobile measurements, Signal Run, frontend-only Vercel/Pages builds and the final verification boundaries. The [frontend deployment guide](FRONTEND_DEPLOYMENT.md) covers backend-free operation; the PHP/MySQL build remains available separately. Earlier checkpoints below describe their own builds and do not override this latest audit.
+
+**Earlier learning checkpoint — 20 October 2026:** the [learning and live keyboard audit](LEARNING_UPGRADE_AUDIT_2026-10-20.md) records the structured course and shared keyboard. The [research and plan](LEARNING_UPGRADE_PLAN_2026-10-20.md) preceded implementation. PHP + MySQL/MariaDB remains the account backend; [setup instructions](PHP_XAMPP_SETUP.md) cover XAMPP and hosting.
 
 - 36 course lessons, six chapters and 108 original passages; 30 sequential foundations plus an independently accessible 15–80 WPM speed ladder. Two distinct qualifying variants are required per lesson. The first formal course teaches English / US QWERTY.
 - One live keyboard below Test, Race, adaptive Learn and course practice, with actual held-key feedback, expected-character guidance, wrong-character feedback and independently saved finger hints.

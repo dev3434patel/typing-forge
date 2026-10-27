@@ -5,6 +5,7 @@ import type { SessionRecord } from '@/services/session-repository';
 const fixture = vi.hoisted(() => ({
   published: vi.fn(), rows: new Map<string, SessionRecord>(),
   hashingStarted: vi.fn(),
+  revision: 0,
   hashing: new Map<string, { promise: Promise<string>; resolve: (value: string) => void }>(),
 }));
 // This test isolates asynchronous persistence/status ordering; rendered interaction
@@ -27,9 +28,10 @@ vi.mock('@/services/session-repository', () => ({
   },
   sessionRepository: {
     storageMode: 'memory', storageError: null,
+    ownerRevision: () => fixture.revision,
     migrateLegacy: async () => undefined, expireEvidence: async () => undefined,
     get: async (owner: string, id: string) => fixture.rows.get(`${owner}:${id}`) ?? null,
-    save: async (row: SessionRecord) => { fixture.rows.set(`${row.ownerId}:${row.clientSessionId}`, row); return row; },
+    save: async (row: SessionRecord, revision = fixture.revision) => { if (revision !== fixture.revision) throw new Error('This workspace was reset.'); fixture.rows.set(`${row.ownerId}:${row.clientSessionId}`, row); return row; },
   },
 }));
 import { useTestResults } from './useTestResults';
@@ -48,9 +50,21 @@ function hold(id: string) {
   fixture.hashing.set(id, { promise, resolve });
   return () => resolve(`hash:${id}`);
 }
-beforeEach(() => { fixture.published.mockClear(); fixture.hashingStarted.mockClear(); fixture.rows.clear(); fixture.hashing.clear(); });
+beforeEach(() => { fixture.published.mockClear(); fixture.hashingStarted.mockClear(); fixture.rows.clear(); fixture.hashing.clear(); fixture.revision = 0; });
 
 describe('save status follows the most recently requested result', () => {
+  it('cannot create a previously unseen session when hashing finishes after a workspace reset', async () => {
+    const finish = hold('pending-before-reset');
+    const save = useTestResults().saveSession(result('pending-before-reset'));
+    await vi.waitFor(() => expect(fixture.hashingStarted).toHaveBeenCalledWith('pending-before-reset'));
+    fixture.revision++;
+    fixture.rows.clear();
+    const before = fixture.published.mock.calls.length;
+    finish();
+    await expect(save).rejects.toThrow('reset');
+    expect(fixture.rows.size).toBe(0);
+    expect(fixture.published.mock.calls).toHaveLength(before);
+  });
   it('persists an older late completion without replacing the newer result status', async () => {
     const finishOld = hold('old');
     const hook = useTestResults();

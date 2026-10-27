@@ -1,7 +1,15 @@
 import { createHash } from "node:crypto";
-import { readdir, readFile, writeFile, stat, unlink } from "node:fs/promises";
+import {
+  readdir,
+  readFile,
+  writeFile,
+  stat,
+  unlink,
+  mkdir,
+} from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { resolveDeploymentConfig } from "../build/deployment-config.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const publicRoutes = [
@@ -16,6 +24,9 @@ const publicRoutes = [
   "/about",
   "/privacy",
   "/terms",
+  "/games",
+  "/arcade",
+  ...['word-invaders','ghost-gp','daily-gauntlet','rhythm-typing','key-tower','snake-words','lava-rise','boss-duel'].map(id => `/arcade/${id}`),
 ];
 async function filesWithin(directory, prefix = "") {
   const entries = await readdir(path.join(directory, prefix), {
@@ -58,9 +69,63 @@ body { margin: 0; min-width: 0; background: #07070a; color: #ededf2; }
 .recovery-link-primary:focus-visible { outline-color: #ededf2; }
 @media (max-width: 420px) { .recovery-actions { flex-direction: column; } .recovery-link { width: 100%; } }
 `;
-export async function buildOffline(outputDirectory = path.join(root, "dist")) {
+export async function buildOffline(
+  outputDirectory = path.join(root, "dist"),
+  options = {},
+) {
+  const deployment = resolveDeploymentConfig({ ...process.env, ...options });
+  const base = deployment.base;
+  const appPath = (route) => base + route.replace(/^\/+/, "");
+  const publicPath = (route) =>
+    appPath(
+      deployment.target === "github-pages" && route !== "/"
+        ? route + "/"
+        : route,
+    );
   const output = path.resolve(outputDirectory);
-  const html = await readFile(path.join(output, "index.html"), "utf8");
+  let html = await readFile(path.join(output, "index.html"), "utf8");
+  // Public metadata images are not transformed by Vite's asset pipeline.
+  const imagePath = appPath("/og-sparowtype.png");
+  const siteUrl = deployment.siteUrl ? new URL(deployment.siteUrl) : null;
+  if (
+    siteUrl &&
+    (!["http:", "https:"].includes(siteUrl.protocol) ||
+      siteUrl.username ||
+      siteUrl.password ||
+      siteUrl.search ||
+      siteUrl.hash ||
+      siteUrl.pathname !== base)
+  )
+    throw new Error(
+      "SPAROWTYPE_SITE_URL must match the public application base, without credentials, query or fragment.",
+    );
+  const image = siteUrl ? new URL(imagePath, siteUrl.origin).href : imagePath;
+  html = html.replace(
+    /(<meta\s+(?:property="og:image"|name="twitter:image")\s+content=")[^"]*("\s*\/?\s*>)/g,
+    `$1${text(image)}$2`,
+  );
+  const withoutCanonical = (value) =>
+    value
+      .replace(/<link\b[^>]*rel="canonical"[^>]*>/gi, "")
+      .replace(/<meta\b[^>]*property="og:url"[^>]*>/gi, "");
+  html = withoutCanonical(html);
+  if (siteUrl)
+    html = html.replace(
+      "</head>",
+      `<link rel="canonical" href="${text(siteUrl.href)}"><meta property="og:url" content="${text(siteUrl.href)}"></head>`,
+    );
+  await writeFile(path.join(output, "index.html"), html);
+  const manifestPath = path.join(output, "site.webmanifest");
+  const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
+  manifest.id = base;
+  manifest.start_url = base;
+  manifest.scope = base;
+  if (Array.isArray(manifest.icons))
+    manifest.icons = manifest.icons.map((icon) => ({
+      ...icon,
+      src: appPath(icon.src.split("/").at(-1)),
+    }));
+  await writeFile(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
   const assetFiles = (await filesWithin(path.join(output, "assets"))).filter(
     (file) => /\.(?:js|css|woff2?|png|svg|webp|ico)$/.test(file),
   );
@@ -85,7 +150,7 @@ ${cssLinks}${inlineFonts}<style data-offline-recovery>${recoveryStyles}</style><
 <p class="recovery-brand"><span>Sparow<span class="recovery-accent">Type</span></span><span class="recovery-badge">Offline</span></p>
 <h1 class="recovery-title">This page needs a connection.</h1>
 <p class="recovery-copy">Your browser can reopen the public practice workspace from its completed app download. Account requests, live rankings and human races need a connection. Your local typing history is not removed.</p>
-<nav aria-label="Offline recovery" class="recovery-actions"><a class="recovery-link recovery-link-primary" href="/">Open guest practice</a><a class="recovery-link" href="/learn">Open adaptive lessons</a><a class="recovery-link" href="/offline">Offline information</a></nav>
+<nav aria-label="Offline recovery" class="recovery-actions"><a class="recovery-link recovery-link-primary" href="${base}">Open guest practice</a><a class="recovery-link" href="${appPath("/learn")}">Open adaptive lessons</a><a class="recovery-link" href="${appPath("/offline")}">Offline information</a></nav>
 </main></body></html>`;
   // Keep the static fallback distinct from routed /offline: clean-URL hosts
   // resolve offline.html before the SPA, hiding its actual controls online.
@@ -98,23 +163,35 @@ ${cssLinks}${inlineFonts}<style data-offline-recovery>${recoveryStyles}</style><
   const publicFontFiles = allOutputFiles.filter((file) =>
     /^fonts\/[^/]+\.(?:css|woff2?)$/.test(file),
   );
-  const paths = [
+  const relativePaths = [
     "/index.html",
     "/_offline-recovery.html",
     ...assetFiles.map((file) => "/assets/" + file),
     ...rootPublicFiles.map((file) => "/" + file),
     ...publicFontFiles.map((file) => "/" + file),
   ].sort();
+  const paths = relativePaths.map((file) => appPath(file));
   const digest = createHash("sha256");
-  for (const file of paths) {
-    digest.update(file);
-    digest.update(await readFile(path.join(output, file.slice(1))));
+  const template = await readFile(path.join(root, "public", "sw.js"), "utf8");
+  digest.update(template);
+  digest.update(
+    JSON.stringify({ base, frontendOnly: deployment.frontendOnly }),
+  );
+  for (let index = 0; index < paths.length; index++) {
+    digest.update(paths[index]);
+    digest.update(
+      await readFile(path.join(output, relativePaths[index].slice(1))),
+    );
   }
   const version = digest.digest("hex").slice(0, 20);
-  const template = await readFile(path.join(root, "public", "sw.js"), "utf8");
   const worker = template
     .replace("__SPAROWTYPE_BUILD__", version)
-    .replace("/*__SPAROWTYPE_PRECACHE__*/ []", JSON.stringify(paths));
+    .replace("/*__SPAROWTYPE_PRECACHE__*/ []", JSON.stringify(paths))
+    .replace('/*__SPAROWTYPE_BASE__*/ "/"', JSON.stringify(base))
+    .replace(
+      "/*__SPAROWTYPE_STATIC__*/ false",
+      JSON.stringify(deployment.frontendOnly),
+    );
   if (
     worker.includes("__SPAROWTYPE_BUILD__") ||
     worker.includes("/*__SPAROWTYPE_PRECACHE__*/")
@@ -123,7 +200,7 @@ ${cssLinks}${inlineFonts}<style data-offline-recovery>${recoveryStyles}</style><
   await writeFile(path.join(output, "sw.js"), worker);
   const bytes = (
     await Promise.all(
-      paths.map((file) => stat(path.join(output, file.slice(1)))),
+      relativePaths.map((file) => stat(path.join(output, file.slice(1)))),
     )
   ).reduce((sum, file) => sum + file.size, 0);
   await writeFile(
@@ -136,8 +213,8 @@ ${cssLinks}${inlineFonts}<style data-offline-recovery>${recoveryStyles}</style><
     () => "User-agent: *\nAllow: /\n",
   );
   const cleanRobots = robots.replace(/^Sitemap:.*$/gm, "").trimEnd();
-  if (process.env.SPAROWTYPE_SITE_URL) {
-    const origin = new URL(process.env.SPAROWTYPE_SITE_URL);
+  if (siteUrl) {
+    const origin = siteUrl;
     if (
       !["http:", "https:"].includes(origin.protocol) ||
       origin.username ||
@@ -149,7 +226,7 @@ ${cssLinks}${inlineFonts}<style data-offline-recovery>${recoveryStyles}</style><
     const entries = publicRoutes
       .map(
         (route) =>
-          `<url><loc>${text(new URL(route, origin.origin).href)}</loc></url>`,
+          `<url><loc>${text(new URL(publicPath(route), origin.origin).href)}</loc></url>`,
       )
       .join("");
     await writeFile(
@@ -159,7 +236,7 @@ ${cssLinks}${inlineFonts}<style data-offline-recovery>${recoveryStyles}</style><
     await writeFile(
       path.join(output, "robots.txt"),
       cleanRobots +
-        `\nSitemap: ${new URL("/sitemap.xml", origin.origin).href}\n`,
+        `\nSitemap: ${new URL(appPath("/sitemap.xml"), origin.origin).href}\n`,
     );
     sitemap = true;
   } else {
@@ -168,6 +245,74 @@ ${cssLinks}${inlineFonts}<style data-offline-recovery>${recoveryStyles}</style><
     });
     await writeFile(path.join(output, "robots.txt"), cleanRobots + "\n");
   }
+  if (deployment.frontendOnly) {
+    // Pages serves real directories rather than requiring a host-specific SPA
+    // redirect. Queries stay in the URL and dynamic unknown paths remain 404s.
+    const routes = [
+      ...publicRoutes,
+      "/stats",
+      "/settings",
+      "/profile",
+      "/auth",
+      "/race",
+      "/ranked",
+      "/leaderboard",
+      "/offline",
+      "/studio",
+      "/progression",
+      "/classroom",
+      "/friends",
+      "/arena",
+    ];
+    const aliases = {
+      "/typing-test": "/",
+      "/typing-practice": "/learn",
+      "/practice": "/learn",
+    };
+    for (const route of routes.filter((route) => route !== "/")) {
+      const directory = path.join(output, route.slice(1));
+      await mkdir(directory, { recursive: true });
+      let routeHtml = withoutCanonical(html);
+      if (!publicRoutes.includes(route))
+        routeHtml = routeHtml.replace(
+          "</head>",
+          '<meta name="robots" content="noindex,nofollow"></head>',
+        );
+      else if (siteUrl) {
+        const canonical = new URL(
+          publicPath(aliases[route] || route),
+          siteUrl.origin,
+        ).href;
+        routeHtml = routeHtml.replace(
+          "</head>",
+          `<link rel="canonical" href="${text(canonical)}"><meta property="og:url" content="${text(canonical)}"></head>`,
+        );
+      }
+      await writeFile(path.join(directory, "index.html"), routeHtml);
+    }
+    await writeFile(
+      path.join(output, "404.html"),
+      withoutCanonical(html).replace(
+        "</head>",
+        '<meta name="robots" content="noindex,nofollow"></head>',
+      ),
+    );
+    await writeFile(path.join(output, ".nojekyll"), "");
+  }
+  await writeFile(
+    path.join(output, "deployment.json"),
+    JSON.stringify(
+      {
+        target: deployment.target,
+        base,
+        frontendOnly: deployment.frontendOnly,
+        api: deployment.frontendOnly ? "disabled" : "configured-separately",
+        siteUrl: deployment.siteUrl || null,
+      },
+      null,
+      2,
+    ) + "\n",
+  );
   return { version, publicFiles: paths.length, bytes, sitemap };
 }
 if (

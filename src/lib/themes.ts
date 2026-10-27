@@ -143,6 +143,24 @@ export const THEMES: ForgeTheme[] = [
     error: "#FF8098",
     extra: "#FF8098",
   }),
+  variant("skyline", "Skyline", { accent: "#77D4FF", accentHover: "#A3E4FF" }),
+  variant("lavender", "Lavender", { accent: "#D0BCFF", accentHover: "#E0D4FF" }),
+  variant("rose", "Rose quartz", { accent: "#FFB5D0", accentHover: "#FFD0E1" }),
+  variant("citrus", "Citrus", { accent: "#FFE08A", accentHover: "#FFEAB0" }),
+  variant("mint", "Mint terminal", { accent: "#8BF0BF", accentHover: "#B2F7D5" }),
+  variant("ocean", "Ocean glass", { accent: "#82E8E1", accentHover: "#B0F3EE" }),
+  variant("peach", "Peach studio", { accent: "#FFC29E", accentHover: "#FFD8C0" }),
+  variant("iris", "Iris", { accent: "#BBC8FF", accentHover: "#DBE1FF" }),
+  variant("forge-amber", "Forge amber", { accent: "#F5B83D", accentHover: "#FFD375" }),
+  variant("orchid", "Orchid", { accent: "#ECB5FF", accentHover: "#F4D1FF" }),
+  variant("ice", "Polar ice", { accent: "#B4ECFF", accentHover: "#DAF6FF" }),
+  variant("sand", "Desert dusk", { accent: "#EAD4AD", accentHover: "#F5E6CB" }),
+  variant("high-contrast", "High contrast", {
+    background: "#000000", surface: "#000000", raised: "#000000", hover: "#111111",
+    text: "#FFFFFF", correct: "#FFFFFF", muted: "#FFFFFF", secondary: "#FFFFFF",
+    accent: "#FFFFFF", accentHover: "#FFFFFF", accentInk: "#000000",
+    border: "#FFFFFF", borderStrong: "#FFFFFF", error: "#FFB5C5", extra: "#FFB5C5",
+  }),
 ];
 /** Legacy preference values keep their meaning after the brand/theme rename. */
 export function resolveThemeId(id: unknown): string | undefined {
@@ -174,8 +192,10 @@ export function hexToHsl(hex: string): string {
   return `${(h * 60).toFixed(2)} ${(s * 100).toFixed(2)}% ${(l * 100).toFixed(2)}%${rgba ? ` / ${rgba[4]}` : ""}`;
 }
 export function applyTheme(id: string, root = document.documentElement) {
-  const theme = THEMES.find((t) => t.id === resolveThemeId(id)) || THEMES[0],
-    c = theme.colors;
+  applyThemeDefinition(THEMES.find((t) => t.id === resolveThemeId(id)) || THEMES[0], root);
+}
+export function applyThemeDefinition(theme: ForgeTheme, root = document.documentElement) {
+  const c = theme.colors;
   root.dataset.theme = theme.id;
   root.classList.toggle("dark", !theme.light);
   root.style.colorScheme = theme.light ? "light" : "dark";
@@ -221,11 +241,15 @@ export function applyTheme(id: string, root = document.documentElement) {
   Object.entries({
     bg: c.background,
     surface: c.surface,
+    "surface-1": c.surface,
     "surface-2": c.raised,
     border: c.border,
     text: c.text,
     "text-dim": c.muted,
+    "text-muted": c.muted,
     accent: c.accent,
+    "accent-ink": c.accentInk,
+    correct: c.correct,
     "accent-2": c.accent2,
     accent2: c.accent2,
     "text-accent-2": c.accent2Text,

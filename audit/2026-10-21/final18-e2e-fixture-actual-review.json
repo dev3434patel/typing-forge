@@ -1,0 +1,63 @@
+{
+  "capturedAt": "2026-10-23T14:52:12.828657+00:00",
+  "reportLocalDate": "2026-10-23",
+  "status": "PASS-SCOPED-SOURCE-REVIEW-NOT-RUN",
+  "scope": "Read-only proof of two actual post17 E2E fixture corrections. No source/E2E edit, test/collection/type/syntax/browser/build/native/service job by reviewer. No fixture runtime pass inferred.",
+  "baselineBuild": {
+    "version": "0572d723495d6be303a8",
+    "publicFiles": 133,
+    "bytes": 2930646
+  },
+  "actualE2EDeltas": [
+    {
+      "file": "e2e/opening-experience.spec.ts",
+      "frozenProtocol": "final17-isolated-protocol.json",
+      "frozenProtocolSha256": "03ca974a341e3de4d6a683bdb854268b5f324bfb2d12eefd2f57df07ce874189",
+      "actualRawSha256": "3c77e06798780ec82d47aac0318474a876959704bc955c3b6940f9ebf9974eb0",
+      "actualNormalizedSha256": "03608dfc7ec196587d8768e4079c490babaf8c743e8d47b5f6f9b92bea324662",
+      "reversedNormalizedSha256": "03ca974a341e3de4d6a683bdb854268b5f324bfb2d12eefd2f57df07ce874189",
+      "reverseRestoresExactFrozen17ProtocolBytes": true,
+      "matchesReviewedProposalNormalized": true,
+      "proposal": "audit/2026-10-21/final17-late-caret-fixture-PROPOSAL.patch",
+      "changeScope": "Only3handoff-fault variants: scopedSWblock/actualroutehits/earlyresponseobserver/successfullateHTTPwitness; other sections exactbyreversehash.",
+      "preserved": [
+        "Original30000ms whole-testdeadline/choreography",
+        "Nativefirstx/finalexactvalue/handoffcount0/computedcaretvisibility/pageerrors[] assertions",
+        "No productionrenderer changes"
+      ],
+      "runtimeAcceptance": "NOT-RUN"
+    },
+    {
+      "file": "e2e/typing-observer-ownership.spec.ts",
+      "frozenProtocol": "final17-existing-protocol.json",
+      "frozenProtocolSha256": "1329b00dd9ab31408d896a86477156bf13a3c37672994619373757dedde241c8",
+      "actualRawSha256": "97510ae587ae99e54f5035d58698c57c59292d8f47d0021aa46f408b0b236fec",
+      "actualNormalizedSha256": "97510ae587ae99e54f5035d58698c57c59292d8f47d0021aa46f408b0b236fec",
+      "reversedNormalizedSha256": "1329b00dd9ab31408d896a86477156bf13a3c37672994619373757dedde241c8",
+      "reverseRestoresExactFrozen17ProtocolBytes": true,
+      "actualPatch": "audit/2026-10-21/final18-font-fixture-actual.patch",
+      "exactRemovedSelection": "  // A wrong letter at a separator is an extra character, not an incorrect\n  // target-space slot. Exercise replacement geometry inside an actual word.\n  while (count > 20 && (!/^[A-Za-z]$/.test(text[count]) || !/^[A-Za-z]$/.test(text[count - 1]))) count--;\n  expect(count).toBeGreaterThan(20);\n  expect(text[count]).toMatch(/^[A-Za-z]$/);\n  expect(text[count - 1]).toMatch(/^[A-Za-z]$/);\n",
+      "exactAddedSelection": "  // Exercise replacement inside a word and a serif-sensitive glyph. Some\n  // letters have almost identical native widths in these two font families.\n  // Keep the measured >0.5px font-change assertion meaningful on every engine.\n  while (count > 20 && (!/^[ilrt]$/.test(text[count]) || !/^[A-Za-z]$/.test(text[count - 1]))) count--;\n  expect(count).toBeGreaterThan(20);\n  expect(text[count]).toMatch(/^[ilrt]$/);\n  expect(text[count - 1]).toMatch(/^[A-Za-z]$/);\n",
+      "changeScope": "Only comments/currenttargetclass andmatchingexpect chooseinterior i/l/r/t instead of anyletter; adjacentletter/mincountstillrequired.",
+      "preserved": [
+        "Originalmin(60,targetlength-20)/count>20/>2wordsguards",
+        "Actual font-widthdifference>0.5px",
+        "Nativecaret mismatch<0.75px and2pxlinewidth",
+        "Zeroglyphrereads/stableownership/idleDOMassertions",
+        "Wrongletter/correction/backspace/landscape/export/counts/deadline"
+      ],
+      "runtimeAcceptance": "NOT-RUN"
+    }
+  ],
+  "frozen17ProductionSourceCheck": {
+    "sourceReceipt": "final17-source.json",
+    "compared": 499,
+    "binaryFilesHashedRaw": 23,
+    "mismatches": [],
+    "status": "PASS-SCOPED atcapture; E2E separatelyboundabove.",
+    "normalization": "Exactartifact-verification.mjs policy: knowntext extensions CRLF-to-LF;binaryraw. Original E2E reversedLFbytes match originalrawprotocol hashes."
+  },
+  "readOnlyExtractorAdjustment": "Firstsourcecheck triedUTF8decodeonall499files andstoppedonbinaryfont afterbothreverseproofs; no reviewJSONwrote. Fontactualpatchcreatedthen isretainedbyte-identical. Correctedexplicittext/binarypolicy usedhere; noproductcheckrun/retry.",
+  "pwaBaselineStatus": "First2 harnessattempts exercisednoproduct: bundlerpackage/virtualentryresolution failures beforeAll. Oldcomponentbaseline3pending; controlledruntime/historicalWKcausality UNVERIFIED.",
+  "historicalFailures": "All17originalmatrix/focus/baseline failuresretained; nochosenpass/relabeling."
+}

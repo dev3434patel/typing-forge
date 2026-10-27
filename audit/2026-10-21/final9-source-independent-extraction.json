@@ -1,0 +1,93 @@
+{
+  "status": "PASS-SCOPED",
+  "capturedAt": "2026-10-21T19:01:07.439188+00:00",
+  "scope": "Independent read-only extraction of completed final9 source receipts; no new unit/native/HTTP/browser/build job is performed. No runtime, host, physical-device or performance acceptance implied.",
+  "sourceGate": {
+    "file": "audit/2026-10-21/final9-source-gates.json",
+    "commands": 12,
+    "allExitZero": true,
+    "automaticRetries": 0,
+    "finishedAt": "2026-10-21T18:56:35.816Z"
+  },
+  "unit": {
+    "passed": 2557,
+    "files": 107,
+    "coveragePercent": {
+      "statements": 90.35,
+      "branches": 86.57,
+      "functions": 92.12,
+      "lines": 96.15
+    },
+    "receipt": "audit/2026-10-21/final9-coverage.log"
+  },
+  "typescript": {
+    "configurations": [
+      "app",
+      "node",
+      "domain",
+      "portable"
+    ],
+    "status": "PASS",
+    "receipt": "audit/2026-10-21/final9-typecheck.log"
+  },
+  "lint": {
+    "errors": 0,
+    "baselineWarnings": 9,
+    "receipt": "audit/2026-10-21/final9-lint.log"
+  },
+  "nativePure": {
+    "canonicalReplay": {
+      "cases": 533,
+      "validReference": 499,
+      "rejection": 34,
+      "mismatches": 0
+    },
+    "course": {
+      "cases": 139,
+      "acceptedCases": 122,
+      "rejectionCases": 17,
+      "failures": 0
+    },
+    "progression": {
+      "cases": 87,
+      "accepted": 83,
+      "rejected": 4,
+      "canonicalProjections": 47,
+      "failures": 0
+    },
+    "classroom": {
+      "passed": 14,
+      "failed": 0
+    },
+    "socialChallengeRules": {
+      "cases": 124,
+      "nonthrowingEvaluations": 82,
+      "expectedExceptions": 42,
+      "failures": 0,
+      "notHttpAcceptedSessions": true
+    },
+    "arena": {
+      "passed": 72,
+      "failed": 0
+    },
+    "humanRaceClock": {
+      "passed": 5,
+      "total": 5
+    }
+  },
+  "content": {
+    "status": "passed",
+    "examples": 20
+  },
+  "productionDependencies": {
+    "command": "npm audit --omit=dev --json",
+    "vulnerabilities": 0
+  },
+  "sourceReceiptSha256": "cf431581885b6dfa21154bfd6c80bf350a19fb447985d66c7b0f8116811700f2",
+  "limits": [
+    "Counts overlap; no combined invented test total.",
+    "Every native entry here is pure contract/replay, not HTTP/SQL.",
+    "Source8 native and frontend failures remain unchanged.",
+    "Latest literal feature gaps and measured capacity failures remain open independent of source9 gates."
+  ]
+}

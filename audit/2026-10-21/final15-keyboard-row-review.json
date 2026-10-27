@@ -1,0 +1,45 @@
+{
+  "capturedAt": "2026-10-22T19:22:52.1748731Z",
+  "status": "FROZEN-SCOPED-CHECKS-PASS-BROWSER-PERFORMANCE-UNVERIFIED",
+  "baseline": "audit/2026-10-21/final14-source.json",
+  "sourceHashes": {
+    "src/components/typing/LiveKeyboard.tsx": "23e02a070b39da999ad0d1ac479bdeb4c8f54f55ffed638cc15967c15a84674e",
+    "src/components/typing/LiveKeyboard.test.tsx": "0af81e308fc741ccd5649413c335590865194aff50ca065cecdb900e49a558ac",
+    "e2e/typing-render-budget.spec.ts": "6572b97c9cd732e18f77f71e21f93ebb7fb9ecf412b6923659b83bcefe52242b"
+  },
+  "scope": [
+    "LiveKeyboard production only: memoized private KeyboardRow with stable layout row and mastery sets",
+    "Parent passes row-local expected/actual/error/Shift-guide primitives, not changing global code or input object",
+    "Independent old/new row clearing; Caps boolean preserves prior null/false/true visual semantics",
+    "Per-code PressedKeyStore leaf subscriptions unchanged; static legacy multichords use row-local bitmask within fixed14-key maximum",
+    "Native-language reference branch/help/captions/DOM/classes/CSS/aria/engine/metrics/caret/PWA/3D unchanged"
+  ],
+  "checks": {
+    "storeBackedSsr": "31 existing exact golden cases PASS",
+    "independentReview": "final_release_review no concrete blocker",
+    "scopedEslint": "PASS0",
+    "parityReceipt": "audit/2026-10-21/final15-keyboard-markup-parity.json",
+    "actualPre14Post15ByteParity": "31 exact fullSSR HTML strings PASS",
+    "focusedUnits": {
+      "command": "npx vitest run src/components/typing/LiveKeyboard.test.tsx src/lib/__tests__/pressed-key-store.test.ts src/lib/__tests__/live-keyboard.test.ts",
+      "passed": 102,
+      "files": 3,
+      "failed": 0
+    },
+    "nodeTypeScript": "PASS",
+    "legacyHeldRowEdges": "6 layouts everyrow first/last held keys PASS",
+    "appTypeScript": "PASS"
+  },
+  "nativeRegression": {
+    "actions": "Warmnativea then sdfSPACEj, inspect cleared old key markers acrossSpace, count actual row map callbacks with positive home/Space controls and zero three unrelatedrows, finishkl; and verify exact9attempts100percent",
+    "status": "PREPARED-NOT-RUN",
+    "name": "native canonical letters remap only rows with changed expected or actual keys",
+    "instrumentation": "Array.prototype.map exact-return wrapper restored in finally; no synthetic text/controller/timing events"
+  },
+  "limitations": [
+    "No latency improvement claimed before actual normal acceptance",
+    "No E2E/browser/build/performance executed by this agent",
+    "Parent still constructs5 row component elements, only changed rows map/reconcile their keys"
+  ],
+  "ownedJobsExited": true
+}

@@ -1,0 +1,64 @@
+{
+  "recordedAt": "2026-10-20T20:18:57.692Z",
+  "status": "PASS-SCOPED",
+  "scope": "S2/S3 implementation focused source checks, not final integrated release acceptance.",
+  "checks": [
+    {
+      "command": "npm run test:run -- src/domain/analytics/error-classifier.test.ts src/domain/training/training.test.ts src/domain/analytics/analytics.test.ts src/domain/analytics/share-card.test.ts src/lib/__tests__/typing-course.test.ts src/hooks/useTestResults.test.ts --maxWorkers=1 --reporter=verbose",
+      "exitCode": 0,
+      "passed": 307,
+      "failed": 0,
+      "files": 6,
+      "log": "training-analytics-focused-final.log"
+    },
+    {
+      "command": "npx eslint src/domain/training src/domain/analytics src/components/analytics src/pages/Lessons.tsx src/pages/Stats.tsx src/components/typing/SessionResults.tsx src/lib/typing-course.ts src/services/session-repository.ts src/services/history-model.ts src/hooks/useTestResults.tsx e2e/learning-analytics-v2.spec.ts",
+      "exitCode": 0,
+      "log": "training-analytics-lint-final.log"
+    },
+    {
+      "command": "npx tsc -p tsconfig.app.json --noEmit",
+      "exitCode": 2,
+      "status": "PARTIAL",
+      "log": "training-analytics-typecheck.log",
+      "note": "Observed diagnostics were confined to concurrent in-progress games/ui/ArcadePage.tsx. No owned-path diagnostic. Final integrated typecheck is required."
+    }
+  ],
+  "preservedFailures": [
+    "training-analytics-initial.json"
+  ],
+  "browser": "NOT-RUN",
+  "axe": "NOT-RUN",
+  "build": "NOT-RUN",
+  "lighthouse": "NOT-RUN",
+  "phpParity": "NOT-RUN: no PHP contract changes in this scope",
+  "limitations": [
+    "Placement is English/QWERTY keyboard local guidance, not certification.",
+    "New stars preserve existing fixed course gates; a rolling-speed pass rule does not replace the canonical course contract.",
+    "Per-finger assignment is a reference map, not observed hand use.",
+    "No hosted/physical-device or learning-efficacy verification.",
+    "Share paint contract tests are not browser pixel snapshots."
+  ],
+  "observedSourceHashes": {
+    "src/domain/training/generator.ts": "bac15f8bd3190d43dfb28fbf77c3fff4722d4322b0751a3e74fff779f2fd609d",
+    "src/domain/training/review.ts": "cac93a2d1f9936515babfbe3cffeb8ee81200fd35c60f3a635e6614ae819be5a",
+    "src/domain/training/placement.ts": "50376119e3bf943d3df73b664824727a2e1a5e387ccd9dd255cd75b152ef1020",
+    "src/domain/training/finger-map.ts": "a2b9051a7dd4bd1e6af36c6bc5cf0f39d82d3c1695e69c93e2f0965b071eddcf",
+    "src/domain/training/course-achievements.ts": "4e67ff579e273a1c8b6e37d2809fc510611161b1e77a8549b9ca86116e4e3a7f",
+    "src/domain/analytics/error-classifier.ts": "bf89010ee4a2fc9c05b0a1b94f71b092d98b4d7300fcb2b89c4a567e92e2294b",
+    "src/domain/analytics/session-insights.ts": "837a9a07311833fd813c9ed8a29c57e9a06ed3aa20fdacc87225986c72ddcd63",
+    "src/domain/analytics/dashboard.ts": "6327ab702258ad596498327d5fef0e7581d54835350d1bef272a6aa702affb0a",
+    "src/domain/analytics/share-card.ts": "483e76ea8f95364e3a4268f871b203d25e3c80dd97a2c2faf5f28e9098c0699f",
+    "src/components/analytics/SessionInsightsPanel.tsx": "49347b863be5b8237a814286207e91ac646410a97136d8e8c1c2adff0e66f8fc",
+    "src/components/analytics/LearningDashboard.tsx": "c6de14932805e4de546968f0d12944f85743f776558c30518a607be9227af50d",
+    "src/components/analytics/TrainingStudio.tsx": "2f7702df200d08cbd29c0993ceec8c8f1c032d64235200472a770b7d1afb1f64",
+    "src/pages/Lessons.tsx": "3358d59c863a153da36a2519730734931b89f79b732717fe2a19871ba1c3aef0",
+    "src/pages/Stats.tsx": "6faeb4cdcdbe399b53fed473e8e9c80baf930786c42289120fb25fb66aa99b6f",
+    "src/components/typing/SessionResults.tsx": "cdb95f42e2059c2c535072db162001ce8cb1ae85084943c25798584bd059e7b1",
+    "src/lib/typing-course.ts": "77a1756fde9daf59b3a918424fe99b5caa9bac1bd809e09d38101bf1d118df23",
+    "src/services/history-model.ts": "46854715def866f8086848bbccd60ce065aac5e7a42ddc15d4992ca677a9e94d",
+    "src/services/session-repository.ts": "bf58f5825642da869c5f1f8ba100a789b270a5ae5c5313355f67794e2c93c488",
+    "src/hooks/useTestResults.tsx": "8a9bb01c0a76d509d0053f363e060220a91bae6bfb6009172b360e05688d7678",
+    "e2e/learning-analytics-v2.spec.ts": "3d4cecdb9826c75668aeaf2c4b7489afc88a22373e591bf0cc508a7bde0215eb"
+  }
+}

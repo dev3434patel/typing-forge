@@ -14,18 +14,100 @@ async function startBot(page: Page) {
   return input;
 }
 
-test("gray bot pace moves while the user is idle without creating user input", async ({
+test("a stationary measured bot point skips correct-input layout reads and recaptures edits and font changes", async ({ page }, info) => {
+  await page.addInitScript(() => {
+    localStorage.setItem("sparowtype.opening-animation.enabled", "false");
+    localStorage.setItem("typingforge:v3:guest:preferences", JSON.stringify({
+      schemaVersion: 3, values: { smoothCaret: false, reducedMotion: true },
+    }));
+  });
+  await page.setViewportSize({ width: 1024, height: 900 });
+  const input = await startBot(page);
+  const target = page.getByTestId("typing-target"), marker = page.getByTestId("opponent-caret");
+  const text = await target.locator("[data-slot-index][data-expected]").evaluateAll(elements => elements
+    .sort((left, right) => Number((left as HTMLElement).dataset.slotIndex) - Number((right as HTMLElement).dataset.slotIndex))
+    .map(element => (element as HTMLElement).dataset.expected).join(""));
+  const prefix = text.slice(0, 24);
+  await input.press(prefix[0]);
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+    await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+    const target = document.querySelector('[data-testid="typing-target"]')!;
+    const native = Element.prototype.getBoundingClientRect;
+    const reads: number[] = [];
+    const baseline = Number(document.querySelector('[data-testid="opponent-caret"]')!.getAttribute("data-position"));
+    Element.prototype.getBoundingClientRect = function () {
+      if (this.hasAttribute("data-slot-index") && target.contains(this)) {
+        const position = Number(document.querySelector('[data-testid="opponent-caret"]')!.getAttribute("data-position"));
+        if (Number(this.getAttribute("data-slot-index")) === position) reads.push(position);
+      }
+      return native.call(this);
+    };
+    Object.assign(window, { opponentPointReads: { native, baseline, reads } });
+  });
+  let observation: { baseline: number; reads: number[] };
+  try {
+    await input.pressSequentially(prefix.slice(1));
+  } finally {
+    observation = await page.evaluate(() => {
+      const value = (window as Window & { opponentPointReads: {
+        native: typeof Element.prototype.getBoundingClientRect; baseline: number; reads: number[];
+      } }).opponentPointReads;
+      Element.prototype.getBoundingClientRect = value.native;
+      return { baseline: value.baseline, reads: value.reads };
+    });
+  }
+  await expect(input).toHaveValue(prefix);
+  let previous = observation.baseline;
+  for (const position of observation.reads) {
+    expect(position, "A stable rival point must not be measured again for a correct player insertion.").not.toBe(previous);
+    previous = position;
+  }
+  async function aligned() {
+    await expect.poll(() => marker.evaluate(element => {
+      const viewport = element.parentElement!, position = element.getAttribute("data-position");
+      const slot = viewport.querySelector<HTMLElement>(`.typing-text [data-slot-index="${position}"][data-expected]`)
+        ?? viewport.querySelector<HTMLElement>("[data-opponent-end-anchor]");
+      if (!slot) return false;
+      const point = element.getBoundingClientRect(), expected = slot.getBoundingClientRect();
+      return Math.abs(point.left - expected.left) <= 1 && Math.abs(point.top - expected.top) <= 1;
+    })).toBe(true);
+  }
+  const wrong = text[prefix.length] === "x" ? "z" : "x";
+  await input.press(wrong);
+  await expect(input).toHaveValue(prefix + wrong);
+  await aligned();
+  await input.press("Backspace");
+  await expect(input).toHaveValue(prefix);
+  await aligned();
+  await page.evaluate(() => document.documentElement.style.setProperty("--font-mono", "serif"));
+  await aligned();
+  await page.setViewportSize({ width: 390, height: 844 });
+  await aligned();
+  await page.setViewportSize({ width: 844, height: 390 });
+  await aligned();
+  expect(await marker.evaluate(element => getComputedStyle(element).backgroundColor)).toBe("rgb(197, 199, 205)");
+  await info.attach("opponent-native-point-reuse", {
+    contentType: "application/json", body: JSON.stringify({ ...observation, typedPrefixCharacters: prefix.length,
+      scope: "Real bot movement remains enabled. Native reads are allowed on each changed bot position; repeated reads of a stationary point during correct-prefix input are rejected. Edit/font/rotation geometry is checked separately." }),
+  });
+});
+
+test("gray bot pace starts with the first native letter and then moves without creating more user input", async ({
   page,
 }, info) => {
   const input = await startBot(page);
   const marker = page.getByTestId("opponent-caret");
+  const first = await page.getByTestId("typing-target").locator('[data-current="true"]').getAttribute("data-expected");
+  expect(first).toMatch(/^[a-z]$/);
+  await input.pressSequentially(first!);
   await expect
     .poll(async () => Number(await marker.getAttribute("data-position")))
     .toBeGreaterThan(0);
-  await expect(input).toHaveValue("");
+  await expect(input).toHaveValue(first!);
   await expect(
     page.getByTestId("typing-target").locator('[data-current="true"]'),
-  ).toHaveAttribute("data-slot-index", "0");
+  ).toHaveAttribute("data-slot-index", "1");
   await expect(
     page.getByTestId("typing-target").locator(".opponent-passed").first(),
   ).toBeVisible();
@@ -48,9 +130,9 @@ test("gray bot pace moves while the user is idle without creating user input", a
   await page.getByRole("button", { name: "Finish", exact: true }).click();
   await expect(marker).toHaveCount(0);
   const result = await exportedResult(page);
-  expect(result.finalText).toBe("");
-  expect(result.events).toHaveLength(0);
-  expect(result.metrics.insertionAttempts).toBe(0);
+  expect(result.finalText).toBe(first);
+  expect(result.events).toHaveLength(1);
+  expect(result.metrics.insertionAttempts).toBe(1);
 });
 
 test("opponent progress does not scroll away from a leading user or recolor their mistakes", async ({
@@ -111,7 +193,9 @@ test("light-theme pace remains visible and resizes without leaving a marker in n
 }) => {
   await page.goto("/settings");
   await page.getByRole("button", { name: "Aa bb Paper", exact: true }).click();
-  await startBot(page);
+  const input = await startBot(page);
+  const first = await page.getByTestId("typing-target").locator('[data-current="true"]').getAttribute("data-expected");
+  await input.pressSequentially(first!);
   const marker = page.getByTestId("opponent-caret");
   await expect
     .poll(async () => Number(await marker.getAttribute("data-position")))

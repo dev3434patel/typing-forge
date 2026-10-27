@@ -1,0 +1,128 @@
+{
+  "recordedAt": "2026-10-20T20:53:13.453Z",
+  "status": "PASS-SCOPED",
+  "scope": "Owned S2 training, S3 analytics and S11 classroom source checks; not a final integrated release or hosted/physical acceptance.",
+  "checks": [
+    {
+      "command": "npm run test:run -- src/domain/analytics/error-classifier.test.ts src/domain/training/training.test.ts src/domain/training/practice-goal.test.ts src/domain/analytics/analytics.test.ts src/domain/analytics/share-card.test.ts src/domain/analytics/key-map.test.ts src/domain/classroom/classroom.test.ts src/lib/__tests__/typing-course.test.ts src/lib/__tests__/keybr-engine.test.ts src/hooks/useTestResults.test.ts --maxWorkers=1 --reporter=verbose",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 398,
+      "failed": 0,
+      "unhandledErrors": 0,
+      "files": 10,
+      "log": "training-analytics-classroom-integrated-focus.log"
+    },
+    {
+      "command": "npx eslint src/domain/training src/domain/analytics src/domain/classroom src/components/analytics src/components/classroom src/pages/Classroom.tsx src/pages/Stats.tsx src/pages/Lessons.tsx src/pages/Privacy.tsx src/lib/keybr-engine.ts src/lib/__tests__/keybr-engine.test.ts",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "training-analytics-classroom-scoped-lint.log"
+    },
+    {
+      "command": "npx tsc -p tsconfig.app.json --noEmit",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "training-analytics-classroom-typecheck.log"
+    },
+    {
+      "command": "node --experimental-transform-types backend/tests/classroom-contract.mjs",
+      "status": "PASS-SCOPED",
+      "passed": 14,
+      "failed": 0,
+      "receipt": "classroom-php-contract.json",
+      "note": "Prior independent alias/issued-contract/replay scope; no SQL connection."
+    },
+    {
+      "command": "PHP runtime -l ClassroomService.php/classroom-fixture.php/classroom-lock-contract.php; PHP runtime backend/tests/classroom-lock-contract.php",
+      "status": "PASS-SCOPED",
+      "exitCode": 0,
+      "passed": 3,
+      "failed": 0,
+      "receipt": "classroom-lock-contract.json",
+      "note": "Explicit lock protocol, simulated independent PDO block and disappeared membership; actual SQL concurrency remains a separate gate."
+    }
+  ],
+  "preservedFailures": [
+    "training-analytics-initial.json",
+    "training-analytics-typecheck.log",
+    "training-analytics-classroom-final-focus.log",
+    "classroom-focused.log",
+    "classroom-php-contract-diagnostic.log"
+  ],
+  "parentCheckpoint": {
+    "build": "51b97d40b55f32b75c09",
+    "bundleReceipt": "../2026-10-21/pack-checkpoint-bundle-2.json",
+    "dashboardGzipBytes": 23159,
+    "dashboardLimit": 120000,
+    "initialPracticeGzipBytes": 156477,
+    "introDeferredGzipBytes": 168002,
+    "note": "Parent measured checkpoint, not a new local build by this agent."
+  },
+  "nativeClassroomHTTP": "NOT-RUN: guarded ephemeral harness prepared for parent GO",
+  "finalBrowser": "NOT-RUN by this agent; parent coordinated checkpoint matrix",
+  "lighthouse": "NOT-RUN by this agent",
+  "scopeMatrix": "../../docs/learning/TRAINING_ANALYTICS_STATUS.md",
+  "observedSourceHashes": {
+    "backend/migrations/003_classroom.sql": "16d6330ef81c69dbc71fc6e5b8790b5ea03ab9ab9eaf6ace368b3e1dfa164aca",
+    "backend/src/ClassroomService.php": "35f957a5ed3f6eb7f11a95aaa2a36fd32c1530efa55760cf827e048f5ff11bab",
+    "backend/tests/classroom-contract.mjs": "51680a67d48cf81397ef6bbc65402cacb3dee43def709bc6d91681a88a91fabd",
+    "backend/tests/classroom-contract.php": "1cab89e147ae5f87fe97cdc95ccee371b75786a8c00202540c6b596b451939fa",
+    "backend/tests/classroom-fixture.php": "06af95a9144397a15ab484cbb4b0bf356d5a8663932e300733b5a213a3fca43e",
+    "backend/tests/classroom-lifecycle.mjs": "40c17ada66f50a7143531144d9b2dbc1e9123f960f626f7eef0fd26cb9258949",
+    "backend/tests/classroom-lock-contract.php": "19fb5dfd0b77a48fa200acf86bbf96e7424973dfa8186fdbb44b27af9fba036d",
+    "src/components/analytics/FingerAccuracyChart.tsx": "99c6b61dbbed4d196c7bd6f4d864b4b310e26913eafabb92eb43ef0af70d8d94",
+    "src/components/analytics/LearningDashboard.tsx": "ecfdd9eae5f006b0d515823491f2b9a195388d5c772abb0ccbe5fa8cb914b4fe",
+    "src/components/analytics/MeasuredKeyboard.tsx": "ecd869725068d51edd403555bd5545f3055081102323c4dfe8a2147e655cae64",
+    "src/components/analytics/SessionInsightsPanel.tsx": "05c8aa9771d823c734ccd34ce0a380ce8f35553e49073e118490403365a051a3",
+    "src/components/analytics/StatsSpeedChart.tsx": "8834e6756f93eb2551b27d7452dafb9494c245f23a9e4b53d2d41705a155c905",
+    "src/components/analytics/TrainingStudio.tsx": "0e7c77d155d48c47a7c14faa8239c89afc78a9d4f99647b038d9287f5859e496",
+    "src/components/classroom/ManualReportForm.tsx": "381a09caa52b090f06ab59e6ff2c21efccf836d34d8493ee790b21cceafc77fa",
+    "src/domain/analytics/analytics.test.ts": "0a7f598a91d4600abcbb60a3eeeaf85547c00e4de28c76623bea2222bc0f42c6",
+    "src/domain/analytics/dashboard.ts": "261dbf847ef37ec9a07593a138a2b1a1c280e2997a19b653d7a41c15439b6abe",
+    "src/domain/analytics/error-classifier.test.ts": "2b0e21a32fd278f2372ccb80230687db5d3ff4fa243f129cb79c542fa2c4653a",
+    "src/domain/analytics/error-classifier.ts": "bf89010ee4a2fc9c05b0a1b94f71b092d98b4d7300fcb2b89c4a567e92e2294b",
+    "src/domain/analytics/key-map.test.ts": "a54a24e7290102569ca98f549c223236dca9961aba56d1bc54a2fe1fba6813bf",
+    "src/domain/analytics/key-map.ts": "7f2579ece9174888c40771f96fe1d2baaf43348343a1ccb86e31e5681aca3314",
+    "src/domain/analytics/session-insights.ts": "e49f25410fc74374d8cf6d827c85607348d428fc7adfd3844b93b0fbf2a85778",
+    "src/domain/analytics/share-card.test.ts": "dbe309797a444fd060bd37ce181521839cc3b0b5f1ddbc71f5253977156b9ffe",
+    "src/domain/analytics/share-card.ts": "483e76ea8f95364e3a4268f871b203d25e3c80dd97a2c2faf5f28e9098c0699f",
+    "src/domain/classroom/certificate.ts": "4f2e0d89fb02a2c41e6a7c7d60f9cb6bea4d9b878b4f7a45cd660e9327ee6e4f",
+    "src/domain/classroom/classroom.test.ts": "adb6cbe77f96717ad270d8acc9a4f8e70fed16ed91c5c70512139f8a8d761564",
+    "src/domain/classroom/local-adapter.ts": "8e9b8f87bc461946b720b90da428a7433bf6ba6c4aa1a6519795634fd244a548",
+    "src/domain/classroom/model.ts": "6f9a08cf2ef9a621e00964ef43b3e7033bd47ea1e390c76277be85d96e1bd206",
+    "src/domain/training/course-achievements.ts": "4e67ff579e273a1c8b6e37d2809fc510611161b1e77a8549b9ca86116e4e3a7f",
+    "src/domain/training/finger-map.ts": "a2b9051a7dd4bd1e6af36c6bc5cf0f39d82d3c1695e69c93e2f0965b071eddcf",
+    "src/domain/training/generator.ts": "7567984c96a3b54f99533bae21a205379fe32b3720dae4c43c09604775f9c883",
+    "src/domain/training/placement.ts": "0371f17a87c37b99c34685aa2f163dd6efd2b2db08af6a78ba5785d9986cc17b",
+    "src/domain/training/practice-goal.test.ts": "4884bbdef18ae0d167bd20a5f81d028d871937fb79ab085af371949edf24b14f",
+    "src/domain/training/practice-goal.ts": "a5c442412f49e6da5c67dbbb5bd21630ca16a904620b650e031eb75a66b34b98",
+    "src/domain/training/review.ts": "cac93a2d1f9936515babfbe3cffeb8ee81200fd35c60f3a635e6614ae819be5a",
+    "src/domain/training/skill-focus.ts": "631931f756435e31b0bd6cf6bb35a14e7449af9c0229d31bd1221753919fa3c7",
+    "src/domain/training/training.test.ts": "215a4d789b749b716a1f539a5c330902b966d20ab11162fb62fee9d3f435fe8c",
+    "src/hooks/useTestResults.tsx": "90af52ab4b1464c2ad7345476dd7281928d5550bf5ed4207bec6f74e4144c4e3",
+    "src/lib/keybr-engine.ts": "6d6e371d0b106a6b12b800b1347672361208f5351900eea852608fe006efe2d0",
+    "src/lib/typing-course.ts": "77a1756fde9daf59b3a918424fe99b5caa9bac1bd809e09d38101bf1d118df23",
+    "src/pages/Classroom.tsx": "bb3d5fcbae71cc770e58d37fdd622125063366be142290a7acd7b5e198f2c80f",
+    "src/pages/Lessons.tsx": "3358d59c863a153da36a2519730734931b89f79b732717fe2a19871ba1c3aef0",
+    "src/pages/Privacy.tsx": "a0d5bbb5a8af6694e816a0a1ad660d5bd179b0815dcaff62892baf94cbfae625",
+    "src/pages/Stats.tsx": "b2d60a1b6da505e1a22900a4828913cb710415d4af1fdba6a79b46f8cd2407c9",
+    "src/services/history-model.ts": "46854715def866f8086848bbccd60ce065aac5e7a42ddc15d4992ca677a9e94d",
+    "src/services/session-repository.ts": "c0d2f36ad135ef28a0acb0d6d2b0c372238ccb22aed5675714aa9e04fe4564fd"
+  },
+  "observedSourceHashCount": 45,
+  "privacy": {
+    "privateConfigOrDataRead": false,
+    "existingUserDatabaseTouched": false,
+    "accountsCreated": false,
+    "servicesChanged": false
+  },
+  "limitations": [
+    "Preserves fixed canonical course and existing mastery authority; private rolling goal cannot qualify a course.",
+    "English original Markov generator only; other language patterns retain their previous generator.",
+    "Finger maps assign reference positions, not observed fingers.",
+    "Static post-test charts; no60fps animation or browser pixel snapshot claim.",
+    "Classroom participation summaries are not identity-verified speed certificates.",
+    "Actual classroom SQL/HTTP, printing, physical devices, native screen readers and hosted deployment remain separate gates."
+  ]
+}

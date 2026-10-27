@@ -1,0 +1,240 @@
+{
+  "protocol": {
+    "preparedAt": "2026-10-27T12:59:02.492Z",
+    "status": "DECLARED BEFORE THIS STATIC EXECUTION",
+    "expectedBuild": "c0f5de44ead4d6773b3c",
+    "origin": "http://127.0.0.1:3508",
+    "browser": "Playwright bundled Chromium",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "isMobile": true,
+    "hasTouch": true,
+    "cpuThrottle": 4,
+    "freshContextPerWorkspace": true,
+    "serviceWorkers": "Blocked to isolate direct served-build input workspaces; offline behavior tested separately",
+    "deviceScaleFactor": 1,
+    "fontAndFiniteAnimationSettlement": true,
+    "clock": "Unmodified performance.now/Date.now; no virtual clock",
+    "input": "Locator.pressSequentially, requested delay 0ms; native Enter for each game gate",
+    "intro": "Disabled only to isolate typing; full quality intro measured separately",
+    "cases": [
+      {
+        "id": "learn",
+        "route": "learn?language=en&layout=qwerty",
+        "input": "Entire initially generated adaptive passage",
+        "evidence": "Actual result JSON export: exact final text, attempts and 100% input accuracy"
+      },
+      {
+        "id": "course",
+        "route": "lessons?lesson=home-anchors",
+        "input": "Whole first guided lesson passage",
+        "evidence": "Actual full session JSON export: exact final text, attempts and 100% input accuracy"
+      },
+      {
+        "id": "local-bot",
+        "route": "race",
+        "input": "First 100 characters of actual generated target, followed by manual Finish",
+        "evidence": "Actual result JSON export: exact retained prefix, attempts, 100% input accuracy and localBot=true; no human room or account"
+      },
+      {
+        "id": "games",
+        "route": "games",
+        "input": "18 actual calm-mode target words, each followed by native Enter",
+        "evidence": "Exact input before every submit, 18/18 gates, 100% attempt accuracy and sanitized owner-local best"
+      }
+    ],
+    "automaticRetries": 0,
+    "resultFiltering": false,
+    "caseTimeoutMs": 33000,
+    "totalWatchdogMs": 145000,
+    "eventTiming": "All observed typing keyboard/input event durations with threshold 16ms; p98/max plus interaction maxima; zero observed entries is not a 0ms claim",
+    "limits": "Local Chromium touch/mobile emulation with lab CPU throttling. Quantized thresholded Event Timing is not field INP or native Android/iOS keyboard acceptance. Requested driver delay is not measured typing speed. One declared run per workspace, no statistical claim. No backend writes or user data.",
+    "buildFile": "audit/2026-10-21/mobile-workspaces-final19-static-build.json",
+    "sourceFile": "audit/2026-10-21/final19-source.json",
+    "sourceExpectedBuild": "de097acba6969d580cc8",
+    "deploymentMode": "frontend-only-vercel; real API-disabled artifact; no mocks, no PHP, no live account or database",
+    "artifactDirectory": "dist-static-final19-vercel",
+    "originalNormalProtocol": "audit/2026-10-21/mobile-workspaces-final7-protocol.json",
+    "comparability": "Separate explicitly declared frontend-only measurement. The earlier backend-enabled run and all failures remain preserved; this does not replace it or establish field INP."
+  },
+  "protocolFile": "audit/2026-10-21/mobile-workspaces-final19-static-protocol.json",
+  "buildFile": "audit/2026-10-21/mobile-workspaces-final19-static-build.json",
+  "declaredAt": "2026-10-27T12:59:02.839Z",
+  "build": {
+    "version": "c0f5de44ead4d6773b3c",
+    "publicFiles": 134,
+    "bytes": 2923637
+  },
+  "servedBuild": {
+    "version": "c0f5de44ead4d6773b3c",
+    "publicFiles": 134,
+    "bytes": 2923637
+  },
+  "origin": "http://127.0.0.1:3508",
+  "browser": "156.0.8078.4",
+  "cases": [
+    {
+      "id": "learn",
+      "startedAt": "2026-10-27T12:59:03.061Z",
+      "passed": true,
+      "pageErrors": [],
+      "consoleErrors": [],
+      "timing": {
+        "eventTimingSupported": true,
+        "observedTypingEventsAtLeast16ms": 565,
+        "p98ObservedTypingEventDurationMs": 96,
+        "maxObservedTypingEventDurationMs": 400,
+        "measuredInteractionsAtLeast16ms": 115,
+        "p98ObservedInteractionMaximumMs": 120,
+        "observedBeforeInputEvents": 115,
+        "measuredWallMs": 5107.100000008941,
+        "longTasksThroughTypingAndResult": [
+          62,
+          69,
+          78,
+          66,
+          81,
+          50,
+          52,
+          62,
+          57,
+          55,
+          65,
+          54,
+          76,
+          61,
+          354,
+          183,
+          180
+        ]
+      },
+      "evidence": {
+        "targetUnits": 115,
+        "finalTextExact": true,
+        "attempts": 115,
+        "incorrectAttempts": 0,
+        "inputAccuracy": 100,
+        "elapsedMs": 3946.3999999910593,
+        "correctCharacterWpm": 349.6857895811693,
+        "exportedClientSessionId": "b1646ed9-81cc-4d9e-8a1e-e103ce70e370"
+      },
+      "horizontalOverflow": false,
+      "finishedAt": "2026-10-27T12:59:09.578Z"
+    },
+    {
+      "id": "course",
+      "startedAt": "2026-10-27T12:59:09.579Z",
+      "passed": true,
+      "pageErrors": [],
+      "consoleErrors": [],
+      "timing": {
+        "eventTimingSupported": true,
+        "observedTypingEventsAtLeast16ms": 294,
+        "p98ObservedTypingEventDurationMs": 48,
+        "maxObservedTypingEventDurationMs": 88,
+        "measuredInteractionsAtLeast16ms": 59,
+        "p98ObservedInteractionMaximumMs": 80,
+        "observedBeforeInputEvents": 59,
+        "measuredWallMs": 1334,
+        "longTasksThroughTypingAndResult": [
+          71
+        ]
+      },
+      "evidence": {
+        "targetUnits": 59,
+        "finalTextExact": true,
+        "attempts": 59,
+        "incorrectAttempts": 0,
+        "inputAccuracy": 100,
+        "elapsedMs": 1223.7000000029802,
+        "correctCharacterWpm": 578.573179699498,
+        "exportedClientSessionId": "053d8cba-f20c-4a9f-8e65-ff14cc4e7a9e"
+      },
+      "horizontalOverflow": false,
+      "finishedAt": "2026-10-27T12:59:12.135Z"
+    },
+    {
+      "id": "local-bot",
+      "startedAt": "2026-10-27T12:59:12.136Z",
+      "passed": true,
+      "pageErrors": [],
+      "consoleErrors": [],
+      "timing": {
+        "eventTimingSupported": true,
+        "observedTypingEventsAtLeast16ms": 500,
+        "p98ObservedTypingEventDurationMs": 104,
+        "maxObservedTypingEventDurationMs": 144,
+        "measuredInteractionsAtLeast16ms": 100,
+        "p98ObservedInteractionMaximumMs": 128,
+        "observedBeforeInputEvents": 100,
+        "measuredWallMs": 4175.9000000059605,
+        "longTasksThroughTypingAndResult": [
+          100,
+          100,
+          67,
+          55,
+          64,
+          70,
+          318,
+          251,
+          60
+        ]
+      },
+      "evidence": {
+        "targetUnits": 100,
+        "finalTextExact": true,
+        "attempts": 100,
+        "incorrectAttempts": 0,
+        "inputAccuracy": 100,
+        "elapsedMs": 3391.2000000029802,
+        "correctCharacterWpm": 353.85704175481993,
+        "exportedClientSessionId": "b47ca1df-7333-4713-b657-e2567a755e1b",
+        "localBot": true
+      },
+      "horizontalOverflow": false,
+      "finishedAt": "2026-10-27T12:59:17.498Z"
+    },
+    {
+      "id": "games",
+      "startedAt": "2026-10-27T12:59:17.499Z",
+      "passed": true,
+      "pageErrors": [],
+      "consoleErrors": [],
+      "timing": {
+        "eventTimingSupported": true,
+        "observedTypingEventsAtLeast16ms": 339,
+        "p98ObservedTypingEventDurationMs": 24,
+        "maxObservedTypingEventDurationMs": 32,
+        "measuredInteractionsAtLeast16ms": 91,
+        "p98ObservedInteractionMaximumMs": 32,
+        "observedBeforeInputEvents": 99,
+        "measuredWallMs": 2059.800000011921,
+        "longTasksThroughTypingAndResult": []
+      },
+      "evidence": {
+        "targetUnits": 99,
+        "attempts": 99,
+        "inputAccuracy": 100,
+        "finalInputValuesExact": true,
+        "completedGates": 18,
+        "localBest": {
+          "version": "signal-run-v1",
+          "mode": "calm",
+          "gates": 18,
+          "cleanGates": 18,
+          "accuracy": 100,
+          "elapsedMs": 1988.1000000089407,
+          "paused": false
+        },
+        "rawTypedTextStored": false
+      },
+      "horizontalOverflow": false,
+      "finishedAt": "2026-10-27T12:59:20.083Z"
+    }
+  ],
+  "watchdogExpired": false,
+  "completed": true,
+  "finishedAt": "2026-10-27T12:59:20.084Z"
+}

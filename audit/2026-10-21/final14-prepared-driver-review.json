@@ -1,0 +1,37 @@
+{
+  "recordedAt": "2026-10-22T19:09:52.202859+00:00",
+  "status": "PASS-SCOPED-WITH-EXPLICIT-LAUNCH-PRECONDITION",
+  "scope": "Read-only review of five prepared source14 audit drivers, their output names, identity/opt-in guards, real-clock placement selector/budgets and exact spec partition. No helper/E2E/product edit or execution performed.",
+  "drivers": {
+    "audit/2026-10-21/run-final14-static.mjs": "c3aec0fdd377659526f978593f8c6f07eb2f52f1c71407b146f8247fd5afc263",
+    "audit/2026-10-21/run-mobile-workspaces-static-final14.mjs": "4789189b041beae70e92477e9f42d669473770f765194d693d6982a2a93942c6",
+    "audit/2026-10-21/measure-mobile-workspaces-static-final14.mjs": "f164b43e665aacd67744a02d0ba7524d28fbe613bcc9f568bbdbb4ec4d33b6ab",
+    "audit/2026-10-21/standalone-placement-real135-final14.mjs": "bb8e21604a6136d004de64c60adea39bf18a1f6129b007b4adefd6bc98bc2f79",
+    "audit/2026-10-21/run-final14-browser-matrix.mjs": "40135983a1632e536faae30ce2ec95d04f95ec89ca5a6dd51cca5720ebc5798b"
+  },
+  "findings": [
+    {
+      "kind": "required-launch-precondition",
+      "file": "audit/2026-10-21/run-final14-browser-matrix.mjs",
+      "detail": "Outer report names four browsers while child run-browser-checkpoint inherits SPAROWTYPE_AUDIT_BROWSERS. A leftover narrowed browser filter can otherwise produce a smaller success.",
+      "coordinatorAction": "Parent explicitly committed to set SPAROWTYPE_AUDIT_BROWSERS=chromium,edge,firefox,webkit and inspect actual project summaries; no driver source changed."
+    },
+    {
+      "kind": "scope-check",
+      "detail": "Current e2e directory has62 spec files; outer partition rejects duplicates/missing/current-extra files before execution. Test execution/case count is not inferred."
+    },
+    {
+      "kind": "identity-and-output",
+      "detail": "Static/mobile require actual FINAL14_BUILD_ID; mobile additionally actual FINAL14_STATIC_BUILD_ID. Placement deliberately uses FINAL14_BUILD (without_ID). Exclusive output/report guards preserve earlier evidence."
+    },
+    {
+      "kind": "placement",
+      "detail": "Correct role-combobox Practice type selector retained, real three45s deadlines,210s cap, native input and canonical ownership/no-certification assertions retained."
+    }
+  ],
+  "limitations": [
+    "Static/WK/PWA/SSR/source checks do not establish browser/performance acceptance.",
+    "No full matrix/source14 case result is claimed by this review.",
+    "Input runner functional exit0 is not a latency gate; ledger classifies raw thresholds separately."
+  ]
+}

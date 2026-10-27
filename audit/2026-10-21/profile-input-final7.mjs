@@ -1,0 +1,33 @@
+import { readFile, writeFile, access } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import assert from 'node:assert/strict';
+const directory = 'audit/2026-10-21', prefix = 'final7-input-profile-diagnostic';
+const generated = `${directory}/.${prefix}.generated.mjs`;
+for (const file of [generated, `${directory}/${prefix}-protocol.json`, `${directory}/${prefix}.json`, `${directory}/${prefix}.cpuprofile`, `${directory}/${prefix}-functions.json`]) await assert.rejects(access(file), { code: 'ENOENT' });
+const original = await readFile('audit/correction-experience-2026-10-20/measure-typing.mjs', 'utf8');
+let source = original.replace("const directory = 'audit/correction-experience-2026-10-20';", `const directory = '${directory}';`);
+assert.notEqual(source, original);
+const start = '  let resize = null;';
+assert.equal(source.split(start).length, 2);
+source = source.replace(start, `  await cdp.send('Profiler.enable');
+  await cdp.send('Profiler.start');
+${start}`);
+const end = '  const observation = await page.evaluate(() => window.typingBench);';
+assert.equal(source.split(end).length, 2);
+source = source.replace(end, `  const { profile } = await cdp.send('Profiler.stop');
+  await writeFile(directory + '/${prefix}.cpuprofile', JSON.stringify(profile), { flag: 'wx' });
+  const byFunction = new Map();
+  for (const node of profile.nodes) {
+    const frame = node.callFrame;
+    const key = (frame.functionName || '(anonymous)') + ' ' + frame.url + ':' + frame.lineNumber + ':' + frame.columnNumber;
+    byFunction.set(key, (byFunction.get(key) || 0) + (node.hitCount || 0));
+  }
+  await writeFile(directory + '/${prefix}-functions.json', JSON.stringify({ scope: 'Instrumented CPU diagnostic; not one of the three acceptance timing runs.', sampledFunctions: [...byFunction].sort((a,b) => b[1]-a[1]).slice(0,60) }, null, 2), { flag: 'wx' });
+${end}`);
+await writeFile(generated, source, { flag: 'wx' });
+process.env.TYPING_BENCH_CPU_RATE = '4'; process.env.TYPING_BENCH_REPETITIONS = '16';
+process.env.TYPING_BENCH_DELAY_MS = '0'; process.env.TYPING_BENCH_SETTLE = '1';
+process.env.TYPING_BENCH_REPORT_NAME = prefix;
+process.env.TYPING_BENCH_BUILD_FILE = `${directory}/final7-source.json`;
+await writeFile(`${directory}/${prefix}-protocol.json`, JSON.stringify({ declaredAt: new Date().toISOString(), status: 'NOT-RUN', build: JSON.parse(await readFile('dist/offline-build.json')), cpuThrottle: 4, repetitions: 16, chars: 495, automaticRetries: 0, originalSha256: createHash('sha256').update(original).digest('hex'), generatedSha256: createHash('sha256').update(source).digest('hex'), scope: 'One explicit CPU-profile diagnostic. The three original96/104/96ms timing runs and failed gate remain unchanged. Only report paths and profiler start/stop instrumentation differ from the original driver.' }, null, 2), { flag: 'wx' });
+await import(`./.${prefix}.generated.mjs`);

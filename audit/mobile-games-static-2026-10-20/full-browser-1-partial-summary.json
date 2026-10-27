@@ -1,0 +1,97 @@
+{
+  "generatedAt": "2026-10-20T18:16:17.895Z",
+  "status": "INTERRUPTED — partial terminal-log evidence, not a completed suite",
+  "build": "79afcab63fc1f50e68d1",
+  "rawLog": "audit/mobile-games-static-2026-10-20/full-browser-1.log",
+  "rawLogSha256": "4095cdba81d798f81f53a57c38d0b849f8d25e948ec47c01be1ba0be607608d1",
+  "plannedCases": 1064,
+  "observedOutcomes": {
+    "total": 200,
+    "passed": 192,
+    "failed": 4,
+    "skipped": 4,
+    "flaky": 0
+  },
+  "unobservedOrUncompletedCases": 864,
+  "projects": [
+    {
+      "project": "chromium",
+      "total": 200,
+      "passed": 192,
+      "failed": 4,
+      "skipped": 4,
+      "flaky": 0
+    }
+  ],
+  "projectsWithoutCompletedOutcomes": [
+    "edge",
+    "firefox",
+    "webkit"
+  ],
+  "interruptionEvidence": "Coordinator explicitly stopped the own session with Ctrl+C after case200. Raw log has no complete suite footer; no final JSON reporter receipt was emitted.",
+  "failures": [
+    {
+      "status": "failed",
+      "number": 82,
+      "project": "chromium",
+      "label": "e2e\\keyboard-viewport.spec.ts:350:5 › whole keyboard and feedback fit 1366x768 at 100% with update banner (1.3s)",
+      "shortMessage": "Whole keyboard/feedback/caption exceeds laptop viewport with update banner. Confirmed extra56px header row; source repaired pending new-build browser confirmation."
+    },
+    {
+      "status": "failed",
+      "number": 85,
+      "project": "chromium",
+      "label": "e2e\\keyboard-viewport.spec.ts:350:5 › whole keyboard and feedback fit 1280x720 at 100% with update banner (1.7s)",
+      "shortMessage": "Whole keyboard/feedback/caption exceeds laptop viewport with update banner. Confirmed extra56px header row; source repaired pending new-build browser confirmation."
+    },
+    {
+      "status": "failed",
+      "number": 86,
+      "project": "chromium",
+      "label": "e2e\\keyboard-viewport.spec.ts:350:5 › whole keyboard and feedback fit 1240x720 at 100% with update banner (1.6s)",
+      "shortMessage": "Whole keyboard/feedback/caption exceeds laptop viewport with update banner. Confirmed extra56px header row; source repaired pending new-build browser confirmation."
+    },
+    {
+      "status": "failed",
+      "number": 161,
+      "project": "chromium",
+      "label": "e2e\\opening-worker.spec.ts:560:1 › five consecutive native-worker startup reloads close each prior owner and final skip closes the last worker (10.9s)",
+      "shortMessage": "Final worker shutdown measured1205.5ms against unchanged1000ms bound. No cause or production fix established by this partial run."
+    }
+  ],
+  "skipped": [
+    {
+      "status": "skipped",
+      "number": 7,
+      "project": "chromium",
+      "label": "e2e\\auth-flow.spec.ts:54:1 › real account sign in with dedicated deployment credentials",
+      "reason": "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used.",
+      "verification": "UNVERIFIED; opt-in backend/credentials were absent"
+    },
+    {
+      "status": "skipped",
+      "number": 166,
+      "project": "chromium",
+      "label": "e2e\\php-account-flow.spec.ts:6:1 › real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+      "reason": "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account.",
+      "verification": "UNVERIFIED; opt-in backend/credentials were absent"
+    },
+    {
+      "status": "skipped",
+      "number": 167,
+      "project": "chromium",
+      "label": "e2e\\php-human-race.spec.ts:5:1 › real two-browser PHP human race shares opponent pace and settles server results",
+      "reason": "Requires two dedicated accounts on the explicit PHP acceptance deployment.",
+      "verification": "UNVERIFIED; opt-in backend/credentials were absent"
+    },
+    {
+      "status": "skipped",
+      "number": 184,
+      "project": "chromium",
+      "label": "e2e\\race-mode.spec.ts:50:1 › PHP two-account race authorization and server-owned countdown",
+      "reason": "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization.",
+      "verification": "UNVERIFIED; opt-in backend/credentials were absent"
+    }
+  ],
+  "limits": "Only observed Chromium outcomes are counted. This partial run cannot establish any four-engine pass rate. Zero flaky observed means none was recorded in the partial log, not a completed stability certification."
+}

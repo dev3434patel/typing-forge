@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-23T12:53:21.136062+00:00",
+  "status": "PASS-FINITE-PATTERNS",
+  "previousReceipt": "final17-public-patch-safety-review.json",
+  "previousSevenRawHashesUnchanged": true,
+  "newExactPatchPaths": [
+    {
+      "path": "audit/2026-10-21/final17-keyboard-containment-fixture-correction.patch",
+      "bytes": 5582,
+      "sha256": "4b2a9420b5fcf268792704edb844973fbf369a1fbd5c444424361c15cadb8115",
+      "changedPaths": [],
+      "patternHitTypes": []
+    },
+    {
+      "path": "audit/2026-10-21/final17-keyboard-natural-panel-placement-PROPOSAL.patch",
+      "bytes": 4101,
+      "sha256": "5716b7b801c4dd9c306df0340493bb62d07b531e0e0379c70c40059a25644c29",
+      "changedPaths": [],
+      "patternHitTypes": []
+    },
+    {
+      "path": "audit/2026-10-21/final17-keyboard-natural-panel-placement-actual.patch",
+      "bytes": 4118,
+      "sha256": "ae2115eee9edcecee163464a206ea8eb50110a40a841589feb48b63f075f7a41",
+      "changedPaths": [],
+      "patternHitTypes": []
+    }
+  ],
+  "combinedTenExactPatchPaths": [
+    {
+      "path": "audit/2026-10-21/final16-flat-alignment-freezer-PROPOSAL.patch",
+      "bytes": 2438,
+      "sha256": "b9bc033dff640c5b30e458e5e42fc5cad38d3bafcd3e29e62854a877c665ca49",
+      "changedPaths": [],
+      "patternHitTypes": []
+    },
+    {
+      "path": "audit/2026-10-21/final16-target-words-cache-OPTIONAL-PROPOSAL.patch",
+      "bytes": 1252,
+      "sha256": "47b712657ec1e17e6d258d46c148f66743e2140d205fadec4f567f9804160489",
+      "changedPaths": [],
+      "patternHitTypes": []
+    },
+    {
+      "path": "audit/2026-10-21/final17-target-word-cache-FACTORY-BOUNDED-PROPOSAL.patch",
+      "bytes": 1814,
+      "sha256": "b3a789794e976bfda4131f708352bd2d83e9a9d1917c6a97ff6ac711b3c41010",
+      "changedPaths": [],
+      "patternHitTypes": []
+    },
+    {
+      "path": "audit/2026-10-21/final17-result-hash-deferral-PROPOSAL.patch",
+      "bytes": 4585,
+      "sha256": "7bb961c2ad3df50698ef9c4ce9b051bf0d1d177ad8c2a40bb0815580447482f6",
+      "changedPaths": [
+        "src/lib/typing-core/session.ts",
+        "src/lib/final-result-yield.ts",
+        "src/hooks/useTestResults.tsx"
+      ],
+      "patternHitTypes": []
+    },
+    {
+      "path": "audit/2026-10-21/final17-keyboard-containment-css-actual.patch",
+      "bytes": 298,
+      "sha256": "e19fe4d4fb6f8a98601c392a6a5dfdf52644bb36bfbac56c45ae517fd9244040",
+      "changedPaths": [],
+      "patternHitTypes": []
+    },
+    {
+      "path": "audit/2026-10-21/final17-keyboard-containment-e2e-actual.patch",
+      "bytes": 12908,
+      "sha256": "3747a6d6c531798ee4b906d7b22b3d5d1f941ba085d615d919a64b7b8fa69d28",
+      "changedPaths": [],
+      "patternHitTypes": []
+    },
+    {
+      "path": "audit/2026-10-21/final17-keyboard-containment-e2e-PROPOSAL.patch",
+      "bytes": 13036,
+      "sha256": "61c2f2e27f27160955bc5363c3a23812f5629bb472c34a2c7248e7abbf2aaf47",
+      "changedPaths": [],
+      "patternHitTypes": []
+    },
+    {
+      "path": "audit/2026-10-21/final17-keyboard-containment-fixture-correction.patch",
+      "bytes": 5582,
+      "sha256": "4b2a9420b5fcf268792704edb844973fbf369a1fbd5c444424361c15cadb8115",
+      "changedPaths": [],
+      "patternHitTypes": []
+    },
+    {
+      "path": "audit/2026-10-21/final17-keyboard-natural-panel-placement-PROPOSAL.patch",
+      "bytes": 4101,
+      "sha256": "5716b7b801c4dd9c306df0340493bb62d07b531e0e0379c70c40059a25644c29",
+      "changedPaths": [],
+      "patternHitTypes": []
+    },
+    {
+      "path": "audit/2026-10-21/final17-keyboard-natural-panel-placement-actual.patch",
+      "bytes": 4118,
+      "sha256": "ae2115eee9edcecee163464a206ea8eb50110a40a841589feb48b63f075f7a41",
+      "changedPaths": [],
+      "patternHitTypes": []
+    }
+  ],
+  "patternsForNewThree": [
+    "private-key-pem",
+    "github-token",
+    "aws-access-key",
+    "provider-secret-key",
+    "jwt-shaped-literal",
+    "credential-url",
+    "literal-sensitive-assignment",
+    "private-config-or-storage-path",
+    "generated-acceptance-password",
+    "generated-native-password",
+    "generated-audit-password",
+    "session-cookie-value"
+  ],
+  "scope": "Finite patterns on only the three added public fixture/placement patches; previous seven are hash-rechecked. No complete secret-detection or product validation claim. No staging action.",
+  "stagingHazards": [
+    "The generic prepare-prestage-review.mjs text-extension and backtick-reference lists omit .patch. Merge these exact ten file paths explicitly after final hash recheck; never force-add an audit directory.",
+    "Run final prestage only after all matrix/native/static/performance outputs and documentation are finalized; incomplete reports remain partial and must not be mislabeled passes.",
+    "PNG inclusion remains conditional on the later current-build static capture provenance and visual/privacy review; trace/screenshots folders are not selected."
+  ],
+  "sourceReceiptSemantics": "final17-source-independent-extraction.json is a timestamped pre-build source-gate extraction and explicitly says build/runtime pending. final17-source-delta.json separately binds actual build0572d723495d6be303a8 and499 sources/exact3-path delta/496unchanged. Do not rewrite the earlier stage as runtime acceptance.",
+  "exclusions": [
+    "original/private backend configuration",
+    "backend/storage",
+    "non-example .env files",
+    "generated private audit-instance folders",
+    "Playwright traces and nested screenshot/report trees",
+    "archives and CPU profiles",
+    "dist and node_modules"
+  ],
+  "staged": false,
+  "sourceOrTestEdits": false,
+  "browserOrBuildRun": false
+}

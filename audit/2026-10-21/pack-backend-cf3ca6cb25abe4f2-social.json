@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "at": "2026-10-20T20:55:12.338Z",
+  "scope": "Opt-in isolated native social/duel HTTP lifecycle; counted challenge timestamps intentionally retimed only for this synthetic run",
+  "guardedTarget": {
+    "database": "sparow_pack_cf3ca6cb25abe4f2_audit",
+    "port": 5673,
+    "api": "http://127.0.0.1:5674/api",
+    "sessionNamespaceMatched": true
+  },
+  "checks": [
+    {
+      "name": "three synthetic accounts created only after isolated schema/port/cookie guards",
+      "status": "PASS"
+    },
+    {
+      "name": "private request acceptance and expected-owner/friendship guards",
+      "status": "PASS"
+    },
+    {
+      "name": "idempotent private duel creation, stranger denial, mutual acceptance and identical independently issued passage",
+      "status": "PASS"
+    },
+    {
+      "name": "canonical source mismatch denied, one counted attempt, exact retry idempotence and no early opponent score disclosure",
+      "status": "PASS"
+    },
+    {
+      "name": "two server-replayed scores produce an actual private winner; contacts expose no email, passage or keystroke log",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed reports are idempotent; blocking removes contact/duel access and unblocking does not recreate friendship",
+      "status": "PASS"
+    },
+    {
+      "name": "only the owned synthetic account is explicitly deleted; relationship/duel owner FKs cascade",
+      "status": "PASS"
+    }
+  ],
+  "passed": 7,
+  "failed": 0,
+  "failure": null,
+  "cleanup": {
+    "deletedOwnSyntheticAccounts": 2
+  },
+  "credentialsOrCookiesEmitted": false,
+  "rateCountersReset": false,
+  "userDatabaseTouched": false
+}

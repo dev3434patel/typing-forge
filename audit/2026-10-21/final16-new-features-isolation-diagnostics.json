@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "buildId": "8ac2a0d9602ec9263118",
+  "status": "FAILED",
+  "observation": "PARTIAL",
+  "scope": "Independent read-only extraction of the finalized new-features report and the two controlled-guest arcade-data-isolation traces; no rerun or product/test mutation.",
+  "rawReport": "final16-new-features.json",
+  "rawCountVerification": {
+    "total": 204,
+    "passed": 200,
+    "failed": 4,
+    "skipped": 0,
+    "flaky": 0,
+    "retried": 0,
+    "globalErrors": 0,
+    "perProject": {
+      "chromium": { "total": 51, "passed": 51, "failed": 0 },
+      "edge": { "total": 51, "passed": 51, "failed": 0 },
+      "firefox": { "total": 51, "passed": 51, "failed": 0 },
+      "webkit": { "total": 51, "passed": 47, "failed": 4 }
+    },
+    "allTestsHaveExactlyOneAttempt": true,
+    "sourceTestsDependenciesIntegrityReceiptsUnchanged": true
+  },
+  "cases": [
+    {
+      "file": "e2e/arcade-data-isolation.spec.ts",
+      "line": 5,
+      "name": "cross-tab arcade deletion discards the active run without resurrecting bests or touching another owner",
+      "project": "webkit",
+      "result": "failed",
+      "reportedDurationMs": 18907,
+      "failedAssertion": "The second page's Eight ways to find your flow. heading was not visible within the original 5000ms expectation budget.",
+      "timelineClock": "Playwright trace monotonic milliseconds; values are not wall-clock timestamps.",
+      "secondPageNavigation": { "start": 289826.712, "end": 291105.462, "durationMs": 1278.750 },
+      "headingExpectation": { "start": 291350.103, "end": 296944.969, "observedDurationMs": 5594.866, "configuredBudgetMs": 5000 },
+      "finalNativeSnapshot": { "at": 297027.261, "visibleState": "Loading your workspace", "expectedHubHeadingPresent": false },
+      "networkObservations": {
+        "arcadePageModule": { "start": 292443.640, "durationMs": 590.970, "status": 200 },
+        "lastObservedArcadeStylesheet": { "start": 292459.599, "durationMs": 645.341, "status": 200 },
+        "qualification": "These successful resource receipts do not establish when module evaluation, lazy import settlement, or rendering completed. No causal engine/network diagnosis is established."
+      },
+      "notReached": ["unrelated-owner storage event", "guest arcade deletion", "discard and foreign-owner preservation assertions", "post-deletion reload assertions"],
+      "conclusion": "The observed failure is the second page's loading/heading deadline. It does not demonstrate a failure of the unexecuted cross-tab deletion behavior.",
+      "cause": "UNPROVEN"
+    },
+    {
+      "file": "e2e/arcade-data-isolation.spec.ts",
+      "line": 33,
+      "name": "deleting an ordinary canonical session in another tab stops only the selected history ghost",
+      "project": "webkit",
+      "result": "timedOut",
+      "reportedDurationMs": 32572,
+      "wholeTestBudgetMs": 30000,
+      "pendingAssertion": "Session results region visibility; the whole-test deadline expired while this expectation was pending.",
+      "timelineClock": "Playwright trace monotonic milliseconds; values are not wall-clock timestamps.",
+      "nativeTyping": { "start": 283928.430, "end": 310894.342, "durationMs": 26965.912, "insertedTextLength": 44, "configuredPerCharacterDelayMs": 20, "nativeActionReportedError": false },
+      "resultsExpectation": { "start": 311064.888, "end": null, "configuredBudgetMs": 5000, "cutShortByWholeTestDeadline": true },
+      "failureScreenshotState": "Preparing your session results...",
+      "networkObservations": {
+        "sessionResultsModule": { "start": 310623.008, "durationMs": 175.310, "status": 200 },
+        "chartDependency": { "start": 310632.682, "durationMs": 245.237, "status": 200 },
+        "qualification": "Successful module responses do not prove when lazy import settlement or the result render completed. The trace action interval alone does not partition application, browser-protocol, or concurrent-run cost."
+      },
+      "notReached": ["Ghost GP navigation and replay selection", "second profile page", "canonical source deletion", "selected-ghost discard assertions"],
+      "conclusion": "The unchanged 30s workflow deadline was mostly consumed by the native typing action, followed by a pending result transition. It does not demonstrate a failure of the unexecuted ghost deletion behavior.",
+      "cause": "UNPROVEN"
+    }
+  ],
+  "otherFailedCasesOwnedBySeparateReview": [
+    "e2e/arcade-offline.spec.ts:13 — offline hub heading",
+    "e2e/arcade.spec.ts:25 — Ghost GP typing input"
+  ],
+  "privacy": "Only predefined UI labels, test identities, public asset metadata, action durations, counts, and booleans are recorded. Input text, full DOM, cookies, headers, private bodies, credential values, and trace contents are not copied into this receipt.",
+  "originalFailureRetained": true,
+  "sourceOrTestEdits": false,
+  "rerunPerformed": false,
+  "ownedServicesStarted": false
+}

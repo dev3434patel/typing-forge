@@ -1,0 +1,479 @@
+{
+  "capturedAt": "2026-10-21T20:25:25.155462+00:00",
+  "status": "FAILED-ORIGINAL-TESTS-CAUSE-UNPROVEN",
+  "scope": "Selective read-only extraction of exactly two retained guest WebKit traces and their public static network ledgers. No browser/test/build/retry, source edits or live service inspection. No raw trace bodies, headers containing credentials, tokens or user data copied.",
+  "originalReport": "audit/2026-10-21/final12-static-deployment-raw.json",
+  "originalOutcomes": {
+    "total": 56,
+    "passed": 54,
+    "failed": 2,
+    "retries": 0
+  },
+  "cases": [
+    {
+      "test": "account, human rooms and rankings are unavailable honestly while bot practice starts",
+      "declarationLine": 117,
+      "project": "webkit",
+      "status": "failed",
+      "originalTraceRetainedPrivate": "audit/2026-10-21/.playwright-artifacts-final12-static-run/deployment/frontend-deployment-dist-s-b65d8-y-while-bot-practice-starts-webkit/trace.zip",
+      "startTimeUtc": "2026-10-21T20:21:40.243Z",
+      "durationMs": 2481,
+      "finalPath": "/leaderboard",
+      "pageErrors": [
+        {
+          "time": 171570.964,
+          "name": "Cannot load http",
+          "message": "/127.0.0.1:6513/sw.js due to access control checks.",
+          "location": {
+            "url": "",
+            "line": 0,
+            "column": 0
+          },
+          "beforeAfterHooksMs": 1676.1609999999928,
+          "nearbyNavigations": [
+            {
+              "method": "goto",
+              "urlPath": "/auth",
+              "startTime": 171102.85,
+              "endTime": 171193.147
+            },
+            {
+              "method": "goto",
+              "urlPath": "/ranked",
+              "startTime": 171535.669,
+              "endTime": 171593.347
+            },
+            {
+              "method": "goto",
+              "urlPath": "/race",
+              "startTime": 172093.819,
+              "endTime": 172158.841
+            }
+          ]
+        }
+      ],
+      "testFinalBodyAssertion": {
+        "title": "Expect \"toBeVisible\"",
+        "startTime": 173239.486,
+        "endTime": 173246.843
+      },
+      "hooks": [
+        {
+          "title": "After Hooks",
+          "startTime": 173247.125,
+          "endTime": 173444.533
+        },
+        {
+          "title": "afterEach hook",
+          "startTime": 173247.289,
+          "endTime": 173251.747
+        }
+      ],
+      "ledgerAttachment": [
+        {
+          "title": "Attach \"static-network-ledger\"",
+          "startTime": 173248.168,
+          "endTime": 173248.55
+        }
+      ],
+      "network": [
+        {
+          "urlPath": "/auth",
+          "sameOriginLoopback": true,
+          "monotonicTime": 171108.893,
+          "durationMs": 0,
+          "status": 301,
+          "failure": null,
+          "resourceType": "document",
+          "headers": {
+            "Cache-Control": "no-store"
+          }
+        },
+        {
+          "urlPath": "/auth/",
+          "sameOriginLoopback": true,
+          "monotonicTime": 171114.577,
+          "durationMs": 10.115,
+          "status": 200,
+          "failure": null,
+          "resourceType": "document",
+          "headers": {
+            "Content-Type": "text/html; charset=utf-8",
+            "Cache-Control": "no-store"
+          }
+        },
+        {
+          "urlPath": "/ranked",
+          "sameOriginLoopback": true,
+          "monotonicTime": 171539.285,
+          "durationMs": 0,
+          "status": 301,
+          "failure": null,
+          "resourceType": "document",
+          "headers": {
+            "Cache-Control": "no-store"
+          }
+        },
+        {
+          "urlPath": "/ranked/",
+          "sameOriginLoopback": true,
+          "monotonicTime": 171540.836,
+          "durationMs": 9.541,
+          "status": 200,
+          "failure": null,
+          "resourceType": "document",
+          "headers": {
+            "Content-Type": "text/html; charset=utf-8",
+            "Cache-Control": "no-store"
+          }
+        },
+        {
+          "urlPath": "/sw.js",
+          "sameOriginLoopback": true,
+          "monotonicTime": 171976.478,
+          "durationMs": 4.447,
+          "status": 200,
+          "failure": null,
+          "resourceType": "xhr",
+          "headers": {
+            "Content-Type": "application/javascript; charset=utf-8",
+            "Cache-Control": "no-store"
+          }
+        },
+        {
+          "urlPath": "/race",
+          "sameOriginLoopback": true,
+          "monotonicTime": 172099.043,
+          "durationMs": 0.229,
+          "status": 200,
+          "failure": null,
+          "resourceType": "document",
+          "headers": {
+            "Content-Type": "text/html; charset=utf-8",
+            "Cache-Control": "no-store"
+          }
+        },
+        {
+          "urlPath": "/leaderboard",
+          "sameOriginLoopback": true,
+          "monotonicTime": 172864.18,
+          "durationMs": 0.311,
+          "status": 200,
+          "failure": null,
+          "resourceType": "document",
+          "headers": {
+            "Content-Type": "text/html; charset=utf-8",
+            "Cache-Control": "no-store"
+          }
+        }
+      ],
+      "failedAssertion": "afterEach expect(errors).toEqual([]), line42",
+      "allPageErrorsBeforeAfterEach": true,
+      "ledgerApiRequests": [],
+      "errorOnlyFailure": true
+    },
+    {
+      "test": "real nested route files, fonts, manifest, metadata and unknown HTTP404",
+      "declarationLine": 59,
+      "project": "webkit",
+      "status": "failed",
+      "originalTraceRetainedPrivate": "audit/2026-10-21/.playwright-artifacts-final12-static-run/deployment/frontend-deployment-dist-s-32f1b-etadata-and-unknown-HTTP404-webkit/trace.zip",
+      "startTimeUtc": "2026-10-21T20:22:28.539Z",
+      "durationMs": 8822,
+      "finalPath": "/sparowtype-static-audit/privacy",
+      "pageErrors": [
+        {
+          "time": 224047.608,
+          "name": "Cache API operation failed",
+          "message": "Context is stopped",
+          "location": {
+            "url": "",
+            "line": 0,
+            "column": 0
+          },
+          "beforeAfterHooksMs": 3682.0439999999944,
+          "nearbyNavigations": [
+            {
+              "method": "reload",
+              "urlPath": null,
+              "startTime": 223584.09,
+              "endTime": 223661.942
+            },
+            {
+              "method": "goto",
+              "urlPath": "/sparowtype-static-audit/stats",
+              "startTime": 224035.596,
+              "endTime": 224096.282
+            },
+            {
+              "method": "reload",
+              "urlPath": null,
+              "startTime": 224484.659,
+              "endTime": 224545.437
+            }
+          ]
+        }
+      ],
+      "testFinalBodyAssertion": {
+        "title": "Expect \"toEqual\"",
+        "startTime": 227729.367,
+        "endTime": 227729.434
+      },
+      "hooks": [
+        {
+          "title": "After Hooks",
+          "startTime": 227729.652,
+          "endTime": 228085.995
+        },
+        {
+          "title": "afterEach hook",
+          "startTime": 227729.771,
+          "endTime": 227736.552
+        }
+      ],
+      "ledgerAttachment": [
+        {
+          "title": "Attach \"static-network-ledger\"",
+          "startTime": 227730.778,
+          "endTime": 227731.545
+        }
+      ],
+      "network": [
+        {
+          "urlPath": "/sparowtype-static-audit/",
+          "sameOriginLoopback": true,
+          "monotonicTime": 219440.782,
+          "durationMs": 20.192,
+          "status": 200,
+          "failure": null,
+          "resourceType": "document",
+          "headers": {
+            "Content-Type": "text/html; charset=utf-8",
+            "Cache-Control": "no-store"
+          }
+        },
+        {
+          "urlPath": "/sparowtype-static-audit/sw.js",
+          "sameOriginLoopback": true,
+          "monotonicTime": 220130.841,
+          "durationMs": 4.241,
+          "status": 200,
+          "failure": null,
+          "resourceType": "xhr",
+          "headers": {
+            "Content-Type": "application/javascript; charset=utf-8",
+            "Cache-Control": "no-store"
+          }
+        },
+        {
+          "urlPath": "/sparowtype-static-audit/",
+          "sameOriginLoopback": true,
+          "monotonicTime": 220205.289,
+          "durationMs": 6.478,
+          "status": 200,
+          "failure": null,
+          "resourceType": "document",
+          "headers": {
+            "Content-Type": "text/html; charset=utf-8",
+            "Cache-Control": "no-store"
+          }
+        },
+        {
+          "urlPath": "/sparowtype-static-audit/learn",
+          "sameOriginLoopback": true,
+          "monotonicTime": 220840.424,
+          "durationMs": 2120017.122,
+          "status": 200,
+          "failure": null,
+          "resourceType": "document",
+          "headers": {
+            "Content-Type": "text/html; charset=utf-8",
+            "Cache-Control": "no-store"
+          }
+        },
+        {
+          "urlPath": "/sparowtype-static-audit/learn",
+          "sameOriginLoopback": true,
+          "monotonicTime": 221450.078,
+          "durationMs": 2119404.414,
+          "status": 200,
+          "failure": null,
+          "resourceType": "document",
+          "headers": {
+            "Content-Type": "text/html; charset=utf-8",
+            "Cache-Control": "no-store"
+          }
+        },
+        {
+          "urlPath": "/sparowtype-static-audit/lessons",
+          "sameOriginLoopback": true,
+          "monotonicTime": 221967.36,
+          "durationMs": 2118892.978,
+          "status": 200,
+          "failure": null,
+          "resourceType": "document",
+          "headers": {
+            "Content-Type": "text/html; charset=utf-8",
+            "Cache-Control": "no-store"
+          }
+        },
+        {
+          "urlPath": "/sparowtype-static-audit/lessons",
+          "sameOriginLoopback": true,
+          "monotonicTime": 222574.758,
+          "durationMs": 2118284.525,
+          "status": 200,
+          "failure": null,
+          "resourceType": "document",
+          "headers": {
+            "Content-Type": "text/html; charset=utf-8",
+            "Cache-Control": "no-store"
+          }
+        },
+        {
+          "urlPath": "/sparowtype-static-audit/games",
+          "sameOriginLoopback": true,
+          "monotonicTime": 223083.128,
+          "durationMs": 2117805.121,
+          "status": 200,
+          "failure": null,
+          "resourceType": "document",
+          "headers": {
+            "Content-Type": "text/html; charset=utf-8",
+            "Cache-Control": "no-store"
+          }
+        },
+        {
+          "urlPath": "/sparowtype-static-audit/games",
+          "sameOriginLoopback": true,
+          "monotonicTime": 223600.64,
+          "durationMs": 2117255.454,
+          "status": 200,
+          "failure": null,
+          "resourceType": "document",
+          "headers": {
+            "Content-Type": "text/html; charset=utf-8",
+            "Cache-Control": "no-store"
+          }
+        },
+        {
+          "urlPath": "/sparowtype-static-audit/stats",
+          "sameOriginLoopback": true,
+          "monotonicTime": 224041.755,
+          "durationMs": 2116814.971,
+          "status": 200,
+          "failure": null,
+          "resourceType": "document",
+          "headers": {
+            "Content-Type": "text/html; charset=utf-8",
+            "Cache-Control": "no-store"
+          }
+        },
+        {
+          "urlPath": "/sparowtype-static-audit/stats",
+          "sameOriginLoopback": true,
+          "monotonicTime": 224492.51,
+          "durationMs": 2116367.019,
+          "status": 200,
+          "failure": null,
+          "resourceType": "document",
+          "headers": {
+            "Content-Type": "text/html; charset=utf-8",
+            "Cache-Control": "no-store"
+          }
+        },
+        {
+          "urlPath": "/sparowtype-static-audit/settings",
+          "sameOriginLoopback": true,
+          "monotonicTime": 225042.26,
+          "durationMs": 2115886.308,
+          "status": 200,
+          "failure": null,
+          "resourceType": "document",
+          "headers": {
+            "Content-Type": "text/html; charset=utf-8",
+            "Cache-Control": "no-store"
+          }
+        },
+        {
+          "urlPath": "/sparowtype-static-audit/settings",
+          "sameOriginLoopback": true,
+          "monotonicTime": 225513.959,
+          "durationMs": 2115343.153,
+          "status": 200,
+          "failure": null,
+          "resourceType": "document",
+          "headers": {
+            "Content-Type": "text/html; charset=utf-8",
+            "Cache-Control": "no-store"
+          }
+        },
+        {
+          "urlPath": "/sparowtype-static-audit/keyboard-lab",
+          "sameOriginLoopback": true,
+          "monotonicTime": 225950.158,
+          "durationMs": 2114906.016,
+          "status": 200,
+          "failure": null,
+          "resourceType": "document",
+          "headers": {
+            "Content-Type": "text/html; charset=utf-8",
+            "Cache-Control": "no-store"
+          }
+        },
+        {
+          "urlPath": "/sparowtype-static-audit/keyboard-lab",
+          "sameOriginLoopback": true,
+          "monotonicTime": 226401.333,
+          "durationMs": 2114453.822,
+          "status": 200,
+          "failure": null,
+          "resourceType": "document",
+          "headers": {
+            "Content-Type": "text/html; charset=utf-8",
+            "Cache-Control": "no-store"
+          }
+        },
+        {
+          "urlPath": "/sparowtype-static-audit/privacy",
+          "sameOriginLoopback": true,
+          "monotonicTime": 226855.97,
+          "durationMs": 2114000.311,
+          "status": 200,
+          "failure": null,
+          "resourceType": "document",
+          "headers": {
+            "Content-Type": "text/html; charset=utf-8",
+            "Cache-Control": "no-store"
+          }
+        },
+        {
+          "urlPath": "/sparowtype-static-audit/privacy",
+          "sameOriginLoopback": true,
+          "monotonicTime": 227253.98,
+          "durationMs": 2113602.1,
+          "status": 200,
+          "failure": null,
+          "resourceType": "document",
+          "headers": {
+            "Content-Type": "text/html; charset=utf-8",
+            "Cache-Control": "no-store"
+          }
+        }
+      ],
+      "failedAssertion": "afterEach expect(errors).toEqual([]), line42",
+      "allPageErrorsBeforeAfterEach": true,
+      "ledgerApiRequests": [],
+      "errorOnlyFailure": true
+    }
+  ],
+  "conclusions": [
+    "Both collected native pageerrors occur inside the test body, before After Hooks and therefore before afterEach server.stop; teardown alone cannot explain the recorded emission timing.",
+    "Both failures were reported by afterEach zero-pageerror assertion; this callback location is not the error origin.",
+    "Vercel access-control pageerror preceded the trace-recorded successful same-origin sw.js HTTP200; that later response does not reveal a failed first-registration request or prove the native access-control reason.",
+    "Pages Context is stopped pageerror has native name Cache API operation failed and empty location/stack; the exact Cache API operation and emitter remain unproven.",
+    "No API requests or obvious cross-origin SW URL/security-header denial are established by these selected public ledgers. Browser validation remains failed; no error was filtered or reclassified as a pass."
+  ],
+  "historicalComparison": "Similar source7/source10 native SW/Cache API errors were previously retained. This extraction adds current source12 timestamps rather than inferring that identical text proves an identical cause.",
+  "excluded": "Private nested traces/screenshots stay local and are not proposed for staging."
+}

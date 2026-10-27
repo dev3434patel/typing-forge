@@ -1,0 +1,99 @@
+{
+  "recordedAt": "2026-10-22T18:57:07.432Z",
+  "status": "PASS-SCOPED",
+  "scope": "Source14 PWA implementation and focused source/fixture checks only; browser/static/Lighthouse acceptance is pending parent execution.",
+  "sourceBaseline": "final13-source.json",
+  "priorBuild": "b00993b05c14117dca60",
+  "changedFiles": [
+    "src/main.tsx",
+    "src/lib/pwa.ts",
+    "public/sw.js",
+    "src/lib/__tests__/pwa-lifecycle.test.ts",
+    "src/lib/__tests__/pwa-worker.test.ts"
+  ],
+  "changes": [
+    "main calls startPwaDocumentLifetime synchronously before createRoot; late lazy PwaStatus start is idempotent and does not own bootstrap cleanup.",
+    "Document owner stops the current generation on actual pagehide, blocks late starts while suspended, and starts once on persisted pageshow. beforeunload is not used as a sticky fence, so canceled navigation preserves current ownership.",
+    "Stable stopCurrentPwa delegation plus identity-guarded cleanup handles manual clear/reprepare without stale cleanup overwriting current ownership.",
+    "Automatic and user-requested readiness use fixed SPAROWTYPE_PUBLIC_READINESS_V1 worker MessageChannel bool; unknown protocol, unavailable transport, timeout and negative answer remain unconfirmed.",
+    "Page reply endpoints are cleared/closed on reply, error, timeout, supersession or generation stop; worker closes its transferred endpoint after its waitUntil read/reply.",
+    "Latest readiness revision plus current registration/generation guards prevents old automatic/manual results from regressing newer status.",
+    "Worker uses only same-owned-cache fixed index.html and recovery CacheStorage.match reads. It accepts no path/cache arguments, reads no foreign namespace, performs no writes/fetch, and cannot recreate a concurrently deleted cache.",
+    "Manual cache deletion and fetch allowlists/cache policies remain. Manual checking guards suspended entry, and stale manual update completion returns before querying readiness after stop/supersession. Exported hasOfflineApp remains a pure legacy helper but no UI readiness path calls it.",
+    "Only synchronous native registration invocation is caught at startup to report existing offline-error state without blocking React; no global/native pageerror filtering."
+  ],
+  "checks": [
+    {
+      "name": "Final focused lifecycle + actual worker template VM + manual controls",
+      "status": "PASS",
+      "command": "npx vitest run src/lib/__tests__/pwa-lifecycle.test.ts src/lib/__tests__/pwa-worker.test.ts src/lib/__tests__/pwa.test.ts --reporter=json --outputFile=audit/2026-10-21/final14-pwa-unit-owner-reviewed.json",
+      "result": "106/106, zero skipped/failed",
+      "receipt": "final14-pwa-unit-owner-reviewed.json"
+    },
+    {
+      "name": "Application TypeScript after final production change",
+      "status": "PASS",
+      "command": "npx tsc -p tsconfig.app.json --noEmit",
+      "exitCode": 0
+    },
+    {
+      "name": "Scoped ESLint",
+      "status": "PASS",
+      "command": "npx eslint src/main.tsx src/lib/pwa.ts public/sw.js src/lib/__tests__/pwa-lifecycle.test.ts src/lib/__tests__/pwa-worker.test.ts",
+      "exitCode": 0
+    },
+    {
+      "name": "Scoped git diff whitespace check",
+      "status": "PASS",
+      "command": "git diff --check -- src/main.tsx src/lib/pwa.ts public/sw.js src/lib/__tests__/pwa-lifecycle.test.ts src/lib/__tests__/pwa-worker.test.ts",
+      "exitCode": 0
+    },
+    {
+      "name": "Frozen source14 real WebKit/static/Lighthouse/full3D",
+      "status": "UNVERIFIED",
+      "reason": "Not run by this agent; parent owns full gates/build/acceptance. No source14 artifact exists in this scoped receipt."
+    }
+  ],
+  "preservedIterations": [
+    {
+      "receipt": "final14-pwa-unit-first.json",
+      "status": "FAILED",
+      "result": "95/96",
+      "explanation": "Manual reprepare fixture used explicit true bootstrap but default PROD=false for checkPwaDownload. Production-env fixture setup corrected without relaxing the assertion."
+    },
+    {
+      "receipt": "final14-pwa-unit-second.json",
+      "status": "PASS-SCOPED",
+      "result": "102/102",
+      "explanation": "Latest-probe ownership and environment correction."
+    },
+    {
+      "receipt": "final14-pwa-unit-final.json",
+      "status": "PASS-SCOPED",
+      "result": "104/104",
+      "explanation": "Strict read-only CacheStorage.match refinement and concurrent-delete regression."
+    },
+    {
+      "receipt": "final14-pwa-unit-frozen.json",
+      "status": "PASS-SCOPED",
+      "result": "105/105",
+      "explanation": "Synchronous registration failure preserves bootstrap. Superseded by owner-reviewed manual readiness worker transport and suspended-entry regression."
+    }
+  ],
+  "diagnosticBasis": {
+    "receipt": "final13-webkit-pwa-navigation-diagnostic.json",
+    "analysis": "final13-webkit-pwa-navigation-analysis.json",
+    "established": "Installed WebKit emits an access-control pageerror for native registration started in a live old document after held replacement ingress/before pagehide, despite a caught promise.",
+    "notEstablished": "Historical app callback attribution and Context-is-stopped cache causality remain UNPROVEN. Source13 app20-navigation diagnostic had no pageerror. This patch changes operation lifetime ownership; it is not evidence that all historical failures are fixed."
+  },
+  "limitations": [
+    "Fixture message ports do not prove actual engine transfer timing; original static acceptance must retain unfiltered pageerrors and exact deadlines.",
+    "Early precache can compete with first paint/LCP; fresh mobile Lighthouse95+ and preserved full3D checks are required before release claims.",
+    "Older workers without the new read-only protocol remain unconfirmed until a capable worker replies; there is deliberately no automatic document-cache fallback.",
+    "User-triggered manual cache deletion remains document-owned by existing semantics. All UI readiness checks now use worker-owned read-only transport; the exported legacy cache helper is not a UI fallback."
+  ],
+  "ownedJobsRemaining": 0,
+  "productEditsFrozen": true,
+  "originalServicesDatabasesPrivateConfigurationsUntouched": true,
+  "gitIndexUnchangedByThisAgent": true
+}

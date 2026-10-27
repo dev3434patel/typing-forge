@@ -1,0 +1,40 @@
+
+> sparowtype@3.0.0 test:content
+> node scripts/verify-content.mjs
+
+{
+  "status": "passed",
+  "examples": 20,
+  "results": [
+    {
+      "check": "JavaScript parse, no execution",
+      "passed": 4,
+      "runtime": "v22.20.0"
+    },
+    {
+      "check": "TypeScript semantic compilation, no emission",
+      "passed": 4,
+      "runtime": "5.9.3"
+    },
+    {
+      "check": "Python AST parse, no execution",
+      "passed": 4,
+      "runtime": "Python 3.11.9"
+    },
+    {
+      "check": "Portable SELECT/CTE subset syntax via SQLite EXPLAIN",
+      "passed": 4
+    },
+    {
+      "check": "PostgreSQL/WASM syntax and planning via PGlite EXPLAIN, no exercise execution",
+      "passed": 4,
+      "runtime": "PostgreSQL 18.6 (PGlite 0.5.10) on wasm32-unknown-emscripten, compiled by emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 6.0.5 (1db513782be24469589d7cb8a1f1834e9a33f271), 32-bit",
+      "limitation": "Disposable in-memory PostgreSQL parser/planner evidence; live native Supabase Auth/API/Realtime and concurrency remain separate release gates."
+    },
+    {
+      "check": "Rust metadata compilation, no executable output/execution",
+      "passed": 4,
+      "runtime": "rustc 1.91.0 (f8297e351 2025-10-28)"
+    }
+  ]
+}

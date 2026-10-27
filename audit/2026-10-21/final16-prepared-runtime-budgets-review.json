@@ -1,0 +1,125 @@
+{
+  "capturedAt": "2026-10-22T20:05:22.688253+00:00",
+  "status": "PASS-SCOPED-SOURCE-REVIEW-NOT-EXECUTED",
+  "scope": "Read-only source review of prepared16 acceptance counts and runtime budgets. No collection, verifier execution, browser, build, benchmark or services. Actual receipts override preparation; current full matrix remains active.",
+  "sources": [
+    "run-final16-static.mjs",
+    "run-mobile-workspaces-static-final16.mjs",
+    "measure-mobile-workspaces-static-final16.mjs",
+    "run-final-lighthouse.mjs",
+    "run-final16-browser-matrix.mjs",
+    "run-browser-checkpoint.mjs",
+    "run-final16-native-browser.mjs",
+    "standalone-placement-real135-final16.mjs"
+  ],
+  "static": {
+    "deployment": 56,
+    "deploymentPerEngine": 14,
+    "gameAxe": 16,
+    "gameAxePerEngine": 4,
+    "engines": [
+      "chromium",
+      "edge",
+      "firefox",
+      "webkit"
+    ],
+    "workers": 1,
+    "retries": 0,
+    "uniqueOutputsAndFrozenBuildGuards": true,
+    "perTestBudgets": "Playwright ordinary30s default; static8-Arcade journey explicitly90s and real-offline journey60s. Runner adds no undisclosed shortened global watchdog.",
+    "builderAndArtifactCounts": "Two dedicated artifacts;67 artifact checks separate from72 browser cases; no summed fabricated testcase total."
+  },
+  "mobile": {
+    "cases": [
+      "learn",
+      "course",
+      "local-bot",
+      "games"
+    ],
+    "caseTimeoutMs": 33000,
+    "watchdogMs": 145000,
+    "locatorTimeoutMs": 10000,
+    "navigationTimeoutMs": 12000,
+    "cpuThrottle": 4,
+    "freshContextEach": true,
+    "requestedInputDelayMs": 0,
+    "functionalVsLatency": "Driver records exact native evidence/functionality; every p98<100ms is independently classified, never inferred from exit0.",
+    "actualBuildEnvironments": [
+      "SPAROWTYPE_FINAL16_BUILD_ID",
+      "SPAROWTYPE_FINAL16_STATIC_BUILD_ID"
+    ],
+    "driverReferenceOnlyEqualityGuard": true
+  },
+  "lighthouse": {
+    "runner": "run-final-lighthouse.mjs",
+    "runCount": 3,
+    "freshProfiles": true,
+    "quietBeforeEachMs": 30000,
+    "fullQualityIntro": true,
+    "qualityOverrides": false,
+    "automaticRetries": 0,
+    "scoreFiltering": false,
+    "medianPerformanceAtLeast": 95,
+    "eachOtherCategory": 100,
+    "lcpAtMostMs": 2500,
+    "clsAtMost": 0.05,
+    "scope": "Generic runner binds actual local/served build before each run; no16 Lighthouse run claimed."
+  },
+  "matrix": {
+    "sourceSpecFiles": 62,
+    "batches": {
+      "new-features": {
+        "workers": 2
+      },
+      "existing": {
+        "workers": 2
+      },
+      "isolated": {
+        "workers": 1
+      },
+      "first-input-timing": {
+        "workers": 2
+      }
+    },
+    "fourEngineEnvironmentExplicit": true,
+    "STATIC_OUTPUTSMustBeUnset": true,
+    "automaticRetries": 0,
+    "nativeCredentials": "Conditional skips stay explicit; dedicated16 real backend cases separate.",
+    "scope": "Complete spec-file coverage is not a fixed testcase count; actual reports must determine totals/skips/projects."
+  },
+  "native": {
+    "cases": 16,
+    "perEngine": 4,
+    "engines": [
+      "chromium",
+      "edge",
+      "firefox",
+      "webkit"
+    ],
+    "workers": 1,
+    "retries": 0,
+    "traces": false,
+    "accountFlowBudgetMs": 90000,
+    "humanRaceBudgetMs": 90000,
+    "raceSharedDurationMs": 30000,
+    "settlementBudget": "min(45000,max(5000,remainingSharedMs+3000+6000)); actual server grace unchanged.",
+    "serviceOwnership": "Only separately guarded fresh owner instance; wrapper never starts it. Same-instance cleanup receipt required, no original health claim."
+  },
+  "placement": {
+    "parts": 3,
+    "eachActiveMs": 45000,
+    "expectedNamedChecks": 82,
+    "wholeJourneyWatchdogMs": 210000,
+    "locatorTimeoutMs": 10000,
+    "navigationTimeoutMs": 15000,
+    "eachCompletionWaitMs": 57000,
+    "contexts": 1,
+    "workers": 1,
+    "retries": 0,
+    "nativeOrdinaryClocks": true,
+    "actualBuildEnvironment": "SPAROWTYPE_FINAL16_BUILD",
+    "scope": "Full actual135s journey plus finite private goal, not seeded/module-generated completions.",
+    "wallVsMonotonic": "Driver asserts real coordinator and browser monotonic>=45000; wall delta is recorded but no separate wall>=45000 named assertion. Independent verifier currently adds wall>=45000 and should be reviewed as an extra independent bound before use."
+  },
+  "finding": "No count/worker/retry/budget drift found in reference-only16 runners. Note verifier wall-clock bound is stricter than the original placement assertions; avoid attributing a verifier-only miss to product failure."
+}

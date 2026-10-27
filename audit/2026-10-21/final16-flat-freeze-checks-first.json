@@ -1,0 +1,90 @@
+{
+  "status": "PASS-SCOPED",
+  "scope": "Focused core units then4TypeScript configurations and scoped lint; no build/browser/performance/native SQL.",
+  "automaticRetries": 0,
+  "results": [
+    {
+      "id": "core-first",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/lib/typing-core/__tests__",
+        "--maxWorkers=2"
+      ],
+      "startedAt": "2026-10-22T19:48:40.877Z",
+      "file": "audit/2026-10-21/final16-flat-freeze-core-first.log",
+      "exitCode": 0,
+      "finishedAt": "2026-10-22T19:48:44.366Z"
+    },
+    {
+      "id": "typecheck",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "node_modules/typescript/bin/tsc",
+        "-p",
+        "tsconfig.app.json",
+        "--noEmit"
+      ],
+      "startedAt": "2026-10-22T19:48:44.368Z",
+      "file": "audit/2026-10-21/final16-flat-freeze-typecheck.log",
+      "exitCode": 0,
+      "finishedAt": "2026-10-22T19:49:00.885Z"
+    },
+    {
+      "id": "typecheck-node",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "node_modules/typescript/bin/tsc",
+        "-p",
+        "tsconfig.node.json",
+        "--noEmit"
+      ],
+      "startedAt": "2026-10-22T19:49:00.886Z",
+      "file": "audit/2026-10-21/final16-flat-freeze-typecheck-node.log",
+      "exitCode": 0,
+      "finishedAt": "2026-10-22T19:49:02.458Z"
+    },
+    {
+      "id": "typecheck-domain",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "node_modules/typescript/bin/tsc",
+        "-p",
+        "tsconfig.domain.json",
+        "--noEmit"
+      ],
+      "startedAt": "2026-10-22T19:49:02.459Z",
+      "file": "audit/2026-10-21/final16-flat-freeze-typecheck-domain.log",
+      "exitCode": 0,
+      "finishedAt": "2026-10-22T19:49:04.228Z"
+    },
+    {
+      "id": "typecheck-portable",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "node_modules/typescript/bin/tsc",
+        "-p",
+        "tsconfig.portable.json",
+        "--noEmit"
+      ],
+      "startedAt": "2026-10-22T19:49:04.229Z",
+      "file": "audit/2026-10-21/final16-flat-freeze-typecheck-portable.log",
+      "exitCode": 0,
+      "finishedAt": "2026-10-22T19:49:05.187Z"
+    },
+    {
+      "id": "scoped-lint",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "node_modules/eslint/bin/eslint.js",
+        "src/lib/typing-core/session.ts",
+        "src/lib/typing-core/__tests__/live-projection.test.ts"
+      ],
+      "startedAt": "2026-10-22T19:49:05.188Z",
+      "file": "audit/2026-10-21/final16-flat-freeze-scoped-lint.log",
+      "exitCode": 0,
+      "finishedAt": "2026-10-22T19:49:08.040Z"
+    }
+  ]
+}

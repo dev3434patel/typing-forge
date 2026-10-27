@@ -1,0 +1,102 @@
+{
+  "totals": {
+    "total": 16,
+    "passed": 12,
+    "failed": 0,
+    "skipped": 4,
+    "flaky": 0
+  },
+  "projects": [
+    {
+      "project": "chromium",
+      "total": 4,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "edge",
+      "total": 4,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "firefox",
+      "total": 4,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "webkit",
+      "total": 4,
+      "passed": 0,
+      "failed": 0,
+      "skipped": 4,
+      "flaky": 0
+    }
+  ],
+  "reportedStats": {
+    "expected": 12,
+    "unexpected": 0,
+    "skipped": 4,
+    "flaky": 0
+  },
+  "countsAgreeWithReport": true,
+  "failures": [],
+  "flakyCases": [],
+  "skippedCases": [
+    {
+      "project": "webkit",
+      "title": "opening-worker.spec.ts › default native worker draws the complete keyboard while document tasks, resize and skip remain responsive",
+      "file": "opening-worker.spec.ts",
+      "line": 364,
+      "reasons": [
+        "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "opening-worker.spec.ts › native worker acknowledges real resource disposal at an explicitly idle renderer boundary",
+      "file": "opening-worker.spec.ts",
+      "line": 461,
+      "reasons": [
+        "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "opening-worker.spec.ts › actual worker WebGL context loss during preparation recovers with a fresh canvas and keeps practice usable",
+      "file": "opening-worker.spec.ts",
+      "line": 1039,
+      "reasons": [
+        "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "opening-worker.spec.ts › actual worker WebGL context loss after live frames recovers with a fresh canvas and keeps practice usable",
+      "file": "opening-worker.spec.ts",
+      "line": 1045,
+      "reasons": [
+        "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+      ]
+    }
+  ],
+  "skipReasons": [
+    {
+      "reason": "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently.",
+      "count": 4,
+      "projects": [
+        "webkit"
+      ]
+    }
+  ],
+  "expectedFailures": [],
+  "globalErrors": [],
+  "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+}

@@ -1,0 +1,92 @@
+{
+  "capturedAt": "2026-10-26T20:38:19Z",
+  "clientDate": "2026-10-27",
+  "status": "FAILED-READINESS-PREDICATE-DIAGNOSTIC",
+  "immutableCheckpoint": true,
+  "build": "de097acba6969d580cc8",
+  "scope": "Read-only inspection of retained controlled introduction artifacts while the original serial four-engine matrix continues. No browser, test, retry, build, source edit or timeout change was performed for this diagnostic.",
+  "test": {
+    "file": "e2e/opening-worker.spec.ts",
+    "line": 461,
+    "title": "native worker acknowledges real resource disposal at an explicitly idle renderer boundary",
+    "project": "firefox",
+    "logCase": 146,
+    "reportedDurationSeconds": 8.0,
+    "automaticRetries": 0,
+    "workers": 1,
+    "tracing": "off",
+    "clock": "Ordinary browser and native worker clocks; the later test-owned worker RAF hold was not reached."
+  },
+  "failure": {
+    "stage": "Initial native worker ready-event predicate, before the explicit idle boundary or disposal request",
+    "helper": "firstWorkerReady",
+    "assertionFile": "e2e/opening-worker.spec.ts",
+    "assertionLine": 250,
+    "predicate": "The first audited worker received a message whose type is ready.",
+    "expected": true,
+    "received": false,
+    "predicateDeadlineMs": 5000,
+    "exactDeadlineText": "Timeout 5000ms exceeded while waiting on the predicate",
+    "classification": "A real fixture readiness assertion failed. This is not the separate Firefox browser-context teardown failure.",
+    "cause": "UNVERIFIED: the predicate establishes that ready was not observed within its five-second window, but not whether startup was slow, failed, absent or had another protocol issue. The final native-worker receipt attachment is pending.",
+    "finalRawResultStatus": "PENDING: original batch JSON has not been written at this checkpoint"
+  },
+  "reachedEvidence": [
+    "The native transferable-canvas capability check did not skip this case.",
+    "The page navigated to the normal full introduction with native worker observation and the test-owned idle-boundary injection configured.",
+    "The failure screenshot shows the Loading SparowType introduction at 75% Preparing your workspace, with the central caret, wordmark, sound control and Skip intro control. No assembled keyboard is visible in that screenshot."
+  ],
+  "unreachedAssertions": [
+    "The poll for both test-native-idle-boundary and test-native-render-frame-held",
+    "Escape input requesting the owner's disposal",
+    "expectWorkerClosed with acknowledged-disposal policy",
+    "Native worker termination and zero-live-worker assertions",
+    "Ready practice, first typed a and retained input",
+    "Full-quality ready diagnostics: 61 keys, one instanced mesh, desktop tier, bloom, environment, positive frames/draw calls and camera elevation",
+    "The final native-idle-boundary-acknowledgement attachment"
+  ],
+  "relatedOriginalCase": {
+    "logCase": 145,
+    "file": "e2e/opening-worker.spec.ts",
+    "line": 364,
+    "title": "default native worker draws the complete keyboard while document tasks, resize and skip remain responsive",
+    "project": "firefox",
+    "reportedDurationSeconds": 6.1,
+    "status": "FAILED",
+    "sameStageConfirmedByErrorContext": "firstWorkerReady at line 250: expected true, received false, five-second predicate deadline",
+    "qualification": "This related failure is preserved independently; it is not counted as a disposal or resize assertion failure."
+  },
+  "neighborControls": [
+    { "project": "chromium", "logCase": 32, "test": "native idle-boundary disposal", "status": "PASS", "reportedDurationSeconds": 4.0 },
+    { "project": "edge", "logCase": 89, "test": "native idle-boundary disposal", "status": "PASS", "reportedDurationSeconds": 2.3 },
+    { "project": "firefox", "logCase": 144, "test": "normal-clock creative 3D keyboard through wordmark typing and automatic entry", "status": "PASS", "reportedDurationSeconds": 17.4 },
+    { "project": "firefox", "logCase": 147, "test": "five consecutive native-worker startup reloads close each owner", "status": "PASS", "reportedDurationSeconds": 9.8 },
+    { "project": "firefox", "logCase": 148, "test": "skip while worker entry is blocked closes startup and retains first typing key", "status": "PASS", "reportedDurationSeconds": 6.1 }
+  ],
+  "artifacts": {
+    "protocol": {
+      "path": "audit/2026-10-21/final19-isolated-protocol.json",
+      "sha256": "e191eb6273ef09415ae90eb6556bab3a51c9e3b66f851ed64e3518d8e1770d16"
+    },
+    "log": {
+      "path": "audit/2026-10-21/final19-isolated.log",
+      "qualification": "Still being appended by the original batch; no whole-file immutable hash is claimed."
+    },
+    "errorContext": {
+      "path": "audit/2026-10-21/.playwright-artifacts-final19-isolated/opening-worker-native-work-b6889-itly-idle-renderer-boundary-firefox/error-context.md",
+      "sha256": "9c8793c8ebbe6ffceafbe8fb5b4e90bf43a6addcde29296648ab7db148a38174"
+    },
+    "screenshot": {
+      "path": "audit/2026-10-21/.playwright-artifacts-final19-isolated/opening-worker-native-work-b6889-itly-idle-renderer-boundary-firefox/test-failed-1.png",
+      "bytes": 95532,
+      "sha256": "e3b320ef010cb86fad2a6da66ed55804f9e105b8b66994d5c7a1c0b12f2d9ef3",
+      "visuallyReviewed": true,
+      "content": "Controlled public introduction without any signed-in identity or private typed passage.",
+      "publication": "Nested original remains ignored; this receipt records its bounded visual observation and provenance."
+    }
+  },
+  "sourceBindings": {
+    "e2e/opening-worker.spec.ts": "a6a9186ab4d992d4b735a922dd5e9770c62d2fc48a1efcd7a14af929d731fc71"
+  },
+  "recommendation": "Finish the original matrix and independently inspect its native-worker-receipts attachment before diagnosing worker startup. Preserve the failed five-second readiness assertions and their unreached disposal checks. A separate unchanged four-engine confirmation may distinguish reproducibility, but cannot overwrite these failures or establish their cause."
+}

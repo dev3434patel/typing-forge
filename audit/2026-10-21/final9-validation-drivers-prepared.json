@@ -1,0 +1,315 @@
+{
+  "status": "PREPARED-NOT-RUN",
+  "preparedAt": "2026-10-21T18:49:00.483Z",
+  "scope": "Audit drivers/protocol only. No runtime/e2e/product edits; no builds, browsers, DB or driver execution. Node --check parses scripts without running them.",
+  "requiredSource": "audit/2026-10-21/final9-source.json",
+  "actualFinal9BuildId": null,
+  "expectedBuildBinding": "Fail closed until actual frozen final9 build identity is supplied; no assumption of frontend byte identity.",
+  "changes": "Only literal final8→final9 and FINAL8→FINAL9 source/output/environment references. All lines, input actions, thresholds, browser scheduling, assertions and timeout logic preserved exactly after reverse-normalization.",
+  "originalsPreserved": true,
+  "files": [
+    {
+      "source": "audit/2026-10-21/run-final8-static.mjs",
+      "target": "audit/2026-10-21/run-final9-static.mjs",
+      "sourceSha256": "1409fe757f7757b1ec94ea2b01a22881fb16e4ca3da7ca68ec8508d5067f4bab",
+      "targetSha256": "55861da44a884436bc71332e8b6fdbfeebca5d7bf5e0bdc7174fea1ba63ac56f",
+      "referenceOnlyNormalizedEqual": true,
+      "changedLines": [
+        {
+          "line": 12,
+          "before": "const prefix = process.argv[2] || 'final8';",
+          "after": "const prefix = process.argv[2] || 'final9';"
+        },
+        {
+          "line": 13,
+          "before": "assert.match(prefix, /^final8(?:-[a-z0-9]+)*$/);",
+          "after": "assert.match(prefix, /^final9(?:-[a-z0-9]+)*$/);"
+        },
+        {
+          "line": 14,
+          "before": "assert.equal(process.argv.length <= 3, true, 'Only an optional unique final8 prefix is accepted.');",
+          "after": "assert.equal(process.argv.length <= 3, true, 'Only an optional unique final9 prefix is accepted.');"
+        },
+        {
+          "line": 16,
+          "before": "const sourceFile = 'audit/2026-10-21/final8-source.json';",
+          "after": "const sourceFile = 'audit/2026-10-21/final9-source.json';"
+        },
+        {
+          "line": 17,
+          "before": "const expectedBuild = process.env.SPAROWTYPE_FINAL8_BUILD_ID;",
+          "after": "const expectedBuild = process.env.SPAROWTYPE_FINAL9_BUILD_ID;"
+        },
+        {
+          "line": 18,
+          "before": "assert.match(expectedBuild ?? '', /^[a-f0-9]{20}$/, 'Supply the actual frozen final8 build ID explicitly after source/build acceptance.');",
+          "after": "assert.match(expectedBuild ?? '', /^[a-f0-9]{20}$/, 'Supply the actual frozen final9 build ID explicitly after source/build acceptance.');"
+        },
+        {
+          "line": 33,
+          "before": "assert.deepEqual(initial.receipt.mismatches, [], 'The product must still match the declared final8 source.');",
+          "after": "assert.deepEqual(initial.receipt.mismatches, [], 'The product must still match the declared final9 source.');"
+        },
+        {
+          "line": 35,
+          "before": "assert.deepEqual(JSON.parse(defaultBuild), initial.frozen.local, 'The default artifact must remain final8.');",
+          "after": "assert.deepEqual(JSON.parse(defaultBuild), initial.frozen.local, 'The default artifact must remain final9.');"
+        }
+      ],
+      "syntaxCheck": {
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "--check",
+          "audit/2026-10-21/run-final9-static.mjs"
+        ],
+        "exitCode": 0
+      }
+    },
+    {
+      "source": "audit/2026-10-21/run-mobile-workspaces-static-final8.mjs",
+      "target": "audit/2026-10-21/run-mobile-workspaces-static-final9.mjs",
+      "sourceSha256": "dce7ad6a2d9e6081b5e1eade9244d7bc89970017b3dbe427039e74a653c3b275",
+      "targetSha256": "0920a0d6e255b63c6dffaa0fb8f20c5dee0e9a07b9e854af45ca77c623b2085d",
+      "referenceOnlyNormalizedEqual": true,
+      "changedLines": [
+        {
+          "line": 15,
+          "before": "const prefix = process.argv[2] || 'mobile-workspaces-final8-static';",
+          "after": "const prefix = process.argv[2] || 'mobile-workspaces-final9-static';"
+        },
+        {
+          "line": 16,
+          "before": "assert.match(prefix, /^mobile-workspaces-final8-static(?:-[a-z0-9]+)*$/);",
+          "after": "assert.match(prefix, /^mobile-workspaces-final9-static(?:-[a-z0-9]+)*$/);"
+        },
+        {
+          "line": 18,
+          "before": "const directory = 'dist-static-final8-vercel';",
+          "after": "const directory = 'dist-static-final9-vercel';"
+        },
+        {
+          "line": 19,
+          "before": "const sourceFile = `${audit}/final8-source.json`;",
+          "after": "const sourceFile = `${audit}/final9-source.json`;"
+        },
+        {
+          "line": 20,
+          "before": "const sourceIdentity = process.env.SPAROWTYPE_FINAL8_BUILD_ID;",
+          "after": "const sourceIdentity = process.env.SPAROWTYPE_FINAL9_BUILD_ID;"
+        },
+        {
+          "line": 22,
+          "before": "const artifactIdentity = process.env.SPAROWTYPE_FINAL8_STATIC_BUILD_ID;",
+          "after": "const artifactIdentity = process.env.SPAROWTYPE_FINAL9_STATIC_BUILD_ID;"
+        },
+        {
+          "line": 25,
+          "before": "const driver = `${audit}/measure-mobile-workspaces-static-final8.mjs`;",
+          "after": "const driver = `${audit}/measure-mobile-workspaces-static-final9.mjs`;"
+        },
+        {
+          "line": 37,
+          "before": "  [\"process.argv[2] ?? 'mobile-workspaces'\", \"process.argv[2] ?? 'mobile-workspaces-final8-static'\"],",
+          "after": "  [\"process.argv[2] ?? 'mobile-workspaces'\", \"process.argv[2] ?? 'mobile-workspaces-final9-static'\"],"
+        },
+        {
+          "line": 38,
+          "before": "  ['`${directory}/mobile-workspaces-protocol.json`', '`${directory}/mobile-workspaces-final8-static-protocol.json`'],",
+          "after": "  ['`${directory}/mobile-workspaces-protocol.json`', '`${directory}/mobile-workspaces-final9-static-protocol.json`'],"
+        },
+        {
+          "line": 39,
+          "before": "  ['`${directory}/after-1-build.json`', '`${directory}/mobile-workspaces-final8-static-build.json`'],",
+          "after": "  ['`${directory}/after-1-build.json`', '`${directory}/mobile-workspaces-final9-static-build.json`'],"
+        },
+        {
+          "line": 59,
+          "before": "const historicalArtifactVerification = JSON.parse(await readFile(`${audit}/final8-static-artifacts.json`, 'utf8'));",
+          "after": "const historicalArtifactVerification = JSON.parse(await readFile(`${audit}/final9-static-artifacts.json`, 'utf8'));"
+        }
+      ],
+      "syntaxCheck": {
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "--check",
+          "audit/2026-10-21/run-mobile-workspaces-static-final9.mjs"
+        ],
+        "exitCode": 0
+      }
+    },
+    {
+      "source": "audit/2026-10-21/measure-mobile-workspaces-static-final8.mjs",
+      "target": "audit/2026-10-21/measure-mobile-workspaces-static-final9.mjs",
+      "sourceSha256": "b1b8c3c1bb190262ddc0328cc4ed9691252432618d5b89d7e30ac2fb582beadf",
+      "targetSha256": "e6b8bce4adb9c45aa1bda1bb761ba5a46817c831e374db5d42b74d19337570fb",
+      "referenceOnlyNormalizedEqual": true,
+      "changedLines": [
+        {
+          "line": 7,
+          "before": "const prefix = process.argv[2] ?? 'mobile-workspaces-final8-static';",
+          "after": "const prefix = process.argv[2] ?? 'mobile-workspaces-final9-static';"
+        },
+        {
+          "line": 9,
+          "before": "const protocolFile = process.argv[3] ?? `${directory}/mobile-workspaces-final8-static-protocol.json`;",
+          "after": "const protocolFile = process.argv[3] ?? `${directory}/mobile-workspaces-final9-static-protocol.json`;"
+        },
+        {
+          "line": 11,
+          "before": "const buildFile = protocol.buildFile ?? `${directory}/mobile-workspaces-final8-static-build.json`;",
+          "after": "const buildFile = protocol.buildFile ?? `${directory}/mobile-workspaces-final9-static-build.json`;"
+        }
+      ],
+      "syntaxCheck": {
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "--check",
+          "audit/2026-10-21/measure-mobile-workspaces-static-final9.mjs"
+        ],
+        "exitCode": 0
+      }
+    },
+    {
+      "source": "audit/2026-10-21/standalone-placement-real135-final8.mjs",
+      "target": "audit/2026-10-21/standalone-placement-real135-final9.mjs",
+      "sourceSha256": "45aeeb9aeaf7c65b8940637417babf4a764bfc3d90edc1a24cd4b26d76a7d7e0",
+      "targetSha256": "7919e99c7719927303bea78f84f496cfe041ec90cb2e54fa9f149098573ec8dc",
+      "referenceOnlyNormalizedEqual": true,
+      "changedLines": [
+        {
+          "line": 28,
+          "before": "const prefix = options['--prefix'] || `final8-placement-real135-${Date.now()}`;",
+          "after": "const prefix = options['--prefix'] || `final9-placement-real135-${Date.now()}`;"
+        },
+        {
+          "line": 29,
+          "before": "assert.match(prefix, /^final8-placement-[a-z0-9-]{1,80}$/);",
+          "after": "assert.match(prefix, /^final9-placement-[a-z0-9-]{1,80}$/);"
+        },
+        {
+          "line": 33,
+          "before": "const frozenPath = path.join(root, 'audit/2026-10-21/final8-source.json');",
+          "after": "const frozenPath = path.join(root, 'audit/2026-10-21/final9-source.json');"
+        },
+        {
+          "line": 37,
+          "before": "assert.match(process.env.SPAROWTYPE_FINAL8_BUILD || '', /^[a-f0-9]{20}$/, 'The frozen final8 build identity must be supplied explicitly.');",
+          "after": "assert.match(process.env.SPAROWTYPE_FINAL9_BUILD || '', /^[a-f0-9]{20}$/, 'The frozen final9 build identity must be supplied explicitly.');"
+        },
+        {
+          "line": 38,
+          "before": "assert.equal(build.version, process.env.SPAROWTYPE_FINAL8_BUILD);",
+          "after": "assert.equal(build.version, process.env.SPAROWTYPE_FINAL9_BUILD);"
+        },
+        {
+          "line": 53,
+          "before": "assert.deepEqual(before.mismatches, [], 'Product source must match frozen final8.');",
+          "after": "assert.deepEqual(before.mismatches, [], 'Product source must match frozen final9.');"
+        }
+      ],
+      "syntaxCheck": {
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "--check",
+          "audit/2026-10-21/standalone-placement-real135-final9.mjs"
+        ],
+        "exitCode": 0
+      }
+    },
+    {
+      "source": "audit/2026-10-21/run-boss-duel-duration-final8.mjs",
+      "target": "audit/2026-10-21/run-boss-duel-duration-final9.mjs",
+      "sourceSha256": "b0c500153c0f364a3678b36354e1e83faeca4e8c7dc1e70e04bb801024d37db6",
+      "targetSha256": "144a79d289d3f086086e5b304919a0e3fa5760a74d8072bdfb61ab9915653d63",
+      "referenceOnlyNormalizedEqual": true,
+      "changedLines": [
+        {
+          "line": 10,
+          "before": "const prefix = process.argv[2] || 'boss-duel-final8';",
+          "after": "const prefix = process.argv[2] || 'boss-duel-final9';"
+        },
+        {
+          "line": 12,
+          "before": "const protocolFile = process.argv[3] || `${directory}/boss-duel-final8-protocol.json`;",
+          "after": "const protocolFile = process.argv[3] || `${directory}/boss-duel-final9-protocol.json`;"
+        },
+        {
+          "line": 16,
+          "before": "assert.equal(protocol.expectedBuildEnv, 'SPAROWTYPE_FINAL8_BUILD');",
+          "after": "assert.equal(protocol.expectedBuildEnv, 'SPAROWTYPE_FINAL9_BUILD');"
+        },
+        {
+          "line": 17,
+          "before": "protocol.expectedBuild = process.env.SPAROWTYPE_FINAL8_BUILD;",
+          "after": "protocol.expectedBuild = process.env.SPAROWTYPE_FINAL9_BUILD;"
+        },
+        {
+          "line": 18,
+          "before": "assert.match(protocol.expectedBuild || '', /^[a-f0-9]{20}$/, 'The frozen final8 build identity must be supplied explicitly.');",
+          "after": "assert.match(protocol.expectedBuild || '', /^[a-f0-9]{20}$/, 'The frozen final9 build identity must be supplied explicitly.');"
+        }
+      ],
+      "syntaxCheck": {
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "--check",
+          "audit/2026-10-21/run-boss-duel-duration-final9.mjs"
+        ],
+        "exitCode": 0
+      }
+    },
+    {
+      "source": "audit/2026-10-21/boss-duel-final8-protocol.json",
+      "target": "audit/2026-10-21/boss-duel-final9-protocol.json",
+      "sourceSha256": "db9b66e5f11e42dd9b3baf3ec64f467b8f1c9af5e6354f8eac719239e3bb9ef3",
+      "targetSha256": "3906dc72d03e686cb05f469f2e9d1bb070dfbee9c6c259eaf1435a0358a5c76d",
+      "referenceOnlyNormalizedEqual": true,
+      "changedLines": [
+        {
+          "line": 4,
+          "before": "  \"buildFile\": \"audit/2026-10-21/final8-source.json\",",
+          "after": "  \"buildFile\": \"audit/2026-10-21/final9-source.json\","
+        },
+        {
+          "line": 54,
+          "before": "  \"expectedBuildEnv\": \"SPAROWTYPE_FINAL8_BUILD\"",
+          "after": "  \"expectedBuildEnv\": \"SPAROWTYPE_FINAL9_BUILD\""
+        }
+      ],
+      "syntaxCheck": {
+        "kind": "JSON.parse",
+        "passed": true
+      }
+    }
+  ],
+  "preservedHistoricalMobile": {
+    "originalProtocol": "audit/2026-10-21/mobile-workspaces-final7-protocol.json",
+    "failedNormalReport": "audit/2026-10-21/mobile-workspaces-final7.json",
+    "reason": "Original normal frontend mobile failure/evidence remains the comparative baseline; final9 static execution is separately declared and must not relabel it."
+  },
+  "requiredEnvironment": {
+    "static": [
+      "SPAROWTYPE_STATIC_ACCEPTANCE=1",
+      "SPAROWTYPE_FINAL9_BUILD_ID=<actual final9-source.json.local.version>"
+    ],
+    "mobile": [
+      "SPAROWTYPE_MOBILE_STATIC_ACCEPTANCE=1",
+      "SPAROWTYPE_FINAL9_BUILD_ID=<actual final9-source.json.local.version>",
+      "SPAROWTYPE_FINAL9_STATIC_BUILD_ID=<actual dist-static-final9-vercel/offline-build.json.version after static verifier PASS>"
+    ],
+    "placement": [
+      "SPAROWTYPE_PLACEMENT_ACCEPTANCE=1",
+      "SPAROWTYPE_FINAL9_BUILD=<actual final9-source.json.local.version>"
+    ],
+    "boss": [
+      "SPAROWTYPE_FINAL9_BUILD=<actual final9-source.json.local.version>"
+    ]
+  },
+  "commands": [
+    "node audit/2026-10-21/run-final9-static.mjs final9",
+    "node audit/2026-10-21/run-mobile-workspaces-static-final9.mjs mobile-workspaces-final9-static",
+    "node audit/2026-10-21/standalone-placement-real135-final9.mjs --prefix final9-placement-real135-first",
+    "node audit/2026-10-21/run-boss-duel-duration-final9.mjs boss-duel-final9 audit/2026-10-21/boss-duel-final9-protocol.json"
+  ],
+  "hold": "Do not execute until parent assigns a coordinated window and the actual final9 freeze/build exists. No final8 or final7 result is recast as final9."
+}

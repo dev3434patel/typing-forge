@@ -88,25 +88,26 @@ function candidate(room, owner, { count = 4, final = false, elapsed = 1000, id =
   mono = elapsed;
   return final ? controller.finish(elapsed === configuration.durationMs ? 'timeout' : 'manual') : controller.checkpoint();
 }
-function rankedCandidate(challenge, owner, overrides = {}, id = randomUUID(), inputPattern = 'ordinary') {
+function rankedCandidate(challenge, owner, overrides = {}, id = randomUUID(), inputPattern = 'ordinary', startOffsetMs = 0) {
   let mono = 0;
-  const start = Date.parse(challenge.starts_at);
+  const start = Date.parse(challenge.starts_at) + startOffsetMs;
   const configuration = { ...challenge.configuration, ...overrides, clientSessionId: id, ownerScope: owner,
     initialTarget: challenge.target_text, challengeId: challenge.id, privacy: 'public-corpus' };
   const controller = new SessionController(configuration, { now: () => mono, wallNow: () => start + mono });
-  if (!configuration.startImmediately) controller.startAt(0, start);
+  const firstInput = configuration.settings?.timingPolicy === 'first-input-v1';
+  if (!firstInput && !configuration.startImmediately) controller.startAt(0, start);
   if (inputPattern === 'oversizedPersonal') {
     for (let index = 0; index < 6; index++) {
-      mono = 100 + index*80;
+      mono = (firstInput ? 0 : 100) + index*80;
       controller.input({ type: 'insert', text: '#'.repeat(index === 5 ? 1 : 4000) });
     }
   } else if (inputPattern === 'bulk') {
-    mono = 100;
+    mono = firstInput ? 0 : 100;
     controller.input({ type: 'insert', text: challenge.target_text.slice(0,100) });
   } else {
     const count = { ordinary: challenge.target_text.indexOf(' ')+1, zeroGap: 90, headline: 900, attempt: 900, legitimateFast: 300 }[inputPattern];
     for (let index = 0; index < count; index++) {
-      mono = inputPattern === 'zeroGap' ? 100 : inputPattern === 'ordinary' ? 100+index*80 : 100+index*(inputPattern === 'legitimateFast' ? 49 : 16);
+      mono = (firstInput ? 0 : 100) + (inputPattern === 'zeroGap' ? 0 : inputPattern === 'ordinary' ? index*80 : index*(inputPattern === 'legitimateFast' ? 49 : 16));
       controller.input({ type: 'insert', text: inputPattern === 'attempt' ? '#' : challenge.target_text[index] });
     }
   }
@@ -267,6 +268,33 @@ try {
   const retried = await host.call('/sessions', { candidate: ranked, cloudConsent: false });
   assert.equal(retried.accepted.payloadHash, submitted.accepted.payloadHash);
   await host.call('/sessions', { candidate: rankedCandidate(challenge, users[0].id), cloudConsent: false }, 422);
+  accept(stage);
+  stage = 'independent first-input preparation and receipt boundaries, with legacy fixed start retained';
+  for (const pattern of ['before-open','after-last-start','early-receipt','late-receipt','late-first-text']) {
+    const issued = (await outsider.call('/challenges/issue', { duration: 15 })).challenge;
+    assert.equal(issued.configuration.settings.timingPolicy, 'first-input-v1');
+    assert.equal(issued.configuration.contentRevision, 'forge-ranked-en-v2');
+    const retimed = fixture('challenge-time', { challengeId: issued.id, ...(pattern === 'late-receipt' ? { ageAfterDeadlineMs: 4000 } : {}), ...(pattern === 'after-last-start' ? { expiresOffsetMs: -100 } : {}) });
+    Object.assign(issued, retimed.challenge);
+    const shift = pattern === 'before-open' ? -1 : pattern === 'early-receipt' ? 2000 : pattern === 'after-last-start' ? Date.parse(issued.expires_at) - 15000 + 1 - Date.parse(issued.starts_at) : 0;
+    const rejected = structuredClone(rankedCandidate(issued, users[2].id, {}, randomUUID(), 'ordinary', shift));
+    if (pattern === 'late-first-text') rejected.events[0].offsetMs = 1;
+    const response = await outsider.call('/sessions', { candidate: rejected, cloudConsent: false }, 422);
+    assert.equal(response.error.code, 'challenge-mismatch');
+  }
+  const waited = (await outsider.call('/challenges/issue', { duration: 15 })).challenge;
+  Object.assign(waited, fixture('challenge-time', { challengeId: waited.id, ageAfterDeadlineMs: 8000 }).challenge);
+  const firstInput = rankedCandidate(waited, users[2].id, {}, randomUUID(), 'ordinary', 7000);
+  assert.equal(firstInput.events[0].offsetMs, 0);
+  assert.equal(firstInput.startedAtWall, Date.parse(waited.starts_at) + 7000);
+  assert.equal((await outsider.call('/sessions', { candidate: firstInput, cloudConsent: false })).accepted.eligibility.eligible, true);
+  const old = (await outsider.call('/challenges/issue', { duration: 15 })).challenge;
+  Object.assign(old, fixture('challenge-time', { challengeId: old.id, legacy: true }).challenge);
+  const fixed = rankedCandidate(old, users[2].id);
+  assert.equal(fixed.events[0].offsetMs, 100);
+  const moved = structuredClone(fixed); moved.startedAtWall++; moved.finishedAtWall++;
+  await outsider.call('/sessions', { candidate: moved, cloudConsent: false }, 422);
+  assert.equal((await outsider.call('/sessions', { candidate: fixed, cloudConsent: false })).accepted.eligibility.eligible, true);
   accept(stage);
 } catch (cause) {
   failure = cause;

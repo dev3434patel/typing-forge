@@ -1,0 +1,36 @@
+{
+  "capturedAt": "2026-10-21T19:11:08.770Z",
+  "status": "PASS-SCOPED-SSR-MARKUP-PARITY",
+  "baselineSourceSha256": "93ce31579994ab71808606ba81ec79f2e7aa95d70cfff2fa755f7c342e1239c6",
+  "baselineMatchesFrozenFinal9": true,
+  "currentSourceSha256": "44f89586d5972feb3ece3d7d63f906ab3517ba503a9820e8e6b114aca3af0f3c",
+  "cases": 31,
+  "exactHtmlEqual": true,
+  "fixture": "src/components/typing/__fixtures__/live-keyboard-render-v1.json",
+  "firstCaptureAttempt": {
+    "status": "FAILED-HARNESS-COMPILATION-MODE",
+    "error": "ReferenceError React is not defined; standalone esbuild default classic JSX differed from application automatic JSX. Temporary files cleaned; no fixture/output existed. Corrected JSX compiler setting only."
+  },
+  "scope": "Standalone compilation + server rendering only, no browser/build/performance run. Markup equivalence does not prove runtime speed.",
+  "validation": {
+    "completedAt": "2026-10-21T19:12:24.507Z",
+    "focusedUnits": {
+      "files": 2,
+      "passed": 46,
+      "failed": 0,
+      "command": "npx vitest run src/components/typing/LiveKeyboard.test.tsx src/lib/__tests__/live-keyboard.test.ts"
+    },
+    "appTypeScript": {
+      "exitCode": 0,
+      "command": "npx tsc -p tsconfig.app.json --noEmit"
+    },
+    "scopedLint": {
+      "exitCode": 0,
+      "command": "npx eslint src/components/typing/LiveKeyboard.tsx src/components/typing/LiveKeyboard.test.tsx"
+    },
+    "browsers": false,
+    "builds": false,
+    "profiles": false
+  },
+  "sourceFreeze": true
+}

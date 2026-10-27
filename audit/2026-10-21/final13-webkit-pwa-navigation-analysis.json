@@ -1,0 +1,92 @@
+{
+  "recordedAt": "2026-10-22T18:44:44.426Z",
+  "status": "PARTIAL",
+  "scope": "Source13 WebKit PWA diagnosis only; no product mutation, browser acceptance or performance claim.",
+  "receipt": "final13-webkit-pwa-navigation-diagnostic.json",
+  "runner": "final13-webkit-pwa-navigation-diagnostic.mjs",
+  "build": "b00993b05c14117dca60",
+  "run": {
+    "attempts": 1,
+    "elapsedMs": 16232.603,
+    "engine": "Playwright 1.64.1 / WebKit 27.2, configured revision2370",
+    "automaticRetries": 0,
+    "nativePromiseSettlementInterception": false,
+    "pageErrorFiltering": false,
+    "ownedBrowserClosed": true,
+    "ownedServerClosed": true,
+    "originalServicesAndDatabasesUntouched": true
+  },
+  "findings": [
+    {
+      "id": "CONTROL",
+      "observation": "All three CacheStorage/Cache calls and same-origin worker registration fulfilled, with no pageerror in the fresh no-navigation control.",
+      "conclusion": "The loopback worker and CacheStorage operations are valid in this exact installed browser."
+    },
+    {
+      "id": "REGISTRATION-BOUNDARY",
+      "observation": "Held replacement request, still-live old document: beforeunload2597.052ms; replacement request arrived2597.684ms; gate acknowledged2597.837ms; native registration entry2602.789ms; access-control pageerror2604.276ms; old pagehide2630.673ms. Old document id matched its preserved JSHandle.",
+      "result": "SecurityError caught by the deliberate fixture; native pageerror still emitted. No worker-script ingress occurred for that rejected registration.",
+      "conclusion": "This installed WebKit reproduces native access-control pageerror when same-origin serviceWorker.register starts after provisional navigation begins. Promise catch does not prevent the native diagnostic. Pagehide/visibility-only departure handling is too late for this proven cell."
+    },
+    {
+      "id": "CACHE-BOUNDARY",
+      "observation": "CacheStorage.keys/open and Cache.match all fulfilled in the same held old document.",
+      "conclusion": "The historical Context-is-stopped cache failure was NOT reproduced or attributed by this run."
+    },
+    {
+      "id": "IN-FLIGHT",
+      "observation": "Registration started before navigation; worker script response was held until replacement ingress. Registration rejected with caught TypeError; no pageerror. Script response completion was not observed.",
+      "conclusion": "Not all registration cancellations emit the retained access-control error; request initiation order matters. This is not successful-registration proof."
+    },
+    {
+      "id": "FROZEN-APP",
+      "observation": "Unchanged source13 dist, served by the owned SPA fixture:20 hard route/reload observations, allHTTP200 and visible main within original5000ms, no pageerror. Explicit API503 fixture; no backend or frontend-only deployment acceptance.",
+      "conclusion": "The original frozen-app failure was not reproduced. Tiny-cell proof does not identify which application callback emitted either historical native error."
+    },
+    {
+      "id": "INTEGRITY",
+      "observation": "All496 frozen source hashes and134 dist file hashes unchanged before/after.",
+      "conclusion": "Production source13 and its full3D artifact were not modified by diagnosis."
+    }
+  ],
+  "proposedFixDirection": {
+    "status": "DESIGN-ONLY-REQUIRES-PARENT-FIX-WINDOW",
+    "provenMinimalNeed": "Avoid initiating new native PWA operations from a departing document. The registration cell establishes beforeunload is earlier than the failing operation, whereas pagehide is later.",
+    "lifecycleRequirements": [
+      "Establish lifetime observation before delayed PwaStatus/startPwa work; a listener added only after beforeunload has already fired cannot fence late startup.",
+      "Invalidate registration generation and detach callbacks at departure; check the lifetime before each native operation across awaited cache stages, not only after hasOfflineApp resolves.",
+      "Preserve BFCache restoration with pageshow ownership and handle canceled navigation safely; do not leave a still-visible document permanently disabled.",
+      "Do not filter native errors, catch unrelated global errors, disable service workers, alter acceptance budgets, or replace original promises for diagnosis.",
+      "If cache error is independently bound to page-side readiness reads, consider worker-owned readiness via bounded MessageChannel/event.waitUntil; current evidence does not justify claiming that mechanism is already proven."
+    ],
+    "requiredValidation": [
+      "Meaningful lifecycle units: late startup after departure, registration settlement after departure, cache await between stages, duplicate cleanup, BFCache return and canceled-navigation recovery.",
+      "Deterministic controlled browser regression that tests production lifecycle ownership at the held replacement boundary, retains unfiltered pageerrors and proves native operation not entered.",
+      "Original static-deployment matrix with unchanged deadlines/errors assertion, preserved historical failures and new explicit receipts."
+    ]
+  },
+  "limitations": [
+    "ENTER-only wrappers and lifecycle logging change scheduling; zero errors in one frozen-app cell does not prove absence of the historical race.",
+    "Control and held cells deliberately call native APIs from a synthetic fixture, so this is engine-mechanism reproduction, not source13 application-callback attribution.",
+    "No raw traces, request headers, credentials, cache payloads, cookies or private user data were recorded.",
+    "Primary-source mapping below is supporting context, not an exact installed-engine commit assertion."
+  ],
+  "primarySources": [
+    {
+      "url": "https://github.com/microsoft/playwright/issues/43120",
+      "type": "Official Playwright issue reproduction, opened2026-10-05; reports provisional-document non-keepalive cancellation mapped to access-control diagnostics. A reproduction comment is from the official github-actions bot; it is not treated as independent human maintainer confirmation."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/WebKit/WebKit/56453fdfe0b0ca6258c23e6453b34f70b885d13f/Source/WebCore/Modules/cache/DOMCacheEngine.cpp",
+      "type": "Official pinned WebKit source: Cache errorStopped converts to TypeError Context is stopped and can be logged as JS-source console error separately from promise rejection."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/WebKit/WebKit/56453fdfe0b0ca6258c23e6453b34f70b885d13f/Source/WebCore/Modules/cache/DOMCacheStorage.cpp",
+      "type": "Official pinned WebKit cache-context lifetime paths."
+    },
+    {
+      "url": "https://playwright.dev/docs/service-workers",
+      "type": "Official Playwright documentation: service-worker inspection APIs Chromium-only; diagnostic uses page-side native APIs instead."
+    }
+  ]
+}

@@ -41,10 +41,15 @@ if ($action === 'check') {
     $challenge = $find->fetch();
     if (!$challenge || !in_array($challenge['user_id'], $ids, true)) throw new RuntimeException('The challenge is not owned by this fixture run.');
     $issued = Database::decode($challenge['configuration']);
-    $start = $now - $issued['durationMs'] - 1000;
-    $update = $db->prepare('UPDATE typing_challenges SET issued_at=?,starts_at=?,deadline_at=?,expires_at=? WHERE id=?');
-    $update->execute([Database::timestamp($start-3000),Database::timestamp($start),Database::timestamp($start+$issued['durationMs']),Database::timestamp($now+600000),$challenge['id']]);
-    echo Database::json(['start'=>round($start)]);
+    $age = $body['ageAfterDeadlineMs'] ?? 1000;
+    $expiryOffset = $body['expiresOffsetMs'] ?? 600000;
+    if (!is_int($age) || $age < 0 || $age > 10000 || !is_int($expiryOffset) || $expiryOffset < -1000 || $expiryOffset > 600000) throw new RuntimeException('Invalid bounded synthetic challenge timing.');
+    if (($body['legacy'] ?? false) === true) { $issued['contentRevision'] = 'forge-ranked-en-v1'; unset($issued['settings']); }
+    $start = (int) floor($now - $issued['durationMs'] - $age);
+    $deadline = Database::timestamp($start + $issued['durationMs']); $expires = Database::timestamp($now + $expiryOffset);
+    $update = $db->prepare('UPDATE typing_challenges SET configuration=?,issued_at=?,starts_at=?,deadline_at=?,expires_at=? WHERE id=?');
+    $update->execute([Database::json($issued),Database::timestamp($start-3000),Database::timestamp($start),$deadline,$expires,$challenge['id']]);
+    echo Database::json(['start'=>$start,'challenge'=>['configuration'=>$issued,'starts_at'=>Database::iso(Database::timestamp($start)),'deadline_at'=>Database::iso($deadline),'expires_at'=>Database::iso($expires)]]);
 } elseif ($action === 'hold-room') {
     $db->beginTransaction();
     $find = $db->prepare('SELECT host_id FROM race_sessions WHERE id=? FOR UPDATE');

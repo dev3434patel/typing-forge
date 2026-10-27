@@ -109,6 +109,8 @@
   outline-offset: 2px;
 }
 .live-keyboard-board {
+  /* Layout only: no size or paint containment. */
+  contain: layout;
   width: 100%;
   max-width: none;
   margin: 0;
@@ -148,9 +150,7 @@
   background: var(--forge-surface);
   font: 400 clamp(10px, 1.8vw, 13px) var(--font-mono);
   line-height: 1;
-  transition:
-    border-color 90ms ease,
-    transform 90ms ease;
+  transition: transform 90ms ease;
 }
 .live-key-label {
   display: flex;
@@ -160,6 +160,13 @@
   justify-content: center;
   gap: 3px;
 }
+[data-keycaps="flat"] .live-key { border-bottom-width: 1px; border-radius: 4px; }
+[data-keycaps="outline"] .live-key { background: transparent; border-bottom-width: 1px; border-radius: 12px; }
+[data-key-ripple="true"] .live-key[data-pressed-key="true"]::after { content: ""; position: absolute; inset: 15%; pointer-events: none; border: 1px solid var(--forge-accent); border-radius: inherit; animation: practice-key-ripple 240ms cubic-bezier(.2,0,0,1) both; }
+@keyframes practice-key-ripple { from { transform: scale(.6); opacity: .35; } to { transform: scale(1.4); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { [data-key-ripple="true"] .live-key::after { display: none; } }
+[data-reduced-motion="true"] .live-key::after { display: none; }
+[data-focus-mode="true"] .live-key::after { display: none; }
 .live-key-label-wide {
   font-family: "Inter Variable", system-ui, sans-serif;
   font-size: clamp(7px, 1.25vw, 10px);

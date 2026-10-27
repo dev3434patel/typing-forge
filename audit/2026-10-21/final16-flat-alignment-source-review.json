@@ -1,0 +1,83 @@
+{
+  "capturedAt": "2026-10-22T19:49:42.458793+00:00",
+  "reportLocalDate": "2026-10-23",
+  "status": "PASS-SCOPED",
+  "scope": "Source16 primary flat Alignment freezer only; focused correctness/type/lint and exact reverse-edit source fidelity. Not an integrated16 source/build/browser/native/performance pass.",
+  "baselineSourceFile": "audit/2026-10-21/final15-source.json",
+  "frozenBaselineBuild": "7ef96ccd3c02d170a757",
+  "candidateBuild": null,
+  "hashNormalization": "UTF-8 source with CRLF normalized to LF, exactly matching frozen-source manifest convention.",
+  "baselineSessionSha256": "c21ce6b38ce3dee2fee11557d94e03c4309b8f7c52d1b05fac665fb5943b04f7",
+  "currentSessionSha256": "8238f5b70cac38b82c7337c7a1f2275ba5ed5a4794fc06ed78c5063653ac3a34",
+  "reversedSessionSha256": "c21ce6b38ce3dee2fee11557d94e03c4309b8f7c52d1b05fac665fb5943b04f7",
+  "reverseEditRestoresExact15Session": true,
+  "canonicalMathReplayTimingRestoredByReverse": true,
+  "genericFreezeUnchanged": true,
+  "exactAddedDefinition": "type FlatAlignmentLeaf<T extends { [Key in keyof T]: string | number | boolean | null | undefined }> = T;\n/** Live alignment owns primitive leaves; preserve publication immutability without\n * recursive Object.values allocations. Configuration and final replay stay deep-frozen.\n */\nfunction freezePresentationAlignment(value: Alignment): Alignment {\n  for (let index = 0; index < value.characters.length; index++) {\n    const character: FlatAlignmentLeaf<Alignment['characters'][number]> = value.characters[index];\n    Object.freeze(character);\n  }\n  Object.freeze(value.characters);\n  Object.freeze(value.mapping);\n  for (let index = 0; index < value.words.length; index++) {\n    const word: FlatAlignmentLeaf<Alignment['words'][number]> = value.words[index];\n    Object.freeze(word);\n  }\n  Object.freeze(value.words);\n  return Object.freeze(value);\n}\n",
+  "soleCallReplacement": {
+    "count": 1,
+    "before": "freeze(alignTranscript(targetGraphemes(this.target), this.state.units, this.configuration.scoringPolicy!, false, this.state.submissions))",
+    "after": "freezePresentationAlignment(alignTranscript(targetGraphemes(this.target), this.state.units, this.configuration.scoringPolicy!, false, this.state.submissions))"
+  },
+  "ownedSourceFiles": [
+    "src/lib/typing-core/session.ts",
+    "src/lib/typing-core/__tests__/live-projection.test.ts"
+  ],
+  "ownedSourceHashes": {
+    "src/lib/typing-core/session.ts": "8238f5b70cac38b82c7337c7a1f2275ba5ed5a4794fc06ed78c5063653ac3a34",
+    "src/lib/typing-core/__tests__/live-projection.test.ts": "df01eb6bf45cb99ea3f1cf1fec5b077478b73f57b9e6dccb826910463657bb22"
+  },
+  "implementation": {
+    "directFlatLeaves": [
+      "CharacterSlot.index/expected/typed/status",
+      "WordCreditTrace primitive fields"
+    ],
+    "frozenContainers": [
+      "characters",
+      "mapping",
+      "words",
+      "topAlignment"
+    ],
+    "compileTimeLeafShapeEnforced": "FlatAlignmentLeaf generic constraint rejects future nested slot/word field types; erased type, no runtime allocation.",
+    "genericConfigFinalCheckpointDeepFreeze": "unchanged",
+    "canonicalAlignReplayMetricClockEvidenceBodies": "unchanged by exact reverse restoration",
+    "optionalTargetWordsWeakMapApplied": false,
+    "prefixProjectionApplied": false,
+    "structuralSharingIntroduced": false
+  },
+  "focusedChecks": {
+    "summary": "audit/2026-10-21/final16-flat-freeze-checks-first.json",
+    "coreUnits": {
+      "passed": 157,
+      "files": 8,
+      "receipt": "audit/2026-10-21/final16-flat-freeze-core-first.log",
+      "newCases": 7
+    },
+    "typeScriptConfigurations": [
+      "app",
+      "node",
+      "domain",
+      "portable"
+    ],
+    "typeScriptAllExitZero": true,
+    "scopedLintExitCode": 0,
+    "scopedLintFiles": [
+      "src/lib/typing-core/session.ts",
+      "src/lib/typing-core/__tests__/live-projection.test.ts"
+    ],
+    "scopedDiffCheckExitCode": 0,
+    "automaticRetries": 0
+  },
+  "behaviorCovered": [
+    "Frozen published character arrays/slots reject mutation and retain historical values after edits",
+    "Time-only tick preserves character-array identity while rates change",
+    "Wrong virtual submission/reopen, deletion and retyped correction preserve historical attempt accuracy",
+    "Target extension publishes new target without mutating prior snapshots",
+    "Code tabs/newlines/errors, free extra slots, leading/consecutive/trailing prose spaces, Unicode NFC/ZWJ outputs match canonical replay",
+    "Later combining composition joins grapheme without mutating earlier frozen slots or forgiving wrong attempts",
+    "Finite partial finish independently creates missed slots; original live untyped slots remain, config/events/final deep freeze preserved"
+  ],
+  "productionSourceFrozenForOwner": true,
+  "remainingAcceptance": "Root integrated16 gates/build/delta, actual typing/mobile/full-browser/static/native/Lighthouse pending. No measured speedup, causal latency, field INP or hosted claim.",
+  "ownedJobsRemaining": 0
+}

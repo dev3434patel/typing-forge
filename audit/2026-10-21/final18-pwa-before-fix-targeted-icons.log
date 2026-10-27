@@ -1,0 +1,199 @@
+
+Running 16 tests using 1 worker
+
+(node:43644) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › e2e\pwa-snapshot-consistency.spec.ts:205:1 › actual PWA consumers read a snapshot published before their first render (598ms)
+  x   2 [chromium] › e2e\pwa-snapshot-consistency.spec.ts:216:1 › actual PWA consumers recover a publication between render and passive subscription (4.5s)
+(node:42264) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  3 [chromium] › e2e\pwa-snapshot-consistency.spec.ts:232:1 › actual PWA consumers observe a publication after both subscriptions exist (626ms)
+  ok  4 [chromium] › e2e\pwa-snapshot-consistency.spec.ts:246:1 › actual PWA consumers release both subscriptions when unmounted (521ms)
+(node:57020) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  5 [edge] › e2e\pwa-snapshot-consistency.spec.ts:205:1 › actual PWA consumers read a snapshot published before their first render (3.2s)
+  x   6 [edge] › e2e\pwa-snapshot-consistency.spec.ts:216:1 › actual PWA consumers recover a publication between render and passive subscription (6.3s)
+(node:59516) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  7 [edge] › e2e\pwa-snapshot-consistency.spec.ts:232:1 › actual PWA consumers observe a publication after both subscriptions exist (3.0s)
+  ok  8 [edge] › e2e\pwa-snapshot-consistency.spec.ts:246:1 › actual PWA consumers release both subscriptions when unmounted (2.0s)
+(node:29636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  9 [firefox] › e2e\pwa-snapshot-consistency.spec.ts:205:1 › actual PWA consumers read a snapshot published before their first render (9.3s)
+  x  10 [firefox] › e2e\pwa-snapshot-consistency.spec.ts:216:1 › actual PWA consumers recover a publication between render and passive subscription (6.8s)
+(node:12948) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 11 [firefox] › e2e\pwa-snapshot-consistency.spec.ts:232:1 › actual PWA consumers observe a publication after both subscriptions exist (2.9s)
+  ok 12 [firefox] › e2e\pwa-snapshot-consistency.spec.ts:246:1 › actual PWA consumers release both subscriptions when unmounted (3.8s)
+(node:7160) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 13 [webkit] › e2e\pwa-snapshot-consistency.spec.ts:205:1 › actual PWA consumers read a snapshot published before their first render (8.0s)
+  x  14 [webkit] › e2e\pwa-snapshot-consistency.spec.ts:216:1 › actual PWA consumers recover a publication between render and passive subscription (7.4s)
+(node:8140) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 15 [webkit] › e2e\pwa-snapshot-consistency.spec.ts:232:1 › actual PWA consumers observe a publication after both subscriptions exist (3.1s)
+  ok 16 [webkit] › e2e\pwa-snapshot-consistency.spec.ts:246:1 › actual PWA consumers release both subscriptions when unmounted (3.3s)
+
+
+  1) [chromium] › e2e\pwa-snapshot-consistency.spec.ts:216:1 › actual PWA consumers recover a publication between render and passive subscription 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 4
+    + Received  + 4
+
+      Object {
+    -   "bannerInstall": true,
+    -   "offlineAvailable": true,
+    -   "offlineInstall": true,
+    -   "offlineReady": true,
+    +   "bannerInstall": false,
+    +   "offlineAvailable": false,
+    +   "offlineInstall": false,
+    +   "offlineReady": false,
+      }
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      193 |     offlineReady: (await offline.getByRole("status").textContent()) === READY_MESSAGE,
+      194 |     offlineAvailable: await offline.getByText("Connection: online · Public download: available", { exact: true }).isVisible(),
+    > 195 |   })).toEqual({ bannerInstall: true, offlineInstall: true, offlineReady: true, offlineAvailable: true });
+          |       ^
+      196 | }
+      197 | function expectOwnedNetwork(observed: { errors: string[]; urls: string[] }) {
+      198 |   expect(observed.errors).toEqual([]);
+        at expectLatestBoth (D:\extra\typing_updated\typing-forge\e2e\pwa-snapshot-consistency.spec.ts:195:7)
+        at D:\extra\typing_updated\typing-forge\e2e\pwa-snapshot-consistency.spec.ts:228:9
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final18-pwa-before-fix-targeted-icons\pwa-snapshot-consistency-a-36ac3-er-and-passive-subscription-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final18-pwa-before-fix-targeted-icons\pwa-snapshot-consistency-a-36ac3-er-and-passive-subscription-chromium\error-context.md
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final18-pwa-before-fix-targeted-icons\pwa-snapshot-consistency-a-36ac3-er-and-passive-subscription-chromium\error-context.md
+
+  2) [edge] › e2e\pwa-snapshot-consistency.spec.ts:216:1 › actual PWA consumers recover a publication between render and passive subscription 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 4
+    + Received  + 4
+
+      Object {
+    -   "bannerInstall": true,
+    -   "offlineAvailable": true,
+    -   "offlineInstall": true,
+    -   "offlineReady": true,
+    +   "bannerInstall": false,
+    +   "offlineAvailable": false,
+    +   "offlineInstall": false,
+    +   "offlineReady": false,
+      }
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      193 |     offlineReady: (await offline.getByRole("status").textContent()) === READY_MESSAGE,
+      194 |     offlineAvailable: await offline.getByText("Connection: online · Public download: available", { exact: true }).isVisible(),
+    > 195 |   })).toEqual({ bannerInstall: true, offlineInstall: true, offlineReady: true, offlineAvailable: true });
+          |       ^
+      196 | }
+      197 | function expectOwnedNetwork(observed: { errors: string[]; urls: string[] }) {
+      198 |   expect(observed.errors).toEqual([]);
+        at expectLatestBoth (D:\extra\typing_updated\typing-forge\e2e\pwa-snapshot-consistency.spec.ts:195:7)
+        at D:\extra\typing_updated\typing-forge\e2e\pwa-snapshot-consistency.spec.ts:228:9
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final18-pwa-before-fix-targeted-icons\pwa-snapshot-consistency-a-36ac3-er-and-passive-subscription-edge\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final18-pwa-before-fix-targeted-icons\pwa-snapshot-consistency-a-36ac3-er-and-passive-subscription-edge\error-context.md
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final18-pwa-before-fix-targeted-icons\pwa-snapshot-consistency-a-36ac3-er-and-passive-subscription-edge\error-context.md
+
+  3) [firefox] › e2e\pwa-snapshot-consistency.spec.ts:216:1 › actual PWA consumers recover a publication between render and passive subscription 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 4
+    + Received  + 4
+
+      Object {
+    -   "bannerInstall": true,
+    -   "offlineAvailable": true,
+    -   "offlineInstall": true,
+    -   "offlineReady": true,
+    +   "bannerInstall": false,
+    +   "offlineAvailable": false,
+    +   "offlineInstall": false,
+    +   "offlineReady": false,
+      }
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      193 |     offlineReady: (await offline.getByRole("status").textContent()) === READY_MESSAGE,
+      194 |     offlineAvailable: await offline.getByText("Connection: online · Public download: available", { exact: true }).isVisible(),
+    > 195 |   })).toEqual({ bannerInstall: true, offlineInstall: true, offlineReady: true, offlineAvailable: true });
+          |       ^
+      196 | }
+      197 | function expectOwnedNetwork(observed: { errors: string[]; urls: string[] }) {
+      198 |   expect(observed.errors).toEqual([]);
+        at expectLatestBoth (D:\extra\typing_updated\typing-forge\e2e\pwa-snapshot-consistency.spec.ts:195:7)
+        at D:\extra\typing_updated\typing-forge\e2e\pwa-snapshot-consistency.spec.ts:228:9
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final18-pwa-before-fix-targeted-icons\pwa-snapshot-consistency-a-36ac3-er-and-passive-subscription-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final18-pwa-before-fix-targeted-icons\pwa-snapshot-consistency-a-36ac3-er-and-passive-subscription-firefox\error-context.md
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final18-pwa-before-fix-targeted-icons\pwa-snapshot-consistency-a-36ac3-er-and-passive-subscription-firefox\error-context.md
+
+  4) [webkit] › e2e\pwa-snapshot-consistency.spec.ts:216:1 › actual PWA consumers recover a publication between render and passive subscription 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 4
+    + Received  + 4
+
+      Object {
+    -   "bannerInstall": true,
+    -   "offlineAvailable": true,
+    -   "offlineInstall": true,
+    -   "offlineReady": true,
+    +   "bannerInstall": false,
+    +   "offlineAvailable": false,
+    +   "offlineInstall": false,
+    +   "offlineReady": false,
+      }
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      193 |     offlineReady: (await offline.getByRole("status").textContent()) === READY_MESSAGE,
+      194 |     offlineAvailable: await offline.getByText("Connection: online · Public download: available", { exact: true }).isVisible(),
+    > 195 |   })).toEqual({ bannerInstall: true, offlineInstall: true, offlineReady: true, offlineAvailable: true });
+          |       ^
+      196 | }
+      197 | function expectOwnedNetwork(observed: { errors: string[]; urls: string[] }) {
+      198 |   expect(observed.errors).toEqual([]);
+        at expectLatestBoth (D:\extra\typing_updated\typing-forge\e2e\pwa-snapshot-consistency.spec.ts:195:7)
+        at D:\extra\typing_updated\typing-forge\e2e\pwa-snapshot-consistency.spec.ts:228:9
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-10-21\.playwright-artifacts-final18-pwa-before-fix-targeted-icons\pwa-snapshot-consistency-a-36ac3-er-and-passive-subscription-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final18-pwa-before-fix-targeted-icons\pwa-snapshot-consistency-a-36ac3-er-and-passive-subscription-webkit\error-context.md
+
+    Error Context: audit\2026-10-21\.playwright-artifacts-final18-pwa-before-fix-targeted-icons\pwa-snapshot-consistency-a-36ac3-er-and-passive-subscription-webkit\error-context.md
+
+  4 failed
+    [chromium] › e2e\pwa-snapshot-consistency.spec.ts:216:1 › actual PWA consumers recover a publication between render and passive subscription 
+    [edge] › e2e\pwa-snapshot-consistency.spec.ts:216:1 › actual PWA consumers recover a publication between render and passive subscription 
+    [firefox] › e2e\pwa-snapshot-consistency.spec.ts:216:1 › actual PWA consumers recover a publication between render and passive subscription 
+    [webkit] › e2e\pwa-snapshot-consistency.spec.ts:216:1 › actual PWA consumers recover a publication between render and passive subscription 
+  12 passed (3.2m)

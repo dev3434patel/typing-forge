@@ -1,0 +1,82 @@
+{
+  "at": "2026-10-27T13:21:30.425Z",
+  "prefix": "final19",
+  "artifactPrefix": "final19",
+  "status": "PASS-SCOPED-PRESTAGE",
+  "scope": "Read-only snapshot after final jobs; no staging/commit/build/browser/service work. Refresh after later outputs or documentation updates.",
+  "manifest": "audit/2026-10-21/final19-prestage-paths.json",
+  "privacyScan": "audit/2026-10-21/final19-prestage-public-scan.json",
+  "git": {
+    "changedStaged": 85,
+    "expectedPriorStaged": 85,
+    "matchesPriorCount": true,
+    "unstagedModified": 111,
+    "untrackedUnignored": 1813,
+    "unsafeChangedIndexPaths": [],
+    "indexModifiedByTool": false
+  },
+  "diffChecks": {
+    "worktreeExitCode": 0,
+    "cachedExitCode": 0,
+    "detailsPrinted": false
+  },
+  "docs": {
+    "markdownFiles": 48,
+    "localLinks": 1315,
+    "missingMarkdownLinks": [],
+    "missingAuditReferences": [
+      {
+        "path": "audit/accuracy-research-2026-10-15/data-lint.txt",
+        "referencedBy": [
+          "docs/PRODUCT_VERIFICATION_2026-10-15.md"
+        ]
+      }
+    ],
+    "excludedPrivateOrExternalLocalReferences": [
+      {
+        "document": "docs/PERFORMANCE_POLISH_AUDIT_2026-10-16.md",
+        "reason": "Outside workspace or private/generated reference; target was not opened."
+      }
+    ],
+    "directoryLinksExcludedFromFileManifest": 5
+  },
+  "counts": {
+    "curatedTextFilesIncludingThisReview": 1955,
+    "ignoredExactFiles": 496,
+    "ignoredLogs": 496,
+    "referencedIgnoredFiles": 32,
+    "referencedUntrackedFiles": 395,
+    "eligibleExistingStaticPng": 96,
+    "conditionalCurrentStaticPng": 16
+  },
+  "evidenceFormat": {
+    "malformedJson": [],
+    "retainedTextTranscripts": [
+      {
+        "path": "audit/2026-10-21/pack-checkpoint-bundle-1.json",
+        "classification": "Historical command-output transcript with .json suffix; preserve exact original bytes, not a parsed JSON pass receipt."
+      }
+    ]
+  },
+  "pngScope": "Fresh guest frontend-only static-server Signal Run ready/playing captures. No account backend or private workspace. This establishes generator provenance; root still reviews completed selected pixels and receipts. No pending capture is marked verified.",
+  "stagingRecipe": [
+    "After all gates and docs reconciliation, git add -A -- the explicit productPaths only.",
+    "Create a unique UTF-8 NUL-separated manifest containing refreshed curatedTopLevelTextFiles plus individually reviewed exact PNG files, never directory links.",
+    "git add -f --pathspec-from-file=<own manifest> --pathspec-file-nul; remove only that owned single temporary manifest afterward.",
+    "Verify every final linked JSON/log/PNG is indexed, inspect git diff --cached --name-status, and run git diff --cached --check.",
+    "Preserve all earlier failed/partial receipts and historical tracked artifacts; do not invent missing evidence or imply hosted/device verification."
+  ],
+  "exclusions": [
+    "private backend configs",
+    "backend/storage",
+    "non-example .env files",
+    "hosting builds/archives/stages",
+    "dist/node_modules",
+    "nested Playwright traces/screenshots/reports/screencasts",
+    "archives",
+    "CPU profiles",
+    "hidden generated audit modules"
+  ],
+  "serviceBoundary": "No health inspection. Port8081 was previously absent; untouched does not mean healthy.",
+  "cleanupParagraph": "Automatic approval review blocked cleanup of two temporary audit folders (“blocked by policy”); they remain Git-ignored."
+}

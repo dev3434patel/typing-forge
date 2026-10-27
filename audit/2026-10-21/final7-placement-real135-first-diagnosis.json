@@ -1,0 +1,65 @@
+{
+  "status": "PARTIAL-DIAGNOSIS",
+  "scope": "Read-only source/receipt inspection only. No browser run, replayed fixture, source modification or automatic retry.",
+  "build": {
+    "version": "f3ac03affbc33168655a",
+    "publicFiles": 132,
+    "bytes": 2910866
+  },
+  "originalOutcome": "FAILED",
+  "rawReceipt": "audit/2026-10-21/final7-placement-real135-first-raw.json",
+  "failure": {
+    "stage": "verify private free-practice goal excludes placement evidence",
+    "name": "TimeoutError",
+    "code": "operation-failed",
+    "detail": "Named operation failed. Raw passage text, assertion values and request credentials are intentionally omitted."
+  },
+  "positiveScope": {
+    "namedChecksPassed": 65,
+    "namedChecksFailed": 0,
+    "completedRealParts": 3,
+    "realPlacementJourneyMs": 138575.543,
+    "nativeAttempts": [
+      100,
+      99,
+      97
+    ],
+    "inputAccuracy": [
+      100,
+      100,
+      100
+    ],
+    "guidanceAndThreeOriginalRecordsSurviveReload": true,
+    "courseCheckpointCount": 0
+  },
+  "selectorFinding": {
+    "classification": "SOURCE-SUPPORTED AUDIT SELECTOR DEFECT",
+    "driverReference": "audit/2026-10-21/standalone-placement-real135-final7.mjs:232",
+    "operation": "studio.getByLabel('Practice type', { exact: true }).selectOption('home-row')",
+    "uiReference": "src/components/analytics/TrainingStudio.tsx:82",
+    "explanation": "The implicit label contains its select and all option labels. Installed Playwright getElementLabels uses elementText(label), which recursively includes the option text. Its exact internal-label matcher therefore does not equal only Practice type. This is the first awaited operation in the failing stage, before Start free practice or the bounded-target named check.",
+    "installedPlaywrightReference": "node_modules/playwright-core/lib/coreBundle.js: injected getElementLabels, elementText, shouldSkipForTextMatching, _createInternalLabelEngine and strict createTextMatcher",
+    "productStateExplanation": "A full page reload precedes this stage. TrainingStudio initializes configuration to null and renders the choices under !configuration. Returning from the previous result with Back to practice choices is not required after that reload. No source evidence indicates that the actual select or free-practice button is disabled or unavailable.",
+    "proposedFutureAuditOnlyCorrection": "Use a role combobox locator with the accessible name Practice type, or a label prefix regular expression; validate selector in a separately declared finite-practice journey. Do not change the frozen first driver/receipt or product merely to obtain a pass.",
+    "observationLimit": "The first driver intentionally sanitizes exception details and records only the failing stage, not a Playwright call log or screenshot. The exact browser operation is inferred from first awaited operation and installed selector implementation; no fresh browser confirmation has occurred."
+  },
+  "stillUnverified": [
+    "Finite free-practice completion after the three placement parts",
+    "Browser-rendered private-goal isolation from those placement records",
+    "Overall combined driver acceptance"
+  ],
+  "cleanup": {
+    "ownedBrowserClosed": true,
+    "sourceFiles": 483,
+    "mismatches": [],
+    "driverUnchanged": true,
+    "dependenciesUnchanged": true,
+    "servedBuildUnchanged": true
+  },
+  "hashes": {
+    "rawSha256": "b25eb1d7201ba58b8257ecc795acdcdce9237ef116192f4ae0c33f16d09e7660",
+    "driverSha256": "3b545e5ca0178f53ba200dd3c54f2ae13b5ddcb3f59acbb3c881b930c596a7b2",
+    "uiSha256": "0e7c77d155d48c47a7c14faa8239c89afc78a9d4f99647b038d9287f5859e496"
+  },
+  "privacy": "No passage, ordered events, cookies, CSRF token, request bodies or account identifiers are included."
+}

@@ -1,4 +1,5 @@
-const CACHE_PREFIX = "sparowtype-public-v1-";
+import { APP_BASE_PATH, appPath, PUBLIC_CACHE_PREFIX } from "./deployment";
+const CACHE_PREFIX = PUBLIC_CACHE_PREFIX;
 type InstallPrompt = Event & {
   prompt: () => Promise<void>;
   userChoice: Promise<{ outcome: string }>;
@@ -30,6 +31,91 @@ let cleanup: (() => void) | null = null;
 let explicitReload = false;
 let reloading = false;
 let registerGeneration = 0;
+let readinessRevision = 0;
+let documentCleanup: (() => void) | null = null;
+let documentSuspended = false;
+const readinessCancellations = new Set<() => void>();
+const READINESS_MESSAGE = "SPAROWTYPE_PUBLIC_READINESS_V1";
+const READINESS_TIMEOUT_MS = 3_000;
+function cancelReadinessChecks() {
+  for (const cancel of [...readinessCancellations]) cancel();
+}
+/** Reads only the public worker's boolean; a departing document never opens caches. */
+function workerHasOfflineApp(value: ServiceWorkerRegistration): Promise<boolean> {
+  const worker = value.waiting ?? value.active ?? value.installing;
+  if (!worker || typeof MessageChannel === "undefined")
+    return Promise.resolve(false);
+  return new Promise((resolve) => {
+    let channel: MessageChannel | undefined;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    let finished = false;
+    const finish = (ready: boolean) => {
+      if (finished) return;
+      finished = true;
+      clearTimeout(timer);
+      readinessCancellations.delete(cancel);
+      if (channel) {
+        channel.port1.onmessage = null;
+        channel.port1.onmessageerror = null;
+        channel.port1.close();
+        channel.port2.close();
+      }
+      resolve(ready);
+    };
+    const cancel = () => finish(false);
+    try {
+      channel = new MessageChannel();
+      readinessCancellations.add(cancel);
+      channel.port1.onmessage = (event: MessageEvent) => {
+        if (
+          event.data?.type === READINESS_MESSAGE &&
+          typeof event.data.ready === "boolean"
+        )
+          finish(event.data.ready);
+      };
+      channel.port1.onmessageerror = cancel;
+      timer = setTimeout(cancel, READINESS_TIMEOUT_MS);
+      worker.postMessage({ type: READINESS_MESSAGE }, [channel.port2]);
+    } catch {
+      finish(false);
+    }
+  });
+}
+/** Always stops the current generation, including one created by manual reprepare. */
+export function stopCurrentPwa(): void {
+  cleanup?.();
+}
+/** Own registration before React's lazy workspace and its passive effects render. */
+export function startPwaDocumentLifetime(
+  enabled = import.meta.env.PROD,
+): () => void {
+  if (documentCleanup) return () => {};
+  if (typeof window === "undefined") return () => {};
+  const hidden = () => {
+    documentSuspended = true;
+    stopCurrentPwa();
+  };
+  const shown = (event: PageTransitionEvent) => {
+    if (event.persisted) {
+      documentSuspended = false;
+      startPwa(enabled);
+    }
+  };
+  const stop = () => {
+    if (documentCleanup !== stop) return;
+    window.removeEventListener("pagehide", hidden);
+    window.removeEventListener("pageshow", shown);
+    documentCleanup = null;
+    documentSuspended = false;
+    stopCurrentPwa();
+  };
+  documentCleanup = stop;
+  documentSuspended = false;
+  window.addEventListener("pagehide", hidden);
+  window.addEventListener("pageshow", shown);
+  startPwa(enabled);
+  return stop;
+}
 function update(patch: Partial<PwaState>) {
   state = { ...state, ...patch };
   for (const listener of listeners) listener();
@@ -54,8 +140,8 @@ export async function hasOfflineApp(
     for (const name of (await cacheStorage.keys()).filter(isPublicAppCache)) {
       const cache = await cacheStorage.open(name);
       if (
-        (await cache.match("/index.html")) &&
-        (await cache.match("/_offline-recovery.html"))
+        (await cache.match(appPath("/index.html"))) &&
+        (await cache.match(appPath("/_offline-recovery.html")))
       )
         return true;
     }
@@ -66,7 +152,7 @@ export async function hasOfflineApp(
 }
 /** Registers only the public production worker; never requests install permission. */
 export function startPwa(enabled = import.meta.env.PROD): () => void {
-  if (cleanup) return () => {};
+  if (cleanup || documentSuspended) return () => {};
   if (typeof window === "undefined" || typeof navigator === "undefined")
     return () => {};
   const standalone =
@@ -97,8 +183,10 @@ export function startPwa(enabled = import.meta.env.PROD): () => void {
   const supported =
     enabled && window.isSecureContext && "serviceWorker" in navigator;
   let detachRegistration = () => {};
-  cleanup = () => {
+  const stop = () => {
+    if (cleanup !== stop) return;
     registerGeneration++;
+    cancelReadinessChecks();
     window.removeEventListener("online", online);
     window.removeEventListener("offline", online);
     window.removeEventListener("beforeinstallprompt", beforeInstall);
@@ -107,6 +195,7 @@ export function startPwa(enabled = import.meta.env.PROD): () => void {
     detachRegistration();
     cleanup = null;
   };
+  cleanup = stop;
   if (!supported) {
     update({
       supported: false,
@@ -124,10 +213,20 @@ export function startPwa(enabled = import.meta.env.PROD): () => void {
   });
   const generation = ++registerGeneration;
   navigator.serviceWorker.addEventListener("controllerchange", changed);
-  const requested = navigator.serviceWorker.register("/sw.js", {
-    scope: "/",
-    updateViaCache: "none",
-  });
+  let requested: Promise<ServiceWorkerRegistration>;
+  try {
+    requested = navigator.serviceWorker.register(appPath("/sw.js"), {
+      scope: APP_BASE_PATH,
+      updateViaCache: "none",
+    });
+  } catch {
+    update({
+      phase: "error",
+      message:
+        "Offline files could not be prepared. Your local results are unchanged. Reconnect and try the offline controls again.",
+    });
+    return cleanup;
+  }
   registrationRequests.add(requested);
   void requested
     .then(async (value) => {
@@ -139,8 +238,15 @@ export function startPwa(enabled = import.meta.env.PROD): () => void {
       }
       registration = value;
       const refresh = async () => {
-        const ready = await hasOfflineApp();
         if (generation !== registerGeneration) return;
+        const revision = ++readinessRevision;
+        cancelReadinessChecks();
+        const ready = await workerHasOfflineApp(value);
+        if (
+          generation !== registerGeneration ||
+          registration !== value ||
+          revision !== readinessRevision
+        ) return;
         update({
           phase: ready ? "ready" : "preparing",
           updateAvailable: Boolean(
@@ -196,16 +302,26 @@ export function startPwa(enabled = import.meta.env.PROD): () => void {
   return cleanup;
 }
 export async function checkPwaDownload(): Promise<void> {
+  if (documentSuspended) return;
   if (!registration) {
     cleanup?.();
     startPwa();
     return;
   }
   const current = registration;
+  const generation = registerGeneration;
+  const revision = ++readinessRevision;
+  cancelReadinessChecks();
+  const isCurrent = () =>
+    !documentSuspended &&
+    registration === current &&
+    generation === registerGeneration &&
+    revision === readinessRevision;
   try {
     await current.update();
-    const ready = await hasOfflineApp();
-    if (registration !== current) return;
+    if (!isCurrent()) return;
+    const ready = await workerHasOfflineApp(current);
+    if (!isCurrent()) return;
     update({
       phase: ready ? "ready" : "preparing",
       updateAvailable: Boolean(current.waiting),
@@ -214,7 +330,7 @@ export async function checkPwaDownload(): Promise<void> {
         : "The download is still being prepared. Keep this page open while connected.",
     });
   } catch {
-    if (registration === current)
+    if (isCurrent())
       update({
         message:
           "Could not check for a new download. Reconnect and try again; existing local history is unchanged.",
@@ -284,6 +400,7 @@ export async function clearPwaDownload(): Promise<void> {
   const requested = [...registrationRequests];
   if (registration) removalCandidates.add(registration);
   registerGeneration++;
+  cancelReadinessChecks();
   explicitReload = false;
   reloading = false;
   registration = null;

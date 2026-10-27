@@ -1,5 +1,15 @@
 # SparowType: PHP + MySQL setup
 
+## 21 October feature-pack database update
+
+New installations need the initial `backend/schema.sql` **and**, in order, `backend/migrations/002-progression.sql`, `003_classroom.sql`, `004_social.sql`, and `005_arena.sql`. In phpMyAdmin, select the explicitly intended application database and import each file in that order. The fresh-database CLI installer now imports all five sources and refuses a nonempty target. The current complete schema version is5.
+
+For an existing SparowType database, back it up, review the four additive migrations, then import only its missing migrations in order. **Do not reimport the initial schema.** A CLI alternative is `php backend/bin/migrate-schema.php --config=/absolute/private/admin-config.php --database=sparowtype --check`, followed by the same command with `--apply` to apply the reported pending sources. It checks the explicitly named database, uses a migration lock, creates no users or scores, and reports partial DDL failures. Use administrator credentials for this operation; keep the runtime user limited to DML. No migration has been run against this checkout's existing user database by the audit.
+
+Hosting packages include the `sparowtype-private/migrations/` directory and both CLI tools. Deploy matching sources, frontend and migrations together. Progression, Classroom, Friends, duels and the eight-seat Arena require their corresponding tables. Original account/history flows remain compatible while those tables are absent; new account features cannot work until imported. Full native load measurements use a separate newly owned audit instance.
+
+The earlier setup instructions below describe the base installation. Apply the feature-pack migration step above as part of that setup. Frontend-only Vercel/GitHub Pages builds need no PHP or SQL; server features show their unavailable/sign-in states and local practice remains usable.
+
 Updated 20 October 2026. The active app uses PHP and MySQL/MariaDB. phpMyAdmin imports and manages the database; PHP serves the API. Node is needed for frontend development/builds, not on the hosting server. The old `supabase/` directory is retained as historical implementation and replay-reference material; it is not the running backend.
 
 ## Requirements

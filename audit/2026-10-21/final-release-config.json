@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-10-21T13:39:32.555Z",
+  "status": "PASS-SCOPED",
+  "results": [
+    {
+      "id": "missing",
+      "siteUrl": "",
+      "target": "php",
+      "base": "/",
+      "expectedExit": 1,
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/check-release-origin.mjs"
+      ],
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "Release blocked: set SPAROWTYPE_SITE_URL to the real public HTTPS application URL (including its Pages base path). Local npm run build remains available.\n",
+      "status": "PASS-SCOPED"
+    },
+    {
+      "id": "reserved",
+      "siteUrl": "https://example.com/",
+      "target": "php",
+      "base": "/",
+      "expectedExit": 1,
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/check-release-origin.mjs"
+      ],
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "Release blocked: SPAROWTYPE_SITE_URL must be the real public HTTPS application URL, not a local or reserved test hostname.\n",
+      "status": "PASS-SCOPED"
+    },
+    {
+      "id": "pages-format",
+      "siteUrl": "https://dev3434patel.github.io/typing-forge/",
+      "target": "github-pages",
+      "base": "/typing-forge/",
+      "expectedExit": 0,
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/check-release-origin.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"status\": \"PASS-SCOPED\",\n  \"target\": \"github-pages\",\n  \"siteUrl\": \"https://dev3434patel.github.io/typing-forge/\",\n  \"base\": \"/typing-forge/\",\n  \"scope\": \"Configuration validation only; DNS, TLS and hosted routing are not verified.\"\n}\n",
+      "stderr": "",
+      "status": "PASS-SCOPED"
+    }
+  ],
+  "scope": "Real CLI configuration guard only. The Pages URL is the repository-derived format, not a verified deployment, DNS/TLS or publishing authorization. No real hosting origin was configured."
+}
