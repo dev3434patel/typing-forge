@@ -1,0 +1,145 @@
+{
+  "reviewedAt": "2026-11-02T17:12:21.593Z",
+  "status": "PASS-SCOPED-SINGLE-CANDIDATE-LABORATORY-RUN",
+  "sourceBuild": "f52d0372fe7656817259",
+  "staticBuild": "e1c84e6f658702d3ebd8",
+  "inputs": {
+    "audit/2026-11-02/mobile-workspaces-final31-static-candidate-process.json": "8db590784c7cd9f249ee499f642526797d13eda16940a9ac04123d437c93ac1a",
+    "audit/2026-11-02/mobile-workspaces-final31-static-candidate-latency-assessment.json": "97102130266897c1a78084c05b0fe20e587587934ff2a198a42f94b55c962a0a",
+    "audit/2026-11-02/mobile-workspaces-final31-static-candidate.json": "0d590409cb6c93892729b38524235133906fe54e2179a78af67e4ff2819739c1"
+  },
+  "cases": [
+    {
+      "id": "learn",
+      "p98ObservedTypingEventDurationMs": 80,
+      "maxObservedTypingEventDurationMs": 392,
+      "targetMs": 100,
+      "comparison": "<",
+      "observedInputAttempts": 121,
+      "inputAccuracy": 100,
+      "functionalPass": true,
+      "horizontalOverflow": false,
+      "pageErrors": 0,
+      "consoleErrors": 0
+    },
+    {
+      "id": "course",
+      "p98ObservedTypingEventDurationMs": 64,
+      "maxObservedTypingEventDurationMs": 88,
+      "targetMs": 100,
+      "comparison": "<",
+      "observedInputAttempts": 59,
+      "inputAccuracy": 100,
+      "functionalPass": true,
+      "horizontalOverflow": false,
+      "pageErrors": 0,
+      "consoleErrors": 0
+    },
+    {
+      "id": "local-bot",
+      "p98ObservedTypingEventDurationMs": 56,
+      "maxObservedTypingEventDurationMs": 88,
+      "targetMs": 100,
+      "comparison": "<",
+      "observedInputAttempts": 100,
+      "inputAccuracy": 100,
+      "functionalPass": true,
+      "horizontalOverflow": false,
+      "pageErrors": 0,
+      "consoleErrors": 0
+    },
+    {
+      "id": "games",
+      "p98ObservedTypingEventDurationMs": 24,
+      "maxObservedTypingEventDurationMs": 32,
+      "targetMs": 100,
+      "comparison": "<",
+      "observedInputAttempts": 97,
+      "inputAccuracy": 100,
+      "functionalPass": true,
+      "horizontalOverflow": false,
+      "pageErrors": 0,
+      "consoleErrors": 0
+    }
+  ],
+  "source505BeforeAndAfterUnchanged": true,
+  "artifactBytesUnchanged": true,
+  "apiRequests": 0,
+  "ownedBrowserAndServerClosed": true,
+  "sceneIdentityProof": {
+    "qualityChecksPassed": 5,
+    "sceneAssets": [
+      {
+        "file": "assets/keyboard-bloom-CFGEPK_L.js",
+        "kind": "bloom",
+        "bytes": 20277,
+        "gzipBytes": 5073,
+        "sha256": "966db3e3d61752514688db63b3d970e1a87e7a66498f5f3f0b93f0085c0c0977"
+      },
+      {
+        "file": "assets/keyboard-render-worker-oeYyHX4e.js",
+        "kind": "worker",
+        "bytes": 1167,
+        "gzipBytes": 617,
+        "sha256": "37b2d1842100f3516e8af626c58d58791c3ff9c6cc970835d5bd3d8ef948be13"
+      },
+      {
+        "file": "assets/keyboard-scene-DYowRFwC.js",
+        "kind": "scene",
+        "bytes": 71692,
+        "gzipBytes": 28055,
+        "sha256": "1624b699d9955f32c182e82eb0ac03567c446174bd2b29e649647a6079fe2f44"
+      },
+      {
+        "file": "assets/keyboard-scene-bridge-BoZl-CoY.js",
+        "kind": "bridge",
+        "bytes": 4057,
+        "gzipBytes": 1681,
+        "sha256": "4471a14d01d79172f93f063e6d9b88a4ca629b3b9177e08775371035a26ff5f1",
+        "normalizedBootstrapSpecifierSha256": "ba0d3eda5d2d87b18731d257c53a5c050285070940d589b9a5089c8de23f6eb1",
+        "bootstrapSpecifierCount": 1
+      },
+      {
+        "file": "assets/three.module-ytFXl0Cs.js",
+        "kind": "three",
+        "bytes": 533107,
+        "gzipBytes": 132577,
+        "sha256": "2b26c8bf33db5d22e8c7d6a8ecd2b2f1ea76ceaf6a3c815f613258f32ac9cf9f"
+      }
+    ],
+    "comparisons": [
+      {
+        "kind": "scene",
+        "pass": true,
+        "comparison": "Exact filename, raw bytes and SHA-256 against preserved checkpoint; no normalization."
+      },
+      {
+        "kind": "bloom",
+        "pass": true,
+        "comparison": "Exact filename, raw bytes and SHA-256 against preserved checkpoint; no normalization."
+      },
+      {
+        "kind": "three",
+        "pass": true,
+        "comparison": "Exact filename, raw bytes and SHA-256 against preserved checkpoint; no normalization."
+      },
+      {
+        "kind": "worker",
+        "pass": true,
+        "comparison": "Exact public worker filename and SHA-256 against preserved public-file receipt."
+      },
+      {
+        "kind": "bridge",
+        "pass": true,
+        "comparison": "Replace exactly one from\"./index-HASH.js\" bootstrap import. Every other bridge byte remains compared; no logic normalization."
+      }
+    ]
+  },
+  "qualification": "One CPU4x mobile-emulated Chromium laboratory candidate, including the original observation window and all four original functional flows. This establishes neither repeated acceptance, physical-phone behavior, field INP, a clean complete product audit, nor public-hosting success. The normal67-check/two-target static gate, three ordinary mobile trials, home trials, Lighthouse, full matrix, native backend and CI remain separate required gates.",
+  "earlierFailuresRetained": [
+    "source27 Learn112/BOT112",
+    "source28 Learn104/BOT120",
+    "source30 Learn112/BOT80; Learn failed"
+  ],
+  "rerunsOrNewMeasurementsByThisReview": 0
+}

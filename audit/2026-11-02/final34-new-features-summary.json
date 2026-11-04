@@ -1,0 +1,85 @@
+{
+  "totals": {
+    "total": 204,
+    "passed": 202,
+    "failed": 2,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "projects": [
+    {
+      "project": "chromium",
+      "total": 51,
+      "passed": 50,
+      "failed": 1,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "edge",
+      "total": 51,
+      "passed": 51,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "firefox",
+      "total": 51,
+      "passed": 51,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "webkit",
+      "total": 51,
+      "passed": 50,
+      "failed": 1,
+      "skipped": 0,
+      "flaky": 0
+    }
+  ],
+  "reportedStats": {
+    "expected": 202,
+    "unexpected": 2,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "countsAgreeWithReport": true,
+  "failures": [
+    {
+      "project": "webkit",
+      "title": "arena.spec.ts › eight-member UI uses actual native canonical typing after the issued countdown and preserves strict rules",
+      "file": "arena.spec.ts",
+      "line": 41,
+      "attempts": 1,
+      "attemptStatuses": [
+        "timedOut"
+      ],
+      "messages": [
+        "Test timeout of 30000ms exceeded.",
+        "Error: locator.click: Test timeout of 30000ms exceeded. Call log: - waiting for getByRole('button', { name: /^(Click here or tab to start typing|Continue typing)/ }) - locator resolved to <button tabindex=\"-1\" aria-label=\"Continue typing\" class=\"typing-focus-prompt absolute inset-0 flex items-center justify-center gap-3 text-sm text-foreground\">…</button> - attempting click action - waiting for element to be visible, enabled and stable - element "
+      ]
+    },
+    {
+      "project": "chromium",
+      "title": "progression-extras.spec.ts › earned theme and frame apply, persist on the real profile and return to default appearance",
+      "file": "progression-extras.spec.ts",
+      "line": 17,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(locator).toContainText(expected) failed Locator: getByRole('region', { name: 'Your practice identity', exact: true }) Expected substring: \"Orbit profile frame\" Received string: \"Your practice identityDevice collection · unverified. Appearance never changes your scores.Level 25 · TypistA clear space for your next practice.Open your collection\" Timeout: 5000ms Call log: - Expect \"toContainText\" getByRole('region', { name: 'Your practi"
+      ]
+    }
+  ],
+  "flakyCases": [],
+  "skippedCases": [],
+  "skipReasons": [],
+  "expectedFailures": [],
+  "globalErrors": [],
+  "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+}

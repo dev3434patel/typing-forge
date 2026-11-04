@@ -1,0 +1,44 @@
+{
+  "preparedAt": "2026-10-27T15:44:19.093Z",
+  "status": "PREPARED-NOT-EXECUTED",
+  "entry": "audit/2026-10-27/diagnose-selection-getters-final22.mjs",
+  "entrySha256": "49be57460ba61961084a1ef0795a4e65e31e183e300201935478d774557e8594",
+  "originalDriver": "audit/correction-experience-2026-10-20/measure-typing.mjs",
+  "originalDriverSha256": "28cf9cb12ccbe2ae8138dc72afd9f936de6865a22e56fd8e90bb4cba40a6be35",
+  "expectedBuild": "f957b00588200c8f376e",
+  "expectedSourceCount": 504,
+  "syntax": "node--check PASS",
+  "requiresRootQuietWindow": true,
+  "runCommand": "Set SPAROWTYPE_SELECTION_GETTER_DIAGNOSTIC=1; node audit/2026-10-27/diagnose-selection-getters-final22.mjs final22-selection-getters-native",
+  "settings": {
+    "cpuThrottle": 4,
+    "repetitions": 16,
+    "characters": 495,
+    "requestedDelayMs": 0,
+    "realRotation": "390x844 to844x390 at247characters",
+    "originalWatchdogMs": 150000
+  },
+  "preservation": [
+    "Original native getters invoked with Reflect.apply(nativeGetter,this,[])",
+    "Exact native return value and thrown exception preserved",
+    "Original setter/configurable/enumerable descriptors retained",
+    "No getter result, selection value, typed text or extra geometry read logged",
+    "No React internals, onSelect handler, event dispatch or production change",
+    "Native descriptors restored before original result export and assertions"
+  ],
+  "diagnosticBounds": {
+    "getterIntervals": 30000,
+    "eventRecords": 12000,
+    "slowStacks": 40,
+    "slowThresholdMs": 2,
+    "traceMaxBytes": 67108864,
+    "publicEventRecords": 20
+  },
+  "layoutAttribution": "Native devtools.timeline Layout/UpdateLayoutTree events strictly contained by real synchronous getter intervals, aligned via unchanged Performance.NavigationStart. Boundary overlap is excluded from contained totals.",
+  "privacy": "Raw stacks and native trace use ignored .final22 dot-files; public output contains counts/timings/standard event names and compiled asset basenames+locations only.",
+  "limitation": "Instrumentation and tracing perturb timing; no input/performance acceptance claim. Removing JSX onSelect is not assumed to disable React18 global selection polling.",
+  "browsersLaunched": 0,
+  "servicesStarted": 0,
+  "buildsRun": 0,
+  "acceptanceTestsRun": 0
+}

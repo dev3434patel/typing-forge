@@ -11,8 +11,80 @@ import {
   pressKeyboardKey,
   releaseKeyboardKey,
   type KeyboardInputState,
+  type LiveKey,
+  type LiveLayout,
 } from "../live-keyboard";
 import { REFERENCE_MAPS } from "../keyboard-lab";
+
+describe("allocation-free logical key lookup", () => {
+  const key = (code: string, base: string, shifted?: string): LiveKey => ({ code, base, shifted, label: base, width: 1 });
+  const layout = (rows: LiveKey[][]): LiveLayout => ({ id: "mutable-fixture", label: "Mutable reference", reference: "Test-only reference", mapped: true, rows, characters: [] });
+
+  it("prefers a later-row base match over an earlier-row shifted match", () => {
+    const shifted = key("KeyA", "a", "x"), base = key("KeyX", "x", "X");
+    const board = layout([[shifted], [base]]);
+    expect(locateKeyboardCharacter(board, "x")).toEqual({ key: base, shifted: false });
+    expect(locateKeyboardCharacter(board, "X")).toEqual({ key: base, shifted: true });
+  });
+
+  it("keeps first matching key order while excluding dead base and shifted characters independently", () => {
+    const dead = { ...key("Dead", "x", "X"), deadBase: true, deadShift: true };
+    const first = key("First", "x", "X"), second = key("Second", "x", "X");
+    const board = layout([[dead, first], [second]]);
+    expect(locateKeyboardCharacter(board, "x")).toEqual({ key: first, shifted: false });
+    expect(locateKeyboardCharacter(board, "X")).toEqual({ key: first, shifted: true });
+    first.deadBase = true;
+    expect(locateKeyboardCharacter(board, "x")).toEqual({ key: second, shifted: false });
+    expect(locateKeyboardCharacter(board, "X")).toEqual({ key: first, shifted: true });
+    first.deadShift = true; second.deadShift = true;
+    expect(locateKeyboardCharacter(board, "X")).toBeNull();
+  });
+
+  it("observes mutable keys and row replacement after an earlier lookup", () => {
+    const mutable = key("Mutable", "a", "A"), rows = [[mutable]], board = layout(rows);
+    expect(locateKeyboardCharacter(board, "a")?.key).toBe(mutable);
+    mutable.base = "z"; mutable.shifted = "Z";
+    expect(locateKeyboardCharacter(board, "a")).toBeNull();
+    expect(locateKeyboardCharacter(board, "Z")).toEqual({ key: mutable, shifted: true });
+    const replacement = key("Replacement", "a", "A"); rows[0] = [replacement];
+    expect(locateKeyboardCharacter(board, "z")).toBeNull();
+    expect(locateKeyboardCharacter(board, "a")?.key).toBe(replacement);
+  });
+
+  it("preserves NFC and CRLF normalization without fabricating an unmapped physical position", () => {
+    const accented = key("Accent", "é", "É"), enter = key("Enter", "\n");
+    const board = layout([[accented, enter]]);
+    expect(locateKeyboardCharacter(board, "e\u0301")).toEqual({ key: accented, shifted: false });
+    expect(locateKeyboardCharacter(board, "\r\n")).toEqual({ key: enter, shifted: false });
+    expect(locateKeyboardCharacter(board, "")).toBeNull();
+    expect(locateKeyboardCharacter(board, undefined)).toBeNull();
+    board.mapped = false;
+    expect(locateKeyboardCharacter(board, "é")).toBeNull();
+  });
+
+  it("retains flat's sparse-row behavior and the original key object identity", () => {
+    const sparse: LiveKey[] = []; const present = key("Present", "a", "A"); sparse[2] = present;
+    const rows: LiveKey[][] = []; rows[1] = sparse;
+    const board = layout(rows);
+    expect(locateKeyboardCharacter(board, "a")?.key).toBe(present);
+    expect(locateKeyboardCharacter(board, "A")?.key).toBe(present);
+    expect(locateKeyboardCharacter(board, "z")).toBeNull();
+  });
+
+  it("matches the prior flattened lookup across every declared reference's base and shifted characters", () => {
+    for (const id of Object.keys(REFERENCE_MAPS)) for (const language of ["en", "fr", "de"]) {
+      const board = liveKeyboardLayout(id, language), keys = board.rows.flat();
+      const characters = new Set(keys.flatMap((value) => [value.base, value.shifted]).filter((value): value is string => value !== undefined));
+      for (const character of characters) {
+        const normalized = character === "\r\n" ? "\n" : character.normalize("NFC");
+        const base = keys.find((value) => !value.deadBase && value.base === normalized);
+        const shifted = base ? undefined : keys.find((value) => !value.deadShift && value.shifted === normalized);
+        const expected = !character ? null : base ? { key: base, shifted: false } : shifted ? { key: shifted, shifted: true } : null;
+        expect(locateKeyboardCharacter(board, character), `${id}:${language}:${JSON.stringify(character)}`).toEqual(expected);
+      }
+    }
+  });
+});
 
 describe("live keyboard reference geometry and logical guidance", () => {
   it("reverses letter case under Caps Lock while preserving actual shifted-symbol requirements", () => {

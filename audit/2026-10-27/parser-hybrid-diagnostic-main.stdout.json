@@ -1,0 +1,861 @@
+{
+    "status": "PASS-SCOPED-PURE-DIAGNOSTIC",
+    "phpVersion": "8.2.12",
+    "corpusCases": 51,
+    "corpusChecks": [
+        {
+            "name": "empty-object",
+            "pass": true,
+            "rawBytes": 2,
+            "rawHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "oldHttp": 200,
+            "hybridHttp": 200,
+            "oldInternalJsonCode": null,
+            "hybridInternalJsonCode": null,
+            "hybridBranch": "single-associative",
+            "decodedJsonHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+            "name": "json-whitespace",
+            "pass": true,
+            "rawBytes": 14,
+            "rawHash": "6f8f4741ec28f260371867881bf12a401734961f342e7845a0b18f7e14a45dff",
+            "oldHttp": 200,
+            "hybridHttp": 200,
+            "oldInternalJsonCode": null,
+            "hybridInternalJsonCode": null,
+            "hybridBranch": "single-associative",
+            "decodedJsonHash": "015abd7f5cc57a2dd94b7590f04ad8084273905ee33ec5cebeae62276a97f862"
+        },
+        {
+            "name": "numeric-object",
+            "pass": true,
+            "rawBytes": 22,
+            "rawHash": "5579c6d4be54afa57211151aee543ab0c3ea75142439cde38a3c6bbb9bfb3ab4",
+            "oldHttp": 200,
+            "hybridHttp": 200,
+            "oldInternalJsonCode": null,
+            "hybridInternalJsonCode": null,
+            "hybridBranch": "single-associative",
+            "decodedJsonHash": "4c80b4a57a85f3a4df69de05126fc48c570e89467bd68ad435e6a58d70d4c3b2"
+        },
+        {
+            "name": "numeric-map-reordered",
+            "pass": true,
+            "rawBytes": 22,
+            "rawHash": "ae54e0926e58312db66fb25ed413da990e75dcc77b0e8eb0a3043ce478dc62ff",
+            "oldHttp": 200,
+            "hybridHttp": 200,
+            "oldInternalJsonCode": null,
+            "hybridInternalJsonCode": null,
+            "hybridBranch": "single-associative",
+            "decodedJsonHash": "ae54e0926e58312db66fb25ed413da990e75dcc77b0e8eb0a3043ce478dc62ff"
+        },
+        {
+            "name": "numeric-key-forms",
+            "pass": true,
+            "rawBytes": 84,
+            "rawHash": "99f3cf17dcb2d384c968d51a33a82654fcf0e99e8f869eca4116d70b29abd03d",
+            "oldHttp": 200,
+            "hybridHttp": 200,
+            "oldInternalJsonCode": null,
+            "hybridInternalJsonCode": null,
+            "hybridBranch": "single-associative",
+            "decodedJsonHash": "99f3cf17dcb2d384c968d51a33a82654fcf0e99e8f869eca4116d70b29abd03d"
+        },
+        {
+            "name": "empty-nested-containers",
+            "pass": true,
+            "rawBytes": 27,
+            "rawHash": "010b96c1533bb5ba7bcc83f5e2688860025e4c0e555490a9a1a1a7a18a32fb42",
+            "oldHttp": 200,
+            "hybridHttp": 200,
+            "oldInternalJsonCode": null,
+            "hybridInternalJsonCode": null,
+            "hybridBranch": "single-associative",
+            "decodedJsonHash": "d869bee47d931ff0e6e7a4cb95dfaabb250b97e705fb412a642578f5961720bf"
+        },
+        {
+            "name": "duplicate-key",
+            "pass": true,
+            "rawBytes": 13,
+            "rawHash": "1c53ee0df7b12fd4d65b976120c7fa6b847dc41dffd7f0331c3237a1ceab1756",
+            "oldHttp": 200,
+            "hybridHttp": 200,
+            "oldInternalJsonCode": null,
+            "hybridInternalJsonCode": null,
+            "hybridBranch": "single-associative",
+            "decodedJsonHash": "7e8059f495589fcd981232cc11d00b00da3802c01d688fa1cf1f6bed6e5bb33c"
+        },
+        {
+            "name": "escaped-duplicate-key",
+            "pass": true,
+            "rawBytes": 18,
+            "rawHash": "c95ba945b310a34906bbfc28ce1346b87741d5a2b3066d1d3ecfa0acbd86392c",
+            "oldHttp": 200,
+            "hybridHttp": 200,
+            "oldInternalJsonCode": null,
+            "hybridInternalJsonCode": null,
+            "hybridBranch": "single-associative",
+            "decodedJsonHash": "7e8059f495589fcd981232cc11d00b00da3802c01d688fa1cf1f6bed6e5bb33c"
+        },
+        {
+            "name": "duplicate-overwritten-nul-object",
+            "pass": true,
+            "rawBytes": 27,
+            "rawHash": "ecee7caf15234ab448384fac638ef1a482d94c70260c9d2c9c00f4712e9b1272",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 9,
+            "hybridInternalJsonCode": 9,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "duplicate-overwritten-nul-array",
+            "pass": true,
+            "rawBytes": 30,
+            "rawHash": "7480791901deec3ef90dd8bab46408e01d8c9feb9e75942bcd7a0056166a2caa",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 9,
+            "hybridInternalJsonCode": 9,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "numeric-duplicate-overwritten-nul",
+            "pass": true,
+            "rawBytes": 27,
+            "rawHash": "51024d6928f819195489dce10572fcf82882675d03721336ede7b0f1db1724ea",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 9,
+            "hybridInternalJsonCode": 9,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "nul-key",
+            "pass": true,
+            "rawBytes": 15,
+            "rawHash": "b4f0e2bdad855646989dd9c9bfec01d36bf260cc78a38ca24d5b83520e5deaec",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 9,
+            "hybridInternalJsonCode": 9,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "nested-nul-key",
+            "pass": true,
+            "rawBytes": 21,
+            "rawHash": "0eb22be0a0253a0e00350e5eae1d1395b2b8ac7853b3ccf40bedf2c46ab408c6",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 9,
+            "hybridInternalJsonCode": 9,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "interior-nul-key",
+            "pass": true,
+            "rawBytes": 14,
+            "rawHash": "a600dc61d5619ff07f026e997fc2cd8f0a8e9a4c84091154d740fdf9feff6858",
+            "oldHttp": 200,
+            "hybridHttp": 200,
+            "oldInternalJsonCode": null,
+            "hybridInternalJsonCode": null,
+            "hybridBranch": "old-two-decode",
+            "decodedJsonHash": "a600dc61d5619ff07f026e997fc2cd8f0a8e9a4c84091154d740fdf9feff6858"
+        },
+        {
+            "name": "nul-value",
+            "pass": true,
+            "rawBytes": 19,
+            "rawHash": "d38a529080fcf5ad7acd8ebaa4ab3432320c410e9c380300d4920a3c42ccd365",
+            "oldHttp": 200,
+            "hybridHttp": 200,
+            "oldInternalJsonCode": null,
+            "hybridInternalJsonCode": null,
+            "hybridBranch": "old-two-decode",
+            "decodedJsonHash": "d38a529080fcf5ad7acd8ebaa4ab3432320c410e9c380300d4920a3c42ccd365"
+        },
+        {
+            "name": "escaped-backslash-false-positive",
+            "pass": true,
+            "rawBytes": 15,
+            "rawHash": "df7ad32076c4029ff1d961faa49deb9832f30af286fa4bca0e6be0404ae1b768",
+            "oldHttp": 200,
+            "hybridHttp": 200,
+            "oldInternalJsonCode": null,
+            "hybridInternalJsonCode": null,
+            "hybridBranch": "old-two-decode",
+            "decodedJsonHash": "df7ad32076c4029ff1d961faa49deb9832f30af286fa4bca0e6be0404ae1b768"
+        },
+        {
+            "name": "escaped-backslash-key-false-positive",
+            "pass": true,
+            "rawBytes": 13,
+            "rawHash": "8a97272e4572ef4b21c4f44bb1f1f9cb113be78e82a2e2e63c2e6e3a38d91199",
+            "oldHttp": 200,
+            "hybridHttp": 200,
+            "oldInternalJsonCode": null,
+            "hybridInternalJsonCode": null,
+            "hybridBranch": "old-two-decode",
+            "decodedJsonHash": "8a97272e4572ef4b21c4f44bb1f1f9cb113be78e82a2e2e63c2e6e3a38d91199"
+        },
+        {
+            "name": "escaped-slash",
+            "pass": true,
+            "rawBytes": 15,
+            "rawHash": "46d30c50f4f917513e7be741f761cc7d80db918fbc7327820239e0709ff57664",
+            "oldHttp": 200,
+            "hybridHttp": 200,
+            "oldInternalJsonCode": null,
+            "hybridInternalJsonCode": null,
+            "hybridBranch": "single-associative",
+            "decodedJsonHash": "572e7d56fa08fd84920782f27d11dd5db1b17437a0c3660d6c65d68e5ac500f6"
+        },
+        {
+            "name": "unicode",
+            "pass": true,
+            "rawBytes": 102,
+            "rawHash": "8f8d2ef5d567f3a38bf6f8f407b3493141ff8092d29feb3d249914965ec67eaf",
+            "oldHttp": 200,
+            "hybridHttp": 200,
+            "oldInternalJsonCode": null,
+            "hybridInternalJsonCode": null,
+            "hybridBranch": "single-associative",
+            "decodedJsonHash": "750de31983068f7d4634d930ac951d269f3aa859f541cf88a2dadf35c3a1bb2d"
+        },
+        {
+            "name": "integer-float-boundaries",
+            "pass": true,
+            "rawBytes": 96,
+            "rawHash": "91bb2aa015cd24587516b402dcff07db4f18546f73a17d0c3ef62a52c9b4a5fb",
+            "oldHttp": 200,
+            "hybridHttp": 200,
+            "oldInternalJsonCode": null,
+            "hybridInternalJsonCode": null,
+            "hybridBranch": "single-associative",
+            "decodedJsonHash": "2b8246fcecd7c981021c992ffe231124c30f852833d36f57e7ee1d966a7bb39a"
+        },
+        {
+            "name": "overflow-float",
+            "pass": true,
+            "rawBytes": 11,
+            "rawHash": "2e9966f0a48696339871c527738aa570226f2672927cc96a9b5400f7cc8ab0d3",
+            "oldHttp": 200,
+            "hybridHttp": 200,
+            "oldInternalJsonCode": null,
+            "hybridInternalJsonCode": null,
+            "hybridBranch": "single-associative",
+            "decodedJsonHash": null
+        },
+        {
+            "name": "root-array",
+            "pass": true,
+            "rawBytes": 5,
+            "rawHash": "49a64717d5d4cb19952e6eac2946415cf6879adacf9908e7d872332d32c6e684",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 0,
+            "hybridInternalJsonCode": 0,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "root-empty-array",
+            "pass": true,
+            "rawBytes": 2,
+            "rawHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 0,
+            "hybridInternalJsonCode": 0,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "root-array-nul",
+            "pass": true,
+            "rawBytes": 17,
+            "rawHash": "63e4fd57d6b2a48d410b3e6f9a72cbf401a77c10008644d73d16235e29b5f634",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 9,
+            "hybridInternalJsonCode": 9,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "root-null",
+            "pass": true,
+            "rawBytes": 4,
+            "rawHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 0,
+            "hybridInternalJsonCode": 0,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "root-true",
+            "pass": true,
+            "rawBytes": 4,
+            "rawHash": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 0,
+            "hybridInternalJsonCode": 0,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "root-false",
+            "pass": true,
+            "rawBytes": 5,
+            "rawHash": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 0,
+            "hybridInternalJsonCode": 0,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "root-number",
+            "pass": true,
+            "rawBytes": 3,
+            "rawHash": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 0,
+            "hybridInternalJsonCode": 0,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "root-string",
+            "pass": true,
+            "rawBytes": 4,
+            "rawHash": "c89a148be40e6752261e3038609a4b68de22fa3bfdaf32f884edffb8480b9bbe",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 0,
+            "hybridInternalJsonCode": 0,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "empty-body",
+            "pass": true,
+            "rawBytes": 0,
+            "rawHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 4,
+            "hybridInternalJsonCode": 4,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "whitespace-only",
+            "pass": true,
+            "rawBytes": 4,
+            "rawHash": "bb403f616bb62f0c473c42534601e3d8fe24fa61add49f51f4cdba8bd585ce29",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 4,
+            "hybridInternalJsonCode": 4,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "leading-bom",
+            "pass": true,
+            "rawBytes": 5,
+            "rawHash": "aa25e978046d680ef8740d837e6de5bc1e2a2dc6089dbda1012544b538d53f65",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 4,
+            "hybridInternalJsonCode": 4,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "leading-nul",
+            "pass": true,
+            "rawBytes": 3,
+            "rawHash": "28a3a18f6cd6406b086e9ffda1f9b8a13dbcf44b0f3f32cb9031a11fd053acf9",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 3,
+            "hybridInternalJsonCode": 3,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "leading-vertical-tab",
+            "pass": true,
+            "rawBytes": 3,
+            "rawHash": "779066ba6f18f0bb3cb2d979ce2c5885c494b9cb7526204d433fa56f8e73a575",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 3,
+            "hybridInternalJsonCode": 3,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "non-json-whitespace",
+            "pass": true,
+            "rawBytes": 4,
+            "rawHash": "31684aef345377e888144bdc4ab6b90e305dcd3d436dad626ba440178cbf45c9",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 4,
+            "hybridInternalJsonCode": 4,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "trailing-junk",
+            "pass": true,
+            "rawBytes": 3,
+            "rawHash": "82985617ce795510ad965737efe6b5a76411b26a6d7453ff4ba680e856377bc8",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 4,
+            "hybridInternalJsonCode": 4,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "trailing-comma",
+            "pass": true,
+            "rawBytes": 8,
+            "rawHash": "aa99a5ce3eb0dd8355f0bfb15376ea1d862ad75d0d278af1f8c280ca8c02c640",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 4,
+            "hybridInternalJsonCode": 4,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "comment",
+            "pass": true,
+            "rawBytes": 13,
+            "rawHash": "e3d40f8ba0960bec650722f010a2b05454f643ebb2cb49c6546d217d8405e0ef",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 4,
+            "hybridInternalJsonCode": 4,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "invalid-utf8-value",
+            "pass": true,
+            "rawBytes": 9,
+            "rawHash": "1c4d34b5a553836be620be2b7c85210700a5f5ab71c7aa6559ad796ec4018172",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 5,
+            "hybridInternalJsonCode": 5,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "invalid-utf8-key",
+            "pass": true,
+            "rawBytes": 7,
+            "rawHash": "7db47f5b27627d740202aec6351219d18148579f9ba088fe54a32669ba24f3b0",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 5,
+            "hybridInternalJsonCode": 5,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "lone-high-surrogate",
+            "pass": true,
+            "rawBytes": 14,
+            "rawHash": "89f8ca88ea20e6cd48ed0ab6b731b66377cab0c8fb9a7187ea96ac6813ed24e4",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 10,
+            "hybridInternalJsonCode": 10,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "lone-low-surrogate",
+            "pass": true,
+            "rawBytes": 14,
+            "rawHash": "05f326659e7c6bbba06066b7512f1f9b14fd2e821289eb12c3d8ed7e06f2d655",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 10,
+            "hybridInternalJsonCode": 10,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "invalid-surrogate-key",
+            "pass": true,
+            "rawBytes": 12,
+            "rawHash": "02724f63cc02840d4a3eaa7063b83466eb5a385438138fdbdd235c86874d8ff7",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 10,
+            "hybridInternalJsonCode": 10,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "literal-control",
+            "pass": true,
+            "rawBytes": 9,
+            "rawHash": "424fc91780272d7ab12633cdd3e5d3c480be7a0037d54bcbc39b08daffb629c4",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 3,
+            "hybridInternalJsonCode": 3,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "invalid-escape",
+            "pass": true,
+            "rawBytes": 10,
+            "rawHash": "041b42723fc36d380906104a0a6d1866296d2e68f472ad28d4a1e29ff6268911",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 4,
+            "hybridInternalJsonCode": 4,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "representative-post",
+            "pass": true,
+            "rawBytes": 302494,
+            "rawHash": "5bfa67419f99c19fb4600915220f13c5335b0d06ecedfd5ca1f21a9e6ea20d98",
+            "oldHttp": 200,
+            "hybridHttp": 200,
+            "oldInternalJsonCode": null,
+            "hybridInternalJsonCode": null,
+            "hybridBranch": "single-associative",
+            "decodedJsonHash": "5bfa67419f99c19fb4600915220f13c5335b0d06ecedfd5ca1f21a9e6ea20d98"
+        },
+        {
+            "name": "depth-509",
+            "pass": true,
+            "rawBytes": 1025,
+            "rawHash": "c83bc8e800460043d572a1f1b30fe7bb89f07b4d01ef9ff434f1937bd61b872d",
+            "oldHttp": 200,
+            "hybridHttp": 200,
+            "oldInternalJsonCode": null,
+            "hybridInternalJsonCode": null,
+            "hybridBranch": "single-associative",
+            "decodedJsonHash": "c83bc8e800460043d572a1f1b30fe7bb89f07b4d01ef9ff434f1937bd61b872d"
+        },
+        {
+            "name": "depth-510",
+            "pass": true,
+            "rawBytes": 1027,
+            "rawHash": "4ab7134896fce821c011a3772309dafb0b8b9af3956b17584721a5db50f74bd2",
+            "oldHttp": 200,
+            "hybridHttp": 200,
+            "oldInternalJsonCode": null,
+            "hybridInternalJsonCode": null,
+            "hybridBranch": "single-associative",
+            "decodedJsonHash": "4ab7134896fce821c011a3772309dafb0b8b9af3956b17584721a5db50f74bd2"
+        },
+        {
+            "name": "depth-511",
+            "pass": true,
+            "rawBytes": 1029,
+            "rawHash": "cba0cb8f8b2bfea9410d79746cf00492f651bdb845133084961ddf0df33f36c0",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 1,
+            "hybridInternalJsonCode": 1,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "depth-512",
+            "pass": true,
+            "rawBytes": 1031,
+            "rawHash": "834c0da4c095de348feb2d35724064a6a30bc9deb0e4575ced54bd91b4f2dd00",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 1,
+            "hybridInternalJsonCode": 1,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        },
+        {
+            "name": "depth-513",
+            "pass": true,
+            "rawBytes": 1033,
+            "rawHash": "0d6da2b868404332858340efa2f1f6543b769255e60f512b4056272b5aa4ee06",
+            "oldHttp": 400,
+            "hybridHttp": 400,
+            "oldInternalJsonCode": 1,
+            "hybridInternalJsonCode": 1,
+            "hybridBranch": null,
+            "decodedJsonHash": null
+        }
+    ],
+    "mismatches": [],
+    "duplicateKeyTrap": {
+        "oldHttp": 400,
+        "oldInternalJsonCode": 9,
+        "assocOnlyAccepted": true,
+        "discardedNulKeyAbsent": true,
+        "hybridHttp": 400
+    },
+    "iterations": 12,
+    "warmups": 0,
+    "outlierFiltering": false,
+    "retryCount": 0,
+    "rows": [
+        {
+            "iteration": 1,
+            "order": [
+                "old",
+                "hybrid"
+            ],
+            "oldParseMs": 5.8587,
+            "hybridParseMs": 2.9773
+        },
+        {
+            "iteration": 2,
+            "order": [
+                "hybrid",
+                "old"
+            ],
+            "hybridParseMs": 2.7223,
+            "oldParseMs": 5.6578
+        },
+        {
+            "iteration": 3,
+            "order": [
+                "old",
+                "hybrid"
+            ],
+            "oldParseMs": 5.6652,
+            "hybridParseMs": 2.8936
+        },
+        {
+            "iteration": 4,
+            "order": [
+                "hybrid",
+                "old"
+            ],
+            "hybridParseMs": 3.0692,
+            "oldParseMs": 5.6139
+        },
+        {
+            "iteration": 5,
+            "order": [
+                "old",
+                "hybrid"
+            ],
+            "oldParseMs": 5.6615,
+            "hybridParseMs": 2.5784
+        },
+        {
+            "iteration": 6,
+            "order": [
+                "hybrid",
+                "old"
+            ],
+            "hybridParseMs": 3.6983,
+            "oldParseMs": 6.2514
+        },
+        {
+            "iteration": 7,
+            "order": [
+                "old",
+                "hybrid"
+            ],
+            "oldParseMs": 5.6327,
+            "hybridParseMs": 2.7855
+        },
+        {
+            "iteration": 8,
+            "order": [
+                "hybrid",
+                "old"
+            ],
+            "hybridParseMs": 2.8931,
+            "oldParseMs": 6.002
+        },
+        {
+            "iteration": 9,
+            "order": [
+                "old",
+                "hybrid"
+            ],
+            "oldParseMs": 5.9503,
+            "hybridParseMs": 2.6314
+        },
+        {
+            "iteration": 10,
+            "order": [
+                "hybrid",
+                "old"
+            ],
+            "hybridParseMs": 2.8522,
+            "oldParseMs": 6.1273
+        },
+        {
+            "iteration": 11,
+            "order": [
+                "old",
+                "hybrid"
+            ],
+            "oldParseMs": 5.7971,
+            "hybridParseMs": 2.9881
+        },
+        {
+            "iteration": 12,
+            "order": [
+                "hybrid",
+                "old"
+            ],
+            "hybridParseMs": 2.7761,
+            "oldParseMs": 6.0968
+        }
+    ],
+    "componentRows": [
+        {
+            "iteration": 1,
+            "validateClientElapsedMs": 14.6472,
+            "independentAuthoritativeReplayMs": 7.6047,
+            "combinedMs": 22.2519
+        },
+        {
+            "iteration": 2,
+            "validateClientElapsedMs": 11.131,
+            "independentAuthoritativeReplayMs": 5.9241,
+            "combinedMs": 17.0551
+        },
+        {
+            "iteration": 3,
+            "validateClientElapsedMs": 12.3381,
+            "independentAuthoritativeReplayMs": 5.3634,
+            "combinedMs": 17.701500000000003
+        },
+        {
+            "iteration": 4,
+            "validateClientElapsedMs": 10.1593,
+            "independentAuthoritativeReplayMs": 6.8447,
+            "combinedMs": 17.003999999999998
+        },
+        {
+            "iteration": 5,
+            "validateClientElapsedMs": 11.2794,
+            "independentAuthoritativeReplayMs": 6.1268,
+            "combinedMs": 17.406200000000002
+        },
+        {
+            "iteration": 6,
+            "validateClientElapsedMs": 10.3489,
+            "independentAuthoritativeReplayMs": 6.0035,
+            "combinedMs": 16.3524
+        },
+        {
+            "iteration": 7,
+            "validateClientElapsedMs": 11.1158,
+            "independentAuthoritativeReplayMs": 5.9246,
+            "combinedMs": 17.040399999999998
+        },
+        {
+            "iteration": 8,
+            "validateClientElapsedMs": 11.4066,
+            "independentAuthoritativeReplayMs": 7.0895,
+            "combinedMs": 18.4961
+        },
+        {
+            "iteration": 9,
+            "validateClientElapsedMs": 12.0937,
+            "independentAuthoritativeReplayMs": 6.9667,
+            "combinedMs": 19.0604
+        },
+        {
+            "iteration": 10,
+            "validateClientElapsedMs": 11.5064,
+            "independentAuthoritativeReplayMs": 5.6396,
+            "combinedMs": 17.146
+        },
+        {
+            "iteration": 11,
+            "validateClientElapsedMs": 10.9172,
+            "independentAuthoritativeReplayMs": 6.2312,
+            "combinedMs": 17.1484
+        },
+        {
+            "iteration": 12,
+            "validateClientElapsedMs": 11.2218,
+            "independentAuthoritativeReplayMs": 5.5325,
+            "combinedMs": 16.7543
+        }
+    ],
+    "summaries": {
+        "oldParseMs": {
+            "count": 12,
+            "min": 5.6139,
+            "median": 5.8279,
+            "p95": 6.2514,
+            "max": 6.2514
+        },
+        "hybridParseMs": {
+            "count": 12,
+            "min": 2.5784,
+            "median": 2.87265,
+            "p95": 3.6983,
+            "max": 3.6983
+        },
+        "validateClientElapsedMs": {
+            "count": 12,
+            "min": 10.1593,
+            "median": 11.2506,
+            "p95": 14.6472,
+            "max": 14.6472
+        },
+        "independentAuthoritativeReplayMs": {
+            "count": 12,
+            "min": 5.3634,
+            "median": 6.06515,
+            "p95": 7.6047,
+            "max": 7.6047
+        },
+        "combinedMs": {
+            "count": 12,
+            "min": 16.3524,
+            "median": 17.147199999999998,
+            "p95": 22.2519,
+            "max": 22.2519
+        }
+    },
+    "decodedOutputHash": "5bfa67419f99c19fb4600915220f13c5335b0d06ecedfd5ca1f21a9e6ea20d98",
+    "canonicalPayloadHash": "sha256:b37500e0ef5744b2dee080ff9fe6039cf8d4a338a6ae6f311b45b16d657f8cab",
+    "authoritativeProjectionHash": "30e5a11744a5e1787a951c1bf1ed91f47576173d9f033304eb174edfd37758b7",
+    "clientElapsedMs": 15000,
+    "authoritativeElapsedMs": 20000,
+    "allIterationOutputsIdentical": true,
+    "privateConfigurationRead": false,
+    "databaseConnected": false,
+    "httpCapacityMeasured": false
+}

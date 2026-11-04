@@ -88,6 +88,9 @@ function targetWords(target: readonly string[]): readonly Readonly<Word>[] {
 export function alignTranscript(target: readonly string[], typed: string[], policy: ScoringPolicy, finiteFinal = false, submissions: number[] = [], options: { includeWords?: boolean } = {}): Alignment {
   const mapping: Array<number | null> = [];
   const words = targetWords(target);
+  // Only factory-owned dense immutable targets guarantee an existing fresh
+  // record at every mapped slot. Public arrays retain the replacement path.
+  const ownsFreshTargetSlots = targetWordCache.has(target);
   let wordIndex = 0;
   let withinWord = 0;
   let processed = 0;
@@ -150,6 +153,12 @@ export function alignTranscript(target: readonly string[], typed: string[], poli
   }));
   mapping.forEach((slot, i) => {
     if (slot === null) characters.push({ index: target.length + i, expected: null, typed: typed[i], status: 'extra' });
+    else if (ownsFreshTargetSlots) {
+      // These records belong to this call; previously published alignments
+      // never share them, including frozen live snapshots.
+      characters[slot].typed = typed[i];
+      characters[slot].status = typed[i] === target[slot] ? 'correct' : 'incorrect';
+    }
     else characters[slot] = { index: slot, expected: target[slot], typed: typed[i], status: typed[i] === target[slot] ? 'correct' : 'incorrect' };
   });
   let creditedUnits = 0;

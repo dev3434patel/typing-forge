@@ -1,0 +1,65 @@
+{
+  "status": "CORRECTION-SCOPED-DOCUMENTATION-ONLY",
+  "reviewDate": "2026-10-27",
+  "sourceBuild": "11de46af5d4a80e0e830",
+  "sourceFiles": 505,
+  "correction": {
+    "inaccurateHistoricalStatement": "Classroom signup HTTP429 after earlier suites consumed the unchanged protected30/min authentication budget.",
+    "reason": "The previous documentation conflated distinct authentication policies and incorrectly shortened the sign-in IP window. There is no common 30-per-minute authentication allowance in the reviewed AuthService source.",
+    "actualPolicies": [
+      { "operation": "signup", "limit": 8, "windowSeconds": 3600, "scope": "IP", "file": "backend/src/AuthService.php", "line": 41 },
+      { "operation": "signin-ip", "limit": 30, "windowSeconds": 900, "scope": "IP", "file": "backend/src/AuthService.php", "line": 60 },
+      { "operation": "signin-account", "limit": 12, "windowSeconds": 900, "scope": "account email, independent of IP", "file": "backend/src/AuthService.php", "line": 62 }
+    ],
+    "mechanism": "Security::rate derives a fixed-window bucket from server time and REMOTE_ADDR unless includeIp is false; it ignores arbitrary proxy headers. The account sign-in call sets includeIp=false. Authentication endpoint limits remain additional to the generic API policy.",
+    "productionPolicyChanged": false,
+    "rateCountersReset": false,
+    "requestsOrHistoricalOutcomesReclassified": false
+  },
+  "retainedObservations": {
+    "source26NativeCi": {
+      "file": "audit/2026-10-27/final26-native-ci.json",
+      "status": "FAILED",
+      "passedSuites": 7,
+      "failedSuites": 1,
+      "observedFailure": "Classroom POST /auth/signup returned HTTP429 before its first check. The original combined-suite failure is retained.",
+      "targetedFreshClassroomConfirmation": "audit/2026-10-27/final26-classroom-isolation-confirmation.json",
+      "targetedChecksPassed": 9,
+      "targetedConfirmationReplacesCombinedFailure": false
+    },
+    "source27Native20": {
+      "file": "audit/2026-10-27/final27-native-browser.json",
+      "sha256": "2f8bce97808c56678f2544a550943775822e02b59de6a1399920bb6d106e4eae",
+      "status": "FAILED",
+      "passed": 16,
+      "failed": 4,
+      "skipped": 0,
+      "flaky": 0,
+      "automaticRetries": 0,
+      "durationMs": 346567.357,
+      "perEngine": { "chromium": { "passed": 5, "failed": 0 }, "edge": { "passed": 5, "failed": 0 }, "firefox": { "passed": 5, "failed": 0 }, "webkit": { "passed": 1, "failed": 4 } },
+      "observedFailure": "The four WebKit failures encountered protected sign-in HTTP429 on the shared-owner run. The exact rejecting IP/account bucket was not exported before owner cleanup, so this receipt does not identify it.",
+      "freshWebKitFiveCaseConfirmation": "PENDING-SEPARATE-FRESH-OWNER",
+      "native20ReclassifiedAsPass": false
+    }
+  },
+  "retainedHistoricalArtifactsWithInaccurateWording": [
+    { "file": "audit/2026-10-27/final26-classroom-isolation-confirmation.json", "sha256": "a6ae6c57abb380a25acec470c6d8143a3a1088c5483b9e92bf7125220e6d6ea8" },
+    { "file": "audit/2026-10-27/final26-classroom-isolation-preparation.json", "sha256": "6982e61f8d61f8c48557390313fa8b49ded928d49c13de97d4c75f5434017654" },
+    { "file": "audit/2026-10-27/run-final26-classroom-isolation-confirmation.mjs", "sha256": "c3fc14847fae21b2501a2bb9d951784ac12cbc20ba271898de99c3bb0dbd04fa" },
+    { "file": "audit/2026-10-27/prepare-final26-classroom-isolation.mjs", "sha256": "6f13194ff216562b256cffb8972c88e682c2825062186e0e8d724944df54571f" },
+    { "file": "audit/2026-10-27/final27-backend-wire-evidence-inheritance.json", "sha256": "0bebafc3697284b42889cf1f556dcc64de8960b45d524e1d5adb2c07424072b5" }
+  ],
+  "documentationBeforeCorrection": { "file": "docs/ARENA_CAPACITY_2026-10-27.md", "sha256": "704aeae0621f98fb2f28d7f31907368da552305744748d477301ff6e4842826d" },
+  "reviewedPublicSource": [
+    { "file": "backend/src/AuthService.php", "sha256": "c2790aa548136a0fee00dc0c32bb4ec2be6b3d0a033f2cfd5992f79442991efd" },
+    { "file": "backend/src/Security.php", "sha256": "671d4e7944cfbe7d4a6d94e44e17374caa12c8c8f8c33bd850ceedba371e0401" }
+  ],
+  "verificationLimits": {
+    "scope": "Read-only public source and public receipts plus root's public error-context review; documentation correction only.",
+    "newRuntimeTests": false,
+    "privateConfigStorageOrCookiesRead": false,
+    "historicalArtifactsOverwritten": false,
+    "freshConfirmationCannotEraseOriginalFailure": true
+  }
+}

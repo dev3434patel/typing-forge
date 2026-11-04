@@ -1,0 +1,823 @@
+{
+  "capturedAt": "2026-11-02T17:28:57.317Z",
+  "status": "MEASURED-DIAGNOSTIC-ASSOCIATIONS-NOT-ACCEPTANCE-OR-EXCLUSIVE-CAUSE",
+  "sourceBuild": "f52d0372fe7656817259",
+  "staticBuild": "ce843cf42b5a6554ee78",
+  "processReport": "audit/2026-11-02/final31-mobile-native-pipeline-process.json",
+  "processReportSha256": "8be658af734bbfdfa01dff9d24751d626900881e5a334c2db5a41fc02bfc3379",
+  "originalAcceptanceP98Ms": {
+    "source27": {
+      "learn": 112,
+      "localBot": 112
+    },
+    "source28": {
+      "learn": 104,
+      "localBot": 120
+    },
+    "source31OrdinaryTrial3": {
+      "learn": 128,
+      "localBot": 56
+    }
+  },
+  "acceptanceFailuresStillFailed": true,
+  "cases": [
+    {
+      "id": "learn",
+      "sourceSummary": "audit/2026-11-02/final31-mobile-native-pipeline-learn-pipeline-summary.json",
+      "sourceSummarySha256": "376ddc1538aca8f03cb818eea1ff03189b3de2770c3335503f84fb4985023b44",
+      "originalSummaryStatus": "UNVERIFIED-OR-PARTIAL-DIAGNOSTIC-SUMMARY",
+      "strictBounds": {
+        "firstBeforeInput": 424,
+        "finalBeforeInputExclusive": 4807.200000047684
+      },
+      "nativeEditingPhases": [
+        {
+          "type": "UpdateLayoutTree",
+          "phase": "native-textInput-before-app-input",
+          "count": 236,
+          "inclusiveDurationMs": 36.847,
+          "unionDurationMs": 36.847
+        },
+        {
+          "type": "Layout",
+          "phase": "native-textInput-before-app-input",
+          "count": 236,
+          "inclusiveDurationMs": 50.935,
+          "unionDurationMs": 50.935
+        },
+        {
+          "type": "UpdateLayoutTree",
+          "phase": "inside-app-input-dispatch",
+          "count": 11,
+          "inclusiveDurationMs": 36.526,
+          "unionDurationMs": 36.526
+        },
+        {
+          "type": "Layout",
+          "phase": "inside-app-input-dispatch",
+          "count": 9,
+          "inclusiveDurationMs": 32.476,
+          "unionDurationMs": 32.476
+        },
+        {
+          "type": "UpdateLayoutTree",
+          "phase": "outside-native-textInput",
+          "count": 396,
+          "inclusiveDurationMs": 381.893,
+          "unionDurationMs": 381.893
+        },
+        {
+          "type": "Layout",
+          "phase": "outside-native-textInput",
+          "count": 237,
+          "inclusiveDurationMs": 262.011,
+          "unionDurationMs": 262.011
+        },
+        {
+          "type": "UpdateLayoutTree",
+          "phase": "native-textInput-after-app-input",
+          "count": 109,
+          "inclusiveDurationMs": 295.319,
+          "unionDurationMs": 295.319
+        },
+        {
+          "type": "Layout",
+          "phase": "native-textInput-after-app-input",
+          "count": 109,
+          "inclusiveDurationMs": 304.383,
+          "unionDurationMs": 304.383
+        }
+      ],
+      "topLayouts": [
+        {
+          "traceIndex": 4058,
+          "startMs": 2971.67,
+          "endMs": 2986.185,
+          "durationMs": 14.515,
+          "enclosingSpans": [
+            {
+              "type": "EventDispatch",
+              "eventType": "textInput",
+              "startMs": 2949.846,
+              "endMs": 2987.013,
+              "durationMs": 37.167
+            },
+            {
+              "type": "EventDispatch",
+              "eventType": "keypress",
+              "startMs": 2941.115,
+              "endMs": 2987.017,
+              "durationMs": 45.902
+            }
+          ],
+          "relatedInputDispatch": [
+            {
+              "startMs": 2958.173,
+              "endMs": 2965.742,
+              "durationMs": 7.569
+            }
+          ],
+          "layoutArgsNumericAndBoolean": {
+            "dirtyObjects": 39,
+            "partialLayout": false,
+            "totalObjects": 1055
+          }
+        },
+        {
+          "traceIndex": 48,
+          "startMs": 451.354,
+          "endMs": 459.686,
+          "durationMs": 8.332,
+          "enclosingSpans": [
+            {
+              "type": "FunctionCall",
+              "eventType": null,
+              "startMs": 427.584,
+              "endMs": 471.07,
+              "durationMs": 43.486
+            },
+            {
+              "type": "EventDispatch",
+              "eventType": "input",
+              "startMs": 427.204,
+              "endMs": 478.4,
+              "durationMs": 51.196
+            },
+            {
+              "type": "EventDispatch",
+              "eventType": "textInput",
+              "startMs": 424.593,
+              "endMs": 478.621,
+              "durationMs": 54.028
+            },
+            {
+              "type": "EventDispatch",
+              "eventType": "keypress",
+              "startMs": 418.097,
+              "endMs": 478.624,
+              "durationMs": 60.527
+            }
+          ],
+          "relatedInputDispatch": [
+            {
+              "startMs": 427.204,
+              "endMs": 478.4,
+              "durationMs": 51.196
+            }
+          ],
+          "layoutArgsNumericAndBoolean": {
+            "dirtyObjects": 60,
+            "partialLayout": false,
+            "totalObjects": 1055
+          }
+        },
+        {
+          "traceIndex": 4157,
+          "startMs": 3076.536,
+          "endMs": 3083.439,
+          "durationMs": 6.903,
+          "enclosingSpans": [
+            {
+              "type": "EventDispatch",
+              "eventType": "textInput",
+              "startMs": 3065.536,
+              "endMs": 3084.032,
+              "durationMs": 18.496
+            },
+            {
+              "type": "EventDispatch",
+              "eventType": "keypress",
+              "startMs": 3061.824,
+              "endMs": 3084.035,
+              "durationMs": 22.211
+            }
+          ],
+          "relatedInputDispatch": [
+            {
+              "startMs": 3067.995,
+              "endMs": 3073.7,
+              "durationMs": 5.705
+            }
+          ],
+          "layoutArgsNumericAndBoolean": {
+            "dirtyObjects": 39,
+            "partialLayout": false,
+            "totalObjects": 1055
+          }
+        },
+        {
+          "traceIndex": 5475,
+          "startMs": 4148.075,
+          "endMs": 4154.665,
+          "durationMs": 6.59,
+          "enclosingSpans": [],
+          "relatedInputDispatch": [],
+          "layoutArgsNumericAndBoolean": {
+            "dirtyObjects": 13,
+            "partialLayout": false,
+            "totalObjects": 1055
+          }
+        },
+        {
+          "traceIndex": 4698,
+          "startMs": 3482.757,
+          "endMs": 3489.173,
+          "durationMs": 6.416,
+          "enclosingSpans": [
+            {
+              "type": "EventDispatch",
+              "eventType": "textInput",
+              "startMs": 3458.952,
+              "endMs": 3489.971,
+              "durationMs": 31.019
+            },
+            {
+              "type": "EventDispatch",
+              "eventType": "keypress",
+              "startMs": 3454.278,
+              "endMs": 3489.974,
+              "durationMs": 35.696
+            }
+          ],
+          "relatedInputDispatch": [
+            {
+              "startMs": 3465.085,
+              "endMs": 3476.168,
+              "durationMs": 11.083
+            }
+          ],
+          "layoutArgsNumericAndBoolean": {
+            "dirtyObjects": 39,
+            "partialLayout": false,
+            "totalObjects": 1055
+          }
+        },
+        {
+          "traceIndex": 5364,
+          "startMs": 4019.648,
+          "endMs": 4025.873,
+          "durationMs": 6.225,
+          "enclosingSpans": [
+            {
+              "type": "EventDispatch",
+              "eventType": "textInput",
+              "startMs": 4005.074,
+              "endMs": 4026.471,
+              "durationMs": 21.397
+            },
+            {
+              "type": "EventDispatch",
+              "eventType": "keypress",
+              "startMs": 4000.503,
+              "endMs": 4026.474,
+              "durationMs": 25.971
+            }
+          ],
+          "relatedInputDispatch": [
+            {
+              "startMs": 4008.529,
+              "endMs": 4017.231,
+              "durationMs": 8.702
+            }
+          ],
+          "layoutArgsNumericAndBoolean": {
+            "dirtyObjects": 31,
+            "partialLayout": false,
+            "totalObjects": 1055
+          }
+        },
+        {
+          "traceIndex": 5860,
+          "startMs": 4621.336,
+          "endMs": 4627.325,
+          "durationMs": 5.989,
+          "enclosingSpans": [
+            {
+              "type": "EventDispatch",
+              "eventType": "textInput",
+              "startMs": 4595.504,
+              "endMs": 4629.176,
+              "durationMs": 33.672
+            },
+            {
+              "type": "EventDispatch",
+              "eventType": "keypress",
+              "startMs": 4590.694,
+              "endMs": 4629.185,
+              "durationMs": 38.491
+            }
+          ],
+          "relatedInputDispatch": [
+            {
+              "startMs": 4599.212,
+              "endMs": 4614.626,
+              "durationMs": 15.414
+            }
+          ],
+          "layoutArgsNumericAndBoolean": {
+            "dirtyObjects": 39,
+            "partialLayout": false,
+            "totalObjects": 1055
+          }
+        },
+        {
+          "traceIndex": 5461,
+          "startMs": 4121.007,
+          "endMs": 4126.849,
+          "durationMs": 5.842,
+          "enclosingSpans": [
+            {
+              "type": "EventDispatch",
+              "eventType": "textInput",
+              "startMs": 4111.559,
+              "endMs": 4130.56,
+              "durationMs": 19.001
+            },
+            {
+              "type": "EventDispatch",
+              "eventType": "keypress",
+              "startMs": 4105.049,
+              "endMs": 4130.565,
+              "durationMs": 25.516
+            }
+          ],
+          "relatedInputDispatch": [
+            {
+              "startMs": 4114.254,
+              "endMs": 4118.105,
+              "durationMs": 3.851
+            }
+          ],
+          "layoutArgsNumericAndBoolean": {
+            "dirtyObjects": 39,
+            "partialLayout": false,
+            "totalObjects": 1055
+          }
+        }
+      ],
+      "unmatchedBeginsOnMeasuredRenderer": [
+        {
+          "name": "FunctionCall",
+          "traceIndex": 6200,
+          "startMs": 5101.146,
+          "startsAfterInputReturn": true,
+          "startsAfterFinalBeforeInput": true
+        }
+      ],
+      "setterKindsStrictPreFinal": [],
+      "shape": {
+        "before": {
+          "isConnected": true,
+          "clientWidth": 350,
+          "clientHeight": 152,
+          "scrollWidth": 350,
+          "scrollHeight": 152,
+          "scrollTop": 0,
+          "scrollLeft": 0,
+          "wrap": "",
+          "whiteSpace": "pre-wrap",
+          "overflowX": "auto",
+          "overflowY": "auto",
+          "fontFamily": "\"Inter Variable\", \"Inter Fallback\", \"Noto Sans\", system-ui, sans-serif",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "ownReactValueDescriptorPresent": true
+        },
+        "after": {
+          "isConnected": false,
+          "clientWidth": 0,
+          "clientHeight": 0,
+          "scrollWidth": 0,
+          "scrollHeight": 0,
+          "scrollTop": 0,
+          "scrollLeft": 0,
+          "wrap": "",
+          "whiteSpace": "",
+          "overflowX": "",
+          "overflowY": "",
+          "fontFamily": "",
+          "fontSize": "",
+          "lineHeight": "",
+          "ownReactValueDescriptorPresent": true
+        }
+      },
+      "nodeEvidence": {
+        "status": "BOUNDED-TRACE-NODE-REFERENCES",
+        "maximumUniqueReferences": 32,
+        "nodes": [
+          {
+            "reference": {
+              "id": 1,
+              "field": "nodeId",
+              "eventName": "Layout"
+            },
+            "status": "RESOLVED-AS-BACKEND-NODE",
+            "backendNodeId": 1,
+            "tag": "#document",
+            "id": null,
+            "className": null,
+            "testId": null
+          },
+          {
+            "reference": {
+              "id": 44,
+              "field": "nodeId",
+              "eventName": "Layout"
+            },
+            "status": "RESOLVED-AS-BACKEND-NODE",
+            "backendNodeId": 44,
+            "tag": "textarea",
+            "id": null,
+            "className": "learn-input absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0",
+            "testId": null
+          }
+        ],
+        "qualification": "Trace argument filtering may omit node IDs. Only numeric root/node references emitted by measured main-thread Layout/style events are queried. No DOM text, input values or arbitrary attributes are retained. A resolved node identifies trace scope, not an exclusive layout cause."
+      },
+      "qualification": "These are complete X spans with strict pre-final containment. Input dispatch containment separates measured native editing from app dispatch but does not prove one CSS property or node caused a layout. Inclusive categories can nest; union durations are within category only. Original summaries, including partial status, remain unchanged."
+    },
+    {
+      "id": "local-bot",
+      "sourceSummary": "audit/2026-11-02/final31-mobile-native-pipeline-local-bot-pipeline-summary.json",
+      "sourceSummarySha256": "b104cc380f4f3b33f86ecae9a42557faff1e602422feeb04f70dc2443489f415",
+      "originalSummaryStatus": "UNVERIFIED-OR-PARTIAL-DIAGNOSTIC-SUMMARY",
+      "strictBounds": {
+        "firstBeforeInput": 804.7000000476837,
+        "finalBeforeInputExclusive": 4334.600000023842
+      },
+      "nativeEditingPhases": [
+        {
+          "type": "UpdateLayoutTree",
+          "phase": "native-textInput-before-app-input",
+          "count": 2,
+          "inclusiveDurationMs": 0.042,
+          "unionDurationMs": 0.042
+        },
+        {
+          "type": "Layout",
+          "phase": "native-textInput-before-app-input",
+          "count": 100,
+          "inclusiveDurationMs": 77.174,
+          "unionDurationMs": 77.174
+        },
+        {
+          "type": "UpdateLayoutTree",
+          "phase": "inside-app-input-dispatch",
+          "count": 9,
+          "inclusiveDurationMs": 20.876,
+          "unionDurationMs": 20.876
+        },
+        {
+          "type": "Layout",
+          "phase": "inside-app-input-dispatch",
+          "count": 7,
+          "inclusiveDurationMs": 18.689,
+          "unionDurationMs": 18.689
+        },
+        {
+          "type": "UpdateLayoutTree",
+          "phase": "outside-native-textInput",
+          "count": 298,
+          "inclusiveDurationMs": 244.646,
+          "unionDurationMs": 244.646
+        },
+        {
+          "type": "Layout",
+          "phase": "outside-native-textInput",
+          "count": 198,
+          "inclusiveDurationMs": 227.705,
+          "unionDurationMs": 227.705
+        },
+        {
+          "type": "UpdateLayoutTree",
+          "phase": "native-textInput-after-app-input",
+          "count": 92,
+          "inclusiveDurationMs": 288.737,
+          "unionDurationMs": 288.737
+        },
+        {
+          "type": "Layout",
+          "phase": "native-textInput-after-app-input",
+          "count": 92,
+          "inclusiveDurationMs": 211.051,
+          "unionDurationMs": 211.051
+        }
+      ],
+      "topLayouts": [
+        {
+          "traceIndex": 3947,
+          "startMs": 3126.859,
+          "endMs": 3139.13,
+          "durationMs": 12.271,
+          "enclosingSpans": [
+            {
+              "type": "EventDispatch",
+              "eventType": "textInput",
+              "startMs": 3107.155,
+              "endMs": 3140.765,
+              "durationMs": 33.61
+            },
+            {
+              "type": "EventDispatch",
+              "eventType": "keypress",
+              "startMs": 3101.038,
+              "endMs": 3140.77,
+              "durationMs": 39.732
+            }
+          ],
+          "relatedInputDispatch": [
+            {
+              "startMs": 3109.787,
+              "endMs": 3125.455,
+              "durationMs": 15.668
+            }
+          ],
+          "layoutArgsNumericAndBoolean": {
+            "dirtyObjects": 36,
+            "partialLayout": false,
+            "totalObjects": 2431
+          }
+        },
+        {
+          "traceIndex": 4628,
+          "startMs": 3756.212,
+          "endMs": 3764.024,
+          "durationMs": 7.812,
+          "enclosingSpans": [
+            {
+              "type": "EventDispatch",
+              "eventType": "textInput",
+              "startMs": 3740.059,
+              "endMs": 3764.453,
+              "durationMs": 24.394
+            },
+            {
+              "type": "EventDispatch",
+              "eventType": "keypress",
+              "startMs": 3734.184,
+              "endMs": 3764.455,
+              "durationMs": 30.271
+            }
+          ],
+          "relatedInputDispatch": [
+            {
+              "startMs": 3744.383,
+              "endMs": 3753.676,
+              "durationMs": 9.293
+            }
+          ],
+          "layoutArgsNumericAndBoolean": {
+            "dirtyObjects": 34,
+            "partialLayout": false,
+            "totalObjects": 2431
+          }
+        },
+        {
+          "traceIndex": 5079,
+          "startMs": 4291.718,
+          "endMs": 4298.221,
+          "durationMs": 6.503,
+          "enclosingSpans": [
+            {
+              "type": "EventDispatch",
+              "eventType": "textInput",
+              "startMs": 4276.993,
+              "endMs": 4299.036,
+              "durationMs": 22.043
+            },
+            {
+              "type": "EventDispatch",
+              "eventType": "keypress",
+              "startMs": 4273.884,
+              "endMs": 4299.039,
+              "durationMs": 25.155
+            }
+          ],
+          "relatedInputDispatch": [
+            {
+              "startMs": 4279.056,
+              "endMs": 4282.52,
+              "durationMs": 3.464
+            }
+          ],
+          "layoutArgsNumericAndBoolean": {
+            "dirtyObjects": 24,
+            "partialLayout": false,
+            "totalObjects": 2431
+          }
+        },
+        {
+          "traceIndex": 4828,
+          "startMs": 4023.32,
+          "endMs": 4028.325,
+          "durationMs": 5.005,
+          "enclosingSpans": [
+            {
+              "type": "EventDispatch",
+              "eventType": "textInput",
+              "startMs": 4005.046,
+              "endMs": 4030.98,
+              "durationMs": 25.934
+            },
+            {
+              "type": "EventDispatch",
+              "eventType": "keypress",
+              "startMs": 3999.109,
+              "endMs": 4030.993,
+              "durationMs": 31.884
+            }
+          ],
+          "relatedInputDispatch": [
+            {
+              "startMs": 4008.218,
+              "endMs": 4017.689,
+              "durationMs": 9.471
+            }
+          ],
+          "layoutArgsNumericAndBoolean": {
+            "dirtyObjects": 32,
+            "partialLayout": false,
+            "totalObjects": 2431
+          }
+        },
+        {
+          "traceIndex": 4928,
+          "startMs": 4170.777,
+          "endMs": 4175.543,
+          "durationMs": 4.766,
+          "enclosingSpans": [
+            {
+              "type": "EventDispatch",
+              "eventType": "textInput",
+              "startMs": 4153.297,
+              "endMs": 4177.173,
+              "durationMs": 23.876
+            },
+            {
+              "type": "EventDispatch",
+              "eventType": "keypress",
+              "startMs": 4146.716,
+              "endMs": 4177.184,
+              "durationMs": 30.468
+            }
+          ],
+          "relatedInputDispatch": [
+            {
+              "startMs": 4156.171,
+              "endMs": 4165.648,
+              "durationMs": 9.477
+            }
+          ],
+          "layoutArgsNumericAndBoolean": {
+            "dirtyObjects": 34,
+            "partialLayout": false,
+            "totalObjects": 2431
+          }
+        },
+        {
+          "traceIndex": 5113,
+          "startMs": 4328.767,
+          "endMs": 4333.043,
+          "durationMs": 4.276,
+          "enclosingSpans": [
+            {
+              "type": "EventDispatch",
+              "eventType": "keypress",
+              "startMs": 4324.939,
+              "endMs": 4358.144,
+              "durationMs": 33.205
+            }
+          ],
+          "relatedInputDispatch": [],
+          "layoutArgsNumericAndBoolean": {
+            "dirtyObjects": 13,
+            "partialLayout": false,
+            "totalObjects": 2431
+          }
+        },
+        {
+          "traceIndex": 4712,
+          "startMs": 3864.526,
+          "endMs": 3868.658,
+          "durationMs": 4.132,
+          "enclosingSpans": [
+            {
+              "type": "EventDispatch",
+              "eventType": "keypress",
+              "startMs": 3861.253,
+              "endMs": 3908.44,
+              "durationMs": 47.187
+            }
+          ],
+          "relatedInputDispatch": [],
+          "layoutArgsNumericAndBoolean": {
+            "dirtyObjects": 13,
+            "partialLayout": false,
+            "totalObjects": 2431
+          }
+        },
+        {
+          "traceIndex": 4878,
+          "startMs": 4105.923,
+          "endMs": 4110.03,
+          "durationMs": 4.107,
+          "enclosingSpans": [
+            {
+              "type": "EventDispatch",
+              "eventType": "textInput",
+              "startMs": 4078.786,
+              "endMs": 4110.829,
+              "durationMs": 32.043
+            },
+            {
+              "type": "EventDispatch",
+              "eventType": "keypress",
+              "startMs": 4070.942,
+              "endMs": 4110.833,
+              "durationMs": 39.891
+            }
+          ],
+          "relatedInputDispatch": [
+            {
+              "startMs": 4084.969,
+              "endMs": 4099.13,
+              "durationMs": 14.161
+            }
+          ],
+          "layoutArgsNumericAndBoolean": {
+            "dirtyObjects": 34,
+            "partialLayout": false,
+            "totalObjects": 2431
+          }
+        }
+      ],
+      "unmatchedBeginsOnMeasuredRenderer": [
+        {
+          "name": "UpdateLayoutTree",
+          "traceIndex": 5212,
+          "startMs": 4410.303,
+          "startsAfterInputReturn": true,
+          "startsAfterFinalBeforeInput": true
+        }
+      ],
+      "setterKindsStrictPreFinal": [],
+      "shape": {
+        "before": {
+          "isConnected": true,
+          "clientWidth": 350,
+          "clientHeight": 164,
+          "scrollWidth": 350,
+          "scrollHeight": 164,
+          "scrollTop": 0,
+          "scrollLeft": 0,
+          "wrap": "",
+          "whiteSpace": "pre-wrap",
+          "overflowX": "auto",
+          "overflowY": "auto",
+          "fontFamily": "\"Inter Variable\", \"Inter Fallback\", \"Noto Sans\", system-ui, sans-serif",
+          "fontSize": "26px",
+          "lineHeight": "39px",
+          "ownReactValueDescriptorPresent": true
+        },
+        "after": {
+          "isConnected": true,
+          "clientWidth": 350,
+          "clientHeight": 164,
+          "scrollWidth": 350,
+          "scrollHeight": 172,
+          "scrollTop": 0,
+          "scrollLeft": 0,
+          "wrap": "",
+          "whiteSpace": "pre-wrap",
+          "overflowX": "auto",
+          "overflowY": "auto",
+          "fontFamily": "\"Inter Variable\", \"Inter Fallback\", \"Noto Sans\", system-ui, sans-serif",
+          "fontSize": "26px",
+          "lineHeight": "39px",
+          "ownReactValueDescriptorPresent": true
+        }
+      },
+      "nodeEvidence": {
+        "status": "BOUNDED-TRACE-NODE-REFERENCES",
+        "maximumUniqueReferences": 32,
+        "nodes": [
+          {
+            "reference": {
+              "id": 2,
+              "field": "nodeId",
+              "eventName": "Layout"
+            },
+            "status": "RESOLVED-AS-BACKEND-NODE",
+            "backendNodeId": 2,
+            "tag": "#document",
+            "id": null,
+            "className": null,
+            "testId": null
+          }
+        ],
+        "qualification": "Trace argument filtering may omit node IDs. Only numeric root/node references emitted by measured main-thread Layout/style events are queried. No DOM text, input values or arbitrary attributes are retained. A resolved node identifies trace scope, not an exclusive layout cause."
+      },
+      "qualification": "These are complete X spans with strict pre-final containment. Input dispatch containment separates measured native editing from app dispatch but does not prove one CSS property or node caused a layout. Inclusive categories can nest; union durations are within category only. Original summaries, including partial status, remain unchanged."
+    }
+  ]
+}

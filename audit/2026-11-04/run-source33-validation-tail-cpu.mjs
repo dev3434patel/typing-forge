@@ -1,0 +1,26 @@
+import assert from 'node:assert/strict';
+import {readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {spawnSync} from 'node:child_process';
+import {SessionController} from '../../src/lib/typing-core/index.ts';
+import {phpRuntime} from '../../scripts/php-runtime.mjs';
+import {verifyFrozenSource} from '../2026-10-21/artifact-verification.mjs';
+assert.equal(process.env.SPAROWTYPE_SOURCE33_VALIDATION_TAIL_CPU,'1');
+const prefix='audit/2026-11-04/source33-validation-tail-cpu',sourceFile='audit/2026-11-02/final33-source.json';
+const before=await verifyFrozenSource(sourceFile);assert.equal(before.receipt.compared,505);assert.deepEqual(before.receipt.mismatches,[]);
+const target=Array.from({length:800},(_,index)=>['calm','clear','river','focus'][index%4]).join(' ');
+let now=0;const wall=Date.UTC(2026,9,27,12),owner='11111111-1111-4111-8111-111111111111';
+const controller=new SessionController({clientSessionId:'source22-serializer-diagnostic',ownerScope:owner,mode:'race',durationMs:30000,initialTarget:target,correctionPolicy:'current-word',inputMethod:'keyboard',language:'en',keyboardLayout:'qwerty'},{now:()=>now,wallNow:()=>wall+now});
+controller.startAt(0,wall);for(const[index,text]of[...target.slice(0,10)].entries()){now=100+index*80+index%3*3;controller.input({type:'insert',text});}now=15000;
+const candidateJson=JSON.stringify(controller.checkpoint()),hash=value=>createHash('sha256').update(value).digest('hex');
+assert.equal(hash(candidateJson),'39fe841e3c203ee647cce99c75643b0ec9e6ed8efc685cc699c8b9abf809469c');assert.equal(Buffer.byteLength(candidateJson),302392);
+const inputs=[import.meta.filename,`${prefix}.php`,'backend/src/SessionValidator.php','backend/src/UnicodeGraphemes.php','backend/src/CourseAssessment.php','scripts/php-runtime.mjs'];
+const hashes=Object.fromEntries(await Promise.all(inputs.map(async file=>[file,hash(await readFile(file))])));
+await writeFile(prefix+'-protocol.json',JSON.stringify({kind:'frozen-source-tail-only-cpu-diagnostic',source:before.receipt,fixtureBytes:302392,fixtureSha256:hash(candidateJson),iterations:12,freshInstances:true,warmups:0,retries:0,outlierFiltering:false,inputHashes:hashes,servicesStarted:0},null,2)+'\n',{flag:'wx'});
+const runtime=phpRuntime(),syntax=spawnSync(runtime.binary,[...runtime.args,'-l',`${prefix}.php`],{encoding:'utf8'});assert.equal(syntax.status,0,syntax.stderr);
+const child=spawnSync(runtime.binary,[...runtime.args,`${prefix}.php`],{input:candidateJson,encoding:'utf8',env:process.env,windowsHide:true,timeout:15000,maxBuffer:512000});
+await writeFile(prefix+'-stdout.json',child.stdout??'',{flag:'wx'});
+let result=null;try{result=JSON.parse(child.stdout);}catch{}
+const after=await verifyFrozenSource(sourceFile),inputsUnchanged=(await Promise.all(inputs.map(async file=>hash(await readFile(file))===hashes[file]))).every(Boolean);
+const report={status:child.status===0&&!child.stderr&&result?.status==='PASS-SCOPED-TAIL-DIAGNOSTIC'&&inputsUnchanged&&after.receipt.mismatches.length===0?'PASS-SCOPED-TAIL-DIAGNOSTIC':'FAILED',child:{exitCode:child.status,stderr:child.stderr,error:child.error?.message??null},result,sourceAfter:after.receipt,inputsUnchanged};
+await writeFile(prefix+'-result.json',JSON.stringify(report,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify({status:report.status,summaries:result?.summaries}));if(report.status==='FAILED')process.exitCode=1;

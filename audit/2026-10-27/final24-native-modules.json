@@ -1,0 +1,171 @@
+{
+  "declaredAt": "2026-10-27T16:32:03.137Z",
+  "status": "PASS-SCOPED",
+  "build": "6cdddf1a74b2d10d1c9b",
+  "scope": "Current frozen source24 real loopback Apache/PHP/PDO/MariaDB module contracts on one wholly new synthetic database. No browser, capacity load, hosted or physical-device claim.",
+  "sourceBefore": {
+    "sourceFile": "audit/2026-10-27/final24-source.json",
+    "expectedBuild": "6cdddf1a74b2d10d1c9b",
+    "compared": 504,
+    "mismatches": []
+  },
+  "suites": [
+    "progression",
+    "social",
+    "classroom",
+    "arena-http",
+    "password"
+  ],
+  "automaticRetries": 0,
+  "capacityLoad": false,
+  "inputHashes": {
+    "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-10-27\\run-final24-native-modules.mjs": "bd589dac5e05de8d07395ba40b7c404889a1f963e5ce3b7218b0b8ec72ef013f",
+    "audit/2026-10-27/pack-backend-instance-source24.mjs": "31d6162f7db08ecd26c957510c45fb617835d4cf97a85c4d4ef0b66b27fb8a49",
+    "audit/2026-10-21/pack-apache-runtime.mjs": "80dd94f993d853d2057314473855a796e11264323bce64a4a9db97822b6dabe7",
+    "scripts/php-runtime.mjs": "2adeffc2ac322edbc611f34c437a0f34569689c942602bf39b079305cfb7a60f",
+    "backend/tests/pack-progression-lifecycle.mjs": "3132edb2334f78be29a8bea04743a85d368ec2483af2db06c9b901edc262f7a7",
+    "backend/tests/pack-social-lifecycle.mjs": "8fda23888523b169ee108e69b387d4b410a9e72631c5a54e59885e22581324f7",
+    "backend/tests/classroom-lifecycle.mjs": "40c17ada66f50a7143531144d9b2dbc1e9123f960f626f7eef0fd26cb9258949",
+    "audit/mega-pack-2026-10-21/run-arena-http.mjs": "6f0a3b526a7477f1c720f6036f5ce22cc78b6d71d80d8d3498504681f566f407",
+    "backend/tests/password-policy.php": "b510cc5563c9e2d4a7c9b5af91860e1dec4f20a7e7aa1502ea6ffe126b465509"
+  },
+  "sourceInventoryExtension": {
+    "previousCount": 506,
+    "expectedCount": 504,
+    "proposedRemovedFiles": [
+      "src/lib/frame-publisher.ts",
+      "src/lib/__tests__/frame-publisher.test.ts"
+    ],
+    "reason": "Source24 proposes removing the unsupported frame-presentation prototype; execution requires the actual frozen inventory to match504."
+  },
+  "browserStarted": false,
+  "originalConfigurationRead": false,
+  "log": "audit/2026-10-27/final24-native-modules.log",
+  "exitCode": 0,
+  "ownerExited": true,
+  "events": [
+    {
+      "stage": "ephemeral-initialize",
+      "databasePort": 6342,
+      "apiPort": 6343,
+      "httpRuntime": "apache",
+      "existingDatabaseConnected": false,
+      "existingConfigRead": false
+    },
+    {
+      "stage": "ephemeral-provision",
+      "status": "READY",
+      "database": "sparow_pack_212288f6171a6f5c_audit",
+      "port": 6342,
+      "schemaVersion": 5,
+      "tables": 26,
+      "migrations": [
+        "002-progression.sql",
+        "003_classroom.sql",
+        "004_social.sql",
+        "005_arena.sql"
+      ],
+      "emptyBeforeSchema": true,
+      "appDmlOnly": true,
+      "existingDatabaseConnected": false,
+      "existingConfigRead": false
+    },
+    {
+      "stage": "ephemeral-api-ready",
+      "httpRuntime": "apache",
+      "auditDatabaseMaxConnections": 64,
+      "apacheThreads": 64,
+      "api": "http://127.0.0.1:6343/api",
+      "database": "sparow_pack_212288f6171a6f5c_audit",
+      "databasePort": 6342,
+      "databasePid": 49824,
+      "phpPid": 46468,
+      "privateConfigFile": "D:\\extra\\typing_updated\\typing-forge\\backend\\storage\\pack-instance-212288f6171a6f5c\\app-config.php",
+      "privateDirectory": "D:\\extra\\typing_updated\\typing-forge\\backend\\storage\\pack-instance-212288f6171a6f5c",
+      "originalDatabasePortUntouched": 3308,
+      "originalApiPortUntouched": 8081,
+      "existingConfigRead": false,
+      "noWindowsServiceCreated": true
+    },
+    {
+      "stage": "ephemeral-suite-start",
+      "name": "progression"
+    },
+    {
+      "stage": "ephemeral-suite-complete",
+      "name": "progression",
+      "exitCode": 0,
+      "status": "PASS",
+      "checks": 7
+    },
+    {
+      "stage": "ephemeral-suite-start",
+      "name": "social"
+    },
+    {
+      "stage": "ephemeral-suite-complete",
+      "name": "social",
+      "exitCode": 0,
+      "status": "PASS",
+      "checks": 8
+    },
+    {
+      "stage": "ephemeral-suite-start",
+      "name": "classroom"
+    },
+    {
+      "stage": "ephemeral-suite-complete",
+      "name": "classroom",
+      "exitCode": 0,
+      "status": "PASS",
+      "checks": 9
+    },
+    {
+      "stage": "ephemeral-suite-start",
+      "name": "arena-http"
+    },
+    {
+      "stage": "ephemeral-suite-complete",
+      "name": "arena-http",
+      "exitCode": 0,
+      "status": "PASS",
+      "checks": 29
+    },
+    {
+      "stage": "ephemeral-suite-start",
+      "name": "password"
+    },
+    {
+      "stage": "ephemeral-suite-complete",
+      "name": "password",
+      "exitCode": 0,
+      "status": "PASS",
+      "checks": null
+    },
+    {
+      "stage": "ephemeral-cleanup",
+      "date": "2026-10-27T16:33:10.229Z",
+      "ownProcessesStopped": true,
+      "gracefulDatabaseShutdown": true,
+      "forcedOwnDatabaseStop": false,
+      "httpRuntime": "apache",
+      "gracefulApacheShutdown": true,
+      "forcedOwnApacheStop": false,
+      "apacheResidualPids": [],
+      "ownTemporaryDirectoryRemoved": true,
+      "originalDatabasePortUntouched": 3308,
+      "originalApiPortUntouched": 8081,
+      "originalPreviewPortUntouched": 4173,
+      "noWindowsServiceCreated": true,
+      "originalConfigRead": false
+    }
+  ],
+  "sourceAfter": {
+    "sourceFile": "audit/2026-10-27/final24-source.json",
+    "expectedBuild": "6cdddf1a74b2d10d1c9b",
+    "compared": 504,
+    "mismatches": []
+  },
+  "harnessInputsUnchanged": true,
+  "finishedAt": "2026-10-27T16:33:10.623Z"
+}

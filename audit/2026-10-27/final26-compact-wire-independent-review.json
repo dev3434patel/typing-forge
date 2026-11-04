@@ -1,0 +1,32 @@
+{
+  "actionableFindings": [],
+  "recordedAt": "2026-10-27T17:14:18.5143627Z",
+  "scope": "Independent source review of source26 compact Arena request evidence and exact canonical parity tests. No runtime or performance certification.",
+  "facts": [
+    "Arena helper removes only the three own derived fields characters,timeSeries,cursor and copies the envelope without modifying nested evidence.",
+    "Only arenaService.submit uses the compact helper; local and exported SessionResult objects remain complete.",
+    "Configuration, raw events and provenance, clocks, final transcript, pauses, issued target segments, metrics, owner and unknown future enumerable evidence remain retained.",
+    "PHP SessionValidator uses none of the incoming three derived fields and overwrites them from replay before stable canonical hashing.",
+    "Competitive preflight and Arena issuance/prefix/state checks continue to use retained raw evidence.",
+    "PHP parity appends18 full/compact pairs after the original542 cases, with14 exact canonical byte/hash/full-result comparisons and four matching rejection class/message comparisons.",
+    "Selected canonical bytes stay inside pure-test child output for comparison and are not application HTTP fields."
+  ],
+  "testsRunByReviewer": 0,
+  "privateConfigurationRead": false,
+  "servicesStartedByReviewer": 0,
+  "reviewedNormalizedSourceHashes": {
+    "src/services/arena-service.ts": "e395ff18b60392e6beecdf4b7a1f2766130fcd82d7da185b0358bbf8d45e9f4f",
+    "src/domain/arena.ts": "24c5cce5e196903c7ddaad914acf3bca1a35540750abce3c3ac3875853151d42",
+    "src/domain/__tests__/arena.test.ts": "417ca62c20f4f6809f495a79ddfdd3cefc61f3ef5318d4333a03cfb0cd1cec84",
+    "backend/tests/replay-driver.php": "80792e259ad9a38d77607199cdf40a954b35e0c56f05e727bc7761bdeddb5043",
+    "backend/tests/validation-parity.mjs": "930f43292375f133a3baacf4dbb10b9df309683bd3d241616b553f1058c9096f",
+    "backend/src/SessionValidator.php": "5d5907e4a49a1a92966a967591701976a25051a3a4f0d4d21f8e70f112be776d"
+  },
+  "status": "PASS-SCOPED-READONLY-REVIEW",
+  "productFilesChangedByReview": false,
+  "limits": [
+    "Actual source gates and fresh normal/wire native acceptance are separately required.",
+    "No capacity or frontend latency gain is inferred from source inspection.",
+    "No physical-device or hosted environment certification."
+  ]
+}

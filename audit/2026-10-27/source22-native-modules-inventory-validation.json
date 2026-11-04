@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-10-27T15:34:47.751Z",
+  "status": "PREPARED-COUNT-CORRECTED-NOT-RUN",
+  "wrapper": "audit/2026-10-27/run-final22-native-modules.mjs",
+  "previousWrapperSha256": "e2240ee017b8cfb55daed2c9d9fff181f72d71eb897714be44162da2b39d4df5",
+  "currentWrapperSha256": "5517060e728cf335c400d0e99df9d7afaf89dfae63f82941e3b4473a0cdf9f81",
+  "frozenFile": "audit/2026-10-27/final22-source.json",
+  "frozenBuild": "f957b00588200c8f376e",
+  "frozenSourceCount": 504,
+  "previousDeclaredSourceCount": 503,
+  "previousSourceInventoryCount": 502,
+  "addedFiles": [
+    "src/lib/pressed-key-attribute.ts",
+    "src/lib/__tests__/pressed-key-attribute.test.ts"
+  ],
+  "reason": "Both the production attribute helper and src/lib/__tests__/pressed-key-attribute.test.ts belong to the frozen src inventory. The earlier preparation declaration counted only the helper.",
+  "changes": [
+    {
+      "before": "before.receipt.compared, 503",
+      "after": "before.receipt.compared, 504"
+    },
+    {
+      "before": "report.sourceAfter.compared === 503",
+      "after": "report.sourceAfter.compared === 504"
+    },
+    {
+      "before": "sourceInventoryExtension: { previousCount: 502, expectedCount: 503, addedProductionFile: 'src/lib/pressed-key-attribute.ts' }",
+      "after": "sourceInventoryExtension: { previousCount: 502, expectedCount: 504, addedFiles: ['src/lib/pressed-key-attribute.ts', 'src/lib/__tests__/pressed-key-attribute.test.ts'], reason: 'The frozen src inventory includes the new attribute helper and its source unit test.' }"
+    }
+  ],
+  "reversibleByteIdentity": true,
+  "originalPreparationReceiptsPreserved": true,
+  "productionOrE2EFilesChanged": false,
+  "allOriginalFiveSuitesAndAssertionsPreserved": true,
+  "fullFrozenSourceVerification": "PENDING-EXECUTION; this correction only reads the frozen public inventory and does not run the source gate during the active typing benchmark.",
+  "browsersLaunched": 0,
+  "servicesStarted": 0,
+  "buildsRun": 0,
+  "acceptanceTestsRun": 0
+}

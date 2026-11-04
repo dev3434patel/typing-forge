@@ -1,0 +1,88 @@
+{
+  "status": "PASS-PREPARATION-ONLY",
+  "recordedAt": "2026-10-27T16:52:54.182Z",
+  "syntax": [
+    {
+      "file": "audit/2026-10-27/prepare-final25-native-ci.mjs",
+      "sha256": "dfdb80a704678687bc967d748ff9366296bcce3cc64b170b4c5ca8d249e438bd",
+      "pass": true
+    },
+    {
+      "file": "audit/2026-10-27/run-final25-native-ci.mjs",
+      "sha256": "8f743b902bd18570f78d4916b7b46fd93ff2f7f8e13b04959fdce9bd1e0ff6a2",
+      "pass": true
+    },
+    {
+      "file": "audit/2026-10-27/run-final25-ci-extra.mjs",
+      "sha256": "4a337c32621930e64c1d8840bf4e324df41a2a1170859eac7c3827da16aa8ef6",
+      "pass": true
+    },
+    {
+      "file": "audit/2026-10-27/validate-final25-extra-preparation.mjs",
+      "sha256": "765029bffcf5d447509a71778c65f988afc087661785664d52d14040522f3c6b",
+      "pass": true
+    }
+  ],
+  "nativeCi": {
+    "preparationFile": "audit/2026-10-27/final25-native-ci-preparation.json",
+    "reversibleByteIdentity": true,
+    "originalFiveSuiteWrapperUnchanged": true,
+    "expectedSourceFiles": 504,
+    "exactSuites": [
+      "data",
+      "race",
+      "course",
+      "progression",
+      "social",
+      "classroom",
+      "arena-http",
+      "password"
+    ],
+    "addedCiLifecycleSuites": [
+      "data",
+      "race",
+      "course"
+    ],
+    "execution": "NOT-RUN"
+  },
+  "extraCi": {
+    "file": "audit/2026-10-27/run-final25-ci-extra.mjs",
+    "sha256": "4a337c32621930e64c1d8840bf4e324df41a2a1170859eac7c3827da16aa8ef6",
+    "commands": [
+      "npm run test:database",
+      "deno check --node-modules-dir=none --no-lock supabase/functions/submit-session/index.ts supabase/functions/race-operation/index.ts supabase/functions/delete-account/index.ts"
+    ],
+    "denoAvailabilityReadOnlyProbe": {
+      "command": "where.exe deno.exe",
+      "exitCode": 1,
+      "state": "UNAVAILABLE"
+    },
+    "missingDenoMeansUnverifiedAndNonzeroExit": true,
+    "perCommandDeadlineMs": 180000,
+    "deadlineCleanupGuard": "Exact direct child PID/parent/unique command-line marker before taskkill tree; abort further commands if unverified.",
+    "legacyFunctions": [
+      {
+        "file": "supabase/functions/submit-session/index.ts",
+        "sha256": "1c45bff6a7e33f28f31caa831007d250fe68742d03730eb1dee340164856d33b",
+        "unchangedFromBaseline": "275c8c24d65054abae18713c1eee4dad18888332"
+      },
+      {
+        "file": "supabase/functions/race-operation/index.ts",
+        "sha256": "5afc7dc56a8285f8de83c4d8e8778e2cb92d6f58eebcb816d2bc282de9267bb8",
+        "unchangedFromBaseline": "275c8c24d65054abae18713c1eee4dad18888332"
+      },
+      {
+        "file": "supabase/functions/delete-account/index.ts",
+        "sha256": "c598d394e7cfe981766e3c911e4d846607034f9720e1bd8af520135fb3c6db3d",
+        "unchangedFromBaseline": "275c8c24d65054abae18713c1eee4dad18888332"
+      }
+    ],
+    "execution": "NOT-RUN"
+  },
+  "servicesStarted": 0,
+  "browsersStarted": 0,
+  "databaseTestsRun": 0,
+  "typechecksRun": 0,
+  "privateConfigRead": false,
+  "oldReceiptsChanged": false
+}

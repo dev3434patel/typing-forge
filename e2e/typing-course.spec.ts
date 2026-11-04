@@ -184,8 +184,19 @@ test("two different measured passages unlock the next lesson; repetition, reload
   await page.reload();
   await expect(page.getByRole("button", { name: "Start lesson", exact: true })).toBeEnabled();
   await page.goto("/profile");
-  await page.getByLabel("Type DELETE to enable this action", { exact: true }).fill("DELETE");
-  await page.getByRole("button", { name: "Reset guest workspace", exact: true }).click();
+  const confirmation = page.getByLabel("Type DELETE to enable this action", { exact: true });
+  await expect(confirmation).toBeVisible();
+  await expect(confirmation).toBeEnabled();
+  await confirmation.fill("DELETE");
+  await expect(confirmation).toHaveValue("DELETE");
+  const reset = page.getByRole("button", { name: "Reset guest workspace", exact: true });
+  await expect(reset).toBeEnabled();
+  await reset.click();
+  await expect(page.getByRole("status").filter({ hasText: "This device workspace has been reset." })).toBeVisible();
+  await expect.poll(() => page.evaluate(() => {
+    const marker = JSON.parse(localStorage.getItem("sparowtype.workspace-reset.v1:guest") ?? "null") as { ownerId?: string; id?: string; at?: number } | null;
+    return marker?.ownerId === "guest" && typeof marker.id === "string" && marker.id.length > 0 && typeof marker.at === "number" && Number.isFinite(marker.at) && marker.at > 0;
+  })).toBe(true);
   await page.goto(`/lessons?lesson=${second.id}`);
   await expect(page.getByText("Build the previous skill first.", { exact: true })).toBeVisible();
 });

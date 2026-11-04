@@ -1,0 +1,51 @@
+{
+  "preparedAt": "2026-11-02T17:02:19.922Z",
+  "status": "DECLARED BEFORE THIS STATIC EXECUTION",
+  "expectedBuild": "9c75d9897f5ff28e45b5",
+  "origin": "http://127.0.0.1:13347",
+  "browser": "Playwright bundled Chromium",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "isMobile": true,
+  "hasTouch": true,
+  "cpuThrottle": 4,
+  "freshContextPerWorkspace": true,
+  "serviceWorkers": "Blocked to isolate direct served-build input workspaces; offline behavior tested separately",
+  "deviceScaleFactor": 1,
+  "fontAndFiniteAnimationSettlement": true,
+  "clock": "Unmodified performance.now/Date.now; no virtual clock",
+  "input": "Locator.pressSequentially, requested delay 0ms; native Enter for each game gate",
+  "intro": "Disabled only to isolate typing; full quality intro measured separately",
+  "cases": [
+    {
+      "id": "learn",
+      "route": "learn?language=en&layout=qwerty",
+      "input": "Entire initially generated adaptive passage",
+      "evidence": "Actual result JSON export: exact final text, attempts and 100% input accuracy"
+    },
+    {
+      "id": "local-bot",
+      "route": "race",
+      "input": "First 100 characters of actual generated target, followed by manual Finish",
+      "evidence": "Actual result JSON export: exact retained prefix, attempts, 100% input accuracy and localBot=true; no human room or account"
+    }
+  ],
+  "automaticRetries": 0,
+  "resultFiltering": false,
+  "caseTimeoutMs": 33000,
+  "totalWatchdogMs": 145000,
+  "eventTiming": "All observed typing keyboard/input event durations with threshold 16ms; p98/max plus interaction maxima; zero observed entries is not a 0ms claim",
+  "limits": "Local Chromium touch/mobile emulation with lab CPU throttling. Quantized thresholded Event Timing is not field INP or native Android/iOS keyboard acceptance. Requested driver delay is not measured typing speed. One declared run per workspace, no statistical claim. No backend writes or user data.",
+  "buildFile": "audit/2026-11-02/final28-mobile-native-pipeline-build.json",
+  "sourceFile": "audit/2026-11-02/final28-source.json",
+  "sourceExpectedBuild": "c79352750d221e3b7479",
+  "deploymentMode": "frontend-only-vercel; real API-disabled artifact; no mocks, no PHP, no live account or database",
+  "artifactDirectory": "dist-static-final28-candidate-vercel",
+  "originalNormalProtocol": "audit/2026-10-21/mobile-workspaces-final7-protocol.json",
+  "diagnostic": true,
+  "setterProbeEnabled": true,
+  "instrumentation": "Typing-window streamed CDP devtools.timeline + blink.user_timing;32MB trace buffer/64MB raw-file cap; no screenshots or V8 sampling. Optional transparent native textarea setters installed before React; exact prototype descriptor restoration.",
+  "comparability": "DIAGNOSTIC only: Learn and local BOT selected before execution, identical native actions and4xCPU. Source28 candidate104/64/120/24ms and source27 failures remain unchanged. Tracing and getters perturb execution; no SLO or field INP claim."
+}

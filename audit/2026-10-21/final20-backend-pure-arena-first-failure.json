@@ -1,0 +1,12 @@
+{
+  "status": "FAILED",
+  "scope": "First source20 bounded syntax and pure Arena attempt; no database, network or service",
+  "syntaxFiles": 6,
+  "syntaxPassed": 6,
+  "command": "node --experimental-strip-types backend/tests/arena-contract.mjs",
+  "exitCode": 1,
+  "failure": "ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX: new test-only SessionController import reaches a TypeScript parameter property unsupported by Node strip-only mode",
+  "testsExecuted": false,
+  "originalLog": "audit/2026-10-21/final20-backend-pure-arena-first.log",
+  "followup": "Remove that new import and build the lock-boundary test fixture in its pure PHP driver. Keep the existing npm command and product source behavior unchanged. A separately named run must establish the result."
+}

@@ -1,0 +1,909 @@
+{
+  "status": "FAILED-ORIGINAL-FULL-MATRIX",
+  "recordedAt": "2026-11-04T17:44:36.073Z",
+  "source": {
+    "sourceFile": "audit/2026-11-02/final34-source.json",
+    "expectedBuild": "332e23584f1e36465df2",
+    "compared": 505,
+    "mismatches": []
+  },
+  "sourceManifest": {
+    "file": "audit/2026-11-02/final34-source.json",
+    "sha256": "bb7956b685f80c3c1d2c2926999a548540f80d9875fbe336ead5d16670587493",
+    "bytes": 57414
+  },
+  "build": "332e23584f1e36465df2",
+  "originalMatrix": {
+    "file": "audit/2026-11-02/final34-browser-matrix.json",
+    "sha256": "83d3ed684c5cc82a4eca343e5b90537e0b397b23d04827d3cfb36e8fc7373261",
+    "bytes": 29941
+  },
+  "originalStatus": "FAILED",
+  "declaredAt": "2026-11-04T16:46:51.038Z",
+  "finishedAt": "2026-11-04T17:43:42.052Z",
+  "specFilesCoveredExactlyOnce": 64,
+  "browsers": [
+    "chromium",
+    "edge",
+    "firefox",
+    "webkit"
+  ],
+  "workers": 1,
+  "automaticRetries": 0,
+  "totals": {
+    "total": 1516,
+    "passed": 1483,
+    "failed": 4,
+    "skipped": 29,
+    "flaky": 0
+  },
+  "batches": [
+    {
+      "id": "new-features",
+      "exitCode": 1,
+      "status": "FAILED",
+      "totals": {
+        "total": 204,
+        "passed": 202,
+        "failed": 2,
+        "skipped": 0,
+        "flaky": 0
+      },
+      "integrity": {
+        "sourceUnchanged": true,
+        "buildUnchanged": true,
+        "testsUnchanged": true,
+        "dependenciesUnchanged": true
+      },
+      "files": [
+        {
+          "file": "audit/2026-11-02/final34-new-features.json",
+          "sha256": "56db91bc18a35a79747de6b7fc1241fa66212b7aa97af1cae2a8adb537ffe329",
+          "bytes": 342565
+        },
+        {
+          "file": "audit/2026-11-02/final34-new-features-summary.json",
+          "sha256": "7342f4c954587a411a47d833c7d9ed90b1a9f0df30b49b7ce0983cdcda01dd2c",
+          "bytes": 2774
+        },
+        {
+          "file": "audit/2026-11-02/final34-new-features-protocol.json",
+          "sha256": "1904be42f0aeff3e2de1956ba38a994de51fb53011c20caf341088c0e4752937",
+          "bytes": 10898
+        },
+        {
+          "file": "audit/2026-11-02/final34-new-features.log",
+          "sha256": "d34b990f120f626930de87ee5c2fef1fd18b8a14a47e13caaeefd84445b0c10a",
+          "bytes": 35188
+        }
+      ],
+      "skipReasons": []
+    },
+    {
+      "id": "existing",
+      "exitCode": 1,
+      "status": "FAILED",
+      "totals": {
+        "total": 1052,
+        "passed": 1030,
+        "failed": 2,
+        "skipped": 20,
+        "flaky": 0
+      },
+      "integrity": {
+        "sourceUnchanged": true,
+        "buildUnchanged": true,
+        "testsUnchanged": true,
+        "dependenciesUnchanged": true
+      },
+      "files": [
+        {
+          "file": "audit/2026-11-02/final34-existing.json",
+          "sha256": "2aa5169e8966cb67e5b1a0a533d5dd85250b6a9c54fe0ff64ab8cf10d3e1128f",
+          "bytes": 3100373
+        },
+        {
+          "file": "audit/2026-11-02/final34-existing-summary.json",
+          "sha256": "2fd42a5ef13518e89cf41829471eee09cb609650b888d2380dcb339f09b9a242",
+          "bytes": 11205
+        },
+        {
+          "file": "audit/2026-11-02/final34-existing-protocol.json",
+          "sha256": "7c8220bfc76f135051821b2215595039d7dd466cdf2261be3df94d432344e3e1",
+          "bytes": 16360
+        },
+        {
+          "file": "audit/2026-11-02/final34-existing.log",
+          "sha256": "4e82a5d08df6b4fa57210fea42e167ade30ddf696d900ad1a130202d182b06d5",
+          "bytes": 162521
+        }
+      ],
+      "skipReasons": [
+        {
+          "reason": "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used.",
+          "count": 4,
+          "projects": [
+            "chromium",
+            "edge",
+            "firefox",
+            "webkit"
+          ]
+        },
+        {
+          "reason": "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account.",
+          "count": 4,
+          "projects": [
+            "chromium",
+            "edge",
+            "firefox",
+            "webkit"
+          ]
+        },
+        {
+          "reason": "Requires two dedicated accounts on the explicit PHP acceptance deployment.",
+          "count": 8,
+          "projects": [
+            "chromium",
+            "edge",
+            "firefox",
+            "webkit"
+          ]
+        },
+        {
+          "reason": "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization.",
+          "count": 4,
+          "projects": [
+            "chromium",
+            "edge",
+            "firefox",
+            "webkit"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "isolated",
+      "exitCode": 0,
+      "status": "PASS-SCOPED",
+      "totals": {
+        "total": 228,
+        "passed": 219,
+        "failed": 0,
+        "skipped": 9,
+        "flaky": 0
+      },
+      "integrity": {
+        "sourceUnchanged": true,
+        "buildUnchanged": true,
+        "testsUnchanged": true,
+        "dependenciesUnchanged": true
+      },
+      "files": [
+        {
+          "file": "audit/2026-11-02/final34-isolated.json",
+          "sha256": "6400de962a3d8b394f16c751818ff8a34ad841fd2264cedfaaff57f9ab06e533",
+          "bytes": 2220803
+        },
+        {
+          "file": "audit/2026-11-02/final34-isolated-summary.json",
+          "sha256": "f5a58869f3e7fbdd67644d9c65d2084ba8992cdc622388333aa068b64e4f16f0",
+          "bytes": 5253
+        },
+        {
+          "file": "audit/2026-11-02/final34-isolated-protocol.json",
+          "sha256": "95e580c9d5398170f3cea4350189076af10242b38138f0cfc4c4c6991f47fb45",
+          "bytes": 10744
+        },
+        {
+          "file": "audit/2026-11-02/final34-isolated.log",
+          "sha256": "aa787950d54c1c03c4988a8e12d4dfc97b348d4a35bdb2dea317e48a7e5f0351",
+          "bytes": 36044
+        }
+      ],
+      "skipReasons": [
+        {
+          "reason": "UNVERIFIED: this browser runner exposes no standard AudioContext API; this is not a native Safari capability claim.",
+          "count": 1,
+          "projects": [
+            "webkit"
+          ]
+        },
+        {
+          "reason": "UNVERIFIED: this runner has no native transferable-canvas worker API.",
+          "count": 1,
+          "projects": [
+            "webkit"
+          ]
+        },
+        {
+          "reason": "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently.",
+          "count": 7,
+          "projects": [
+            "webkit"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "first-input-timing",
+      "exitCode": 0,
+      "status": "PASS-SCOPED",
+      "totals": {
+        "total": 32,
+        "passed": 32,
+        "failed": 0,
+        "skipped": 0,
+        "flaky": 0
+      },
+      "integrity": {
+        "sourceUnchanged": true,
+        "buildUnchanged": true,
+        "testsUnchanged": true,
+        "dependenciesUnchanged": true
+      },
+      "files": [
+        {
+          "file": "audit/2026-11-02/final34-first-input-timing.json",
+          "sha256": "b427da62d94724432a41f100b0552299c77813f4a20a197def96ff068d96f3ae",
+          "bytes": 44180
+        },
+        {
+          "file": "audit/2026-11-02/final34-first-input-timing-summary.json",
+          "sha256": "da624b94a709988fdb258d48a31cd7bf45f9662d53fcbc668ae07a41def50e97",
+          "bytes": 1097
+        },
+        {
+          "file": "audit/2026-11-02/final34-first-input-timing-protocol.json",
+          "sha256": "eedb2b1de6420589aad653ba3b144628ef35623b2edc10295fddfe2460d0198f",
+          "bytes": 9347
+        },
+        {
+          "file": "audit/2026-11-02/final34-first-input-timing.log",
+          "sha256": "5055a391a38f542fcddab3daf14531e093a949d3c9c1302ea0087c57499cf897",
+          "bytes": 6090
+        }
+      ],
+      "skipReasons": []
+    }
+  ],
+  "failures": [
+    {
+      "batch": "new-features",
+      "caseId": "807b057befe601acf025-952bb3dd68b708b17d2d",
+      "project": "webkit",
+      "file": "e2e/arena.spec.ts",
+      "line": 41,
+      "title": "eight-member UI uses actual native canonical typing after the issued countdown and preserves strict rules",
+      "attempts": 1,
+      "statuses": [
+        "timedOut"
+      ],
+      "errors": [
+        {
+          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+        },
+        {
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\helpers.ts",
+            "column": 8,
+            "line": 43
+          },
+          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /^(Click here or tab to start typing|Continue typing)/ })\u001b[22m\n\u001b[2m    - locator resolved to <button tabindex=\"-1\" aria-label=\"Continue typing\" class=\"typing-focus-prompt absolute inset-0 flex items-center justify-center gap-3 text-sm text-foreground\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m  - element was detached from the DOM, retrying\u001b[22m\n\n\n   at helpers.ts:43\n\n  41 |     await page\n  42 |       .getByRole(\"button\", { name: /^(Click here or tab to start typing|Continue typing)/ })\n> 43 |       .click();\n     |        ^\n  44 |   }\n  45 |   await expect(input).toBeFocused();\n  46 |   return input;\n    at focusTyping (D:\\extra\\typing_updated\\typing-forge\\e2e\\helpers.ts:43:8)\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\arena.spec.ts:48:17"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "screenshot",
+          "contentType": "image/png",
+          "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-02\\.playwright-artifacts-final34-new-features\\arena-eight-member-UI-uses-529b0--and-preserves-strict-rules-webkit\\test-failed-1.png"
+        },
+        {
+          "name": "error-context",
+          "contentType": "text/markdown",
+          "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-02\\.playwright-artifacts-final34-new-features\\arena-eight-member-UI-uses-529b0--and-preserves-strict-rules-webkit\\error-context.md"
+        }
+      ]
+    },
+    {
+      "batch": "new-features",
+      "caseId": "2c1f980eead745511bd9-238ab7bf223a327f50c6",
+      "project": "chromium",
+      "file": "e2e/progression-extras.spec.ts",
+      "line": 17,
+      "title": "earned theme and frame apply, persist on the real profile and return to default appearance",
+      "attempts": 1,
+      "statuses": [
+        "failed"
+      ],
+      "errors": [
+        {
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\progression-extras.spec.ts",
+            "column": 91,
+            "line": 27
+          },
+          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('region', { name: 'Your practice identity', exact: true })\nExpected substring: \u001b[32m\"Orbit profile frame\"\u001b[39m\nReceived string:    \u001b[31m\"Your practice identityDevice collection · unverified. Appearance never changes your scores.Level 25 · TypistA clear space for your next practice.Open your collection\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('region', { name: 'Your practice identity', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('region', { name: 'Your practice identity', exact: true })\u001b[22m\n\u001b[2m    12 × locator resolved to <section class=\"panel p-6\" aria-labelledby=\"profile-appearance-title\">…</section>\u001b[22m\n\u001b[2m       - unexpected value \"Your practice identityDevice collection · unverified. Appearance never changes your scores.Level 25 · TypistA clear space for your next practice.Open your collection\"\u001b[22m\n\n\n  25 |   await frame.getByRole('button', { name: 'Equip', exact: true }).click();\n  26 |   await page.goto('/profile');\n> 27 |   await expect(page.getByRole('region', { name: 'Your practice identity', exact: true })).toContainText('Orbit profile frame');\n     |                                                                                           ^\n  28 |   await page.goto('/progression');\n  29 |   await page.getByRole('button', { name: 'Use default appearance', exact: true }).click();\n  30 |   await expect(page.locator('html')).toHaveAttribute('data-theme', 'sparow-dark');\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\progression-extras.spec.ts:27:91"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "screenshot",
+          "contentType": "image/png",
+          "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-02\\.playwright-artifacts-final34-new-features\\progression-extras-earned--36051-eturn-to-default-appearance-chromium\\test-failed-1.png"
+        },
+        {
+          "name": "error-context",
+          "contentType": "text/markdown",
+          "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-02\\.playwright-artifacts-final34-new-features\\progression-extras-earned--36051-eturn-to-default-appearance-chromium\\error-context.md"
+        }
+      ]
+    },
+    {
+      "batch": "existing",
+      "caseId": "68f92e732e60f967432a-ca77ea825a1603c8a012",
+      "project": "webkit",
+      "file": "e2e/account-workspace.spec.ts",
+      "line": 40,
+      "title": "initial owner readiness protects Test with a delayed guest session",
+      "attempts": 1,
+      "statuses": [
+        "timedOut"
+      ],
+      "errors": [
+        {
+          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+        },
+        {
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\helpers.ts",
+            "column": 8,
+            "line": 43
+          },
+          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /^(Click here or tab to start typing|Continue typing)/ })\u001b[22m\n\n\n   at helpers.ts:43\n\n  41 |     await page\n  42 |       .getByRole(\"button\", { name: /^(Click here or tab to start typing|Continue typing)/ })\n> 43 |       .click();\n     |        ^\n  44 |   }\n  45 |   await expect(input).toBeFocused();\n  46 |   return input;\n    at focusTyping (D:\\extra\\typing_updated\\typing-forge\\e2e\\helpers.ts:43:8)\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\account-workspace.spec.ts:77:25"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "screenshot",
+          "contentType": "image/png",
+          "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-02\\.playwright-artifacts-final34-existing\\account-workspace-initial--6c760-ith-a-delayed-guest-session-webkit\\test-failed-1.png"
+        },
+        {
+          "name": "error-context",
+          "contentType": "text/markdown",
+          "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-02\\.playwright-artifacts-final34-existing\\account-workspace-initial--6c760-ith-a-delayed-guest-session-webkit\\error-context.md"
+        }
+      ]
+    },
+    {
+      "batch": "existing",
+      "caseId": "f0620a3ddfefdc4e6694-b73c3e10200bed9c8488",
+      "project": "webkit",
+      "file": "e2e/typing-course.spec.ts",
+      "line": 168,
+      "title": "two different measured passages unlock the next lesson; repetition, reload and reset are truthful",
+      "attempts": 1,
+      "statuses": [
+        "timedOut"
+      ],
+      "errors": [
+        {
+          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "screenshot",
+          "contentType": "image/png",
+          "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-02\\.playwright-artifacts-final34-existing\\typing-course-two-differen-dcb56-load-and-reset-are-truthful-webkit\\test-failed-1.png"
+        },
+        {
+          "name": "error-context",
+          "contentType": "text/markdown",
+          "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-02\\.playwright-artifacts-final34-existing\\typing-course-two-differen-dcb56-load-and-reset-are-truthful-webkit\\error-context.md"
+        }
+      ]
+    }
+  ],
+  "skippedCases": [
+    {
+      "project": "chromium",
+      "file": "auth-flow.spec.ts",
+      "title": "real account sign in with dedicated deployment credentials",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\auth-flow.spec.ts",
+            "line": 55,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "edge",
+      "file": "auth-flow.spec.ts",
+      "title": "real account sign in with dedicated deployment credentials",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\auth-flow.spec.ts",
+            "line": 55,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "firefox",
+      "file": "auth-flow.spec.ts",
+      "title": "real account sign in with dedicated deployment credentials",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\auth-flow.spec.ts",
+            "line": 55,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "webkit",
+      "file": "auth-flow.spec.ts",
+      "title": "real account sign in with dedicated deployment credentials",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\auth-flow.spec.ts",
+            "line": 55,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "chromium",
+      "file": "php-account-flow.spec.ts",
+      "title": "real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\php-account-flow.spec.ts",
+            "line": 7,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "edge",
+      "file": "php-account-flow.spec.ts",
+      "title": "real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\php-account-flow.spec.ts",
+            "line": 7,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "firefox",
+      "file": "php-account-flow.spec.ts",
+      "title": "real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\php-account-flow.spec.ts",
+            "line": 7,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "webkit",
+      "file": "php-account-flow.spec.ts",
+      "title": "real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\php-account-flow.spec.ts",
+            "line": 7,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "chromium",
+      "file": "php-human-race.spec.ts",
+      "title": "real two-browser PHP human race shares opponent pace and settles server results",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Requires two dedicated accounts on the explicit PHP acceptance deployment.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\php-human-race.spec.ts",
+            "line": 10,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "edge",
+      "file": "php-human-race.spec.ts",
+      "title": "real two-browser PHP human race shares opponent pace and settles server results",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Requires two dedicated accounts on the explicit PHP acceptance deployment.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\php-human-race.spec.ts",
+            "line": 10,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "firefox",
+      "file": "php-human-race.spec.ts",
+      "title": "real two-browser PHP human race shares opponent pace and settles server results",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Requires two dedicated accounts on the explicit PHP acceptance deployment.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\php-human-race.spec.ts",
+            "line": 10,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "webkit",
+      "file": "php-human-race.spec.ts",
+      "title": "real two-browser PHP human race shares opponent pace and settles server results",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Requires two dedicated accounts on the explicit PHP acceptance deployment.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\php-human-race.spec.ts",
+            "line": 10,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "chromium",
+      "file": "php-human-race.spec.ts",
+      "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Requires two dedicated accounts on the explicit PHP acceptance deployment.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\php-human-race.spec.ts",
+            "line": 146,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "edge",
+      "file": "php-human-race.spec.ts",
+      "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Requires two dedicated accounts on the explicit PHP acceptance deployment.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\php-human-race.spec.ts",
+            "line": 146,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "firefox",
+      "file": "php-human-race.spec.ts",
+      "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Requires two dedicated accounts on the explicit PHP acceptance deployment.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\php-human-race.spec.ts",
+            "line": 146,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "webkit",
+      "file": "php-human-race.spec.ts",
+      "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Requires two dedicated accounts on the explicit PHP acceptance deployment.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\php-human-race.spec.ts",
+            "line": 146,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "chromium",
+      "file": "race-mode.spec.ts",
+      "title": "PHP two-account race authorization and server-owned countdown",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\race-mode.spec.ts",
+            "line": 89,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "edge",
+      "file": "race-mode.spec.ts",
+      "title": "PHP two-account race authorization and server-owned countdown",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\race-mode.spec.ts",
+            "line": 89,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "firefox",
+      "file": "race-mode.spec.ts",
+      "title": "PHP two-account race authorization and server-owned countdown",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\race-mode.spec.ts",
+            "line": 89,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "webkit",
+      "file": "race-mode.spec.ts",
+      "title": "PHP two-account race authorization and server-owned countdown",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\race-mode.spec.ts",
+            "line": 89,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "webkit",
+      "file": "input-guardrails.spec.ts",
+      "title": "supported typing audio creates one context on input and disposes it on navigation",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "UNVERIFIED: this browser runner exposes no standard AudioContext API; this is not a native Safari capability claim.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\input-guardrails.spec.ts",
+            "line": 98,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "webkit",
+      "file": "opening-single-keyboard.spec.ts",
+      "title": "the normal-clock production worker shows the creative 3D keyboard through wordmark typing and automatic entry",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "UNVERIFIED: this runner has no native transferable-canvas worker API.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-single-keyboard.spec.ts",
+            "line": 251,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "webkit",
+      "file": "opening-worker.spec.ts",
+      "title": "default native worker draws the complete keyboard while document tasks, resize and skip remain responsive",
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "27.2"
+        },
+        {
+          "type": "skip",
+          "description": "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts",
+            "line": 65,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "webkit",
+      "file": "opening-worker.spec.ts",
+      "title": "native worker acknowledges real resource disposal at an explicitly idle renderer boundary",
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "27.2"
+        },
+        {
+          "type": "skip",
+          "description": "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts",
+            "line": 65,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "webkit",
+      "file": "opening-worker.spec.ts",
+      "title": "five consecutive native-worker startup reloads close each prior owner and final skip closes the last worker",
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "27.2"
+        },
+        {
+          "type": "skip",
+          "description": "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts",
+            "line": 65,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "webkit",
+      "file": "opening-worker.spec.ts",
+      "title": "skipping while the native worker entry is blocked terminates startup and preserves the first typing key",
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "27.2"
+        },
+        {
+          "type": "skip",
+          "description": "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts",
+            "line": 65,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "webkit",
+      "file": "opening-worker.spec.ts",
+      "title": "a native worker transport failure replaces the transferred canvas with the complete real document renderer",
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "27.2"
+        },
+        {
+          "type": "skip",
+          "description": "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts",
+            "line": 65,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "webkit",
+      "file": "opening-worker.spec.ts",
+      "title": "actual worker WebGL context loss during preparation recovers with a fresh canvas and keeps practice usable",
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "27.2"
+        },
+        {
+          "type": "skip",
+          "description": "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts",
+            "line": 65,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "project": "webkit",
+      "file": "opening-worker.spec.ts",
+      "title": "actual worker WebGL context loss after live frames recovers with a fresh canvas and keeps practice usable",
+      "annotations": [
+        {
+          "type": "browser-runtime-version",
+          "description": "27.2"
+        },
+        {
+          "type": "skip",
+          "description": "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently.",
+          "location": {
+            "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\opening-worker.spec.ts",
+            "line": 65,
+            "column": 8
+          }
+        }
+      ]
+    }
+  ],
+  "skipQualification": "20 explicit real-backend credential/acceptance cases remain assigned to native20; nine WebKit native AudioContext/transferable-canvas API gaps remain UNVERIFIED. No skip is promoted to a pass.",
+  "fullMatrixStatusRemainsFailed": true,
+  "followUpExecutedByThisReconciliation": false,
+  "originalReportsOverwritten": false,
+  "sourceOrTestsEdited": false,
+  "runtimeOrBrowserStarted": false,
+  "qualification": "Read-only post-run binding of the original complete64-file source34 matrix. Later test synchronization revisions and focused confirmations, if approved and actually executed, must be separate evidence and cannot rewrite these four original failures."
+}

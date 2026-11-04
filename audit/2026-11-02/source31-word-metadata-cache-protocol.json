@@ -1,0 +1,21 @@
+{
+  "status": "DECLARED-NOT-RUN",
+  "declaredAt": "2026-11-02T17:08:14.509Z",
+  "source": "backend/src/SessionValidator.php",
+  "source30Sha256": "5d5907e4a49a1a92966a967591701976a25051a3a4f0d4d21f8e70f112be776d",
+  "scope": "One immutable target word-boundary metadata cache per SessionValidator instance. Compare native target grapheme arrays with strict equality. Retain one target and one computed words array, preserving PHP array copy-on-write return semantics. No event/state/metrics/authority cache and no replay moved across locks.",
+  "changes": [
+    "private static words becomes instance method",
+    "strict last-target equality returns only exact previous target metadata",
+    "same original loop computes all misses",
+    "replace three self::words calls with instance calls"
+  ],
+  "requiredChecks": [
+    "full PHP portable replay parity",
+    "private metadata exactness for empty/spaced/Unicode/code targets",
+    "caller mutation cannot corrupt cached words",
+    "changing target evicts previous one",
+    "current original capacity and wire runs remain failed until fresh same-protocol acceptance"
+  ],
+  "servicesStarted": 0
+}

@@ -1,0 +1,69 @@
+{
+  "capturedAt": "2026-11-02T15:55:08.369Z",
+  "status": "PREPARED-NOT-RUN",
+  "source": {
+    "sourceFile": "audit/2026-10-27/final27-source.json",
+    "expectedBuild": "11de46af5d4a80e0e830",
+    "compared": 505,
+    "mismatches": []
+  },
+  "build": "11de46af5d4a80e0e830",
+  "originalFailureReport": "audit/2026-10-27/final27-browser-matrix.json",
+  "originalFailureCasesRetained": 16,
+  "changes": [
+    {
+      "file": "e2e/live-keyboard.spec.ts",
+      "archive": "audit/2026-11-02/live-keyboard-before-duration-contract.source27",
+      "from": "motion.property === 'transform' && motion.duration === 90",
+      "to": "motion.property === 'transform' && motion.duration === 55",
+      "beforeSha256": "76f10efea50c26259ae9be9e62c584bd20b51b328cff22e2b1709ea542e6152d",
+      "afterSha256": "cf19d74050bc1b3f4b81990b8b1edb0c06ae321fec5c127412a5c39a11c3cb63",
+      "exactReversal": true,
+      "allOtherBytesIdentical": true
+    },
+    {
+      "file": "e2e/typing-render-budget.spec.ts",
+      "archive": "audit/2026-11-02/typing-render-budget-before-duration-contract.source27",
+      "from": "toContainEqual({ property: \"transform\", duration: 90 })",
+      "to": "toContainEqual({ property: \"transform\", duration: 55 })",
+      "beforeSha256": "3e58d7366cda81042613be0c819f17a9bc226dcc014f0448fd964f20750a1d00",
+      "afterSha256": "32b39faa97feccc59218e9d590b8d6a9890da4e54a9ec43c5e8265f1897dba01",
+      "exactReversal": true,
+      "allOtherBytesIdentical": true
+    }
+  ],
+  "runnerAdaptation": {
+    "original": "audit/2026-10-27/run-browser-checkpoint-final27.mjs",
+    "copy": "audit/2026-11-02/run-browser-checkpoint-final27.mjs",
+    "originalSha256": "d624948ca23c90acfe419f3ef341293e003f009519a494d80d420f0ad94a830b",
+    "copySha256": "d32d3705bb852b219a95a4c84adfc01ec4bd23b11313ed3e32cb81a560a29ba2",
+    "exactDirectoryOnlyReversal": true,
+    "from": "path.resolve('audit/2026-10-27')",
+    "to": "path.resolve('audit/2026-11-02')",
+    "reason": "Generic old runner has no source505 check. Its directory-only copy remains byte-equivalent apart from report location; separate launcher adds505before/after guard and fixes the full2-file/all4-engine scope."
+  },
+  "launcher": {
+    "file": "audit/2026-11-02/run-final27-nov02-motion-confirmation.mjs",
+    "sha256": "714b4f395236d3be925d4c9640fcd46ad36ac9f8f1875c337ced4374784bb2b4",
+    "prefix": "final27-nov02-motion-confirmation",
+    "files": [
+      "e2e/live-keyboard.spec.ts",
+      "e2e/typing-render-budget.spec.ts"
+    ],
+    "engines": [
+      "chromium",
+      "edge",
+      "firefox",
+      "webkit"
+    ],
+    "workers": 1,
+    "retries": 0,
+    "traces": "off",
+    "grepOrCaseFiltering": false,
+    "sourceGuardBeforeAndAfter": 505,
+    "requiresServingActualBuildAt4173": true
+  },
+  "productFilesEdited": false,
+  "testsBrowsersBuildsServicesStarted": false,
+  "scope": "Exact55ms assertion contract correction only; remaining240ms ripple/motion/geometry/colors/toolbar assertions and deadlines preserved. Focused lint and full2-spec dynamic confirmation remain pending."
+}

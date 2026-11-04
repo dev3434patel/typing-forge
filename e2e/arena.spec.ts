@@ -1,6 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
 import { phpApiBase } from './php-api-fixture';
-import { focusTyping } from './helpers';
 import type { ArenaRoom } from '../src/domain/arena';
 import type { SessionResult } from '../src/lib/typing-core';
 import { auditPopulatedRoute } from './route-accessibility-fixture';
@@ -45,7 +44,10 @@ test('eight-member UI uses actual native canonical typing after the issued count
   await expect(page.getByLabel('Human racer progress').locator('strong')).toHaveCount(8);
   await page.getByRole('button', { name: 'Ready to race', exact: true }).click();
   await expect(page.getByRole('status').filter({ hasText: 'Starting in' })).toBeVisible();
-  const input = await focusTyping(page); await input.pressSequentially('calm c', { delay: 60 });
+  const input = page.getByRole('textbox', { name: 'Typing input', exact: true });
+  await expect(input).toBeVisible();
+  await expect(input).toBeFocused();
+  await input.pressSequentially('calm c', { delay: 60 });
   await expect(input).toHaveValue('calm c');
   await expect.poll(() => fixture.submissions.some(value => value.events.length >= 6)).toBe(true);
   const candidate = fixture.submissions.find(value => value.events.length >= 6)!;

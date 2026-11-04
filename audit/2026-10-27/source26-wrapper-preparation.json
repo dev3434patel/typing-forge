@@ -1,0 +1,587 @@
+{
+  "status": "PROPOSAL-PREPARED-ACTUAL-SOURCE26-FREEZE-UNVERIFIED",
+  "preparedAt": "2026-10-27T17:03:41.386Z",
+  "requiredSourceFile": "audit/2026-10-27/final26-source.json",
+  "requiredBuildEnvironment": "SPAROWTYPE_FINAL26_BUILD_ID",
+  "expectedFrontendBuild": "6cdddf1a74b2d10d1c9b",
+  "sourceInventory": {
+    "source24": 504,
+    "proposed26": 505,
+    "expectedAddedFile": "backend/src/RequestBody.php",
+    "expectedChangedExistingFile": "backend/public/index.php",
+    "source25HoistRestoredTo24": true,
+    "actualSource26FreezeVerification": "PENDING"
+  },
+  "testInventory": {
+    "specFiles": 64,
+    "allFourEngines": true,
+    "filesExactlyOnce": true,
+    "workers": 1,
+    "retries": 0,
+    "actualCollectedCaseTotalRequired": true
+  },
+  "serializerComparison": {
+    "fixtureClientSessionId": "source22-serializer-diagnostic",
+    "iterations": 12,
+    "baselineProtocol": "audit/2026-10-27/final22-serializer-profile-protocol.json",
+    "baselineFixture": {
+      "words": 800,
+      "events": 10,
+      "characters": 4599,
+      "timeSeries": 15,
+      "elapsedMs": 15000,
+      "utf8JsonBytes": 302392,
+      "sha256": "39fe841e3c203ee647cce99c75643b0ec9e6ed8efc685cc699c8b9abf809469c"
+    },
+    "currentComparison": "PENDING-EXECUTION"
+  },
+  "uiEvidenceReuse": {
+    "actualSource24BaselineFile": "audit/2026-10-27/final24-ui-byte-baseline-before25.json",
+    "baselineSha256": "f2355d2564a8ea0fcdc793845788d42ae30084caa7ccc42804f1d68a39aaeef3",
+    "all467NonbackendInputsMustMatch": true,
+    "all142DistFilesMustMatchRawBytes": true,
+    "all133PublicAssetsMustMatch": true,
+    "onlyAllowedChangesRelativeTo24": [
+      "backend/public/index.php",
+      "backend/src/RequestBody.php"
+    ],
+    "verifier": "audit/2026-10-27/verify-source26-ui-evidence-reuse.mjs",
+    "status": "PENDING-ACTUAL-SOURCE26-FREEZE"
+  },
+  "nativeScopes": {
+    "fiveSuiteWrapperPreservedSeparately": true,
+    "eightSuiteCiWrapper": [
+      "data",
+      "race",
+      "course",
+      "progression",
+      "social",
+      "classroom",
+      "arena-http",
+      "password"
+    ],
+    "capacity": {
+      "requests": 1653,
+      "concurrency": 20,
+      "p95ThresholdMsStrictlyBelow": 150,
+      "noRetriesOrFiltering": true
+    }
+  },
+  "portableDeno": {
+    "version": "2.9.8",
+    "officialArchiveAndSidecarHashesPreserved": true,
+    "destination": "audit/2026-10-27/.final26-runtime",
+    "downloadedOrExecuted": false
+  },
+  "guarantees": [
+    "All25 wrappers and historical receipts remain unchanged.",
+    "Historical date21 imports and the source22 serializer fixture identity remain unchanged.",
+    "Only explicit26 identifiers, declared inventory and proposal metadata are adapted.",
+    "No test action, assertion, deadline, worker, retry, rate, durability or capacity threshold is relaxed.",
+    "No production or E2E edits, builds, services, browsers, downloads or typechecks run during preparation."
+  ],
+  "prepared": [
+    {
+      "originalFile": "audit/2026-10-27/pack-backend-instance-source25.mjs",
+      "originalSha256": "573aa1186c5aef733c439ab7afb6ed7703987a2f64b8182bf3e7912d26909016",
+      "file": "audit/2026-10-27/pack-backend-instance-source26.mjs",
+      "sha256": "06e693002bc6d71ad3ff8e93aefcc672d5c3c2ea19bfa1b69bb7d7a0f9a9a0a0",
+      "substitutions": [
+        {
+          "before": "source25",
+          "after": "source26",
+          "count": 2
+        },
+        {
+          "before": "capacity25",
+          "after": "capacity26",
+          "count": 6
+        },
+        {
+          "before": "rate-native25",
+          "after": "rate-native26",
+          "count": 4
+        },
+        {
+          "before": "native-rate25",
+          "after": "native-rate26",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/run-source25-capacity-burst.mjs",
+      "originalSha256": "06d932b6d3371cab1ba73ca855e0d708e36f5cb8bdd2a1fa8eed1ca9f90da683",
+      "file": "audit/2026-10-27/run-source26-capacity-burst.mjs",
+      "sha256": "f2661a7f8e5f84ffb4ef10da65a3df308735ae71f5ec2469b8e6c443bd0b9cbc",
+      "substitutions": [
+        {
+          "before": "final25",
+          "after": "final26",
+          "count": 1
+        },
+        {
+          "before": "FINAL25",
+          "after": "FINAL26",
+          "count": 1
+        },
+        {
+          "before": "source25",
+          "after": "source26",
+          "count": 4
+        },
+        {
+          "before": "SOURCE25",
+          "after": "SOURCE26",
+          "count": 1
+        },
+        {
+          "before": "receipt.compared, 504",
+          "after": "receipt.compared, 505",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/run-source25-native-rate.mjs",
+      "originalSha256": "457ac461af8b0e1598accbeec7ebb336653f520c44f7830b540ea0d28ace1711",
+      "file": "audit/2026-10-27/run-source26-native-rate.mjs",
+      "sha256": "e8cc5f261957418b25fccae8ba3df1e0c83ec2b1855e2e7a09ff9a5b99955387",
+      "substitutions": [
+        {
+          "before": "final25",
+          "after": "final26",
+          "count": 1
+        },
+        {
+          "before": "FINAL25",
+          "after": "FINAL26",
+          "count": 1
+        },
+        {
+          "before": "source25",
+          "after": "source26",
+          "count": 3
+        },
+        {
+          "before": "SOURCE25",
+          "after": "SOURCE26",
+          "count": 1
+        },
+        {
+          "before": "receipt.compared, 504",
+          "after": "receipt.compared, 505",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/native-rate-worker-source25.php",
+      "originalSha256": "08f4e47eb84f2c48eab00fc53d19534fb5a58a1b44823f45a93a19b4aabb6019",
+      "file": "audit/2026-10-27/native-rate-worker-source26.php",
+      "sha256": "364224b8855135bacd0cc0dfc2118be5d96cf4076adca2ddbd19d59efe7435f4",
+      "substitutions": [
+        {
+          "before": "SOURCE25",
+          "after": "SOURCE26",
+          "count": 1
+        },
+        {
+          "before": "native-rate25",
+          "after": "native-rate26",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/run-browser-checkpoint-final25.mjs",
+      "originalSha256": "b45da2efb390846490c1c68cbeeea95ecaa074f57a971d719cab96088872f686",
+      "file": "audit/2026-10-27/run-browser-checkpoint-final26.mjs",
+      "sha256": "f9b3f666c63f1894ce18b746c1ec9ab4b5491fadd841aeba1ebc24a0873b0a7b",
+      "substitutions": [
+        {
+          "before": "FINAL25",
+          "after": "FINAL26",
+          "count": 1
+        },
+        {
+          "before": "source25",
+          "after": "source26",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/run-final25-browser-matrix.mjs",
+      "originalSha256": "2c5dad84c7a906d326b9a7514201bface449d39afce80f70a27bf986b7041030",
+      "file": "audit/2026-10-27/run-final26-browser-matrix.mjs",
+      "sha256": "c030a11be5cd834b33d804b0584efd361ac8c8562887e2c6981e2d8524848728",
+      "substitutions": [
+        {
+          "before": "final25",
+          "after": "final26",
+          "count": 4
+        },
+        {
+          "before": "FINAL25",
+          "after": "FINAL26",
+          "count": 1
+        },
+        {
+          "before": "Source25",
+          "after": "Source26",
+          "count": 1
+        },
+        {
+          "before": "receipt.compared, 504",
+          "after": "receipt.compared, 505",
+          "count": 1
+        },
+        {
+          "before": "currentSourceFileCount: 504",
+          "after": "currentSourceFileCount: 505",
+          "count": 1
+        },
+        {
+          "before": "proposedChangedBackendFiles: ['backend/src/ArenaEvidence.php', 'backend/src/ArenaService.php']",
+          "after": "proposedChangedBackendFiles: ['backend/public/index.php', 'backend/src/RequestBody.php']",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/run-final25-static.mjs",
+      "originalSha256": "a71363a4796a35bbc5a36ffcef90f7d2214b42a91e1ef1fd911a3228572f62bf",
+      "file": "audit/2026-10-27/run-final26-static.mjs",
+      "sha256": "0bd525c9e4c5c72f8d1c1dae48cca38ff7891ce557bbbd7aa93001c08efb4b61",
+      "substitutions": [
+        {
+          "before": "final25",
+          "after": "final26",
+          "count": 7
+        },
+        {
+          "before": "FINAL25",
+          "after": "FINAL26",
+          "count": 1
+        },
+        {
+          "before": "receipt.compared, 504",
+          "after": "receipt.compared, 505",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/run-final25-native-browser.mjs",
+      "originalSha256": "f0055aea751ab176d86e12279cd160155cd6a4edac993ab582c7ca2c132cc895",
+      "file": "audit/2026-10-27/run-final26-native-browser.mjs",
+      "sha256": "4aace3fda0b1c03b4d6e8c531d2e06e40682e007bf671d5199c5257e7729e3af",
+      "substitutions": [
+        {
+          "before": "final25",
+          "after": "final26",
+          "count": 4
+        },
+        {
+          "before": "FINAL25",
+          "after": "FINAL26",
+          "count": 2
+        },
+        {
+          "before": "source25",
+          "after": "source26",
+          "count": 2
+        },
+        {
+          "before": "receipt.compared, 504",
+          "after": "receipt.compared, 505",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/run-final25-native-modules.mjs",
+      "originalSha256": "891235859744e2c586a77311dba3a20e39ee5fb8b5c9ccd145403debd4366428",
+      "file": "audit/2026-10-27/run-final26-native-modules.mjs",
+      "sha256": "15a1fa64041ec7ecb6657760c26e22eab96d15248870333433bf25afdba5a74b",
+      "substitutions": [
+        {
+          "before": "final25",
+          "after": "final26",
+          "count": 4
+        },
+        {
+          "before": "FINAL25",
+          "after": "FINAL26",
+          "count": 2
+        },
+        {
+          "before": "source25",
+          "after": "source26",
+          "count": 5
+        },
+        {
+          "before": "Source25",
+          "after": "Source26",
+          "count": 1
+        },
+        {
+          "before": "receipt.compared, 504",
+          "after": "receipt.compared, 505",
+          "count": 1
+        },
+        {
+          "before": "compared === 504",
+          "after": "compared === 505",
+          "count": 1
+        },
+        {
+          "before": "proposedChangedBackendFiles: ['backend/src/ArenaEvidence.php', 'backend/src/ArenaService.php']",
+          "after": "proposedChangedBackendFiles: ['backend/public/index.php', 'backend/src/RequestBody.php']",
+          "count": 1
+        },
+        {
+          "before": "sourceInventoryExtension: { previousCount: 504, expectedCount: 504, proposedChangedBackendFiles: ['backend/public/index.php', 'backend/src/RequestBody.php'], reason: 'Source26 moves an independent authoritative Arena replay before locks with exact internal binding; execution requires the actual frozen inventory to match504. Frontend byte identity is checked separately.' }",
+          "after": "sourceInventoryExtension: { previousCount: 504, expectedCount: 505, proposedChangedBackendFiles: ['backend/public/index.php', 'backend/src/RequestBody.php'], reason: 'Source26 proposes a bounded backend request-body parser. The source25 replay-hoist prototype was rejected and restored to source24; actual acceptance requires505 frozen files and independent UI byte-identity proof.' }",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/measure-mobile-workspaces-static-final25.mjs",
+      "originalSha256": "a54442d4081d199fdf9241c902ea004032fb3fad55e6d470741cdde8977dce25",
+      "file": "audit/2026-10-27/measure-mobile-workspaces-static-final26.mjs",
+      "sha256": "97ccfd668fd0a07d015424dcb91614208bf1191f9f93324316dfb70d9bc9c320",
+      "substitutions": [
+        {
+          "before": "final25",
+          "after": "final26",
+          "count": 3
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/run-mobile-workspaces-static-final25.mjs",
+      "originalSha256": "779047df5abd3bc432a9921d123a1e00004b3a6b262cc04b4cab870b81bed788",
+      "file": "audit/2026-10-27/run-mobile-workspaces-static-final26.mjs",
+      "sha256": "1870801f5bc29a6ad0b57717ef4945add11bdc9a3504f1304dead93aa07d554d",
+      "substitutions": [
+        {
+          "before": "final25",
+          "after": "final26",
+          "count": 9
+        },
+        {
+          "before": "FINAL25",
+          "after": "FINAL26",
+          "count": 2
+        },
+        {
+          "before": "receipt.compared, 504",
+          "after": "receipt.compared, 505",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/run-source25-serializer-profile.mjs",
+      "originalSha256": "d9f5a6a5c390734920ea78effeef69b3bfb9c4a8e4ddfe2e2a463c424f814f5b",
+      "file": "audit/2026-10-27/run-source26-serializer-profile.mjs",
+      "sha256": "eb4a5eeabb85a705540c2b2d0b9981dbc6f7b65d8c397fba33d81a986d24d530",
+      "substitutions": [
+        {
+          "before": "final25",
+          "after": "final26",
+          "count": 3
+        },
+        {
+          "before": "FINAL25",
+          "after": "FINAL26",
+          "count": 1
+        },
+        {
+          "before": "source25",
+          "after": "source26",
+          "count": 3
+        },
+        {
+          "before": "SOURCE25",
+          "after": "SOURCE26",
+          "count": 1
+        },
+        {
+          "before": "receipt.compared, 504",
+          "after": "receipt.compared, 505",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/benchmark-validator-source25.php",
+      "originalSha256": "66cb5961636ac478d4a9187147c1000f8b2ad24e9af6b9cf75789540b0d7d8dd",
+      "file": "audit/2026-10-27/benchmark-validator-source26.php",
+      "sha256": "3b198b2aeb9d18b1125806a3cb1b4b09ace6b90c6818fc289543902d149e8232",
+      "substitutions": [
+        {
+          "before": "SOURCE25",
+          "after": "SOURCE26",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/run-final25-native-ci.mjs",
+      "originalSha256": "8f743b902bd18570f78d4916b7b46fd93ff2f7f8e13b04959fdce9bd1e0ff6a2",
+      "file": "audit/2026-10-27/run-final26-native-ci.mjs",
+      "sha256": "e50e284190146fb88539e5af66f06427c07cfac2b91650809827ab3810f25ce0",
+      "substitutions": [
+        {
+          "before": "final25",
+          "after": "final26",
+          "count": 5
+        },
+        {
+          "before": "FINAL25",
+          "after": "FINAL26",
+          "count": 2
+        },
+        {
+          "before": "source25",
+          "after": "source26",
+          "count": 5
+        },
+        {
+          "before": "Source25",
+          "after": "Source26",
+          "count": 1
+        },
+        {
+          "before": "receipt.compared, 504",
+          "after": "receipt.compared, 505",
+          "count": 1
+        },
+        {
+          "before": "compared === 504",
+          "after": "compared === 505",
+          "count": 1
+        },
+        {
+          "before": "proposedChangedBackendFiles: ['backend/src/ArenaEvidence.php', 'backend/src/ArenaService.php']",
+          "after": "proposedChangedBackendFiles: ['backend/public/index.php', 'backend/src/RequestBody.php']",
+          "count": 1
+        },
+        {
+          "before": "sourceInventoryExtension: { previousCount: 504, expectedCount: 504, proposedChangedBackendFiles: ['backend/public/index.php', 'backend/src/RequestBody.php'], reason: 'Source26 moves an independent authoritative Arena replay before locks with exact internal binding; execution requires the actual frozen inventory to match504. Frontend byte identity is checked separately.' }",
+          "after": "sourceInventoryExtension: { previousCount: 504, expectedCount: 505, proposedChangedBackendFiles: ['backend/public/index.php', 'backend/src/RequestBody.php'], reason: 'Source26 proposes a bounded backend request-body parser. The source25 replay-hoist prototype was rejected and restored to source24; actual acceptance requires505 frozen files and independent UI byte-identity proof.' }",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/run-final25-ci-extra.mjs",
+      "originalSha256": "4a337c32621930e64c1d8840bf4e324df41a2a1170859eac7c3827da16aa8ef6",
+      "file": "audit/2026-10-27/run-final26-ci-extra.mjs",
+      "sha256": "a1a62965370e2ddfd9b4e8f167c42bf2eaa228daa2da8ae7d2e2b9ec916d4075",
+      "substitutions": [
+        {
+          "before": "final25",
+          "after": "final26",
+          "count": 2
+        },
+        {
+          "before": "FINAL25",
+          "after": "FINAL26",
+          "count": 2
+        },
+        {
+          "before": "receipt.compared, 504",
+          "after": "receipt.compared, 505",
+          "count": 1
+        },
+        {
+          "before": "compared === 504",
+          "after": "compared === 505",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/setup-final25-portable-deno.mjs",
+      "originalSha256": "f4692ed74bca1a095c4f01a2f17813abca164cfe6dcfc26e1df1cecd93a443d4",
+      "file": "audit/2026-10-27/setup-final26-portable-deno.mjs",
+      "sha256": "7dd0e7c460bf4adae0f17c505046fdb4d02cc892cf787cd5c22a26da2039c160",
+      "substitutions": [
+        {
+          "before": "final25",
+          "after": "final26",
+          "count": 5
+        },
+        {
+          "before": "FINAL25",
+          "after": "FINAL26",
+          "count": 2
+        },
+        {
+          "before": "receipt.compared, 504",
+          "after": "receipt.compared, 505",
+          "count": 1
+        },
+        {
+          "before": "compared === 504",
+          "after": "compared === 505",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/final25-portable-deno-plan.json",
+      "originalSha256": "c6ba26302f63bf5734482ccd9c1194db373be5e22421311c103a29279bd7da8d",
+      "file": "audit/2026-10-27/final26-portable-deno-plan.json",
+      "sha256": "9e24ceffb4d28f47978070376ab8ffc7e9c9cf0898d6068bc1eae3597544cb60",
+      "substitutions": [
+        {
+          "before": "final25",
+          "after": "final26",
+          "count": 6
+        },
+        {
+          "before": "FINAL25",
+          "after": "FINAL26",
+          "count": 1
+        },
+        {
+          "before": "source25",
+          "after": "source26",
+          "count": 1
+        },
+        {
+          "before": "source26 inventory504",
+          "after": "source26 inventory505",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    }
+  ],
+  "acceptanceJobsRun": 0,
+  "servicesStarted": 0,
+  "browsersStarted": 0,
+  "downloadsRun": 0
+}

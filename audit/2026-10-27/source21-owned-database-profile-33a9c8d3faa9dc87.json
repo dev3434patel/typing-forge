@@ -1,0 +1,74 @@
+{
+    "status": "PASS-SCOPED-READONLY-DIAGNOSTIC",
+    "recordedAt": "2026-10-27T15:27:26+00:00",
+    "ownerId": "33a9c8d3faa9dc87",
+    "databaseIdentityMatched": true,
+    "scope": "Post-burst\/post-counter idle native connection snapshot. Cumulative values have no before baseline and do not attribute request latency. SELECT timings are not commit\/HTTP timings.",
+    "globalStatus": {
+        "Aborted_clients": "0",
+        "Com_commit": "1573",
+        "Com_insert": "4488",
+        "Com_select": "27706",
+        "Com_update": "3704",
+        "Connections": "1681",
+        "Created_tmp_disk_tables": "0",
+        "Handler_commit": "31488",
+        "Innodb_buffer_pool_read_requests": "558227",
+        "Innodb_buffer_pool_reads": "177",
+        "Innodb_data_fsyncs": "4699",
+        "Innodb_data_reads": "192",
+        "Innodb_data_writes": "6739",
+        "Innodb_log_waits": "0",
+        "Innodb_os_log_fsyncs": "4324",
+        "Innodb_row_lock_time": "198287",
+        "Innodb_row_lock_time_avg": "125",
+        "Innodb_row_lock_time_max": "800",
+        "Innodb_row_lock_waits": "1577",
+        "Max_used_connections": "21",
+        "Questions": "42599",
+        "Slow_queries": "0",
+        "Threads_connected": "1",
+        "Threads_running": "6",
+        "Uptime": "288"
+    },
+    "globalVariables": {
+        "innodb_buffer_pool_size": "33554432",
+        "innodb_flush_log_at_trx_commit": "1",
+        "innodb_flush_method": "unbuffered",
+        "innodb_use_native_aio": "ON",
+        "log_bin": "OFF",
+        "long_query_time": "10.000000",
+        "performance_schema": "OFF",
+        "slow_query_log": "OFF",
+        "sync_binlog": "0"
+    },
+    "idleReadQueryTimings": {
+        "select-one": {
+            "count": 20,
+            "minMs": 0.1063,
+            "p50Ms": 0.1617,
+            "p95Ms": 0.267,
+            "maxMs": 0.3072
+        },
+        "database-clock": {
+            "count": 20,
+            "minMs": 0.1147,
+            "p50Ms": 0.1288,
+            "p95Ms": 0.2377,
+            "maxMs": 0.2463
+        }
+    },
+    "innodb": {
+        "status": "UNAVAILABLE"
+    },
+    "remainingOwnedRows": {
+        "users": 0,
+        "arena_rooms": 0,
+        "arena_members": 0,
+        "rate_limits": 803
+    },
+    "originalConfigRead": false,
+    "sqlMutations": false,
+    "guardedOwnedConfigurationLoaded": true,
+    "rawSqlOrKeysPublished": false
+}

@@ -1,0 +1,81 @@
+{
+  "declaredAt": "2026-11-04T16:41:41.556Z",
+  "status": "NOT-RUN",
+  "build": "332e23584f1e36465df2",
+  "source": {
+    "sourceFile": "audit/2026-11-02/final34-source.json",
+    "expectedBuild": "332e23584f1e36465df2",
+    "compared": 505,
+    "mismatches": []
+  },
+  "ownerId": "10fc7fecc2718fc3",
+  "origin": "http://127.0.0.1:7292/api/",
+  "rooms": 50,
+  "accountsPerRoom": 8,
+  "occupiedSeatsRequired": 400,
+  "durationSeconds": 30,
+  "concurrency": 20,
+  "requestTimeoutMs": 15000,
+  "watchdogMs": 180000,
+  "expectedArenaOperations": 1653,
+  "expectedOperations": {
+    "create": 50,
+    "join": 351,
+    "get": 51,
+    "spectate": 1,
+    "ready": 400,
+    "submit": 400,
+    "leave": 400
+  },
+  "p95TargetMs": 150,
+  "p95Method": "Nearest rank: sorted successful real Arena HTTP latencies[ceil(n*0.95)-1]. Every unexpected status separately fails the whole gate; all-request and per-phase distributions are also retained.",
+  "retries": 0,
+  "resultFiltering": false,
+  "rateCountersReset": false,
+  "limiterBypass": false,
+  "currentWire": {
+    "productionHelper": "src/domain/arena.ts#arenaEvidencePayload",
+    "actualHttpConsumer": "src/services/arena-service.ts",
+    "fieldsRemovedExactly": [
+      "characters",
+      "timeSeries",
+      "cursor"
+    ],
+    "metricsEventsAndAllOtherFieldsRetained": true,
+    "intentionalWireBytesChange": true,
+    "requestSerializationAdapterPoints": 1,
+    "helperImportedDirectlyWithNodeTypeStripping": true,
+    "separateRequiredContracts": [
+      "src/domain/__tests__/arena.test.ts",
+      "backend/tests/validation-parity.mjs"
+    ],
+    "separatePhpCanonicalHashParityRequired": true,
+    "noParityPassClaimFromThisCapacityRun": true,
+    "legacyFullDriverPreserved": "audit/2026-11-02/run-source34-capacity-burst.mjs",
+    "pairScope": "Run after legacy full once on the same owned runtime with newly provisioned400-account fixtures. Order/cache effects remain a limitation; no result is overwritten."
+  },
+  "evidence": "400 independent guarded synthetic authenticated sessions. Ten canonical insertion events per account use native performance.now mapped to the actual authoritative server start and real80/83/86ms pacing; no server/browser/client clock fast-forward.",
+  "authenticationEndpointPerformance": "NOT-MEASURED: accounts/sessions are isolated SQL/file fixtures; one real session request verifies the API binding.",
+  "sustained120SecondLoad": "NOT-RUN: this declared burst preserves the original1653-operation comparison. It cannot establish400-client steady-state polling throughput.",
+  "sourceAndHarnessHashes": {
+    "audit/2026-11-02/pack-capacity-instance-source34-wire.mjs": "a7986f70bcf29c2676dbd1d4954c6291cbfcc6d0488d8c4bc3947032a7a07a0a",
+    "audit/2026-11-02/run-source34-capacity-wire-burst.mjs": "d3fbd0246eb2ad60c4def3cf387300d72def5f6a10db01c0c86d954f0ced1959",
+    "audit/2026-11-02/run-source34-capacity-burst.mjs": "3ab9b5af24c0a4ccc6d387633fcebdb771efdbba4f583a309112b4b8a0e53ece",
+    "src/domain/arena.ts": "24c5cce5e196903c7ddaad914acf3bca1a35540750abce3c3ac3875853151d42",
+    "src/services/arena-service.ts": "e395ff18b60392e6beecdf4b7a1f2766130fcd82d7da185b0358bbf8d45e9f4f",
+    "src/domain/__tests__/arena.test.ts": "417ca62c20f4f6809f495a79ddfdd3cefc61f3ef5318d4333a03cfb0cd1cec84",
+    "backend/tests/validation-parity.mjs": "61cd40b5fd586cbf88a5dad6f1cca7b97b7c051dc59c68d197acbd09fc39bb57",
+    "backend/tests/arena-audit-admin.php": "1c40050d0318e8ec84e6cfc44ab90ebd7840d467ea1f0387ec16e11744b8091b",
+    "scripts/php-runtime.mjs": "2adeffc2ac322edbc611f34c437a0f34569689c942602bf39b079305cfb7a60f"
+  },
+  "machine": {
+    "logicalCpus": 20,
+    "cpuModel": "13th Gen Intel(R) Core(TM) i7-13650HX",
+    "totalMemoryBytes": 16849256448,
+    "freeMemoryBytes": 1890181120
+  },
+  "privateConfigReadByHarness": false,
+  "originalConfigRead": false,
+  "existingDatabaseConnected": false,
+  "cleanupOwnership": "Fixture account/session cleanup belongs to this script; Apache/MariaDB process cleanup remains with its original owner and must be verified separately."
+}

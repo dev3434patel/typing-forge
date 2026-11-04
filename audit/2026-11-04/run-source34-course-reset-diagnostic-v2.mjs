@@ -1,0 +1,27 @@
+import assert from 'node:assert/strict';
+import { readFile, writeFile, access } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { spawn } from 'node:child_process';
+import { verifyFrozenSource } from '../2026-10-21/artifact-verification.mjs';
+const hash = bytes => createHash('sha256').update(bytes).digest('hex');
+assert.equal(process.env.SPAROWTYPE_COURSE_RESET_DIAGNOSTIC,'1','Wait for the separate diagnostic GO.');
+const preparationFile='audit/2026-11-04/source34-course-reset-diagnostic-preparation-v2.json',preparationBytes=await readFile(preparationFile);
+assert.equal(hash(preparationBytes),process.env.SPAROWTYPE_COURSE_RESET_DIAGNOSTIC_PREPARATION_SHA256);
+const plan=JSON.parse(preparationBytes);
+for(const[file,expected]of Object.entries(plan.inputHashes))assert.equal(hash(await readFile(file)),expected,`Prepared input changed: ${file}`);
+const source=await verifyFrozenSource(plan.source.sourceFile);assert.deepEqual(source.receipt.mismatches,[]);
+const base=new URL(process.env.PLAYWRIGHT_BASE_URL??'http://127.0.0.1:4173');assert.equal(base.hostname,'127.0.0.1');assert.equal(base.port,'4173');
+const live=await fetch(new URL('/offline-build.json',base),{signal:AbortSignal.timeout(5000)});assert.equal(live.status,200);assert.equal((await live.json()).version,plan.build);
+const prefix='audit/2026-11-04/source34-course-reset-native';
+for(const suffix of ['-events.jsonl','-raw.json','-observation.json','-result.json','-protocol.json','-output.log'])await assert.rejects(access(prefix+suffix),{code:'ENOENT'});
+await writeFile(prefix+'-events.jsonl','',{flag:'wx'});
+await writeFile(prefix+'-protocol.json',JSON.stringify({declaredAt:new Date().toISOString(),kind:plan.kind,preparationFile,preparationSha256:hash(preparationBytes),sourceBefore:source.receipt,originalSpecSha256:plan.originalSpecSha256,originalHelperSha256:plan.originalHelperSha256,browser:'webkit',workers:1,retries:0,caseDeadlineMs:60000,noOriginalAcceptanceReplaced:true,noAddedFlowWaits:true,existingPreviewOnly:true},null,2)+'\n',{flag:'wx'});
+const child=spawn(process.execPath,['node_modules/@playwright/test/cli.js','test','--config=audit/2026-11-04/course-reset-diagnostic/course-reset.config.ts'],{env:{...process.env,PLAYWRIGHT_BASE_URL:base.href,PLAYWRIGHT_BROWSERS:'webkit'},windowsHide:true,stdio:['ignore','pipe','pipe']});
+let output='';child.stdout.on('data',bytes=>{output+=bytes;process.stdout.write(bytes)});child.stderr.on('data',bytes=>{output+=bytes;process.stderr.write(bytes)});
+const code=await new Promise((resolve,reject)=>{child.once('error',reject);child.once('close',resolve)});
+await writeFile(prefix+'-output.log',output,{flag:'wx'});
+const after=await verifyFrozenSource(plan.source.sourceFile),stable=await Promise.all(Object.entries(plan.inputHashes).map(async([file,expected])=>({file,unchanged:hash(await readFile(file))===expected})));
+let raw=null,observation=null;try{raw=JSON.parse(await readFile(prefix+'-raw.json','utf8'))}catch{}try{observation=JSON.parse(await readFile(prefix+'-observation.json','utf8'))}catch{}
+const result={recordedAt:new Date().toISOString(),status:'DIAGNOSTIC-CLOSED-NOT-ACCEPTANCE',childExitCode:code,reportedStats:raw?.stats??null,observation,sourceAfter:after.receipt,inputs:stable,sourceAndInputsUnchanged:after.receipt.mismatches.length===0&&stable.every(row=>row.unchanged),outputSha256:hash(output),eventsSha256:hash(await readFile(prefix+'-events.jsonl')),servicesStartedByRunner:0,noRetries:true};
+await writeFile(prefix+'-result.json',JSON.stringify(result,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify({diagnosticClosed:true,childExitCode:code,sourceAndInputsUnchanged:result.sourceAndInputsUnchanged}));
+if(code!==0||!result.sourceAndInputsUnchanged)process.exitCode=1;

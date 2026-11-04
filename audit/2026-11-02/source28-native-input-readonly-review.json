@@ -1,0 +1,124 @@
+{
+  "scope": "Source-only native input review; no production edits, browser runs, or performance acceptance claims",
+  "date": "2026-11-02",
+  "candidateContextFromParent": {
+    "defaultBuild": "c79352750d221e3b7479",
+    "staticBuild": "9c75d9897f5ff28e45b5",
+    "buildEquivalenceVerifiedByThisReview": false
+  },
+  "reviewedSourceSha256": {
+    "src/components/typing/TypingArea.tsx": "9a9f209c6dbe0082f953a0b54b61a3db44cf96feeb492a3e57f3ddf19ccd5bb7",
+    "src/components/keybr/KeybrLessonMode.tsx": "5e210709a81204677665921f68f634cd3c6c12f6f9ca1aa43798f205483a05b8",
+    "src/hooks/useWordCorrection.ts": "8d9f463a53845eb8b0c7051f5e1ca2b9fa6846d733e2b05ada531f37f1a24dee",
+    "src/components/keybr/learn-workspace.css": "0be7b53a5f233c11a3cdc2ea80e64f9409bd14e12fcc82878abbec399aea2628",
+    "src/index.css": "801aa28a390654ff58489766afea48fd9ba42cbd31ea93699f649382458c1a70"
+  },
+  "findings": [
+    {
+      "source": "src/components/typing/TypingArea.tsx:414",
+      "operation": "focus then setSelectionRange with preserved/clamped selectionDirection",
+      "frequencyFromSource": "Only restoreTypingFocus calls: focus-prompt click and requestAnimationFrame after resume. Not ordinary accepted insertion or each render.",
+      "note": "Preserves WebKit blur selection. A no-op guard here is not supported as a solution for a sustained typing latency regression."
+    },
+    {
+      "source": "src/hooks/useWordCorrection.ts:41",
+      "operation": "constrainSelection",
+      "frequencyFromSource": "Called on non-deletion beforeinput, focus/select, composition start, and blocked deletion. It returns before native selection reads when disabled, draft, composing, or missing input. setSelectionRange occurs only when start/end violates editable floor.",
+      "note": "Learn passes draft:true. Main typing normal in-bound insertions read selection but do not set it."
+    },
+    {
+      "source": "src/hooks/useWordCorrection.ts:78",
+      "operation": "native value assignment and collapsed selection after accepted deletion",
+      "frequencyFromSource": "After a nonzero accepted deletion or reopening previous incorrect submitted word. Draft mode writes empty value and skips setSelectionRange.",
+      "note": "Zero deletion requests return before this write. Retain canonical text and grapheme-to-UTF16 offset semantics."
+    },
+    {
+      "source": "src/components/typing/TypingArea.tsx:505",
+      "operation": "native value assignment in commit",
+      "frequencyFromSource": "Ordinary commit writes only if native value differs from next.finalText. Controlled React state is then updated.",
+      "note": "Unconditional explicit assignments are in special no-op, ignored empty-space, rejected transfer, and consumed composition echo branches at lines461,486,847,855. They are not normal accepted insertions."
+    },
+    {
+      "source": "src/components/keybr/KeybrLessonMode.tsx:495",
+      "operation": "controlled draft input",
+      "frequencyFromSource": "Ordinary committed insertion calls setDraft empty; composition keeps draft until compositionend. Explicit event.currentTarget.value assignments at502 and512 handle deletion fallback and rejected transfer only.",
+      "note": "Normal draft clearing is performed through React controlled-value restoration; do not infer zero native setter traffic from the absence of explicit assignments."
+    },
+    {
+      "source": "src/components/typing/TypingArea.tsx:364; src/components/keybr/KeybrLessonMode.tsx:224",
+      "operation": "other focus/blur/scrollIntoView",
+      "frequencyFromSource": "Main typing mount/autoFocus changes use preventScroll. Pause-status transition focuses resume and scrolls stage. Learn new session/reset and explicit stage click/resume focus input; Escape blurs. Learn desktop autofocus depends on session.controller, not each snapshot.",
+      "note": "No per-accepted-character explicit focus or scrollIntoView found."
+    },
+    {
+      "source": "src/components/typing/TypingArea.tsx:200; src/components/keybr/KeybrLessonMode.tsx:284",
+      "operation": "visible caret geometry and stage scroll",
+      "frequencyFromSource": "Layout effects measure after cursor/finalText/target/status/focus/geometry dependencies. Native geometry read fallback populates a bounded forward cache. Stage scrollTop write is guarded by cached desired scrollTop. Resize/fonts/document theme changes invalidate cache.",
+      "note": "This is visible stage scrolling, not textarea internal scroll. Trace association is required before attributing program CPU or delay."
+    },
+    {
+      "source": "src/components/typing/TypingArea.tsx:830; src/components/keybr/KeybrLessonMode.tsx:742; src/components/keybr/learn-workspace.css:61",
+      "operation": "textarea geometry and wrapping",
+      "frequencyFromSource": "Both source textareas are full width/full height positioned overlays. No wrap attribute is specified. Main input is transparent; Learn is opacity0; Learn draft is normally empty between commits. No 1px textarea rule found in reviewed applicable CSS.",
+      "note": "Actual computed native textarea geometry/scroll extents are UNVERIFIED by this source-only review. Native browser editing can still scroll internally without JS setters. Do not repeat a blind nowrap/GPU CSS prototype."
+    },
+    {
+      "source": "node_modules/react-dom/cjs/react-dom.development.js:1631",
+      "operation": "React18 native-value tracking",
+      "frequencyFromSource": "React captures the textarea prototype value descriptor and defines an own value accessor delegating to that captured setter. updateWrapper at2327 already checks newValue differs before setting node.value; defaultValue is also assigned when changed.",
+      "note": "A diagnostic patch installed only after mount can miss captured native setter calls. Prototype instrumentation must be installed before React mounts."
+    },
+    {
+      "source": "node_modules/react-dom/cjs/react-dom.development.js:8488",
+      "operation": "React selection restore",
+      "frequencyFromSource": "Runs restoration when previously focused element differs from current focused element. setSelection at8556 uses direct selectionStart and selectionEnd property setters, not setSelectionRange.",
+      "note": "A setSelectionRange-only wrapper cannot observe every JS selection write. Normal unchanged focus does not enter this restoration branch."
+    },
+    {
+      "source": "src search",
+      "operation": "NativeInputAdapter lookup",
+      "frequencyFromSource": "No symbol or source file named NativeInputAdapter found under src. Relevant shared typing adapter in this review is useWordCorrection. Separate game inputs exist in src/games/ui/NativeGameInput.tsx and src/components/games/SignalRun.tsx.",
+      "note": "Game adapters were not audited beyond identifying them; scope is Learn and main typing/BOT native pipelines."
+    }
+  ],
+  "diagnosticPlan": {
+    "beforeMutation": true,
+    "installation": "Init script before React mounts. Preserve and delegate native descriptors/functions exactly, including receiver, arguments, return value and errors. Restore descriptors after run. Do not patch live own React value descriptor.",
+    "observe": [
+      "HTMLTextAreaElement.value setter counts and duration; record only old/new lengths or equality, never raw text",
+      "setSelectionRange and direct selectionStart/selectionEnd/selectionDirection setters; distinguish direct operation kind and capture bounded before/after offset/direction fields",
+      "focus calls/counts/options and selectionchange event counts; avoid stack captures for every character",
+      "beforeinput/input/composition markers and bounded setter start/end trace marks to associate Layout, UpdateLayoutTree, PrePaint, Paint, Layerize, EventDispatch and FunctionCall",
+      "Computed textarea dimensions, scroll extents, wrap, whiteSpace, overflow, font, and scroll offsets once outside timed window; scroll event counts within window"
+    ],
+    "caveats": [
+      "Instrumentation getters, markers and call wrappers perturb runtime; diagnostic latency is not acceptance latency",
+      "Native browser input does not necessarily invoke a JavaScript value/selection setter",
+      "Low wrapper self-time does not rule out deferred layout or selection-triggered native work",
+      "Correlation with setter intervals does not by itself establish causality",
+      "Use existing unchanged native sequences and candidate fingerprints; do not alter typing semantics or 3D quality"
+    ]
+  },
+  "safeGuardRecommendation": {
+    "productionChangeRecommendedNow": false,
+    "reason": "Ordinary accepted app-level selection setters were not found; prior negative getter/prototype results from parent reduce justification for speculative native pipeline edits.",
+    "conditionalEligibility": "Only if a trace proves a repeated redundant setter: skip only when native canonical value, exact UTF16 selectionStart, selectionEnd, and normalized direction already equal the intended result, and no composition boundary/focus restoration still needs the operation. Never deduce equivalence solely from controller cursor.",
+    "regressionsRequiredIfChanged": [
+      "NFC prose versus exact code normalization",
+      "IME composition, duplicate composition echo, dead keys and replacement text",
+      "Forward/backward selections, middle-word edits, graphemes and RTL",
+      "Current-word correction and previous-incorrect-word reopening with correct words locked",
+      "Ctrl/Alt/Meta word deletion, noncancelable native mobile deletion",
+      "Blur/refocus WebKit last-character selection, pause/resume, restart and mobile keyboard focus",
+      "Screen reader naming, focus order and revealed native input behavior"
+    ]
+  },
+  "verification": {
+    "sourceInspection": "COMPLETE",
+    "productionEdits": "NONE",
+    "browserOrTestJobsRunByReviewer": "NONE",
+    "nativeComputedGeometry": "UNVERIFIED",
+    "nativeSetterLatencyCause": "UNPROVEN",
+    "under100msMobileGoal": "NOT CLAIMED"
+  }
+}

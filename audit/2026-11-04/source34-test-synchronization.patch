@@ -1,0 +1,88 @@
+diff --git a/audit/2026-11-04/test-sync-before/helpers.ts b/e2e/helpers.ts
+index 3eef03a..7aa0a22 100644
+--- a/audit/2026-11-04/test-sync-before/helpers.ts
++++ b/e2e/helpers.ts
+@@ -34,13 +34,11 @@ export async function focusTyping(page: Page) {
+     exact: true,
+   });
+   await expect(input).toBeVisible();
+-  // Desktop starts focused; touch devices retain the explicit keyboard activation.
+-  if (
+-    !(await input.evaluate((element) => element === document.activeElement))
+-  ) {
+-    await page
+-      .getByRole("button", { name: /^(Click here or tab to start typing|Continue typing)/ })
+-      .click();
++  await expect(input).toBeEnabled();
++  // Test setup targets the stable native input. Pointer activation is tested
++  // independently by the explicit touch and Continue typing cases.
++  if (!(await input.evaluate(element => element === document.activeElement))) {
++    await input.focus();
+   }
+   await expect(input).toBeFocused();
+   return input;
+diff --git a/audit/2026-11-04/test-sync-before/arena.spec.ts b/e2e/arena.spec.ts
+index d4c2517..19fd4b6 100644
+--- a/audit/2026-11-04/test-sync-before/arena.spec.ts
++++ b/e2e/arena.spec.ts
+@@ -1,6 +1,5 @@
+ import { expect, test, type Page } from '@playwright/test';
+ import { phpApiBase } from './php-api-fixture';
+-import { focusTyping } from './helpers';
+ import type { ArenaRoom } from '../src/domain/arena';
+ import type { SessionResult } from '../src/lib/typing-core';
+ import { auditPopulatedRoute } from './route-accessibility-fixture';
+@@ -45,7 +44,10 @@ test('eight-member UI uses actual native canonical typing after the issued count
+   await expect(page.getByLabel('Human racer progress').locator('strong')).toHaveCount(8);
+   await page.getByRole('button', { name: 'Ready to race', exact: true }).click();
+   await expect(page.getByRole('status').filter({ hasText: 'Starting in' })).toBeVisible();
+-  const input = await focusTyping(page); await input.pressSequentially('calm c', { delay: 60 });
++  const input = page.getByRole('textbox', { name: 'Typing input', exact: true });
++  await expect(input).toBeVisible();
++  await expect(input).toBeFocused();
++  await input.pressSequentially('calm c', { delay: 60 });
+   await expect(input).toHaveValue('calm c');
+   await expect.poll(() => fixture.submissions.some(value => value.events.length >= 6)).toBe(true);
+   const candidate = fixture.submissions.find(value => value.events.length >= 6)!;
+diff --git a/audit/2026-11-04/test-sync-before/progression-extras.spec.ts b/e2e/progression-extras.spec.ts
+index 418cf62..a3870f5 100644
+--- a/audit/2026-11-04/test-sync-before/progression-extras.spec.ts
++++ b/e2e/progression-extras.spec.ts
+@@ -23,6 +23,11 @@ test('earned theme and frame apply, persist on the real profile and return to de
+   const frame = page.locator('article').filter({ has: page.getByRole('heading', { name: 'Orbit profile frame', exact: true }) });
+   await frame.getByRole('button', { name: 'Unlock', exact: true }).click();
+   await frame.getByRole('button', { name: 'Equip', exact: true }).click();
++  await expect(frame.getByRole('button', { name: 'Equipped', exact: true })).toBeDisabled();
++  await expect.poll(() => page.evaluate(() => {
++    const stored = JSON.parse(localStorage.getItem('sparowtype:progression:v1:guest') ?? 'null') as { commands?: Array<{ kind: string; value?: string | boolean }> } | null;
++    return stored?.commands?.filter(command => command.kind === 'equip').at(-1)?.value ?? null;
++  })).toBe('frame-orbit');
+   await page.goto('/profile');
+   await expect(page.getByRole('region', { name: 'Your practice identity', exact: true })).toContainText('Orbit profile frame');
+   await page.goto('/progression');
+diff --git a/audit/2026-11-04/test-sync-before/typing-course.spec.ts b/e2e/typing-course.spec.ts
+index 66994fc..4bb51cd 100644
+--- a/audit/2026-11-04/test-sync-before/typing-course.spec.ts
++++ b/e2e/typing-course.spec.ts
+@@ -184,8 +184,19 @@ test("two different measured passages unlock the next lesson; repetition, reload
+   await page.reload();
+   await expect(page.getByRole("button", { name: "Start lesson", exact: true })).toBeEnabled();
+   await page.goto("/profile");
+-  await page.getByLabel("Type DELETE to enable this action", { exact: true }).fill("DELETE");
+-  await page.getByRole("button", { name: "Reset guest workspace", exact: true }).click();
++  const confirmation = page.getByLabel("Type DELETE to enable this action", { exact: true });
++  await expect(confirmation).toBeVisible();
++  await expect(confirmation).toBeEnabled();
++  await confirmation.fill("DELETE");
++  await expect(confirmation).toHaveValue("DELETE");
++  const reset = page.getByRole("button", { name: "Reset guest workspace", exact: true });
++  await expect(reset).toBeEnabled();
++  await reset.click();
++  await expect(page.getByRole("status").filter({ hasText: "This device workspace has been reset." })).toBeVisible();
++  await expect.poll(() => page.evaluate(() => {
++    const marker = JSON.parse(localStorage.getItem("sparowtype.workspace-reset.v1:guest") ?? "null") as { ownerId?: string; id?: string; at?: number } | null;
++    return marker?.ownerId === "guest" && typeof marker.id === "string" && marker.id.length > 0 && typeof marker.at === "number" && Number.isFinite(marker.at) && marker.at > 0;
++  })).toBe(true);
+   await page.goto(`/lessons?lesson=${second.id}`);
+   await expect(page.getByText("Build the previous skill first.", { exact: true })).toBeVisible();
+ });

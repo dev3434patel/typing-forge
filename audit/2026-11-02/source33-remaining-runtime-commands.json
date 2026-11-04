@@ -1,0 +1,79 @@
+{
+  "status": "PREPARED-NOT-RUN",
+  "recordedAt": "2026-11-04T16:07:34.103Z",
+  "executionPrerequisite": "Root explicit GO only after root home/Lighthouse and the separate OPcache profile window have closed. Run stages serially, with no competing heavy jobs.",
+  "source": "audit/2026-11-02/final33-source.json",
+  "build": "332e23584f1e36465df2",
+  "inputHashes": {
+    "audit/2026-11-02/run-final33-browser-matrix.mjs": "30bf2fc97bada6185a830ac93439e9145b84e071009650ca0a67ea5b617a34d8",
+    "audit/2026-11-02/run-final33-native-browser.mjs": "726cd0c145771e2cfc120eff54a0b42d404eccb64cc8531d2d2a351c8a86d9d2",
+    "audit/2026-11-02/run-final33-ci-extra.mjs": "52c3071ab0c473e8f4af68ff0bb6922e33fbce49b92bfdb6a484a2be5484fa09"
+  },
+  "stages": [
+    {
+      "id": "all64-spec-four-engine-matrix",
+      "argv": [
+        "node",
+        "audit/2026-11-02/run-final33-browser-matrix.mjs",
+        "final33"
+      ],
+      "env": {
+        "SPAROWTYPE_FINAL33_BUILD_ID": "332e23584f1e36465df2",
+        "SPAROWTYPE_AUDIT_BROWSERS": "chromium,edge,firefox,webkit",
+        "SPAROWTYPE_BROWSER_WORKERS": "1"
+      },
+      "unsetEnv": [
+        "SPAROWTYPE_STATIC_OUTPUTS"
+      ],
+      "expectedSpecFiles": 64,
+      "caseCount": "Derived from actual reports; never assumed",
+      "workers": 1,
+      "retries": 0
+    },
+    {
+      "id": "native20-fresh-owned-backends",
+      "argv": [
+        "node",
+        "audit/2026-11-02/run-final33-native-browser.mjs"
+      ],
+      "env": {
+        "SPAROWTYPE_FINAL33_BUILD_ID": "332e23584f1e36465df2",
+        "SPAROWTYPE_FINAL33_NATIVE_BROWSER_WINDOW": "1"
+      },
+      "unsetEnv": [
+        "SPAROWTYPE_PACK_BROWSER_DIAGNOSTIC"
+      ],
+      "expectedCases": 20,
+      "engines": 4,
+      "freshBackendsPerEngine": true,
+      "unchangedRatePolicy": true
+    },
+    {
+      "id": "pglite-and-exact-deno-ci",
+      "argv": [
+        "node",
+        "audit/2026-11-02/run-final33-ci-extra.mjs"
+      ],
+      "env": {
+        "SPAROWTYPE_FINAL33_BUILD_ID": "332e23584f1e36465df2",
+        "SPAROWTYPE_FINAL33_CI_EXTRA": "1",
+        "SPAROWTYPE_DENO_BINARY": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-02\\.final27-runtime\\deno-v2.9.8\\deno.exe",
+        "DENO_DIR": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-02\\.final27-runtime\\cache",
+        "DENO_NO_UPDATE_CHECK": "1"
+      },
+      "runtimeReceipt": "audit/2026-11-02/final27-nov02-portable-deno-setup.json",
+      "expectedDenoSha256": "924397800533d3eb0ed0c889b20ad70e18b970d93acd8135bc043f425e528266",
+      "commands": [
+        "npm run test:database",
+        "deno check --node-modules-dir=none --no-lock supabase/functions/submit-session/index.ts supabase/functions/race-operation/index.ts supabase/functions/delete-account/index.ts"
+      ],
+      "downloadOrGlobalInstall": false
+    }
+  ],
+  "earlierFailuresRetained": true,
+  "productionFilesEdited": false,
+  "testFilesEdited": false,
+  "servicesStarted": 0,
+  "browsersStarted": 0,
+  "measurementsStarted": 0
+}

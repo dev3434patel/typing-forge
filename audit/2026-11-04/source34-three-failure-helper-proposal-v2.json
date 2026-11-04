@@ -1,0 +1,198 @@
+{
+  "recordedAt": "2026-11-04T17:27:17.630Z",
+  "status": "PROPOSAL-ONLY-NOT-APPLIED-NOT-RUN",
+  "supersedes": {
+    "file": "audit/2026-11-04/source34-two-failure-synchronization-proposal.json",
+    "sha256": "fdc6e722802c57bd09390f3520d768736be4dd061fb356028f604c66f0f6c5e9",
+    "scope": "Supersedes focus setup strategy and follow-up file set only; original failure history and progression witness proposal retained."
+  },
+  "rootDecision": "Stable native input.focus is setup, not pointer/autofocus proof. Preserve explicit independent assertions for both contracts.",
+  "productionOrTestsOrHelpersEdited": false,
+  "exactFailedPairs": [
+    {
+      "project": "webkit",
+      "file": "e2e/arena.spec.ts",
+      "originalLine": 41,
+      "title": "eight-member UI uses actual native canonical typing after the issued countdown and preserves strict rules"
+    },
+    {
+      "project": "chromium",
+      "file": "e2e/progression-extras.spec.ts",
+      "originalLine": 17,
+      "title": "earned theme and frame apply, persist on the real profile and return to default appearance"
+    },
+    {
+      "project": "webkit",
+      "file": "e2e/account-workspace.spec.ts",
+      "originalLine": 40,
+      "title": "initial owner readiness protects Test with a delayed guest session",
+      "observedCase": 797,
+      "completedBatchReportPending": true
+    }
+  ],
+  "originalOutcomes": {
+    "newFeatures": {
+      "passed": 202,
+      "failed": 2,
+      "retries": 0,
+      "skipped": 0,
+      "retainedUnmodified": true
+    },
+    "existing": "Still active when proposed; case797 failure is observed, final totals are not claimed."
+  },
+  "additionalFailureEvidence": {
+    "file": "audit/2026-11-02/.playwright-artifacts-final34-existing/account-workspace-initial--6c760-ith-a-delayed-guest-session-webkit/error-context.md",
+    "sha256": "cd59a66072527b67d35d36f4ecf46cdac1e757c4a0bd61ea8bd96f10dc4ab7d6",
+    "observation": "Error waits for focus prompt at helpers43 while page snapshot line736 shows persistent Typing input active, no prompt, correct guest sign-in and ready30s. All preceding delayed owner assertions reached setup."
+  },
+  "proposedEdits": [
+    {
+      "file": "e2e/helpers.ts",
+      "currentSha256": "7268814993da0db90cec40266fc8aabb391d3f649d43add1dd55c5be370d2e7d",
+      "proposedSha256": "f185e905b3a01c16715133ec15bbc4869dc4276664ea8fa23842348e59d7dd8a",
+      "changes": [
+        {
+          "from": "  // Desktop starts focused; touch devices retain the explicit keyboard activation.\n  if (\n    !(await input.evaluate((element) => element === document.activeElement))\n  ) {\n    await page\n      .getByRole(\"button\", { name: /^(Click here or tab to start typing|Continue typing)/ })\n      .click();\n  }\n",
+          "to": "  await expect(input).toBeEnabled();\n  // Test setup targets the stable native input. Pointer activation is tested\n  // independently by the explicit touch and Continue typing cases.\n  if (!(await input.evaluate(element => element === document.activeElement))) {\n    await input.focus();\n  }\n"
+        }
+      ],
+      "exactReverse": true
+    },
+    {
+      "file": "e2e/arena.spec.ts",
+      "currentSha256": "c3699c1eeee16daa3c83ec0ac220fddad5e9c913c0652629459667bb83c2e41d",
+      "proposedSha256": "30b8eb02d4ab50b273320c7657b415b39f85bed2b18f71cf47a2364dd502bf95",
+      "changes": [
+        {
+          "from": "import { focusTyping } from './helpers';\n",
+          "to": ""
+        },
+        {
+          "from": "  const input = await focusTyping(page); await input.pressSequentially('calm c', { delay: 60 });",
+          "to": "  const input = page.getByRole('textbox', { name: 'Typing input', exact: true });\n  await expect(input).toBeVisible();\n  await expect(input).toBeFocused();\n  await input.pressSequentially('calm c', { delay: 60 });"
+        }
+      ],
+      "exactReverse": true
+    },
+    {
+      "file": "e2e/progression-extras.spec.ts",
+      "currentSha256": "06b2f95fe102b761ae285701b3e9a9b204bcbe81e55ce3815383adac118a373f",
+      "proposedSha256": "1643745accbc72ff7f215243659c8f655fe8f23e1d4305a579ba5f0a263533a0",
+      "changes": [
+        {
+          "from": "  await frame.getByRole('button', { name: 'Equip', exact: true }).click();",
+          "to": "  await frame.getByRole('button', { name: 'Equip', exact: true }).click();\n  await expect(frame.getByRole('button', { name: 'Equipped', exact: true })).toBeDisabled();\n  await expect.poll(() => page.evaluate(() => {\n    const stored = JSON.parse(localStorage.getItem('sparowtype:progression:v1:guest') ?? 'null') as { commands?: Array<{ kind: string; value?: string | boolean }> } | null;\n    return stored?.commands?.filter(command => command.kind === 'equip').at(-1)?.value ?? null;\n  })).toBe('frame-orbit');"
+        }
+      ],
+      "exactReverse": true
+    }
+  ],
+  "autofocusProof": "Arena planned edit independently awaits persistent input.toBeFocused BEFORE any helper focus/setup; actual native characters and shared-clock evidence remain unchanged.",
+  "pointerAffordanceProof": {
+    "file": "e2e/typing-experience.spec.ts",
+    "unchanged": true,
+    "explicitCases": [
+      {
+        "line": 212,
+        "title": "blur preserves input and refocus resumes the same passage",
+        "interaction": "Clicks Continue typing then checks retained text/passage and native corrections"
+      },
+      {
+        "line": 409,
+        "title": "touch users choose when to open the typing keyboard",
+        "interaction": "Checks initially unfocused input, explicitly clicks start prompt, then checks focus and viewport"
+      }
+    ]
+  },
+  "retainedRequirements": {
+    "visibleInputAssertion": true,
+    "enabledInputAssertionAdded": true,
+    "finalInputFocusAssertion": true,
+    "existingNativeCharacters": true,
+    "allOriginalOwnerIsolationAssertions": true,
+    "allOriginalProfileAssertions": true,
+    "sharedHumanClock": true,
+    "originalTimeouts": true,
+    "retries0": true,
+    "noSkippedFailures": true,
+    "noForceClick": true,
+    "noSyntheticClick": true,
+    "noCatchTimeout": true,
+    "noExtraSleep": true,
+    "benchmarkDriversUnchanged": true
+  },
+  "followup": {
+    "status": "NOT-RUN",
+    "onlyAfterWhole64SpecMatrixClosedAndRootGo": true,
+    "completeFiles": [
+      "e2e/arena.spec.ts",
+      "e2e/account-workspace.spec.ts",
+      "e2e/progression-extras.spec.ts",
+      "e2e/typing-experience.spec.ts"
+    ],
+    "engines": [
+      "chromium",
+      "edge",
+      "firefox",
+      "webkit"
+    ],
+    "casesPerEngine": {
+      "arena": 10,
+      "accountWorkspace": 12,
+      "progressionExtras": 4,
+      "typingExperience": 13,
+      "total": 39
+    },
+    "derivedExpectedTotal": 156,
+    "countSource": "Closed new-features JSON for Arena/Progression and completed Chromium/Edge/Firefox entries in active existing log for account/typing experience; all agree. Verify actual follow-up reporter total independently.",
+    "completedBaselineCounts": {
+      "chromium:arena.spec.ts": 10,
+      "edge:arena.spec.ts": 10,
+      "firefox:arena.spec.ts": 10,
+      "webkit:arena.spec.ts": 10,
+      "chromium:progression-extras.spec.ts": 4,
+      "edge:progression-extras.spec.ts": 4,
+      "firefox:progression-extras.spec.ts": 4,
+      "webkit:progression-extras.spec.ts": 4,
+      "chromium:account-workspace.spec.ts": 12,
+      "chromium:typing-experience.spec.ts": 13,
+      "edge:account-workspace.spec.ts": 12,
+      "edge:typing-experience.spec.ts": 13,
+      "firefox:account-workspace.spec.ts": 12,
+      "firefox:typing-experience.spec.ts": 13
+    },
+    "activeLogPrefixObservation": {
+      "file": "audit/2026-11-02/final34-existing.log",
+      "observedBytes": 142320,
+      "prefixSha256": "5cb919cd8a641ab9123eff4810242bfb0a56a1702467daa15c3559772f833367",
+      "notAFinalReport": true
+    },
+    "other60SpecFilesNotSelected": true,
+    "prospectiveHashesMustMatchBeforeRun": true,
+    "original3FailedPairMappingAndRawResultsMustRemain": true
+  },
+  "separateEqualAtRisk": {
+    "status": "UNVERIFIED",
+    "name": "Same-timestamp progression invocation order",
+    "facts": [
+      "Both TS and PHP replay sort by at, then lexicographic command id. UUID randomness affects the tie order while replay remains deterministic for the same envelope.",
+      "Local UI creates Date.now timestamps before queued persistence; server discards client at and stamps its command while holding owner lock. Millisecond ties are possible in the data contract.",
+      "A reverse-lexical same-time buy/equip could replay equip first and reject; consecutive equips can choose UUID order rather than invocation order. No such timestamps/envelope were retained in this browser failure."
+    ],
+    "notClaimedCauseOfCurrentFailures": true,
+    "policyUnchanged": true,
+    "focusedProofRequired": [
+      "Frozen timestamp and explicit reverse-lexical command IDs for buy then equip",
+      "Two owned equips at same timestamp in opposite input orders",
+      "TS/PHP canonical parity and previously stored-envelope replay"
+    ],
+    "migrationRequirement": "Do not replace canonical tie sorting with insertion order casually. Any sequence or logical-clock change needs an explicit version/backward-compatibility plan preserving old stored results, idempotency and offline convergence."
+  },
+  "rootDecisionAfterNativeFollowup": {
+    "stableArenaAutofocusFails": "Investigate actual production autofocus lifecycle; do not mask with force focus.",
+    "equippedStateOrPersistedEquipFails": "Investigate command completion/storage/error state, and inspect actual persisted command timestamps/IDs.",
+    "persistedFrameCorrectButProfileMissing": "Investigate production profile read/rebuild/owner data source.",
+    "allFollowupCasesPass": "Record separately scoped synchronization confirmation; preserve original202/2 history and do not relabel it.",
+    "equalTimestampRisk": "Keep UNVERIFIED until focused proof and an explicit compatible policy decision."
+  }
+}

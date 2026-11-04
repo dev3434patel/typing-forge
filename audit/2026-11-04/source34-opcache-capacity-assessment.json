@@ -1,0 +1,365 @@
+{
+  "recordedAt": "2026-11-04T16:47:22.761Z",
+  "build": "332e23584f1e36465df2",
+  "sourceFiles": 505,
+  "allFourResults": {
+    "ordinaryFull": {
+      "status": "FAILED",
+      "operations": 1653,
+      "p95Ms": 188.60879999999997,
+      "targetStrictlyBelowMs": 150,
+      "targetMet": false,
+      "unexpected": 0,
+      "statusCounts": {
+        "200": 1651,
+        "403": 1,
+        "409": 1
+      },
+      "occupiedSeats": 400,
+      "acceptedSubmissions": 400,
+      "acceptedLeaves": 400,
+      "failedChecks": [
+        {
+          "name": "successful-request p95 remains strictly below150ms",
+          "pass": false,
+          "detail": {
+            "p95Ms": 188.60879999999997,
+            "targetMs": 150
+          }
+        }
+      ],
+      "source505Unchanged": true,
+      "inputsUnchanged": true,
+      "fixtureCleanup": {
+        "deletedOwnAccounts": 400,
+        "removedOwnSessions": 400
+      }
+    },
+    "ordinaryWire": {
+      "status": "FAILED",
+      "operations": 1653,
+      "p95Ms": 157.5576000000001,
+      "targetStrictlyBelowMs": 150,
+      "targetMet": false,
+      "unexpected": 0,
+      "statusCounts": {
+        "200": 1651,
+        "403": 1,
+        "409": 1
+      },
+      "occupiedSeats": 400,
+      "acceptedSubmissions": 400,
+      "acceptedLeaves": 400,
+      "failedChecks": [
+        {
+          "name": "successful-request p95 remains strictly below150ms",
+          "pass": false,
+          "detail": {
+            "p95Ms": 157.5576000000001,
+            "targetMs": 150
+          }
+        }
+      ],
+      "source505Unchanged": true,
+      "inputsUnchanged": true,
+      "fixtureCleanup": {
+        "deletedOwnAccounts": 400,
+        "removedOwnSessions": 400
+      }
+    },
+    "opcacheFull": {
+      "status": "FAILED",
+      "operations": 1653,
+      "p95Ms": 190.5713999999989,
+      "targetStrictlyBelowMs": 150,
+      "targetMet": false,
+      "unexpected": 0,
+      "statusCounts": {
+        "200": 1651,
+        "403": 1,
+        "409": 1
+      },
+      "occupiedSeats": 400,
+      "acceptedSubmissions": 400,
+      "acceptedLeaves": 400,
+      "failedChecks": [
+        {
+          "name": "successful-request p95 remains strictly below150ms",
+          "pass": false,
+          "detail": {
+            "p95Ms": 190.5713999999989,
+            "targetMs": 150
+          }
+        }
+      ],
+      "source505Unchanged": true,
+      "inputsUnchanged": true,
+      "fixtureCleanup": {
+        "deletedOwnAccounts": 400,
+        "removedOwnSessions": 400
+      }
+    },
+    "opcacheWire": {
+      "status": "PASS-SCOPED-CAPACITY-BURST",
+      "operations": 1653,
+      "p95Ms": 141.3238999999994,
+      "targetStrictlyBelowMs": 150,
+      "targetMet": true,
+      "unexpected": 0,
+      "statusCounts": {
+        "200": 1651,
+        "403": 1,
+        "409": 1
+      },
+      "occupiedSeats": 400,
+      "acceptedSubmissions": 400,
+      "acceptedLeaves": 400,
+      "failedChecks": [],
+      "source505Unchanged": true,
+      "inputsUnchanged": true,
+      "fixtureCleanup": {
+        "deletedOwnAccounts": 400,
+        "removedOwnSessions": 400
+      }
+    }
+  },
+  "workload": {
+    "rooms": 50,
+    "seatsPerRoom": 8,
+    "occupiedSeats": 400,
+    "httpConcurrency": 20,
+    "operationsPerRepresentation": 1653,
+    "p95StrictlyBelowMs": 150,
+    "warmupRequestsAdded": 0,
+    "retries": 0,
+    "filtering": false,
+    "clockFastForward": false
+  },
+  "interpretation": "Only production-wire evidence on the separately declared, verified OPcache profile passed this short-burst SLO. Ordinary full/wire and OPcache full failed. No default/full capacity pass, sustained400-concurrent-client, hosted, multi-region or authentication-throughput claim.",
+  "oldSource33MeasurementsRetained": true,
+  "allWorkloadsAndFailuresRetained": true,
+  "sourceOrFrozenTestsChangedDuringRuntime": false,
+  "evidenceHashes": {
+    "ordinaryFull": {
+      "file": "audit/2026-11-02/source34-capacity-10fc7fecc2718fc3.json",
+      "sha256": "586959a52cbfca917efcc41a844d96fd6716681315274af63f08b84c7cbc08fc"
+    },
+    "ordinaryWire": {
+      "file": "audit/2026-11-02/source34-capacity-wire-10fc7fecc2718fc3.json",
+      "sha256": "1b5c0fff48aaa2c48fa06718b9522db18b1caff9262667e496e3b2e20839909a"
+    },
+    "counter": {
+      "file": "audit/2026-11-02/source34-native-rate-10fc7fecc2718fc3.json",
+      "sha256": "a5b3b0ae9d858c222bf5d6f26c6508aaa5696c9ab3d1554ef7327a9d9179d39f"
+    },
+    "ordinaryCleanup": {
+      "file": "audit/2026-11-02/pack-backend-10fc7fecc2718fc3-cleanup.json",
+      "sha256": "6793580327891ab787439e8049e4d6d2be15199bba7939128e081a397224673c"
+    },
+    "profileFull": {
+      "file": "audit/2026-11-02/source34-opcache-v3-capacity-e18a2455a062d8e5.json",
+      "sha256": "0d632210f13e0cd5bf8bc496c59c81e8311a641d1e8c37d1876d6c4b54f7b0d4"
+    },
+    "profileWire": {
+      "file": "audit/2026-11-02/source34-opcache-v3-capacity-wire-e18a2455a062d8e5.json",
+      "sha256": "505b69ff5d0025510a6fe19dd216c7f9ead3f0183d332aaf1fa0b6fb103655ac"
+    },
+    "native": {
+      "file": "audit/2026-11-02/pack-backend-e18a2455a062d8e5-arena-http-raw.json",
+      "sha256": "3b17f44ea0188b08056908c91c1d9f976dc326335bb12199a5e0de643d26ce31"
+    },
+    "profileCleanup": {
+      "file": "audit/2026-11-02/pack-backend-e18a2455a062d8e5-cleanup.json",
+      "sha256": "23f6e22689d783e747d4fd94b533395638d917d968d653cafccbcf1bfee12ba1"
+    },
+    "cacheBefore": {
+      "file": "audit/2026-11-02/pack-backend-e18a2455a062d8e5-opcache-startup.json",
+      "sha256": "06004f3cc4fe7e59eb9fb1bd7cf03f322caf1ab795c423ed848913aa6628a28f"
+    },
+    "cacheAfter": {
+      "file": "audit/2026-11-02/pack-backend-e18a2455a062d8e5-opcache-after-arena-http.json",
+      "sha256": "30776f9cca45e9d1b0ed0ca3f6b968955073f75ac024b170635aee5200043c6d"
+    },
+    "profileManifest": {
+      "file": "audit/2026-11-04/source34-opcache-profile-preparation-v3.json",
+      "sha256": "91d6d646b2380b872f9059d52298b0e7f6adf573f8dfdfba14accef4993ddd50"
+    }
+  },
+  "status": "CONDITIONAL-WIRE-BURST-PASS-FULL-FAILED",
+  "ownerId": "e18a2455a062d8e5",
+  "full": {
+    "status": "FAILED",
+    "operations": 1653,
+    "p95Ms": 190.5713999999989,
+    "targetStrictlyBelowMs": 150,
+    "targetMet": false,
+    "unexpected": 0,
+    "statusCounts": {
+      "200": 1651,
+      "403": 1,
+      "409": 1
+    },
+    "occupiedSeats": 400,
+    "acceptedSubmissions": 400,
+    "acceptedLeaves": 400,
+    "failedChecks": [
+      {
+        "name": "successful-request p95 remains strictly below150ms",
+        "pass": false,
+        "detail": {
+          "p95Ms": 190.5713999999989,
+          "targetMs": 150
+        }
+      }
+    ],
+    "source505Unchanged": true,
+    "inputsUnchanged": true,
+    "fixtureCleanup": {
+      "deletedOwnAccounts": 400,
+      "removedOwnSessions": 400
+    }
+  },
+  "wire": {
+    "status": "PASS-SCOPED-CAPACITY-BURST",
+    "operations": 1653,
+    "p95Ms": 141.3238999999994,
+    "targetStrictlyBelowMs": 150,
+    "targetMet": true,
+    "unexpected": 0,
+    "statusCounts": {
+      "200": 1651,
+      "403": 1,
+      "409": 1
+    },
+    "occupiedSeats": 400,
+    "acceptedSubmissions": 400,
+    "acceptedLeaves": 400,
+    "failedChecks": [],
+    "source505Unchanged": true,
+    "inputsUnchanged": true,
+    "fixtureCleanup": {
+      "deletedOwnAccounts": 400,
+      "removedOwnSessions": 400
+    }
+  },
+  "nativeArena": {
+    "status": "PASS-SCOPED",
+    "passed": 32,
+    "failed": 0,
+    "fullFinishedChartAndRetryVerified": true
+  },
+  "cacheProof": {
+    "enabled": true,
+    "ownedIniHashMatched": true,
+    "backend38Unchanged": true,
+    "startupHits": 0,
+    "startupCachedScripts": 11,
+    "finalHits": 42721,
+    "finalCachedScripts": 18,
+    "generatedOwnedIniSha256": "c6ca2948fd522675b76c2648bf2bb869289ca2f0bc0f8b4f02f3e5474e949fd8",
+    "fragmentSha256": "0bd8fae150da074f7fcbdd850f1f87c7ca07d560cec45b80268fcd74ce5a7bc0",
+    "extensionBinarySha256": "4530ffcf2c16c9fb3b97b45360302c787d5fbcb248492f80d35407f63ccff76e",
+    "sourceManifestSha256": "bb7956b685f80c3c1d2c2926999a548540f80d9875fbe336ead5d16670587493",
+    "preparationManifestSha256": "91d6d646b2380b872f9059d52298b0e7f6adf573f8dfdfba14accef4993ddd50",
+    "canonicalScripts": {
+      "applicationIndex": {
+        "forwardLookup": true,
+        "realpathCached": true,
+        "canonicalFullMetadata": true,
+        "sourceHashMatches": true,
+        "mtimeMatches": true,
+        "hits": 3359
+      },
+      "validator": {
+        "forwardLookup": false,
+        "realpathCached": true,
+        "canonicalFullMetadata": true,
+        "sourceHashMatches": true,
+        "mtimeMatches": true,
+        "hits": 3359
+      },
+      "arena": {
+        "forwardLookup": false,
+        "realpathCached": true,
+        "canonicalFullMetadata": true,
+        "sourceHashMatches": true,
+        "mtimeMatches": true,
+        "hits": 808
+      }
+    }
+  },
+  "extraRuntimeInputsOutside505": [
+    {
+      "file": "backend/opcache.ini.example",
+      "expected": "0bd8fae150da074f7fcbdd850f1f87c7ca07d560cec45b80268fcd74ce5a7bc0",
+      "actual": "0bd8fae150da074f7fcbdd850f1f87c7ca07d560cec45b80268fcd74ce5a7bc0",
+      "unchanged": true
+    },
+    {
+      "file": "docs/PHP_OPCACHE_PROFILE.md",
+      "expected": "1958a392c4c5ba90329311aaabb2cc3baf396838dd19cc4ec561db8dbf7c6607",
+      "actual": "1958a392c4c5ba90329311aaabb2cc3baf396838dd19cc4ec561db8dbf7c6607",
+      "unchanged": true
+    },
+    {
+      "file": "audit/2026-11-04/source34-opcache-runtime-v3.mjs",
+      "expected": "f0d7debcfcd27027044bd1850936800a2e033720084299423c261e3fa7835bc9",
+      "actual": "f0d7debcfcd27027044bd1850936800a2e033720084299423c261e3fa7835bc9",
+      "unchanged": true
+    },
+    {
+      "file": "audit/2026-11-04/source34-opcache-cache-probe-endpoint.mjs",
+      "expected": "3581268e399af0e368a0dd425cb1110f53639cfe5f8faaeb8bf339a45f30f786",
+      "actual": "3581268e399af0e368a0dd425cb1110f53639cfe5f8faaeb8bf339a45f30f786",
+      "unchanged": true
+    },
+    {
+      "file": "audit/2026-11-02/run-source34-arena-chart-http.mjs",
+      "expected": "5bd4b0c068681ccad6dddecef61923650c2cbac8790dbdb6d69cb15a4bd69007",
+      "actual": "5bd4b0c068681ccad6dddecef61923650c2cbac8790dbdb6d69cb15a4bd69007",
+      "unchanged": true
+    },
+    {
+      "file": "audit/2026-11-02/pack-opcache-instance-source34-v3.mjs",
+      "expected": "597d365b3b0569aaefaa2e9ebef3c87377f8b8166589e25c62e5033a6270c891",
+      "actual": "597d365b3b0569aaefaa2e9ebef3c87377f8b8166589e25c62e5033a6270c891",
+      "unchanged": true
+    },
+    {
+      "file": "audit/2026-11-02/pack-opcache-instance-source34-v3-wire.mjs",
+      "expected": "6bac398830ed0c8cde6695736fc263d9daa648db7cb01788818d333c09f1a5f6",
+      "actual": "6bac398830ed0c8cde6695736fc263d9daa648db7cb01788818d333c09f1a5f6",
+      "unchanged": true
+    },
+    {
+      "file": "audit/2026-11-02/run-source34-opcache-v3-capacity-burst.mjs",
+      "expected": "8b6d6e3736e937da11cd1ce089b9947b374dee61af20ea41356140b99fd2eee0",
+      "actual": "8b6d6e3736e937da11cd1ce089b9947b374dee61af20ea41356140b99fd2eee0",
+      "unchanged": true
+    },
+    {
+      "file": "audit/2026-11-02/run-source34-opcache-v3-capacity-wire-burst.mjs",
+      "expected": "faea4c02073857733cb8486bb1d2e40dcae055418449a6f4f1a220641635e31a",
+      "actual": "faea4c02073857733cb8486bb1d2e40dcae055418449a6f4f1a220641635e31a",
+      "unchanged": true
+    }
+  ],
+  "extraInputsVerifiedUnchangedBeforeApprovedPostRunDocumentationUpdate": true,
+  "cleanup": {
+    "ownProcessesStopped": true,
+    "gracefulDatabaseShutdown": true,
+    "gracefulApacheShutdown": true,
+    "forcedDatabaseStop": false,
+    "forcedApacheStop": false,
+    "apacheResidualPids": [],
+    "failureDiagnosticsRetained": true,
+    "originalServicesUntouched": [
+      3308,
+      8081,
+      4173
+    ]
+  },
+  "hostingActivationRequired": true,
+  "automaticallyActivatedByPackager": false,
+  "globalXamppModified": false
+}

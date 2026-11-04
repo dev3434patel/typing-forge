@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "capturedAtUtc": "2026-10-27T16:22:58.9840517Z",
+  "status": "IMPLEMENTED-FOCUSED-TESTS-PENDING-ROOT-GO",
+  "previousBuild": "85735c1a3b56655b767e",
+  "files": [
+    {
+      "path": "src/lib/typing-core/session.ts",
+      "sha256": "5436852d79b166acd708dc07eb67893da0059e3703cd1bc02b8a8fa451d1672c",
+      "lastWriteUtc": "2026-10-27T16:21:08.2406148Z"
+    },
+    {
+      "path": "src/lib/typing-core/transcript.ts",
+      "sha256": "d42c6780103f8de4ca4979d5da5a7311ed7b298edbe3925cfeba50704cada1b3",
+      "lastWriteUtc": "2026-10-27T16:21:08.2396113Z"
+    },
+    {
+      "path": "src/lib/typing-core/__tests__/session.test.ts",
+      "sha256": "bfe63170dacdf7a96e0cbd7c2986959a77a9734b537acac9eebb82cff03678b9",
+      "lastWriteUtc": "2026-10-27T16:21:55.3681045Z"
+    },
+    {
+      "path": "src/lib/typing-core/__tests__/transcript-target-cache.test.ts",
+      "sha256": "41c4a596a3425258b08a3ae7d7d5c43ba8fac7b824a290a9b93c130e3c260292",
+      "lastWriteUtc": "2026-10-27T16:21:55.3709001Z"
+    }
+  ],
+  "authority": "Root authorized only session.ts/transcript.ts and existing focused core test files after the source23 native window closed.",
+  "changes": [
+    "Mutate only per-call fresh CharacterSlot records for privately factory-branded dense immutable targets; unbranded public arrays retain the original object-replacement path.",
+    "Use a private lastSequence-keyed retained text string across currentText/snapshot/timer ticks; invalidate immediately before applyEvent and stamp only after a successful join."
+  ],
+  "exceptionReview": [
+    "validateEvent and correction-boundary failures occur before retained unit mutation.",
+    "applyEvent advances lastSequence before the unit-splice/reconciliation paths; explicit pre-apply cache invalidation adds protection regardless of how an exceptional edit returns.",
+    "The injected normalization error test fails after insertion has changed retained units, restores native behavior, then checks currentText and snapshot expose that existing partial state.",
+    "This optimization preserves existing nontransactional applyEvent failure semantics; it neither accepts a failed event nor repairs its event sequence.",
+    "Authoritative finish/checkpoint results still independently replay events and issued targets; the presentation string cache is not an evidence trust source."
+  ],
+  "ownershipReview": [
+    "The target factory privately brands only its own frozen dense arrays; external mutable/frozen/getter/proxy/sparse arrays cannot acquire that membership.",
+    "Brand membership is checked after targetWords applies the existing retention limits; limits and metadata caching are unchanged.",
+    "Fresh slot records have not escaped or been frozen while they are filled. Published live snapshots retain existing freezing behavior.",
+    "Both replacement and filled base records retain index/expected/typed/status property insertion order and descriptors; differential tests assert whole alignment, serialized bytes, keys and descriptors.",
+    "No new event freezing, exposed state, correction-policy change, timing/math change, UI change or 3D edit."
+  ],
+  "newFocusedCases": [
+    "One retained-join observation over 20 clock ticks and 60 retained-text readings.",
+    "One replacement/Unicode-join/duplicate-composition/reject/delete/append/pause/resume/finalization lifecycle case.",
+    "One malformed-range and injected partial-edit exception case.",
+    "Ten factory-versus-external alignment vectors, each in both live and finite-final modes, with word traces and full slot descriptor/serialization equivalence.",
+    "One sparse public target fallback case preserving the untouched hole and mapped-hole record creation."
+  ],
+  "addedFocusedTestCount": 14,
+  "testsRun": 0,
+  "testsResult": "PENDING",
+  "performanceClaim": "No causal or acceptance claim. Unchanged ordinary495-character4xCPU three-run mobile evidence is still required.",
+  "proposalReference": "audit/2026-10-27/final23-alignment-allocation-proposal.json"
+}

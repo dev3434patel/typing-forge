@@ -1,0 +1,243 @@
+{
+  "protocol": {
+    "preparedAt": "2026-11-02T17:02:19.922Z",
+    "status": "DECLARED BEFORE THIS STATIC EXECUTION",
+    "expectedBuild": "9c75d9897f5ff28e45b5",
+    "origin": "http://127.0.0.1:13347",
+    "browser": "Playwright bundled Chromium",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "isMobile": true,
+    "hasTouch": true,
+    "cpuThrottle": 4,
+    "freshContextPerWorkspace": true,
+    "serviceWorkers": "Blocked to isolate direct served-build input workspaces; offline behavior tested separately",
+    "deviceScaleFactor": 1,
+    "fontAndFiniteAnimationSettlement": true,
+    "clock": "Unmodified performance.now/Date.now; no virtual clock",
+    "input": "Locator.pressSequentially, requested delay 0ms; native Enter for each game gate",
+    "intro": "Disabled only to isolate typing; full quality intro measured separately",
+    "cases": [
+      {
+        "id": "learn",
+        "route": "learn?language=en&layout=qwerty",
+        "input": "Entire initially generated adaptive passage",
+        "evidence": "Actual result JSON export: exact final text, attempts and 100% input accuracy"
+      },
+      {
+        "id": "local-bot",
+        "route": "race",
+        "input": "First 100 characters of actual generated target, followed by manual Finish",
+        "evidence": "Actual result JSON export: exact retained prefix, attempts, 100% input accuracy and localBot=true; no human room or account"
+      }
+    ],
+    "automaticRetries": 0,
+    "resultFiltering": false,
+    "caseTimeoutMs": 33000,
+    "totalWatchdogMs": 145000,
+    "eventTiming": "All observed typing keyboard/input event durations with threshold 16ms; p98/max plus interaction maxima; zero observed entries is not a 0ms claim",
+    "limits": "Local Chromium touch/mobile emulation with lab CPU throttling. Quantized thresholded Event Timing is not field INP or native Android/iOS keyboard acceptance. Requested driver delay is not measured typing speed. One declared run per workspace, no statistical claim. No backend writes or user data.",
+    "buildFile": "audit/2026-11-02/final28-mobile-native-pipeline-build.json",
+    "sourceFile": "audit/2026-11-02/final28-source.json",
+    "sourceExpectedBuild": "c79352750d221e3b7479",
+    "deploymentMode": "frontend-only-vercel; real API-disabled artifact; no mocks, no PHP, no live account or database",
+    "artifactDirectory": "dist-static-final28-candidate-vercel",
+    "originalNormalProtocol": "audit/2026-10-21/mobile-workspaces-final7-protocol.json",
+    "diagnostic": true,
+    "setterProbeEnabled": true,
+    "instrumentation": "Typing-window streamed CDP devtools.timeline + blink.user_timing;32MB trace buffer/64MB raw-file cap; no screenshots or V8 sampling. Optional transparent native textarea setters installed before React; exact prototype descriptor restoration.",
+    "comparability": "DIAGNOSTIC only: Learn and local BOT selected before execution, identical native actions and4xCPU. Source28 candidate104/64/120/24ms and source27 failures remain unchanged. Tracing and getters perturb execution; no SLO or field INP claim."
+  },
+  "protocolFile": "audit/2026-11-02/final28-mobile-native-pipeline-protocol.json",
+  "buildFile": "audit/2026-11-02/final28-mobile-native-pipeline-build.json",
+  "declaredAt": "2026-11-02T17:02:20.815Z",
+  "build": {
+    "version": "9c75d9897f5ff28e45b5",
+    "publicFiles": 133,
+    "bytes": 2926424
+  },
+  "servedBuild": {
+    "version": "9c75d9897f5ff28e45b5",
+    "publicFiles": 133,
+    "bytes": 2926424
+  },
+  "origin": "http://127.0.0.1:13347",
+  "browser": "156.0.8078.4",
+  "cases": [
+    {
+      "id": "learn",
+      "startedAt": "2026-11-02T17:02:21.018Z",
+      "passed": true,
+      "pageErrors": [],
+      "consoleErrors": [],
+      "pipeline": {
+        "status": "COMPLETE-DIAGNOSTIC-NOT-ACCEPTANCE",
+        "report": "audit/2026-11-02/final28-mobile-native-pipeline-learn-pipeline-summary.json",
+        "trace": {
+          "bytes": 2890698,
+          "byteLimit": 67108864,
+          "byteLimitExceeded": false,
+          "eof": true,
+          "dataLossOccurred": false,
+          "maxTraceBufferUsage": 0.04348352551460266,
+          "streamed": true,
+          "screenshots": false,
+          "cpuSampling": false
+        },
+        "inputMarkers": {
+          "callStartAt": 506.10000002384186,
+          "returnedAt": 5835,
+          "beforeInputCount": 114,
+          "firstBeforeInputAt": 554.1000000238419,
+          "lastBeforeInputAt": 5509.700000047684
+        },
+        "setterCalls": 113,
+        "descriptorsRestoredExactly": true
+      },
+      "timing": {
+        "eventTimingSupported": true,
+        "observedTypingEventsAtLeast16ms": 570,
+        "p98ObservedTypingEventDurationMs": 112,
+        "maxObservedTypingEventDurationMs": 320,
+        "measuredInteractionsAtLeast16ms": 114,
+        "p98ObservedInteractionMaximumMs": 120,
+        "observedBeforeInputEvents": 114,
+        "measuredWallMs": 6367.699999928474,
+        "longTasksThroughTypingAndResult": [
+          72,
+          56,
+          50,
+          50,
+          56,
+          53,
+          51,
+          67,
+          54,
+          68,
+          73,
+          64,
+          72,
+          70,
+          67,
+          92,
+          69,
+          73,
+          81,
+          57,
+          57,
+          59,
+          52,
+          294,
+          162,
+          118,
+          345
+        ]
+      },
+      "evidence": {
+        "targetUnits": 114,
+        "finalTextExact": true,
+        "attempts": 114,
+        "incorrectAttempts": 0,
+        "inputAccuracy": 100,
+        "elapsedMs": 4954.699999928474,
+        "correctCharacterWpm": 276.1014794073805,
+        "exportedClientSessionId": "dba21b9a-e7d1-41fd-9417-0d9499333792"
+      },
+      "horizontalOverflow": false,
+      "finishedAt": "2026-11-02T17:02:28.676Z"
+    },
+    {
+      "id": "local-bot",
+      "startedAt": "2026-11-02T17:02:28.678Z",
+      "passed": true,
+      "pageErrors": [],
+      "consoleErrors": [],
+      "pipeline": {
+        "status": "COMPLETE-DIAGNOSTIC-NOT-ACCEPTANCE",
+        "report": "audit/2026-11-02/final28-mobile-native-pipeline-local-bot-pipeline-summary.json",
+        "trace": {
+          "bytes": 2546040,
+          "byteLimit": 67108864,
+          "byteLimitExceeded": false,
+          "eof": true,
+          "dataLossOccurred": false,
+          "maxTraceBufferUsage": 0.0351259708404541,
+          "streamed": true,
+          "screenshots": false,
+          "cpuSampling": false
+        },
+        "inputMarkers": {
+          "callStartAt": 837.3999999761581,
+          "returnedAt": 6163.199999928474,
+          "beforeInputCount": 100,
+          "firstBeforeInputAt": 872.6999999284744,
+          "lastBeforeInputAt": 6065.599999904633
+        },
+        "setterCalls": 0,
+        "descriptorsRestoredExactly": true
+      },
+      "timing": {
+        "eventTimingSupported": true,
+        "observedTypingEventsAtLeast16ms": 500,
+        "p98ObservedTypingEventDurationMs": 112,
+        "maxObservedTypingEventDurationMs": 256,
+        "measuredInteractionsAtLeast16ms": 100,
+        "p98ObservedInteractionMaximumMs": 136,
+        "observedBeforeInputEvents": 100,
+        "measuredWallMs": 6568,
+        "longTasksThroughTypingAndResult": [
+          77,
+          54,
+          60,
+          69,
+          244,
+          50,
+          52,
+          54,
+          51,
+          75,
+          64,
+          59,
+          62,
+          52,
+          55,
+          86,
+          65,
+          73,
+          72,
+          59,
+          77,
+          73,
+          90,
+          80,
+          59,
+          71,
+          92,
+          80,
+          53,
+          269,
+          255,
+          82
+        ]
+      },
+      "evidence": {
+        "targetUnits": 100,
+        "finalTextExact": true,
+        "attempts": 100,
+        "incorrectAttempts": 0,
+        "inputAccuracy": 100,
+        "elapsedMs": 5765.699999928474,
+        "correctCharacterWpm": 208.12737395544104,
+        "exportedClientSessionId": "bd8a7132-65f3-4c68-939e-7cac5a797d05",
+        "localBot": true
+      },
+      "horizontalOverflow": false,
+      "finishedAt": "2026-11-02T17:02:36.592Z"
+    }
+  ],
+  "watchdogExpired": false,
+  "completed": true,
+  "finishedAt": "2026-11-02T17:02:36.593Z"
+}

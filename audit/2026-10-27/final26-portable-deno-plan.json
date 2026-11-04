@@ -1,0 +1,61 @@
+{
+  "status": "PREPARED-NOT-DOWNLOADED-NOT-EXTRACTED-NOT-EXECUTED",
+  "checkedOn": "2026-10-27",
+  "officialRepository": "denoland/deno",
+  "release": {
+    "id": 419563720,
+    "tag": "v2.9.8",
+    "version": "2.9.8",
+    "publishedAt": "2026-10-21T15:28:53Z",
+    "url": "https://github.com/denoland/deno/releases/tag/v2.9.8",
+    "apiLatestMetadataSource": "https://api.github.com/repos/denoland/deno/releases/latest",
+    "apiPinnedMetadataSource": "https://api.github.com/repos/denoland/deno/releases/tags/v2.9.8",
+    "draft": false,
+    "prerelease": false,
+    "metadataInspection": "Official latest-release API response inspected read-only; the official release page independently identifies v2.9.8 and2026-10-21. Execution must revalidate the pinned tag and asset identities, never resolve latest again."
+  },
+  "platform": "x86_64-pc-windows-msvc",
+  "hostArchitectureReadOnlyProbe": "X64",
+  "archive": {
+    "id": 662526167,
+    "name": "deno-x86_64-pc-windows-msvc.zip",
+    "bytes": 42917472,
+    "sha256": "cba84b26e0df5ae7f74fc66b86a95b866872a86292ebd84fa1e959927edd93bf",
+    "url": "https://github.com/denoland/deno/releases/download/v2.9.8/deno-x86_64-pc-windows-msvc.zip"
+  },
+  "checksumSidecar": {
+    "id": 662526164,
+    "name": "deno-x86_64-pc-windows-msvc.zip.sha256sum",
+    "bytes": 177,
+    "sha256": "0fdedd625087373992be0dff62a3c3a3a9b254a0cf01d46d54c559c451c86413",
+    "url": "https://github.com/denoland/deno/releases/download/v2.9.8/deno-x86_64-pc-windows-msvc.zip.sha256sum",
+    "contentNotDownloadedDuringPreparation": true
+  },
+  "officialManualInstallationSource": "https://docs.deno.com/runtime/getting_started/installation/#manual-download",
+  "officialManualInstallationSourceUpdated": "2026-07-09",
+  "manualInstallationContract": "The official documentation identifies the Windows x86_64 ZIP, one executable per platform archive and a matching.sha256sum file. Use an absolute executable path, without installer scripts, global package installation or PATH changes.",
+  "workspaceDirectory": "audit/2026-10-27/.final26-runtime",
+  "workspaceDirectoryIgnoredProbe": "git check-ignore audit/2026-10-27/.final26-runtime/deno-v2.9.8/deno.exe returned the exact path",
+  "binaryRelativePath": "audit/2026-10-27/.final26-runtime/deno-v2.9.8/deno.exe",
+  "cacheRelativePath": "audit/2026-10-27/.final26-runtime/cache",
+  "requiredOptIn": "SPAROWTYPE_FINAL26_DENO_PORTABLE=1",
+  "preparedEntryPoint": "audit/2026-10-27/setup-final26-portable-deno.mjs",
+  "stepsAfterRootGo": [
+    "Verify actual frozen source26 inventory505 and the fresh build explicitly bound by SPAROWTYPE_FINAL26_BUILD_ID; verify the ignored destination boundary.",
+    "Read official pinned-release API metadata and verify exact release ID, tag, non-prerelease state and both asset IDs/sizes/URLs/SHA256 digests.",
+    "Create a new ignored workspace runtime directory without replacing an existing installation.",
+    "Download the177-byte checksum sidecar once; verify its own published SHA256 and that its one archive digest matches the pinned archive digest.",
+    "Download the42,917,472-byte ZIP once; enforce bounded HTTPS/redirect hosts, byte count, timeout and pinned SHA256 before extraction.",
+    "Inspect the ZIP before extraction: require exactly one ordinary deno.exe entry and bounded uncompressed size; extract only that entry within the new workspace directory.",
+    "Hash the executable, run only the verified absolute binary with --version, require Deno2.9.8/stable/windows-x64 and record all hashes/provenance.",
+    "After setup succeeds and only in the separately coordinated CI window, set SPAROWTYPE_DENO_BINARY to the absolute recorded executable and DENO_DIR to the ignored cache directory, then run run-final26-ci-extra.mjs."
+  ],
+  "prohibitedChanges": ["No global install", "No user/system PATH edit", "No profile/config edit", "No source/package/lockfile edit", "No backend service or external database", "No function handler deployment or execution", "No automatic retries or alternate release substitution"],
+  "historicalPathProbePreserved": "The earlier Deno-on-PATH UNAVAILABLE observation remains an availability result, not a failed Deno typecheck.",
+  "checksumSidecarWebPreview": "The browsing tool could not open the restricted release-asset URL. No checksum content was obtained; the separate approved setup must download and verify it.",
+  "binaryOrArchiveDownloadAttempts": 0,
+  "checksumDownloadCommandsRun": 0,
+  "extractions": 0,
+  "binaryExecutions": 0,
+  "typechecks": 0
+}

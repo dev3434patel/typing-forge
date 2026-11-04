@@ -1,0 +1,79 @@
+
+Running 8 tests using 1 worker
+
+(node:48644) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › e2e\live-keyboard.spec.ts:12:3 › pressed keycaps keep their content geometry at 390px (2.2s)
+  ok 2 [chromium] › e2e\live-keyboard.spec.ts:12:3 › pressed keycaps keep their content geometry at 1280px (1.7s)
+(node:19224) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 3 [edge] › e2e\live-keyboard.spec.ts:12:3 › pressed keycaps keep their content geometry at 390px (1.9s)
+  ok 4 [edge] › e2e\live-keyboard.spec.ts:12:3 › pressed keycaps keep their content geometry at 1280px (1.7s)
+(node:46972) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 5 [firefox] › e2e\live-keyboard.spec.ts:12:3 › pressed keycaps keep their content geometry at 390px (7.0s)
+  ok 6 [firefox] › e2e\live-keyboard.spec.ts:12:3 › pressed keycaps keep their content geometry at 1280px (2.9s)
+(node:32540) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  7 [webkit] › e2e\live-keyboard.spec.ts:12:3 › pressed keycaps keep their content geometry at 390px (2.3s)
+(node:41048) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  8 [webkit] › e2e\live-keyboard.spec.ts:12:3 › pressed keycaps keep their content geometry at 1280px (2.2s)
+
+
+  1) [webkit] › e2e\live-keyboard.spec.ts:12:3 › pressed keycaps keep their content geometry at 390px 
+
+    Error: expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 6.99542236328125
+    Received: 6.9954833984375
+
+    Expected precision:    4
+    Expected difference: < 0.00005
+    Received difference:   0.00006103515625
+
+      40 |       const pressed = await geometry();
+      41 |       for (const field of ["width", "height", "labelX", "labelY"] as const) {
+    > 42 |         expect(pressed[field]).toBeCloseTo(before[field], 4);
+         |                                ^
+      43 |       }
+      44 |       expect([pressed.borderBottom, pressed.borderTop, pressed.padding]).toEqual([
+      45 |         before.borderBottom, before.borderTop, before.padding,
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:42:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\live-keyboard-pressed-keyc-7b316-r-content-geometry-at-390px-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\live-keyboard-pressed-keyc-7b316-r-content-geometry-at-390px-webkit\error-context.md
+
+  2) [webkit] › e2e\live-keyboard.spec.ts:12:3 › pressed keycaps keep their content geometry at 1280px 
+
+    Error: expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 6.3681640625
+    Received: 6.36822509765625
+
+    Expected precision:    4
+    Expected difference: < 0.00005
+    Received difference:   0.00006103515625
+
+      40 |       const pressed = await geometry();
+      41 |       for (const field of ["width", "height", "labelX", "labelY"] as const) {
+    > 42 |         expect(pressed[field]).toBeCloseTo(before[field], 4);
+         |                                ^
+      43 |       }
+      44 |       expect([pressed.borderBottom, pressed.borderTop, pressed.padding]).toEqual([
+      45 |         before.borderBottom, before.borderTop, before.padding,
+        at D:\extra\typing_updated\typing-forge\e2e\live-keyboard.spec.ts:42:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\live-keyboard-pressed-keyc-5103c--content-geometry-at-1280px-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\live-keyboard-pressed-keyc-5103c--content-geometry-at-1280px-webkit\error-context.md
+
+  2 failed
+    [webkit] › e2e\live-keyboard.spec.ts:12:3 › pressed keycaps keep their content geometry at 390px 
+    [webkit] › e2e\live-keyboard.spec.ts:12:3 › pressed keycaps keep their content geometry at 1280px 
+  6 passed (29.7s)

@@ -8,6 +8,8 @@ final class SessionValidator
 {
     public const MAX_INSERTED_UTF16_UNITS = 20000;
     private array $graphemeCache = [];
+    private ?array $wordTarget = null;
+    private array $wordCache = [];
 
     private static function check(bool $condition, string $message): void
     {
@@ -34,6 +36,14 @@ final class SessionValidator
     /** Stable server idempotency representation. Objects are sorted, ordered evidence is not. */
     public static function stablePayload(mixed $value): string
     {
+        // The original encoder concatenated recursively encoded containers,
+        // without a total nesting limit. Preserve that representation while
+        // encoding scalar values just once, including float/Unicode semantics.
+        return json_encode(self::canonicalPayload($value), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR, 2147483647);
+    }
+
+    private static function canonicalPayload(mixed $value): mixed
+    {
         if (is_object($value)) {
             $value = get_object_vars($value);
             $object = true;
@@ -41,17 +51,19 @@ final class SessionValidator
             $object = false;
         }
         if (!is_array($value)) {
-            return self::json($value);
+            return $value;
         }
         if (!$object && array_is_list($value)) {
-            return '[' . implode(',', array_map([self::class, 'stablePayload'], $value)) . ']';
+            return array_map([self::class, 'canonicalPayload'], $value);
         }
+        // Decide list/map identity before sorting: an out-of-order numeric map
+        // must remain an object even when its sorted keys become contiguous.
         ksort($value, SORT_STRING);
-        $parts = [];
-        foreach ($value as $key => $item) {
-            $parts[] = self::json((string)$key) . ':' . self::stablePayload($item);
-        }
-        return '{' . implode(',', $parts) . '}';
+        $sorted = array_map([self::class, 'canonicalPayload'], $value);
+        // Associative arrays encode as objects and also support leading-NUL
+        // keys, which PHP forbids assigning as dynamic stdClass properties.
+        // Preserve pre-sort map identity when sorted numeric keys form a list.
+        return array_is_list($sorted) ? (object)$sorted : $sorted;
     }
 
     private function normalize(string $text, string $policy): string
@@ -73,25 +85,31 @@ final class SessionValidator
             return $this->graphemeCache[$cacheKey];
         }
         self::check(class_exists(\IntlBreakIterator::class), 'The PHP intl extension is required for grapheme scoring.');
-        $iterator = \IntlBreakIterator::createCharacterInstance('und');
-        $iterator->setText($text);
-        $units = [];
-        $start = $iterator->first();
-        foreach ($iterator as $end) {
-            if ($end > $start) {
-                $units[] = substr($text, $start, $end - $start);
+        if (!str_contains($text, "\r") && preg_match('/[^\x00-\x7F]/', $text) === 0) {
+            // ASCII without CR has one byte per grapheme, including controls.
+            // CRLF and every Unicode string retain the ICU/GB9c path below.
+            $merged = str_split($text);
+        } else {
+            $iterator = \IntlBreakIterator::createCharacterInstance('und');
+            $iterator->setText($text);
+            $units = [];
+            $start = $iterator->first();
+            foreach ($iterator as $end) {
+                if ($end > $start) {
+                    $units[] = substr($text, $start, $end - $start);
+                }
+                $start = $end;
             }
-            $start = $end;
-        }
-        // ICU <74 predates Unicode 15.1 GB9c. Merge Indic conjunct boundaries so
-        // XAMPP's ICU 71 agrees with current browser Intl.Segmenter for these scripts.
-        $merged = [];
-        foreach ($units as $unit) {
-            $previous = count($merged) - 1;
-            if ($previous >= 0 && UnicodeGraphemes::joinsIndicConjunct($merged[$previous], $unit)) {
-                $merged[$previous] .= $unit;
-            } else {
-                $merged[] = $unit;
+            // ICU <74 predates Unicode 15.1 GB9c. Merge Indic conjunct boundaries
+            // so XAMPP's ICU 71 agrees with current browser Intl.Segmenter.
+            $merged = [];
+            foreach ($units as $unit) {
+                $previous = count($merged) - 1;
+                if ($previous >= 0 && UnicodeGraphemes::joinsIndicConjunct($merged[$previous], $unit)) {
+                    $merged[$previous] .= $unit;
+                } else {
+                    $merged[] = $unit;
+                }
             }
         }
         if (count($this->graphemeCache) >= 32) {
@@ -135,8 +153,12 @@ final class SessionValidator
         return ['units' => [], 'editableStart' => 0, 'attempts' => [], 'correctAttemptCount' => 0, 'deletionActions' => 0, 'deletedUnits' => 0, 'lastSequence' => -1, 'lastOffsetMs' => 0, 'compositionGroups' => [], 'submissions' => []];
     }
 
-    private static function words(array $target): array
+    private function words(array $target): array
     {
+        // A replay visits the same immutable issued target for each edit and
+        // chart bucket. Keep only its word boundaries, never transcript state
+        // or an authoritative projection, within this validator instance.
+        if ($this->wordTarget === $target) return $this->wordCache;
         $words = [];
         $start = 0;
         for ($i = 0, $n = count($target); $i <= $n; $i++) {
@@ -145,6 +167,8 @@ final class SessionValidator
                 $start = $i + 1;
             }
         }
+        $this->wordTarget = $target;
+        $this->wordCache = $words;
         return $words;
     }
 
@@ -169,7 +193,7 @@ final class SessionValidator
             }
         }
         if ($previous === null) return null;
-        $word = self::words($target)[$previous['wordIndex']] ?? null;
+        $word = $this->words($target)[$previous['wordIndex']] ?? null;
         $previous['correct'] = $word !== null && ($previous['separator'] === 'submit' || $word['separator'] !== null) && array_slice($state['units'], $previous['start'], $previous['end'] - $previous['start']) === array_slice($target, $word['start'], $word['end'] - $word['start']);
         return $previous;
     }
@@ -212,7 +236,7 @@ final class SessionValidator
         if ($hasCompositionId) {
             $state['compositionGroups'][$composition] = true;
         }
-        $words = $policy === 'prose' ? self::words($target) : [];
+        $words = $policy === 'prose' ? $this->words($target) : [];
         if ($event['type'] === 'submit') {
             self::check($policy === 'prose', 'Word submission requires prose scoring.');
             $state['submissions'][] = $event['start'];
@@ -287,7 +311,7 @@ final class SessionValidator
     private function align(array $target, array $typed, string $policy, bool $finiteFinal, array $submissions): array
     {
         $mapping = [];
-        $words = self::words($target);
+        $words = $this->words($target);
         $wordIndex = 0; $within = 0; $processed = 0; $hasExtra = []; $hasInput = []; $submitted = []; $submissionIndex = 0;
         $submitAt = function ($position) use (&$submissionIndex, $submissions, $words, &$processed, &$submitted, &$wordIndex, &$within): void {
             while ($submissionIndex < count($submissions) && $submissions[$submissionIndex] === $position) {
@@ -435,8 +459,14 @@ final class SessionValidator
             $this->apply($state, $event, $issued, $config); $accepted[] = ['event' => $event, 'target' => $issued];
         }
         $result = $this->metrics($config, $target, $state, $elapsed, $finite, $pauses);
+        // Live Arena checkpoints use this complete authoritative projection,
+        // but only a finished result consumes the additional chart replay.
+        if (($options['includeTimeSeries'] ?? true) === false) {
+            return [...$result, 'finalText' => implode('', $state['units']), 'attempts' => $state['attempts']];
+        }
         $samples = []; $sampled = self::state(); $eventIndex = 0; $previousAttempts = 0; $previousIncorrect = 0;
         $sampleTarget = $hasSegments ? $initial : $target; $sampleSegment = 0;
+        $cachedSample = null; $cachedEventIndex = -1; $cachedTarget = null; $cachedFinite = null;
         for ($start = 0; $start < $elapsed; $start += 1000) {
             $end = min($elapsed, $start + 1000);
             while ($eventIndex < count($accepted)) {
@@ -445,7 +475,15 @@ final class SessionValidator
                 $item = $accepted[$eventIndex++]; $this->apply($sampled, $item['event'], $item['target'], $config);
             }
             while ($sampleSegment < count($segments) && self::activeOffset($segments[$sampleSegment]['offsetMs'], $pauses) <= $end) { $sampleTarget .= $segments[$sampleSegment++]['text']; }
-            $sample = $this->metrics($config, $sampleTarget, $sampled, $end, $end === $elapsed && $finite, [], false);
+            $sampleFinite = $end === $elapsed && $finite;
+            // Idle buckets change rates, not transcript alignment or counts.
+            // Keep this projection only within this replay; target issuance,
+            // accepted edits and final finite scoring invalidate it explicitly.
+            if ($cachedSample === null || $cachedEventIndex !== $eventIndex || $cachedTarget !== $sampleTarget || $cachedFinite !== $sampleFinite) {
+                $cachedSample = $this->metrics($config, $sampleTarget, $sampled, $end, $sampleFinite, [], false);
+                $cachedEventIndex = $eventIndex; $cachedTarget = $sampleTarget; $cachedFinite = $sampleFinite;
+            }
+            $sample = $cachedSample;
             $attempts = count($sampled['attempts']); $incorrect = $attempts - $sampled['correctAttemptCount'];
             $samples[] = ['offsetMs' => $end, 'seconds' => $end / 1000, 'wpm' => ($config['scoringPolicy'] ?? null) === 'free' ? null : self::rate($sample['metrics']['creditedUnits'], $end), 'rawWpm' => self::rate($sample['metrics']['retainedUnits'], $end), 'localWpm' => self::rate($attempts - $previousAttempts, $end - $start) ?? 0, 'errors' => $incorrect - $previousIncorrect, 'bucketDurationMs' => $end - $start];
             $previousAttempts = $attempts; $previousIncorrect = $incorrect;
@@ -486,7 +524,13 @@ final class SessionValidator
         return true;
     }
 
-    public function validate(array $candidate, string $owner, bool $cloudConsent = false, bool $interim = false): array
+    /** Arena checkpoints retain full canonical evidence without persistence-only derivations. */
+    public function validateCheckpoint(array $candidate, string $owner): array
+    {
+        return $this->validate($candidate, $owner, false, true, true);
+    }
+
+    public function validate(array $candidate, string $owner, bool $cloudConsent = false, bool $interim = false, bool $checkpointOnly = false): array
     {
         self::check(($candidate['schemaVersion'] ?? null) === 3 && ($candidate['metricsVersion'] ?? null) === 'forge-v3', 'Unsupported session version.');
         self::check(is_string($candidate['clientSessionId'] ?? null) && (bool)preg_match('/^[A-Za-z0-9:_-]{1,128}$/D', $candidate['clientSessionId']), 'Invalid client session ID.');
@@ -564,6 +608,13 @@ final class SessionValidator
             $issuedText .= $segment['text'];
         }
         $eligible = self::comparisonContent($config)['eligible'] && !$late && $replay['metrics']['wpm'] !== null && !($config['repeatedContent'] ?? false) && !$pauses && !$assisted && (!isset($config['durationMs']) || $elapsed == $config['durationMs']) && !($candidate['finishReason'] === 'manual' && !in_array($config['mode'], ['time', 'zen'], true) && $replay['metrics']['progress'] < 100);
+        if ($checkpointOnly) {
+            $candidate['metrics'] = $replay['metrics']; $candidate['timeSeries'] = $replay['timeSeries']; $candidate['characters'] = $replay['characters']; $candidate['cursor'] = $replay['cursor'];
+            // Preserve JSON encoding rejection on the final canonical projection.
+            json_encode($candidate, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR, 2147483647);
+            if ($course !== null) CourseAssessment::assess($candidate, $replay['metrics'], $course);
+            return ['candidate' => $candidate, 'checkpointOnly' => true];
+        }
         $keys = $this->deriveKeys($candidate, $replay['attempts']);
         // Persist canonical server projections, including the chart, rather than client chart values.
         $candidate['metrics'] = $replay['metrics']; $candidate['timeSeries'] = $replay['timeSeries']; $candidate['characters'] = $replay['characters']; $candidate['cursor'] = $replay['cursor'];

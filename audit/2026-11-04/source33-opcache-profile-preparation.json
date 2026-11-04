@@ -1,0 +1,269 @@
+{
+  "recordedAt": "2026-11-04T16:06:25.143Z",
+  "status": "PREPARED-UNVERIFIED-RUNTIME",
+  "sourceFile": "audit/2026-11-02/final33-source.json",
+  "sourceManifestSha256": "16907b52c6771f8163817f29255d1b432e76a7a98c4293334f817e0a17d5a050",
+  "sourceFiles": 505,
+  "clientBuild": "332e23584f1e36465df2",
+  "runtimeVariant": "source33-opcache-production-config-variant",
+  "fragmentOutsideFrozen505": true,
+  "additionalInputHashes": {
+    "backend/opcache.ini.example": "0bd8fae150da074f7fcbdd850f1f87c7ca07d560cec45b80268fcd74ce5a7bc0",
+    "docs/PHP_OPCACHE_PROFILE.md": "1958a392c4c5ba90329311aaabb2cc3baf396838dd19cc4ec561db8dbf7c6607",
+    "audit/2026-11-04/source33-opcache-runtime.mjs": "c576e07ec9f641d4f66f4020ebcf137c29323b24323ec9cd2ff723edd5e416d3",
+    "audit/2026-11-02/run-source33-arena-chart-http.mjs": "5bd4b0c068681ccad6dddecef61923650c2cbac8790dbdb6d69cb15a4bd69007",
+    "audit/2026-11-02/pack-opcache-instance-source33.mjs": "b451747957b9c44527168e7339bd636a656d58faf9dcdacb027403b23356564a",
+    "audit/2026-11-02/pack-opcache-instance-source33-wire.mjs": "1326f089f01afe1f975f07096215cceae2888a88ddf017e3ada7d3355d74fb9f",
+    "audit/2026-11-02/run-source33-opcache-capacity-burst.mjs": "bebdab4b26fad11d644068539e8a92255abe746bbe763f7c43f5e7d4257584e7",
+    "audit/2026-11-02/run-source33-opcache-capacity-wire-burst.mjs": "0b9e4634e5bfe52abcb4b8f4fd960039dde5ca957b15dce7ae4db8e972c4e1a1"
+  },
+  "fragmentSha256": "0bd8fae150da074f7fcbdd850f1f87c7ca07d560cec45b80268fcd74ce5a7bc0",
+  "extensionSha256": "4530ffcf2c16c9fb3b97b45360302c787d5fbcb248492f80d35407f63ccff76e",
+  "prepared": [
+    {
+      "originalFile": "audit/2026-11-02/pack-capacity-instance-source33.mjs",
+      "targetFile": "audit/2026-11-02/pack-opcache-instance-source33.mjs",
+      "originalSha256": "7750c8e4f64378b7765604f55ca462e7d0424faa00f379e2dd311e7d5ff6cd16",
+      "targetSha256": "b451747957b9c44527168e7339bd636a656d58faf9dcdacb027403b23356564a",
+      "transforms": [
+        {
+          "from": "source33-capacity",
+          "to": "source33-opcache-capacity",
+          "count": 1
+        },
+        {
+          "from": "capacity33",
+          "to": "capacity33-opcache",
+          "count": 6
+        },
+        {
+          "from": "import { phpRuntime } from '../../scripts/php-runtime.mjs';",
+          "to": "import { phpRuntime } from '../../scripts/php-runtime.mjs';\r\nimport { configureOwnedOpcache, installOwnedOpcacheEndpoint, readOwnedOpcacheSnapshot } from '../2026-11-04/source33-opcache-runtime.mjs';",
+          "count": 1
+        },
+        {
+          "from": "let apache = null;",
+          "to": "let apache = null; let opcacheConfiguration = null; let nativeArenaProfileDeclared = false;",
+          "count": 1
+        },
+        {
+          "from": "  environment = { ...process.env, PHP_BINARY:",
+          "to": "  assert.equal(httpRuntime, 'apache', 'The separately declared opcode-cache profile requires the owned web SAPI.');\r\n  opcacheConfiguration = await configureOwnedOpcache({ root, owned, id, phpDirectory: path.dirname(runtime.binary), phpIni });\r\n  await receipt('opcache-configuration', opcacheConfiguration.publicProfile);\r\n  environment = { ...process.env, PHP_BINARY:",
+          "count": 1
+        },
+        {
+          "from": "    apache = await prepareApache({ owned, root, privateLogs, appConfig: configFile, phpDirectory: path.dirname(runtime.binary), port: apiPort });",
+          "to": "    apache = await prepareApache({ owned, root, privateLogs, appConfig: configFile, phpDirectory: path.dirname(runtime.binary), port: apiPort });\r\n    await receipt('opcache-endpoint', await installOwnedOpcacheEndpoint({ apache, owned, configuration: opcacheConfiguration, guard: secrets.arena }));",
+          "count": 1
+        },
+        {
+          "from": "  const identities = { httpRuntime,",
+          "to": "  await receipt('opcache-startup', await readOwnedOpcacheSnapshot({ port: apiPort, configuration: opcacheConfiguration, guard: secrets.arena, stage: 'startup-ready', requirePositiveHits: false }));\r\n  const identities = { httpRuntime,",
+          "count": 1
+        },
+        {
+          "from": "'arena-http':'audit/mega-pack-2026-10-21/run-arena-http.mjs'",
+          "to": "'arena-http':'audit/2026-11-02/run-source33-arena-chart-http.mjs'",
+          "count": 1
+        },
+        {
+          "from": "        const result=await capture(process.execPath,['--experimental-transform-types',path.join(root,capacityScript)],'capacity33-opcache',undefined,240000);",
+          "to": "        const opcodeBeforeName = 'opcache-before-capacity33-opcache';\r\n        await receipt(opcodeBeforeName, await readOwnedOpcacheSnapshot({ port: apiPort, configuration: opcacheConfiguration, guard: secrets.arena, stage: 'before-capacity33-opcache', requirePositiveHits: false }));\r\n        environment.SPAROWTYPE_OPCACHE_STATUS_FILE = path.join(receipts, `pack-backend-${id}-${opcodeBeforeName}.json`);\r\n        const result=await capture(process.execPath,['--experimental-transform-types',path.join(root,capacityScript)],'capacity33-opcache',undefined,240000);\r\n        await receipt('opcache-after-capacity33-opcache', await readOwnedOpcacheSnapshot({ port: apiPort, configuration: opcacheConfiguration, guard: secrets.arena, stage: 'after-capacity33-opcache', requirePositiveHits: true }));",
+          "count": 1
+        }
+      ],
+      "exactReverse": true,
+      "syntaxExit": 0
+    },
+    {
+      "originalFile": "audit/2026-11-02/pack-capacity-instance-source33-wire.mjs",
+      "targetFile": "audit/2026-11-02/pack-opcache-instance-source33-wire.mjs",
+      "originalSha256": "e089af7ab7ee31edd1930e7aef7f7d672a7106491c0bb85a85e399cb73409847",
+      "targetSha256": "1326f089f01afe1f975f07096215cceae2888a88ddf017e3ada7d3355d74fb9f",
+      "transforms": [
+        {
+          "from": "pack-capacity-instance-source33",
+          "to": "pack-opcache-instance-source33",
+          "count": 1
+        },
+        {
+          "from": "source33-capacity",
+          "to": "source33-opcache-capacity",
+          "count": 4
+        },
+        {
+          "from": "capacity33",
+          "to": "capacity33-opcache",
+          "count": 15
+        },
+        {
+          "from": "import { phpRuntime } from '../../scripts/php-runtime.mjs';",
+          "to": "import { phpRuntime } from '../../scripts/php-runtime.mjs';\r\nimport { configureOwnedOpcache, installOwnedOpcacheEndpoint, readOwnedOpcacheSnapshot } from '../2026-11-04/source33-opcache-runtime.mjs';",
+          "count": 1
+        },
+        {
+          "from": "let apache = null;",
+          "to": "let apache = null; let opcacheConfiguration = null; let nativeArenaProfileDeclared = false;",
+          "count": 1
+        },
+        {
+          "from": "  environment = { ...process.env, PHP_BINARY:",
+          "to": "  assert.equal(httpRuntime, 'apache', 'The separately declared opcode-cache profile requires the owned web SAPI.');\r\n  opcacheConfiguration = await configureOwnedOpcache({ root, owned, id, phpDirectory: path.dirname(runtime.binary), phpIni });\r\n  await receipt('opcache-configuration', opcacheConfiguration.publicProfile);\r\n  environment = { ...process.env, PHP_BINARY:",
+          "count": 1
+        },
+        {
+          "from": "    apache = await prepareApache({ owned, root, privateLogs, appConfig: configFile, phpDirectory: path.dirname(runtime.binary), port: apiPort });",
+          "to": "    apache = await prepareApache({ owned, root, privateLogs, appConfig: configFile, phpDirectory: path.dirname(runtime.binary), port: apiPort });\r\n    await receipt('opcache-endpoint', await installOwnedOpcacheEndpoint({ apache, owned, configuration: opcacheConfiguration, guard: secrets.arena }));",
+          "count": 1
+        },
+        {
+          "from": "  const identities = { httpRuntime,",
+          "to": "  await receipt('opcache-startup', await readOwnedOpcacheSnapshot({ port: apiPort, configuration: opcacheConfiguration, guard: secrets.arena, stage: 'startup-ready', requirePositiveHits: false }));\r\n  const identities = { httpRuntime,",
+          "count": 1
+        },
+        {
+          "from": "'arena-http':'audit/mega-pack-2026-10-21/run-arena-http.mjs'",
+          "to": "'arena-http':'audit/2026-11-02/run-source33-arena-chart-http.mjs'",
+          "count": 1
+        },
+        {
+          "from": "        const result=await capture(process.execPath,['--experimental-transform-types',path.join(root,capacityScript)],'capacity33-opcache',undefined,240000);",
+          "to": "        const opcodeBeforeName = 'opcache-before-capacity33-opcache';\r\n        await receipt(opcodeBeforeName, await readOwnedOpcacheSnapshot({ port: apiPort, configuration: opcacheConfiguration, guard: secrets.arena, stage: 'before-capacity33-opcache', requirePositiveHits: false }));\r\n        environment.SPAROWTYPE_OPCACHE_STATUS_FILE = path.join(receipts, `pack-backend-${id}-${opcodeBeforeName}.json`);\r\n        const result=await capture(process.execPath,['--experimental-transform-types',path.join(root,capacityScript)],'capacity33-opcache',undefined,240000);\r\n        await receipt('opcache-after-capacity33-opcache', await readOwnedOpcacheSnapshot({ port: apiPort, configuration: opcacheConfiguration, guard: secrets.arena, stage: 'after-capacity33-opcache', requirePositiveHits: true }));",
+          "count": 1
+        },
+        {
+          "from": "        const result=await capture(process.execPath,['--experimental-transform-types',path.join(root,capacityWireScript)],'capacity33-opcache-wire',undefined,240000);",
+          "to": "        const opcodeBeforeName = 'opcache-before-capacity33-opcache-wire';\r\n        await receipt(opcodeBeforeName, await readOwnedOpcacheSnapshot({ port: apiPort, configuration: opcacheConfiguration, guard: secrets.arena, stage: 'before-capacity33-opcache-wire', requirePositiveHits: true }));\r\n        environment.SPAROWTYPE_OPCACHE_STATUS_FILE = path.join(receipts, `pack-backend-${id}-${opcodeBeforeName}.json`);\r\n        const result=await capture(process.execPath,['--experimental-transform-types',path.join(root,capacityWireScript)],'capacity33-opcache-wire',undefined,240000);\r\n        await receipt('opcache-after-capacity33-opcache-wire', await readOwnedOpcacheSnapshot({ port: apiPort, configuration: opcacheConfiguration, guard: secrets.arena, stage: 'after-capacity33-opcache-wire', requirePositiveHits: true }));",
+          "count": 1
+        },
+        {
+          "from": "      if (line.trim() === 'capacity33-opcache-wire') {",
+          "to": "      if (line.trim() === 'arena-http33-opcache') {\r\n        assert.equal(capacityWireDeclared, true, 'Run both declared profile capacity workloads before the lifecycle suite.');\r\n        if (nativeArenaProfileDeclared) { publicMessage({ stage: 'opcache-native-already-declared' }); continue; }\r\n        nativeArenaProfileDeclared = true;\r\n        await receipt('opcache-before-arena-http', await readOwnedOpcacheSnapshot({ port: apiPort, configuration: opcacheConfiguration, guard: secrets.arena, stage: 'before-arena-http33-opcache', requirePositiveHits: true }));\r\n        const result = await capture(process.execPath, ['--experimental-transform-types', path.join(root, 'audit/2026-11-02/run-source33-arena-chart-http.mjs')], 'arena-http33-opcache', undefined, 120000);\r\n        const lifecycle = JSON.parse(await readFile(environment.ARENA_HTTP_REPORT, 'utf8'));\r\n        await receipt('arena-http-opcache-summary', { status: lifecycle.status, passed: lifecycle.passed, failed: lifecycle.failed, report: path.relative(root, environment.ARENA_HTTP_REPORT).replaceAll('\\\\','/') });\r\n        await receipt('opcache-after-arena-http', await readOwnedOpcacheSnapshot({ port: apiPort, configuration: opcacheConfiguration, guard: secrets.arena, stage: 'after-arena-http33-opcache', requirePositiveHits: true }));\r\n        const status = { name: 'arena-http33-opcache', exitCode: result.code, status: result.code === 0 && lifecycle.passed === 32 ? 'PASS' : 'FAIL' };\r\n        suiteResults.push(status); failed ||= status.status !== 'PASS'; publicMessage({ stage: 'opcache-native-complete', ...status });\r\n      }\r\n      if (line.trim() === 'capacity33-opcache-wire') {",
+          "count": 1
+        }
+      ],
+      "exactReverse": true,
+      "syntaxExit": 0
+    },
+    {
+      "originalFile": "audit/2026-11-02/run-source33-capacity-burst.mjs",
+      "targetFile": "audit/2026-11-02/run-source33-opcache-capacity-burst.mjs",
+      "originalSha256": "04e49c42312447abe9411bee85e06f33fdfcf6dc3f61169ceb8cb09e05ef849f",
+      "targetSha256": "bebdab4b26fad11d644068539e8a92255abe746bbe763f7c43f5e7d4257584e7",
+      "transforms": [
+        {
+          "from": "pack-capacity-instance-source33",
+          "to": "pack-opcache-instance-source33",
+          "count": 1
+        },
+        {
+          "from": "source33-capacity",
+          "to": "source33-opcache-capacity",
+          "count": 2
+        },
+        {
+          "from": "import { verifyFrozenSource } from '../2026-10-21/artifact-verification.mjs';",
+          "to": "import { verifyFrozenSource } from '../2026-10-21/artifact-verification.mjs';\nimport { verifyOpcodeProfileReceipt } from '../2026-11-04/source33-opcache-runtime.mjs';",
+          "count": 1
+        },
+        {
+          "from": "assert.match(ownerId ?? '', /^[a-f0-9]{16}$/);",
+          "to": "assert.match(ownerId ?? '', /^[a-f0-9]{16}$/);\nconst opcacheProfileBefore = await verifyOpcodeProfileReceipt({ ownerId, receiptPath: process.env.SPAROWTYPE_OPCACHE_STATUS_FILE, allowColdStart: !import.meta.filename.includes('-wire-') });",
+          "count": 1
+        },
+        {
+          "from": "'scripts/php-runtime.mjs'];",
+          "to": "'scripts/php-runtime.mjs', 'audit/2026-11-04/source33-opcache-runtime.mjs', 'backend/opcache.ini.example', 'audit/2026-11-04/source33-opcache-profile-preparation.json'];",
+          "count": 1
+        },
+        {
+          "from": "ownerId, origin: origin.href, rooms:",
+          "to": "ownerId, runtimeProfile: opcacheProfileBefore, ordinaryUncachedResultsReplaced: false, origin: origin.href, rooms:",
+          "count": 1
+        }
+      ],
+      "exactReverse": true,
+      "syntaxExit": 0
+    },
+    {
+      "originalFile": "audit/2026-11-02/run-source33-capacity-wire-burst.mjs",
+      "targetFile": "audit/2026-11-02/run-source33-opcache-capacity-wire-burst.mjs",
+      "originalSha256": "d01b72038bc225126be93d2144a90a0cce3c69b5c224e0bd35fed978ab0e9b3b",
+      "targetSha256": "0b9e4634e5bfe52abcb4b8f4fd960039dde5ca957b15dce7ae4db8e972c4e1a1",
+      "transforms": [
+        {
+          "from": "pack-capacity-instance-source33",
+          "to": "pack-opcache-instance-source33",
+          "count": 1
+        },
+        {
+          "from": "source33-capacity",
+          "to": "source33-opcache-capacity",
+          "count": 4
+        },
+        {
+          "from": "import { verifyFrozenSource } from '../2026-10-21/artifact-verification.mjs';",
+          "to": "import { verifyFrozenSource } from '../2026-10-21/artifact-verification.mjs';\nimport { verifyOpcodeProfileReceipt } from '../2026-11-04/source33-opcache-runtime.mjs';",
+          "count": 1
+        },
+        {
+          "from": "assert.match(ownerId ?? '', /^[a-f0-9]{16}$/);",
+          "to": "assert.match(ownerId ?? '', /^[a-f0-9]{16}$/);\nconst opcacheProfileBefore = await verifyOpcodeProfileReceipt({ ownerId, receiptPath: process.env.SPAROWTYPE_OPCACHE_STATUS_FILE, allowColdStart: !import.meta.filename.includes('-wire-') });",
+          "count": 1
+        },
+        {
+          "from": "'scripts/php-runtime.mjs'];",
+          "to": "'scripts/php-runtime.mjs', 'audit/2026-11-04/source33-opcache-runtime.mjs', 'backend/opcache.ini.example', 'audit/2026-11-04/source33-opcache-profile-preparation.json'];",
+          "count": 1
+        },
+        {
+          "from": "ownerId, origin: origin.href, rooms:",
+          "to": "ownerId, runtimeProfile: opcacheProfileBefore, ordinaryUncachedResultsReplaced: false, origin: origin.href, rooms:",
+          "count": 1
+        }
+      ],
+      "exactReverse": true,
+      "syntaxExit": 0
+    }
+  ],
+  "syntaxChecks": 6,
+  "entry": "audit/2026-11-02/pack-opcache-instance-source33-wire.mjs",
+  "flags": {
+    "SPAROWTYPE_PACK_INSTANCE_ACCEPTANCE": "1",
+    "SPAROWTYPE_PACK_HTTP_RUNTIME": "apache",
+    "SPAROWTYPE_PACK_APACHE_ACCEPTANCE": "1",
+    "SPAROWTYPE_PACK_SUITES": "password",
+    "SPAROWTYPE_PACK_HOLD": "1",
+    "SPAROWTYPE_PACK_KEEP_FAILURE": "1",
+    "SPAROWTYPE_SOURCE33_CAPACITY_ACCEPTANCE": "1",
+    "SPAROWTYPE_SOURCE33_CAPACITY_WIRE_ACCEPTANCE": "1",
+    "SPAROWTYPE_SOURCE33_OPCACHE_PROFILE": "1",
+    "SPAROWTYPE_FINAL33_BUILD_ID": "332e23584f1e36465df2"
+  },
+  "commandsInOrder": [
+    "capacity33-opcache",
+    "capacity33-opcache-wire",
+    "arena-http33-opcache",
+    "cleanup"
+  ],
+  "exactOperationsPerRun": 1653,
+  "concurrency": 20,
+  "rooms": 50,
+  "accountsPerRoom": 8,
+  "p95StrictlyBelowMs": 150,
+  "coldStart": {
+    "existingReadinessRequestsUnchanged": true,
+    "addedApplicationWarmupRequests": 0,
+    "startupHitsMayBeZero": true,
+    "postWorkloadHitsMustBePositive": true,
+    "sourceScriptCacheBooleansRequiredAfterWorkload": true
+  },
+  "noCacheReset": true,
+  "noRetries": true,
+  "noFiltering": true,
+  "opcodeCacheActuallyEnabled": "UNVERIFIED-NOT-RUN",
+  "ordinaryUncachedFailuresRetained": true,
+  "jitOrPersistentPdoOrDatabaseOrRatePolicyChanged": false,
+  "primarySourceOrFrozenTestsChanged": false,
+  "servicesStarted": 0
+}

@@ -1,0 +1,1851 @@
+{
+  "status": "COMPLETE-SCOPED-DIAGNOSTIC-STRICT-CAPACITY-FAILED",
+  "recordedAt": "2026-11-03T14:08:26.472Z",
+  "owner": "c4f783325fb85273",
+  "evidence": {
+    "file": "audit/2026-11-02/source31-sql-profile-c4f783325fb85273-assessment.json",
+    "sha256": "98232eacbca8cd8389d164b6534e97c5f0a5878a970a359490e6ac0ffb59e18c",
+    "raw": "audit/2026-11-02/source31-capacity-wire-sql-profile-c4f783325fb85273.json",
+    "rawSha256": "d1878189d691ab55578ced2177c44c3cc80b5f5cf0ed033a8fd3c5c75518c6ce"
+  },
+  "ordinaryFailuresRetained": true,
+  "strictInstrumentedP95Ms": 192.94670000000042,
+  "strictCapacityPassed": false,
+  "totalRequests": 1653,
+  "invalidTimings": 0,
+  "cleanup": {
+    "date": "2026-11-03T14:06:23.446Z",
+    "ownProcessesStopped": true,
+    "gracefulDatabaseShutdown": true,
+    "forcedOwnDatabaseStop": false,
+    "httpRuntime": "apache",
+    "gracefulApacheShutdown": true,
+    "forcedOwnApacheStop": false,
+    "apacheResidualPids": [],
+    "ownTemporaryDirectoryRemoved": false,
+    "privateDiagnosticsDirectory": "D:\\extra\\typing_updated\\typing-forge\\backend\\storage\\pack-instance-c4f783325fb85273",
+    "originalDatabasePortUntouched": 3308,
+    "originalApiPortUntouched": 8081,
+    "originalPreviewPortUntouched": 4173,
+    "noWindowsServiceCreated": true,
+    "originalConfigRead": false
+  },
+  "phases": [
+    {
+      "phase": "all",
+      "requests": 1653,
+      "validTimingRequests": 1653,
+      "httpMs": {
+        "count": 1653,
+        "min": 15.871799999999894,
+        "p50": 61.10169999999994,
+        "p95": 192.94670000000042,
+        "p99": 247.79320000000007,
+        "max": 398.40860000000066,
+        "total": 140063.2032999999
+      },
+      "phpMs": {
+        "count": 1653,
+        "min": 13.044,
+        "p50": 42.393,
+        "p95": 123.702,
+        "p99": 173.558,
+        "max": 297.033,
+        "total": 88311.89600000005
+      },
+      "nativeSqlMs": {
+        "count": 1653,
+        "min": 7.096000000000001,
+        "p50": 26.810999999999996,
+        "p95": 72.844,
+        "p99": 103.232,
+        "max": 159.989,
+        "total": 51669.763999999945
+      },
+      "signedHttpMinusPhpMs": {
+        "count": 1653,
+        "min": 2.552199999999985,
+        "p50": 21.72599999999958,
+        "p95": 79.08909999999969,
+        "p99": 90.80849999999853,
+        "max": 111.87579999999917,
+        "total": 51751.30730000003
+      },
+      "negativeHttpResidualCount": 0,
+      "selectedTiming": [
+        {
+          "label": "stage_arena",
+          "calls": 1653,
+          "errors": 2,
+          "p50Ms": 18.249,
+          "p95Ms": 96.464,
+          "maxMs": 281.42
+        },
+        {
+          "label": "stage_candidate_validate",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 20.061,
+          "p95Ms": 30.133,
+          "maxMs": 88.595
+        },
+        {
+          "label": "stage_locked_replay",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 9.845,
+          "p95Ms": 14.844,
+          "maxMs": 18.867
+        },
+        {
+          "label": "stage_connect",
+          "calls": 1653,
+          "errors": 0,
+          "p50Ms": 2.144,
+          "p95Ms": 24.179,
+          "maxMs": 34.088
+        },
+        {
+          "label": "stage_auth_rate",
+          "calls": 1653,
+          "errors": 0,
+          "p50Ms": 3.848,
+          "p95Ms": 6.591,
+          "maxMs": 21.792
+        },
+        {
+          "label": "stage_bootstrap",
+          "calls": 1653,
+          "errors": 0,
+          "p50Ms": 0.69,
+          "p95Ms": 1.314,
+          "maxMs": 4.3
+        },
+        {
+          "label": "stage_session",
+          "calls": 1653,
+          "errors": 0,
+          "p50Ms": 0.895,
+          "p95Ms": 1.864,
+          "maxMs": 144.252
+        },
+        {
+          "label": "stage_body_read",
+          "calls": 1653,
+          "errors": 0,
+          "p50Ms": 0.006,
+          "p95Ms": 0.072,
+          "maxMs": 0.158
+        },
+        {
+          "label": "stage_json_decode",
+          "calls": 1653,
+          "errors": 0,
+          "p50Ms": 0.519,
+          "p95Ms": 1.053,
+          "maxMs": 21.104
+        },
+        {
+          "label": "stage_json_encode",
+          "calls": 1651,
+          "errors": 0,
+          "p50Ms": 0.036,
+          "p95Ms": 0.099,
+          "maxMs": 0.455
+        },
+        {
+          "label": "sql_prepare",
+          "calls": 22522,
+          "errors": 0,
+          "p50Ms": 1.75,
+          "p95Ms": 2.586,
+          "maxMs": 12.323
+        },
+        {
+          "label": "sql_execute",
+          "calls": 22522,
+          "errors": 0,
+          "p50Ms": 11.621,
+          "p95Ms": 54.449,
+          "maxMs": 151.666
+        },
+        {
+          "label": "sql_fetch",
+          "calls": 23377,
+          "errors": 0,
+          "p50Ms": 0.206,
+          "p95Ms": 0.287,
+          "maxMs": 0.458
+        },
+        {
+          "label": "sql_commit",
+          "calls": 1651,
+          "errors": 0,
+          "p50Ms": 2.946,
+          "p95Ms": 5.928,
+          "maxMs": 20.036
+        },
+        {
+          "label": "sql_connect",
+          "calls": 1653,
+          "errors": 0,
+          "p50Ms": 1.44,
+          "p95Ms": 23.522,
+          "maxMs": 33.56
+        },
+        {
+          "label": "sqlcat_room_lock",
+          "calls": 3354,
+          "errors": 0,
+          "p50Ms": 5.191,
+          "p95Ms": 47.038,
+          "maxMs": 143.173
+        },
+        {
+          "label": "sqlcat_member_lock",
+          "calls": 6807,
+          "errors": 0,
+          "p50Ms": 1.094,
+          "p95Ms": 1.448,
+          "maxMs": 8.684
+        },
+        {
+          "label": "sqlcat_owner_lock",
+          "calls": 1653,
+          "errors": 0,
+          "p50Ms": 0.139,
+          "p95Ms": 0.265,
+          "maxMs": 2.027
+        },
+        {
+          "label": "sqlcat_rate",
+          "calls": 1653,
+          "errors": 0,
+          "p50Ms": 3.214,
+          "p95Ms": 5.914,
+          "maxMs": 21.174
+        },
+        {
+          "label": "sqlcat_write",
+          "calls": 3600,
+          "errors": 0,
+          "p50Ms": 0.366,
+          "p95Ms": 2.276,
+          "maxMs": 39.115
+        },
+        {
+          "label": "sqlcat_clock",
+          "calls": 6108,
+          "errors": 0,
+          "p50Ms": 0.689,
+          "p95Ms": 0.977,
+          "maxMs": 3.238
+        }
+      ]
+    },
+    {
+      "phase": "create",
+      "requests": 50,
+      "validTimingRequests": 50,
+      "httpMs": {
+        "count": 50,
+        "min": 35.038699999999835,
+        "p50": 71.04100000000017,
+        "p95": 163.0697,
+        "p99": 169.24579999999992,
+        "max": 169.24579999999992,
+        "total": 4755.018299999999
+      },
+      "phpMs": {
+        "count": 50,
+        "min": 25.764,
+        "p50": 53.966,
+        "p95": 114.906,
+        "p99": 125.198,
+        "max": 125.198,
+        "total": 3448.2759999999994
+      },
+      "nativeSqlMs": {
+        "count": 50,
+        "min": 12.323,
+        "p50": 39.757000000000005,
+        "p95": 57.266,
+        "p99": 69.49300000000001,
+        "max": 69.49300000000001,
+        "total": 1934.672
+      },
+      "signedHttpMinusPhpMs": {
+        "count": 50,
+        "min": 4.281900000000057,
+        "p50": 24.75139999999996,
+        "p95": 49.114700000000184,
+        "p99": 56.49670000000002,
+        "max": 56.49670000000002,
+        "total": 1306.7422999999987
+      },
+      "negativeHttpResidualCount": 0,
+      "selectedTiming": [
+        {
+          "label": "stage_arena",
+          "calls": 50,
+          "errors": 0,
+          "p50Ms": 34.518,
+          "p95Ms": 85.575,
+          "maxMs": 92.955
+        },
+        {
+          "label": "stage_candidate_validate",
+          "calls": 0,
+          "errors": 0,
+          "p50Ms": null,
+          "p95Ms": null,
+          "maxMs": null
+        },
+        {
+          "label": "stage_locked_replay",
+          "calls": 0,
+          "errors": 0,
+          "p50Ms": null,
+          "p95Ms": null,
+          "maxMs": null
+        },
+        {
+          "label": "stage_connect",
+          "calls": 50,
+          "errors": 0,
+          "p50Ms": 2.252,
+          "p95Ms": 18.923,
+          "maxMs": 26.561
+        },
+        {
+          "label": "stage_auth_rate",
+          "calls": 50,
+          "errors": 0,
+          "p50Ms": 4.84,
+          "p95Ms": 8.011,
+          "maxMs": 11.516
+        },
+        {
+          "label": "stage_bootstrap",
+          "calls": 50,
+          "errors": 0,
+          "p50Ms": 0.92,
+          "p95Ms": 2.058,
+          "maxMs": 2.751
+        },
+        {
+          "label": "stage_session",
+          "calls": 50,
+          "errors": 0,
+          "p50Ms": 1.397,
+          "p95Ms": 4.172,
+          "maxMs": 4.478
+        },
+        {
+          "label": "stage_body_read",
+          "calls": 50,
+          "errors": 0,
+          "p50Ms": 0.022,
+          "p95Ms": 0.031,
+          "maxMs": 0.051
+        },
+        {
+          "label": "stage_json_decode",
+          "calls": 50,
+          "errors": 0,
+          "p50Ms": 0.852,
+          "p95Ms": 3.485,
+          "maxMs": 21.104
+        },
+        {
+          "label": "stage_json_encode",
+          "calls": 50,
+          "errors": 0,
+          "p50Ms": 0.022,
+          "p95Ms": 0.029,
+          "maxMs": 0.049
+        },
+        {
+          "label": "sql_prepare",
+          "calls": 600,
+          "errors": 0,
+          "p50Ms": 3.119,
+          "p95Ms": 11.797,
+          "maxMs": 12.323
+        },
+        {
+          "label": "sql_execute",
+          "calls": 600,
+          "errors": 0,
+          "p50Ms": 23.901,
+          "p95Ms": 44.875,
+          "maxMs": 47.411
+        },
+        {
+          "label": "sql_fetch",
+          "calls": 500,
+          "errors": 0,
+          "p50Ms": 0.056,
+          "p95Ms": 0.25,
+          "maxMs": 0.367
+        },
+        {
+          "label": "sql_commit",
+          "calls": 50,
+          "errors": 0,
+          "p50Ms": 4.027,
+          "p95Ms": 10.782,
+          "maxMs": 10.999
+        },
+        {
+          "label": "sql_connect",
+          "calls": 50,
+          "errors": 0,
+          "p50Ms": 0.847,
+          "p95Ms": 17.965,
+          "maxMs": 26.057
+        },
+        {
+          "label": "sqlcat_room_lock",
+          "calls": 50,
+          "errors": 0,
+          "p50Ms": 0.274,
+          "p95Ms": 7.235,
+          "maxMs": 8.994
+        },
+        {
+          "label": "sqlcat_member_lock",
+          "calls": 50,
+          "errors": 0,
+          "p50Ms": 0.228,
+          "p95Ms": 6.783,
+          "maxMs": 6.885
+        },
+        {
+          "label": "sqlcat_owner_lock",
+          "calls": 50,
+          "errors": 0,
+          "p50Ms": 0.167,
+          "p95Ms": 2.01,
+          "maxMs": 2.027
+        },
+        {
+          "label": "sqlcat_rate",
+          "calls": 50,
+          "errors": 0,
+          "p50Ms": 3.816,
+          "p95Ms": 6.306,
+          "maxMs": 6.388
+        },
+        {
+          "label": "sqlcat_write",
+          "calls": 150,
+          "errors": 0,
+          "p50Ms": 11.479,
+          "p95Ms": 38.759,
+          "maxMs": 39.115
+        },
+        {
+          "label": "sqlcat_clock",
+          "calls": 100,
+          "errors": 0,
+          "p50Ms": 0.458,
+          "p95Ms": 0.856,
+          "maxMs": 1.603
+        }
+      ]
+    },
+    {
+      "phase": "join",
+      "requests": 351,
+      "validTimingRequests": 351,
+      "httpMs": {
+        "count": 351,
+        "min": 32.749900000000025,
+        "p50": 55.7043000000001,
+        "p95": 79.22090000000003,
+        "p99": 92.42200000000003,
+        "max": 139.59410000000003,
+        "total": 19950.25769999999
+      },
+      "phpMs": {
+        "count": 351,
+        "min": 19.97,
+        "p50": 35.927,
+        "p95": 59.483,
+        "p99": 70.439,
+        "max": 120.55,
+        "total": 13468.644999999993
+      },
+      "nativeSqlMs": {
+        "count": 351,
+        "min": 9.915000000000001,
+        "p50": 24.022,
+        "p95": 46.44599999999999,
+        "p99": 53.39199999999999,
+        "max": 60.72,
+        "total": 9001.256000000003
+      },
+      "signedHttpMinusPhpMs": {
+        "count": 351,
+        "min": 4.036300000000033,
+        "p50": 17.92989999999979,
+        "p95": 29.54920000000019,
+        "p99": 32.817400000000156,
+        "max": 37.38980000000008,
+        "total": 6481.612700000002
+      },
+      "negativeHttpResidualCount": 0,
+      "selectedTiming": [
+        {
+          "label": "stage_arena",
+          "calls": 351,
+          "errors": 1,
+          "p50Ms": 15.54,
+          "p95Ms": 27.579,
+          "maxMs": 40.877
+        },
+        {
+          "label": "stage_candidate_validate",
+          "calls": 0,
+          "errors": 0,
+          "p50Ms": null,
+          "p95Ms": null,
+          "maxMs": null
+        },
+        {
+          "label": "stage_locked_replay",
+          "calls": 0,
+          "errors": 0,
+          "p50Ms": null,
+          "p95Ms": null,
+          "maxMs": null
+        },
+        {
+          "label": "stage_connect",
+          "calls": 351,
+          "errors": 0,
+          "p50Ms": 1.824,
+          "p95Ms": 24.362,
+          "maxMs": 27.26
+        },
+        {
+          "label": "stage_auth_rate",
+          "calls": 351,
+          "errors": 0,
+          "p50Ms": 4.138,
+          "p95Ms": 7.128,
+          "maxMs": 18.48
+        },
+        {
+          "label": "stage_bootstrap",
+          "calls": 351,
+          "errors": 0,
+          "p50Ms": 0.701,
+          "p95Ms": 1.295,
+          "maxMs": 2.118
+        },
+        {
+          "label": "stage_session",
+          "calls": 351,
+          "errors": 0,
+          "p50Ms": 0.977,
+          "p95Ms": 1.831,
+          "maxMs": 95.416
+        },
+        {
+          "label": "stage_body_read",
+          "calls": 351,
+          "errors": 0,
+          "p50Ms": 0.006,
+          "p95Ms": 0.022,
+          "maxMs": 0.042
+        },
+        {
+          "label": "stage_json_decode",
+          "calls": 351,
+          "errors": 0,
+          "p50Ms": 0.49,
+          "p95Ms": 1.004,
+          "maxMs": 2.273
+        },
+        {
+          "label": "stage_json_encode",
+          "calls": 350,
+          "errors": 0,
+          "p50Ms": 0.028,
+          "p95Ms": 0.038,
+          "maxMs": 0.103
+        },
+        {
+          "label": "sql_prepare",
+          "calls": 4556,
+          "errors": 0,
+          "p50Ms": 1.651,
+          "p95Ms": 2.22,
+          "maxMs": 4.707
+        },
+        {
+          "label": "sql_execute",
+          "calls": 4556,
+          "errors": 0,
+          "p50Ms": 10.686,
+          "p95Ms": 22.659,
+          "maxMs": 29.302
+        },
+        {
+          "label": "sql_fetch",
+          "calls": 4907,
+          "errors": 0,
+          "p50Ms": 0.141,
+          "p95Ms": 0.213,
+          "maxMs": 0.304
+        },
+        {
+          "label": "sql_commit",
+          "calls": 350,
+          "errors": 0,
+          "p50Ms": 3.333,
+          "p95Ms": 7.825,
+          "maxMs": 18.395
+        },
+        {
+          "label": "sql_connect",
+          "calls": 351,
+          "errors": 0,
+          "p50Ms": 1.039,
+          "p95Ms": 23.891,
+          "maxMs": 26.699
+        },
+        {
+          "label": "sqlcat_room_lock",
+          "calls": 701,
+          "errors": 0,
+          "p50Ms": 4.398,
+          "p95Ms": 16.426,
+          "maxMs": 23.527
+        },
+        {
+          "label": "sqlcat_member_lock",
+          "calls": 1402,
+          "errors": 0,
+          "p50Ms": 1.003,
+          "p95Ms": 1.497,
+          "maxMs": 6.169
+        },
+        {
+          "label": "sqlcat_owner_lock",
+          "calls": 351,
+          "errors": 0,
+          "p50Ms": 0.136,
+          "p95Ms": 0.248,
+          "maxMs": 0.968
+        },
+        {
+          "label": "sqlcat_rate",
+          "calls": 351,
+          "errors": 0,
+          "p50Ms": 3.514,
+          "p95Ms": 6.578,
+          "maxMs": 17.889
+        },
+        {
+          "label": "sqlcat_write",
+          "calls": 700,
+          "errors": 0,
+          "p50Ms": 0.307,
+          "p95Ms": 0.769,
+          "maxMs": 9.343
+        },
+        {
+          "label": "sqlcat_clock",
+          "calls": 1402,
+          "errors": 0,
+          "p50Ms": 0.72,
+          "p95Ms": 1.164,
+          "maxMs": 3.238
+        }
+      ]
+    },
+    {
+      "phase": "get",
+      "requests": 51,
+      "validTimingRequests": 51,
+      "httpMs": {
+        "count": 51,
+        "min": 15.871799999999894,
+        "p50": 31.68139999999994,
+        "p95": 47.153499999999894,
+        "p99": 52.818399999999656,
+        "max": 52.818399999999656,
+        "total": 1675.0818000000004
+      },
+      "phpMs": {
+        "count": 51,
+        "min": 13.044,
+        "p50": 28.816,
+        "p95": 43.098,
+        "p99": 47.012,
+        "max": 47.012,
+        "total": 1487.6449999999995
+      },
+      "nativeSqlMs": {
+        "count": 51,
+        "min": 7.096000000000001,
+        "p50": 22.145000000000003,
+        "p95": 34.125,
+        "p99": 37.093,
+        "max": 37.093,
+        "total": 1083.6979999999999
+      },
+      "signedHttpMinusPhpMs": {
+        "count": 51,
+        "min": 2.552199999999985,
+        "p50": 3.4302000000003368,
+        "p95": 5.242599999999992,
+        "p99": 5.806399999999655,
+        "max": 5.806399999999655,
+        "total": 187.4368000000003
+      },
+      "negativeHttpResidualCount": 0,
+      "selectedTiming": [
+        {
+          "label": "stage_arena",
+          "calls": 51,
+          "errors": 1,
+          "p50Ms": 7.492,
+          "p95Ms": 11.388,
+          "maxMs": 13.983
+        },
+        {
+          "label": "stage_candidate_validate",
+          "calls": 0,
+          "errors": 0,
+          "p50Ms": null,
+          "p95Ms": null,
+          "maxMs": null
+        },
+        {
+          "label": "stage_locked_replay",
+          "calls": 0,
+          "errors": 0,
+          "p50Ms": null,
+          "p95Ms": null,
+          "maxMs": null
+        },
+        {
+          "label": "stage_connect",
+          "calls": 51,
+          "errors": 0,
+          "p50Ms": 13.473,
+          "p95Ms": 24.777,
+          "maxMs": 25.987
+        },
+        {
+          "label": "stage_auth_rate",
+          "calls": 51,
+          "errors": 0,
+          "p50Ms": 3.183,
+          "p95Ms": 4.462,
+          "maxMs": 6.721
+        },
+        {
+          "label": "stage_bootstrap",
+          "calls": 51,
+          "errors": 0,
+          "p50Ms": 0.364,
+          "p95Ms": 0.818,
+          "maxMs": 0.871
+        },
+        {
+          "label": "stage_session",
+          "calls": 51,
+          "errors": 0,
+          "p50Ms": 0.463,
+          "p95Ms": 1.077,
+          "maxMs": 1.247
+        },
+        {
+          "label": "stage_body_read",
+          "calls": 51,
+          "errors": 0,
+          "p50Ms": 0.005,
+          "p95Ms": 0.015,
+          "maxMs": 0.029
+        },
+        {
+          "label": "stage_json_decode",
+          "calls": 51,
+          "errors": 0,
+          "p50Ms": 0.262,
+          "p95Ms": 0.519,
+          "maxMs": 0.644
+        },
+        {
+          "label": "stage_json_encode",
+          "calls": 50,
+          "errors": 0,
+          "p50Ms": 0.016,
+          "p95Ms": 0.035,
+          "maxMs": 0.045
+        },
+        {
+          "label": "sql_prepare",
+          "calls": 606,
+          "errors": 0,
+          "p50Ms": 1.502,
+          "p95Ms": 2.49,
+          "maxMs": 2.917
+        },
+        {
+          "label": "sql_execute",
+          "calls": 606,
+          "errors": 0,
+          "p50Ms": 4.18,
+          "p95Ms": 6.398,
+          "maxMs": 8.227
+        },
+        {
+          "label": "sql_fetch",
+          "calls": 707,
+          "errors": 0,
+          "p50Ms": 0.145,
+          "p95Ms": 0.22,
+          "maxMs": 0.296
+        },
+        {
+          "label": "sql_commit",
+          "calls": 50,
+          "errors": 0,
+          "p50Ms": 2.023,
+          "p95Ms": 3.279,
+          "maxMs": 3.792
+        },
+        {
+          "label": "sql_connect",
+          "calls": 51,
+          "errors": 0,
+          "p50Ms": 13.118,
+          "p95Ms": 24.211,
+          "maxMs": 25.647
+        },
+        {
+          "label": "sqlcat_room_lock",
+          "calls": 101,
+          "errors": 0,
+          "p50Ms": 0.309,
+          "p95Ms": 0.564,
+          "maxMs": 0.656
+        },
+        {
+          "label": "sqlcat_member_lock",
+          "calls": 202,
+          "errors": 0,
+          "p50Ms": 0.799,
+          "p95Ms": 1.282,
+          "maxMs": 1.737
+        },
+        {
+          "label": "sqlcat_owner_lock",
+          "calls": 51,
+          "errors": 0,
+          "p50Ms": 0.145,
+          "p95Ms": 0.288,
+          "maxMs": 0.374
+        },
+        {
+          "label": "sqlcat_rate",
+          "calls": 51,
+          "errors": 0,
+          "p50Ms": 2.345,
+          "p95Ms": 3.651,
+          "maxMs": 6.005
+        },
+        {
+          "label": "sqlcat_write",
+          "calls": 50,
+          "errors": 0,
+          "p50Ms": 0.115,
+          "p95Ms": 0.239,
+          "maxMs": 0.323
+        },
+        {
+          "label": "sqlcat_clock",
+          "calls": 202,
+          "errors": 0,
+          "p50Ms": 0.602,
+          "p95Ms": 1.3,
+          "maxMs": 1.329
+        }
+      ]
+    },
+    {
+      "phase": "spectate",
+      "requests": 1,
+      "validTimingRequests": 1,
+      "httpMs": {
+        "count": 1,
+        "min": 30.45640000000003,
+        "p50": 30.45640000000003,
+        "p95": 30.45640000000003,
+        "p99": 30.45640000000003,
+        "max": 30.45640000000003,
+        "total": 30.45640000000003
+      },
+      "phpMs": {
+        "count": 1,
+        "min": 27.476,
+        "p50": 27.476,
+        "p95": 27.476,
+        "p99": 27.476,
+        "max": 27.476,
+        "total": 27.476
+      },
+      "nativeSqlMs": {
+        "count": 1,
+        "min": 20.723,
+        "p50": 20.723,
+        "p95": 20.723,
+        "p99": 20.723,
+        "max": 20.723,
+        "total": 20.723
+      },
+      "signedHttpMinusPhpMs": {
+        "count": 1,
+        "min": 2.9804000000000315,
+        "p50": 2.9804000000000315,
+        "p95": 2.9804000000000315,
+        "p99": 2.9804000000000315,
+        "max": 2.9804000000000315,
+        "total": 2.9804000000000315
+      },
+      "negativeHttpResidualCount": 0,
+      "selectedTiming": [
+        {
+          "label": "stage_arena",
+          "calls": 1,
+          "errors": 0,
+          "p50Ms": 4.425,
+          "p95Ms": 4.425,
+          "maxMs": 4.425
+        },
+        {
+          "label": "stage_candidate_validate",
+          "calls": 0,
+          "errors": 0,
+          "p50Ms": null,
+          "p95Ms": null,
+          "maxMs": null
+        },
+        {
+          "label": "stage_locked_replay",
+          "calls": 0,
+          "errors": 0,
+          "p50Ms": null,
+          "p95Ms": null,
+          "maxMs": null
+        },
+        {
+          "label": "stage_connect",
+          "calls": 1,
+          "errors": 0,
+          "p50Ms": 15.257,
+          "p95Ms": 15.257,
+          "maxMs": 15.257
+        },
+        {
+          "label": "stage_auth_rate",
+          "calls": 1,
+          "errors": 0,
+          "p50Ms": 2.946,
+          "p95Ms": 2.946,
+          "maxMs": 2.946
+        },
+        {
+          "label": "stage_bootstrap",
+          "calls": 1,
+          "errors": 0,
+          "p50Ms": 0.372,
+          "p95Ms": 0.372,
+          "maxMs": 0.372
+        },
+        {
+          "label": "stage_session",
+          "calls": 1,
+          "errors": 0,
+          "p50Ms": 0.471,
+          "p95Ms": 0.471,
+          "maxMs": 0.471
+        },
+        {
+          "label": "stage_body_read",
+          "calls": 1,
+          "errors": 0,
+          "p50Ms": 0.004,
+          "p95Ms": 0.004,
+          "maxMs": 0.004
+        },
+        {
+          "label": "stage_json_decode",
+          "calls": 1,
+          "errors": 0,
+          "p50Ms": 0.252,
+          "p95Ms": 0.252,
+          "maxMs": 0.252
+        },
+        {
+          "label": "stage_json_encode",
+          "calls": 1,
+          "errors": 0,
+          "p50Ms": 0.017,
+          "p95Ms": 0.017,
+          "maxMs": 0.017
+        },
+        {
+          "label": "sql_prepare",
+          "calls": 10,
+          "errors": 0,
+          "p50Ms": 1.345,
+          "p95Ms": 1.345,
+          "maxMs": 1.345
+        },
+        {
+          "label": "sql_execute",
+          "calls": 10,
+          "errors": 0,
+          "p50Ms": 3.508,
+          "p95Ms": 3.508,
+          "maxMs": 3.508
+        },
+        {
+          "label": "sql_fetch",
+          "calls": 13,
+          "errors": 0,
+          "p50Ms": 0.132,
+          "p95Ms": 0.132,
+          "maxMs": 0.132
+        },
+        {
+          "label": "sql_commit",
+          "calls": 1,
+          "errors": 0,
+          "p50Ms": 0.138,
+          "p95Ms": 0.138,
+          "maxMs": 0.138
+        },
+        {
+          "label": "sql_connect",
+          "calls": 1,
+          "errors": 0,
+          "p50Ms": 14.869,
+          "p95Ms": 14.869,
+          "maxMs": 14.869
+        },
+        {
+          "label": "sqlcat_room_lock",
+          "calls": 2,
+          "errors": 0,
+          "p50Ms": 0.207,
+          "p95Ms": 0.207,
+          "maxMs": 0.207
+        },
+        {
+          "label": "sqlcat_member_lock",
+          "calls": 3,
+          "errors": 0,
+          "p50Ms": 0.512,
+          "p95Ms": 0.512,
+          "maxMs": 0.512
+        },
+        {
+          "label": "sqlcat_owner_lock",
+          "calls": 1,
+          "errors": 0,
+          "p50Ms": 0.162,
+          "p95Ms": 0.162,
+          "maxMs": 0.162
+        },
+        {
+          "label": "sqlcat_rate",
+          "calls": 1,
+          "errors": 0,
+          "p50Ms": 2.001,
+          "p95Ms": 2.001,
+          "maxMs": 2.001
+        },
+        {
+          "label": "sqlcat_write",
+          "calls": 0,
+          "errors": 0,
+          "p50Ms": null,
+          "p95Ms": null,
+          "maxMs": null
+        },
+        {
+          "label": "sqlcat_clock",
+          "calls": 4,
+          "errors": 0,
+          "p50Ms": 0.496,
+          "p95Ms": 0.496,
+          "maxMs": 0.496
+        }
+      ]
+    },
+    {
+      "phase": "ready",
+      "requests": 400,
+      "validTimingRequests": 400,
+      "httpMs": {
+        "count": 400,
+        "min": 28.222899999999754,
+        "p50": 54.23160000000007,
+        "p95": 80.61099999999988,
+        "p99": 142.51729999999952,
+        "max": 196.7528999999995,
+        "total": 22853.150499999974
+      },
+      "phpMs": {
+        "count": 400,
+        "min": 19.581,
+        "p50": 38.268,
+        "p95": 62.669,
+        "p99": 119.08,
+        "max": 176.008,
+        "total": 16083.572999999999
+      },
+      "nativeSqlMs": {
+        "count": 400,
+        "min": 9.714,
+        "p50": 25.766999999999996,
+        "p95": 46.932,
+        "p99": 54.85400000000001,
+        "max": 62.459,
+        "total": 10424.420000000002
+      },
+      "signedHttpMinusPhpMs": {
+        "count": 400,
+        "min": 4.213899999999754,
+        "p50": 16.940200000000274,
+        "p95": 24.350700000000245,
+        "p99": 26.277300000000615,
+        "max": 29.015799999999736,
+        "total": 6769.577499999999
+      },
+      "negativeHttpResidualCount": 0,
+      "selectedTiming": [
+        {
+          "label": "stage_arena",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 16.116,
+          "p95Ms": 32.126,
+          "maxMs": 42.327
+        },
+        {
+          "label": "stage_candidate_validate",
+          "calls": 0,
+          "errors": 0,
+          "p50Ms": null,
+          "p95Ms": null,
+          "maxMs": null
+        },
+        {
+          "label": "stage_locked_replay",
+          "calls": 0,
+          "errors": 0,
+          "p50Ms": null,
+          "p95Ms": null,
+          "maxMs": null
+        },
+        {
+          "label": "stage_connect",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 1.911,
+          "p95Ms": 23.216,
+          "maxMs": 26.376
+        },
+        {
+          "label": "stage_auth_rate",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 3.95,
+          "p95Ms": 6.904,
+          "maxMs": 21.792
+        },
+        {
+          "label": "stage_bootstrap",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 0.703,
+          "p95Ms": 1.314,
+          "maxMs": 3.018
+        },
+        {
+          "label": "stage_session",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 0.94,
+          "p95Ms": 1.923,
+          "maxMs": 144.252
+        },
+        {
+          "label": "stage_body_read",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 0.005,
+          "p95Ms": 0.007,
+          "maxMs": 0.014
+        },
+        {
+          "label": "stage_json_decode",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 0.494,
+          "p95Ms": 1.157,
+          "maxMs": 1.62
+        },
+        {
+          "label": "stage_json_encode",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 0.03,
+          "p95Ms": 0.037,
+          "maxMs": 0.071
+        },
+        {
+          "label": "sql_prepare",
+          "calls": 5600,
+          "errors": 0,
+          "p50Ms": 1.716,
+          "p95Ms": 2.101,
+          "maxMs": 2.557
+        },
+        {
+          "label": "sql_execute",
+          "calls": 5600,
+          "errors": 0,
+          "p50Ms": 10.548,
+          "p95Ms": 26.093,
+          "maxMs": 35.554
+        },
+        {
+          "label": "sql_fetch",
+          "calls": 5950,
+          "errors": 0,
+          "p50Ms": 0.223,
+          "p95Ms": 0.306,
+          "maxMs": 0.458
+        },
+        {
+          "label": "sql_commit",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 3.158,
+          "p95Ms": 6.481,
+          "maxMs": 20.036
+        },
+        {
+          "label": "sql_connect",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 1.125,
+          "p95Ms": 22.765,
+          "maxMs": 25.979
+        },
+        {
+          "label": "sqlcat_room_lock",
+          "calls": 800,
+          "errors": 0,
+          "p50Ms": 5.22,
+          "p95Ms": 19.129,
+          "maxMs": 28.999
+        },
+        {
+          "label": "sqlcat_member_lock",
+          "calls": 1950,
+          "errors": 0,
+          "p50Ms": 1.22,
+          "p95Ms": 1.449,
+          "maxMs": 2.719
+        },
+        {
+          "label": "sqlcat_owner_lock",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 0.133,
+          "p95Ms": 0.19,
+          "maxMs": 0.46
+        },
+        {
+          "label": "sqlcat_rate",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 3.355,
+          "p95Ms": 6.305,
+          "maxMs": 21.174
+        },
+        {
+          "label": "sqlcat_write",
+          "calls": 850,
+          "errors": 0,
+          "p50Ms": 0.319,
+          "p95Ms": 0.539,
+          "maxMs": 0.83
+        },
+        {
+          "label": "sqlcat_clock",
+          "calls": 1600,
+          "errors": 0,
+          "p50Ms": 0.7,
+          "p95Ms": 0.928,
+          "maxMs": 1.755
+        }
+      ]
+    },
+    {
+      "phase": "submit",
+      "requests": 400,
+      "validTimingRequests": 400,
+      "httpMs": {
+        "count": 400,
+        "min": 80.79329999999936,
+        "p50": 158.0634000000009,
+        "p95": 242.88340000000062,
+        "p99": 329.40639999999985,
+        "max": 398.40860000000066,
+        "total": 67145.0514999999
+      },
+      "phpMs": {
+        "count": 400,
+        "min": 46.068,
+        "p50": 90.038,
+        "p95": 166.446,
+        "p99": 250.476,
+        "max": 297.033,
+        "total": 39447.78099999999
+      },
+      "nativeSqlMs": {
+        "count": 400,
+        "min": 11.23,
+        "p50": 45.291000000000004,
+        "p95": 99.665,
+        "p99": 131.006,
+        "max": 159.989,
+        "total": 19959.313000000002
+      },
+      "signedHttpMinusPhpMs": {
+        "count": 400,
+        "min": 11.921100000000322,
+        "p50": 70.3364000000006,
+        "p95": 88.92879999999982,
+        "p99": 102.57890000000141,
+        "max": 111.87579999999917,
+        "total": 27697.27049999998
+      },
+      "negativeHttpResidualCount": 0,
+      "selectedTiming": [
+        {
+          "label": "stage_arena",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 68.544,
+          "p95Ms": 135.191,
+          "maxMs": 281.42
+        },
+        {
+          "label": "stage_candidate_validate",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 20.061,
+          "p95Ms": 30.133,
+          "maxMs": 88.595
+        },
+        {
+          "label": "stage_locked_replay",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 9.845,
+          "p95Ms": 14.844,
+          "maxMs": 18.867
+        },
+        {
+          "label": "stage_connect",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 2.357,
+          "p95Ms": 24.427,
+          "maxMs": 34.088
+        },
+        {
+          "label": "stage_auth_rate",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 3.747,
+          "p95Ms": 6.522,
+          "maxMs": 21.041
+        },
+        {
+          "label": "stage_bootstrap",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 0.651,
+          "p95Ms": 1.075,
+          "maxMs": 3.038
+        },
+        {
+          "label": "stage_session",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 0.848,
+          "p95Ms": 1.295,
+          "maxMs": 76.157
+        },
+        {
+          "label": "stage_body_read",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 0.058,
+          "p95Ms": 0.087,
+          "maxMs": 0.158
+        },
+        {
+          "label": "stage_json_decode",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 0.584,
+          "p95Ms": 0.842,
+          "maxMs": 1.254
+        },
+        {
+          "label": "stage_json_encode",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 0.053,
+          "p95Ms": 0.081,
+          "maxMs": 0.264
+        },
+        {
+          "label": "sql_prepare",
+          "calls": 5800,
+          "errors": 0,
+          "p50Ms": 2.113,
+          "p95Ms": 2.672,
+          "maxMs": 3.585
+        },
+        {
+          "label": "sql_execute",
+          "calls": 5800,
+          "errors": 0,
+          "p50Ms": 30.448,
+          "p95Ms": 79.361,
+          "maxMs": 151.666
+        },
+        {
+          "label": "sql_fetch",
+          "calls": 5650,
+          "errors": 0,
+          "p50Ms": 0.208,
+          "p95Ms": 0.266,
+          "maxMs": 0.438
+        },
+        {
+          "label": "sql_commit",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 2.538,
+          "p95Ms": 5.448,
+          "maxMs": 13.317
+        },
+        {
+          "label": "sql_connect",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 1.753,
+          "p95Ms": 23.76,
+          "maxMs": 33.56
+        },
+        {
+          "label": "sqlcat_room_lock",
+          "calls": 850,
+          "errors": 0,
+          "p50Ms": 24.686,
+          "p95Ms": 73.714,
+          "maxMs": 143.173
+        },
+        {
+          "label": "sqlcat_member_lock",
+          "calls": 1600,
+          "errors": 0,
+          "p50Ms": 1.094,
+          "p95Ms": 1.541,
+          "maxMs": 8.684
+        },
+        {
+          "label": "sqlcat_owner_lock",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 0.158,
+          "p95Ms": 0.3,
+          "maxMs": 0.507
+        },
+        {
+          "label": "sqlcat_rate",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 2.954,
+          "p95Ms": 5.684,
+          "maxMs": 20.486
+        },
+        {
+          "label": "sqlcat_write",
+          "calls": 950,
+          "errors": 0,
+          "p50Ms": 0.494,
+          "p95Ms": 2.696,
+          "maxMs": 18.664
+        },
+        {
+          "label": "sqlcat_clock",
+          "calls": 1200,
+          "errors": 0,
+          "p50Ms": 0.628,
+          "p95Ms": 0.871,
+          "maxMs": 2.895
+        }
+      ]
+    },
+    {
+      "phase": "leave",
+      "requests": 400,
+      "validTimingRequests": 400,
+      "httpMs": {
+        "count": 400,
+        "min": 30.383300000001327,
+        "p50": 56.27479999999923,
+        "p95": 85.61509999999907,
+        "p99": 102,
+        "max": 134.98070000000007,
+        "total": 23654.187100000025
+      },
+      "phpMs": {
+        "count": 400,
+        "min": 19.796,
+        "p50": 33.423,
+        "p95": 55.538,
+        "p99": 67.989,
+        "max": 106.056,
+        "total": 14348.499999999998
+      },
+      "nativeSqlMs": {
+        "count": 400,
+        "min": 9.607,
+        "p50": 21.362000000000002,
+        "p95": 41.88,
+        "p99": 47.644,
+        "max": 48.940999999999995,
+        "total": 9245.681999999999
+      },
+      "signedHttpMinusPhpMs": {
+        "count": 400,
+        "min": 4.483000000001162,
+        "p50": 23.093799999999696,
+        "p95": 33.37039999999929,
+        "p99": 36.38129999999957,
+        "max": 39.97609999999992,
+        "total": 9305.687100000012
+      },
+      "negativeHttpResidualCount": 0,
+      "selectedTiming": [
+        {
+          "label": "stage_arena",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 13.9,
+          "p95Ms": 27.295,
+          "maxMs": 38.616
+        },
+        {
+          "label": "stage_candidate_validate",
+          "calls": 0,
+          "errors": 0,
+          "p50Ms": null,
+          "p95Ms": null,
+          "maxMs": null
+        },
+        {
+          "label": "stage_locked_replay",
+          "calls": 0,
+          "errors": 0,
+          "p50Ms": null,
+          "p95Ms": null,
+          "maxMs": null
+        },
+        {
+          "label": "stage_connect",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 2.01,
+          "p95Ms": 23.665,
+          "maxMs": 26.552
+        },
+        {
+          "label": "stage_auth_rate",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 3.575,
+          "p95Ms": 5.151,
+          "maxMs": 6.13
+        },
+        {
+          "label": "stage_bootstrap",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 0.694,
+          "p95Ms": 1.236,
+          "maxMs": 4.3
+        },
+        {
+          "label": "stage_session",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 0.851,
+          "p95Ms": 1.746,
+          "maxMs": 82.159
+        },
+        {
+          "label": "stage_body_read",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 0.005,
+          "p95Ms": 0.008,
+          "maxMs": 0.025
+        },
+        {
+          "label": "stage_json_decode",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 0.473,
+          "p95Ms": 1.003,
+          "maxMs": 1.55
+        },
+        {
+          "label": "stage_json_encode",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 0.067,
+          "p95Ms": 0.25,
+          "maxMs": 0.455
+        },
+        {
+          "label": "sql_prepare",
+          "calls": 5350,
+          "errors": 0,
+          "p50Ms": 1.618,
+          "p95Ms": 2.024,
+          "maxMs": 3.034
+        },
+        {
+          "label": "sql_execute",
+          "calls": 5350,
+          "errors": 0,
+          "p50Ms": 9.06,
+          "p95Ms": 22.049,
+          "maxMs": 32.576
+        },
+        {
+          "label": "sql_fetch",
+          "calls": 5650,
+          "errors": 0,
+          "p50Ms": 0.219,
+          "p95Ms": 0.295,
+          "maxMs": 0.387
+        },
+        {
+          "label": "sql_commit",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 2.601,
+          "p95Ms": 4.04,
+          "maxMs": 5.23
+        },
+        {
+          "label": "sql_connect",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 1.381,
+          "p95Ms": 23.175,
+          "maxMs": 26.076
+        },
+        {
+          "label": "sqlcat_room_lock",
+          "calls": 850,
+          "errors": 0,
+          "p50Ms": 3.828,
+          "p95Ms": 16.439,
+          "maxMs": 26.379
+        },
+        {
+          "label": "sqlcat_member_lock",
+          "calls": 1600,
+          "errors": 0,
+          "p50Ms": 1.084,
+          "p95Ms": 1.325,
+          "maxMs": 1.892
+        },
+        {
+          "label": "sqlcat_owner_lock",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 0.133,
+          "p95Ms": 0.207,
+          "maxMs": 0.378
+        },
+        {
+          "label": "sqlcat_rate",
+          "calls": 400,
+          "errors": 0,
+          "p50Ms": 2.989,
+          "p95Ms": 4.525,
+          "maxMs": 5.54
+        },
+        {
+          "label": "sqlcat_write",
+          "calls": 900,
+          "errors": 0,
+          "p50Ms": 0.374,
+          "p95Ms": 0.769,
+          "maxMs": 1.049
+        },
+        {
+          "label": "sqlcat_clock",
+          "calls": 1600,
+          "errors": 0,
+          "p50Ms": 0.703,
+          "p95Ms": 0.923,
+          "maxMs": 1.585
+        }
+      ]
+    }
+  ],
+  "highestLatencyRequests": [
+    {
+      "request": 862,
+      "phase": "submit",
+      "httpMs": 398.40860000000066,
+      "phpMs": 297.033,
+      "nativeSqlMs": 159.989,
+      "httpMinusPhpMs": 101.37560000000065,
+      "candidateValidateMs": 88.595,
+      "lockedReplayMs": 18.301,
+      "roomLockNativeExecuteMs": 143.173,
+      "prepareMs": 1.989,
+      "commitMs": 4.545
+    },
+    {
+      "request": 855,
+      "phase": "submit",
+      "httpMs": 397.551300000001,
+      "phpMs": 295.901,
+      "nativeSqlMs": 152.29899999999998,
+      "httpMinusPhpMs": 101.65030000000098,
+      "candidateValidateMs": 87.759,
+      "lockedReplayMs": 18.438,
+      "roomLockNativeExecuteMs": 138.364,
+      "prepareMs": 2.18,
+      "commitMs": 2.09
+    },
+    {
+      "request": 856,
+      "phase": "submit",
+      "httpMs": 378.4887999999992,
+      "phpMs": 266.613,
+      "nativeSqlMs": 129.479,
+      "httpMinusPhpMs": 111.87579999999917,
+      "candidateValidateMs": 86.777,
+      "lockedReplayMs": 16.118,
+      "roomLockNativeExecuteMs": 117.684,
+      "prepareMs": 2.025,
+      "commitMs": 2.015
+    },
+    {
+      "request": 868,
+      "phase": "submit",
+      "httpMs": 348.7513999999992,
+      "phpMs": 264.482,
+      "nativeSqlMs": 157.74599999999998,
+      "httpMinusPhpMs": 84.26939999999917,
+      "candidateValidateMs": 69.466,
+      "lockedReplayMs": 18.867,
+      "roomLockNativeExecuteMs": 119.423,
+      "prepareMs": 2.363,
+      "commitMs": 2.231
+    },
+    {
+      "request": 863,
+      "phase": "submit",
+      "httpMs": 329.40639999999985,
+      "phpMs": 242.879,
+      "nativeSqlMs": 114.00299999999999,
+      "httpMinusPhpMs": 86.52739999999986,
+      "candidateValidateMs": 85.01,
+      "lockedReplayMs": 15.431,
+      "roomLockNativeExecuteMs": 96.342,
+      "prepareMs": 1.78,
+      "commitMs": 5.448
+    },
+    {
+      "request": 854,
+      "phase": "submit",
+      "httpMs": 328.3756999999987,
+      "phpMs": 231.187,
+      "nativeSqlMs": 90.82099999999998,
+      "httpMinusPhpMs": 97.18869999999868,
+      "candidateValidateMs": 83.231,
+      "lockedReplayMs": 17.17,
+      "roomLockNativeExecuteMs": 74.375,
+      "prepareMs": 1.805,
+      "commitMs": 6.749
+    },
+    {
+      "request": 857,
+      "phase": "submit",
+      "httpMs": 326.8705999999984,
+      "phpMs": 250.476,
+      "nativeSqlMs": 119.732,
+      "httpMinusPhpMs": 76.39459999999838,
+      "candidateValidateMs": 86.506,
+      "lockedReplayMs": 15.399,
+      "roomLockNativeExecuteMs": 94.642,
+      "prepareMs": 1.891,
+      "commitMs": 4.35
+    },
+    {
+      "request": 867,
+      "phase": "submit",
+      "httpMs": 279.53180000000066,
+      "phpMs": 216.432,
+      "nativeSqlMs": 88.025,
+      "httpMinusPhpMs": 63.09980000000067,
+      "candidateValidateMs": 84.439,
+      "lockedReplayMs": 14.193,
+      "roomLockNativeExecuteMs": 75.737,
+      "prepareMs": 2.107,
+      "commitMs": 3.534
+    }
+  ],
+  "findings": [
+    "Largest measured native submit wait is room-row locking SELECT execute: per-request p50/p95 24.686/73.714ms. Owner/member locks and statement prepare costs are much smaller.",
+    "Candidate validation before locks p50/p95 20.061/30.133ms; locked independentauthoritative replay9.845/14.844ms. Firstgroup validation often69–88ms versuslastgroup14–21ms; cold/schedulingcause unproven.",
+    "Commit per-request p50/p95 2.538/5.448ms and allnativeprepare2.113/2.672ms do notsupport choosingdurability relaxation orstatementcache asprimaryfix.",
+    "Submit HTTP-minus-PHP p95 88.9288ms is realpositiveunassignedresidual. Apache/Zend start/shutdown/responseflush/network/client scheduling are not distinguished bythisprobe.",
+    "Guarded backend38 and17fixturedeps stayedunchanged; laterfrontendexcluded. NoSQL/params/rows/credentials exported; originalservices/config untouched."
+  ],
+  "interpretation": [
+    "Timingp50/p95 describes eachcategorysumwithinone request, thenquantilesacrossrequests—not per-individualSQLcallp95.",
+    "SQL native methods overlapinclusivePHPstages; arena includescandidate+lockedreplay. Percentiles andconcurrentrequestintervals cannotbeadded intoexclusivecriticalpath time.",
+    "Native executeelapsed includesDB/network/scheduling anddoesnotproveallreportedroomSELECTtimewasInnoDBrowlockwaiting.",
+    "Instrumentedonewireonlyrun isnotordinarycapacityacceptance orcontrolledcausal comparison againstprior453.9505/371.7349msruns. Allfailures retained."
+  ],
+  "nextCandidateProposalOnly": "OptionallyskiptimeSeries generation onlyinside non-finish Arena authoritative replay, keepingindependentfullinput replay/serverelapsed/metrics/rhythm/characters andalllockboundaries. Final/defaultreplay unchanged. Requiresfullparity/nativecontracts/freshordinarycapacity; noeditorgainclaimhere."
+}

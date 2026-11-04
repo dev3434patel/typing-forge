@@ -1,0 +1,386 @@
+{
+  "status": "PASS-SCOPED",
+  "startedAt": "2026-11-04T15:55:22.166Z",
+  "finishedAt": "2026-11-04T15:56:06.047Z",
+  "scope": "Real isolated PHP/MySQL HTTP arena lifecycle; synthetic account/session fixtures, ordinary clock, no production limits changed.",
+  "failure": null,
+  "passed": 32,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "API bound to fresh owned account/session store",
+      "pass": true
+    },
+    {
+      "name": "three concurrent real room creations all succeed without filtered holes",
+      "pass": true
+    },
+    {
+      "name": "every concurrent room has exactly its own first host at slot0",
+      "pass": true
+    },
+    {
+      "name": "create real arena",
+      "pass": true
+    },
+    {
+      "name": "explicit stale owner rejected",
+      "pass": true
+    },
+    {
+      "name": "outsider member read rejected",
+      "pass": true
+    },
+    {
+      "name": "spectator sanitized",
+      "pass": true
+    },
+    {
+      "name": "join second human",
+      "pass": true
+    },
+    {
+      "name": "server issues real three-second countdown",
+      "pass": true
+    },
+    {
+      "name": "late join blocked after countdown",
+      "pass": true
+    },
+    {
+      "name": "live prefix independently accepted",
+      "pass": true
+    },
+    {
+      "name": "identical prefix retry accepted",
+      "pass": true
+    },
+    {
+      "name": "rewritten valid canonical prefix rejected",
+      "pass": true
+    },
+    {
+      "name": "changed issued cohort rejected",
+      "pass": true
+    },
+    {
+      "name": "future elapsed rejected",
+      "pass": true
+    },
+    {
+      "name": "early unfinished result cannot become final",
+      "pass": true
+    },
+    {
+      "name": "uniform valid replay is quarantined outside placements",
+      "pass": true
+    },
+    {
+      "name": "bounded review request really persisted",
+      "pass": true
+    },
+    {
+      "name": "real deadline finish accepted",
+      "pass": true
+    },
+    {
+      "name": "server placements exclude quarantined racer",
+      "pass": true
+    },
+    {
+      "name": "new Arena finish persists the complete independently expected chart",
+      "pass": true
+    },
+    {
+      "name": "finished history retains every canonical chart point",
+      "pass": true
+    },
+    {
+      "name": "immutable final retry is idempotent",
+      "pass": true
+    },
+    {
+      "name": "final retry preserves one persisted result, payload hash and full chart",
+      "pass": true
+    },
+    {
+      "name": "both actual votes create one rematch",
+      "pass": true
+    },
+    {
+      "name": "silent participant forfeits after20s while live participant remains",
+      "pass": true
+    },
+    {
+      "name": "stale untouched public lobby seat pruned without blocking ready live humans",
+      "pass": true
+    },
+    {
+      "name": "lobby pruning preserves real three-second countdown rather than instant start",
+      "pass": true
+    },
+    {
+      "name": "matchmaking skips stale public host and creates a live room",
+      "pass": true
+    },
+    {
+      "name": "stale public host cancellation persists transactionally",
+      "pass": true
+    },
+    {
+      "name": "private invitation retains its documented waiting expiry",
+      "pass": true
+    },
+    {
+      "name": "forfeits settle without invented winner",
+      "pass": true
+    }
+  ],
+  "requests": [
+    {
+      "action": "create",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "create",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "create",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "get",
+      "status": 409,
+      "error": "owner-changed"
+    },
+    {
+      "action": "get",
+      "status": 403,
+      "error": "arena-membership"
+    },
+    {
+      "action": "spectate",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "join",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "ready",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "ready",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "join",
+      "status": 409,
+      "error": "arena-started"
+    },
+    {
+      "action": "submit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "submit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "submit",
+      "status": 409,
+      "error": "arena-prefix"
+    },
+    {
+      "action": "submit",
+      "status": 422,
+      "error": "arena-configuration"
+    },
+    {
+      "action": "submit",
+      "status": 422,
+      "error": "arena-time"
+    },
+    {
+      "action": "submit",
+      "status": 409,
+      "error": "arena-finish-early"
+    },
+    {
+      "action": "submit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "appeal",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "submit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "read-owned-finished-chart",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "submit",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "read-owned-finished-chart",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "rematch",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "rematch",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "create",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "join",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "ready",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "ready",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "create",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "create",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "create",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "join",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "join",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "ready",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "ready",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "get",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "get",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "get",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "get",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "get",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "get",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "get",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "get",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "get",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "match",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "spectate",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "get",
+      "status": 200,
+      "error": null
+    },
+    {
+      "action": "leave",
+      "status": 200,
+      "error": null
+    }
+  ],
+  "cleanup": {
+    "deletedOwnAccounts": 3,
+    "removedOwnSessions": 3
+  },
+  "hostedMultiRegion": "UNVERIFIED"
+}

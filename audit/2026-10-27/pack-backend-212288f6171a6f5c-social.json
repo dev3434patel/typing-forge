@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "at": "2026-10-27T16:32:16.999Z",
+  "scope": "Opt-in isolated native social/duel HTTP lifecycle; counted challenge timestamps intentionally retimed only for this synthetic run",
+  "guardedTarget": {
+    "database": "sparow_pack_212288f6171a6f5c_audit",
+    "port": 6342,
+    "api": "http://127.0.0.1:6343/api",
+    "sessionNamespaceMatched": true
+  },
+  "checks": [
+    {
+      "name": "three synthetic accounts created only after isolated schema/port/cookie guards",
+      "status": "PASS"
+    },
+    {
+      "name": "private request acceptance and expected-owner/friendship guards",
+      "status": "PASS"
+    },
+    {
+      "name": "idempotent private duel creation, stranger denial, mutual acceptance and identical independently issued passage",
+      "status": "PASS"
+    },
+    {
+      "name": "v2 first-input after a five-second preparation wait, same issued resume after nominal deadline, source/late-first/unknown-policy denial, one counted attempt, exact retry and hidden opponent score",
+      "status": "PASS"
+    },
+    {
+      "name": "two server-replayed scores produce an actual private winner; contacts expose no email, passage or keystroke log",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy issued v1 duel pins the later participant to the identical v1 cohort; both retain fixed-start acceptance and original resume expiry",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed reports are idempotent; blocking removes contact/duel access and unblocking does not recreate friendship",
+      "status": "PASS"
+    },
+    {
+      "name": "only the owned synthetic account is explicitly deleted; relationship/duel owner FKs cascade",
+      "status": "PASS"
+    }
+  ],
+  "passed": 8,
+  "failed": 0,
+  "failure": null,
+  "cleanup": {
+    "deletedOwnSyntheticAccounts": 2
+  },
+  "credentialsOrCookiesEmitted": false,
+  "rateCountersReset": false,
+  "userDatabaseTouched": false
+}

@@ -1,0 +1,761 @@
+{
+  "capturedAt": "2026-11-02T15:52:31.916Z",
+  "status": "VERIFIED-EXTRACTION-ORIGINAL-FULL-MATRIX-FAILED",
+  "actions": {
+    "testsRun": 0,
+    "buildsRun": 0,
+    "browsersStarted": 0,
+    "servicesStarted": 0,
+    "productOrTestEdits": 0,
+    "privateConfigEnvOrLogsRead": false
+  },
+  "frozenSource": {
+    "sourceFile": "audit/2026-10-27/final27-source.json",
+    "build": "11de46af5d4a80e0e830",
+    "compared": 505,
+    "mismatches": []
+  },
+  "completedFullMatrix": {
+    "file": "audit/2026-10-27/final27-browser-matrix.json",
+    "status": "FAILED",
+    "finishedAt": "2026-10-27T19:34:25.235Z",
+    "total": {
+      "total": 1484,
+      "passed": 1438,
+      "failed": 17,
+      "skipped": 29,
+      "flaky": 0
+    },
+    "specFilesCoveredExactlyOnce": 64,
+    "allFourEnginesDeclared": true,
+    "allIntegrityFlagsAtExecutionTrue": true,
+    "automaticRetries": 0,
+    "globalErrors": 0,
+    "batches": [
+      {
+        "id": "new-features",
+        "totals": {
+          "total": 204,
+          "passed": 203,
+          "failed": 1,
+          "skipped": 0,
+          "flaky": 0
+        },
+        "engines": [
+          {
+            "project": "chromium",
+            "total": 51,
+            "passed": 51,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "edge",
+            "total": 51,
+            "passed": 51,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "firefox",
+            "total": 51,
+            "passed": 51,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "webkit",
+            "total": 51,
+            "passed": 50,
+            "failed": 1,
+            "skipped": 0,
+            "flaky": 0
+          }
+        ],
+        "exitCode": 1,
+        "durationMs": 530112.1928000001,
+        "completedAt": "2026-10-27T18:33:22.167Z",
+        "integrityAtExecution": {
+          "buildUnchanged": true,
+          "testsUnchanged": true,
+          "dependenciesUnchanged": true
+        },
+        "currentProtocolInputsChanged": [],
+        "globalErrors": [],
+        "failures": [
+          {
+            "project": "webkit",
+            "title": "workspace-reset.spec.ts › another tab reset closes the active controller without restoring private text",
+            "file": "workspace-reset.spec.ts",
+            "line": 8,
+            "attempts": 1,
+            "attemptStatuses": [
+              "timedOut"
+            ],
+            "messages": [
+              "Test timeout of 30000ms exceeded.",
+              "Error: locator.click: Test timeout of 30000ms exceeded. Call log: - waiting for getByRole('button', { name: 'Reset guest workspace', exact: true }) - locator resolved to <button disabled class=\"forge-button-secondary text-destructive\">Reset guest workspace</button> - attempting click action 2 × waiting for element to be visible, enabled and stable - element is not enabled - retrying click action - waiting 20ms 2 × waiting for element to be visibl"
+            ]
+          }
+        ],
+        "skipReasons": []
+      },
+      {
+        "id": "existing",
+        "totals": {
+          "total": 1020,
+          "passed": 988,
+          "failed": 12,
+          "skipped": 20,
+          "flaky": 0
+        },
+        "engines": [
+          {
+            "project": "chromium",
+            "total": 255,
+            "passed": 247,
+            "failed": 3,
+            "skipped": 5,
+            "flaky": 0
+          },
+          {
+            "project": "edge",
+            "total": 255,
+            "passed": 247,
+            "failed": 3,
+            "skipped": 5,
+            "flaky": 0
+          },
+          {
+            "project": "firefox",
+            "total": 255,
+            "passed": 247,
+            "failed": 3,
+            "skipped": 5,
+            "flaky": 0
+          },
+          {
+            "project": "webkit",
+            "total": 255,
+            "passed": 247,
+            "failed": 3,
+            "skipped": 5,
+            "flaky": 0
+          }
+        ],
+        "exitCode": 1,
+        "durationMs": 2972455.0861,
+        "completedAt": "2026-10-27T19:22:54.890Z",
+        "integrityAtExecution": {
+          "buildUnchanged": true,
+          "testsUnchanged": true,
+          "dependenciesUnchanged": true
+        },
+        "currentProtocolInputsChanged": [],
+        "globalErrors": [],
+        "failures": [
+          {
+            "project": "chromium",
+            "title": "live-keyboard.spec.ts › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable",
+            "file": "live-keyboard.spec.ts",
+            "line": 447,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+            ]
+          },
+          {
+            "project": "chromium",
+            "title": "live-keyboard.spec.ts › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable",
+            "file": "live-keyboard.spec.ts",
+            "line": 447,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+            ]
+          },
+          {
+            "project": "chromium",
+            "title": "live-keyboard.spec.ts › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable",
+            "file": "live-keyboard.spec.ts",
+            "line": 447,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+            ]
+          },
+          {
+            "project": "edge",
+            "title": "live-keyboard.spec.ts › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable",
+            "file": "live-keyboard.spec.ts",
+            "line": 447,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+            ]
+          },
+          {
+            "project": "edge",
+            "title": "live-keyboard.spec.ts › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable",
+            "file": "live-keyboard.spec.ts",
+            "line": 447,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+            ]
+          },
+          {
+            "project": "edge",
+            "title": "live-keyboard.spec.ts › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable",
+            "file": "live-keyboard.spec.ts",
+            "line": 447,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "live-keyboard.spec.ts › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable",
+            "file": "live-keyboard.spec.ts",
+            "line": 447,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "live-keyboard.spec.ts › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable",
+            "file": "live-keyboard.spec.ts",
+            "line": 447,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "live-keyboard.spec.ts › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable",
+            "file": "live-keyboard.spec.ts",
+            "line": 447,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "live-keyboard.spec.ts › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable",
+            "file": "live-keyboard.spec.ts",
+            "line": 447,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "live-keyboard.spec.ts › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable",
+            "file": "live-keyboard.spec.ts",
+            "line": 447,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "live-keyboard.spec.ts › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable",
+            "file": "live-keyboard.spec.ts",
+            "line": 447,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+            ]
+          }
+        ],
+        "skipReasons": [
+          {
+            "reason": "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used.",
+            "count": 4,
+            "projects": [
+              "chromium",
+              "edge",
+              "firefox",
+              "webkit"
+            ]
+          },
+          {
+            "reason": "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account.",
+            "count": 4,
+            "projects": [
+              "chromium",
+              "edge",
+              "firefox",
+              "webkit"
+            ]
+          },
+          {
+            "reason": "Requires two dedicated accounts on the explicit PHP acceptance deployment.",
+            "count": 8,
+            "projects": [
+              "chromium",
+              "edge",
+              "firefox",
+              "webkit"
+            ]
+          },
+          {
+            "reason": "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization.",
+            "count": 4,
+            "projects": [
+              "chromium",
+              "edge",
+              "firefox",
+              "webkit"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "isolated",
+        "totals": {
+          "total": 228,
+          "passed": 215,
+          "failed": 4,
+          "skipped": 9,
+          "flaky": 0
+        },
+        "engines": [
+          {
+            "project": "chromium",
+            "total": 57,
+            "passed": 56,
+            "failed": 1,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "edge",
+            "total": 57,
+            "passed": 56,
+            "failed": 1,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "firefox",
+            "total": 57,
+            "passed": 56,
+            "failed": 1,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "webkit",
+            "total": 57,
+            "passed": 47,
+            "failed": 1,
+            "skipped": 9,
+            "flaky": 0
+          }
+        ],
+        "exitCode": 1,
+        "durationMs": 623491.1189,
+        "completedAt": "2026-10-27T19:33:18.678Z",
+        "integrityAtExecution": {
+          "buildUnchanged": true,
+          "testsUnchanged": true,
+          "dependenciesUnchanged": true
+        },
+        "currentProtocolInputsChanged": [],
+        "globalErrors": [],
+        "failures": [
+          {
+            "project": "chromium",
+            "title": "typing-render-budget.spec.ts › key feedback borders match their state immediately while press motion and settled bounds remain",
+            "file": "typing-render-budget.spec.ts",
+            "line": 10,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(received).toContainEqual(expected) // deep equality Expected value: {\"duration\": 90, \"property\": \"transform\"} Received array: [{\"duration\": 55, \"property\": \"transform\"}] 75 | expect(observed.receipt.correct.border).toBe(observed.expected.accent); 76 | expect(observed.receipt.correct.background).toBe(observed.expected.accent); > 77 | expect(observed.receipt.wrong.animations).toContainEqual({ property: \"transform\", duration: 90 }); | "
+            ]
+          },
+          {
+            "project": "edge",
+            "title": "typing-render-budget.spec.ts › key feedback borders match their state immediately while press motion and settled bounds remain",
+            "file": "typing-render-budget.spec.ts",
+            "line": 10,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(received).toContainEqual(expected) // deep equality Expected value: {\"duration\": 90, \"property\": \"transform\"} Received array: [{\"duration\": 55, \"property\": \"transform\"}] 75 | expect(observed.receipt.correct.border).toBe(observed.expected.accent); 76 | expect(observed.receipt.correct.background).toBe(observed.expected.accent); > 77 | expect(observed.receipt.wrong.animations).toContainEqual({ property: \"transform\", duration: 90 }); | "
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "typing-render-budget.spec.ts › key feedback borders match their state immediately while press motion and settled bounds remain",
+            "file": "typing-render-budget.spec.ts",
+            "line": 10,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(received).toContainEqual(expected) // deep equality Expected value: {\"duration\": 90, \"property\": \"transform\"} Received array: [{\"duration\": 55, \"property\": \"transform\"}] 75 | expect(observed.receipt.correct.border).toBe(observed.expected.accent); 76 | expect(observed.receipt.correct.background).toBe(observed.expected.accent); > 77 | expect(observed.receipt.wrong.animations).toContainEqual({ property: \"transform\", duration: 90 }); | "
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "typing-render-budget.spec.ts › key feedback borders match their state immediately while press motion and settled bounds remain",
+            "file": "typing-render-budget.spec.ts",
+            "line": 10,
+            "attempts": 1,
+            "attemptStatuses": [
+              "failed"
+            ],
+            "messages": [
+              "Error: expect(received).toContainEqual(expected) // deep equality Expected value: {\"duration\": 90, \"property\": \"transform\"} Received array: [{\"duration\": 55, \"property\": \"transform\"}] 75 | expect(observed.receipt.correct.border).toBe(observed.expected.accent); 76 | expect(observed.receipt.correct.background).toBe(observed.expected.accent); > 77 | expect(observed.receipt.wrong.animations).toContainEqual({ property: \"transform\", duration: 90 }); | "
+            ]
+          }
+        ],
+        "skipReasons": [
+          {
+            "reason": "UNVERIFIED: this browser runner exposes no standard AudioContext API; this is not a native Safari capability claim.",
+            "count": 1,
+            "projects": [
+              "webkit"
+            ]
+          },
+          {
+            "reason": "UNVERIFIED: this runner has no native transferable-canvas worker API.",
+            "count": 1,
+            "projects": [
+              "webkit"
+            ]
+          },
+          {
+            "reason": "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently.",
+            "count": 7,
+            "projects": [
+              "webkit"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "first-input-timing",
+        "totals": {
+          "total": 32,
+          "passed": 32,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0
+        },
+        "engines": [
+          {
+            "project": "chromium",
+            "total": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "edge",
+            "total": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "firefox",
+            "total": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "webkit",
+            "total": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          }
+        ],
+        "exitCode": 0,
+        "durationMs": 66222.6775,
+        "completedAt": "2026-10-27T19:34:25.126Z",
+        "integrityAtExecution": {
+          "buildUnchanged": true,
+          "testsUnchanged": true,
+          "dependenciesUnchanged": true
+        },
+        "currentProtocolInputsChanged": [],
+        "globalErrors": [],
+        "failures": [],
+        "skipReasons": []
+      }
+    ]
+  },
+  "failureGrouping": [
+    {
+      "cases": 1,
+      "engine": "webkit",
+      "feature": "workspace reset",
+      "observation": "Reset guest workspace remained disabled until the30s test timeout. Cause unverified."
+    },
+    {
+      "cases": 12,
+      "engines": "all four",
+      "feature": "classic/flat/outline key motion",
+      "observation": "The assertion at live-keyboard.spec.ts524 hardcodes transform90ms; source27 deliberately uses55ms. Later assertions in those cases were not reached."
+    },
+    {
+      "cases": 4,
+      "engines": "all four",
+      "feature": "typing render budget",
+      "observation": "The assertion at typing-render-budget.spec.ts77 expects transform90ms and observed55ms. Later assertions were not reached."
+    }
+  ],
+  "native": {
+    "original20CaseStatus": "FAILED",
+    "original20CasePassed": 16,
+    "original20CaseFailed": 4,
+    "logicalMappingsWithScopedPassingWitness": 20,
+    "singleClean20CaseRun": false,
+    "duplicateOrRepeatedExecutionsSummedAsUniquePasses": false,
+    "witnesses": [
+      {
+        "title": "real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+        "engine": "chromium",
+        "rawReport": "audit/2026-10-27/pack-native-final27-3d44c37ac589c270-1793123443072-browser.json",
+        "normalServiceWorkerBehavior": true,
+        "serviceWorkersBlockedOnlyForFaultTest": false
+      },
+      {
+        "title": "real two-browser PHP human race shares opponent pace and settles server results",
+        "engine": "chromium",
+        "rawReport": "audit/2026-10-27/pack-native-final27-3d44c37ac589c270-1793123443072-browser.json",
+        "normalServiceWorkerBehavior": true,
+        "serviceWorkersBlockedOnlyForFaultTest": false
+      },
+      {
+        "title": "real account sign in with dedicated deployment credentials",
+        "engine": "chromium",
+        "rawReport": "audit/2026-10-27/pack-native-final27-3d44c37ac589c270-1793123443072-browser.json",
+        "normalServiceWorkerBehavior": true,
+        "serviceWorkersBlockedOnlyForFaultTest": false
+      },
+      {
+        "title": "PHP two-account race authorization and server-owned countdown",
+        "engine": "chromium",
+        "rawReport": "audit/2026-10-27/pack-native-final27-3d44c37ac589c270-1793123443072-browser.json",
+        "normalServiceWorkerBehavior": true,
+        "serviceWorkersBlockedOnlyForFaultTest": false
+      },
+      {
+        "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+        "engine": "chromium",
+        "rawReport": "audit/2026-10-27/pack-native-final27-routed-fault-confirmation-42036dede984169c-1793125261785-browser.json",
+        "normalServiceWorkerBehavior": false,
+        "serviceWorkersBlockedOnlyForFaultTest": true
+      },
+      {
+        "title": "real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+        "engine": "edge",
+        "rawReport": "audit/2026-10-27/pack-native-final27-3d44c37ac589c270-1793123443072-browser.json",
+        "normalServiceWorkerBehavior": true,
+        "serviceWorkersBlockedOnlyForFaultTest": false
+      },
+      {
+        "title": "real two-browser PHP human race shares opponent pace and settles server results",
+        "engine": "edge",
+        "rawReport": "audit/2026-10-27/pack-native-final27-3d44c37ac589c270-1793123443072-browser.json",
+        "normalServiceWorkerBehavior": true,
+        "serviceWorkersBlockedOnlyForFaultTest": false
+      },
+      {
+        "title": "real account sign in with dedicated deployment credentials",
+        "engine": "edge",
+        "rawReport": "audit/2026-10-27/pack-native-final27-3d44c37ac589c270-1793123443072-browser.json",
+        "normalServiceWorkerBehavior": true,
+        "serviceWorkersBlockedOnlyForFaultTest": false
+      },
+      {
+        "title": "PHP two-account race authorization and server-owned countdown",
+        "engine": "edge",
+        "rawReport": "audit/2026-10-27/pack-native-final27-3d44c37ac589c270-1793123443072-browser.json",
+        "normalServiceWorkerBehavior": true,
+        "serviceWorkersBlockedOnlyForFaultTest": false
+      },
+      {
+        "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+        "engine": "edge",
+        "rawReport": "audit/2026-10-27/pack-native-final27-routed-fault-confirmation-42036dede984169c-1793125261785-browser.json",
+        "normalServiceWorkerBehavior": false,
+        "serviceWorkersBlockedOnlyForFaultTest": true
+      },
+      {
+        "title": "real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+        "engine": "firefox",
+        "rawReport": "audit/2026-10-27/pack-native-final27-3d44c37ac589c270-1793123443072-browser.json",
+        "normalServiceWorkerBehavior": true,
+        "serviceWorkersBlockedOnlyForFaultTest": false
+      },
+      {
+        "title": "real two-browser PHP human race shares opponent pace and settles server results",
+        "engine": "firefox",
+        "rawReport": "audit/2026-10-27/pack-native-final27-3d44c37ac589c270-1793123443072-browser.json",
+        "normalServiceWorkerBehavior": true,
+        "serviceWorkersBlockedOnlyForFaultTest": false
+      },
+      {
+        "title": "real account sign in with dedicated deployment credentials",
+        "engine": "firefox",
+        "rawReport": "audit/2026-10-27/pack-native-final27-3d44c37ac589c270-1793123443072-browser.json",
+        "normalServiceWorkerBehavior": true,
+        "serviceWorkersBlockedOnlyForFaultTest": false
+      },
+      {
+        "title": "PHP two-account race authorization and server-owned countdown",
+        "engine": "firefox",
+        "rawReport": "audit/2026-10-27/pack-native-final27-3d44c37ac589c270-1793123443072-browser.json",
+        "normalServiceWorkerBehavior": true,
+        "serviceWorkersBlockedOnlyForFaultTest": false
+      },
+      {
+        "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+        "engine": "firefox",
+        "rawReport": "audit/2026-10-27/pack-native-final27-routed-fault-confirmation-42036dede984169c-1793125261785-browser.json",
+        "normalServiceWorkerBehavior": false,
+        "serviceWorkersBlockedOnlyForFaultTest": true
+      },
+      {
+        "title": "real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+        "engine": "webkit",
+        "rawReport": "audit/2026-10-27/pack-native-final27-webkit-account-ordinary-confirmation-7b4f7d4d6fe0ef8a-1793124867525-browser.json",
+        "normalServiceWorkerBehavior": true,
+        "serviceWorkersBlockedOnlyForFaultTest": false
+      },
+      {
+        "title": "real two-browser PHP human race shares opponent pace and settles server results",
+        "engine": "webkit",
+        "rawReport": "audit/2026-10-27/pack-native-final27-webkit-auth-confirmation-7bbf2372eea5cde5-1793124041120-browser.json",
+        "normalServiceWorkerBehavior": true,
+        "serviceWorkersBlockedOnlyForFaultTest": false
+      },
+      {
+        "title": "real account sign in with dedicated deployment credentials",
+        "engine": "webkit",
+        "rawReport": "audit/2026-10-27/pack-native-final27-webkit-auth-confirmation-7bbf2372eea5cde5-1793124041120-browser.json",
+        "normalServiceWorkerBehavior": true,
+        "serviceWorkersBlockedOnlyForFaultTest": false
+      },
+      {
+        "title": "PHP two-account race authorization and server-owned countdown",
+        "engine": "webkit",
+        "rawReport": "audit/2026-10-27/pack-native-final27-webkit-auth-confirmation-7bbf2372eea5cde5-1793124041120-browser.json",
+        "normalServiceWorkerBehavior": true,
+        "serviceWorkersBlockedOnlyForFaultTest": false
+      },
+      {
+        "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+        "engine": "webkit",
+        "rawReport": "audit/2026-10-27/pack-native-final27-routed-fault-confirmation-42036dede984169c-1793125261785-browser.json",
+        "normalServiceWorkerBehavior": false,
+        "serviceWorkersBlockedOnlyForFaultTest": true
+      }
+    ],
+    "routedFault": {
+      "status": "PASS-SCOPED-BROWSER",
+      "passed": 4,
+      "failed": 0,
+      "scope": "Service-worker blocking is restricted to the injected-fault test contexts; original normal human-race/PWA cases retain normal behavior."
+    },
+    "ordinaryWebKitAccount": {
+      "status": "PASS-SCOPED-BROWSER",
+      "passed": 1,
+      "original90sTimeoutCause": "UNVERIFIED"
+    }
+  },
+  "limits": [
+    "Full matrix remainsFAILED with17failures; no selected native pass changes that status.",
+    "The29skips are20credential-conditioned cases plus9WebKit audio/transferable-canvas capability cases; each remains unverified within the full frontend matrix.",
+    "Native logical mapping spans distinct owners, times and testcase contexts and is not a clean single20/20run.",
+    "Physical devices, field INP, hosted deployments and sustained400-client load are not established.",
+    "Capacity p95 remains inheritedFAILED261/243ms against150ms; this extraction performs no capacity run."
+  ],
+  "inputHashes": {
+    "audit/2026-10-27/final27-source.json": "a7289dd0a17a9d4fe3672bc7495583e6db1ed774c7010627e8de7bea1b4a3359",
+    "audit/2026-10-27/final27-browser-matrix.json": "218e8c8644b1bfdaa44d159a08cad7c46d15a66c7c57dec3eca556cfdbbae2be",
+    "audit/2026-10-27/final27-new-features-summary.json": "a3216f09cb055f06425b1d4e31ca0c47c0272601c31b1cc6c5d405cf90717f43",
+    "audit/2026-10-27/final27-new-features-protocol.json": "324f234452d5c92cbe49e48854a08b1f7988115a8e5ebfb49390d35b6c8fbdef",
+    "audit/2026-10-27/final27-new-features.json": "2e8dd605d7309e3f693b9c7e7e5fbe2a9d3e48692572742446a5985de7d86e2a",
+    "audit/2026-10-27/final27-existing-summary.json": "9080495d6cb75f6adf45cf38ca6077b2dbdf971f4d2572f21013d926e3ab252c",
+    "audit/2026-10-27/final27-existing-protocol.json": "3bd3ab63f6bff8c67c82b7105b494e480bd0eab6c7369e1b7abe0b1c45e6327a",
+    "audit/2026-10-27/final27-existing.json": "42ce7338ed496dc1ef6349b0931b73236764341eee5d985d123bbfc4108a05e0",
+    "audit/2026-10-27/final27-isolated-summary.json": "46b63765718822f804d3d803ce12bac1499e907bc46c17954eb1dd404d57808d",
+    "audit/2026-10-27/final27-isolated-protocol.json": "784eda89cca1f963b179f0e0bfb3682d7418bb2074d9ffc4b5b053a0559c2061",
+    "audit/2026-10-27/final27-isolated.json": "8e3586b01b0b19155c8e57f0d3f23213b1b7cfe3942d5de9db40301d5760985a",
+    "audit/2026-10-27/final27-first-input-timing-summary.json": "da624b94a709988fdb258d48a31cd7bf45f9662d53fcbc668ae07a41def50e97",
+    "audit/2026-10-27/final27-first-input-timing-protocol.json": "15f24b92f6b5f3572dce939d852457746afac88e7a1b09117f7806a9bb66f163",
+    "audit/2026-10-27/final27-first-input-timing.json": "a5390a6a47109ec42ece5127ca6aeb06e29cd559c177b9a2f90b97f8b815b6a0",
+    "audit/2026-10-27/final27-native-logical-coverage-independent-extraction.json": "7b22d53a71602cfadd5195723950320af27afb767563c3a2401a892514a39f04",
+    "audit/2026-10-27/pack-native-final27-3d44c37ac589c270-1793123443072-browser.json": "593fbe97c597404e3a879c915f77078494ef68554b55fef8e845790672e792f0",
+    "audit/2026-10-27/pack-native-final27-routed-fault-confirmation-42036dede984169c-1793125261785-browser.json": "c05607c818db4abb0a466ce2f663c3cda04a9cb9fe8431312d2b815b949d2a2d",
+    "audit/2026-10-27/pack-native-final27-webkit-account-ordinary-confirmation-7b4f7d4d6fe0ef8a-1793124867525-browser.json": "726dadb737f8ff4f0a6b267546e5065b2393e094e642fde9ddfe17056208b48c",
+    "audit/2026-10-27/pack-native-final27-webkit-auth-confirmation-7bbf2372eea5cde5-1793124041120-browser.json": "9dc0ae4174914428d40cadb2ddf444efbee4e3a829237d42e2afc02e099250f3",
+    "audit/2026-10-27/final27-native-browser.json": "2f8bce97808c56678f2544a550943775822e02b59de6a1399920bb6d106e4eae",
+    "audit/2026-10-27/final27-native-routed-fault-confirmation.json": "122a8a9e12f06738976f98669fdc86ed5f5e266ba415651044babcefaa1f2d08",
+    "audit/2026-10-27/final27-native-webkit-account-ordinary-confirmation.json": "5db11c6a1f329d8c27a54365350ad8d216267c5a90c0969bc2bf89ce2bca8ef0"
+  }
+}

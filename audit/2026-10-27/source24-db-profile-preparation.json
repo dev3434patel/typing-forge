@@ -1,0 +1,92 @@
+{
+  "preparedAt": "2026-10-27T16:32:24.914Z",
+  "status": "PREPARED-NOT-RUN",
+  "expectedBuild": "6cdddf1a74b2d10d1c9b",
+  "expectedSourceFiles": 504,
+  "scope": "Audit-only cloned owned instance with performance_schema ON; unchanged1653-request/concurrency20/all-statuses/150ms assertions. Ordinary acceptance remains separate.",
+  "servicesStarted": 0,
+  "sqlExecuted": 0,
+  "browsersStarted": 0,
+  "productOrE2ESourceChanged": false,
+  "prepared": [
+    {
+      "source": "audit/2026-10-27/pack-backend-instance-source24.mjs",
+      "target": "audit/2026-10-27/pack-backend-instance-source24-db-profile.mjs",
+      "sourceSha256": "31d6162f7db08ecd26c957510c45fb617835d4cf97a85c4d4ef0b66b27fb8a49",
+      "targetSha256": "478e3c65d77373376434cd0fc1274c1794be7d5ea147d46579a55216495fbd5f",
+      "substitutions": [
+        {
+          "before": "const httpRuntime = process.env.SPAROWTYPE_PACK_HTTP_RUNTIME ?? 'cli';",
+          "after": "assert.equal(process.env.SPAROWTYPE_SOURCE24_DB_PROFILE_ACCEPTANCE, '1', 'Diagnostic preparation is not execution authorization.');\nconst httpRuntime = process.env.SPAROWTYPE_PACK_HTTP_RUNTIME ?? 'cli';",
+          "count": 1
+        },
+        {
+          "before": "'--performance-schema=OFF'",
+          "after": "'--performance-schema=ON'",
+          "count": 1
+        },
+        {
+          "before": "if (line.trim() === 'capacity24')",
+          "after": "if (line.trim() === 'capacity24-db-profile')",
+          "count": 1
+        },
+        {
+          "before": "const capacityScript='audit/2026-10-27/run-source24-capacity-burst.mjs';",
+          "after": "const capacityScript='audit/2026-10-27/run-source24-database-profile.mjs';",
+          "count": 1
+        },
+        {
+          "before": "send capacity24, rate-native24",
+          "after": "send capacity24-db-profile, rate-native24",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "source": "audit/2026-10-27/run-source24-capacity-burst.mjs",
+      "target": "audit/2026-10-27/run-source24-capacity-db-profile.mjs",
+      "sourceSha256": "f5bd8c8ff27aa84b46a0b9eac0b30c7a7b188e168b6203a946c36b001b9cec1a",
+      "targetSha256": "696e7768a45126503efa9f20526d30dc0720394ac88377b26fff29c06a542811",
+      "substitutions": [
+        {
+          "before": "pack-backend-instance-source24.mjs",
+          "after": "pack-backend-instance-source24-db-profile.mjs",
+          "count": 1
+        },
+        {
+          "before": "run-source24-capacity-burst.mjs",
+          "after": "run-source24-capacity-db-profile.mjs",
+          "count": 1
+        },
+        {
+          "before": "`source24-capacity-${ownerId}`",
+          "after": "`source24-capacity-db-profile-${ownerId}`",
+          "count": 1
+        },
+        {
+          "before": "assert.equal(process.env.SPAROWTYPE_SOURCE24_CAPACITY_ACCEPTANCE, '1', 'Root must explicitly enable this owned capacity window.');",
+          "after": "assert.equal(process.env.SPAROWTYPE_SOURCE24_DB_PROFILE_ACCEPTANCE, '1', 'Root must separately enable this diagnostic environment.');\nassert.equal(process.env.SPAROWTYPE_SOURCE24_CAPACITY_ACCEPTANCE, '1', 'Root must explicitly enable this owned capacity window.');",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    }
+  ],
+  "limits": [
+    "Only the fresh owned instance enables Performance Schema.",
+    "Statement/wait summary collectors add overhead, so diagnostic latency cannot replace ordinary acceptance.",
+    "Original failed receipts remain unchanged; every diagnostic output uses a unique owner and namespace.",
+    "No application rate, durability, validation or score policy changes."
+  ],
+  "sources": [
+    {
+      "url": "https://mariadb.com/docs/server/reference/system-tables/performance-schema/performance-schema-tables/performance-schema-events_statements_summary_by_digest-table",
+      "checkedDate": "2026-10-27"
+    },
+    {
+      "url": "https://mariadb.com/docs/server/reference/system-tables/performance-schema/performance-schema-tables/performance-schema-events_statements_current-table",
+      "checkedDate": "2026-10-27"
+    }
+  ]
+}

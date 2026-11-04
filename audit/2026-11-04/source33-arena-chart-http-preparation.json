@@ -1,0 +1,23 @@
+{
+  "recordedAt": "2026-11-04T15:54:47.443Z",
+  "status": "PREPARED-NOT-RUN",
+  "originalSuite": "audit/mega-pack-2026-10-21/run-arena-http.mjs",
+  "targetSuite": "audit/2026-11-02/run-source33-arena-chart-http.mjs",
+  "originalOwner": "audit/2026-11-02/pack-capacity-instance-source33.mjs",
+  "targetOwner": "audit/2026-11-02/pack-arena-chart-instance-source33.mjs",
+  "suiteSha256": "5bd4b0c068681ccad6dddecef61923650c2cbac8790dbdb6d69cb15a4bd69007",
+  "ownerSha256": "0e7c262e5d4d3df5d3b9d7985c8820d2b2f580e061e0d87b7ee9550e14ee4664",
+  "originalSuiteSha256": "6f0a3b526a7477f1c720f6036f5ce22cc78b6d71d80d8d3498504681f566f407",
+  "originalOwnerSha256": "7750c8e4f64378b7765604f55ca462e7d0424faa00f379e2dd311e7d5ff6cd16",
+  "helper": "function sameProjection(left, right) {\n  if (typeof left === 'number' && typeof right === 'number') return Number.isFinite(left) && Number.isFinite(right) && Math.abs(left - right) <= Math.max(1e-9, Math.abs(left) * 1e-12);\n  if (left && right && typeof left === 'object' && typeof right === 'object') {\n    const keys = Object.keys(left).sort();\n    return Array.isArray(left) === Array.isArray(right) && JSON.stringify(keys) === JSON.stringify(Object.keys(right).sort()) && keys.every(key => sameProjection(left[key], right[key]));\n  }\n  return left === right;\n}\nasync function persistedFinal(account, sessionId) {\n  const response = await fetch(new URL('sessions?expectedOwner=' + encodeURIComponent(account.id), origin), { headers: { Cookie: account.cookie }, signal: AbortSignal.timeout(15000) });\n  const value = await response.json();\n  requests.push({ action: 'read-owned-finished-chart', status: response.status, error: value.error?.code ?? null });\n  return { status: response.status, rows: Array.isArray(value.sessions) ? value.sessions.filter(row => row.clientSessionId === sessionId) : [] };\n}\n",
+  "before": "  const persistedBeforeRetry = await persistedFinal(a, id);\n  const storedFinal = persistedBeforeRetry.rows[0];\n  check('new Arena finish persists the complete independently expected chart', persistedBeforeRetry.status === 200 && persistedBeforeRetry.rows.length === 1 && Array.isArray(storedFinal?.accepted?.timeSeries) && storedFinal.accepted.timeSeries.length === 15 && sameProjection(storedFinal.accepted.timeSeries, final.timeSeries));\n  check('finished history retains every canonical chart point', Array.isArray(storedFinal?.summary?.wpmHistory) && sameProjection(storedFinal.summary.wpmHistory, final.timeSeries.map(point => point.wpm ?? 0)));\n",
+  "after": "  const persistedAfterRetry = await persistedFinal(a, id);\n  check('final retry preserves one persisted result, payload hash and full chart', persistedAfterRetry.status === 200 && persistedAfterRetry.rows.length === 1 && persistedAfterRetry.rows[0].payloadHash === storedFinal.payloadHash && JSON.stringify(persistedAfterRetry.rows[0].accepted.timeSeries) === JSON.stringify(storedFinal.accepted.timeSeries));\n",
+  "retryLine": "  check('immutable final retry is idempotent', (await api(a, 'submit', { code: room.code, candidate: final, finish: true })).status === 200);",
+  "original29AssertionsAndActionsRetained": true,
+  "additionalChartPersistenceAssertions": 3,
+  "baselineNumericToleranceUnchanged": "max(1e-9,abs(expected)*1e-12)",
+  "nativeClockAndTimeoutsUnchanged": true,
+  "source33SourceOrFrozenTestsChanged": false,
+  "servicesStarted": 0,
+  "runtimeExecuted": false
+}

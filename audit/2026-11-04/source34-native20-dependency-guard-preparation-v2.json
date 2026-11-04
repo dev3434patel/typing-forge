@@ -1,0 +1,19 @@
+{
+  "status": "PREPARED-NOT-RUN",
+  "recordedAt": "2026-11-04T17:48:18.184Z",
+  "priorPreparation": "audit/2026-11-04/source34-native20-dependency-guard-preparation.json",
+  "preservedV1": "audit/2026-11-04/run-source34-native20-dependency-guard.mjs.prep-v1",
+  "wrapper": "audit/2026-11-04/run-source34-native20-dependency-guard.mjs",
+  "beforeSha256": "aa9ef2f5b6db1ebdbc56086aec5bc43c694f8c7cba6643dc16fa5c55be89f34b",
+  "afterSha256": "bed84db0427442bf656ba1afbe6aa117bfc3a95e12ceffb8817eac721cd1dc10",
+  "exactSingleReplacement": {
+    "before": "native.status === 'PASS-SCOPED'",
+    "after": "native.status === 'PASS-SCOPED-NATIVE-BROWSER'",
+    "reason": "Read-only comparison caught the original orchestrator exact success enum before execution; v1 wrapper would always fail. No runtime ran."
+  },
+  "originalOrchestratorEdited": false,
+  "sourceOrTestsEdited": false,
+  "syntaxCheck": "PASS",
+  "runtimeStarted": false,
+  "metadataInvocationCorrection": "A PowerShell-quoted node-e metadata-only invocation failed to parse before writing the v2 sidecar; this standalone script replaces that invocation. It did not execute the wrapper or edit the orchestrator/tests/source."
+}

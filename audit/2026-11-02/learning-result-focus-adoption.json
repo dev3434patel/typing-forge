@@ -1,0 +1,59 @@
+{
+  "capturedAt": "2026-11-02T16:40:46.327Z",
+  "status": "SOURCE-CANDIDATE-APPLIED-UNDER-ROOT-GO-TESTS-PENDING",
+  "baselineBuild": "11de46af5d4a80e0e830",
+  "baselineStaticBuild": "fac344923bbf9cbde394",
+  "productFile": "src/components/keybr/KeybrResults.tsx",
+  "archive": "audit/2026-11-02/KeybrResults-before-preserve-scroll.source27",
+  "normalizedSourceReversesExactlyByOneLine": true,
+  "sourceBeforeSha256": "9cf5e8bd4db84859c641dd614e632bcc5cc2746e99115f8a7d2714e3787d3a6c",
+  "sourceCandidateSha256": "464918448b994308fab053e466ee548f8e1033d511594cc1936b945cc8399eac",
+  "change": {
+    "before": "useEffect(() => { root.current?.focus(); }, [result.clientSessionId]);",
+    "after": "useEffect(() => { root.current?.focus({ preventScroll: true }); }, [result.clientSessionId]);"
+  },
+  "preserved": [
+    "result root keyboard focus",
+    "existing focus effect dependency",
+    "result announcements",
+    "scoring",
+    "clocks",
+    "3D intro"
+  ],
+  "evidenceScope": {
+    "originalLearnAcceptanceP98Ms": 112,
+    "originalBotAcceptanceP98Ms": 112,
+    "baselineNativeFocusSampleWeightMs": 150.32,
+    "baselineFinalInsertionForcedStyleAndLayoutMs": 148.2,
+    "conclusion": "The native focus samples occur after the final beforeinput; this candidate addresses completion focus/scroll work. It does not establish or resolve the entire pre-final typing latency cause.",
+    "evidenceReport": "audit/2026-11-02/final27-mobile-hotpath-evidence-observations.json"
+  },
+  "regression": {
+    "spec": "e2e/learning-v3.spec.ts",
+    "rawOriginalArchive": "audit/2026-11-02/learning-v3-before-result-focus-regression.source27",
+    "rawFocusAppendArchive": "audit/2026-11-02/learning-v3-before-stats-regression.after-results-focus",
+    "originalNormalizedTextPreservedAsPrefix": true,
+    "rawFormattingDifference": "Only the original trailing empty-line terminator differs: original CRLF became LF before the new cases. Original test bodies and assertions are unchanged after CRLF normalization.",
+    "focusAppendRawBytesPreservedBySubsequentStatsAppend": true,
+    "originalBytes": 9856,
+    "focusCandidateBytes": 13062,
+    "focusAppendBytes": 3206,
+    "viewports": [
+      "390x844 portrait",
+      "844x390 landscape",
+      "390x844 previously scrolled portrait"
+    ],
+    "assertions": [
+      "automatic result root focus before any click/export",
+      "actual summary line entirely in viewport",
+      "no horizontal overflow",
+      "native-input final text exact",
+      "all insertion attempts correct",
+      "100% exported input accuracy"
+    ],
+    "runtimeStatus": "NOT-RUN-BY-THIS-AGENT",
+    "visibilityCaveat": "If preserving scroll leaves the summary outside a small or scrolled viewport, retain the assertion and investigate controlled scrolling after paint. Do not weaken accessibility visibility to obtain a pass."
+  },
+  "runtimeJobsRunByThisAgent": 0,
+  "acceptanceStatus": "UNVERIFIED-AFTER-CANDIDATE"
+}

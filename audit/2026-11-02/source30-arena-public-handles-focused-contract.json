@@ -1,0 +1,150 @@
+{
+  "recordedAt": "2026-11-02T17:05:31.437Z",
+  "status": "PASS-SCOPED",
+  "scope": "Focused pure PDO member-query/legacy-public-projection contract and syntax. No actual database connection, backend configuration, services, browser or HTTP capacity execution.",
+  "checks": [
+    {
+      "file": "backend/src/ArenaService.php",
+      "exitCode": 0,
+      "stdout": "No syntax errors detected in backend/src/ArenaService.php\n",
+      "stderr": ""
+    },
+    {
+      "file": "backend/tests/arena-member-query-contract.php",
+      "exitCode": 0,
+      "stdout": "No syntax errors detected in backend/tests/arena-member-query-contract.php\n",
+      "stderr": ""
+    },
+    {
+      "file": "backend/tests/arena-contract.mjs",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "result": {
+    "status": "PASS-SCOPED",
+    "scope": "Pure PDO member-query and byte-exact legacy public-projection contracts. No actual database locks, HTTP throughput or capacity claim.",
+    "passed": 23,
+    "failed": 0,
+    "checks": [
+      {
+        "name": "internal members retain every full row and original slot order",
+        "pass": true
+      },
+      {
+        "name": "internal member snapshots issue only the original full-row FOR UPDATE query",
+        "pass": true
+      },
+      {
+        "name": "owner membership retains the exact current full evidence row",
+        "pass": true
+      },
+      {
+        "name": "owner lookup retains the same all-member lock without querying public handles",
+        "pass": true
+      },
+      {
+        "name": "nonmember remains forbidden without querying public handles",
+        "pass": true
+      },
+      {
+        "name": "complete response bytes match legacy projection for 11111111-1111-4111-8111-111111111111",
+        "pass": true
+      },
+      {
+        "name": "serialization alone reads unordered public handles after the same member lock for 11111111-1111-4111-8111-111111111111",
+        "pass": true
+      },
+      {
+        "name": "private evidence never appears in the public member projection for 11111111-1111-4111-8111-111111111111",
+        "pass": true
+      },
+      {
+        "name": "quarantine and appeal details remain visible only to their owner for 11111111-1111-4111-8111-111111111111",
+        "pass": true
+      },
+      {
+        "name": "missing account retains Former member fallback for 11111111-1111-4111-8111-111111111111",
+        "pass": true
+      },
+      {
+        "name": "complete response bytes match legacy projection for 22222222-2222-4222-8222-222222222222",
+        "pass": true
+      },
+      {
+        "name": "serialization alone reads unordered public handles after the same member lock for 22222222-2222-4222-8222-222222222222",
+        "pass": true
+      },
+      {
+        "name": "private evidence never appears in the public member projection for 22222222-2222-4222-8222-222222222222",
+        "pass": true
+      },
+      {
+        "name": "quarantine and appeal details remain visible only to their owner for 22222222-2222-4222-8222-222222222222",
+        "pass": true
+      },
+      {
+        "name": "missing account retains Former member fallback for 22222222-2222-4222-8222-222222222222",
+        "pass": true
+      },
+      {
+        "name": "complete response bytes match legacy projection for outsider",
+        "pass": true
+      },
+      {
+        "name": "serialization alone reads unordered public handles after the same member lock for outsider",
+        "pass": true
+      },
+      {
+        "name": "private evidence never appears in the public member projection for outsider",
+        "pass": true
+      },
+      {
+        "name": "quarantine and appeal details remain visible only to their owner for outsider",
+        "pass": true
+      },
+      {
+        "name": "missing account retains Former member fallback for outsider",
+        "pass": true
+      },
+      {
+        "name": "nullable public handle retains the existing Former member fallback",
+        "pass": true
+      },
+      {
+        "name": "empty room avoids an empty IN query and retains the empty member projection",
+        "pass": true
+      },
+      {
+        "name": "query projection never mutates the supplied member evidence",
+        "pass": true
+      }
+    ],
+    "databaseConnected": false,
+    "privateConfigurationRead": false
+  },
+  "exitCode": 0,
+  "stderr": "",
+  "files": [
+    {
+      "file": "backend/src/ArenaService.php",
+      "sha256": "9008825c59bdcfd863b714f45412638082043eae56a1000b70a134de67919a6d"
+    },
+    {
+      "file": "backend/tests/arena-member-query-contract.php",
+      "sha256": "7a781de8f94226201de03f1e60a3a517705a4965cf00d2b8d06ef18b06b58311"
+    },
+    {
+      "file": "backend/tests/arena-contract.mjs",
+      "sha256": "dc910d9c5241782bedf9c75aa4ece30783e67cb7bad9585de9a8a6cc428bb4d6"
+    }
+  ],
+  "changes": [
+    "Retain exact full-row member SELECT/order/FOR UPDATE at every existing call",
+    "Defer non-locking public handle lookup to serialize only; same SQL, parameters, missing/null fallback and response field order",
+    "No cached rows, narrowed locks, receipt/clock/replay/auth/rate-policy change"
+  ],
+  "priorCapacityRemainsFailed": true,
+  "capacityGainMeasured": false
+}

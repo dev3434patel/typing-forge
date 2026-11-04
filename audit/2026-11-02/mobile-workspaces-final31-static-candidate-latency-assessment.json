@@ -1,0 +1,66 @@
+{
+  "assessedAt": "2026-11-02T17:10:14.876Z",
+  "status": "PASS-SCOPED",
+  "source": {
+    "sourceFile": "audit/2026-11-02/final31-source.json",
+    "expectedBuild": "f52d0372fe7656817259",
+    "compared": 505,
+    "mismatches": []
+  },
+  "inputs": {
+    "audit/2026-11-02/mobile-workspaces-final31-static-candidate.json": "0d590409cb6c93892729b38524235133906fe54e2179a78af67e4ff2819739c1",
+    "audit/2026-11-02/mobile-workspaces-final31-static-candidate-process.json": "8db590784c7cd9f249ee499f642526797d13eda16940a9ac04123d437c93ac1a",
+    "audit/2026-11-02/mobile-workspaces-final31-static-candidate-protocol.json": "2e7a5ef94e472f97f24682020324a652ada4a11a11dafa99f74951267290f665"
+  },
+  "originalFunctionalWrapperStatus": "PASS-SCOPED",
+  "functionalPassed": true,
+  "cases": [
+    {
+      "id": "learn",
+      "functionalPassed": true,
+      "eventTimingSupported": true,
+      "observedTypingEventsAtLeast16ms": 605,
+      "p98ObservedTypingEventDurationMs": 80,
+      "targetMs": 100,
+      "comparison": "<",
+      "latencyStatus": "PASS-SCOPED"
+    },
+    {
+      "id": "course",
+      "functionalPassed": true,
+      "eventTimingSupported": true,
+      "observedTypingEventsAtLeast16ms": 294,
+      "p98ObservedTypingEventDurationMs": 64,
+      "targetMs": 100,
+      "comparison": "<",
+      "latencyStatus": "PASS-SCOPED"
+    },
+    {
+      "id": "local-bot",
+      "functionalPassed": true,
+      "eventTimingSupported": true,
+      "observedTypingEventsAtLeast16ms": 500,
+      "p98ObservedTypingEventDurationMs": 56,
+      "targetMs": 100,
+      "comparison": "<",
+      "latencyStatus": "PASS-SCOPED"
+    },
+    {
+      "id": "games",
+      "functionalPassed": true,
+      "eventTimingSupported": true,
+      "observedTypingEventsAtLeast16ms": 301,
+      "p98ObservedTypingEventDurationMs": 24,
+      "targetMs": 100,
+      "comparison": "<",
+      "latencyStatus": "PASS-SCOPED"
+    }
+  ],
+  "acceptance": "All four original cases must remain functionally valid and have measured p98 observed typing-event duration strictly below100ms. A null or unsupported measurement is UNVERIFIED and never becomes zero.",
+  "originalWrapperCriteriaChanged": false,
+  "browserMeasurementsExecuted": 0,
+  "automaticRetries": 0,
+  "resultFiltering": false,
+  "fieldInpClaimed": false,
+  "scope": "Assessment of the entire existing four-case, 4x CPU-throttled laboratory measurement including its unchanged typing/result observation window. This is not field INP or a physical-device claim."
+}

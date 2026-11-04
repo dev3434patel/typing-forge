@@ -21,7 +21,7 @@ interface KeybrResultsProps {
 }
 export function KeybrResults({ result, newlyUnlocked, progress, perCharMetrics, onRestart, onRetry, sourceResultId, retestTo, saveStatus, onRetrySave }: KeybrResultsProps) {
   const root = useRef<HTMLDivElement>(null);
-  useEffect(() => { root.current?.focus(); }, [result.clientSessionId]);
+  useEffect(() => { root.current?.focus({ preventScroll: true }); }, [result.clientSessionId]);
   const observed = [...perCharMetrics.values()].sort((a, b) => a.accuracy - b.accuracy || a.confidence - b.confidence);
   return <div ref={root} tabIndex={-1} onKeyDown={event => { if (event.key === 'Enter' && event.target === event.currentTarget) { event.preventDefault(); onRestart(); } }} className="space-y-6 outline-none" aria-label="Learning results">
     {newlyUnlocked.length > 0 && <div role="status" className="flex items-center gap-4 rounded-xl border border-success/40 bg-success/10 p-5"><Sparkles className="size-6 shrink-0 text-success" /><div><h3 className="font-semibold text-success">New key introduced: <span className="font-mono">{newlyUnlocked.join(', ')}</span></h3><p className="mt-1 text-sm text-muted-foreground">All previous keys met initial mastery. This key is now available in your next lesson.</p></div></div>}

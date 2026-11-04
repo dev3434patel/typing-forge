@@ -1,0 +1,48 @@
+{
+  "preparedAt": "2026-11-02T17:30:36.230Z",
+  "status": "PREPARED-NOT-RUN",
+  "original": "audit/2026-11-02/run-final31-static-mobile-sequence.mjs",
+  "originalSha256": "ce128a443889682d641535a3476ce2708a856b2c95429dac9c9a8f1ff53cee47",
+  "target": "audit/2026-11-02/run-final32-static-mobile-sequence.mjs",
+  "targetSha256": "a9d00526b117b77760911b74bfca8261a1b6d2941339eb7092bd77f3e75bc76b",
+  "identifierReversal": true,
+  "declaredTransformReversal": true,
+  "transforms": [
+    {
+      "from": "const assessmentFile = `${directory}/assess-final32-mobile-latency.mjs`;",
+      "to": "const assessmentFile = `${directory}/assess-final32-mobile-latency.mjs`;\nconst interactionFile = `${directory}/assess-final32-mobile-interaction-latency.mjs`;"
+    },
+    {
+      "from": "const inputs = [import.meta.filename, sourceFile, staticFile, mobileFile, assessmentFile,",
+      "to": "const inputs = [import.meta.filename, sourceFile, staticFile, mobileFile, assessmentFile, interactionFile,"
+    },
+    {
+      "from": "`${directory}/${prefix}-latency-assessment.json`])])",
+      "to": "`${directory}/${prefix}-latency-assessment.json`, `${directory}/${prefix}-interaction-latency-assessment.json`])])"
+    },
+    {
+      "from": "  workers: 1, retries: 0, staticAndMobileRunSequentially: true, automaticRetries: 0, resultFiltering: false,",
+      "to": "  interactionAcceptance: 'Additionally every workspace in every declared trial must have p98ObservedInteractionMaximumMs strictly below100ms; event and interaction counts are retained and neither gate replaces the other.',\n  source32EventCardinalityChangeDisclosed: true,\n  workers: 1, retries: 0, staticAndMobileRunSequentially: true, automaticRetries: 0, resultFiltering: false,"
+    },
+    {
+      "from": "    report.mobileTrials.push({ prefix, measurementStatus: measured.status, process: processPath,\n      latencyStatus: assessment.status, assessment: assessmentPath, cases: assessment.cases });",
+      "to": "    const interactionRun = await run(`${prefix}-interaction-assessment`, interactionFile, [prefix]);\n    const interactionPath = `${directory}/${prefix}-interaction-latency-assessment.json`;\n    const interaction = JSON.parse(await readFile(interactionPath, 'utf8'));\n    report.mobileTrials.push({ prefix, measurementStatus: measured.status, process: processPath,\n      latencyStatus: assessment.status, assessment: assessmentPath, cases: assessment.cases,\n      interactionGateStatus: interaction.status, interactionAssessment: interactionPath, interactionCases: interaction.cases });\n    if (interactionRun.status !== 'PASS-SCOPED') report.anyMobileInteractionFailure = true;"
+    },
+    {
+      "from": "&& report.mobileTrials.every(trial => trial.latencyStatus === 'PASS-SCOPED') ?",
+      "to": "&& report.mobileTrials.every(trial => trial.latencyStatus === 'PASS-SCOPED' && trial.interactionGateStatus === 'PASS-SCOPED') ?"
+    },
+    {
+      "from": "prefix: trial.prefix, status: trial.latencyStatus, p98:",
+      "to": "prefix: trial.prefix, status: trial.latencyStatus, interactionGateStatus: trial.interactionGateStatus, p98:"
+    }
+  ],
+  "eventGateUnmodified": true,
+  "interactionGateAdded": true,
+  "allThreeTrialsRetainedEvenOnMetricFailure": true,
+  "source31ReportsPreserved": true,
+  "executionPrerequisite": "Root GO only after both source32 candidate event and interaction gates pass and the appropriate heavy-job window is free.",
+  "servicesStarted": 0,
+  "testsRun": 0,
+  "productFilesChanged": false
+}

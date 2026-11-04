@@ -1,0 +1,175 @@
+{
+  "totals": {
+    "total": 92,
+    "passed": 83,
+    "failed": 9,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "projects": [
+    {
+      "project": "chromium",
+      "total": 23,
+      "passed": 21,
+      "failed": 2,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "edge",
+      "total": 23,
+      "passed": 21,
+      "failed": 2,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "firefox",
+      "total": 23,
+      "passed": 20,
+      "failed": 3,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "webkit",
+      "total": 23,
+      "passed": 21,
+      "failed": 2,
+      "skipped": 0,
+      "flaky": 0
+    }
+  ],
+  "reportedStats": {
+    "expected": 83,
+    "unexpected": 9,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "countsAgreeWithReport": true,
+  "failures": [
+    {
+      "project": "chromium",
+      "title": "learning-v3.spec.ts › empty native lesson draft › trusted letters and an accepted space commit once without a native draft or an idle clock",
+      "file": "learning-v3.spec.ts",
+      "line": 324,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(locator).not.toContainText(expected) failed Locator: getByTestId('lesson-input-notice') Expected substring: not \"Type the word before pressing Space.\" Timeout: 5000ms Error: element(s) not found Call log: - Expect \"not toContainText\" getByTestId('lesson-input-notice') with timeout 5000ms - waiting for getByTestId('lesson-input-notice') 348 | expect(observed.before.every(event => event.trusted && event.cancelable && event.prevented &"
+      ]
+    },
+    {
+      "project": "chromium",
+      "title": "learning-v3.spec.ts › empty native lesson draft › untrusted and noncancelable input fallbacks preserve composition ownership and a genuine repeated letter",
+      "file": "learning-v3.spec.ts",
+      "line": 362,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBe(expected) // Object.is equality Expected: \"atéé\" Received: \"atééé\" 397 | await page.getByRole('button', { name: 'Finish practice', exact: true }).click(); 398 | const result = await exportedResult(page); > 399 | expect(result.finalText).toBe(`${prefix}éé`); | ^ 400 | expect(result.metrics.insertionAttempts).toBe(4); 401 | expect(result.events).toHaveLength(4); 402 | expect(result.events.map(event => event.provenance))"
+      ]
+    },
+    {
+      "project": "edge",
+      "title": "learning-v3.spec.ts › empty native lesson draft › trusted letters and an accepted space commit once without a native draft or an idle clock",
+      "file": "learning-v3.spec.ts",
+      "line": 324,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(locator).not.toContainText(expected) failed Locator: getByTestId('lesson-input-notice') Expected substring: not \"Type the word before pressing Space.\" Timeout: 5000ms Error: element(s) not found Call log: - Expect \"not toContainText\" getByTestId('lesson-input-notice') with timeout 5000ms - waiting for getByTestId('lesson-input-notice') 348 | expect(observed.before.every(event => event.trusted && event.cancelable && event.prevented &"
+      ]
+    },
+    {
+      "project": "edge",
+      "title": "learning-v3.spec.ts › empty native lesson draft › untrusted and noncancelable input fallbacks preserve composition ownership and a genuine repeated letter",
+      "file": "learning-v3.spec.ts",
+      "line": 362,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBe(expected) // Object.is equality Expected: \"atéé\" Received: \"atééé\" 397 | await page.getByRole('button', { name: 'Finish practice', exact: true }).click(); 398 | const result = await exportedResult(page); > 399 | expect(result.finalText).toBe(`${prefix}éé`); | ^ 400 | expect(result.metrics.insertionAttempts).toBe(4); 401 | expect(result.events).toHaveLength(4); 402 | expect(result.events.map(event => event.provenance))"
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "learning-v3.spec.ts › empty native lesson draft › trusted letters and an accepted space commit once without a native draft or an idle clock",
+      "file": "learning-v3.spec.ts",
+      "line": 324,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(locator).not.toContainText(expected) failed Locator: getByTestId('lesson-input-notice') Expected substring: not \"Type the word before pressing Space.\" Timeout: 5000ms Error: element(s) not found Call log: - Expect \"not toContainText\" getByTestId('lesson-input-notice') with timeout 5000ms - waiting for getByTestId('lesson-input-notice') 348 | expect(observed.before.every(event => event.trusted && event.cancelable && event.prevented &"
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "learning-v3.spec.ts › empty native lesson draft › untrusted and noncancelable input fallbacks preserve composition ownership and a genuine repeated letter",
+      "file": "learning-v3.spec.ts",
+      "line": 362,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 1 Array [ \"keyboard\", \"keyboard\", \"composition\", - \"keyboard\", + \"composition\", ] 400 | expect(result.metrics.insertionAttempts).toBe(4); 401 | expect(result.events).toHaveLength(4); > 402 | expect(result.events.map(event => event.provenance)).toEqual(['keyboard', 'keyboard', 'composition', 'keyboard']); | ^ 403 | expect(result.events[2].text).toBe('e\\u0301'); "
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "learning-v3.spec.ts › empty native lesson draft › line breaks retain native textarea normalization instead of the direct insertion path",
+      "file": "learning-v3.spec.ts",
+      "line": 441,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toMatchObject(expected) - Expected - 1 + Received + 1 Object { - \"provenance\": \"keyboard\", + \"provenance\": \"composition\", \"text\": \"a b\", } 449 | expect(result.finalText).toBe('a\\nb'); 450 | expect(result.events).toHaveLength(1); > 451 | expect(result.events[0]).toMatchObject({ text: 'a\\nb', provenance: 'keyboard' }); | ^ 452 | expect(result.metrics.insertionAttempts).toBe(3); 453 | const observed = await page.evaluate(() ="
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "learning-v3.spec.ts › empty native lesson draft › trusted letters and an accepted space commit once without a native draft or an idle clock",
+      "file": "learning-v3.spec.ts",
+      "line": 324,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(locator).not.toContainText(expected) failed Locator: getByTestId('lesson-input-notice') Expected substring: not \"Type the word before pressing Space.\" Timeout: 5000ms Error: element(s) not found Call log: - Expect \"not toContainText\" getByTestId('lesson-input-notice') with timeout 5000ms - waiting for getByTestId('lesson-input-notice') 348 | expect(observed.before.every(event => event.trusted && event.cancelable && event.prevented &"
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "learning-v3.spec.ts › empty native lesson draft › line breaks retain native textarea normalization instead of the direct insertion path",
+      "file": "learning-v3.spec.ts",
+      "line": 441,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBe(expected) // Object.is equality - Expected - 1 + Received + 1 - a + a b 447 | await page.getByRole('button', { name: 'Finish practice', exact: true }).click(); 448 | const result = await exportedResult(page); > 449 | expect(result.finalText).toBe('a\\nb'); | ^ 450 | expect(result.events).toHaveLength(1); 451 | expect(result.events[0]).toMatchObject({ text: 'a\\nb', provenance: 'keyboard' }); 452 | expect(result.metrics."
+      ]
+    }
+  ],
+  "flakyCases": [],
+  "skippedCases": [],
+  "skipReasons": [],
+  "expectedFailures": [],
+  "globalErrors": [],
+  "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+}

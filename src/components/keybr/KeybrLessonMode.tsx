@@ -203,6 +203,7 @@ export function KeybrLessonMode({
   const caretLifecycle = useRef({ controller: session.controller, focused, lessonFinished, status: view.status });
   const setKeyboardVisible = useCallback((showKeyboard: boolean) => updatePreferences({ showKeyboard }), [updatePreferences]);
   const setFingerGuideVisible = useCallback((showFingerGuide: boolean) => updatePreferences({ showFingerGuide }), [updatePreferences]);
+  const selectFocusKey = useCallback((char: string) => setSelectedFocus(char), []);
   const caretPreferences = useRef({ fontSize: preferences.fontSize, style: preferences.caretStyle, direction: pack.direction });
   caretPreferences.current = { fontSize: preferences.fontSize, style: preferences.caretStyle, direction: pack.direction };
   const startLesson = useCallback(
@@ -490,6 +491,38 @@ export function KeybrLessonMode({
     },
     onNotice: (notice) => setError(notice || null),
   });
+  const { ignoreEmptySpace } = wordCorrection;
+  const commitDraft = useCallback((text: string, inputType: string) => {
+    if (compositionEcho.current.consume(text, inputType)) {
+      setDraft("");
+      return;
+    }
+    if (!ignoreEmptySpace(text))
+      commit(text, inputType === "insertReplacementText" ? "autocorrect" : "keyboard");
+    setDraft("");
+  }, [commit, ignoreEmptySpace]);
+  useEffect(() => {
+    const input = inputRef.current;
+    if (!input) return;
+    const beforeInput = (event: InputEvent) => {
+      // Learn consumes an empty native draft. A trusted, cancelable insertion
+      // can use that same commit path without laying out and then clearing a
+      // temporary native character. IME, replacements and input-only keyboards
+      // retain their existing native editing path.
+      if (!event.isTrusted || !event.cancelable || event.defaultPrevented ||
+        event.inputType !== "insertText" || typeof event.data !== "string" ||
+        !event.data || /[\r\n]/u.test(event.data) || event.isComposing ||
+        composed.current || input.value !== "") return;
+      const status = session.controller.status;
+      if (status !== "ready" && status !== "running") return;
+      event.preventDefault();
+      commitDraft(event.data, event.inputType);
+    };
+    // Word correction owns deletion and empty-space rejection first. Reversing
+    // this listener order would inspect an accepted Space after it was committed.
+    input.addEventListener("beforeinput", beforeInput);
+    return () => input.removeEventListener("beforeinput", beforeInput);
+  }, [commitDraft, session.controller, finished]);
   const handleInput = (event: FormEvent<HTMLTextAreaElement>) => {
     const native = event.nativeEvent as InputEvent;
     if (["deleteCompositionText", "deleteByComposition"].includes(native.inputType)) {
@@ -518,12 +551,7 @@ export function KeybrLessonMode({
       setDraft(text);
       return;
     }
-    if (compositionEcho.current.consume(text, native.inputType || "")) {
-      setDraft("");
-      return;
-    }
-    if (!wordCorrection.ignoreEmptySpace(text)) commit(text, native.inputType === "insertReplacementText" ? "autocorrect" : "keyboard");
-    setDraft("");
+    commitDraft(text, native.inputType || "");
   };
   const handleCompositionEnd = (
     event: CompositionEvent<HTMLTextAreaElement>,
@@ -607,7 +635,7 @@ export function KeybrLessonMode({
           </p>
         )}
         {goal}
-        <LetterProgressPanel {...options} />
+        <LetterProgressPanel {...options} characterStats={stats} />
       </div>
     );
 
@@ -787,7 +815,7 @@ export function KeybrLessonMode({
               wordCorrection.handleKeyDown(event);
             }}
             onKeyUp={(event) => setCapsLock(event.getModifierState("CapsLock"))}
-            className="absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0"
+            className="learn-input absolute left-0 top-0 z-10 h-full w-full resize-none opacity-0"
           />
           {view.status === "paused" && (
             <div className="absolute inset-0 z-20 grid place-items-center bg-background/95">
@@ -1002,9 +1030,8 @@ export function KeybrLessonMode({
             </div>
             <LetterProgressPanel
               {...options}
-              onSelectKey={(char) => {
-                setSelectedFocus(char);
-              }}
+              characterStats={stats}
+              onSelectKey={selectFocusKey}
               selectedKey={selectedFocus ?? undefined}
             />
             <p className="mt-4 flex items-start gap-2 text-xs text-muted-foreground">

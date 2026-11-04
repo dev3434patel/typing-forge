@@ -1,0 +1,91 @@
+{
+  "diagnosticOnly": true,
+  "ordinaryCapacityReplaced": false,
+  "frontendIdentityClaim": false,
+  "instrumentation": "Guarded exact-source31 backend clone with native PDO/statement timing, bounded Server-Timing and inclusive PHP stage clocks; no parameter/row/SQL text export. Instrumentation and buffering alter diagnostic overhead.",
+  "declaredAt": "2026-11-03T14:05:21.238Z",
+  "status": "NOT-RUN",
+  "build": "f52d0372fe7656817259",
+  "source": {
+    "sourceFile": "audit/2026-11-02/final31-source.json",
+    "expectedBuild": "f52d0372fe7656817259",
+    "compared": 38,
+    "fixtureDependenciesCompared": 17,
+    "mismatches": [],
+    "scope": "Source31 backend38 and HTTP fixture core/wire only. Frontend UI may advance; no whole505-file/current-frontend identity or acceptance claim."
+  },
+  "ownerId": "c4f783325fb85273",
+  "origin": "http://127.0.0.1:3845/api/",
+  "rooms": 50,
+  "accountsPerRoom": 8,
+  "occupiedSeatsRequired": 400,
+  "durationSeconds": 30,
+  "concurrency": 20,
+  "requestTimeoutMs": 15000,
+  "watchdogMs": 180000,
+  "expectedArenaOperations": 1653,
+  "expectedOperations": {
+    "create": 50,
+    "join": 351,
+    "get": 51,
+    "spectate": 1,
+    "ready": 400,
+    "submit": 400,
+    "leave": 400
+  },
+  "p95TargetMs": 150,
+  "p95Method": "Nearest rank: sorted successful real Arena HTTP latencies[ceil(n*0.95)-1]. Every unexpected status separately fails the whole gate; all-request and per-phase distributions are also retained.",
+  "retries": 0,
+  "resultFiltering": false,
+  "rateCountersReset": false,
+  "limiterBypass": false,
+  "currentWire": {
+    "productionHelper": "src/domain/arena.ts#arenaEvidencePayload",
+    "actualHttpConsumer": "src/services/arena-service.ts",
+    "fieldsRemovedExactly": [
+      "characters",
+      "timeSeries",
+      "cursor"
+    ],
+    "metricsEventsAndAllOtherFieldsRetained": true,
+    "intentionalWireBytesChange": true,
+    "requestSerializationAdapterPoints": 1,
+    "helperImportedDirectlyWithNodeTypeStripping": true,
+    "separateRequiredContracts": [
+      "src/domain/__tests__/arena.test.ts",
+      "backend/tests/validation-parity.mjs"
+    ],
+    "separatePhpCanonicalHashParityRequired": true,
+    "noParityPassClaimFromThisCapacityRun": true,
+    "legacyFullDriverPreserved": "audit/2026-11-02/run-source31-capacity-burst.mjs",
+    "pairScope": "Separate instrumented wire-only diagnostic on a fresh owner with400 new fixtures. No preceding full run is required; no ordinary full or wire acceptance result is replaced. Profiling changes overhead."
+  },
+  "evidence": "400 independent guarded synthetic authenticated sessions. Ten canonical insertion events per account use native performance.now mapped to the actual authoritative server start and real80/83/86ms pacing; no server/browser/client clock fast-forward.",
+  "authenticationEndpointPerformance": "NOT-MEASURED: accounts/sessions are isolated SQL/file fixtures; one real session request verifies the API binding.",
+  "sustained120SecondLoad": "NOT-RUN: this declared burst preserves the original1653-operation comparison. It cannot establish400-client steady-state polling throughput.",
+  "sourceAndHarnessHashes": {
+    "audit/2026-11-02/pack-capacity-instance-source31-sql-profile.mjs": "b336a8f224c0d6ec0ed3dcfffbf53a963619ee1df9872e6f2f92b65ed8281d9b",
+    "audit/2026-11-02/run-source31-capacity-wire-sql-profile.mjs": "56ad6a1c720f6c45d8d6832670f1b58ae4135efeb4ca3d843e73f53b0cbe9656",
+    "audit/2026-11-02/source31-sql-profile-guard.mjs": "409865bf36690870fd9fdab7473d7b6ed19dec85d198ab461ffe949094e9c249",
+    "audit/2026-11-02/source31-sql-profile-web-wrapper.mjs": "ed0881f3a4d89e2a058341433e67a808772a9d5663e67be43f35547df935cde6",
+    "audit/2026-11-02/sql-profile-runtime-source31.php": "32798fb22dc6e10ef1d49ca3b32ed710332b70854199e182557df88f24ba6b16",
+    "audit/2026-11-02/source31-sql-profile-preparation.json": "25e16fd8082ce9b340b1dd8218c92d7269f23b8b07d0a4212596b14679778046",
+    "audit/2026-11-02/run-source31-capacity-burst.mjs": "d41980da25437615f6ed003426d6c62d417233a3fb9b1d909802b55cbf5f9aa8",
+    "src/domain/arena.ts": "24c5cce5e196903c7ddaad914acf3bca1a35540750abce3c3ac3875853151d42",
+    "src/services/arena-service.ts": "e395ff18b60392e6beecdf4b7a1f2766130fcd82d7da185b0358bbf8d45e9f4f",
+    "src/domain/__tests__/arena.test.ts": "417ca62c20f4f6809f495a79ddfdd3cefc61f3ef5318d4333a03cfb0cd1cec84",
+    "backend/tests/validation-parity.mjs": "30f0e872387a693e187e2c24569bf438705dd14f8fb0a48ca11a052602770ba9",
+    "backend/tests/arena-audit-admin.php": "1c40050d0318e8ec84e6cfc44ab90ebd7840d467ea1f0387ec16e11744b8091b",
+    "scripts/php-runtime.mjs": "2adeffc2ac322edbc611f34c437a0f34569689c942602bf39b079305cfb7a60f"
+  },
+  "machine": {
+    "logicalCpus": 20,
+    "cpuModel": "13th Gen Intel(R) Core(TM) i7-13650HX",
+    "totalMemoryBytes": 16849256448,
+    "freeMemoryBytes": 1523699712
+  },
+  "privateConfigReadByHarness": false,
+  "originalConfigRead": false,
+  "existingDatabaseConnected": false,
+  "cleanupOwnership": "Fixture account/session cleanup belongs to this script; Apache/MariaDB process cleanup remains with its original owner and must be verified separately."
+}

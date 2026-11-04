@@ -1,0 +1,45 @@
+import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
+import { access, readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { SessionController } from '../../src/lib/typing-core/index.ts';
+import { phpRuntime } from '../../scripts/php-runtime.mjs';
+import { verifyFrozenSource } from '../2026-10-21/artifact-verification.mjs';
+
+assert.equal(process.env.SPAROWTYPE_SOURCE31_WORD_METADATA_DIAGNOSTIC, '1');
+const prefix = 'audit/2026-11-02/source31-word-metadata-cpu';
+for (const suffix of ['-protocol.json', '-result.json', '-stdout.json']) await assert.rejects(access(prefix + suffix), { code: 'ENOENT' });
+const before = await verifyFrozenSource('audit/2026-11-02/final31-source.json');
+assert.equal(before.receipt.compared, 505);
+assert.deepEqual(before.receipt.mismatches, []);
+assert.equal(before.frozen.local.version, process.env.SPAROWTYPE_FINAL31_BUILD_ID);
+const inputs = [import.meta.filename, 'audit/2026-11-02/word-metadata-cpu-source31.php', 'audit/2026-11-02/LegacyWordMetadataValidatorSource30.php', 'backend/src/SessionValidator.php', 'backend/src/UnicodeGraphemes.php', 'backend/src/CourseAssessment.php', 'scripts/php-runtime.mjs', 'src/lib/typing-core/session.ts', 'src/lib/typing-core/transcript.ts', 'src/lib/typing-core/metrics.ts', 'src/lib/typing-core/types.ts'];
+const sha = value => createHash('sha256').update(value).digest('hex');
+const hashes = Object.fromEntries(await Promise.all(inputs.map(async file => [file, sha(await readFile(file))])));
+const cachePlan = JSON.parse(await readFile('audit/2026-11-02/source31-word-metadata-cache-protocol.json', 'utf8'));
+const archived = await readFile('audit/2026-11-02/LegacyWordMetadataValidatorSource30.php', 'utf8');
+assert.equal(sha(archived.replace('final class LegacyWordMetadataValidatorSource30', 'final class SessionValidator')), cachePlan.source30Sha256);
+const target = Array.from({ length: 800 }, (_, index) => ['calm', 'clear', 'river', 'focus'][index % 4]).join(' ');
+let now = 0;
+const wall = Date.UTC(2026, 9, 27, 12), owner = '11111111-1111-4111-8111-111111111111';
+const controller = new SessionController({ clientSessionId: 'source22-serializer-diagnostic', ownerScope: owner, mode: 'race', durationMs: 30000, initialTarget: target, correctionPolicy: 'current-word', inputMethod: 'keyboard', language: 'en', keyboardLayout: 'qwerty' }, { now: () => now, wallNow: () => wall + now });
+controller.startAt(0, wall);
+for (const [index, text] of [...target.slice(0, 10)].entries()) { now = 100 + index * 80 + index % 3 * 3; controller.input({ type: 'insert', text }); }
+now = 15000;
+const candidate = controller.checkpoint(), candidateJson = JSON.stringify(candidate);
+assert.equal(sha(candidateJson), '39fe841e3c203ee647cce99c75643b0ec9e6ed8efc685cc699c8b9abf809469c');
+assert.equal(Buffer.byteLength(candidateJson), 302392);
+const protocol = { declaredAt: new Date().toISOString(), scope: 'Pure same-fixture PHP validation/replay CPU diagnostic; no parser change, configuration, database, network, browser or application-clock measurement.', build: before.frozen.local.version, sourceBefore: before.receipt, fixture: { reference: 'audit/2026-10-27/final22-serializer-profile-protocol.json', candidateSha256: sha(candidateJson), candidateBytes: Buffer.byteLength(candidateJson), words: 800, events: 10, characterSlots: 4599, clientElapsedMs: 15000, independentAuthoritativeElapsedMs: 20000 }, iterations: 12, order: Array.from({ length: 12 }, (_, index) => index % 2 ? ['source31', 'source30'] : ['source30', 'source31']), freshValidatorPerVersionAndIteration: true, warmups: 0, retries: 0, outlierFiltering: false, source30ArchiveClassNameOnlyRenameVerified: true, inputHashes: hashes, actualDurationClock: 'PHP hrtime(true)', fixtureClock: 'Synthetic original portable fixture only; production clocks and score policy unchanged.', timeoutMs: 15000, acceptanceResultReplaced: false, httpCapacityClaim: false };
+await writeFile(prefix + '-protocol.json', JSON.stringify(protocol, null, 2) + '\n', { flag: 'wx' });
+const runtime = phpRuntime(), started = performance.now();
+const child = spawnSync(runtime.binary, [...runtime.args, 'audit/2026-11-02/word-metadata-cpu-source31.php'], { input: candidateJson, encoding: 'utf8', windowsHide: true, timeout: 15000, maxBuffer: 512000 });
+await writeFile(prefix + '-stdout.json', child.stdout || '', { flag: 'wx' });
+let result = null, parseError = null;
+try { result = JSON.parse(child.stdout); } catch (error) { parseError = error.message; }
+const after = await verifyFrozenSource('audit/2026-11-02/final31-source.json');
+const inputsUnchanged = (await Promise.all(inputs.map(async file => sha(await readFile(file)) === hashes[file]))).every(Boolean);
+const pass = child.status === 0 && !child.stderr && !parseError && result?.status === 'PASS-SCOPED-PURE-DIAGNOSTIC' && result.completeValidatedAndAuthoritativeOutputsIdentical && after.receipt.mismatches.length === 0 && inputsUnchanged;
+const report = { status: pass ? 'PASS-SCOPED-PURE-DIAGNOSTIC' : 'FAILED', finishedAt: new Date().toISOString(), protocol, child: { exitCode: child.status, signal: child.signal, timedOut: child.error?.code === 'ETIMEDOUT', error: child.error?.message ?? null, stderr: child.stderr, parseError, durationMs: performance.now() - started, result }, sourceAfter: after.receipt, inputsUnchanged, interpretation: 'All12 alternating raw pairs retained. CPU timing and exact output identity only; not exclusive HTTP attribution, deployed throughput or a substitute for ordinary strict150ms capacity acceptance.', serviceCleanup: { browserStarted: false, backendStarted: false, databaseConnected: false, privateConfigurationRead: false } };
+await writeFile(prefix + '-result.json', JSON.stringify(report, null, 2) + '\n', { flag: 'wx' });
+console.log(JSON.stringify({ status: report.status, result: prefix + '-result.json', summaries: result?.summaries, inputsUnchanged }));
+process.exitCode = pass ? 0 : 1;

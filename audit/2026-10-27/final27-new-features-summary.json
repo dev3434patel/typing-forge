@@ -1,0 +1,72 @@
+{
+  "totals": {
+    "total": 204,
+    "passed": 203,
+    "failed": 1,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "projects": [
+    {
+      "project": "chromium",
+      "total": 51,
+      "passed": 51,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "edge",
+      "total": 51,
+      "passed": 51,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "firefox",
+      "total": 51,
+      "passed": 51,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    {
+      "project": "webkit",
+      "total": 51,
+      "passed": 50,
+      "failed": 1,
+      "skipped": 0,
+      "flaky": 0
+    }
+  ],
+  "reportedStats": {
+    "expected": 203,
+    "unexpected": 1,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "countsAgreeWithReport": true,
+  "failures": [
+    {
+      "project": "webkit",
+      "title": "workspace-reset.spec.ts › another tab reset closes the active controller without restoring private text",
+      "file": "workspace-reset.spec.ts",
+      "line": 8,
+      "attempts": 1,
+      "attemptStatuses": [
+        "timedOut"
+      ],
+      "messages": [
+        "Test timeout of 30000ms exceeded.",
+        "Error: locator.click: Test timeout of 30000ms exceeded. Call log: - waiting for getByRole('button', { name: 'Reset guest workspace', exact: true }) - locator resolved to <button disabled class=\"forge-button-secondary text-destructive\">Reset guest workspace</button> - attempting click action 2 × waiting for element to be visible, enabled and stable - element is not enabled - retrying click action - waiting 20ms 2 × waiting for element to be visibl"
+      ]
+    }
+  ],
+  "flakyCases": [],
+  "skippedCases": [],
+  "skipReasons": [],
+  "expectedFailures": [],
+  "globalErrors": [],
+  "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+}

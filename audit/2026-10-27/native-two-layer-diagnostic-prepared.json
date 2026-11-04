@@ -1,0 +1,36 @@
+{
+  "preparedAt": "2026-10-27T15:17:25.028Z",
+  "status": "PREPARED-NOT-EXECUTED-DIAGNOSTIC-ONLY",
+  "acceptance": false,
+  "sourceDriver": "audit/correction-experience-2026-10-20/measure-typing.mjs",
+  "sourceSha256": "28cf9cb12ccbe2ae8138dc72afd9f936de6865a22e56fd8e90bb4cba40a6be35",
+  "diagnosticDriver": "audit/2026-10-27/native-two-layer-diagnostic-driver.mjs",
+  "diagnosticDriverSha256": "402318b63fa31b5be523afa57f8d23591b153df26be5b2c57b45d886139c0faf",
+  "byteReversalToOriginal": true,
+  "changes": [
+    "Report output directory only",
+    "After input focus and before throttling set style.transform=translateZ(0) on exactly one .typing-viewport and one .live-keyboard-board. No other style, input or production changes."
+  ],
+  "unchanged": [
+    "Native textarea default wrapping",
+    "495 characters and16 repetitions",
+    "4xCPU throttle",
+    "0ms requested input delay",
+    "390x844 to844x390 rotation at247characters",
+    "Original native input, result export, exact text/attempts/accuracy and rotation assertions",
+    "Original timing observers and150000ms watchdog",
+    "3D rendering source and quality",
+    "Glow and overflow styles"
+  ],
+  "requiredEnvironment": {
+    "TYPING_BENCH_CPU_RATE": "4",
+    "TYPING_BENCH_REPETITIONS": "16",
+    "TYPING_BENCH_DELAY_MS": "0",
+    "TYPING_BENCH_SETTLE": "1",
+    "TYPING_BENCH_REPORT_NAME": "Root assigns a unique diagnostic-only report name",
+    "TYPING_BENCH_BUILD_FILE": "audit/2026-10-27/final20-source.json"
+  },
+  "heavyJobsRun": 0,
+  "productOrTestFilesChanged": 0,
+  "causalClaim": "None before isolated execution. This is one rendering-layer hypothesis experiment, not input performance acceptance."
+}

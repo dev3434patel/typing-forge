@@ -1,6 +1,10 @@
 <?php
 declare(strict_types=1);
-require dirname(__DIR__).'/bootstrap.php';
+// This reflection-only policy check needs classes, never private configuration.
+spl_autoload_register(static function (string $class): void {
+    $prefix='SparowType\\';$name=substr($class,strlen($prefix));
+    if(str_starts_with($class,$prefix)&&preg_match('/^[A-Za-z][A-Za-z0-9]*$/D',$name))require_once __DIR__.'/../src/'.$name.'.php';
+});
 $class = new ReflectionClass(\SparowType\AuthService::class);
 $service = $class->newInstanceWithoutConstructor();
 $hashMethod = $class->getMethod('passwordHash');

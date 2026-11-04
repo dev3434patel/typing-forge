@@ -61,6 +61,13 @@
 .learn-stream-wrap {
   position: relative;
   margin-top: 2rem;
+  /* The native draft input and measured passage share this layout boundary. */
+  contain: layout;
+}
+.learn-input {
+  /* Its dimensions come from the fixed-height practice stage. Native draft
+     editing must not invalidate the rest of the lesson's layout or paint. */
+  contain: strict;
 }
 .learn-stream {
   height: calc(var(--learn-font-size) * 1.85 * 3 + 8px);

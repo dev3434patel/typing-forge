@@ -1,0 +1,115 @@
+{
+  "status": "PASS-SCOPED-ORDINARY-ACCOUNT; ROUTED-FAULT-REVIEW-NO-CONCRETE-BLOCKER-PENDING-RUN",
+  "capturedAt": "2026-10-27T18:21:18.220Z",
+  "build": "11de46af5d4a80e0e830",
+  "source": {
+    "sourceFile": "audit/2026-10-27/final27-source.json",
+    "expectedBuild": "11de46af5d4a80e0e830",
+    "compared": 505,
+    "mismatches": []
+  },
+  "ordinaryAccount": {
+    "receipt": {
+      "file": "audit/2026-10-27/final27-native-webkit-account-ordinary-confirmation.json",
+      "sha256": "5db11c6a1f329d8c27a54365350ad8d216267c5a90c0969bc2bf89ce2bca8ef0"
+    },
+    "raw": {
+      "file": "audit/2026-10-27/pack-native-final27-webkit-account-ordinary-confirmation-7b4f7d4d6fe0ef8a-1793124867525-browser.json",
+      "sha256": "726dadb737f8ff4f0a6b267546e5065b2393e094e642fde9ddfe17056208b48c"
+    },
+    "outcome": "passed",
+    "title": "real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+    "engine": "webkit",
+    "testDurationMs": 23695,
+    "suiteDurationMs": 24850.267,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "stdoutEntries": 0,
+    "timingAuditDisabled": true,
+    "existingAssertionsAnd90sTimeoutUnchanged": true,
+    "owner": "7b4f7d4d6fe0ef8a",
+    "cleanup": "Root reports graceful closure and owned temporary directory removed; no private files read."
+  },
+  "originalTimeout": {
+    "durationMs": 90206,
+    "blockedAwait": "UNVERIFIED",
+    "cause": "UNVERIFIED",
+    "noCausalFixClaim": true,
+    "failedFiveCaseAndTwentyCaseReceiptsRetained": true,
+    "diagnosticPassAndOrdinaryPassDoNotOverwriteFailures": true
+  },
+  "routedFixtureReview": {
+    "file": "e2e/php-human-race.spec.ts",
+    "sha256": "12dbbe3137b3502ba4c2bf9cee32827333f9013398e496f682fd8aba66f0e7db",
+    "findings": [],
+    "originalHumanBodyNormalizedSha256": "85ba8dee34ec40d5e393696a50a425239a720cfec6ef743206883739cbe0a05e",
+    "originalHumanBodyUnchangedFrom275": true,
+    "swBlockScope": "Nested describe applies only to the appended route-controlled test; manually created peer has matching serviceWorkers:block. Original first test/project/app/PWA behavior unchanged.",
+    "positiveControls": [
+      "Both native contexts assert serviceWorker.controller is null before room creation.",
+      "Always-on exact-submit routeHitCount increments before routing branches and must exceed0 after the injected first failure.",
+      "Genuine first accepted character before arming the checkpoint abort; later slice(1) preserves the same full host transcript."
+    ],
+    "preservedChecks": [
+      "90s testcase budget and real30s shared authoritative deadline",
+      "Native input and exact current values",
+      "Real API recovery200 and client matching final ACK",
+      "Separate checkpoint failure delivered only after final ACK",
+      "Two injected failures, accepted checkpoint>0, both results/no-alert/no-Retry, no page errors",
+      "Real owned room cleanup and peer context closure"
+    ],
+    "productionSourceChange": false,
+    "full505CurrentHashesMatch": true
+  },
+  "priorRouteDiagnostic": {
+    "raw": {
+      "file": "audit/2026-10-27/pack-native-final27-fault-route-diagnostic-6a2da7a72dc80e8e-1793124995921-browser.json",
+      "sha256": "97a36bdd85f4048250bda892d1098f6b3b0ede3d1ae1ca082f2ad3c135a5bb77"
+    },
+    "outcome": "failed",
+    "requests": 11,
+    "responses": 11,
+    "matching200Responses": 11,
+    "routeHits": 0,
+    "fromServiceWorkerResponses": 0,
+    "activeControllerPaths": [
+      "/sw.js",
+      "/sw.js"
+    ],
+    "conclusion": "Observed missing route interception despite matching responses and active controllers. This does not prove the service worker caused the bypass; fromServiceWorker wasfalse for every response.",
+    "causalSwProof": false
+  },
+  "routedFourEngineWrapper": {
+    "wrapper": {
+      "file": "audit/2026-10-27/run-final27-native-routed-fault-confirmation.mjs",
+      "sha256": "e4447ae3ad057b52fb718a0b387e332d8353662fb7f7641036f3bfb59a8e2443"
+    },
+    "runner": {
+      "file": "audit/2026-10-27/pack-native-browser-final27-routed-fault-confirmation.mjs",
+      "sha256": "ec152394fb25947315c0bd2254484ec34831faac405f3480348e697968c0e59b"
+    },
+    "expectedCases": 4,
+    "exactTitleAcrossEngines": [
+      "chromium",
+      "edge",
+      "firefox",
+      "webkit"
+    ],
+    "workers": 1,
+    "retries": 0,
+    "traces": false,
+    "timeoutOrExistingAssertionRelaxation": false,
+    "freshOwnerAndNoPriorNativeProtocolGuard": true,
+    "status": "PENDING-FRESH-RUN"
+  },
+  "full64SpecMatrix": "PENDING-AFTER-ROUTED-FAULT4",
+  "reviewerActions": {
+    "sourceEdits": 0,
+    "testEdits": 0,
+    "newBrowsers": 0,
+    "newServices": 0,
+    "newAcceptanceJobs": 0,
+    "privateBackendConfigEnvOrLogsRead": false
+  }
+}

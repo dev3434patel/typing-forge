@@ -1,0 +1,75 @@
+{
+  "capturedAt": "2026-11-02T15:56:15.832Z",
+  "status": "PREPARED-NOT-RUN",
+  "source": {
+    "sourceFile": "audit/2026-10-27/final27-source.json",
+    "expectedBuild": "11de46af5d4a80e0e830",
+    "compared": 505,
+    "mismatches": []
+  },
+  "build": "11de46af5d4a80e0e830",
+  "supersededUnexecutedTwoFilePlan": {
+    "preparation": "audit/2026-11-02/final27-motion-contract-preparation.json",
+    "launcher": "audit/2026-11-02/run-final27-nov02-motion-confirmation.mjs",
+    "launcherSha256": "714b4f395236d3be925d4c9640fcd46ad36ac9f8f1875c337ced4374784bb2b4",
+    "oldFilesAndHashesPreserved": true,
+    "executed": false
+  },
+  "currentLauncher": {
+    "file": "audit/2026-11-02/run-final27-nov02-motion-reset-confirmation.mjs",
+    "sha256": "4f8c03c56916715aad9d51964132a95a4669102f7c927016753c7d17dcaf5d0a",
+    "prefix": "final27-nov02-motion-reset-confirmation",
+    "files": [
+      "e2e/live-keyboard.spec.ts",
+      "e2e/typing-render-budget.spec.ts",
+      "e2e/workspace-reset.spec.ts"
+    ],
+    "engines": [
+      "chromium",
+      "edge",
+      "firefox",
+      "webkit"
+    ],
+    "workers": 1,
+    "retries": 0,
+    "traces": "off",
+    "grepOrCaseFiltering": false,
+    "sourceGuardBeforeAndAfter": 505,
+    "exactScopeExtensionReversal": true
+  },
+  "scopeExtension": {
+    "unchangedSpec": "e2e/workspace-reset.spec.ts",
+    "sha256": "a0826ea7aedfd66c1e554e574d392726f08334540d3917643c489524bc6ba342",
+    "matchesOriginalFailedRunRawHash": true,
+    "oldProtocol": "audit/2026-10-27/final27-new-features-protocol.json",
+    "originalFailure": "WebKit active workspace-reset scenario timed out waiting for disabled Reset guest workspace button. Cause remains unproven.",
+    "noTestOrProductCorrectionForResetClaimed": true
+  },
+  "assertionCorrections": [
+    {
+      "file": "e2e/live-keyboard.spec.ts",
+      "archive": "audit/2026-11-02/live-keyboard-before-duration-contract.source27",
+      "from": "motion.property === 'transform' && motion.duration === 90",
+      "to": "motion.property === 'transform' && motion.duration === 55",
+      "beforeSha256": "76f10efea50c26259ae9be9e62c584bd20b51b328cff22e2b1709ea542e6152d",
+      "afterSha256": "cf19d74050bc1b3f4b81990b8b1edb0c06ae321fec5c127412a5c39a11c3cb63",
+      "exactReversal": true,
+      "allOtherBytesIdentical": true
+    },
+    {
+      "file": "e2e/typing-render-budget.spec.ts",
+      "archive": "audit/2026-11-02/typing-render-budget-before-duration-contract.source27",
+      "from": "toContainEqual({ property: \"transform\", duration: 90 })",
+      "to": "toContainEqual({ property: \"transform\", duration: 55 })",
+      "beforeSha256": "3e58d7366cda81042613be0c819f17a9bc226dcc014f0448fd964f20750a1d00",
+      "afterSha256": "32b39faa97feccc59218e9d590b8d6a9890da4e54a9ec43c5e8265f1897dba01",
+      "exactReversal": true,
+      "allOtherBytesIdentical": true
+    }
+  ],
+  "originalFullMatrixStatusRemains": "FAILED",
+  "originalFullMatrixFailedCases": 17,
+  "productFilesEdited": false,
+  "heavyOrAcceptanceJobsRun": false,
+  "qualification": "Only exact55ms contract assertions changed. Third spec is unchanged. Full3-file4-engine confirmation and focused lint remain pending; a passing selected follow-up must never replace the original full-matrix FAILED status."
+}

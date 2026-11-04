@@ -1,0 +1,184 @@
+{
+  "capturedAt": "2026-11-02T16:03:48.063Z",
+  "clientDate": "2026-11-02",
+  "status": "PREPARED-NOT-RUN",
+  "availabilityFile": "audit/2026-11-02/final27-nov02-deno-availability.json",
+  "availabilitySha256": "bce095e1f379dbdebe9ab6420bf276be257db0f8e653649efa15dd260b978b42",
+  "currentSource": {
+    "sourceFile": "audit/2026-10-27/final27-source.json",
+    "expectedBuild": "11de46af5d4a80e0e830",
+    "compared": 505,
+    "mismatches": []
+  },
+  "build": "11de46af5d4a80e0e830",
+  "files": {
+    "plan": "audit/2026-11-02/final27-nov02-portable-deno-plan.json",
+    "setup": "audit/2026-11-02/setup-final27-nov02-portable-deno.mjs",
+    "ciExtra": "audit/2026-11-02/run-final27-nov02-ci-extra.mjs"
+  },
+  "originalFiles": {
+    "audit/2026-10-27/final26-portable-deno-plan.json": "199d853bc93edeae5834e86d7c5b4d9be6dfe849020999184055f823c48c2b16",
+    "audit/2026-10-27/setup-final26-portable-deno.mjs": "25cc7e144e331e97a46eb9e9f10985d528c7bfa083eaaa64f16fb5c96cb6752a",
+    "audit/2026-10-27/run-final26-ci-extra.mjs": "a1a62965370e2ddfd9b4e8f167c42bf2eaa228daa2da8ae7d2e2b9ec916d4075",
+    "audit/2026-10-27/final26-portable-deno-setup.json": "e89a1eacac4a0c9a3181e81bab971da370a285a6164ec04c909b782a53e99547"
+  },
+  "adaptations": [
+    {
+      "file": "audit/2026-11-02/setup-final27-nov02-portable-deno.mjs",
+      "originalSha256": "25cc7e144e331e97a46eb9e9f10985d528c7bfa083eaaa64f16fb5c96cb6752a",
+      "adaptedSha256": "6811a232ad39617d2ffa60bb09ed52ab7282dc369cd9899931ff90cd4ce01326",
+      "exactReverseToOriginal": true,
+      "edits": [
+        {
+          "from": "SPAROWTYPE_FINAL26_DENO_PORTABLE",
+          "to": "SPAROWTYPE_NOV02_FINAL27_DENO_PORTABLE"
+        },
+        {
+          "from": "const directory = 'audit/2026-10-27';",
+          "to": "const directory = 'audit/2026-11-02';"
+        },
+        {
+          "from": "final26-portable-deno-plan.json",
+          "to": "final27-nov02-portable-deno-plan.json"
+        },
+        {
+          "from": "final26-portable-deno-setup.json",
+          "to": "final27-nov02-portable-deno-setup.json"
+        },
+        {
+          "from": "final26-portable-deno-setup-protocol.json",
+          "to": "final27-nov02-portable-deno-setup-protocol.json"
+        },
+        {
+          "from": "const sourceFile = `${directory}/final26-source.json`",
+          "to": "const sourceFile = 'audit/2026-10-27/final27-source.json'"
+        },
+        {
+          "from": "assert.equal(process.env.SPAROWTYPE_FINAL26_BUILD_ID, initial.frozen.local.version);",
+          "to": "assert.equal(process.env.SPAROWTYPE_FINAL27_BUILD_ID, initial.frozen.local.version);\nassert.equal(initial.frozen.local.version, '11de46af5d4a80e0e830');"
+        },
+        {
+          "from": "'.final26-runtime'",
+          "to": "'.final27-runtime'"
+        },
+        {
+          "from": "const inputs = [import.meta.filename, planFile, sourceFile];",
+          "to": "assert.equal(plan.previousFailure.file, 'audit/2026-10-27/final26-portable-deno-setup.json');\nconst previousFailureBytes = await readFile(plan.previousFailure.file);\nassert.equal(hash(previousFailureBytes), plan.previousFailure.sha256);\nconst previousFailure = JSON.parse(previousFailureBytes);\nassert.equal(previousFailure.status, 'FAILED'); assert.equal(previousFailure.failure?.name, 'AbortError'); assert.equal(previousFailure.typecheckExecuted, false);\nconst inputs = [import.meta.filename, planFile, sourceFile, plan.previousFailure.file];"
+        },
+        {
+          "from": "inputHashes, pinnedVersion:",
+          "to": "inputHashes, previousFailedAttempt: plan.previousFailure, explicitManualRetry: plan.manualRetry, pinnedVersion:"
+        }
+      ]
+    },
+    {
+      "file": "audit/2026-11-02/run-final27-nov02-ci-extra.mjs",
+      "originalSha256": "a1a62965370e2ddfd9b4e8f167c42bf2eaa228daa2da8ae7d2e2b9ec916d4075",
+      "adaptedSha256": "f2909a34ce220af8d8f8e6965dc82c96e90b90be7e192acd4a61ae94dd7739b6",
+      "exactReverseToOriginal": true,
+      "edits": [
+        {
+          "from": "SPAROWTYPE_FINAL26_CI_EXTRA",
+          "to": "SPAROWTYPE_NOV02_FINAL27_CI_EXTRA"
+        },
+        {
+          "from": "const directory = 'audit/2026-10-27', prefix = 'final26-ci-extra';",
+          "to": "const directory = 'audit/2026-11-02', prefix = 'final27-nov02-ci-extra';"
+        },
+        {
+          "from": "SPAROWTYPE_FINAL26_BUILD_ID",
+          "to": "SPAROWTYPE_FINAL27_BUILD_ID"
+        },
+        {
+          "from": "assert.match(build ?? '', /^[a-f0-9]{20}$/);",
+          "to": "assert.match(build ?? '', /^[a-f0-9]{20}$/);\nassert.equal(build, '11de46af5d4a80e0e830');"
+        },
+        {
+          "from": "const sourceFile = `${directory}/final26-source.json`",
+          "to": "const sourceFile = 'audit/2026-10-27/final27-source.json'"
+        },
+        {
+          "from": "const protocol = { declaredAt:",
+          "to": "const runtimeInputs = []; let portableRuntime = null;\nif (process.env.SPAROWTYPE_DENO_BINARY) {\n  const receiptFile = directory + '/final27-nov02-portable-deno-setup.json';\n  const receipt = JSON.parse(await readFile(receiptFile, 'utf8'));\n  assert.equal(receipt.status, 'PASS-SCOPED-PORTABLE-RUNTIME-VERIFIED');\n  assert.equal(receipt.protocol.build, build);\n  assert.equal(receipt.protocol.archive.sha256, 'cba84b26e0df5ae7f74fc66b86a95b866872a86292ebd84fa1e959927edd93bf');\n  assert.equal(receipt.protocol.pinnedVersion, '2.9.8');\n  assert.equal(deno, receipt.executable.absolutePath);\n  assert.equal(hash(await readFile(deno)), receipt.executable.sha256);\n  assert.equal(process.env.DENO_DIR, receipt.nextCiEnvironment.DENO_DIR);\n  assert.equal(process.env.DENO_NO_UPDATE_CHECK, '1');\n  runtimeInputs.push(receiptFile, deno);\n  portableRuntime = { receiptFile, executable: deno, sha256: receipt.executable.sha256, pinnedVersion: '2.9.8', cacheIsolated: true };\n}\nconst runtimeInputHashes = Object.fromEntries(await Promise.all(runtimeInputs.map(async file => [file, hash(await readFile(file))])));\nconst protocol = { declaredAt:"
+        },
+        {
+          "from": "inputHashes,\n  denoAvailability:",
+          "to": "inputHashes, portableRuntime, runtimeInputHashes,\n  denoAvailability:"
+        },
+        {
+          "from": "  const passed = !failure && results.length === 2",
+          "to": "  const runtimeInputsUnchanged = (await Promise.all(runtimeInputs.map(async file => hash(await readFile(file)) === runtimeInputHashes[file]))).every(Boolean);\n  const passed = !failure && results.length === 2"
+        },
+        {
+          "from": "&& harnessInputsUnchanged;",
+          "to": "&& harnessInputsUnchanged && runtimeInputsUnchanged;"
+        },
+        {
+          "from": "harnessInputsUnchanged, servicesStarted:",
+          "to": "harnessInputsUnchanged, runtimeInputsUnchanged, portableRuntime, servicesStarted:"
+        }
+      ]
+    }
+  ],
+  "planSha256": "ff254022f53a421fdfa448844ac93e28a568408dd9c7f22b06ea0da7951f170a",
+  "pinnedArchive": {
+    "id": 662526167,
+    "name": "deno-x86_64-pc-windows-msvc.zip",
+    "bytes": 42917472,
+    "sha256": "cba84b26e0df5ae7f74fc66b86a95b866872a86292ebd84fa1e959927edd93bf",
+    "url": "https://github.com/denoland/deno/releases/download/v2.9.8/deno-x86_64-pc-windows-msvc.zip"
+  },
+  "pinnedSidecar": {
+    "id": 662526164,
+    "name": "deno-x86_64-pc-windows-msvc.zip.sha256sum",
+    "bytes": 177,
+    "sha256": "0fdedd625087373992be0dff62a3c3a3a9b254a0cf01d46d54c559c451c86413",
+    "url": "https://github.com/denoland/deno/releases/download/v2.9.8/deno-x86_64-pc-windows-msvc.zip.sha256sum",
+    "contentNotDownloadedDuringPreparation": true
+  },
+  "historicalMetadataCheckedOn": "2026-10-27",
+  "officialMetadataRequestsDuringPreparation": 0,
+  "previousFailure": {
+    "file": "audit/2026-10-27/final26-portable-deno-setup.json",
+    "sha256": "e89a1eacac4a0c9a3181e81bab971da370a285a6164ec04c909b782a53e99547",
+    "status": "FAILED",
+    "failureName": "AbortError",
+    "finishedAt": "2026-10-27T17:23:24.958Z",
+    "archiveVerified": false,
+    "binaryExecuted": false,
+    "typecheckExecuted": false
+  },
+  "guardedRuntime": {
+    "relativePath": "audit/2026-11-02/.final27-runtime",
+    "binary": "audit/2026-11-02/.final27-runtime/deno-v2.9.8/deno.exe",
+    "gitIgnored": true,
+    "newDestinationAbsent": true,
+    "noGlobalInstallationOrPathChange": true
+  },
+  "strictOptIns": {
+    "setup": "SPAROWTYPE_NOV02_FINAL27_DENO_PORTABLE=1",
+    "ciExtra": "SPAROWTYPE_NOV02_FINAL27_CI_EXTRA=1",
+    "build": "SPAROWTYPE_FINAL27_BUILD_ID=11de46af5d4a80e0e830"
+  },
+  "exactCiCommands": [
+    "npm run test:database",
+    "deno check --node-modules-dir=none --no-lock supabase/functions/submit-session/index.ts supabase/functions/race-operation/index.ts supabase/functions/delete-account/index.ts"
+  ],
+  "preservedBoundsAndControls": {
+    "sameReleaseAssetsDigests": true,
+    "singleAttemptPerAsset": true,
+    "requestDeadlineMs": 90000,
+    "ciCommandDeadlineMs": 180000,
+    "outputLimitPerStreamBytes": 2000000,
+    "singleBoundedExeExtraction": true,
+    "source505BeforeAndAfter": true,
+    "ownedDeadlineCleanupUnchanged": true,
+    "exactScriptReversalProofs": true
+  },
+  "acceptanceJobsDownloadsExtractionsExecutionsTypechecks": 0,
+  "privateConfigurationRead": false,
+  "userEnvironmentValuesDumped": false,
+  "productOrPackageFilesEdited": false,
+  "syntaxChecksRun": false,
+  "qualification": "Preparation is not installation or typecheck evidence. After the focused browser job exits, root may authorize exactly one fresh Nov2 setup attempt and then the separate exact CI-extra run. Old failed network attempt remains FAILED; failed setup cannot certify legacy Deno typechecks."
+}

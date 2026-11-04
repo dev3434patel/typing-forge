@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "capturedAtUtc": "2026-10-27T16:52:00.8255804Z",
+  "status": "READ-ONLY-ACTUAL-PATCH-REVIEW-NO-ACTIONABLE-NEW-DEFECT-FOUND",
+  "priorBuild": "6cdddf1a74b2d10d1c9b",
+  "sourceHashes": [
+    {
+      "path": "backend/src/ArenaService.php",
+      "sha256": "15ae5bb0ce9f90236b8e0756a9482c83b5ab827bca1b33fda7de66c02b2022ba"
+    },
+    {
+      "path": "backend/src/ArenaEvidence.php",
+      "sha256": "f6cc02d2ff0432793600184e4736095db0b76bce3ad6e56d58d8f2b4880b3528"
+    },
+    {
+      "path": "backend/tests/arena-evidence-lock-contract.php",
+      "sha256": "928549cf9acff4c74f05eda7420219ea26307ac71774090843199dd3dd5cf7ab"
+    }
+  ],
+  "findings": [],
+  "conclusion": "The implemented source25 hoist retains a second independent server-receipt-elapsed replay and exact locked authority binding; it does not reuse the first client-elapsed validation projection.",
+  "reviewedInvariants": [
+    "ArenaService passes the already DB-captured receipt into prepare and reuses the same ArenaEvidence instance for locked submit.",
+    "receiptReplay is private and reset before reading or validating every subsequent preparation, including malformed or failing attempts. The public prepared return remains only finish and validated.",
+    "The eligibility guard permits only finite DB receipts at/after an integer start, four allowed integer Arena durations, prose race mode, no pauses/extensions and exact initial/target identity.",
+    "The second replay uses canonical configuration/events, derived receipt elapsed, exact target and finiteFinal finish flag. It is not copied from validated.metrics or client timeSeries.",
+    "Reuse compares owner, full strict canonical candidate, finish, receipt, shared start, actual room scoring duration, expected target and recomputed elapsed. Copy-on-write keeps private candidate contents independent when the public returned candidate is edited.",
+    "Issued configuration, immutable prefix, actual shared start, candidate/event clock allowance, terminal state, inactive/grace and stale elapsed guards still precede projection selection.",
+    "Absent context, another object instance or any binding mismatch invokes the original authoritative replay. Expected precomputation InvalidArgumentException leaves context empty and preserves the locked fallback/error boundary.",
+    "Exact finished retry handling still precedes stale elapsed/projection use and writes. Finite-final misses, future-within250ms filtering, quarantine, fingerprints, atomic writes and commitValidated authoritative overrides remain unchanged.",
+    "The final current-clock settlement remains in ArenaService. No rate, CSRF, durability, frontend or3D change is part of this patch."
+  ],
+  "newCasesReviewed": [
+    "Off-lock independent full projection versus client-elapsed metrics",
+    "Private context absent from returned prepared values",
+    "Ten individual poisoned context-binding mismatch cases with full projection/time-series fallback equality",
+    "Another evidence instance fallback",
+    "Returned canonical nested-event COW mutation",
+    "Receipt1000 versus locked2000 distinction",
+    "Fractional receipt preservation",
+    "Actual room duration changed independently of issued JSON",
+    "Deadline cap and grace rejection",
+    "Stale elapsed rejection with context available",
+    "Future250ms permitted but filtered from receipt projection",
+    "Reset on invalid finish, two-argument prepare, NAN receipt and canonical validation failure",
+    "Issued-rule rejection precedence",
+    "Finite-final partial misses, ignored request poisoning and exact/changed finished evidence"
+  ],
+  "tests": {
+    "runByReviewer": 0,
+    "result": "PENDING-ROOT-OWNED-SOURCE-GATES",
+    "prior130542ReceiptsNotSubstitutedForNewSource": true
+  },
+  "performance": "Lock hold time may improve, but per-request replay work remains. Submit latency and throughput require the subsequent unchanged native capacity receipt.",
+  "reviewerActions": {
+    "sourceOrTestEdits": 0,
+    "browserBuildTestJobs": 0,
+    "databaseConnections": 0,
+    "privateConfigurationRead": false
+  },
+  "designReference": "audit/2026-10-27/final24-authoritative-precompute-design-review.json"
+}

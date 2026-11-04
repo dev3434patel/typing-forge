@@ -1,0 +1,366 @@
+{
+  "capturedAt": "2026-11-02T16:41:57.420Z",
+  "status": "IMPLEMENTED-PENDING-ROOT-VALIDATION",
+  "baselineBuild": "11de46af5d4a80e0e830",
+  "ownedFiles": [
+    {
+      "file": "src/pages/Race.tsx",
+      "archive": "audit/2026-11-02/bot-ui-before-src_pages_Race.tsx.source27",
+      "rawSha256": "1795751fd4d43f76f89f1fdbd36403b249dd1f45b4a8421fe1257a414d5fb9e4",
+      "normalizedSha256": "1795751fd4d43f76f89f1fdbd36403b249dd1f45b4a8421fe1257a414d5fb9e4",
+      "afterRawSha256": "dfad49ec03630cbfb3f6b20aca3926714aa2995d6b529fc44d99823f3a188409",
+      "afterNormalizedSha256": "dfad49ec03630cbfb3f6b20aca3926714aa2995d6b529fc44d99823f3a188409"
+    },
+    {
+      "file": "src/components/typing/TypingArea.tsx",
+      "archive": "audit/2026-11-02/bot-ui-before-src_components_typing_TypingArea.tsx.source27",
+      "rawSha256": "d767dd13fe1e2d8844a8a0a1db11254403387edb18f15e0cbe72d6901028b073",
+      "normalizedSha256": "d767dd13fe1e2d8844a8a0a1db11254403387edb18f15e0cbe72d6901028b073",
+      "afterRawSha256": "9a9f209c6dbe0082f953a0b54b61a3db44cf96feeb492a3e57f3ddf19ccd5bb7",
+      "afterNormalizedSha256": "9a9f209c6dbe0082f953a0b54b61a3db44cf96feeb492a3e57f3ddf19ccd5bb7"
+    },
+    {
+      "file": "src/lib/race-pace.ts",
+      "archive": "audit/2026-11-02/bot-ui-before-src_lib_race-pace.ts.source27",
+      "rawSha256": "2a71f9208351696535e3fdca8f8043e554df628517ef1f4c03417434f6f91850",
+      "normalizedSha256": "2a71f9208351696535e3fdca8f8043e554df628517ef1f4c03417434f6f91850",
+      "afterRawSha256": "1955d9e47440f803633f103aabd74567130b9c7b42083f783084ddb6f26e4df5",
+      "afterNormalizedSha256": "1955d9e47440f803633f103aabd74567130b9c7b42083f783084ddb6f26e4df5"
+    },
+    {
+      "file": "src/lib/__tests__/race-pace.test.ts",
+      "archive": "audit/2026-11-02/bot-ui-before-src_lib___tests___race-pace.test.ts.source27",
+      "rawSha256": "7ef2f449bd796a96086bae4a2b2c42a5d752f691e0d751f467f9881949b15cd1",
+      "normalizedSha256": "7ef2f449bd796a96086bae4a2b2c42a5d752f691e0d751f467f9881949b15cd1",
+      "afterRawSha256": "e6db67a81f07a7678313a13ab55e52c6e31e09940ac8658d1a97e5b89166f2ec",
+      "afterNormalizedSha256": "e6db67a81f07a7678313a13ab55e52c6e31e09940ac8658d1a97e5b89166f2ec"
+    }
+  ],
+  "scope": "Only display-state equality/stable pace props/standard memo/target-slot count. No canonical metric values are rounded or mutated.",
+  "changes": [
+    "Race stores original raw snapshot values only when current displayed progress, cursor or WPM labels change.",
+    "Both current Track.toFixed(0) and legend Math.round labels are compared so no supported label change is suppressed.",
+    "Opponent pace object is memoized by its actual current fields.",
+    "TypingArea uses standard React.memo without any custom ignored-prop comparator; own state/context and changed callbacks still update.",
+    "Rival expected-slot count uses exact present-index loop and memo on immutable character-array identity plus rival presence; no target-text assumption."
+  ],
+  "newPureTests": 11,
+  "botTickAndInputPipelineByteEquivalentNormalized": true,
+  "protectedFamilies": {
+    "brand": [
+      {
+        "file": "src/components/brand/BrandMark.tsx",
+        "unchanged": true
+      },
+      {
+        "file": "src/components/brand/KeyboardFallback.test.tsx",
+        "unchanged": true
+      },
+      {
+        "file": "src/components/brand/KeyboardFallback.tsx",
+        "unchanged": true
+      },
+      {
+        "file": "src/components/brand/OpeningExperience.tsx",
+        "unchanged": true
+      },
+      {
+        "file": "src/components/brand/brand-wordmark.css",
+        "unchanged": true
+      },
+      {
+        "file": "src/components/brand/caret-handoff.test.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/components/brand/caret-handoff.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/components/brand/fallback-animation-owner.test.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/components/brand/fallback-animation-owner.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/components/brand/keyboard-bloom.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/components/brand/keyboard-environment.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/components/brand/keyboard-framing.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/components/brand/keyboard-layout.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/components/brand/keyboard-model.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/components/brand/keyboard-render.worker.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/components/brand/keyboard-scene-bridge.test.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/components/brand/keyboard-scene-bridge.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/components/brand/keyboard-scene-lifecycle.test.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/components/brand/keyboard-scene.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/components/brand/keyboard-worker-protocol.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/components/brand/opening-experience.css",
+        "unchanged": true
+      }
+    ],
+    "core": [
+      {
+        "file": "src/lib/typing-core/__tests__/conformance.test.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/__tests__/correct-words-locked.test.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/__tests__/fixtures/replay-v3.json",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/__tests__/live-projection.test.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/__tests__/pause-order.test.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/__tests__/replay-goldens.test.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/__tests__/session.test.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/__tests__/status-counts.test.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/__tests__/transcript-target-cache.test.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/__tests__/word-correction.test.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/index.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/metrics.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/session.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/transcript.ts",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/types.ts",
+        "unchanged": true
+      }
+    ],
+    "backend": [
+      {
+        "file": "backend/bin/cleanup.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/bin/install-schema.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/bin/migrate-schema.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/bootstrap.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/migrations/002-progression.sql",
+        "unchanged": true
+      },
+      {
+        "file": "backend/migrations/003_classroom.sql",
+        "unchanged": true
+      },
+      {
+        "file": "backend/migrations/004_social.sql",
+        "unchanged": true
+      },
+      {
+        "file": "backend/migrations/005_arena.sql",
+        "unchanged": true
+      },
+      {
+        "file": "backend/public/.htaccess",
+        "unchanged": true
+      },
+      {
+        "file": "backend/public/index.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/resources/progression-fingers-v1.json",
+        "unchanged": true
+      },
+      {
+        "file": "backend/resources/typing-course-v1.json",
+        "unchanged": true
+      },
+      {
+        "file": "backend/router.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/schema.sql",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/ApiException.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/ArenaEvidence.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/ArenaRules.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/ArenaService.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/AuthService.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/ChallengeTimingPolicy.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/ClassroomService.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/CompetitiveInputPolicy.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/CourseAssessment.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/DataService.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/Database.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/ProgressionCalendar.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/ProgressionEngine.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/ProgressionFacts.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/ProgressionQuests.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/ProgressionService.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/RaceService.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/RaceStream.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/RequestBody.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/Security.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/SessionValidator.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/SocialDuelRules.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/SocialService.php",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/UnicodeGraphemes.php",
+        "unchanged": true
+      }
+    ]
+  },
+  "protectedFamiliesAllUnchanged": true,
+  "validation": {
+    "lintOrTypecheck": "NOT-RUN-BY-THIS-AGENT",
+    "unitTests": "NOT-RUN-BY-THIS-AGENT",
+    "browserTests": "NOT-RUN-BY-THIS-AGENT",
+    "matchedMobileLatency": "PENDING",
+    "newBuildAndFullQuality3D": "PENDING"
+  },
+  "limits": [
+    "The preserved source27 Learn/BOT112ms measurements remain failures; no measured improvement is claimed by this patch.",
+    "UI sample costs do not establish an exclusive bottleneck; program samples remain unattributed.",
+    "New source/build hashes and root validation are required before acceptance."
+  ]
+}

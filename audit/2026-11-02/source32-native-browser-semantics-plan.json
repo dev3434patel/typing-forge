@@ -1,0 +1,22 @@
+{
+  "declaredAt": "2026-11-03",
+  "authorization": "Root GO for one small diagnostic after job11532 closed; no production or test source edits",
+  "purpose": "Observe actual constructed InputEvent inputType and standalone native insertText semantics before correcting Source32 browser assertions",
+  "browsersInSerialOrder": ["chromium", "edge", "firefox", "webkit"],
+  "concurrency": 1,
+  "appLoaded": false,
+  "backendLoaded": false,
+  "page": "about:blank containing one standalone textarea",
+  "publicLiterals": ["é", "a CR LF b", "a LF b"],
+  "constructorInputTypes": ["insertFromComposition", "insertCompositionText", "insertText"],
+  "observations": [
+    "Requested and constructed inputType, isComposing, isTrusted, cancelable and data code points",
+    "beforeinput, input, textInput, compositionstart/update/end event sequence for native keyboard.insertText",
+    "Native textarea value code points and final code-point count",
+    "Native direct textarea.value assignment normalization for CRLF"
+  ],
+  "bounds": {"maximumEventsPerCase": 32, "maximumCodePointsPerValue": 32, "timeoutPerBrowserMs": 45000},
+  "cleanup": "Close context and browser in finally after every serial engine",
+  "nonClaims": ["Not an app performance benchmark", "No actual OS keyboard or assistive technology verification", "No source/test mutation"],
+  "resultFile": "audit/2026-11-02/source32-native-browser-semantics-result.json"
+}

@@ -1,0 +1,117 @@
+{
+  "status": "FIXTURE-ONLY-REPAIR-PREPARED; FOUR-ENGINE-FOLLOWUP-NOT-RUN",
+  "capturedAt": "2026-10-27T18:06:45.947Z",
+  "source": {
+    "sourceFile": "audit/2026-10-27/final27-source.json",
+    "expectedBuild": "11de46af5d4a80e0e830",
+    "compared": 505,
+    "mismatches": []
+  },
+  "build": "11de46af5d4a80e0e830",
+  "productionFilesChanged": 0,
+  "originalFreshWebkit5": {
+    "file": "audit/2026-10-27/pack-native-final27-webkit-auth-confirmation-7bbf2372eea5cde5-1793124041120-browser.json",
+    "sha256": "9dc0ae4174914428d40cadb2ddf444efbee4e3a829237d42e2afc02e099250f3",
+    "status": "FAILED",
+    "passed": 3,
+    "failed": 2,
+    "skipped": 0
+  },
+  "originalCaseOutcomes": [
+    {
+      "title": "real account sign in with dedicated deployment credentials",
+      "engine": "webkit",
+      "status": "expected",
+      "durationMs": 2226
+    },
+    {
+      "title": "real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+      "engine": "webkit",
+      "status": "unexpected",
+      "durationMs": 90206
+    },
+    {
+      "title": "real two-browser PHP human race shares opponent pace and settles server results",
+      "engine": "webkit",
+      "status": "expected",
+      "durationMs": 41689
+    },
+    {
+      "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+      "engine": "webkit",
+      "status": "unexpected",
+      "durationMs": 13594
+    },
+    {
+      "title": "PHP two-account race authorization and server-owned countdown",
+      "engine": "webkit",
+      "status": "expected",
+      "durationMs": 625
+    }
+  ],
+  "actualFaultFailureStage": "Missing expected first-checkpoint network-error alert at unchanged5000ms assertion, before any typing in the old fault fixture. It never reached recovery/final/late-failure assertions.",
+  "separateAccountTimeout": "Original90s timeout retained; independent bounded diagnosis owned by gaming_review. This receipt does not attribute its cause.",
+  "fixtureRepair": {
+    "file": "e2e/php-human-race.spec.ts",
+    "rawSha256": "481f6f3a471d7a5974fe5f556d3358ded1407971926036799f6c979bd1809ec1",
+    "normalizedSha256": "481f6f3a471d7a5974fe5f556d3358ded1407971926036799f6c979bd1809ec1",
+    "originalFaultFixtureSha256AfterReversingOnlyThisPatch": "bc775338e01ebfe826080878fc07a8c3b0d2d13fa05333810236f4f3071f7155",
+    "originalRaceScenarioBodyUnchanged": true,
+    "originalScenarioNormalizedBodySha256": "5f73053735b77c7bf5935816e4e9c611d3a1dc5cae4e6147128fac5486dcc9e2",
+    "changes": [
+      "Allow normal pass-through until first actual target character is typed and native value asserted.",
+      "Arm the first abort after that accepted-input precondition.",
+      "After failed-then-successful real checkpoint recovery, type only hostText.slice(1), preserving the exact full intended transcript."
+    ],
+    "oldAssertionsPreserved": true,
+    "sharedClockUnchanged": true,
+    "apiAndTestTimeoutsUnchanged": true,
+    "individualKeyDelayMsUnchanged": 90,
+    "scoredResponseMockOrFakeClockAdded": false
+  },
+  "confirmation": {
+    "status": "NOT-RUN",
+    "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+    "engines": [
+      "chromium",
+      "edge",
+      "firefox",
+      "webkit"
+    ],
+    "expectedCases": 4,
+    "workers": 1,
+    "retries": 0,
+    "traces": false,
+    "freshSeparateOwnerRequired": true,
+    "priorNativeRunsPermitted": 0,
+    "rejectedOldOwners": [
+      "3d44c37ac589c270",
+      "7bbf2372eea5cde5"
+    ],
+    "counterResetOrRateLimitChangeOrOldOwnerReseed": false,
+    "wrapper": "audit/2026-10-27/run-final27-native-fault-confirmation.mjs",
+    "windowFlag": "SPAROWTYPE_FINAL27_NATIVE_FAULT_CONFIRMATION_WINDOW=1",
+    "artifacts": [
+      {
+        "file": "audit/2026-10-27/pack-native-browser-final27-fault-confirmation.mjs",
+        "sha256": "1d26f6202a482ead43d777e50df522b9cfce92d47c7667ac360bdda4787ce8b9",
+        "syntaxCheck": {
+          "command": "node --check audit/2026-10-27/pack-native-browser-final27-fault-confirmation.mjs",
+          "exitCode": 0
+        }
+      },
+      {
+        "file": "audit/2026-10-27/run-final27-native-fault-confirmation.mjs",
+        "sha256": "7d57a1a51becaf55031f784fd677f2c64d704023c61e02d79e735df26ad38376",
+        "syntaxCheck": {
+          "command": "node --check audit/2026-10-27/run-final27-native-fault-confirmation.mjs",
+          "exitCode": 0
+        }
+      }
+    ]
+  },
+  "originalFailuresRewritten": false,
+  "fullMatrixPassingClaim": false,
+  "browserOrTestOrBuildOrServiceExecutedByThisCapture": false,
+  "physicalDevices": "UNVERIFIED"
+}

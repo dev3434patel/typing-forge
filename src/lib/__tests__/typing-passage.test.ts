@@ -21,6 +21,32 @@ const groupText = (group: ReturnType<typeof groupTypingSlots>[number]) =>
   group.slots.map((slot) => slot.expected ?? slot.typed).join("");
 
 describe("typing passage groups", () => {
+  it("returns the same frozen slot array when target characters need no extra reordering", () => {
+    const source = slots("café  👩🏽‍💻");
+    source[0] = { ...source[0], typed: "c", status: "correct" };
+    source[1] = { ...source[1], typed: "x", status: "incorrect" };
+    const frozen = Object.freeze(source.map((slot) => Object.freeze(slot)));
+    expect(orderTypingSlots(frozen, 2)).toBe(frozen);
+    expect(groupTypingSlots(frozen).flatMap((group) => group.slots)).toEqual(frozen);
+    const empty = Object.freeze([] as CharacterSlot[]);
+    expect(orderTypingSlots(empty)).toBe(empty);
+  });
+
+  it("does not cache a no-extra decision when a mutable passage gains and loses an extra", () => {
+    const source = slots("cat dog");
+    for (let index = 0; index < 3; index++) source[index] = { ...source[index], typed: source[index].expected, status: "correct" };
+    expect(orderTypingSlots(source, 3)).toBe(source);
+    const extra: CharacterSlot = { index: 10, expected: null, typed: "x", status: "extra" };
+    source.push(extra);
+    const reordered = orderTypingSlots(source, 3);
+    expect(reordered).not.toBe(source);
+    expect(reordered.map((slot) => slot.index)).toEqual([0, 1, 2, 10, 3, 4, 5, 6]);
+    expect(reordered[3]).toBe(extra);
+    expect(source.at(-1)).toBe(extra);
+    source.pop();
+    expect(orderTypingSlots(source, 3)).toBe(source);
+  });
+
   it("groups complete prose words without changing text or slot order", () => {
     const source = slots("small words flow");
     const groups = groupTypingSlots(source);

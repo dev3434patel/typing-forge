@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "capturedAtUtc": "2026-10-27T16:39:51.9969334Z",
+  "status": "REVIEW-COMPLETE-NO-CONCRETE-NEW-DEFECT-FOUND",
+  "baseline": "275c8c24d65054abae18713c1eee4dad18888332",
+  "frozenFrontendBuild": "6cdddf1a74b2d10d1c9b",
+  "sourceHashes": [
+    {
+      "path": "backend/public/index.php",
+      "sha256": "080877f381577438e101ab0be74ab7606ca1c158ef4ccaef74696cf2f07a2d6f"
+    },
+    {
+      "path": "backend/src/Security.php",
+      "sha256": "671d4e7944cfbe7d4a6d94e44e17374caa12c8c8f8c33bd850ceedba371e0401"
+    },
+    {
+      "path": "backend/src/ArenaService.php",
+      "sha256": "deaa7c5a653cea16cbf408ec44e9149423faa0a58f4ae9c3e8dce8e286040a38"
+    },
+    {
+      "path": "backend/src/ArenaEvidence.php",
+      "sha256": "a9416b5877dbc35db7ad2b41c999bb2a72695e216b45023c29137e58ac16afdb"
+    },
+    {
+      "path": "backend/src/SessionValidator.php",
+      "sha256": "5d5907e4a49a1a92966a967591701976a25051a3a4f0d4d21f8e70f112be776d"
+    }
+  ],
+  "scope": "Independent read-only comparison of the five named backend files against baseline, including relevant authentication, schema, Arena rules/settlement and persistence callers.",
+  "findings": [],
+  "checks": [
+    {
+      "area": "Early API lane selection",
+      "reviewed": "Only recognized POST Arena actions request an account lane. AuthService.user validates the server-session owner and auth_version against users before selecting that lane. Body expectedOwner, proxy headers and client timestamps cannot choose it. Other endpoints and anonymous/stale sessions retain IP1200 policy.",
+      "references": [
+        "backend/public/index.php:54",
+        "backend/src/Security.php:62",
+        "backend/src/AuthService.php:15"
+      ]
+    },
+    {
+      "area": "Exactly-once request charge",
+      "reviewed": "Authenticated Arena300 accounting occurs before CSRF/content-type/body decode/owner checks and the former dispatch-time duplicate charge is removed. Origin/OPTIONS/unsupported-method rejects still occur before this layer, as in baseline; this review does not claim all HTTP failures are charged.",
+      "references": [
+        "backend/public/index.php:55",
+        "backend/public/index.php:58",
+        "backend/public/index.php:109"
+      ]
+    },
+    {
+      "area": "Atomic quota result",
+      "reviewed": "One INSERT/UPDATE obtains this connection-specific LAST_INSERT_ID expression immediately after execute, without a shared-row SELECT or intervening statement. The update increments attempts before updating window_started. A delayed older-window request cannot reset a newer bucket, and an absent/malformed count fails closed.",
+      "references": [
+        "backend/src/Security.php:88",
+        "backend/src/Security.php:90",
+        "backend/schema.sql:142"
+      ]
+    },
+    {
+      "area": "Preparation and authority",
+      "reviewed": "prepare handles immutable candidate validation outside room/account locks. After locking, submit still checks issued configuration/target, immutable event prefix, room/member terminal state and the DB-based shared-clock replay. Client metrics are independently reconstructed, not trusted from the prepared candidate.",
+      "references": [
+        "backend/src/ArenaService.php:23",
+        "backend/src/ArenaEvidence.php:14",
+        "backend/src/ArenaEvidence.php:24",
+        "backend/src/ArenaEvidence.php:38"
+      ]
+    },
+    {
+      "area": "Receipt boundary and concurrent order",
+      "reviewed": "The DB receipt is captured before expensive preparation. Initial settlement and evidence allowance use that receipt, so processing time cannot extend events or consume finish grace. Already committed terminal states are not reverted. Older elapsed evidence is rejected, previously accepted prefixes cannot be truncated, and last_seen_at uses GREATEST to preserve newer heartbeats. Final settlement/serialization still samples current DB time.",
+      "references": [
+        "backend/src/ArenaService.php:21",
+        "backend/src/ArenaService.php:31",
+        "backend/src/ArenaService.php:44",
+        "backend/src/ArenaEvidence.php:37",
+        "backend/src/ArenaEvidence.php:45"
+      ]
+    },
+    {
+      "area": "Finish idempotency",
+      "reviewed": "An exact previously finished canonical payload returns before the stale-elapsed guard without changing evidence. Changed/truncated/session-swapped evidence, forfeits and quarantined members remain rejected. CommitValidated still persists authoritative elapsed/metrics/timeSeries overrides within the caller transaction.",
+      "references": [
+        "backend/src/ArenaEvidence.php:29",
+        "backend/src/ArenaEvidence.php:47",
+        "backend/src/DataService.php:162"
+      ]
+    },
+    {
+      "area": "Stable serialization",
+      "reviewed": "Canonicalization preserves the original array-list versus map/object decision before sorting. Single-array array_map retains keys; sorted list-shaped maps become objects; ordinary associative maps preserve leading-NUL keys without forbidden dynamic property assignment. Scalar JSON flags and invalid-value behavior remain unchanged, and HTTP decoding retains its existing512 depth bound.",
+      "references": [
+        "backend/src/SessionValidator.php:35",
+        "backend/src/SessionValidator.php:58",
+        "backend/public/index.php:66",
+        "backend/tests/serialization-contract.php:17"
+      ]
+    },
+    {
+      "area": "ASCII and Unicode",
+      "reviewed": "Only ASCII strings without CR use str_split, after the intl requirement. CRLF and all non-ASCII text retain ICU plus GB9c reconciliation. The existing32-entry per-validator cache and eviction behavior remain shared; no static cross-user result cache was introduced. Supported setup requires PHP8.2+, including its empty str_split behavior.",
+      "references": [
+        "backend/src/SessionValidator.php:79",
+        "backend/src/SessionValidator.php:86",
+        "backend/src/SessionValidator.php:111",
+        "docs/PHP_XAMPP_SETUP.md"
+      ]
+    },
+    {
+      "area": "Idle sample cache",
+      "reviewed": "The cache lives only within one replay and keys accepted event index, exact issued target and final finite flag. The time-series reads only credited/retained counts from it; WPM/raw/local rates, duration and error deltas are recomputed for every current bucket. Changes caused by rejected attempts, deletion, composition/submission, issuance, final finite misses and fractional ends cannot reuse an incompatible sample.",
+      "references": [
+        "backend/src/SessionValidator.php:456",
+        "backend/src/SessionValidator.php:469",
+        "backend/src/SessionValidator.php:475"
+      ]
+    }
+  ],
+  "existingReceiptsRead": [
+    "audit/2026-10-27/final24-php-replay-receipt.json",
+    "audit/2026-10-27/final24-php-arena-receipt.json"
+  ],
+  "existingEvidence": {
+    "portablePhpCases": 542,
+    "portablePhpMismatches": 0,
+    "serializationByteCases": 536,
+    "serializationErrorCases": 6,
+    "serializationMismatches": 0,
+    "pureArenaChecks": 130,
+    "pureArenaFailures": 0,
+    "rerunByReviewer": false
+  },
+  "limitations": [
+    "Static review plus already recorded pure-test receipts is not a substitute for root/release-agent-owned genuine SQL concurrency, native HTTP capacity and browser acceptance.",
+    "No new defect was found; this is a bounded review conclusion, not proof that every production state or deployment is defect-free."
+  ],
+  "reviewerActions": {
+    "productionEdits": 0,
+    "testEdits": 0,
+    "browsers": 0,
+    "buildOrTestJobs": 0,
+    "databaseConnections": 0,
+    "privateConfigurationRead": false
+  }
+}

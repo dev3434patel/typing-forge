@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "capturedAtUtc": "2026-10-27T17:16:34.8325669Z",
+  "status": "WIRE-UNITS-AND-INDEPENDENT-PHP-PAIR-CONFIRMATION-PASSED-FULL-GATES-PENDING",
+  "build": "88b8024ae4b840c10422",
+  "frozenProductionFiles": 505,
+  "initialImplementationReceipt": "audit/2026-10-27/final26-wire-implementation-parser-review.json",
+  "sourceHashes": [
+    {
+      "path": "src/domain/arena.ts",
+      "sha256": "24c5cce5e196903c7ddaad914acf3bca1a35540750abce3c3ac3875853151d42"
+    },
+    {
+      "path": "src/services/arena-service.ts",
+      "sha256": "e395ff18b60392e6beecdf4b7a1f2766130fcd82d7da185b0358bbf8d45e9f4f"
+    },
+    {
+      "path": "src/domain/__tests__/arena.test.ts",
+      "sha256": "417ca62c20f4f6809f495a79ddfdd3cefc61f3ef5318d4333a03cfb0cd1cec84"
+    },
+    {
+      "path": "backend/tests/validation-parity.mjs",
+      "sha256": "30f0e872387a693e187e2c24569bf438705dd14f8fb0a48ca11a052602770ba9"
+    },
+    {
+      "path": "backend/tests/replay-driver.php",
+      "sha256": "80792e259ad9a38d77607199cdf40a954b35e0c56f05e727bc7761bdeddb5043"
+    },
+    {
+      "path": "backend/src/RequestBody.php",
+      "sha256": "0857c88cd3895facb3c5d5076e1dc0f7654942e5510be0a1b5739c20989d2fba"
+    },
+    {
+      "path": "backend/public/index.php",
+      "sha256": "92382a84ac652b38198711bc86973245a6a6dbc4af0aeaefb796ee0267618d76"
+    }
+  ],
+  "initialFailure": {
+    "receipt": "audit/2026-10-27/final26-php-original-failure-diagnostic.json",
+    "log": "audit/2026-10-27/final26-php-original-failure-diagnostic.log",
+    "originalGateLog": "audit/2026-10-27/final26-php-replay.log",
+    "phpExitCode": 255,
+    "wrapperExitCode": 1,
+    "inputRows": 560,
+    "inputBytes": 6518781,
+    "inputHash": "b2fd9aeba8e839ddaa9d1db1d2c3567c31413e6eec671a57d934a46a35a9d5b2",
+    "stdout": "\nFatal error: Allowed memory size of 134217728 bytes exhausted (tried to allocate 19279872 bytes) in D:\\extra\\typing_updated\\typing-forge\\backend\\tests\\replay-driver.php on line 22\n",
+    "stderr": "",
+    "cause": "Appending compact result trees plus selected exact-byte base64 proof to the large original corpus exceeded PHP128MiB while encoding the entire result array. This was a test-harness allocation failure, not accepted evidence."
+  },
+  "correction": [
+    "The original542 case objects/candidates and all prior assertions now run in their original single child without includeCanonicalPayload flags or compact appendages.",
+    "A second child runs all18 selected full/compact pairs (36 rows); canonical bytes are opt-in only there. No case or assertion is filtered and the PHP memory limit is unchanged.",
+    "Full pair rows are also compared with their original legacy-batch results; compact rows are independently compared with portable replay and with exact PHP canonical bytes/hash/projections.",
+    "Child failures now surface stdout when stderr is empty; the original hidden OOM evidence remains preserved."
+  ],
+  "confirmation": {
+    "report": "audit/2026-10-27/final26-php-split-confirmation.json",
+    "log": "audit/2026-10-27/final26-php-split-confirmation.log",
+    "finishedAtUtc": "2026-10-27T17:15:08.577Z",
+    "wrapperExitCode": 0,
+    "toolElapsedSeconds": 4.2015608,
+    "uniqueCases": 560,
+    "executedPhpRows": 578,
+    "originalFullRows": 542,
+    "pairRows": 36,
+    "repeatedFullRows": 18,
+    "additionalCompactRows": 18,
+    "pairCount": 18,
+    "pairMismatches": 0,
+    "totalMismatches": 0,
+    "validUniqueCases": 522,
+    "rejectedUniqueCases": 38
+  },
+  "unitEvidence": {
+    "log": "audit/2026-10-27/final26-coverage.log",
+    "passedTests": 2856,
+    "passedFiles": 114,
+    "includesNewWireTests": 4,
+    "fullConfirmedGateRerun": "Root-owned and pending at capture time."
+  },
+  "timingCoordination": "The earlier root GO included the narrow confirmation. A later hold/build-start message arrived after the4.20s confirmation had completed. Root acknowledged possible overlap with its12.8s frontend build. This confirmation is pure correctness evidence only; none of its durations are performance acceptance.",
+  "productReview": "Production helper/parser source is unchanged since the initial stable signal. The correction affects only existing PHP test batching/diagnostics. No frontend rebuild was needed for that test-only correction; root independently rebuilt the frozen505-file product.",
+  "cleanup": {
+    "allConfirmationChildrenExited": true,
+    "activeBrowsers": 0,
+    "serversStarted": 0,
+    "databaseConnections": 0,
+    "privateConfigurationRead": false,
+    "phpMemoryLimitChanged": false,
+    "furtherJobsAfterHold": 0
+  }
+}

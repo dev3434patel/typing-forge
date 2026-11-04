@@ -1,0 +1,29 @@
+{
+  "facts": [
+    "Original542 full-payload rows run in their own PHP child without canonical-byte metadata or added compact rows.",
+    "A separate36-row child runs18 repeated full/compact pairs with canonical bytes only where needed; memory limit was not increased.",
+    "Main comparison still executes all560 unique original+compact cases;578 PHP rows honestly include18 repeated full rows.",
+    "Pair indexing maps each appended compact row to its correct36-row child response.",
+    "Repeated valid full results are compared to original full-batch results, then exact canonical bytes/hash and complete validation result are compared to compact.",
+    "Four rejected pairs retain error class/message equality.",
+    "All source changes here are test allocation/batching; production transport and parser bytes are unchanged by this repair."
+  ],
+  "scope": "Follow-up to immutable compact-wire source review after test-only PHP allocation repair",
+  "confirmation": "final26-php-split-confirmation.json",
+  "testsRun": 0,
+  "status": "PASS-SCOPED-READONLY-REVIEW",
+  "productFilesChanged": false,
+  "privateConfigurationRead": false,
+  "limits": [
+    "No tests or services run by this review; referenced actual confirmation is separate.",
+    "No capacity gain inferred."
+  ],
+  "reviewedSource": {
+    "path": "backend/tests/validation-parity.mjs",
+    "sha256Normalized": "30f0e872387a693e187e2c24569bf438705dd14f8fb0a48ca11a052602770ba9"
+  },
+  "originalFailure": "final26-php-original-failure-diagnostic.json",
+  "previousReview": "final26-compact-wire-independent-review.json",
+  "recordedAt": "2026-10-27T17:16:15.0572154Z",
+  "findings": []
+}

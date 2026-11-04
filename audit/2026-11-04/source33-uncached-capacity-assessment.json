@@ -1,0 +1,124 @@
+{
+  "recordedAt": "2026-11-04T15:55:52.294Z",
+  "status": "FAILED-CAPACITY-LATENCY",
+  "scope": "Ordinary source33 uncached owned Apache64-thread/PHP/PDO/MariaDB runtime; all original workload/authority/clock/rate/durability controls preserved.",
+  "build": "332e23584f1e36465df2",
+  "owner": "ac90918fa4030e51",
+  "full": {
+    "status": "FAILED",
+    "total": 1653,
+    "p95Ms": 193.21579999999994,
+    "submitP95Ms": 218.71980000000076,
+    "maxRequestMs": 313.9957000000013,
+    "statusCounts": {
+      "200": 1651,
+      "403": 1,
+      "409": 1
+    },
+    "unexpectedRequests": 0,
+    "checksPassed": 11,
+    "checksFailed": 1,
+    "sourceAfter": {
+      "sourceFile": "audit/2026-11-02/final33-source.json",
+      "expectedBuild": "332e23584f1e36465df2",
+      "compared": 505,
+      "mismatches": []
+    },
+    "inputsUnchanged": true,
+    "fixtureCleanup": {
+      "deletedOwnAccounts": 400,
+      "removedOwnSessions": 400
+    }
+  },
+  "wire": {
+    "status": "FAILED",
+    "total": 1653,
+    "p95Ms": 172.13670000000093,
+    "submitP95Ms": 203.58519999999953,
+    "maxRequestMs": 237.38380000000143,
+    "statusCounts": {
+      "200": 1651,
+      "403": 1,
+      "409": 1
+    },
+    "unexpectedRequests": 0,
+    "checksPassed": 11,
+    "checksFailed": 1,
+    "sourceAfter": {
+      "sourceFile": "audit/2026-11-02/final33-source.json",
+      "expectedBuild": "332e23584f1e36465df2",
+      "compared": 505,
+      "mismatches": []
+    },
+    "inputsUnchanged": true,
+    "fixtureCleanup": {
+      "deletedOwnAccounts": 400,
+      "removedOwnSessions": 400
+    }
+  },
+  "nativeRate": {
+    "status": "PASS-SCOPED-NATIVE-RATE",
+    "durationMs": 37980.198,
+    "waitedMs": 37050,
+    "checks": [
+      {
+        "name": "eight distinct native PDO connections reach the same actual minute before GO",
+        "pass": true
+      },
+      {
+        "name": "exact320 actual native increment results cover1through320 once each",
+        "pass": true
+      },
+      {
+        "name": "all300 allowed calls and20 denials match their own atomic boundary",
+        "pass": true
+      },
+      {
+        "name": "all calls and persisted counters stay in one real60-second window",
+        "pass": true
+      },
+      {
+        "name": "a separate account starts at one without changing the exhausted shared account",
+        "pass": true
+      },
+      {
+        "name": "frozen source and declared native driver inputs remain unchanged",
+        "pass": true
+      }
+    ],
+    "originalConfigRead": false,
+    "counterReset": false,
+    "quotaBypass": false
+  },
+  "cleanup": {
+    "date": "2026-11-04T15:53:56.411Z",
+    "ownProcessesStopped": true,
+    "gracefulDatabaseShutdown": true,
+    "forcedOwnDatabaseStop": false,
+    "httpRuntime": "apache",
+    "gracefulApacheShutdown": true,
+    "forcedOwnApacheStop": false,
+    "apacheResidualPids": [],
+    "ownTemporaryDirectoryRemoved": false,
+    "privateDiagnosticsDirectory": "D:\\extra\\typing_updated\\typing-forge\\backend\\storage\\pack-instance-ac90918fa4030e51",
+    "originalDatabasePortUntouched": 3308,
+    "originalApiPortUntouched": 8081,
+    "originalPreviewPortUntouched": 4173,
+    "noWindowsServiceCreated": true,
+    "originalConfigRead": false
+  },
+  "evidenceHashes": {
+    "audit/2026-11-02/source33-capacity-ac90918fa4030e51.json": "8883226b0e85ca60178c079d1bfeba170e820a1befbd73f9de0e73fcf20d24c0",
+    "audit/2026-11-02/source33-capacity-wire-ac90918fa4030e51.json": "2dcb0977125e17056cb0a8314304fcb697492a63272e71f9b3593cbf0d1e10de",
+    "audit/2026-11-02/source33-native-rate-ac90918fa4030e51.json": "1f0e4d338b5cc786cfa45e747157ed705016b85681e28d6edbf950efb81ef0fb",
+    "audit/2026-11-02/pack-backend-ac90918fa4030e51-cleanup.json": "e0d0dd76318320eb88ffec205960fe4c261b5fcc36ec570e698a6f75b8220d84"
+  },
+  "firstOwnerNoLoadFailure": "audit/2026-11-04/source33-capacity-first-owner-stdin-failure.json",
+  "nativeArenaLifecycle": "RUNNING-SEPARATE-FRESH-OWNER-94adeb56ee29418b",
+  "limitations": [
+    "Both strict150ms p95 gates fail, despite exact accepted400 submissions/400 leaves and no unexpected status/429.",
+    "Full first and wire second use new fixtures on the same owner; day/machine/cache/order effects prevent exclusive causal improvement claims over older runs.",
+    "400 occupied seats with20 concurrent HTTP requests are not400 simultaneous HTTP calls or120s sustained throughput.",
+    "No opcode-cache runtime variant is included or implied by these results."
+  ]
+}

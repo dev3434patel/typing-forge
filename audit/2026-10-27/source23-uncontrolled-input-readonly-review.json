@@ -1,0 +1,116 @@
+{
+  "reviewedAt": "2026-10-27T16:12:08.461Z",
+  "status": "READ-ONLY-REVIEW-NO-CONCRETE-NEW-FINDING",
+  "sourceHashes": {
+    "src/components/typing/TypingArea.tsx": "5ebdf301b759ba1d396d416d607f20ccfb8a03cd4e8905fbc2706a90ddb8073a",
+    "src/lib/frame-publisher.ts": "6c5c0c82b6f3e5baa35ec484be884327081d97c964693f97a3e701731374fb71",
+    "src/lib/__tests__/frame-publisher.test.ts": "eda16cf48d2758ca85ba52aa29a81fdaad50de0853dc7a7d0ede9bcd51620a87",
+    "src/hooks/useWordCorrection.ts": "8d9f463a53845eb8b0c7051f5e1ca2b9fa6846d733e2b05ada531f37f1a24dee",
+    "src/pages/Race.tsx": "132477338bc4b99b5a499b5ca302f6971b74ab12fbfc11f358fed3a2a236da96",
+    "src/pages/Arena.tsx": "19615e19ac5ca5143a4487260b96928377b550992c04a8eed7b9ee7a35a115e9",
+    "src/lib/typing-core/session.ts": "8238f5b70cac38b82c7337c7a1f2275ba5ed5a4794fc06ed78c5063653ac3a34",
+    "audit/2026-10-27/run-final23-browser-matrix.mjs": "9764fe7ed76e73a5613458026cdad11ec21223982e4e5fd69736ba503ac14099"
+  },
+  "productionOrTestFilesEdited": false,
+  "testsBuildsBrowsersOrServicesRunByReviewer": 0,
+  "scope": "Independent source review of uncontrolled native draft ownership, frame presentation, mobile/IME/correction and urgent clock callbacks; this is not runtime certification.",
+  "observations": [
+    {
+      "area": "Canonical evidence",
+      "finding": "Each accepted native edit synchronously mutates SessionController and updates nativeDraft/native textarea before any scheduled visual publication."
+    },
+    {
+      "area": "Urgent transitions",
+      "finding": "Ready/first-input, pause, finish and timer updates take immediate publisher path, cancelling pending running frames. Controller time remains performance.now based."
+    },
+    {
+      "area": "Parent clocks",
+      "finding": "React startTransition invokes Race/Arena onSnapshot synchronously. latest refs, bot timingOrigin/start and challenge sequence refs update immediately; only optional parent React visual state changes priority."
+    },
+    {
+      "area": "IME",
+      "finding": "Uncontrolled defaultValue is fixed at mount. Composition input updates native draft without committing metrics; completion commits once and explicit echo restores canonical draft. Clock/UI renders do not own an older value prop."
+    },
+    {
+      "area": "Corrections and transfer",
+      "finding": "Word-delete callbacks, native selection restoration, same-value assistance and input-only provenance remain synchronous. Paste/drop paths restore the native draft, and correction boundaries remain enforced by the controller."
+    },
+    {
+      "area": "Frame lifecycle",
+      "finding": "Generation tickets prevent cancelled/copied callbacks publishing older state, including handle0; immediate/dispose invalidate pending work and activation supports Strict Mode replay."
+    }
+  ],
+  "remainingRuntimeChecks": [
+    "All four engines for native/mobile input, IME echo, pause-before-frame, rapid completion/restart and physical key ownership.",
+    "Real device soft keyboards and native Safari/iOS remain UNVERIFIED by source review.",
+    "All three ordinary495-character input measurements must independently be below100ms; helper process exit0 alone checks correctness.",
+    "Native/API/browser/static/intro/performance gates still require actual source23 frozen identity."
+  ],
+  "matrixPlan": {
+    "specFiles": 64,
+    "batches": {
+      "newFeatures": 11,
+      "existing": 43,
+      "isolated": 9,
+      "firstInputTiming": 1
+    },
+    "estimatedCases": 1480,
+    "caseEstimateBasis": "Historical1452 plus8geometry+8key ownership+12native frame/IME cases; actual browser collection remains authoritative.",
+    "workers": 1,
+    "retries": 0,
+    "engines": [
+      "chromium",
+      "edge",
+      "firefox",
+      "webkit"
+    ],
+    "historicalMatrixStatus": "FAILED",
+    "historicalBatches": [
+      {
+        "batch": "new-features",
+        "files": 11,
+        "cases": 204,
+        "status": "PASS-SCOPED",
+        "durationMs": 513726.0475
+      },
+      {
+        "batch": "existing",
+        "files": 42,
+        "cases": 988,
+        "status": "PASS-SCOPED",
+        "durationMs": 2448847.1667
+      },
+      {
+        "batch": "isolated",
+        "files": 9,
+        "cases": 228,
+        "status": "FAILED",
+        "durationMs": 1209845.7633
+      },
+      {
+        "batch": "first-input-timing",
+        "files": 1,
+        "cases": 32,
+        "status": "PASS-SCOPED",
+        "durationMs": 152910.2783
+      }
+    ],
+    "historicalTotalMs": 4325329.2558,
+    "planningRangeMinutes": [
+      75,
+      90
+    ],
+    "qualification": "Planning range only, not an ETA or source23 result. Original source19 failures remain preserved."
+  },
+  "safeSequentialSchedule": [
+    "Finish targeted smoke and verify the corrected Custom-restart fixture.",
+    "Run12 source gates, build and freeze actual506-file identity.",
+    "Run three ordinary unchanged495-character input measurements with no other heavy process.",
+    "Run three full-quality first-visit mobile Lighthouse measurements with their30s quiet periods.",
+    "Run all64 specs across four engines using declared sequential worker1 matrix.",
+    "Build/verify both static targets, execute56deployment+16game accessibility cases, then mobile static workspace measurement.",
+    "Run fresh owned HTTP5 contracts and verify their process cleanup.",
+    "Run unchanged12-iteration serializer comparison; separately owned1653-operation capacity,8-connection native counter and16native browser cases, then verify owner cleanup."
+  ],
+  "knownLimitations": "Source inspection found no new concrete issue; it cannot prove absence of browser/IME/performance defects or convert any pending gate to PASS."
+}

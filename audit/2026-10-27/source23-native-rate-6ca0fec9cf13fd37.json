@@ -1,0 +1,2426 @@
+{
+  "status": "PASS-SCOPED-NATIVE-RATE",
+  "protocol": {
+    "declaredAt": "2026-10-27T16:13:25.243Z",
+    "build": "85735c1a3b56655b767e",
+    "source": {
+      "sourceFile": "audit/2026-10-27/final23-source.json",
+      "expectedBuild": "85735c1a3b56655b767e",
+      "compared": 506,
+      "mismatches": []
+    },
+    "ownerId": "6ca0fec9cf13fd37",
+    "scope": "Genuine native PDO atomic accounting only, separate from the1653-request HTTP burst. No HTTP/authentication/CSRF/session-policy or throughput certification.",
+    "connections": 8,
+    "callsPerConnection": 40,
+    "expectedSharedCalls": 320,
+    "limit": 300,
+    "windowSeconds": 60,
+    "expectedAdmitted": 300,
+    "expectedLimited": 20,
+    "otherAccountExpectedCounter": 1,
+    "nearBoundaryWaitMaxMs": 40050,
+    "readinessTimeoutMs": 10000,
+    "callsTimeoutMs": 12000,
+    "actualClock": true,
+    "retries": 0,
+    "counterReset": false,
+    "quotaBypass": false,
+    "thresholdsUnchanged": true,
+    "startBarrier": "All8 actual PDO connections must report ready before one coordinated GO.",
+    "inputHashes": {
+      "audit/2026-10-27/native-rate-worker-source23.php": "3ba2c56c4481f226cb9cef8222d4726f3cd5a614c6e150e7c4e526aedee5e308",
+      "audit/2026-10-27/run-source23-native-rate.mjs": "31f4a5013292f4731be598343764fea0d25d5768c535e6df9082a3136de17fc4",
+      "scripts/php-runtime.mjs": "2adeffc2ac322edbc611f34c437a0f34569689c942602bf39b079305cfb7a60f",
+      "backend/src/Security.php": "671d4e7944cfbe7d4a6d94e44e17374caa12c8c8f8c33bd850ceedba371e0401",
+      "backend/src/Database.php": "38e67995661448fb80af94ae81acc2fc844b5ecea15c6313d6fc87135681acb0"
+    },
+    "privateConfigReadByCoordinator": false,
+    "ownedConfigReadOnlyByGuardedPhpWorker": true,
+    "originalConfigRead": false,
+    "cleanup": "Only the original owner later removes the wholly owned database/processes; this check never resets or deletes counters."
+  },
+  "finishedAt": "2026-10-27T16:14:01.463Z",
+  "durationMs": 36217.0938,
+  "windowStarted": 1793117640,
+  "waitedMs": 35050,
+  "failure": null,
+  "checks": [
+    {
+      "name": "eight distinct native PDO connections reach the same actual minute before GO",
+      "pass": true
+    },
+    {
+      "name": "exact320 actual native increment results cover1through320 once each",
+      "pass": true
+    },
+    {
+      "name": "all300 allowed calls and20 denials match their own atomic boundary",
+      "pass": true
+    },
+    {
+      "name": "all calls and persisted counters stay in one real60-second window",
+      "pass": true
+    },
+    {
+      "name": "a separate account starts at one without changing the exhausted shared account",
+      "pass": true
+    },
+    {
+      "name": "frozen source and declared native driver inputs remain unchanged",
+      "pass": true
+    }
+  ],
+  "workers": [
+    {
+      "stage": "complete",
+      "status": "PASS-SCOPED-NATIVE-CALLS",
+      "connectionId": 1672,
+      "calls": [
+        {
+          "ordinal": 1,
+          "counter": 6,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 2,
+          "counter": 10,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 3,
+          "counter": 22,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 4,
+          "counter": 30,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 5,
+          "counter": 38,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 6,
+          "counter": 49,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 7,
+          "counter": 53,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 8,
+          "counter": 62,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 9,
+          "counter": 69,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 10,
+          "counter": 78,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 11,
+          "counter": 89,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 12,
+          "counter": 95,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 13,
+          "counter": 99,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 14,
+          "counter": 109,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 15,
+          "counter": 119,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 16,
+          "counter": 124,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 17,
+          "counter": 135,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 18,
+          "counter": 141,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 19,
+          "counter": 153,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 20,
+          "counter": 158,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 21,
+          "counter": 168,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 22,
+          "counter": 177,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 23,
+          "counter": 185,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 24,
+          "counter": 192,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 25,
+          "counter": 198,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 26,
+          "counter": 206,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 27,
+          "counter": 213,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 28,
+          "counter": 225,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 29,
+          "counter": 232,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 30,
+          "counter": 242,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 31,
+          "counter": 249,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 32,
+          "counter": 255,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 33,
+          "counter": 266,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 34,
+          "counter": 274,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 35,
+          "counter": 282,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 36,
+          "counter": 290,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 37,
+          "counter": 298,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 38,
+          "counter": 307,
+          "result": "limited",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 39,
+          "counter": 312,
+          "result": "limited",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 40,
+          "counter": 316,
+          "result": "limited",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        }
+      ],
+      "windowStable": true,
+      "ownerGuarded": true
+    },
+    {
+      "stage": "complete",
+      "status": "PASS-SCOPED-NATIVE-CALLS",
+      "connectionId": 1671,
+      "calls": [
+        {
+          "ordinal": 1,
+          "counter": 3,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 2,
+          "counter": 11,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 3,
+          "counter": 19,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 4,
+          "counter": 31,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 5,
+          "counter": 40,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 6,
+          "counter": 46,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 7,
+          "counter": 56,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 8,
+          "counter": 61,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 9,
+          "counter": 70,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 10,
+          "counter": 81,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 11,
+          "counter": 85,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 12,
+          "counter": 97,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 13,
+          "counter": 104,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 14,
+          "counter": 112,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 15,
+          "counter": 118,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 16,
+          "counter": 123,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 17,
+          "counter": 133,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 18,
+          "counter": 144,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 19,
+          "counter": 147,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 20,
+          "counter": 156,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 21,
+          "counter": 169,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 22,
+          "counter": 170,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 23,
+          "counter": 178,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 24,
+          "counter": 186,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 25,
+          "counter": 188,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 26,
+          "counter": 196,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 27,
+          "counter": 203,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 28,
+          "counter": 212,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 29,
+          "counter": 219,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 30,
+          "counter": 227,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 31,
+          "counter": 235,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 32,
+          "counter": 244,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 33,
+          "counter": 251,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 34,
+          "counter": 259,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 35,
+          "counter": 268,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 36,
+          "counter": 276,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 37,
+          "counter": 284,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 38,
+          "counter": 291,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 39,
+          "counter": 299,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 40,
+          "counter": 308,
+          "result": "limited",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        }
+      ],
+      "windowStable": true,
+      "ownerGuarded": true
+    },
+    {
+      "stage": "complete",
+      "status": "PASS-SCOPED-NATIVE-CALLS",
+      "connectionId": 1670,
+      "calls": [
+        {
+          "ordinal": 1,
+          "counter": 5,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 2,
+          "counter": 15,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 3,
+          "counter": 21,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 4,
+          "counter": 28,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 5,
+          "counter": 35,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 6,
+          "counter": 44,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 7,
+          "counter": 52,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 8,
+          "counter": 60,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 9,
+          "counter": 66,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 10,
+          "counter": 75,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 11,
+          "counter": 82,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 12,
+          "counter": 91,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 13,
+          "counter": 101,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 14,
+          "counter": 107,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 15,
+          "counter": 115,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 16,
+          "counter": 128,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 17,
+          "counter": 134,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 18,
+          "counter": 143,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 19,
+          "counter": 152,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 20,
+          "counter": 161,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 21,
+          "counter": 166,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 22,
+          "counter": 171,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 23,
+          "counter": 181,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 24,
+          "counter": 189,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 25,
+          "counter": 200,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 26,
+          "counter": 210,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 27,
+          "counter": 215,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 28,
+          "counter": 221,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 29,
+          "counter": 230,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 30,
+          "counter": 239,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 31,
+          "counter": 247,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 32,
+          "counter": 256,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 33,
+          "counter": 265,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 34,
+          "counter": 271,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 35,
+          "counter": 281,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 36,
+          "counter": 286,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 37,
+          "counter": 296,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 38,
+          "counter": 305,
+          "result": "limited",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 39,
+          "counter": 311,
+          "result": "limited",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 40,
+          "counter": 317,
+          "result": "limited",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        }
+      ],
+      "windowStable": true,
+      "ownerGuarded": true
+    },
+    {
+      "stage": "complete",
+      "status": "PASS-SCOPED-NATIVE-CALLS",
+      "connectionId": 1674,
+      "calls": [
+        {
+          "ordinal": 1,
+          "counter": 7,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 2,
+          "counter": 13,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 3,
+          "counter": 24,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 4,
+          "counter": 32,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 5,
+          "counter": 37,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 6,
+          "counter": 47,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 7,
+          "counter": 55,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 8,
+          "counter": 65,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 9,
+          "counter": 71,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 10,
+          "counter": 79,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 11,
+          "counter": 87,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 12,
+          "counter": 96,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 13,
+          "counter": 103,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 14,
+          "counter": 110,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 15,
+          "counter": 120,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 16,
+          "counter": 127,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 17,
+          "counter": 132,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 18,
+          "counter": 145,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 19,
+          "counter": 151,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 20,
+          "counter": 159,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 21,
+          "counter": 164,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 22,
+          "counter": 175,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 23,
+          "counter": 183,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 24,
+          "counter": 193,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 25,
+          "counter": 199,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 26,
+          "counter": 208,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 27,
+          "counter": 218,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 28,
+          "counter": 224,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 29,
+          "counter": 231,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 30,
+          "counter": 240,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 31,
+          "counter": 250,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 32,
+          "counter": 253,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 33,
+          "counter": 263,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 34,
+          "counter": 272,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 35,
+          "counter": 279,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 36,
+          "counter": 289,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 37,
+          "counter": 293,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 38,
+          "counter": 303,
+          "result": "limited",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 39,
+          "counter": 309,
+          "result": "limited",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 40,
+          "counter": 315,
+          "result": "limited",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        }
+      ],
+      "windowStable": true,
+      "ownerGuarded": true
+    },
+    {
+      "stage": "complete",
+      "status": "PASS-SCOPED-NATIVE-CALLS",
+      "connectionId": 1673,
+      "calls": [
+        {
+          "ordinal": 1,
+          "counter": 4,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 2,
+          "counter": 16,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 3,
+          "counter": 18,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 4,
+          "counter": 29,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 5,
+          "counter": 39,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 6,
+          "counter": 45,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 7,
+          "counter": 54,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 8,
+          "counter": 64,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 9,
+          "counter": 73,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 10,
+          "counter": 77,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 11,
+          "counter": 86,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 12,
+          "counter": 93,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 13,
+          "counter": 100,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 14,
+          "counter": 108,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 15,
+          "counter": 117,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 16,
+          "counter": 126,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 17,
+          "counter": 136,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 18,
+          "counter": 140,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 19,
+          "counter": 148,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 20,
+          "counter": 160,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 21,
+          "counter": 167,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 22,
+          "counter": 173,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 23,
+          "counter": 182,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 24,
+          "counter": 194,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 25,
+          "counter": 201,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 26,
+          "counter": 209,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 27,
+          "counter": 217,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 28,
+          "counter": 223,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 29,
+          "counter": 229,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 30,
+          "counter": 241,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 31,
+          "counter": 248,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 32,
+          "counter": 254,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 33,
+          "counter": 264,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 34,
+          "counter": 269,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 35,
+          "counter": 280,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 36,
+          "counter": 288,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 37,
+          "counter": 295,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 38,
+          "counter": 304,
+          "result": "limited",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 39,
+          "counter": 310,
+          "result": "limited",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 40,
+          "counter": 318,
+          "result": "limited",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        }
+      ],
+      "windowStable": true,
+      "ownerGuarded": true
+    },
+    {
+      "stage": "complete",
+      "status": "PASS-SCOPED-NATIVE-CALLS",
+      "connectionId": 1676,
+      "calls": [
+        {
+          "ordinal": 1,
+          "counter": 1,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 2,
+          "counter": 9,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 3,
+          "counter": 17,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 4,
+          "counter": 25,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 5,
+          "counter": 33,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 6,
+          "counter": 41,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 7,
+          "counter": 48,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 8,
+          "counter": 57,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 9,
+          "counter": 63,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 10,
+          "counter": 72,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 11,
+          "counter": 80,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 12,
+          "counter": 88,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 13,
+          "counter": 94,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 14,
+          "counter": 102,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 15,
+          "counter": 113,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 16,
+          "counter": 116,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 17,
+          "counter": 125,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 18,
+          "counter": 131,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 19,
+          "counter": 142,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 20,
+          "counter": 150,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 21,
+          "counter": 157,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 22,
+          "counter": 163,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 23,
+          "counter": 172,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 24,
+          "counter": 179,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 25,
+          "counter": 187,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 26,
+          "counter": 195,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 27,
+          "counter": 204,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 28,
+          "counter": 211,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 29,
+          "counter": 220,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 30,
+          "counter": 228,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 31,
+          "counter": 236,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 32,
+          "counter": 243,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 33,
+          "counter": 252,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 34,
+          "counter": 260,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 35,
+          "counter": 267,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 36,
+          "counter": 275,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 37,
+          "counter": 283,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 38,
+          "counter": 292,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 39,
+          "counter": 300,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 40,
+          "counter": 306,
+          "result": "limited",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        }
+      ],
+      "windowStable": true,
+      "ownerGuarded": true
+    },
+    {
+      "stage": "complete",
+      "status": "PASS-SCOPED-NATIVE-CALLS",
+      "connectionId": 1675,
+      "calls": [
+        {
+          "ordinal": 1,
+          "counter": 8,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 2,
+          "counter": 14,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 3,
+          "counter": 20,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 4,
+          "counter": 26,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 5,
+          "counter": 34,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 6,
+          "counter": 42,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 7,
+          "counter": 51,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 8,
+          "counter": 58,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 9,
+          "counter": 68,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 10,
+          "counter": 76,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 11,
+          "counter": 84,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 12,
+          "counter": 92,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 13,
+          "counter": 105,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 14,
+          "counter": 111,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 15,
+          "counter": 121,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 16,
+          "counter": 129,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 17,
+          "counter": 137,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 18,
+          "counter": 139,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 19,
+          "counter": 149,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 20,
+          "counter": 155,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 21,
+          "counter": 165,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 22,
+          "counter": 176,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 23,
+          "counter": 180,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 24,
+          "counter": 190,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 25,
+          "counter": 202,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 26,
+          "counter": 207,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 27,
+          "counter": 216,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 28,
+          "counter": 226,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 29,
+          "counter": 234,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 30,
+          "counter": 238,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 31,
+          "counter": 246,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 32,
+          "counter": 258,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 33,
+          "counter": 261,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 34,
+          "counter": 270,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 35,
+          "counter": 278,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 36,
+          "counter": 285,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 37,
+          "counter": 297,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 38,
+          "counter": 302,
+          "result": "limited",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 39,
+          "counter": 313,
+          "result": "limited",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 40,
+          "counter": 319,
+          "result": "limited",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        }
+      ],
+      "windowStable": true,
+      "ownerGuarded": true
+    },
+    {
+      "stage": "complete",
+      "status": "PASS-SCOPED-NATIVE-CALLS",
+      "connectionId": 1677,
+      "calls": [
+        {
+          "ordinal": 1,
+          "counter": 2,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 2,
+          "counter": 12,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 3,
+          "counter": 23,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 4,
+          "counter": 27,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 5,
+          "counter": 36,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 6,
+          "counter": 43,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 7,
+          "counter": 50,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 8,
+          "counter": 59,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 9,
+          "counter": 67,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 10,
+          "counter": 74,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 11,
+          "counter": 83,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 12,
+          "counter": 90,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 13,
+          "counter": 98,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 14,
+          "counter": 106,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 15,
+          "counter": 114,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 16,
+          "counter": 122,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 17,
+          "counter": 130,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 18,
+          "counter": 138,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 19,
+          "counter": 146,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 20,
+          "counter": 154,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 21,
+          "counter": 162,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 22,
+          "counter": 174,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 23,
+          "counter": 184,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 24,
+          "counter": 191,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 25,
+          "counter": 197,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 26,
+          "counter": 205,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 27,
+          "counter": 214,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 28,
+          "counter": 222,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 29,
+          "counter": 233,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 30,
+          "counter": 237,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 31,
+          "counter": 245,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 32,
+          "counter": 257,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 33,
+          "counter": 262,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 34,
+          "counter": 273,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 35,
+          "counter": 277,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 36,
+          "counter": 287,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 37,
+          "counter": 294,
+          "result": "admitted",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 38,
+          "counter": 301,
+          "result": "limited",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 39,
+          "counter": 314,
+          "result": "limited",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        },
+        {
+          "ordinal": 40,
+          "counter": 320,
+          "result": "limited",
+          "windowBefore": 1793117640,
+          "windowAfter": 1793117640
+        }
+      ],
+      "windowStable": true,
+      "ownerGuarded": true
+    }
+  ],
+  "otherAccount": {
+    "stage": "complete",
+    "status": "PASS-SCOPED-NATIVE-CALLS",
+    "connectionId": 1678,
+    "calls": [
+      {
+        "ordinal": 1,
+        "counter": 1,
+        "result": "admitted",
+        "windowBefore": 1793117640,
+        "windowAfter": 1793117640
+      }
+    ],
+    "windowStable": true,
+    "ownerGuarded": true
+  },
+  "persistedCounters": {
+    "shared": {
+      "windowStarted": 1793117640,
+      "attempts": 320
+    },
+    "other": {
+      "windowStarted": 1793117640,
+      "attempts": 1
+    }
+  },
+  "sourceAfter": {
+    "sourceFile": "audit/2026-10-27/final23-source.json",
+    "expectedBuild": "85735c1a3b56655b767e",
+    "compared": 506,
+    "mismatches": []
+  },
+  "inputsUnchanged": true,
+  "ownedChildrenActiveAtFinally": 0,
+  "originalConfigRead": false,
+  "counterReset": false,
+  "quotaBypass": false,
+  "serviceCleanup": "PENDING-ORIGINAL-OWNER-CLEANUP-RECEIPT"
+}

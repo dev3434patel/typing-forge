@@ -1,0 +1,19 @@
+
+> sparowtype@3.0.0 test:arena-php
+> node --experimental-strip-types backend/tests/arena-contract.mjs
+
+file:///D:/extra/typing_updated/typing-forge/backend/tests/arena-contract.mjs:61
+if (evidenceProcess.status !== 0) throw new Error(evidenceProcess.stderr || evidenceProcess.stdout);
+                                        ^
+
+Error: 
+Warning: Undefined array key "metrics" in D:\extra\typing_updated\typing-forge\backend\tests\arena-evidence-lock-contract.php on line 100
+
+Warning: Trying to access array offset on value of type null in D:\extra\typing_updated\typing-forge\backend\tests\arena-evidence-lock-contract.php on line 100
+{"status":"FAILED","scope":"Real canonical validation plus in-memory PDO lock-boundary and authoritative-replay contracts. Genuine database concurrency and HTTP timing remain separate acceptance.","passed":21,"failed":1,"checks":[{"name":"preparation retains the complete original validation result","pass":false},{"name":"valid candidate preparation performs no database query or transaction","pass":true},{"name":"forged client metrics fail before account\/room locks after only the server receipt","pass":true},{"name":"invalid finish flags still fail before locks","pass":true},{"name":"forged request owners fail before preparation and locks","pass":true},{"name":"malformed room codes fail before expensive candidate validation","pass":true},{"name":"validated submission retains the actor lock and transaction rollback path","pass":true},{"name":"issued configuration is rechecked at the locked submission boundary","pass":true},{"name":"the current stored event prefix remains immutable","pass":true},{"name":"an existing member session cannot be replaced after preparation","pass":true},{"name":"shared-start mismatch remains rejected","pass":true},{"name":"evidence still cannot exceed the authoritative elapsed allowance","pass":true},{"name":"forfeit status changed during preparation still rejects the submission","pass":true},{"name":"quarantined status changed during preparation still rejects the submission","pass":true},{"name":"a room ended during preparation cannot receive new evidence","pass":true},{"name":"the existing finish grace deadline remains enforced","pass":true},{"name":"an older receipt cannot regress a newer accepted checkpoint elapsed","pass":true},{"name":"stored metrics still come from a second authoritative server-elapsed replay","pass":true},{"name":"canonical event sequence and evidence fingerprint remain intact","pass":true},{"name":"interim acceptance stores no final evidence or finish timestamp","pass":true},{"name":"an exact finished retry remains idempotent even when its older receipt precedes stored elapsed","pass":true},{"name":"finished idempotency still rejects changed final evidence","pass":true}],"databaseConnected":false}
+    at file:///D:/extra/typing_updated/typing-forge/backend/tests/arena-contract.mjs:61:41
+    at ModuleJob.run (node:internal/modules/esm/module_job:345:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.20.0

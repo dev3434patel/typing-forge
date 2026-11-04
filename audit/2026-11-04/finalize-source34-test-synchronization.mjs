@@ -1,0 +1,30 @@
+import assert from 'node:assert/strict';
+import { readFile, readdir, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { verifyFrozenSource } from '../2026-10-21/artifact-verification.mjs';
+const sha = bytes => createHash('sha256').update(bytes).digest('hex');
+const root = 'audit/2026-11-04';
+const adoptionFile = `${root}/source34-test-synchronization-adoption.json`;
+const readyFile = `${root}/source34-test-synchronization-ready.json`;
+const adoption = JSON.parse(await readFile(adoptionFile, 'utf8'));
+const ready = JSON.parse(await readFile(readyFile, 'utf8'));
+const baseline = JSON.parse(await readFile('audit/2026-11-02/final34-existing-protocol.json', 'utf8'));
+const files = [...(await readdir('e2e')).filter(file => file.endsWith('.ts')).map(file => `e2e/${file}`), 'playwright.config.ts'].sort();
+assert.equal(files.length, 72); assert.equal(Object.keys(baseline.dependencyHashes).length, 72);
+const edits = new Map(adoption.edits.map(row => [row.file, row]));
+const hashes = {};
+for (const file of files) {
+  const actual = sha(await readFile(file));
+  const expected = edits.get(file)?.afterSha256 ?? baseline.dependencyHashes[file];
+  assert.equal(actual, expected, `Unexpected dependency mutation: ${file}`);
+  if (edits.has(file)) assert.equal(edits.get(file).beforeSha256, baseline.dependencyHashes[file]);
+  hashes[file] = actual;
+}
+const source = await verifyFrozenSource('audit/2026-11-02/final34-source.json');
+assert.equal(source.receipt.compared, 505); assert.deepEqual(source.receipt.mismatches, []);
+assert.equal(ready.discoveredCaseCount, 200);
+const receipt = { recordedAt: new Date().toISOString(), status: 'FROZEN-TEST-ONLY-REVISION-READY-FOR-SEPARATE-RUNTIME-GO', adoptionFile, adoptionSha256: sha(await readFile(adoptionFile)), listReceiptFile: readyFile, listReceiptSha256: sha(await readFile(readyFile)), source: source.receipt, build: source.frozen.local.version, dependencyCount: 72, dependencyDigestAlgorithm: 'SHA256 of UTF8 JSON.stringify(path-sorted raw-file SHA256 map), identical to selected/native guard runners', dependencySha256: sha(JSON.stringify(hashes)), dependencyHashes: hashes, actualChangedFiles: adoption.edits.map(({ file, beforeSha256, afterSha256 }) => ({ file, beforeSha256, afterSha256 })), allOther68DependenciesUnchanged: true, original64SpecFilesRetained: true, unchanged61SpecFiles: true, completeFollowupFiles: adoption.followupFiles, completeFollowupCaseCount: ready.discoveredCaseCount, casesPerEngine: 50, engines: ['chromium', 'edge', 'firefox', 'webkit'], noBrowserRuntimePerformed: true, zeroTranspileSyntaxErrors: true, semanticTypecheckClaimed: false, originalCase1014Cause: adoption.originalCase1014Cause };
+const file = `${root}/source34-test-synchronization-freeze.json`;
+const bytes = JSON.stringify(receipt, null, 2) + '\n';
+await writeFile(file, bytes);
+console.log(JSON.stringify({ file, receiptSha256: sha(bytes), adoptionSha256: receipt.adoptionSha256, dependencySha256: receipt.dependencySha256, dependencyCount: 72, changed: 4, unmodified: 68, sourceCompared: 505, cases: 200 }));

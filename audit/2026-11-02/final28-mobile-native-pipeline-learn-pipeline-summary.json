@@ -1,0 +1,2841 @@
+{
+  "status": "COMPLETE-DIAGNOSTIC-NOT-ACCEPTANCE",
+  "caseId": "learn",
+  "sourceBuild": "c79352750d221e3b7479",
+  "staticBuild": "9c75d9897f5ff28e45b5",
+  "files": {
+    "ignoredRawTrace": "audit/2026-11-02/.final28-mobile-native-pipeline-learn-trace.json",
+    "ignoredRawTimeline": "audit/2026-11-02/.final28-mobile-native-pipeline-learn-timeline.json"
+  },
+  "trace": {
+    "bytes": 2890698,
+    "byteLimit": 67108864,
+    "byteLimitExceeded": false,
+    "eof": true,
+    "dataLossOccurred": false,
+    "maxTraceBufferUsage": 0.04348352551460266,
+    "streamed": true,
+    "screenshots": false,
+    "cpuSampling": false
+  },
+  "summary": {
+    "status": "UNVERIFIED-OR-PARTIAL-DIAGNOSTIC-SUMMARY",
+    "clockAlignment": {
+      "status": "VERIFIED-USER-TIMING-MARKER-ALIGNMENT",
+      "method": "Independently infer ts/1000 minus performance.now for each unique beforeinput mark on one renderer pid/tid; require all marks, at least two, offset spread <=1ms, and start/returned residuals <=1ms.",
+      "mainRenderer": {
+        "pid": 45532,
+        "tid": 44008
+      },
+      "rendererCandidateCount": 1,
+      "ambiguousTopRenderer": false,
+      "traceMinusPerformanceNowMs": 618874687.76,
+      "offsetSpreadMs": 0,
+      "requiredMaxSpreadMs": 1,
+      "markerCounts": {
+        "timelineBeforeInputs": 114,
+        "validUniqueTimelineBeforeInputs": 114,
+        "matchedUniqueBeforeInputMarkers": 114,
+        "missingBeforeInputMarkers": 0,
+        "duplicateTimelineSequences": 0,
+        "duplicateTraceSequencesOnCandidate": 0,
+        "invalidTimelineRows": 0
+      },
+      "allBeforeInputMarkersPresent": true,
+      "inputSequenceTimesMonotonic": true,
+      "missingSequenceExamples": [],
+      "auxiliaryMarkers": [
+        {
+          "name": "sparow-native-input-start",
+          "count": 1,
+          "residualMs": 0,
+          "withinOneMs": true
+        },
+        {
+          "name": "sparow-native-input-returned",
+          "count": 1,
+          "residualMs": 0,
+          "withinOneMs": true
+        }
+      ]
+    },
+    "integrity": {
+      "dataLossOccurred": false,
+      "allBeforeInputMarkersPresent": true,
+      "suppliedTraceEvents": 10068,
+      "analyzedTraceEvents": 10068,
+      "traceInputTruncated": false,
+      "capturedSetterCalls": 113,
+      "validSetterCalls": 113,
+      "invalidSetterCalls": 0,
+      "reconstructedSelectedSpansAcrossAllThreads": 5617,
+      "selectedMainRendererSpans": 5617,
+      "reconstruction": {
+        "completeX": 5617,
+        "pairedBE": 0,
+        "unmatchedBegins": 1,
+        "unmatchedEnds": 0,
+        "mismatchedNamedEnds": 0,
+        "invalidDurations": 0,
+        "invalidThreadOrTimestamp": 0,
+        "incompleteSelectedBegins": 1,
+        "selectedUnmatchedEnds": 0
+      }
+    },
+    "setterDescriptorProof": {
+      "restorationStatus": "VERIFIED-BY-RUNTIME-STRUCTURAL-COMPARISON",
+      "descriptorsRestoredExactly": true,
+      "structuralProof": {
+        "installedBeforeReactMount": true,
+        "wrappersActiveDuringInput": true,
+        "capturedWrappersPassThroughAfterStop": true,
+        "descriptorsRestoredExactly": true,
+        "observedProperties": [
+          "value",
+          "selectionStart",
+          "selectionEnd",
+          "selectionDirection",
+          "setSelectionRange"
+        ],
+        "ownReactDescriptorMutated": false,
+        "qualification": "[nonstructural-string-omitted]"
+      },
+      "qualification": "Proof is supplied by runtime descriptor comparison, not inferred from trace. React may retain reference-bound wrappers captured before mount; after stop these must be inactive pass-through delegates until context close. No React-owned instance descriptor mutation is inferred."
+    },
+    "phases": {
+      "fullInput": {
+        "bounds": {
+          "startMs": 506.10000002384186,
+          "endMs": 5835,
+          "exclusiveEnd": false,
+          "valid": true,
+          "empty": false
+        },
+        "traceAnalysisStatus": "SCOPED-TEMPORAL-COUNTS",
+        "byType": {
+          "Layout": {
+            "fullyContained": {
+              "count": 797,
+              "inclusiveDurationMs": 980.357,
+              "unionDurationMs": 980.357
+            },
+            "boundaryOverlap": {
+              "count": 0,
+              "inclusiveDurationMs": 0,
+              "unionDurationMs": 0,
+              "inclusiveIntersectingDurationMs": 0,
+              "unionIntersectingDurationMs": 0
+            }
+          },
+          "UpdateLayoutTree": {
+            "fullyContained": {
+              "count": 949,
+              "inclusiveDurationMs": 858.785,
+              "unionDurationMs": 858.785
+            },
+            "boundaryOverlap": {
+              "count": 0,
+              "inclusiveDurationMs": 0,
+              "unionDurationMs": 0,
+              "inclusiveIntersectingDurationMs": 0,
+              "unionIntersectingDurationMs": 0
+            }
+          },
+          "PrePaint": {
+            "fullyContained": {
+              "count": 117,
+              "inclusiveDurationMs": 203.799,
+              "unionDurationMs": 203.799
+            },
+            "boundaryOverlap": {
+              "count": 0,
+              "inclusiveDurationMs": 0,
+              "unionDurationMs": 0,
+              "inclusiveIntersectingDurationMs": 0,
+              "unionIntersectingDurationMs": 0
+            }
+          },
+          "Paint": {
+            "fullyContained": {
+              "count": 295,
+              "inclusiveDurationMs": 1005.531,
+              "unionDurationMs": 509.957
+            },
+            "boundaryOverlap": {
+              "count": 0,
+              "inclusiveDurationMs": 0,
+              "unionDurationMs": 0,
+              "inclusiveIntersectingDurationMs": 0,
+              "unionIntersectingDurationMs": 0
+            }
+          },
+          "Layerize": {
+            "fullyContained": {
+              "count": 117,
+              "inclusiveDurationMs": 158.348,
+              "unionDurationMs": 158.348
+            },
+            "boundaryOverlap": {
+              "count": 0,
+              "inclusiveDurationMs": 0,
+              "unionDurationMs": 0,
+              "inclusiveIntersectingDurationMs": 0,
+              "unionIntersectingDurationMs": 0
+            }
+          },
+          "EventDispatch": {
+            "fullyContained": {
+              "count": 819,
+              "inclusiveDurationMs": 7894.771,
+              "unionDurationMs": 3463.946
+            },
+            "boundaryOverlap": {
+              "count": 0,
+              "inclusiveDurationMs": 0,
+              "unionDurationMs": 0,
+              "inclusiveIntersectingDurationMs": 0,
+              "unionIntersectingDurationMs": 0
+            }
+          },
+          "FunctionCall": {
+            "fullyContained": {
+              "count": 2523,
+              "inclusiveDurationMs": 2108.235,
+              "unionDurationMs": 2108.235
+            },
+            "boundaryOverlap": {
+              "count": 0,
+              "inclusiveDurationMs": 0,
+              "unionDurationMs": 0,
+              "inclusiveIntersectingDurationMs": 0,
+              "unionIntersectingDurationMs": 0
+            }
+          }
+        },
+        "combinedAllTypesUnionIntersectingMs": 4667.654,
+        "topDurations": [
+          {
+            "type": "EventDispatch",
+            "traceIndex": 6367,
+            "startAtMs": 5507.115,
+            "endAtMs": 5786.912,
+            "durationMs": 279.797,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "keypress"
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 6378,
+            "startAtMs": 5509.93,
+            "endAtMs": 5786.911,
+            "durationMs": 276.981,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "textInput"
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 6385,
+            "startAtMs": 5513.997,
+            "endAtMs": 5786.712,
+            "durationMs": 272.715,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "input"
+          },
+          {
+            "type": "FunctionCall",
+            "traceIndex": 6387,
+            "startAtMs": 5515.02,
+            "endAtMs": 5758.805,
+            "durationMs": 243.785,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "resourcePath": "/assets/index-v2MrrWER.js",
+            "functionName": "Hc",
+            "lineNumber": 6,
+            "columnNumber": 17074
+          },
+          {
+            "type": "Layout",
+            "traceIndex": 6478,
+            "startAtMs": 5690.308,
+            "endAtMs": 5756.381,
+            "durationMs": 66.073,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 5451,
+            "startAtMs": 4550.615,
+            "endAtMs": 4615.208,
+            "durationMs": 64.593,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "keypress"
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 29,
+            "startAtMs": 547.211,
+            "endAtMs": 604.532,
+            "durationMs": 57.321,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "keypress"
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 5462,
+            "startAtMs": 4563.442,
+            "endAtMs": 4615.026,
+            "durationMs": 51.584,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "textInput"
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 40,
+            "startAtMs": 554.88,
+            "endAtMs": 604.529,
+            "durationMs": 49.649,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "textInput"
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 5176,
+            "startAtMs": 4170.657,
+            "endAtMs": 4219.821,
+            "durationMs": 49.164,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "keypress"
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 5617,
+            "startAtMs": 4800.01,
+            "endAtMs": 4849.078,
+            "durationMs": 49.068,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "keypress"
+          },
+          {
+            "type": "UpdateLayoutTree",
+            "traceIndex": 6476,
+            "startAtMs": 5638.337,
+            "endAtMs": 5687.291,
+            "durationMs": 48.954,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 5507,
+            "startAtMs": 4640.563,
+            "endAtMs": 4687.542,
+            "durationMs": 46.979,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "keypress"
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 5341,
+            "startAtMs": 4398.918,
+            "endAtMs": 4445.381,
+            "durationMs": 46.463,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "keypress"
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 47,
+            "startAtMs": 558.733,
+            "endAtMs": 604.301,
+            "durationMs": 45.568,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "input"
+          }
+        ],
+        "eventAssociations": [
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 6367,
+              "startAtMs": 5507.115,
+              "endAtMs": 5786.912,
+              "durationMs": 279.797,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "keypress"
+            },
+            "beforeInputMarkerCount": 1,
+            "beforeInputSequenceExamples": [
+              114
+            ],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 5,
+                "inclusiveDurationMs": 70.128,
+                "unionDurationMs": 70.128
+              },
+              "UpdateLayoutTree": {
+                "count": 6,
+                "inclusiveDurationMs": 53.986,
+                "unionDurationMs": 53.986
+              },
+              "FunctionCall": {
+                "count": 11,
+                "inclusiveDurationMs": 244.787,
+                "unionDurationMs": 244.787
+              }
+            },
+            "nestedCombinedUnionMs": 248.82,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 6378,
+              "startAtMs": 5509.93,
+              "endAtMs": 5786.911,
+              "durationMs": 276.981,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "textInput"
+            },
+            "beforeInputMarkerCount": 0,
+            "beforeInputSequenceExamples": [],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 4,
+                "inclusiveDurationMs": 68.928,
+                "unionDurationMs": 68.928
+              },
+              "UpdateLayoutTree": {
+                "count": 5,
+                "inclusiveDurationMs": 53.16,
+                "unionDurationMs": 53.16
+              },
+              "FunctionCall": {
+                "count": 5,
+                "inclusiveDurationMs": 244.565,
+                "unionDurationMs": 244.565
+              }
+            },
+            "nestedCombinedUnionMs": 246.572,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 6385,
+              "startAtMs": 5513.997,
+              "endAtMs": 5786.712,
+              "durationMs": 272.715,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "input"
+            },
+            "beforeInputMarkerCount": 0,
+            "beforeInputSequenceExamples": [],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 2,
+                "inclusiveDurationMs": 67.297,
+                "unionDurationMs": 67.297
+              },
+              "UpdateLayoutTree": {
+                "count": 3,
+                "inclusiveDurationMs": 52.784,
+                "unionDurationMs": 52.784
+              },
+              "FunctionCall": {
+                "count": 3,
+                "inclusiveDurationMs": 244.388,
+                "unionDurationMs": 244.388
+              }
+            },
+            "nestedCombinedUnionMs": 244.388,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 5451,
+              "startAtMs": 4550.615,
+              "endAtMs": 4615.208,
+              "durationMs": 64.593,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "keypress"
+            },
+            "beforeInputMarkerCount": 1,
+            "beforeInputSequenceExamples": [
+              98
+            ],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 6,
+                "inclusiveDurationMs": 17.942,
+                "unionDurationMs": 17.942
+              },
+              "UpdateLayoutTree": {
+                "count": 6,
+                "inclusiveDurationMs": 13.652,
+                "unionDurationMs": 13.652
+              },
+              "FunctionCall": {
+                "count": 11,
+                "inclusiveDurationMs": 30.629,
+                "unionDurationMs": 30.629
+              }
+            },
+            "nestedCombinedUnionMs": 53.879,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 29,
+              "startAtMs": 547.211,
+              "endAtMs": 604.532,
+              "durationMs": 57.321,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "keypress"
+            },
+            "beforeInputMarkerCount": 1,
+            "beforeInputSequenceExamples": [
+              1
+            ],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 6,
+                "inclusiveDurationMs": 11.068,
+                "unionDurationMs": 11.068
+              },
+              "UpdateLayoutTree": {
+                "count": 8,
+                "inclusiveDurationMs": 9.862,
+                "unionDurationMs": 9.862
+              },
+              "FunctionCall": {
+                "count": 12,
+                "inclusiveDurationMs": 46.651,
+                "unionDurationMs": 46.651
+              }
+            },
+            "nestedCombinedUnionMs": 52.034,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 5462,
+              "startAtMs": 4563.442,
+              "endAtMs": 4615.026,
+              "durationMs": 51.584,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "textInput"
+            },
+            "beforeInputMarkerCount": 0,
+            "beforeInputSequenceExamples": [],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 5,
+                "inclusiveDurationMs": 14.495,
+                "unionDurationMs": 14.495
+              },
+              "UpdateLayoutTree": {
+                "count": 5,
+                "inclusiveDurationMs": 9.755,
+                "unionDurationMs": 9.755
+              },
+              "FunctionCall": {
+                "count": 5,
+                "inclusiveDurationMs": 28.759,
+                "unionDurationMs": 28.759
+              }
+            },
+            "nestedCombinedUnionMs": 44.665,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 40,
+              "startAtMs": 554.88,
+              "endAtMs": 604.529,
+              "durationMs": 49.649,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "textInput"
+            },
+            "beforeInputMarkerCount": 0,
+            "beforeInputSequenceExamples": [],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 5,
+                "inclusiveDurationMs": 9.027,
+                "unionDurationMs": 9.027
+              },
+              "UpdateLayoutTree": {
+                "count": 7,
+                "inclusiveDurationMs": 7.251,
+                "unionDurationMs": 7.251
+              },
+              "FunctionCall": {
+                "count": 6,
+                "inclusiveDurationMs": 45.581,
+                "unionDurationMs": 45.581
+              }
+            },
+            "nestedCombinedUnionMs": 46.312,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 5176,
+              "startAtMs": 4170.657,
+              "endAtMs": 4219.821,
+              "durationMs": 49.164,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "keypress"
+            },
+            "beforeInputMarkerCount": 1,
+            "beforeInputSequenceExamples": [
+              93
+            ],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 6,
+                "inclusiveDurationMs": 12.716,
+                "unionDurationMs": 12.716
+              },
+              "UpdateLayoutTree": {
+                "count": 6,
+                "inclusiveDurationMs": 10.948,
+                "unionDurationMs": 10.948
+              },
+              "FunctionCall": {
+                "count": 11,
+                "inclusiveDurationMs": 24.8,
+                "unionDurationMs": 24.8
+              }
+            },
+            "nestedCombinedUnionMs": 42.919,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 5617,
+              "startAtMs": 4800.01,
+              "endAtMs": 4849.078,
+              "durationMs": 49.068,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "keypress"
+            },
+            "beforeInputMarkerCount": 1,
+            "beforeInputSequenceExamples": [
+              101
+            ],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 6,
+                "inclusiveDurationMs": 14.406,
+                "unionDurationMs": 14.406
+              },
+              "UpdateLayoutTree": {
+                "count": 6,
+                "inclusiveDurationMs": 9.729,
+                "unionDurationMs": 9.729
+              },
+              "FunctionCall": {
+                "count": 11,
+                "inclusiveDurationMs": 23.791,
+                "unionDurationMs": 23.791
+              }
+            },
+            "nestedCombinedUnionMs": 41.664,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 5507,
+              "startAtMs": 4640.563,
+              "endAtMs": 4687.542,
+              "durationMs": 46.979,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "keypress"
+            },
+            "beforeInputMarkerCount": 1,
+            "beforeInputSequenceExamples": [
+              99
+            ],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 6,
+                "inclusiveDurationMs": 11.828,
+                "unionDurationMs": 11.828
+              },
+              "UpdateLayoutTree": {
+                "count": 6,
+                "inclusiveDurationMs": 10.87,
+                "unionDurationMs": 10.87
+              },
+              "FunctionCall": {
+                "count": 11,
+                "inclusiveDurationMs": 25.501,
+                "unionDurationMs": 25.501
+              }
+            },
+            "nestedCombinedUnionMs": 40.676,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 5341,
+              "startAtMs": 4398.918,
+              "endAtMs": 4445.381,
+              "durationMs": 46.463,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "keypress"
+            },
+            "beforeInputMarkerCount": 1,
+            "beforeInputSequenceExamples": [
+              96
+            ],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 6,
+                "inclusiveDurationMs": 13.579,
+                "unionDurationMs": 13.579
+              },
+              "UpdateLayoutTree": {
+                "count": 6,
+                "inclusiveDurationMs": 11.187,
+                "unionDurationMs": 11.187
+              },
+              "FunctionCall": {
+                "count": 11,
+                "inclusiveDurationMs": 19.754,
+                "unionDurationMs": 19.754
+              }
+            },
+            "nestedCombinedUnionMs": 37.956,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 47,
+              "startAtMs": 558.733,
+              "endAtMs": 604.301,
+              "durationMs": 45.568,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "input"
+            },
+            "beforeInputMarkerCount": 0,
+            "beforeInputSequenceExamples": [],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 3,
+                "inclusiveDurationMs": 8.349,
+                "unionDurationMs": 8.349
+              },
+              "UpdateLayoutTree": {
+                "count": 5,
+                "inclusiveDurationMs": 7.198,
+                "unionDurationMs": 7.198
+              },
+              "FunctionCall": {
+                "count": 4,
+                "inclusiveDurationMs": 45.196,
+                "unionDurationMs": 45.196
+              }
+            },
+            "nestedCombinedUnionMs": 45.196,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 5286,
+              "startAtMs": 4327.832,
+              "endAtMs": 4372.774,
+              "durationMs": 44.942,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "keypress"
+            },
+            "beforeInputMarkerCount": 1,
+            "beforeInputSequenceExamples": [
+              95
+            ],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 6,
+                "inclusiveDurationMs": 12.87,
+                "unionDurationMs": 12.87
+              },
+              "UpdateLayoutTree": {
+                "count": 6,
+                "inclusiveDurationMs": 10.377,
+                "unionDurationMs": 10.377
+              },
+              "FunctionCall": {
+                "count": 11,
+                "inclusiveDurationMs": 21.734,
+                "unionDurationMs": 21.734
+              }
+            },
+            "nestedCombinedUnionMs": 37.94,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 5396,
+              "startAtMs": 4469.588,
+              "endAtMs": 4513.958,
+              "durationMs": 44.37,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "keypress"
+            },
+            "beforeInputMarkerCount": 1,
+            "beforeInputSequenceExamples": [
+              97
+            ],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 6,
+                "inclusiveDurationMs": 16.463,
+                "unionDurationMs": 16.463
+              },
+              "UpdateLayoutTree": {
+                "count": 6,
+                "inclusiveDurationMs": 9.397,
+                "unionDurationMs": 9.397
+              },
+              "FunctionCall": {
+                "count": 11,
+                "inclusiveDurationMs": 22.773,
+                "unionDurationMs": 22.773
+              }
+            },
+            "nestedCombinedUnionMs": 39.102,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 4150,
+              "startAtMs": 3338.056,
+              "endAtMs": 3381.982,
+              "durationMs": 43.926,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "keypress"
+            },
+            "beforeInputMarkerCount": 1,
+            "beforeInputSequenceExamples": [
+              75
+            ],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 6,
+                "inclusiveDurationMs": 14.811,
+                "unionDurationMs": 14.811
+              },
+              "UpdateLayoutTree": {
+                "count": 6,
+                "inclusiveDurationMs": 6.816,
+                "unionDurationMs": 6.816
+              },
+              "FunctionCall": {
+                "count": 11,
+                "inclusiveDurationMs": 24.362,
+                "unionDurationMs": 24.362
+              }
+            },
+            "nestedCombinedUnionMs": 38.474,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          }
+        ],
+        "nativeSetters": {
+          "analysisStatus": "SCOPED-BROWSER-TIMELINE-COUNTS",
+          "fullyContained": {
+            "count": 113,
+            "inclusiveDurationMs": 18,
+            "unionDurationMs": 18,
+            "measuredDurationSumMs": 18,
+            "sameSelectionRangeBeforeAfterCount": 0,
+            "requestedRangeAlreadyCurrentCount": 0,
+            "threwCount": 0
+          },
+          "boundaryOverlap": {
+            "count": 0,
+            "inclusiveDurationMs": 0,
+            "unionDurationMs": 0,
+            "measuredDurationSumMs": 0,
+            "sameSelectionRangeBeforeAfterCount": 0,
+            "requestedRangeAlreadyCurrentCount": 0,
+            "threwCount": 0,
+            "inclusiveIntersectingDurationMs": 0,
+            "unionIntersectingDurationMs": 0
+          },
+          "kinds": [
+            {
+              "kind": "value",
+              "count": 113,
+              "inclusiveDurationMs": 18,
+              "unionDurationMs": 18,
+              "measuredDurationSumMs": 18,
+              "sameSelectionRangeBeforeAfterCount": 0,
+              "requestedRangeAlreadyCurrentCount": 0,
+              "threwCount": 0
+            }
+          ],
+          "distinctKinds": 1,
+          "topDurations": [
+            {
+              "id": 108,
+              "kind": "value",
+              "startAtMs": 5208.9,
+              "endAtMs": 5209.7,
+              "durationMs": 0.8,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 96,
+              "kind": "value",
+              "startAtMs": 4433.6,
+              "endAtMs": 4434.2,
+              "durationMs": 0.6,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 94,
+              "kind": "value",
+              "startAtMs": 4274.4,
+              "endAtMs": 4275,
+              "durationMs": 0.6,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 93,
+              "kind": "value",
+              "startAtMs": 4203,
+              "endAtMs": 4203.4,
+              "durationMs": 0.4,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 112,
+              "kind": "value",
+              "startAtMs": 5429.5,
+              "endAtMs": 5429.9,
+              "durationMs": 0.4,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 1,
+              "kind": "value",
+              "startAtMs": 576.6,
+              "endAtMs": 577,
+              "durationMs": 0.4,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 2,
+              "kind": "value",
+              "startAtMs": 663.1,
+              "endAtMs": 663.5,
+              "durationMs": 0.4,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 46,
+              "kind": "value",
+              "startAtMs": 2224.4,
+              "endAtMs": 2224.8,
+              "durationMs": 0.4,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 52,
+              "kind": "value",
+              "startAtMs": 2442.3,
+              "endAtMs": 2442.7,
+              "durationMs": 0.4,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 66,
+              "kind": "value",
+              "startAtMs": 3008.3,
+              "endAtMs": 3008.7,
+              "durationMs": 0.4,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 97,
+              "kind": "value",
+              "startAtMs": 4500.9,
+              "endAtMs": 4501.3,
+              "durationMs": 0.4,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 30,
+              "kind": "value",
+              "startAtMs": 1634,
+              "endAtMs": 1634.3,
+              "durationMs": 0.3,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 40,
+              "kind": "value",
+              "startAtMs": 1994,
+              "endAtMs": 1994.3,
+              "durationMs": 0.3,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 101,
+              "kind": "value",
+              "startAtMs": 4834.1,
+              "endAtMs": 4834.4,
+              "durationMs": 0.3,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 49,
+              "kind": "value",
+              "startAtMs": 2340.7,
+              "endAtMs": 2341,
+              "durationMs": 0.3,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            }
+          ],
+          "qualification": "Range equivalence does not prove a value write was redundant. Getter probes used to capture before/after ranges can perturb layout and the observed native path; observed nesting is not exclusive setter causality."
+        }
+      },
+      "strictPreFinalInput": {
+        "bounds": {
+          "startMs": 554.1000000238419,
+          "endMs": 5509.700000047684,
+          "exclusiveEnd": true,
+          "valid": true,
+          "empty": false
+        },
+        "traceAnalysisStatus": "SCOPED-TEMPORAL-COUNTS",
+        "byType": {
+          "Layout": {
+            "fullyContained": {
+              "count": 792,
+              "inclusiveDurationMs": 909.388,
+              "unionDurationMs": 909.388
+            },
+            "boundaryOverlap": {
+              "count": 0,
+              "inclusiveDurationMs": 0,
+              "unionDurationMs": 0,
+              "inclusiveIntersectingDurationMs": 0,
+              "unionIntersectingDurationMs": 0
+            }
+          },
+          "UpdateLayoutTree": {
+            "fullyContained": {
+              "count": 941,
+              "inclusiveDurationMs": 801.415,
+              "unionDurationMs": 801.415
+            },
+            "boundaryOverlap": {
+              "count": 0,
+              "inclusiveDurationMs": 0,
+              "unionDurationMs": 0,
+              "inclusiveIntersectingDurationMs": 0,
+              "unionIntersectingDurationMs": 0
+            }
+          },
+          "PrePaint": {
+            "fullyContained": {
+              "count": 113,
+              "inclusiveDurationMs": 199.766,
+              "unionDurationMs": 199.766
+            },
+            "boundaryOverlap": {
+              "count": 0,
+              "inclusiveDurationMs": 0,
+              "unionDurationMs": 0,
+              "inclusiveIntersectingDurationMs": 0,
+              "unionIntersectingDurationMs": 0
+            }
+          },
+          "Paint": {
+            "fullyContained": {
+              "count": 294,
+              "inclusiveDurationMs": 1000.85,
+              "unionDurationMs": 505.276
+            },
+            "boundaryOverlap": {
+              "count": 0,
+              "inclusiveDurationMs": 0,
+              "unionDurationMs": 0,
+              "inclusiveIntersectingDurationMs": 0,
+              "unionIntersectingDurationMs": 0
+            }
+          },
+          "Layerize": {
+            "fullyContained": {
+              "count": 113,
+              "inclusiveDurationMs": 155.719,
+              "unionDurationMs": 155.719
+            },
+            "boundaryOverlap": {
+              "count": 0,
+              "inclusiveDurationMs": 0,
+              "unionDurationMs": 0,
+              "inclusiveIntersectingDurationMs": 0,
+              "unionIntersectingDurationMs": 0
+            }
+          },
+          "EventDispatch": {
+            "fullyContained": {
+              "count": 798,
+              "inclusiveDurationMs": 6988.858,
+              "unionDurationMs": 3160.622
+            },
+            "boundaryOverlap": {
+              "count": 4,
+              "inclusiveDurationMs": 338.89,
+              "unionDurationMs": 337.118,
+              "inclusiveIntersectingDurationMs": 53.95,
+              "unionIntersectingDurationMs": 53.017
+            }
+          },
+          "FunctionCall": {
+            "fullyContained": {
+              "count": 2496,
+              "inclusiveDurationMs": 1845.181,
+              "unionDurationMs": 1845.181
+            },
+            "boundaryOverlap": {
+              "count": 1,
+              "inclusiveDurationMs": 0.588,
+              "unionDurationMs": 0.588,
+              "inclusiveIntersectingDurationMs": 0.184,
+              "unionIntersectingDurationMs": 0.184
+            }
+          }
+        },
+        "combinedAllTypesUnionIntersectingMs": 4350.797,
+        "topDurations": [
+          {
+            "type": "EventDispatch",
+            "traceIndex": 6367,
+            "startAtMs": 5507.115,
+            "endAtMs": 5786.912,
+            "durationMs": 279.797,
+            "fullyContainedInPhase": false,
+            "boundaryOverlap": true,
+            "eventType": "keypress"
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 5451,
+            "startAtMs": 4550.615,
+            "endAtMs": 4615.208,
+            "durationMs": 64.593,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "keypress"
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 29,
+            "startAtMs": 547.211,
+            "endAtMs": 604.532,
+            "durationMs": 57.321,
+            "fullyContainedInPhase": false,
+            "boundaryOverlap": true,
+            "eventType": "keypress"
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 5462,
+            "startAtMs": 4563.442,
+            "endAtMs": 4615.026,
+            "durationMs": 51.584,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "textInput"
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 40,
+            "startAtMs": 554.88,
+            "endAtMs": 604.529,
+            "durationMs": 49.649,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "textInput"
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 5176,
+            "startAtMs": 4170.657,
+            "endAtMs": 4219.821,
+            "durationMs": 49.164,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "keypress"
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 5617,
+            "startAtMs": 4800.01,
+            "endAtMs": 4849.078,
+            "durationMs": 49.068,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "keypress"
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 5507,
+            "startAtMs": 4640.563,
+            "endAtMs": 4687.542,
+            "durationMs": 46.979,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "keypress"
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 5341,
+            "startAtMs": 4398.918,
+            "endAtMs": 4445.381,
+            "durationMs": 46.463,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "keypress"
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 47,
+            "startAtMs": 558.733,
+            "endAtMs": 604.301,
+            "durationMs": 45.568,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "input"
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 5286,
+            "startAtMs": 4327.832,
+            "endAtMs": 4372.774,
+            "durationMs": 44.942,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "keypress"
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 5396,
+            "startAtMs": 4469.588,
+            "endAtMs": 4513.958,
+            "durationMs": 44.37,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "keypress"
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 4150,
+            "startAtMs": 3338.056,
+            "endAtMs": 3381.982,
+            "durationMs": 43.926,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "keypress"
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 5562,
+            "startAtMs": 4720.764,
+            "endAtMs": 4764.678,
+            "durationMs": 43.914,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "keypress"
+          },
+          {
+            "type": "EventDispatch",
+            "traceIndex": 6032,
+            "startAtMs": 5175.703,
+            "endAtMs": 5219.471,
+            "durationMs": 43.768,
+            "fullyContainedInPhase": true,
+            "boundaryOverlap": false,
+            "eventType": "keypress"
+          }
+        ],
+        "eventAssociations": [
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 6367,
+              "startAtMs": 5507.115,
+              "endAtMs": 5786.912,
+              "durationMs": 279.797,
+              "fullyContainedInPhase": false,
+              "boundaryOverlap": true,
+              "eventType": "keypress"
+            },
+            "beforeInputMarkerCount": 1,
+            "beforeInputSequenceExamples": [
+              114
+            ],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 1,
+                "inclusiveDurationMs": 1.2,
+                "unionDurationMs": 1.2
+              },
+              "UpdateLayoutTree": {
+                "count": 1,
+                "inclusiveDurationMs": 0.826,
+                "unionDurationMs": 0.826
+              },
+              "FunctionCall": {
+                "count": 2,
+                "inclusiveDurationMs": 0.009,
+                "unionDurationMs": 0.009
+              }
+            },
+            "nestedCombinedUnionMs": 2.035,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 5451,
+              "startAtMs": 4550.615,
+              "endAtMs": 4615.208,
+              "durationMs": 64.593,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "keypress"
+            },
+            "beforeInputMarkerCount": 1,
+            "beforeInputSequenceExamples": [
+              98
+            ],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 6,
+                "inclusiveDurationMs": 17.942,
+                "unionDurationMs": 17.942
+              },
+              "UpdateLayoutTree": {
+                "count": 6,
+                "inclusiveDurationMs": 13.652,
+                "unionDurationMs": 13.652
+              },
+              "FunctionCall": {
+                "count": 11,
+                "inclusiveDurationMs": 30.629,
+                "unionDurationMs": 30.629
+              }
+            },
+            "nestedCombinedUnionMs": 53.879,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 29,
+              "startAtMs": 547.211,
+              "endAtMs": 604.532,
+              "durationMs": 57.321,
+              "fullyContainedInPhase": false,
+              "boundaryOverlap": true,
+              "eventType": "keypress"
+            },
+            "beforeInputMarkerCount": 1,
+            "beforeInputSequenceExamples": [
+              1
+            ],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 5,
+                "inclusiveDurationMs": 9.027,
+                "unionDurationMs": 9.027
+              },
+              "UpdateLayoutTree": {
+                "count": 7,
+                "inclusiveDurationMs": 7.251,
+                "unionDurationMs": 7.251
+              },
+              "FunctionCall": {
+                "count": 9,
+                "inclusiveDurationMs": 45.994,
+                "unionDurationMs": 45.994
+              }
+            },
+            "nestedCombinedUnionMs": 46.725,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 5462,
+              "startAtMs": 4563.442,
+              "endAtMs": 4615.026,
+              "durationMs": 51.584,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "textInput"
+            },
+            "beforeInputMarkerCount": 0,
+            "beforeInputSequenceExamples": [],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 5,
+                "inclusiveDurationMs": 14.495,
+                "unionDurationMs": 14.495
+              },
+              "UpdateLayoutTree": {
+                "count": 5,
+                "inclusiveDurationMs": 9.755,
+                "unionDurationMs": 9.755
+              },
+              "FunctionCall": {
+                "count": 5,
+                "inclusiveDurationMs": 28.759,
+                "unionDurationMs": 28.759
+              }
+            },
+            "nestedCombinedUnionMs": 44.665,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 40,
+              "startAtMs": 554.88,
+              "endAtMs": 604.529,
+              "durationMs": 49.649,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "textInput"
+            },
+            "beforeInputMarkerCount": 0,
+            "beforeInputSequenceExamples": [],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 5,
+                "inclusiveDurationMs": 9.027,
+                "unionDurationMs": 9.027
+              },
+              "UpdateLayoutTree": {
+                "count": 7,
+                "inclusiveDurationMs": 7.251,
+                "unionDurationMs": 7.251
+              },
+              "FunctionCall": {
+                "count": 6,
+                "inclusiveDurationMs": 45.581,
+                "unionDurationMs": 45.581
+              }
+            },
+            "nestedCombinedUnionMs": 46.312,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 5176,
+              "startAtMs": 4170.657,
+              "endAtMs": 4219.821,
+              "durationMs": 49.164,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "keypress"
+            },
+            "beforeInputMarkerCount": 1,
+            "beforeInputSequenceExamples": [
+              93
+            ],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 6,
+                "inclusiveDurationMs": 12.716,
+                "unionDurationMs": 12.716
+              },
+              "UpdateLayoutTree": {
+                "count": 6,
+                "inclusiveDurationMs": 10.948,
+                "unionDurationMs": 10.948
+              },
+              "FunctionCall": {
+                "count": 11,
+                "inclusiveDurationMs": 24.8,
+                "unionDurationMs": 24.8
+              }
+            },
+            "nestedCombinedUnionMs": 42.919,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 5617,
+              "startAtMs": 4800.01,
+              "endAtMs": 4849.078,
+              "durationMs": 49.068,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "keypress"
+            },
+            "beforeInputMarkerCount": 1,
+            "beforeInputSequenceExamples": [
+              101
+            ],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 6,
+                "inclusiveDurationMs": 14.406,
+                "unionDurationMs": 14.406
+              },
+              "UpdateLayoutTree": {
+                "count": 6,
+                "inclusiveDurationMs": 9.729,
+                "unionDurationMs": 9.729
+              },
+              "FunctionCall": {
+                "count": 11,
+                "inclusiveDurationMs": 23.791,
+                "unionDurationMs": 23.791
+              }
+            },
+            "nestedCombinedUnionMs": 41.664,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 5507,
+              "startAtMs": 4640.563,
+              "endAtMs": 4687.542,
+              "durationMs": 46.979,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "keypress"
+            },
+            "beforeInputMarkerCount": 1,
+            "beforeInputSequenceExamples": [
+              99
+            ],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 6,
+                "inclusiveDurationMs": 11.828,
+                "unionDurationMs": 11.828
+              },
+              "UpdateLayoutTree": {
+                "count": 6,
+                "inclusiveDurationMs": 10.87,
+                "unionDurationMs": 10.87
+              },
+              "FunctionCall": {
+                "count": 11,
+                "inclusiveDurationMs": 25.501,
+                "unionDurationMs": 25.501
+              }
+            },
+            "nestedCombinedUnionMs": 40.676,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 5341,
+              "startAtMs": 4398.918,
+              "endAtMs": 4445.381,
+              "durationMs": 46.463,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "keypress"
+            },
+            "beforeInputMarkerCount": 1,
+            "beforeInputSequenceExamples": [
+              96
+            ],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 6,
+                "inclusiveDurationMs": 13.579,
+                "unionDurationMs": 13.579
+              },
+              "UpdateLayoutTree": {
+                "count": 6,
+                "inclusiveDurationMs": 11.187,
+                "unionDurationMs": 11.187
+              },
+              "FunctionCall": {
+                "count": 11,
+                "inclusiveDurationMs": 19.754,
+                "unionDurationMs": 19.754
+              }
+            },
+            "nestedCombinedUnionMs": 37.956,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 47,
+              "startAtMs": 558.733,
+              "endAtMs": 604.301,
+              "durationMs": 45.568,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "input"
+            },
+            "beforeInputMarkerCount": 0,
+            "beforeInputSequenceExamples": [],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 3,
+                "inclusiveDurationMs": 8.349,
+                "unionDurationMs": 8.349
+              },
+              "UpdateLayoutTree": {
+                "count": 5,
+                "inclusiveDurationMs": 7.198,
+                "unionDurationMs": 7.198
+              },
+              "FunctionCall": {
+                "count": 4,
+                "inclusiveDurationMs": 45.196,
+                "unionDurationMs": 45.196
+              }
+            },
+            "nestedCombinedUnionMs": 45.196,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 5286,
+              "startAtMs": 4327.832,
+              "endAtMs": 4372.774,
+              "durationMs": 44.942,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "keypress"
+            },
+            "beforeInputMarkerCount": 1,
+            "beforeInputSequenceExamples": [
+              95
+            ],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 6,
+                "inclusiveDurationMs": 12.87,
+                "unionDurationMs": 12.87
+              },
+              "UpdateLayoutTree": {
+                "count": 6,
+                "inclusiveDurationMs": 10.377,
+                "unionDurationMs": 10.377
+              },
+              "FunctionCall": {
+                "count": 11,
+                "inclusiveDurationMs": 21.734,
+                "unionDurationMs": 21.734
+              }
+            },
+            "nestedCombinedUnionMs": 37.94,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 5396,
+              "startAtMs": 4469.588,
+              "endAtMs": 4513.958,
+              "durationMs": 44.37,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "keypress"
+            },
+            "beforeInputMarkerCount": 1,
+            "beforeInputSequenceExamples": [
+              97
+            ],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 6,
+                "inclusiveDurationMs": 16.463,
+                "unionDurationMs": 16.463
+              },
+              "UpdateLayoutTree": {
+                "count": 6,
+                "inclusiveDurationMs": 9.397,
+                "unionDurationMs": 9.397
+              },
+              "FunctionCall": {
+                "count": 11,
+                "inclusiveDurationMs": 22.773,
+                "unionDurationMs": 22.773
+              }
+            },
+            "nestedCombinedUnionMs": 39.102,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 4150,
+              "startAtMs": 3338.056,
+              "endAtMs": 3381.982,
+              "durationMs": 43.926,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "keypress"
+            },
+            "beforeInputMarkerCount": 1,
+            "beforeInputSequenceExamples": [
+              75
+            ],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 6,
+                "inclusiveDurationMs": 14.811,
+                "unionDurationMs": 14.811
+              },
+              "UpdateLayoutTree": {
+                "count": 6,
+                "inclusiveDurationMs": 6.816,
+                "unionDurationMs": 6.816
+              },
+              "FunctionCall": {
+                "count": 11,
+                "inclusiveDurationMs": 24.362,
+                "unionDurationMs": 24.362
+              }
+            },
+            "nestedCombinedUnionMs": 38.474,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 5562,
+              "startAtMs": 4720.764,
+              "endAtMs": 4764.678,
+              "durationMs": 43.914,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "keypress"
+            },
+            "beforeInputMarkerCount": 1,
+            "beforeInputSequenceExamples": [
+              100
+            ],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 6,
+                "inclusiveDurationMs": 13.872,
+                "unionDurationMs": 13.872
+              },
+              "UpdateLayoutTree": {
+                "count": 6,
+                "inclusiveDurationMs": 9.287,
+                "unionDurationMs": 9.287
+              },
+              "FunctionCall": {
+                "count": 11,
+                "inclusiveDurationMs": 23.9,
+                "unionDurationMs": 23.9
+              }
+            },
+            "nestedCombinedUnionMs": 37.986,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          },
+          {
+            "event": {
+              "type": "EventDispatch",
+              "traceIndex": 6032,
+              "startAtMs": 5175.703,
+              "endAtMs": 5219.471,
+              "durationMs": 43.768,
+              "fullyContainedInPhase": true,
+              "boundaryOverlap": false,
+              "eventType": "keypress"
+            },
+            "beforeInputMarkerCount": 1,
+            "beforeInputSequenceExamples": [
+              108
+            ],
+            "fullyContainedNestedSpans": {
+              "Layout": {
+                "count": 6,
+                "inclusiveDurationMs": 14.641,
+                "unionDurationMs": 14.641
+              },
+              "UpdateLayoutTree": {
+                "count": 6,
+                "inclusiveDurationMs": 6.702,
+                "unionDurationMs": 6.702
+              },
+              "FunctionCall": {
+                "count": 11,
+                "inclusiveDurationMs": 33.747,
+                "unionDurationMs": 33.747
+              }
+            },
+            "nestedCombinedUnionMs": 40.988,
+            "association": "Temporal containment only; FunctionCall can contain Layout and style work. Inclusive or per-type durations must not be added as exclusive cost or interpreted as causality."
+          }
+        ],
+        "nativeSetters": {
+          "analysisStatus": "SCOPED-BROWSER-TIMELINE-COUNTS",
+          "fullyContained": {
+            "count": 113,
+            "inclusiveDurationMs": 18,
+            "unionDurationMs": 18,
+            "measuredDurationSumMs": 18,
+            "sameSelectionRangeBeforeAfterCount": 0,
+            "requestedRangeAlreadyCurrentCount": 0,
+            "threwCount": 0
+          },
+          "boundaryOverlap": {
+            "count": 0,
+            "inclusiveDurationMs": 0,
+            "unionDurationMs": 0,
+            "measuredDurationSumMs": 0,
+            "sameSelectionRangeBeforeAfterCount": 0,
+            "requestedRangeAlreadyCurrentCount": 0,
+            "threwCount": 0,
+            "inclusiveIntersectingDurationMs": 0,
+            "unionIntersectingDurationMs": 0
+          },
+          "kinds": [
+            {
+              "kind": "value",
+              "count": 113,
+              "inclusiveDurationMs": 18,
+              "unionDurationMs": 18,
+              "measuredDurationSumMs": 18,
+              "sameSelectionRangeBeforeAfterCount": 0,
+              "requestedRangeAlreadyCurrentCount": 0,
+              "threwCount": 0
+            }
+          ],
+          "distinctKinds": 1,
+          "topDurations": [
+            {
+              "id": 108,
+              "kind": "value",
+              "startAtMs": 5208.9,
+              "endAtMs": 5209.7,
+              "durationMs": 0.8,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 96,
+              "kind": "value",
+              "startAtMs": 4433.6,
+              "endAtMs": 4434.2,
+              "durationMs": 0.6,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 94,
+              "kind": "value",
+              "startAtMs": 4274.4,
+              "endAtMs": 4275,
+              "durationMs": 0.6,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 93,
+              "kind": "value",
+              "startAtMs": 4203,
+              "endAtMs": 4203.4,
+              "durationMs": 0.4,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 112,
+              "kind": "value",
+              "startAtMs": 5429.5,
+              "endAtMs": 5429.9,
+              "durationMs": 0.4,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 1,
+              "kind": "value",
+              "startAtMs": 576.6,
+              "endAtMs": 577,
+              "durationMs": 0.4,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 2,
+              "kind": "value",
+              "startAtMs": 663.1,
+              "endAtMs": 663.5,
+              "durationMs": 0.4,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 46,
+              "kind": "value",
+              "startAtMs": 2224.4,
+              "endAtMs": 2224.8,
+              "durationMs": 0.4,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 52,
+              "kind": "value",
+              "startAtMs": 2442.3,
+              "endAtMs": 2442.7,
+              "durationMs": 0.4,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 66,
+              "kind": "value",
+              "startAtMs": 3008.3,
+              "endAtMs": 3008.7,
+              "durationMs": 0.4,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 97,
+              "kind": "value",
+              "startAtMs": 4500.9,
+              "endAtMs": 4501.3,
+              "durationMs": 0.4,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 30,
+              "kind": "value",
+              "startAtMs": 1634,
+              "endAtMs": 1634.3,
+              "durationMs": 0.3,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 40,
+              "kind": "value",
+              "startAtMs": 1994,
+              "endAtMs": 1994.3,
+              "durationMs": 0.3,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 101,
+              "kind": "value",
+              "startAtMs": 4834.1,
+              "endAtMs": 4834.4,
+              "durationMs": 0.3,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            },
+            {
+              "id": 49,
+              "kind": "value",
+              "startAtMs": 2340.7,
+              "endAtMs": 2341,
+              "durationMs": 0.3,
+              "fullyContainedInPhase": true,
+              "before": {
+                "start": 1,
+                "end": 1,
+                "direction": "forward"
+              },
+              "after": {
+                "start": 0,
+                "end": 0,
+                "direction": "forward"
+              },
+              "requestedRange": null,
+              "sameRangeBeforeAfter": false,
+              "requestedAlreadyCurrent": null,
+              "threw": false,
+              "containedLayoutAndStyle": {
+                "count": 0,
+                "inclusiveDurationMs": 0,
+                "unionDurationMs": 0,
+                "combinedUnionMs": 0
+              }
+            }
+          ],
+          "qualification": "Range equivalence does not prove a value write was redundant. Getter probes used to capture before/after ranges can perturb layout and the observed native path; observed nesting is not exclusive setter causality."
+        }
+      }
+    },
+    "quantificationLimits": [
+      "Diagnostic instrumentation perturbs execution; this report does not replace acceptance latency failures or demonstrate field INP.",
+      "The fully contained strict interval starts at the first beforeinput and ends strictly before the final beforeinput. Boundary-overlapping events are retained separately and can include automatic result work.",
+      "Trace inclusive durations nest. Union spans remove temporal double counting but do not identify exclusive CPU, renderer idle time, or causality. Do not add per-type unions or call program samples layout.",
+      "Event and setter associations are temporal containment only. Before/after selection getter probes may trigger or alter style/layout work.",
+      "Unmatched B/E spans and durations cut by trace capture remain unquantified. Source URLs are reduced to public HTTP(S) pathnames; raw arguments, typed text, key values, and URL queries are omitted.",
+      "Top durations and associations are limited to15 rows each. The runtime retains ignored raw trace/timeline files; this pure function does not read or write them."
+    ]
+  },
+  "layoutNodeEvidence": {
+    "status": "BOUNDED-TRACE-NODE-REFERENCES",
+    "maximumUniqueReferences": 32,
+    "nodes": [
+      {
+        "reference": {
+          "id": 3,
+          "field": "nodeId",
+          "eventName": "Layout"
+        },
+        "status": "RESOLVED-AS-BACKEND-NODE",
+        "backendNodeId": 3,
+        "tag": "#document",
+        "id": null,
+        "className": null,
+        "testId": null
+      }
+    ],
+    "qualification": "Trace argument filtering may omit node IDs. Only numeric root/node references emitted by measured main-thread Layout/style events are queried. No DOM text, input values or arbitrary attributes are retained. A resolved node identifies trace scope, not an exclusive layout cause."
+  },
+  "nativeTextareaShape": {
+    "before": {
+      "isConnected": true,
+      "clientWidth": 350,
+      "clientHeight": 152,
+      "scrollWidth": 350,
+      "scrollHeight": 152,
+      "scrollTop": 0,
+      "scrollLeft": 0,
+      "wrap": "",
+      "whiteSpace": "pre-wrap",
+      "overflowX": "auto",
+      "overflowY": "auto",
+      "fontFamily": "\"Inter Variable\", \"Inter Fallback\", \"Noto Sans\", system-ui, sans-serif",
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "ownReactValueDescriptorPresent": true
+    },
+    "after": {
+      "isConnected": false,
+      "clientWidth": 0,
+      "clientHeight": 0,
+      "scrollWidth": 0,
+      "scrollHeight": 0,
+      "scrollTop": 0,
+      "scrollLeft": 0,
+      "wrap": "",
+      "whiteSpace": "",
+      "overflowX": "",
+      "overflowY": "",
+      "fontFamily": "",
+      "fontSize": "",
+      "lineHeight": "",
+      "ownReactValueDescriptorPresent": true
+    }
+  },
+  "probeIntegrity": {
+    "setterProbeEnabled": true,
+    "setterCalls": 113,
+    "observerErrors": 0,
+    "droppedSetterCalls": 0,
+    "droppedBeforeInputs": 0,
+    "droppedLongAnimationFrames": 0
+  },
+  "longAnimationFrameEvidence": {
+    "strictPreFinalInput": {
+      "fullyContainedScripts": 20,
+      "reportedForcedStyleAndLayoutMs": 150.99999999999997,
+      "topForcedLayout": [
+        {
+          "executionStart": 559.1000000238419,
+          "duration": 45.200000047683716,
+          "forcedStyleAndLayoutDuration": 15.7,
+          "invoker": "DIV#root.oninput",
+          "invokerType": "event-listener",
+          "sourceFunctionName": "Hc",
+          "sourceCharPosition": 37584,
+          "sourceURL": "/assets/index-v2MrrWER.js"
+        },
+        {
+          "executionStart": 5182.200000047684,
+          "duration": 32.799999952316284,
+          "forcedStyleAndLayoutDuration": 13.9,
+          "invoker": "DIV#root.oninput",
+          "invokerType": "event-listener",
+          "sourceFunctionName": "Hc",
+          "sourceCharPosition": 37584,
+          "sourceURL": "/assets/index-v2MrrWER.js"
+        },
+        {
+          "executionStart": 4483.700000047684,
+          "duration": 22.399999976158142,
+          "forcedStyleAndLayoutDuration": 9.7,
+          "invoker": "DIV#root.oninput",
+          "invokerType": "event-listener",
+          "sourceFunctionName": "Hc",
+          "sourceCharPosition": 37584,
+          "sourceURL": "/assets/index-v2MrrWER.js"
+        },
+        {
+          "executionStart": 4733,
+          "duration": 23,
+          "forcedStyleAndLayoutDuration": 9.3,
+          "invoker": "DIV#root.oninput",
+          "invokerType": "event-listener",
+          "sourceFunctionName": "Hc",
+          "sourceCharPosition": 37584,
+          "sourceURL": "/assets/index-v2MrrWER.js"
+        },
+        {
+          "executionStart": 4100.900000095367,
+          "duration": 24.199999928474426,
+          "forcedStyleAndLayoutDuration": 8.9,
+          "invoker": "DIV#root.oninput",
+          "invokerType": "event-listener",
+          "sourceFunctionName": "Hc",
+          "sourceCharPosition": 37584,
+          "sourceURL": "/assets/index-v2MrrWER.js"
+        },
+        {
+          "executionStart": 4573,
+          "duration": 28.300000071525574,
+          "forcedStyleAndLayoutDuration": 8.7,
+          "invoker": "DIV#root.oninput",
+          "invokerType": "event-listener",
+          "sourceFunctionName": "Hc",
+          "sourceCharPosition": 37584,
+          "sourceURL": "/assets/index-v2MrrWER.js"
+        },
+        {
+          "executionStart": 3350.100000023842,
+          "duration": 23.600000023841858,
+          "forcedStyleAndLayoutDuration": 7.9,
+          "invoker": "DIV#root.oninput",
+          "invokerType": "event-listener",
+          "sourceFunctionName": "Hc",
+          "sourceCharPosition": 37584,
+          "sourceURL": "/assets/index-v2MrrWER.js"
+        },
+        {
+          "executionStart": 4655.300000071526,
+          "duration": 23.600000023841858,
+          "forcedStyleAndLayoutDuration": 7.8,
+          "invoker": "DIV#root.oninput",
+          "invokerType": "event-listener",
+          "sourceFunctionName": "Hc",
+          "sourceCharPosition": 37584,
+          "sourceURL": "/assets/index-v2MrrWER.js"
+        }
+      ],
+      "qualification": "LoAF reported script work only, with full temporal containment; not an exclusive or complete renderer CPU breakdown."
+    },
+    "fullInput": {
+      "fullyContainedScripts": 22,
+      "reportedForcedStyleAndLayoutMs": 271.2,
+      "topForcedLayout": [
+        {
+          "executionStart": 5515,
+          "duration": 271.7000000476837,
+          "forcedStyleAndLayoutDuration": 120.2,
+          "invoker": "DIV#root.oninput",
+          "invokerType": "event-listener",
+          "sourceFunctionName": "Hc",
+          "sourceCharPosition": 37584,
+          "sourceURL": "/assets/index-v2MrrWER.js"
+        },
+        {
+          "executionStart": 559.1000000238419,
+          "duration": 45.200000047683716,
+          "forcedStyleAndLayoutDuration": 15.7,
+          "invoker": "DIV#root.oninput",
+          "invokerType": "event-listener",
+          "sourceFunctionName": "Hc",
+          "sourceCharPosition": 37584,
+          "sourceURL": "/assets/index-v2MrrWER.js"
+        },
+        {
+          "executionStart": 5182.200000047684,
+          "duration": 32.799999952316284,
+          "forcedStyleAndLayoutDuration": 13.9,
+          "invoker": "DIV#root.oninput",
+          "invokerType": "event-listener",
+          "sourceFunctionName": "Hc",
+          "sourceCharPosition": 37584,
+          "sourceURL": "/assets/index-v2MrrWER.js"
+        },
+        {
+          "executionStart": 4483.700000047684,
+          "duration": 22.399999976158142,
+          "forcedStyleAndLayoutDuration": 9.7,
+          "invoker": "DIV#root.oninput",
+          "invokerType": "event-listener",
+          "sourceFunctionName": "Hc",
+          "sourceCharPosition": 37584,
+          "sourceURL": "/assets/index-v2MrrWER.js"
+        },
+        {
+          "executionStart": 4733,
+          "duration": 23,
+          "forcedStyleAndLayoutDuration": 9.3,
+          "invoker": "DIV#root.oninput",
+          "invokerType": "event-listener",
+          "sourceFunctionName": "Hc",
+          "sourceCharPosition": 37584,
+          "sourceURL": "/assets/index-v2MrrWER.js"
+        },
+        {
+          "executionStart": 4100.900000095367,
+          "duration": 24.199999928474426,
+          "forcedStyleAndLayoutDuration": 8.9,
+          "invoker": "DIV#root.oninput",
+          "invokerType": "event-listener",
+          "sourceFunctionName": "Hc",
+          "sourceCharPosition": 37584,
+          "sourceURL": "/assets/index-v2MrrWER.js"
+        },
+        {
+          "executionStart": 4573,
+          "duration": 28.300000071525574,
+          "forcedStyleAndLayoutDuration": 8.7,
+          "invoker": "DIV#root.oninput",
+          "invokerType": "event-listener",
+          "sourceFunctionName": "Hc",
+          "sourceCharPosition": 37584,
+          "sourceURL": "/assets/index-v2MrrWER.js"
+        },
+        {
+          "executionStart": 3350.100000023842,
+          "duration": 23.600000023841858,
+          "forcedStyleAndLayoutDuration": 7.9,
+          "invoker": "DIV#root.oninput",
+          "invokerType": "event-listener",
+          "sourceFunctionName": "Hc",
+          "sourceCharPosition": 37584,
+          "sourceURL": "/assets/index-v2MrrWER.js"
+        }
+      ],
+      "qualification": "LoAF reported script work only, with full temporal containment; not an exclusive or complete renderer CPU breakdown."
+    }
+  },
+  "rawTypedTextCollectedByProbe": false,
+  "qualification": "Timeline tracing and native setter getter/mark observations perturb execution. Source28 candidate Learn104/BOT120ms acceptance failures and all source27 failures remain unchanged. Temporal containment is association, not exclusive causality. No V8 sampling or screenshots."
+}

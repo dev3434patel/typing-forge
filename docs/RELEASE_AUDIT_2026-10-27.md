@@ -1,5 +1,7 @@
 # SparowType release audit — 27 October 2026
 
+**Historical source19 checkpoint.** The current implementation, measurements and remaining release limits are recorded in the [4 November audit](RELEASE_AUDIT_2026-11-04.md). Results below retain their original source and scope.
+
 **Status: PARTIAL.** This is the typing/mobile/gaming hotfix audit for frozen source19, build `de097acba6969d580cc8`; broader MegaPack completion remains partial. It records completed checks and remaining work separately. It does not claim a defect-free product, universal device compatibility, production readiness or completed Git synchronization.
 
 The checkpoint contains **502 source hashes**, **133 offline identity assets** and **2,960,785 bytes**. [Frozen source](../audit/2026-10-21/final19-source.json) and [independent source review](../audit/2026-10-21/final19-frozen-source-review-2026-10-27.json) bind these results. The latest historical ledger remains in [STATUS_MATRIX](STATUS_MATRIX.md) and [MEGA_PACK_AUDIT](MEGA_PACK_AUDIT_2026-10-21.md). Later measurements must retain their own names, builds and scopes.

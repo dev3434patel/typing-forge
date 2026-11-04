@@ -1,0 +1,153 @@
+{
+  "recordedAt": "2026-11-04T17:46:24.193Z",
+  "status": "PREPARED-NOT-RUN",
+  "kind": "AUDIT-ONLY-NATIVE-COURSE-RESET-DIAGNOSTIC",
+  "source": {
+    "sourceFile": "audit/2026-11-02/final34-source.json",
+    "expectedBuild": "332e23584f1e36465df2",
+    "compared": 505,
+    "mismatches": []
+  },
+  "sourceManifestSha256": "bb7956b685f80c3c1d2c2926999a548540f80d9875fbe336ead5d16670587493",
+  "build": "332e23584f1e36465df2",
+  "originalFile": "e2e/typing-course.spec.ts",
+  "target": "audit/2026-11-04/course-reset-diagnostic/typing-course.spec.ts",
+  "originalSpecSha256": "e75ddf24f7c05786778bf4603877c6a4c04c0653922a0b66cb57acd229b9a842",
+  "originalHelperSha256": "7268814993da0db90cec40266fc8aabb391d3f649d43add1dd55c5be370d2e7d",
+  "exactReversal": true,
+  "changes": [
+    {
+      "from": "from \"./helpers\";",
+      "to": "from \"../../../e2e/helpers\";"
+    },
+    {
+      "from": "new URL(\"../backend/resources/typing-course-v1.json\", import.meta.url)",
+      "to": "new URL(\"../../../backend/resources/typing-course-v1.json\", import.meta.url)"
+    },
+    {
+      "from": "import axe from \"axe-core\";",
+      "to": "import axe from \"axe-core\";\nimport { beginCourseResetDiagnostic, finishCourseResetDiagnostic, diagnosticPhase } from \"./collector\";"
+    },
+    {
+      "from": "async function start(page: Page, lesson = first) {",
+      "to": "test.beforeEach(async ({ page }, info) => beginCourseResetDiagnostic(page, info));\ntest.afterEach(async ({}, info) => finishCourseResetDiagnostic(info));\n\nasync function start(page: Page, lesson = first) {"
+    },
+    {
+      "from": "test(\"two different measured passages unlock the next lesson; repetition, reload and reset are truthful\", async ({ page }) => {\n  test.setTimeout(60_000);\n  await start(page);\n  await qualify(page);\n  await expect(page.getByRole(\"heading\", { name: \"Checkpoint earned.\", exact: true })).toBeVisible();\n  await expect(page.getByText(\"1 of 2 checkpoints\", { exact: true })).toBeVisible();\n  await page.getByRole(\"button\", { name: \"Repeat this passage\", exact: true }).click();\n  await qualify(page);\n  await expect(page.getByRole(\"heading\", { name: \"Skill reinforced.\", exact: true })).toBeVisible();\n  await expect(page.getByText(\"1 of 2 checkpoints\", { exact: true })).toBeVisible();\n  await page.getByRole(\"button\", { name: \"Start the next passage\", exact: true }).click();\n  await expect(page.locator(\".course-practice-top\")).toContainText(\"passage B\");\n  await qualify(page, \"b\");\n  await expect(page.getByRole(\"heading\", { name: \"Lesson complete.\", exact: true })).toBeVisible();\n  await page.getByRole(\"button\", { name: \"Next lesson\", exact: true }).click();\n  await expect(page.getByRole(\"heading\", { name: second.title, exact: true })).toBeFocused();\n  await page.reload();\n  await expect(page.getByRole(\"button\", { name: \"Start lesson\", exact: true })).toBeEnabled();\n  await page.goto(\"/profile\");\n  await page.getByLabel(\"Type DELETE to enable this action\", { exact: true }).fill(\"DELETE\");\n  await page.getByRole(\"button\", { name: \"Reset guest workspace\", exact: true }).click();\n  await page.goto(`/lessons?lesson=${second.id}`);\n  await expect(page.getByText(\"Build the previous skill first.\", { exact: true })).toBeVisible();\n});\n\n",
+      "to": "test(\"two different measured passages unlock the next lesson; repetition, reload and reset are truthful\", async ({ page }) => {\n  test.setTimeout(60_000);\n  diagnosticPhase(\"case-start\");\n  diagnosticPhase(\"before-await-01\");\n  await start(page);\n  diagnosticPhase(\"after-await-01\");\n  diagnosticPhase(\"before-await-02\");\n  await qualify(page);\n  diagnosticPhase(\"after-await-02\");\n  diagnosticPhase(\"before-await-03\");\n  await expect(page.getByRole(\"heading\", { name: \"Checkpoint earned.\", exact: true })).toBeVisible();\n  diagnosticPhase(\"after-await-03\");\n  diagnosticPhase(\"before-await-04\");\n  await expect(page.getByText(\"1 of 2 checkpoints\", { exact: true })).toBeVisible();\n  diagnosticPhase(\"after-await-04\");\n  diagnosticPhase(\"before-await-05\");\n  await page.getByRole(\"button\", { name: \"Repeat this passage\", exact: true }).click();\n  diagnosticPhase(\"after-await-05\");\n  diagnosticPhase(\"before-await-06\");\n  await qualify(page);\n  diagnosticPhase(\"after-await-06\");\n  diagnosticPhase(\"before-await-07\");\n  await expect(page.getByRole(\"heading\", { name: \"Skill reinforced.\", exact: true })).toBeVisible();\n  diagnosticPhase(\"after-await-07\");\n  diagnosticPhase(\"before-await-08\");\n  await expect(page.getByText(\"1 of 2 checkpoints\", { exact: true })).toBeVisible();\n  diagnosticPhase(\"after-await-08\");\n  diagnosticPhase(\"before-await-09\");\n  await page.getByRole(\"button\", { name: \"Start the next passage\", exact: true }).click();\n  diagnosticPhase(\"after-await-09\");\n  diagnosticPhase(\"before-await-10\");\n  await expect(page.locator(\".course-practice-top\")).toContainText(\"passage B\");\n  diagnosticPhase(\"after-await-10\");\n  diagnosticPhase(\"before-await-11\");\n  await qualify(page, \"b\");\n  diagnosticPhase(\"after-await-11\");\n  diagnosticPhase(\"before-await-12\");\n  await expect(page.getByRole(\"heading\", { name: \"Lesson complete.\", exact: true })).toBeVisible();\n  diagnosticPhase(\"after-await-12\");\n  diagnosticPhase(\"before-await-13\");\n  await page.getByRole(\"button\", { name: \"Next lesson\", exact: true }).click();\n  diagnosticPhase(\"after-await-13\");\n  diagnosticPhase(\"before-await-14\");\n  await expect(page.getByRole(\"heading\", { name: second.title, exact: true })).toBeFocused();\n  diagnosticPhase(\"after-await-14\");\n  diagnosticPhase(\"before-await-15\");\n  await page.reload();\n  diagnosticPhase(\"after-await-15\");\n  diagnosticPhase(\"before-await-16\");\n  await expect(page.getByRole(\"button\", { name: \"Start lesson\", exact: true })).toBeEnabled();\n  diagnosticPhase(\"after-await-16\");\n  diagnosticPhase(\"before-await-17\");\n  await page.goto(\"/profile\");\n  diagnosticPhase(\"after-await-17\");\n  diagnosticPhase(\"before-await-18\");\n  await page.getByLabel(\"Type DELETE to enable this action\", { exact: true }).fill(\"DELETE\");\n  diagnosticPhase(\"after-await-18\");\n  diagnosticPhase(\"before-await-19\");\n  await page.getByRole(\"button\", { name: \"Reset guest workspace\", exact: true }).click();\n  diagnosticPhase(\"after-await-19\");\n  diagnosticPhase(\"before-await-20\");\n  await page.goto(`/lessons?lesson=${second.id}`);\n  diagnosticPhase(\"after-await-20\");\n  diagnosticPhase(\"before-await-21\");\n  await expect(page.getByText(\"Build the previous skill first.\", { exact: true })).toBeVisible();\n  diagnosticPhase(\"after-await-21\");\n});\n\n"
+    }
+  ],
+  "milestones": [
+    {
+      "id": "01",
+      "originalStatement": "await start(page);"
+    },
+    {
+      "id": "02",
+      "originalStatement": "await qualify(page);"
+    },
+    {
+      "id": "03",
+      "originalStatement": "await expect(page.getByRole(\"heading\", { name: \"Checkpoint earned.\", exact: true })).toBeVisible();"
+    },
+    {
+      "id": "04",
+      "originalStatement": "await expect(page.getByText(\"1 of 2 checkpoints\", { exact: true })).toBeVisible();"
+    },
+    {
+      "id": "05",
+      "originalStatement": "await page.getByRole(\"button\", { name: \"Repeat this passage\", exact: true }).click();"
+    },
+    {
+      "id": "06",
+      "originalStatement": "await qualify(page);"
+    },
+    {
+      "id": "07",
+      "originalStatement": "await expect(page.getByRole(\"heading\", { name: \"Skill reinforced.\", exact: true })).toBeVisible();"
+    },
+    {
+      "id": "08",
+      "originalStatement": "await expect(page.getByText(\"1 of 2 checkpoints\", { exact: true })).toBeVisible();"
+    },
+    {
+      "id": "09",
+      "originalStatement": "await page.getByRole(\"button\", { name: \"Start the next passage\", exact: true }).click();"
+    },
+    {
+      "id": "10",
+      "originalStatement": "await expect(page.locator(\".course-practice-top\")).toContainText(\"passage B\");"
+    },
+    {
+      "id": "11",
+      "originalStatement": "await qualify(page, \"b\");"
+    },
+    {
+      "id": "12",
+      "originalStatement": "await expect(page.getByRole(\"heading\", { name: \"Lesson complete.\", exact: true })).toBeVisible();"
+    },
+    {
+      "id": "13",
+      "originalStatement": "await page.getByRole(\"button\", { name: \"Next lesson\", exact: true }).click();"
+    },
+    {
+      "id": "14",
+      "originalStatement": "await expect(page.getByRole(\"heading\", { name: second.title, exact: true })).toBeFocused();"
+    },
+    {
+      "id": "15",
+      "originalStatement": "await page.reload();"
+    },
+    {
+      "id": "16",
+      "originalStatement": "await expect(page.getByRole(\"button\", { name: \"Start lesson\", exact: true })).toBeEnabled();"
+    },
+    {
+      "id": "17",
+      "originalStatement": "await page.goto(\"/profile\");"
+    },
+    {
+      "id": "18",
+      "originalStatement": "await page.getByLabel(\"Type DELETE to enable this action\", { exact: true }).fill(\"DELETE\");"
+    },
+    {
+      "id": "19",
+      "originalStatement": "await page.getByRole(\"button\", { name: \"Reset guest workspace\", exact: true }).click();"
+    },
+    {
+      "id": "20",
+      "originalStatement": "await page.goto(`/lessons?lesson=${second.id}`);"
+    },
+    {
+      "id": "21",
+      "originalStatement": "await expect(page.getByText(\"Build the previous skill first.\", { exact: true })).toBeVisible();"
+    }
+  ],
+  "syntaxOnlyTranspileChecks": 4,
+  "inputHashes": {
+    "e2e/typing-course.spec.ts": "e75ddf24f7c05786778bf4603877c6a4c04c0653922a0b66cb57acd229b9a842",
+    "e2e/helpers.ts": "7268814993da0db90cec40266fc8aabb391d3f649d43add1dd55c5be370d2e7d",
+    "playwright.config.ts": "9a1c2658bfe18bcf8acf34e61144e17309abe257717f2cf882d05791457a1a32",
+    "audit/2026-11-04/course-reset-diagnostic/typing-course.spec.ts": "5964cef1f62a83cece8ccb6c93cf4eeaf4e8de46f6311f0625dd181ddab7e32b",
+    "audit/2026-11-04/course-reset-diagnostic/observer.ts": "5ac058b6f0a9875a2f308fb3c5d508ad253157ef39f5b7f6bdb8777bc2a55b2f",
+    "audit/2026-11-04/course-reset-diagnostic/collector.ts": "5736fd8b87f4bfcb7f11a61cff8850e9468c2c76b279f7f9f0ca5b1acbd5a246",
+    "audit/2026-11-04/course-reset-diagnostic/course-reset.config.ts": "638b9a927c423d1e162c86561aae2f7d66012fb5d0a8f85231a42a8ba4aa3119",
+    "audit/2026-11-04/run-source34-course-reset-diagnostic.mjs": "3ce42510e76935a6d8c1329c31ed3c6ddc00d16ec76ddc74fb569d81d78366f3"
+  },
+  "caseTitle": "test(\"two different measured passages unlock the next lesson; repetition, reload and reset are truthful\",",
+  "project": "webkit",
+  "workers": 1,
+  "retries": 0,
+  "testDeadlineMs": 60000,
+  "originalActionsAssertionsAndCadenceRetained": true,
+  "additionalFlowWaits": 0,
+  "logging": {
+    "browserRowsPerProfileDocument": 160,
+    "nodeRowsMaximum": 400,
+    "values": "DELETE/empty/other class only; no other input values, cookies or storage contents",
+    "setter": "Transparent original delegation; /profile only, installed before React mount",
+    "timingQualification": "Observational hooks and bounded streaming can perturb scheduling. This run is diagnostic and cannot replace original acceptance."
+  },
+  "productionAndGuardedTestsEdited": false,
+  "servicesStarted": 0
+}

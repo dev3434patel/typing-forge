@@ -1,0 +1,40 @@
+{
+  "declaredAt": "2026-10-27T16:13:25.243Z",
+  "build": "85735c1a3b56655b767e",
+  "source": {
+    "sourceFile": "audit/2026-10-27/final23-source.json",
+    "expectedBuild": "85735c1a3b56655b767e",
+    "compared": 506,
+    "mismatches": []
+  },
+  "ownerId": "6ca0fec9cf13fd37",
+  "scope": "Genuine native PDO atomic accounting only, separate from the1653-request HTTP burst. No HTTP/authentication/CSRF/session-policy or throughput certification.",
+  "connections": 8,
+  "callsPerConnection": 40,
+  "expectedSharedCalls": 320,
+  "limit": 300,
+  "windowSeconds": 60,
+  "expectedAdmitted": 300,
+  "expectedLimited": 20,
+  "otherAccountExpectedCounter": 1,
+  "nearBoundaryWaitMaxMs": 40050,
+  "readinessTimeoutMs": 10000,
+  "callsTimeoutMs": 12000,
+  "actualClock": true,
+  "retries": 0,
+  "counterReset": false,
+  "quotaBypass": false,
+  "thresholdsUnchanged": true,
+  "startBarrier": "All8 actual PDO connections must report ready before one coordinated GO.",
+  "inputHashes": {
+    "audit/2026-10-27/native-rate-worker-source23.php": "3ba2c56c4481f226cb9cef8222d4726f3cd5a614c6e150e7c4e526aedee5e308",
+    "audit/2026-10-27/run-source23-native-rate.mjs": "31f4a5013292f4731be598343764fea0d25d5768c535e6df9082a3136de17fc4",
+    "scripts/php-runtime.mjs": "2adeffc2ac322edbc611f34c437a0f34569689c942602bf39b079305cfb7a60f",
+    "backend/src/Security.php": "671d4e7944cfbe7d4a6d94e44e17374caa12c8c8f8c33bd850ceedba371e0401",
+    "backend/src/Database.php": "38e67995661448fb80af94ae81acc2fc844b5ecea15c6313d6fc87135681acb0"
+  },
+  "privateConfigReadByCoordinator": false,
+  "ownedConfigReadOnlyByGuardedPhpWorker": true,
+  "originalConfigRead": false,
+  "cleanup": "Only the original owner later removes the wholly owned database/processes; this check never resets or deletes counters."
+}

@@ -1,0 +1,180 @@
+{
+  "preparedAt": "2026-11-02T16:22:47.513Z",
+  "status": "PREPARED-NOT-RUN",
+  "sourceBuild": "11de46af5d4a80e0e830",
+  "staticBuild": "fac344923bbf9cbde394",
+  "expectedSourceFiles": 505,
+  "originalDriver": "audit/2026-10-27/measure-mobile-workspaces-static-final27.mjs",
+  "originalDriverSha256": "4116ed65eca3601b1d946ac503d5337c02e1ad91d2eca296d39a86ef2fb409e5",
+  "driverFile": "audit/2026-11-02/measure-mobile-workspaces-hotpath-final27.mjs",
+  "driverSha256": "8b23f7c7cb9191bce14d395e301389632e09955b7a4ecd9425d4330b26e4b883",
+  "driverTransforms": [
+    {
+      "from": "import assert from 'node:assert/strict';",
+      "to": "import assert from 'node:assert/strict';\nimport { beginHotpathDiagnostic, markHotpathInputStart, endHotpathDiagnostic, abortHotpathDiagnostic } from './mobile-hotpath-profile-runtime.mjs';",
+      "count": 1
+    },
+    {
+      "from": "const directory = 'audit/2026-10-27';",
+      "to": "const directory = 'audit/2026-11-02';",
+      "count": 1
+    },
+    {
+      "from": "process.argv[2] ?? 'mobile-workspaces-final27-static'",
+      "to": "process.argv[2] ?? 'final27-mobile-hotpath-profile'",
+      "count": 1
+    },
+    {
+      "from": "`${directory}/mobile-workspaces-final27-static-protocol.json`",
+      "to": "`${directory}/final27-mobile-hotpath-profile-protocol.json`",
+      "count": 1
+    },
+    {
+      "from": "`${directory}/mobile-workspaces-final27-static-build.json`",
+      "to": "`${directory}/final27-mobile-hotpath-profile-build.json`",
+      "count": 1
+    },
+    {
+      "from": "async function beginObservation(page, context, input) {",
+      "to": "async function beginObservation(page, context, input, caseId) {",
+      "count": 1
+    },
+    {
+      "from": "  });\n}\n\nasync function endObservation(page) {",
+      "to": "  });\n  await beginHotpathDiagnostic(page, cdp, caseId, prefix, protocol);\n}\n\nasync function endObservation(page) {",
+      "count": 1
+    },
+    {
+      "from": "await beginObservation(page, context, input);",
+      "to": "await beginObservation(page, context, input, specification.id);",
+      "count": 4
+    },
+    {
+      "from": "    await input.pressSequentially(text, { delay: 0 });",
+      "to": "    await markHotpathInputStart(page);\n    await input.pressSequentially(text, { delay: 0 });\n    receipt.profile = await endHotpathDiagnostic(page);",
+      "count": 3
+    },
+    {
+      "from": "      await context.close();\n      receipt.finishedAt",
+      "to": "      const unfinished = await abortHotpathDiagnostic(page);\n      if (unfinished) { receipt.diagnosticIncomplete = unfinished; receipt.passed = false; }\n      await context.close();\n      receipt.finishedAt",
+      "count": 1
+    }
+  ],
+  "originalWrapper": "audit/2026-10-27/run-mobile-workspaces-static-final27.mjs",
+  "originalWrapperSha256": "b86b169201d6f51ec77fe32e0a3b95294e194f28c59c6f2715626443e114dc50",
+  "wrapperFile": "audit/2026-11-02/run-final27-mobile-hotpath-profile.mjs",
+  "wrapperSha256": "2f7098120346bfae9d343ab2a9539cadd63841142d32969e03502953c045c76b",
+  "wrapperTransforms": [
+    {
+      "from": "import { spawn } from 'node:child_process';",
+      "to": "import { spawn, spawnSync } from 'node:child_process';",
+      "count": 1
+    },
+    {
+      "from": "assert.equal(process.env.SPAROWTYPE_MOBILE_STATIC_ACCEPTANCE, '1', 'Only execute in the coordinated quiet measurement window.');",
+      "to": "assert.equal(process.env.SPAROWTYPE_MOBILE_HOTPATH_PROFILE, '1', 'Only execute the separately coordinated DIAGNOSTIC window.');",
+      "count": 1
+    },
+    {
+      "from": "const audit = 'audit/2026-10-27';",
+      "to": "const audit = 'audit/2026-11-02';",
+      "count": 1
+    },
+    {
+      "from": "process.argv[2] || 'mobile-workspaces-final27-static'",
+      "to": "process.argv[2] || 'final27-mobile-hotpath-profile'",
+      "count": 1
+    },
+    {
+      "from": "/^mobile-workspaces-final27-static(?:-[a-z0-9]+)*$/",
+      "to": "/^final27-mobile-hotpath-profile(?:-[a-z0-9]+)*$/",
+      "count": 1
+    },
+    {
+      "from": "const sourceFile = `${audit}/final27-source.json`;",
+      "to": "const sourceFile = 'audit/2026-10-27/final27-source.json';",
+      "count": 1
+    },
+    {
+      "from": "const originalDriver = 'audit/2026-10-21/measure-mobile-workspaces.mjs';",
+      "to": "const originalDriver = 'audit/2026-10-27/measure-mobile-workspaces-static-final27.mjs';",
+      "count": 1
+    },
+    {
+      "from": "`${audit}/measure-mobile-workspaces-static-final27.mjs`",
+      "to": "`${audit}/measure-mobile-workspaces-hotpath-final27.mjs`",
+      "count": 1
+    },
+    {
+      "from": "const originalProtocol = 'audit/2026-10-21/mobile-workspaces-final7-protocol.json';",
+      "to": "const originalProtocol = 'audit/2026-10-27/mobile-workspaces-final27-static-protocol.json';",
+      "count": 1
+    },
+    {
+      "from": "const referenceChanges = [\n  [\"const directory = 'audit/2026-10-21';\", \"const directory = 'audit/2026-10-27';\"],\n  [\"process.argv[2] ?? 'mobile-workspaces'\", \"process.argv[2] ?? 'mobile-workspaces-final27-static'\"],\n  ['`${directory}/mobile-workspaces-protocol.json`', '`${directory}/mobile-workspaces-final27-static-protocol.json`'],\n  ['`${directory}/after-1-build.json`', '`${directory}/mobile-workspaces-final27-static-build.json`'],\n];\nconst original = await readFile(originalDriver, 'utf8');\nlet expected = original;\nfor (const [from, to] of referenceChanges) {\n  assert.equal(expected.split(from).length - 1, 1);\n  expected = expected.replace(from, to);\n}\nassert.equal(await readFile(driver, 'utf8'), expected, 'Only audit directory and default protocol/build/output references may differ; input, timing and every assertion remain identical.');\nconst originalHash = hash(original);\n",
+      "to": "const plan = JSON.parse(await readFile('audit/2026-11-02/final27-mobile-hotpath-profile-preparation.json', 'utf8'));\nconst referenceChanges = plan.driverTransforms;\nconst original = await readFile(originalDriver, 'utf8');\nlet reverted = await readFile(driver, 'utf8');\nfor (const item of [...referenceChanges].reverse()) { assert.equal(reverted.split(item.to).length-1, item.count); reverted = reverted.replaceAll(item.to,item.from); }\nassert.equal(reverted, original, 'Only the disclosed diagnostic insertions may differ from the original acceptance driver.');\nconst originalHash = hash(original);\nassert.equal(originalHash, plan.originalDriverSha256);\nconst helperFiles = ['audit/2026-11-02/mobile-hotpath-profile-runtime.mjs','audit/2026-11-02/mobile-hotpath-profile-analysis.mjs'];\nconst helperHashes = Object.fromEntries(await Promise.all(helperFiles.map(async file=>[file,hash(await readFile(file))])));\nfor(const file of helperFiles)assert.equal(helperHashes[file],plan.helperHashes[file]);\nfor(const id of ['learn','local-bot'])for(const suffix of ['.cpuprofile','-timeline.json']){\n const file=`${audit}/.${prefix}-${id}${suffix}`;\n const ignored=spawnSync('git',['check-ignore',file],{encoding:'utf8',windowsHide:true});\n assert.equal(ignored.status,0,'Raw diagnostic artifacts must remain Git-ignored.');\n}\n",
+      "count": 1
+    },
+    {
+      "from": "`${audit}/final27-static-artifacts.json`",
+      "to": "'audit/2026-10-27/final27-static-artifacts.json'",
+      "count": 1
+    },
+    {
+      "from": "assertionsAndTimingByteIdentical: true",
+      "to": "assertionsAndInputSequencePreserved: true, instrumentationChangesTiming: true, timingAcceptanceReused: false",
+      "count": 1
+    },
+    {
+      "from": "originalNormalProtocol: originalProtocol,",
+      "to": "originalNormalProtocol: originalProtocol, diagnostic: true,\n    cases: protocol.cases.filter(item => ['learn','local-bot'].includes(item.id)),\n    instrumentation: 'V8 CPU sampling1000us, bounded LoAF/EventTiming/longtask observers and beforeinput phase markers; no product monkeypatches or synthetic timing.',",
+      "count": 1
+    },
+    {
+      "from": "comparability: 'Separate explicitly declared frontend-only measurement. The earlier backend-enabled run and all failures remain preserved; this does not replace it or establish field INP.',",
+      "to": "comparability: 'DIAGNOSTIC only: exactly Learn and local BOT selected before execution. Original four-workspace112/48/112/40ms acceptance results remain unchanged. Profiling/buffer overhead disqualifies these timing values as acceptance; last-insertion/result overlap is separately labeled.',",
+      "count": 1
+    },
+    {
+      "from": "measured.cases.length === 4 && measured.cases.every(item => item.passed) ? 'PASS-SCOPED' : 'FAILED'",
+      "to": "measured.cases.length === 2 && measured.cases.every(item => item.passed && item.profile?.status === 'COMPLETE-DIAGNOSTIC-NOT-ACCEPTANCE') ? 'COMPLETE-DIAGNOSTIC-NOT-ACCEPTANCE' : 'FAILED'",
+      "count": 1
+    },
+    {
+      "from": "if (report.status !== 'PASS-SCOPED') process.exitCode = 1;",
+      "to": "if (report.status !== 'COMPLETE-DIAGNOSTIC-NOT-ACCEPTANCE') process.exitCode = 1;",
+      "count": 1
+    },
+    {
+      "from": "report.originalProtocolUnchanged = hash(await readFile(originalProtocol)) === originalProtocolHash;",
+      "to": "report.originalProtocolUnchanged = hash(await readFile(originalProtocol)) === originalProtocolHash;\n    report.helperInputsUnchanged = (await Promise.all(helperFiles.map(async file => hash(await readFile(file)) === helperHashes[file]))).every(Boolean);",
+      "count": 1
+    },
+    {
+      "from": "!report.originalProtocolUnchanged) report.status",
+      "to": "!report.originalProtocolUnchanged || !report.helperInputsUnchanged) report.status",
+      "count": 1
+    }
+  ],
+  "driverExactReversal": true,
+  "wrapperExactReversal": true,
+  "helperHashes": {
+    "audit/2026-11-02/mobile-hotpath-profile-runtime.mjs": "662c58ed736c7d1d3ff500d5aa2ce7735a394d76f07b65d30daf518054053a88",
+    "audit/2026-11-02/mobile-hotpath-profile-analysis.mjs": "300d38965cc7b8850798b6c22e335c490b01d8c50c6205c9be782dd265469f5f"
+  },
+  "casesDeclaredBeforeExecution": [
+    "learn",
+    "local-bot"
+  ],
+  "originalFourWorkspaceAcceptanceReportsUnchanged": true,
+  "profile": {
+    "cpuSamplingIntervalMicroseconds": 1000,
+    "fullBrowserTrace": false,
+    "productMonkeypatches": false,
+    "bounds": "Same33000ms per-case and145000ms total deadlines; same4xCPU and native input sequence. CPU/LoAF observers add overhead; two post-input rAFs flush entry delivery. BOT profile ends before manualFinish; Learn final insertion is labeled as a possible result transition.",
+    "rawFiles": "Git-ignored .final27-mobile-hotpath-profile-<case>.cpuprofile and -timeline.json",
+    "publicOutput": "Bounded sanitized per-phase CPU/LoAF summaries; no raw typed text, request bodies, headers or credentials."
+  },
+  "testsBrowsersServicesStarted": false,
+  "productOrAcceptanceDriverEdits": false
+}

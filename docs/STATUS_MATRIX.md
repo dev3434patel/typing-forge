@@ -1,6 +1,25 @@
-# SparowType implementation status — 27 October 2026
+# SparowType implementation status — 4 November 2026
 
-**Revision date: 27 October 2026 (Asia/Calcutta).** Existing report/evidence paths and each receipt’s original UTC timestamp are retained. This revision does not imply that historical measurements were rerun.
+**Current checkpoint: source34 / frontend `332e23584f1e36465df2`; status PARTIAL.** The [4 November release audit](RELEASE_AUDIT_2026-11-04.md) is the current evidence ledger. Exact source/artifact identity binds reused source33 frontend measurements to the PHP-only source34 change.
+
+| Scope | Current result |
+| --- | --- |
+| Home input p98 | 48 / 48 / 48 ms |
+| Full-quality mobile Lighthouse | 97 / 96 / 96; other categories 100 throughout |
+| Unit/source/CI checks | 2,878 unit tests; corrected composite 12-command gate and actual PGlite/Deno checks pass |
+| Original full browser matrix | 1,483 passed / four failed / 29 skipped; original outcome retained |
+| Separate affected-file confirmation | 200 / 200 passed across all four engines |
+| Fresh native backend/browser acceptance | 20 / 20 passed; four independently owned backends closed gracefully |
+| Conditional production-wire capacity | 141.3239 ms p95 with OPcache, after the full workload on the same cache |
+| Other capacity profiles | Ordinary full/wire and OPcache full remain above the strict 150-ms target |
+
+Nine capability gaps, physical devices, hosted/sustained capacity and broader feature limits remain unverified. The original WebKit course timeout's cause remains unverified despite its later scoped passes. Do not treat the historical notices below as current acceptance. Commit and remote equality are verified separately in the final delivery.
+
+## Historical source31 and earlier checkpoints
+
+**Revision date: 2 November 2026 (Asia/Calcutta).** Existing report/evidence paths and each receipt’s original UTC timestamp are retained. This revision does not imply that historical measurements were rerun.
+
+**Current source31 notice — PARTIAL:** build `f52d0372fe7656817259` has505 frozen files,133 offline identity assets/2,964,084 bytes and passes [all12 source gates](../audit/2026-11-02/final31-source-gates.json): **2,878 unit tests /114 files**, unchanged coverage,560 unique/578 executed PHP candidates with zero mismatches,750 Arena/parser/cache checks, zero recorded production vulnerabilities and nine existing lint warnings. The actual frontend-only Vercel candidate `e1c84e6f658702d3ebd8` passes [all four mobile cases](../audit/2026-11-02/mobile-workspaces-final31-static-candidate-latency-assessment.json): **Learn80 /course64 /BOT56 /games24 ms p98**, strict<100 ms, **one laboratory trial only**. Full normal static, mobile3, home3, Lighthouse3,64-spec browser matrix, native20, CI31 and Git synchronization remain pending at this cutoff. Fresh source31 capacity remains **FAILED**: [full453.9505 ms](../audit/2026-11-02/source31-capacity-f832d791de9a9b0c.json) /[compact371.7349 ms](../audit/2026-11-02/source31-capacity-wire-f832d791de9a9b0c.json) global p95, strict<150 ms; each workload accepted400 submissions and400 leaves with no unexpected statuses/429. The21 protected3D source files and candidate render assets are preserved. The [2 November release audit](RELEASE_AUDIT_2026-11-02.md) retains source28/30 mobile failures and historical source26 capacity failures. Source27's original matrix remains **1,438passed/17failed/29skipped**; the [80-case follow-up](../audit/2026-11-02/final27-original17-failure-follow-up-independent-mapping.json) covers every original failed pair without rewriting that report. Actual [PGlite and Deno CI checks](../audit/2026-11-02/final27-nov02-ci-extra.json) passed on source27 on2 November; they are not relabeled source31. The [auth correction](../audit/2026-10-27/final27-auth-quota-documentation-correction.json) retains signup8/hour/IP, sign-in30/15 minutes/IP and sign-in12/15 minutes/account. **All source19 and earlier sections below are historical, not source31 acceptance.**
 
 This is a live coordination record. Status applies only to the stated evidence and build. Historical passes are not final-build passes. Allowed statuses: PASS, PASS-SCOPED, PARTIAL, FAILED, UNVERIFIED, NOT-RUN. The detailed source, native, browser and retained-failure ledger is [MEGA_PACK_AUDIT_2026-10-21.md](MEGA_PACK_AUDIT_2026-10-21.md).
 

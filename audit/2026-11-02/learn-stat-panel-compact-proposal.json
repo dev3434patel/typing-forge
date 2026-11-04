@@ -1,0 +1,93 @@
+{
+  "capturedAt": "2026-11-02T16:32:40.856Z",
+  "status": "PREFERRED-COMPACT-PROPOSAL-NOT-APPLIED-NOT-TESTED",
+  "patch": {
+    "file": "audit/2026-11-02/learn-stat-panel-compact.PROPOSAL.patch",
+    "sha256": "2a7db848b37fefca860f847495534a13b268667a1f451e525fe740e06c5ccffd",
+    "bytes": 5191,
+    "files": [
+      "src/components/keybr/LetterProgressPanel.tsx",
+      "src/components/keybr/KeybrLessonMode.tsx"
+    ],
+    "applyCheckRun": false,
+    "applied": false
+  },
+  "supersedesUnexecutedLineEndingNoisyPatch": {
+    "file": "audit/2026-11-02/learn-stat-panel.PROPOSAL.patch",
+    "sha256": "6f0a40542122470c31ddfbb2b955718d25ca475345b62d13439435f3fd7ba705",
+    "bytes": 86126,
+    "receipt": "audit/2026-11-02/learn-stat-panel-proposal.json",
+    "receiptSha256": "0bdf196f02fa75b158c3ccb155e512e39abf5ec8d5ff405af2244be7d042e517",
+    "reason": "Git attributes normalize src text but preserve auditbytes. Comparing source path against auditcandidate produced CRLF-only noise. New patch compares BOTH buffers after CRLF-toLF normalization, then retargets only Git headers. No live source was normalized or edited."
+  },
+  "details": [
+    {
+      "file": "src/components/keybr/LetterProgressPanel.tsx",
+      "rawBeforeSha256": "3a04c0c2c732ec92eccb1c642ce37304a4cba317bdf8d7f45d3bd8a1015cb9c1",
+      "rawProposedSha256": "18ef3f89f6999268ad0064aba3528e4fc600aefad8c542a26249138a8a7dfda4",
+      "normalizedBeforeSha256": "64c27cafa2627f0136920d8a65b512f3cdc13b7197dbc38abb3d8cf17759cb62",
+      "normalizedProposedSha256": "18ef3f89f6999268ad0064aba3528e4fc600aefad8c542a26249138a8a7dfda4",
+      "exactRawReversal": true,
+      "comparisonNormalizesCRLFOnly": true,
+      "actualSourceUnchanged": true
+    },
+    {
+      "file": "src/components/keybr/KeybrLessonMode.tsx",
+      "rawBeforeSha256": "20fadff93a1fb79fc119c80a9cb9f72127f58bae2edc9d292e3d7664f20df872",
+      "rawProposedSha256": "5e210709a81204677665921f68f634cd3c6c12f6f9ca1aa43798f205483a05b8",
+      "normalizedBeforeSha256": "49973686fcbe42607022caae71b10bf2d5719d1c7885cad257c9c32bd8a8cdae",
+      "normalizedProposedSha256": "1ad3c99c7f6c155c2d61a384ece6c116f4b0a3b119aacbd668420f3942b23cce",
+      "exactRawReversal": true,
+      "comparisonNormalizesCRLFOnly": true,
+      "actualSourceUnchanged": true
+    }
+  ],
+  "sourceAfter": {
+    "sourceFile": "audit/2026-10-27/final27-source.json",
+    "expectedBuild": "11de46af5d4a80e0e830",
+    "compared": 505,
+    "mismatches": []
+  },
+  "productFilesEdited": false,
+  "temporaryCandidatesRemoved": true,
+  "design": {
+    "stats": "Pass parent existing useMemo stats into both active and finished panel calls; readonly prop is consumed without mutation.",
+    "memo": "Generic shallow comparator bails only for supplied-model calls. A caller omitting characterStats deliberately keeps preexisting fresh derivation on each parent render. Own selection state still rerenders normally.",
+    "callback": "The stable handler captures only React state dispatch, so [] is correct; it captures no owner/view/status. Selection/owner/model updates still alter other compared props.",
+    "invalidation": [
+      "existing parent revision changes after save/merge/remove/reset/hydrate",
+      "owner/options/dimensions/targetWpm changes replace the supplied array",
+      "selection and future own props are covered by generic shallow comparison"
+    ],
+    "visibleData": "All DOM fields/labels and live UI values remain computed from the same model; no closed-panel lazy scoring or persistence deferral."
+  },
+  "meaningfulRegression": {
+    "proposedExistingFile": "e2e/learning-v3.spec.ts",
+    "purpose": "Observe I/O rather than implementation flags.",
+    "steps": [
+      "Complete a real native-input lesson; assert exported exact text/attempt count/100% input accuracy and actual local-save acknowledgement.",
+      "Start the next lesson, type a short real prefix and wait for the ordinary live HUD to advance after initial persistence/hydration.",
+      "Wrap Storage.prototype.getItem with Reflect.apply passthrough; count only typingforge:v3:guest:learning reads, never values.",
+      "While the evidence details remain closed, type more native characters and observe at least300ms of real HUD advancement; assert zero namespace reads.",
+      "Open the evidence details, assert the saved key has sampled evidence, type more native characters and observe HUD advancement; assert zero additional namespace reads.",
+      "Change the public Input method selector to composition: the visible sampled key must become introduced with no fabricated keyboard evidence. Restore keyboard: sampled evidence must return. Legitimate model invalidation reads must occur.",
+      "Restore the original Storage.prototype.getItem in finally."
+    ],
+    "baselineShouldFail": "Current nonmemo panel calls getAllCharacterStats on each active-view render, producing nonzero reads.",
+    "state": "NOT-EXECUTED; test patch to accompany adoption",
+    "otherRequiredRegressions": [
+      "existing Stats standalone filter/key-history behavior",
+      "model save/delete/reset/owner changes",
+      "IME, wrong input, correction and current timing tests"
+    ]
+  },
+  "adoptionPlan": [
+    "Review baseline profile; redundant source work alone is not proof it causes112ms.",
+    "Root git apply --check, then apply only after explicit adoption GO.",
+    "Add/run the meaningful storage-read regression plus existing Learn/Stats/key-history flows across all four engines.",
+    "Run typecheck/lint and relevant learning/core contracts.",
+    "Build/freeze a new named source checkpoint and rerun original mobile4 acceptance without threshold/word/3D changes."
+  ],
+  "performanceImprovementClaimed": false,
+  "acceptanceTestsBuildsBrowsersOrProfilersRun": 0
+}

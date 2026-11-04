@@ -19,11 +19,13 @@ export function orderTypingSlots(
   slots: readonly CharacterSlot[],
   cursor?: number,
 ): readonly CharacterSlot[] {
+  // Ordinary correct/mistyped target characters need no reordering. Preserve
+  // the caller's array without allocating two full passage filters per edit.
+  if (!slots.some((slot) => slot.expected === null)) return slots;
   const targetSlots = slots.filter((slot) => slot.expected !== null);
   const extras = slots
     .filter((slot) => slot.expected === null)
     .sort((left, right) => left.index - right.index);
-  if (extras.length === 0) return slots;
   if (targetSlots.length === 0) return extras;
 
   const mapped = targetSlots.filter((slot) => slot.typed !== null);

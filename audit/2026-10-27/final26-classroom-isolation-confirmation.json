@@ -1,0 +1,211 @@
+{
+  "declaredAt": "2026-10-27T17:33:28.959Z",
+  "status": "PASS-SCOPED",
+  "build": "88b8024ae4b840c10422",
+  "scope": "Current frozen source26 isolated classroom9-check real Apache/PHP/PDO lifecycle on one wholly new synthetic database. Original8-suite quota failure retained; no browser, capacity, hosted or physical-device claim.",
+  "sourceBefore": {
+    "sourceFile": "audit/2026-10-27/final26-source.json",
+    "expectedBuild": "88b8024ae4b840c10422",
+    "compared": 505,
+    "mismatches": []
+  },
+  "suites": [
+    "classroom"
+  ],
+  "automaticRetries": 0,
+  "capacityLoad": false,
+  "inputHashes": {
+    "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-10-27\\run-final26-classroom-isolation-confirmation.mjs": "c3fc14847fae21b2501a2bb9d951784ac12cbc20ba271898de99c3bb0dbd04fa",
+    "audit/2026-10-27/pack-backend-instance-source26.mjs": "06e693002bc6d71ad3ff8e93aefcc672d5c3c2ea19bfa1b69bb7d7a0f9a9a0a0",
+    "audit/2026-10-21/pack-apache-runtime.mjs": "80dd94f993d853d2057314473855a796e11264323bce64a4a9db97822b6dabe7",
+    "scripts/php-runtime.mjs": "2adeffc2ac322edbc611f34c437a0f34569689c942602bf39b079305cfb7a60f",
+    "backend/tests/data-lifecycle.mjs": "cd776db72cb886a83470fa20ea2684e1b970e2e9192d596612322389dbeeea8a",
+    "backend/tests/data-fixture.php": "2a6e22e7bbd4db750fc6d3562506889075b4646811dbc5978bd78d386e63b783",
+    "backend/tests/race-lifecycle.mjs": "bc99f8dfad3454ac716b2092408c3726c3daf87b4c79cc9e79769333e68078a1",
+    "backend/tests/race-fixtures.php": "713492aa1bba4882356c69a50a8d9a222a2dd8b444f2738ed040cb181b2e245e",
+    "backend/tests/course-lifecycle.mjs": "1f040350a31681140966209cef5496d4c99d44f671c448edecad0404ca7b62a3",
+    "backend/tests/course-fixture.php": "426fff85078c1f11b9003adc21178c86ad7b31a362382a47e2868a21f68db357",
+    "backend/tests/pack-social-fixture.php": "4d6de449ff26556b10565a6d8e41f6ad0d492cd58520fb0f5354200182b10a0e",
+    "backend/tests/classroom-fixture.php": "06af95a9144397a15ab484cbb4b0bf356d5a8663932e300733b5a213a3fca43e",
+    "backend/tests/arena-audit-admin.php": "1c40050d0318e8ec84e6cfc44ab90ebd7840d467ea1f0387ec16e11744b8091b",
+    ".github/workflows/ci.yml": "e2972e57a391f518d1cd29f2c0acbe4894880cae02b9bc626e77f429f89c34c8",
+    "backend/tests/pack-progression-lifecycle.mjs": "3132edb2334f78be29a8bea04743a85d368ec2483af2db06c9b901edc262f7a7",
+    "backend/tests/pack-social-lifecycle.mjs": "8fda23888523b169ee108e69b387d4b410a9e72631c5a54e59885e22581324f7",
+    "backend/tests/classroom-lifecycle.mjs": "40c17ada66f50a7143531144d9b2dbc1e9123f960f626f7eef0fd26cb9258949",
+    "audit/mega-pack-2026-10-21/run-arena-http.mjs": "6f0a3b526a7477f1c720f6036f5ce22cc78b6d71d80d8d3498504681f566f407",
+    "backend/tests/password-policy.php": "b510cc5563c9e2d4a7c9b5af91860e1dec4f20a7e7aa1502ea6ffe126b465509"
+  },
+  "isolationConfirmation": {
+    "originalFailedReceipt": "audit/2026-10-27/final26-native-ci.json",
+    "originalOwner": "5aca146872db63d8",
+    "originalFailure": "Classroom signup HTTP429 after earlier suites consumed the unchanged protected30/min authentication budget.",
+    "requiredExactSuiteCount": 1,
+    "requiredExactClassroomChecks": 9,
+    "freshOwnerRequired": true,
+    "originalEightSuiteResultReplaced": false,
+    "rateCountersReset": false,
+    "productionLimitsChanged": false,
+    "testAssertionsOrOwnerCleanupChanged": false
+  },
+  "sourceInventoryExtension": {
+    "previousCount": 504,
+    "expectedCount": 505,
+    "proposedChangedBackendFiles": [
+      "backend/public/index.php",
+      "backend/src/RequestBody.php"
+    ],
+    "changedExistingFrontendFiles": [
+      "src/domain/arena.ts",
+      "src/services/arena-service.ts",
+      "src/domain/__tests__/arena.test.ts"
+    ],
+    "frontendEvidenceReuse": "NOT-USED",
+    "freshFrontendBuildAndThreeInputAndThreeFullQualityLighthouseRunsRequired": true,
+    "reason": "Source26 uses a bounded backend request parser and production compact Arena request wire. The rejected25 replay hoist remains restored to24. Acceptance requires505 frozen files and the actual fresh frontend build; no prior UI evidence reuse is claimed."
+  },
+  "browserStarted": false,
+  "originalConfigurationRead": false,
+  "log": "audit/2026-10-27/final26-classroom-isolation-confirmation.log",
+  "exitCode": 0,
+  "ownerExited": true,
+  "events": [
+    {
+      "stage": "ephemeral-initialize",
+      "databasePort": 4766,
+      "apiPort": 4767,
+      "httpRuntime": "apache",
+      "existingDatabaseConnected": false,
+      "existingConfigRead": false
+    },
+    {
+      "stage": "ephemeral-provision",
+      "status": "READY",
+      "database": "sparow_pack_7f357de0eb704d2c_audit",
+      "port": 4766,
+      "schemaVersion": 5,
+      "tables": 26,
+      "migrations": [
+        "002-progression.sql",
+        "003_classroom.sql",
+        "004_social.sql",
+        "005_arena.sql"
+      ],
+      "emptyBeforeSchema": true,
+      "appDmlOnly": true,
+      "existingDatabaseConnected": false,
+      "existingConfigRead": false
+    },
+    {
+      "stage": "ephemeral-api-ready",
+      "httpRuntime": "apache",
+      "auditDatabaseMaxConnections": 64,
+      "apacheThreads": 64,
+      "api": "http://127.0.0.1:4767/api",
+      "database": "sparow_pack_7f357de0eb704d2c_audit",
+      "databasePort": 4766,
+      "databasePid": 35484,
+      "phpPid": 13788,
+      "privateConfigFile": "D:\\extra\\typing_updated\\typing-forge\\backend\\storage\\pack-instance-7f357de0eb704d2c\\app-config.php",
+      "privateDirectory": "D:\\extra\\typing_updated\\typing-forge\\backend\\storage\\pack-instance-7f357de0eb704d2c",
+      "originalDatabasePortUntouched": 3308,
+      "originalApiPortUntouched": 8081,
+      "existingConfigRead": false,
+      "noWindowsServiceCreated": true
+    },
+    {
+      "stage": "ephemeral-suite-start",
+      "name": "classroom"
+    },
+    {
+      "stage": "ephemeral-suite-complete",
+      "name": "classroom",
+      "exitCode": 0,
+      "status": "PASS",
+      "checks": 9
+    },
+    {
+      "stage": "ephemeral-cleanup",
+      "date": "2026-10-27T17:33:41.755Z",
+      "ownProcessesStopped": true,
+      "gracefulDatabaseShutdown": true,
+      "forcedOwnDatabaseStop": false,
+      "httpRuntime": "apache",
+      "gracefulApacheShutdown": true,
+      "forcedOwnApacheStop": false,
+      "apacheResidualPids": [],
+      "ownTemporaryDirectoryRemoved": true,
+      "originalDatabasePortUntouched": 3308,
+      "originalApiPortUntouched": 8081,
+      "originalPreviewPortUntouched": 4173,
+      "noWindowsServiceCreated": true,
+      "originalConfigRead": false
+    }
+  ],
+  "classroomReceipt": "pack-backend-7f357de0eb704d2c-classroom.json",
+  "classroomResult": {
+    "status": "PASS",
+    "at": "2026-10-27T17:33:35.969Z",
+    "scope": "Opt-in isolated native classroom PHP/PDO HTTP lifecycle with one synthetic teacher and narrow cookie student capabilities",
+    "guardedTarget": {
+      "database": "sparow_pack_7f357de0eb704d2c_audit",
+      "port": 4766,
+      "api": "http://127.0.0.1:4767/api",
+      "sessionNamespaceMatched": true
+    },
+    "checks": [
+      {
+        "name": "one synthetic teacher account created only after isolated schema, port and cookie guards",
+        "status": "PASS"
+      },
+      {
+        "name": "teacher actions require authentication, CSRF and matching owner; private code contains 128 random bits",
+        "status": "PASS"
+      },
+      {
+        "name": "guest student capability is idempotent, cannot silently orphan an alias, and grants no account identity",
+        "status": "PASS"
+      },
+      {
+        "name": "an independent real SQL member lock fences assignment reads; join resumes after release without duplicating an assignment",
+        "status": "PASS"
+      },
+      {
+        "name": "sharing requires capability and explicit consent; altered assignment is rejected, canonical replay is accepted once and conflicting evidence is rejected",
+        "status": "PASS"
+      },
+      {
+        "name": "teacher receives exact weighted aggregate facts without code, email, passage or keystroke logs; next assignment receives a new identity",
+        "status": "PASS"
+      },
+      {
+        "name": "student leave deletes membership and aggregate receipts and revokes the narrow capability",
+        "status": "PASS"
+      },
+      {
+        "name": "authenticated students can join and leave without resetting general account authentication",
+        "status": "PASS"
+      },
+      {
+        "name": "explicit class deletion and owned teacher-account deletion cascade only the synthetic classroom data",
+        "status": "PASS"
+      }
+    ],
+    "passed": 9,
+    "failed": 0,
+    "failure": null,
+    "cleanup": {
+      "deletedOwnSyntheticAccounts": 0
+    },
+    "credentialsOrCookiesEmitted": false,
+    "rateCountersReset": false,
+    "userDatabaseTouched": false
+  },
+  "sourceAfter": {
+    "sourceFile": "audit/2026-10-27/final26-source.json",
+    "expectedBuild": "88b8024ae4b840c10422",
+    "compared": 505,
+    "mismatches": []
+  },
+  "harnessInputsUnchanged": true,
+  "finishedAt": "2026-10-27T17:33:42.140Z"
+}

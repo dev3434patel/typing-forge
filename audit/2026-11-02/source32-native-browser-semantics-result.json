@@ -1,0 +1,1157 @@
+{
+  "startedAt": "2026-11-03T14:04:21.056Z",
+  "plan": "source32-native-browser-semantics-plan.json",
+  "scope": "Standalone textarea diagnostic only; no app or backend",
+  "before": {
+    "src/components/keybr/KeybrLessonMode.tsx": "1fafb70315bafeed17cc2324e73ae38d4133b6c486c51c0b9a54b98cd6a6e42e",
+    "e2e/learning-v3.spec.ts": "41c42a7be4bfd533d186cc8a391a3d6dd3846ff8f174d9a03428670d372d6934"
+  },
+  "browsers": [
+    {
+      "name": "chromium",
+      "cases": [
+        {
+          "label": "accent",
+          "requestedCodePoints": [
+            "U+00E9"
+          ],
+          "events": [
+            {
+              "event": "beforeinput",
+              "trusted": true,
+              "cancelable": true,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+00E9"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "textInput",
+              "trusted": true,
+              "cancelable": true,
+              "prevented": false,
+              "inputType": null,
+              "isComposing": null,
+              "data": [
+                "U+00E9"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+00E9"
+              ],
+              "nativeValue": [
+                "U+00E9"
+              ]
+            }
+          ],
+          "value": [
+            "U+00E9"
+          ],
+          "codePointCount": 1
+        },
+        {
+          "label": "crlf",
+          "requestedCodePoints": [
+            "U+0061",
+            "U+000D",
+            "U+000A",
+            "U+0062"
+          ],
+          "events": [
+            {
+              "event": "beforeinput",
+              "trusted": true,
+              "cancelable": true,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+0061",
+                "U+000D",
+                "U+000A",
+                "U+0062"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "textInput",
+              "trusted": true,
+              "cancelable": true,
+              "prevented": false,
+              "inputType": null,
+              "isComposing": null,
+              "data": [
+                "U+0061",
+                "U+000D",
+                "U+000A",
+                "U+0062"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+0061"
+              ],
+              "nativeValue": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ]
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [],
+              "nativeValue": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ]
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+0062"
+              ],
+              "nativeValue": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ]
+            }
+          ],
+          "value": [
+            "U+0061",
+            "U+000A",
+            "U+0062"
+          ],
+          "codePointCount": 3
+        },
+        {
+          "label": "lf",
+          "requestedCodePoints": [
+            "U+0061",
+            "U+000A",
+            "U+0062"
+          ],
+          "events": [
+            {
+              "event": "beforeinput",
+              "trusted": true,
+              "cancelable": true,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "textInput",
+              "trusted": true,
+              "cancelable": true,
+              "prevented": false,
+              "inputType": null,
+              "isComposing": null,
+              "data": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+0061"
+              ],
+              "nativeValue": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ]
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [],
+              "nativeValue": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ]
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+0062"
+              ],
+              "nativeValue": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ]
+            }
+          ],
+          "value": [
+            "U+0061",
+            "U+000A",
+            "U+0062"
+          ],
+          "codePointCount": 3
+        }
+      ],
+      "version": "156.0.8078.4",
+      "constructed": [
+        {
+          "requestedType": "insertFromComposition",
+          "actualType": "",
+          "data": [
+            "U+00E9"
+          ],
+          "trusted": false,
+          "cancelable": false,
+          "isComposing": false
+        },
+        {
+          "requestedType": "insertCompositionText",
+          "actualType": "insertCompositionText",
+          "data": [
+            "U+00E9"
+          ],
+          "trusted": false,
+          "cancelable": false,
+          "isComposing": false
+        },
+        {
+          "requestedType": "insertText",
+          "actualType": "insertText",
+          "data": [
+            "U+00E9"
+          ],
+          "trusted": false,
+          "cancelable": false,
+          "isComposing": false
+        }
+      ],
+      "assignmentCrLf": [
+        "U+0061",
+        "U+000A",
+        "U+0062"
+      ],
+      "status": "OBSERVED",
+      "closed": true
+    },
+    {
+      "name": "edge",
+      "cases": [
+        {
+          "label": "accent",
+          "requestedCodePoints": [
+            "U+00E9"
+          ],
+          "events": [
+            {
+              "event": "beforeinput",
+              "trusted": true,
+              "cancelable": true,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+00E9"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "textInput",
+              "trusted": true,
+              "cancelable": true,
+              "prevented": false,
+              "inputType": null,
+              "isComposing": null,
+              "data": [
+                "U+00E9"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+00E9"
+              ],
+              "nativeValue": [
+                "U+00E9"
+              ]
+            }
+          ],
+          "value": [
+            "U+00E9"
+          ],
+          "codePointCount": 1
+        },
+        {
+          "label": "crlf",
+          "requestedCodePoints": [
+            "U+0061",
+            "U+000D",
+            "U+000A",
+            "U+0062"
+          ],
+          "events": [
+            {
+              "event": "beforeinput",
+              "trusted": true,
+              "cancelable": true,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+0061",
+                "U+000D",
+                "U+000A",
+                "U+0062"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "textInput",
+              "trusted": true,
+              "cancelable": true,
+              "prevented": false,
+              "inputType": null,
+              "isComposing": null,
+              "data": [
+                "U+0061",
+                "U+000D",
+                "U+000A",
+                "U+0062"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+0061"
+              ],
+              "nativeValue": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ]
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [],
+              "nativeValue": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ]
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+0062"
+              ],
+              "nativeValue": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ]
+            }
+          ],
+          "value": [
+            "U+0061",
+            "U+000A",
+            "U+0062"
+          ],
+          "codePointCount": 3
+        },
+        {
+          "label": "lf",
+          "requestedCodePoints": [
+            "U+0061",
+            "U+000A",
+            "U+0062"
+          ],
+          "events": [
+            {
+              "event": "beforeinput",
+              "trusted": true,
+              "cancelable": true,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "textInput",
+              "trusted": true,
+              "cancelable": true,
+              "prevented": false,
+              "inputType": null,
+              "isComposing": null,
+              "data": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+0061"
+              ],
+              "nativeValue": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ]
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [],
+              "nativeValue": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ]
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+0062"
+              ],
+              "nativeValue": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ]
+            }
+          ],
+          "value": [
+            "U+0061",
+            "U+000A",
+            "U+0062"
+          ],
+          "codePointCount": 3
+        }
+      ],
+      "version": "156.0.4314.58",
+      "constructed": [
+        {
+          "requestedType": "insertFromComposition",
+          "actualType": "",
+          "data": [
+            "U+00E9"
+          ],
+          "trusted": false,
+          "cancelable": false,
+          "isComposing": false
+        },
+        {
+          "requestedType": "insertCompositionText",
+          "actualType": "insertCompositionText",
+          "data": [
+            "U+00E9"
+          ],
+          "trusted": false,
+          "cancelable": false,
+          "isComposing": false
+        },
+        {
+          "requestedType": "insertText",
+          "actualType": "insertText",
+          "data": [
+            "U+00E9"
+          ],
+          "trusted": false,
+          "cancelable": false,
+          "isComposing": false
+        }
+      ],
+      "assignmentCrLf": [
+        "U+0061",
+        "U+000A",
+        "U+0062"
+      ],
+      "status": "OBSERVED",
+      "closed": true
+    },
+    {
+      "name": "firefox",
+      "cases": [
+        {
+          "label": "accent",
+          "requestedCodePoints": [
+            "U+00E9"
+          ],
+          "events": [
+            {
+              "event": "compositionstart",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": null,
+              "isComposing": null,
+              "data": [],
+              "nativeValue": []
+            },
+            {
+              "event": "compositionupdate",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": null,
+              "isComposing": null,
+              "data": [
+                "U+00E9"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "beforeinput",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertCompositionText",
+              "isComposing": true,
+              "data": [
+                "U+00E9"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "textInput",
+              "trusted": true,
+              "cancelable": true,
+              "prevented": false,
+              "inputType": null,
+              "isComposing": null,
+              "data": [
+                "U+00E9"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "compositionend",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": null,
+              "isComposing": null,
+              "data": [
+                "U+00E9"
+              ],
+              "nativeValue": [
+                "U+00E9"
+              ]
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertCompositionText",
+              "isComposing": false,
+              "data": [
+                "U+00E9"
+              ],
+              "nativeValue": [
+                "U+00E9"
+              ]
+            }
+          ],
+          "value": [
+            "U+00E9"
+          ],
+          "codePointCount": 1
+        },
+        {
+          "label": "crlf",
+          "requestedCodePoints": [
+            "U+0061",
+            "U+000D",
+            "U+000A",
+            "U+0062"
+          ],
+          "events": [
+            {
+              "event": "compositionstart",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": null,
+              "isComposing": null,
+              "data": [],
+              "nativeValue": []
+            },
+            {
+              "event": "compositionupdate",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": null,
+              "isComposing": null,
+              "data": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "beforeinput",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertCompositionText",
+              "isComposing": true,
+              "data": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "textInput",
+              "trusted": true,
+              "cancelable": true,
+              "prevented": false,
+              "inputType": null,
+              "isComposing": null,
+              "data": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "compositionend",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": null,
+              "isComposing": null,
+              "data": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ],
+              "nativeValue": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ]
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertCompositionText",
+              "isComposing": false,
+              "data": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ],
+              "nativeValue": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ]
+            }
+          ],
+          "value": [
+            "U+0061",
+            "U+000A",
+            "U+0062"
+          ],
+          "codePointCount": 3
+        },
+        {
+          "label": "lf",
+          "requestedCodePoints": [
+            "U+0061",
+            "U+000A",
+            "U+0062"
+          ],
+          "events": [
+            {
+              "event": "compositionstart",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": null,
+              "isComposing": null,
+              "data": [],
+              "nativeValue": []
+            },
+            {
+              "event": "compositionupdate",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": null,
+              "isComposing": null,
+              "data": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "beforeinput",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertCompositionText",
+              "isComposing": true,
+              "data": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "textInput",
+              "trusted": true,
+              "cancelable": true,
+              "prevented": false,
+              "inputType": null,
+              "isComposing": null,
+              "data": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "compositionend",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": null,
+              "isComposing": null,
+              "data": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ],
+              "nativeValue": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ]
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertCompositionText",
+              "isComposing": false,
+              "data": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ],
+              "nativeValue": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ]
+            }
+          ],
+          "value": [
+            "U+0061",
+            "U+000A",
+            "U+0062"
+          ],
+          "codePointCount": 3
+        }
+      ],
+      "version": "157.0",
+      "constructed": [
+        {
+          "requestedType": "insertFromComposition",
+          "actualType": "insertFromComposition",
+          "data": [
+            "U+00E9"
+          ],
+          "trusted": false,
+          "cancelable": false,
+          "isComposing": false
+        },
+        {
+          "requestedType": "insertCompositionText",
+          "actualType": "insertCompositionText",
+          "data": [
+            "U+00E9"
+          ],
+          "trusted": false,
+          "cancelable": false,
+          "isComposing": false
+        },
+        {
+          "requestedType": "insertText",
+          "actualType": "insertText",
+          "data": [
+            "U+00E9"
+          ],
+          "trusted": false,
+          "cancelable": false,
+          "isComposing": false
+        }
+      ],
+      "assignmentCrLf": [
+        "U+0061",
+        "U+000A",
+        "U+0062"
+      ],
+      "status": "OBSERVED",
+      "closed": true
+    },
+    {
+      "name": "webkit",
+      "cases": [
+        {
+          "label": "accent",
+          "requestedCodePoints": [
+            "U+00E9"
+          ],
+          "events": [
+            {
+              "event": "beforeinput",
+              "trusted": true,
+              "cancelable": true,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+00E9"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+00E9"
+              ],
+              "nativeValue": [
+                "U+00E9"
+              ]
+            }
+          ],
+          "value": [
+            "U+00E9"
+          ],
+          "codePointCount": 1
+        },
+        {
+          "label": "crlf",
+          "requestedCodePoints": [
+            "U+0061",
+            "U+000D",
+            "U+000A",
+            "U+0062"
+          ],
+          "events": [
+            {
+              "event": "beforeinput",
+              "trusted": true,
+              "cancelable": true,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+0061",
+                "U+000D",
+                "U+000A",
+                "U+0062"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+0061",
+                "U+000D"
+              ],
+              "nativeValue": [
+                "U+0061",
+                "U+000D",
+                "U+000A",
+                "U+0062"
+              ]
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertParagraph",
+              "isComposing": false,
+              "data": [],
+              "nativeValue": [
+                "U+0061",
+                "U+000D",
+                "U+000A",
+                "U+0062"
+              ]
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+0062"
+              ],
+              "nativeValue": [
+                "U+0061",
+                "U+000D",
+                "U+000A",
+                "U+0062"
+              ]
+            }
+          ],
+          "value": [
+            "U+0061",
+            "U+000D",
+            "U+000A",
+            "U+0062"
+          ],
+          "codePointCount": 4
+        },
+        {
+          "label": "lf",
+          "requestedCodePoints": [
+            "U+0061",
+            "U+000A",
+            "U+0062"
+          ],
+          "events": [
+            {
+              "event": "beforeinput",
+              "trusted": true,
+              "cancelable": true,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ],
+              "nativeValue": []
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+0061"
+              ],
+              "nativeValue": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ]
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertParagraph",
+              "isComposing": false,
+              "data": [],
+              "nativeValue": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ]
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "cancelable": false,
+              "prevented": false,
+              "inputType": "insertText",
+              "isComposing": false,
+              "data": [
+                "U+0062"
+              ],
+              "nativeValue": [
+                "U+0061",
+                "U+000A",
+                "U+0062"
+              ]
+            }
+          ],
+          "value": [
+            "U+0061",
+            "U+000A",
+            "U+0062"
+          ],
+          "codePointCount": 3
+        }
+      ],
+      "version": "27.2",
+      "constructed": [
+        {
+          "requestedType": "insertFromComposition",
+          "actualType": "insertFromComposition",
+          "data": [
+            "U+00E9"
+          ],
+          "trusted": false,
+          "cancelable": false,
+          "isComposing": false
+        },
+        {
+          "requestedType": "insertCompositionText",
+          "actualType": "insertCompositionText",
+          "data": [
+            "U+00E9"
+          ],
+          "trusted": false,
+          "cancelable": false,
+          "isComposing": false
+        },
+        {
+          "requestedType": "insertText",
+          "actualType": "insertText",
+          "data": [
+            "U+00E9"
+          ],
+          "trusted": false,
+          "cancelable": false,
+          "isComposing": false
+        }
+      ],
+      "assignmentCrLf": [
+        "U+0061",
+        "U+000A",
+        "U+0062"
+      ],
+      "status": "OBSERVED",
+      "closed": true
+    }
+  ],
+  "errors": [],
+  "after": {
+    "src/components/keybr/KeybrLessonMode.tsx": "1fafb70315bafeed17cc2324e73ae38d4133b6c486c51c0b9a54b98cd6a6e42e",
+    "e2e/learning-v3.spec.ts": "41c42a7be4bfd533d186cc8a391a3d6dd3846ff8f174d9a03428670d372d6934"
+  },
+  "sourceAndTestUnchanged": true,
+  "finishedAt": "2026-11-03T14:04:27.537Z",
+  "status": "OBSERVED"
+}

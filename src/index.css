@@ -401,6 +401,11 @@
      overflow. Keep its text layout/paint local without hiding or sizing content. */
   contain: layout paint;
 }
+.typing-stage {
+  /* Native editing happens in the sibling input as well as the visible
+     passage. Keep that fixed-height editing region in its own layout scope. */
+  contain: layout;
+}
 .typing-workspace[data-focused="false"]:not([data-status="paused"])
   .typing-text {
   filter: blur(3px);

@@ -1,0 +1,95 @@
+{
+  "capturedAt": "2026-11-02T16:34:40.309Z",
+  "status": "ADOPTED-UNDER-ROOT-GO-NOT-TESTED",
+  "authorization": "Root explicitly authorized minimal Learn stats reuse, memo, stable callback on 2026-11-02 after baseline profile closed.",
+  "preferredProposal": {
+    "file": "audit/2026-11-02/learn-stat-panel-compact.PROPOSAL.patch",
+    "sha256": "2a7db848b37fefca860f847495534a13b268667a1f451e525fe740e06c5ccffd",
+    "bytes": 5191,
+    "files": [
+      "src/components/keybr/LetterProgressPanel.tsx",
+      "src/components/keybr/KeybrLessonMode.tsx"
+    ],
+    "applyCheckRun": false,
+    "applied": false
+  },
+  "files": [
+    {
+      "file": "src/components/keybr/LetterProgressPanel.tsx",
+      "archive": "audit/2026-11-02/LetterProgressPanel-before-stats-reuse.source27",
+      "rawBeforeSha256": "3a04c0c2c732ec92eccb1c642ce37304a4cba317bdf8d7f45d3bd8a1015cb9c1",
+      "rawAfterSha256": "18ef3f89f6999268ad0064aba3528e4fc600aefad8c542a26249138a8a7dfda4",
+      "normalizedBeforeSha256": "64c27cafa2627f0136920d8a65b512f3cdc13b7197dbc38abb3d8cf17759cb62",
+      "normalizedAfterSha256": "18ef3f89f6999268ad0064aba3528e4fc600aefad8c542a26249138a8a7dfda4",
+      "exactRawReversalVerified": true,
+      "reverseEdits": [
+        {
+          "from": "\n}, (previous, next) => {\n  // Only revision-owned model props opt into render reuse. Standalone callers\n  // retain fresh model derivation whenever their parent renders.\n  if (!previous.characterStats || !next.characterStats) return false;\n  const keys = Object.keys(previous) as (keyof Props)[];\n  return keys.length === Object.keys(next).length &&\n    keys.every(key => Object.hasOwn(next, key) && Object.is(previous[key], next[key]));\n});\n",
+          "to": "\n}\r\n"
+        },
+        {
+          "from": "const stats = characterStats ?? getAllCharacterStats({ ...options, targetWpm });",
+          "to": "const stats = getAllCharacterStats({ ...options, targetWpm });"
+        },
+        {
+          "from": "export const LetterProgressPanel = memo(function LetterProgressPanel({ compact = false, targetWpm = 35, selectedKey, onSelectKey, characterStats, ...options }: Props) {",
+          "to": "export function LetterProgressPanel({ compact = false, targetWpm = 35, selectedKey, onSelectKey, ...options }: Props) {"
+        },
+        {
+          "from": "onSelectKey?: (char: string) => void; characterStats?: readonly CharacterConfidence[] }",
+          "to": "onSelectKey?: (char: string) => void }"
+        },
+        {
+          "from": "type LearningOptions, type CharacterConfidence }",
+          "to": "type LearningOptions }"
+        },
+        {
+          "from": "import { memo, useMemo, useState } from 'react';",
+          "to": "import { useMemo, useState } from 'react';"
+        }
+      ]
+    },
+    {
+      "file": "src/components/keybr/KeybrLessonMode.tsx",
+      "archive": "audit/2026-11-02/KeybrLessonMode-before-stats-reuse.source27",
+      "rawBeforeSha256": "20fadff93a1fb79fc119c80a9cb9f72127f58bae2edc9d292e3d7664f20df872",
+      "rawAfterSha256": "5e210709a81204677665921f68f634cd3c6c12f6f9ca1aa43798f205483a05b8",
+      "normalizedBeforeSha256": "49973686fcbe42607022caae71b10bf2d5719d1c7885cad257c9c32bd8a8cdae",
+      "normalizedAfterSha256": "1ad3c99c7f6c155c2d61a384ece6c116f4b0a3b119aacbd668420f3942b23cce",
+      "exactRawReversalVerified": true,
+      "reverseEdits": [
+        {
+          "from": "              characterStats={stats}\r\n              onSelectKey={selectFocusKey}",
+          "to": "              onSelectKey={(char) => {\r\n                setSelectedFocus(char);\r\n              }}"
+        },
+        {
+          "from": "<LetterProgressPanel {...options} characterStats={stats} />",
+          "to": "<LetterProgressPanel {...options} />"
+        },
+        {
+          "from": "  const selectFocusKey = useCallback((char: string) => setSelectedFocus(char), []);\r\n  const caretPreferences = useRef",
+          "to": "  const caretPreferences = useRef"
+        }
+      ]
+    }
+  ],
+  "modelContract": {
+    "stats": "Pass parent existing useMemo stats into both active and finished panel calls; readonly prop is consumed without mutation.",
+    "memo": "Generic shallow comparator bails only for supplied-model calls. A caller omitting characterStats deliberately keeps preexisting fresh derivation on each parent render. Own selection state still rerenders normally.",
+    "callback": "The stable handler captures only React state dispatch, so [] is correct; it captures no owner/view/status. Selection/owner/model updates still alter other compared props.",
+    "invalidation": [
+      "existing parent revision changes after save/merge/remove/reset/hydrate",
+      "owner/options/dimensions/targetWpm changes replace the supplied array",
+      "selection and future own props are covered by generic shallow comparison"
+    ],
+    "visibleData": "All DOM fields/labels and live UI values remain computed from the same model; no closed-panel lazy scoring or persistence deferral."
+  },
+  "testsOrBuildsRun": 0,
+  "performanceImprovementClaimed": false,
+  "excluded": [
+    "Persistence",
+    "Scoring",
+    "Clocks",
+    "3D source"
+  ]
+}

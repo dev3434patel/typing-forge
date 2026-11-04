@@ -1,0 +1,67 @@
+{
+  "declaredAt": "2026-11-04T15:57:47.843Z",
+  "build": "332e23584f1e36465df2",
+  "sourceBefore": {
+    "sourceFile": "audit/2026-11-02/final33-source.json",
+    "expectedBuild": "332e23584f1e36465df2",
+    "compared": 505,
+    "mismatches": []
+  },
+  "inputHashes": {
+    "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-02\\run-final33-static-mobile-sequence.mjs": "7de3d50b64de8e73ec82a77bdbef6aa109b77d3eb32045e9791529d5462cbe67",
+    "audit/2026-11-02/final33-source.json": "16907b52c6771f8163817f29255d1b432e76a7a98c4293334f817e0a17d5a050",
+    "audit/2026-11-02/run-final33-static.mjs": "85b89b0de17bb5f1acb53089aa2afa2598fd866d499500380046bd7ee9c7455a",
+    "audit/2026-11-02/run-mobile-workspaces-static-final33.mjs": "92cde559fddb05b8a2fc3ef56efcffe1ce9d65c838abc5be21a775df91af97f4",
+    "audit/2026-11-02/assess-final33-mobile-latency.mjs": "20c19964ec276236262d27a471846ee5d2a9c58f0ca09f50d2996df4052acc5b",
+    "audit/2026-11-02/assess-final33-mobile-interaction-latency.mjs": "119f99bb2d33e45cf9f25d368c576ae644c58659708dae8c101f2ce2d59f5aef",
+    "audit/2026-11-02/measure-mobile-workspaces-static-final33.mjs": "0b8734cf74a2f69311978ba747fc077617c7c025cd94e4692cef488e8a1572c1",
+    "audit/2026-11-02/artifact-verification.mjs": "782438e684709994dda15645b049fac4be280b2c9a8122bb3f0c1c170f0116ec",
+    "audit/2026-11-02/verify-static-artifacts.mjs": "e8b6bf76a3d2689d8a2b9ce1fd4c33360749d84161db9a21372d900a9df665af",
+    "e2e/frontend-static-server.ts": "ce3fd172b88281f1cc4e867cd5002824623b37f8dc7cc65c1c079479fc5bbb7f",
+    "e2e/frontend-deployment.spec.ts": "33de58ef7d065938c742d1778d271c16b2ce8c5f605be9c73afc2f4b2f21f79d",
+    "e2e/frontend-game-accessibility.spec.ts": "02db4dc14f5c9d2199533a0d764bcdef24cbd39b38ab971bb0e855b48f973591",
+    "audit/2026-10-21/measure-mobile-workspaces.mjs": "69bc61a77b632524f2bd3e689431413e3ab178119226c3d603b60cb6f8245d6a",
+    "audit/2026-10-21/mobile-workspaces-final7-protocol.json": "0161f8ee44bae9c7bfa40a2f154261b15b4066e9baeaa3d26c9d0dd7068e2c3b",
+    "e2e/live-keyboard.spec.ts": "cf19d74050bc1b3f4b81990b8b1edb0c06ae321fec5c127412a5c39a11c3cb63",
+    "e2e/typing-render-budget.spec.ts": "32b39faa97feccc59218e9d590b8d6a9890da4e54a9ec43c5e8265f1897dba01",
+    "package-lock.json": "6b01d934527c99a523390d4f55b2d56ed00fff34ce189cb07fc068c57ce28ace",
+    "playwright.config.ts": "9a1c2658bfe18bcf8acf34e61144e17309abe257717f2cf882d05791457a1a32"
+  },
+  "staticPrefix": "final33",
+  "staticExpected": {
+    "artifactChecks": 67,
+    "deploymentBrowserCases": 56,
+    "gameAccessibilityCases": 16
+  },
+  "mobileTrials": [
+    "mobile-workspaces-final33-static-1",
+    "mobile-workspaces-final33-static-2",
+    "mobile-workspaces-final33-static-3"
+  ],
+  "mobileCasesPerTrial": [
+    "learn",
+    "course",
+    "local-bot",
+    "games"
+  ],
+  "mobileAcceptance": "All four original cases in every declared trial must remain functionally valid and have measured p98 observed typing-event duration strictly below100ms. Null/unsupported is UNVERIFIED.",
+  "interactionAcceptance": "Additionally every workspace in every declared trial must have p98ObservedInteractionMaximumMs strictly below100ms; event and interaction counts are retained and neither gate replaces the other.",
+  "source33EventCardinalityChangeDisclosed": true,
+  "workers": 1,
+  "retries": 0,
+  "staticAndMobileRunSequentially": true,
+  "automaticRetries": 0,
+  "resultFiltering": false,
+  "inputActionsTimingAssertionsChanged": false,
+  "fullQualitySceneChecksRetained": true,
+  "rootOwnedSeparateWindows": [
+    "three ordinary home input trials",
+    "three full-quality mobile Lighthouse trials",
+    "full64-spec four-engine matrix",
+    "fresh-owner20 native cases",
+    "database/Deno CI-extra"
+  ],
+  "previousCandidateAndFailedReportsReusedAsAcceptance": false,
+  "actualPublicHostingClaimed": false,
+  "physicalDeviceOrFieldInpClaimed": false
+}

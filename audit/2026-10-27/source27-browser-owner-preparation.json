@@ -1,0 +1,20 @@
+{
+  "preparedAt": "2026-10-27T17:38:46.519Z",
+  "status": "PREPARED-NOT-RUN",
+  "source": "audit/2026-10-27/pack-backend-instance-source26.mjs",
+  "sourceRawSha256": "06e693002bc6d71ad3ff8e93aefcc672d5c3c2ea19bfa1b69bb7d7a0f9a9a0a0",
+  "target": "audit/2026-10-27/pack-backend-instance-source27.mjs",
+  "targetSha256": "48f9496a55201705a81b5c78f62b5972640ac6e3152b4eb2bc549f0191821d9c",
+  "changes": [
+    "Require exact current source27 build and505 frozen sources before creating owned resources.",
+    "Keep original owned Apache/PHP/MariaDB provisioning, ownership guards, browser preparation and same-session graceful cleanup.",
+    "Restrict readiness to the password suite and stdin to prepare-browser/renew/cleanup; remove capacity/native-rate commands."
+  ],
+  "requires": "Root GO plus PACK instance/Apache flags, FINAL27_NATIVE_BROWSER_WINDOW=1 and actual FINAL27_BUILD_ID.",
+  "ordinaryCapacityReplayed": false,
+  "nativeCiReplayed": false,
+  "servicesStarted": 0,
+  "testsRun": 0,
+  "productOrE2ESourceChanged": false,
+  "originalConfigRead": false
+}

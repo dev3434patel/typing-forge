@@ -1,0 +1,83 @@
+{
+  "capturedAt": "2026-11-02T16:34:48.608Z",
+  "status": "READ-ONLY-PROPOSALS-NOT-APPLIED-NOT-ACCEPTANCE",
+  "build": "11de46af5d4a80e0e830",
+  "protectedSourceFiles": 505,
+  "relevantFrozenMatches": true,
+  "sourceHashes": {
+    "src/pages/Race.tsx": "1795751fd4d43f76f89f1fdbd36403b249dd1f45b4a8421fe1257a414d5fb9e4",
+    "src/components/typing/TypingArea.tsx": "d767dd13fe1e2d8844a8a0a1db11254403387edb18f15e0cbe72d6901028b073",
+    "src/components/typing/OpponentPaceMarker.tsx": "954e1e5f42e9e255cd4373d1dcb2157dad9851afb5482b5e4088ff62992feda3",
+    "src/components/typing/TypingPassage.tsx": "5f9df6976d2a32b5f444ce80206d1818cde71b587431b6655261c5eb21ab1386",
+    "src/components/typing/typing-passage-model.ts": "403983e3aa3cfe1cd45f31d90ac4f8c19d9287696a225d1c7a592c2419625a5e",
+    "src/components/typing/opponent-caret-layout.ts": "eba1e26698ba6198583c1d489652cb04c6201fbfb1aa31f502b2943e356d6992",
+    "src/lib/typing-core/session.ts": "5436852d79b166acd708dc07eb67893da0059e3703cd1bc02b8a8fa451d1672c",
+    "src/lib/race-pace.ts": "2a71f9208351696535e3fdca8f8043e554df628517ef1f4c03417434f6f91850"
+  },
+  "evidence": {
+    "originalAcceptanceP98Ms": 112,
+    "profileSummary": "audit/2026-11-02/final27-mobile-hotpath-profile-local-bot-profile-summary.json",
+    "profilePhase": {
+      "startMs": 1190.7000000476837,
+      "endMs": 5199.100000023842,
+      "exclusiveEnd": true,
+      "valid": true,
+      "empty": false
+    },
+    "programSampleShare": 0.734,
+    "overlappingLongAnimationFrames": 2,
+    "reportedFullyContainedForcedLayoutMs": 10.8,
+    "interpretation": "Program is unattributed and sampling is diagnostic. Neither the2LoAF records nor component samples establish an exclusive bottleneck or predict a sub100ms result."
+  },
+  "existingOptimizations": [
+    "SessionController already caches presentation alignment by accepted sequence and target.",
+    "OpponentPaceMarker already reuses measured correct-prefix geometry and returns previous point state when coordinates do not change.",
+    "TypingPassage already memoizes passage blocks and character chunks, and idle snapshots retain aligned character arrays."
+  ],
+  "proposals": [
+    {
+      "id": "ui-display-projection",
+      "scope": "Race.tsx only",
+      "change": "Publish own/bot state only when exact visible progress, bot cursor or rendered integer WPM changes. Keep null distinct from zero. Both Track and race legend currently render integer WPM; canonical controller metrics, elapsed time and final results remain raw and unchanged.",
+      "mustPreserve": [
+        "Every actual bot cursor/progress movement",
+        "First accepted character origin and shared human clock",
+        "Current final metrics and evidence",
+        "Null versus0 display",
+        "Current correction/error behavior"
+      ],
+      "risk": "Small UI-only semantic adapter change; verify visible output equivalence and matched latency, not guaranteed by static reasoning."
+    },
+    {
+      "id": "stable-props-standard-memo",
+      "scope": "Race.tsx and TypingArea.tsx",
+      "change": "Memoize opponentPace by its fields and optionally wrap TypingArea in standard React.memo. Do not use a comparator that ignores genuine prop changes. Its own state/context must continue updating.",
+      "limits": "This cannot skip a genuine own-input render or a changed opponent position. It may remove parent-only idle work; actual impact requires a benchmark."
+    },
+    {
+      "id": "canonical-target-count",
+      "scope": "TypingArea.tsx",
+      "change": "When a rival exists, memoize canonical target grapheme count by snapshot.targetText instead of allocating characters.filter(expected!==null) on every render. Avoid a new parse for non-rival/free modes.",
+      "mustPreserve": [
+        "Use canonical graphemes rather than UTF16 length",
+        "Extra/missed slots do not change target-unit count",
+        "Target changes invalidate the memo"
+      ],
+      "risk": "Exact count-equivalence must be checked on Unicode/prose/code/extra-character scenarios."
+    }
+  ],
+  "validation": [
+    "Preserve original112ms failure and instrumented profile separately.",
+    "Run existing race pace, first-character timing, wrong-key/correction and keyboard tests.",
+    "Confirm raw/exported metrics and actual rival positions are unchanged.",
+    "Repeat original API-disabled mobile workspace protocol with all runs retained; no threshold relaxation."
+  ],
+  "notPerformed": {
+    "productEdits": false,
+    "testEdits": false,
+    "tests": false,
+    "benchmarks": false,
+    "browserOrServiceStarted": false,
+    "gitMutation": false
+  }
+}

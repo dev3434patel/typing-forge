@@ -1,0 +1,81 @@
+{
+  "date": "2026-11-03",
+  "purpose": "Prepare Source32 Learn native empty-draft insertion candidate and its functional contracts",
+  "authorization": "Root GO after Source31 diagnostic closed; no main TypingArea, engine, scoring, timing, backend or 3D edits authorized in this subtask",
+  "productionStable": true,
+  "changedProductionFiles": [
+    {
+      "path": "src/components/keybr/KeybrLessonMode.tsx",
+      "sha256": "1fafb70315bafeed17cc2324e73ae38d4133b6c486c51c0b9a54b98cd6a6e42e"
+    }
+  ],
+  "changedTestFiles": [
+    {
+      "path": "e2e/learning-v3.spec.ts",
+      "sha256": "41c42a7be4bfd533d186cc8a391a3d6dd3846ff8f174d9a03428670d372d6934",
+      "newContracts": 4
+    }
+  ],
+  "implementation": {
+    "sharedCommitDraft": "Existing fallback CompositionEchoGuard.consume then ignoreEmptySpace then commit with exact existing provenance then setDraft empty is extracted into one callback. Both beforeinput and existing onChange fallback call it.",
+    "fastPath": "Native textarea beforeinput listener is attached after useWordCorrection's effect. It cancels a supported native insertion and commits the supplied data exactly once without writing native value or selection.",
+    "eligibility": [
+      "event.isTrusted is true",
+      "event.cancelable is true",
+      "event.defaultPrevented is false",
+      "event.inputType is exactly insertText",
+      "event.data is a nonempty string",
+      "event.data contains neither CR nor LF",
+      "event.isComposing and current composition ref are both false",
+      "Actual native textarea value is empty",
+      "Current controller status is ready or running"
+    ],
+    "listenerOrder": "Word correction processes deletion and empty-space rejection first. Accepted Space must not be examined against the editable floor after that same Space has already been committed.",
+    "normalization": "No manual data normalization or filtering. CR/LF data falls through to the native textarea because its line-break normalization occurs before the existing fallback reads .value. Controller NFC and grapheme handling remain unchanged.",
+    "clock": "No timestamp overrides. The existing commit/controller path starts on its first nonempty insertion attempt. Ready empty-space rejection, pause and restart retain existing controller ownership.",
+    "echo": "No skip-next-input or text-equality heuristic was added. Existing explicit composition input ownership remains authoritative; a genuine identical insertText without keydown remains independent.",
+    "fallback": "Untrusted/synthetic, noncancelable, composing/IME, replacement, paste/drop, line-break, nonempty draft and unavailable-session events retain the existing path. Hardware dead-key composition is not guessed from keydown codes."
+  },
+  "newFunctionalContracts": [
+    {
+      "name": "trusted letters and an accepted space commit once without a native draft or an idle clock",
+      "checks": "Uses actual browser typing on a touch viewport. Initial invalid Space leaves cursor0 and clock0. Trusted cancelable beforeinput events are prevented; native input event count is0; all core attempts/events and accuracy remain exact. Includes accepted word separator to check listener order, first event offset0 and actual wall-clock bounds."
+    },
+    {
+      "name": "untrusted and noncancelable input fallbacks preserve composition ownership and a genuine repeated letter",
+      "checks": "Synthetic beforeinput by itself cannot advance cursor, and subsequent input-only native-value simulation commits once. Composition NFC and final owned echo commit once, then an actual browser insertion of the identical letter with no keydown remains a distinct attempt. Four exact events and provenance are checked.",
+      "limitation": "Synthetic noncancelable beforeinput is untrusted. This does not prove all trusted OS noncancelable event sequences."
+    },
+    {
+      "name": "pause, resume and a new lesson keep trusted insertions in their own session",
+      "checks": "Actual typed prefix survives pause/resume with an actual measured pause interval. Finishing and starting next lesson gives a different session ID, fresh clock, two exact new attempts and no old pause intervals."
+    },
+    {
+      "name": "line breaks retain native textarea normalization instead of the direct insertion path",
+      "checks": "Actual browser insertText with CRLF must use native input fallback and produce one LF-normalized canonical event with exactly three attempts."
+    }
+  ],
+  "existingContractsToRetain": [
+    "Existing learning wrong-key feedback, corrections and stop-on-error immutable evidence tests",
+    "Existing current-word-correction adaptive incorrect-word reopening and correct replacement locking test",
+    "Existing current-word-correction IME cleanup/deletion contracts",
+    "Existing mobile-input-integrity adaptive insertReplacementText and input-only provenance contracts",
+    "Existing ten-language lesson adapter, result focus and saved evidence projection tests"
+  ],
+  "performanceProtocol": {
+    "claim": "UNVERIFIED until root-owned functional and performance runs finish",
+    "cardinalityChangeIsIntentional": "Accepted Learn insertions now have a trusted canceled beforeinput and no native input event. The controller event log and insertion-attempt cardinality must still equal actual supplied text units.",
+    "preserveLegacyProtocol": true,
+    "requiredAdditionalAssessment": "Report keyboard interaction p98 grouped by actual interactionId as well as the original event-weighted p98. Do not claim a win solely from reducing the number or weighting of input event entries.",
+    "nonnegotiable": "Use unchanged native keystroke sequence, device/CPU settings, accurate result/evidence assertions and source/build fingerprints. No 3D quality reduction."
+  },
+  "verificationByThisSubtask": {
+    "gitDiffCheck": "PASS",
+    "testsRun": "NONE",
+    "browserJobsStarted": "NONE",
+    "heavyJobsStarted": "NONE",
+    "nativeFunctionalProof": "UNVERIFIED pending root run",
+    "mobileLatencyGoal": "UNVERIFIED pending root run",
+    "physicalMobileIMEAndAssistiveTechnology": "UNVERIFIED"
+  }
+}

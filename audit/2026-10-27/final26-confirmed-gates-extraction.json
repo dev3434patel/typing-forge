@@ -1,0 +1,197 @@
+{
+  "schemaVersion": 1,
+  "capturedAtUtc": "2026-10-27T17:18:49.5411791Z",
+  "status": "PASS-SCOPED-INDEPENDENT-READ-ONLY-EXTRACTION",
+  "sourceBinding": {
+    "receipt": "audit/2026-10-27/final26-source.json",
+    "expectedBuild": "88b8024ae4b840c10422",
+    "localBuild": "88b8024ae4b840c10422",
+    "servedBuild": "88b8024ae4b840c10422",
+    "frozenFiles": 505,
+    "namedSourceHashChecks": [
+      {
+        "path": "src/domain/arena.ts",
+        "expected": "24c5cce5e196903c7ddaad914acf3bca1a35540750abce3c3ac3875853151d42",
+        "actual": "24c5cce5e196903c7ddaad914acf3bca1a35540750abce3c3ac3875853151d42",
+        "matches": true
+      },
+      {
+        "path": "src/services/arena-service.ts",
+        "expected": "e395ff18b60392e6beecdf4b7a1f2766130fcd82d7da185b0358bbf8d45e9f4f",
+        "actual": "e395ff18b60392e6beecdf4b7a1f2766130fcd82d7da185b0358bbf8d45e9f4f",
+        "matches": true
+      },
+      {
+        "path": "src/domain/__tests__/arena.test.ts",
+        "expected": "417ca62c20f4f6809f495a79ddfdd3cefc61f3ef5318d4333a03cfb0cd1cec84",
+        "actual": "417ca62c20f4f6809f495a79ddfdd3cefc61f3ef5318d4333a03cfb0cd1cec84",
+        "matches": true
+      },
+      {
+        "path": "backend/src/RequestBody.php",
+        "expected": "0857c88cd3895facb3c5d5076e1dc0f7654942e5510be0a1b5739c20989d2fba",
+        "actual": "0857c88cd3895facb3c5d5076e1dc0f7654942e5510be0a1b5739c20989d2fba",
+        "matches": true
+      },
+      {
+        "path": "backend/public/index.php",
+        "expected": "92382a84ac652b38198711bc86973245a6a6dbc4af0aeaefb796ee0267618d76",
+        "actual": "92382a84ac652b38198711bc86973245a6a6dbc4af0aeaefb796ee0267618d76",
+        "matches": true
+      }
+    ]
+  },
+  "confirmedGates": {
+    "receipt": "audit/2026-10-27/final26-confirmed-source-gates.json",
+    "passed": 12,
+    "total": 12,
+    "automaticRetries": 0,
+    "gates": [
+      {
+        "id": "typecheck",
+        "exitCode": 0,
+        "status": "PASS-SCOPED",
+        "file": "audit/2026-10-27/final26-confirmed-typecheck.log"
+      },
+      {
+        "id": "lint",
+        "exitCode": 0,
+        "status": "PASS-SCOPED",
+        "file": "audit/2026-10-27/final26-confirmed-lint.log"
+      },
+      {
+        "id": "coverage",
+        "exitCode": 0,
+        "status": "PASS-SCOPED",
+        "file": "audit/2026-10-27/final26-confirmed-coverage.log"
+      },
+      {
+        "id": "php-replay",
+        "exitCode": 0,
+        "status": "PASS-SCOPED",
+        "file": "audit/2026-10-27/final26-confirmed-php-replay.log"
+      },
+      {
+        "id": "php-course",
+        "exitCode": 0,
+        "status": "PASS-SCOPED",
+        "file": "audit/2026-10-27/final26-confirmed-php-course.log"
+      },
+      {
+        "id": "php-progression",
+        "exitCode": 0,
+        "status": "PASS-SCOPED",
+        "file": "audit/2026-10-27/final26-confirmed-php-progression.log"
+      },
+      {
+        "id": "php-classroom",
+        "exitCode": 0,
+        "status": "PASS-SCOPED",
+        "file": "audit/2026-10-27/final26-confirmed-php-classroom.log"
+      },
+      {
+        "id": "php-social",
+        "exitCode": 0,
+        "status": "PASS-SCOPED",
+        "file": "audit/2026-10-27/final26-confirmed-php-social.log"
+      },
+      {
+        "id": "php-arena",
+        "exitCode": 0,
+        "status": "PASS-SCOPED",
+        "file": "audit/2026-10-27/final26-confirmed-php-arena.log"
+      },
+      {
+        "id": "php-race-clock",
+        "exitCode": 0,
+        "status": "PASS-SCOPED",
+        "file": "audit/2026-10-27/final26-confirmed-php-race-clock.log"
+      },
+      {
+        "id": "content",
+        "exitCode": 0,
+        "status": "PASS-SCOPED",
+        "file": "audit/2026-10-27/final26-confirmed-content.log"
+      },
+      {
+        "id": "dependencies",
+        "exitCode": 0,
+        "status": "PASS-SCOPED",
+        "file": "audit/2026-10-27/final26-confirmed-dependencies.log"
+      }
+    ]
+  },
+  "coverage": {
+    "evidence": "audit/2026-10-27/final26-confirmed-coverage.log",
+    "passedTests": 2856,
+    "totalTests": 2856,
+    "passedFiles": 114,
+    "totalFiles": 114,
+    "statements": 90.51,
+    "branches": 86.69,
+    "functions": 92.12,
+    "lines": 96.14
+  },
+  "lint": {
+    "evidence": "audit/2026-10-27/final26-confirmed-lint.log",
+    "problems": 9,
+    "errors": 0,
+    "warnings": 9,
+    "details": [
+      "  29:17  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components",
+      "  47:18  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components",
+      "  129:10  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components",
+      "  111:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components",
+      "  636:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components",
+      "  27:19  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components",
+      "  37:18  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components",
+      "  46:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components",
+      "  23:17  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components"
+    ]
+  },
+  "productionDependencyAudit": {
+    "evidence": "audit/2026-10-27/final26-confirmed-dependencies.log",
+    "command": "npm audit --omit=dev --json",
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    }
+  },
+  "phpReplay": {
+    "evidence": "audit/2026-10-27/final26-confirmed-php-replay-receipt.json",
+    "uniqueCases": 560,
+    "executedRows": 578,
+    "originalFullRows": 542,
+    "validUniqueCases": 522,
+    "rejectedUniqueCases": 38,
+    "mismatches": 0,
+    "pairedRows": 36,
+    "repeatedFullRows": 18,
+    "additionalCompactRows": 18,
+    "pairChecks": 18,
+    "pairMismatches": 0
+  },
+  "arena": {
+    "evidence": "audit/2026-10-27/final26-confirmed-php-arena-receipt.json",
+    "passed": 693,
+    "failed": 0,
+    "originalAssertions": 130,
+    "parserAssertions": 563,
+    "originalFailed": 0,
+    "parserFailed": 0,
+    "scope": "Pure PHP/TS arena contracts. No DB, HTTP, accounts or private configuration."
+  },
+  "retainedFailure": "audit/2026-10-27/final26-php-original-failure-diagnostic.json",
+  "limits": "These are confirmed source correctness gates and production dependency audit only. Original OOM remains retained. This extraction does not execute a test, browser or build, and makes no mobile/HTTP capacity/Lighthouse acceptance claim.",
+  "reviewerActions": {
+    "sourceEdits": 0,
+    "testEdits": 0,
+    "testBuildBrowserJobs": 0,
+    "databaseConnections": 0,
+    "privateConfigurationRead": false
+  }
+}

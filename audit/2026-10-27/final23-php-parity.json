@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-27T15:56:29.564Z",
+  "scope": "Pure canonical portable/native PHP differential replay; class-only loaders, no private configuration/HTTP/database mutation",
+  "cases": 542,
+  "validReferenceCases": 508,
+  "rejectionCases": 34,
+  "mismatches": 0,
+  "phpBinary": "C:/xampp/php/php.exe",
+  "unicode": "ASCII controls/CRLF/Latin/NFC/Arabic/Devanagari/Gujarati/Bengali/emoji",
+  "seed": "0x571930ab",
+  "serializationCompatibility": {
+    "submittedCandidates": 542,
+    "canonicalCandidatesAndHashes": 508,
+    "mismatches": 0,
+    "nestedEdges": {
+      "status": "PASS-SCOPED",
+      "scope": "Retained old serializer versus production exact bytes and encoding error codes, plus original ICU/GB9c versus optimized segmentation. Pure classes only.",
+      "seed": "0x571930ab",
+      "byteCases": 533,
+      "encodingErrorCases": 6,
+      "mismatches": [],
+      "legacyBytesDigest": "ec47755983ae84c6f3b850b7195de013c4120a530d5acf621ff2696db5a14b5b",
+      "segmentationChecks": [
+        {
+          "name": "empty",
+          "pass": true
+        },
+        {
+          "name": "ascii-controls-without-cr",
+          "pass": true
+        },
+        {
+          "name": "crlf",
+          "pass": true
+        },
+        {
+          "name": "emoji-boundary",
+          "pass": true
+        },
+        {
+          "name": "combining",
+          "pass": true
+        },
+        {
+          "name": "indic",
+          "pass": true
+        },
+        {
+          "name": "latin-arabic",
+          "pass": true
+        },
+        {
+          "name": "ASCII path shares exact32-entry FIFO eviction",
+          "pass": true
+        },
+        {
+          "name": "Unicode and ASCII use the same cache and hits do not reorder it",
+          "pass": true
+        }
+      ],
+      "privateConfigurationRead": false,
+      "databaseConnected": false
+    }
+  },
+  "sourceHashes": {
+    "src/lib/typing-core/types.ts": "8c77af952d7980d29de2dc9b4fb107bfd7e9b0f77a1bbab44916313e3b007471",
+    "src/lib/typing-core/transcript.ts": "11532bcf96ddcf0f1eb77c9b73ef6c37af6ae88afd6643b7622eef21fcc8140b",
+    "src/lib/typing-core/metrics.ts": "de11128e062997daa61a621cd992e475ddd07934b26192508164b27b7a71e976",
+    "src/lib/typing-core/session.ts": "8238f5b70cac38b82c7337c7a1f2275ba5ed5a4794fc06ed78c5063653ac3a34",
+    "src/lib/learning-evidence.ts": "498d2d8abe625cdc4ba665d47a1220588e6a7b74bebc2c54df255e0f34524076",
+    "supabase/functions/_shared/validation.ts": "f2864c28d360eef30a52d37882f820dc186b15330c68df7c6bf39159290ab0b8",
+    "backend/src/SessionValidator.php": "a9af09c9d12d785df91c0dd07b8682de685a9ef2a4f9fbbda0a36e903b8ff895",
+    "backend/tests/replay-driver.php": "374d8f3143bb6d3d921488f1a1abc045b3b3658febf70f748f457ee572adf9a2",
+    "backend/tests/LegacyStablePayload.php": "357c16691c5a91c529b9442dbbdf3e2c2cfbfb4b2968adfbda62efd7ba1833ea",
+    "backend/tests/serialization-contract.php": "60007ee52fd5f02126e039fa81f3194794986b843572775d3526e408830e8a07"
+  }
+}

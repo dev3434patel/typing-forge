@@ -1,0 +1,904 @@
+{
+  "status": "PASS-SCOPED-EXACT-26-TO-27-BACKEND-WIRE-IDENTITY",
+  "verifiedAt": "2026-10-27T17:47:59.897Z",
+  "source26": {
+    "file": "audit/2026-10-27/final26-source.json",
+    "sha256": "c2ca4f211a64ac1b43f3a8d296018395426935416d434ad84d8256c7b7af59b7",
+    "build": "88b8024ae4b840c10422"
+  },
+  "source27": {
+    "file": "audit/2026-10-27/final27-source.json",
+    "sha256": "a7289dd0a17a9d4fe3672bc7495583e6db1ed774c7010627e8de7bea1b4a3359",
+    "build": "11de46af5d4a80e0e830"
+  },
+  "normalization": "Existing artifact-verification normalizedSourceHash: CRLF→LF only for declared text extensions; binary assets compared raw.",
+  "inventory": {
+    "source26": 505,
+    "source27": 505,
+    "added": [],
+    "removed": [],
+    "changedExistingFiles": [
+      "src/components/typing/LiveKeyboard.tsx",
+      "src/lib/__tests__/pressed-key-attribute.test.ts",
+      "src/lib/__tests__/race-state-machine.test.ts",
+      "src/lib/pressed-key-attribute.ts",
+      "src/lib/race-state-machine.ts",
+      "src/pages/Race.tsx"
+    ],
+    "unchanged": 499,
+    "currentFilesMatch27Manifest": true
+  },
+  "protectedGroups": {
+    "backend": [
+      {
+        "file": "backend/bin/cleanup.php",
+        "source26Sha256": "176b43c8f229c587b56792e7d2f285f4c3df8c906434da4f5c4659d1f7226324",
+        "source27Sha256": "176b43c8f229c587b56792e7d2f285f4c3df8c906434da4f5c4659d1f7226324",
+        "unchanged": true
+      },
+      {
+        "file": "backend/bin/install-schema.php",
+        "source26Sha256": "77b17d597952fefbb75cad7eae67f1ae552367faf38e738e875cf00b0f0eef63",
+        "source27Sha256": "77b17d597952fefbb75cad7eae67f1ae552367faf38e738e875cf00b0f0eef63",
+        "unchanged": true
+      },
+      {
+        "file": "backend/bin/migrate-schema.php",
+        "source26Sha256": "29b57b5be80cf2d14aad1173283d1431fc16ef98208d7f5f7c2d307e434d07ae",
+        "source27Sha256": "29b57b5be80cf2d14aad1173283d1431fc16ef98208d7f5f7c2d307e434d07ae",
+        "unchanged": true
+      },
+      {
+        "file": "backend/bootstrap.php",
+        "source26Sha256": "1437ca997a919b7a64669dc09690f62cff9cd627626549e06a1c6d9e3482d647",
+        "source27Sha256": "1437ca997a919b7a64669dc09690f62cff9cd627626549e06a1c6d9e3482d647",
+        "unchanged": true
+      },
+      {
+        "file": "backend/migrations/002-progression.sql",
+        "source26Sha256": "d45e98f4814571e4e6cb5ed3b793fb43097c63d194968415c0bb44138ff4a98f",
+        "source27Sha256": "d45e98f4814571e4e6cb5ed3b793fb43097c63d194968415c0bb44138ff4a98f",
+        "unchanged": true
+      },
+      {
+        "file": "backend/migrations/003_classroom.sql",
+        "source26Sha256": "16d6330ef81c69dbc71fc6e5b8790b5ea03ab9ab9eaf6ace368b3e1dfa164aca",
+        "source27Sha256": "16d6330ef81c69dbc71fc6e5b8790b5ea03ab9ab9eaf6ace368b3e1dfa164aca",
+        "unchanged": true
+      },
+      {
+        "file": "backend/migrations/004_social.sql",
+        "source26Sha256": "42fd3c40a5928b89b972721b95774eef1ce51038d849e8267d9afc6a82434e05",
+        "source27Sha256": "42fd3c40a5928b89b972721b95774eef1ce51038d849e8267d9afc6a82434e05",
+        "unchanged": true
+      },
+      {
+        "file": "backend/migrations/005_arena.sql",
+        "source26Sha256": "b61df52810f8e3958a81fdb5947a9b747e29041094b755c8a12161b5182f7301",
+        "source27Sha256": "b61df52810f8e3958a81fdb5947a9b747e29041094b755c8a12161b5182f7301",
+        "unchanged": true
+      },
+      {
+        "file": "backend/public/.htaccess",
+        "source26Sha256": "f00f2c3074167570ec0ebd65c3cd6bf29667be5bb2e6adf554ef0665124acf01",
+        "source27Sha256": "f00f2c3074167570ec0ebd65c3cd6bf29667be5bb2e6adf554ef0665124acf01",
+        "unchanged": true
+      },
+      {
+        "file": "backend/public/index.php",
+        "source26Sha256": "92382a84ac652b38198711bc86973245a6a6dbc4af0aeaefb796ee0267618d76",
+        "source27Sha256": "92382a84ac652b38198711bc86973245a6a6dbc4af0aeaefb796ee0267618d76",
+        "unchanged": true
+      },
+      {
+        "file": "backend/resources/progression-fingers-v1.json",
+        "source26Sha256": "925af6e6bfd28d7fa544d8f3547c61994f332b7b86fc598cea742cae999bc2b9",
+        "source27Sha256": "925af6e6bfd28d7fa544d8f3547c61994f332b7b86fc598cea742cae999bc2b9",
+        "unchanged": true
+      },
+      {
+        "file": "backend/resources/typing-course-v1.json",
+        "source26Sha256": "fc4dd602a730f0916b5fb214d7ffcf8efb5b6907e06894ba00e489f61ef6cb39",
+        "source27Sha256": "fc4dd602a730f0916b5fb214d7ffcf8efb5b6907e06894ba00e489f61ef6cb39",
+        "unchanged": true
+      },
+      {
+        "file": "backend/router.php",
+        "source26Sha256": "64da7e7d094b6278b4cda3e9590c3e4fb1311ab4050bd1bb0f23284ff535b199",
+        "source27Sha256": "64da7e7d094b6278b4cda3e9590c3e4fb1311ab4050bd1bb0f23284ff535b199",
+        "unchanged": true
+      },
+      {
+        "file": "backend/schema.sql",
+        "source26Sha256": "0223553c2e8bec1504483dc59c41bfe26518891ae475262a81c59b86208b9f3a",
+        "source27Sha256": "0223553c2e8bec1504483dc59c41bfe26518891ae475262a81c59b86208b9f3a",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/ApiException.php",
+        "source26Sha256": "4f231b2c8e2d00716dae49763f7664a4d56430f885b1d58c40892e6a5417ccb9",
+        "source27Sha256": "4f231b2c8e2d00716dae49763f7664a4d56430f885b1d58c40892e6a5417ccb9",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/ArenaEvidence.php",
+        "source26Sha256": "a9416b5877dbc35db7ad2b41c999bb2a72695e216b45023c29137e58ac16afdb",
+        "source27Sha256": "a9416b5877dbc35db7ad2b41c999bb2a72695e216b45023c29137e58ac16afdb",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/ArenaRules.php",
+        "source26Sha256": "abb6f4c82a699e353354efd3600f7c9c8330a8df72a9b290702c5e4cfcf20353",
+        "source27Sha256": "abb6f4c82a699e353354efd3600f7c9c8330a8df72a9b290702c5e4cfcf20353",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/ArenaService.php",
+        "source26Sha256": "deaa7c5a653cea16cbf408ec44e9149423faa0a58f4ae9c3e8dce8e286040a38",
+        "source27Sha256": "deaa7c5a653cea16cbf408ec44e9149423faa0a58f4ae9c3e8dce8e286040a38",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/AuthService.php",
+        "source26Sha256": "c2790aa548136a0fee00dc0c32bb4ec2be6b3d0a033f2cfd5992f79442991efd",
+        "source27Sha256": "c2790aa548136a0fee00dc0c32bb4ec2be6b3d0a033f2cfd5992f79442991efd",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/ChallengeTimingPolicy.php",
+        "source26Sha256": "75faf3a12fabb0949400bcade2ba1d36ddb2e5a22f061dd35a4d82e216f1786a",
+        "source27Sha256": "75faf3a12fabb0949400bcade2ba1d36ddb2e5a22f061dd35a4d82e216f1786a",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/ClassroomService.php",
+        "source26Sha256": "35f957a5ed3f6eb7f11a95aaa2a36fd32c1530efa55760cf827e048f5ff11bab",
+        "source27Sha256": "35f957a5ed3f6eb7f11a95aaa2a36fd32c1530efa55760cf827e048f5ff11bab",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/CompetitiveInputPolicy.php",
+        "source26Sha256": "4f33803bab70e09ebc5b304ea41c5e2433f7ed080ef5a1a43f97deb640cd5a23",
+        "source27Sha256": "4f33803bab70e09ebc5b304ea41c5e2433f7ed080ef5a1a43f97deb640cd5a23",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/CourseAssessment.php",
+        "source26Sha256": "224f3b3ca7192089ff04027a9e8411573565a1e3bc2e3b1180b509e72bfe1795",
+        "source27Sha256": "224f3b3ca7192089ff04027a9e8411573565a1e3bc2e3b1180b509e72bfe1795",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/DataService.php",
+        "source26Sha256": "46269db8b3dcb2a3e649c2744697b459ac33bdea86ba47607cd32fe278809fa9",
+        "source27Sha256": "46269db8b3dcb2a3e649c2744697b459ac33bdea86ba47607cd32fe278809fa9",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/Database.php",
+        "source26Sha256": "38e67995661448fb80af94ae81acc2fc844b5ecea15c6313d6fc87135681acb0",
+        "source27Sha256": "38e67995661448fb80af94ae81acc2fc844b5ecea15c6313d6fc87135681acb0",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/ProgressionCalendar.php",
+        "source26Sha256": "ce871c6f94b8cd64ae518a01704adc18e4d794a6dce1cf54afcfab30234182c3",
+        "source27Sha256": "ce871c6f94b8cd64ae518a01704adc18e4d794a6dce1cf54afcfab30234182c3",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/ProgressionEngine.php",
+        "source26Sha256": "1d98db92481d537fdc4155d03e286c2af46d70a475ab2794bd0f3c8af4cb0a27",
+        "source27Sha256": "1d98db92481d537fdc4155d03e286c2af46d70a475ab2794bd0f3c8af4cb0a27",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/ProgressionFacts.php",
+        "source26Sha256": "5ae32fd3943fdbd6bb31e7e8996c1118bc2f8fe3c2ca9c2d12dddfa2663a62b3",
+        "source27Sha256": "5ae32fd3943fdbd6bb31e7e8996c1118bc2f8fe3c2ca9c2d12dddfa2663a62b3",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/ProgressionQuests.php",
+        "source26Sha256": "897cc73353576a8ea8f0f194fe2df44c6de420638fb11c8ff77d79add5af5602",
+        "source27Sha256": "897cc73353576a8ea8f0f194fe2df44c6de420638fb11c8ff77d79add5af5602",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/ProgressionService.php",
+        "source26Sha256": "758f20333d46c929fbf57689fc7068d659eeee6a2eebec5895ab2e87d370ff26",
+        "source27Sha256": "758f20333d46c929fbf57689fc7068d659eeee6a2eebec5895ab2e87d370ff26",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/RaceService.php",
+        "source26Sha256": "984a5b4ceea0887739c70d743f61c321bd0a8dd86e3b63e46c7ecbd60eb10b2d",
+        "source27Sha256": "984a5b4ceea0887739c70d743f61c321bd0a8dd86e3b63e46c7ecbd60eb10b2d",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/RaceStream.php",
+        "source26Sha256": "3249970663b7ebcde1f4e23c82bff1a7db0422b0b33843b6a13dfd9020d4c05d",
+        "source27Sha256": "3249970663b7ebcde1f4e23c82bff1a7db0422b0b33843b6a13dfd9020d4c05d",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/RequestBody.php",
+        "source26Sha256": "0857c88cd3895facb3c5d5076e1dc0f7654942e5510be0a1b5739c20989d2fba",
+        "source27Sha256": "0857c88cd3895facb3c5d5076e1dc0f7654942e5510be0a1b5739c20989d2fba",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/Security.php",
+        "source26Sha256": "671d4e7944cfbe7d4a6d94e44e17374caa12c8c8f8c33bd850ceedba371e0401",
+        "source27Sha256": "671d4e7944cfbe7d4a6d94e44e17374caa12c8c8f8c33bd850ceedba371e0401",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/SessionValidator.php",
+        "source26Sha256": "5d5907e4a49a1a92966a967591701976a25051a3a4f0d4d21f8e70f112be776d",
+        "source27Sha256": "5d5907e4a49a1a92966a967591701976a25051a3a4f0d4d21f8e70f112be776d",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/SocialDuelRules.php",
+        "source26Sha256": "7b8889819e9eb10f402b0adc44f2bfbe0d2e356218eb9ec0b2de95ce5d46179f",
+        "source27Sha256": "7b8889819e9eb10f402b0adc44f2bfbe0d2e356218eb9ec0b2de95ce5d46179f",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/SocialService.php",
+        "source26Sha256": "8250bafc44ce0231f9b414395ea8581199d62777366da437ba7883630d894940",
+        "source27Sha256": "8250bafc44ce0231f9b414395ea8581199d62777366da437ba7883630d894940",
+        "unchanged": true
+      },
+      {
+        "file": "backend/src/UnicodeGraphemes.php",
+        "source26Sha256": "e83371bfdf87b0ac57349a51543454d89664009cfcf080c4bc5981f2ace5e878",
+        "source27Sha256": "e83371bfdf87b0ac57349a51543454d89664009cfcf080c4bc5981f2ace5e878",
+        "unchanged": true
+      }
+    ],
+    "arenaWire": [
+      {
+        "file": "src/domain/arena.ts",
+        "source26Sha256": "24c5cce5e196903c7ddaad914acf3bca1a35540750abce3c3ac3875853151d42",
+        "source27Sha256": "24c5cce5e196903c7ddaad914acf3bca1a35540750abce3c3ac3875853151d42",
+        "unchanged": true
+      },
+      {
+        "file": "src/services/arena-service.ts",
+        "source26Sha256": "e395ff18b60392e6beecdf4b7a1f2766130fcd82d7da185b0358bbf8d45e9f4f",
+        "source27Sha256": "e395ff18b60392e6beecdf4b7a1f2766130fcd82d7da185b0358bbf8d45e9f4f",
+        "unchanged": true
+      }
+    ],
+    "metricsTimingAndCanonicalCore": [
+      {
+        "file": "src/components/race/RaceTypingArea.tsx",
+        "source26Sha256": "d6969de3a9d7fd3e4e3e57d987376df6a9da9fdd43bbf12aa8d23894bd8398cb",
+        "source27Sha256": "d6969de3a9d7fd3e4e3e57d987376df6a9da9fdd43bbf12aa8d23894bd8398cb",
+        "unchanged": true
+      },
+      {
+        "file": "src/components/typing/TypingArea.tsx",
+        "source26Sha256": "d767dd13fe1e2d8844a8a0a1db11254403387edb18f15e0cbe72d6901028b073",
+        "source27Sha256": "d767dd13fe1e2d8844a8a0a1db11254403387edb18f15e0cbe72d6901028b073",
+        "unchanged": true
+      },
+      {
+        "file": "src/hooks/useCountdownClock.ts",
+        "source26Sha256": "686337688c78e96b50d30d466e1bf79e13c3f3663d25541a6b9cafa7b4319bb6",
+        "source27Sha256": "686337688c78e96b50d30d466e1bf79e13c3f3663d25541a6b9cafa7b4319bb6",
+        "unchanged": true
+      },
+      {
+        "file": "src/hooks/useWordCorrection.ts",
+        "source26Sha256": "8d9f463a53845eb8b0c7051f5e1ca2b9fa6846d733e2b05ada531f37f1a24dee",
+        "source27Sha256": "8d9f463a53845eb8b0c7051f5e1ca2b9fa6846d733e2b05ada531f37f1a24dee",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/countdown-clock.ts",
+        "source26Sha256": "909e515bdf1cd652bee29437d906d85ca547652d433498edf373775f05df778b",
+        "source27Sha256": "909e515bdf1cd652bee29437d906d85ca547652d433498edf373775f05df778b",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/metrics-engine.ts",
+        "source26Sha256": "4c5ab7c03791f5f4145395b4508c7f6d8985467793d465b85ac2bf919355e948",
+        "source27Sha256": "4c5ab7c03791f5f4145395b4508c7f6d8985467793d465b85ac2bf919355e948",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/pressed-key-store.ts",
+        "source26Sha256": "0fc20f023b5623a35099439e9bcf4497a53d21f46504446214311691120c79c5",
+        "source27Sha256": "0fc20f023b5623a35099439e9bcf4497a53d21f46504446214311691120c79c5",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/race-clock.ts",
+        "source26Sha256": "dd9207816b45c4a0c1595215cc67569ee9a33b5fe4ae07d8e1d9982d33d7d678",
+        "source27Sha256": "dd9207816b45c4a0c1595215cc67569ee9a33b5fe4ae07d8e1d9982d33d7d678",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/__tests__/conformance.test.ts",
+        "source26Sha256": "6f7eef5ab9ce6edff62df893bdb57e48d3d2010d3e104e72bd1f33fa841f222f",
+        "source27Sha256": "6f7eef5ab9ce6edff62df893bdb57e48d3d2010d3e104e72bd1f33fa841f222f",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/__tests__/correct-words-locked.test.ts",
+        "source26Sha256": "c97e966c40d151208e03b8c8ed456f2b20cf119b7056ef456436adc285fc0d5c",
+        "source27Sha256": "c97e966c40d151208e03b8c8ed456f2b20cf119b7056ef456436adc285fc0d5c",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/__tests__/fixtures/replay-v3.json",
+        "source26Sha256": "d71a5fe099c7042d8c35863558e5c3b40ccc08d9b042db056afb2c2c7bb56a23",
+        "source27Sha256": "d71a5fe099c7042d8c35863558e5c3b40ccc08d9b042db056afb2c2c7bb56a23",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/__tests__/live-projection.test.ts",
+        "source26Sha256": "df01eb6bf45cb99ea3f1cf1fec5b077478b73f57b9e6dccb826910463657bb22",
+        "source27Sha256": "df01eb6bf45cb99ea3f1cf1fec5b077478b73f57b9e6dccb826910463657bb22",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/__tests__/pause-order.test.ts",
+        "source26Sha256": "e3a0e829372f60287aeb0607886f01083be95ffe15a51849db3d99f8dcb390ae",
+        "source27Sha256": "e3a0e829372f60287aeb0607886f01083be95ffe15a51849db3d99f8dcb390ae",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/__tests__/replay-goldens.test.ts",
+        "source26Sha256": "a97d22c779d8fa062d2b6931859495316f8de52ec05f1f89541f6f9823146d13",
+        "source27Sha256": "a97d22c779d8fa062d2b6931859495316f8de52ec05f1f89541f6f9823146d13",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/__tests__/session.test.ts",
+        "source26Sha256": "bfe63170dacdf7a96e0cbd7c2986959a77a9734b537acac9eebb82cff03678b9",
+        "source27Sha256": "bfe63170dacdf7a96e0cbd7c2986959a77a9734b537acac9eebb82cff03678b9",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/__tests__/status-counts.test.ts",
+        "source26Sha256": "8b8537f3a3e9789ddb9cf1c7590ffc9ef81e0313dc0e639e21deb9199641a101",
+        "source27Sha256": "8b8537f3a3e9789ddb9cf1c7590ffc9ef81e0313dc0e639e21deb9199641a101",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/__tests__/transcript-target-cache.test.ts",
+        "source26Sha256": "41c4a596a3425258b08a3ae7d7d5c43ba8fac7b824a290a9b93c130e3c260292",
+        "source27Sha256": "41c4a596a3425258b08a3ae7d7d5c43ba8fac7b824a290a9b93c130e3c260292",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/__tests__/word-correction.test.ts",
+        "source26Sha256": "6714fd502e5337395748fd077dd8fb5ec852fdaefe09e19b1b41e488cf29e35d",
+        "source27Sha256": "6714fd502e5337395748fd077dd8fb5ec852fdaefe09e19b1b41e488cf29e35d",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/index.ts",
+        "source26Sha256": "daaec994ec92b5c94f61be801a15675c0a918b555329321079a1af25a25ccc87",
+        "source27Sha256": "daaec994ec92b5c94f61be801a15675c0a918b555329321079a1af25a25ccc87",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/metrics.ts",
+        "source26Sha256": "de11128e062997daa61a621cd992e475ddd07934b26192508164b27b7a71e976",
+        "source27Sha256": "de11128e062997daa61a621cd992e475ddd07934b26192508164b27b7a71e976",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/session.ts",
+        "source26Sha256": "5436852d79b166acd708dc07eb67893da0059e3703cd1bc02b8a8fa451d1672c",
+        "source27Sha256": "5436852d79b166acd708dc07eb67893da0059e3703cd1bc02b8a8fa451d1672c",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/transcript.ts",
+        "source26Sha256": "d42c6780103f8de4ca4979d5da5a7311ed7b298edbe3925cfeba50704cada1b3",
+        "source27Sha256": "d42c6780103f8de4ca4979d5da5a7311ed7b298edbe3925cfeba50704cada1b3",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-core/types.ts",
+        "source26Sha256": "8c77af952d7980d29de2dc9b4fb107bfd7e9b0f77a1bbab44916313e3b007471",
+        "source27Sha256": "8c77af952d7980d29de2dc9b4fb107bfd7e9b0f77a1bbab44916313e3b007471",
+        "unchanged": true
+      },
+      {
+        "file": "src/lib/typing-feedback.ts",
+        "source26Sha256": "7ec9448a0ba7317333d390ba675f83f3af5ec64ffe80162a75484b5cbc33b5db",
+        "source27Sha256": "7ec9448a0ba7317333d390ba675f83f3af5ec64ffe80162a75484b5cbc33b5db",
+        "unchanged": true
+      }
+    ],
+    "publicResourcesAndNonprivateBuildConfiguration": [
+      {
+        "file": "backend/resources/progression-fingers-v1.json",
+        "source26Sha256": "925af6e6bfd28d7fa544d8f3547c61994f332b7b86fc598cea742cae999bc2b9",
+        "source27Sha256": "925af6e6bfd28d7fa544d8f3547c61994f332b7b86fc598cea742cae999bc2b9",
+        "unchanged": true
+      },
+      {
+        "file": "backend/resources/typing-course-v1.json",
+        "source26Sha256": "fc4dd602a730f0916b5fb214d7ffcf8efb5b6907e06894ba00e489f61ef6cb39",
+        "source27Sha256": "fc4dd602a730f0916b5fb214d7ffcf8efb5b6907e06894ba00e489f61ef6cb39",
+        "unchanged": true
+      },
+      {
+        "file": "backend/schema.sql",
+        "source26Sha256": "0223553c2e8bec1504483dc59c41bfe26518891ae475262a81c59b86208b9f3a",
+        "source27Sha256": "0223553c2e8bec1504483dc59c41bfe26518891ae475262a81c59b86208b9f3a",
+        "unchanged": true
+      },
+      {
+        "file": "build/deployment-config.d.mts",
+        "source26Sha256": "6cfa0ac1e66e8bc8b05a070740fc1d74b8630518d5b9ba09b960d77801aafed8",
+        "source27Sha256": "6cfa0ac1e66e8bc8b05a070740fc1d74b8630518d5b9ba09b960d77801aafed8",
+        "unchanged": true
+      },
+      {
+        "file": "build/deployment-config.mjs",
+        "source26Sha256": "375f0717dff4f34e15cfee0e9c03407b05f488554748f3dda18877642cb5561f",
+        "source27Sha256": "375f0717dff4f34e15cfee0e9c03407b05f488554748f3dda18877642cb5561f",
+        "unchanged": true
+      },
+      {
+        "file": "build/keyboard-worker-plugin.ts",
+        "source26Sha256": "c791137643aeb5ba003df84c54ad86cd26713b44c42e73597e4e6a737ac58d95",
+        "source27Sha256": "c791137643aeb5ba003df84c54ad86cd26713b44c42e73597e4e6a737ac58d95",
+        "unchanged": true
+      },
+      {
+        "file": "build/opening-critical-plugin.ts",
+        "source26Sha256": "5d1ce9cb281d6dfc5e841fa309aa767f823ece55deb11f2567fe6b938029b4a5",
+        "source27Sha256": "5d1ce9cb281d6dfc5e841fa309aa767f823ece55deb11f2567fe6b938029b4a5",
+        "unchanged": true
+      },
+      {
+        "file": "public/_headers",
+        "source26Sha256": "57db1a499f4524b6ced68b0a8609cdeebfa38547f0468488278541d52495d0b7",
+        "source27Sha256": "57db1a499f4524b6ced68b0a8609cdeebfa38547f0468488278541d52495d0b7",
+        "unchanged": true
+      },
+      {
+        "file": "public/favicon.ico",
+        "source26Sha256": "19857910ebc438f4fe09acaafa17e9cb1fc4e8ac15fec9f24a48e2aca9fcb716",
+        "source27Sha256": "19857910ebc438f4fe09acaafa17e9cb1fc4e8ac15fec9f24a48e2aca9fcb716",
+        "unchanged": true
+      },
+      {
+        "file": "public/fonts/fonts.css",
+        "source26Sha256": "831b3383fba1188c79bb8b6b14bda452264e148a759c4d19cc8387e06eb0c666",
+        "source27Sha256": "831b3383fba1188c79bb8b6b14bda452264e148a759c4d19cc8387e06eb0c666",
+        "unchanged": true
+      },
+      {
+        "file": "public/fonts/inter-LICENSE.txt",
+        "source26Sha256": "3b0a5fca3d17942cde889069889dedbbbd075e9b599968c82a95f4d944e9b345",
+        "source27Sha256": "3b0a5fca3d17942cde889069889dedbbbd075e9b599968c82a95f4d944e9b345",
+        "unchanged": true
+      },
+      {
+        "file": "public/fonts/inter-cyrillic-ext-wght-normal.woff2",
+        "source26Sha256": "ca157063339ac4ad418f214f3abfed119b0798ab4d377386ce5c9e5a7a435ebd",
+        "source27Sha256": "ca157063339ac4ad418f214f3abfed119b0798ab4d377386ce5c9e5a7a435ebd",
+        "unchanged": true
+      },
+      {
+        "file": "public/fonts/inter-cyrillic-wght-normal.woff2",
+        "source26Sha256": "71d5ee93cc1e9f1d520a3a8b66456de18c7879d8df09d57fcd2eaff75fef0075",
+        "source27Sha256": "71d5ee93cc1e9f1d520a3a8b66456de18c7879d8df09d57fcd2eaff75fef0075",
+        "unchanged": true
+      },
+      {
+        "file": "public/fonts/inter-greek-ext-wght-normal.woff2",
+        "source26Sha256": "6e9e020a25f9b56d418f2c085b1d3c09725a4da23fe693a5b463064606732190",
+        "source27Sha256": "6e9e020a25f9b56d418f2c085b1d3c09725a4da23fe693a5b463064606732190",
+        "unchanged": true
+      },
+      {
+        "file": "public/fonts/inter-greek-wght-normal.woff2",
+        "source26Sha256": "1be3448e292fbf05ffe176fe1e43f135013d50b1e7d324ad1a558f623d3bb6f6",
+        "source27Sha256": "1be3448e292fbf05ffe176fe1e43f135013d50b1e7d324ad1a558f623d3bb6f6",
+        "unchanged": true
+      },
+      {
+        "file": "public/fonts/inter-latin-ext-wght-normal.woff2",
+        "source26Sha256": "34b9c504cab7a73e37b746343a449132e56cf7b5481af2cb81dc74dcff25c956",
+        "source27Sha256": "34b9c504cab7a73e37b746343a449132e56cf7b5481af2cb81dc74dcff25c956",
+        "unchanged": true
+      },
+      {
+        "file": "public/fonts/inter-latin-wght-normal.woff2",
+        "source26Sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+        "source27Sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+        "unchanged": true
+      },
+      {
+        "file": "public/fonts/inter-vietnamese-wght-normal.woff2",
+        "source26Sha256": "5c66f9e07e90c6d4ac4922cc68d60de26c17b1858e677fb5e603fce3952b3ff2",
+        "source27Sha256": "5c66f9e07e90c6d4ac4922cc68d60de26c17b1858e677fb5e603fce3952b3ff2",
+        "unchanged": true
+      },
+      {
+        "file": "public/fonts/jetbrains-mono-LICENSE.txt",
+        "source26Sha256": "403581b69dac5cff4079205e01c6b467e56af449ecbd7247693ddb1baafa005b",
+        "source27Sha256": "403581b69dac5cff4079205e01c6b467e56af449ecbd7247693ddb1baafa005b",
+        "unchanged": true
+      },
+      {
+        "file": "public/fonts/jetbrains-mono-cyrillic-ext-wght-normal.woff2",
+        "source26Sha256": "593ccd6fe36e299e151aeae4521be9bfe83ac487d96d7cdb44f50be4a04041c7",
+        "source27Sha256": "593ccd6fe36e299e151aeae4521be9bfe83ac487d96d7cdb44f50be4a04041c7",
+        "unchanged": true
+      },
+      {
+        "file": "public/fonts/jetbrains-mono-cyrillic-wght-normal.woff2",
+        "source26Sha256": "d274604c40757f98f07df623a8b8fb5194508a6fa4f5413a7a107f09e3b7452a",
+        "source27Sha256": "d274604c40757f98f07df623a8b8fb5194508a6fa4f5413a7a107f09e3b7452a",
+        "unchanged": true
+      },
+      {
+        "file": "public/fonts/jetbrains-mono-greek-wght-normal.woff2",
+        "source26Sha256": "ee863198077f3093ffa81c072581cc4bd608a04e60a8a9c0b846396ce4f14109",
+        "source27Sha256": "ee863198077f3093ffa81c072581cc4bd608a04e60a8a9c0b846396ce4f14109",
+        "unchanged": true
+      },
+      {
+        "file": "public/fonts/jetbrains-mono-latin-ext-wght-normal.woff2",
+        "source26Sha256": "79bfdab9ba467e26eea4122e6f2567e188dd8a09a8c730d501fc487c4ab99c6e",
+        "source27Sha256": "79bfdab9ba467e26eea4122e6f2567e188dd8a09a8c730d501fc487c4ab99c6e",
+        "unchanged": true
+      },
+      {
+        "file": "public/fonts/jetbrains-mono-latin-wght-normal.woff2",
+        "source26Sha256": "18be452724bfdc236c074ca94a249a7f41a86752c7d04ab258ce9ed5651f6a7e",
+        "source27Sha256": "18be452724bfdc236c074ca94a249a7f41a86752c7d04ab258ce9ed5651f6a7e",
+        "unchanged": true
+      },
+      {
+        "file": "public/fonts/jetbrains-mono-vietnamese-wght-normal.woff2",
+        "source26Sha256": "2288795da89dd97e648954b96e22b4501bd85dfc453264460b252f888b582ca2",
+        "source27Sha256": "2288795da89dd97e648954b96e22b4501bd85dfc453264460b252f888b582ca2",
+        "unchanged": true
+      },
+      {
+        "file": "public/fonts/sora-LICENSE.txt",
+        "source26Sha256": "1ec9623d38c445eb4dfe5fcc783e0f0ee728cc97ca157ce1f8cb2b3bf9d9b0d9",
+        "source27Sha256": "1ec9623d38c445eb4dfe5fcc783e0f0ee728cc97ca157ce1f8cb2b3bf9d9b0d9",
+        "unchanged": true
+      },
+      {
+        "file": "public/fonts/sora-latin-ext-wght-normal.woff2",
+        "source26Sha256": "c163c536f68befd99a83d4f17e8b88030e7f54229688a45c44f70c7149db7385",
+        "source27Sha256": "c163c536f68befd99a83d4f17e8b88030e7f54229688a45c44f70c7149db7385",
+        "unchanged": true
+      },
+      {
+        "file": "public/fonts/sora-latin-wght-normal.woff2",
+        "source26Sha256": "fa26406eeda9a3c6ec3d9ea8813c3045d6dc755e30c716d5c094e8ef43be5a7f",
+        "source27Sha256": "fa26406eeda9a3c6ec3d9ea8813c3045d6dc755e30c716d5c094e8ef43be5a7f",
+        "unchanged": true
+      },
+      {
+        "file": "public/icon-192.png",
+        "source26Sha256": "2bff879235e3de20d9957a590c0ef2f645e03dc54e61289b12cca0874227e5b9",
+        "source27Sha256": "2bff879235e3de20d9957a590c0ef2f645e03dc54e61289b12cca0874227e5b9",
+        "unchanged": true
+      },
+      {
+        "file": "public/icon-512.png",
+        "source26Sha256": "c8e02ffc54792807f5c01f1c8014ffe07af75fb8630c4ca2bf3ddfbd565850c8",
+        "source27Sha256": "c8e02ffc54792807f5c01f1c8014ffe07af75fb8630c4ca2bf3ddfbd565850c8",
+        "unchanged": true
+      },
+      {
+        "file": "public/og-sparowtype.png",
+        "source26Sha256": "4641c5942811c91a6154a649282cc0472fe4463ba53453c52e3a57c5b75c43ac",
+        "source27Sha256": "4641c5942811c91a6154a649282cc0472fe4463ba53453c52e3a57c5b75c43ac",
+        "unchanged": true
+      },
+      {
+        "file": "public/placeholder.svg",
+        "source26Sha256": "64badf7aabda0b9630b87020ffb6095cb858ccbcf66b355c2aa08b1063954d3b",
+        "source27Sha256": "64badf7aabda0b9630b87020ffb6095cb858ccbcf66b355c2aa08b1063954d3b",
+        "unchanged": true
+      },
+      {
+        "file": "public/robots.txt",
+        "source26Sha256": "a3d27b3ca5ce32341fa9f96f01169b521b1657c05d1860c45d1e53a6258e9e8b",
+        "source27Sha256": "a3d27b3ca5ce32341fa9f96f01169b521b1657c05d1860c45d1e53a6258e9e8b",
+        "unchanged": true
+      },
+      {
+        "file": "public/site.webmanifest",
+        "source26Sha256": "ecf791ce6d06b89f0c89b0367bbdd984e74009b53639c1a97e9f9c41a895c25c",
+        "source27Sha256": "ecf791ce6d06b89f0c89b0367bbdd984e74009b53639c1a97e9f9c41a895c25c",
+        "unchanged": true
+      },
+      {
+        "file": "public/sparowtype.svg",
+        "source26Sha256": "9044a2457401432f6034159a976264b679eda8599326ec6601a50ef7d9d742b1",
+        "source27Sha256": "9044a2457401432f6034159a976264b679eda8599326ec6601a50ef7d9d742b1",
+        "unchanged": true
+      },
+      {
+        "file": "public/sw.js",
+        "source26Sha256": "ad46e94fdd5fc273291804d234c3c483c23896ec4fe797bf20e2ded7a708fe20",
+        "source27Sha256": "ad46e94fdd5fc273291804d234c3c483c23896ec4fe797bf20e2ded7a708fe20",
+        "unchanged": true
+      },
+      {
+        "file": "vite.config.ts",
+        "source26Sha256": "c8c7e083ed182f7927eb8a6a86cd81e6dc78d896eed0e5d6c55029580f2e1409",
+        "source27Sha256": "c8c7e083ed182f7927eb8a6a86cd81e6dc78d896eed0e5d6c55029580f2e1409",
+        "unchanged": true
+      }
+    ]
+  },
+  "legacySupplement": {
+    "frozen505ManifestContainsLegacySupabase": false,
+    "comparison": "Supplementary current public tracked Supabase and backend/config.example.php files are byte-equal after CRLF→LF to Git baseline275c8c2. This is a Git-baseline proof, not an invented source26 legacy snapshot.",
+    "files": [
+      {
+        "file": "backend/config.example.php",
+        "currentNormalizedSha256": "7c153791b5250932a46ff22cd6434881358757947df1f73601bb2e9effce1097",
+        "baselineNormalizedSha256": "7c153791b5250932a46ff22cd6434881358757947df1f73601bb2e9effce1097",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/config.toml",
+        "currentNormalizedSha256": "cf334c7011623e672a7cfe15522f7054d8d45fb17659079a4b47763707fb4356",
+        "baselineNormalizedSha256": "cf334c7011623e672a7cfe15522f7054d8d45fb17659079a4b47763707fb4356",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/functions/_shared/http.ts",
+        "currentNormalizedSha256": "882837e890a3960e7c95fe91200090db32ea2c847fafa3ec8e92b801ba213e49",
+        "baselineNormalizedSha256": "882837e890a3960e7c95fe91200090db32ea2c847fafa3ec8e92b801ba213e49",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/functions/_shared/validation.ts",
+        "currentNormalizedSha256": "ed55f398ab06a765911c439641d2ad34bd592329c33b2ceb116c0bede08b9b85",
+        "baselineNormalizedSha256": "ed55f398ab06a765911c439641d2ad34bd592329c33b2ceb116c0bede08b9b85",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/functions/delete-account/index.ts",
+        "currentNormalizedSha256": "c598d394e7cfe981766e3c911e4d846607034f9720e1bd8af520135fb3c6db3d",
+        "baselineNormalizedSha256": "c598d394e7cfe981766e3c911e4d846607034f9720e1bd8af520135fb3c6db3d",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/functions/race-operation/index.ts",
+        "currentNormalizedSha256": "5afc7dc56a8285f8de83c4d8e8778e2cb92d6f58eebcb816d2bc282de9267bb8",
+        "baselineNormalizedSha256": "5afc7dc56a8285f8de83c4d8e8778e2cb92d6f58eebcb816d2bc282de9267bb8",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/functions/submit-session/index.ts",
+        "currentNormalizedSha256": "1c45bff6a7e33f28f31caa831007d250fe68742d03730eb1dee340164856d33b",
+        "baselineNormalizedSha256": "1c45bff6a7e33f28f31caa831007d250fe68742d03730eb1dee340164856d33b",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/install-scheduled-jobs.sql",
+        "currentNormalizedSha256": "12eed4bfb11b62c4fea40ac8747d16e6a16f70884a075c5e84e8130efb000391",
+        "baselineNormalizedSha256": "12eed4bfb11b62c4fea40ac8747d16e6a16f70884a075c5e84e8130efb000391",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/migrations/20260112190721_53980950-5de5-4ad8-87b3-363ab88b497e.sql",
+        "currentNormalizedSha256": "1081102efa50fffa56dc83227447b5a1390fa7bee27da9fa7ae466c197072c75",
+        "baselineNormalizedSha256": "1081102efa50fffa56dc83227447b5a1390fa7bee27da9fa7ae466c197072c75",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/migrations/20260112191759_346a7659-c38c-40a2-bed8-873d6cc0f610.sql",
+        "currentNormalizedSha256": "09ced2a9c04dfa05da8e371da7bb7caa176f95fb6661ecbde338be35f864d658",
+        "baselineNormalizedSha256": "09ced2a9c04dfa05da8e371da7bb7caa176f95fb6661ecbde338be35f864d658",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/migrations/20260112193515_c5a2e5f1-914c-4d56-a567-a4febdf06ede.sql",
+        "currentNormalizedSha256": "f925f5b1f89530d74a70ba7ab6cb39997e7508976912bcdfe81f02f5143a212b",
+        "baselineNormalizedSha256": "f925f5b1f89530d74a70ba7ab6cb39997e7508976912bcdfe81f02f5143a212b",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/migrations/20260112195233_30e84053-274e-4d7b-a11e-2fd6f53ef710.sql",
+        "currentNormalizedSha256": "517e0928b1959768a98c8b7f6def1c76137c496043efe41fa3b401902f45174b",
+        "baselineNormalizedSha256": "517e0928b1959768a98c8b7f6def1c76137c496043efe41fa3b401902f45174b",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/migrations/20260112195838_f15b4374-e640-484c-b853-b1e7d11f0358.sql",
+        "currentNormalizedSha256": "cd09ae56df91f9d6a07457d19c2530a979a8eb88ccf56774f8e2879e208abdfd",
+        "baselineNormalizedSha256": "cd09ae56df91f9d6a07457d19c2530a979a8eb88ccf56774f8e2879e208abdfd",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/migrations/20260112202820_6c0a35f1-976e-478b-9408-63db6356f5ea.sql",
+        "currentNormalizedSha256": "c18acbebe7462163b0fdabe2015b3f0117b5bf2ceae1563fab21dd5ab567da17",
+        "baselineNormalizedSha256": "c18acbebe7462163b0fdabe2015b3f0117b5bf2ceae1563fab21dd5ab567da17",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/migrations/20260112203830_8771865b-0f66-4562-91d1-3af18262a9d2.sql",
+        "currentNormalizedSha256": "c7246c20dd187782b044f3ec75c9ee1e63db48814a7cc75e2c259eda523bf9e6",
+        "baselineNormalizedSha256": "c7246c20dd187782b044f3ec75c9ee1e63db48814a7cc75e2c259eda523bf9e6",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/migrations/20260123144927_251c9dd5-b537-4d22-b391-1be4e32188fc.sql",
+        "currentNormalizedSha256": "e28e98ec5f42342cdbd091ff532949d6e9490121ecade01edc5d77436c5558cb",
+        "baselineNormalizedSha256": "e28e98ec5f42342cdbd091ff532949d6e9490121ecade01edc5d77436c5558cb",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/migrations/20260209193256_67c13f03-2d0a-4d67-8ee8-7002dffac8dc.sql",
+        "currentNormalizedSha256": "42b921165eccdb45bf178a555c114d124df10473cca8876b051dbc527c0e3c37",
+        "baselineNormalizedSha256": "42b921165eccdb45bf178a555c114d124df10473cca8876b051dbc527c0e3c37",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/migrations/20261015090000_forge_v3_integrity.sql",
+        "currentNormalizedSha256": "647f1c54fe5fd2a804dffb3501d1e1a590aba88e726ccd45b98e364feaf99267",
+        "baselineNormalizedSha256": "647f1c54fe5fd2a804dffb3501d1e1a590aba88e726ccd45b98e364feaf99267",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/migrations/20261015091000_forge_race_protocol.sql",
+        "currentNormalizedSha256": "9b1e2283a0764430566fbeed4781e695ea445198ce29e1f9ace42252e147f618",
+        "baselineNormalizedSha256": "9b1e2283a0764430566fbeed4781e695ea445198ce29e1f9ace42252e147f618",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/migrations/20261015092000_forge_account_cleanup.sql",
+        "currentNormalizedSha256": "14fad6d388bd203052bd4cf3f87931fd00fffd1cb9e95da6a31b3e3b6572087a",
+        "baselineNormalizedSha256": "14fad6d388bd203052bd4cf3f87931fd00fffd1cb9e95da6a31b3e3b6572087a",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/migrations/20261015093000_forge_ranking_reads.sql",
+        "currentNormalizedSha256": "3d259cb2315104db96bd6d1a5ac82d3e2b0f5e9c1257bda34d1ef38ea4f4d7ab",
+        "baselineNormalizedSha256": "3d259cb2315104db96bd6d1a5ac82d3e2b0f5e9c1257bda34d1ef38ea4f4d7ab",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/migrations/20261015094000_forge_preference_versions.sql",
+        "currentNormalizedSha256": "2c3c1b9c6cb5672701c949f421fc0bfb6141a4bebabd0f222b49476d650cb759",
+        "baselineNormalizedSha256": "2c3c1b9c6cb5672701c949f421fc0bfb6141a4bebabd0f222b49476d650cb759",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/migrations/20261015095000_forge_owner_intent.sql",
+        "currentNormalizedSha256": "b33450c776bd974494aa75461154d89d29f9aef078745d7679d946fe0375ffd7",
+        "baselineNormalizedSha256": "b33450c776bd974494aa75461154d89d29f9aef078745d7679d946fe0375ffd7",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/migrations/20261016143000_sparow_preferences.sql",
+        "currentNormalizedSha256": "c9b343d22b0d795d8f463764dee0fb519f54e3d26ee735b68b123e0c7777445e",
+        "baselineNormalizedSha256": "c9b343d22b0d795d8f463764dee0fb519f54e3d26ee735b68b123e0c7777445e",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/migrations/20261016150000_sparow_period_rankings.sql",
+        "currentNormalizedSha256": "4301beddeac01d9a0fa79f407c40bb1337f0d94a3c888e1a45c950f46348e058",
+        "baselineNormalizedSha256": "4301beddeac01d9a0fa79f407c40bb1337f0d94a3c888e1a45c950f46348e058",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/tests/compatibility-check.mjs",
+        "currentNormalizedSha256": "296ffacd7962f35a3ed58628d7e0248255390b1a4048d4a9341b1c3ed367f0b0",
+        "baselineNormalizedSha256": "296ffacd7962f35a3ed58628d7e0248255390b1a4048d4a9341b1c3ed367f0b0",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/tests/integrity.sql",
+        "currentNormalizedSha256": "8b466cc1de6f5c704f80d7edd62122afb6d879ebbf76afdb8136ddf76d8a2cb4",
+        "baselineNormalizedSha256": "8b466cc1de6f5c704f80d7edd62122afb6d879ebbf76afdb8136ddf76d8a2cb4",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/tests/period-rankings.sql",
+        "currentNormalizedSha256": "38a24c064749ecb7002b4b6c88029262bf293f205aaa89af25107f2741b34143",
+        "baselineNormalizedSha256": "38a24c064749ecb7002b4b6c88029262bf293f205aaa89af25107f2741b34143",
+        "unchangedSinceGitBaseline": true
+      },
+      {
+        "file": "supabase/tests/trust-boundary-audit.sql",
+        "currentNormalizedSha256": "44868c7b2aecb9f5770ceaed21b2f34cd866dd7d0a6926d0cdc9ce9fc90aae07",
+        "baselineNormalizedSha256": "44868c7b2aecb9f5770ceaed21b2f34cd866dd7d0a6926d0cdc9ce9fc90aae07",
+        "unchangedSinceGitBaseline": true
+      }
+    ],
+    "privateOrOriginalRuntimeConfigurationRead": false
+  },
+  "inheritedBackendEvidence": {
+    "scope": "Original26 evidence applies to unchanged backend and wire only. No new27 backend capacity, counter or nativeCI run; no26 UI/browser/performance reuse.",
+    "capacity": [
+      {
+        "file": "audit/2026-10-27/source26-capacity-00863696a5bdfabe.json",
+        "sha256": "cc1e5dcbd8b134ddd81db8636e98c41c552fc8f900f29b3cc6001e7705ff4e3a",
+        "status": "FAILED",
+        "total": 1653,
+        "p95Ms": 261.3165000000008,
+        "targetMs": 150,
+        "targetMet": false
+      },
+      {
+        "file": "audit/2026-10-27/source26-capacity-wire-00863696a5bdfabe.json",
+        "sha256": "d5c360126534fc00cc79d83e21fc983bb2f8d99ed81f1316021dc12f217e9471",
+        "status": "FAILED",
+        "total": 1653,
+        "p95Ms": 242.9339999999993,
+        "targetMs": 150,
+        "targetMet": false
+      }
+    ],
+    "nativeAtomicCounter": {
+      "file": "audit/2026-10-27/source26-native-rate-00863696a5bdfabe.json",
+      "sha256": "78313fa3e2c5638c9fd1264e9f934f05f1af2a57c61298c9dfa1782b09a0ba73",
+      "status": "PASS-SCOPED-NATIVE-RATE",
+      "checks": 6,
+      "connections": 8,
+      "expectedSharedCalls": 320,
+      "expectedAdmitted": 300,
+      "expectedLimited": 20,
+      "throughputCertification": false
+    },
+    "nativeCi": {
+      "file": "audit/2026-10-27/final26-native-ci.json",
+      "sha256": "99ffa5b450c0647ce31b554ceaf574d212a069feb7965210ca8e3b536946d2ba",
+      "status": "FAILED",
+      "passed": [
+        "data",
+        "race",
+        "course",
+        "progression",
+        "social",
+        "arena-http",
+        "password"
+      ],
+      "failed": [
+        "classroom"
+      ],
+      "originalFailurePreserved": true
+    },
+    "classroomFreshConfirmation": {
+      "file": "audit/2026-10-27/final26-classroom-isolation-confirmation.json",
+      "sha256": "a6ae6c57abb380a25acec470c6d8143a3a1088c5483b9e92bf7125220e6d6ea8",
+      "status": "PASS-SCOPED",
+      "checks": 9,
+      "scope": "Separate source26 fresh isolated owner; unchanged production30/min limit retained; does not replace original8-suite failure."
+    }
+  },
+  "frontend27": {
+    "sourceChecks": "PASS12/12; unit2867/114 per current root receipt",
+    "build": "11de46af5d4a80e0e830",
+    "threeOriginalInputRuns": "RUNNING-OWNED-BY-ROOT-NOT-REUSED",
+    "threeNormal3dLighthouseRuns": "PENDING-NOT-REUSED",
+    "native20": "PENDING-FRESH27-REQUIRED",
+    "full64SpecFourEngineMatrix": "PENDING",
+    "staticRootSubpathAndMobile": "PENDING"
+  },
+  "jobsRunByThisProof": 0,
+  "performanceClaimsCreated": 0,
+  "limitations": [
+    "Capacity remains FAILED: original full p95≈261ms and current-wire≈243ms, both exceed150ms.",
+    "Native atomic accounting PASS is not400-client sustained HTTP throughput evidence.",
+    "Supabase Deno setup26 failed network and remains UNVERIFIED; no retry performed.",
+    "Physical devices, real hosted load and field INP remain UNVERIFIED."
+  ]
+}

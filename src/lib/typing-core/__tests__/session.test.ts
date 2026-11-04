@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { SessionController, comparisonKey, graphemes, replaySession, type SessionConfig, type SessionEvent } from '..';
 
 function fixture(target: string, overrides: Partial<SessionConfig> = {}) {
@@ -59,6 +59,86 @@ describe('forge-v3 golden metrics', () => {
     test.session.input({ type: 'delete' }, 200);
     expect(test.session.currentText).toBe('');
     expect(test.session.snapshot(200).metrics).toMatchObject({ insertionAttempts: 2, deletedUnits: 1, inputAccuracy: 50 });
+  });
+  it('reuses retained text across reads, snapshots and active clock ticks without joining it again', () => {
+    const test = fixture('cat dog');
+    const first = test.insert('cat d', 0);
+    const nativeJoin = Array.prototype.join;
+    let retainedJoins = 0;
+    const spy = vi.spyOn(Array.prototype, 'join').mockImplementation(function (this: unknown[], separator?: string) {
+      if (separator === '' && this.length === 5 && this[0] === 'c' && this[1] === 'a' && this[2] === 't' && this[3] === ' ' && this[4] === 'd') retainedJoins++;
+      return nativeJoin.call(this, separator);
+    });
+    const readings: string[] = [];
+    let last = first;
+    try {
+      for (let index = 1; index <= 20; index++) {
+        readings.push(test.session.currentText);
+        last = test.session.tick(index * 100);
+        readings.push(last.finalText, test.session.snapshot(index * 100).finalText);
+      }
+    } finally {
+      spy.mockRestore();
+    }
+    expect(retainedJoins).toBe(0);
+    expect(readings).toEqual(Array.from({ length: 60 }, () => 'cat d'));
+    expect(last.metrics).toMatchObject({ insertionAttempts: 5, creditedUnits: 5, wpm: 30 });
+    expect(last.events).toEqual(first.events);
+    expect(last.characters).toBe(first.characters);
+  });
+  it('refreshes retained text for replacements, joined Unicode, duplicate composition, rejection and deletion', () => {
+    const test = fixture('é cat dog');
+    const old = test.insert('e', 0);
+    const joined = test.session.input({ type: 'composition', text: '\u0301', compositionId: 'joined-accent' }, 100);
+    expect(joined.finalText).toBe('é');
+    expect(test.session.currentText).toBe('é');
+    const duplicate = test.session.input({ type: 'composition', text: '\u0301', compositionId: 'joined-accent' }, 200);
+    expect(duplicate.finalText).toBe('é');
+    const rejected = test.session.input({ type: 'reject', text: 'x' }, 300);
+    expect(rejected.finalText).toBe('é');
+    const replaced = test.session.input({ type: 'replace', start: 0, end: 1, text: 'a' }, 400);
+    expect(replaced.finalText).toBe('a');
+    expect(test.session.currentText).toBe('a');
+    expect(test.session.input({ type: 'delete' }, 500).finalText).toBe('');
+    expect(test.session.currentText).toBe('');
+    test.session.appendTarget(' rest', 600);
+    expect(test.session.pause(700).finalText).toBe('');
+    expect(test.session.resume(800).finalText).toBe('');
+    const result = test.session.finish('manual', 1000);
+    expect(result.finalText).toBe('');
+    expect(test.session.currentText).toBe('');
+    expect(result.metrics).toMatchObject({ insertionAttempts: 4, deletionActions: 2, deletedUnits: 2 });
+    expect(old.finalText).toBe('e');
+    expect(joined.finalText).toBe('é');
+    expect(replaced.finalText).toBe('a');
+  });
+  it('keeps retained text correct after rejected ranges and an exceptional partially applied edit', () => {
+    const test = fixture('cat dog');
+    test.insert('c', 0);
+    expect(test.session.currentText).toBe('c');
+    expect(() => test.session.input({ type: 'delete', start: -1, end: 1 }, 100)).toThrow('Edit range is outside the transcript');
+    expect(test.session.snapshot(100).finalText).toBe('c');
+    const nativeNormalize = String.prototype.normalize;
+    let normalizationCalls = 0;
+    // Exercise the existing exceptional state after insertion but before Unicode
+    // reconciliation returns. This does not change the controller's error policy.
+    const spy = vi.spyOn(String.prototype, 'normalize').mockImplementation(function (this: string, form?: string) {
+      normalizationCalls++;
+      if (normalizationCalls === 2) throw new Error('Injected reconciliation failure');
+      return nativeNormalize.call(this, form);
+    });
+    let failure: unknown;
+    try {
+      test.session.input({ type: 'insert', text: 'é' }, 200);
+    } catch (error) {
+      failure = error;
+    } finally {
+      spy.mockRestore();
+    }
+    expect(failure).toBeInstanceOf(Error);
+    expect((failure as Error).message).toBe('Injected reconciliation failure');
+    expect(test.session.currentText).toBe('cé');
+    expect(test.session.snapshot(200).finalText).toBe('cé');
   });
   it('keeps the entire deadline, idle buckets and excludes late input', () => {
     const test = fixture('abcdefghij other words');

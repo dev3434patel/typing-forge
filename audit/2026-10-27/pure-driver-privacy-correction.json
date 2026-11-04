@@ -1,0 +1,13 @@
+{
+  "recordedDate": "2026-10-27",
+  "status": "CORRECTION",
+  "scope": "Historical replay/password pure-test loader behavior; no historical receipt is overwritten",
+  "finding": "The earlier backend/tests/replay-driver.php and password-policy.php required backend/bootstrap.php. That bootstrap may load original backend/config.php when present even though these checks perform no SQL connection or mutation.",
+  "affectedEvidence": ["audit/2026-10-27/final22-php-parity.json", "Earlier replay/password receipts that used those unchanged bootstrap-based drivers"],
+  "claimsRetained": ["No HTTP or database mutation", "Recorded replay/metrics results and source hashes"],
+  "claimNotEstablishedByEarlierDrivers": "No original private configuration read",
+  "exposureObserved": false,
+  "privateConfigurationInspectedByReviewer": false,
+  "repair": "Both pure drivers now load only allowlisted SparowType class files; new parity/policy checks require no bootstrap/configuration.",
+  "newValidation": "Pending separately named source23 checks; no earlier privacy claim is silently promoted."
+}

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   Bot,
@@ -23,8 +23,9 @@ import {
 } from "@/lib/typing-core";
 import { createBot, BOT_CONFIGS, type BotLevel } from "@/lib/bot-engine";
 import { generatePackText } from "@/lib/content-packs";
-import { opponentPacePosition } from "@/lib/race-pace";
+import { opponentPacePosition, sameRaceProgressDisplay } from "@/lib/race-pace";
 import { raceClockAnchor } from "@/lib/race-clock";
+import { createRaceFeedback, raceFeedback, type RaceFeedbackOperation } from "@/lib/race-state-machine";
 import {
   advanceAccuracyChallenge,
   createAccuracyChallenge,
@@ -108,13 +109,19 @@ function RaceSession({
     { preferences } = usePreferences(),
     { saveSession, syncState } = useTestResults();
   const [result, setResult] = useState<SessionResult | null>(null),
-    [error, setError] = useState(""),
     [botStats, setBotStats] = useState({
       progress: 0,
       wpm: null as number | null,
       cursor: 0,
     }),
     [own, setOwn] = useState({ progress: 0, wpm: null as number | null });
+  const [feedback, dispatchFeedback] = useReducer(raceFeedback, undefined, createRaceFeedback);
+  const requestSequence = useRef(0);
+  const beginRequest = useCallback((operation: RaceFeedbackOperation) => {
+    const sequence = ++requestSequence.current;
+    dispatchFeedback({ type: "start", operation, sequence });
+    return sequence;
+  }, []);
   const [bundle] = useState(() => {
     const config: SessionConfig = {
       clientSessionId: crypto.randomUUID(),
@@ -203,6 +210,19 @@ function RaceSession({
   roomRef.current = room;
   const roomStatus = room?.status,
     raceId = room?.id;
+  const submitFinish = useCallback((id: string, value: SessionResult) => {
+    const sequence = beginRequest("finish");
+    void raceService.submit(id, value, true).then(
+      (confirmed) => {
+        dispatchFeedback({ type: "success", operation: "finish", sequence });
+        onRoom(confirmed);
+      },
+      (cause) => dispatchFeedback({
+        type: "failure", operation: "finish", sequence,
+        message: `Race finish could not be confirmed: ${String(cause)}. Retry below.`,
+      }),
+    );
+  }, [beginRequest, onRoom]);
   const finish = useCallback(
     (value: SessionResult) => {
       recordChallenge(value);
@@ -210,20 +230,15 @@ function RaceSession({
       setResult(value);
       // Keep recoverable local evidence even when a human finish cannot reach
       // the server. Human room evidence uses its dedicated validation route.
-      void saveSession(value, { localOnly: !botLevel }).catch((cause) =>
-        setError(String(cause)),
+      const sequence = beginRequest("local");
+      void saveSession(value, { localOnly: !botLevel }).then(
+        () => dispatchFeedback({ type: "success", operation: "local", sequence }),
+        (cause) => dispatchFeedback({ type: "failure", operation: "local", sequence, message: String(cause) }),
       );
       if (!botLevel && roomRef.current)
-        void raceService
-          .submit(roomRef.current.id, value, true)
-          .then(onRoom)
-          .catch((cause) =>
-            setError(
-              `Race finish could not be confirmed: ${String(cause)}. Retry below.`,
-            ),
-          );
+        submitFinish(roomRef.current.id, value);
     },
-    [botLevel, saveSession, onRoom, recordChallenge],
+    [botLevel, saveSession, recordChallenge, beginRequest, submitFinish],
   );
   useEffect(() => {
     if (
@@ -251,13 +266,14 @@ function RaceSession({
         );
       }
       const snapshot = botController.tick();
-      setBotStats({
+      const next = {
         progress: snapshot.targetText.length
           ? (snapshot.metrics.correct / bundle.targetUnits) * 100
           : 0,
         wpm: snapshot.metrics.wpm,
         cursor: snapshot.cursor,
-      });
+      };
+      setBotStats(previous => sameRaceProgressDisplay(previous, next) ? previous : next);
     }, 100);
     return () => clearInterval(timer);
   }, [botLevel, bundle]);
@@ -277,16 +293,22 @@ function RaceSession({
       };
       if (!controller.checkpoint) return;
       posting.current = true;
+      const sequence = beginRequest("checkpoint");
       void raceService
         .submit(raceId, controller.checkpoint(), false)
-        .then(onRoom)
-        .catch((cause) => setError(String(cause)))
+        .then(
+          (confirmed) => {
+            dispatchFeedback({ type: "success", operation: "checkpoint", sequence });
+            onRoom(confirmed);
+          },
+          (cause) => dispatchFeedback({ type: "failure", operation: "checkpoint", sequence, message: String(cause) }),
+        )
         .finally(() => {
           posting.current = false;
         });
     }, 1000);
     return () => clearInterval(timer);
-  }, [botLevel, bundle, raceId, onRoom]);
+  }, [botLevel, bundle, raceId, onRoom, beginRequest]);
   const isHost = room?.host_id === user?.id;
   const opponent = botLevel
     ? botStats
@@ -301,17 +323,32 @@ function RaceSession({
       latest.current = value;
       startBotWithFirstInput();
       recordChallenge(value);
-      setOwn({
+      const next = {
         progress: value.characters.length
           ? (value.metrics.correct / bundle.targetUnits) * 100
           : 0,
         wpm: value.metrics.wpm,
-      });
+      };
+      setOwn(previous => sameRaceProgressDisplay(previous, next) ? previous : next);
     },
     [recordChallenge, startBotWithFirstInput, bundle.targetUnits],
   );
+  const pacePosition = opponentPacePosition(
+    bundle.targetUnits,
+    botLevel ? { cursor: botStats.cursor } : { progress: opponent.progress },
+  );
+  const paceLabel = botLevel ? "Bot" : "Opponent";
+  const paceWpm = opponent.wpm;
+  const paceApproximate = !botLevel;
+  const opponentPace = useMemo(() => ({
+    label: paceLabel,
+    position: pacePosition,
+    wpm: paceWpm,
+    approximate: paceApproximate,
+  }), [paceLabel, pacePosition, paceWpm, paceApproximate]);
+  const error = [feedback.local.error, feedback.finish.error || feedback.checkpoint.error].filter(Boolean).join(" ");
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" data-finish-confirmed={feedback.finishConfirmed || undefined}>
       <div className="grid sm:grid-cols-2 gap-4">
         <Track name="You" progress={own.progress} wpm={own.wpm} />
         <Track
@@ -332,18 +369,11 @@ function RaceSession({
       {error && (
         <div role="alert" className="panel p-4 text-sm text-destructive">
           {error}
-          {result && room && (
+          {result && room && feedback.finish.error && (
             <button
               className="forge-button-secondary ml-3"
-              onClick={() => {
-                void raceService
-                  .submit(room.id, result, true)
-                  .then((value) => {
-                    setError("");
-                    onRoom(value);
-                  })
-                  .catch((cause) => setError(String(cause)));
-              }}
+              disabled={feedback.finish.pending}
+              onClick={() => submitFinish(room.id, result)}
             >
               Retry finish
             </button>
@@ -387,17 +417,7 @@ function RaceSession({
           onSnapshot={snapshot}
           onRestart={botLevel ? onRestart : undefined}
           autoFocus={autoFocus}
-          opponentPace={{
-            label: botLevel ? "Bot" : "Opponent",
-            position: opponentPacePosition(
-              bundle.targetUnits,
-              botLevel
-                ? { cursor: botStats.cursor }
-                : { progress: opponent.progress },
-            ),
-            wpm: opponent.wpm,
-            approximate: !botLevel,
-          }}
+          opponentPace={opponentPace}
         />
       )}
     </div>

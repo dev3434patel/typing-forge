@@ -1,0 +1,265 @@
+{
+  "capturedAt": "2026-11-02T15:52:09.939Z",
+  "status": "DIAGNOSIS-PENDING-DYNAMIC-CONFIRMATION",
+  "scope": "Read-only source/assertion/report inspection. No test, browser, build, service, product edit or Git mutation.",
+  "source": "final27",
+  "build": "11de46af5d4a80e0e830",
+  "observedFailureCount": 16,
+  "groups": [
+    {
+      "file": "e2e/live-keyboard.spec.ts",
+      "failedCases": 12,
+      "assertionLine": 524,
+      "problem": "Exact old90ms transform duration is still required in each style across all4 engines. Earlier240ms pseudo-ripple,2px-down/0-up and stable geometry assertions were reached and passed before this line."
+    },
+    {
+      "file": "e2e/typing-render-budget.spec.ts",
+      "failedCases": 4,
+      "assertionLine": 77,
+      "problem": "Exact old90ms transform duration is still required across all4 engines. Failure output directly reports transform55ms."
+    }
+  ],
+  "currentContract": {
+    "twoDimensionalPressTransformMs": 55,
+    "pseudoRippleMs": 240,
+    "pressTranslationPx": 2,
+    "baselinePressTransformMs": 90,
+    "threeDimensionalCodeInspectedOrChanged": false
+  },
+  "proposedFixtureOnlyChange": "Change exactly the two stale transform-duration expectations from90 to55. Keep transitionProperty transform,240ms ripple,2px translation, stable geometry, immediate color assertions and remaining outside-toolbar assertions unchanged. Original16 failures must remain retained; focused current4-engine confirmation is still required.",
+  "noProductBugEstablished": true,
+  "sourceHashes": {
+    "e2e/live-keyboard.spec.ts": "76f10efea50c26259ae9be9e62c584bd20b51b328cff22e2b1709ea542e6152d",
+    "e2e/typing-render-budget.spec.ts": "3e58d7366cda81042613be0c819f17a9bc226dcc014f0448fd964f20750a1d00",
+    "src/components/typing/live-keyboard.css": "11c5ae04f8bf9e9ab8aba804d9674c6b8221dad0b2bce4f8c08d59513bb1f113",
+    "src/components/typing/LiveKeyboard.tsx": "00fa28b2709c70d744432536940e8210412a445f1097d42d49249afccd8c9d0b",
+    "src/lib/pressed-key-attribute.ts": "d819c4a2c6f9ffd45d94dbd78b1e9441d8793a3ce2b8fd39e510f0b84cc824c3",
+    "audit/2026-10-27/final27-browser-matrix.json": "218e8c8644b1bfdaa44d159a08cad7c46d15a66c7c57dec3eca556cfdbbae2be"
+  },
+  "failures": [
+    {
+      "batch": "existing",
+      "project": "chromium",
+      "title": "live-keyboard.spec.ts › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable",
+      "file": "live-keyboard.spec.ts",
+      "line": 447,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+      ]
+    },
+    {
+      "batch": "existing",
+      "project": "chromium",
+      "title": "live-keyboard.spec.ts › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable",
+      "file": "live-keyboard.spec.ts",
+      "line": 447,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+      ]
+    },
+    {
+      "batch": "existing",
+      "project": "chromium",
+      "title": "live-keyboard.spec.ts › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable",
+      "file": "live-keyboard.spec.ts",
+      "line": 447,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+      ]
+    },
+    {
+      "batch": "existing",
+      "project": "edge",
+      "title": "live-keyboard.spec.ts › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable",
+      "file": "live-keyboard.spec.ts",
+      "line": 447,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+      ]
+    },
+    {
+      "batch": "existing",
+      "project": "edge",
+      "title": "live-keyboard.spec.ts › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable",
+      "file": "live-keyboard.spec.ts",
+      "line": 447,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+      ]
+    },
+    {
+      "batch": "existing",
+      "project": "edge",
+      "title": "live-keyboard.spec.ts › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable",
+      "file": "live-keyboard.spec.ts",
+      "line": 447,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+      ]
+    },
+    {
+      "batch": "existing",
+      "project": "firefox",
+      "title": "live-keyboard.spec.ts › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable",
+      "file": "live-keyboard.spec.ts",
+      "line": 447,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+      ]
+    },
+    {
+      "batch": "existing",
+      "project": "firefox",
+      "title": "live-keyboard.spec.ts › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable",
+      "file": "live-keyboard.spec.ts",
+      "line": 447,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+      ]
+    },
+    {
+      "batch": "existing",
+      "project": "firefox",
+      "title": "live-keyboard.spec.ts › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable",
+      "file": "live-keyboard.spec.ts",
+      "line": 447,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+      ]
+    },
+    {
+      "batch": "existing",
+      "project": "webkit",
+      "title": "live-keyboard.spec.ts › layout-contained classic keyboard keeps native press geometry and the outside shortcut panel usable",
+      "file": "live-keyboard.spec.ts",
+      "line": 447,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+      ]
+    },
+    {
+      "batch": "existing",
+      "project": "webkit",
+      "title": "live-keyboard.spec.ts › layout-contained flat keyboard keeps native press geometry and the outside shortcut panel usable",
+      "file": "live-keyboard.spec.ts",
+      "line": 447,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+      ]
+    },
+    {
+      "batch": "existing",
+      "project": "webkit",
+      "title": "live-keyboard.spec.ts › layout-contained outline keyboard keeps native press geometry and the outside shortcut panel usable",
+      "file": "live-keyboard.spec.ts",
+      "line": 447,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false 522 | expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' && 523 | value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true); > 524 | expect(ripple.activations.some(value => value.motion.some(motion => motion.pro"
+      ]
+    },
+    {
+      "batch": "isolated",
+      "project": "chromium",
+      "title": "typing-render-budget.spec.ts › key feedback borders match their state immediately while press motion and settled bounds remain",
+      "file": "typing-render-budget.spec.ts",
+      "line": 10,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toContainEqual(expected) // deep equality Expected value: {\"duration\": 90, \"property\": \"transform\"} Received array: [{\"duration\": 55, \"property\": \"transform\"}] 75 | expect(observed.receipt.correct.border).toBe(observed.expected.accent); 76 | expect(observed.receipt.correct.background).toBe(observed.expected.accent); > 77 | expect(observed.receipt.wrong.animations).toContainEqual({ property: \"transform\", duration: 90 }); | "
+      ]
+    },
+    {
+      "batch": "isolated",
+      "project": "edge",
+      "title": "typing-render-budget.spec.ts › key feedback borders match their state immediately while press motion and settled bounds remain",
+      "file": "typing-render-budget.spec.ts",
+      "line": 10,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toContainEqual(expected) // deep equality Expected value: {\"duration\": 90, \"property\": \"transform\"} Received array: [{\"duration\": 55, \"property\": \"transform\"}] 75 | expect(observed.receipt.correct.border).toBe(observed.expected.accent); 76 | expect(observed.receipt.correct.background).toBe(observed.expected.accent); > 77 | expect(observed.receipt.wrong.animations).toContainEqual({ property: \"transform\", duration: 90 }); | "
+      ]
+    },
+    {
+      "batch": "isolated",
+      "project": "firefox",
+      "title": "typing-render-budget.spec.ts › key feedback borders match their state immediately while press motion and settled bounds remain",
+      "file": "typing-render-budget.spec.ts",
+      "line": 10,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toContainEqual(expected) // deep equality Expected value: {\"duration\": 90, \"property\": \"transform\"} Received array: [{\"duration\": 55, \"property\": \"transform\"}] 75 | expect(observed.receipt.correct.border).toBe(observed.expected.accent); 76 | expect(observed.receipt.correct.background).toBe(observed.expected.accent); > 77 | expect(observed.receipt.wrong.animations).toContainEqual({ property: \"transform\", duration: 90 }); | "
+      ]
+    },
+    {
+      "batch": "isolated",
+      "project": "webkit",
+      "title": "typing-render-budget.spec.ts › key feedback borders match their state immediately while press motion and settled bounds remain",
+      "file": "typing-render-budget.spec.ts",
+      "line": 10,
+      "attempts": 1,
+      "attemptStatuses": [
+        "failed"
+      ],
+      "messages": [
+        "Error: expect(received).toContainEqual(expected) // deep equality Expected value: {\"duration\": 90, \"property\": \"transform\"} Received array: [{\"duration\": 55, \"property\": \"transform\"}] 75 | expect(observed.receipt.correct.border).toBe(observed.expected.accent); 76 | expect(observed.receipt.correct.background).toBe(observed.expected.accent); > 77 | expect(observed.receipt.wrong.animations).toContainEqual({ property: \"transform\", duration: 90 }); | "
+      ]
+    }
+  ]
+}

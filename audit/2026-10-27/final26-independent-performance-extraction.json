@@ -1,0 +1,290 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-10-27T17:29:12.001Z",
+  "status": "PASS-SCOPED-INDEPENDENT-READ-ONLY-EXTRACTION",
+  "build": {
+    "version": "88b8024ae4b840c10422",
+    "publicFiles": 133,
+    "bytes": 2961721
+  },
+  "sourceFiles": 505,
+  "sourceReceipt": "audit/2026-10-27/final26-source.json",
+  "input": {
+    "receipt": "audit/2026-10-27/final26-input-results.json",
+    "originalDriver": "audit/correction-experience-2026-10-20/measure-typing.mjs",
+    "originalDriverSha256": "28cf9cb12ccbe2ae8138dc72afd9f936de6865a22e56fd8e90bb4cba40a6be35",
+    "directoryOnlyByteReversal": true,
+    "protocol": {
+      "declaredAt": "2026-10-27T17:17:19.556Z",
+      "build": {
+        "version": "88b8024ae4b840c10422",
+        "publicFiles": 133,
+        "bytes": 2961721
+      },
+      "runs": 3,
+      "automaticRetries": 0,
+      "resultFiltering": false,
+      "freshProfiles": true,
+      "cpuThrottle": 4,
+      "repetitions": 16,
+      "interCharacterDelayMs": 0,
+      "quietSeconds": 5,
+      "rotation": "390×844 to844×390 halfway through495 characters",
+      "originalDriver": "audit/correction-experience-2026-10-20/measure-typing.mjs",
+      "originalDriverSha256": "28cf9cb12ccbe2ae8138dc72afd9f936de6865a22e56fd8e90bb4cba40a6be35",
+      "driverOnlyChange": "Report output directory",
+      "scope": "Matched prior lab driver; thresholded/quantized Event Timing, not field INP. Intro disabled only for this isolated input benchmark; separately measured at normal full quality."
+    },
+    "checks": [
+      {
+        "run": 1,
+        "processExit": 0,
+        "build": "88b8024ae4b840c10422",
+        "exact": true,
+        "attempts": 495,
+        "beforeInputEvents": 495,
+        "accuracy": 100,
+        "rotation": {
+          "beforeLength": 247,
+          "afterLength": 247,
+          "retainedExactly": true,
+          "overflow": false
+        },
+        "p98Ms": 80,
+        "maxMs": 184
+      },
+      {
+        "run": 2,
+        "processExit": 0,
+        "build": "88b8024ae4b840c10422",
+        "exact": true,
+        "attempts": 495,
+        "beforeInputEvents": 495,
+        "accuracy": 100,
+        "rotation": {
+          "beforeLength": 247,
+          "afterLength": 247,
+          "retainedExactly": true,
+          "overflow": false
+        },
+        "p98Ms": 88,
+        "maxMs": 200
+      },
+      {
+        "run": 3,
+        "processExit": 0,
+        "build": "88b8024ae4b840c10422",
+        "exact": true,
+        "attempts": 495,
+        "beforeInputEvents": 495,
+        "accuracy": 100,
+        "rotation": {
+          "beforeLength": 247,
+          "afterLength": 247,
+          "retainedExactly": true,
+          "overflow": false
+        },
+        "p98Ms": 96,
+        "maxMs": 192
+      }
+    ],
+    "everyEventBelow100": false
+  },
+  "lighthouse": {
+    "receipt": "audit/2026-10-27/final26-lighthouse-results.json",
+    "protocol": {
+      "declaredAt": "2026-10-27T17:19:01.444Z",
+      "build": {
+        "version": "88b8024ae4b840c10422",
+        "publicFiles": 133,
+        "bytes": 2961721
+      },
+      "url": "http://127.0.0.1:4173/",
+      "runCount": 3,
+      "automaticRetries": 0,
+      "quietBeforeEachSeconds": 30,
+      "freshProfiles": true,
+      "qualityOverrides": false,
+      "introSkip": false,
+      "reducedMotionOverride": false,
+      "scoreFiltering": false,
+      "cli": "C:\\Users\\DELL\\AppData\\Local\\npm-cache\\_npx\\1722e863ebfd623b\\node_modules\\lighthouse\\cli\\index.js",
+      "chrome": "C:\\Users\\DELL\\AppData\\Local\\ms-playwright\\chromium-1248\\chrome-win64\\chrome.exe",
+      "method": "Three sequential fresh-profile Lighthouse mobile simulated-throttling runs with the complete first-visit 3D intro. All functional browser/native/load jobs must have exited; no user process is stopped."
+    },
+    "checks": [
+      {
+        "run": 1,
+        "processExit": 0,
+        "scores": {
+          "performance": 96,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "formFactor": "mobile",
+        "throttling": "simulate",
+        "screen": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "metrics": {
+          "first-contentful-paint": 2009,
+          "largest-contentful-paint": 2409,
+          "total-blocking-time": 66,
+          "cumulative-layout-shift": 0.0002518372664675856,
+          "speed-index": 2009
+        }
+      },
+      {
+        "run": 2,
+        "processExit": 0,
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "formFactor": "mobile",
+        "throttling": "simulate",
+        "screen": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "metrics": {
+          "first-contentful-paint": 1811,
+          "largest-contentful-paint": 2362,
+          "total-blocking-time": 44,
+          "cumulative-layout-shift": 0.0002518372664675856,
+          "speed-index": 1811
+        }
+      },
+      {
+        "run": 3,
+        "processExit": 0,
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "formFactor": "mobile",
+        "throttling": "simulate",
+        "screen": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "metrics": {
+          "first-contentful-paint": 1808.5,
+          "largest-contentful-paint": 2357,
+          "total-blocking-time": 45,
+          "cumulative-layout-shift": 0.0002518372664675856,
+          "speed-index": 1808.5
+        }
+      }
+    ],
+    "medianPerformance": 97
+  },
+  "bundle": {
+    "receipt": "audit/2026-10-27/final26-bundle.log",
+    "bootstrapJsGzipBytes": 56279,
+    "budgetChecks": [
+      {
+        "name": "initialPracticeJsGzipBytes",
+        "bytes": 165286,
+        "limit": 200000,
+        "pass": true
+      },
+      {
+        "name": "maxFeatureJsGzipBytes",
+        "bytes": 108534,
+        "limit": 150000,
+        "pass": true
+      },
+      {
+        "name": "introDeferredJsGzipBytes",
+        "bytes": 168002,
+        "limit": 220000,
+        "pass": true
+      },
+      {
+        "name": "arcadeRouteGzipBytes",
+        "bytes": 10525,
+        "limit": 90000,
+        "pass": true
+      },
+      {
+        "name": "arcadePlayerGzipBytes",
+        "bytes": 25699,
+        "limit": 90000,
+        "pass": true
+      },
+      {
+        "name": "dashboardRouteGzipBytes",
+        "bytes": 23187,
+        "limit": 120000,
+        "pass": true
+      }
+    ],
+    "arcadeAbsentFromInitialPractice": true
+  },
+  "brandQuality": {
+    "receipt": "audit/2026-10-27/final26-independent-brand-quality.json",
+    "comparisons": [
+      {
+        "kind": "scene",
+        "pass": true,
+        "comparison": "Exact filename, raw bytes and SHA-256 against preserved checkpoint; no normalization."
+      },
+      {
+        "kind": "bloom",
+        "pass": true,
+        "comparison": "Exact filename, raw bytes and SHA-256 against preserved checkpoint; no normalization."
+      },
+      {
+        "kind": "three",
+        "pass": true,
+        "comparison": "Exact filename, raw bytes and SHA-256 against preserved checkpoint; no normalization."
+      },
+      {
+        "kind": "worker",
+        "pass": true,
+        "comparison": "Exact public worker filename and SHA-256 against preserved public-file receipt."
+      },
+      {
+        "kind": "bridge",
+        "pass": true,
+        "comparison": "Replace exactly one from\"./index-HASH.js\" bootstrap import. Every other bridge byte remains compared; no logic normalization."
+      }
+    ],
+    "wordmark": "SparowType",
+    "inspected": "BrandWordmark renders only Sparow and Type text spans.",
+    "sourceNormalization": "Source hashes use the declared CRLF-to-LF contract. OpeningExperience has CRLF-only raw differences; normalized hash682af5b82a6abd4254b60d4ef57aed0706a4903647c0ba831d2e0b39a500ea8e matches both24/26 freezes.",
+    "bridgeNormalization": "The bridge filename changes with its application bootstrap import. The preserved quality check replaces exactly one bootstrap specifier; every other bridge byte remains identical."
+  },
+  "limitations": [
+    "Matched typing experiment is desktop Chromium390x844 at4xCPU, rotated844x390; it is not physical iOS/Android acceptance or field INP.",
+    "Event Timing is thresholded and quantized. p9880/88/96ms passes the declared criterion, but maxima184/200/192ms exceed100ms. Every-event-under100ms is not achieved.",
+    "The isolated typing benchmark disables intro as in its original protocol. The three separate Lighthouse runs include the complete default first-visit3D, with no quality/skip/reduced-motion override.",
+    "Lighthouse mobile412x823 simulated throttling scores96/97/97 and CLS approximately0.000252 are local lab outcomes, not universal95+, literal-zero CLS, or physical-GPU60fps certification.",
+    "Native capacity, cross-engine functional coverage, physical devices and final Git sync remain separately scoped. No browser, build, service or benchmark was started for this extraction."
+  ],
+  "extractionHistory": "Initial read-only guards requiring raw source bytes and every intro filename to remain identical wrote no receipt. They were corrected to the already declared LF source hashing and one-bootstrap-import bridge comparison; no measurement/product was changed.",
+  "reviewerActions": {
+    "sourceEdits": 0,
+    "testEdits": 0,
+    "newBenchmarks": 0,
+    "newBrowsers": 0,
+    "newServices": 0,
+    "privateConfigurationRead": false
+  }
+}

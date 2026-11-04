@@ -1,0 +1,147 @@
+{
+  "status": "ROUTING-ISOLATION-FIXTURE-PREPARED; FOUR-ENGINE-CONFIRMATION-NOT-RUN",
+  "capturedAt": "2026-10-27T18:21:15.660Z",
+  "source": {
+    "sourceFile": "audit/2026-10-27/final27-source.json",
+    "expectedBuild": "11de46af5d4a80e0e830",
+    "compared": 505,
+    "mismatches": []
+  },
+  "build": "11de46af5d4a80e0e830",
+  "appProductOrSwSourceChanged": false,
+  "priorDiagnostic": {
+    "raw": "audit/2026-10-27/pack-native-final27-fault-route-diagnostic-6a2da7a72dc80e8e-1793124995921-browser.json",
+    "sha256": "97a36bdd85f4048250bda892d1098f6b3b0ede3d1ae1ca082f2ad3c135a5bb77",
+    "status": "FAILED",
+    "passed": 0,
+    "failed": 1,
+    "observed": {
+      "routeHitCount": 0,
+      "injectedFailures": 0,
+      "matchingSubmitRequests": 11,
+      "matchingSubmitResponses": 11,
+      "allResponseStatus200": true,
+      "acceptedHostCheckpoints": 5,
+      "fromServiceWorkerTrueResponses": 0,
+      "hostState": {
+        "visibility": "visible",
+        "focused": true,
+        "serviceWorkerControllerPath": "/sw.js",
+        "serviceWorkerControllerState": "activated"
+      },
+      "peerState": {
+        "visibility": "visible",
+        "focused": true,
+        "serviceWorkerControllerPath": "/sw.js",
+        "serviceWorkerControllerState": "activated"
+      }
+    },
+    "conclusion": "The intended request abort never executed although normal matching checkpoint requests and200 responses were observed. The diagnostic therefore did not exercise application error recovery.",
+    "limit": "All11 responses reported fromServiceWorker=false. Controller presence alone does not establish SW-handled-response causality or the underlying Playwright/WebKit routing cause."
+  },
+  "scopedFixtureChange": {
+    "file": "e2e/php-human-race.spec.ts",
+    "rawSha256": "12dbbe3137b3502ba4c2bf9cee32827333f9013398e496f682fd8aba66f0e7db",
+    "description": "A local describe/test.use blocks service workers only in the appended route-controlled fault test, retaining project context options; its separately created peer context explicitly blocks them too.",
+    "extraControls": [
+      "Both page controller path values must be null before the race is created.",
+      "A positive host route-hit count must accompany the first observed injected error."
+    ],
+    "existingAssertionsAndTimeoutsPreserved": true,
+    "sharedClockOrScoringChanged": false,
+    "originalHumanRaceScenarioAndSharedImportsExactlyUnchanged": true,
+    "originalHumanRaceOrPwaTestsWorkerBehaviorChanged": false,
+    "noMockedSuccessfulResponseOrFakeClockAdded": true
+  },
+  "publicArchiveAndReversal": {
+    "archive": "audit/2026-10-27/php-human-race-before-routing-isolation.source27",
+    "sha256": "ee8e568399a9829461cfca58af083105285fc671a0d537bdfaee48e2033d6b3e",
+    "exactByteReversalVerified": true,
+    "editHashes": [
+      {
+        "insertedSha256": "6bd21be1cfc40349521244bb84050983dfd79902d4c83db862c5fbecdd4cff1b",
+        "previousSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "insertedBytes": 101,
+        "previousBytes": 0
+      },
+      {
+        "insertedSha256": "fe77722512b465739d6e9f2447aa02e8ec6cd2f02e0c7f956c95e2d04b2ae83e",
+        "previousSha256": "8ba6ecc95b3377c5d7109b22d4e8acedb31a1da5d2ff76362b81aaed8af2286b",
+        "insertedBytes": 85,
+        "previousBytes": 60
+      },
+      {
+        "insertedSha256": "d837ffb52642bbb3aba4ae57e5fe31c749c2487001de003285ce682383722fd7",
+        "previousSha256": "6513fc1aff68b2c0235bad5db421fc3d0f46b31529422ce18deaa909b48b28ee",
+        "insertedBytes": 317,
+        "previousBytes": 283
+      },
+      {
+        "insertedSha256": "b25b0c054d03288535d82bfba71dc45bda3eeb856947a82f1d8ef26c165fde11",
+        "previousSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "insertedBytes": 202,
+        "previousBytes": 0
+      },
+      {
+        "insertedSha256": "8e4db9135fd252e2508c17e5dde2dc74b2e3bda8fe84e1dae33dd10964d71947",
+        "previousSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "insertedBytes": 57,
+        "previousBytes": 0
+      },
+      {
+        "insertedSha256": "800932b9c9338d06bc9e279b6ea09f733237e998b8880af82afd0e023a241ae2",
+        "previousSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "insertedBytes": 162,
+        "previousBytes": 0
+      },
+      {
+        "insertedSha256": "2775f5947a64578cc7220f46f822dbee6dfe4d21789f44aebc8cbe8dddf83687",
+        "previousSha256": "d5d63e3a1859c234351a458635a0ac9d3b9c9ec043376d3f7a3f4937ab9edc90",
+        "insertedBytes": 138,
+        "previousBytes": 81
+      }
+    ],
+    "finalDescribeClosingDelimiterRemovedDuringReversal": true
+  },
+  "officialGuidanceReviewedByParent": [
+    "https://playwright.dev/docs/network#missing-network-events-and-service-workers",
+    "https://playwright.dev/docs/api/class-page#page-route"
+  ],
+  "preparedConfirmation": {
+    "status": "NOT-RUN",
+    "engines": [
+      "chromium",
+      "edge",
+      "firefox",
+      "webkit"
+    ],
+    "cases": 4,
+    "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+    "workers": 1,
+    "retries": 0,
+    "traces": false,
+    "separateFreshOwnerWithNoPriorNativeRunsRequired": true,
+    "windowFlag": "SPAROWTYPE_FINAL27_NATIVE_ROUTED_FAULT_CONFIRMATION_WINDOW=1",
+    "wrapper": "audit/2026-10-27/run-final27-native-routed-fault-confirmation.mjs",
+    "inputs": [
+      {
+        "file": "audit/2026-10-27/pack-native-browser-final27-routed-fault-confirmation.mjs",
+        "sha256": "ec152394fb25947315c0bd2254484ec34831faac405f3480348e697968c0e59b",
+        "syntaxCheckCommand": "node --check audit/2026-10-27/pack-native-browser-final27-routed-fault-confirmation.mjs",
+        "syntaxCheckExitCode": 0
+      },
+      {
+        "file": "audit/2026-10-27/run-final27-native-routed-fault-confirmation.mjs",
+        "sha256": "e4447ae3ad057b52fb718a0b387e332d8353662fb7f7641036f3bfb59a8e2443",
+        "syntaxCheckCommand": "node --check audit/2026-10-27/run-final27-native-routed-fault-confirmation.mjs",
+        "syntaxCheckExitCode": 0
+      }
+    ],
+    "safeOptInRouteAuditEnabled": true,
+    "countersResetOrLimitsWidenedOrOldOwnerReseeded": false
+  },
+  "originalFailedReportsRewritten": false,
+  "fullMatrixPassingClaim": false,
+  "runtimeOrTestOrBuildLaunchedByThisCapture": false,
+  "physicalDevices": "UNVERIFIED"
+}

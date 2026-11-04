@@ -13,6 +13,7 @@ use SparowType\ClassroomService;
 use SparowType\RaceStream;
 use SparowType\SocialService;
 use SparowType\ArenaService;
+use SparowType\RequestBody;
 
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store, private');
@@ -44,7 +45,6 @@ try {
     }
     Security::beginSession($config);
     $db = Database::connect($config);
-    Security::rate($db, $config, 'api', 1200, 60);
     $auth = new AuthService($db, $config);
     $validator = new SessionValidator();
     $data = new DataService($db, $validator, $config);
@@ -52,6 +52,8 @@ try {
     $prefix = rtrim($config['api_prefix'], '/');
     $path = $prefix && ($requestPath === $prefix || str_starts_with($requestPath, $prefix.'/')) ? substr($requestPath, strlen($prefix)) : $requestPath;
     $path = '/'.trim($path, '/');
+    $arenaAction = $method === 'POST' && preg_match('~^/arena/(create|join|get|ready|submit|leave|rematch|match|spectate|appeal)$~D', $path, $arenaMatch) ? $arenaMatch[1] : null;
+    $arenaUser = Security::apiRate($db, $config, $auth, $arenaAction !== null);
     $body = [];
     if ($method !== 'GET') {
         Security::verifyCsrf();
@@ -62,9 +64,7 @@ try {
         fclose($stream);
         if ($raw === false || strlen($raw) > $config['max_body_bytes']) throw new ApiException(413, 'payload-too-large', 'Request body exceeds the 2 MB limit.');
         try {
-            $decoded = json_decode($raw, false, 512, JSON_THROW_ON_ERROR);
-            if (!$decoded instanceof stdClass) throw new JsonException('The body is not an object.');
-            $body = json_decode($raw, true, 512, JSON_THROW_ON_ERROR);
+            $body = RequestBody::decode($raw);
         } catch (JsonException) {
             throw new ApiException(400, 'json', 'Send a valid JSON object.');
         }
@@ -94,7 +94,7 @@ try {
     } elseif ($method === 'POST' && $path === '/classroom/student/leave') {
         $result = (new ClassroomService($db, $validator))->leave();
     } else {
-        $user = $auth->requireUser();
+        $user = $arenaUser ?? $auth->requireUser();
         if ($method === 'POST' && in_array($path, ['/sessions', '/social/duel-submit'], true)) $data->captureRequestReceipt();
         if ($method === 'GET' && isset($_GET['expectedOwner'])) Security::owner($_GET, $user['id']);
         if ($method === 'GET' && $path === '/profile') $result = $data->profile($user);
@@ -104,10 +104,9 @@ try {
             Security::owner($body, $user['id'], false);
             Security::rate($db, $config, 'social-write', 30, 60, $user['id']);
             $result = (new SocialService($db, $validator, $data))->handle($match[1], $body, $user);
-        } elseif ($method === 'POST' && preg_match('~^/arena/(create|join|get|ready|submit|leave|rematch|match|spectate|appeal)$~D', $path, $match)) {
+        } elseif ($arenaAction !== null) {
             Security::owner($body, $user['id'], false);
-            Security::rate($db, $config, 'arena-write', 300, 60, $user['id']);
-            $result = (new ArenaService($db, $validator, $data))->handle($match[1], $body, $user);
+            $result = (new ArenaService($db, $validator, $data))->handle($arenaAction, $body, $user);
         }
         elseif ($method === 'GET' && $path === '/classroom') $result = (new ClassroomService($db, $validator))->list($user);
         elseif ($method === 'GET' && $path === '/race/transport') $result = RaceStream::capabilities($config);

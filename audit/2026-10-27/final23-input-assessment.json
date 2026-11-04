@@ -1,0 +1,57 @@
+{
+  "status": "FAILED",
+  "evidence": "audit/2026-10-27/final23-input-results.json",
+  "criterion": "Every unchanged original495-character run at4xCPU must retain exact input with thresholded/quantized observed p98 below100ms. This is not field INP.",
+  "automaticRetries": 0,
+  "runs": [
+    {
+      "run": 1,
+      "build": "85735c1a3b56655b767e",
+      "exact": true,
+      "attempts": 495,
+      "accuracy": 100,
+      "p98Ms": 112,
+      "maxMs": 256,
+      "rotation": {
+        "beforeLength": 247,
+        "afterLength": 247,
+        "retainedExactly": true,
+        "overflow": false
+      },
+      "errors": []
+    },
+    {
+      "run": 2,
+      "build": "85735c1a3b56655b767e",
+      "exact": true,
+      "attempts": 495,
+      "accuracy": 100,
+      "p98Ms": 104,
+      "maxMs": 248,
+      "rotation": {
+        "beforeLength": 247,
+        "afterLength": 247,
+        "retainedExactly": true,
+        "overflow": false
+      },
+      "errors": []
+    },
+    {
+      "run": 3,
+      "build": "85735c1a3b56655b767e",
+      "exact": true,
+      "attempts": 495,
+      "accuracy": 100,
+      "p98Ms": 104,
+      "maxMs": 240,
+      "rotation": {
+        "beforeLength": 247,
+        "afterLength": 247,
+        "retainedExactly": true,
+        "overflow": false
+      },
+      "errors": []
+    }
+  ],
+  "conclusion": "All three correctness and rotation checks passed; none met the strict latency target. The frame-presentation candidate has not demonstrated a tail-latency improvement."
+}

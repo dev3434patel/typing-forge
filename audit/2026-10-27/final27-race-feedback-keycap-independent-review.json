@@ -1,0 +1,85 @@
+{
+  "status": "READ-ONLY-REVIEW-NO-CONCRETE-BLOCKER-NATIVE-VALIDATION-PENDING",
+  "recordedAt": "2026-10-27T17:47:59.996Z",
+  "source27Build": "11de46af5d4a80e0e830",
+  "inputs": {
+    "src/components/typing/LiveKeyboard.tsx": {
+      "rawSha256": "00fa28b2709c70d744432536940e8210412a445f1097d42d49249afccd8c9d0b",
+      "normalizedSha256": "00fa28b2709c70d744432536940e8210412a445f1097d42d49249afccd8c9d0b"
+    },
+    "src/lib/__tests__/pressed-key-attribute.test.ts": {
+      "rawSha256": "2e85396e04a242af26c2680b2b6e6cc82d44d601ad10360677b66c366851349a",
+      "normalizedSha256": "2e85396e04a242af26c2680b2b6e6cc82d44d601ad10360677b66c366851349a"
+    },
+    "src/lib/__tests__/race-state-machine.test.ts": {
+      "rawSha256": "5b2eb2e724a27301806b30afaee26e571e5196f80a1bff39ec611f5f384391dd",
+      "normalizedSha256": "5b2eb2e724a27301806b30afaee26e571e5196f80a1bff39ec611f5f384391dd"
+    },
+    "src/lib/pressed-key-attribute.ts": {
+      "rawSha256": "d819c4a2c6f9ffd45d94dbd78b1e9441d8793a3ce2b8fd39e510f0b84cc824c3",
+      "normalizedSha256": "d819c4a2c6f9ffd45d94dbd78b1e9441d8793a3ce2b8fd39e510f0b84cc824c3"
+    },
+    "src/lib/race-state-machine.ts": {
+      "rawSha256": "ac67daa4871152e125eb04ab51d689fdccc84ab621828fbfe12b02673cd09cc4",
+      "normalizedSha256": "f0f849f6099a685b7f80b0b3933fe263edf7cd72efa4e092deefc09bd27a582d"
+    },
+    "src/pages/Race.tsx": {
+      "rawSha256": "1795751fd4d43f76f89f1fdbd36403b249dd1f45b4a8421fe1257a414d5fb9e4",
+      "normalizedSha256": "1795751fd4d43f76f89f1fdbd36403b249dd1f45b4a8421fe1257a414d5fb9e4"
+    },
+    "e2e/php-human-race.spec.ts": {
+      "rawSha256": "bc775338e01ebfe826080878fc07a8c3b0d2d13fa05333810236f4f3071f7155",
+      "normalizedSha256": "bc775338e01ebfe826080878fc07a8c3b0d2d13fa05333810236f4f3071f7155"
+    }
+  },
+  "findings": [],
+  "reviewedProperties": [
+    "Only matching pending completions modify their checkpoint/finish/local channel; stale/duplicate completions ignored.",
+    "Starting final submission supersedes checkpoint callbacks; matching final ACK clears checkpoint/finish errors only.",
+    "Genuine finish failure remains retryable and is not cleared by checkpoint or local success.",
+    "Local-save failure persists independently before or after successful finish ACK.",
+    "Old physical store cleanup clears only its held attribute, unsubscribes and deactivates copied callbacks; every keycap commit repairs current store/static state.",
+    "Appended native case aborts held late checkpoint only after matching final ACK marker; actual30s clock and successful API validation retained."
+  ],
+  "preparedCoverage": {
+    "newReducerCases": 9,
+    "newAttributeHandoffCases": 2,
+    "newNativeTitle": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+    "nativeTotal": 20,
+    "specFiles": 64,
+    "originalRealHumanScenario": {
+      "bodyNormalizedBytesEqual": true,
+      "normalizedSha256": "85ba8dee34ec40d5e393696a50a425239a720cfec6ef743206883739cbe0a05e",
+      "reference": "275c8c2:e2e/php-human-race.spec.ts",
+      "onlySharedImportAddition": "type Route"
+    }
+  },
+  "wrapperReview": {
+    "nativeWrapperSha256": "8dcda4cbc2dd995bf0b37f5ba95979bf2466b9b77ef2afc84c93c4cc17aaa783",
+    "nativeRunnerSha256": "abaea368553d3d6c1c7f86749e5eef540b07d80bc035303cfd6ddf8ed58913ab",
+    "actualRuntimeBuildGuard": true,
+    "source505Guard": true,
+    "expected20Guard": true,
+    "allFourEngines": true,
+    "workers": 1,
+    "retries": 0,
+    "oldCaseAssertionsUnchanged": true,
+    "capacityNativeCi8NotPrepared": true
+  },
+  "validation": {
+    "sourceChecks": "Root completed12/12PASS;2867tests/114files",
+    "native20": "PENDING",
+    "fullMatrix": "PENDING",
+    "testsRunByReviewer": 0,
+    "browsersStartedByReviewer": 0,
+    "servicesStartedByReviewer": 0,
+    "productionOrTestEditsByReviewer": 0
+  },
+  "extractionCorrection": "Initial reviewer inventory assertion failed before writing a receipt because all binary assets were decoded as text. Repeated with existing extension-aware normalizedSourceHash, preserving raw binary identity; no product or measurement changed.",
+  "inheritanceReceipt": "audit/2026-10-27/final27-backend-wire-evidence-inheritance.json",
+  "limitations": [
+    "Read-only review does not replace fresh compiled/native acceptance.",
+    "Original source2615/16 browser failure retained; original network cause remains unproven.",
+    "Physical-device/hosted/field behavior remains unverified."
+  ]
+}

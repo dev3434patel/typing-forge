@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-10-27T16:08:03.1958294Z",
+  "status": "CONFIRMED-TEST-FIXTURE-DEFECT-FIX-NOT-YET-APPLIED",
+  "build": "85735c1a3b56655b767e",
+  "failedSpec": "e2e/keycap-attribute-ownership.spec.ts",
+  "originalSpecSha256": "9b1da1d41b0de546d44deba038bfad32fa25afbe196e68ac7e7a74bd9f56a45e",
+  "test": "held attributes survive canonical corrections and clear on blur and restart",
+  "failureLine": 86,
+  "originalFailure": "Expected an empty Typing input immediately after Custom-mode restart, but the textbox is absent because restart correctly returns to the custom passage editor.",
+  "retainedContexts": [
+    {
+      "project": "chromium",
+      "path": "audit/2026-10-27/.playwright-artifacts-final23-frame-smoke/keycap-attribute-ownership-0d1c8-d-clear-on-blur-and-restart-chromium/error-context.md",
+      "sha256": "76f621726491f4c3e5fa632b566a89f914e626159056b7dab8a5194aa9fd133e"
+    },
+    {
+      "project": "edge",
+      "path": "audit/2026-10-27/.playwright-artifacts-final23-frame-smoke/keycap-attribute-ownership-0d1c8-d-clear-on-blur-and-restart-edge/error-context.md",
+      "sha256": "76f621726491f4c3e5fa632b566a89f914e626159056b7dab8a5194aa9fd133e"
+    },
+    {
+      "project": "firefox",
+      "path": "audit/2026-10-27/.playwright-artifacts-final23-frame-smoke/keycap-attribute-ownership-0d1c8-d-clear-on-blur-and-restart-firefox/error-context.md",
+      "sha256": "76f621726491f4c3e5fa632b566a89f914e626159056b7dab8a5194aa9fd133e"
+    }
+  ],
+  "codeWitness": {
+    "path": "src/pages/Index.tsx",
+    "sha256": "d4891ab2adeab68a46e1e81487d8ec1d0c9724f4274a29b8ea630cd600dc2aa3",
+    "restartLine": 207,
+    "behavior": "next() sets customReady=false for Custom mode; rendering then selects the custom passage editor until Start private practice is clicked."
+  },
+  "artifactWitness": "All three inspected failure contexts show Custom mode, Bring your own passage, Custom practice passage=cat dog and Start private practice; all earlier held/correction/blur checks had completed.",
+  "approvedFix": "After restart and native key release, assert the retained custom passage equals cat dog and click Start private practice. Then retain the original empty-input and zero-held-key assertions verbatim.",
+  "unchangedAssertionsAndDeadline": true,
+  "productionSourceChanges": 0,
+  "jobsRunByThisAgent": 0,
+  "waitingForCurrentSmokeToClose": true,
+  "limitation": "This diagnosis does not turn the original failed smoke into a pass. Browser confirmation of the corrected fixture belongs to a fresh full matrix; no retry or timeout increase is proposed."
+}

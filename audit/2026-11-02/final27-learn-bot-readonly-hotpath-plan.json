@@ -1,0 +1,85 @@
+{
+  "capturedAt": "2026-11-02T16:26:42.773Z",
+  "status": "READONLY-CANDIDATES-PROFILE-REQUIRED",
+  "sourceBuild": "11de46af5d4a80e0e830",
+  "staticBuild": "fac344923bbf9cbde394",
+  "acceptance": "Learn112ms/BOT112ms remainFAILED; course48/games40 passed declaredp98 criterion. This inspection runs no benchmark.",
+  "findings": [
+    {
+      "scope": "Learn",
+      "source": "src/pages/Learn.tsx",
+      "observation": "Route wrapper is thin; measured input lives in KeybrLessonMode."
+    },
+    {
+      "scope": "Learn",
+      "source": "src/components/keybr/KeybrLessonMode.tsx",
+      "observation": "Canonical inputs and100ms controller presentation ticks call setView. The component renders non-memoized LetterProgressPanel inside a collapsed details section; collapsed HTML does not prevent React execution. Parent stats already useMemo(options,revision), while the child calls getAllCharacterStats again and has an inline onSelectKey callback."
+    },
+    {
+      "scope": "Learn",
+      "source": "src/components/keybr/LetterProgressPanel.tsx",
+      "observation": "getAllCharacterStats invokes derive(loadEnvelope). The panel constructs all key buttons/history UI when React calls it; current component is not memoized. This is a synchronous candidate, not measured attribution."
+    },
+    {
+      "scope": "BOT",
+      "source": "src/pages/Race.tsx",
+      "observation": "Own onSnapshot calls setOwn(new object) for accepted input and100ms TypingArea HUD refreshes. Independent100ms bot loop calls botController.input per simulated edit then tick and setBotStats(new object). Parent passes a freshly created opponentPace object to non-memoized TypingArea."
+    },
+    {
+      "scope": "BOT",
+      "source": "src/components/typing/TypingArea.tsx",
+      "observation": "Rival mode filters all snapshot.characters for target count and builds passage presentation. Own state and callback update occur together; React batching means source inspection alone cannot count distinct committed renders."
+    },
+    {
+      "scope": "BOT",
+      "source": "src/components/typing/OpponentPaceMarker.tsx",
+      "observation": "Correct-prefix own edits can reuse opponent point; changed opponent positions measure slot/viewport DOM rects and computed direction, then setPoint. Need LoAF evidence before calling layout the bottleneck."
+    },
+    {
+      "scope": "Shared core",
+      "source": "src/lib/typing-core/session.ts",
+      "observation": "Presentation alignment caching keyed by lastSequence+target ALREADY EXISTS in the exact frozen source. It is passed into calculateMetrics; do not add a duplicate idle-alignment cache. Metrics/clocks still recompute and events are cloned in snapshots."
+    }
+  ],
+  "profilingPlan": {
+    "entry": "audit/2026-11-02/run-final27-mobile-hotpath-profile.mjs",
+    "cases": [
+      "learn",
+      "local-bot"
+    ],
+    "kind": "DIAGNOSTIC-NOT-ACCEPTANCE",
+    "preserved": "Actual original native input sequences, CPU4x,390x844touch,33000ms case/145000ms total deadlines, correctness exports and zero-API static artifact.",
+    "capture": "1000us V8 CPU sampling, bounded LoAF scripts with forcedStyleAndLayoutDuration, event timing and long tasks, beforeinput sequence/timestamps without typed text.",
+    "phaseBoundaries": "BOT profiler ends before manualFinish. Learn full call includes automatic result transition, but strictPreFinalInsertion excludes the final insertion and all later work from claimed input causes.",
+    "attribution": "Require actual CPU stacks and overlap evidence; durations overlap and are not exclusive causal components. Preserve signed profiler clock deltas and verified NavigationStart clock bounds.",
+    "nextIfMeasured": [
+      "If learning derive/loadEnvelope/LetterProgressPanel dominates, isolate/memoize that evidence panel with stable selection callback and existing owner/dimension/revision invalidation, or reuse parent memoized stats. Do not cache private learning data globally.",
+      "If parent/child BOT presentation churn dominates, consider stable opponent presentation props and component boundaries/equality guards while keeping every bot edit and authoritative100ms clock update. Do not reduce bot accuracy or remove pace feedback.",
+      "If layout dominates, inspect exact opponent/own caret cache misses and safe geometry reuse; preserve fallback for edits/errors/IME/RTL, resize, font and viewport changes.",
+      "If final Learn input dominates, separate noncanonical result insight rendering from immediate canonical result retention; do not fake pending states or risk evidence loss."
+    ]
+  },
+  "constraints": [
+    "No product/test/clock/scoring/event-dropping/3D edits from this reviewer.",
+    "No profile is an acceptance rerun; the original112ms failures remain unchanged.",
+    "Minified stacks, sampling overhead, one dynamic passage per run, and event quantization limit attribution."
+  ],
+  "sourceHashes": {
+    "src/pages/Learn.tsx": "cd88a15e33045e5cdedc0b5a59947414c28aa026ae92910b5e4c9e14a08a2b61",
+    "src/components/keybr/KeybrLessonMode.tsx": "20fadff93a1fb79fc119c80a9cb9f72127f58bae2edc9d292e3d7664f20df872",
+    "src/components/keybr/LetterProgressPanel.tsx": "3a04c0c2c732ec92eccb1c642ce37304a4cba317bdf8d7f45d3bd8a1015cb9c1",
+    "src/lib/keybr-engine.ts": "2128d813b9c4bd0a129e31d8c8a026023a38424f26fd966959fcaa0e1b7f01d1",
+    "src/pages/Race.tsx": "1795751fd4d43f76f89f1fdbd36403b249dd1f45b4a8421fe1257a414d5fb9e4",
+    "src/components/typing/TypingArea.tsx": "d767dd13fe1e2d8844a8a0a1db11254403387edb18f15e0cbe72d6901028b073",
+    "src/components/typing/OpponentPaceMarker.tsx": "954e1e5f42e9e255cd4373d1dcb2157dad9851afb5482b5e4088ff62992feda3",
+    "src/components/typing/TypingPassage.tsx": "5f9df6976d2a32b5f444ce80206d1818cde71b587431b6655261c5eb21ab1386",
+    "src/components/typing/typing-passage-model.ts": "403983e3aa3cfe1cd45f31d90ac4f8c19d9287696a225d1c7a592c2419625a5e",
+    "src/lib/typing-core/session.ts": "5436852d79b166acd708dc07eb67893da0059e3703cd1bc02b8a8fa451d1672c"
+  },
+  "reviewerActions": {
+    "newBenchmarks": 0,
+    "newBrowsers": 0,
+    "newServices": 0,
+    "productOrTestEdits": 0
+  }
+}

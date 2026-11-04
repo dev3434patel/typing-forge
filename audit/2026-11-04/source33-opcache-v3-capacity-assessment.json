@@ -1,0 +1,169 @@
+{
+  "recordedAt": "2026-11-04T16:25:56.188Z",
+  "status": "FAILED-CAPACITY-LATENCY-ONLY",
+  "ownerId": "6fdb39700f4ae947",
+  "build": "332e23584f1e36465df2",
+  "scope": "Separately declared opt-in OPcache production-configuration variant; no ordinary uncached pass and no hosted or sustained400-client claim.",
+  "full": {
+    "status": "FAILED",
+    "requests": 1653,
+    "unexpected": 0,
+    "statusCounts": {
+      "200": 1651,
+      "403": 1,
+      "409": 1
+    },
+    "occupiedSeats": 400,
+    "successfulRequestP95Ms": 182.1276999999991,
+    "targetMs": 150,
+    "targetMet": false,
+    "submitP95Ms": 205.36369999999988,
+    "failedChecks": [
+      {
+        "name": "successful-request p95 remains strictly below150ms",
+        "pass": false,
+        "detail": {
+          "p95Ms": 182.1276999999991,
+          "targetMs": 150
+        }
+      }
+    ],
+    "source505Unchanged": true,
+    "inputsUnchanged": true,
+    "fixtureCleanup": {
+      "deletedOwnAccounts": 400,
+      "removedOwnSessions": 400
+    }
+  },
+  "wire": {
+    "status": "FAILED",
+    "requests": 1653,
+    "unexpected": 0,
+    "statusCounts": {
+      "200": 1651,
+      "403": 1,
+      "409": 1
+    },
+    "occupiedSeats": 400,
+    "successfulRequestP95Ms": 163.25760000000082,
+    "targetMs": 150,
+    "targetMet": false,
+    "submitP95Ms": 187.49099999999999,
+    "failedChecks": [
+      {
+        "name": "successful-request p95 remains strictly below150ms",
+        "pass": false,
+        "detail": {
+          "p95Ms": 163.25760000000082,
+          "targetMs": 150
+        }
+      }
+    ],
+    "source505Unchanged": true,
+    "inputsUnchanged": true,
+    "fixtureCleanup": {
+      "deletedOwnAccounts": 400,
+      "removedOwnSessions": 400
+    }
+  },
+  "nativeArena": {
+    "status": "PASS-SCOPED",
+    "passed": 32,
+    "failed": 0,
+    "actualFullFinishChartPersisted": true
+  },
+  "runtimeCacheProof": {
+    "enabled": true,
+    "ownedIniHashMatched": true,
+    "backend38Unchanged": true,
+    "cachedScripts": 18,
+    "hits": 42710,
+    "scripts": {
+      "applicationIndex": {
+        "forwardLookup": true,
+        "canonicalRealpathCached": true,
+        "fullCanonicalMetadataMatch": true,
+        "sourceHashMatches": true,
+        "sourceMtimeMatches": true,
+        "scriptHits": 3359
+      },
+      "validator": {
+        "forwardLookup": false,
+        "canonicalRealpathCached": true,
+        "fullCanonicalMetadataMatch": true,
+        "sourceHashMatches": true,
+        "sourceMtimeMatches": true,
+        "scriptHits": 3359
+      },
+      "arena": {
+        "forwardLookup": false,
+        "canonicalRealpathCached": true,
+        "fullCanonicalMetadataMatch": true,
+        "sourceHashMatches": true,
+        "sourceMtimeMatches": true,
+        "scriptHits": 807
+      }
+    }
+  },
+  "historicalFailuresPreserved": {
+    "uncached33FullP95Ms": 193.2158,
+    "uncached33WireP95Ms": 172.1367,
+    "v2FullP95Ms": 173.4796,
+    "v2CacheProof": "UNVERIFIED: forward-only Windows script lookup returned false; post-facts were not persisted in that old failed probe.",
+    "v2WireAndNative": "NOT-RUN"
+  },
+  "interpretation": "Windows lookup spelling mismatch is proven by bounded CLI and nine-request web diagnostics. Correcting that measurement control does not erase old raw measurements, establish causality, or satisfy the unchanged strict150ms SLO.",
+  "frozenSource": {
+    "sourceFile": "audit/2026-11-02/final33-source.json",
+    "expectedBuild": "332e23584f1e36465df2",
+    "compared": 505,
+    "mismatches": []
+  },
+  "additionalProfileInputCount": 9,
+  "additionalProfileInputsUnchanged": true,
+  "fragmentOutsideFrozen505": true,
+  "fragmentHash": "0bd8fae150da074f7fcbdd850f1f87c7ca07d560cec45b80268fcd74ce5a7bc0",
+  "sourceOrFrozenTestsEditedForThisVariant": false,
+  "warmupOrResetOrRetry": false,
+  "cleanup": {
+    "ownProcessesStopped": true,
+    "gracefulDatabaseShutdown": true,
+    "gracefulApacheShutdown": true,
+    "forcedDatabaseStop": false,
+    "forcedApacheStop": false,
+    "apacheResidualPids": [],
+    "privateFailureDiagnosticsRetained": true,
+    "originalUserPortsUntouched": [
+      3308,
+      8081,
+      4173
+    ]
+  },
+  "evidenceHashes": {
+    "full": {
+      "file": "audit/2026-11-02/source33-opcache-v3-capacity-6fdb39700f4ae947.json",
+      "sha256": "652499974defa687da02faeebb4b772c6503935d5019eef3be2f5f0c071bed8e"
+    },
+    "wire": {
+      "file": "audit/2026-11-02/source33-opcache-v3-capacity-wire-6fdb39700f4ae947.json",
+      "sha256": "f9fe36feeaaadfb1b9b3a05516b0b128e9c11e4d7150b81ae26fd617b92170c5"
+    },
+    "native": {
+      "file": "audit/2026-11-02/pack-backend-6fdb39700f4ae947-arena-http-raw.json",
+      "sha256": "eed8601dbaf1e8d8fa2b9302a84ab212e11761f9efeb3136a7e14f478f45a772"
+    },
+    "cleanup": {
+      "file": "audit/2026-11-02/pack-backend-6fdb39700f4ae947-cleanup.json",
+      "sha256": "f42f0f6f1f5949c92b152c998aa5d56dd2121ac431625ba8f02ad61994b51f81"
+    },
+    "cache": {
+      "file": "audit/2026-11-02/pack-backend-6fdb39700f4ae947-opcache-after-arena-http.json",
+      "sha256": "47d3baaacfed6c8fdf6df49024c476a4c3ce95589de1cfbcc3ee14014f69266a"
+    },
+    "manifest": {
+      "file": "audit/2026-11-04/source33-opcache-profile-preparation-v3.json",
+      "sha256": "2e8d2337baefa899426d5d00ae41c3cc8e1220176f8abb55c92950985d9cdf29"
+    }
+  },
+  "remaining": "The1653-operation20-concurrency capacity p95 target is still not met in either representation. Current evidence does not justify weakening authoritative replay, clock checks, locking, rate policy or durability."
+}

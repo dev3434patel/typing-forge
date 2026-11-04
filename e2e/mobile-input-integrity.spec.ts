@@ -29,6 +29,85 @@ async function nativeInput(
   }, { value, inputType, data });
 }
 
+test.describe("native editing across presentation frames", () => {
+  test.use({ hasTouch: true, viewport: { width: 390, height: 844 } });
+
+  test("several native input events in one task complete with every attempt intact", async ({ page }) => {
+    const input = await customPractice(page, "cat dog");
+    const drafts = await input.evaluate(element => {
+      const field = element as HTMLTextAreaElement;
+      const values: string[] = [];
+      for (const text of "cat dog") {
+        field.value += text;
+        field.dispatchEvent(new InputEvent("input", { bubbles: true, inputType: "insertText", data: text }));
+        values.push(field.value);
+      }
+      return values;
+    });
+    expect(drafts).toEqual(["c", "ca", "cat", "cat ", "cat d", "cat do", "cat dog"]);
+    const result = await exportedResult(page);
+    expect(result.finalText).toBe("cat dog");
+    expect(result.events).toHaveLength(7);
+    expect(result.metrics.insertionAttempts).toBe(7);
+    expect(result.metrics.inputAccuracy).toBe(100);
+  });
+
+  test("pausing before the next paint preserves pending text and cannot be undone by an old frame", async ({ page }) => {
+    const input = await customPractice(page, "cat dog");
+    await input.evaluate(element => {
+      const field = element as HTMLTextAreaElement;
+      for (const text of "ca") {
+        field.value += text;
+        field.dispatchEvent(new InputEvent("input", { bubbles: true, inputType: "insertText", data: text }));
+      }
+      field.dispatchEvent(new KeyboardEvent("keydown", { bubbles: true, cancelable: true, key: "Escape", code: "Escape" }));
+    });
+    await expect(page.getByRole("region", { name: "Typing session", exact: true })).toHaveAttribute("data-status", "paused");
+    await expect(input).toHaveValue("ca");
+    await expect(input).toBeDisabled();
+    await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+    await expect(page.getByRole("region", { name: "Typing session", exact: true })).toHaveAttribute("data-status", "paused");
+    await expect(page.locator('[data-testid="typing-target"] [data-status="correct"]')).toHaveCount(2);
+    await page.getByRole("button", { name: "Resume", exact: true }).click();
+    await expect(input).toBeFocused();
+    await input.pressSequentially("t dog");
+    const result = await exportedResult(page);
+    expect(result.finalText).toBe("cat dog");
+    expect(result.metrics.insertionAttempts).toBe(7);
+    expect(result.metrics.inputAccuracy).toBe(100);
+    expect(result.pauseIntervals).toHaveLength(1);
+  });
+
+  test("an IME draft survives live clock updates and commits exactly once", async ({ page }) => {
+    const input = await customPractice(page, "cat dog");
+    await input.press("c");
+    await input.evaluate(element => {
+      const field = element as HTMLTextAreaElement;
+      field.dispatchEvent(new CompositionEvent("compositionstart", { bubbles: true, data: "" }));
+      field.value = "cあ";
+      field.setSelectionRange(2, 2);
+      field.dispatchEvent(new InputEvent("input", { bubbles: true, inputType: "insertCompositionText", data: "あ", isComposing: true }));
+    });
+    await expect(page.locator(".typing-hud")).toContainText("1s");
+    await expect(input).toHaveValue("cあ");
+    await input.evaluate(element => {
+      const field = element as HTMLTextAreaElement;
+      field.value = "ca";
+      field.setSelectionRange(2, 2);
+      field.dispatchEvent(new CompositionEvent("compositionend", { bubbles: true, data: "a" }));
+      field.dispatchEvent(new InputEvent("input", { bubbles: true, inputType: "insertCompositionText", data: "a" }));
+    });
+    await expect(input).toHaveValue("ca");
+    await input.pressSequentially("t dog");
+    const result = await exportedResult(page);
+    expect(result.finalText).toBe("cat dog");
+    expect(result.metrics.insertionAttempts).toBe(7);
+    expect(result.metrics.inputAccuracy).toBe(100);
+    expect(result.events.filter(event => event.type === "composition")).toHaveLength(1);
+    expect(result.elapsedMs).toBeGreaterThanOrEqual(1000);
+  });
+});
+
 test.describe("mobile retained-text input integrity", () => {
   test.use({ hasTouch: true, viewport: { width: 390, height: 844 } });
 

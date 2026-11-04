@@ -1,0 +1,71 @@
+{
+  "preparedAt": "2026-10-27T17:27:11.222Z",
+  "status": "PREPARED-NOT-RUN",
+  "source": "audit/2026-10-27/run-final26-native-ci.mjs",
+  "sourceSha256": "323ef20e7c3caf6bcdf1b971878555ff09f5f438507fec3d19d55f73f0284bf8",
+  "target": "audit/2026-10-27/run-final26-classroom-isolation-confirmation.mjs",
+  "targetSha256": "c3fc14847fae21b2501a2bb9d951784ac12cbc20ba271898de99c3bb0dbd04fa",
+  "reversibleByteIdentity": true,
+  "substitutions": [
+    {
+      "before": "SPAROWTYPE_FINAL26_NATIVE_CI",
+      "after": "SPAROWTYPE_FINAL26_CLASSROOM_ISOLATION_CONFIRMATION",
+      "count": 1
+    },
+    {
+      "before": "final26-native-ci.json",
+      "after": "final26-classroom-isolation-confirmation.json",
+      "count": 1
+    },
+    {
+      "before": "final26-native-ci.log",
+      "after": "final26-classroom-isolation-confirmation.log",
+      "count": 1
+    },
+    {
+      "before": "const suites = ['data', 'race', 'course', 'progression', 'social', 'classroom', 'arena-http', 'password'];",
+      "after": "const suites = ['classroom'];",
+      "count": 1
+    },
+    {
+      "before": "scope: 'Current frozen source26 real loopback Apache/PHP/PDO/MariaDB module contracts on one wholly new synthetic database. No browser, capacity load, hosted or physical-device claim.'",
+      "after": "scope: 'Current frozen source26 isolated classroom9-check real Apache/PHP/PDO lifecycle on one wholly new synthetic database. Original8-suite quota failure retained; no browser, capacity, hosted or physical-device claim.'",
+      "count": 1
+    },
+    {
+      "before": "coverageExtension: { preservedFiveSuiteWrapper: 'audit/2026-10-27/run-final26-native-modules.mjs', addedCiLifecycleSuites: ['data', 'race', 'course'], requiredExactSuiteCount: 8, allOriginalFiveIncludedExactlyOnce: true, ciWorkflow: '.github/workflows/ci.yml', testAssertionsOrOwnerCleanupChanged: false }",
+      "after": "isolationConfirmation: { originalFailedReceipt: 'audit/2026-10-27/final26-native-ci.json', originalOwner: '5aca146872db63d8', originalFailure: 'Classroom signup HTTP429 after earlier suites consumed the unchanged protected30/min authentication budget.', requiredExactSuiteCount: 1, requiredExactClassroomChecks: 9, freshOwnerRequired: true, originalEightSuiteResultReplaced: false, rateCountersReset: false, productionLimitsChanged: false, testAssertionsOrOwnerCleanupChanged: false }",
+      "count": 1
+    },
+    {
+      "before": "Fresh source26 native CI lifecycle acceptance: data, race, course, progression, social, classroom, Arena HTTP and password exactly once; no browser or capacity workload.",
+      "after": "Separately authorized classroom-only9-check confirmation in a fresh source26 owner after retained8-suite HTTP429 fixture-quota exhaustion. No counter reset, production limiter change or other suite/browser/capacity workload.",
+      "count": 1
+    },
+    {
+      "before": "const cleanup = report.events.find(event => event.stage === 'ephemeral-cleanup');",
+      "after": "const cleanup = report.events.find(event => event.stage === 'ephemeral-cleanup');\n  const provision = report.events.find(event => event.stage === 'ephemeral-provision');\n  const ownerMatch = /^sparow_pack_([a-f0-9]{16})_audit$/.exec(provision?.database ?? '');\n  assert.ok(ownerMatch, 'Fresh owned database identity missing.');\n  assert.notEqual(ownerMatch[1], '5aca146872db63d8', 'Do not reuse the failed8-suite owner.');\n  report.classroomReceipt = 'pack-backend-' + ownerMatch[1] + '-classroom.json';\n  report.classroomResult = JSON.parse(await readFile(directory + '/' + report.classroomReceipt, 'utf8'));\n  assert.equal(report.classroomResult.guardedTarget.database, provision.database);",
+      "count": 1
+    },
+    {
+      "before": "results.length === 8",
+      "after": "results.length === 1",
+      "count": 1
+    },
+    {
+      "before": "&& cleanup?.ownProcessesStopped === true",
+      "after": "&& report.classroomResult?.status === 'PASS' && report.classroomResult.passed === 9 && report.classroomResult.failed === 0 && report.classroomResult.checks.length === 9 && report.classroomResult.checks.every(check => check.status === 'PASS') && report.classroomResult.rateCountersReset === false && report.classroomResult.userDatabaseTouched === false && report.classroomResult.credentialsOrCookiesEmitted === false && cleanup?.ownProcessesStopped === true",
+      "count": 1
+    }
+  ],
+  "requiredBuild": "88b8024ae4b840c10422",
+  "requiredSourceFiles": 505,
+  "requiredSuite": "classroom",
+  "requiredChecks": 9,
+  "originalEightSuiteFailureRetained": "final26-native-ci.json",
+  "runRequires": "Separate root GO, SPAROWTYPE_FINAL26_CLASSROOM_ISOLATION_CONFIRMATION=1 and SPAROWTYPE_FINAL26_BUILD_ID actual build.",
+  "servicesStarted": 0,
+  "testsRun": 0,
+  "privateConfigurationRead": false,
+  "productFilesChanged": false
+}

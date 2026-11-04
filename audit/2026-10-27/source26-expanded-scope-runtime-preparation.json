@@ -1,0 +1,38 @@
+{
+  "status": "PREPARED-AUDIT-ONLY-BUILD-BINDING-CORRECTED-NOT-RUN",
+  "recordedAt": "2026-10-27T17:11:31.112Z",
+  "reason": "Source26 scope now includes the production Arena wire helper and service, so the earlier unchanged-frontend proposal is superseded. Fresh build, three ordinary input runs and three full-quality mobile Lighthouse runs are required.",
+  "changes": [
+    {
+      "file": "audit/2026-10-27/setup-final26-portable-deno.mjs",
+      "before": "assert.equal(initial.frozen.local.version, '6cdddf1a74b2d10d1c9b');",
+      "after": "assert.match(initial.frozen.local.version, /^[a-f0-9]{20}$/);",
+      "originalSha256": "7dd0e7c460bf4adae0f17c505046fdb4d02cc892cf787cd5c22a26da2039c160",
+      "sha256": "25cc7e144e331e97a46eb9e9f10985d528c7bfa083eaaa64f16fb5c96cb6752a",
+      "reversibleByteIdentity": true
+    },
+    {
+      "file": "audit/2026-10-27/final26-portable-deno-plan.json",
+      "before": "Verify actual frozen source26 inventory505/build6cdddf1a74b2d10d1c9b and verify the ignored destination boundary.",
+      "after": "Verify actual frozen source26 inventory505 and the fresh build explicitly bound by SPAROWTYPE_FINAL26_BUILD_ID; verify the ignored destination boundary.",
+      "originalSha256": "9e24ceffb4d28f47978070376ab8ffc7e9c9cf0898d6068bc1eae3597544cb60",
+      "sha256": "199d853bc93edeae5834e86d7c5b4d9be6dfe849020999184055f823c48c2b16",
+      "reversibleByteIdentity": true
+    }
+  ],
+  "frozenSourceCountGuardPreserved": 505,
+  "actualFreshBuildEnvironmentMatchRequired": true,
+  "officialDenoReleaseAndBothHashesUnchanged": "2.9.8",
+  "originalPrepared26ReceiptsPreservedAsHistoricalProposal": true,
+  "strictUiReuseChecker": {
+    "file": "audit/2026-10-27/verify-source26-ui-evidence-reuse.mjs",
+    "sha256": "0d7f5be514a7af6222705c208c8a50be5170c09cf6af89e5331d7786385133db",
+    "status": "NOT-USED",
+    "assertionsRelaxed": false
+  },
+  "acceptanceTestsRun": 0,
+  "buildsRun": 0,
+  "downloadsRun": 0,
+  "typechecksRun": 0,
+  "servicesStarted": 0
+}

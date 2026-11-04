@@ -1,0 +1,169 @@
+{
+  "capturedAt": "2026-11-02T16:13:29.539Z",
+  "status": "FAILED-LATENCY-TWO-OF-FOUR-WORKSPACES",
+  "sourceBuild": "11de46af5d4a80e0e830",
+  "staticBuild": "fac344923bbf9cbde394",
+  "criterion": {
+    "p98ObservedTypingEventDurationMs": "strictly below100ms for EACH declared workspace",
+    "thresholdMs": 100,
+    "comparison": "<"
+  },
+  "functionalStatus": "PASS-SCOPED-FOUR-OF-FOUR",
+  "latencyStatus": "FAILED",
+  "failedWorkspaceIds": [
+    "learn",
+    "local-bot"
+  ],
+  "passedLatencyWorkspaceIds": [
+    "course",
+    "games"
+  ],
+  "rows": [
+    {
+      "id": "learn",
+      "functionalStatus": "PASS-SCOPED",
+      "latencyStatus": "FAILED",
+      "p98TypingEventMs": 112,
+      "maxTypingEventMs": 312,
+      "p98InteractionMaximumMs": 168,
+      "observedTypingEventsAtLeast16ms": 601,
+      "interactionsAtLeast16ms": 121,
+      "beforeInputEvents": 121,
+      "measuredWallMs": 4965.800000071526,
+      "exactFinalTextOrInputs": true,
+      "targetUnits": 121,
+      "attempts": 121,
+      "inputAccuracy": 100,
+      "completedGates": null,
+      "pageErrors": [],
+      "consoleErrors": [],
+      "horizontalOverflow": false,
+      "longTasksThroughTypingAndResult": [
+        64,
+        82,
+        112,
+        67,
+        56,
+        57,
+        82,
+        67,
+        61,
+        59,
+        282,
+        125,
+        155
+      ]
+    },
+    {
+      "id": "course",
+      "functionalStatus": "PASS-SCOPED",
+      "latencyStatus": "PASS-SCOPED",
+      "p98TypingEventMs": 48,
+      "maxTypingEventMs": 80,
+      "p98InteractionMaximumMs": 72,
+      "observedTypingEventsAtLeast16ms": 292,
+      "interactionsAtLeast16ms": 59,
+      "beforeInputEvents": 59,
+      "measuredWallMs": 1446,
+      "exactFinalTextOrInputs": true,
+      "targetUnits": 59,
+      "attempts": 59,
+      "inputAccuracy": 100,
+      "completedGates": null,
+      "pageErrors": [],
+      "consoleErrors": [],
+      "horizontalOverflow": false,
+      "longTasksThroughTypingAndResult": [
+        71
+      ]
+    },
+    {
+      "id": "local-bot",
+      "functionalStatus": "PASS-SCOPED",
+      "latencyStatus": "FAILED",
+      "p98TypingEventMs": 112,
+      "maxTypingEventMs": 160,
+      "p98InteractionMaximumMs": 128,
+      "observedTypingEventsAtLeast16ms": 500,
+      "interactionsAtLeast16ms": 100,
+      "beforeInputEvents": 100,
+      "measuredWallMs": 5250.600000023842,
+      "exactFinalTextOrInputs": true,
+      "targetUnits": 100,
+      "attempts": 100,
+      "inputAccuracy": 100,
+      "completedGates": null,
+      "pageErrors": [],
+      "consoleErrors": [],
+      "horizontalOverflow": false,
+      "longTasksThroughTypingAndResult": [
+        76,
+        72,
+        108,
+        65,
+        84,
+        52,
+        53,
+        67,
+        530,
+        529,
+        64
+      ]
+    },
+    {
+      "id": "games",
+      "functionalStatus": "PASS-SCOPED",
+      "latencyStatus": "PASS-SCOPED",
+      "p98TypingEventMs": 40,
+      "maxTypingEventMs": 56,
+      "p98InteractionMaximumMs": 40,
+      "observedTypingEventsAtLeast16ms": 398,
+      "interactionsAtLeast16ms": 101,
+      "beforeInputEvents": 98,
+      "measuredWallMs": 2498.8000000715256,
+      "exactFinalTextOrInputs": true,
+      "targetUnits": 98,
+      "attempts": 98,
+      "inputAccuracy": 100,
+      "completedGates": 18,
+      "pageErrors": [],
+      "consoleErrors": [],
+      "horizontalOverflow": false,
+      "longTasksThroughTypingAndResult": []
+    }
+  ],
+  "execution": {
+    "topLevelWrapperStatus": "PASS-SCOPED",
+    "topLevelWrapperCoversLatencyCriterion": false,
+    "actualApiRequests": 0,
+    "actualApiRequestRows": [],
+    "ownedBrowserChildExited": true,
+    "ownedServerClosed": true,
+    "sourceCompared": 505,
+    "sourceMismatches": [],
+    "artifactHashesUnchanged": true,
+    "measurementRetries": 0,
+    "resultFiltering": false
+  },
+  "limits": [
+    "One retained run per workspace, no result filtering or confirmation measurement performed by this reviewer.",
+    "Chromium156.0.8078.4 desktop engine with390x844 mobile/touch emulation, deviceScaleFactor1 and4xCPU throttle, not a physical phone.",
+    "Thresholded/quantized Event Timing durations include observed entries>=16ms. These p98 values are not field INP or an every-event<100ms guarantee.",
+    "A requested0ms driver delay is not a human typing-speed measurement.",
+    "Opening was disabled only for this isolated workspace test; the separate normal-full-quality3D Lighthouse evidence is unaffected.",
+    "Long-task arrays cover typing THROUGH result rendering, so their largest entries cannot be attributed exclusively to input handlers.",
+    "Functional accuracy and zero backend traffic do not establish the latency acceptance criterion."
+  ],
+  "inputHashes": {
+    "audit/2026-10-27/mobile-workspaces-final27-static.json": "bdb0c1f0d0f7378a630252af7ae052abbe8a6de43ada426268d9e4783126cc1a",
+    "audit/2026-10-27/mobile-workspaces-final27-static-process.json": "c4395f6efda3e6189dcf2454a2f42195f0d57905982ef7c0730d01a5e267f4c3"
+  },
+  "extractionRepair": "The first extraction attempt incorrectly expected numeric0 for apiRequests; the unchanged source report stores an empty array. The corrected extraction verifies that exact empty array and reports its length. No measurement or source report was changed.",
+  "reviewerActions": {
+    "newTests": 0,
+    "newBenchmarks": 0,
+    "newBrowsers": 0,
+    "newServices": 0,
+    "productOrTestEdits": 0
+  }
+}

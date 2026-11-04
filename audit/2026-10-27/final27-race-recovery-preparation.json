@@ -1,0 +1,121 @@
+{
+  "status": "IMPLEMENTED-PENDING-SOURCE27-VALIDATION",
+  "recordedAt": "2026-10-27T17:45:25.966Z",
+  "source26": {
+    "file": "audit/2026-10-27/final26-source.json",
+    "sha256": "c2ca4f211a64ac1b43f3a8d296018395426935416d434ad84d8256c7b7af59b7",
+    "build": "88b8024ae4b840c10422",
+    "inventory": 505,
+    "changedExistingSourceFiles": [
+      {
+        "file": "src/components/typing/LiveKeyboard.tsx",
+        "source26Sha256": "28a31f6dd909cbae2812a72e2b48f6105215e62ff68a6ec051d4c6e39e3f3962",
+        "currentSha256": "00fa28b2709c70d744432536940e8210412a445f1097d42d49249afccd8c9d0b"
+      },
+      {
+        "file": "src/lib/__tests__/pressed-key-attribute.test.ts",
+        "source26Sha256": "9c912d2f29bf3965c28211e753843f54a68f4d6a1cfa75e6c63d74a1ac5110d1",
+        "currentSha256": "2e85396e04a242af26c2680b2b6e6cc82d44d601ad10360677b66c366851349a"
+      },
+      {
+        "file": "src/lib/__tests__/race-state-machine.test.ts",
+        "source26Sha256": "8566aa4eecad5dc868155c67ab90695fd390e08289574d20ebce2a7320c0ae9f",
+        "currentSha256": "5b2eb2e724a27301806b30afaee26e571e5196f80a1bff39ec611f5f384391dd"
+      },
+      {
+        "file": "src/lib/pressed-key-attribute.ts",
+        "source26Sha256": "2efad9973b2c7dd9154a8543b510b8959962aafd42a8797bf3a421cfdb87c7dc",
+        "currentSha256": "d819c4a2c6f9ffd45d94dbd78b1e9441d8793a3ce2b8fd39e510f0b84cc824c3"
+      },
+      {
+        "file": "src/lib/race-state-machine.ts",
+        "source26Sha256": "eb9baec34c8e61a6fd8972b475da1fad1aa55c5d95b26858db7015177ebf3c4f",
+        "currentSha256": "f0f849f6099a685b7f80b0b3933fe263edf7cd72efa4e092deefc09bd27a582d"
+      },
+      {
+        "file": "src/pages/Race.tsx",
+        "source26Sha256": "132477338bc4b99b5a499b5ca302f6971b74ab12fbfc11f358fed3a2a236da96",
+        "currentSha256": "1795751fd4d43f76f89f1fdbd36403b249dd1f45b4a8421fe1257a414d5fb9e4"
+      }
+    ],
+    "allOtherFrozenHashesUnchanged": 499,
+    "source27Build": "PENDING; current dist remains the old source26 artifact"
+  },
+  "originalFailurePreserved": {
+    "raw": "audit/2026-10-27/pack-native-00863696a5bdfabe-1793122106429-browser.json",
+    "sha256": "fff0e5427192e638169bdddad548d91e87807a101d2d7c5624bc76f32001bb9c",
+    "passed": 15,
+    "failed": 1,
+    "skipped": 0,
+    "engine": "chromium",
+    "test": "real two-browser PHP human race shares opponent pace and settles server results",
+    "stage": "Session results visible; existing no-alert assertion found one child-session alert",
+    "observedAlert": "ApiError: The PHP API could not be reached. Your local practice and history remain available.",
+    "observedButton": "Retry finish",
+    "attributionLimit": "Original request URL/status/timeline unavailable; this does not establish the original network-failure cause or a backend outage."
+  },
+  "repair": {
+    "feedback": "Monotonic per-operation request provenance for checkpoint, finish and local save; only matching pending completions can change their own channel.",
+    "recovery": "Successful newer checkpoint clears its old error. Final begin supersedes checkpoint feedback; matching final ACK clears checkpoint/finish errors only.",
+    "preservedErrors": "Local-save errors remain independent; real finish errors retain Retry finish, disabled only while its retry is pending. Room polling cannot acknowledge the client finish.",
+    "keyboard": "Unbinding a physical key store removes its owned held attribute. Every keycap commit repairs store-driven or static true/false state.",
+    "newProductionFiles": 0,
+    "serverClockScoresTimeoutsAndThreeDimensionalIntroChanged": false
+  },
+  "testsPrepared": {
+    "pureFeedbackRegressions": 9,
+    "pureAttributeHandoffRegressions": 2,
+    "appendedRealBackendTest": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+    "addedNativeCases": 4,
+    "expectedNativeTotal": 20,
+    "expectedSpecFileCount": 64,
+    "originalScenarioBodyNormalizedSha256": "5f73053735b77c7bf5935816e4e9c611d3a1dc5cae4e6147128fac5486dcc9e2",
+    "originalScenarioUnchanged": true,
+    "faultInjection": "Host checkpoint route.abort; real successful recovery; separate checkpoint held within final four ordinary seconds and aborted only after data-finish-confirmed=true.",
+    "noMockedSuccessfulApiResponseOrFakeClock": true
+  },
+  "verification": {
+    "testsExecutedByThisPreparation": false,
+    "browserExecuted": false,
+    "buildExecuted": false,
+    "performanceClaim": false
+  },
+  "physicalDeviceTesting": "UNVERIFIED",
+  "ownedFiles": [
+    {
+      "file": "src/pages/Race.tsx",
+      "rawSha256": "1795751fd4d43f76f89f1fdbd36403b249dd1f45b4a8421fe1257a414d5fb9e4",
+      "normalizedSha256": "1795751fd4d43f76f89f1fdbd36403b249dd1f45b4a8421fe1257a414d5fb9e4"
+    },
+    {
+      "file": "src/lib/race-state-machine.ts",
+      "rawSha256": "ac67daa4871152e125eb04ab51d689fdccc84ab621828fbfe12b02673cd09cc4",
+      "normalizedSha256": "f0f849f6099a685b7f80b0b3933fe263edf7cd72efa4e092deefc09bd27a582d"
+    },
+    {
+      "file": "src/lib/__tests__/race-state-machine.test.ts",
+      "rawSha256": "5b2eb2e724a27301806b30afaee26e571e5196f80a1bff39ec611f5f384391dd",
+      "normalizedSha256": "5b2eb2e724a27301806b30afaee26e571e5196f80a1bff39ec611f5f384391dd"
+    },
+    {
+      "file": "e2e/php-human-race.spec.ts",
+      "rawSha256": "bc775338e01ebfe826080878fc07a8c3b0d2d13fa05333810236f4f3071f7155",
+      "normalizedSha256": "bc775338e01ebfe826080878fc07a8c3b0d2d13fa05333810236f4f3071f7155"
+    },
+    {
+      "file": "src/components/typing/LiveKeyboard.tsx",
+      "rawSha256": "00fa28b2709c70d744432536940e8210412a445f1097d42d49249afccd8c9d0b",
+      "normalizedSha256": "00fa28b2709c70d744432536940e8210412a445f1097d42d49249afccd8c9d0b"
+    },
+    {
+      "file": "src/lib/pressed-key-attribute.ts",
+      "rawSha256": "d819c4a2c6f9ffd45d94dbd78b1e9441d8793a3ce2b8fd39e510f0b84cc824c3",
+      "normalizedSha256": "d819c4a2c6f9ffd45d94dbd78b1e9441d8793a3ce2b8fd39e510f0b84cc824c3"
+    },
+    {
+      "file": "src/lib/__tests__/pressed-key-attribute.test.ts",
+      "rawSha256": "2e85396e04a242af26c2680b2b6e6cc82d44d601ad10360677b66c366851349a",
+      "normalizedSha256": "2e85396e04a242af26c2680b2b6e6cc82d44d601ad10360677b66c366851349a"
+    }
+  ]
+}

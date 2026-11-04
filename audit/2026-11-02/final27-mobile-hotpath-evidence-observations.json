@@ -1,0 +1,1183 @@
+{
+  "capturedAt": "2026-11-02T16:38:36.020Z",
+  "status": "DIAGNOSTIC-OBSERVATIONS-NOT-ACCEPTANCE-OR-EXCLUSIVE-CAUSE",
+  "sourceBuild": "11de46af5d4a80e0e830",
+  "staticBuild": "fac344923bbf9cbde394",
+  "mappings": [
+    {
+      "asset": "Learn-CSXy2Boo.js",
+      "line": 1,
+      "column": 9742,
+      "source": "src/components/keybr/KeybrLessonMode.tsx",
+      "method": "measureCaret",
+      "proof": "--learn-caret-visible",
+      "excerpt": "()=>{const t=H.current,r=ye.current,l=fe.current;if(!l)return;if(!t||!r){l.style.setProperty(\"--learn-caret-visible\",\"hidden\");return}const p={...r.state,composing:b.current},m=!r.controller.lastInputAttempts.some(L=>!L.correct||L.provenance!==\"keyboard\");m||z.current.invalidate();const V=m?z.current.read(p):null;let x=V?Dt(V.anchor,ee.current):null;if(!x){const L=t.querySelector(\".learn-stream-text\"),F=L?.querySelector('[data-current=\"true\"]');if(!F){l.style.setProperty(\"--learn-caret-visible\",\"hidden\");return}const Se=t.getBoundingClientRect(),Le=F.getBoundingClientRect(),Ee=t.scrollTop,Me=t.scrollLeft;if(x=De({boundary:Se,marker:Le,scrollT",
+      "generatedCoordinatesAreZeroBased": true
+    },
+    {
+      "asset": "Learn-CSXy2Boo.js",
+      "line": 1,
+      "column": 5830,
+      "source": "src/components/keybr/KeybrLessonMode.tsx",
+      "method": "KeybrLessonMode component",
+      "proof": "focusKeys:",
+      "excerpt": "({focusKeys:d,sourceResultId:c,retestTo:f,language:h,layout:v}){const{user:j}=jt(),u=j?.id??\"guest\",{preferences:n,updatePreferences:E}=Ke(),{saveSession:A,syncState:M,retrySync:ne}=Nt(),i=ze(h??n.language),g=v??(i.script===\"Latin\"?n.layout:\"native\"),[k,We]=s.useState(\"correct\"),[D,Ie]=s.useState(!1),[W,_e]=s.useState(\"keyboard\"),[C,ue]=s.useState(!1),[Be,ae]=s.useState(null),[$,Ve]=s.useState(null),U=s.useMemo(()=>({language:i.id,layout:g,domain:\"prose\",inputMethod:W}),[i.id,g,W]),I=s.useMemo(()=>({owner:u,dimensions:U,targetWpm:n.targetWpm}),[u,U,n.targetWpm]),S=s.useRef(null),H=s.useRef(null),pe=s.useRef(null),b=s.useRef(!1),y=s.useRef(new",
+      "generatedCoordinatesAreZeroBased": true
+    },
+    {
+      "asset": "TypingArea-DgEiVcsJ.js",
+      "line": 0,
+      "column": 9212,
+      "source": "src/components/typing/TypingArea.tsx",
+      "method": "measureCaret",
+      "proof": "getClientRects()[0]",
+      "excerpt": "()=>{const e=ee.current,a=ae.current,m=ve.current;if(!e||!a||!m)return;const u={...m,composing:D.current};let d=Y.current.read(u);if(!d){const b=a.querySelector('[data-current=\"true\"]'),fe=(b??H.current)?.getClientRects()[0];if(!fe)return;const Ee=e.getBoundingClientRect(),Se={fontSize:i.fontSize,scrollLeft:e.scrollLeft,scrollTop:e.scrollTop,rtl:e.dir===\"rtl\"},he=Fe(fe,Ee,Se);if(!he)return;const Ne=parseFloat(getComputedStyle(a).lineHeight);if(d={anchor:he,lineHeight:Ne},b&&Y.current.canCache(u)){const le=[],Pe=document.createTreeWalker(a,NodeFilter.SHOW_ELEMENT,{acceptNode:O=>O.hasAttribute(\"data-slot-index\")?NodeFilter.FILTER_ACCEPT:NodeFil",
+      "generatedCoordinatesAreZeroBased": true
+    },
+    {
+      "asset": "TypingArea-DgEiVcsJ.js",
+      "line": 0,
+      "column": 7060,
+      "source": "src/components/typing/TypingArea.tsx",
+      "method": "TypingArea component",
+      "proof": "onTestComplete:",
+      "excerpt": "({configuration:t,onTestComplete:o,onRestart:l,onStatusChange:w,appendContent:f,controller:T,onSnapshot:B,opponentPace:S,autoFocus:I,keyboardLessonKeys:G}){const{preferences:i,updatePreferences:K}=We(),[c]=n.useState(()=>T??new qe(t,{now:()=>performance.now(),wallNow:()=>Date.now()})),[s,V]=n.useState(()=>c.snapshot()),[A,x]=n.useState(\"\"),[v,y]=n.useState(!1),[p,_]=n.useState(!1),[g,k]=n.useState(\"\"),[j,N]=n.useState(null),P=n.useRef(null),M=n.useRef(null),H=n.useRef(null),ee=n.useRef(null),ae=n.useRef(null),xe=n.useRef(null),be=n.useRef(null),Y=n.useRef(new Ye),ve=n.useRef(),we=n.useRef({focused:v,revealed:p,status:s.status}),te=n.useRef(nu",
+      "generatedCoordinatesAreZeroBased": true
+    },
+    {
+      "asset": "Learn-CSXy2Boo.js",
+      "line": 1,
+      "column": 1814,
+      "source": "src/components/keybr/KeybrResults.tsx",
+      "method": "result-focus useEffect callback in baseline27",
+      "proof": "current?.focus()",
+      "excerpt": "()=>{M.current?.focus()},[d.clientSessionId]);const ne=[...h.values()].sort((i,g)=>i.accuracy-g.accuracy||i.confidence-g.confidence);return e.jsxs(\"div\",{ref:M,tabIndex:-1,onKeyDown:i=>{i.key===\"Enter\"&&i.target===i.currentTarget&&(i.preventDefault(),v())},className:\"space-y-6 outline-none\",\"aria-label\":\"Learning results\",children:[c.length>0&&e.jsxs(\"div\",{role:\"status\",className:\"flex items-center gap-4 rounded-xl border border-success/40 bg-success/10 p-5\",children:[e.jsx(kt,{className:\"size-6 shrink-0 text-success\"}),e.jsxs(\"div\",{children:[e.jsxs(\"h3\",{className:\"font-semibold text-success\",children:[\"New key introduced: \",e.jsx(\"span\",{",
+      "generatedCoordinatesAreZeroBased": true
+    }
+  ],
+  "cases": [
+    {
+      "id": "learn",
+      "window": {
+        "firstBeforeInputAt": 1062.2999999523163,
+        "lastBeforeInputAt": 7774,
+        "inputReturnedAt": 8074.199999928474
+      },
+      "profilePhaseSummaries": {
+        "fullInputCall": {
+          "bounds": {
+            "startMs": 986.6999999284744,
+            "endMs": 8074.199999928474,
+            "exclusiveEnd": false,
+            "valid": true,
+            "empty": false
+          },
+          "assignedSampleWeightMs": 7084.802,
+          "programSample": {
+            "functionName": "(program)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 4765.879,
+            "inclusiveSampleWeightMs": 4765.879,
+            "selfSamples": 3008,
+            "inclusiveSamples": 3008,
+            "shareOfAssignedSampleWeight": 0.673
+          },
+          "reportedForcedStyleAndLayoutForFullyContainedScriptsMs": 189.4,
+          "reportedForcedStyleAndLayoutForOverlappingScriptsMs": 189.4,
+          "overlappingLongAnimationFrames": 45
+        },
+        "strictPreFinalInsertion": {
+          "bounds": {
+            "startMs": 1062.2999999523163,
+            "endMs": 7774,
+            "exclusiveEnd": true,
+            "valid": true,
+            "empty": false
+          },
+          "assignedSampleWeightMs": 6710.285,
+          "programSample": {
+            "functionName": "(program)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 4723.423,
+            "inclusiveSampleWeightMs": 4723.423,
+            "selfSamples": 2981,
+            "inclusiveSamples": 2981,
+            "shareOfAssignedSampleWeight": 0.704
+          },
+          "reportedForcedStyleAndLayoutForFullyContainedScriptsMs": 41.2,
+          "reportedForcedStyleAndLayoutForOverlappingScriptsMs": 41.2,
+          "overlappingLongAnimationFrames": 45
+        },
+        "finalInsertionAndReturn": {
+          "bounds": {
+            "startMs": 7774,
+            "endMs": 8074.199999928474,
+            "exclusiveEnd": false,
+            "valid": true,
+            "empty": false
+          },
+          "assignedSampleWeightMs": 298.266,
+          "programSample": {
+            "functionName": "(program)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 16.167,
+            "inclusiveSampleWeightMs": 16.167,
+            "selfSamples": 10,
+            "inclusiveSamples": 10,
+            "shareOfAssignedSampleWeight": 0.054
+          },
+          "reportedForcedStyleAndLayoutForFullyContainedScriptsMs": 148.2,
+          "reportedForcedStyleAndLayoutForOverlappingScriptsMs": 148.2,
+          "overlappingLongAnimationFrames": 1
+        }
+      },
+      "descriptiveEventBoundaryViews": {
+        "notAcceptanceFilters": true,
+        "byEventStartBeforeLastInsertion": {
+          "count": 574,
+          "maxObservedDurationMs": 304,
+          "p98ObservedDurationMs": 128
+        },
+        "fullyContainedBeforeLastInsertion": {
+          "count": 566,
+          "maxObservedDurationMs": 176,
+          "p98ObservedDurationMs": 128
+        },
+        "boundaryCrossing": [
+          {
+            "name": "keydown",
+            "startTime": 7734.600000023842,
+            "duration": 48,
+            "endTime": 7782.600000023842
+          },
+          {
+            "name": "keypress",
+            "startTime": 7734.600000023842,
+            "duration": 48,
+            "endTime": 7782.600000023842
+          },
+          {
+            "name": "beforeinput",
+            "startTime": 7744.899999976158,
+            "duration": 40,
+            "endTime": 7784.899999976158
+          },
+          {
+            "name": "input",
+            "startTime": 7747.899999976158,
+            "duration": 32,
+            "endTime": 7779.899999976158
+          },
+          {
+            "name": "keyup",
+            "startTime": 7758.100000023842,
+            "duration": 304,
+            "endTime": 8062.100000023842
+          },
+          {
+            "name": "keydown",
+            "startTime": 7765.799999952316,
+            "duration": 296,
+            "endTime": 8061.799999952316
+          },
+          {
+            "name": "keypress",
+            "startTime": 7765.799999952316,
+            "duration": 296,
+            "endTime": 8061.799999952316
+          },
+          {
+            "name": "beforeinput",
+            "startTime": 7773.5,
+            "duration": 288,
+            "endTime": 8061.5
+          }
+        ],
+        "explanation": "Keydown/keypress may start before the final beforeinput marker yet span automatic result work. Their entire duration cannot be attributed to steady typing."
+      },
+      "fullyPreFinalScripts": [
+        {
+          "executionStart": 1073,
+          "duration": 49.199999928474426,
+          "forcedStyleAndLayoutDuration": 14.7,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 1263.1999999284744,
+          "duration": 12.5,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 1600.6000000238419,
+          "duration": 17.5,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 1752.2999999523163,
+          "duration": 14.600000023841858,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 1999,
+          "duration": 12,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 2116.899999976158,
+          "duration": 16.200000047683716,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 2896.600000023842,
+          "duration": 15.399999976158142,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 2966.7999999523163,
+          "duration": 17.399999976158142,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 3042.600000023842,
+          "duration": 20.299999952316284,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 3119.399999976158,
+          "duration": 14.899999976158142,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 3267.600000023842,
+          "duration": 8.699999928474426,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 3648.5,
+          "duration": 24.5,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 3746,
+          "duration": 17.600000023841858,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 3818.399999976158,
+          "duration": 14.600000023841858,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 3905.100000023842,
+          "duration": 28.299999952316284,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 4006.5,
+          "duration": 26.899999976158142,
+          "forcedStyleAndLayoutDuration": 9.2,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 4039.7999999523163,
+          "duration": 5.899999976158142,
+          "forcedStyleAndLayoutDuration": 5.4,
+          "source": "/assets/Learn-CSXy2Boo.js",
+          "functionName": "L",
+          "invoker": "DOMWindow.onscroll"
+        },
+        {
+          "executionStart": 4319.699999928474,
+          "duration": 17.600000023841858,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 4417.199999928474,
+          "duration": 21,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 4513.399999976158,
+          "duration": 16.100000023841858,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 4584.600000023842,
+          "duration": 18.699999928474426,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 4741,
+          "duration": 14.600000023841858,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 4826.899999976158,
+          "duration": 11.299999952316284,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 4890.699999928474,
+          "duration": 18,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 4987.699999928474,
+          "duration": 15.700000047683716,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 5076,
+          "duration": 25.699999928474426,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 5168,
+          "duration": 16.299999952316284,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 5255.299999952316,
+          "duration": 20.100000023841858,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 5373.5,
+          "duration": 34.299999952316284,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 5475.5,
+          "duration": 9.799999952316284,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 5557.399999976158,
+          "duration": 14,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 5839.299999952316,
+          "duration": 5,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.onkeyup"
+        },
+        {
+          "executionStart": 5865.199999928474,
+          "duration": 16.5,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 5971.100000023842,
+          "duration": 33.199999928474426,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 6072,
+          "duration": 17.399999976158142,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 6230.199999928474,
+          "duration": 10.700000047683716,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 6286.299999952316,
+          "duration": 13.100000023841858,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 6414.600000023842,
+          "duration": 16,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 6493.399999976158,
+          "duration": 12.899999976158142,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 6562.199999928474,
+          "duration": 20.100000023841858,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 6645.399999976158,
+          "duration": 30.700000047683716,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 6747.799999952316,
+          "duration": 24.800000071525574,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 7028.799999952316,
+          "duration": 29.399999976158142,
+          "forcedStyleAndLayoutDuration": 11.9,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 7382.799999952316,
+          "duration": 14.700000047683716,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 7441.299999952316,
+          "duration": 21.300000071525574,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 7517.100000023842,
+          "duration": 13.199999928474426,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        }
+      ],
+      "scriptsStartingAfterFinalInsertion": [
+        {
+          "executionStart": 7778.199999928474,
+          "duration": 274,
+          "forcedStyleAndLayoutDuration": 148.2,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        }
+      ],
+      "resourceSelfSampleWeightsBeforeFinal": [
+        {
+          "resource": "native:(program)",
+          "sampleWeightMs": 4723.423000000001
+        },
+        {
+          "resource": "/assets/index-DPOjz0oF.js",
+          "sampleWeightMs": 1082.6430000000012
+        },
+        {
+          "resource": "/assets/Learn-CSXy2Boo.js",
+          "sampleWeightMs": 193.05199999999996
+        },
+        {
+          "resource": "/assets/ObservedLiveKeyboard-CwkAqEhj.js",
+          "sampleWeightMs": 119.92099999999999
+        },
+        {
+          "resource": "/assets/createLucideIcon-Gims_nPX.js",
+          "sampleWeightMs": 97.55799999999998
+        },
+        {
+          "resource": "/assets/keybr-engine-Bxp-oX0f.js",
+          "sampleWeightMs": 51.093
+        },
+        {
+          "resource": "native:setAttribute",
+          "sampleWeightMs": 45.586
+        },
+        {
+          "resource": "/assets/session-CC55-cei.js",
+          "sampleWeightMs": 38.049
+        },
+        {
+          "resource": "/assets/index-CoZNsTOm.js",
+          "sampleWeightMs": 32.954
+        },
+        {
+          "resource": "/assets/live-keyboard-Dx32XHs5.js",
+          "sampleWeightMs": 31.754999999999995
+        },
+        {
+          "resource": "/assets/utils-d2XQ1MEC.js",
+          "sampleWeightMs": 31.177
+        },
+        {
+          "resource": "native:(garbage collector)",
+          "sampleWeightMs": 24.659
+        },
+        {
+          "resource": "/assets/typing-caret-cache-CqEyHC1A.js",
+          "sampleWeightMs": 22.688
+        },
+        {
+          "resource": "native:removeChild",
+          "sampleWeightMs": 22.114
+        },
+        {
+          "resource": "native:set value",
+          "sampleWeightMs": 21.034000000000002
+        },
+        {
+          "resource": "/assets/metrics-CaLrEdo5.js",
+          "sampleWeightMs": 20.539
+        },
+        {
+          "resource": "native:(idle)",
+          "sampleWeightMs": 20.295999999999996
+        },
+        {
+          "resource": "/assets/LetterProgressPanel-CAWO3v4a.js",
+          "sampleWeightMs": 18.576
+        },
+        {
+          "resource": "native:setProperty",
+          "sampleWeightMs": 16.220999999999997
+        },
+        {
+          "resource": "native:getBoundingClientRect",
+          "sampleWeightMs": 16.153000000000002
+        },
+        {
+          "resource": "/assets/content-packs-xYdkiJY8.js",
+          "sampleWeightMs": 13.709
+        },
+        {
+          "resource": "/assets/index-Drd88ecX.js",
+          "sampleWeightMs": 11.411
+        },
+        {
+          "resource": "native:beforeInput",
+          "sampleWeightMs": 11.245000000000001
+        },
+        {
+          "resource": "native:now",
+          "sampleWeightMs": 9.852
+        }
+      ],
+      "nativeFocusSamples": [
+        {
+          "nodeId": 918,
+          "samples": 90,
+          "sampleWeightMs": 149.73699999999997,
+          "firstAt": 7863.761000037193,
+          "lastAt": 8011.741000056267,
+          "stack": [
+            {
+              "functionName": "focus",
+              "resource": "native-or-inline",
+              "line": -1,
+              "column": -1
+            },
+            {
+              "functionName": "",
+              "resource": "/assets/Learn-CSXy2Boo.js",
+              "line": 1,
+              "column": 1814
+            },
+            {
+              "functionName": "Dl",
+              "resource": "/assets/index-DPOjz0oF.js",
+              "line": 8,
+              "column": 24266
+            },
+            {
+              "functionName": "er",
+              "resource": "/assets/index-DPOjz0oF.js",
+              "line": 8,
+              "column": 41495
+            },
+            {
+              "functionName": "id",
+              "resource": "/assets/index-DPOjz0oF.js",
+              "line": 8,
+              "column": 40503
+            },
+            {
+              "functionName": "xn",
+              "resource": "/assets/index-DPOjz0oF.js",
+              "line": 8,
+              "column": 40378
+            },
+            {
+              "functionName": "Fa",
+              "resource": "/assets/index-DPOjz0oF.js",
+              "line": 8,
+              "column": 36712
+            },
+            {
+              "functionName": "tn",
+              "resource": "/assets/index-DPOjz0oF.js",
+              "line": 6,
+              "column": 3176
+            },
+            {
+              "functionName": "_n",
+              "resource": "/assets/index-DPOjz0oF.js",
+              "line": 8,
+              "column": 37145
+            },
+            {
+              "functionName": "wu",
+              "resource": "/assets/index-DPOjz0oF.js",
+              "line": 5,
+              "column": 8919
+            },
+            {
+              "functionName": "Di",
+              "resource": "/assets/index-DPOjz0oF.js",
+              "line": 5,
+              "column": 32655
+            },
+            {
+              "functionName": "gi",
+              "resource": "/assets/index-DPOjz0oF.js",
+              "line": 5,
+              "column": 17305
+            },
+            {
+              "functionName": "Hc",
+              "resource": "/assets/index-DPOjz0oF.js",
+              "line": 5,
+              "column": 17073
+            },
+            {
+              "functionName": "(root)",
+              "resource": "native-or-inline",
+              "line": -1,
+              "column": -1
+            }
+          ]
+        },
+        {
+          "nodeId": 930,
+          "samples": 1,
+          "sampleWeightMs": 0.583,
+          "firstAt": 8014.780000090599,
+          "lastAt": 8014.780000090599,
+          "stack": [
+            {
+              "functionName": "focus",
+              "resource": "native-or-inline",
+              "line": -1,
+              "column": -1
+            },
+            {
+              "functionName": "",
+              "resource": "/assets/Learn-CSXy2Boo.js",
+              "line": 1,
+              "column": 1814
+            },
+            {
+              "functionName": "Dl",
+              "resource": "/assets/index-DPOjz0oF.js",
+              "line": 8,
+              "column": 24266
+            },
+            {
+              "functionName": "er",
+              "resource": "/assets/index-DPOjz0oF.js",
+              "line": 8,
+              "column": 41495
+            },
+            {
+              "functionName": "id",
+              "resource": "/assets/index-DPOjz0oF.js",
+              "line": 8,
+              "column": 40503
+            },
+            {
+              "functionName": "xn",
+              "resource": "/assets/index-DPOjz0oF.js",
+              "line": 8,
+              "column": 40378
+            },
+            {
+              "functionName": "Fa",
+              "resource": "/assets/index-DPOjz0oF.js",
+              "line": 8,
+              "column": 36712
+            },
+            {
+              "functionName": "vu",
+              "resource": "/assets/index-DPOjz0oF.js",
+              "line": 5,
+              "column": 8775
+            },
+            {
+              "functionName": "wu",
+              "resource": "/assets/index-DPOjz0oF.js",
+              "line": 5,
+              "column": 8919
+            },
+            {
+              "functionName": "Di",
+              "resource": "/assets/index-DPOjz0oF.js",
+              "line": 5,
+              "column": 32655
+            },
+            {
+              "functionName": "gi",
+              "resource": "/assets/index-DPOjz0oF.js",
+              "line": 5,
+              "column": 17305
+            },
+            {
+              "functionName": "Hc",
+              "resource": "/assets/index-DPOjz0oF.js",
+              "line": 5,
+              "column": 17073
+            },
+            {
+              "functionName": "(root)",
+              "resource": "native-or-inline",
+              "line": -1,
+              "column": -1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "local-bot",
+      "window": {
+        "firstBeforeInputAt": 1190.7000000476837,
+        "lastBeforeInputAt": 5199.100000023842,
+        "inputReturnedAt": 5353.200000047684
+      },
+      "profilePhaseSummaries": {
+        "fullInputCall": {
+          "bounds": {
+            "startMs": 1159.6000000238419,
+            "endMs": 5353.200000047684,
+            "exclusiveEnd": false,
+            "valid": true,
+            "empty": false
+          },
+          "assignedSampleWeightMs": 4193.002,
+          "programSample": {
+            "functionName": "(program)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 3043.815,
+            "inclusiveSampleWeightMs": 3043.815,
+            "selfSamples": 1892,
+            "inclusiveSamples": 1892,
+            "shareOfAssignedSampleWeight": 0.726
+          },
+          "reportedForcedStyleAndLayoutForFullyContainedScriptsMs": 10.8,
+          "reportedForcedStyleAndLayoutForOverlappingScriptsMs": 10.8,
+          "overlappingLongAnimationFrames": 2
+        },
+        "strictPreFinalInsertion": {
+          "bounds": {
+            "startMs": 1190.7000000476837,
+            "endMs": 5199.100000023842,
+            "exclusiveEnd": true,
+            "valid": true,
+            "empty": false
+          },
+          "assignedSampleWeightMs": 4006.748,
+          "programSample": {
+            "functionName": "(program)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 2941.858,
+            "inclusiveSampleWeightMs": 2941.858,
+            "selfSamples": 1828,
+            "inclusiveSamples": 1828,
+            "shareOfAssignedSampleWeight": 0.734
+          },
+          "reportedForcedStyleAndLayoutForFullyContainedScriptsMs": 10.8,
+          "reportedForcedStyleAndLayoutForOverlappingScriptsMs": 10.8,
+          "overlappingLongAnimationFrames": 2
+        },
+        "finalInsertionAndReturn": {
+          "bounds": {
+            "startMs": 5199.100000023842,
+            "endMs": 5353.200000047684,
+            "exclusiveEnd": false,
+            "valid": true,
+            "empty": false
+          },
+          "assignedSampleWeightMs": 153.983,
+          "programSample": {
+            "functionName": "(program)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 90.711,
+            "inclusiveSampleWeightMs": 90.711,
+            "selfSamples": 57,
+            "inclusiveSamples": 57,
+            "shareOfAssignedSampleWeight": 0.589
+          },
+          "reportedForcedStyleAndLayoutForFullyContainedScriptsMs": 0,
+          "reportedForcedStyleAndLayoutForOverlappingScriptsMs": 0,
+          "overlappingLongAnimationFrames": 0
+        }
+      },
+      "descriptiveEventBoundaryViews": {
+        "notAcceptanceFilters": true,
+        "byEventStartBeforeLastInsertion": {
+          "count": 495,
+          "maxObservedDurationMs": 160,
+          "p98ObservedDurationMs": 112
+        },
+        "fullyContainedBeforeLastInsertion": {
+          "count": 486,
+          "maxObservedDurationMs": 160,
+          "p98ObservedDurationMs": 104
+        },
+        "boundaryCrossing": [
+          {
+            "name": "keyup",
+            "startTime": 5089.100000023842,
+            "duration": 112,
+            "endTime": 5201.100000023842
+          },
+          {
+            "name": "keydown",
+            "startTime": 5115.800000071526,
+            "duration": 88,
+            "endTime": 5203.800000071526
+          },
+          {
+            "name": "keypress",
+            "startTime": 5115.800000071526,
+            "duration": 88,
+            "endTime": 5203.800000071526
+          },
+          {
+            "name": "beforeinput",
+            "startTime": 5123.200000047684,
+            "duration": 80,
+            "endTime": 5203.200000047684
+          },
+          {
+            "name": "input",
+            "startTime": 5125.300000071526,
+            "duration": 80,
+            "endTime": 5205.300000071526
+          },
+          {
+            "name": "keyup",
+            "startTime": 5152.300000071526,
+            "duration": 120,
+            "endTime": 5272.300000071526
+          },
+          {
+            "name": "keydown",
+            "startTime": 5189.100000023842,
+            "duration": 80,
+            "endTime": 5269.100000023842
+          },
+          {
+            "name": "keypress",
+            "startTime": 5189.100000023842,
+            "duration": 80,
+            "endTime": 5269.100000023842
+          },
+          {
+            "name": "beforeinput",
+            "startTime": 5199,
+            "duration": 72,
+            "endTime": 5271
+          }
+        ],
+        "explanation": "Keydown/keypress may start before the final beforeinput marker yet span automatic result work. Their entire duration cannot be attributed to steady typing."
+      },
+      "fullyPreFinalScripts": [
+        {
+          "executionStart": 1194.7000000476837,
+          "duration": 37.5,
+          "forcedStyleAndLayoutDuration": 10.8,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        },
+        {
+          "executionStart": 3206,
+          "duration": 13.300000071525574,
+          "forcedStyleAndLayoutDuration": 0,
+          "source": "/assets/index-DPOjz0oF.js",
+          "functionName": "Hc",
+          "invoker": "DIV#root.oninput"
+        }
+      ],
+      "scriptsStartingAfterFinalInsertion": [],
+      "resourceSelfSampleWeightsBeforeFinal": [
+        {
+          "resource": "native:(program)",
+          "sampleWeightMs": 2941.858000000002
+        },
+        {
+          "resource": "/assets/index-DPOjz0oF.js",
+          "sampleWeightMs": 600.1319999999998
+        },
+        {
+          "resource": "/assets/TypingArea-DgEiVcsJ.js",
+          "sampleWeightMs": 123.292
+        },
+        {
+          "resource": "/assets/ObservedLiveKeyboard-CwkAqEhj.js",
+          "sampleWeightMs": 100.544
+        },
+        {
+          "resource": "/assets/createLucideIcon-Gims_nPX.js",
+          "sampleWeightMs": 28.836999999999996
+        },
+        {
+          "resource": "/assets/session-CC55-cei.js",
+          "sampleWeightMs": 24.729999999999997
+        },
+        {
+          "resource": "/assets/live-keyboard-Dx32XHs5.js",
+          "sampleWeightMs": 23.275000000000002
+        },
+        {
+          "resource": "/assets/Race-C3e78PBG.js",
+          "sampleWeightMs": 21.494999999999997
+        },
+        {
+          "resource": "/assets/index-CoZNsTOm.js",
+          "sampleWeightMs": 19.879
+        },
+        {
+          "resource": "native:(garbage collector)",
+          "sampleWeightMs": 16.719
+        },
+        {
+          "resource": "/assets/metrics-CaLrEdo5.js",
+          "sampleWeightMs": 12.045999999999998
+        },
+        {
+          "resource": "/assets/typing-caret-cache-CqEyHC1A.js",
+          "sampleWeightMs": 11.591000000000001
+        },
+        {
+          "resource": "native:(idle)",
+          "sampleWeightMs": 11.224000000000002
+        },
+        {
+          "resource": "native:getClientRects",
+          "sampleWeightMs": 10.914000000000001
+        },
+        {
+          "resource": "native:setAttribute",
+          "sampleWeightMs": 10.588
+        },
+        {
+          "resource": "/assets/content-packs-xYdkiJY8.js",
+          "sampleWeightMs": 9.956
+        },
+        {
+          "resource": "native:removeAttribute",
+          "sampleWeightMs": 6.751000000000001
+        },
+        {
+          "resource": "/assets/utils-d2XQ1MEC.js",
+          "sampleWeightMs": 6.638
+        },
+        {
+          "resource": "native:setProperty",
+          "sampleWeightMs": 6.452
+        },
+        {
+          "resource": "native:get value",
+          "sampleWeightMs": 5.659999999999999
+        },
+        {
+          "resource": "native:now",
+          "sampleWeightMs": 4.109
+        },
+        {
+          "resource": "native:queueMicrotask",
+          "sampleWeightMs": 3.48
+        },
+        {
+          "resource": "native:beforeInput",
+          "sampleWeightMs": 3.161
+        },
+        {
+          "resource": "native:setTimeout",
+          "sampleWeightMs": 1.76
+        }
+      ],
+      "nativeFocusSamples": []
+    }
+  ],
+  "interpretation": [
+    "The original112ms Learn and112ms BOT acceptance failures remain unchanged. Diagnostic144/112ms and phase-specific event views cannot replace them.",
+    "Learn steady pre-final fully-contained LoAF scripts report41.2ms forced layout; the final input script separately reports274ms duration and148.2ms forced layout.",
+    "Baseline Learn native focus samples map directly to KeybrResults plain-focus effect and occur after the final insertion. This supports a bounded focus/scroll candidate, not a claim that all steady-state latency is solved.",
+    "BOT reports10.8ms fully-contained forced layout in two pre-final LoAF scripts; its manual result Finish occurs after the profile stops.",
+    "The70.4% Learn and73.4% BOT pre-final(program) sample weight is unattributed runtime time, not an exclusive layout, painting, throttling, or JavaScript bottleneck.",
+    "LetterProgressPanel/keybr-engine do execute during Learn input, but their self weights are modest. Removing unrelated repeated UI/model work is a bounded hypothesis requiring a fresh ordinary acceptance run."
+  ],
+  "boundedCandidates": [
+    {
+      "area": "Learn stats",
+      "proposal": "Reuse already memoized current-owner/dimension/revision stats, memoize stable evidence panel and selection handler; preserve refresh/invalidation on actual data/model changes.",
+      "proofLimit": "Observed repeated panel/model execution is not proof of the full112ms cause."
+    },
+    {
+      "area": "Learn result focus",
+      "proposal": "Preserve accessible focus while using preventScroll:true, consistent with existing SessionResults. Verify viewport summary visibility in portrait, landscape and previously scrolled contexts before accepting.",
+      "proofLimit": "This targets the final transition, not all steady typing; no delayed or fake acceptance window."
+    },
+    {
+      "area": "BOT presentation",
+      "proposal": "Review stable opponent presentation props and parent/child HUD reconciliation with every canonical edit and true clock update retained.",
+      "proofLimit": "Alignment caching already exists. Do not add duplicate core caches or reduce bot event/timing accuracy based on unattributed(program) samples."
+    }
+  ],
+  "reviewerActions": {
+    "newProfiles": 0,
+    "newBrowsers": 0,
+    "newServices": 0,
+    "productEditsForThisExtraction": 0
+  },
+  "limits": [
+    "CPU sample weights and LoAF/script durations overlap and cannot be summed into exclusive component costs.",
+    "Minified mappings use exact public-bundle positions and distinctive code; no new build or source map was generated.",
+    "One dynamic passage per diagnostic workspace, sampling/observer overhead, event quantization and profile timing limit generalization."
+  ],
+  "inputHashes": {
+    "dist-static-final27-vercel/assets/Learn-CSXy2Boo.js": "31c9dea8be8a9806a96c727a9cea5af87d5cd9e20394e5ab987c12075a6577d6",
+    "dist-static-final27-vercel/assets/TypingArea-DgEiVcsJ.js": "77ae814c676bb561384d3bd04f634ae424318da7d133b661512b1b12ba945852",
+    "audit/2026-11-02/final27-mobile-hotpath-profile-learn-profile-summary.json": "14f7a5bf4f4c1e7c374b73b7288466baf22d8a690b71e3aaaf5c004438843884",
+    "audit/2026-11-02/.final27-mobile-hotpath-profile-learn-timeline.json": "041140f42c2ebf84b8d1b461cf264de4e7e6ca55f34755dbf2e686549e817dcd",
+    "audit/2026-11-02/.final27-mobile-hotpath-profile-learn.cpuprofile": "f78ff5d6f233da9ec4fe0b7a90d0e985c136fd33553bfbe60e4a827b52aba93f",
+    "audit/2026-11-02/final27-mobile-hotpath-profile-local-bot-profile-summary.json": "a56d7075b168ae5c076bfc102d2a37dae293854680834ba933a94cc4fbeaf674",
+    "audit/2026-11-02/.final27-mobile-hotpath-profile-local-bot-timeline.json": "a3acb55a7b029a0c51ee547d020eb6ef0341fb0764b92785556ea48163042649",
+    "audit/2026-11-02/.final27-mobile-hotpath-profile-local-bot.cpuprofile": "3464950c812453cb8ec4d75437e8fb1334b5150c7caa826a8cb19efb80848fc3",
+    "audit/2026-11-02/final27-mobile-hotpath-profile-process.json": "2fb3bbe2e4c69ad4e990d39562dc732c78a8416bc2c6c440ba216ca03260d45e"
+  }
+}

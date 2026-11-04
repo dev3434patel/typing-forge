@@ -1,0 +1,2163 @@
+{
+  "status": "COMPLETE-DIAGNOSTIC-NOT-ACCEPTANCE",
+  "caseId": "local-bot",
+  "files": {
+    "ignoredRawProfile": "audit/2026-11-02/.final27-mobile-hotpath-profile-local-bot.cpuprofile",
+    "ignoredRawTimeline": "audit/2026-11-02/.final27-mobile-hotpath-profile-local-bot-timeline.json",
+    "summary": "audit/2026-11-02/final27-mobile-hotpath-profile-local-bot-profile-summary.json"
+  },
+  "profile": {
+    "nodes": 692,
+    "samples": 2756,
+    "startTime": 616590052884,
+    "endTime": 616594808306
+  },
+  "summary": {
+    "status": "DIAGNOSTIC-ONLY-NOT-ACCEPTANCE-OR-CAUSAL-PROOF",
+    "caseId": "local-bot",
+    "clockAlignment": {
+      "status": "VERIFIED-SCOPED-TIME-TICKS-BOUNDS",
+      "method": "Profiler microsecond TimeTicks minus unchanged CDP NavigationStart",
+      "profileStartPerformanceNowMs": 818.5900000333786,
+      "uncertaintyMs": 0,
+      "navigationBeforeSeconds": 616589.234294,
+      "navigationAfterSeconds": 616589.234294,
+      "timestampBeforeSeconds": 616590.043186,
+      "timestampAfterSeconds": 616594.880939,
+      "profileStartMicroseconds": 616590052884,
+      "profileEndMicroseconds": 616594808306,
+      "rangeChecksPassed": true
+    },
+    "cpuProfileAvailability": "CAPTURED-WITH-VERIFIED-TIME-TICKS-BOUNDS",
+    "phaseBounds": {
+      "fullInputCall": {
+        "startMs": 1159.6000000238419,
+        "endMs": 5353.200000047684,
+        "exclusiveEnd": false,
+        "valid": true,
+        "empty": false
+      },
+      "strictPreFinalInsertion": {
+        "startMs": 1190.7000000476837,
+        "endMs": 5199.100000023842,
+        "exclusiveEnd": true,
+        "valid": true,
+        "empty": false
+      },
+      "finalInsertionAndReturn": {
+        "startMs": 5199.100000023842,
+        "endMs": 5353.200000047684,
+        "exclusiveEnd": false,
+        "valid": true,
+        "empty": false
+      }
+    },
+    "firstBeforeInputAtMs": 1190.7000000476837,
+    "lastBeforeInputAtMs": 5199.100000023842,
+    "observedBeforeInputCount": 100,
+    "profilingEndAtMs": 5428.400000095367,
+    "longAnimationFrameAvailability": "SUPPORTED-REPORTED-BY-OBSERVER-SETUP",
+    "captured": {
+      "profileNodes": 692,
+      "profileSamples": 2756,
+      "profileTimeDeltas": 2756,
+      "sampledIntervalsAnalyzed": 2756,
+      "longAnimationFrames": 2,
+      "longTasks": 20,
+      "typingEvents": 500,
+      "nonTypingEventsOutsideThisView": 0
+    },
+    "signedClock": {
+      "cumulativeDeltaMicroseconds": 4753501,
+      "minimumCumulativeMicroseconds": 0,
+      "maximumCumulativeMicroseconds": 4753501,
+      "negativeDeltaCount": 0,
+      "negativeDeltaMicroseconds": 0,
+      "negativeDeltaIntervalsExcludedFromWeights": 0,
+      "signedBacksteps": [],
+      "invalidDeltaCount": 0,
+      "firstInvalidDeltaIndex": null,
+      "intervalsUnplaceableAfterInvalidDelta": 0,
+      "negativeDeltasWereNotClampedInTimeline": true
+    },
+    "phaseSummaries": {
+      "fullInputCall": {
+        "bounds": {
+          "startMs": 1159.6000000238419,
+          "endMs": 5353.200000047684,
+          "exclusiveEnd": false,
+          "valid": true,
+          "empty": false
+        },
+        "sampledIntervalsAssigned": 2615,
+        "assignedSampleWeightMs": 4193.002,
+        "intervalsOutsideOrCrossingBounds": 141,
+        "missingLeafNodes": 0,
+        "stackCyclesOrDepthLimits": 0,
+        "diagnosticPhaseStatus": "DIAGNOSTIC-ONLY",
+        "topSelfFunctions": [
+          {
+            "functionName": "(program)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 3043.815,
+            "inclusiveSampleWeightMs": 3043.815,
+            "selfSamples": 1892,
+            "inclusiveSamples": 1892,
+            "shareOfAssignedSampleWeight": 0.726
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/TypingArea-DgEiVcsJ.js",
+            "lineNumber": 0,
+            "columnNumber": 9212,
+            "selfSampleWeightMs": 50.649,
+            "inclusiveSampleWeightMs": 73.029,
+            "selfSamples": 31,
+            "inclusiveSamples": 46,
+            "shareOfAssignedSampleWeight": 0.012
+          },
+          {
+            "functionName": "$",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 1,
+            "columnNumber": 8281,
+            "selfSampleWeightMs": 49.944,
+            "inclusiveSampleWeightMs": 49.944,
+            "selfSamples": 31,
+            "inclusiveSamples": 31,
+            "shareOfAssignedSampleWeight": 0.012
+          },
+          {
+            "functionName": "Mt",
+            "resourcePath": "/assets/TypingArea-DgEiVcsJ.js",
+            "lineNumber": 0,
+            "columnNumber": 7060,
+            "selfSampleWeightMs": 40.082,
+            "inclusiveSampleWeightMs": 94.527,
+            "selfSamples": 26,
+            "inclusiveSamples": 60,
+            "shareOfAssignedSampleWeight": 0.01
+          },
+          {
+            "functionName": "so",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 6,
+            "columnNumber": 16944,
+            "selfSampleWeightMs": 33.053,
+            "inclusiveSampleWeightMs": 326.653,
+            "selfSamples": 21,
+            "inclusiveSamples": 209,
+            "shareOfAssignedSampleWeight": 0.008
+          },
+          {
+            "functionName": "_a",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 12578,
+            "selfSampleWeightMs": 27.959,
+            "inclusiveSampleWeightMs": 47.911,
+            "selfSamples": 17,
+            "inclusiveSamples": 28,
+            "shareOfAssignedSampleWeight": 0.007
+          },
+          {
+            "functionName": "$a",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 43956,
+            "selfSampleWeightMs": 27.44,
+            "inclusiveSampleWeightMs": 453.143,
+            "selfSamples": 16,
+            "inclusiveSamples": 287,
+            "shareOfAssignedSampleWeight": 0.007
+          },
+          {
+            "functionName": "t",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 19634,
+            "selfSampleWeightMs": 23.567,
+            "inclusiveSampleWeightMs": 28.866,
+            "selfSamples": 15,
+            "inclusiveSamples": 18,
+            "shareOfAssignedSampleWeight": 0.006
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 33125,
+            "selfSampleWeightMs": 21.986,
+            "inclusiveSampleWeightMs": 213.115,
+            "selfSamples": 14,
+            "inclusiveSamples": 134,
+            "shareOfAssignedSampleWeight": 0.005
+          },
+          {
+            "functionName": "cn",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 48507,
+            "selfSampleWeightMs": 18.956,
+            "inclusiveSampleWeightMs": 18.956,
+            "selfSamples": 11,
+            "inclusiveSamples": 11,
+            "shareOfAssignedSampleWeight": 0.005
+          },
+          {
+            "functionName": "gi",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 17305,
+            "selfSampleWeightMs": 18.658,
+            "inclusiveSampleWeightMs": 919.189,
+            "selfSamples": 12,
+            "inclusiveSamples": 577,
+            "shareOfAssignedSampleWeight": 0.004
+          },
+          {
+            "functionName": "za",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 27658,
+            "selfSampleWeightMs": 17.165,
+            "inclusiveSampleWeightMs": 65.223,
+            "selfSamples": 11,
+            "inclusiveSamples": 41,
+            "shareOfAssignedSampleWeight": 0.004
+          },
+          {
+            "functionName": "O",
+            "resourcePath": "/assets/session-CC55-cei.js",
+            "lineNumber": 0,
+            "columnNumber": 285,
+            "selfSampleWeightMs": 17.004,
+            "inclusiveSampleWeightMs": 17.004,
+            "selfSamples": 11,
+            "inclusiveSamples": 11,
+            "shareOfAssignedSampleWeight": 0.004
+          },
+          {
+            "functionName": "(garbage collector)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 16.719,
+            "inclusiveSampleWeightMs": 16.719,
+            "selfSamples": 10,
+            "inclusiveSamples": 10,
+            "shareOfAssignedSampleWeight": 0.004
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/ObservedLiveKeyboard-CwkAqEhj.js",
+            "lineNumber": 5,
+            "columnNumber": 7041,
+            "selfSampleWeightMs": 16.509,
+            "inclusiveSampleWeightMs": 21.53,
+            "selfSamples": 10,
+            "inclusiveSamples": 13,
+            "shareOfAssignedSampleWeight": 0.004
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/ObservedLiveKeyboard-CwkAqEhj.js",
+            "lineNumber": 5,
+            "columnNumber": 2148,
+            "selfSampleWeightMs": 16.08,
+            "inclusiveSampleWeightMs": 23.939,
+            "selfSamples": 11,
+            "inclusiveSamples": 16,
+            "shareOfAssignedSampleWeight": 0.004
+          },
+          {
+            "functionName": "F",
+            "resourcePath": "/assets/metrics-CaLrEdo5.js",
+            "lineNumber": 0,
+            "columnNumber": 1195,
+            "selfSampleWeightMs": 15.118,
+            "inclusiveSampleWeightMs": 15.346,
+            "selfSamples": 9,
+            "inclusiveSamples": 10,
+            "shareOfAssignedSampleWeight": 0.004
+          },
+          {
+            "functionName": "(idle)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 14.568,
+            "inclusiveSampleWeightMs": 14.568,
+            "selfSamples": 9,
+            "inclusiveSamples": 9,
+            "shareOfAssignedSampleWeight": 0.003
+          },
+          {
+            "functionName": "ir",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 9036,
+            "selfSampleWeightMs": 14.561,
+            "inclusiveSampleWeightMs": 22.338,
+            "selfSamples": 9,
+            "inclusiveSamples": 14,
+            "shareOfAssignedSampleWeight": 0.003
+          },
+          {
+            "functionName": "Zf",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 14730,
+            "selfSampleWeightMs": 13.545,
+            "inclusiveSampleWeightMs": 78.625,
+            "selfSamples": 8,
+            "inclusiveSamples": 46,
+            "shareOfAssignedSampleWeight": 0.003
+          }
+        ],
+        "topInclusiveFunctions": [
+          {
+            "functionName": "(root)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 4193.002,
+            "selfSamples": 0,
+            "inclusiveSamples": 2615,
+            "shareOfAssignedSampleWeight": 1
+          },
+          {
+            "functionName": "(program)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 3043.815,
+            "inclusiveSampleWeightMs": 3043.815,
+            "selfSamples": 1892,
+            "inclusiveSamples": 1892,
+            "shareOfAssignedSampleWeight": 0.726
+          },
+          {
+            "functionName": "gi",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 17305,
+            "selfSampleWeightMs": 18.658,
+            "inclusiveSampleWeightMs": 919.189,
+            "selfSamples": 12,
+            "inclusiveSamples": 577,
+            "shareOfAssignedSampleWeight": 0.219
+          },
+          {
+            "functionName": "Hc",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 17073,
+            "selfSampleWeightMs": 8.837,
+            "inclusiveSampleWeightMs": 894.421,
+            "selfSamples": 6,
+            "inclusiveSamples": 562,
+            "shareOfAssignedSampleWeight": 0.213
+          },
+          {
+            "functionName": "Di",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 32655,
+            "selfSampleWeightMs": 1.093,
+            "inclusiveSampleWeightMs": 877.938,
+            "selfSamples": 1,
+            "inclusiveSamples": 551,
+            "shareOfAssignedSampleWeight": 0.209
+          },
+          {
+            "functionName": "wu",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 8919,
+            "selfSampleWeightMs": 1.456,
+            "inclusiveSampleWeightMs": 876.845,
+            "selfSamples": 1,
+            "inclusiveSamples": 550,
+            "shareOfAssignedSampleWeight": 0.209
+          },
+          {
+            "functionName": "tn",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 6,
+            "columnNumber": 3176,
+            "selfSampleWeightMs": 1.599,
+            "inclusiveSampleWeightMs": 737.456,
+            "selfSamples": 1,
+            "inclusiveSamples": 462,
+            "shareOfAssignedSampleWeight": 0.176
+          },
+          {
+            "functionName": "Fa",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 36712,
+            "selfSampleWeightMs": 4.373,
+            "inclusiveSampleWeightMs": 735.857,
+            "selfSamples": 3,
+            "inclusiveSamples": 461,
+            "shareOfAssignedSampleWeight": 0.175
+          },
+          {
+            "functionName": "_n",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 37145,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 655.73,
+            "selfSamples": 0,
+            "inclusiveSamples": 411,
+            "shareOfAssignedSampleWeight": 0.156
+          },
+          {
+            "functionName": "$l",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 39650,
+            "selfSampleWeightMs": 1.595,
+            "inclusiveSampleWeightMs": 545.155,
+            "selfSamples": 1,
+            "inclusiveSamples": 341,
+            "shareOfAssignedSampleWeight": 0.13
+          },
+          {
+            "functionName": "rd",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 39853,
+            "selfSampleWeightMs": 1.611,
+            "inclusiveSampleWeightMs": 542.139,
+            "selfSamples": 1,
+            "inclusiveSamples": 339,
+            "shareOfAssignedSampleWeight": 0.129
+          },
+          {
+            "functionName": "$a",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 43956,
+            "selfSampleWeightMs": 27.44,
+            "inclusiveSampleWeightMs": 453.143,
+            "selfSamples": 16,
+            "inclusiveSamples": 287,
+            "shareOfAssignedSampleWeight": 0.108
+          },
+          {
+            "functionName": "so",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 6,
+            "columnNumber": 16944,
+            "selfSampleWeightMs": 33.053,
+            "inclusiveSampleWeightMs": 326.653,
+            "selfSamples": 21,
+            "inclusiveSamples": 209,
+            "shareOfAssignedSampleWeight": 0.078
+          },
+          {
+            "functionName": "wo",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 3093,
+            "selfSampleWeightMs": 4.901,
+            "inclusiveSampleWeightMs": 312.136,
+            "selfSamples": 3,
+            "inclusiveSamples": 199,
+            "shareOfAssignedSampleWeight": 0.074
+          },
+          {
+            "functionName": "Va",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 39934,
+            "selfSampleWeightMs": 1.745,
+            "inclusiveSampleWeightMs": 297.201,
+            "selfSamples": 1,
+            "inclusiveSamples": 183,
+            "shareOfAssignedSampleWeight": 0.071
+          },
+          {
+            "functionName": "Fo",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 37052,
+            "selfSampleWeightMs": 3.445,
+            "inclusiveSampleWeightMs": 218.185,
+            "selfSamples": 2,
+            "inclusiveSamples": 137,
+            "shareOfAssignedSampleWeight": 0.052
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 33125,
+            "selfSampleWeightMs": 21.986,
+            "inclusiveSampleWeightMs": 213.115,
+            "selfSamples": 14,
+            "inclusiveSamples": 134,
+            "shareOfAssignedSampleWeight": 0.051
+          },
+          {
+            "functionName": "xn",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 40378,
+            "selfSampleWeightMs": 4.136,
+            "inclusiveSampleWeightMs": 187.929,
+            "selfSamples": 3,
+            "inclusiveSamples": 118,
+            "shareOfAssignedSampleWeight": 0.045
+          },
+          {
+            "functionName": "id",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 40503,
+            "selfSampleWeightMs": 5.472,
+            "inclusiveSampleWeightMs": 180.477,
+            "selfSamples": 3,
+            "inclusiveSamples": 113,
+            "shareOfAssignedSampleWeight": 0.043
+          },
+          {
+            "functionName": "pa",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 2172,
+            "selfSampleWeightMs": 9.424,
+            "inclusiveSampleWeightMs": 159.65,
+            "selfSamples": 6,
+            "inclusiveSamples": 102,
+            "shareOfAssignedSampleWeight": 0.038
+          }
+        ],
+        "eventStatisticsByEventStartTime": {
+          "status": "DIAGNOSTIC-ONLY-NOT-AN-ACCEPTANCE-RESULT",
+          "observedEvents": 500,
+          "p98ObservedDurationMs": 112,
+          "maxObservedDurationMs": 160
+        },
+        "overlappingLongAnimationFrames": 2,
+        "reportedForcedStyleAndLayoutForOverlappingScriptsMs": 10.8,
+        "reportedForcedStyleAndLayoutForFullyContainedScriptsMs": 10.8,
+        "overlappingScriptsWithoutForcedLayoutField": 0,
+        "invokerCategories": [
+          {
+            "invokerType": "event-listener",
+            "scripts": 2,
+            "reportedScriptDurationMs": 50.8,
+            "reportedForcedStyleAndLayoutMs": 10.8
+          }
+        ],
+        "overlappingLongTasks": 20,
+        "maxReportedOverlappingLongTaskMs": 108,
+        "overlapTotalsAreNonexclusive": true
+      },
+      "strictPreFinalInsertion": {
+        "bounds": {
+          "startMs": 1190.7000000476837,
+          "endMs": 5199.100000023842,
+          "exclusiveEnd": true,
+          "valid": true,
+          "empty": false
+        },
+        "sampledIntervalsAssigned": 2496,
+        "assignedSampleWeightMs": 4006.748,
+        "intervalsOutsideOrCrossingBounds": 260,
+        "missingLeafNodes": 0,
+        "stackCyclesOrDepthLimits": 0,
+        "diagnosticPhaseStatus": "DIAGNOSTIC-ONLY",
+        "topSelfFunctions": [
+          {
+            "functionName": "(program)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 2941.858,
+            "inclusiveSampleWeightMs": 2941.858,
+            "selfSamples": 1828,
+            "inclusiveSamples": 1828,
+            "shareOfAssignedSampleWeight": 0.734
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/TypingArea-DgEiVcsJ.js",
+            "lineNumber": 0,
+            "columnNumber": 9212,
+            "selfSampleWeightMs": 50.649,
+            "inclusiveSampleWeightMs": 71.437,
+            "selfSamples": 31,
+            "inclusiveSamples": 45,
+            "shareOfAssignedSampleWeight": 0.013
+          },
+          {
+            "functionName": "$",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 1,
+            "columnNumber": 8281,
+            "selfSampleWeightMs": 48.435,
+            "inclusiveSampleWeightMs": 48.435,
+            "selfSamples": 30,
+            "inclusiveSamples": 30,
+            "shareOfAssignedSampleWeight": 0.012
+          },
+          {
+            "functionName": "Mt",
+            "resourcePath": "/assets/TypingArea-DgEiVcsJ.js",
+            "lineNumber": 0,
+            "columnNumber": 7060,
+            "selfSampleWeightMs": 40.082,
+            "inclusiveSampleWeightMs": 93.018,
+            "selfSamples": 26,
+            "inclusiveSamples": 59,
+            "shareOfAssignedSampleWeight": 0.01
+          },
+          {
+            "functionName": "so",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 6,
+            "columnNumber": 16944,
+            "selfSampleWeightMs": 31.478,
+            "inclusiveSampleWeightMs": 318.875,
+            "selfSamples": 20,
+            "inclusiveSamples": 204,
+            "shareOfAssignedSampleWeight": 0.008
+          },
+          {
+            "functionName": "_a",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 12578,
+            "selfSampleWeightMs": 27.959,
+            "inclusiveSampleWeightMs": 47.911,
+            "selfSamples": 17,
+            "inclusiveSamples": 28,
+            "shareOfAssignedSampleWeight": 0.007
+          },
+          {
+            "functionName": "$a",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 43956,
+            "selfSampleWeightMs": 27.44,
+            "inclusiveSampleWeightMs": 445.365,
+            "selfSamples": 16,
+            "inclusiveSamples": 282,
+            "shareOfAssignedSampleWeight": 0.007
+          },
+          {
+            "functionName": "t",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 19634,
+            "selfSampleWeightMs": 21.868,
+            "inclusiveSampleWeightMs": 27.167,
+            "selfSamples": 14,
+            "inclusiveSamples": 17,
+            "shareOfAssignedSampleWeight": 0.005
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 33125,
+            "selfSampleWeightMs": 20.775,
+            "inclusiveSampleWeightMs": 207.045,
+            "selfSamples": 13,
+            "inclusiveSamples": 130,
+            "shareOfAssignedSampleWeight": 0.005
+          },
+          {
+            "functionName": "cn",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 48507,
+            "selfSampleWeightMs": 18.956,
+            "inclusiveSampleWeightMs": 18.956,
+            "selfSamples": 11,
+            "inclusiveSamples": 11,
+            "shareOfAssignedSampleWeight": 0.005
+          },
+          {
+            "functionName": "gi",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 17305,
+            "selfSampleWeightMs": 18.658,
+            "inclusiveSampleWeightMs": 902.38,
+            "selfSamples": 12,
+            "inclusiveSamples": 566,
+            "shareOfAssignedSampleWeight": 0.005
+          },
+          {
+            "functionName": "(garbage collector)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 16.719,
+            "inclusiveSampleWeightMs": 16.719,
+            "selfSamples": 10,
+            "inclusiveSamples": 10,
+            "shareOfAssignedSampleWeight": 0.004
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/ObservedLiveKeyboard-CwkAqEhj.js",
+            "lineNumber": 5,
+            "columnNumber": 7041,
+            "selfSampleWeightMs": 16.509,
+            "inclusiveSampleWeightMs": 21.53,
+            "selfSamples": 10,
+            "inclusiveSamples": 13,
+            "shareOfAssignedSampleWeight": 0.004
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/ObservedLiveKeyboard-CwkAqEhj.js",
+            "lineNumber": 5,
+            "columnNumber": 2148,
+            "selfSampleWeightMs": 16.08,
+            "inclusiveSampleWeightMs": 23.939,
+            "selfSamples": 11,
+            "inclusiveSamples": 16,
+            "shareOfAssignedSampleWeight": 0.004
+          },
+          {
+            "functionName": "za",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 27658,
+            "selfSampleWeightMs": 15.512,
+            "inclusiveSampleWeightMs": 63.57,
+            "selfSamples": 10,
+            "inclusiveSamples": 40,
+            "shareOfAssignedSampleWeight": 0.004
+          },
+          {
+            "functionName": "ir",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 9036,
+            "selfSampleWeightMs": 14.561,
+            "inclusiveSampleWeightMs": 22.338,
+            "selfSamples": 9,
+            "inclusiveSamples": 14,
+            "shareOfAssignedSampleWeight": 0.004
+          },
+          {
+            "functionName": "O",
+            "resourcePath": "/assets/session-CC55-cei.js",
+            "lineNumber": 0,
+            "columnNumber": 285,
+            "selfSampleWeightMs": 13.633,
+            "inclusiveSampleWeightMs": 13.633,
+            "selfSamples": 9,
+            "inclusiveSamples": 9,
+            "shareOfAssignedSampleWeight": 0.003
+          },
+          {
+            "functionName": "Zf",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 14730,
+            "selfSampleWeightMs": 13.545,
+            "inclusiveSampleWeightMs": 78.625,
+            "selfSamples": 8,
+            "inclusiveSamples": 46,
+            "shareOfAssignedSampleWeight": 0.003
+          },
+          {
+            "functionName": "L",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 6,
+            "columnNumber": 8928,
+            "selfSampleWeightMs": 13.344,
+            "inclusiveSampleWeightMs": 36.686,
+            "selfSamples": 9,
+            "inclusiveSamples": 23,
+            "shareOfAssignedSampleWeight": 0.003
+          },
+          {
+            "functionName": "we",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 6,
+            "columnNumber": 10383,
+            "selfSampleWeightMs": 12.499,
+            "inclusiveSampleWeightMs": 51.951,
+            "selfSamples": 8,
+            "inclusiveSamples": 33,
+            "shareOfAssignedSampleWeight": 0.003
+          }
+        ],
+        "topInclusiveFunctions": [
+          {
+            "functionName": "(root)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 4006.748,
+            "selfSamples": 0,
+            "inclusiveSamples": 2496,
+            "shareOfAssignedSampleWeight": 1
+          },
+          {
+            "functionName": "(program)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 2941.858,
+            "inclusiveSampleWeightMs": 2941.858,
+            "selfSamples": 1828,
+            "inclusiveSamples": 1828,
+            "shareOfAssignedSampleWeight": 0.734
+          },
+          {
+            "functionName": "gi",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 17305,
+            "selfSampleWeightMs": 18.658,
+            "inclusiveSampleWeightMs": 902.38,
+            "selfSamples": 12,
+            "inclusiveSamples": 566,
+            "shareOfAssignedSampleWeight": 0.225
+          },
+          {
+            "functionName": "Hc",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 17073,
+            "selfSampleWeightMs": 8.837,
+            "inclusiveSampleWeightMs": 879.086,
+            "selfSamples": 6,
+            "inclusiveSamples": 552,
+            "shareOfAssignedSampleWeight": 0.219
+          },
+          {
+            "functionName": "Di",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 32655,
+            "selfSampleWeightMs": 1.093,
+            "inclusiveSampleWeightMs": 862.786,
+            "selfSamples": 1,
+            "inclusiveSamples": 541,
+            "shareOfAssignedSampleWeight": 0.215
+          },
+          {
+            "functionName": "wu",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 8919,
+            "selfSampleWeightMs": 1.456,
+            "inclusiveSampleWeightMs": 861.693,
+            "selfSamples": 1,
+            "inclusiveSamples": 540,
+            "shareOfAssignedSampleWeight": 0.215
+          },
+          {
+            "functionName": "tn",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 6,
+            "columnNumber": 3176,
+            "selfSampleWeightMs": 1.599,
+            "inclusiveSampleWeightMs": 723.211,
+            "selfSamples": 1,
+            "inclusiveSamples": 453,
+            "shareOfAssignedSampleWeight": 0.18
+          },
+          {
+            "functionName": "Fa",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 36712,
+            "selfSampleWeightMs": 4.373,
+            "inclusiveSampleWeightMs": 721.612,
+            "selfSamples": 3,
+            "inclusiveSamples": 452,
+            "shareOfAssignedSampleWeight": 0.18
+          },
+          {
+            "functionName": "_n",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 37145,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 648.122,
+            "selfSamples": 0,
+            "inclusiveSamples": 406,
+            "shareOfAssignedSampleWeight": 0.162
+          },
+          {
+            "functionName": "$l",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 39650,
+            "selfSampleWeightMs": 1.595,
+            "inclusiveSampleWeightMs": 535.769,
+            "selfSamples": 1,
+            "inclusiveSamples": 335,
+            "shareOfAssignedSampleWeight": 0.134
+          },
+          {
+            "functionName": "rd",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 39853,
+            "selfSampleWeightMs": 1.611,
+            "inclusiveSampleWeightMs": 532.753,
+            "selfSamples": 1,
+            "inclusiveSamples": 333,
+            "shareOfAssignedSampleWeight": 0.133
+          },
+          {
+            "functionName": "$a",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 43956,
+            "selfSampleWeightMs": 27.44,
+            "inclusiveSampleWeightMs": 445.365,
+            "selfSamples": 16,
+            "inclusiveSamples": 282,
+            "shareOfAssignedSampleWeight": 0.111
+          },
+          {
+            "functionName": "so",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 6,
+            "columnNumber": 16944,
+            "selfSampleWeightMs": 31.478,
+            "inclusiveSampleWeightMs": 318.875,
+            "selfSamples": 20,
+            "inclusiveSamples": 204,
+            "shareOfAssignedSampleWeight": 0.08
+          },
+          {
+            "functionName": "wo",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 3093,
+            "selfSampleWeightMs": 4.901,
+            "inclusiveSampleWeightMs": 304.358,
+            "selfSamples": 3,
+            "inclusiveSamples": 194,
+            "shareOfAssignedSampleWeight": 0.076
+          },
+          {
+            "functionName": "Va",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 39934,
+            "selfSampleWeightMs": 1.745,
+            "inclusiveSampleWeightMs": 291.191,
+            "selfSamples": 1,
+            "inclusiveSamples": 179,
+            "shareOfAssignedSampleWeight": 0.073
+          },
+          {
+            "functionName": "Fo",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 37052,
+            "selfSampleWeightMs": 3.445,
+            "inclusiveSampleWeightMs": 212.115,
+            "selfSamples": 2,
+            "inclusiveSamples": 133,
+            "shareOfAssignedSampleWeight": 0.053
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 33125,
+            "selfSampleWeightMs": 20.775,
+            "inclusiveSampleWeightMs": 207.045,
+            "selfSamples": 13,
+            "inclusiveSamples": 130,
+            "shareOfAssignedSampleWeight": 0.052
+          },
+          {
+            "functionName": "xn",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 40378,
+            "selfSampleWeightMs": 4.136,
+            "inclusiveSampleWeightMs": 181.47,
+            "selfSamples": 3,
+            "inclusiveSamples": 114,
+            "shareOfAssignedSampleWeight": 0.045
+          },
+          {
+            "functionName": "id",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 40503,
+            "selfSampleWeightMs": 5.472,
+            "inclusiveSampleWeightMs": 175.632,
+            "selfSamples": 3,
+            "inclusiveSamples": 110,
+            "shareOfAssignedSampleWeight": 0.044
+          },
+          {
+            "functionName": "pa",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 2172,
+            "selfSampleWeightMs": 9.424,
+            "inclusiveSampleWeightMs": 156.579,
+            "selfSamples": 6,
+            "inclusiveSamples": 100,
+            "shareOfAssignedSampleWeight": 0.039
+          }
+        ],
+        "eventStatisticsByEventStartTime": {
+          "status": "DIAGNOSTIC-ONLY-NOT-AN-ACCEPTANCE-RESULT",
+          "observedEvents": 495,
+          "p98ObservedDurationMs": 112,
+          "maxObservedDurationMs": 160
+        },
+        "overlappingLongAnimationFrames": 2,
+        "reportedForcedStyleAndLayoutForOverlappingScriptsMs": 10.8,
+        "reportedForcedStyleAndLayoutForFullyContainedScriptsMs": 10.8,
+        "overlappingScriptsWithoutForcedLayoutField": 0,
+        "invokerCategories": [
+          {
+            "invokerType": "event-listener",
+            "scripts": 2,
+            "reportedScriptDurationMs": 50.8,
+            "reportedForcedStyleAndLayoutMs": 10.8
+          }
+        ],
+        "overlappingLongTasks": 20,
+        "maxReportedOverlappingLongTaskMs": 108,
+        "overlapTotalsAreNonexclusive": true
+      },
+      "finalInsertionAndReturn": {
+        "bounds": {
+          "startMs": 5199.100000023842,
+          "endMs": 5353.200000047684,
+          "exclusiveEnd": false,
+          "valid": true,
+          "empty": false
+        },
+        "sampledIntervalsAssigned": 98,
+        "assignedSampleWeightMs": 153.983,
+        "intervalsOutsideOrCrossingBounds": 2658,
+        "missingLeafNodes": 0,
+        "stackCyclesOrDepthLimits": 0,
+        "diagnosticPhaseStatus": "DIAGNOSTIC-ONLY",
+        "topSelfFunctions": [
+          {
+            "functionName": "(program)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 90.711,
+            "inclusiveSampleWeightMs": 90.711,
+            "selfSamples": 57,
+            "inclusiveSamples": 57,
+            "shareOfAssignedSampleWeight": 0.589
+          },
+          {
+            "functionName": "F",
+            "resourcePath": "/assets/metrics-CaLrEdo5.js",
+            "lineNumber": 0,
+            "columnNumber": 1195,
+            "selfSampleWeightMs": 4.763,
+            "inclusiveSampleWeightMs": 4.991,
+            "selfSamples": 3,
+            "inclusiveSamples": 4,
+            "shareOfAssignedSampleWeight": 0.031
+          },
+          {
+            "functionName": "consume",
+            "resourcePath": "",
+            "lineNumber": 9,
+            "columnNumber": 22,
+            "selfSampleWeightMs": 4.718,
+            "inclusiveSampleWeightMs": 4.718,
+            "selfSamples": 3,
+            "inclusiveSamples": 3,
+            "shareOfAssignedSampleWeight": 0.031
+          },
+          {
+            "functionName": "Je",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 1,
+            "columnNumber": 10156,
+            "selfSampleWeightMs": 4.083,
+            "inclusiveSampleWeightMs": 5.683,
+            "selfSamples": 3,
+            "inclusiveSamples": 4,
+            "shareOfAssignedSampleWeight": 0.027
+          },
+          {
+            "functionName": "O",
+            "resourcePath": "/assets/session-CC55-cei.js",
+            "lineNumber": 0,
+            "columnNumber": 285,
+            "selfSampleWeightMs": 3.371,
+            "inclusiveSampleWeightMs": 3.371,
+            "selfSamples": 2,
+            "inclusiveSamples": 2,
+            "shareOfAssignedSampleWeight": 0.022
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "",
+            "lineNumber": 40,
+            "columnNumber": 47,
+            "selfSampleWeightMs": 3.327,
+            "inclusiveSampleWeightMs": 6.362,
+            "selfSamples": 2,
+            "inclusiveSamples": 4,
+            "shareOfAssignedSampleWeight": 0.022
+          },
+          {
+            "functionName": "na",
+            "resourcePath": "/assets/index-CoZNsTOm.js",
+            "lineNumber": 4,
+            "columnNumber": 5448,
+            "selfSampleWeightMs": 3.293,
+            "inclusiveSampleWeightMs": 3.293,
+            "selfSamples": 2,
+            "inclusiveSamples": 2,
+            "shareOfAssignedSampleWeight": 0.021
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "",
+            "lineNumber": 17,
+            "columnNumber": 47,
+            "selfSampleWeightMs": 3.208,
+            "inclusiveSampleWeightMs": 9.533,
+            "selfSamples": 2,
+            "inclusiveSamples": 6,
+            "shareOfAssignedSampleWeight": 0.021
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/Race-C3e78PBG.js",
+            "lineNumber": 0,
+            "columnNumber": 16685,
+            "selfSampleWeightMs": 3.137,
+            "inclusiveSampleWeightMs": 22.754,
+            "selfSamples": 2,
+            "inclusiveSamples": 15,
+            "shareOfAssignedSampleWeight": 0.02
+          },
+          {
+            "functionName": "consume",
+            "resourcePath": "",
+            "lineNumber": 17,
+            "columnNumber": 22,
+            "selfSampleWeightMs": 3.035,
+            "inclusiveSampleWeightMs": 3.035,
+            "selfSamples": 2,
+            "inclusiveSamples": 2,
+            "shareOfAssignedSampleWeight": 0.02
+          },
+          {
+            "functionName": "We",
+            "resourcePath": "/assets/Race-C3e78PBG.js",
+            "lineNumber": 0,
+            "columnNumber": 7073,
+            "selfSampleWeightMs": 2.922,
+            "inclusiveSampleWeightMs": 2.922,
+            "selfSamples": 2,
+            "inclusiveSamples": 2,
+            "shareOfAssignedSampleWeight": 0.019
+          },
+          {
+            "functionName": "ja",
+            "resourcePath": "/assets/index-CoZNsTOm.js",
+            "lineNumber": 4,
+            "columnNumber": 403,
+            "selfSampleWeightMs": 1.822,
+            "inclusiveSampleWeightMs": 1.822,
+            "selfSamples": 1,
+            "inclusiveSamples": 1,
+            "shareOfAssignedSampleWeight": 0.012
+          },
+          {
+            "functionName": "re",
+            "resourcePath": "/assets/Race-C3e78PBG.js",
+            "lineNumber": 0,
+            "columnNumber": 5350,
+            "selfSampleWeightMs": 1.77,
+            "inclusiveSampleWeightMs": 1.77,
+            "selfSamples": 1,
+            "inclusiveSamples": 1,
+            "shareOfAssignedSampleWeight": 0.011
+          },
+          {
+            "functionName": "evaluate",
+            "resourcePath": "",
+            "lineNumber": 363,
+            "columnNumber": 10,
+            "selfSampleWeightMs": 1.748,
+            "inclusiveSampleWeightMs": 1.748,
+            "selfSamples": 1,
+            "inclusiveSamples": 1,
+            "shareOfAssignedSampleWeight": 0.011
+          },
+          {
+            "functionName": "snapshot",
+            "resourcePath": "/assets/session-CC55-cei.js",
+            "lineNumber": 0,
+            "columnNumber": 7006,
+            "selfSampleWeightMs": 1.685,
+            "inclusiveSampleWeightMs": 11.869,
+            "selfSamples": 1,
+            "inclusiveSamples": 8,
+            "shareOfAssignedSampleWeight": 0.011
+          },
+          {
+            "functionName": "ui",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 8432,
+            "selfSampleWeightMs": 1.657,
+            "inclusiveSampleWeightMs": 1.657,
+            "selfSamples": 1,
+            "inclusiveSamples": 1,
+            "shareOfAssignedSampleWeight": 0.011
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/ObservedLiveKeyboard-CwkAqEhj.js",
+            "lineNumber": 4,
+            "columnNumber": 252,
+            "selfSampleWeightMs": 1.623,
+            "inclusiveSampleWeightMs": 1.623,
+            "selfSamples": 1,
+            "inclusiveSamples": 1,
+            "shareOfAssignedSampleWeight": 0.011
+          },
+          {
+            "functionName": "bf",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 22563,
+            "selfSampleWeightMs": 1.614,
+            "inclusiveSampleWeightMs": 3.214,
+            "selfSamples": 1,
+            "inclusiveSamples": 2,
+            "shareOfAssignedSampleWeight": 0.01
+          },
+          {
+            "functionName": "Ba",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 40043,
+            "selfSampleWeightMs": 1.608,
+            "inclusiveSampleWeightMs": 1.608,
+            "selfSamples": 1,
+            "inclusiveSamples": 1,
+            "shareOfAssignedSampleWeight": 0.01
+          },
+          {
+            "functionName": "getEntries",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 1.607,
+            "inclusiveSampleWeightMs": 1.607,
+            "selfSamples": 1,
+            "inclusiveSamples": 1,
+            "shareOfAssignedSampleWeight": 0.01
+          }
+        ],
+        "topInclusiveFunctions": [
+          {
+            "functionName": "(root)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 153.983,
+            "selfSamples": 0,
+            "inclusiveSamples": 98,
+            "shareOfAssignedSampleWeight": 1
+          },
+          {
+            "functionName": "(program)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 90.711,
+            "inclusiveSampleWeightMs": 90.711,
+            "selfSamples": 57,
+            "inclusiveSamples": 57,
+            "shareOfAssignedSampleWeight": 0.589
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/Race-C3e78PBG.js",
+            "lineNumber": 0,
+            "columnNumber": 16685,
+            "selfSampleWeightMs": 3.137,
+            "inclusiveSampleWeightMs": 22.754,
+            "selfSamples": 2,
+            "inclusiveSamples": 15,
+            "shareOfAssignedSampleWeight": 0.148
+          },
+          {
+            "functionName": "input",
+            "resourcePath": "/assets/session-CC55-cei.js",
+            "lineNumber": 0,
+            "columnNumber": 5232,
+            "selfSampleWeightMs": 1.41,
+            "inclusiveSampleWeightMs": 14.887,
+            "selfSamples": 1,
+            "inclusiveSamples": 10,
+            "shareOfAssignedSampleWeight": 0.097
+          },
+          {
+            "functionName": "gi",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 17305,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 13.899,
+            "selfSamples": 0,
+            "inclusiveSamples": 9,
+            "shareOfAssignedSampleWeight": 0.09
+          },
+          {
+            "functionName": "Hc",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 17073,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 12.425,
+            "selfSamples": 0,
+            "inclusiveSamples": 8,
+            "shareOfAssignedSampleWeight": 0.081
+          },
+          {
+            "functionName": "Di",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 32655,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 12.242,
+            "selfSamples": 0,
+            "inclusiveSamples": 8,
+            "shareOfAssignedSampleWeight": 0.08
+          },
+          {
+            "functionName": "wu",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 8919,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 12.242,
+            "selfSamples": 0,
+            "inclusiveSamples": 8,
+            "shareOfAssignedSampleWeight": 0.08
+          },
+          {
+            "functionName": "snapshot",
+            "resourcePath": "/assets/session-CC55-cei.js",
+            "lineNumber": 0,
+            "columnNumber": 7006,
+            "selfSampleWeightMs": 1.685,
+            "inclusiveSampleWeightMs": 11.869,
+            "selfSamples": 1,
+            "inclusiveSamples": 8,
+            "shareOfAssignedSampleWeight": 0.077
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "",
+            "lineNumber": 17,
+            "columnNumber": 47,
+            "selfSampleWeightMs": 3.208,
+            "inclusiveSampleWeightMs": 9.533,
+            "selfSamples": 2,
+            "inclusiveSamples": 6,
+            "shareOfAssignedSampleWeight": 0.062
+          },
+          {
+            "functionName": "Fa",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 36712,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 9.216,
+            "selfSamples": 0,
+            "inclusiveSamples": 6,
+            "shareOfAssignedSampleWeight": 0.06
+          },
+          {
+            "functionName": "tn",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 6,
+            "columnNumber": 3176,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 9.216,
+            "selfSamples": 0,
+            "inclusiveSamples": 6,
+            "shareOfAssignedSampleWeight": 0.06
+          },
+          {
+            "functionName": "_n",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 37145,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 7.608,
+            "selfSamples": 0,
+            "inclusiveSamples": 5,
+            "shareOfAssignedSampleWeight": 0.049
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "",
+            "lineNumber": 40,
+            "columnNumber": 47,
+            "selfSampleWeightMs": 3.327,
+            "inclusiveSampleWeightMs": 6.362,
+            "selfSamples": 2,
+            "inclusiveSamples": 4,
+            "shareOfAssignedSampleWeight": 0.041
+          },
+          {
+            "functionName": "tick",
+            "resourcePath": "/assets/Race-C3e78PBG.js",
+            "lineNumber": 0,
+            "columnNumber": 6533,
+            "selfSampleWeightMs": 1.597,
+            "inclusiveSampleWeightMs": 6.289,
+            "selfSamples": 1,
+            "inclusiveSamples": 4,
+            "shareOfAssignedSampleWeight": 0.041
+          },
+          {
+            "functionName": "$l",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 39650,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 6.01,
+            "selfSamples": 0,
+            "inclusiveSamples": 4,
+            "shareOfAssignedSampleWeight": 0.039
+          },
+          {
+            "functionName": "rd",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 39853,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 6.01,
+            "selfSamples": 0,
+            "inclusiveSamples": 4,
+            "shareOfAssignedSampleWeight": 0.039
+          },
+          {
+            "functionName": "Va",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 39934,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 6.01,
+            "selfSamples": 0,
+            "inclusiveSamples": 4,
+            "shareOfAssignedSampleWeight": 0.039
+          },
+          {
+            "functionName": "it",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 1,
+            "columnNumber": 10668,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 5.683,
+            "selfSamples": 0,
+            "inclusiveSamples": 4,
+            "shareOfAssignedSampleWeight": 0.037
+          },
+          {
+            "functionName": "Je",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 1,
+            "columnNumber": 10156,
+            "selfSampleWeightMs": 4.083,
+            "inclusiveSampleWeightMs": 5.683,
+            "selfSamples": 3,
+            "inclusiveSamples": 4,
+            "shareOfAssignedSampleWeight": 0.037
+          }
+        ],
+        "eventStatisticsByEventStartTime": {
+          "status": "DIAGNOSTIC-ONLY-NOT-AN-ACCEPTANCE-RESULT",
+          "observedEvents": 2,
+          "p98ObservedDurationMs": 72,
+          "maxObservedDurationMs": 72
+        },
+        "overlappingLongAnimationFrames": 0,
+        "reportedForcedStyleAndLayoutForOverlappingScriptsMs": 0,
+        "reportedForcedStyleAndLayoutForFullyContainedScriptsMs": 0,
+        "overlappingScriptsWithoutForcedLayoutField": 0,
+        "invokerCategories": [],
+        "overlappingLongTasks": 1,
+        "maxReportedOverlappingLongTaskMs": 70,
+        "overlapTotalsAreNonexclusive": true
+      }
+    },
+    "longEventTimeline": [
+      {
+        "name": "keyup",
+        "startTime": 4805.5,
+        "duration": 160,
+        "interactionId": 5723,
+        "processingStart": 4848.300000071526,
+        "processingEnd": 4854.300000071526,
+        "inputDelayMs": 42.8,
+        "processingDurationMs": 6,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 0,
+        "overlappingFrames": [],
+        "overlapLongTaskCount": 2,
+        "overlappingLongTasks": [
+          {
+            "startTime": 4738.900000095367,
+            "duration": 108,
+            "overlapWithEventSpanMs": 41.4
+          },
+          {
+            "startTime": 4856.200000047684,
+            "duration": 107,
+            "overlapWithEventSpanMs": 107
+          }
+        ]
+      },
+      {
+        "name": "keyup",
+        "startTime": 4705.200000047684,
+        "duration": 144,
+        "interactionId": 5716,
+        "processingStart": 4732.400000095367,
+        "processingEnd": 4736.300000071526,
+        "inputDelayMs": 27.2,
+        "processingDurationMs": 3.9,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 0,
+        "overlappingFrames": [],
+        "overlapLongTaskCount": 2,
+        "overlappingLongTasks": [
+          {
+            "startTime": 4662.5,
+            "duration": 67,
+            "overlapWithEventSpanMs": 24.3
+          },
+          {
+            "startTime": 4738.900000095367,
+            "duration": 108,
+            "overlapWithEventSpanMs": 108
+          }
+        ]
+      },
+      {
+        "name": "keyup",
+        "startTime": 4530.5,
+        "duration": 136,
+        "interactionId": 5702,
+        "processingStart": 4567.400000095367,
+        "processingEnd": 4569.700000047684,
+        "inputDelayMs": 36.9,
+        "processingDurationMs": 2.3,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 0,
+        "overlappingFrames": [],
+        "overlapLongTaskCount": 3,
+        "overlappingLongTasks": [
+          {
+            "startTime": 4499.400000095367,
+            "duration": 66,
+            "overlapWithEventSpanMs": 34.9
+          },
+          {
+            "startTime": 4570.300000071526,
+            "duration": 88,
+            "overlapWithEventSpanMs": 88
+          },
+          {
+            "startTime": 4662.5,
+            "duration": 67,
+            "overlapWithEventSpanMs": 4
+          }
+        ]
+      },
+      {
+        "name": "keyup",
+        "startTime": 4935.400000095367,
+        "duration": 120,
+        "interactionId": 5730,
+        "processingStart": 4964,
+        "processingEnd": 4965.100000023842,
+        "inputDelayMs": 28.6,
+        "processingDurationMs": 1.1,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 0,
+        "overlappingFrames": [],
+        "overlapLongTaskCount": 3,
+        "overlappingLongTasks": [
+          {
+            "startTime": 4856.200000047684,
+            "duration": 107,
+            "overlapWithEventSpanMs": 27.8
+          },
+          {
+            "startTime": 4965.900000095367,
+            "duration": 73,
+            "overlapWithEventSpanMs": 73
+          },
+          {
+            "startTime": 5043.800000071526,
+            "duration": 66,
+            "overlapWithEventSpanMs": 11.6
+          }
+        ]
+      },
+      {
+        "name": "keyup",
+        "startTime": 5152.300000071526,
+        "duration": 120,
+        "interactionId": 5751,
+        "processingStart": 5184.900000095367,
+        "processingEnd": 5188.200000047684,
+        "inputDelayMs": 32.6,
+        "processingDurationMs": 3.3,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 0,
+        "overlappingFrames": [],
+        "overlapLongTaskCount": 2,
+        "overlappingLongTasks": [
+          {
+            "startTime": 5115.200000047684,
+            "duration": 68,
+            "overlapWithEventSpanMs": 30.9
+          },
+          {
+            "startTime": 5189.400000095367,
+            "duration": 70,
+            "overlapWithEventSpanMs": 70
+          }
+        ]
+      },
+      {
+        "name": "keyup",
+        "startTime": 4475.200000047684,
+        "duration": 112,
+        "interactionId": 5695,
+        "processingStart": 4497.700000047684,
+        "processingEnd": 4498.600000023842,
+        "inputDelayMs": 22.5,
+        "processingDurationMs": 0.9,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 0,
+        "overlappingFrames": [],
+        "overlapLongTaskCount": 3,
+        "overlappingLongTasks": [
+          {
+            "startTime": 4447.400000095367,
+            "duration": 50,
+            "overlapWithEventSpanMs": 22.2
+          },
+          {
+            "startTime": 4499.400000095367,
+            "duration": 66,
+            "overlapWithEventSpanMs": 66
+          },
+          {
+            "startTime": 4570.300000071526,
+            "duration": 88,
+            "overlapWithEventSpanMs": 16.9
+          }
+        ]
+      },
+      {
+        "name": "keydown",
+        "startTime": 4737.5,
+        "duration": 112,
+        "interactionId": 5723,
+        "processingStart": 4745.300000071526,
+        "processingEnd": 4746.800000071526,
+        "inputDelayMs": 7.8,
+        "processingDurationMs": 1.5,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 0,
+        "overlappingFrames": [],
+        "overlapLongTaskCount": 1,
+        "overlappingLongTasks": [
+          {
+            "startTime": 4738.900000095367,
+            "duration": 108,
+            "overlapWithEventSpanMs": 108
+          }
+        ]
+      },
+      {
+        "name": "keypress",
+        "startTime": 4737.5,
+        "duration": 112,
+        "interactionId": 5723,
+        "processingStart": 4747,
+        "processingEnd": 4804.200000047684,
+        "inputDelayMs": 9.5,
+        "processingDurationMs": 57.2,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 0,
+        "overlappingFrames": [],
+        "overlapLongTaskCount": 1,
+        "overlappingLongTasks": [
+          {
+            "startTime": 4738.900000095367,
+            "duration": 108,
+            "overlapWithEventSpanMs": 108
+          }
+        ]
+      },
+      {
+        "name": "keydown",
+        "startTime": 4855.300000071526,
+        "duration": 112,
+        "interactionId": 5730,
+        "processingStart": 4865,
+        "processingEnd": 4868.5,
+        "inputDelayMs": 9.7,
+        "processingDurationMs": 3.5,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 0,
+        "overlappingFrames": [],
+        "overlapLongTaskCount": 2,
+        "overlappingLongTasks": [
+          {
+            "startTime": 4856.200000047684,
+            "duration": 107,
+            "overlapWithEventSpanMs": 107
+          },
+          {
+            "startTime": 4965.900000095367,
+            "duration": 73,
+            "overlapWithEventSpanMs": 1.4
+          }
+        ]
+      },
+      {
+        "name": "keypress",
+        "startTime": 4855.300000071526,
+        "duration": 112,
+        "interactionId": 5730,
+        "processingStart": 4868.5,
+        "processingEnd": 4933.200000047684,
+        "inputDelayMs": 13.2,
+        "processingDurationMs": 64.7,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 0,
+        "overlappingFrames": [],
+        "overlapLongTaskCount": 2,
+        "overlappingLongTasks": [
+          {
+            "startTime": 4856.200000047684,
+            "duration": 107,
+            "overlapWithEventSpanMs": 107
+          },
+          {
+            "startTime": 4965.900000095367,
+            "duration": 73,
+            "overlapWithEventSpanMs": 1.4
+          }
+        ]
+      },
+      {
+        "name": "keyup",
+        "startTime": 5089.100000023842,
+        "duration": 112,
+        "interactionId": 5744,
+        "processingStart": 5112.800000071526,
+        "processingEnd": 5114.900000095367,
+        "inputDelayMs": 23.7,
+        "processingDurationMs": 2.1,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 0,
+        "overlappingFrames": [],
+        "overlapLongTaskCount": 3,
+        "overlappingLongTasks": [
+          {
+            "startTime": 5043.800000071526,
+            "duration": 66,
+            "overlapWithEventSpanMs": 20.7
+          },
+          {
+            "startTime": 5115.200000047684,
+            "duration": 68,
+            "overlapWithEventSpanMs": 68
+          },
+          {
+            "startTime": 5189.400000095367,
+            "duration": 70,
+            "overlapWithEventSpanMs": 11.7
+          }
+        ]
+      },
+      {
+        "name": "keyup",
+        "startTime": 2997.9000000953674,
+        "duration": 104,
+        "interactionId": 5471,
+        "processingStart": 3020.100000023842,
+        "processingEnd": 3023.4000000953674,
+        "inputDelayMs": 22.2,
+        "processingDurationMs": 3.3,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 0,
+        "overlappingFrames": [],
+        "overlapLongTaskCount": 1,
+        "overlappingLongTasks": [
+          {
+            "startTime": 3024.2000000476837,
+            "duration": 64,
+            "overlapWithEventSpanMs": 64
+          }
+        ]
+      },
+      {
+        "name": "keyup",
+        "startTime": 3166.600000023842,
+        "duration": 104,
+        "interactionId": 5492,
+        "processingStart": 3184.9000000953674,
+        "processingEnd": 3187.8000000715256,
+        "inputDelayMs": 18.3,
+        "processingDurationMs": 2.9,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 1,
+        "overlappingFrames": [
+          {
+            "index": 1,
+            "startTime": 3184.3000000715256,
+            "duration": 54.10000002384186,
+            "endTime": 3238.4000000953674,
+            "blockingDuration": 0.1,
+            "renderStart": 3234.4000000953674,
+            "styleAndLayoutStart": 3238.2000000476837,
+            "firstUIEventTimestamp": 3166.600000023842,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 3206,
+                "duration": 13.300000071525574,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 54.1
+          }
+        ],
+        "overlapLongTaskCount": 2,
+        "overlappingLongTasks": [
+          {
+            "startTime": 3188.2000000476837,
+            "duration": 64,
+            "overlapWithEventSpanMs": 64
+          },
+          {
+            "startTime": 3256.9000000953674,
+            "duration": 55,
+            "overlapWithEventSpanMs": 13.7
+          }
+        ]
+      },
+      {
+        "name": "keyup",
+        "startTime": 5013.700000047684,
+        "duration": 104,
+        "interactionId": 5737,
+        "processingStart": 5039.5,
+        "processingEnd": 5042.400000095367,
+        "inputDelayMs": 25.8,
+        "processingDurationMs": 2.9,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 0,
+        "overlappingFrames": [],
+        "overlapLongTaskCount": 3,
+        "overlappingLongTasks": [
+          {
+            "startTime": 4965.900000095367,
+            "duration": 73,
+            "overlapWithEventSpanMs": 25.2
+          },
+          {
+            "startTime": 5043.800000071526,
+            "duration": 66,
+            "overlapWithEventSpanMs": 66
+          },
+          {
+            "startTime": 5115.200000047684,
+            "duration": 68,
+            "overlapWithEventSpanMs": 2.5
+          }
+        ]
+      },
+      {
+        "name": "keyup",
+        "startTime": 2939.600000023842,
+        "duration": 96,
+        "interactionId": 5464,
+        "processingStart": 2971.4000000953674,
+        "processingEnd": 2973.5,
+        "inputDelayMs": 31.8,
+        "processingDurationMs": 2.1,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 0,
+        "overlappingFrames": [],
+        "overlapLongTaskCount": 2,
+        "overlappingLongTasks": [
+          {
+            "startTime": 2915.100000023842,
+            "duration": 55,
+            "overlapWithEventSpanMs": 30.5
+          },
+          {
+            "startTime": 3024.2000000476837,
+            "duration": 64,
+            "overlapWithEventSpanMs": 11.4
+          }
+        ]
+      },
+      {
+        "name": "keyup",
+        "startTime": 3291.2000000476837,
+        "duration": 96,
+        "interactionId": 5506,
+        "processingStart": 3312.7000000476837,
+        "processingEnd": 3315.4000000953674,
+        "inputDelayMs": 21.5,
+        "processingDurationMs": 2.7,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 0,
+        "overlappingFrames": [],
+        "overlapLongTaskCount": 2,
+        "overlappingLongTasks": [
+          {
+            "startTime": 3256.9000000953674,
+            "duration": 55,
+            "overlapWithEventSpanMs": 20.7
+          },
+          {
+            "startTime": 3315.8000000715256,
+            "duration": 54,
+            "overlapWithEventSpanMs": 54
+          }
+        ]
+      },
+      {
+        "name": "keyup",
+        "startTime": 3793.5,
+        "duration": 96,
+        "interactionId": 5590,
+        "processingStart": 3811.3000000715256,
+        "processingEnd": 3813.7000000476837,
+        "inputDelayMs": 17.8,
+        "processingDurationMs": 2.4,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 0,
+        "overlappingFrames": [],
+        "overlapLongTaskCount": 1,
+        "overlappingLongTasks": [
+          {
+            "startTime": 3814.600000023842,
+            "duration": 51,
+            "overlapWithEventSpanMs": 51
+          }
+        ]
+      },
+      {
+        "name": "keyup",
+        "startTime": 4309.200000047684,
+        "duration": 96,
+        "interactionId": 5674,
+        "processingStart": 4331.700000047684,
+        "processingEnd": 4335.600000023842,
+        "inputDelayMs": 22.5,
+        "processingDurationMs": 3.9,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 0,
+        "overlappingFrames": [],
+        "overlapLongTaskCount": 2,
+        "overlappingLongTasks": [
+          {
+            "startTime": 4336.200000047684,
+            "duration": 53,
+            "overlapWithEventSpanMs": 53
+          },
+          {
+            "startTime": 4392.300000071526,
+            "duration": 52,
+            "overlapWithEventSpanMs": 12.9
+          }
+        ]
+      },
+      {
+        "name": "keydown",
+        "startTime": 4570.300000071526,
+        "duration": 96,
+        "interactionId": 5709,
+        "processingStart": 4579.100000023842,
+        "processingEnd": 4580.900000095367,
+        "inputDelayMs": 8.8,
+        "processingDurationMs": 1.8,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 0,
+        "overlappingFrames": [],
+        "overlapLongTaskCount": 2,
+        "overlappingLongTasks": [
+          {
+            "startTime": 4570.300000071526,
+            "duration": 88,
+            "overlapWithEventSpanMs": 88
+          },
+          {
+            "startTime": 4662.5,
+            "duration": 67,
+            "overlapWithEventSpanMs": 3.8
+          }
+        ]
+      },
+      {
+        "name": "keypress",
+        "startTime": 4570.300000071526,
+        "duration": 96,
+        "interactionId": 5709,
+        "processingStart": 4580.900000095367,
+        "processingEnd": 4636.400000095367,
+        "inputDelayMs": 10.6,
+        "processingDurationMs": 55.5,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 0,
+        "overlappingFrames": [],
+        "overlapLongTaskCount": 2,
+        "overlappingLongTasks": [
+          {
+            "startTime": 4570.300000071526,
+            "duration": 88,
+            "overlapWithEventSpanMs": 88
+          },
+          {
+            "startTime": 4662.5,
+            "duration": 67,
+            "overlapWithEventSpanMs": 3.8
+          }
+        ]
+      }
+    ],
+    "analysisBounds": {
+      "nodes": 100000,
+      "samples": 500000,
+      "events": 20000,
+      "frames": 1024,
+      "scriptsPerFrame": 64,
+      "tasks": 20000,
+      "stackDepth": 256,
+      "top": 20,
+      "nodesTruncated": false,
+      "samplesTruncated": false,
+      "eventsTruncated": false,
+      "framesTruncated": false,
+      "tasksTruncated": false,
+      "frameScriptListsTruncated": false,
+      "missingSampleOrDeltaRows": 0
+    },
+    "limits": [
+      "The retained Learn and localBOT112ms failures are unchanged; this instrumented run cannot replace ordinary acceptance measurements.",
+      "Profiler sampling, observer callbacks and added markers introduce overhead. Sample weights are approximate wall intervals associated with sampled stacks, not exact function CPU duration.",
+      "CPU intervals are assigned only when their entire signed interval plus alignment uncertainty lies in a phase. Boundary-crossing and inverted intervals are excluded; negative deltas still change the cumulative timeline.",
+      "Inclusive aggregation deduplicates recursive occurrences of the same function within a sample stack.",
+      "Strict pre-final-insertion excludes the final Learn input and its automatic result transition; earlier asynchronous work can still overlap normal input.",
+      "Events are classified by their start times; a duration may extend across phase boundaries and includes quantized presentation delay.",
+      "LoAF/script/long-task totals describe overlaps and are not independent or exclusive CPU components. Only fully-contained-script forced-layout totals exclude boundary-spanning scripts.",
+      "A missing LoAF field or observer is unverified, not proof of zero forced layout. Empty captures and minified names limit attribution.",
+      "Resource URLs are reduced to pathnames or file basenames; query strings, fragments, origins, raw typed text, request bodies, headers and credentials are not emitted by this helper.",
+      "No returned timing establishes causality, field INP, physical-phone performance or preserved3D quality; those require their separately scoped evidence."
+    ]
+  },
+  "rawTypedTextCollected": false,
+  "qualification": "Instrumentation changes execution cost. Original112ms Learn/BOT latency failures remain unchanged. CPU/LoAF overlap alone does not prove one-function causality. Learn strict pre-final-insertion summaries exclude automatic result work; BOT profile stops before manual Finish."
+}

@@ -1,0 +1,45 @@
+{
+  "status": "PASS-SCOPED-BYTE-IDENTICAL-UI-EVIDENCE-REUSE",
+  "verifiedAt": "2026-10-27T16:52:56.867Z",
+  "source24Manifest": {
+    "file": "audit/2026-10-27/final24-source.json",
+    "sha256": "d92520f5e08c4cb288ee667a3da331c5e4b48dd6fe832df3c447b833b62225b0",
+    "compared": 504,
+    "mismatches": []
+  },
+  "source25": {
+    "sourceFile": "audit/2026-10-27/final25-source.json",
+    "expectedBuild": "6cdddf1a74b2d10d1c9b",
+    "compared": 504,
+    "mismatches": []
+  },
+  "baselineFile": "audit/2026-10-27/final24-ui-byte-baseline-before25.json",
+  "baselineSha256": "f2355d2564a8ea0fcdc793845788d42ae30084caa7ccc42804f1d68a39aaeef3",
+  "changedBackendFiles": [
+    "backend/src/ArenaEvidence.php",
+    "backend/src/ArenaService.php"
+  ],
+  "uiFilesCompared": 467,
+  "allDistFilesCompared": 142,
+  "publicAssetsCompared": 133,
+  "allDistBytesCompared": 3028903,
+  "exactRawDistIdentity": true,
+  "exactNormalizedUiSourceIdentity": true,
+  "evidence": [
+    {
+      "file": "audit/2026-10-27/final24-input-results.json",
+      "sha256": "09730fde744646dcdfe9f0ae249016856c8e0bbb63a6cb5ebf8b4102c4658410",
+      "originallyMeasuredBuild": "6cdddf1a74b2d10d1c9b",
+      "newMeasurementRun": false
+    },
+    {
+      "file": "audit/2026-10-27/final24-lighthouse-results.json",
+      "sha256": "c29de590a7a4ea50a475326d53cd1a53a50cb637d9ab4bffe5f3c4d02d2cb4f4",
+      "originallyMeasuredBuild": "6cdddf1a74b2d10d1c9b",
+      "newMeasurementRun": false
+    }
+  ],
+  "scope": "Prior ordinary input and full-quality mobile Lighthouse evidence applies to the exact same frontend artifact. Backend behavior, capacity, native database integration and the full browser matrix require separate fresh source25 acceptance.",
+  "browserOrPerformanceJobsRun": 0,
+  "fullSource25AcceptancePassed": false
+}

@@ -1,0 +1,307 @@
+{
+  "totals": {
+    "total": 1052,
+    "passed": 1030,
+    "failed": 2,
+    "skipped": 20,
+    "flaky": 0
+  },
+  "projects": [
+    {
+      "project": "chromium",
+      "total": 263,
+      "passed": 258,
+      "failed": 0,
+      "skipped": 5,
+      "flaky": 0
+    },
+    {
+      "project": "edge",
+      "total": 263,
+      "passed": 258,
+      "failed": 0,
+      "skipped": 5,
+      "flaky": 0
+    },
+    {
+      "project": "firefox",
+      "total": 263,
+      "passed": 258,
+      "failed": 0,
+      "skipped": 5,
+      "flaky": 0
+    },
+    {
+      "project": "webkit",
+      "total": 263,
+      "passed": 256,
+      "failed": 2,
+      "skipped": 5,
+      "flaky": 0
+    }
+  ],
+  "reportedStats": {
+    "expected": 1030,
+    "unexpected": 2,
+    "skipped": 20,
+    "flaky": 0
+  },
+  "countsAgreeWithReport": true,
+  "failures": [
+    {
+      "project": "webkit",
+      "title": "account-workspace.spec.ts › initial owner readiness protects Test with a delayed guest session",
+      "file": "account-workspace.spec.ts",
+      "line": 40,
+      "attempts": 1,
+      "attemptStatuses": [
+        "timedOut"
+      ],
+      "messages": [
+        "Test timeout of 30000ms exceeded.",
+        "Error: locator.click: Test timeout of 30000ms exceeded. Call log: - waiting for getByRole('button', { name: /^(Click here or tab to start typing|Continue typing)/ }) at helpers.ts:43 41 | await page 42 | .getByRole(\"button\", { name: /^(Click here or tab to start typing|Continue typing)/ }) > 43 | .click(); | ^ 44 | } 45 | await expect(input).toBeFocused(); 46 | return input; at focusTyping (D:\\extra\\typing_updated\\typing-forge\\e2e\\helpers.ts:43:8"
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "typing-course.spec.ts › two different measured passages unlock the next lesson; repetition, reload and reset are truthful",
+      "file": "typing-course.spec.ts",
+      "line": 168,
+      "attempts": 1,
+      "attemptStatuses": [
+        "timedOut"
+      ],
+      "messages": [
+        "Test timeout of 60000ms exceeded."
+      ]
+    }
+  ],
+  "flakyCases": [],
+  "skippedCases": [
+    {
+      "project": "chromium",
+      "title": "auth-flow.spec.ts › real account sign in with dedicated deployment credentials",
+      "file": "auth-flow.spec.ts",
+      "line": 54,
+      "reasons": [
+        "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used."
+      ]
+    },
+    {
+      "project": "edge",
+      "title": "auth-flow.spec.ts › real account sign in with dedicated deployment credentials",
+      "file": "auth-flow.spec.ts",
+      "line": 54,
+      "reasons": [
+        "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used."
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "auth-flow.spec.ts › real account sign in with dedicated deployment credentials",
+      "file": "auth-flow.spec.ts",
+      "line": 54,
+      "reasons": [
+        "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "auth-flow.spec.ts › real account sign in with dedicated deployment credentials",
+      "file": "auth-flow.spec.ts",
+      "line": 54,
+      "reasons": [
+        "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used."
+      ]
+    },
+    {
+      "project": "chromium",
+      "title": "php-account-flow.spec.ts › real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+      "file": "php-account-flow.spec.ts",
+      "line": 6,
+      "reasons": [
+        "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account."
+      ]
+    },
+    {
+      "project": "edge",
+      "title": "php-account-flow.spec.ts › real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+      "file": "php-account-flow.spec.ts",
+      "line": 6,
+      "reasons": [
+        "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account."
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "php-account-flow.spec.ts › real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+      "file": "php-account-flow.spec.ts",
+      "line": 6,
+      "reasons": [
+        "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "php-account-flow.spec.ts › real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+      "file": "php-account-flow.spec.ts",
+      "line": 6,
+      "reasons": [
+        "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account."
+      ]
+    },
+    {
+      "project": "chromium",
+      "title": "php-human-race.spec.ts › real two-browser PHP human race shares opponent pace and settles server results",
+      "file": "php-human-race.spec.ts",
+      "line": 5,
+      "reasons": [
+        "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+      ]
+    },
+    {
+      "project": "edge",
+      "title": "php-human-race.spec.ts › real two-browser PHP human race shares opponent pace and settles server results",
+      "file": "php-human-race.spec.ts",
+      "line": 5,
+      "reasons": [
+        "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "php-human-race.spec.ts › real two-browser PHP human race shares opponent pace and settles server results",
+      "file": "php-human-race.spec.ts",
+      "line": 5,
+      "reasons": [
+        "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "php-human-race.spec.ts › real two-browser PHP human race shares opponent pace and settles server results",
+      "file": "php-human-race.spec.ts",
+      "line": 5,
+      "reasons": [
+        "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+      ]
+    },
+    {
+      "project": "chromium",
+      "title": "php-human-race.spec.ts › route-controlled human-race feedback › real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+      "file": "php-human-race.spec.ts",
+      "line": 141,
+      "reasons": [
+        "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+      ]
+    },
+    {
+      "project": "edge",
+      "title": "php-human-race.spec.ts › route-controlled human-race feedback › real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+      "file": "php-human-race.spec.ts",
+      "line": 141,
+      "reasons": [
+        "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "php-human-race.spec.ts › route-controlled human-race feedback › real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+      "file": "php-human-race.spec.ts",
+      "line": 141,
+      "reasons": [
+        "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "php-human-race.spec.ts › route-controlled human-race feedback › real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+      "file": "php-human-race.spec.ts",
+      "line": 141,
+      "reasons": [
+        "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+      ]
+    },
+    {
+      "project": "chromium",
+      "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+      "file": "race-mode.spec.ts",
+      "line": 84,
+      "reasons": [
+        "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+      ]
+    },
+    {
+      "project": "edge",
+      "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+      "file": "race-mode.spec.ts",
+      "line": 84,
+      "reasons": [
+        "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+      "file": "race-mode.spec.ts",
+      "line": 84,
+      "reasons": [
+        "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+      "file": "race-mode.spec.ts",
+      "line": 84,
+      "reasons": [
+        "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+      ]
+    }
+  ],
+  "skipReasons": [
+    {
+      "reason": "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used.",
+      "count": 4,
+      "projects": [
+        "chromium",
+        "edge",
+        "firefox",
+        "webkit"
+      ]
+    },
+    {
+      "reason": "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account.",
+      "count": 4,
+      "projects": [
+        "chromium",
+        "edge",
+        "firefox",
+        "webkit"
+      ]
+    },
+    {
+      "reason": "Requires two dedicated accounts on the explicit PHP acceptance deployment.",
+      "count": 8,
+      "projects": [
+        "chromium",
+        "edge",
+        "firefox",
+        "webkit"
+      ]
+    },
+    {
+      "reason": "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization.",
+      "count": 4,
+      "projects": [
+        "chromium",
+        "edge",
+        "firefox",
+        "webkit"
+      ]
+    }
+  ],
+  "expectedFailures": [],
+  "globalErrors": [],
+  "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+}

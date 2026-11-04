@@ -1,0 +1,202 @@
+{
+  "status": "ORIGINAL-FAILED-RATE-LIMIT-EVIDENCE; SEPARATE-FRESH-WEBKIT-CONFIRMATION-PREPARED-NOT-RUN",
+  "capturedAt": "2026-10-27T18:01:19.927Z",
+  "build": "11de46af5d4a80e0e830",
+  "source": {
+    "sourceFile": "audit/2026-10-27/final27-source.json",
+    "expectedBuild": "11de46af5d4a80e0e830",
+    "compared": 505,
+    "mismatches": []
+  },
+  "original": {
+    "raw": "audit/2026-10-27/pack-native-final27-3d44c37ac589c270-1793123443072-browser.json",
+    "sha256": "593fbe97c597404e3a879c915f77078494ef68554b55fef8e845790672e792f0",
+    "status": "FAILED",
+    "expectedCases": 20,
+    "passed": 16,
+    "failed": 4,
+    "skipped": 0,
+    "originalInputsUnchanged": true
+  },
+  "engines": [
+    {
+      "engine": "chromium",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "engine": "edge",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "engine": "firefox",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "engine": "webkit",
+      "passed": 1,
+      "failed": 4
+    }
+  ],
+  "failures": [
+    {
+      "title": "real account sign in with dedicated deployment credentials",
+      "engine": "webkit",
+      "actualStatus": "failed",
+      "startedAt": "2026-10-27T17:55:44.173Z",
+      "durationMs": 6635,
+      "stage": "UI signin: still /auth at unchanged5000ms home-URL assertion; room/typing assertions unreached",
+      "errorContext": "audit/2026-10-27/.playwright-artifacts-pack-native-final27-3d44c37ac589c270-1793123443072/auth-flow-real-account-sig-78e59-ated-deployment-credentials-webkit/error-context.md",
+      "errorContextSha256": "5583e2f9590ee4ebda39ea97093bc4fd366b07da5d80bf46a70015c57b0db39b",
+      "observedRateLimitUiSentence": "Too many requests. Wait briefly before retrying.",
+      "rawHttpStatus": "UNOBSERVED",
+      "rawHttpBody": "UNOBSERVED",
+      "exactRejectedBucket": "UNOBSERVED",
+      "sourceDerivedStatus": 429,
+      "sourceDerivedStatusBoundary": "The observed literal is thrown by Security::rate as ApiException429; the original response status itself was not captured."
+    },
+    {
+      "title": "real two-browser PHP human race shares opponent pace and settles server results",
+      "engine": "webkit",
+      "actualStatus": "failed",
+      "startedAt": "2026-10-27T17:56:15.467Z",
+      "durationMs": 6600,
+      "stage": "UI signin: still /auth at unchanged5000ms home-URL assertion; room/typing assertions unreached",
+      "errorContext": "audit/2026-10-27/.playwright-artifacts-pack-native-final27-3d44c37ac589c270-1793123443072/php-human-race-real-two-br-80272--and-settles-server-results-webkit/error-context.md",
+      "errorContextSha256": "267ea53ef7df117a87d0c6f67c0203e85be7a004328fcfafa7cb554cc57cf629",
+      "observedRateLimitUiSentence": "Too many requests. Wait briefly before retrying.",
+      "rawHttpStatus": "UNOBSERVED",
+      "rawHttpBody": "UNOBSERVED",
+      "exactRejectedBucket": "UNOBSERVED",
+      "sourceDerivedStatus": 429,
+      "sourceDerivedStatusBoundary": "The observed literal is thrown by Security::rate as ApiException429; the original response status itself was not captured."
+    },
+    {
+      "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+      "engine": "webkit",
+      "actualStatus": "failed",
+      "startedAt": "2026-10-27T17:56:22.908Z",
+      "durationMs": 6715,
+      "stage": "UI signin: still /auth at unchanged5000ms home-URL assertion; room/typing assertions unreached",
+      "errorContext": "audit/2026-10-27/.playwright-artifacts-pack-native-final27-3d44c37ac589c270-1793123443072/php-human-race-real-two-br-df7cf-rors-after-confirmed-finish-webkit/error-context.md",
+      "errorContextSha256": "defbf3fa2467131447258e6604c5dbeacb6a9a482be2b37e9077437877848045",
+      "observedRateLimitUiSentence": "Too many requests. Wait briefly before retrying.",
+      "rawHttpStatus": "UNOBSERVED",
+      "rawHttpBody": "UNOBSERVED",
+      "exactRejectedBucket": "UNOBSERVED",
+      "sourceDerivedStatus": 429,
+      "sourceDerivedStatusBoundary": "The observed literal is thrown by Security::rate as ApiException429; the original response status itself was not captured."
+    },
+    {
+      "title": "PHP two-account race authorization and server-owned countdown",
+      "engine": "webkit",
+      "actualStatus": "failed",
+      "startedAt": "2026-10-27T17:56:30.281Z",
+      "durationMs": 75,
+      "stage": "Direct API host signin: response.ok() false; room creation unreached",
+      "errorContext": "audit/2026-10-27/.playwright-artifacts-pack-native-final27-3d44c37ac589c270-1793123443072/race-mode-PHP-two-account--68a02--and-server-owned-countdown-webkit/error-context.md",
+      "errorContextSha256": "bb4e52a6e1d736f612344d78ba0109194e091ab2fcc806fb33c8a67fd7166284",
+      "observedRateLimitUiSentence": null,
+      "rawHttpStatus": "UNOBSERVED",
+      "rawHttpBody": "UNOBSERVED",
+      "exactRejectedBucket": "UNOBSERVED",
+      "sourceDerivedStatus": null,
+      "sourceDerivedStatusBoundary": "The failed ok() assertion alone does not establish a response status or body."
+    }
+  ],
+  "sourceEvidence": [
+    {
+      "file": "backend/src/AuthService.php",
+      "sha256": "c2790aa548136a0fee00dc0c32bb4ec2be6b3d0a033f2cfd5992f79442991efd",
+      "limits": {
+        "signupIp": {
+          "attempts": 8,
+          "seconds": 3600
+        },
+        "signinIp": {
+          "attempts": 30,
+          "seconds": 900
+        },
+        "signinAccountAcrossIps": {
+          "attempts": 12,
+          "seconds": 900
+        }
+      }
+    },
+    {
+      "file": "backend/src/Security.php",
+      "sha256": "671d4e7944cfbe7d4a6d94e44e17374caa12c8c8f8c33bd850ceedba371e0401",
+      "operation": "atomic increment; reject attempts >limit; fixed floor(time/window) bucket;429 rate-limit with the observed literal"
+    }
+  ],
+  "mechanism": {
+    "passedEngines": 3,
+    "successfulDedicatedHostSigninsPerPassedEngine": 4,
+    "successfulHostSigninsBeforeWebkit": 12,
+    "hostSigninSources": [
+      "dedicated auth scenario",
+      "original human-race scenario",
+      "new checkpoint-fault scenario",
+      "API two-account race scenario"
+    ],
+    "sameFixedSigninBucket": {
+      "from": "2026-10-27T17:45:00.000Z",
+      "until": "2026-10-27T18:00:00.000Z"
+    },
+    "inference": "The three passed engines exhaust the dedicated host account allowance in the same fixed900s bucket. WebKit then attempts another signin with that same account. This explains the observed quota feedback without implying a cookie/input/runtime fault.",
+    "attributionLimit": "No live/private rate-limit rows, original request status/body, or request timeline were inspected. Exact rejecting IP/account bucket remains UNOBSERVED. Declared call arithmetic is not a captured HTTP census.",
+    "declaredMinimumCalls": {
+      "hostSigninsBeforeWebkit": 12,
+      "totalSigninCallsAcrossAllScenarios": 29,
+      "signupCallsIncludingOwnerProvision": 6
+    }
+  },
+  "confirmationPreparation": {
+    "status": "NOT-RUN",
+    "freshOwnerRequired": true,
+    "rejectedOldOwner": "3d44c37ac589c270",
+    "expectedCases": 5,
+    "engine": "webkit",
+    "workers": 1,
+    "retries": 0,
+    "traces": false,
+    "originalTestAssertionsAndTimeoutsUnchanged": true,
+    "noCounterResetOrRateLimitWideningOrOldOwnerReseed": true,
+    "wrapper": "audit/2026-10-27/run-final27-native-webkit-auth-confirmation.mjs",
+    "requiredWindow": "SPAROWTYPE_FINAL27_NATIVE_WEBKIT_AUTH_CONFIRMATION_WINDOW=1",
+    "artifacts": [
+      {
+        "file": "audit/2026-10-27/prepare-final27-webkit-auth-confirmation.mjs",
+        "sha256": "6fc2fe4e0c2b83aca369be7cae08f05d8ee1a1dda57f3823d4bad07f6819d6c5"
+      },
+      {
+        "file": "audit/2026-10-27/pack-native-browser-final27-webkit-auth-confirmation.mjs",
+        "sha256": "2579809b6f3b7e7eca63aa4f893245781a3951646b49eb31a219a1c5d5d7a8bd"
+      },
+      {
+        "file": "audit/2026-10-27/run-final27-native-webkit-auth-confirmation.mjs",
+        "sha256": "0d776c9e7db2dc285e1f0df4b03f86b2f0d6b955f619078451809adcdf6d3f42"
+      }
+    ],
+    "syntaxOnlyChecks": [
+      {
+        "file": "audit/2026-10-27/pack-native-browser-final27-webkit-auth-confirmation.mjs",
+        "command": "node --check audit/2026-10-27/pack-native-browser-final27-webkit-auth-confirmation.mjs",
+        "exitCode": 0
+      },
+      {
+        "file": "audit/2026-10-27/run-final27-native-webkit-auth-confirmation.mjs",
+        "command": "node --check audit/2026-10-27/run-final27-native-webkit-auth-confirmation.mjs",
+        "exitCode": 0
+      }
+    ]
+  },
+  "privateConfigEnvironmentLogOrDatabaseRead": false,
+  "ignoredContextExport": "Only the fixed literal rate-limit sentence, stage, path and SHA256; no captured form values are exported.",
+  "productOrTestEdits": false,
+  "servicesOrBrowsersOrTestsStartedByThisCapture": false,
+  "physicalDevices": "UNVERIFIED",
+  "fullMatrixPassingClaim": false
+}

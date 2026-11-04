@@ -1,0 +1,49 @@
+{
+  "capturedAt": "2026-11-02T16:47:24.704Z",
+  "status": "STATIC-PREPARATION-VERIFIED-NOT-RUN",
+  "preparationReceipt": "audit/2026-11-02/source28-native-acceptance-preparation.json",
+  "helperHashes": {
+    "audit/2026-11-02/prepare-source28-native-acceptance.mjs": "d1c0ed496f1d3b76f21a543a9fba35bd0f11efe7527a47cbe9ae16057608ecf6",
+    "audit/2026-11-02/pack-backend-instance-source28.mjs": "98920c5dc264239a51b80e5680b478b64adfc1775b07ec2aaea95aa1548c78a2",
+    "audit/2026-11-02/pack-native-browser-final28.mjs": "306b7a2d32eaaae7e56117c78fb6577b2c4ce406d96a49e15f624f0f743600cf",
+    "audit/2026-11-02/run-final28-native-browser.mjs": "30ea65a72b274262028efe6cd1e5e8149c139ede723c4a823d46bac1b4e56537",
+    "audit/2026-11-02/verify-source28-native-preparation.mjs": "b1663ac638bb44d290ef8845735764ee9d26128ea4e5ce07a3de8561949f3f77"
+  },
+  "ownerNormalizedCloneReversesExactly": true,
+  "adapterDeclaredChangesReverseExactly": true,
+  "originalFiveTitlesMatchExactly": true,
+  "allSource27ReportsPreserved": true,
+  "executionPrerequisites": {
+    "command": "node audit/2026-11-02/run-final28-native-browser.mjs",
+    "flags": {
+      "SPAROWTYPE_FINAL28_NATIVE_BROWSER_WINDOW": "1",
+      "SPAROWTYPE_FINAL28_BUILD_ID": "Actual20HexBuildIDFromTheCompletedDefaultDist"
+    },
+    "frozenSource": "audit/2026-11-02/final28-source.json",
+    "requiredSourceHashes": 505,
+    "defaultDist": "dist",
+    "rootGoStillRequired": true,
+    "actualBuildNotAssumed": true
+  },
+  "reviewedBehavior": [
+    "One full five-title selection per engine; single project and one worker, no retries, traces off.",
+    "A new owned backend, schema, session namespace and two accounts for each engine; no per-owner counters reset or accounts reseeded.",
+    "Owner only permits password readiness, prepare-browser, lease renewal and graceful cleanup.",
+    "Same-owner graceful Apache and database shutdown, all owned processes stopped and directory removed before a subsequent engine.",
+    "Any forced adapter stop or missing completion event aborts later engines after requesting owner cleanup; browser descendants are explicitly unverified on that abnormal path.",
+    "Whole child streams are redacted after reassembly; stdin stream errors are handled.",
+    "The wrapper reads public owner readiness only; the guarded child adapter consumes only its own private synthetic environment.",
+    "The505 source hashes, manifest bytes, exact test/helper inputs and complete default-dist inventory remain fixed before, between and after engines.",
+    "The route fault fixture alone blocks service workers; ordinary human-race and PWA source behavior is unchanged."
+  ],
+  "limitations": [
+    "Static review and node syntax checks do not establish runtime success.",
+    "A later pass will represent20 browser cases across four independent serial instances, not a shared20-case backend run or400-user capacity result.",
+    "All original source27 failed reports remain failed and immutable.",
+    "Forced adapter termination does not prove browser descendants were closed; the sequence must stop for review."
+  ],
+  "servicesStarted": 0,
+  "nativeTestsRun": 0,
+  "productFilesChangedByThisPreparation": false,
+  "independentReadOnlyReview": "/root/final_verification/native_prep_review"
+}

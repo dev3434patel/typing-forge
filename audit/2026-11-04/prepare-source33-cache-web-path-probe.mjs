@@ -1,0 +1,33 @@
+import assert from 'node:assert/strict';
+import {readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {spawnSync} from 'node:child_process';
+const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
+const oldFile='audit/2026-11-02/pack-opcache-instance-source33-v2.mjs';
+const ownerFile='audit/2026-11-02/pack-source33-cache-web-path-probe.mjs';
+const old=await readFile(oldFile,'utf8');
+const oldImport="import { configureOwnedOpcache, installOwnedOpcacheEndpoint, readOwnedOpcacheSnapshot } from '../2026-11-04/source33-opcache-runtime-v2.mjs';";
+const newImport="import { configureOwnedOpcache, installOwnedOpcacheEndpoint, readOwnedOpcacheSnapshot, verifyProbePlan } from '../2026-11-04/source33-cache-web-runtime.mjs';";
+assert.equal(old.split(oldImport).length,2);
+const start=old.indexOf('  const suites = {');
+const end=old.indexOf('\n} catch (error) {',start);assert.ok(start>0&&end>start);
+const replacement=`  await receipt('cache-path-protocol',{kind:'bounded-web-cache-path-diagnostic',applicationRequests:9,statsSnapshots:5,ordinaryStartupReadinessUnchanged:true,actualServerClock:true,noLoadBenchmark:true,noCompileOrReset:true,noRetries:true});
+  const result=await capture(process.execPath,['--experimental-transform-types',path.join(root,'audit/2026-11-04/run-source33-cache-web-path-probe.mjs')],'bounded-cache-path-probe',undefined,45000);
+  let report=null;try{report=JSON.parse(result.stdout.trim());}catch{}
+  if(report)await receipt('cache-path-driver',report);
+  await receipt('cache-path-after',await readOwnedOpcacheSnapshot({port:apiPort,configuration:opcacheConfiguration,guard:secrets.arena,stage:'after-bounded-web-probe'}));
+  await verifyProbePlan(root);
+  failed||=result.code!==0;
+  publicMessage({stage:'bounded-cache-path-probe-complete',exitCode:result.code,status:result.code===0?'PASS-SCOPED':'FAILED',actualApplicationRequests:report?.actualApplicationRequests??null});`;
+const modified=old.slice(0,start)+replacement+old.slice(end);
+const owner=modified.replace(oldImport,newImport);
+const restored=owner.replace(newImport,oldImport).replace(replacement,old.slice(start,end));
+assert.equal(restored,old,'Exact source owner reversal');
+await writeFile(ownerFile,owner,{flag:'wx'});
+const inputs=[oldFile,ownerFile,'audit/2026-11-04/source33-cache-web-runtime.mjs','audit/2026-11-04/run-source33-cache-web-path-probe.mjs','audit/2026-11-04/source33-opcache-cache-probe-endpoint.mjs','audit/2026-11-04/source33-opcache-runtime-v2.mjs','audit/2026-11-04/source33-opcache-profile-preparation-v2.json','audit/2026-11-02/final33-source.json','backend/opcache.ini.example','docs/PHP_OPCACHE_PROFILE.md','backend/tests/arena-audit-admin.php','scripts/php-runtime.mjs'];
+for(const file of inputs.filter(file=>file.endsWith('.mjs'))){const result=spawnSync(process.execPath,['--check',file],{encoding:'utf8'});assert.equal(result.status,0,result.stderr);}
+const inputHashes=Object.fromEntries(await Promise.all(inputs.map(async file=>[file,hash(await readFile(file))])));
+const preparation={recordedAt:new Date().toISOString(),kind:'source33-bounded-real-web-cache-path-diagnostic',runYet:false,syntaxPassed:true,ownerExactReversal:true,entry:ownerFile,inputHashes,ordinarySource33FrozenFiles:505,additionalProfileFragmentOutside505:true,applicationCalls:9,statsCalls:5,readinessPolls:'Original guarded auth/session startup polling only; no added warmup',noCapacityOrPerformanceClaim:true,noCompileResetRetry:true,ownedApacheAndDatabaseOnly:true};
+const target='audit/2026-11-04/source33-cache-web-path-probe-preparation.json';
+const bytes=JSON.stringify(preparation,null,2)+'\n';await writeFile(target,bytes,{flag:'wx'});
+console.log(JSON.stringify({entry:ownerFile,preparation:target,sha256:hash(bytes),syntaxPassed:true,ownerExactReversal:true,applicationCalls:9,statsCalls:5}));

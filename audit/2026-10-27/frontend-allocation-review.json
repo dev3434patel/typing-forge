@@ -1,0 +1,107 @@
+{
+  "capturedAt": "2026-10-27T15:02:38.444Z",
+  "status": "IMPLEMENTED-FOCUSED-UNIT-PASS-PERFORMANCE-NOT-RUN",
+  "baselineCommit": "275c8c2",
+  "files": [
+    {
+      "path": "src/lib/typing-passage.ts",
+      "sha256": "b1aaca3b6438be0df6cbfef1308fec3489cfa208d7a1c2dc6716f85e68a75e49"
+    },
+    {
+      "path": "src/lib/live-keyboard.ts",
+      "sha256": "ac6c4902912ae7f7dedc786eff6c314058c8a4e16e901c00861b8b57121a3e81"
+    },
+    {
+      "path": "src/lib/__tests__/typing-passage.test.ts",
+      "sha256": "c89c1e7faf5a5b8d4c4d9b4e1814b89d593ef72e29439d84bf6777bb84054b32"
+    },
+    {
+      "path": "src/lib/__tests__/live-keyboard.test.ts",
+      "sha256": "b069183146f26abee417bbe48c5cbe17c6c47f6e1cb12876780155d62f0bcf4e"
+    }
+  ],
+  "publicProfile": {
+    "path": "audit/2026-10-21/final19-profile-independent-observations.json",
+    "sha256": "883379a71d6f892089b1e8832c5db9a3ebb6c640e981794d7c0c26386a4f2a74",
+    "ordinaryP98Ms": [
+      104,
+      104,
+      88
+    ],
+    "status": "FAILED-2-OF-3-LATENCY",
+    "instrumentedP98Ms": 56,
+    "instrumentedIsNotAcceptance": true
+  },
+  "changes": [
+    {
+      "file": "src/lib/typing-passage.ts",
+      "change": "No-extra fast path returns the original input slots before allocating target/extras filter arrays. Extras ordering, references and fallback remain unchanged.",
+      "why": "The ordinary correct495-character benchmark has no extra slots, so the two discarded full-passage arrays are unnecessary per presentation rebuild."
+    },
+    {
+      "file": "src/lib/live-keyboard.ts",
+      "change": "Replace flattened-key allocation and find callbacks with direct base-first then shifted nested scans. Skip sparse outer/inner holes; preserve actual key objects, current mutable rows, dead-key exclusions and NFC/CRLF handling.",
+      "why": "The visible guide resolves expected and actual logical keys on canonical edits. Flattened61-key arrays are transient lookup allocations, independent of typing metrics and3D rendering."
+    }
+  ],
+  "focusedValidation": {
+    "command": "npx vitest run src/lib/__tests__/typing-passage.test.ts src/lib/__tests__/live-keyboard.test.ts --maxWorkers=1",
+    "finalTests": 37,
+    "finalFiles": 2,
+    "finalFailed": 0,
+    "finalVitestDurationMs": 579,
+    "newBehaviorTests": 8,
+    "coverage": [
+      "Frozen no-extra array identity and unchanged grouping.",
+      "Mutable passage gaining and losing an extra with exact canonical object/order retention.",
+      "Global base match priority over earlier shifted match.",
+      "Dead flags and duplicate-key precedence.",
+      "Mutable key values and row replacement between lookups.",
+      "NFC/CRLF and unmapped/empty handling.",
+      "Sparse outer/inner rows and original key identity.",
+      "Differential prior-lookup equivalence over every declared reference and en/fr/de."
+    ],
+    "history": [
+      {
+        "testsPassed": 36,
+        "testsFailed": 1,
+        "reason": "New reference oracle omitted original empty-character guard; azerty shifted-empty legend exposed oracle error. Production both old/new returnednull."
+      },
+      {
+        "testsPassed": 37,
+        "testsFailed": 0,
+        "vitestDurationMs": 697,
+        "change": "Only reference oracle empty-character guard corrected; no scenario/assertion removed."
+      },
+      {
+        "testsPassed": 37,
+        "testsFailed": 0,
+        "vitestDurationMs": 579,
+        "change": "Added sparse outer-row coverage and direct-scan hole guards before final validation."
+      }
+    ],
+    "existingAssertionsRemoved": 0,
+    "timeoutChanges": 0,
+    "diffCheckExitCode": 0,
+    "scope": "Terminal-output focused validation. Full source gates, browser regressions and ordinary performance acceptance remain root-coordinated pending work."
+  },
+  "limits": [
+    "These are source-verified allocation reductions, not proof of the cause of prior104ms Event Timing values.",
+    "No new performance acceptance, benchmark win, physical mobile behavior or3D quality claim is made.",
+    "No caches, canonical engine/math, clocks, TypingArea, CSS,3D renderer, dependencies or backend modules were changed by this subtask."
+  ],
+  "excludedFollowUps": [
+    {
+      "candidate": "Fixed-border paint-equivalent2D keycap experiment",
+      "owner": "root",
+      "observation": "Current CSS changes border-bottom-width3px to1px on press and back on release; this changes inner key layout despite transform-only transitions. Root owns any implementation/fidelity/performance verification. No CSS edits by this subtask."
+    }
+  ],
+  "jobs": {
+    "focusedVitestExecutions": 3,
+    "builds": 0,
+    "browserRuns": 0,
+    "rawCpuProfilesRead": false,
+    "privateFilesRead": false
+  }
+}

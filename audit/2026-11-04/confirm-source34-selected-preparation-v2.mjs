@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import { readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+const file = 'audit/2026-11-04/run-source34-selected-confirmation.mjs';
+const prior = `${file}.prep-v1`;
+const sha = bytes => createHash('sha256').update(bytes).digest('hex');
+const old = await readFile(prior, 'utf8');
+const current = await readFile(file, 'utf8');
+const addedGuard = "const freezeFile = 'audit/2026-11-04/source34-test-synchronization-freeze.json';\nconst freezeBinding = await bind(freezeFile);\nassert.equal(freezeBinding.sha256, '0e4aae65007d91762bd3e73c8d2018cb38967c15fbf8286561ec245f00607290');\nconst freeze = JSON.parse(await readFile(freezeFile, 'utf8'));\nassert.equal(freeze.dependencySha256, approvedDigest);\nassert.equal(freeze.completeFollowupCaseCount, 200);\nconst adoptionBinding = await bind(freeze.adoptionFile);\nassert.equal(adoptionBinding.sha256, freeze.adoptionSha256);\n";
+const addedMetadata = "  approvedTestRevision: { freeze: freezeBinding, adoption: adoptionBinding, qualification: 'Exactly four test/helper files revised;68 other dependencies and61 other specs unchanged. Original course timeout cause remains UNVERIFIED.' },\n";
+assert.equal(current.replace(addedGuard, '').replace(addedMetadata, ''), old);
+const receipt = { status: 'PREPARED-NOT-RUN', recordedAt: new Date().toISOString(), priorPreparation: 'audit/2026-11-04/source34-selected-confirmation-preparation.json', preservedV1: prior, wrapper: file, beforeSha256: sha(await readFile(prior)), afterSha256: sha(await readFile(file)), exactChange: 'Add only pinned freeze/adoption hash preconditions and metadata requested by root before execution.', originalCaseAssertionsTimeoutsRetriesChanged: false, sourceOrTestsEdited: false, syntaxCheck: 'PASS', runtimeStarted: false };
+await writeFile('audit/2026-11-04/source34-selected-confirmation-preparation-v2.json', JSON.stringify(receipt, null, 2), { flag: 'wx' });
+console.log(JSON.stringify(receipt));

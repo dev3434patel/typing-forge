@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-10-27T15:31:16.4661496Z",
+  "status": "IMPLEMENTED-FOCUSED-UNITS-PASS-BROWSER-AND-PERFORMANCE-PENDING",
+  "files": [
+    {
+      "path": "src/components/typing/LiveKeyboard.tsx",
+      "sha256": "28a31f6dd909cbae2812a72e2b48f6105215e62ff68a6ec051d4c6e39e3f3962"
+    },
+    {
+      "path": "src/lib/pressed-key-attribute.ts",
+      "sha256": "2efad9973b2c7dd9154a8543b510b8959962aafd42a8797bf3a421cfdb87c7dc"
+    },
+    {
+      "path": "src/lib/__tests__/pressed-key-attribute.test.ts",
+      "sha256": "9c912d2f29bf3965c28211e753843f54a68f4d6a1cfa75e6c63d74a1ac5110d1"
+    },
+    {
+      "path": "e2e/keycap-attribute-ownership.spec.ts",
+      "sha256": "9b1da1d41b0de546d44deba038bfad32fa25afbe196e68ac7e7a74bd9f56a45e"
+    }
+  ],
+  "behavior": [
+    "Physical press/release synchronously writes only data-pressed-key through the existing per-code store subscription",
+    "No timers, animation frames, state batching or dropped physical transitions",
+    "Render-time store snapshot preserves existing store-backed SSR markup hashes",
+    "A layout effect after every Keycap commit repairs stale concurrent-render values before paint",
+    "Subscription attaches before its initial sample; active guard rejects callbacks copied before cleanup",
+    "Static callers retain JSX-owned pressed attributes; semantic Shift, Caps Lock, dead-key and IME paths remain React state",
+    "No engine, timer, scoring, 3D source or animation quality changes"
+  ],
+  "verification": {
+    "focusedUnitReceipt": "audit/2026-10-27/keycap-attribute-focused-unit.json",
+    "processReceipt": "audit/2026-10-27/keycap-attribute-focused-unit-process.txt",
+    "passedTests": 100,
+    "failedTests": 0,
+    "files": 3,
+    "failedAttempts": 0,
+    "exitCode": 0,
+    "maxWorkers": 1,
+    "browserTests": "UNVERIFIED",
+    "buildAndLint": "UNVERIFIED",
+    "unchangedDriverLatency": "UNVERIFIED"
+  },
+  "newBrowserCases": [
+    "Native physical feedback is visible to a later listener in the same textarea keydown/keyup before React root bubbling",
+    "Held attributes survive canonical corrections and clear on focus loss and restart"
+  ],
+  "limitations": [
+    "Pure binding tests simulate stale attribute repair and subscription lifecycle; they do not prove every React concurrent scheduling interleaving",
+    "Existing SSR hash fixtures passed; actual hydration is not verified here",
+    "Physical-only React store scheduling is removed by code path, but no latency improvement is claimed before an unchanged ordinary-driver measurement",
+    "The new browser spec adds two cases per project and must be included in the final matrix"
+  ],
+  "officialReferences": [
+    "https://react.dev/reference/react/useSyncExternalStore",
+    "https://react.dev/reference/react/useLayoutEffect",
+    "https://react.dev/learn/manipulating-the-dom-with-refs"
+  ],
+  "referencesCheckedAt": "2026-10-27",
+  "nowrapDiagnosticExecutedByThisAgent": false
+}

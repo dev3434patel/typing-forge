@@ -1,0 +1,94 @@
+{
+  "declaredAt": "2026-10-27T17:04:22.553Z",
+  "scope": "One bounded pure PHP parser-equivalence/CPU/memory and validator-component diagnostic. No bootstrap/config/database/server/browser/network.",
+  "fixture": {
+    "reference": "audit/2026-10-27/final22-serializer-profile-protocol.json",
+    "clientSessionId": "source22-serializer-diagnostic",
+    "words": 800,
+    "events": 10,
+    "characters": 4599,
+    "timeSeries": 15,
+    "clientElapsedMs": 15000,
+    "candidateBytes": 302392,
+    "candidateSha256": "39fe841e3c203ee647cce99c75643b0ec9e6ed8efc685cc699c8b9abf809469c",
+    "postBytes": 302494,
+    "postSha256": "5bfa67419f99c19fb4600915220f13c5335b0d06ecedfd5ca1f21a9e6ea20d98"
+  },
+  "parserIterations": 12,
+  "validateIterations": 12,
+  "authoritativeReplayIterations": 12,
+  "authoritativeElapsedMs": 20000,
+  "order": [
+    [
+      "old",
+      "hybrid"
+    ],
+    [
+      "hybrid",
+      "old"
+    ],
+    [
+      "old",
+      "hybrid"
+    ],
+    [
+      "hybrid",
+      "old"
+    ],
+    [
+      "old",
+      "hybrid"
+    ],
+    [
+      "hybrid",
+      "old"
+    ],
+    [
+      "old",
+      "hybrid"
+    ],
+    [
+      "hybrid",
+      "old"
+    ],
+    [
+      "old",
+      "hybrid"
+    ],
+    [
+      "hybrid",
+      "old"
+    ],
+    [
+      "old",
+      "hybrid"
+    ],
+    [
+      "hybrid",
+      "old"
+    ]
+  ],
+  "warmups": 0,
+  "outlierFiltering": false,
+  "retries": 0,
+  "memory": "Two separate sequential PHP children, one decoder each; peak reset where available; old stdClass and associative trees both retained through the measured operation.",
+  "oldDecoder": "json_decode(false), require stdClass root, json_decode(true), retain both trees",
+  "proposedDecoder": "Any raw literal backslash-u0000 uses exact old decoder; otherwise one associative decode and first non-JSON-whitespace byte must be opening brace.",
+  "productEdits": 0,
+  "inputHashes": {
+    "audit/2026-10-27/parser-hybrid-diagnostic.php": "922ecc2ddb67e07a49d593e424c85790c853cb52daa81e03ea0d76706ecd8987",
+    "audit/2026-10-27/run-parser-hybrid-diagnostic.mjs": "dcfe3f4c72a4e976774fcc4773a77ea623ee26149717375a9e3ae7f0e3c33220",
+    "scripts/php-runtime.mjs": "2adeffc2ac322edbc611f34c437a0f34569689c942602bf39b079305cfb7a60f",
+    "backend/src/SessionValidator.php": "5d5907e4a49a1a92966a967591701976a25051a3a4f0d4d21f8e70f112be776d",
+    "backend/src/UnicodeGraphemes.php": "091cd87cf485b87aa0a9fd709b86a5462f35923dad4f34a9b0ddb4206b6bc145",
+    "backend/src/CourseAssessment.php": "224f3b3ca7192089ff04027a9e8411573565a1e3bc2e3b1180b509e72bfe1795",
+    "src/lib/typing-core/session.ts": "5436852d79b166acd708dc07eb67893da0059e3703cd1bc02b8a8fa451d1672c",
+    "src/lib/typing-core/transcript.ts": "d42c6780103f8de4ca4979d5da5a7311ed7b298edbe3925cfeba50704cada1b3",
+    "src/lib/typing-core/metrics.ts": "de11128e062997daa61a621cd992e475ddd07934b26192508164b27b7a71e976",
+    "src/lib/typing-core/types.ts": "8c77af952d7980d29de2dc9b4fb107bfd7e9b0f77a1bbab44916313e3b007471"
+  },
+  "timeoutPerChildMs": 15000,
+  "privateConfigurationRead": false,
+  "databaseConnected": false,
+  "acceptanceResultReplaced": false
+}

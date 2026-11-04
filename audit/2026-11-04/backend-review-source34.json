@@ -1,0 +1,101 @@
+{
+  "recordedAt": "2026-11-04T16:52:39.334Z",
+  "status": "PASS-SCOPED-STATIC-REVIEW",
+  "reviewMode": "Read-only diff versus HEAD and direct consumer review, performed separately from implementation/test runs. No new tests, services or staging.",
+  "securityCertification": false,
+  "externalAudit": false,
+  "head": "275c8c24d65054abae18713c1eee4dad18888332",
+  "trackedDiffSha256": "cf5231ae3c75a54aebb117ec200168e297c3132743f9814b7419030fa97841e5",
+  "untrackedReviewedFilesBoundSeparately": true,
+  "sourceIdentity": {
+    "sourceFile": "audit/2026-11-02/final34-source.json",
+    "expectedBuild": "332e23584f1e36465df2",
+    "compared": 505,
+    "mismatches": [],
+    "manifestSha256": "bb7956b685f80c3c1d2c2926999a548540f80d9875fbe336ead5d16670587493",
+    "backendFiles": 38
+  },
+  "reviewedPaths": {
+    "backend/public/index.php": {
+      "rawSha256": "92382a84ac652b38198711bc86973245a6a6dbc4af0aeaefb796ee0267618d76",
+      "sourceHash": "92382a84ac652b38198711bc86973245a6a6dbc4af0aeaefb796ee0267618d76"
+    },
+    "backend/src/ArenaEvidence.php": {
+      "rawSha256": "ea182239afb2420f6ae42f83b0ff6ac25fe4ce3fa7f2fc1d786bdf6dfc2e72af",
+      "sourceHash": "ea182239afb2420f6ae42f83b0ff6ac25fe4ce3fa7f2fc1d786bdf6dfc2e72af"
+    },
+    "backend/src/ArenaService.php": {
+      "rawSha256": "9008825c59bdcfd863b714f45412638082043eae56a1000b70a134de67919a6d",
+      "sourceHash": "9008825c59bdcfd863b714f45412638082043eae56a1000b70a134de67919a6d"
+    },
+    "backend/src/DataService.php": {
+      "rawSha256": "37d4a2752e12528cec1202570ac8c4d05508b134819607a8c23dfe2d5db1c5ac",
+      "sourceHash": "37d4a2752e12528cec1202570ac8c4d05508b134819607a8c23dfe2d5db1c5ac"
+    },
+    "backend/src/Security.php": {
+      "rawSha256": "671d4e7944cfbe7d4a6d94e44e17374caa12c8c8f8c33bd850ceedba371e0401",
+      "sourceHash": "671d4e7944cfbe7d4a6d94e44e17374caa12c8c8f8c33bd850ceedba371e0401"
+    },
+    "backend/src/SessionValidator.php": {
+      "rawSha256": "d23d6a87a8e0bf9480281083f36575989112e80064fb3ef6c46e8e26e0abaaa6",
+      "sourceHash": "d23d6a87a8e0bf9480281083f36575989112e80064fb3ef6c46e8e26e0abaaa6"
+    },
+    "backend/src/RequestBody.php": {
+      "rawSha256": "0857c88cd3895facb3c5d5076e1dc0f7654942e5510be0a1b5739c20989d2fba",
+      "sourceHash": "0857c88cd3895facb3c5d5076e1dc0f7654942e5510be0a1b5739c20989d2fba"
+    },
+    "backend/opcache.ini.example": {
+      "rawSha256": "0bd8fae150da074f7fcbdd850f1f87c7ca07d560cec45b80268fcd74ce5a7bc0",
+      "sourceHash": "0bd8fae150da074f7fcbdd850f1f87c7ca07d560cec45b80268fcd74ce5a7bc0"
+    }
+  },
+  "findings": [],
+  "conclusion": "No new actionable change-specific correctness or security regression found in the reviewed backend paths.",
+  "contractsReviewed": [
+    "Server-only checkpoint opt-in on nonfinish Arena; default/final full bundles and hashes retained.",
+    "Checkpoint marker presence fails before config access, receipt queries, transactions or SQL.",
+    "Canonical encoding guard follows derived-field overwrite; retained/overwritten overflow parity and course assessment retained.",
+    "Full first replay/chart and independent shared-clock replay stay authoritative; final chart persists.",
+    "Account-room-all-member FOR UPDATE order, immutable prefix, finish grace and eligibility retained.",
+    "DB receipt precedes expensive validation; stale elapsed rejected; last_seen_at monotonic.",
+    "Account rate lane requires live DB/auth_version identity; anonymous/auth IP limits retained; connection-local atomic counter fails closed.",
+    "RequestBody preserves old root/NUL/duplicate/depth/UTF8/JSON errors.",
+    "ASCII/word/idle-chart caches reuse pure immutable projections only."
+  ],
+  "evidence": {
+    "audit/2026-11-02/final34-php-replay.log": {
+      "sha256": "6585e4fd0842412efde134166801211a1da15efada2e587d71bca0810cf79a57"
+    },
+    "audit/2026-11-04/source34-source-gates-reconciled.json": {
+      "sha256": "d1d32cbe6f04fe4af1a9b1979f483b9d8acc5f7595bc2305166d7ee07ec88590"
+    },
+    "audit/2026-11-04/source34-arena-confirmation.json": {
+      "sha256": "9af05150a9608a026493692f42cdc57ee3d98fbe834d9f33156b3be6814a51df"
+    },
+    "audit/2026-11-02/source34-native-rate-10fc7fecc2718fc3.json": {
+      "sha256": "a5b3b0ae9d858c222bf5d6f26c6508aaa5696c9ab3d1554ef7327a9d9179d39f"
+    },
+    "audit/2026-11-02/pack-backend-e18a2455a062d8e5-arena-http-raw.json": {
+      "sha256": "3b17f44ea0188b08056908c91c1d9f976dc326335bb12199a5e0de643d26ce31"
+    },
+    "audit/2026-11-02/pack-backend-10fc7fecc2718fc3-cleanup.json": {
+      "sha256": "6793580327891ab787439e8049e4d6d2be15199bba7939128e081a397224673c"
+    },
+    "audit/2026-11-02/pack-backend-e18a2455a062d8e5-cleanup.json": {
+      "sha256": "23f6e22689d783e747d4fd94b533395638d917d968d653cafccbcf1bfee12ba1"
+    },
+    "audit/2026-11-04/source34-ordinary-capacity-assessment.json": {
+      "sha256": "f979c1e3d9b932e36b313c4d24e88f754c94ab635c50aaba5199d4a08e6f4eed"
+    },
+    "audit/2026-11-04/source34-opcache-capacity-assessment.json": {
+      "sha256": "e6bdfec19cf815adeb15da18a32d5dfc33a257d974824fdc0e826b14cbd93a95"
+    }
+  },
+  "limitations": [
+    "Scoped static review, not a security certification or absence-of-all-defects guarantee.",
+    "Prior578-row parity,802 pure Arena checks, native32 lifecycle and320 atomic calls are scoped verification, not new tests by this receipt.",
+    "Ordinary full188.6088ms, ordinary wire157.5576ms and OPcache full190.5714ms fail strict150ms; only OPcache production-wire141.3239ms passes conditionally.",
+    "Hosting activation, deployed/auth throughput, physical devices, multi-region and sustained400-concurrent-client verification remain separate."
+  ],
+  "receiptGenerationQualification": "An initial file-generation attempt decoded binary source assets as UTF8 before hashing and stopped before writing. The completed receipt uses the established binary-aware frozen-source verifier; all505 match. No application file changed."
+}

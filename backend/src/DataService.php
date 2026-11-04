@@ -161,6 +161,7 @@ final class DataService
     /** Reused inside the race transaction; its caller owns any existing transaction. */
     public function commitValidated(array $user, array $candidate, array $validated, array $overrides = []): array
     {
+        if (array_key_exists('checkpointOnly', $validated)) throw new \LogicException('Checkpoint validation cannot be persisted.');
         $configuration = $candidate['configuration'];
         if (!empty($configuration['challengeId']) && !isset($overrides['raceId']) && ($configuration['settings']['localBot'] ?? false) !== true)
             $this->captureRequestReceipt();

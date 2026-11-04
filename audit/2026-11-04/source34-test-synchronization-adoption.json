@@ -1,0 +1,273 @@
+{
+  "recordedAt": "2026-11-04T17:53:28.740Z",
+  "status": "STABLE-SYNTAX-ONLY-NOT-RUN",
+  "proposal": "source34-three-failure-helper-proposal-v2.json",
+  "edits": [
+    {
+      "file": "e2e/helpers.ts",
+      "archive": "audit/2026-11-04/test-sync-before/helpers.ts",
+      "beforeSha256": "7268814993da0db90cec40266fc8aabb391d3f649d43add1dd55c5be370d2e7d",
+      "afterSha256": "f185e905b3a01c16715133ec15bbc4869dc4276664ea8fa23842348e59d7dd8a",
+      "exactReverse": true,
+      "originalLineEndingsRetained": true,
+      "syntaxErrors": 0,
+      "changes": [
+        {
+          "from": "  // Desktop starts focused; touch devices retain the explicit keyboard activation.\n  if (\n    !(await input.evaluate((element) => element === document.activeElement))\n  ) {\n    await page\n      .getByRole(\"button\", { name: /^(Click here or tab to start typing|Continue typing)/ })\n      .click();\n  }\n",
+          "to": "  await expect(input).toBeEnabled();\n  // Test setup targets the stable native input. Pointer activation is tested\n  // independently by the explicit touch and Continue typing cases.\n  if (!(await input.evaluate(element => element === document.activeElement))) {\n    await input.focus();\n  }\n",
+          "index": 1469
+        }
+      ]
+    },
+    {
+      "file": "e2e/arena.spec.ts",
+      "archive": "audit/2026-11-04/test-sync-before/arena.spec.ts",
+      "beforeSha256": "c3699c1eeee16daa3c83ec0ac220fddad5e9c913c0652629459667bb83c2e41d",
+      "afterSha256": "30b8eb02d4ab50b273320c7657b415b39f85bed2b18f71cf47a2364dd502bf95",
+      "exactReverse": true,
+      "originalLineEndingsRetained": true,
+      "syntaxErrors": 0,
+      "changes": [
+        {
+          "from": "import { focusTyping } from './helpers';\n",
+          "to": "",
+          "index": 108
+        },
+        {
+          "from": "  const input = await focusTyping(page); await input.pressSequentially('calm c', { delay: 60 });",
+          "to": "  const input = page.getByRole('textbox', { name: 'Typing input', exact: true });\n  await expect(input).toBeVisible();\n  await expect(input).toBeFocused();\n  await input.pressSequentially('calm c', { delay: 60 });",
+          "index": 5360
+        }
+      ]
+    },
+    {
+      "file": "e2e/progression-extras.spec.ts",
+      "archive": "audit/2026-11-04/test-sync-before/progression-extras.spec.ts",
+      "beforeSha256": "06b2f95fe102b761ae285701b3e9a9b204bcbe81e55ce3815383adac118a373f",
+      "afterSha256": "1643745accbc72ff7f215243659c8f655fe8f23e1d4305a579ba5f0a263533a0",
+      "exactReverse": true,
+      "originalLineEndingsRetained": true,
+      "syntaxErrors": 0,
+      "changes": [
+        {
+          "from": "  await frame.getByRole('button', { name: 'Equip', exact: true }).click();",
+          "to": "  await frame.getByRole('button', { name: 'Equip', exact: true }).click();\n  await expect(frame.getByRole('button', { name: 'Equipped', exact: true })).toBeDisabled();\n  await expect.poll(() => page.evaluate(() => {\n    const stored = JSON.parse(localStorage.getItem('sparowtype:progression:v1:guest') ?? 'null') as { commands?: Array<{ kind: string; value?: string | boolean }> } | null;\n    return stored?.commands?.filter(command => command.kind === 'equip').at(-1)?.value ?? null;\n  })).toBe('frame-orbit');",
+          "index": 1955
+        }
+      ]
+    },
+    {
+      "file": "e2e/typing-course.spec.ts",
+      "archive": "audit/2026-11-04/test-sync-before/typing-course.spec.ts",
+      "beforeSha256": "e75ddf24f7c05786778bf4603877c6a4c04c0653922a0b66cb57acd229b9a842",
+      "afterSha256": "2ae7fa667a505f47c4217cbc3f4776b4ff9bdff4fcb1051cbf157a83353d9281",
+      "exactReverse": true,
+      "originalLineEndingsRetained": true,
+      "syntaxErrors": 0,
+      "changes": [
+        {
+          "from": "  await page.getByLabel(\"Type DELETE to enable this action\", { exact: true }).fill(\"DELETE\");\n  await page.getByRole(\"button\", { name: \"Reset guest workspace\", exact: true }).click();",
+          "to": "  const confirmation = page.getByLabel(\"Type DELETE to enable this action\", { exact: true });\n  await expect(confirmation).toBeVisible();\n  await expect(confirmation).toBeEnabled();\n  await confirmation.fill(\"DELETE\");\n  await expect(confirmation).toHaveValue(\"DELETE\");\n  const reset = page.getByRole(\"button\", { name: \"Reset guest workspace\", exact: true });\n  await expect(reset).toBeEnabled();\n  await reset.click();\n  await expect(page.getByRole(\"status\").filter({ hasText: \"This device workspace has been reset.\" })).toBeVisible();\n  await expect.poll(() => page.evaluate(() => {\n    const marker = JSON.parse(localStorage.getItem(\"sparowtype.workspace-reset.v1:guest\") ?? \"null\") as { ownerId?: string; id?: string; at?: number } | null;\n    return marker?.ownerId === \"guest\" && typeof marker.id === \"string\" && marker.id.length > 0 && typeof marker.at === \"number\" && Number.isFinite(marker.at) && marker.at > 0;\n  })).toBe(true);",
+          "index": 11406
+        }
+      ]
+    }
+  ],
+  "patch": {
+    "file": "audit/2026-11-04/source34-test-synchronization.patch",
+    "sha256": "22105826682592fe943a44beec8576f21d332c92eae5cda2972f6218c94d1da7"
+  },
+  "source": {
+    "sourceFile": "audit/2026-11-02/final34-source.json",
+    "expectedBuild": "332e23584f1e36465df2",
+    "compared": 505,
+    "mismatches": []
+  },
+  "allOtherGuardedInputsUnchanged": true,
+  "unmodified": [
+    {
+      "file": "e2e/accessibility-audit.spec.ts",
+      "sha256": "fcce08972359069f488dcaff2c5ee6c711c88d61ea9dce837fd91dcadf0631aa"
+    },
+    {
+      "file": "e2e/account-workspace.spec.ts",
+      "sha256": "c1e55a730bd400b1c8910916df83c56fd0319259c18c7f2884043a7427cabc6d"
+    },
+    {
+      "file": "e2e/auth-flow.spec.ts",
+      "sha256": "738f9924fdf060fa8845a63c6f99ee33ee6cfbc790583963f112b0ae9671e23e"
+    },
+    {
+      "file": "e2e/caret-geometry.spec.ts",
+      "sha256": "14d212aeb7b77ecebb9dc2dc1f0701d116a241615ede63e197c4e22097116ed0"
+    },
+    {
+      "file": "e2e/content-options.spec.ts",
+      "sha256": "2b31ee4bc55cb7d8b61b4db93f9df95180c38db41e38dbc225915c2a85810b16"
+    },
+    {
+      "file": "e2e/countdown-clock.spec.ts",
+      "sha256": "8c74ef51c28ef82c9db8e34a495ad68e4fd1439602f1a83af6fd27eebbd11524"
+    },
+    {
+      "file": "e2e/current-word-correction.spec.ts",
+      "sha256": "c5bd167c81b75821425cadcf31740a2e1402e9005bd4cce09b12fb3b50d2ed65"
+    },
+    {
+      "file": "e2e/frontend-deployment.spec.ts",
+      "sha256": "33de58ef7d065938c742d1778d271c16b2ce8c5f605be9c73afc2f4b2f21f79d"
+    },
+    {
+      "file": "e2e/frontend-game-accessibility.spec.ts",
+      "sha256": "02db4dc14f5c9d2199533a0d764bcdef24cbd39b38ab971bb0e855b48f973591"
+    },
+    {
+      "file": "e2e/game-data-controls.spec.ts",
+      "sha256": "482cbf395a27cd7f205069f9becaf9048fa47a681d1f5ec80b5f0e013db3d09b"
+    },
+    {
+      "file": "e2e/games.spec.ts",
+      "sha256": "4b05d2bff5d57161bcd261167316e387c2b9f7273e5077c13134958b8bcb9ed6"
+    },
+    {
+      "file": "e2e/keyboard-lab.spec.ts",
+      "sha256": "5aecaa300e3c78deceafc41a8c5cfce4d03a1372f0a29d69a6aacba4ad4a7dee"
+    },
+    {
+      "file": "e2e/keyboard-viewport.spec.ts",
+      "sha256": "08816cc4c7eeec03e4b367588bd1c6eb64192f205452b8c8822928c04d5c3695"
+    },
+    {
+      "file": "e2e/leaderboard-periods.spec.ts",
+      "sha256": "4b3de59c0d5a9e48ccac3671462756b01f099c0d4e1f94cd1c6fa349295c89db"
+    },
+    {
+      "file": "e2e/leaderboard.spec.ts",
+      "sha256": "57176a4b96f7010d8c54c84d760d6f13b3bc3ad00d448638a0cb2d1df1100a78"
+    },
+    {
+      "file": "e2e/learning-v3.spec.ts",
+      "sha256": "a75fe7fdec9efb48a5867f42994fd6dff35df268ffb09c7b28b731c502cf06a2"
+    },
+    {
+      "file": "e2e/live-keyboard.spec.ts",
+      "sha256": "cf19d74050bc1b3f4b81990b8b1edb0c06ae321fec5c127412a5c39a11c3cb63"
+    },
+    {
+      "file": "e2e/mobile-input-integrity.spec.ts",
+      "sha256": "df4a8b4d9cead3e7f75964a2692a1ef453adb0810e2ea571e83ddec756e29d77"
+    },
+    {
+      "file": "e2e/mode-matrix.spec.ts",
+      "sha256": "e65014f5e0946c167d440e48a69d3a25be2c1d31452a1cb695019831295836e9"
+    },
+    {
+      "file": "e2e/navigation-accessibility.spec.ts",
+      "sha256": "f4577379c54e191957cce4fe70d62e18dd7124a1a4b00bcde8c1eb90599815f8"
+    },
+    {
+      "file": "e2e/offline-pwa.spec.ts",
+      "sha256": "cd058182c4a6af51cb7a53d5d7f67161ab29659f99a9ce6183a35373696b1bcf"
+    },
+    {
+      "file": "e2e/php-account-flow.spec.ts",
+      "sha256": "c30b4984f3dbcfd47c64d6a4a94c5e969885e3cf114952eb3ade448fd91e86ec"
+    },
+    {
+      "file": "e2e/php-human-race.spec.ts",
+      "sha256": "12dbbe3137b3502ba4c2bf9cee32827333f9013398e496f682fd8aba66f0e7db"
+    },
+    {
+      "file": "e2e/profile-flow.spec.ts",
+      "sha256": "a30dfc37bad63bc6e40b3f82ca69a96af7620fc3884db4d7f9d24c2fc61fa9d2"
+    },
+    {
+      "file": "e2e/profile-identity.spec.ts",
+      "sha256": "20353ac1771118a5ce1aa54e6d08719af5e00460616c7449611f08ca1c707a34"
+    },
+    {
+      "file": "e2e/pwa-notices.spec.ts",
+      "sha256": "54c9f6c2a609ae1a403e913d2d5bbaf53804fc73bdd89cb21c0730de0d7c9673"
+    },
+    {
+      "file": "e2e/quick-restart.spec.ts",
+      "sha256": "8d6072c84ee3f574de9cd3761e4fe1343d096ca59b797f5086204c8baba9655f"
+    },
+    {
+      "file": "e2e/race-mode.spec.ts",
+      "sha256": "01e29839303f34bead8523b5a209c2e896b2093d9f82cda4ad2b527b9bde7322"
+    },
+    {
+      "file": "e2e/race-pace.spec.ts",
+      "sha256": "3494eeb743bc5be1ead9138688774e7edda784882ad03a001b286cce247c773c"
+    },
+    {
+      "file": "e2e/responsive-layout.spec.ts",
+      "sha256": "68ce9f6cd01373a78d2e4e1136f5ef0eb2bbf20f3c817b31b3f2498cfe25353b"
+    },
+    {
+      "file": "e2e/responsive-pages.spec.ts",
+      "sha256": "cc860601b37100b2efde1e6c8a25cd4094c6f3e6404abf98ee025647c5293f3f"
+    },
+    {
+      "file": "e2e/result-evidence.spec.ts",
+      "sha256": "7d8ba2bec423674e84cce92228a7ca18c09aba09cf0d8f32b2b17724f093cf5f"
+    },
+    {
+      "file": "e2e/secondary-pages.spec.ts",
+      "sha256": "54e8c1bda03d09abacfb055b0f906fadfbfc562f53b1d51f1845bac641958a16"
+    },
+    {
+      "file": "e2e/sparowtype-brand.spec.ts",
+      "sha256": "9cce7fc11817fcb6b979bca6c58106c799722e650376c084b015ac23fba42c3c"
+    },
+    {
+      "file": "e2e/startup-recovery.spec.ts",
+      "sha256": "b9d369bbdafa7472d1389d983a4e5434b81d79aec3b5203a760d7e1220898169"
+    },
+    {
+      "file": "e2e/stats-dashboard.spec.ts",
+      "sha256": "fa62431b196a21cc5aebb5c90956ab2fb9596fcd094d7ccd3ef17d847977fcd9"
+    },
+    {
+      "file": "e2e/typing-audit-regressions.spec.ts",
+      "sha256": "a49d8290dc3d94e47fa05aab2b438a13a4cc378ccab630609e983b1cf80e76b1"
+    },
+    {
+      "file": "e2e/typing-experience.spec.ts",
+      "sha256": "838a54ec6ddd4d044484be6ba1fe70d123f61202df7e85ac9bbf6c806985c340"
+    },
+    {
+      "file": "e2e/typing-observer-ownership.spec.ts",
+      "sha256": "97510ae587ae99e54f5035d58698c57c59292d8f47d0021aa46f408b0b236fec"
+    },
+    {
+      "file": "e2e/typing-test.spec.ts",
+      "sha256": "1806e43a70f43589ec3a87b09ca7679035523670cd6bd5b106f91c02b7a4c065"
+    },
+    {
+      "file": "e2e/wrong-key-feedback.spec.ts",
+      "sha256": "5fad7c516f3cd5eedc007f565cecb68f72eeddac10a989776d696356ed53a570"
+    },
+    {
+      "file": "e2e/keycap-attribute-ownership.spec.ts",
+      "sha256": "7d09c0a8c21e3ae89ff8c7715d2809e6241469a37ee42407001b08a6a48ef2c7"
+    }
+  ],
+  "followupFiles": [
+    "e2e/arena.spec.ts",
+    "e2e/account-workspace.spec.ts",
+    "e2e/progression-extras.spec.ts",
+    "e2e/typing-experience.spec.ts",
+    "e2e/typing-course.spec.ts"
+  ],
+  "originalCase1014Cause": "UNVERIFIED; unchanged original diagnostic passed. Added completion witness addresses independently demonstrated asynchronous-reset/hard-navigation gap, not a proven cause of the original timeout.",
+  "retained": {
+    "originalTimeouts": true,
+    "originalTypingCadence": true,
+    "originalAssertions": true,
+    "retriesZero": true,
+    "noRuntimeFollowupYet": true,
+    "productionFrozen505Unchanged": true
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "preparedAt": "2026-10-27T17:09:46.817Z",
+  "status": "PREPARED-NOT-RUN",
+  "originalFiles": {
+    "audit/2026-10-27/parser-hybrid-diagnostic.php": "922ecc2ddb67e07a49d593e424c85790c853cb52daa81e03ea0d76706ecd8987",
+    "audit/2026-10-27/run-parser-hybrid-diagnostic.mjs": "dcfe3f4c72a4e976774fcc4773a77ea623ee26149717375a9e3ae7f0e3c33220"
+  },
+  "preparedFiles": {
+    "audit/2026-10-27/request-body-production-diagnostic.php": "24b84305e244508ced34e7d721cc35ed8c3879d6fdfa92b568bc9d2803cfcae5",
+    "audit/2026-10-27/run-request-body-production-diagnostic.mjs": "2e4cc39daecd754506494d6566dc29a5d1dd2fbf5addccdeba39d7eeefe9009b"
+  },
+  "changes": [
+    "Use the actual production RequestBody::decode implementation instead of the audit hybrid copy.",
+    "Retain the independent old false/root-stdClass/true reference and all51 fixed cases.",
+    "Retain the identical302392-byte candidate and302494-byte full POST fixture.",
+    "Retain12 alternating parser iterations,12 validation/second-replay component iterations, two isolated memory children, all raw results and JSON error-code parity.",
+    "Include production helper/index/contract source hashes before and after."
+  ],
+  "executionRequires": "Root GO plus SPAROWTYPE_REQUEST_BODY_PRODUCTION_DIAGNOSTIC=1",
+  "servicesStarted": 0,
+  "testsRun": 0,
+  "productFilesChanged": false
+}

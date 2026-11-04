@@ -1,9 +1,10 @@
 import {
   memo,
-  useCallback,
+  useEffect,
   useId,
+  useLayoutEffect,
   useMemo,
-  useSyncExternalStore,
+  useRef,
   type CSSProperties,
   type ReactNode,
 } from "react";
@@ -12,6 +13,7 @@ import { cn } from "@/lib/utils";
 import { getContentPack } from "@/lib/content-packs";
 import { inputUnitLabel } from "@/lib/typing-feedback";
 import type { PressedKeyStore } from "@/lib/pressed-key-store";
+import { bindPressedKeyAttribute, syncPressedKeyAttribute } from "@/lib/pressed-key-attribute";
 import {
   FINGER_NAMES,
   liveKeyboardLayout,
@@ -24,6 +26,9 @@ import {
   type LiveKeyboardAttempt,
 } from "@/lib/live-keyboard";
 import "./live-keyboard.css";
+
+// Server markup keeps the same held-key attributes without layout-effect warnings.
+const useKeycapLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 export interface LiveKeyboardProps {
   layout: string;
@@ -71,17 +76,21 @@ interface KeycapProps {
  * key transitions and canonical input updates. Shift still updates its labels. */
 const Keycap = memo(function Keycap(props: KeycapProps) {
   const { pressedStore, code, pressed: staticPressed } = props;
-  const subscribe = useCallback(
-    (notify: () => void) => pressedStore?.subscribe(code, notify) ?? (() => undefined),
-    [pressedStore, code],
-  );
-  const snapshot = useCallback(
-    () => pressedStore ? pressedStore.getSnapshot(code) : staticPressed,
-    [pressedStore, code, staticPressed],
-  );
-  const pressed = useSyncExternalStore(subscribe, snapshot, snapshot);
+  const keycap = useRef<HTMLSpanElement>(null);
+  const pressed = pressedStore ? pressedStore.getSnapshot(code) : staticPressed;
+  useKeycapLayoutEffect(() => {
+    const node = keycap.current;
+    if (node && pressedStore) return bindPressedKeyAttribute(node, pressedStore, code);
+  }, [pressedStore, code]);
+  useKeycapLayoutEffect(() => {
+    // An interrupted render may have sampled an earlier physical state. Repair
+    // only this presentation attribute after every commit, before it can paint.
+    if (keycap.current)
+      syncPressedKeyAttribute(keycap.current, pressedStore ? pressedStore.getSnapshot(code) : staticPressed);
+  });
   return (
     <span
+      ref={keycap}
       className={cn(
         "live-key",
         props.adaptive && "learn-key",

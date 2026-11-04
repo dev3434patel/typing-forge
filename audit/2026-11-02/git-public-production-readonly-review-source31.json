@@ -1,0 +1,46 @@
+{
+  "capturedAt": "2026-11-02T17:12:33.8801788Z",
+  "status": "READONLY-SCOPED-REVIEW-NOT-FINAL-STAGED-CERTIFICATION",
+  "buildExpectedFromParent": "f52d0372fe7656817259",
+  "sourceStillUnderCoordinatedValidation": true,
+  "productionFindings": [
+    {
+      "blockerFound": false,
+      "finding": "Single-entry target-word cache is keyed by exact target-array equality, stores only derived word boundaries and uses PHP copy-on-write arrays; config/transcript state, time and authoritative result are not stored in this cache. Public entry creates one validator per request.",
+      "scope": "backend/src/SessionValidator.php"
+    },
+    {
+      "blockerFound": false,
+      "finding": "Public-handle enrichment moved from internal members() into serialize(); all member call sites retain full fresh FOR UPDATE rows, and public projection still supplies Former member fallback. Internal consumers do not read handle.",
+      "scope": "backend/src/ArenaService.php"
+    },
+    {
+      "blockerFound": false,
+      "finding": "Layout containment scopes editing stages, strict containment applies only to the fully positioned native Learn input. Real browser/IME/geometry validation is required; read-only review is not proof of rendering equivalence.",
+      "scope": "src/components/keybr/learn-workspace.css;src/index.css"
+    },
+    {
+      "blockerFound": false,
+      "finding": "Current-text cache invalidates before sole applyEvent mutation including exceptional partial edits. Target-slot in-place writes are restricted to privately branded factory targets; public arrays use original replacement path.",
+      "scope": "src/lib/typing-core/session.ts;src/lib/typing-core/transcript.ts"
+    },
+    {
+      "blockerFound": false,
+      "finding": "Feedback is scoped by operation/request sequence, pending finishes supersede checkpoints and only matching final acknowledgements confirm client finish. Display equality retains original canonical controller evidence and compares both UI rounding forms.",
+      "scope": "src/lib/race-state-machine.ts;src/pages/Race.tsx;src/lib/race-pace.ts"
+    }
+  ],
+  "credentialScanReports": [
+    "audit/2026-11-02/git-public-preflight-source31-inprogress.json",
+    "audit/2026-11-02/git-public-log-preflight-source31-inprogress.json"
+  ],
+  "limitations": [
+    "Pattern matches are triage, not complete secret detection. Public native harnesses intentionally contain synthetic fixture password source and redaction patterns; no values were emitted.",
+    "No final staged-file set exists. New or modified files and logs after capture need final precommit scan.",
+    "Binary screenshot pixels were not inspected by this text scan.",
+    "No ignored/private configuration, .final* runtime, backend/storage, cookies or original services were read.",
+    "No tests, services, staging, commit or push were performed."
+  ],
+  "testsOrServicesRun": false,
+  "stagingCommitOrPushPerformed": false
+}

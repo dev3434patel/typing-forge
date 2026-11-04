@@ -1,5 +1,5 @@
 import { apiRequest, authService, isBackendConfigured } from './php-api';
-import { arenaCodeValid, normalizeArenaCode, type ArenaRoom } from '@/domain/arena';
+import { arenaCodeValid, arenaEvidencePayload, normalizeArenaCode, type ArenaRoom } from '@/domain/arena';
 import type { SessionResult } from '@/lib/typing-core';
 async function operation(action: string, body: Record<string, unknown>, signal?: AbortSignal, expectedOwner = authService.currentSession()?.user?.id): Promise<ArenaRoom> {
   if (!isBackendConfigured) throw new Error('Arena needs the PHP server. Local bot practice remains available.');
@@ -18,7 +18,7 @@ export const arenaService = {
   leave: (code: string) => operation('leave', { code }),
   rematch: (code: string) => operation('rematch', { code }),
   appeal: (code: string) => operation('appeal', { code }),
-  submit: (code: string, candidate: SessionResult, finish: boolean) => operation('submit', { code, candidate, finish }, undefined, candidate.ownerScope),
+  submit: (code: string, candidate: SessionResult, finish: boolean) => operation('submit', { code, candidate: arenaEvidencePayload(candidate), finish }, undefined, candidate.ownerScope),
 };
 export interface ArenaTransport { subscribe: typeof subscribeArena; submit: typeof arenaService.submit }
 export function subscribeArena(code: string, spectator: boolean, onRoom: (room: ArenaRoom) => void, onError: (error: Error) => void): () => void {

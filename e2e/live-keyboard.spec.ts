@@ -8,6 +8,57 @@ test.beforeEach(async ({ page }) => {
   );
 });
 
+for (const viewport of [{ width: 390, height: 844 }, { width: 1280, height: 900 }]) {
+  test(`pressed keycaps keep their content geometry at ${viewport.width}px`, async ({ page }) => {
+    await page.setViewportSize(viewport);
+    const input = await customPractice(page, "fff calm");
+    const key = page.getByTestId("live-keyboard-board").locator('[data-key-code="KeyF"]');
+    const geometry = () => key.evaluate(element => {
+      const style = getComputedStyle(element);
+      const box = element.getBoundingClientRect();
+      const label = element.querySelector(".live-key-label")!.getBoundingClientRect();
+      return {
+        width: box.width,
+        height: box.height,
+        labelX: label.left - box.left,
+        labelY: label.top - box.top,
+        borderBottom: style.borderBottomWidth,
+        borderTop: style.borderTopWidth,
+        padding: style.padding,
+      };
+    });
+    for (const [index, style] of ["classic", "flat", "outline"].entries()) {
+      await page.evaluate(value => { document.documentElement.dataset.keycaps = value; }, style);
+      await settlePageVisuals(page);
+      const before = await geometry();
+      expect(before.borderBottom).toBe(style === "classic" ? "3px" : "1px");
+      await input.focus();
+      await page.keyboard.down("f");
+      await expect(input).toHaveValue("f".repeat(index + 1));
+      await expect(key).toHaveAttribute("data-pressed-key", "true");
+      await expect(key).toHaveCSS("transform", "matrix(1, 0, 0, 1, 0, 2)");
+      const pressed = await geometry();
+      for (const field of ["width", "height", "labelX", "labelY"] as const) {
+        // DOMRect subtraction includes WebKit's floating-point transform rounding.
+        expect(pressed[field]).toBeCloseTo(before[field], 2);
+      }
+      expect([pressed.borderBottom, pressed.borderTop, pressed.padding]).toEqual([
+        before.borderBottom, before.borderTop, before.padding,
+      ]);
+      await page.keyboard.up("f");
+      await expect(key).not.toHaveAttribute("data-pressed-key");
+      await expect(key).toHaveCSS("transform", "none");
+      const released = await geometry();
+      for (const field of ["width", "height", "labelX", "labelY"] as const) {
+        expect(released[field]).toBeCloseTo(before[field], 2);
+      }
+      expect([released.borderBottom, released.borderTop, released.padding]).toEqual([
+        before.borderBottom, before.borderTop, before.padding,
+      ]);
+    }
+  });
+}
+
 test("live keyboard separates held chords, next character and the actual wrong uppercase input", async ({
   page,
 }) => {
@@ -470,7 +521,7 @@ for (const style of ['Classic', 'Flat', 'Outline'] as const) {
       expect(ripple.activations.length).toBeGreaterThan(0);
       expect(ripple.activations.some(value => value.content !== 'none' && value.animation === 'practice-key-ripple' &&
         value.borderStyle === 'solid' && value.duration.split(',').some(duration => Math.abs(Number.parseFloat(duration) - 0.24) <= 0.00001))).toBe(true);
-      expect(ripple.activations.some(value => value.motion.some(motion => motion.property === 'transform' && motion.duration === 90))).toBe(true);
+      expect(ripple.activations.some(value => value.motion.some(motion => motion.property === 'transform' && motion.duration === 55))).toBe(true);
       await input.press('Backspace');
       await expect(input).toHaveValue('');
 

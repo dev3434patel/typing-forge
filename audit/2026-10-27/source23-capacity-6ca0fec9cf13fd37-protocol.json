@@ -1,0 +1,55 @@
+{
+  "declaredAt": "2026-10-27T16:12:52.965Z",
+  "status": "NOT-RUN",
+  "build": "85735c1a3b56655b767e",
+  "source": {
+    "sourceFile": "audit/2026-10-27/final23-source.json",
+    "expectedBuild": "85735c1a3b56655b767e",
+    "compared": 506,
+    "mismatches": []
+  },
+  "ownerId": "6ca0fec9cf13fd37",
+  "origin": "http://127.0.0.1:9092/api/",
+  "rooms": 50,
+  "accountsPerRoom": 8,
+  "occupiedSeatsRequired": 400,
+  "durationSeconds": 30,
+  "concurrency": 20,
+  "requestTimeoutMs": 15000,
+  "watchdogMs": 180000,
+  "expectedArenaOperations": 1653,
+  "expectedOperations": {
+    "create": 50,
+    "join": 351,
+    "get": 51,
+    "spectate": 1,
+    "ready": 400,
+    "submit": 400,
+    "leave": 400
+  },
+  "p95TargetMs": 150,
+  "p95Method": "Nearest rank: sorted successful real Arena HTTP latencies[ceil(n*0.95)-1]. Every unexpected status separately fails the whole gate; all-request and per-phase distributions are also retained.",
+  "retries": 0,
+  "resultFiltering": false,
+  "rateCountersReset": false,
+  "limiterBypass": false,
+  "evidence": "400 independent guarded synthetic authenticated sessions. Ten canonical insertion events per account use native performance.now mapped to the actual authoritative server start and real80/83/86ms pacing; no server/browser/client clock fast-forward.",
+  "authenticationEndpointPerformance": "NOT-MEASURED: accounts/sessions are isolated SQL/file fixtures; one real session request verifies the API binding.",
+  "sustained120SecondLoad": "NOT-RUN: this declared burst preserves the original1653-operation comparison. It cannot establish400-client steady-state polling throughput.",
+  "sourceAndHarnessHashes": {
+    "audit/2026-10-27/pack-backend-instance-source23.mjs": "cbf383a0d70a8140ee4b43bbb5708f438f9c4006cfb9a5e6720757620e3b58e3",
+    "audit/2026-10-27/run-source23-capacity-burst.mjs": "4ebacd4000c48dafd5ea3dfe724614dc54707763378b8b7971c8618b4ac57443",
+    "backend/tests/arena-audit-admin.php": "1c40050d0318e8ec84e6cfc44ab90ebd7840d467ea1f0387ec16e11744b8091b",
+    "scripts/php-runtime.mjs": "2adeffc2ac322edbc611f34c437a0f34569689c942602bf39b079305cfb7a60f"
+  },
+  "machine": {
+    "logicalCpus": 20,
+    "cpuModel": "13th Gen Intel(R) Core(TM) i7-13650HX",
+    "totalMemoryBytes": 16849256448,
+    "freeMemoryBytes": 2110443520
+  },
+  "privateConfigReadByHarness": false,
+  "originalConfigRead": false,
+  "existingDatabaseConnected": false,
+  "cleanupOwnership": "Fixture account/session cleanup belongs to this script; Apache/MariaDB process cleanup remains with its original owner and must be verified separately."
+}

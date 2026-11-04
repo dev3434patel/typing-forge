@@ -184,6 +184,57 @@ function nonemptyWords(count: number, uniqueLabel: string) {
 }
 
 describe("bounded factory-owned target-word metadata", () => {
+  it.each<{
+    name: string;
+    target: string;
+    typed: string;
+    policy: ScoringPolicy;
+    submissions?: number[];
+  }>([
+    { name: "correct prose", target: "cat dog", typed: "cat d", policy: "prose" },
+    { name: "wrong and extra prose", target: "cat dog", typed: "cxts dogs tail", policy: "prose" },
+    { name: "short and skipped words", target: "cat dog end", typed: "c  en", policy: "prose" },
+    { name: "empty word separators", target: " a  b ", typed: " a x ", policy: "prose" },
+    { name: "virtual submissions", target: "cat dog", typed: "ctdog", policy: "prose", submissions: [2] },
+    { name: "normalized and joined graphemes", target: "é 👩🏽‍💻 हिन्दी", typed: "é 👩🏽‍💻 हि", policy: "prose" },
+    { name: "RTL text", target: "العربية دقيقة", typed: "العرب x", policy: "prose" },
+    { name: "code with overflow", target: "a\tb\nc", typed: "a\tx\nc!", policy: "code" },
+    { name: "free text", target: "", typed: "free 👩🏽‍💻 text", policy: "free" },
+    { name: "empty target", target: "", typed: "x ", policy: "prose" },
+  ])("preserves complete slot records and serialization for $name", ({ target: text, typed: input, policy, submissions = [] }) => {
+    for (const finiteFinal of [false, true]) {
+      const typed = graphemes(input);
+      const factory = alignTranscript(targetGraphemes(text), typed, policy, finiteFinal, submissions, { includeWords: true });
+      const external = alignTranscript(graphemes(text), typed, policy, finiteFinal, submissions, { includeWords: true });
+      expect(factory).toEqual(external);
+      expect(JSON.stringify(factory)).toBe(JSON.stringify(external));
+      for (let index = 0; index < factory.characters.length; index++) {
+        const actual = factory.characters[index];
+        expect(Object.keys(actual)).toEqual(["index", "expected", "typed", "status"]);
+        expect(Object.getOwnPropertyDescriptors(actual)).toEqual(Object.getOwnPropertyDescriptors(external.characters[index]));
+        expect(actual).not.toBe(external.characters[index]);
+      }
+    }
+  });
+
+  it("preserves public sparse target holes and creates mapped records through the original fallback", () => {
+    const target = new Array<string>(3);
+    target[0] = "a";
+    target[2] = "c";
+    const untouched = alignTranscript(target, ["a"], "code");
+    expect(Object.hasOwn(untouched.characters, 1)).toBe(false);
+    const filled = alignTranscript(target, ["a", "x", "c"], "code");
+    expect(Object.hasOwn(target, 1)).toBe(false);
+    expect(Object.hasOwn(filled.characters, 1)).toBe(true);
+    expect(filled.characters[1]).toEqual({ index: 1, expected: undefined, typed: "x", status: "incorrect" });
+    expect(Object.keys(filled.characters[1])).toEqual(["index", "expected", "typed", "status"]);
+    expect(filled.creditedUnits).toBe(2);
+    target[1] = "x";
+    expect(alignTranscript(target, ["a", "x", "c"], "code").creditedUnits).toBe(3);
+    expect(untouched.characters[0]).not.toBe(filled.characters[0]);
+    expect(untouched.characters[0].typed).toBe("a");
+  });
+
   it("reuses one frozen numeric record without changing complete Alignment or final metrics", () => {
     const exercised = exerciseFactory("factory-cache-contract calm hands", "factory-");
     expect(exercised.first.creditedUnits).toBe(8);

@@ -34,13 +34,11 @@ export async function focusTyping(page: Page) {
     exact: true,
   });
   await expect(input).toBeVisible();
-  // Desktop starts focused; touch devices retain the explicit keyboard activation.
-  if (
-    !(await input.evaluate((element) => element === document.activeElement))
-  ) {
-    await page
-      .getByRole("button", { name: /^(Click here or tab to start typing|Continue typing)/ })
-      .click();
+  await expect(input).toBeEnabled();
+  // Test setup targets the stable native input. Pointer activation is tested
+  // independently by the explicit touch and Continue typing cases.
+  if (!(await input.evaluate(element => element === document.activeElement))) {
+    await input.focus();
   }
   await expect(input).toBeFocused();
   return input;

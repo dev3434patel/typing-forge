@@ -1,4 +1,5 @@
 import {
+  memo,
   useCallback,
   useEffect,
   useLayoutEffect,
@@ -35,7 +36,7 @@ import { ObservedLiveKeyboard } from "./ObservedLiveKeyboard";
 import { TypingShortcutHelp } from "./TypingShortcutHelp";
 import { keyboardAttempt } from "@/lib/live-keyboard";
 import { CompositionEchoGuard } from "@/lib/composition-echo";
-import { opponentPacePosition, type RacePace } from "@/lib/race-pace";
+import { opponentPacePosition, raceTargetSlotCount, type RacePace } from "@/lib/race-pace";
 import type { KeyboardAudio } from "@/lib/keyboard-audio";
 import {
   useWordCorrection,
@@ -68,7 +69,7 @@ interface Props {
 }
 const number = (value: number | null, decimals = 0) =>
   value === null ? "—" : value.toFixed(decimals);
-export function TypingArea({
+function TypingAreaContent({
   configuration,
   onTestComplete,
   onRestart,
@@ -518,9 +519,14 @@ export function TypingArea({
   const free = configuration.scoringPolicy === "free";
   const rival =
     configuration.mode === "race" && !free ? opponentPace : undefined;
+  const hasRival = Boolean(rival);
+  const rivalTargetCount = useMemo(
+    () => hasRival ? raceTargetSlotCount(snapshot.characters) : 0,
+    [snapshot.characters, hasRival],
+  );
   const rivalPosition = rival
     ? opponentPacePosition(
-        snapshot.characters.filter((slot) => slot.expected !== null).length,
+        rivalTargetCount,
         { cursor: rival.position },
       )
     : 0;
@@ -751,7 +757,7 @@ export function TypingArea({
                   "translate3d(var(--caret-x, 0px), var(--caret-y, 0px), 0)",
                 transition:
                   p.smoothCaret && !p.reducedMotion
-                    ? "transform 85ms cubic-bezier(.2,.8,.2,1)"
+                    ? "transform 55ms cubic-bezier(.2,.8,.2,1)"
                     : "none",
                 zIndex: rival ? 3 : 1,
               }}
@@ -1087,3 +1093,8 @@ export function TypingArea({
     </section>
   );
 }
+
+// Parent HUD updates need not re-enter the input surface when all of its props
+// are unchanged. Its own state, preference context and real pace changes still
+// follow React's standard update rules.
+export const TypingArea = memo(TypingAreaContent);

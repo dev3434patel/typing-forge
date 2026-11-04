@@ -1,0 +1,119 @@
+{
+  "preparedAt": "2026-11-02T17:27:03.412Z",
+  "status": "PREPARED-NOT-RUN",
+  "sourceBuild": "f52d0372fe7656817259",
+  "staticBuild": "ce843cf42b5a6554ee78",
+  "sourceFiles": 505,
+  "originalDriver": "audit/2026-11-02/measure-mobile-workspaces-static-final31.mjs",
+  "originalDriverSha256": "a022156996882b61b8a81df7d7d12da3ee32d7769efcb12893691e3704733295",
+  "driverFile": "audit/2026-11-02/measure-mobile-native-pipeline-final31.mjs",
+  "driverSha256": "5716e5b334832ea69edb8a7ce97500f5e9fc456ddc04af78021e76a58b8f8e13",
+  "driverTransforms": [
+    {
+      "from": "import assert from 'node:assert/strict';",
+      "to": "import assert from 'node:assert/strict';\nimport { installNativePipelineProbe, beginNativePipelineDiagnostic, markNativePipelineInputStart, endNativePipelineDiagnostic, abortNativePipelineDiagnostic, finishNativePipelineEventObservation } from './mobile-native-pipeline-runtime-final31.mjs';",
+      "count": 1
+    },
+    {
+      "from": "process.argv[2] ?? 'mobile-workspaces-final31-static'",
+      "to": "process.argv[2] ?? 'final31-mobile-native-pipeline'",
+      "count": 1
+    },
+    {
+      "from": "`${directory}/mobile-workspaces-final31-static-protocol.json`",
+      "to": "`${directory}/final31-mobile-native-pipeline-protocol.json`",
+      "count": 1
+    },
+    {
+      "from": "`${directory}/mobile-workspaces-final31-static-build.json`",
+      "to": "`${directory}/final31-mobile-native-pipeline-build.json`",
+      "count": 1
+    },
+    {
+      "from": "async function beginObservation(page, context, input) {",
+      "to": "async function beginObservation(page, context, input, caseId) {",
+      "count": 1
+    },
+    {
+      "from": "  });\n}\n\nasync function endObservation(page) {",
+      "to": "  });\n  await beginNativePipelineDiagnostic(page, cdp, caseId, prefix, protocol);\n}\n\nasync function endObservation(page) {",
+      "count": 1
+    },
+    {
+      "from": "await beginObservation(page, context, input);",
+      "to": "await beginObservation(page, context, input, specification.id);",
+      "count": 4
+    },
+    {
+      "from": "    await input.pressSequentially(text, { delay: 0 });",
+      "to": "    await markNativePipelineInputStart(page);\n    await input.pressSequentially(text, { delay: 0 });\n    receipt.pipeline = await endNativePipelineDiagnostic(page);",
+      "count": 3
+    },
+    {
+      "from": "    const page = await context.newPage();",
+      "to": "    await installNativePipelineProbe(context, specification.id, protocol);\n    const page = await context.newPage();",
+      "count": 1
+    },
+    {
+      "from": "      await context.close();\n      receipt.finishedAt",
+      "to": "      const unfinished = await abortNativePipelineDiagnostic(page);\n      if (unfinished) { receipt.diagnosticIncomplete = unfinished; receipt.passed = false; }\n      await context.close();\n      receipt.finishedAt",
+      "count": 1
+    },
+    {
+      "from": "    receipt.timing = await endObservation(page);",
+      "to": "    receipt.timing = await endObservation(page);\n    receipt.eventPhaseSummary = await finishNativePipelineEventObservation(page, specification.id, prefix, receipt.timing);",
+      "count": 4
+    }
+  ],
+  "originalWrapper": "audit/2026-11-02/run-final28-mobile-native-pipeline.mjs",
+  "originalWrapperSha256": "a299463672dc3e43925ef7c52da4a660c156512d9f787b4eea256cdd5fc2c63d",
+  "wrapperFile": "audit/2026-11-02/run-final31-mobile-native-pipeline.mjs",
+  "wrapperSha256": "a4a03f54e502200a62b35c4239d38c16797b629c57c3d3b6aed2a9e1edc7d5a6",
+  "wrapperCloneExactReversal": true,
+  "runtimeOriginalFile": "audit/2026-11-02/mobile-native-pipeline-runtime.mjs",
+  "runtimeOriginalSha256": "67c79d63c3599ca449b90b04e4421be1227eabbd5d66e7bea4f366922c663b4b",
+  "runtimeFile": "audit/2026-11-02/mobile-native-pipeline-runtime-final31.mjs",
+  "runtimeTransforms": [
+    {
+      "from": "      shapeBefore: null, shapeAfter: null, observer: null };",
+      "to": "      shapeBefore: null, shapeAfter: null, observer: null, eventObserver: null,\n      eventTimings: [], droppedEventTimings: 0 };",
+      "count": 1
+    },
+    {
+      "from": "    const control = {",
+      "to": "    function consumeEvents(entries) {\n      for (const entry of entries) {\n        if (!['keydown','keyup','keypress','beforeinput','input'].includes(entry.name)) continue;\n        if (probe.eventTimings.length >= 20000) { probe.droppedEventTimings++; continue; }\n        probe.eventTimings.push({ name: entry.name, startTime: entry.startTime, duration: entry.duration,\n          processingStart: entry.processingStart, processingEnd: entry.processingEnd, interactionId: entry.interactionId });\n      }\n    }\n    const control = {",
+      "count": 1
+    },
+    {
+      "from": "        probe.shapeBefore = shape(probe.target);",
+      "to": "        probe.shapeBefore = shape(probe.target);\n        if (PerformanceObserver.supportedEntryTypes.includes('event')) {\n          probe.eventObserver = new PerformanceObserver(list => consumeEvents(list.getEntries()));\n          probe.eventObserver.observe({ type: 'event', durationThreshold: 16 });\n        }",
+      "count": 1
+    },
+    {
+      "from": "        const { observer, target, active, ...safe } = probe;",
+      "to": "        const { observer, eventObserver, target, active, ...safe } = probe;",
+      "count": 1
+    },
+    {
+      "from": "    window.sparowNativePipelineDiagnostic = control;",
+      "to": "    control.finishEventTimings = () => {\n      if (probe.eventObserver) { consumeEvents(probe.eventObserver.takeRecords()); probe.eventObserver.disconnect(); }\n      return { input: probe.input, eventTimings: probe.eventTimings, droppedEventTimings: probe.droppedEventTimings,\n        originalObservation: { start: window.mobileWorkspaceBench?.start ?? null, end: window.mobileWorkspaceBench?.end ?? null } };\n    };\n    window.sparowNativePipelineDiagnostic = control;",
+      "count": 1
+    }
+  ],
+  "runtimeStructuralReversalVerified": true,
+  "helperHashes": {
+    "audit/2026-11-02/mobile-native-pipeline-runtime-final31.mjs": "664e1d4cc5caca132c774163d36d0087cee63053fba1b793dc1c9b73de879e96",
+    "audit/2026-11-02/mobile-native-pipeline-analysis.mjs": "dd72bc117c4dea20483e80c4415ec505094e04e756cde838c56091798cd669f6"
+  },
+  "setterProbeRequiredOff": true,
+  "declaredCases": [
+    "learn",
+    "local-bot"
+  ],
+  "originalFourWorkspaceActionsAndAssertionsPreserved": true,
+  "eventTimingExtension": "Separate bounded observer through the original endObservation; compare count/p98/max to original summary, then classify complete pre-final latency versus boundary overlaps/results.",
+  "trace": "Same categories,32MB buffer/64MB stream cap, no CPU sampling/screenshots. Trace itself ends at original pressSequentially return; later EventTiming observation is separate.",
+  "ordinaryTrial3Learn128FailureRetained": true,
+  "productionFilesEdited": false,
+  "runtimeJobsStarted": 0
+}

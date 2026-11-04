@@ -1,0 +1,77 @@
+{
+  "recordedAt": "2026-11-04T16:22:05.478Z",
+  "status": "PREPARED-UNVERIFIED-RUNTIME",
+  "sourceFile": "audit/2026-11-02/final33-source.json",
+  "sourceManifestSha256": "16907b52c6771f8163817f29255d1b432e76a7a98c4293334f817e0a17d5a050",
+  "sourceFiles": 505,
+  "clientBuild": "332e23584f1e36465df2",
+  "runtimeVariant": "source33-opcache-production-config-variant",
+  "preparationRevision": 3,
+  "fragmentOutsideFrozen505": true,
+  "additionalInputHashes": {
+    "backend/opcache.ini.example": "0bd8fae150da074f7fcbdd850f1f87c7ca07d560cec45b80268fcd74ce5a7bc0",
+    "docs/PHP_OPCACHE_PROFILE.md": "1958a392c4c5ba90329311aaabb2cc3baf396838dd19cc4ec561db8dbf7c6607",
+    "audit/2026-11-04/source33-opcache-runtime-v3.mjs": "092111a095549d133c9275eb6d413ea7ece632efea7eac4a884cdd876b7594f1",
+    "audit/2026-11-04/source33-opcache-cache-probe-endpoint.mjs": "3581268e399af0e368a0dd425cb1110f53639cfe5f8faaeb8bf339a45f30f786",
+    "audit/2026-11-02/run-source33-arena-chart-http.mjs": "5bd4b0c068681ccad6dddecef61923650c2cbac8790dbdb6d69cb15a4bd69007",
+    "audit/2026-11-02/pack-opcache-instance-source33-v3.mjs": "f8ee8e8d62a4aa2d7c8fdd465da3946c4155d8d87d2588ced3a806bbed5c13d0",
+    "audit/2026-11-02/pack-opcache-instance-source33-v3-wire.mjs": "07963db289fbb360d29e75728129d95d011604b6446177b7fd0892a36450a8d0",
+    "audit/2026-11-02/run-source33-opcache-v3-capacity-burst.mjs": "e590b4ee34b67986dffcda677eeaf859002f2e28141a586b56edd9f303d9cd44",
+    "audit/2026-11-02/run-source33-opcache-v3-capacity-wire-burst.mjs": "84fd6352c40207eae9abff3ea5ef1c264bb80c4886503a2486ba5b1b384efcfa"
+  },
+  "fragmentSha256": "0bd8fae150da074f7fcbdd850f1f87c7ca07d560cec45b80268fcd74ce5a7bc0",
+  "extensionSha256": "4530ffcf2c16c9fb3b97b45360302c787d5fbcb248492f80d35407f63ccff76e",
+  "prepared": [
+    {
+      "originalFile": "audit/2026-11-02/pack-opcache-instance-source33-v2.mjs",
+      "targetFile": "audit/2026-11-02/pack-opcache-instance-source33-v3.mjs",
+      "originalSha256": "a21da2a37c69576574b79c167ec50732524e6a6563c4f711169fcd65da25a211",
+      "targetSha256": "f8ee8e8d62a4aa2d7c8fdd465da3946c4155d8d87d2588ced3a806bbed5c13d0",
+      "exactIdentifierReverse": true
+    },
+    {
+      "originalFile": "audit/2026-11-02/pack-opcache-instance-source33-v2-wire.mjs",
+      "targetFile": "audit/2026-11-02/pack-opcache-instance-source33-v3-wire.mjs",
+      "originalSha256": "720c231d356a3eb4ee625e432c51771dcd21887831309d7726a2fe5bf0a0d135",
+      "targetSha256": "07963db289fbb360d29e75728129d95d011604b6446177b7fd0892a36450a8d0",
+      "exactIdentifierReverse": true
+    },
+    {
+      "originalFile": "audit/2026-11-02/run-source33-opcache-v2-capacity-burst.mjs",
+      "targetFile": "audit/2026-11-02/run-source33-opcache-v3-capacity-burst.mjs",
+      "originalSha256": "e3d6d012433f7aacb7522def9942800c469411c2a503779f0156263bf9520065",
+      "targetSha256": "e590b4ee34b67986dffcda677eeaf859002f2e28141a586b56edd9f303d9cd44",
+      "exactIdentifierReverse": true
+    },
+    {
+      "originalFile": "audit/2026-11-02/run-source33-opcache-v2-capacity-wire-burst.mjs",
+      "targetFile": "audit/2026-11-02/run-source33-opcache-v3-capacity-wire-burst.mjs",
+      "originalSha256": "bf1a86b166b10b49de8e856fb1bb17848c6b93401c4a0dffce964f0ea3039492",
+      "targetSha256": "84fd6352c40207eae9abff3ea5ef1c264bb80c4886503a2486ba5b1b384efcfa",
+      "exactIdentifierReverse": true
+    }
+  ],
+  "syntaxChecks": 8,
+  "entry": "audit/2026-11-02/pack-opcache-instance-source33-v3-wire.mjs",
+  "commandsInOrder": [
+    "capacity33-opcache-v3",
+    "capacity33-opcache-v3-wire",
+    "arena-http33-opcache-v3",
+    "cleanup"
+  ],
+  "exactOperationsPerRun": 1653,
+  "concurrency": 20,
+  "rooms": 50,
+  "accountsPerRoom": 8,
+  "p95StrictlyBelowMs": 150,
+  "cacheProofCorrection": "v2 forward-path lookup failed on Windows; bounded CLI and nine-request web probes prove canonical realpath and normalized full-path metadata with exact source hash/mtime. All lookup variants retained; no cache authority change.",
+  "diagnosticApiWrapperDeployedInThisVariant": false,
+  "addedApplicationWarmupRequests": 0,
+  "noCacheReset": true,
+  "noRetries": true,
+  "noFiltering": true,
+  "ordinaryUncachedFailuresRetained": true,
+  "oldV2FailedRunRetained": true,
+  "primarySourceOrFrozenTestsChanged": false,
+  "servicesStarted": 0
+}

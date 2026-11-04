@@ -1,13 +1,13 @@
-import { useMemo, useState } from 'react';
+import { memo, useMemo, useState } from 'react';
 import { Check, Lock } from 'lucide-react';
-import { getAllCharacterStats, getCharacterHistory, type LearningOptions } from '@/lib/keybr-engine';
+import { getAllCharacterStats, getCharacterHistory, type LearningOptions, type CharacterConfidence } from '@/lib/keybr-engine';
 import { getContentPack, getLayout } from '@/lib/content-packs';
 import { cn } from '@/lib/utils';
 
-interface Props extends LearningOptions { compact?: boolean; targetWpm?: number; selectedKey?: string; onSelectKey?: (char: string) => void }
-export function LetterProgressPanel({ compact = false, targetWpm = 35, selectedKey, onSelectKey, ...options }: Props) {
+interface Props extends LearningOptions { compact?: boolean; targetWpm?: number; selectedKey?: string; onSelectKey?: (char: string) => void; characterStats?: readonly CharacterConfidence[] }
+export const LetterProgressPanel = memo(function LetterProgressPanel({ compact = false, targetWpm = 35, selectedKey, onSelectKey, characterStats, ...options }: Props) {
   const [inspectedKey, setInspectedKey] = useState<string | null>(null);
-  const stats = getAllCharacterStats({ ...options, targetWpm });
+  const stats = characterStats ?? getAllCharacterStats({ ...options, targetWpm });
   const pack = getContentPack(options.dimensions?.language ?? 'en');
   const selected = selectedKey ?? inspectedKey;
   const metric = stats.find(stat => stat.char === selected);
@@ -34,4 +34,11 @@ export function LetterProgressPanel({ compact = false, targetWpm = 35, selectedK
       {history.length > 0 ? <div className="mt-4 max-h-52 overflow-auto"><table className="w-full text-left text-xs"><caption className="sr-only">Actual session history for {metric.char}</caption><thead className="text-muted-foreground"><tr><th className="py-2 font-normal">Completed lesson</th><th className="text-right font-normal">Key speed</th><th className="text-right font-normal">Accuracy</th><th className="text-right font-normal">Attempts</th></tr></thead><tbody>{history.slice(-10).map(item => <tr key={item.sessionId} className="border-t border-border"><td className="py-2">{new Date(item.completedAt).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</td><td className="text-right font-mono">{item.wpm === null ? '—' : `${Math.round(item.wpm)} WPM`}</td><td className="text-right font-mono">{item.accuracy.toFixed(1)}%</td><td className="text-right font-mono">{item.attempts}</td></tr>)}</tbody></table></div> : <p className="mt-3 text-xs text-muted-foreground">No recorded sessions for this key. Legacy summary values are unassessed.</p>}
     </div>}
   </section>;
-}
+}, (previous, next) => {
+  // Only revision-owned model props opt into render reuse. Standalone callers
+  // retain fresh model derivation whenever their parent renders.
+  if (!previous.characterStats || !next.characterStats) return false;
+  const keys = Object.keys(previous) as (keyof Props)[];
+  return keys.length === Object.keys(next).length &&
+    keys.every(key => Object.hasOwn(next, key) && Object.is(previous[key], next[key]));
+});

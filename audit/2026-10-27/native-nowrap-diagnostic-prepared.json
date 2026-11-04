@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "preparedAt": "2026-10-27T15:11:34.4049649Z",
+  "status": "PREPARED-NOT-EXECUTED-DIAGNOSTIC-ONLY",
+  "acceptance": false,
+  "sourceDriver": "audit/correction-experience-2026-10-20/measure-typing.mjs",
+  "sourceSha256": "28cf9cb12ccbe2ae8138dc72afd9f936de6865a22e56fd8e90bb4cba40a6be35",
+  "diagnosticDriver": "audit/2026-10-27/native-nowrap-diagnostic-driver.mjs",
+  "diagnosticDriverSha256": "03214d83a1513d01fae21482ad565611429c16865ba87792e8a400f1614b8fda",
+  "byteReversalToOriginal": true,
+  "changes": [
+    "Report output directory changed to audit/2026-10-27",
+    "After native input focus and before CPU throttling, set wrap=off, whiteSpace=pre, overflowWrap=normal on only the hidden native typing textarea"
+  ],
+  "unchanged": [
+    "495 characters with repetitions=16",
+    "4x CPU throttle",
+    "zero requested inter-character delay",
+    "390x844 portrait to 844x390 landscape halfway",
+    "real native pressSequentially input",
+    "canonical JSON result export and exact attempts/accuracy assertions",
+    "fonts and finite animation settling when TYPING_BENCH_SETTLE=1",
+    "build equality guard",
+    "150-second watchdog and browser cleanup",
+    "visible passage styling",
+    "3D animation source and quality"
+  ],
+  "requiredEnvironment": {
+    "TYPING_BENCH_CPU_RATE": "4",
+    "TYPING_BENCH_REPETITIONS": "16",
+    "TYPING_BENCH_DELAY_MS": "0",
+    "TYPING_BENCH_SETTLE": "1",
+    "TYPING_BENCH_REPORT_NAME": "root-assigns-unique-diagnostic-report-name",
+    "TYPING_BENCH_BUILD_FILE": "root-assigns-frozen-build-source-json"
+  },
+  "heavyJobsRun": 0,
+  "productOrTestFilesChanged": 0,
+  "causalClaim": "None. This experiment isolates native textarea wrapping as a hypothesis. It is not product acceptance and cannot replace ordinary unchanged-driver results."
+}

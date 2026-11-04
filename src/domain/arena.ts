@@ -1,4 +1,12 @@
-import type { SessionConfig } from '@/lib/typing-core';
+import type { SessionConfig, SessionResult } from '@/lib/typing-core';
+export type ArenaEvidencePayload = Omit<SessionResult, 'characters' | 'timeSeries' | 'cursor'>;
+/** The server reconstructs these presentation fields before canonical hashing.
+ * Keep all source evidence and leave the full local/export result untouched.
+ */
+export function arenaEvidencePayload(candidate: SessionResult): ArenaEvidencePayload {
+  const { characters: _characters, timeSeries: _timeSeries, cursor: _cursor, ...evidence } = candidate;
+  return evidence;
+}
 export type ArenaStatus = 'waiting' | 'countdown' | 'active' | 'completed' | 'cancelled';
 export type ArenaMemberStatus = 'joined' | 'racing' | 'finished' | 'forfeit' | 'quarantined';
 export interface ArenaMember { id: string; handle: string; slot: number; ready: boolean; status: ArenaMemberStatus; progress: number; wpm: number | null; accuracy: number | null; placement: number | null; rematchVote: boolean; quarantineReason?: string | null; appealRequested?: boolean }

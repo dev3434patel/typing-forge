@@ -1,0 +1,400 @@
+{
+  "preparedAt": "2026-10-27T16:00:14.312Z",
+  "status": "PROPOSAL-PREPARED-NOT-VERIFIED-AGAINST-ACTUAL-BUILD",
+  "sourceFileRequiredAtExecution": "audit/2026-10-27/final23-source.json",
+  "buildEnvironment": "SPAROWTYPE_FINAL23_BUILD_ID",
+  "expectedSourceInventory": {
+    "previous": 504,
+    "proposed": 506,
+    "additions": [
+      "src/lib/frame-publisher.ts",
+      "src/lib/__tests__/frame-publisher.test.ts"
+    ],
+    "actualFreezeVerification": "PENDING"
+  },
+  "expectedSpecInventory": {
+    "count": 64,
+    "existingMobileInputAdditionalCases": 3,
+    "caseCounts": "Derived from actual browser reports; no fixed old case count or filtering."
+  },
+  "serializerComparison": {
+    "iterations": 12,
+    "preservedFixedFixtureClientSessionId": "source22-serializer-diagnostic",
+    "reason": "The fixed identifier is fixture data, retained for byte-identical800-word/10-event/15s comparison rather than renamed as an output identity.",
+    "baselineProtocol": "audit/2026-10-27/final22-serializer-profile-protocol.json",
+    "baselineFixture": {
+      "words": 800,
+      "events": 10,
+      "characters": 4599,
+      "timeSeries": 15,
+      "elapsedMs": 15000,
+      "utf8JsonBytes": 302392,
+      "sha256": "39fe841e3c203ee647cce99c75643b0ec9e6ed8efc685cc699c8b9abf809469c"
+    },
+    "currentFixtureAndCanonicalFingerprintComparison": "PENDING-ACTUAL-SOURCE23-EXECUTION"
+  },
+  "guarantees": [
+    "Historical date21 imports and all source22 scripts/receipts preserved.",
+    "All existing test assertions, deadlines, workers, retries, raw outputs, request counts and capacity thresholds retained.",
+    "Frozen entry-point guards additionally require the anticipated506-file identity before execution.",
+    "No production or E2E edits, services, builds, browsers or measurements occur during preparation."
+  ],
+  "prepared": [
+    {
+      "originalFile": "audit/2026-10-27/pack-backend-instance-source22.mjs",
+      "originalSha256": "d68ee2b70f18acdf33e802495aee4aa829fe3ff1d85cd367447755396c82078a",
+      "file": "audit/2026-10-27/pack-backend-instance-source23.mjs",
+      "sha256": "cbf383a0d70a8140ee4b43bbb5708f438f9c4006cfb9a5e6720757620e3b58e3",
+      "substitutions": [
+        {
+          "before": "source22",
+          "after": "source23",
+          "count": 2
+        },
+        {
+          "before": "capacity22",
+          "after": "capacity23",
+          "count": 6
+        },
+        {
+          "before": "rate-native22",
+          "after": "rate-native23",
+          "count": 4
+        },
+        {
+          "before": "native-rate22",
+          "after": "native-rate23",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/run-source22-capacity-burst.mjs",
+      "originalSha256": "27139ba7204bec586b645be0fabc4092935cd68dbe40c5f3c284b240d9096df1",
+      "file": "audit/2026-10-27/run-source23-capacity-burst.mjs",
+      "sha256": "4ebacd4000c48dafd5ea3dfe724614dc54707763378b8b7971c8618b4ac57443",
+      "substitutions": [
+        {
+          "before": "final22",
+          "after": "final23",
+          "count": 1
+        },
+        {
+          "before": "FINAL22",
+          "after": "FINAL23",
+          "count": 1
+        },
+        {
+          "before": "source22",
+          "after": "source23",
+          "count": 4
+        },
+        {
+          "before": "SOURCE22",
+          "after": "SOURCE23",
+          "count": 1
+        },
+        {
+          "before": "assert.ok(sourceBefore.receipt.compared >= 500);",
+          "after": "assert.ok(sourceBefore.receipt.compared >= 500);\nassert.equal(sourceBefore.receipt.compared, 506);",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/run-source22-native-rate.mjs",
+      "originalSha256": "f7b2ca0e56e575b73c69f9543a7cdabfe4bdd00b288ebdb1f39fbdce7ff15d3b",
+      "file": "audit/2026-10-27/run-source23-native-rate.mjs",
+      "sha256": "31f4a5013292f4731be598343764fea0d25d5768c535e6df9082a3136de17fc4",
+      "substitutions": [
+        {
+          "before": "final22",
+          "after": "final23",
+          "count": 1
+        },
+        {
+          "before": "FINAL22",
+          "after": "FINAL23",
+          "count": 1
+        },
+        {
+          "before": "source22",
+          "after": "source23",
+          "count": 3
+        },
+        {
+          "before": "SOURCE22",
+          "after": "SOURCE23",
+          "count": 1
+        },
+        {
+          "before": "assert.equal(sourceBefore.frozen.local.version, build);",
+          "after": "assert.equal(sourceBefore.frozen.local.version, build);\nassert.equal(sourceBefore.receipt.compared, 506);",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/native-rate-worker-source22.php",
+      "originalSha256": "e37a4d112ab2da0550a7b42abf3c67f1af101ab52adfb53e4fcde3a8eb32753b",
+      "file": "audit/2026-10-27/native-rate-worker-source23.php",
+      "sha256": "3ba2c56c4481f226cb9cef8222d4726f3cd5a614c6e150e7c4e526aedee5e308",
+      "substitutions": [
+        {
+          "before": "SOURCE22",
+          "after": "SOURCE23",
+          "count": 1
+        },
+        {
+          "before": "native-rate22",
+          "after": "native-rate23",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/run-browser-checkpoint-final22.mjs",
+      "originalSha256": "235eae15620481510b1ee3b39fd6424e4e0c7e2de499fce9057e40bb4d6938f9",
+      "file": "audit/2026-10-27/run-browser-checkpoint-final23.mjs",
+      "sha256": "e6ba8fb14e8b299d280260b9d1a3c785c41bb0ff29b669b76dd6b5da321330b9",
+      "substitutions": [
+        {
+          "before": "FINAL22",
+          "after": "FINAL23",
+          "count": 1
+        },
+        {
+          "before": "source22",
+          "after": "source23",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/run-final22-browser-matrix.mjs",
+      "originalSha256": "622d24a9a8f6d245d8294fe0a5a2f1661d16d622885b3d176a75b6f40069da29",
+      "file": "audit/2026-10-27/run-final23-browser-matrix.mjs",
+      "sha256": "9764fe7ed76e73a5613458026cdad11ec21223982e4e5fd69736ba503ac14099",
+      "substitutions": [
+        {
+          "before": "final22",
+          "after": "final23",
+          "count": 4
+        },
+        {
+          "before": "FINAL22",
+          "after": "FINAL23",
+          "count": 1
+        },
+        {
+          "before": "Source22",
+          "after": "Source23",
+          "count": 1
+        },
+        {
+          "before": "assert.equal(source.frozen.local.version, expectedBuild);",
+          "after": "assert.equal(source.frozen.local.version, expectedBuild);\nassert.equal(source.receipt.compared, 506);",
+          "count": 1
+        },
+        {
+          "before": "currentSourceFileCount: 504",
+          "after": "currentSourceFileCount: 506, declaredSource23Files: ['src/lib/frame-publisher.ts', 'src/lib/__tests__/frame-publisher.test.ts'], existingMobileInputSpecAdditionalCasesDeclared: 3",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/run-final22-static.mjs",
+      "originalSha256": "679097a2344ffc381d164a02c304dc401186333682732ad7360ffc10f4ef2194",
+      "file": "audit/2026-10-27/run-final23-static.mjs",
+      "sha256": "364712c086980a989e3f4d0bb6a6e47bff664fac306e00c86ed80c976d688f2a",
+      "substitutions": [
+        {
+          "before": "final22",
+          "after": "final23",
+          "count": 7
+        },
+        {
+          "before": "FINAL22",
+          "after": "FINAL23",
+          "count": 1
+        },
+        {
+          "before": "assert.equal(initial.frozen.local.version, expectedBuild);",
+          "after": "assert.equal(initial.frozen.local.version, expectedBuild);\nassert.equal(initial.receipt.compared, 506);",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/run-final22-native-browser.mjs",
+      "originalSha256": "308d56ead0ee1367062b1f2c009b0032d5310bf5db9f7b20f36c2fc3dd8d6027",
+      "file": "audit/2026-10-27/run-final23-native-browser.mjs",
+      "sha256": "19373a9e0420a2a11889d9aacef7f7a1033a10376ab002679bfe68d479e20470",
+      "substitutions": [
+        {
+          "before": "final22",
+          "after": "final23",
+          "count": 4
+        },
+        {
+          "before": "FINAL22",
+          "after": "FINAL23",
+          "count": 2
+        },
+        {
+          "before": "source22",
+          "after": "source23",
+          "count": 2
+        },
+        {
+          "before": "assert.equal(initial.frozen.local.version, build);",
+          "after": "assert.equal(initial.frozen.local.version, build);\nassert.equal(initial.receipt.compared, 506);",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/run-final22-native-modules.mjs",
+      "originalSha256": "5517060e728cf335c400d0e99df9d7afaf89dfae63f82941e3b4473a0cdf9f81",
+      "file": "audit/2026-10-27/run-final23-native-modules.mjs",
+      "sha256": "7d5311655210867ace2160e325511710615248d3fd36f3109326b26784bcd8e5",
+      "substitutions": [
+        {
+          "before": "final22",
+          "after": "final23",
+          "count": 4
+        },
+        {
+          "before": "FINAL22",
+          "after": "FINAL23",
+          "count": 2
+        },
+        {
+          "before": "source22",
+          "after": "source23",
+          "count": 5
+        },
+        {
+          "before": "before.receipt.compared, 504",
+          "after": "before.receipt.compared, 506",
+          "count": 1
+        },
+        {
+          "before": "report.sourceAfter.compared === 504",
+          "after": "report.sourceAfter.compared === 506",
+          "count": 1
+        },
+        {
+          "before": "sourceInventoryExtension: { previousCount: 502, expectedCount: 504, addedFiles: ['src/lib/pressed-key-attribute.ts', 'src/lib/__tests__/pressed-key-attribute.test.ts'], reason: 'The frozen src inventory includes the new attribute helper and its source unit test.' }",
+          "after": "sourceInventoryExtension: { previousCount: 504, expectedCount: 506, addedFiles: ['src/lib/frame-publisher.ts', 'src/lib/__tests__/frame-publisher.test.ts'], reason: 'The proposed source23 inventory adds the frame publisher and its source unit test; execution requires the actual frozen inventory to match506.' }",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/measure-mobile-workspaces-static-final22.mjs",
+      "originalSha256": "6c58a76f428fd14e7d4fa938d0c82fa9812632b11fed4900d6aacb1106771bf1",
+      "file": "audit/2026-10-27/measure-mobile-workspaces-static-final23.mjs",
+      "sha256": "0666e3a7dfce45849b91b0efc3a5ad432652611f21be1eb0bb56400ceea4b61f",
+      "substitutions": [
+        {
+          "before": "final22",
+          "after": "final23",
+          "count": 3
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/run-mobile-workspaces-static-final22.mjs",
+      "originalSha256": "88580d67f80e9264fed109f0b5267afd7f85da1ea1493eff191f2973e6b94c97",
+      "file": "audit/2026-10-27/run-mobile-workspaces-static-final23.mjs",
+      "sha256": "76704abb7b3cd2fdedb80db63cd4d4cc33804081f57525f443c429f8812f5848",
+      "substitutions": [
+        {
+          "before": "final22",
+          "after": "final23",
+          "count": 9
+        },
+        {
+          "before": "FINAL22",
+          "after": "FINAL23",
+          "count": 2
+        },
+        {
+          "before": "assert.equal(frozen.frozen.local.version, sourceIdentity);",
+          "after": "assert.equal(frozen.frozen.local.version, sourceIdentity);\nassert.equal(frozen.receipt.compared, 506);",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/run-source22-serializer-profile.mjs",
+      "originalSha256": "7f0bb50bd1ae930f08cfc7a852076ba47e84b311acc992db84d67ae524350af4",
+      "file": "audit/2026-10-27/run-source23-serializer-profile.mjs",
+      "sha256": "449d2070957a0721512b9f72b9eae2f4560b47cd817a415d7b7764f557ce1466",
+      "substitutions": [
+        {
+          "before": "final22",
+          "after": "final23",
+          "count": 3
+        },
+        {
+          "before": "FINAL22",
+          "after": "FINAL23",
+          "count": 1
+        },
+        {
+          "before": "source22",
+          "after": "source23",
+          "count": 4
+        },
+        {
+          "before": "SOURCE22",
+          "after": "SOURCE23",
+          "count": 1
+        },
+        {
+          "before": "assert.equal(before.frozen.local.version, build);",
+          "after": "assert.equal(before.frozen.local.version, build); assert.equal(before.receipt.compared, 506);",
+          "count": 1
+        },
+        {
+          "before": "clientSessionId: 'source23-serializer-diagnostic'",
+          "after": "clientSessionId: 'source22-serializer-diagnostic'",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "originalFile": "audit/2026-10-27/benchmark-validator-source22.php",
+      "originalSha256": "2a42280216674752f8c7270db148d0644a3e3f2fff1176c5fd842abed6bd77f4",
+      "file": "audit/2026-10-27/benchmark-validator-source23.php",
+      "sha256": "49891244669388a8007a9569943711306d3c786ba782881ccb820fc0118652a1",
+      "substitutions": [
+        {
+          "before": "SOURCE22",
+          "after": "SOURCE23",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    }
+  ],
+  "buildsRun": 0,
+  "servicesStarted": 0,
+  "browsersLaunched": 0,
+  "testsOrBenchmarksRun": 0
+}

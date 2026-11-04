@@ -1,0 +1,11 @@
+{
+  "recordedAt": "2026-11-04T16:48:26Z",
+  "status": "QUALIFICATION-OF-PRELIMINARY-SCANNER-SCOPE",
+  "originalRetained": "audit/2026-11-04/public-files-preliminary-review.json",
+  "originalIssue": "The first scanner included every unchanged tracked historical file and a dot-prefixed ignored preview log. Its forbidden-path list therefore included historical archives already in HEAD and an ignored runtime log that is not a release candidate. It found zero token-pattern matches. Its REVIEW-REQUIRED outcome is retained; it is not a finding that those historical files are newly staged.",
+  "correctedScope": "Modified tracked files, untracked unignored release files and direct public audit logs, excluding dot-prefixed runtime logs. This is the intended preflight release scope; staging must still use explicit reviewed paths.",
+  "correctedScanner": "audit/2026-11-04/review-public-release-delta.mjs",
+  "separateConfirmation": "audit/2026-11-04/public-release-delta-preliminary-review.json",
+  "confirmation": "PASS-SCOPED: 2233 files, no forbidden release paths and no matches for the declared credential patterns.",
+  "limits": "Pattern scanning is not a comprehensive security audit. A final scan must include files created after this preliminary snapshot. Original source files and original scanner/results were not rewritten."
+}

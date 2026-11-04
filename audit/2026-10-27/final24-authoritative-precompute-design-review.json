@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "capturedAtUtc": "2026-10-27T16:45:46.9715478Z",
+  "status": "DESIGN-REVIEW-ACCEPTABLE-WITH-EXACT-LOCKED-BINDING-NOT-IMPLEMENTED",
+  "reviewedBuild": "6cdddf1a74b2d10d1c9b",
+  "reviewedSourceHashes": [
+    {
+      "path": "backend/src/ArenaService.php",
+      "sha256": "deaa7c5a653cea16cbf408ec44e9149423faa0a58f4ae9c3e8dce8e286040a38"
+    },
+    {
+      "path": "backend/src/ArenaEvidence.php",
+      "sha256": "a9416b5877dbc35db7ad2b41c999bb2a72695e216b45023c29137e58ac16afdb"
+    },
+    {
+      "path": "backend/src/ArenaRules.php",
+      "sha256": "abb6f4c82a699e353354efd3600f7c9c8330a8df72a9b290702c5e4cfcf20353"
+    },
+    {
+      "path": "backend/src/SessionValidator.php",
+      "sha256": "5d5907e4a49a1a92966a967591701976a25051a3a4f0d4d21f8e70f112be776d"
+    }
+  ],
+  "proposal": "Precompute the second server-receipt-elapsed authoritative replay before taking account/room locks, then use it only after the existing locked authority checks prove its inputs exactly equal the room contract.",
+  "judgment": "Legitimate pure-computation relocation. It can shorten the serialized critical section without trusting client metrics or changing shared-clock acceptance, provided every condition below is retained.",
+  "requiredConditions": [
+    "The receipt remains the DB clock sampled before either replay; it must never come from body fields or be refreshed after processing.",
+    "The client-elapsed SessionValidator.validate replay remains distinct from the second replay. The second replay uses min(duration,max(0,receipt-start)), server target semantics, no Arena pauses/segments and finiteFinal equal to finish.",
+    "A request-local private prepared context is created by ArenaEvidence.prepare, not read from the HTTP body. It retains the exact canonical validated candidate used for computation.",
+    "At the locked boundary recompute elapsed from the fetched room start and duration, and run validateIssued, shared-start binding, event-time bounds, immutable prefix, membership/terminal/stale/grace and finish checks as before.",
+    "Reuse requires exact equality of DB receipt, canonical candidate, actual shared start, duration, expected target, finish/finite flag and recomputed authoritative elapsed. Normalize numeric representation when creating context to match the existing DB-start float and room-duration integer.",
+    "A COW copy of the canonical candidate plus strict array equality binds configuration/events and all canonical evidence without rehashing that evidence inside the lock. Explicit named fields make the room binding auditable.",
+    "Absent, malformed or mismatched context executes the existing authoritative locked replay, not the candidate-elapsed validation result. Old direct two-argument prepare callers remain supported through that fallback.",
+    "No projection is accepted before the locked checks. Exact finished retries still return idempotently before stale checking/writes. Final settlement and serialization continue to sample current DB time.",
+    "The projection is never shared across requests/accounts/rooms and is not a reusable global cache. Existing CSRF/authentication, owner checks, quota, atomic writes and result overrides remain unchanged."
+  ],
+  "necessaryTests": [
+    "At client elapsed1000 and DB receipt2000, cached and fallback paths produce the same authoritative18WPM and complete2000ms time series, differing from the36WPM client-elapsed validation projection.",
+    "Compare complete cached-versus-fallback member writes and replay outputs at ordinary, fractional, exactly capped deadline and finite-final partial-text boundaries.",
+    "Mismatch or remove each context binding: receipt, start, duration, target, finish, computed elapsed and canonical candidate/config/events. Require the old locked rejection or independent fallback, never an incompatible cached score.",
+    "Body-supplied authoritative/projection/receipt fields do not enter the trusted context.",
+    "Retain changed issued rules, start mismatch, changed stored prefix/session, forfeit, quarantine, completed room, stale elapsed, newer heartbeat, future-at-receipt evidence, grace expiry and unchanged finished retry cases.",
+    "Simulate receipt within grace but processing past grace: acceptance uses receipt, then final current-time settlement completes the room without reopening terminal state.",
+    "Retain canonical JS/PHP and stable-payload parity. Run native SQL/HTTP capacity after implementation; do not infer capacity improvement from pure protocol tests."
+  ],
+  "existingTestFiles": [
+    "backend/tests/arena-evidence-lock-contract.php",
+    "backend/tests/arena-receipt-clock-contract.php",
+    "backend/tests/arena-contract.mjs",
+    "backend/tests/validation-parity.mjs"
+  ],
+  "performanceLimit": "This removes replay CPU from lock hold time but does not remove that CPU from each request. It may reduce contention; a submit p95 below150ms is unproven until the unchanged native capacity experiment runs.",
+  "reviewerActions": {
+    "productionEdits": 0,
+    "testEdits": 0,
+    "browsers": 0,
+    "buildOrTestJobs": 0,
+    "databaseConnections": 0,
+    "privateConfigurationRead": false
+  }
+}

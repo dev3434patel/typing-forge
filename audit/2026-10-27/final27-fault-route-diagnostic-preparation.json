@@ -1,0 +1,154 @@
+{
+  "status": "OPT-IN-DIAGNOSTIC-PREPARED-NOT-RUN",
+  "capturedAt": "2026-10-27T18:16:31.255Z",
+  "source": {
+    "sourceFile": "audit/2026-10-27/final27-source.json",
+    "expectedBuild": "11de46af5d4a80e0e830",
+    "compared": 505,
+    "mismatches": []
+  },
+  "build": "11de46af5d4a80e0e830",
+  "productionChanges": 0,
+  "originalFault4": {
+    "raw": "audit/2026-10-27/pack-native-final27-fault-confirmation-a4cda523ada86772-1793124564418-browser.json",
+    "sha256": "4be1f9356dd9315f508baa1803c75d812221df1db18660f008f133522a1ab6dd",
+    "status": "FAILED",
+    "passed": 3,
+    "failed": 1,
+    "skipped": 0
+  },
+  "originalResults": [
+    {
+      "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+      "engine": "chromium",
+      "status": "expected",
+      "durationMs": 38975
+    },
+    {
+      "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+      "engine": "edge",
+      "status": "expected",
+      "durationMs": 39589
+    },
+    {
+      "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+      "engine": "firefox",
+      "status": "expected",
+      "durationMs": 41798
+    },
+    {
+      "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+      "engine": "webkit",
+      "status": "unexpected",
+      "durationMs": 14680
+    }
+  ],
+  "establishedFailureStage": "WebKit completed the genuine first-target-character native-value assertion, then the unchanged5000ms expected initial error-alert assertion failed. No recovery/final/late-failure checks were reached.",
+  "stillUnobserved": [
+    "Whether the page.route callback was reached",
+    "Whether the first intended route.abort was executed",
+    "Whether submit responses originated through a service worker",
+    "The cause of the missing expected injected-error alert"
+  ],
+  "hypothesisNotConclusion": "Service-worker handling can bypass page.route according to the official Playwright network guidance; this run has not yet captured that behavior. No worker blocking or product fix is applied.",
+  "archiveAndReversal": {
+    "publicArchive": "audit/2026-10-27/php-human-race-before-route-audit.source27",
+    "archiveSha256": "481f6f3a471d7a5974fe5f556d3358ded1407971926036799f6c979bd1809ec1",
+    "currentFixture": "e2e/php-human-race.spec.ts",
+    "currentSha256": "ee8e568399a9829461cfca58af083105285fc671a0d537bdfaee48e2033d6b3e",
+    "exactByteReversalVerified": true,
+    "operation": "Remove precisely the three uniquely marked opt-in insertions listed below; the result equals the archived bytes.",
+    "insertions": [
+      {
+        "beginMarker": "  // BEGIN opt-in fault-route audit: bounded metadata, never bodies or headers.",
+        "endMarker": "  // END opt-in fault-route audit.",
+        "insertionSha256": "ffe6ebe2842e58be6a029123477f2ae65187bfc0b709cd789ba433a65e6cf62c",
+        "bytes": 2540
+      },
+      {
+        "beginMarker": "    // BEGIN opt-in route hit witness.",
+        "endMarker": "    // END opt-in route hit witness.",
+        "insertionSha256": "fb69a59fe51ab0f7dfc46594618775c33c7af8157b57d579ffd8a8f670325f8d",
+        "bytes": 284
+      },
+      {
+        "beginMarker": "    // BEGIN opt-in finally evidence: preserve the original test failure.",
+        "endMarker": "    // END opt-in finally evidence.",
+        "insertionSha256": "a95d9e443bc48ffc396d7c85b4447c6671a8e8505d2e3f1dc7217100546527b6",
+        "bytes": 759
+      }
+    ]
+  },
+  "diagnosticOnly": {
+    "flag": "SPAROWTYPE_NATIVE_FAULT_ROUTE_AUDIT=1",
+    "defaultDisabled": true,
+    "existingAssertionsAndTimeoutsUnchanged": true,
+    "normalRunBehaviorChange": false,
+    "serviceWorkersBlocked": false,
+    "attachment": "fault-route-interception-audit",
+    "fields": [
+      "routeHitCount",
+      "submitRequestCount",
+      "submitResponseCount",
+      "submitRequestFailedCount",
+      "serviceWorkerResponseCount",
+      "bounded route phase/method/time events",
+      "bounded submit response page/path/status/fromServiceWorker/exact-URL-match/phase/time events",
+      "phase",
+      "injectedFailures",
+      "acceptedCheckpoints",
+      "finalAcknowledged",
+      "held-route booleans",
+      "visibility/focus",
+      "controller pathname/state"
+    ],
+    "limits": {
+      "routeEvents": 24,
+      "responseEvents": 48,
+      "finallyPageStateDeadlineMs": 1500
+    },
+    "forbiddenFieldsCollected": {
+      "requestBodies": false,
+      "responseBodies": false,
+      "headers": false,
+      "cookies": false,
+      "credentials": false,
+      "domText": false,
+      "urlQueries": false
+    },
+    "actualTestDeadlineMs": 90000,
+    "firstAlertAssertionDeadlineMs": 5000
+  },
+  "preparedExecution": {
+    "status": "NOT-RUN",
+    "engines": [
+      "webkit"
+    ],
+    "cases": 1,
+    "workers": 1,
+    "retries": 0,
+    "traces": false,
+    "wrapper": "audit/2026-10-27/run-final27-native-fault-route-diagnostic.mjs",
+    "windowFlag": "SPAROWTYPE_FINAL27_NATIVE_FAULT_ROUTE_DIAGNOSTIC_WINDOW=1",
+    "separateFreshOwnerRequired": true,
+    "counterResetOrRateLimitWideningOrOldOwnerReseed": false,
+    "inputs": [
+      {
+        "file": "audit/2026-10-27/pack-native-browser-final27-fault-route-diagnostic.mjs",
+        "sha256": "afbbe56d057e25e3c63b30085f6fd55fd4ad767e1d1edd69aa786dd124dada42",
+        "syntaxCheckCommand": "node --check audit/2026-10-27/pack-native-browser-final27-fault-route-diagnostic.mjs",
+        "syntaxCheckExitCode": 0
+      },
+      {
+        "file": "audit/2026-10-27/run-final27-native-fault-route-diagnostic.mjs",
+        "sha256": "9b522f8c25c5fea0704951137cb621855676dec4339188cdfa3ec4be69d4cad3",
+        "syntaxCheckCommand": "node --check audit/2026-10-27/run-final27-native-fault-route-diagnostic.mjs",
+        "syntaxCheckExitCode": 0
+      }
+    ]
+  },
+  "browserTestBuildOrServiceStartedByThisCapture": false,
+  "originalResultsRewritten": false,
+  "passingMatrixClaim": false,
+  "physicalDevices": "UNVERIFIED"
+}

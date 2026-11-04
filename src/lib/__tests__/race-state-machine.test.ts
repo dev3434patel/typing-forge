@@ -15,6 +15,8 @@ import {
   isValidTransition,
   serializeRaceState,
   deserializeRaceState,
+  createRaceFeedback,
+  raceFeedback,
   type RaceState,
 } from '../race-state-machine';
 
@@ -278,6 +280,110 @@ describe('Race State Machine', () => {
       
       expect(deserialized.opponent).toBeUndefined();
     });
+  });
+});
+
+describe('Race request feedback provenance', () => {
+  it('keeps a checkpoint error until a subsequent checkpoint is acknowledged', () => {
+    let state = raceFeedback(createRaceFeedback(), { type: 'start', operation: 'checkpoint', sequence: 1 });
+    state = raceFeedback(state, { type: 'failure', operation: 'checkpoint', sequence: 1, message: 'Offline checkpoint' });
+    state = raceFeedback(state, { type: 'start', operation: 'checkpoint', sequence: 2 });
+    expect(state.checkpoint.error).toBe('Offline checkpoint');
+    state = raceFeedback(state, { type: 'success', operation: 'checkpoint', sequence: 2 });
+    expect(state.checkpoint.error).toBe('');
+    expect(state.finishConfirmed).toBe(false);
+  });
+
+  it('ignores older checkpoint completions while a newer checkpoint is pending', () => {
+    let state = raceFeedback(createRaceFeedback(), { type: 'start', operation: 'checkpoint', sequence: 1 });
+    state = raceFeedback(state, { type: 'start', operation: 'checkpoint', sequence: 2 });
+    const pending = state;
+    expect(raceFeedback(state, { type: 'failure', operation: 'checkpoint', sequence: 1, message: 'Stale failure' })).toBe(pending);
+    expect(raceFeedback(state, { type: 'success', operation: 'checkpoint', sequence: 1 })).toBe(pending);
+    expect(state.checkpoint.pending).toBe(true);
+    state = raceFeedback(state, { type: 'failure', operation: 'checkpoint', sequence: 2, message: 'Current failure' });
+    expect(state.checkpoint.error).toBe('Current failure');
+  });
+
+  it('ignores checkpoint callbacks as soon as final submission begins', () => {
+    let state = raceFeedback(createRaceFeedback(), { type: 'start', operation: 'checkpoint', sequence: 1 });
+    state = raceFeedback(state, { type: 'start', operation: 'finish', sequence: 2 });
+    expect(state.finish.pending).toBe(true);
+    expect(state.finishConfirmed).toBe(false);
+    expect(raceFeedback(state, { type: 'failure', operation: 'checkpoint', sequence: 1, message: 'Late checkpoint' })).toBe(state);
+    expect(raceFeedback(state, { type: 'success', operation: 'checkpoint', sequence: 1 })).toBe(state);
+    expect(raceFeedback(state, { type: 'start', operation: 'checkpoint', sequence: 3 })).toBe(state);
+  });
+
+  it('clears recovered checkpoint and finish errors only on the matching final acknowledgement', () => {
+    let state = raceFeedback(createRaceFeedback(), { type: 'start', operation: 'checkpoint', sequence: 1 });
+    state = raceFeedback(state, { type: 'failure', operation: 'checkpoint', sequence: 1, message: 'Checkpoint failed' });
+    state = raceFeedback(state, { type: 'start', operation: 'finish', sequence: 2 });
+    state = raceFeedback(state, { type: 'failure', operation: 'finish', sequence: 2, message: 'Finish failed' });
+    expect(state.finishConfirmed).toBe(false);
+    expect(state.finish.error).toBe('Finish failed');
+    state = raceFeedback(state, { type: 'start', operation: 'finish', sequence: 3 });
+    expect(state.finish.error).toBe('Finish failed');
+    state = raceFeedback(state, { type: 'success', operation: 'finish', sequence: 3 });
+    expect(state.finishConfirmed).toBe(true);
+    expect(state.finish.error).toBe('');
+    expect(state.checkpoint.error).toBe('');
+    expect(raceFeedback(state, { type: 'failure', operation: 'checkpoint', sequence: 1, message: 'Late checkpoint' })).toBe(state);
+    expect(raceFeedback(state, { type: 'failure', operation: 'finish', sequence: 2, message: 'Old finish failure' })).toBe(state);
+  });
+
+  it('preserves a genuine final failure when a checkpoint later succeeds', () => {
+    let state = raceFeedback(createRaceFeedback(), { type: 'start', operation: 'checkpoint', sequence: 1 });
+    state = raceFeedback(state, { type: 'start', operation: 'finish', sequence: 2 });
+    state = raceFeedback(state, { type: 'failure', operation: 'finish', sequence: 2, message: 'Finish rejected' });
+    expect(raceFeedback(state, { type: 'success', operation: 'checkpoint', sequence: 1 })).toBe(state);
+    expect(state.finish.error).toBe('Finish rejected');
+    expect(state.finishConfirmed).toBe(false);
+  });
+
+  it('does not let an older final attempt acknowledge a retry or clear its failure', () => {
+    let state = raceFeedback(createRaceFeedback(), { type: 'start', operation: 'finish', sequence: 1 });
+    state = raceFeedback(state, { type: 'start', operation: 'finish', sequence: 2 });
+    expect(raceFeedback(state, { type: 'success', operation: 'finish', sequence: 1 })).toBe(state);
+    state = raceFeedback(state, { type: 'failure', operation: 'finish', sequence: 2, message: 'Current finish failure' });
+    expect(raceFeedback(state, { type: 'success', operation: 'finish', sequence: 1 })).toBe(state);
+    expect(state.finish.error).toBe('Current finish failure');
+    expect(state.finishConfirmed).toBe(false);
+  });
+
+  it('keeps device-save failure independent of server acknowledgement in either completion order', () => {
+    for (const localFirst of [false, true]) {
+      let state = raceFeedback(createRaceFeedback(), { type: 'start', operation: 'local', sequence: 1 });
+      state = raceFeedback(state, { type: 'start', operation: 'finish', sequence: 2 });
+      if (localFirst) state = raceFeedback(state, { type: 'failure', operation: 'local', sequence: 1, message: 'Device storage unavailable' });
+      state = raceFeedback(state, { type: 'success', operation: 'finish', sequence: 2 });
+      if (!localFirst) state = raceFeedback(state, { type: 'failure', operation: 'local', sequence: 1, message: 'Device storage unavailable' });
+      expect(state.finishConfirmed).toBe(true);
+      expect(state.finish.error).toBe('');
+      expect(state.local.error).toBe('Device storage unavailable');
+    }
+  });
+
+  it('does not let a device-save success clear a genuine final failure', () => {
+    let state = raceFeedback(createRaceFeedback(), { type: 'start', operation: 'local', sequence: 1 });
+    state = raceFeedback(state, { type: 'start', operation: 'finish', sequence: 2 });
+    state = raceFeedback(state, { type: 'failure', operation: 'finish', sequence: 2, message: 'Server rejected finish' });
+    state = raceFeedback(state, { type: 'success', operation: 'local', sequence: 1 });
+    expect(state.local.error).toBe('');
+    expect(state.finish.error).toBe('Server rejected finish');
+    expect(state.finishConfirmed).toBe(false);
+  });
+
+  it('accepts one completion per request and rejects invalid or backwards request identifiers', () => {
+    let state = createRaceFeedback();
+    for (const sequence of [0, -1, NaN, Infinity, 0.5, Number.MAX_SAFE_INTEGER + 1]) {
+      expect(raceFeedback(state, { type: 'start', operation: 'finish', sequence })).toBe(state);
+    }
+    state = raceFeedback(state, { type: 'start', operation: 'finish', sequence: 2 });
+    expect(raceFeedback(state, { type: 'start', operation: 'finish', sequence: 1 })).toBe(state);
+    state = raceFeedback(state, { type: 'success', operation: 'finish', sequence: 2 });
+    expect(raceFeedback(state, { type: 'failure', operation: 'finish', sequence: 2, message: 'Duplicate completion' })).toBe(state);
+    expect(state.finishConfirmed).toBe(true);
   });
 });
 

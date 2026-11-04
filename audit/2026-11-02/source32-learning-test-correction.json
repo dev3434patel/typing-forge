@@ -1,0 +1,83 @@
+{
+  "date": "2026-11-03",
+  "scope": "Test-only corrections after original job11532 closed and standalone native diagnostic completed; no production changes",
+  "authorization": "Root approved the exact warning, supported echo, composition witness and native line-break reference corrections",
+  "originalRunPreserved": {
+    "job": 11532,
+    "rawReport": "audit/2026-11-02/final32-learning-native-candidate.json",
+    "rawReportSha256": "a9299437c6f6c260551bc50d8698b85d07635bfe0a623ab7af0b240afea31d90",
+    "summary": "audit/2026-11-02/final32-learning-native-candidate-summary.json",
+    "total": 92,
+    "passed": 83,
+    "failed": 9,
+    "integrity": {"sourceUnchanged": true, "buildUnchanged": true, "testsUnchanged": false, "dependenciesUnchanged": false},
+    "reasonForIntegrityFailure": "Agent changed a single test assertion while root's run was active. Original execution remains failed and cannot establish acceptance."
+  },
+  "diagnostic": {
+    "plan": "audit/2026-11-02/source32-native-browser-semantics-plan.json",
+    "result": "audit/2026-11-02/source32-native-browser-semantics-result.json",
+    "resultSha256": "687f7d631384160cb503019468b339553f9d370da944a927e422f7eea29d0013",
+    "allBrowsersObservedAndClosed": true,
+    "productionAndTestFilesUnchangedDuringDiagnostic": true,
+    "observations": [
+      "Chrome and Edge construct insertFromComposition as an empty inputType; all four engines preserve insertCompositionText",
+      "Firefox keyboard.insertText for Unicode produces a trusted composition sequence; Chrome, Edge and WebKit produce trusted insertText",
+      "Native insertText CRLF becomes LF in Chrome, Edge and Firefox but remains CRLF in this WebKit command path",
+      "Native direct textarea.value assignment of CRLF becomes LF in all four engines; command behavior must not be inferred from IDL assignment behavior",
+      "Native LF payload remains LF in all four engines"
+    ]
+  },
+  "corrections": [
+    {
+      "assertion": "Actual empty-space warning absence",
+      "before": "Missing CapsLock-only lesson-input-notice locator was used for a negative text assertion",
+      "after": "getByText('Type the word before pressing Space.', { exact: true }).toHaveCount(0)",
+      "strictness": "Real correct separator acceptance, exact canonical prefix, exact attempts, accuracy100, trusted cancellation, no native input and first-key wall-clock bounds remain unchanged"
+    },
+    {
+      "assertion": "Explicit composition echo ownership",
+      "before": "Synthetic insertFromComposition was assumed to survive construction",
+      "after": "Use insertCompositionText and explicitly verify the constructed inputType before dispatch",
+      "strictness": "Canonical prefix plus two accented letters, exactly four attempts and exactly four events remain mandatory. Decomposed text in the first composition event remains required; core event history is not rewritten to NFC."
+    },
+    {
+      "assertion": "Independent real Unicode insertion provenance",
+      "before": "keyboard.insertText was assumed to always produce keyboard provenance",
+      "after": "Observe trusted compositionstart/end around that actual command. Require either no composition or one complete start/end sequence and derive expected provenance from that witness",
+      "strictness": "No browser-name exceptions, no skips, no allowance for extra events or characters"
+    },
+    {
+      "assertion": "CRLF fallback canonical text and provenance",
+      "before": "All native commands were assumed to normalize CRLF to LF and to use keyboard provenance",
+      "after": "Create a standalone native textarea in a temporary page of the same browser context, issue the same public CRLF command, capture exact native .value and trusted composition witness, close reference page, then require the app to match that independent reference",
+      "coreContract": "Learn uses prose normalizeTarget: NFC only, which preserves line endings. Only code policy replaces CRLF with LF. Intl.Segmenter treats CRLF as one grapheme, so all observed payloads require exactly three attempts even when their native value contains four code points.",
+      "strictness": "One core event, exact native raw event text, exact NFC canonical final text, exact native-derived provenance, exact three grapheme attempts, trusted nonprevented fallback and matching app composition witness are required"
+    }
+  ],
+  "documentation": [
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/InputEvent/inputType",
+      "checkedOn": "2026-11-03",
+      "reason": "inputType reports the actual editable change and support may vary; tests must inspect the constructed/native property instead of assuming a requested string survived construction. Exact constructor differences above come from the local diagnostic."
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/InputEvent/isComposing",
+      "checkedOn": "2026-11-03",
+      "reason": "Composition ownership is established by the actual compositionstart/end interval. The test observes these events to determine native Unicode insertion provenance."
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Element/beforeinput_event",
+      "checkedOn": "2026-11-03",
+      "reason": "Some edits omit beforeinput or deliver noncancelable beforeinput, including IME, and behavior varies by browser and OS. Existing input fallback must remain covered."
+    }
+  ],
+  "frozenFiles": {
+    "src/components/keybr/KeybrLessonMode.tsx": "1fafb70315bafeed17cc2324e73ae38d4133b6c486c51c0b9a54b98cd6a6e42e",
+    "e2e/learning-v3.spec.ts": "a75fe7fdec9efb48a5867f42994fd6dff35df268ffb09c7b28b731c502cf06a2"
+  },
+  "status": "READY_FOR_ROOT_CONFIRMATION_RUN",
+  "gitDiffCheck": "PASS",
+  "correctedAppTestsRunByAgent": "NONE",
+  "mobilePerformanceClaim": "NONE",
+  "physicalOSIMEAndAssistiveTechnology": "UNVERIFIED"
+}

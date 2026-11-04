@@ -1,0 +1,56 @@
+{
+  "preparedAt": "2026-11-02T16:46:49.890Z",
+  "status": "PREPARED-NOT-EXECUTED",
+  "original": "audit/2026-11-02/run-mobile-workspaces-static-final28.mjs",
+  "originalSha256": "6c59cee12ff1d07f4a70fd0bfcf2319bfa29adff43137a94811ba94e748e554f",
+  "file": "audit/2026-11-02/run-mobile-workspaces-static-final28-candidate.mjs",
+  "sha256": "231aef998e2d2b20af0ce79703497fe15fd07ce9c80e40ac1af5072e4dc05291",
+  "bytes": 12754,
+  "sourceFile": "audit/2026-11-02/final28-source.json",
+  "sourceFiles": 505,
+  "buildIdentity": "EXPLICIT-ACTUAL-ROOT-FROZEN-FINAL28-BUILD",
+  "artifactDirectory": "dist-static-final28-candidate-vercel",
+  "prefix": "mobile-workspaces-final28-static-candidate",
+  "edits": [
+    {
+      "from": "import { filesWithin, hash, verifyFrozenSource } from '../2026-10-21/artifact-verification.mjs';",
+      "to": "import { filesWithin, hash, verifyFrozenSource, sceneAssets, qualityBaseline, compareQuality } from './artifact-verification.mjs';",
+      "count": 1
+    },
+    {
+      "from": "const prefix = process.argv[2] || 'mobile-workspaces-final28-static';",
+      "to": "const prefix = process.argv[2] || 'mobile-workspaces-final28-static-candidate';",
+      "count": 1
+    },
+    {
+      "from": "assert.match(prefix, /^mobile-workspaces-final28-static(?:-[a-z0-9]+)*$/);",
+      "to": "assert.equal(prefix, 'mobile-workspaces-final28-static-candidate', 'This entry is the one explicitly declared candidate measurement only.');",
+      "count": 1
+    },
+    {
+      "from": "const directory = 'dist-static-final28-vercel';",
+      "to": "const directory = 'dist-static-final28-candidate-vercel';",
+      "count": 1
+    },
+    {
+      "from": "const historicalArtifactVerification = JSON.parse(await readFile(`${audit}/final28-static-artifacts.json`, 'utf8'));\nassert.equal(historicalArtifactVerification.status, 'PASS-SCOPED');\nconst declaredArtifact = historicalArtifactVerification.artifacts.find(item => item.directory === directory);\nassert.equal(declaredArtifact.build.version, artifactIdentity);",
+      "to": "// Candidate runs before the separate full67-check/two-target static gate. Bind\n// the actual candidate manifests and compare the original 3D render assets now;\n// this does not reuse or relabel a normal static acceptance receipt.\nconst declaredArtifact = {\n  directory,\n  build: JSON.parse(await readFile(`${directory}/offline-build.json`, 'utf8')),\n  deployment: JSON.parse(await readFile(`${directory}/deployment.json`, 'utf8')),\n};\nassert.equal(declaredArtifact.build.version, artifactIdentity);\nassert.equal(declaredArtifact.deployment.target, 'vercel');\nconst candidateSceneAssets = await sceneAssets(directory);\nconst candidateQuality = compareQuality(candidateSceneAssets, await qualityBaseline('audit/mobile-games-static-2026-10-20/static-after5-artifacts.json', 'audit/mobile-games-static-2026-10-20/before-config-build-public-sha256.json'));\nassert.equal(candidateQuality.length, 5);\nassert.ok(candidateQuality.every(item => item.pass), 'Candidate preserves every original3D asset quality check.');",
+      "count": 1
+    },
+    {
+      "from": "  deploymentMode: 'Real frontend-only Vercel build, owned loopback directory server; API disabled in compiled artifact. No mocks or PHP.',",
+      "to": "  deploymentMode: 'Candidate-only real frontend-only Vercel build, owned loopback directory server; API disabled in compiled artifact. No mocks or PHP.',\n  candidateOnly: true, wholeProductAcceptance: false, normalStaticEvidenceReused: false, candidateSceneAssets, candidateQuality,\n  acceptanceLimit: 'One source28 candidate production build and unchanged four-case mobile diagnostic. Full67-check/two-target static validation and three ordinary mobile trials remain separate required gates.',",
+      "count": 1
+    }
+  ],
+  "exactRawReversal": true,
+  "driver": "audit/2026-11-02/measure-mobile-workspaces-static-final28.mjs",
+  "driverActionsTimingAndAssertionsChanged": false,
+  "originalWrapperFunctionalCriteriaChanged": false,
+  "normalRunnerChanged": false,
+  "separateLatencyAssessment": "audit/2026-11-02/assess-final28-mobile-latency.mjs",
+  "scope": "Candidate only; full static and three ordinary mobile runs remain required. No reused measurement or claim of whole acceptance.",
+  "manifestDependencyAdjustment": "Full static receipt does not exist before the candidate. Candidate binds its actual own manifests, exact public-byte/version digest, frozen505 source and five original3D asset comparisons instead.",
+  "jobsRun": 0,
+  "downloads": 0
+}

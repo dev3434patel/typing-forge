@@ -74,7 +74,7 @@ test("key feedback borders match their state immediately while press motion and 
     expect(observed.receipt.cleared.background).toBe(observed.expected.surface);
     expect(observed.receipt.correct.border).toBe(observed.expected.accent);
     expect(observed.receipt.correct.background).toBe(observed.expected.accent);
-    expect(observed.receipt.wrong.animations).toContainEqual({ property: "transform", duration: 90 });
+    expect(observed.receipt.wrong.animations).toContainEqual({ property: "transform", duration: 55 });
     for (const dimension of ["width", "height", "offsetTop"] as const)
       expect(Math.abs(observed.settled[dimension] - observed.baseline[dimension])).toBeLessThanOrEqual(0.02);
     await input.press("s");

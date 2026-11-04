@@ -1,0 +1,11 @@
+{
+  "recordedAt": "2026-11-04T18:18:18.378Z",
+  "kind": "staged-review-v1-concrete-correction",
+  "originalReview": "audit/2026-11-04/staged-release-review-v1.json",
+  "originalStatus": "REVIEW-REQUIRED",
+  "cause": "The release audit was finalized after its first staging snapshot; it was the only working/index mismatch. No forbidden paths, decoding issues or declared credential patterns were found.",
+  "finalAuditSha256": "43ccbe959acb1694ade890caaae159584168981bd7e6aff557ec3711988d2d53",
+  "correction": "Restage the now-frozen document and final public receipts, then perform a separate V2 indexed-byte review. Preserve the original failed result.",
+  "whitespaceCorrection": "Add exact .gitattributes -whitespace exemptions for two byte-preserved historical source snapshots with intentional blank EOF lines. Do not alter archived source bytes.",
+  "productionOrTestChange": false
+}

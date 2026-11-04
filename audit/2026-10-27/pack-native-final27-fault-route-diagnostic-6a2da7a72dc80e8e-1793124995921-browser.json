@@ -1,0 +1,208 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\extra\\typing_updated\\typing-forge\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "e2e/php-account-flow.spec.ts",
+      "e2e/php-human-race.spec.ts",
+      "e2e/auth-flow.spec.ts",
+      "e2e/race-mode.spec.ts",
+      "--grep",
+      "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+      "--workers=1",
+      "--retries=0",
+      "--trace=off",
+      "--reporter=json",
+      "--output",
+      "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-10-27\\.playwright-artifacts-pack-native-final27-fault-route-diagnostic-6a2da7a72dc80e8e-1793124995921"
+    ],
+    "configFile": "D:\\extra\\typing_updated\\typing-forge\\playwright.config.ts",
+    "rootDir": "D:/extra/typing_updated/typing-forge/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/extra/typing_updated/typing-forge/audit/2026-10-27/.playwright-artifacts-pack-native-final27-fault-route-diagnostic-6a2da7a72dc80e8e-1793124995921",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "D:/extra/typing_updated/typing-forge/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-10-27\\.playwright-artifacts-pack-native-final27-fault-route-diagnostic-6a2da7a72dc80e8e-1793124995921",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "webkit",
+        "testDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "snapshotDir": "D:\\extra\\typing_updated\\typing-forge\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:10841",
+          "trace": "off",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Safari/605.1.15",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1792,
+            "height": 1120
+          },
+          "deviceScaleFactor": 2,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "webkit"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "webkit"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "php-human-race.spec.ts",
+      "file": "php-human-race.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 17286,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('alert')\nExpected substring: \u001b[32m\"The PHP API could not be reached\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('alert')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('alert')\nExpected substring: \u001b[32m\"The PHP API could not be reached\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('alert')\u001b[22m\n\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\php-human-race.spec.ts:288:43",
+                    "location": {
+                      "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\php-human-race.spec.ts",
+                      "column": 43,
+                      "line": 288
+                    },
+                    "snippet": "  286 |     await expect(hostInput).toHaveValue(hostText.slice(0, 1));\n  287 |     phase = \"first-failure\";\n> 288 |     await expect(page.getByRole(\"alert\")).toContainText(\"The PHP API could not be reached\");\n      |                                           ^\n  289 |     await expect(page.getByRole(\"button\", { name: \"Retry finish\", exact: true })).toHaveCount(0);\n  290 |     expect(injectedFailures).toBe(1);\n  291 |     await expect.poll(() => !!recoveryRoute).toBe(true);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\php-human-race.spec.ts",
+                        "column": 43,
+                        "line": 288
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('alert')\nExpected substring: \u001b[32m\"The PHP API could not be reached\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('alert')\u001b[22m\n\n\n  286 |     await expect(hostInput).toHaveValue(hostText.slice(0, 1));\n  287 |     phase = \"first-failure\";\n> 288 |     await expect(page.getByRole(\"alert\")).toContainText(\"The PHP API could not be reached\");\n      |                                           ^\n  289 |     await expect(page.getByRole(\"button\", { name: \"Retry finish\", exact: true })).toHaveCount(0);\n  290 |     expect(injectedFailures).toBe(1);\n  291 |     await expect.poll(() => !!recoveryRoute).toBe(true);\n    at D:\\extra\\typing_updated\\typing-forge\\e2e\\php-human-race.spec.ts:288:43"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T18:16:37.871Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "fault-route-interception-audit",
+                      "contentType": "application/json",
+                      "body": "eyJicm93c2VyIjoid2Via2l0IiwiZHVyYXRpb25NcyI6MTU1MTIsInBoYXNlIjoiZmlyc3QtZmFpbHVyZSIsImluamVjdGVkRmFpbHVyZXMiOjAsImFjY2VwdGVkQ2hlY2twb2ludHMiOjUsImZpbmFsQWNrbm93bGVkZ2VkIjpmYWxzZSwicmVjb3ZlcnlSb3V0ZUhlbGQiOmZhbHNlLCJsYXRlUm91dGVIZWxkIjpmYWxzZSwiZXhwZWN0ZWRTdWJtaXRQYXRoIjoiL2FwaS9yYWNlL3N1Ym1pdCIsInJvdXRlSGl0Q291bnQiOjAsInN1Ym1pdFJlcXVlc3RDb3VudCI6MTEsInN1Ym1pdFJlc3BvbnNlQ291bnQiOjExLCJzdWJtaXRSZXF1ZXN0RmFpbGVkQ291bnQiOjAsInNlcnZpY2VXb3JrZXJSZXNwb25zZUNvdW50IjowLCJyb3V0ZUV2ZW50cyI6W10sInJlc3BvbnNlRXZlbnRzIjpbeyJhdE1zIjo5NDgxLCJwYWdlIjoicGVlciIsInBhdGgiOiIvYXBpL3JhY2Uvc3VibWl0Iiwic3RhdHVzIjoyMDAsImZyb21TZXJ2aWNlV29ya2VyIjpmYWxzZSwibWF0Y2hlc0V4cGVjdGVkVXJsIjp0cnVlLCJwaGFzZSI6Im5vcm1hbCJ9LHsiYXRNcyI6OTU0NywicGFnZSI6Imhvc3QiLCJwYXRoIjoiL2FwaS9yYWNlL3N1Ym1pdCIsInN0YXR1cyI6MjAwLCJmcm9tU2VydmljZVdvcmtlciI6ZmFsc2UsIm1hdGNoZXNFeHBlY3RlZFVybCI6dHJ1ZSwicGhhc2UiOiJub3JtYWwifSx7ImF0TXMiOjEwNTEyLCJwYWdlIjoicGVlciIsInBhdGgiOiIvYXBpL3JhY2Uvc3VibWl0Iiwic3RhdHVzIjoyMDAsImZyb21TZXJ2aWNlV29ya2VyIjpmYWxzZSwibWF0Y2hlc0V4cGVjdGVkVXJsIjp0cnVlLCJwaGFzZSI6ImZpcnN0LWZhaWx1cmUifSx7ImF0TXMiOjExMTgyLCJwYWdlIjoiaG9zdCIsInBhdGgiOiIvYXBpL3JhY2Uvc3VibWl0Iiwic3RhdHVzIjoyMDAsImZyb21TZXJ2aWNlV29ya2VyIjpmYWxzZSwibWF0Y2hlc0V4cGVjdGVkVXJsIjp0cnVlLCJwaGFzZSI6ImZpcnN0LWZhaWx1cmUifSx7ImF0TXMiOjExNzI3LCJwYWdlIjoicGVlciIsInBhdGgiOiIvYXBpL3JhY2Uvc3VibWl0Iiwic3RhdHVzIjoyMDAsImZyb21TZXJ2aWNlV29ya2VyIjpmYWxzZSwibWF0Y2hlc0V4cGVjdGVkVXJsIjp0cnVlLCJwaGFzZSI6ImZpcnN0LWZhaWx1cmUifSx7ImF0TXMiOjEyMzYzLCJwYWdlIjoiaG9zdCIsInBhdGgiOiIvYXBpL3JhY2Uvc3VibWl0Iiwic3RhdHVzIjoyMDAsImZyb21TZXJ2aWNlV29ya2VyIjpmYWxzZSwibWF0Y2hlc0V4cGVjdGVkVXJsIjp0cnVlLCJwaGFzZSI6ImZpcnN0LWZhaWx1cmUifSx7ImF0TXMiOjEyNzYxLCJwYWdlIjoicGVlciIsInBhdGgiOiIvYXBpL3JhY2Uvc3VibWl0Iiwic3RhdHVzIjoyMDAsImZyb21TZXJ2aWNlV29ya2VyIjpmYWxzZSwibWF0Y2hlc0V4cGVjdGVkVXJsIjp0cnVlLCJwaGFzZSI6ImZpcnN0LWZhaWx1cmUifSx7ImF0TXMiOjEzMzc1LCJwYWdlIjoiaG9zdCIsInBhdGgiOiIvYXBpL3JhY2Uvc3VibWl0Iiwic3RhdHVzIjoyMDAsImZyb21TZXJ2aWNlV29ya2VyIjpmYWxzZSwibWF0Y2hlc0V4cGVjdGVkVXJsIjp0cnVlLCJwaGFzZSI6ImZpcnN0LWZhaWx1cmUifSx7ImF0TXMiOjEzNjEyLCJwYWdlIjoicGVlciIsInBhdGgiOiIvYXBpL3JhY2Uvc3VibWl0Iiwic3RhdHVzIjoyMDAsImZyb21TZXJ2aWNlV29ya2VyIjpmYWxzZSwibWF0Y2hlc0V4cGVjdGVkVXJsIjp0cnVlLCJwaGFzZSI6ImZpcnN0LWZhaWx1cmUifSx7ImF0TXMiOjE0MzgwLCJwYWdlIjoiaG9zdCIsInBhdGgiOiIvYXBpL3JhY2Uvc3VibWl0Iiwic3RhdHVzIjoyMDAsImZyb21TZXJ2aWNlV29ya2VyIjpmYWxzZSwibWF0Y2hlc0V4cGVjdGVkVXJsIjp0cnVlLCJwaGFzZSI6ImZpcnN0LWZhaWx1cmUifSx7ImF0TXMiOjE0ODE1LCJwYWdlIjoicGVlciIsInBhdGgiOiIvYXBpL3JhY2Uvc3VibWl0Iiwic3RhdHVzIjoyMDAsImZyb21TZXJ2aWNlV29ya2VyIjpmYWxzZSwibWF0Y2hlc0V4cGVjdGVkVXJsIjp0cnVlLCJwaGFzZSI6ImZpcnN0LWZhaWx1cmUifV0sImhvc3RTdGF0ZSI6eyJ2aXNpYmlsaXR5IjoidmlzaWJsZSIsImZvY3VzZWQiOnRydWUsInNlcnZpY2VXb3JrZXJDb250cm9sbGVyUGF0aCI6Ii9zdy5qcyIsInNlcnZpY2VXb3JrZXJDb250cm9sbGVyU3RhdGUiOiJhY3RpdmF0ZWQifSwicGVlclN0YXRlIjp7InZpc2liaWxpdHkiOiJ2aXNpYmxlIiwiZm9jdXNlZCI6dHJ1ZSwic2VydmljZVdvcmtlckNvbnRyb2xsZXJQYXRoIjoiL3N3LmpzIiwic2VydmljZVdvcmtlckNvbnRyb2xsZXJTdGF0ZSI6ImFjdGl2YXRlZCJ9LCJoZWFkZXJzQm9kaWVzQ3JlZGVudGlhbHNBbmREb21UZXh0Q29sbGVjdGVkIjpmYWxzZX0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-10-27\\.playwright-artifacts-pack-native-final27-fault-route-diagnostic-6a2da7a72dc80e8e-1793124995921\\php-human-race-real-two-br-df7cf-rors-after-confirmed-finish-webkit\\test-failed-1.png"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-10-27\\.playwright-artifacts-pack-native-final27-fault-route-diagnostic-6a2da7a72dc80e8e-1793124995921\\php-human-race-real-two-br-df7cf-rors-after-confirmed-finish-webkit\\test-failed-2.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-10-27\\.playwright-artifacts-pack-native-final27-fault-route-diagnostic-6a2da7a72dc80e8e-1793124995921\\php-human-race-real-two-br-df7cf-rors-after-confirmed-finish-webkit\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\extra\\typing_updated\\typing-forge\\e2e\\php-human-race.spec.ts",
+                    "column": 43,
+                    "line": 288
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "405307db09bef53137f2-6989c3da7810b6ca87cd",
+          "file": "php-human-race.spec.ts",
+          "line": 139,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-27T18:16:36.610Z",
+    "duration": 18737.411,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

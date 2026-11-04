@@ -1,0 +1,127 @@
+// Complete-file confirmation after an explicitly approved test-only synchronization revision.
+import assert from 'node:assert/strict';
+import { spawn } from 'node:child_process';
+import { access, readFile, readdir, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { verifyFrozenSource } from '../2026-10-21/artifact-verification.mjs';
+
+assert.equal(process.env.SPAROWTYPE_FINAL34_SELECTED_CONFIRMATION, '1', 'Wait for root GO after the final stable test/helper revision.');
+assert.equal(process.env.SPAROWTYPE_FINAL34_BUILD_ID, '332e23584f1e36465df2');
+assert.equal(process.env.SPAROWTYPE_AUDIT_BROWSERS, 'chromium,edge,firefox,webkit');
+assert.equal(process.env.SPAROWTYPE_BROWSER_WORKERS, '1');
+assert.equal(process.env.SPAROWTYPE_STATIC_OUTPUTS, undefined);
+const approvedDigest = process.env.SPAROWTYPE_FINAL34_SELECTED_DEPENDENCIES_SHA256;
+assert.match(approvedDigest ?? '', /^[a-f0-9]{64}$/, 'Bind the approved final72-dependency snapshot.');
+const output = 'audit/2026-11-04/source34-selected-confirmation.json';
+const listFile = 'audit/2026-11-04/source34-selected-confirmation-list.json';
+const listStderr = 'audit/2026-11-04/source34-selected-confirmation-list-stderr.log';
+for (const file of [output, listFile, listStderr]) await assert.rejects(access(file), { code: 'ENOENT' });
+const files = ['e2e/arena.spec.ts', 'e2e/account-workspace.spec.ts', 'e2e/progression-extras.spec.ts', 'e2e/typing-experience.spec.ts', 'e2e/typing-course.spec.ts'];
+const engines = ['chromium', 'edge', 'firefox', 'webkit'];
+const runner = 'audit/2026-11-02/run-browser-checkpoint-final34.mjs';
+const prefix = 'final34-selected-confirmation';
+const stem = `audit/2026-11-02/${prefix}`;
+for (const suffix of ['.json', '-summary.json', '-protocol.json', '.log']) await assert.rejects(access(`${stem}${suffix}`), { code: 'ENOENT' });
+const sha = bytes => createHash('sha256').update(bytes).digest('hex');
+const bind = async file => ({ file, sha256: sha(await readFile(file)) });
+const dependencies = async () => {
+  const names = [...(await readdir('e2e')).filter(file => file.endsWith('.ts')).map(file => `e2e/${file}`), 'playwright.config.ts'].sort();
+  assert.equal(names.length, 72);
+  const hashes = Object.fromEntries(await Promise.all(names.map(async file => [file, sha(await readFile(file))])));
+  return { count: names.length, sha256: sha(JSON.stringify(hashes)), hashes };
+};
+const source = async () => {
+  const frozen = await verifyFrozenSource('audit/2026-11-02/final34-source.json');
+  assert.equal(frozen.receipt.compared, 505);
+  assert.equal(frozen.frozen.local.version, '332e23584f1e36465df2');
+  assert.deepEqual(frozen.receipt.mismatches, []);
+  return frozen.receipt;
+};
+const flatten = suites => suites.flatMap(suite => [...(suite.specs ?? []).flatMap(spec => spec.tests.map(test => ({ spec, test }))), ...flatten(suite.suites ?? [])]);
+const signature = ({ spec, test }) => `${test.projectName}:e2e/${spec.file.replace(/^e2e[\\/]/, '')}:${spec.title}`;
+const before = await dependencies();
+assert.equal(before.sha256, approvedDigest);
+const freezeFile = 'audit/2026-11-04/source34-test-synchronization-freeze.json';
+const freezeBinding = await bind(freezeFile);
+assert.equal(freezeBinding.sha256, '0e4aae65007d91762bd3e73c8d2018cb38967c15fbf8286561ec245f00607290');
+const freeze = JSON.parse(await readFile(freezeFile, 'utf8'));
+assert.equal(freeze.dependencySha256, approvedDigest);
+assert.equal(freeze.completeFollowupCaseCount, 200);
+const adoptionBinding = await bind(freeze.adoptionFile);
+assert.equal(adoptionBinding.sha256, freeze.adoptionSha256);
+const originalFile = 'audit/2026-11-04/source34-browser-matrix-reconciliation.json';
+const original = JSON.parse(await readFile(originalFile, 'utf8'));
+assert.equal(original.status, 'FAILED-ORIGINAL-FULL-MATRIX');
+assert.equal(original.failures.length, 4);
+const report = {
+  status: 'RUNNING', declaredAt: new Date().toISOString(),
+  qualification: 'Fresh complete-file confirmation under the approved test-only synchronization revision. The original64-file1516-case matrix remains FAILED with four failures and29 skips; this confirmation cannot establish a new clean full64-file run or a root cause for every original timeout.',
+  files, engines, workers: 1, automaticRetries: 0, filesFilteredWithinSelectedSpecs: false,
+  originalMatrix: await bind(originalFile), originalMatrixStatusRetained: original.status,
+  sourceBefore: await source(), before, approvedDigest,
+  approvedTestRevision: { freeze: freezeBinding, adoption: adoptionBinding, qualification: 'Exactly four test/helper files revised;68 other dependencies and61 other specs unchanged. Original course timeout cause remains UNVERIFIED.' },
+  runner: await bind(runner), wrapperSha256: sha(await readFile(import.meta.filename)),
+  methodChange: 'Stable native-input focus synchronization, independent Arena autofocus assertion, progression commit witness, and awaiting durable course reset completion before hard navigation. The approved revision receipt must separately retain exact diffs/hashes; no case assertion, timeout budget or typing cadence is relaxed.',
+};
+await writeFile(output, JSON.stringify(report, null, 2), { flag: 'wx' });
+let childExit = null;
+try {
+  const listArgs = ['node_modules/@playwright/test/cli.js', 'test', ...files, '--list', '--workers=1', '--retries=0', '--reporter=json'];
+  const listed = await new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, listArgs, { windowsHide: true, env: { ...process.env, PLAYWRIGHT_BROWSERS: engines.join(',') }, stdio: ['ignore', 'pipe', 'pipe'] });
+    let stdout = '', stderr = '';
+    child.stdout.on('data', bytes => { stdout += bytes; }); child.stderr.on('data', bytes => { stderr += bytes; });
+    child.once('error', reject); child.once('close', code => resolve({ code, stdout, stderr }));
+  });
+  await writeFile(listFile, listed.stdout, { flag: 'wx' });
+  await writeFile(listStderr, listed.stderr, { flag: 'wx' });
+  assert.equal(listed.code, 0);
+  const inventory = flatten(JSON.parse(listed.stdout).suites);
+  const expected = inventory.map(signature).sort();
+  assert.equal(new Set(expected).size, expected.length);
+  assert.deepEqual([...new Set(inventory.map(row => row.test.projectName))].sort(), [...engines].sort());
+  assert.deepEqual([...new Set(inventory.map(row => `e2e/${row.spec.file.replace(/^e2e[\\/]/, '')}`))].sort(), [...files].sort());
+  report.listedCaseCount = inventory.length;
+  report.listedInventory = { file: listFile, sha256: sha(await readFile(listFile)) };
+  console.log(JSON.stringify({ stage: 'source34-selected-confirmation-start', files: files.length, cases: inventory.length, engines, workers: 1, retries: 0 }));
+  childExit = await new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, [runner, prefix, ...files], { windowsHide: true, env: process.env, stdio: 'inherit' });
+    child.once('error', reject); child.once('close', resolve);
+  });
+  const raw = JSON.parse(await readFile(`${stem}.json`, 'utf8'));
+  const actual = flatten(raw.suites);
+  assert.deepEqual(actual.map(signature).sort(), expected, 'Every listed title/engine pair must appear exactly once.');
+  const protocol = JSON.parse(await readFile(`${stem}-protocol.json`, 'utf8'));
+  const summary = JSON.parse(await readFile(`${stem}-summary.json`, 'utf8'));
+  assert.equal(summary.totals.total, inventory.length);
+  assert.equal(protocol.workers, 1); assert.equal(protocol.automaticRetries, 0);
+  assert.deepEqual(protocol.files, files);
+  assert.ok(Object.values(protocol.integrity).every(value => value === true));
+  report.totals = summary.totals;
+  report.batchIntegrity = protocol.integrity;
+  report.fourFailedPairMappings = original.failures.map(failure => {
+    const expectedSignature = `${failure.project}:${failure.file}:${failure.title}`;
+    const matches = actual.filter(row => signature(row) === expectedSignature);
+    assert.equal(matches.length, 1);
+    const row = matches[0];
+    return { originalCaseId: failure.caseId, project: failure.project, file: failure.file, title: failure.title, currentCaseId: row.spec.id, attempts: row.test.results.length, statuses: row.test.results.map(result => result.status), originalFailureRetained: true };
+  });
+  report.resultFiles = await Promise.all(['.json', '-summary.json', '-protocol.json', '.log'].map(suffix => bind(`${stem}${suffix}`)));
+  report.allListedCasesPassedOnce = actual.every(row => row.test.results.length === 1 && row.test.results[0].status === 'passed' && row.test.results[0].retry === 0);
+} catch (error) {
+  report.failure = { name: error.name, message: String(error.message).slice(0, 700) };
+} finally {
+  try {
+    report.after = await dependencies(); report.sourceAfter = await source();
+    report.dependenciesUnchanged = JSON.stringify(before.hashes) === JSON.stringify(report.after.hashes);
+    report.runnerUnchanged = sha(await readFile(runner)) === report.runner.sha256;
+    report.wrapperUnchanged = sha(await readFile(import.meta.filename)) === report.wrapperSha256;
+    report.originalMatrixUnchanged = sha(await readFile(originalFile)) === report.originalMatrix.sha256;
+  } catch (error) { report.integrityFailure = { name: error.name, message: String(error.message).slice(0, 400) }; }
+  report.childExitCode = childExit;
+  report.status = childExit === 0 && !report.failure && !report.integrityFailure && report.allListedCasesPassedOnce && report.dependenciesUnchanged && report.runnerUnchanged && report.wrapperUnchanged && report.originalMatrixUnchanged ? 'PASS-SCOPED-COMPLETE-SELECTED-FILES' : 'FAILED';
+  report.finishedAt = new Date().toISOString();
+  await writeFile(output, JSON.stringify(report, null, 2));
+  console.log(JSON.stringify({ output, status: report.status, totals: report.totals ?? null, originalMatrixRemainsFailed: true }));
+  process.exitCode = report.status === 'PASS-SCOPED-COMPLETE-SELECTED-FILES' ? 0 : 1;
+}

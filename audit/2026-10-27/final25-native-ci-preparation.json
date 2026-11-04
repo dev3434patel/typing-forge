@@ -1,0 +1,63 @@
+{
+  "status": "PREPARED-NOT-RUN",
+  "preparedAt": "2026-10-27T16:51:06.280Z",
+  "originalFile": "audit/2026-10-27/run-final25-native-modules.mjs",
+  "originalSha256": "891235859744e2c586a77311dba3a20e39ee5fb8b5c9ccd145403debd4366428",
+  "outputFile": "audit/2026-10-27/run-final25-native-ci.mjs",
+  "sha256": "8f743b902bd18570f78d4916b7b46fd93ff2f7f8e13b04959fdce9bd1e0ff6a2",
+  "substitutions": [
+    {
+      "before": "SPAROWTYPE_FINAL25_NATIVE_MODULES",
+      "after": "SPAROWTYPE_FINAL25_NATIVE_CI",
+      "count": 1
+    },
+    {
+      "before": "final25-native-modules",
+      "after": "final25-native-ci",
+      "count": 2
+    },
+    {
+      "before": "const suites = ['progression', 'social', 'classroom', 'arena-http', 'password'];",
+      "after": "const suites = ['data', 'race', 'course', 'progression', 'social', 'classroom', 'arena-http', 'password'];",
+      "count": 1
+    },
+    {
+      "before": "'backend/tests/pack-progression-lifecycle.mjs'",
+      "after": "'backend/tests/data-lifecycle.mjs', 'backend/tests/data-fixture.php', 'backend/tests/race-lifecycle.mjs', 'backend/tests/race-fixtures.php', 'backend/tests/course-lifecycle.mjs', 'backend/tests/course-fixture.php', 'backend/tests/pack-social-fixture.php', 'backend/tests/classroom-fixture.php', 'backend/tests/arena-audit-admin.php', '.github/workflows/ci.yml', 'backend/tests/pack-progression-lifecycle.mjs'",
+      "count": 1
+    },
+    {
+      "before": "results.length === 5",
+      "after": "results.length === 8",
+      "count": 1
+    },
+    {
+      "before": "Fresh source25 progression/social/classroom/Arena HTTP contracts after native browser16; no browser or capacity workload.",
+      "after": "Fresh source25 native CI lifecycle acceptance: data, race, course, progression, social, classroom, Arena HTTP and password exactly once; no browser or capacity workload.",
+      "count": 1
+    },
+    {
+      "before": "sourceBefore: before.receipt, suites, automaticRetries: 0, capacityLoad: false, inputHashes,",
+      "after": "sourceBefore: before.receipt, suites, automaticRetries: 0, capacityLoad: false, inputHashes,\n  coverageExtension: { preservedFiveSuiteWrapper: 'audit/2026-10-27/run-final25-native-modules.mjs', addedCiLifecycleSuites: ['data', 'race', 'course'], requiredExactSuiteCount: 8, allOriginalFiveIncludedExactlyOnce: true, ciWorkflow: '.github/workflows/ci.yml', testAssertionsOrOwnerCleanupChanged: false },",
+      "count": 1
+    }
+  ],
+  "reversibleByteIdentity": true,
+  "originalFiveSuiteRunnerUnchanged": true,
+  "allEightSuitesExactlyOnce": [
+    "data",
+    "race",
+    "course",
+    "progression",
+    "social",
+    "classroom",
+    "arena-http",
+    "password"
+  ],
+  "expectedSourceFiles": 504,
+  "requiredBuildEnvironment": "SPAROWTYPE_FINAL25_BUILD_ID",
+  "requiredOptIn": "SPAROWTYPE_FINAL25_NATIVE_CI=1",
+  "servicesStarted": 0,
+  "testsRun": 0,
+  "browserStarted": false
+}

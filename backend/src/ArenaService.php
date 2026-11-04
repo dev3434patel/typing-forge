@@ -11,21 +11,32 @@ final class ArenaService
     public function __construct(private PDO $db,private SessionValidator $validator,private DataService $data){}
     public function handle(string $action,array $body,array $user): array
     {
-        Security::owner($body,$user['id'],false);$this->db->beginTransaction();
+        Security::owner($body,$user['id'],false);
+        $evidence=null;$prepared=null;$receivedAt=null;
+        if($action==='submit'){
+            ArenaRules::code($body['code']??null);
+            // Validation and lock waits must not advance a submitted event's
+            // allowance or consume its finish grace. This receipt comes only
+            // from the database clock, never a candidate/body timestamp.
+            $receivedAt=$this->now();
+            $evidence=new ArenaEvidence($this->db,$this->validator,$this->data);
+            $prepared=$evidence->prepare($body,$user);
+        }
+        $this->db->beginTransaction();
         try{
             $lock=$this->db->prepare('SELECT id FROM users WHERE id=? FOR UPDATE');$lock->execute([$user['id']]);if(!$lock->fetchColumn())throw new ApiException(401,'arena-auth','Sign in again.');
-            $now=$this->now();
+            $now=$receivedAt??$this->now();
             if($action==='create')$room=$this->create($user['id'],ArenaRules::duration($body['duration']??30),$now,($body['public']??false)===true);
             elseif($action==='match')$room=$this->match($user['id'],ArenaRules::duration($body['duration']??30),$now);
             else{
-                $room=$this->fetch(ArenaRules::code($body['code']??null));$now=$this->now();$room=$this->settle($room,$now);
+                $room=$this->fetch(ArenaRules::code($body['code']??null));$now=$receivedAt??$this->now();$room=$this->settle($room,$now);
                 if($action==='join')$this->join($room,$user['id'],$now);
                 elseif($action==='spectate'){}
                 else{
                     $member=$this->member($room,$user['id']);
                     if($action==='get')$this->heartbeat($room,$member,$now);
                     elseif($action==='ready')$this->ready($room,$member,$body,$now);
-                    elseif($action==='submit'){(new ArenaEvidence($this->db,$this->validator,$this->data))->submit($room,$member,$body,$user,$now);$this->bump($room['id']);}
+                    elseif($action==='submit'){$evidence->submit($room,$member,$prepared,$user,$now);$this->bump($room['id']);}
                     elseif($action==='leave')$this->leave($room,$member,$now);
                     elseif($action==='rematch')$this->rematch($room,$member,$now);
                     elseif($action==='appeal')$this->appeal($room,$member,$now);
@@ -43,12 +54,7 @@ final class ArenaService
     }
     private function members(array $room): array
     {
-        $q=$this->db->prepare('SELECT * FROM arena_members WHERE arena_id=? ORDER BY slot FOR UPDATE');$q->execute([$room['id']]);$members=$q->fetchAll();
-        if(!$members)return [];
-        // Do not lock other accounts while holding this room: concurrent racers
-        // already own their own account lock. Public handles need no write lock.
-        $q=$this->db->prepare('SELECT id,handle FROM users WHERE id IN('.implode(',',array_fill(0,count($members),'?')).')');$q->execute(array_column($members,'user_id'));$handles=array_column($q->fetchAll(),'handle','id');
-        foreach($members as &$member)$member['handle']=$handles[$member['user_id']]??'Former member';unset($member);return $members;
+        $q=$this->db->prepare('SELECT * FROM arena_members WHERE arena_id=? ORDER BY slot FOR UPDATE');$q->execute([$room['id']]);return $q->fetchAll();
     }
     private function member(array $room,string $owner): array
     {
@@ -166,7 +172,15 @@ final class ArenaService
     }
     private function serialize(array $room,string $owner,bool $spectator,float $now): array
     {
-        $members=$this->members($room);$placements=ArenaRules::placements($members);$q=$this->db->prepare('SELECT room_code FROM arena_rooms WHERE rematch_of=?');$q->execute([$room['id']]);$rematch=$q->fetchColumn();
+        $members=$this->members($room);
+        if($members){
+            // Only the public response needs handles. Internal room operations
+            // retain fresh full member rows and their original write locks.
+            // Other accounts must never be write-locked while holding a room.
+            $q=$this->db->prepare('SELECT id,handle FROM users WHERE id IN('.implode(',',array_fill(0,count($members),'?')).')');$q->execute(array_column($members,'user_id'));$handles=array_column($q->fetchAll(),'handle','id');
+            foreach($members as &$member)$member['handle']=$handles[$member['user_id']]??'Former member';unset($member);
+        }
+        $placements=ArenaRules::placements($members);$q=$this->db->prepare('SELECT room_code FROM arena_rooms WHERE rematch_of=?');$q->execute([$room['id']]);$rematch=$q->fetchColumn();
         return ['id'=>$room['id'],'code'=>$room['room_code'],'status'=>$room['status'],'version'=>(int)$room['version'],'hostId'=>$room['host_id'],'serverNow'=>$now,'startsAt'=>ArenaRules::milliseconds($room['starts_at']),'deadlineAt'=>ArenaRules::milliseconds($room['deadline_at']),'durationSeconds'=>(int)$room['duration_seconds'],'targetText'=>$room['expected_text'],'configuration'=>Database::decode($room['configuration_json']),'viewerId'=>$owner,'spectator'=>$spectator,'rematchCode'=>$rematch?:null,'reconnectWindowMs'=>ArenaRules::RECONNECT_MS,
             'members'=>array_map(static fn($member)=>['id'=>$member['user_id'],'handle'=>$member['handle'],'slot'=>(int)$member['slot'],'ready'=>(bool)$member['ready'],'status'=>$member['status'],'progress'=>min(100,(int)$member['credited_units']/max(1,strlen($room['expected_text']))*100),'wpm'=>$member['wpm']===null?null:(float)$member['wpm'],'accuracy'=>$member['accuracy']===null?null:(float)$member['accuracy'],'placement'=>$room['status']==='completed'?($placements[$member['user_id']]??null):null,'rematchVote'=>(bool)$member['rematch_vote'],...($member['user_id']===$owner?['quarantineReason'=>$member['quarantine_reason'],'appealRequested'=>$member['appeal_requested_at']!==null]:[])],$members)];
     }

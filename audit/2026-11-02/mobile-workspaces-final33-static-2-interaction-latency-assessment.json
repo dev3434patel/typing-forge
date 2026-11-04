@@ -1,0 +1,80 @@
+{
+  "assessedAt": "2026-11-04T16:03:34.859Z",
+  "status": "PASS-SCOPED",
+  "interactionStatus": "PASS-SCOPED",
+  "originalEventGateStatus": "PASS-SCOPED",
+  "source": {
+    "sourceFile": "audit/2026-11-02/final33-source.json",
+    "expectedBuild": "332e23584f1e36465df2",
+    "compared": 505,
+    "mismatches": []
+  },
+  "inputs": {
+    "audit/2026-11-02/mobile-workspaces-final33-static-2.json": "00f37bbd6401eda00362007c59820957070a455fa43df9fa00cbdf7808b57a0e",
+    "audit/2026-11-02/mobile-workspaces-final33-static-2-process.json": "ab0a6ecabfebfa10bc69b3bf4ded0abe0986a8cfca7e3bf2a9306ab328b70afb",
+    "audit/2026-11-02/mobile-workspaces-final33-static-2-protocol.json": "9d7b02e35199e67fc7d799e5c2cc19856ce03418ef15f1360bba49222497146d",
+    "audit/2026-11-02/mobile-workspaces-final33-static-2-latency-assessment.json": "6ea6dd33e99c7f3d44927c7ee61eaeeec994894d2a21ba1452aef8b4ac69d74f"
+  },
+  "cases": [
+    {
+      "id": "learn",
+      "functionalPassed": true,
+      "interactionMetric": "Browser EventTiming interactionId maximum duration",
+      "p98ObservedInteractionMaximumMs": 56,
+      "measuredInteractionsAtLeast16ms": 125,
+      "observedTypingEventsAtLeast16ms": 499,
+      "observedBeforeInputEvents": 125,
+      "originalEventP98Ms": 56,
+      "targetMs": 100,
+      "comparison": "<",
+      "interactionLatencyStatus": "PASS-SCOPED"
+    },
+    {
+      "id": "course",
+      "functionalPassed": true,
+      "interactionMetric": "Browser EventTiming interactionId maximum duration",
+      "p98ObservedInteractionMaximumMs": 80,
+      "measuredInteractionsAtLeast16ms": 59,
+      "observedTypingEventsAtLeast16ms": 288,
+      "observedBeforeInputEvents": 59,
+      "originalEventP98Ms": 56,
+      "targetMs": 100,
+      "comparison": "<",
+      "interactionLatencyStatus": "PASS-SCOPED"
+    },
+    {
+      "id": "local-bot",
+      "functionalPassed": true,
+      "interactionMetric": "Browser EventTiming interactionId maximum duration",
+      "p98ObservedInteractionMaximumMs": 56,
+      "measuredInteractionsAtLeast16ms": 100,
+      "observedTypingEventsAtLeast16ms": 500,
+      "observedBeforeInputEvents": 100,
+      "originalEventP98Ms": 48,
+      "targetMs": 100,
+      "comparison": "<",
+      "interactionLatencyStatus": "PASS-SCOPED"
+    },
+    {
+      "id": "games",
+      "functionalPassed": true,
+      "interactionMetric": "Browser EventTiming interactionId maximum duration",
+      "p98ObservedInteractionMaximumMs": 24,
+      "measuredInteractionsAtLeast16ms": 82,
+      "observedTypingEventsAtLeast16ms": 303,
+      "observedBeforeInputEvents": 99,
+      "originalEventP98Ms": 24,
+      "targetMs": 100,
+      "comparison": "<",
+      "interactionLatencyStatus": "PASS-SCOPED"
+    }
+  ],
+  "functionalPassed": true,
+  "acceptance": "Both every-workspace original event-p98<100ms and every-workspace interaction-maximum-p98<100ms must pass. Unsupported/null measurements are UNVERIFIED. No averaging across workspaces or trials.",
+  "eventCardinalityDisclosure": "Trusted cancelable source33 beforeinput may prevent redundant native input events. Original pressSequentially actions, event filter and beforeinput target accounting are unchanged; event and interaction sample counts are retained. This extra gate tightens criteria and never rewrites source31 failures.",
+  "browserMeasurementsExecuted": 0,
+  "automaticRetries": 0,
+  "resultFiltering": false,
+  "fieldInpClaimed": false,
+  "physicalDeviceClaimed": false
+}

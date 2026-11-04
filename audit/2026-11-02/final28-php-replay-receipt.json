@@ -1,0 +1,180 @@
+{
+  "date": "2026-11-02T16:44:17.625Z",
+  "scope": "Pure canonical portable/native PHP differential replay; class-only loaders, no private configuration/HTTP/database mutation",
+  "cases": 560,
+  "uniqueCases": 560,
+  "phpDriverRows": 578,
+  "legacyFullPayloadCases": 542,
+  "arenaWireCompatibility": {
+    "pairs": 18,
+    "driverRows": 36,
+    "repeatedFullRows": 18,
+    "additionalCompactRows": 18,
+    "checks": [
+      {
+        "name": "latin",
+        "pass": true,
+        "outcome": "identical-canonical-bytes-hash-and-projections"
+      },
+      {
+        "name": "nfc",
+        "pass": true,
+        "outcome": "identical-canonical-bytes-hash-and-projections"
+      },
+      {
+        "name": "arabic",
+        "pass": true,
+        "outcome": "identical-canonical-bytes-hash-and-projections"
+      },
+      {
+        "name": "devanagari",
+        "pass": true,
+        "outcome": "identical-canonical-bytes-hash-and-projections"
+      },
+      {
+        "name": "gujarati",
+        "pass": true,
+        "outcome": "identical-canonical-bytes-hash-and-projections"
+      },
+      {
+        "name": "bengali",
+        "pass": true,
+        "outcome": "identical-canonical-bytes-hash-and-projections"
+      },
+      {
+        "name": "emoji",
+        "pass": true,
+        "outcome": "identical-canonical-bytes-hash-and-projections"
+      },
+      {
+        "name": "code",
+        "pass": true,
+        "outcome": "identical-canonical-bytes-hash-and-projections"
+      },
+      {
+        "name": "free",
+        "pass": true,
+        "outcome": "identical-canonical-bytes-hash-and-projections"
+      },
+      {
+        "name": "interim-race",
+        "pass": true,
+        "outcome": "identical-canonical-bytes-hash-and-projections"
+      },
+      {
+        "name": "sample-cache-large-target-idle-final120s",
+        "pass": true,
+        "outcome": "identical-canonical-bytes-hash-and-projections"
+      },
+      {
+        "name": "sample-cache-large-target-idle-interim119s",
+        "pass": true,
+        "outcome": "identical-canonical-bytes-hash-and-projections"
+      },
+      {
+        "name": "coarse-clock-finish-while-paused",
+        "pass": true,
+        "outcome": "identical-canonical-bytes-hash-and-projections"
+      },
+      {
+        "name": "virtual-incorrect-submission-reopens-without-character-loss",
+        "pass": true,
+        "outcome": "identical-canonical-bytes-hash-and-projections"
+      },
+      {
+        "name": "reject-false-count",
+        "pass": true,
+        "outcome": "identical-rejection"
+      },
+      {
+        "name": "reject-transcript",
+        "pass": true,
+        "outcome": "identical-rejection"
+      },
+      {
+        "name": "reject-cross-owner",
+        "pass": true,
+        "outcome": "identical-rejection"
+      },
+      {
+        "name": "reject-private-without-consent",
+        "pass": true,
+        "outcome": "identical-rejection"
+      }
+    ],
+    "mismatches": 0
+  },
+  "validReferenceCases": 522,
+  "rejectionCases": 38,
+  "mismatches": 0,
+  "phpBinary": "C:/xampp/php/php.exe",
+  "unicode": "ASCII controls/CRLF/Latin/NFC/Arabic/Devanagari/Gujarati/Bengali/emoji",
+  "seed": "0x571930ab",
+  "serializationCompatibility": {
+    "submittedCandidates": 560,
+    "canonicalCandidatesAndHashes": 522,
+    "mismatches": 0,
+    "nestedEdges": {
+      "status": "PASS-SCOPED",
+      "scope": "Retained old serializer versus production exact bytes and encoding error codes, plus original ICU/GB9c versus optimized segmentation. Pure classes only.",
+      "seed": "0x571930ab",
+      "byteCases": 536,
+      "encodingErrorCases": 6,
+      "mismatches": [],
+      "legacyBytesDigest": "ac5b9f88d78fe06675fd102ebe85e7b7273c8768c3631a744d583072b63c7fb5",
+      "segmentationChecks": [
+        {
+          "name": "empty",
+          "pass": true
+        },
+        {
+          "name": "ascii-controls-without-cr",
+          "pass": true
+        },
+        {
+          "name": "crlf",
+          "pass": true
+        },
+        {
+          "name": "emoji-boundary",
+          "pass": true
+        },
+        {
+          "name": "combining",
+          "pass": true
+        },
+        {
+          "name": "indic",
+          "pass": true
+        },
+        {
+          "name": "latin-arabic",
+          "pass": true
+        },
+        {
+          "name": "ASCII path shares exact32-entry FIFO eviction",
+          "pass": true
+        },
+        {
+          "name": "Unicode and ASCII use the same cache and hits do not reorder it",
+          "pass": true
+        }
+      ],
+      "privateConfigurationRead": false,
+      "databaseConnected": false
+    }
+  },
+  "sourceHashes": {
+    "src/lib/typing-core/types.ts": "8c77af952d7980d29de2dc9b4fb107bfd7e9b0f77a1bbab44916313e3b007471",
+    "src/lib/typing-core/transcript.ts": "d42c6780103f8de4ca4979d5da5a7311ed7b298edbe3925cfeba50704cada1b3",
+    "src/lib/typing-core/metrics.ts": "de11128e062997daa61a621cd992e475ddd07934b26192508164b27b7a71e976",
+    "src/lib/typing-core/session.ts": "5436852d79b166acd708dc07eb67893da0059e3703cd1bc02b8a8fa451d1672c",
+    "src/lib/learning-evidence.ts": "498d2d8abe625cdc4ba665d47a1220588e6a7b74bebc2c54df255e0f34524076",
+    "supabase/functions/_shared/validation.ts": "f2864c28d360eef30a52d37882f820dc186b15330c68df7c6bf39159290ab0b8",
+    "backend/src/SessionValidator.php": "5d5907e4a49a1a92966a967591701976a25051a3a4f0d4d21f8e70f112be776d",
+    "backend/tests/replay-driver.php": "80792e259ad9a38d77607199cdf40a954b35e0c56f05e727bc7761bdeddb5043",
+    "backend/tests/LegacyStablePayload.php": "357c16691c5a91c529b9442dbbdf3e2c2cfbfb4b2968adfbda62efd7ba1833ea",
+    "backend/tests/serialization-contract.php": "8860d1cd58596df2d11d5a598f9d29a8a454903efdec313ebe90a38cd562ecbc",
+    "src/domain/arena.ts": "24c5cce5e196903c7ddaad914acf3bca1a35540750abce3c3ac3875853151d42"
+  }
+}

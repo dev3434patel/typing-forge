@@ -1,0 +1,288 @@
+{
+  "preparedAt": "2026-10-27T15:08:33.187Z",
+  "status": "PREPARED-NOT-RUN",
+  "scope": "New source21 audit namespaces and path adapters only. No production, tests, assertions, deadlines, event timings, quality assets or historical receipts are changed. Source20 preparations remain preserved.",
+  "sourceFileExpectedAtExecution": "audit/2026-10-27/final21-source.json",
+  "buildEnvironmentAtExecution": "SPAROWTYPE_FINAL21_BUILD_ID",
+  "testsExecuted": false,
+  "servicesStarted": false,
+  "buildsExecuted": false,
+  "prepared": [
+    {
+      "original": "audit/2026-10-27/pack-backend-instance-source20.mjs",
+      "originalSha256": "55cee8933b7165ec32e660b2f368ea7c05a92462ace838a00c9458a17780ed3a",
+      "adapter": "audit/2026-10-27/pack-backend-instance-source21.mjs",
+      "adapterSha256": "2ee0705ac4e576583005c8f72cfe5a5f8ce73508be80943c78714c200e99e28f",
+      "substitutions": [
+        {
+          "before": "source20",
+          "after": "source21",
+          "occurrences": 1
+        },
+        {
+          "before": "capacity20",
+          "after": "capacity21",
+          "occurrences": 6
+        }
+      ]
+    },
+    {
+      "original": "audit/2026-10-27/run-source20-capacity-burst.mjs",
+      "originalSha256": "599aec4fc3cef767d51f180bde200748f9607fbea8c265822b9d954be5b2a98b",
+      "adapter": "audit/2026-10-27/run-source21-capacity-burst.mjs",
+      "adapterSha256": "1925efb57859010e8518ab310905abbcc80136b1fa4eebf7e9046cbf5fe71b68",
+      "substitutions": [
+        {
+          "before": "source20",
+          "after": "source21",
+          "occurrences": 4
+        },
+        {
+          "before": "SOURCE20",
+          "after": "SOURCE21",
+          "occurrences": 1
+        },
+        {
+          "before": "final20",
+          "after": "final21",
+          "occurrences": 1
+        },
+        {
+          "before": "FINAL20",
+          "after": "FINAL21",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "original": "audit/2026-10-21/run-final19-browser-matrix.mjs",
+      "originalSha256": "abf02d16c606c237587a721b81b98c50e2e2659310ceef1f49363d37525914a6",
+      "adapter": "audit/2026-10-27/run-final21-browser-matrix.mjs",
+      "adapterSha256": "5f251c175ebd92520db47679442ddcb4732990cf7395040acd05883941c04b52",
+      "substitutions": [
+        {
+          "before": "final19",
+          "after": "final21",
+          "occurrences": 4
+        },
+        {
+          "before": "FINAL19",
+          "after": "FINAL21",
+          "occurrences": 1
+        },
+        {
+          "before": "audit/2026-10-21",
+          "after": "audit/2026-10-27",
+          "occurrences": 2
+        },
+        {
+          "before": "from './artifact-verification.mjs'",
+          "after": "from '../2026-10-21/artifact-verification.mjs'",
+          "occurrences": 1
+        },
+        {
+          "before": "Source18 includes the new PWA snapshot consistency spec exactly once.",
+          "after": "Source21 includes the PWA snapshot consistency spec exactly once.",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "original": "audit/2026-10-21/run-browser-checkpoint-final19.mjs",
+      "originalSha256": "442591a23208d18d1b5bbbc189f407174a64147cd1c21ac1e21503b957584845",
+      "adapter": "audit/2026-10-27/run-browser-checkpoint-final21.mjs",
+      "adapterSha256": "7c3206c60a07ea1dfe0e123a91388e95a3062fb8b747ffdea65d4d521b1003f4",
+      "substitutions": [
+        {
+          "before": "FINAL19",
+          "after": "FINAL21",
+          "occurrences": 1
+        },
+        {
+          "before": "audit/2026-10-21",
+          "after": "audit/2026-10-27",
+          "occurrences": 1
+        },
+        {
+          "before": "Supply the actual frozen18 build identity.",
+          "after": "Supply the actual frozen source21 build identity.",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "original": "audit/2026-10-21/artifact-verification.mjs",
+      "originalSha256": "dd89a6c946e1e8742ed90ab522a4a156ce60d66160bdf1fddc75369a417c4c33",
+      "adapter": "audit/2026-10-27/artifact-verification.mjs",
+      "adapterSha256": "d911ec2805a0f03e8968de9d50ce6993b558df4fd4c9992bebca1a404299b0a0",
+      "substitutions": [
+        {
+          "before": "export const auditDirectory = 'audit/2026-10-21';",
+          "after": "export const auditDirectory = 'audit/2026-10-27';",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "original": "audit/2026-10-21/verify-static-artifacts.mjs",
+      "originalSha256": "e8b6bf76a3d2689d8a2b9ce1fd4c33360749d84161db9a21372d900a9df665af",
+      "adapter": "audit/2026-10-27/verify-static-artifacts.mjs",
+      "adapterSha256": "e8b6bf76a3d2689d8a2b9ce1fd4c33360749d84161db9a21372d900a9df665af",
+      "substitutions": []
+    },
+    {
+      "original": "audit/2026-10-21/run-final19-static.mjs",
+      "originalSha256": "2665268126bceee93636342f0a7e39ba2bd9a5789c6b27d6b929c695d9baf869",
+      "adapter": "audit/2026-10-27/run-final21-static.mjs",
+      "adapterSha256": "a18fdb49f8cd09ca79c507a07f96e1e1266ce2026c08af57f6ea7ae127046261",
+      "substitutions": [
+        {
+          "before": "final19",
+          "after": "final21",
+          "occurrences": 7
+        },
+        {
+          "before": "FINAL19",
+          "after": "FINAL21",
+          "occurrences": 1
+        },
+        {
+          "before": "audit/2026-10-21",
+          "after": "audit/2026-10-27",
+          "occurrences": 5
+        }
+      ]
+    },
+    {
+      "original": "audit/2026-10-21/pack-native-browser.mjs",
+      "originalSha256": "378bd12cac86a5dbecc9e6f766b5ba7390098a1dc0c66a446aecb6b573365ca2",
+      "adapter": "audit/2026-10-27/pack-native-browser.mjs",
+      "adapterSha256": "378bd12cac86a5dbecc9e6f766b5ba7390098a1dc0c66a446aecb6b573365ca2",
+      "substitutions": []
+    },
+    {
+      "original": "audit/2026-10-21/run-final19-native-browser.mjs",
+      "originalSha256": "895b3c24d7062b9dd86d34b804de50c0639da7a849a8c8df45334a44f176f29a",
+      "adapter": "audit/2026-10-27/run-final21-native-browser.mjs",
+      "adapterSha256": "183f70e3d0a592e0fcefab4f137c13bf6821f0e64e9e9d48e026e54dcce4f4c6",
+      "substitutions": [
+        {
+          "before": "final19",
+          "after": "final21",
+          "occurrences": 4
+        },
+        {
+          "before": "FINAL19",
+          "after": "FINAL21",
+          "occurrences": 2
+        },
+        {
+          "before": "audit/2026-10-21",
+          "after": "audit/2026-10-27",
+          "occurrences": 1
+        },
+        {
+          "before": "from './artifact-verification.mjs'",
+          "after": "from '../2026-10-21/artifact-verification.mjs'",
+          "occurrences": 1
+        },
+        {
+          "before": "newly frozen source17 build",
+          "after": "newly frozen source21 build",
+          "occurrences": 1
+        },
+        {
+          "before": "`${directory}/pack-backend-instance.mjs`",
+          "after": "`${directory}/pack-backend-instance-source21.mjs`",
+          "occurrences": 1
+        },
+        {
+          "before": "`${directory}/pack-apache-runtime.mjs`",
+          "after": "'audit/2026-10-21/pack-apache-runtime.mjs'",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "original": "audit/2026-10-21/measure-mobile-workspaces.mjs",
+      "originalSha256": "69bc61a77b632524f2bd3e689431413e3ab178119226c3d603b60cb6f8245d6a",
+      "adapter": "audit/2026-10-27/measure-mobile-workspaces-static-final21.mjs",
+      "adapterSha256": "d83f86ba78d1b4f59905735408b52df4f753b0667b536fb53e3cab8d1b518f04",
+      "substitutions": [
+        {
+          "before": "const directory = 'audit/2026-10-21';",
+          "after": "const directory = 'audit/2026-10-27';",
+          "occurrences": 1
+        },
+        {
+          "before": "process.argv[2] ?? 'mobile-workspaces'",
+          "after": "process.argv[2] ?? 'mobile-workspaces-final21-static'",
+          "occurrences": 1
+        },
+        {
+          "before": "`${directory}/mobile-workspaces-protocol.json`",
+          "after": "`${directory}/mobile-workspaces-final21-static-protocol.json`",
+          "occurrences": 1
+        },
+        {
+          "before": "`${directory}/after-1-build.json`",
+          "after": "`${directory}/mobile-workspaces-final21-static-build.json`",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "original": "audit/2026-10-21/run-mobile-workspaces-static-final19.mjs",
+      "originalSha256": "c0ba6484868d9762934e0e281454f2eecf3d1638dc33f1c59fef7a9692d3eec2",
+      "adapter": "audit/2026-10-27/run-mobile-workspaces-static-final21.mjs",
+      "adapterSha256": "4c718459a51c5d66a801e5abd3dce666c6cfd242e22b798c2d6599ac7b31a847",
+      "substitutions": [
+        {
+          "before": "final19",
+          "after": "final21",
+          "occurrences": 9
+        },
+        {
+          "before": "FINAL19",
+          "after": "FINAL21",
+          "occurrences": 2
+        },
+        {
+          "before": "audit/2026-10-21",
+          "after": "audit/2026-10-27",
+          "occurrences": 1
+        },
+        {
+          "before": "from './artifact-verification.mjs'",
+          "after": "from '../2026-10-21/artifact-verification.mjs'",
+          "occurrences": 1
+        },
+        {
+          "before": "const originalDriver = `${audit}/measure-mobile-workspaces.mjs`;",
+          "after": "const originalDriver = 'audit/2026-10-21/measure-mobile-workspaces.mjs';",
+          "occurrences": 1
+        },
+        {
+          "before": "const originalProtocol = `${audit}/mobile-workspaces-final7-protocol.json`;",
+          "after": "const originalProtocol = 'audit/2026-10-21/mobile-workspaces-final7-protocol.json';",
+          "occurrences": 1
+        },
+        {
+          "before": "preservedNormalReport: `${audit}/mobile-workspaces-final7.json`,",
+          "after": "preservedNormalReport: 'audit/2026-10-21/mobile-workspaces-final7.json',",
+          "occurrences": 1
+        },
+        {
+          "before": "const referenceChanges = [",
+          "after": "const referenceChanges = [\n  [\"const directory = 'audit/2026-10-21';\", \"const directory = 'audit/2026-10-27';\"],",
+          "occurrences": 1
+        },
+        {
+          "before": "Only default protocol/build/output references may differ;",
+          "after": "Only audit directory and default protocol/build/output references may differ;",
+          "occurrences": 1
+        }
+      ]
+    }
+  ]
+}

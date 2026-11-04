@@ -1,0 +1,11 @@
+file:///D:/extra/typing_updated/typing-forge/backend/tests/arena-contract.mjs:58
+if (receiptProcess.status !== 0) throw new Error(receiptProcess.stderr || receiptProcess.stdout);
+                                       ^
+
+Error: {"status":"FAILED","scope":"Real ArenaService\/SessionValidator with deterministic PDO receipt\/current clocks and row protocol. No SQL engine or genuine parallel transaction is simulated.","passed":8,"failed":1,"checks":[{"name":"server receipt is captured before preparation and before the first transaction lock","pass":true},{"name":"validation and lock processing time cannot enlarge the event allowance or scoring elapsed","pass":true},{"name":"body timestamps cannot replace the database receipt","pass":true},{"name":"response and post-submit settlement still use the current database clock","pass":true},{"name":"evidence received within grace remains accepted when validation completes after grace","pass":false},{"name":"the current clock still settles that accepted participant and room after grace","pass":true},{"name":"a genuinely late receipt is rejected and never written as fresh evidence","pass":true},{"name":"receipt time cannot reopen a member forfeited by another locked request","pass":true},{"name":"later processing cannot make future-at-receipt evidence eligible","pass":true}],"databaseConnected":false}
+    at file:///D:/extra/typing_updated/typing-forge/backend/tests/arena-contract.mjs:58:40
+    at ModuleJob.run (node:internal/modules/esm/module_job:345:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.20.0

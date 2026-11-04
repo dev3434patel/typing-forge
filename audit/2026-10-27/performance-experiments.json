@@ -1,0 +1,42 @@
+{
+  "scope": "Retained preliminary typing experiments; none establishes final acceptance.",
+  "build": "4c8b30fcf0d2370c79d4",
+  "ordinaryAcceptance": {
+    "status": "FAILED",
+    "protocol": "final20-input-protocol.json",
+    "results": "final20-input-results.json",
+    "p98Ms": [104, 112, 112],
+    "maxMs": [288, 256, 280],
+    "all495AttemptsExact": true,
+    "rotationRetained": true,
+    "thresholdChanged": false
+  },
+  "diagnostics": [
+    {
+      "report": "final20-cpu-loaf-native.json",
+      "p98Ms": 96,
+      "acceptance": false,
+      "reason": "Instrumented CPU/LoAF observation; it cannot replace the ordinary runs."
+    },
+    {
+      "report": "final20-native-nowrap-diagnostic.json",
+      "p98Ms": 120,
+      "maxMs": 304,
+      "acceptance": false,
+      "adopted": false,
+      "reason": "The hidden textarea wrapping experiment did not demonstrate an improvement; production wrapping is unchanged."
+    },
+    {
+      "report": "final20-native-two-layer-diagnostic.json",
+      "p98Ms": 120,
+      "maxMs": 248,
+      "acceptance": false,
+      "adopted": false,
+      "reason": "The two-container compositing experiment did not demonstrate an improvement; no GPU-layer changes were applied."
+    }
+  ],
+  "limits": [
+    "Single diagnostics are confounded by instrumentation and host variation; no causal latency reduction is claimed.",
+    "No thresholds, native input actions, 3D quality, or earlier failed receipts were changed."
+  ]
+}

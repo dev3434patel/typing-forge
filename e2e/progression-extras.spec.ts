@@ -23,6 +23,11 @@ test('earned theme and frame apply, persist on the real profile and return to de
   const frame = page.locator('article').filter({ has: page.getByRole('heading', { name: 'Orbit profile frame', exact: true }) });
   await frame.getByRole('button', { name: 'Unlock', exact: true }).click();
   await frame.getByRole('button', { name: 'Equip', exact: true }).click();
+  await expect(frame.getByRole('button', { name: 'Equipped', exact: true })).toBeDisabled();
+  await expect.poll(() => page.evaluate(() => {
+    const stored = JSON.parse(localStorage.getItem('sparowtype:progression:v1:guest') ?? 'null') as { commands?: Array<{ kind: string; value?: string | boolean }> } | null;
+    return stored?.commands?.filter(command => command.kind === 'equip').at(-1)?.value ?? null;
+  })).toBe('frame-orbit');
   await page.goto('/profile');
   await expect(page.getByRole('region', { name: 'Your practice identity', exact: true })).toContainText('Orbit profile frame');
   await page.goto('/progression');

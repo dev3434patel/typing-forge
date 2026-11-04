@@ -1,0 +1,61 @@
+{
+  "status": "PASS-SCOPED",
+  "evidence": "audit/2026-10-27/final24-input-results.json",
+  "criterion": "Every unchanged original495-character run at4xCPU must retain exact input with thresholded/quantized observed p98 below100ms. This is not field INP.",
+  "automaticRetries": 0,
+  "runs": [
+    {
+      "run": 1,
+      "build": "6cdddf1a74b2d10d1c9b",
+      "exact": true,
+      "attempts": 495,
+      "accuracy": 100,
+      "p98Ms": 56,
+      "maxMs": 120,
+      "rotation": {
+        "beforeLength": 247,
+        "afterLength": 247,
+        "retainedExactly": true,
+        "overflow": false
+      },
+      "errors": []
+    },
+    {
+      "run": 2,
+      "build": "6cdddf1a74b2d10d1c9b",
+      "exact": true,
+      "attempts": 495,
+      "accuracy": 100,
+      "p98Ms": 56,
+      "maxMs": 128,
+      "rotation": {
+        "beforeLength": 247,
+        "afterLength": 247,
+        "retainedExactly": true,
+        "overflow": false
+      },
+      "errors": []
+    },
+    {
+      "run": 3,
+      "build": "6cdddf1a74b2d10d1c9b",
+      "exact": true,
+      "attempts": 495,
+      "accuracy": 100,
+      "p98Ms": 72,
+      "maxMs": 136,
+      "rotation": {
+        "beforeLength": 247,
+        "afterLength": 247,
+        "retainedExactly": true,
+        "overflow": false
+      },
+      "errors": []
+    }
+  ],
+  "causalScope": "Combined intervention: smaller allocation changes, direct physical-key attribute updates, stable key border geometry, and55ms2Dcaret/key interpolation. No isolated causal attribution. Full3Dintro sources unchanged; isolated input driver excludes intro as in every baseline.",
+  "limitations": [
+    "Local emulated mobile Chromium lab, not physical iOS/Android or field INP.",
+    "Observed maxima remain120/128/136ms; this does not claim every event is below100ms."
+  ]
+}

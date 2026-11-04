@@ -1,0 +1,176 @@
+{
+  "status": "PASS-SCOPED-BROWSER",
+  "declaredAt": "2026-10-27T18:21:01.713Z",
+  "build": "11de46af5d4a80e0e830",
+  "source": {
+    "sourceFile": "audit/2026-10-27/final27-source.json",
+    "expectedBuild": "11de46af5d4a80e0e830",
+    "compared": 505,
+    "mismatches": []
+  },
+  "scope": "Separate fresh-owner route-isolated real-backend fault case in all four engines. Service workers are blocked only in this appended route-controlled test and its peer context. Existing assertions/timeouts remain; controller-null and positive-route controls are added. All original native and diagnostic failures remain unchanged. No app/SW-source change, rate-limit change, counter reset, hosted or physical-device claim; original realhuman and PWA tests retain normal SW behavior.",
+  "engines": [
+    "chromium",
+    "edge",
+    "firefox",
+    "webkit"
+  ],
+  "expectedCases": 4,
+  "workers": 1,
+  "retries": 0,
+  "traces": false,
+  "caseSelectionAndAssertionsChanged": false,
+  "existingCaseAssertionsChanged": false,
+  "existingTimeoutsChanged": false,
+  "addedCasesPerEngine": 0,
+  "originalFailedOwner": "3d44c37ac589c270",
+  "previousConfirmationOwner": "7bbf2372eea5cde5",
+  "freshOwnerRequired": true,
+  "genuineFirstCharacterPreconditionAdded": true,
+  "serviceWorkersBlockedOnlyForFaultCase": true,
+  "controllerNullAndRouteHitControlsAdded": true,
+  "faultRouteAuditEnabled": true,
+  "originalHumanRaceAndPwaWorkerBehaviorChanged": false,
+  "existingRunner": "audit/2026-10-27/pack-native-browser-final27-routed-fault-confirmation.mjs",
+  "inputs": {
+    "audit/2026-10-27/pack-native-browser-final27-routed-fault-confirmation.mjs": "ec152394fb25947315c0bd2254484ec34831faac405f3480348e697968c0e59b",
+    "audit/2026-10-27/pack-native-browser-final27.mjs": "abaea368553d3d6c1c7f86749e5eef540b07d80bc035303cfd6ddf8ed58913ab",
+    "audit/2026-10-27/run-final27-native-browser.mjs": "8dcda4cbc2dd995bf0b37f5ba95979bf2466b9b77ef2afc84c93c4cc17aaa783",
+    "audit/2026-10-27/pack-backend-instance-source27.mjs": "48f9496a55201705a81b5c78f62b5972640ac6e3152b4eb2bc549f0191821d9c",
+    "audit/2026-10-21/pack-apache-runtime.mjs": "80dd94f993d853d2057314473855a796e11264323bce64a4a9db97822b6dabe7",
+    "playwright.config.ts": "9a1c2658bfe18bcf8acf34e61144e17309abe257717f2cf882d05791457a1a32",
+    "e2e/php-account-flow.spec.ts": "c30b4984f3dbcfd47c64d6a4a94c5e969885e3cf114952eb3ade448fd91e86ec",
+    "e2e/php-human-race.spec.ts": "12dbbe3137b3502ba4c2bf9cee32827333f9013398e496f682fd8aba66f0e7db",
+    "e2e/auth-flow.spec.ts": "738f9924fdf060fa8845a63c6f99ee33ee6cfbc790583963f112b0ae9671e23e",
+    "e2e/race-mode.spec.ts": "01e29839303f34bead8523b5a209c2e896b2093d9f82cda4ad2b527b9bde7322",
+    "e2e/php-api-fixture.ts": "88a5bdebe514ff6a267452a8955301ad98891aee527e6d5699cc5eaad967190d"
+  },
+  "readyReceipt": "pack-backend-42036dede984169c-browser-ready.json",
+  "servicesStartedByWrapper": false,
+  "serviceCleanup": "PENDING-OWNER-CLEANUP-RECEIPT",
+  "privateConfigsReadByWrapper": false,
+  "originalServicesOrDatabaseTouched": false,
+  "browserRunnerPid": 42208,
+  "exitCode": 0,
+  "browserRunnerExited": true,
+  "events": [
+    {
+      "stage": "pack-native-browser-start",
+      "declaredAt": "2026-10-27T18:21:01.785Z",
+      "diagnostic": null,
+      "scope": "Fresh-owner exact routed-fault case in four engines; serviceWorkers:block is local to appended fault test and peer context. Existing assertions/timeouts unchanged; new controller-null and route-hit controls. All original failures retained; SW response causality unproven.",
+      "expectedBuild": "11de46af5d4a80e0e830",
+      "readyReceipt": "pack-backend-42036dede984169c-browser-ready.json",
+      "databaseNamespace": "sparow_pack_42036dede984169c_audit",
+      "engines": [
+        "chromium",
+        "edge",
+        "firefox",
+        "webkit"
+      ],
+      "expectedCases": 4,
+      "workers": 1,
+      "retries": 0,
+      "traces": false,
+      "countersReset": false,
+      "accountsReseeded": false,
+      "originalServicesTouched": false,
+      "freshOwner": true,
+      "originalFailedOwner": "3d44c37ac589c270",
+      "previousConfirmationOwner": "7bbf2372eea5cde5",
+      "existingAssertionsAndTimeoutsUnchanged": true,
+      "genuineFirstCharacterPreconditionAdded": true,
+      "serviceWorkersBlockedOnlyForFaultCase": true,
+      "controllerNullAndRouteHitControlsAdded": true,
+      "faultRouteAuditEnabled": true,
+      "originalHumanRaceAndPwaWorkerBehaviorChanged": false,
+      "reportPrefix": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-10-27\\pack-native-final27-routed-fault-confirmation-42036dede984169c-1793125261785",
+      "realBackend": true,
+      "introDisabledBySelectedSpecs": true
+    },
+    {
+      "stage": "pack-native-browser-complete",
+      "exactCasesVerified": true,
+      "actualCases": [
+        {
+          "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+          "engine": "chromium"
+        },
+        {
+          "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+          "engine": "edge"
+        },
+        {
+          "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+          "engine": "firefox"
+        },
+        {
+          "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+          "engine": "webkit"
+        }
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "stats": {
+        "startTime": "2026-10-27T18:21:02.475Z",
+        "duration": 169133.579,
+        "expected": 4,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "expectedCases": 4,
+      "sourceBuild": "11de46af5d4a80e0e830",
+      "traces": false,
+      "credentialRedactionApplied": true,
+      "rawReport": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-10-27\\pack-native-final27-routed-fault-confirmation-42036dede984169c-1793125261785-browser.json",
+      "at": "2026-10-27T18:23:51.633Z"
+    }
+  ],
+  "nativeResult": {
+    "stage": "pack-native-browser-complete",
+    "exactCasesVerified": true,
+    "actualCases": [
+      {
+        "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+        "engine": "chromium"
+      },
+      {
+        "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+        "engine": "edge"
+      },
+      {
+        "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+        "engine": "firefox"
+      },
+      {
+        "title": "real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+        "engine": "webkit"
+      }
+    ],
+    "status": "PASS",
+    "exitCode": 0,
+    "stats": {
+      "startTime": "2026-10-27T18:21:02.475Z",
+      "duration": 169133.579,
+      "expected": 4,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "expectedCases": 4,
+    "sourceBuild": "11de46af5d4a80e0e830",
+    "traces": false,
+    "credentialRedactionApplied": true,
+    "rawReport": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-10-27\\pack-native-final27-routed-fault-confirmation-42036dede984169c-1793125261785-browser.json",
+    "at": "2026-10-27T18:23:51.633Z"
+  },
+  "sourceAfter": {
+    "sourceFile": "audit/2026-10-27/final27-source.json",
+    "expectedBuild": "11de46af5d4a80e0e830",
+    "compared": 505,
+    "mismatches": []
+  },
+  "inputsUnchanged": true,
+  "finishedAt": "2026-10-27T18:23:51.961Z"
+}

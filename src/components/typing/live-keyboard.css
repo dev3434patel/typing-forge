@@ -150,7 +150,7 @@
   background: var(--forge-surface);
   font: 400 clamp(10px, 1.8vw, 13px) var(--font-mono);
   line-height: 1;
-  transition: transform 90ms ease;
+  transition: transform 55ms ease;
 }
 .live-key-label {
   display: flex;
@@ -200,10 +200,10 @@
   border-color: var(--forge-accent);
 }
 .live-key[data-pressed-key="true"] {
+  /* Keep each keycap style's border geometry; the press only moves its surface. */
   color: var(--forge-accentInk);
   background: var(--forge-accent);
   border-color: var(--forge-accent);
-  border-bottom-width: 1px;
   transform: translateY(2px);
 }
 .live-key[data-pressed-key="true"] .live-key-alternate {

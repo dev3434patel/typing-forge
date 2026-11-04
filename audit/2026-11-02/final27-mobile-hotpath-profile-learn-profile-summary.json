@@ -1,0 +1,3340 @@
+{
+  "status": "COMPLETE-DIAGNOSTIC-NOT-ACCEPTANCE",
+  "caseId": "learn",
+  "files": {
+    "ignoredRawProfile": "audit/2026-11-02/.final27-mobile-hotpath-profile-learn.cpuprofile",
+    "ignoredRawTimeline": "audit/2026-11-02/.final27-mobile-hotpath-profile-learn-timeline.json",
+    "summary": "audit/2026-11-02/final27-mobile-hotpath-profile-learn-profile-summary.json"
+  },
+  "profile": {
+    "nodes": 1677,
+    "samples": 4963,
+    "startTime": 616579969987,
+    "endTime": 616588223113
+  },
+  "summary": {
+    "status": "DIAGNOSTIC-ONLY-NOT-ACCEPTANCE-OR-CAUSAL-PROOF",
+    "caseId": "learn",
+    "clockAlignment": {
+      "status": "VERIFIED-SCOPED-TIME-TICKS-BOUNDS",
+      "method": "Profiler microsecond TimeTicks minus unchanged CDP NavigationStart",
+      "profileStartPerformanceNowMs": 498.89600002765656,
+      "uncertaintyMs": 0,
+      "navigationBeforeSeconds": 616579.471091,
+      "navigationAfterSeconds": 616579.471091,
+      "timestampBeforeSeconds": 616579.960535,
+      "timestampAfterSeconds": 616588.252132,
+      "profileStartMicroseconds": 616579969987,
+      "profileEndMicroseconds": 616588223113,
+      "rangeChecksPassed": true
+    },
+    "cpuProfileAvailability": "CAPTURED-WITH-VERIFIED-TIME-TICKS-BOUNDS",
+    "phaseBounds": {
+      "fullInputCall": {
+        "startMs": 986.6999999284744,
+        "endMs": 8074.199999928474,
+        "exclusiveEnd": false,
+        "valid": true,
+        "empty": false
+      },
+      "strictPreFinalInsertion": {
+        "startMs": 1062.2999999523163,
+        "endMs": 7774,
+        "exclusiveEnd": true,
+        "valid": true,
+        "empty": false
+      },
+      "finalInsertionAndReturn": {
+        "startMs": 7774,
+        "endMs": 8074.199999928474,
+        "exclusiveEnd": false,
+        "valid": true,
+        "empty": false
+      }
+    },
+    "firstBeforeInputAtMs": 1062.2999999523163,
+    "lastBeforeInputAtMs": 7774,
+    "observedBeforeInputCount": 116,
+    "profilingEndAtMs": 8440.600000023842,
+    "longAnimationFrameAvailability": "SUPPORTED-REPORTED-BY-OBSERVER-SETUP",
+    "captured": {
+      "profileNodes": 1677,
+      "profileSamples": 4963,
+      "profileTimeDeltas": 4963,
+      "sampledIntervalsAnalyzed": 4963,
+      "longAnimationFrames": 47,
+      "longTasks": 53,
+      "typingEvents": 578,
+      "nonTypingEventsOutsideThisView": 0
+    },
+    "signedClock": {
+      "cumulativeDeltaMicroseconds": 8252638,
+      "minimumCumulativeMicroseconds": 0,
+      "maximumCumulativeMicroseconds": 8252638,
+      "negativeDeltaCount": 1,
+      "negativeDeltaMicroseconds": -31,
+      "negativeDeltaIntervalsExcludedFromWeights": 1,
+      "signedBacksteps": [
+        {
+          "sampleIndex": 4633,
+          "deltaMicroseconds": -31,
+          "cumulativeMicroseconds": 7729288
+        }
+      ],
+      "invalidDeltaCount": 0,
+      "firstInvalidDeltaIndex": null,
+      "intervalsUnplaceableAfterInvalidDelta": 0,
+      "negativeDeltasWereNotClampedInTimeline": true
+    },
+    "phaseSummaries": {
+      "fullInputCall": {
+        "bounds": {
+          "startMs": 986.6999999284744,
+          "endMs": 8074.199999928474,
+          "exclusiveEnd": false,
+          "valid": true,
+          "empty": false
+        },
+        "sampledIntervalsAssigned": 4516,
+        "assignedSampleWeightMs": 7084.802,
+        "intervalsOutsideOrCrossingBounds": 446,
+        "missingLeafNodes": 0,
+        "stackCyclesOrDepthLimits": 0,
+        "diagnosticPhaseStatus": "DIAGNOSTIC-ONLY",
+        "topSelfFunctions": [
+          {
+            "functionName": "(program)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 4765.879,
+            "inclusiveSampleWeightMs": 4765.879,
+            "selfSamples": 3008,
+            "inclusiveSamples": 3008,
+            "shareOfAssignedSampleWeight": 0.673
+          },
+          {
+            "functionName": "focus",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 150.32,
+            "inclusiveSampleWeightMs": 152.776,
+            "selfSamples": 91,
+            "inclusiveSamples": 94,
+            "shareOfAssignedSampleWeight": 0.021
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/Learn-CSXy2Boo.js",
+            "lineNumber": 1,
+            "columnNumber": 9742,
+            "selfSampleWeightMs": 92.324,
+            "inclusiveSampleWeightMs": 134.373,
+            "selfSamples": 59,
+            "inclusiveSamples": 85,
+            "shareOfAssignedSampleWeight": 0.013
+          },
+          {
+            "functionName": "$",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 1,
+            "columnNumber": 8281,
+            "selfSampleWeightMs": 91.513,
+            "inclusiveSampleWeightMs": 91.513,
+            "selfSamples": 57,
+            "inclusiveSamples": 57,
+            "shareOfAssignedSampleWeight": 0.013
+          },
+          {
+            "functionName": "Wt",
+            "resourcePath": "/assets/Learn-CSXy2Boo.js",
+            "lineNumber": 1,
+            "columnNumber": 5830,
+            "selfSampleWeightMs": 62.583,
+            "inclusiveSampleWeightMs": 172.799,
+            "selfSamples": 40,
+            "inclusiveSamples": 111,
+            "shareOfAssignedSampleWeight": 0.009
+          },
+          {
+            "functionName": "_a",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 12578,
+            "selfSampleWeightMs": 59.694,
+            "inclusiveSampleWeightMs": 72.545,
+            "selfSamples": 38,
+            "inclusiveSamples": 46,
+            "shareOfAssignedSampleWeight": 0.008
+          },
+          {
+            "functionName": "so",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 6,
+            "columnNumber": 16944,
+            "selfSampleWeightMs": 54.011,
+            "inclusiveSampleWeightMs": 658.181,
+            "selfSamples": 35,
+            "inclusiveSamples": 418,
+            "shareOfAssignedSampleWeight": 0.008
+          },
+          {
+            "functionName": "za",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 27658,
+            "selfSampleWeightMs": 52.353,
+            "inclusiveSampleWeightMs": 211.343,
+            "selfSamples": 63,
+            "inclusiveSamples": 166,
+            "shareOfAssignedSampleWeight": 0.007
+          },
+          {
+            "functionName": "cn",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 48507,
+            "selfSampleWeightMs": 48.614,
+            "inclusiveSampleWeightMs": 48.614,
+            "selfSamples": 30,
+            "inclusiveSamples": 30,
+            "shareOfAssignedSampleWeight": 0.007
+          },
+          {
+            "functionName": "setAttribute",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 47.257,
+            "inclusiveSampleWeightMs": 47.257,
+            "selfSamples": 30,
+            "inclusiveSamples": 30,
+            "shareOfAssignedSampleWeight": 0.007
+          },
+          {
+            "functionName": "Zf",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 14730,
+            "selfSampleWeightMs": 41.289,
+            "inclusiveSampleWeightMs": 155.193,
+            "selfSamples": 26,
+            "inclusiveSamples": 98,
+            "shareOfAssignedSampleWeight": 0.006
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/createLucideIcon-Gims_nPX.js",
+            "lineNumber": 0,
+            "columnNumber": 384,
+            "selfSampleWeightMs": 40.023,
+            "inclusiveSampleWeightMs": 71.621,
+            "selfSamples": 25,
+            "inclusiveSamples": 45,
+            "shareOfAssignedSampleWeight": 0.006
+          },
+          {
+            "functionName": "L",
+            "resourcePath": "/assets/keybr-engine-Bxp-oX0f.js",
+            "lineNumber": 0,
+            "columnNumber": 9434,
+            "selfSampleWeightMs": 37.726,
+            "inclusiveSampleWeightMs": 48.432,
+            "selfSamples": 24,
+            "inclusiveSamples": 35,
+            "shareOfAssignedSampleWeight": 0.005
+          },
+          {
+            "functionName": "$a",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 43956,
+            "selfSampleWeightMs": 37.571,
+            "inclusiveSampleWeightMs": 936.127,
+            "selfSamples": 23,
+            "inclusiveSamples": 592,
+            "shareOfAssignedSampleWeight": 0.005
+          },
+          {
+            "functionName": "(idle)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 34.96,
+            "inclusiveSampleWeightMs": 34.96,
+            "selfSamples": 22,
+            "inclusiveSamples": 22,
+            "shareOfAssignedSampleWeight": 0.005
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/ObservedLiveKeyboard-CwkAqEhj.js",
+            "lineNumber": 5,
+            "columnNumber": 7041,
+            "selfSampleWeightMs": 34.087,
+            "inclusiveSampleWeightMs": 44.025,
+            "selfSamples": 21,
+            "inclusiveSamples": 27,
+            "shareOfAssignedSampleWeight": 0.005
+          },
+          {
+            "functionName": "removeChild",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 31.721,
+            "inclusiveSampleWeightMs": 31.721,
+            "selfSamples": 20,
+            "inclusiveSamples": 20,
+            "shareOfAssignedSampleWeight": 0.004
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 33125,
+            "selfSampleWeightMs": 31.393,
+            "inclusiveSampleWeightMs": 276.793,
+            "selfSamples": 21,
+            "inclusiveSamples": 182,
+            "shareOfAssignedSampleWeight": 0.004
+          },
+          {
+            "functionName": "t",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 19634,
+            "selfSampleWeightMs": 30.024,
+            "inclusiveSampleWeightMs": 31.226,
+            "selfSamples": 19,
+            "inclusiveSamples": 20,
+            "shareOfAssignedSampleWeight": 0.004
+          },
+          {
+            "functionName": "L",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 6,
+            "columnNumber": 8928,
+            "selfSampleWeightMs": 29.325,
+            "inclusiveSampleWeightMs": 101.967,
+            "selfSamples": 19,
+            "inclusiveSamples": 66,
+            "shareOfAssignedSampleWeight": 0.004
+          }
+        ],
+        "topInclusiveFunctions": [
+          {
+            "functionName": "(root)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 7084.802,
+            "selfSamples": 0,
+            "inclusiveSamples": 4516,
+            "shareOfAssignedSampleWeight": 1
+          },
+          {
+            "functionName": "(program)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 4765.879,
+            "inclusiveSampleWeightMs": 4765.879,
+            "selfSamples": 3008,
+            "inclusiveSamples": 3008,
+            "shareOfAssignedSampleWeight": 0.673
+          },
+          {
+            "functionName": "gi",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 17305,
+            "selfSampleWeightMs": 11.605,
+            "inclusiveSampleWeightMs": 1937.997,
+            "selfSamples": 8,
+            "inclusiveSamples": 1264,
+            "shareOfAssignedSampleWeight": 0.274
+          },
+          {
+            "functionName": "Hc",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 17073,
+            "selfSampleWeightMs": 16.284,
+            "inclusiveSampleWeightMs": 1917.469,
+            "selfSamples": 10,
+            "inclusiveSamples": 1249,
+            "shareOfAssignedSampleWeight": 0.271
+          },
+          {
+            "functionName": "Di",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 32655,
+            "selfSampleWeightMs": 4.964,
+            "inclusiveSampleWeightMs": 1877.881,
+            "selfSamples": 3,
+            "inclusiveSamples": 1226,
+            "shareOfAssignedSampleWeight": 0.265
+          },
+          {
+            "functionName": "wu",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 8919,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 1872.917,
+            "selfSamples": 0,
+            "inclusiveSamples": 1223,
+            "shareOfAssignedSampleWeight": 0.264
+          },
+          {
+            "functionName": "tn",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 6,
+            "columnNumber": 3176,
+            "selfSampleWeightMs": 2.393,
+            "inclusiveSampleWeightMs": 1721.738,
+            "selfSamples": 2,
+            "inclusiveSamples": 1121,
+            "shareOfAssignedSampleWeight": 0.243
+          },
+          {
+            "functionName": "Fa",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 36712,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 1721.22,
+            "selfSamples": 0,
+            "inclusiveSamples": 1122,
+            "shareOfAssignedSampleWeight": 0.243
+          },
+          {
+            "functionName": "_n",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 37145,
+            "selfSampleWeightMs": 1.545,
+            "inclusiveSampleWeightMs": 1566.774,
+            "selfSamples": 1,
+            "inclusiveSamples": 1021,
+            "shareOfAssignedSampleWeight": 0.221
+          },
+          {
+            "functionName": "$l",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 39650,
+            "selfSampleWeightMs": 3.308,
+            "inclusiveSampleWeightMs": 1139.03,
+            "selfSamples": 2,
+            "inclusiveSamples": 720,
+            "shareOfAssignedSampleWeight": 0.161
+          },
+          {
+            "functionName": "rd",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 39853,
+            "selfSampleWeightMs": 14.451,
+            "inclusiveSampleWeightMs": 1135.722,
+            "selfSamples": 8,
+            "inclusiveSamples": 718,
+            "shareOfAssignedSampleWeight": 0.16
+          },
+          {
+            "functionName": "$a",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 43956,
+            "selfSampleWeightMs": 37.571,
+            "inclusiveSampleWeightMs": 936.127,
+            "selfSamples": 23,
+            "inclusiveSamples": 592,
+            "shareOfAssignedSampleWeight": 0.132
+          },
+          {
+            "functionName": "Va",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 39934,
+            "selfSampleWeightMs": 10.343,
+            "inclusiveSampleWeightMs": 826.357,
+            "selfSamples": 7,
+            "inclusiveSamples": 517,
+            "shareOfAssignedSampleWeight": 0.117
+          },
+          {
+            "functionName": "so",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 6,
+            "columnNumber": 16944,
+            "selfSampleWeightMs": 54.011,
+            "inclusiveSampleWeightMs": 658.181,
+            "selfSamples": 35,
+            "inclusiveSamples": 418,
+            "shareOfAssignedSampleWeight": 0.093
+          },
+          {
+            "functionName": "xn",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 40378,
+            "selfSampleWeightMs": 7.155,
+            "inclusiveSampleWeightMs": 580.3,
+            "selfSamples": 5,
+            "inclusiveSamples": 400,
+            "shareOfAssignedSampleWeight": 0.082
+          },
+          {
+            "functionName": "id",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 40503,
+            "selfSampleWeightMs": 3.229,
+            "inclusiveSampleWeightMs": 573.145,
+            "selfSamples": 2,
+            "inclusiveSamples": 395,
+            "shareOfAssignedSampleWeight": 0.081
+          },
+          {
+            "functionName": "wo",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 3093,
+            "selfSampleWeightMs": 1.68,
+            "inclusiveSampleWeightMs": 521.977,
+            "selfSamples": 1,
+            "inclusiveSamples": 333,
+            "shareOfAssignedSampleWeight": 0.074
+          },
+          {
+            "functionName": "Fo",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 37052,
+            "selfSampleWeightMs": 19.51,
+            "inclusiveSampleWeightMs": 301.18,
+            "selfSamples": 12,
+            "inclusiveSamples": 197,
+            "shareOfAssignedSampleWeight": 0.043
+          },
+          {
+            "functionName": "Dl",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 24266,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 283.854,
+            "selfSamples": 0,
+            "inclusiveSamples": 177,
+            "shareOfAssignedSampleWeight": 0.04
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 33125,
+            "selfSampleWeightMs": 31.393,
+            "inclusiveSampleWeightMs": 276.793,
+            "selfSamples": 21,
+            "inclusiveSamples": 182,
+            "shareOfAssignedSampleWeight": 0.039
+          }
+        ],
+        "eventStatisticsByEventStartTime": {
+          "status": "DIAGNOSTIC-ONLY-NOT-AN-ACCEPTANCE-RESULT",
+          "observedEvents": 578,
+          "p98ObservedDurationMs": 144,
+          "maxObservedDurationMs": 304
+        },
+        "overlappingLongAnimationFrames": 45,
+        "reportedForcedStyleAndLayoutForOverlappingScriptsMs": 189.4,
+        "reportedForcedStyleAndLayoutForFullyContainedScriptsMs": 189.4,
+        "overlappingScriptsWithoutForcedLayoutField": 0,
+        "invokerCategories": [
+          {
+            "invokerType": "event-listener",
+            "scripts": 49,
+            "reportedScriptDurationMs": 1142.2,
+            "reportedForcedStyleAndLayoutMs": 189.4
+          }
+        ],
+        "overlappingLongTasks": 50,
+        "maxReportedOverlappingLongTaskMs": 292,
+        "overlapTotalsAreNonexclusive": true
+      },
+      "strictPreFinalInsertion": {
+        "bounds": {
+          "startMs": 1062.2999999523163,
+          "endMs": 7774,
+          "exclusiveEnd": true,
+          "valid": true,
+          "empty": false
+        },
+        "sampledIntervalsAssigned": 4236,
+        "assignedSampleWeightMs": 6710.285,
+        "intervalsOutsideOrCrossingBounds": 726,
+        "missingLeafNodes": 0,
+        "stackCyclesOrDepthLimits": 0,
+        "diagnosticPhaseStatus": "DIAGNOSTIC-ONLY",
+        "topSelfFunctions": [
+          {
+            "functionName": "(program)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 4723.423,
+            "inclusiveSampleWeightMs": 4723.423,
+            "selfSamples": 2981,
+            "inclusiveSamples": 2981,
+            "shareOfAssignedSampleWeight": 0.704
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/Learn-CSXy2Boo.js",
+            "lineNumber": 1,
+            "columnNumber": 9742,
+            "selfSampleWeightMs": 92.324,
+            "inclusiveSampleWeightMs": 134.373,
+            "selfSamples": 59,
+            "inclusiveSamples": 85,
+            "shareOfAssignedSampleWeight": 0.014
+          },
+          {
+            "functionName": "$",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 1,
+            "columnNumber": 8281,
+            "selfSampleWeightMs": 91.513,
+            "inclusiveSampleWeightMs": 91.513,
+            "selfSamples": 57,
+            "inclusiveSamples": 57,
+            "shareOfAssignedSampleWeight": 0.014
+          },
+          {
+            "functionName": "Wt",
+            "resourcePath": "/assets/Learn-CSXy2Boo.js",
+            "lineNumber": 1,
+            "columnNumber": 5830,
+            "selfSampleWeightMs": 60.955,
+            "inclusiveSampleWeightMs": 167.54,
+            "selfSamples": 39,
+            "inclusiveSamples": 106,
+            "shareOfAssignedSampleWeight": 0.009
+          },
+          {
+            "functionName": "_a",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 12578,
+            "selfSampleWeightMs": 58.455,
+            "inclusiveSampleWeightMs": 71.306,
+            "selfSamples": 37,
+            "inclusiveSamples": 45,
+            "shareOfAssignedSampleWeight": 0.009
+          },
+          {
+            "functionName": "so",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 6,
+            "columnNumber": 16944,
+            "selfSampleWeightMs": 54.011,
+            "inclusiveSampleWeightMs": 645.88,
+            "selfSamples": 35,
+            "inclusiveSamples": 407,
+            "shareOfAssignedSampleWeight": 0.008
+          },
+          {
+            "functionName": "cn",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 48507,
+            "selfSampleWeightMs": 48.614,
+            "inclusiveSampleWeightMs": 48.614,
+            "selfSamples": 30,
+            "inclusiveSamples": 30,
+            "shareOfAssignedSampleWeight": 0.007
+          },
+          {
+            "functionName": "setAttribute",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 45.586,
+            "inclusiveSampleWeightMs": 45.586,
+            "selfSamples": 29,
+            "inclusiveSamples": 29,
+            "shareOfAssignedSampleWeight": 0.007
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/createLucideIcon-Gims_nPX.js",
+            "lineNumber": 0,
+            "columnNumber": 384,
+            "selfSampleWeightMs": 40.023,
+            "inclusiveSampleWeightMs": 71.621,
+            "selfSamples": 25,
+            "inclusiveSamples": 45,
+            "shareOfAssignedSampleWeight": 0.006
+          },
+          {
+            "functionName": "za",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 27658,
+            "selfSampleWeightMs": 39.431,
+            "inclusiveSampleWeightMs": 183.726,
+            "selfSamples": 25,
+            "inclusiveSamples": 116,
+            "shareOfAssignedSampleWeight": 0.006
+          },
+          {
+            "functionName": "Zf",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 14730,
+            "selfSampleWeightMs": 38.311,
+            "inclusiveSampleWeightMs": 135.666,
+            "selfSamples": 24,
+            "inclusiveSamples": 85,
+            "shareOfAssignedSampleWeight": 0.006
+          },
+          {
+            "functionName": "$a",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 43956,
+            "selfSampleWeightMs": 37.571,
+            "inclusiveSampleWeightMs": 920.443,
+            "selfSamples": 23,
+            "inclusiveSamples": 579,
+            "shareOfAssignedSampleWeight": 0.006
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/ObservedLiveKeyboard-CwkAqEhj.js",
+            "lineNumber": 5,
+            "columnNumber": 7041,
+            "selfSampleWeightMs": 34.087,
+            "inclusiveSampleWeightMs": 44.025,
+            "selfSamples": 21,
+            "inclusiveSamples": 27,
+            "shareOfAssignedSampleWeight": 0.005
+          },
+          {
+            "functionName": "L",
+            "resourcePath": "/assets/keybr-engine-Bxp-oX0f.js",
+            "lineNumber": 0,
+            "columnNumber": 9434,
+            "selfSampleWeightMs": 33.418,
+            "inclusiveSampleWeightMs": 41.178,
+            "selfSamples": 21,
+            "inclusiveSamples": 26,
+            "shareOfAssignedSampleWeight": 0.005
+          },
+          {
+            "functionName": "t",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 19634,
+            "selfSampleWeightMs": 30.024,
+            "inclusiveSampleWeightMs": 31.226,
+            "selfSamples": 19,
+            "inclusiveSamples": 20,
+            "shareOfAssignedSampleWeight": 0.004
+          },
+          {
+            "functionName": "L",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 6,
+            "columnNumber": 8928,
+            "selfSampleWeightMs": 29.325,
+            "inclusiveSampleWeightMs": 101.967,
+            "selfSamples": 19,
+            "inclusiveSamples": 66,
+            "shareOfAssignedSampleWeight": 0.004
+          },
+          {
+            "functionName": "we",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 6,
+            "columnNumber": 10383,
+            "selfSampleWeightMs": 28.955,
+            "inclusiveSampleWeightMs": 145.891,
+            "selfSamples": 17,
+            "inclusiveSamples": 92,
+            "shareOfAssignedSampleWeight": 0.004
+          },
+          {
+            "functionName": "$e",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 1,
+            "columnNumber": 2839,
+            "selfSampleWeightMs": 28.428,
+            "inclusiveSampleWeightMs": 28.428,
+            "selfSamples": 18,
+            "inclusiveSamples": 18,
+            "shareOfAssignedSampleWeight": 0.004
+          },
+          {
+            "functionName": "rr",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 6431,
+            "selfSampleWeightMs": 27.672,
+            "inclusiveSampleWeightMs": 27.672,
+            "selfSamples": 18,
+            "inclusiveSamples": 18,
+            "shareOfAssignedSampleWeight": 0.004
+          },
+          {
+            "functionName": "w",
+            "resourcePath": "/assets/createLucideIcon-Gims_nPX.js",
+            "lineNumber": 0,
+            "columnNumber": 48,
+            "selfSampleWeightMs": 25.461,
+            "inclusiveSampleWeightMs": 25.461,
+            "selfSamples": 16,
+            "inclusiveSamples": 16,
+            "shareOfAssignedSampleWeight": 0.004
+          }
+        ],
+        "topInclusiveFunctions": [
+          {
+            "functionName": "(root)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 6710.285,
+            "selfSamples": 0,
+            "inclusiveSamples": 4236,
+            "shareOfAssignedSampleWeight": 1
+          },
+          {
+            "functionName": "(program)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 4723.423,
+            "inclusiveSampleWeightMs": 4723.423,
+            "selfSamples": 2981,
+            "inclusiveSamples": 2981,
+            "shareOfAssignedSampleWeight": 0.704
+          },
+          {
+            "functionName": "gi",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 17305,
+            "selfSampleWeightMs": 11.499,
+            "inclusiveSampleWeightMs": 1692.021,
+            "selfSamples": 7,
+            "inclusiveSamples": 1068,
+            "shareOfAssignedSampleWeight": 0.252
+          },
+          {
+            "functionName": "Hc",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 17073,
+            "selfSampleWeightMs": 16.284,
+            "inclusiveSampleWeightMs": 1671.493,
+            "selfSamples": 10,
+            "inclusiveSamples": 1053,
+            "shareOfAssignedSampleWeight": 0.249
+          },
+          {
+            "functionName": "Di",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 32655,
+            "selfSampleWeightMs": 4.964,
+            "inclusiveSampleWeightMs": 1631.905,
+            "selfSamples": 3,
+            "inclusiveSamples": 1030,
+            "shareOfAssignedSampleWeight": 0.243
+          },
+          {
+            "functionName": "wu",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 8919,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 1626.941,
+            "selfSamples": 0,
+            "inclusiveSamples": 1027,
+            "shareOfAssignedSampleWeight": 0.242
+          },
+          {
+            "functionName": "tn",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 6,
+            "columnNumber": 3176,
+            "selfSampleWeightMs": 2.393,
+            "inclusiveSampleWeightMs": 1492.675,
+            "selfSamples": 2,
+            "inclusiveSamples": 942,
+            "shareOfAssignedSampleWeight": 0.222
+          },
+          {
+            "functionName": "Fa",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 36712,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 1490.282,
+            "selfSamples": 0,
+            "inclusiveSamples": 940,
+            "shareOfAssignedSampleWeight": 0.222
+          },
+          {
+            "functionName": "_n",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 37145,
+            "selfSampleWeightMs": 1.545,
+            "inclusiveSampleWeightMs": 1350.751,
+            "selfSamples": 1,
+            "inclusiveSamples": 851,
+            "shareOfAssignedSampleWeight": 0.201
+          },
+          {
+            "functionName": "$l",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 39650,
+            "selfSampleWeightMs": 3.308,
+            "inclusiveSampleWeightMs": 1102.105,
+            "selfSamples": 2,
+            "inclusiveSamples": 693,
+            "shareOfAssignedSampleWeight": 0.164
+          },
+          {
+            "functionName": "rd",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 39853,
+            "selfSampleWeightMs": 14.451,
+            "inclusiveSampleWeightMs": 1098.797,
+            "selfSamples": 8,
+            "inclusiveSamples": 691,
+            "shareOfAssignedSampleWeight": 0.164
+          },
+          {
+            "functionName": "$a",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 43956,
+            "selfSampleWeightMs": 37.571,
+            "inclusiveSampleWeightMs": 920.443,
+            "selfSamples": 23,
+            "inclusiveSamples": 579,
+            "shareOfAssignedSampleWeight": 0.137
+          },
+          {
+            "functionName": "Va",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 39934,
+            "selfSampleWeightMs": 10.343,
+            "inclusiveSampleWeightMs": 799.399,
+            "selfSamples": 7,
+            "inclusiveSamples": 497,
+            "shareOfAssignedSampleWeight": 0.119
+          },
+          {
+            "functionName": "so",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 6,
+            "columnNumber": 16944,
+            "selfSampleWeightMs": 54.011,
+            "inclusiveSampleWeightMs": 645.88,
+            "selfSamples": 35,
+            "inclusiveSamples": 407,
+            "shareOfAssignedSampleWeight": 0.096
+          },
+          {
+            "functionName": "wo",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 3093,
+            "selfSampleWeightMs": 1.68,
+            "inclusiveSampleWeightMs": 512.934,
+            "selfSamples": 1,
+            "inclusiveSamples": 325,
+            "shareOfAssignedSampleWeight": 0.076
+          },
+          {
+            "functionName": "xn",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 40378,
+            "selfSampleWeightMs": 7.155,
+            "inclusiveSampleWeightMs": 386.287,
+            "selfSamples": 5,
+            "inclusiveSamples": 245,
+            "shareOfAssignedSampleWeight": 0.058
+          },
+          {
+            "functionName": "id",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 40503,
+            "selfSampleWeightMs": 1.654,
+            "inclusiveSampleWeightMs": 379.132,
+            "selfSamples": 1,
+            "inclusiveSamples": 240,
+            "shareOfAssignedSampleWeight": 0.057
+          },
+          {
+            "functionName": "Fo",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 37052,
+            "selfSampleWeightMs": 19.51,
+            "inclusiveSampleWeightMs": 273.102,
+            "selfSamples": 12,
+            "inclusiveSamples": 174,
+            "shareOfAssignedSampleWeight": 0.041
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 33125,
+            "selfSampleWeightMs": 25.075,
+            "inclusiveSampleWeightMs": 248.715,
+            "selfSamples": 17,
+            "inclusiveSamples": 159,
+            "shareOfAssignedSampleWeight": 0.037
+          },
+          {
+            "functionName": "pa",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 2172,
+            "selfSampleWeightMs": 6.62,
+            "inclusiveSampleWeightMs": 202.373,
+            "selfSamples": 4,
+            "inclusiveSamples": 129,
+            "shareOfAssignedSampleWeight": 0.03
+          }
+        ],
+        "eventStatisticsByEventStartTime": {
+          "status": "DIAGNOSTIC-ONLY-NOT-AN-ACCEPTANCE-RESULT",
+          "observedEvents": 574,
+          "p98ObservedDurationMs": 128,
+          "maxObservedDurationMs": 304
+        },
+        "overlappingLongAnimationFrames": 45,
+        "reportedForcedStyleAndLayoutForOverlappingScriptsMs": 41.2,
+        "reportedForcedStyleAndLayoutForFullyContainedScriptsMs": 41.2,
+        "overlappingScriptsWithoutForcedLayoutField": 0,
+        "invokerCategories": [
+          {
+            "invokerType": "event-listener",
+            "scripts": 46,
+            "reportedScriptDurationMs": 848.7,
+            "reportedForcedStyleAndLayoutMs": 41.2
+          }
+        ],
+        "overlappingLongTasks": 50,
+        "maxReportedOverlappingLongTaskMs": 292,
+        "overlapTotalsAreNonexclusive": true
+      },
+      "finalInsertionAndReturn": {
+        "bounds": {
+          "startMs": 7774,
+          "endMs": 8074.199999928474,
+          "exclusiveEnd": false,
+          "valid": true,
+          "empty": false
+        },
+        "sampledIntervalsAssigned": 231,
+        "assignedSampleWeightMs": 298.266,
+        "intervalsOutsideOrCrossingBounds": 4731,
+        "missingLeafNodes": 0,
+        "stackCyclesOrDepthLimits": 0,
+        "diagnosticPhaseStatus": "DIAGNOSTIC-ONLY",
+        "topSelfFunctions": [
+          {
+            "functionName": "focus",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 150.32,
+            "inclusiveSampleWeightMs": 152.776,
+            "selfSamples": 91,
+            "inclusiveSamples": 94,
+            "shareOfAssignedSampleWeight": 0.504
+          },
+          {
+            "functionName": "(program)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 16.167,
+            "inclusiveSampleWeightMs": 16.167,
+            "selfSamples": 10,
+            "inclusiveSamples": 10,
+            "shareOfAssignedSampleWeight": 0.054
+          },
+          {
+            "functionName": "za",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 27658,
+            "selfSampleWeightMs": 12.922,
+            "inclusiveSampleWeightMs": 24.544,
+            "selfSamples": 38,
+            "inclusiveSamples": 48,
+            "shareOfAssignedSampleWeight": 0.043
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/index-CoZNsTOm.js",
+            "lineNumber": 4,
+            "columnNumber": 15273,
+            "selfSampleWeightMs": 12.554,
+            "inclusiveSampleWeightMs": 12.554,
+            "selfSamples": 8,
+            "inclusiveSamples": 8,
+            "shareOfAssignedSampleWeight": 0.042
+          },
+          {
+            "functionName": "removeChild",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 9.607,
+            "inclusiveSampleWeightMs": 9.607,
+            "selfSamples": 6,
+            "inclusiveSamples": 6,
+            "shareOfAssignedSampleWeight": 0.032
+          },
+          {
+            "functionName": "ba",
+            "resourcePath": "/assets/index-CoZNsTOm.js",
+            "lineNumber": 4,
+            "columnNumber": 15380,
+            "selfSampleWeightMs": 8.301,
+            "inclusiveSampleWeightMs": 27.642,
+            "selfSamples": 5,
+            "inclusiveSamples": 18,
+            "shareOfAssignedSampleWeight": 0.028
+          },
+          {
+            "functionName": "Pa",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 24536,
+            "selfSampleWeightMs": 7,
+            "inclusiveSampleWeightMs": 7,
+            "selfSamples": 5,
+            "inclusiveSamples": 5,
+            "shareOfAssignedSampleWeight": 0.023
+          },
+          {
+            "functionName": "put",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 4.432,
+            "inclusiveSampleWeightMs": 4.432,
+            "selfSamples": 3,
+            "inclusiveSamples": 3,
+            "shareOfAssignedSampleWeight": 0.015
+          },
+          {
+            "functionName": "(idle)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 3.608,
+            "inclusiveSampleWeightMs": 3.608,
+            "selfSamples": 2,
+            "inclusiveSamples": 2,
+            "shareOfAssignedSampleWeight": 0.012
+          },
+          {
+            "functionName": "appendChild",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 3.552,
+            "inclusiveSampleWeightMs": 3.552,
+            "selfSamples": 3,
+            "inclusiveSamples": 3,
+            "shareOfAssignedSampleWeight": 0.012
+          },
+          {
+            "functionName": "D",
+            "resourcePath": "/assets/metrics-CaLrEdo5.js",
+            "lineNumber": 0,
+            "columnNumber": 4947,
+            "selfSampleWeightMs": 3.444,
+            "inclusiveSampleWeightMs": 13.779,
+            "selfSamples": 2,
+            "inclusiveSamples": 9,
+            "shareOfAssignedSampleWeight": 0.012
+          },
+          {
+            "functionName": "createElement",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 3.222,
+            "inclusiveSampleWeightMs": 3.222,
+            "selfSamples": 2,
+            "inclusiveSamples": 2,
+            "shareOfAssignedSampleWeight": 0.011
+          },
+          {
+            "functionName": "Zf",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 14730,
+            "selfSampleWeightMs": 2.978,
+            "inclusiveSampleWeightMs": 16.686,
+            "selfSamples": 2,
+            "inclusiveSamples": 11,
+            "shareOfAssignedSampleWeight": 0.01
+          },
+          {
+            "functionName": "fe",
+            "resourcePath": "/assets/index-CoZNsTOm.js",
+            "lineNumber": 4,
+            "columnNumber": 15742,
+            "selfSampleWeightMs": 2.614,
+            "inclusiveSampleWeightMs": 2.614,
+            "selfSamples": 2,
+            "inclusiveSamples": 2,
+            "shareOfAssignedSampleWeight": 0.009
+          },
+          {
+            "functionName": "L",
+            "resourcePath": "/assets/keybr-engine-Bxp-oX0f.js",
+            "lineNumber": 0,
+            "columnNumber": 9434,
+            "selfSampleWeightMs": 2.587,
+            "inclusiveSampleWeightMs": 5.533,
+            "selfSamples": 2,
+            "inclusiveSamples": 8,
+            "shareOfAssignedSampleWeight": 0.009
+          },
+          {
+            "functionName": "Zn",
+            "resourcePath": "/assets/index-CoZNsTOm.js",
+            "lineNumber": 4,
+            "columnNumber": 3309,
+            "selfSampleWeightMs": 2.559,
+            "inclusiveSampleWeightMs": 2.559,
+            "selfSamples": 1,
+            "inclusiveSamples": 1,
+            "shareOfAssignedSampleWeight": 0.009
+          },
+          {
+            "functionName": "vu",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 8775,
+            "selfSampleWeightMs": 2.35,
+            "inclusiveSampleWeightMs": 4.225,
+            "selfSamples": 2,
+            "inclusiveSamples": 5,
+            "shareOfAssignedSampleWeight": 0.008
+          },
+          {
+            "functionName": "na",
+            "resourcePath": "/assets/index-CoZNsTOm.js",
+            "lineNumber": 4,
+            "columnNumber": 5448,
+            "selfSampleWeightMs": 2.061,
+            "inclusiveSampleWeightMs": 6.297,
+            "selfSamples": 1,
+            "inclusiveSamples": 3,
+            "shareOfAssignedSampleWeight": 0.007
+          },
+          {
+            "functionName": "W",
+            "resourcePath": "/assets/keybr-engine-Bxp-oX0f.js",
+            "lineNumber": 0,
+            "columnNumber": 3557,
+            "selfSampleWeightMs": 2.014,
+            "inclusiveSampleWeightMs": 2.014,
+            "selfSamples": 1,
+            "inclusiveSamples": 1,
+            "shareOfAssignedSampleWeight": 0.007
+          },
+          {
+            "functionName": "querySelector",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 1.998,
+            "inclusiveSampleWeightMs": 1.998,
+            "selfSamples": 1,
+            "inclusiveSamples": 1,
+            "shareOfAssignedSampleWeight": 0.007
+          }
+        ],
+        "topInclusiveFunctions": [
+          {
+            "functionName": "(root)",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 298.266,
+            "selfSamples": 0,
+            "inclusiveSamples": 231,
+            "shareOfAssignedSampleWeight": 1
+          },
+          {
+            "functionName": "Di",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 32655,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 239.362,
+            "selfSamples": 0,
+            "inclusiveSamples": 192,
+            "shareOfAssignedSampleWeight": 0.803
+          },
+          {
+            "functionName": "gi",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 17305,
+            "selfSampleWeightMs": 0.106,
+            "inclusiveSampleWeightMs": 239.362,
+            "selfSamples": 1,
+            "inclusiveSamples": 192,
+            "shareOfAssignedSampleWeight": 0.803
+          },
+          {
+            "functionName": "Hc",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 17073,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 239.362,
+            "selfSamples": 0,
+            "inclusiveSamples": 192,
+            "shareOfAssignedSampleWeight": 0.803
+          },
+          {
+            "functionName": "wu",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 5,
+            "columnNumber": 8919,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 239.362,
+            "selfSamples": 0,
+            "inclusiveSamples": 192,
+            "shareOfAssignedSampleWeight": 0.803
+          },
+          {
+            "functionName": "Fa",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 36712,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 217.898,
+            "selfSamples": 0,
+            "inclusiveSamples": 173,
+            "shareOfAssignedSampleWeight": 0.731
+          },
+          {
+            "functionName": "_n",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 37145,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 216.023,
+            "selfSamples": 0,
+            "inclusiveSamples": 170,
+            "shareOfAssignedSampleWeight": 0.724
+          },
+          {
+            "functionName": "tn",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 6,
+            "columnNumber": 3176,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 216.023,
+            "selfSamples": 0,
+            "inclusiveSamples": 170,
+            "shareOfAssignedSampleWeight": 0.724
+          },
+          {
+            "functionName": "id",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 40503,
+            "selfSampleWeightMs": 1.575,
+            "inclusiveSampleWeightMs": 190.94,
+            "selfSamples": 1,
+            "inclusiveSamples": 153,
+            "shareOfAssignedSampleWeight": 0.64
+          },
+          {
+            "functionName": "xn",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 40378,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 190.94,
+            "selfSamples": 0,
+            "inclusiveSamples": 153,
+            "shareOfAssignedSampleWeight": 0.64
+          },
+          {
+            "functionName": "er",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 41495,
+            "selfSampleWeightMs": 1.486,
+            "inclusiveSampleWeightMs": 162.986,
+            "selfSamples": 1,
+            "inclusiveSamples": 101,
+            "shareOfAssignedSampleWeight": 0.546
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/Learn-CSXy2Boo.js",
+            "lineNumber": 1,
+            "columnNumber": 1814,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 152.776,
+            "selfSamples": 0,
+            "inclusiveSamples": 94,
+            "shareOfAssignedSampleWeight": 0.512
+          },
+          {
+            "functionName": "Dl",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 24266,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 152.776,
+            "selfSamples": 0,
+            "inclusiveSamples": 94,
+            "shareOfAssignedSampleWeight": 0.512
+          },
+          {
+            "functionName": "focus",
+            "resourcePath": "",
+            "lineNumber": -1,
+            "columnNumber": -1,
+            "selfSampleWeightMs": 150.32,
+            "inclusiveSampleWeightMs": 152.776,
+            "selfSamples": 91,
+            "inclusiveSamples": 94,
+            "shareOfAssignedSampleWeight": 0.512
+          },
+          {
+            "functionName": "ba",
+            "resourcePath": "/assets/index-CoZNsTOm.js",
+            "lineNumber": 4,
+            "columnNumber": 15380,
+            "selfSampleWeightMs": 8.301,
+            "inclusiveSampleWeightMs": 27.642,
+            "selfSamples": 5,
+            "inclusiveSamples": 18,
+            "shareOfAssignedSampleWeight": 0.093
+          },
+          {
+            "functionName": "$l",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 39650,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 26.958,
+            "selfSamples": 0,
+            "inclusiveSamples": 20,
+            "shareOfAssignedSampleWeight": 0.09
+          },
+          {
+            "functionName": "rd",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 39853,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 26.958,
+            "selfSamples": 0,
+            "inclusiveSamples": 20,
+            "shareOfAssignedSampleWeight": 0.09
+          },
+          {
+            "functionName": "Va",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 39934,
+            "selfSampleWeightMs": 0,
+            "inclusiveSampleWeightMs": 26.958,
+            "selfSamples": 0,
+            "inclusiveSamples": 20,
+            "shareOfAssignedSampleWeight": 0.09
+          },
+          {
+            "functionName": "(anonymous)",
+            "resourcePath": "/assets/useTestResults-CEq9Mpsf.js",
+            "lineNumber": 1,
+            "columnNumber": 5090,
+            "selfSampleWeightMs": 0.135,
+            "inclusiveSampleWeightMs": 25.515,
+            "selfSamples": 1,
+            "inclusiveSamples": 18,
+            "shareOfAssignedSampleWeight": 0.086
+          },
+          {
+            "functionName": "za",
+            "resourcePath": "/assets/index-DPOjz0oF.js",
+            "lineNumber": 8,
+            "columnNumber": 27658,
+            "selfSampleWeightMs": 12.922,
+            "inclusiveSampleWeightMs": 24.544,
+            "selfSamples": 38,
+            "inclusiveSamples": 48,
+            "shareOfAssignedSampleWeight": 0.082
+          }
+        ],
+        "eventStatisticsByEventStartTime": {
+          "status": "DIAGNOSTIC-ONLY-NOT-AN-ACCEPTANCE-RESULT",
+          "observedEvents": 1,
+          "p98ObservedDurationMs": 288,
+          "maxObservedDurationMs": 288
+        },
+        "overlappingLongAnimationFrames": 1,
+        "reportedForcedStyleAndLayoutForOverlappingScriptsMs": 148.2,
+        "reportedForcedStyleAndLayoutForFullyContainedScriptsMs": 148.2,
+        "overlappingScriptsWithoutForcedLayoutField": 0,
+        "invokerCategories": [
+          {
+            "invokerType": "event-listener",
+            "scripts": 1,
+            "reportedScriptDurationMs": 274,
+            "reportedForcedStyleAndLayoutMs": 148.2
+          }
+        ],
+        "overlappingLongTasks": 1,
+        "maxReportedOverlappingLongTaskMs": 292,
+        "overlapTotalsAreNonexclusive": true
+      }
+    },
+    "longEventTimeline": [
+      {
+        "name": "keyup",
+        "startTime": 7758.100000023842,
+        "duration": 304,
+        "interactionId": 9074,
+        "processingStart": 7764,
+        "processingEnd": 7764.399999976158,
+        "inputDelayMs": 5.9,
+        "processingDurationMs": 0.4,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 1,
+        "overlappingFrames": [
+          {
+            "index": 46,
+            "startTime": 7763.799999952316,
+            "duration": 289.5,
+            "endTime": 8053.299999952316,
+            "blockingDuration": 238.1,
+            "renderStart": 8052.5,
+            "styleAndLayoutStart": 8052.600000023842,
+            "firstUIEventTimestamp": 7758.100000023842,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 7778.199999928474,
+                "duration": 274,
+                "forcedStyleAndLayoutDuration": 148.2,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 289.5
+          }
+        ],
+        "overlapLongTaskCount": 1,
+        "overlappingLongTasks": [
+          {
+            "startTime": 7765.299999952316,
+            "duration": 292,
+            "overlapWithEventSpanMs": 292
+          }
+        ]
+      },
+      {
+        "name": "keydown",
+        "startTime": 7765.799999952316,
+        "duration": 296,
+        "interactionId": 9081,
+        "processingStart": 7768.600000023842,
+        "processingEnd": 7769.699999928474,
+        "inputDelayMs": 2.8,
+        "processingDurationMs": 1.1,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 1,
+        "overlappingFrames": [
+          {
+            "index": 46,
+            "startTime": 7763.799999952316,
+            "duration": 289.5,
+            "endTime": 8053.299999952316,
+            "blockingDuration": 238.1,
+            "renderStart": 8052.5,
+            "styleAndLayoutStart": 8052.600000023842,
+            "firstUIEventTimestamp": 7758.100000023842,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 7778.199999928474,
+                "duration": 274,
+                "forcedStyleAndLayoutDuration": 148.2,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 287.5
+          }
+        ],
+        "overlapLongTaskCount": 1,
+        "overlappingLongTasks": [
+          {
+            "startTime": 7765.299999952316,
+            "duration": 292,
+            "overlapWithEventSpanMs": 291.5
+          }
+        ]
+      },
+      {
+        "name": "keypress",
+        "startTime": 7765.799999952316,
+        "duration": 296,
+        "interactionId": 9081,
+        "processingStart": 7769.699999928474,
+        "processingEnd": 8052.199999928474,
+        "inputDelayMs": 3.9,
+        "processingDurationMs": 282.5,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 1,
+        "overlappingFrames": [
+          {
+            "index": 46,
+            "startTime": 7763.799999952316,
+            "duration": 289.5,
+            "endTime": 8053.299999952316,
+            "blockingDuration": 238.1,
+            "renderStart": 8052.5,
+            "styleAndLayoutStart": 8052.600000023842,
+            "firstUIEventTimestamp": 7758.100000023842,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 7778.199999928474,
+                "duration": 274,
+                "forcedStyleAndLayoutDuration": 148.2,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 287.5
+          }
+        ],
+        "overlapLongTaskCount": 1,
+        "overlappingLongTasks": [
+          {
+            "startTime": 7765.299999952316,
+            "duration": 292,
+            "overlapWithEventSpanMs": 291.5
+          }
+        ]
+      },
+      {
+        "name": "beforeinput",
+        "startTime": 7773.5,
+        "duration": 288,
+        "interactionId": 0,
+        "processingStart": 7773.5,
+        "processingEnd": 7774.100000023842,
+        "inputDelayMs": 0,
+        "processingDurationMs": 0.6,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 1,
+        "overlappingFrames": [
+          {
+            "index": 46,
+            "startTime": 7763.799999952316,
+            "duration": 289.5,
+            "endTime": 8053.299999952316,
+            "blockingDuration": 238.1,
+            "renderStart": 8052.5,
+            "styleAndLayoutStart": 8052.600000023842,
+            "firstUIEventTimestamp": 7758.100000023842,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 7778.199999928474,
+                "duration": 274,
+                "forcedStyleAndLayoutDuration": 148.2,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 279.8
+          }
+        ],
+        "overlapLongTaskCount": 1,
+        "overlappingLongTasks": [
+          {
+            "startTime": 7765.299999952316,
+            "duration": 292,
+            "overlapWithEventSpanMs": 283.8
+          }
+        ]
+      },
+      {
+        "name": "input",
+        "startTime": 7776.899999976158,
+        "duration": 288,
+        "interactionId": 0,
+        "processingStart": 7778,
+        "processingEnd": 8052.199999928474,
+        "inputDelayMs": 1.1,
+        "processingDurationMs": 274.2,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "finalInsertionAndReturn"
+        ],
+        "overlapFrameCount": 1,
+        "overlappingFrames": [
+          {
+            "index": 46,
+            "startTime": 7763.799999952316,
+            "duration": 289.5,
+            "endTime": 8053.299999952316,
+            "blockingDuration": 238.1,
+            "renderStart": 8052.5,
+            "styleAndLayoutStart": 8052.600000023842,
+            "firstUIEventTimestamp": 7758.100000023842,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 7778.199999928474,
+                "duration": 274,
+                "forcedStyleAndLayoutDuration": 148.2,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 276.4
+          }
+        ],
+        "overlapLongTaskCount": 1,
+        "overlappingLongTasks": [
+          {
+            "startTime": 7765.299999952316,
+            "duration": 292,
+            "overlapWithEventSpanMs": 280.4
+          }
+        ]
+      },
+      {
+        "name": "keydown",
+        "startTime": 5308.100000023842,
+        "duration": 176,
+        "interactionId": 8801,
+        "processingStart": 5348.399999976158,
+        "processingEnd": 5350.399999976158,
+        "inputDelayMs": 40.3,
+        "processingDurationMs": 2,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 3,
+        "overlappingFrames": [
+          {
+            "index": 28,
+            "startTime": 5236.699999928474,
+            "duration": 84.80000007152557,
+            "endTime": 5321.5,
+            "blockingDuration": 26.5,
+            "renderStart": 5307.399999976158,
+            "styleAndLayoutStart": 5309.299999952316,
+            "firstUIEventTimestamp": 5208.299999952316,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 5255.299999952316,
+                "duration": 20.100000023841858,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 13.4
+          },
+          {
+            "index": 29,
+            "startTime": 5347.5,
+            "duration": 93.39999997615814,
+            "endTime": 5440.899999976158,
+            "blockingDuration": 35.8,
+            "renderStart": 5432.199999928474,
+            "styleAndLayoutStart": 5433.100000023842,
+            "firstUIEventTimestamp": 5308.100000023842,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 5373.5,
+                "duration": 34.299999952316284,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 93.4
+          },
+          {
+            "index": 30,
+            "startTime": 5463,
+            "duration": 62,
+            "endTime": 5525,
+            "blockingDuration": 0.3,
+            "renderStart": 5510.600000023842,
+            "styleAndLayoutStart": 5511.5,
+            "firstUIEventTimestamp": 5432.899999976158,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 5475.5,
+                "duration": 9.799999952316284,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 21.1
+          }
+        ],
+        "overlapLongTaskCount": 1,
+        "overlappingLongTasks": [
+          {
+            "startTime": 5347.5,
+            "duration": 77,
+            "overlapWithEventSpanMs": 77
+          }
+        ]
+      },
+      {
+        "name": "keypress",
+        "startTime": 5308.100000023842,
+        "duration": 176,
+        "interactionId": 8801,
+        "processingStart": 5350.399999976158,
+        "processingEnd": 5424.600000023842,
+        "inputDelayMs": 42.3,
+        "processingDurationMs": 74.2,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 3,
+        "overlappingFrames": [
+          {
+            "index": 28,
+            "startTime": 5236.699999928474,
+            "duration": 84.80000007152557,
+            "endTime": 5321.5,
+            "blockingDuration": 26.5,
+            "renderStart": 5307.399999976158,
+            "styleAndLayoutStart": 5309.299999952316,
+            "firstUIEventTimestamp": 5208.299999952316,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 5255.299999952316,
+                "duration": 20.100000023841858,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 13.4
+          },
+          {
+            "index": 29,
+            "startTime": 5347.5,
+            "duration": 93.39999997615814,
+            "endTime": 5440.899999976158,
+            "blockingDuration": 35.8,
+            "renderStart": 5432.199999928474,
+            "styleAndLayoutStart": 5433.100000023842,
+            "firstUIEventTimestamp": 5308.100000023842,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 5373.5,
+                "duration": 34.299999952316284,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 93.4
+          },
+          {
+            "index": 30,
+            "startTime": 5463,
+            "duration": 62,
+            "endTime": 5525,
+            "blockingDuration": 0.3,
+            "renderStart": 5510.600000023842,
+            "styleAndLayoutStart": 5511.5,
+            "firstUIEventTimestamp": 5432.899999976158,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 5475.5,
+                "duration": 9.799999952316284,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 21.1
+          }
+        ],
+        "overlapLongTaskCount": 1,
+        "overlappingLongTasks": [
+          {
+            "startTime": 5347.5,
+            "duration": 77,
+            "overlapWithEventSpanMs": 77
+          }
+        ]
+      },
+      {
+        "name": "keydown",
+        "startTime": 5016.100000023842,
+        "duration": 152,
+        "interactionId": 8780,
+        "processingStart": 5053.399999976158,
+        "processingEnd": 5055.399999976158,
+        "inputDelayMs": 37.3,
+        "processingDurationMs": 2,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 3,
+        "overlappingFrames": [
+          {
+            "index": 25,
+            "startTime": 4966,
+            "duration": 59.60000002384186,
+            "endTime": 5025.600000023842,
+            "blockingDuration": 3.6,
+            "renderStart": 5015,
+            "styleAndLayoutStart": 5016,
+            "firstUIEventTimestamp": 4931.799999952316,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 4987.699999928474,
+                "duration": 15.700000047683716,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 9.5
+          },
+          {
+            "index": 26,
+            "startTime": 5052,
+            "duration": 77.10000002384186,
+            "endTime": 5129.100000023842,
+            "blockingDuration": 20.4,
+            "renderStart": 5119.899999976158,
+            "styleAndLayoutStart": 5120.699999928474,
+            "firstUIEventTimestamp": 5016.100000023842,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 5076,
+                "duration": 25.699999928474426,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 77.1
+          },
+          {
+            "index": 27,
+            "startTime": 5143.899999976158,
+            "duration": 72,
+            "endTime": 5215.899999976158,
+            "blockingDuration": 14.3,
+            "renderStart": 5207.5,
+            "styleAndLayoutStart": 5209,
+            "firstUIEventTimestamp": 5120.5,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 5168,
+                "duration": 16.299999952316284,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 24.2
+          }
+        ],
+        "overlapLongTaskCount": 2,
+        "overlappingLongTasks": [
+          {
+            "startTime": 5052,
+            "duration": 61,
+            "overlapWithEventSpanMs": 61
+          },
+          {
+            "startTime": 5143.899999976158,
+            "duration": 55,
+            "overlapWithEventSpanMs": 24.2
+          }
+        ]
+      },
+      {
+        "name": "keypress",
+        "startTime": 5016.100000023842,
+        "duration": 152,
+        "interactionId": 8780,
+        "processingStart": 5055.600000023842,
+        "processingEnd": 5113,
+        "inputDelayMs": 39.5,
+        "processingDurationMs": 57.4,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 3,
+        "overlappingFrames": [
+          {
+            "index": 25,
+            "startTime": 4966,
+            "duration": 59.60000002384186,
+            "endTime": 5025.600000023842,
+            "blockingDuration": 3.6,
+            "renderStart": 5015,
+            "styleAndLayoutStart": 5016,
+            "firstUIEventTimestamp": 4931.799999952316,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 4987.699999928474,
+                "duration": 15.700000047683716,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 9.5
+          },
+          {
+            "index": 26,
+            "startTime": 5052,
+            "duration": 77.10000002384186,
+            "endTime": 5129.100000023842,
+            "blockingDuration": 20.4,
+            "renderStart": 5119.899999976158,
+            "styleAndLayoutStart": 5120.699999928474,
+            "firstUIEventTimestamp": 5016.100000023842,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 5076,
+                "duration": 25.699999928474426,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 77.1
+          },
+          {
+            "index": 27,
+            "startTime": 5143.899999976158,
+            "duration": 72,
+            "endTime": 5215.899999976158,
+            "blockingDuration": 14.3,
+            "renderStart": 5207.5,
+            "styleAndLayoutStart": 5209,
+            "firstUIEventTimestamp": 5120.5,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 5168,
+                "duration": 16.299999952316284,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 24.2
+          }
+        ],
+        "overlapLongTaskCount": 2,
+        "overlappingLongTasks": [
+          {
+            "startTime": 5052,
+            "duration": 61,
+            "overlapWithEventSpanMs": 61
+          },
+          {
+            "startTime": 5143.899999976158,
+            "duration": 55,
+            "overlapWithEventSpanMs": 24.2
+          }
+        ]
+      },
+      {
+        "name": "keyup",
+        "startTime": 5900,
+        "duration": 152,
+        "interactionId": 8857,
+        "processingStart": 5932.799999952316,
+        "processingEnd": 5934.299999952316,
+        "inputDelayMs": 32.8,
+        "processingDurationMs": 1.5,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 3,
+        "overlappingFrames": [
+          {
+            "index": 32,
+            "startTime": 5837.699999928474,
+            "duration": 66.30000007152557,
+            "endTime": 5904,
+            "blockingDuration": 7.4,
+            "renderStart": 5899.199999928474,
+            "styleAndLayoutStart": 5899.899999976158,
+            "firstUIEventTimestamp": 5819.699999928474,
+            "originalScriptCount": 2,
+            "scripts": [
+              {
+                "executionStart": 5839.299999952316,
+                "duration": 5,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.onkeyup",
+                "invokerType": "event-listener"
+              },
+              {
+                "executionStart": 5865.199999928474,
+                "duration": 16.5,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 4
+          },
+          {
+            "index": 33,
+            "startTime": 5932.100000023842,
+            "duration": 95.79999995231628,
+            "endTime": 6027.899999976158,
+            "blockingDuration": 43.2,
+            "renderStart": 6016.199999928474,
+            "styleAndLayoutStart": 6018.5,
+            "firstUIEventTimestamp": 5900,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 5971.100000023842,
+                "duration": 33.199999928474426,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 95.8
+          },
+          {
+            "index": 34,
+            "startTime": 6048,
+            "duration": 57.10000002384186,
+            "endTime": 6105.100000023842,
+            "blockingDuration": 5.1,
+            "renderStart": 6100.600000023842,
+            "styleAndLayoutStart": 6101.799999952316,
+            "firstUIEventTimestamp": 6017.699999928474,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 6072,
+                "duration": 17.399999976158142,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 4
+          }
+        ],
+        "overlapLongTaskCount": 3,
+        "overlappingLongTasks": [
+          {
+            "startTime": 5846.5,
+            "duration": 85,
+            "overlapWithEventSpanMs": 31.5
+          },
+          {
+            "startTime": 5934.899999976158,
+            "duration": 113,
+            "overlapWithEventSpanMs": 113
+          },
+          {
+            "startTime": 6050,
+            "duration": 71,
+            "overlapWithEventSpanMs": 2
+          }
+        ]
+      },
+      {
+        "name": "keydown",
+        "startTime": 5208.299999952316,
+        "duration": 144,
+        "interactionId": 8794,
+        "processingStart": 5237.600000023842,
+        "processingEnd": 5238.899999976158,
+        "inputDelayMs": 29.3,
+        "processingDurationMs": 1.3,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 3,
+        "overlappingFrames": [
+          {
+            "index": 27,
+            "startTime": 5143.899999976158,
+            "duration": 72,
+            "endTime": 5215.899999976158,
+            "blockingDuration": 14.3,
+            "renderStart": 5207.5,
+            "styleAndLayoutStart": 5209,
+            "firstUIEventTimestamp": 5120.5,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 5168,
+                "duration": 16.299999952316284,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 7.6
+          },
+          {
+            "index": 28,
+            "startTime": 5236.699999928474,
+            "duration": 84.80000007152557,
+            "endTime": 5321.5,
+            "blockingDuration": 26.5,
+            "renderStart": 5307.399999976158,
+            "styleAndLayoutStart": 5309.299999952316,
+            "firstUIEventTimestamp": 5208.299999952316,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 5255.299999952316,
+                "duration": 20.100000023841858,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 84.8
+          },
+          {
+            "index": 29,
+            "startTime": 5347.5,
+            "duration": 93.39999997615814,
+            "endTime": 5440.899999976158,
+            "blockingDuration": 35.8,
+            "renderStart": 5432.199999928474,
+            "styleAndLayoutStart": 5433.100000023842,
+            "firstUIEventTimestamp": 5308.100000023842,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 5373.5,
+                "duration": 34.299999952316284,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 4.8
+          }
+        ],
+        "overlapLongTaskCount": 2,
+        "overlappingLongTasks": [
+          {
+            "startTime": 5236.699999928474,
+            "duration": 62,
+            "overlapWithEventSpanMs": 62
+          },
+          {
+            "startTime": 5347.5,
+            "duration": 77,
+            "overlapWithEventSpanMs": 4.8
+          }
+        ]
+      },
+      {
+        "name": "keypress",
+        "startTime": 5208.299999952316,
+        "duration": 144,
+        "interactionId": 8794,
+        "processingStart": 5238.899999976158,
+        "processingEnd": 5298.5,
+        "inputDelayMs": 30.6,
+        "processingDurationMs": 59.6,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 3,
+        "overlappingFrames": [
+          {
+            "index": 27,
+            "startTime": 5143.899999976158,
+            "duration": 72,
+            "endTime": 5215.899999976158,
+            "blockingDuration": 14.3,
+            "renderStart": 5207.5,
+            "styleAndLayoutStart": 5209,
+            "firstUIEventTimestamp": 5120.5,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 5168,
+                "duration": 16.299999952316284,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 7.6
+          },
+          {
+            "index": 28,
+            "startTime": 5236.699999928474,
+            "duration": 84.80000007152557,
+            "endTime": 5321.5,
+            "blockingDuration": 26.5,
+            "renderStart": 5307.399999976158,
+            "styleAndLayoutStart": 5309.299999952316,
+            "firstUIEventTimestamp": 5208.299999952316,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 5255.299999952316,
+                "duration": 20.100000023841858,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 84.8
+          },
+          {
+            "index": 29,
+            "startTime": 5347.5,
+            "duration": 93.39999997615814,
+            "endTime": 5440.899999976158,
+            "blockingDuration": 35.8,
+            "renderStart": 5432.199999928474,
+            "styleAndLayoutStart": 5433.100000023842,
+            "firstUIEventTimestamp": 5308.100000023842,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 5373.5,
+                "duration": 34.299999952316284,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 4.8
+          }
+        ],
+        "overlapLongTaskCount": 2,
+        "overlappingLongTasks": [
+          {
+            "startTime": 5236.699999928474,
+            "duration": 62,
+            "overlapWithEventSpanMs": 62
+          },
+          {
+            "startTime": 5347.5,
+            "duration": 77,
+            "overlapWithEventSpanMs": 4.8
+          }
+        ]
+      },
+      {
+        "name": "keydown",
+        "startTime": 3863.2999999523163,
+        "duration": 128,
+        "interactionId": 8668,
+        "processingStart": 3884,
+        "processingEnd": 3885.899999976158,
+        "inputDelayMs": 20.7,
+        "processingDurationMs": 1.9,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 3,
+        "overlappingFrames": [
+          {
+            "index": 15,
+            "startTime": 3797.600000023842,
+            "duration": 71.19999992847443,
+            "endTime": 3868.7999999523163,
+            "blockingDuration": 15.3,
+            "renderStart": 3862.6999999284744,
+            "styleAndLayoutStart": 3863.5,
+            "firstUIEventTimestamp": 3778.100000023842,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 3818.399999976158,
+                "duration": 14.600000023841858,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 5.5
+          },
+          {
+            "index": 16,
+            "startTime": 3883.100000023842,
+            "duration": 81,
+            "endTime": 3964.100000023842,
+            "blockingDuration": 22,
+            "renderStart": 3955.1999999284744,
+            "styleAndLayoutStart": 3955.6999999284744,
+            "firstUIEventTimestamp": 3863.2999999523163,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 3905.100000023842,
+                "duration": 28.299999952316284,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 81
+          },
+          {
+            "index": 17,
+            "startTime": 3982.6999999284744,
+            "duration": 66.80000007152557,
+            "endTime": 4049.5,
+            "blockingDuration": 11.3,
+            "renderStart": 4039.600000023842,
+            "styleAndLayoutStart": 4047.2999999523163,
+            "firstUIEventTimestamp": 3956.5,
+            "originalScriptCount": 2,
+            "scripts": [
+              {
+                "executionStart": 4006.5,
+                "duration": 26.899999976158142,
+                "forcedStyleAndLayoutDuration": 9.2,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              },
+              {
+                "executionStart": 4039.7999999523163,
+                "duration": 5.899999976158142,
+                "forcedStyleAndLayoutDuration": 5.4,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/Learn-CSXy2Boo.js",
+                "functionName": "L",
+                "sourceCharPosition": 13395,
+                "invoker": "DOMWindow.onscroll",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 8.6
+          }
+        ],
+        "overlapLongTaskCount": 2,
+        "overlappingLongTasks": [
+          {
+            "startTime": 3883.100000023842,
+            "duration": 63,
+            "overlapWithEventSpanMs": 63
+          },
+          {
+            "startTime": 3982.6999999284744,
+            "duration": 51,
+            "overlapWithEventSpanMs": 8.6
+          }
+        ]
+      },
+      {
+        "name": "keypress",
+        "startTime": 3863.2999999523163,
+        "duration": 128,
+        "interactionId": 8668,
+        "processingStart": 3885.899999976158,
+        "processingEnd": 3946,
+        "inputDelayMs": 22.6,
+        "processingDurationMs": 60.1,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 3,
+        "overlappingFrames": [
+          {
+            "index": 15,
+            "startTime": 3797.600000023842,
+            "duration": 71.19999992847443,
+            "endTime": 3868.7999999523163,
+            "blockingDuration": 15.3,
+            "renderStart": 3862.6999999284744,
+            "styleAndLayoutStart": 3863.5,
+            "firstUIEventTimestamp": 3778.100000023842,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 3818.399999976158,
+                "duration": 14.600000023841858,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 5.5
+          },
+          {
+            "index": 16,
+            "startTime": 3883.100000023842,
+            "duration": 81,
+            "endTime": 3964.100000023842,
+            "blockingDuration": 22,
+            "renderStart": 3955.1999999284744,
+            "styleAndLayoutStart": 3955.6999999284744,
+            "firstUIEventTimestamp": 3863.2999999523163,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 3905.100000023842,
+                "duration": 28.299999952316284,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 81
+          },
+          {
+            "index": 17,
+            "startTime": 3982.6999999284744,
+            "duration": 66.80000007152557,
+            "endTime": 4049.5,
+            "blockingDuration": 11.3,
+            "renderStart": 4039.600000023842,
+            "styleAndLayoutStart": 4047.2999999523163,
+            "firstUIEventTimestamp": 3956.5,
+            "originalScriptCount": 2,
+            "scripts": [
+              {
+                "executionStart": 4006.5,
+                "duration": 26.899999976158142,
+                "forcedStyleAndLayoutDuration": 9.2,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              },
+              {
+                "executionStart": 4039.7999999523163,
+                "duration": 5.899999976158142,
+                "forcedStyleAndLayoutDuration": 5.4,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/Learn-CSXy2Boo.js",
+                "functionName": "L",
+                "sourceCharPosition": 13395,
+                "invoker": "DOMWindow.onscroll",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 8.6
+          }
+        ],
+        "overlapLongTaskCount": 2,
+        "overlappingLongTasks": [
+          {
+            "startTime": 3883.100000023842,
+            "duration": 63,
+            "overlapWithEventSpanMs": 63
+          },
+          {
+            "startTime": 3982.6999999284744,
+            "duration": 51,
+            "overlapWithEventSpanMs": 8.6
+          }
+        ]
+      },
+      {
+        "name": "keydown",
+        "startTime": 3956.5,
+        "duration": 128,
+        "interactionId": 8675,
+        "processingStart": 3984,
+        "processingEnd": 3987.399999976158,
+        "inputDelayMs": 27.5,
+        "processingDurationMs": 3.4,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 2,
+        "overlappingFrames": [
+          {
+            "index": 16,
+            "startTime": 3883.100000023842,
+            "duration": 81,
+            "endTime": 3964.100000023842,
+            "blockingDuration": 22,
+            "renderStart": 3955.1999999284744,
+            "styleAndLayoutStart": 3955.6999999284744,
+            "firstUIEventTimestamp": 3863.2999999523163,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 3905.100000023842,
+                "duration": 28.299999952316284,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 7.6
+          },
+          {
+            "index": 17,
+            "startTime": 3982.6999999284744,
+            "duration": 66.80000007152557,
+            "endTime": 4049.5,
+            "blockingDuration": 11.3,
+            "renderStart": 4039.600000023842,
+            "styleAndLayoutStart": 4047.2999999523163,
+            "firstUIEventTimestamp": 3956.5,
+            "originalScriptCount": 2,
+            "scripts": [
+              {
+                "executionStart": 4006.5,
+                "duration": 26.899999976158142,
+                "forcedStyleAndLayoutDuration": 9.2,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              },
+              {
+                "executionStart": 4039.7999999523163,
+                "duration": 5.899999976158142,
+                "forcedStyleAndLayoutDuration": 5.4,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/Learn-CSXy2Boo.js",
+                "functionName": "L",
+                "sourceCharPosition": 13395,
+                "invoker": "DOMWindow.onscroll",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 66.8
+          }
+        ],
+        "overlapLongTaskCount": 1,
+        "overlappingLongTasks": [
+          {
+            "startTime": 3982.6999999284744,
+            "duration": 51,
+            "overlapWithEventSpanMs": 51
+          }
+        ]
+      },
+      {
+        "name": "keypress",
+        "startTime": 3956.5,
+        "duration": 128,
+        "interactionId": 8675,
+        "processingStart": 3987.399999976158,
+        "processingEnd": 4033.899999976158,
+        "inputDelayMs": 30.9,
+        "processingDurationMs": 46.5,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 2,
+        "overlappingFrames": [
+          {
+            "index": 16,
+            "startTime": 3883.100000023842,
+            "duration": 81,
+            "endTime": 3964.100000023842,
+            "blockingDuration": 22,
+            "renderStart": 3955.1999999284744,
+            "styleAndLayoutStart": 3955.6999999284744,
+            "firstUIEventTimestamp": 3863.2999999523163,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 3905.100000023842,
+                "duration": 28.299999952316284,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 7.6
+          },
+          {
+            "index": 17,
+            "startTime": 3982.6999999284744,
+            "duration": 66.80000007152557,
+            "endTime": 4049.5,
+            "blockingDuration": 11.3,
+            "renderStart": 4039.600000023842,
+            "styleAndLayoutStart": 4047.2999999523163,
+            "firstUIEventTimestamp": 3956.5,
+            "originalScriptCount": 2,
+            "scripts": [
+              {
+                "executionStart": 4006.5,
+                "duration": 26.899999976158142,
+                "forcedStyleAndLayoutDuration": 9.2,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              },
+              {
+                "executionStart": 4039.7999999523163,
+                "duration": 5.899999976158142,
+                "forcedStyleAndLayoutDuration": 5.4,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/Learn-CSXy2Boo.js",
+                "functionName": "L",
+                "sourceCharPosition": 13395,
+                "invoker": "DOMWindow.onscroll",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 66.8
+          }
+        ],
+        "overlapLongTaskCount": 1,
+        "overlappingLongTasks": [
+          {
+            "startTime": 3982.6999999284744,
+            "duration": 51,
+            "overlapWithEventSpanMs": 51
+          }
+        ]
+      },
+      {
+        "name": "keyup",
+        "startTime": 4358.600000023842,
+        "duration": 128,
+        "interactionId": 8717,
+        "processingStart": 4387.799999952316,
+        "processingEnd": 4391.299999952316,
+        "inputDelayMs": 29.2,
+        "processingDurationMs": 3.5,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 3,
+        "overlappingFrames": [
+          {
+            "index": 18,
+            "startTime": 4299.5,
+            "duration": 65.29999995231628,
+            "endTime": 4364.799999952316,
+            "blockingDuration": 13.6,
+            "renderStart": 4357.699999928474,
+            "styleAndLayoutStart": 4358.799999952316,
+            "firstUIEventTimestamp": 4282.299999952316,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 4319.699999928474,
+                "duration": 17.600000023841858,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 6.2
+          },
+          {
+            "index": 19,
+            "startTime": 4386.799999952316,
+            "duration": 78.60000002384186,
+            "endTime": 4465.399999976158,
+            "blockingDuration": 23.5,
+            "renderStart": 4460.199999928474,
+            "styleAndLayoutStart": 4461.799999952316,
+            "firstUIEventTimestamp": 4358.600000023842,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 4417.199999928474,
+                "duration": 21,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 78.6
+          },
+          {
+            "index": 20,
+            "startTime": 4481.799999952316,
+            "duration": 62.5,
+            "endTime": 4544.299999952316,
+            "blockingDuration": 6.1,
+            "renderStart": 4541.100000023842,
+            "styleAndLayoutStart": 4541.399999976158,
+            "firstUIEventTimestamp": 4461.5,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 4513.399999976158,
+                "duration": 16.100000023841858,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 4.8
+          }
+        ],
+        "overlapLongTaskCount": 2,
+        "overlappingLongTasks": [
+          {
+            "startTime": 4301.299999952316,
+            "duration": 85,
+            "overlapWithEventSpanMs": 27.7
+          },
+          {
+            "startTime": 4392,
+            "duration": 89,
+            "overlapWithEventSpanMs": 89
+          }
+        ]
+      },
+      {
+        "name": "keydown",
+        "startTime": 4931.799999952316,
+        "duration": 128,
+        "interactionId": 8773,
+        "processingStart": 4966.5,
+        "processingEnd": 4967.600000023842,
+        "inputDelayMs": 34.7,
+        "processingDurationMs": 1.1,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 3,
+        "overlappingFrames": [
+          {
+            "index": 24,
+            "startTime": 4880.399999976158,
+            "duration": 64.5,
+            "endTime": 4944.899999976158,
+            "blockingDuration": 8.2,
+            "renderStart": 4931.100000023842,
+            "styleAndLayoutStart": 4931.899999976158,
+            "firstUIEventTimestamp": 4861.600000023842,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 4890.699999928474,
+                "duration": 18,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 13.1
+          },
+          {
+            "index": 25,
+            "startTime": 4966,
+            "duration": 59.60000002384186,
+            "endTime": 5025.600000023842,
+            "blockingDuration": 3.6,
+            "renderStart": 5015,
+            "styleAndLayoutStart": 5016,
+            "firstUIEventTimestamp": 4931.799999952316,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 4987.699999928474,
+                "duration": 15.700000047683716,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 59.6
+          },
+          {
+            "index": 26,
+            "startTime": 5052,
+            "duration": 77.10000002384186,
+            "endTime": 5129.100000023842,
+            "blockingDuration": 20.4,
+            "renderStart": 5119.899999976158,
+            "styleAndLayoutStart": 5120.699999928474,
+            "firstUIEventTimestamp": 5016.100000023842,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 5076,
+                "duration": 25.699999928474426,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 7.8
+          }
+        ],
+        "overlapLongTaskCount": 1,
+        "overlappingLongTasks": [
+          {
+            "startTime": 5052,
+            "duration": 61,
+            "overlapWithEventSpanMs": 7.8
+          }
+        ]
+      },
+      {
+        "name": "keypress",
+        "startTime": 4931.799999952316,
+        "duration": 128,
+        "interactionId": 8773,
+        "processingStart": 4967.600000023842,
+        "processingEnd": 5008.799999952316,
+        "inputDelayMs": 35.8,
+        "processingDurationMs": 41.2,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 3,
+        "overlappingFrames": [
+          {
+            "index": 24,
+            "startTime": 4880.399999976158,
+            "duration": 64.5,
+            "endTime": 4944.899999976158,
+            "blockingDuration": 8.2,
+            "renderStart": 4931.100000023842,
+            "styleAndLayoutStart": 4931.899999976158,
+            "firstUIEventTimestamp": 4861.600000023842,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 4890.699999928474,
+                "duration": 18,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 13.1
+          },
+          {
+            "index": 25,
+            "startTime": 4966,
+            "duration": 59.60000002384186,
+            "endTime": 5025.600000023842,
+            "blockingDuration": 3.6,
+            "renderStart": 5015,
+            "styleAndLayoutStart": 5016,
+            "firstUIEventTimestamp": 4931.799999952316,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 4987.699999928474,
+                "duration": 15.700000047683716,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 59.6
+          },
+          {
+            "index": 26,
+            "startTime": 5052,
+            "duration": 77.10000002384186,
+            "endTime": 5129.100000023842,
+            "blockingDuration": 20.4,
+            "renderStart": 5119.899999976158,
+            "styleAndLayoutStart": 5120.699999928474,
+            "firstUIEventTimestamp": 5016.100000023842,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 5076,
+                "duration": 25.699999928474426,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 7.8
+          }
+        ],
+        "overlapLongTaskCount": 1,
+        "overlappingLongTasks": [
+          {
+            "startTime": 5052,
+            "duration": 61,
+            "overlapWithEventSpanMs": 7.8
+          }
+        ]
+      },
+      {
+        "name": "beforeinput",
+        "startTime": 5358.799999952316,
+        "duration": 128,
+        "interactionId": 0,
+        "processingStart": 5358.899999976158,
+        "processingEnd": 5359.299999952316,
+        "inputDelayMs": 0.1,
+        "processingDurationMs": 0.4,
+        "phaseMembershipByStartTime": [
+          "fullInputCall",
+          "strictPreFinalInsertion"
+        ],
+        "overlapFrameCount": 2,
+        "overlappingFrames": [
+          {
+            "index": 29,
+            "startTime": 5347.5,
+            "duration": 93.39999997615814,
+            "endTime": 5440.899999976158,
+            "blockingDuration": 35.8,
+            "renderStart": 5432.199999928474,
+            "styleAndLayoutStart": 5433.100000023842,
+            "firstUIEventTimestamp": 5308.100000023842,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 5373.5,
+                "duration": 34.299999952316284,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 82.1
+          },
+          {
+            "index": 30,
+            "startTime": 5463,
+            "duration": 62,
+            "endTime": 5525,
+            "blockingDuration": 0.3,
+            "renderStart": 5510.600000023842,
+            "styleAndLayoutStart": 5511.5,
+            "firstUIEventTimestamp": 5432.899999976158,
+            "originalScriptCount": 1,
+            "scripts": [
+              {
+                "executionStart": 5475.5,
+                "duration": 9.799999952316284,
+                "forcedStyleAndLayoutDuration": 0,
+                "pauseDuration": 0,
+                "resourcePath": "/assets/index-DPOjz0oF.js",
+                "functionName": "Hc",
+                "sourceCharPosition": 37628,
+                "invoker": "DIV#root.oninput",
+                "invokerType": "event-listener"
+              }
+            ],
+            "overlapWithEventSpanMs": 23.8
+          }
+        ],
+        "overlapLongTaskCount": 1,
+        "overlappingLongTasks": [
+          {
+            "startTime": 5347.5,
+            "duration": 77,
+            "overlapWithEventSpanMs": 65.7
+          }
+        ]
+      }
+    ],
+    "analysisBounds": {
+      "nodes": 100000,
+      "samples": 500000,
+      "events": 20000,
+      "frames": 1024,
+      "scriptsPerFrame": 64,
+      "tasks": 20000,
+      "stackDepth": 256,
+      "top": 20,
+      "nodesTruncated": false,
+      "samplesTruncated": false,
+      "eventsTruncated": false,
+      "framesTruncated": false,
+      "tasksTruncated": false,
+      "frameScriptListsTruncated": false,
+      "missingSampleOrDeltaRows": 0
+    },
+    "limits": [
+      "The retained Learn and localBOT112ms failures are unchanged; this instrumented run cannot replace ordinary acceptance measurements.",
+      "Profiler sampling, observer callbacks and added markers introduce overhead. Sample weights are approximate wall intervals associated with sampled stacks, not exact function CPU duration.",
+      "CPU intervals are assigned only when their entire signed interval plus alignment uncertainty lies in a phase. Boundary-crossing and inverted intervals are excluded; negative deltas still change the cumulative timeline.",
+      "Inclusive aggregation deduplicates recursive occurrences of the same function within a sample stack.",
+      "Strict pre-final-insertion excludes the final Learn input and its automatic result transition; earlier asynchronous work can still overlap normal input.",
+      "Events are classified by their start times; a duration may extend across phase boundaries and includes quantized presentation delay.",
+      "LoAF/script/long-task totals describe overlaps and are not independent or exclusive CPU components. Only fully-contained-script forced-layout totals exclude boundary-spanning scripts.",
+      "A missing LoAF field or observer is unverified, not proof of zero forced layout. Empty captures and minified names limit attribution.",
+      "Resource URLs are reduced to pathnames or file basenames; query strings, fragments, origins, raw typed text, request bodies, headers and credentials are not emitted by this helper.",
+      "No returned timing establishes causality, field INP, physical-phone performance or preserved3D quality; those require their separately scoped evidence."
+    ]
+  },
+  "rawTypedTextCollected": false,
+  "qualification": "Instrumentation changes execution cost. Original112ms Learn/BOT latency failures remain unchanged. CPU/LoAF overlap alone does not prove one-function causality. Learn strict pre-final-insertion summaries exclude automatic result work; BOT profile stops before manual Finish."
+}

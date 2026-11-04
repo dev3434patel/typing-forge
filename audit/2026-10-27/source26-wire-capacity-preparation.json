@@ -1,0 +1,121 @@
+{
+  "status": "PREPARED-NOT-RUN",
+  "preparedAt": "2026-10-27T17:12:18.706Z",
+  "expectedSourceFiles": 505,
+  "actualBuild": "PENDING-FRESH-SOURCE26-BUILD",
+  "driver": {
+    "originalFile": "audit/2026-10-27/run-source26-capacity-burst.mjs",
+    "originalSha256": "f2661a7f8e5f84ffb4ef10da65a3df308735ae71f5ec2469b8e6c443bd0b9cbc",
+    "outputFile": "audit/2026-10-27/run-source26-capacity-wire-burst.mjs",
+    "sha256": "6e5a08adb011d2497c354cf4afc791e132248034743116b50c7530a42f50d0f2",
+    "reversibleByteIdentity": true,
+    "substitutions": [
+      {
+        "before": "import { SessionController } from '../../src/lib/typing-core/index.ts';",
+        "after": "import { SessionController } from '../../src/lib/typing-core/index.ts';\nimport { arenaEvidencePayload } from '../../src/domain/arena.ts';",
+        "count": 1
+      },
+      {
+        "before": "SPAROWTYPE_SOURCE26_CAPACITY_ACCEPTANCE",
+        "after": "SPAROWTYPE_SOURCE26_CAPACITY_WIRE_ACCEPTANCE",
+        "count": 1
+      },
+      {
+        "before": "const prefix = `source26-capacity-${ownerId}`;",
+        "after": "const prefix = `source26-capacity-wire-${ownerId}`;",
+        "count": 1
+      },
+      {
+        "before": "const inputs = ['audit/2026-10-27/pack-backend-instance-source26.mjs', 'audit/2026-10-27/run-source26-capacity-burst.mjs', 'backend/tests/arena-audit-admin.php', 'scripts/php-runtime.mjs'];",
+        "after": "const inputs = ['audit/2026-10-27/pack-backend-instance-source26-wire.mjs', 'audit/2026-10-27/run-source26-capacity-wire-burst.mjs', 'audit/2026-10-27/run-source26-capacity-burst.mjs', 'src/domain/arena.ts', 'src/services/arena-service.ts', 'src/domain/__tests__/arena.test.ts', 'backend/tests/validation-parity.mjs', 'backend/tests/arena-audit-admin.php', 'scripts/php-runtime.mjs'];",
+        "count": 1
+      },
+      {
+        "before": "  evidence: '400 independent guarded synthetic authenticated sessions.",
+        "after": "  currentWire: { productionHelper: 'src/domain/arena.ts#arenaEvidencePayload', actualHttpConsumer: 'src/services/arena-service.ts', fieldsRemovedExactly: ['characters', 'timeSeries', 'cursor'], metricsEventsAndAllOtherFieldsRetained: true, intentionalWireBytesChange: true, requestSerializationAdapterPoints: 1, helperImportedDirectlyWithNodeTypeStripping: true, separateRequiredContracts: ['src/domain/__tests__/arena.test.ts', 'backend/tests/validation-parity.mjs'], separatePhpCanonicalHashParityRequired: true, noParityPassClaimFromThisCapacityRun: true, legacyFullDriverPreserved: 'audit/2026-10-27/run-source26-capacity-burst.mjs', pairScope: 'Run after legacy full once on the same owned runtime with newly provisioned400-account fixtures. Order/cache effects remain a limitation; no result is overwritten.' },\n  evidence: '400 independent guarded synthetic authenticated sessions.",
+        "count": 1
+      },
+      {
+        "before": "body: JSON.stringify({ ...body, expectedOwner: account.id }), signal: controller.signal",
+        "after": "body: JSON.stringify(phase === 'submit' ? { ...body, candidate: arenaEvidencePayload(body.candidate), expectedOwner: account.id } : { ...body, expectedOwner: account.id }), signal: controller.signal",
+        "count": 1
+      }
+    ]
+  },
+  "owner": {
+    "originalFile": "audit/2026-10-27/pack-backend-instance-source26.mjs",
+    "originalSha256": "06e693002bc6d71ad3ff8e93aefcc672d5c3c2ea19bfa1b69bb7d7a0f9a9a0a0",
+    "outputFile": "audit/2026-10-27/pack-backend-instance-source26-wire.mjs",
+    "sha256": "eff1c24b09b68370a37404f262a0228e3064947771de63c750197085257fd252",
+    "reversibleByteIdentity": true,
+    "substitutions": [
+      {
+        "before": "import { randomBytes } from 'node:crypto';",
+        "after": "import { randomBytes, createHash } from 'node:crypto';",
+        "count": 1
+      },
+      {
+        "before": "let capacityDeclared = false;",
+        "after": "let capacityDeclared = false;\nlet capacityWireDeclared = false;",
+        "count": 1
+      },
+      {
+        "before": "After coordination send capacity26, rate-native26, prepare-browser, renew, or cleanup.",
+        "after": "After coordination send capacity26, capacity26-wire, rate-native26, prepare-browser, renew, or cleanup.",
+        "count": 1
+      },
+      {
+        "before": "  await receipt('environment', identities); publicMessage({ stage: 'ephemeral-api-ready', ...identities });",
+        "after": "  await receipt('environment', identities); publicMessage({ stage: 'ephemeral-api-ready', ...identities });\n  const wireOwnerInputs = [import.meta.filename, 'audit/2026-10-27/pack-backend-instance-source26.mjs', 'audit/2026-10-27/run-source26-capacity-burst.mjs', 'audit/2026-10-27/run-source26-capacity-wire-burst.mjs', 'src/domain/arena.ts', 'src/services/arena-service.ts'];\n  const wireOwnerHashes = Object.fromEntries(await Promise.all(wireOwnerInputs.map(async file => [file, createHash('sha256').update(await readFile(file)).digest('hex')])));\n  await receipt('capacity-wire-owner-protocol', { declaredAt: new Date().toISOString(), ownerId: id, actualOwnerSourceHashes: wireOwnerHashes, legacyFullOwnerPreserved: true, legacyFullCommandAndCleanupUnchanged: true, pairOrder: ['capacity26', 'capacity26-wire'], separateFixturesForEachCommand: true, limitsRatesAndDurabilityChanged: false, noAutomaticRetries: true });",
+        "count": 1
+      },
+      {
+        "before": "      if (line.trim() === 'capacity26') {",
+        "after": "      if (line.trim() === 'capacity26-wire') {\n        assert.equal(capacityDeclared, true, 'The preserved full capacity26 attempt must complete first on this owner.');\n        if(capacityWireDeclared){publicMessage({stage:'pack-capacity-wire-already-declared',message:'Use a new explicitly coordinated instance for another attempt.'});continue;}\n        capacityWireDeclared=true;\n        assert.equal(httpRuntime,'apache','Current-wire capacity requires the same real owned Apache runtime.');\n        const capacityWireScript='audit/2026-10-27/run-source26-capacity-wire-burst.mjs';\n        await receipt('capacity-wire-command-protocol',{declaredAt:new Date().toISOString(),noRetries:true,source:capacityWireScript,ownerId:id,actualOwnerSourceHashes:wireOwnerHashes,scope:'Separate current-production-wire1653 operations/50x8/concurrency20; only three server-rebuilt candidate fields are removed by the actual domain helper. All existing assertions and strict p95<150 remain. Newfixtures; sameowner; no full-payload result replacement.'});\n        const result=await capture(process.execPath,['--experimental-transform-types',path.join(root,capacityWireScript)],'capacity26-wire',undefined,240000);\n        let report=null;try{report=JSON.parse(result.stdout.trim());}catch{/* Private diagnostics retained separately. */}\n        if(report)await receipt('capacity26-wire-summary',report);\n        const unchanged=(await Promise.all(wireOwnerInputs.map(async file=>createHash('sha256').update(await readFile(file)).digest('hex')===wireOwnerHashes[file]))).every(Boolean);\n        await receipt('capacity-wire-owner-inputs-after',{ownerId:id,allInputsUnchanged:unchanged,actualOwnerSourceHashes:wireOwnerHashes});\n        const status={name:'capacity26-wire',exitCode:result.code,status:result.code===0&&unchanged?'PASS':'FAIL',checks:report?.total??null};suiteResults.push(status);failed||=result.code!==0||!unchanged;publicMessage({stage:'pack-capacity26-wire-complete',...status});\n      }\n      if (line.trim() === 'capacity26') {",
+        "count": 1
+      }
+    ]
+  },
+  "requestSerializationAdapterPoints": 1,
+  "productionHelper": "src/domain/arena.ts#arenaEvidencePayload",
+  "helperSha256AtPreparation": "24c5cce5e196903c7ddaad914acf3bca1a35540750abce3c3ac3875853151d42",
+  "helperTypeOnlyImportsSupportedByNode": true,
+  "fieldsRemovedExactly": [
+    "characters",
+    "timeSeries",
+    "cursor"
+  ],
+  "allOtherEvidenceFieldsRetained": true,
+  "expectedOperations": 1653,
+  "concurrency": 20,
+  "rooms": 50,
+  "accountsPerRoom": 8,
+  "acceptedSubmissionsRequired": 400,
+  "p95TargetStrictlyBelowMs": 150,
+  "legacyFullCapacityDriverAndOwnerUnchanged": true,
+  "sameOwnerPair": {
+    "commands": [
+      "capacity26",
+      "capacity26-wire"
+    ],
+    "eachAtMostOnce": true,
+    "separateFixtureNamespaces": true,
+    "fullFirstRequired": true,
+    "ownerAggregateRetainsAnyFailure": true
+  },
+  "independentParityContractsRequiredBeforeAcceptance": [
+    "src/domain/__tests__/arena.test.ts",
+    "backend/tests/validation-parity.mjs"
+  ],
+  "canonicalHashParityExecution": "PENDING-SEPARATE-SOURCE-GATE",
+  "currentWireByteChangeIntentional": true,
+  "preservedFullRunNotReinterpreted": true,
+  "strictUiReuseChecker": "NOT-USED-NOT-RELAXED; frontend26 changed and needs fresh build/input/Lighthouse",
+  "retries": 0,
+  "filters": 0,
+  "assertionsOrTimeoutsRelaxed": false,
+  "servicesStarted": 0,
+  "acceptanceTestsRun": 0,
+  "browserOrBuildJobsRun": 0,
+  "downloadsRun": 0
+}

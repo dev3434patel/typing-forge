@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-10-27T16:16:27.8593927Z",
+  "status": "REVIEW-PROPOSAL-NOT-APPLIED-NOT-BENCHMARKED",
+  "sourceBuild": "85735c1a3b56655b767e",
+  "sourceFile": "src/lib/typing-core/transcript.ts",
+  "sourceSha256": "11532bcf96ddcf0f1eb77c9b73ef6c37af6ae88afd6643b7622eef21fcc8140b",
+  "suggestedPatch": "*** Begin Patch\n*** Update File: src/lib/typing-core/transcript.ts\n@@\n   const mapping: Array<number | null> = [];\n   const words = targetWords(target);\n+  // Factory-owned targets are dense and immutable. Preserve the original\n+  // replacement path for every public mutable, sparse, getter or proxy array.\n+  const ownsFreshTargetSlots = targetWordCache.has(target);\n@@\n   mapping.forEach((slot, i) => {\n     if (slot === null) characters.push({ index: target.length + i, expected: null, typed: typed[i], status: 'extra' });\n+    else if (ownsFreshTargetSlots) {\n+      // These records were created above in this call and have not escaped or\n+      // been frozen. Earlier published alignments never share them.\n+      characters[slot].typed = typed[i];\n+      characters[slot].status = typed[i] === target[slot] ? 'correct' : 'incorrect';\n+    }\n     else characters[slot] = { index: slot, expected: target[slot], typed: typed[i], status: typed[i] === target[slot] ? 'correct' : 'incorrect' };\n   });\n*** End Patch",
+  "claim": "Remove duplicate CharacterSlot object creation only for privately branded dense immutable factory targets; no incremental scoring algorithm or new cache.",
+  "allocationModel": {
+    "scenario": "495 correct single-character inputs into the fixed495-unit ASCII custom passage",
+    "avoidableMappedSlotReplacementObjects": 122760,
+    "formula": "495*496/2",
+    "actualRuntimeAllocationMeasured": false,
+    "lowerBoundScope": "Live input snapshots only; final replay, timeline, timers and append snapshots are excluded.",
+    "retainedAllocations": "Fresh base target records, mappings, attempts, events and final replay remain unchanged."
+  },
+  "callerReview": [
+    {
+      "caller": "SessionController.snapshot",
+      "target": "targetGraphemes(this.target)",
+      "consequence": "Qualifies only while private target-word metadata retains factory branding; alignment is fresh before publication freezing."
+    },
+    {
+      "caller": "calculateMetrics",
+      "target": "targetGraphemes(targetText) unless caller supplies alignment",
+      "consequence": "Canonical replay and live metrics use identical resulting slot fields."
+    },
+    {
+      "caller": "traceSessionWords",
+      "target": "targetGraphemes(targetText)",
+      "consequence": "Word trace reads the completed slot array after mapped slots are filled."
+    },
+    {
+      "caller": "Public alignTranscript",
+      "target": "Arbitrary readonly string arrays",
+      "consequence": "Unbranded mutable, frozen, sparse, getter and proxy targets retain original replacement-object code verbatim."
+    }
+  ],
+  "sparseAndAliasingReview": [
+    "The brand is stored only for arrays created by targetGraphemes; external arrays cannot manufacture membership.",
+    "targetWords may delete branding beyond existing4096-unit/512-word limits; those targets conservatively retain the old path.",
+    "On the branded path every non-null mapped slot lies within the dense target array, so a fresh own CharacterSlot always exists.",
+    "Code maps only indexes below target length; prose maps only valid word positions/separators; overflow and free input remain null/extra and unchanged.",
+    "No prior alignment character references are reused by target.map; live freezing occurs only after alignTranscript returns.",
+    "The unbranded branch preserves sparse holes, missing mapped-slot creation and dynamic getter/proxy reads exactly as before.",
+    "Both original base and replacement literals use index/expected/typed/status order. Updating existing typed/status properties does not reorder keys or change property descriptors."
+  ],
+  "existingCoverageMap": [
+    {
+      "file": "src/lib/typing-core/__tests__/live-projection.test.ts",
+      "covers": "Earlier frozen publications remain unchanged across later edits, target extensions, virtual submission/reopen and joining Unicode; independent replay agrees with live metrics."
+    },
+    {
+      "file": "src/lib/typing-core/__tests__/transcript-target-cache.test.ts",
+      "covers": "Factory versus external alignment/metrics/word-trace equality; mutable/frozen/getter/proxy input behavior; cache retention limits; Unicode/RTL/code/free history."
+    },
+    {
+      "file": "src/lib/typing-core/__tests__/conformance.test.ts",
+      "covers": "Independent exhaustive short prose oracle, atomic Unicode edits, issued-target/same-offset ordering, snapshot/full-replay equivalence and word-credit traces."
+    },
+    {
+      "file": "src/lib/typing-core/__tests__/replay-goldens.test.ts",
+      "covers": "Pinned canonical schema/evidence fixtures with distinct logs."
+    },
+    {
+      "file": "src/lib/typing-core/__tests__/correct-words-locked.test.ts",
+      "covers": "Current word edits, mistake reopening, correct bridges, submissions, Unicode, rejection and deadline boundaries."
+    },
+    {
+      "file": "backend/tests/validation-parity.mjs",
+      "covers": "Independent PHP replay and canonical byte/hash parity across valid/rejected evidence and seeded scenarios."
+    }
+  ],
+  "proposedAdditionalTests": [
+    "Compare complete Alignment plus JSON.stringify slot bytes/key order for branded versus unbranded arrays, across all policies, finite/live modes, extras, skips and virtual submissions.",
+    "Explicit sparse public target mapped into a hole retains its original undefined-expected record behavior through the unchanged fallback.",
+    "Mutate one returned public Alignment then realign and confirm no records alias input arrays or earlier output; freeze an earlier live publication and verify later updates leave it unchanged.",
+    "Retain getter/proxy changing-between-calls cases and boundary fallbacks above4096 units/512 words."
+  ],
+  "timingConclusion": "Not causal proof of the104/112ms Event Timing tail. Adoption requires unchanged ordinary495-character4xCPU rotation evidence; no threshold, retry, input delay or 3D-quality change.",
+  "productionOrTestFilesEdited": 0,
+  "jobsRun": 0
+}

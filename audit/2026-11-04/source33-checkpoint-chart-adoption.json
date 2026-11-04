@@ -1,0 +1,64 @@
+{
+  "recordedAt": "2026-11-04T15:45:36.617Z",
+  "status": "PASS-SCOPED-PURE-CONTRACTS",
+  "productionStable": true,
+  "testFilesStable": true,
+  "source32Manifest": "audit/2026-11-02/final32-source.json",
+  "files": [
+    {
+      "file": "backend/src/SessionValidator.php",
+      "beforeSha256": "d831d48d95960a698a4bb69c27109fc7641f5a1f055ad80c8e23847e28f726df",
+      "afterSha256": "966a43ced6eee00224a56a6c4e775996d83e0ac45cc8125be7398f9d6ef73bbc",
+      "beforeMatchesFrozen32": true,
+      "normalizedReverseExact": true
+    },
+    {
+      "file": "backend/src/ArenaEvidence.php",
+      "beforeSha256": "a9416b5877dbc35db7ad2b41c999bb2a72695e216b45023c29137e58ac16afdb",
+      "afterSha256": "124e13503049a2dd53bc2d04758b66aadcb4f613da1a4894ecfcb9285c74f888",
+      "beforeMatchesFrozen32": true,
+      "normalizedReverseExact": true
+    }
+  ],
+  "testsSha256": {
+    "backend/tests/replay-chart-projection-driver.php": "1ab0a6e90a55d79751c7a8980687da4fa55efc310f294aa98b6f61a396cc6359",
+    "backend/tests/replay-chart-errors-contract.php": "96e505d9513b8834349e09dd4790510397aff4f80f00f865550be06dca17f93e",
+    "backend/tests/validation-parity.mjs": "ab93639ca712a914d0749d02db67daeae9198f220b8ff074d696a4e360172c90",
+    "backend/tests/arena-contract.mjs": "a12b3925c75b3b6bf1a5c9d9170e9d50135aa27ecbe42af4662aa44ee3fcc285"
+  },
+  "change": "Explicit false may omit the chart only after independent complete event replay and metrics. Arena sends false only on a non-finish; all default/finished charts and candidate validation remain full.",
+  "timeSeriesOmittedNotFakedEmpty": true,
+  "mainReplayAndLockBoundariesChanged": false,
+  "source32MobileOr3DChanged": false,
+  "parity": {
+    "cases": 560,
+    "phpDriverRows": 578,
+    "mismatches": 0,
+    "chartProjectionRows": 578,
+    "chartProjectionMismatches": 0,
+    "batches": [
+      {
+        "batch": "legacy",
+        "rows": 542,
+        "exitCode": 0
+      },
+      {
+        "batch": "wire",
+        "rows": 36,
+        "exitCode": 0
+      }
+    ]
+  },
+  "directReplayErrors": {
+    "passed": 19,
+    "failed": 0
+  },
+  "evidence": [
+    "audit/2026-11-04/source33-chart-parity-first-run.json",
+    "audit/2026-11-04/source33-chart-errors-confirmation.json"
+  ],
+  "memoryLimitRaised": false,
+  "original750ArenaCasesRetained": true,
+  "httpOrCapacityRun": false,
+  "nativeArenaFinishAndRetryRequired": true
+}

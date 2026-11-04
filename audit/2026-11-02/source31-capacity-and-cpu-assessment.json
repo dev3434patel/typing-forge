@@ -1,0 +1,187 @@
+{
+  "status": "FAILED-CAPACITY-LATENCY",
+  "recordedAt": "2026-11-02T17:14:25.846Z",
+  "build": "f52d0372fe7656817259",
+  "owner": "f832d791de9a9b0c",
+  "full": {
+    "status": "FAILED",
+    "total": 1653,
+    "p95Ms": 453.95050000000265,
+    "maxRequestMs": 1104.6691999999966,
+    "submitP95Ms": 597.4462999999996,
+    "statusCounts": {
+      "200": 1651,
+      "403": 1,
+      "409": 1
+    },
+    "checksPassed": 11,
+    "checksFailed": 1,
+    "unexpectedRequests": 0,
+    "sourceAfter": {
+      "sourceFile": "audit/2026-11-02/final31-source.json",
+      "expectedBuild": "f52d0372fe7656817259",
+      "compared": 505,
+      "mismatches": []
+    },
+    "inputsUnchanged": true,
+    "machine": {
+      "logicalCpus": 20,
+      "cpuModel": "13th Gen Intel(R) Core(TM) i7-13650HX",
+      "totalMemoryBytes": 16849256448,
+      "freeMemoryBytes": 931876864
+    },
+    "durationMs": 27613.8502
+  },
+  "wire": {
+    "status": "FAILED",
+    "total": 1653,
+    "p95Ms": 371.7349000000031,
+    "maxRequestMs": 667.2484999999997,
+    "submitP95Ms": 459.6524000000027,
+    "statusCounts": {
+      "200": 1651,
+      "403": 1,
+      "409": 1
+    },
+    "checksPassed": 11,
+    "checksFailed": 1,
+    "unexpectedRequests": 0,
+    "sourceAfter": {
+      "sourceFile": "audit/2026-11-02/final31-source.json",
+      "expectedBuild": "f52d0372fe7656817259",
+      "compared": 505,
+      "mismatches": []
+    },
+    "inputsUnchanged": true,
+    "machine": {
+      "logicalCpus": 20,
+      "cpuModel": "13th Gen Intel(R) Core(TM) i7-13650HX",
+      "totalMemoryBytes": 16849256448,
+      "freeMemoryBytes": 1677717504
+    },
+    "durationMs": 24533.593399999998
+  },
+  "cleanup": {
+    "date": "2026-11-02T17:13:44.495Z",
+    "ownProcessesStopped": true,
+    "gracefulDatabaseShutdown": true,
+    "forcedOwnDatabaseStop": false,
+    "httpRuntime": "apache",
+    "gracefulApacheShutdown": true,
+    "forcedOwnApacheStop": false,
+    "apacheResidualPids": [],
+    "ownTemporaryDirectoryRemoved": false,
+    "privateDiagnosticsDirectory": "D:\\extra\\typing_updated\\typing-forge\\backend\\storage\\pack-instance-f832d791de9a9b0c",
+    "originalDatabasePortUntouched": 3308,
+    "originalApiPortUntouched": 8081,
+    "originalPreviewPortUntouched": 4173,
+    "noWindowsServiceCreated": true,
+    "originalConfigRead": false
+  },
+  "focusedContracts": {
+    "memberQueries": 23,
+    "wordMetadata": 34
+  },
+  "cpuDiagnostic": {
+    "status": "PASS-SCOPED-PURE-DIAGNOSTIC",
+    "outputIdentity": true,
+    "summaries": {
+      "source30": {
+        "validateMs": {
+          "count": 12,
+          "min": 9.1292,
+          "median": 9.57845,
+          "p95": 23.58,
+          "max": 23.58
+        },
+        "authoritativeReplayMs": {
+          "count": 12,
+          "min": 4.8986,
+          "median": 5.43335,
+          "p95": 7.7339,
+          "max": 7.7339
+        },
+        "combinedMs": {
+          "count": 12,
+          "min": 14.360199999999999,
+          "median": 14.928650000000001,
+          "p95": 31.313899999999997,
+          "max": 31.313899999999997
+        }
+      },
+      "source31": {
+        "validateMs": {
+          "count": 12,
+          "min": 5.8085,
+          "median": 6.07245,
+          "p95": 17.879,
+          "max": 17.879
+        },
+        "authoritativeReplayMs": {
+          "count": 12,
+          "min": 1.4615,
+          "median": 1.6062,
+          "p95": 3.9525,
+          "max": 3.9525
+        },
+        "combinedMs": {
+          "count": 12,
+          "min": 7.3363000000000005,
+          "median": 7.862900000000001,
+          "p95": 21.831500000000002,
+          "max": 21.831500000000002
+        }
+      }
+    },
+    "interpretation": "Real local PHP hrtime over exact original synthetic evidence fixture only. Twelve alternating pairs/no warmup/filter/retry. No exclusiveHTTP or throughput attribution."
+  },
+  "architecture": [
+    "Each room remains intentionally InnoDB serialized across eight accounts; same account->room->member lock order and full-row snapshots preserved.",
+    "Independent authoritative shared-clock replay remains under lock. Pure target word-boundary cache does not contain events, metrics or mutable room state and cannot replace replay.",
+    "Public handles are fetched once only at serialization; internal member snapshots retain the exact original full-row SQL/order/FOR UPDATE.",
+    "PHP session lock spans dispatch, but400 load accounts/sessions are distinct; it cannot by itself explain cross-account capacity failure.",
+    "Owned Windows Apache has64 threads for20 concurrentHTTP andKeepAliveOn/2s; it is not a single-thread built-in PHP server.",
+    "Current generated PHP ini requests intl, mbstring andpdo_mysql but no OPcache extension directive. Local php_opcache.dll metadataexists. No runtime, originalini, environment, OS, database durability or rate-policy change made."
+  ],
+  "limits": [
+    "Source26baseline andsource31 are separate dated ordinary runs, not controlledside-by-side causality. Join/ready/leave also worsened where replay cache doesnotrun.",
+    "Source31 free memory atfullstart931876864bytes vswire1677717504; this observation doesnotprovepaging orlatencycausality.",
+    "Source24 PerformanceSchema recorded cumulative rowlock/commit waits but lackednativepreparedSQL digests; no completecriticalpath SQL attribution exists.",
+    "400occupiedseats with20concurrent requests is not400simultaneousHTTP or120second sustainedload.",
+    "New capacity results retain strictp95<150ms; bothFAILED. No retest orruntimevariant replaces them."
+  ],
+  "runtimeReferences": [
+    {
+      "title": "PHP OPcache configuration",
+      "url": "https://www.php.net/manual/en/opcache.configuration.php",
+      "checkedAt": "2026-11-02",
+      "relevance": "If a separately declared hosting/runtime profile is later implemented, timestamp validation andcache deployment behavior need explicitverification; sourceonly doesnotestablish performancebenefit."
+    }
+  ],
+  "evidence": [
+    {
+      "file": "audit/2026-11-02/source31-capacity-f832d791de9a9b0c.json",
+      "sha256": "09206bcf5579f1b9ccbcc233340f3fc91aab2a9bfe8cb05eeae1b5a9e8c0289f"
+    },
+    {
+      "file": "audit/2026-11-02/source31-capacity-wire-f832d791de9a9b0c.json",
+      "sha256": "a626aee508aa3d784489107e8c4b5a03e398fb4de7b78047329e031d11133371"
+    },
+    {
+      "file": "audit/2026-11-02/pack-backend-f832d791de9a9b0c-cleanup.json",
+      "sha256": "830971f290db84bf5abed4bfbded2dfd2f35ac9b39c697668ae3fc1005989ac5"
+    },
+    {
+      "file": "audit/2026-11-02/source31-word-metadata-cpu-result.json",
+      "sha256": "0561e6adbdcbd352d01de6fd7d84bc2e163d51c9a302c4e62aca1c6636ad7c03"
+    },
+    {
+      "file": "audit/2026-11-02/source30-arena-public-handles-focused-contract.json",
+      "sha256": "a70bd195ec4d61da9950e46128e2c04e7aad1127e86240b8afe54ba080de5897"
+    },
+    {
+      "file": "audit/2026-11-02/source31-word-metadata-cache-focused-contract.json",
+      "sha256": "1e249bda66cf2a019cb32187a54e136626d509bbcf3f17c1aa72053c962c9c4e"
+    }
+  ]
+}

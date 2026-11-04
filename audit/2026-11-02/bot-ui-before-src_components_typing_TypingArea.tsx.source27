@@ -1,0 +1,1089 @@
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  type CSSProperties,
+} from "react";
+import {
+  Pause,
+  Play,
+  RotateCcw,
+  Flag,
+  Keyboard,
+  Eye,
+  EyeOff,
+} from "lucide-react";
+import {
+  SessionController,
+  graphemes,
+  utf16ToGraphemeOffset,
+  type SessionConfig,
+  type SessionResult,
+  type SessionSnapshot,
+  type InputProvenance,
+} from "@/lib/typing-core";
+import { usePreferences } from "@/contexts/PreferencesContext";
+import { getContentPack } from "@/lib/content-packs";
+import { cn } from "@/lib/utils";
+import { TypingPassage } from "./TypingPassage";
+import { TypingFeedback } from "./TypingFeedback";
+import { OpponentPaceMarker } from "./OpponentPaceMarker";
+import { ObservedLiveKeyboard } from "./ObservedLiveKeyboard";
+import { TypingShortcutHelp } from "./TypingShortcutHelp";
+import { keyboardAttempt } from "@/lib/live-keyboard";
+import { CompositionEchoGuard } from "@/lib/composition-echo";
+import { opponentPacePosition, type RacePace } from "@/lib/race-pace";
+import type { KeyboardAudio } from "@/lib/keyboard-audio";
+import {
+  useWordCorrection,
+  wordCorrectionNotice,
+} from "@/hooks/useWordCorrection";
+import {
+  typingCaretAnchor,
+  typingCaretGeometry,
+} from "./typing-caret-geometry";
+import {
+  MAX_CACHED_FORWARD_GLYPHS,
+  caretCacheWordRange,
+  TypingCaretWordCache,
+  type CaretLayoutState,
+  type MeasuredCaretWordSlot,
+} from "./typing-caret-cache";
+
+interface Props {
+  configuration: SessionConfig;
+  onTestComplete: (result: SessionResult) => void;
+  onRestart?: () => void;
+  onStatusChange?: (status: SessionSnapshot["status"]) => void;
+  appendContent?: () => string;
+  controller?: SessionController;
+  onSnapshot?: (snapshot: SessionSnapshot) => void;
+  opponentPace?: RacePace;
+  autoFocus?: boolean;
+  /** Logical characters already introduced by a structured lesson. */
+  keyboardLessonKeys?: readonly string[];
+}
+const number = (value: number | null, decimals = 0) =>
+  value === null ? "—" : value.toFixed(decimals);
+export function TypingArea({
+  configuration,
+  onTestComplete,
+  onRestart,
+  onStatusChange,
+  appendContent,
+  controller: supplied,
+  onSnapshot,
+  opponentPace,
+  autoFocus,
+  keyboardLessonKeys,
+}: Props) {
+  const { preferences: p, updatePreferences } = usePreferences();
+  const [controller] = useState(
+    () =>
+      supplied ??
+      new SessionController(configuration, {
+        now: () => performance.now(),
+        wallNow: () => Date.now(),
+      }),
+  );
+  const [snapshot, setSnapshot] = useState(() => controller.snapshot());
+  const [value, setValue] = useState(""),
+    [focused, setFocused] = useState(false),
+    [revealed, setRevealed] = useState(false);
+  const [inputHint, setInputHint] = useState("");
+  const [capsLock, setCapsLock] = useState<boolean | null>(null);
+  const textarea = useRef<HTMLTextAreaElement>(null),
+    caret = useRef<HTMLSpanElement>(null),
+    endCaret = useRef<HTMLSpanElement>(null),
+    viewport = useRef<HTMLDivElement>(null),
+    passage = useRef<HTMLDivElement>(null),
+    resumeButton = useRef<HTMLButtonElement>(null);
+  const blurredSelection = useRef<Pick<
+    HTMLTextAreaElement,
+    "selectionStart" | "selectionEnd" | "selectionDirection"
+  > | null>(null);
+  const caretCache = useRef(new TypingCaretWordCache());
+  const caretLayout = useRef<CaretLayoutState>();
+  const caretView = useRef({ focused, revealed, status: snapshot.status });
+  const caretScrollTop = useRef<number | null>(null);
+  const keyboardSequence = snapshot.events.at(-1)?.sequence ?? -1;
+  const lastKeyboardAttempt = useMemo(() => {
+    void keyboardSequence;
+    return keyboardAttempt(controller.lastInputAttempts);
+  }, [controller, keyboardSequence]);
+  const setKeyboardVisible = useCallback(
+    (showKeyboard: boolean) => updatePreferences({ showKeyboard }),
+    [updatePreferences],
+  );
+  const setFingerGuideVisible = useCallback(
+    (showFingerGuide: boolean) => updatePreferences({ showFingerGuide }),
+    [updatePreferences],
+  );
+  const composing = useRef(false),
+    provenance = useRef<InputProvenance>("keyboard"),
+    finished = useRef(false),
+    compositionEcho = useRef(new CompositionEchoGuard());
+  const callbacks = useRef({
+    onTestComplete,
+    onStatusChange,
+    appendContent,
+    onSnapshot,
+  });
+  callbacks.current = {
+    onTestComplete,
+    onStatusChange,
+    appendContent,
+    onSnapshot,
+  };
+  const audio = useRef<KeyboardAudio | null>(null);
+  const canPause = configuration.mode !== "race" && !configuration.challengeId;
+  const fixedClockHint = configuration.settings?.timingPolicy === "first-input-v1"
+    ? "First key starts · " : "Shared clock · ";
+  const tabIndents =
+    configuration.mode === "code" &&
+    configuration.settings?.tabIndents === true;
+  const update = useCallback(
+    (next: SessionSnapshot) => {
+      if (
+        callbacks.current.appendContent &&
+        ["time", "zen"].includes(configuration.mode) &&
+        graphemes(next.targetText).length - next.cursor < 160 &&
+        next.status !== "finished"
+      ) {
+        controller.appendTarget(` ${callbacks.current.appendContent()}`);
+        next = controller.snapshot();
+      }
+      setSnapshot(next);
+      callbacks.current.onSnapshot?.(next);
+      callbacks.current.onStatusChange?.(next.status);
+      if (
+        next.status === "finished" &&
+        controller.result &&
+        !finished.current
+      ) {
+        finished.current = true;
+        callbacks.current.onTestComplete(controller.result);
+      }
+    },
+    [controller, configuration.mode],
+  );
+  useEffect(() => {
+    if (snapshot.status !== "running") return;
+    let timer: ReturnType<typeof setTimeout>;
+    const refresh = () => {
+      // The controller reads performance.now(); this timer only refreshes presentation.
+      const next = controller.tick();
+      update(next);
+      if (next.status === "running") timer = setTimeout(refresh, 100);
+    };
+    timer = setTimeout(refresh, 100);
+    return () => clearTimeout(timer);
+  }, [controller, update, snapshot.status]);
+  useEffect(() => {
+    const input = textarea.current;
+    if (!input) return;
+    const blockTransfer = (event: InputEvent) => {
+      if (!["insertFromPaste", "insertFromDrop"].includes(event.inputType))
+        return;
+      event.preventDefault();
+      provenance.current = "keyboard";
+      setInputHint("Paste is disabled during typing practice.");
+    };
+    input.addEventListener("beforeinput", blockTransfer);
+    return () => input.removeEventListener("beforeinput", blockTransfer);
+  }, []);
+  const measureCaret = useCallback(() => {
+    const container = viewport.current;
+    const text = passage.current;
+    const layout = caretLayout.current;
+    if (!container || !text || !layout) return;
+    const state = { ...layout, composing: composing.current };
+    let measurement = caretCache.current.read(state);
+    if (!measurement) {
+      const current = text.querySelector<HTMLElement>('[data-current="true"]');
+      const anchor = current ?? endCaret.current;
+      const fragment = anchor?.getClientRects()[0];
+      if (!fragment) return;
+      const bounds = container.getBoundingClientRect();
+      const options = {
+        fontSize: p.fontSize,
+        scrollLeft: container.scrollLeft,
+        scrollTop: container.scrollTop,
+        rtl: container.dir === "rtl",
+      };
+      const next = typingCaretAnchor(fragment, bounds, options);
+      if (!next) return;
+      const lineHeight = parseFloat(getComputedStyle(text).lineHeight);
+      measurement = { anchor: next, lineHeight };
+      if (current && caretCache.current.canCache(state)) {
+        // Correct-prefix insertions change colors, while the target glyphs and
+        // word wrappers stay in place. Capture a bounded window of real boxes
+        // in this one layout read, including ordinary spaces. No advances or
+        // future positions are estimated; uncertain geometry stays native.
+        const slots: MeasuredCaretWordSlot[] = [];
+        const walker = document.createTreeWalker(text, NodeFilter.SHOW_ELEMENT, {
+          acceptNode: (node) => (node as Element).hasAttribute("data-slot-index")
+            ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP,
+        });
+        walker.currentNode = current;
+        let node: HTMLElement | null = current;
+        while (node && slots.length < MAX_CACHED_FORWARD_GLYPHS) {
+          const index = Number(node.dataset.slotIndex);
+          if (index !== state.cursor + slots.length ||
+            node.dataset.expected !== state.targetText[index] ||
+            !["correct", "untyped"].includes(node.dataset.status)) break;
+          if (state.targetText[index] !== " " &&
+            (index === state.cursor || state.targetText[index - 1] === " ") &&
+            !caretCacheWordRange(state.targetText, index)) break;
+          const nativeFragment = node === current ? fragment : node.getClientRects()[0];
+          // The native fallback may expand a zero-width fragment for display;
+          // that expanded width is never evidence for the geometry cache.
+          if (!nativeFragment || nativeFragment.width <= 0 || nativeFragment.height <= 0 ||
+            ![nativeFragment.left, nativeFragment.top, nativeFragment.width, nativeFragment.height].every(Number.isFinite)) break;
+          const box = node === current ? next : typingCaretAnchor(nativeFragment, bounds, options);
+          if (!box || box.width <= 0 || box.height <= 0 ||
+            ![box.leading, box.top, box.width, box.height].every(Number.isFinite)) break;
+          slots.push({ index, expected: node.dataset.expected, anchor: box });
+          node = walker.nextNode() as HTMLElement | null;
+        }
+        caretCache.current.storeForward(state, slots, lineHeight);
+      }
+    }
+    const { anchor: next, lineHeight } = measurement;
+    // Keep the active line in the middle row; never scroll part of a line.
+    // Read layout before writing the caret. Its native measurement does not
+    // need a second render of the input, passage and keyboard for every key.
+    const box = typingCaretGeometry(next, p.caretStyle);
+    if (caret.current) {
+      const style = caret.current.style;
+      style.setProperty("--caret-x", `${box.left}px`);
+      style.setProperty("--caret-y", `${box.top}px`);
+      style.setProperty("--caret-width", `${box.width}px`);
+      style.setProperty("--caret-height", `${box.height}px`);
+      style.setProperty("--caret-visible", "visible");
+    }
+    if (!Number.isFinite(lineHeight) || lineHeight <= 0) return;
+    const row = Math.floor(Math.max(0, next.top) / lineHeight);
+    const scrollTop = Math.max(0, row - 1) * lineHeight;
+    // Reading scrollTop after React's glyph changes can itself force layout.
+    // A scroll listener clears this desired value when something else scrolls.
+    if (caretScrollTop.current !== scrollTop) {
+      container.scrollTop = scrollTop;
+      caretScrollTop.current = scrollTop;
+    }
+  }, [p.fontSize, p.caretStyle]);
+  useLayoutEffect(() => {
+    const previous = caretView.current;
+    if (previous.focused !== focused || previous.revealed !== revealed || previous.status !== snapshot.status)
+      caretCache.current.invalidate();
+    caretView.current = { focused, revealed, status: snapshot.status };
+    caretLayout.current = {
+      targetText: snapshot.targetText, finalText: snapshot.finalText, cursor: snapshot.cursor,
+      fontSize: p.fontSize, fontKey: configuration.language || "en",
+      scoringPolicy: configuration.mode === "code" ? "code" : configuration.scoringPolicy ?? "prose",
+      rtl: getContentPack(configuration.language || "en").direction === "rtl",
+      composing: composing.current,
+    };
+    measureCaret();
+  }, [
+    measureCaret,
+    snapshot.cursor,
+    snapshot.finalText,
+    snapshot.targetText,
+    snapshot.status,
+    focused,
+    revealed,
+    p.fontSize,
+    configuration.language,
+    configuration.mode,
+    configuration.scoringPolicy,
+  ]);
+  useLayoutEffect(() => {
+    const container = viewport.current;
+    const text = passage.current;
+    if (!container || !text) return;
+    let active = true;
+    const invalidate = () => {
+      caretCache.current.invalidate();
+      caretScrollTop.current = null;
+    };
+    const measure = () => {
+      if (active) {
+        invalidate();
+        measureCaret();
+      }
+    };
+    // Observer/font ownership survives insertions. Correct-prefix cache hits
+    // need no synchronous layout read or new observer/font promise.
+    const observer = new ResizeObserver(measure);
+    observer.observe(container);
+    observer.observe(text);
+    // Family/theme switches may change individual glyph advances without a
+    // ResizeObserver notification. Do not observe per-key passage/caret writes.
+    const styleObserver = new MutationObserver(measure);
+    styleObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["style", "class"] });
+    const scroll = (event: Event) => {
+      if (event.target === container) {
+        // Native anchors are content-relative: scrolling this viewport does
+        // not change glyph geometry. Keep the word cache when following a row.
+        // An actual user scroll only clears the desired-scroll bookkeeping so
+        // the next typed character can restore its active line.
+        if (container.scrollTop !== caretScrollTop.current)
+          caretScrollTop.current = null;
+        return;
+      }
+      if (event.target === document ||
+        (event.target instanceof Element && event.target.contains(container)))
+        invalidate();
+    };
+    window.addEventListener("scroll", scroll, true);
+    window.addEventListener("resize", measure);
+    window.visualViewport?.addEventListener("resize", measure);
+    document.fonts.addEventListener("loadingdone", measure);
+    document.fonts.addEventListener("loadingerror", measure);
+    void document.fonts.ready.then(measure);
+    return () => {
+      active = false;
+      observer.disconnect();
+      styleObserver.disconnect();
+      window.removeEventListener("scroll", scroll, true);
+      window.removeEventListener("resize", measure);
+      window.visualViewport?.removeEventListener("resize", measure);
+      document.fonts.removeEventListener("loadingdone", measure);
+      document.fonts.removeEventListener("loadingerror", measure);
+      invalidate();
+    };
+  }, [measureCaret]);
+  useEffect(() => {
+    // Desktop users can type immediately. Touch users choose when to open their keyboard.
+    if (autoFocus ?? matchMedia("(pointer: fine)").matches)
+      textarea.current?.focus({ preventScroll: true });
+  }, [autoFocus]);
+  useLayoutEffect(() => {
+    if (snapshot.status !== "paused") return;
+    resumeButton.current?.focus({ preventScroll: true });
+    viewport.current?.scrollIntoView({ block: "center", behavior: "instant" });
+  }, [snapshot.status]);
+  useEffect(() => {
+    document.documentElement.classList.toggle(
+      "forge-focused",
+      focused && snapshot.status === "running",
+    );
+    return () => document.documentElement.classList.remove("forge-focused");
+  }, [focused, snapshot.status]);
+  useEffect(() => {
+    if (!p.sound) return;
+    let active = true;
+    // Loading the module and its factory does not create an AudioContext.
+    void import("@/lib/keyboard-audio")
+      .then(({ createKeyboardAudio }) => {
+        if (active) audio.current = createKeyboardAudio();
+      })
+      .catch(() => undefined);
+    return () => {
+      active = false;
+      audio.current?.dispose();
+      audio.current = null;
+    };
+  }, [p.sound]);
+  const sound = () => {
+    if (!p.sound || !p.volume) return;
+    const engine = audio.current;
+    if (engine)
+      void engine
+        .unlock()
+        .then(() => engine.play(p.soundPack, p.volume))
+        .catch(() => undefined);
+  };
+  const wordCorrection = useWordCorrection({
+    controller,
+    inputRef: textarea,
+    composing,
+    onSnapshot: (next) => {
+      compositionEcho.current.reset();
+      setValue(next.finalText);
+      update(next);
+      sound();
+    },
+    onNotice: setInputHint,
+  });
+  const restoreTypingFocus = () => {
+    const input = textarea.current;
+    if (!input) return;
+    const saved = blurredSelection.current;
+    const start = Math.min(
+      saved?.selectionStart ?? input.value.length,
+      input.value.length,
+    );
+    const end = Math.max(
+      start,
+      Math.min(saved?.selectionEnd ?? start, input.value.length),
+    );
+    input.focus();
+    // WebKit can move a blurred controlled textarea's caret before its final
+    // character. Restore the actual selection, including intentional edits.
+    input.setSelectionRange(start, end, saved?.selectionDirection ?? "none");
+    wordCorrection.constrainSelection();
+  };
+  const commit = (
+    newValue: string,
+    source: InputProvenance = provenance.current,
+    compositionId?: string,
+  ) => {
+    const oldUnits = graphemes(controller.currentText),
+      newUnits = graphemes(
+        configuration.scoringPolicy === "code"
+          ? newValue
+          : newValue.normalize("NFC"),
+      );
+    let start = 0;
+    while (
+      start < oldUnits.length &&
+      start < newUnits.length &&
+      oldUnits[start] === newUnits[start]
+    )
+      start++;
+    let end = oldUnits.length,
+      newEnd = newUnits.length;
+    while (
+      end > start &&
+      newEnd > start &&
+      oldUnits[end - 1] === newUnits[newEnd - 1]
+    ) {
+      end--;
+      newEnd--;
+    }
+    if (start === end && start === newEnd) {
+      if (textarea.current) textarea.current.value = controller.currentText;
+      setValue(controller.currentText);
+      if (source === "autocorrect") {
+        // A replacement can preserve the visible text while still proving
+        // assistance. Keep that evidence without inventing a typed character
+        // or starting a practice clock before the first accepted insertion.
+        const position = oldUnits.length;
+        update(controller.input({
+          type: "replace",
+          start: position,
+          end: position,
+          text: "",
+          provenance: source,
+        }));
+      }
+      return;
+    }
+    const text = newUnits.slice(start, newEnd).join("");
+    if (
+      !compositionId &&
+      source === "keyboard" &&
+      start === oldUnits.length &&
+      start === end &&
+      wordCorrection.ignoreEmptySpace(text, true)
+    ) {
+      if (textarea.current) textarea.current.value = controller.currentText;
+      setValue(controller.currentText);
+      return;
+    }
+    const touchesPreviousWord = start < controller.editableStart;
+    const next = controller.input({
+      type: compositionId
+        ? "composition"
+        : text
+          ? end > start
+            ? "replace"
+            : "insert"
+          : "delete",
+      start,
+      end,
+      text,
+      provenance: source,
+      compositionId,
+    });
+    if (textarea.current && textarea.current.value !== next.finalText)
+      textarea.current.value = next.finalText;
+    setValue(next.finalText);
+    update(next);
+    setInputHint(
+      touchesPreviousWord && next.finalText === oldUnits.join("")
+        ? wordCorrectionNotice(controller)
+        : "",
+    );
+    provenance.current = "keyboard";
+    if (!touchesPreviousWord && (text || oldUnits.length > newUnits.length))
+      sound();
+  };
+  const pack = getContentPack(configuration.language || "en");
+  const free = configuration.scoringPolicy === "free";
+  const rival =
+    configuration.mode === "race" && !free ? opponentPace : undefined;
+  const rivalPosition = rival
+    ? opponentPacePosition(
+        snapshot.characters.filter((slot) => slot.expected !== null).length,
+        { cursor: rival.position },
+      )
+    : 0;
+  const gap = rivalPosition - snapshot.cursor;
+  const pace = Math.floor((snapshot.elapsedMs / 60000) * p.targetWpm * 5);
+  const visibleSlots = snapshot.characters;
+  const paceMarker = useCallback(
+    (slot: SessionSnapshot["characters"][number]) =>
+      p.paceCaret && !rival && slot.index === pace ? (
+        <span className="absolute top-0 bottom-0 border-l border-dashed border-primary/40" />
+      ) : null,
+    [p.paceCaret, rival, pace],
+  );
+  const opponentCharacterClass = useCallback(
+    (slot: SessionSnapshot["characters"][number]) =>
+      slot.expected !== null &&
+      slot.status === "untyped" &&
+      slot.index < rivalPosition
+        ? "opponent-passed"
+        : undefined,
+    [rivalPosition],
+  );
+  const sessionControls = useMemo(
+    () => (
+      <div className="typing-controls flex flex-wrap items-center gap-1">
+        <div className="flex gap-1 items-center">
+          {onRestart && (
+            <button
+              className="forge-icon-button"
+              aria-label="Restart with new text"
+              title={
+                tabIndents
+                  ? "Restart with new text"
+                  : "Restart · Tab then Enter"
+              }
+              onClick={onRestart}
+            >
+              <RotateCcw size={18} />
+            </button>
+          )}
+          <button
+            className="forge-icon-button"
+            aria-label={
+              revealed
+                ? "Hide accessible text editor"
+                : "Show accessible text editor"
+            }
+            aria-pressed={revealed}
+            onClick={() => setRevealed(!revealed)}
+          >
+            {revealed ? <EyeOff size={17} /> : <Eye size={17} />}
+          </button>
+          {snapshot.status === "running" && canPause && (
+            <button
+              className="forge-icon-button"
+              aria-label="Pause practice"
+              onClick={() => update(controller.pause())}
+            >
+              <Pause size={17} />
+            </button>
+          )}
+          <button
+            className="forge-chip"
+            aria-label="Finish"
+            title="Finish practice"
+            disabled={snapshot.status === "ready"}
+            onClick={() => update(controller.finish("manual"))}
+          >
+            <Flag size={15} aria-hidden="true" />
+            <span className="typing-finish-label">Finish</span>
+          </button>
+        </div>
+        <TypingShortcutHelp>
+          <p>
+            {canPause ? "Esc pauses · " : fixedClockHint}Ctrl+Enter finishes
+            ·
+            {tabIndents
+              ? " Tab indents · Shift+Tab moves focus"
+              : onRestart
+                ? " Tab → Enter restarts"
+                : " Tab moves focus"}
+            {configuration.correctionPolicy === "current-word" &&
+              " · Correct current word only"}
+            {configuration.correctionPolicy === "correct-words-locked" &&
+              " · Correct words lock; Backspace can reopen previous mistakes"}
+          </p>
+          {configuration.rejectIncorrect && (
+            <p>
+              Precision mode: incorrect attempts count toward accuracy and keep
+              the caret in place. Type the expected character to continue;
+              Backspace is not required.
+            </p>
+          )}
+        </TypingShortcutHelp>
+      </div>
+    ),
+    [
+      onRestart,
+      tabIndents,
+      revealed,
+      snapshot.status,
+      canPause,
+      fixedClockHint,
+      controller,
+      update,
+      configuration.correctionPolicy,
+      configuration.rejectIncorrect,
+    ],
+  );
+  const clock =
+    snapshot.remainingMs !== null
+      ? Math.ceil(snapshot.remainingMs / 1000)
+      : Math.floor(snapshot.elapsedMs / 1000);
+  return (
+    <section
+      className="typing-workspace w-full forge-appear"
+      aria-label="Typing session"
+      data-session-id={configuration.clientSessionId}
+      data-focused={focused}
+      data-status={snapshot.status}
+    >
+      <div className="typing-hud flex items-center justify-between mb-4 gap-4">
+        <div className="flex gap-7 items-end min-h-12">
+          <div>
+            <span className="text-3xl font-mono text-primary">
+              {clock}
+              <span className="text-base ml-1 text-muted-foreground">s</span>
+            </span>
+            <span className="sr-only">
+              {snapshot.remainingMs !== null ? "remaining" : "elapsed"}
+            </span>
+          </div>
+          {p.liveStats && (
+            <>
+              <div>
+                <span className="text-2xl font-mono">
+                  {number(
+                    snapshot.elapsedMs < 1000 ? null : snapshot.metrics.wpm,
+                  )}
+                </span>
+                <span className="text-xs text-muted-foreground ml-2">wpm</span>
+              </div>
+              <div className="hidden sm:block">
+                <span className="text-2xl font-mono">
+                  {number(snapshot.metrics.inputAccuracy)}
+                </span>
+                <span className="text-xs text-muted-foreground ml-2">
+                  acc %
+                </span>
+              </div>
+            </>
+          )}
+        </div>
+        <span className="eyebrow hidden sm:block">
+          {snapshot.status === "ready"
+            ? "Ready when you are"
+            : snapshot.status === "paused"
+              ? "Paused practice"
+              : "Find your rhythm"}
+        </span>
+      </div>
+      {rival && (
+        <div
+          id="race-pace-legend"
+          className="race-pace-legend"
+          data-testid="race-pace-legend"
+          data-position={rivalPosition}
+        >
+          <span>
+            <i className="race-you-swatch" aria-hidden="true" />
+            You
+          </span>
+          <span>
+            <i className="race-opponent-swatch" aria-hidden="true" />
+            {rival.label}
+            {rival.approximate ? " · confirmed progress" : " pace"}
+          </span>
+          <span className="font-mono">
+            {rival.wpm === null || !Number.isFinite(rival.wpm)
+              ? "—"
+              : Math.round(rival.wpm)}{" "}
+            wpm
+          </span>
+          <span>
+            {gap === 0
+              ? "Alongside you"
+              : `${Math.abs(gap)} characters ${gap > 0 ? "ahead" : "behind"}`}
+          </span>
+        </div>
+      )}
+      <div className="relative">
+        <div className="typing-stage relative py-2">
+          <div
+            ref={viewport}
+            data-testid="typing-viewport"
+            className="typing-viewport overflow-hidden scrollbar-hide relative"
+            aria-hidden="true"
+            dir={pack.direction}
+            style={
+              {
+                fontFamily: pack.font,
+                height: p.fontSize * 1.9 * 3,
+                "--typing-size": `${p.fontSize}px`,
+              } as CSSProperties
+            }
+          >
+            <span
+              ref={caret}
+              data-testid="typing-caret"
+              className={cn(
+                "forge-caret font-mono",
+                p.caretStyle === "block" && "caret-block",
+                p.caretStyle === "underline" && "caret-underline",
+                p.caretStyle === "outline" && "caret-outline",
+                snapshot.status === "ready" && "typing-caret-blink",
+              )}
+              style={{
+                left: 0,
+                top: 0,
+                bottom: "auto",
+                insetInlineStart: "auto",
+                fontSize: p.fontSize,
+                width: "var(--caret-width, 2px)",
+                height: "var(--caret-height, 1em)",
+                visibility:
+                  "var(--caret-visible, hidden)" as CSSProperties["visibility"],
+                transform:
+                  "translate3d(var(--caret-x, 0px), var(--caret-y, 0px), 0)",
+                transition:
+                  p.smoothCaret && !p.reducedMotion
+                    ? "transform 55ms cubic-bezier(.2,.8,.2,1)"
+                    : "none",
+                zIndex: rival ? 3 : 1,
+              }}
+            />
+            {rival && (
+              <OpponentPaceMarker
+                position={rivalPosition}
+                viewportRef={viewport}
+                passageRef={passage}
+                revision={snapshot.finalText}
+                ownCursor={snapshot.cursor}
+                targetText={snapshot.targetText}
+                scoringPolicy={configuration.scoringPolicy ?? "prose"}
+                rtl={pack.direction === "rtl"}
+                composing={composing.current}
+                sessionKey={configuration.clientSessionId}
+                fontSize={p.fontSize}
+                smooth={p.smoothCaret && !p.reducedMotion}
+              />
+            )}
+            <div
+              ref={passage}
+              className="typing-text relative pb-5"
+              data-testid="typing-target"
+              style={{ fontFamily: pack.font }}
+            >
+              {free ? (
+                <span className="char-correct">
+                  {snapshot.finalText}
+                  <span
+                    ref={endCaret}
+                    className="typing-free-end"
+                    data-caret-end-anchor
+                  />
+                  {!snapshot.finalText && (
+                    <span className="text-muted-foreground">
+                      A blank page. Write freely, and finish when you’re ready.
+                    </span>
+                  )}
+                </span>
+              ) : (
+                <>
+                  <TypingPassage
+                    slots={visibleSlots}
+                    cursor={snapshot.cursor}
+                    preserveWhitespace={configuration.scoringPolicy === "code"}
+                    characterClassName={
+                      rival ? opponentCharacterClass : undefined
+                    }
+                    marker={null}
+                    renderBefore={p.paceCaret ? paceMarker : undefined}
+                  />
+                  <span
+                    ref={endCaret}
+                    className="typing-free-end"
+                    data-caret-end-anchor
+                  />
+                </>
+              )}
+              {rival && (
+                <span className="typing-free-end" data-opponent-end-anchor />
+              )}
+            </div>
+          </div>
+          <p id="typing-passage" className="sr-only">
+            {free
+              ? "Free writing practice."
+              : `Practice passage: ${snapshot.targetText}`}
+          </p>
+          <textarea
+            ref={textarea}
+            aria-label="Typing input"
+            aria-describedby={
+              free
+                ? "typing-instructions typing-passage"
+                : `typing-instructions typing-passage typing-feedback${rival ? " race-pace-legend" : ""}`
+            }
+            value={value}
+            onInput={(event) => {
+              const native = event.nativeEvent as InputEvent;
+              if (
+                ["insertFromPaste", "insertFromDrop"].includes(
+                  native.inputType,
+                )
+              ) {
+                compositionEcho.current.reset();
+                event.currentTarget.value = value;
+                provenance.current = "keyboard";
+                setInputHint("Paste is disabled during typing practice.");
+                return;
+              }
+              setValue(event.currentTarget.value);
+              if (!composing.current && !native.isComposing) {
+                if (compositionEcho.current.consume(native.data ?? "", native.inputType || "")) {
+                  event.currentTarget.value = controller.currentText;
+                  setValue(controller.currentText);
+                  provenance.current = "keyboard";
+                  return;
+                }
+                // Mobile keyboards may deliver the replacement only at input,
+                // without a preceding beforeinput/keydown event. Keep its actual
+                // provenance, and consume any older beforeinput marker once.
+                const source = native.inputType === "insertReplacementText"
+                  ? "autocorrect"
+                  : native.inputType ? "keyboard" : provenance.current;
+                provenance.current = "keyboard";
+                commit(event.currentTarget.value, source);
+              }
+            }}
+            onFocus={() => {
+              wordCorrection.constrainSelection();
+              setFocused(true);
+            }}
+            onSelect={wordCorrection.constrainSelection}
+            onBlur={(event) => {
+              const input = event.currentTarget;
+              blurredSelection.current = {
+                selectionStart: input.selectionStart,
+                selectionEnd: input.selectionEnd,
+                selectionDirection: input.selectionDirection,
+              };
+              setFocused(false);
+              setCapsLock(null);
+            }}
+            onBeforeInput={(event) => {
+              const kind = (event.nativeEvent as InputEvent).inputType;
+              if (["insertFromPaste", "insertFromDrop"].includes(kind)) {
+                event.preventDefault();
+                provenance.current = "keyboard";
+                setInputHint("Paste is disabled during typing practice.");
+                return;
+              }
+              if (kind === "insertReplacementText")
+                provenance.current = "autocorrect";
+            }}
+            onCompositionStart={() => {
+              compositionEcho.current.reset();
+              wordCorrection.constrainSelection();
+              caretCache.current.invalidate();
+              composing.current = true;
+            }}
+            onCompositionEnd={(event) => {
+              composing.current = false;
+              // Only the next explicit composition-owned batch proves an echo.
+              // Retained text alone cannot distinguish it from a later edit.
+              compositionEcho.current.remember(event.data ?? "");
+              commit(
+                event.currentTarget.value,
+                "composition",
+                crypto.randomUUID(),
+              );
+            }}
+            onPaste={(event) => {
+              event.preventDefault();
+              compositionEcho.current.reset();
+              provenance.current = "keyboard";
+              setInputHint("Paste is disabled during typing practice.");
+            }}
+            onDrop={(event) => {
+              event.preventDefault();
+              compositionEcho.current.reset();
+              provenance.current = "keyboard";
+              setInputHint("Paste is disabled during typing practice.");
+            }}
+            onKeyDown={(event) => {
+              setCapsLock(event.getModifierState("CapsLock"));
+              if (
+                composing.current ||
+                event.nativeEvent.isComposing ||
+                event.keyCode === 229
+              )
+                return;
+              if (wordCorrection.handleKeyDown(event)) return;
+              if (event.key === "Escape" && !composing.current && canPause) {
+                event.preventDefault();
+                update(
+                  snapshot.status === "paused"
+                    ? controller.resume()
+                    : controller.pause(),
+                );
+              }
+              if (
+                event.key === "Enter" &&
+                !composing.current &&
+                (event.ctrlKey || event.metaKey)
+              ) {
+                event.preventDefault();
+                update(controller.finish("manual"));
+              }
+              if (
+                event.key === "Tab" &&
+                tabIndents &&
+                !event.shiftKey &&
+                !event.ctrlKey &&
+                !event.metaKey
+              ) {
+                event.preventDefault();
+                const input = event.currentTarget;
+                const start = utf16ToGraphemeOffset(
+                  input.value,
+                  input.selectionStart,
+                );
+                const end = utf16ToGraphemeOffset(
+                  input.value,
+                  input.selectionEnd,
+                );
+                const next = controller.input({
+                  type: "insert",
+                  start,
+                  end,
+                  text: "    ",
+                  provenance: "generated",
+                });
+                setValue(next.finalText);
+                update(next);
+                sound();
+              }
+            }}
+            onKeyUp={(event) => setCapsLock(event.getModifierState("CapsLock"))}
+            disabled={
+              snapshot.status === "finished" || snapshot.status === "paused"
+            }
+            autoCapitalize="off"
+            autoComplete="off"
+            autoCorrect="off"
+            spellCheck={false}
+            maxLength={100000}
+            dir={pack.direction}
+            className={cn(
+              "typing-input absolute inset-0 w-full h-full resize-none border-0 bg-transparent caret-transparent text-transparent outline-none focus:outline-none py-2",
+              revealed &&
+                "!relative !text-foreground !caret-primary !h-40 !border-t",
+            )}
+            style={{ fontSize: p.fontSize }}
+          />
+          {!focused && snapshot.status !== "paused" && (
+            <button
+              tabIndex={-1}
+              aria-label={
+                snapshot.status === "running" ? "Continue typing" : undefined
+              }
+              className="typing-focus-prompt absolute inset-0 flex items-center justify-center gap-3 text-sm text-foreground"
+              onClick={restoreTypingFocus}
+            >
+              <Keyboard size={22} className="text-primary" />
+              <span>
+                {snapshot.status === "running"
+                  ? `${configuration.mode === "race" ? "Race" : "Practice"} clock continues · click or tab to continue`
+                  : "Click here or tab to start typing"}
+              </span>
+            </button>
+          )}
+          {snapshot.status === "paused" && (
+            <div className="absolute inset-0 bg-card/95 flex flex-col justify-center items-center gap-3">
+              <p className="text-lg font-medium">Take a breath.</p>
+              <p className="text-xs text-muted-foreground">
+                Paused sessions stay in personal practice.
+              </p>
+              <button
+                ref={resumeButton}
+                className="forge-button"
+                onClick={() => {
+                  update(controller.resume());
+                  requestAnimationFrame(restoreTypingFocus);
+                }}
+              >
+                <Play size={15} />
+                Resume
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+      {(capsLock || inputHint) && (
+        <p
+          role="status"
+          aria-live="polite"
+          data-testid="typing-input-notice"
+          className="mt-2 text-xs text-muted-foreground"
+        >
+          {capsLock ? "Caps Lock is on. " : ""}
+          {inputHint}
+        </p>
+      )}
+      {!free && (
+        <div id="typing-feedback">
+          <TypingFeedback
+            snapshot={snapshot}
+            controller={controller}
+            rejectIncorrect={configuration.rejectIncorrect}
+          />
+        </div>
+      )}
+      <p id="typing-instructions" className="sr-only">
+        {canPause ? "Esc pauses · " : fixedClockHint}Ctrl+Enter finishes ·
+        {tabIndents
+          ? " Tab indents · Shift+Tab moves focus"
+          : onRestart
+            ? " Tab → Enter restarts"
+            : " Tab moves focus"}
+        {configuration.correctionPolicy === "current-word" &&
+          " · Correct current word only"}
+        {configuration.correctionPolicy === "correct-words-locked" &&
+          " · Correct words lock; Backspace can reopen previous mistakes"}
+      </p>
+      <ObservedLiveKeyboard
+        inputRef={textarea}
+        sessionKey={controller}
+        observe={snapshot.status !== "paused" && snapshot.status !== "finished"}
+        sessionControls={sessionControls}
+        layout={configuration.keyboardLayout || p.layout}
+        language={configuration.language || p.language}
+        expectedCharacter={
+          free ? undefined : snapshot.characters[snapshot.cursor]?.expected
+        }
+        lastAttempt={lastKeyboardAttempt}
+        lessonKeys={keyboardLessonKeys}
+        visible={p.showKeyboard}
+        fingerGuide={p.showFingerGuide}
+        reducedMotion={p.reducedMotion}
+        onVisibilityChange={setKeyboardVisible}
+        onFingerGuideChange={setFingerGuideVisible}
+      />
+      <span role="status" className="sr-only">
+        {snapshot.status === "finished"
+          ? "Test complete"
+          : snapshot.status === "paused"
+            ? "Test paused"
+            : snapshot.status === "ready"
+              ? "Ready to type"
+              : "Test running"}
+      </span>
+    </section>
+  );
+}

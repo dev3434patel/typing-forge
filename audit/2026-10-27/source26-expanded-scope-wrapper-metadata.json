@@ -1,0 +1,48 @@
+{
+  "status": "PREPARED-METADATA-CORRECTED-NOT-RUN",
+  "recordedAt": "2026-10-27T17:13:04.251Z",
+  "changes": [
+    {
+      "file": "audit/2026-10-27/run-final26-browser-matrix.mjs",
+      "before": "frontendEvidenceReuseRequiresExactByteProof: true",
+      "after": "changedExistingFrontendFiles: ['src/domain/arena.ts', 'src/services/arena-service.ts', 'src/domain/__tests__/arena.test.ts'], currentArenaWireFieldsRemovedExactly: ['characters', 'timeSeries', 'cursor'], frontendEvidenceReuse: 'NOT-USED', freshFrontendBuildRequired: true, freshOrdinaryInputRunsRequired: 3, freshFullQualityMobileLighthouseRunsRequired: 3",
+      "originalSha256": "c030a11be5cd834b33d804b0584efd361ac8c8562887e2c6981e2d8524848728",
+      "sha256": "63227a51d84d2b7417146137fce919ddc0fdaa7acf0e091f7f278f37bbe4c7bb",
+      "reversibleByteIdentity": true
+    },
+    {
+      "file": "audit/2026-10-27/run-final26-native-modules.mjs",
+      "before": "sourceInventoryExtension: { previousCount: 504, expectedCount: 505, proposedChangedBackendFiles: ['backend/public/index.php', 'backend/src/RequestBody.php'], reason: 'Source26 proposes a bounded backend request-body parser. The source25 replay-hoist prototype was rejected and restored to source24; actual acceptance requires505 frozen files and independent UI byte-identity proof.' }",
+      "after": "sourceInventoryExtension: { previousCount: 504, expectedCount: 505, proposedChangedBackendFiles: ['backend/public/index.php', 'backend/src/RequestBody.php'], changedExistingFrontendFiles: ['src/domain/arena.ts', 'src/services/arena-service.ts', 'src/domain/__tests__/arena.test.ts'], frontendEvidenceReuse: 'NOT-USED', freshFrontendBuildAndThreeInputAndThreeFullQualityLighthouseRunsRequired: true, reason: 'Source26 uses a bounded backend request parser and production compact Arena request wire. The rejected25 replay hoist remains restored to24. Acceptance requires505 frozen files and the actual fresh frontend build; no prior UI evidence reuse is claimed.' }",
+      "originalSha256": "15a1fa64041ec7ecb6657760c26e22eab96d15248870333433bf25afdba5a74b",
+      "sha256": "cb70593d724cddaa2dbace690d852815c0c3bec10b75102eb523564fc2a28938",
+      "reversibleByteIdentity": true
+    },
+    {
+      "file": "audit/2026-10-27/run-final26-native-ci.mjs",
+      "before": "sourceInventoryExtension: { previousCount: 504, expectedCount: 505, proposedChangedBackendFiles: ['backend/public/index.php', 'backend/src/RequestBody.php'], reason: 'Source26 proposes a bounded backend request-body parser. The source25 replay-hoist prototype was rejected and restored to source24; actual acceptance requires505 frozen files and independent UI byte-identity proof.' }",
+      "after": "sourceInventoryExtension: { previousCount: 504, expectedCount: 505, proposedChangedBackendFiles: ['backend/public/index.php', 'backend/src/RequestBody.php'], changedExistingFrontendFiles: ['src/domain/arena.ts', 'src/services/arena-service.ts', 'src/domain/__tests__/arena.test.ts'], frontendEvidenceReuse: 'NOT-USED', freshFrontendBuildAndThreeInputAndThreeFullQualityLighthouseRunsRequired: true, reason: 'Source26 uses a bounded backend request parser and production compact Arena request wire. The rejected25 replay hoist remains restored to24. Acceptance requires505 frozen files and the actual fresh frontend build; no prior UI evidence reuse is claimed.' }",
+      "originalSha256": "e50e284190146fb88539e5af66f06427c07cfac2b91650809827ab3810f25ce0",
+      "sha256": "323ef20e7c3caf6bcdf1b971878555ff09f5f438507fec3d19d55f73f0284bf8",
+      "reversibleByteIdentity": true
+    }
+  ],
+  "actualScope": "Bounded RequestBody parser plus production Arena wire helper/service; only server-rebuilt characters/timeSeries/cursor are removed from requests.",
+  "expectedSourceFiles": 505,
+  "expectedE2eSpecFiles": 64,
+  "allFourEnginesRetained": true,
+  "originalAssertionsBatchesDeadlinesAndRetriesChanged": false,
+  "requiredFreshEvidence": {
+    "build": true,
+    "ordinaryInputRuns": 3,
+    "fullQualityMobileLighthouseRuns": 3
+  },
+  "priorUiReuse": "NOT-USED",
+  "strictUiReuseCheckerUnchanged": {
+    "file": "audit/2026-10-27/verify-source26-ui-evidence-reuse.mjs",
+    "sha256": "0d7f5be514a7af6222705c208c8a50be5170c09cf6af89e5331d7786385133db"
+  },
+  "acceptanceTestsRun": 0,
+  "servicesStarted": 0,
+  "buildsRun": 0
+}

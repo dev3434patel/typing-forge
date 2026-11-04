@@ -387,3 +387,65 @@ export function deserializeRaceState(data: ReturnType<typeof serializeRaceState>
     updatedAt: new Date(data.updated_at).getTime(),
   };
 }
+
+export type RaceFeedbackOperation = 'checkpoint' | 'finish' | 'local';
+
+interface RaceFeedbackRequest {
+  sequence: number;
+  pending: boolean;
+  error: string;
+}
+
+export interface RaceFeedbackState {
+  checkpoint: RaceFeedbackRequest;
+  finish: RaceFeedbackRequest;
+  local: RaceFeedbackRequest;
+  finishing: boolean;
+  finishConfirmed: boolean;
+}
+
+export type RaceFeedbackEvent =
+  | { type: 'start'; operation: RaceFeedbackOperation; sequence: number }
+  | { type: 'success'; operation: RaceFeedbackOperation; sequence: number }
+  | { type: 'failure'; operation: RaceFeedbackOperation; sequence: number; message: string };
+
+export function createRaceFeedback(): RaceFeedbackState {
+  return {
+    checkpoint: { sequence: 0, pending: false, error: '' },
+    finish: { sequence: 0, pending: false, error: '' },
+    local: { sequence: 0, pending: false, error: '' },
+    finishing: false,
+    finishConfirmed: false,
+  };
+}
+
+/** Request acknowledgements own their feedback. Room polling cannot confirm a
+ * client's finish, and a late checkpoint cannot overwrite its final outcome.
+ */
+export function raceFeedback(state: RaceFeedbackState, event: RaceFeedbackEvent): RaceFeedbackState {
+  if (!Number.isSafeInteger(event.sequence) || event.sequence <= 0) return state;
+  if (event.operation === 'checkpoint' && state.finishing) return state;
+  const current = state[event.operation];
+  if (event.type === 'start') {
+    if (event.sequence <= current.sequence) return state;
+    return {
+      ...state,
+      [event.operation]: { ...current, sequence: event.sequence, pending: true },
+      ...(event.operation === 'finish' ? { finishing: true, finishConfirmed: false } : {}),
+    };
+  }
+  if (event.sequence !== current.sequence || !current.pending) return state;
+  const next = {
+    ...state,
+    [event.operation]: {
+      ...current,
+      pending: false,
+      error: event.type === 'failure' ? event.message : '',
+    },
+  };
+  if (event.operation === 'finish' && event.type === 'success') {
+    next.checkpoint = { ...state.checkpoint, pending: false, error: '' };
+    next.finishConfirmed = true;
+  }
+  return next;
+}

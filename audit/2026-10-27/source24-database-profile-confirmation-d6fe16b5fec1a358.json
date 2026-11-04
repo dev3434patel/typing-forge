@@ -1,0 +1,140 @@
+{
+  "status": "FAILED",
+  "protocol": {
+    "declaredAt": "2026-10-27T16:36:59.364Z",
+    "status": "DECLARED-NOT-RUN",
+    "build": "6cdddf1a74b2d10d1c9b",
+    "source": {
+      "sourceFile": "audit/2026-10-27/final24-source.json",
+      "expectedBuild": "6cdddf1a74b2d10d1c9b",
+      "compared": 504,
+      "mismatches": []
+    },
+    "ownerId": "d6fe16b5fec1a358",
+    "scope": "One exact1653-operation/concurrency20 capacity burst in a separately owned Performance-Schema-enabled diagnostic environment. All original assertions and strict150ms target retained, without ordinary-environment acceptance claim.",
+    "instrumentation": "Statement digest and InnoDB file-wait summary aggregation only; history consumers disabled; no raw SQL/history export.",
+    "changes": [
+      "Owned MariaDB startup performance_schema OFF→ON",
+      "Owned Performance Schema consumer/instrument enablement only"
+    ],
+    "durabilityLimitsAndApplicationSourceChanged": false,
+    "retries": 0,
+    "queriesBounded": 256,
+    "digestNullOrLostMeansIncomplete": true,
+    "inputHashes": {
+      "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-10-27\\run-source24-database-profile-confirmation.mjs": "b938d314195a292b62580cc9909fa03e0fea119c7ed6f9dd0e965004a7592ebf",
+      "audit/2026-10-27/owned-database-profile-source24-confirmation.php": "4589f1dce1a119b0160040ad7df0eb5ee23c1f47d5669043a92e8fffa1f44e05",
+      "audit/2026-10-27/pack-backend-instance-source24-db-profile-confirmation.mjs": "b95b679d4df9354de1707f9074c7a7c75c63ffacc5e2bda486c2751134898f1d",
+      "audit/2026-10-27/run-source24-capacity-db-profile-confirmation.mjs": "119304a93b83cd47e80ff809917055ac0c654b7f9ab28938619adf751e229db4",
+      "audit/2026-10-27/run-source24-capacity-burst.mjs": "f5bd8c8ff27aa84b46a0b9eac0b30c7a7b188e168b6203a946c36b001b9cec1a",
+      "scripts/php-runtime.mjs": "2adeffc2ac322edbc611f34c437a0f34569689c942602bf39b079305cfb7a60f"
+    },
+    "originalConfigRead": false,
+    "privateConfigLoadedOnlyByGuardedPhp": "Fresh owner admin.json, never original configuration",
+    "serviceCleanup": "Original owner stdin cleanup in finally after completion."
+  },
+  "finishedAt": "2026-10-27T16:37:21.461Z",
+  "failure": null,
+  "capacityExitCode": 1,
+  "capacityReceipt": "source24-capacity-db-profile-confirmation-d6fe16b5fec1a358.json",
+  "capacityStatus": "FAILED",
+  "ordinaryAcceptanceReplaced": false,
+  "rateUpsertCount": 0,
+  "digestOverflowOrLoss": 0,
+  "digestDelta": [
+    {
+      "digest": "4f97c857c317f8412219349f00ae6b5d",
+      "category": "start-transaction",
+      "count": 1654,
+      "totalMs": 82.6547,
+      "maxMsSinceServerStart": 1.6295,
+      "lockMs": 0,
+      "errors": 0,
+      "rowsAffected": 0,
+      "rowsSent": 0,
+      "rowsExamined": 0
+    },
+    {
+      "digest": "5e2c349ab16086434a87fb8d75d47d22",
+      "category": "other",
+      "count": 1653,
+      "totalMs": 125.3723,
+      "maxMsSinceServerStart": 0.8024,
+      "lockMs": 0,
+      "errors": 0,
+      "rowsAffected": 0,
+      "rowsSent": 0,
+      "rowsExamined": 0
+    },
+    {
+      "digest": "79e66ebcec7c18186093122a86f098a1",
+      "category": "rollback",
+      "count": 2,
+      "totalMs": 0.0676,
+      "maxMsSinceServerStart": 0.0458,
+      "lockMs": 0,
+      "errors": 0,
+      "rowsAffected": 0,
+      "rowsSent": 0,
+      "rowsExamined": 0
+    },
+    {
+      "digest": "a1ad005e47336400bdeb4e404ede5244",
+      "category": "commit",
+      "count": 1648,
+      "totalMs": 5995.4331,
+      "maxMsSinceServerStart": 143.6948,
+      "lockMs": 0,
+      "errors": 0,
+      "rowsAffected": 0,
+      "rowsSent": 0,
+      "rowsExamined": 0
+    }
+  ],
+  "fileWaitDelta": [
+    {
+      "event": "wait/io/file/innodb/innodb_data_file",
+      "count": 985,
+      "totalMs": 316.13571413200003,
+      "maxMsSinceServerStart": 28.261716436
+    },
+    {
+      "event": "wait/io/file/innodb/innodb_log_file",
+      "count": 5088,
+      "totalMs": 5351.64534716,
+      "maxMsSinceServerStart": 134.328180756
+    }
+  ],
+  "statusDelta": {
+    "Com_commit": 1652,
+    "Com_rollback": 2,
+    "Handler_commit": 29735,
+    "Innodb_buffer_pool_read_requests": 505634,
+    "Innodb_buffer_pool_reads": 0,
+    "Innodb_data_fsyncs": 2702,
+    "Innodb_data_reads": 0,
+    "Innodb_data_writes": 3430,
+    "Innodb_log_waits": 0,
+    "Innodb_os_log_fsyncs": 2563,
+    "Innodb_row_lock_time": 32438,
+    "Innodb_row_lock_waits": 1217,
+    "Performance_schema_digest_lost": 0
+  },
+  "sourceAfter": {
+    "sourceFile": "audit/2026-10-27/final24-source.json",
+    "expectedBuild": "6cdddf1a74b2d10d1c9b",
+    "compared": 504,
+    "mismatches": []
+  },
+  "inputsUnchanged": true,
+  "limits": [
+    "Performance Schema changes diagnostic overhead; ordinary315ms failure remains retained.",
+    "Digest/commit totals can overlap and are not summed into exclusive HTTP time.",
+    "Window includes owned fixture provisioning/deletion; inspect categories rather than assigning all database totals to HTTP.",
+    "LOCK_TIME is the server-provided statement aggregate, not proof of complete InnoDB row-lock attribution.",
+    "Max fields are cumulative since this fresh server started, not subtractable interval percentiles.",
+    "PHP parsing/JSON/replay time outside SQL is not measured.",
+    "No raw queries, sessions, cookies, private credentials or statement history are published."
+  ],
+  "serviceCleanup": "PENDING-SAME-OWNER-CLEANUP"
+}

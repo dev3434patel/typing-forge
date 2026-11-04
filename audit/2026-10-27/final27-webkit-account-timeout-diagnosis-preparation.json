@@ -1,0 +1,222 @@
+{
+  "status": "EXACT-TIMEOUT-PHASE-UNOBSERVED-ONE-CASE-DIAGNOSTIC-PREPARED-NOT-RUN",
+  "preparedAt": "2026-10-27T18:06:46.322Z",
+  "original": {
+    "file": "audit/2026-10-27/pack-native-final27-webkit-auth-confirmation-7bbf2372eea5cde5-1793124041120-browser.json",
+    "sha256": "9dc0ae4174914428d40cadb2ddf444efbee4e3a829237d42e2afc02e099250f3",
+    "totalPassed": 3,
+    "totalFailed": 2,
+    "account": {
+      "title": "real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+      "engine": "webkit",
+      "outcome": "timedOut",
+      "durationMs": 90206,
+      "timeoutMs": 90000,
+      "stageStdoutEntries": 0,
+      "sessionCookiePolicyAttached": true,
+      "minimumProvenPhase": "First signup/session/cookie checks completed before cookie-policy attachment.",
+      "blockedAwait": "UNOBSERVED; generic global timeout has no source await"
+    }
+  },
+  "context": {
+    "sha256": "43264ee4e823f88fff2cd9bad0cd5c7d0a8975c0090682b48074be8c96a3fe44",
+    "bytes": 5753,
+    "fixedPhase": "Guest workspace with disabled Handle and Save handle; finally may delete the account after timeout, so blocked phase cannot be inferred.",
+    "fixtureEmailsPasswordsOrCookiesExtracted": false,
+    "screenshotHashes": [
+      {
+        "file": "test-failed-2.png",
+        "sha256": "ef9024f19446b9b3b00eb168ffc7002b88d6a175f103d5500388659b6b668487",
+        "bytes": 159038,
+        "width": 2560,
+        "height": 1440,
+        "pixelsDisplayed": false
+      },
+      {
+        "file": "test-failed-1.png",
+        "sha256": "4b85cff55d729087bb1f10522057498b0f3f83e451843ecb95e8e2b7f08c3dc1",
+        "bytes": 139331,
+        "width": 2560,
+        "height": 1440,
+        "pixelsDisplayed": false
+      }
+    ]
+  },
+  "prepared": [
+    {
+      "oldFile": "audit/2026-10-27/run-final27-native-webkit-auth-confirmation.mjs",
+      "originalSha256": "0d776c9e7db2dc285e1f0df4b03f86b2f0d6b955f619078451809adcdf6d3f42",
+      "file": "audit/2026-10-27/run-final27-native-webkit-account-stage-diagnostic.mjs",
+      "sha256": "e2e1ad2001f880f786eda9286a74092e263778e05edb2ed379141326f8088e62",
+      "swaps": [
+        {
+          "before": "NATIVE_WEBKIT_AUTH_CONFIRMATION_WINDOW",
+          "after": "NATIVE_WEBKIT_ACCOUNT_STAGE_DIAGNOSTIC_WINDOW",
+          "count": 1
+        },
+        {
+          "before": "final27-webkit-auth-confirmation",
+          "after": "final27-webkit-account-stage-diagnostic",
+          "count": 3
+        },
+        {
+          "before": "final27-native-webkit-auth-confirmation",
+          "after": "final27-native-webkit-account-stage-diagnostic",
+          "count": 3
+        },
+        {
+          "before": "all five original native titles for WebKit, never a diagnostic subset",
+          "after": "exactly one existing account lifecycle title for WebKit with stage logging",
+          "count": 1
+        },
+        {
+          "before": "assert.notEqual(path.basename(readyFile),'pack-backend-3d44c37ac589c270-browser-ready.json','The original failed owner must remain closed.');",
+          "after": "for(const oldOwner of ['3d44c37ac589c270','7bbf2372eea5cde5'])assert.notEqual(path.basename(readyFile),'pack-backend-'+oldOwner+'-browser-ready.json','Prior failed owners must remain closed.');",
+          "count": 1
+        },
+        {
+          "before": "Separate fresh-owner WebKit-only confirmation of the same five native titles. Original20-case16PASS/4FAIL report remains FAILED. No counter reset, rate-limit change, reused owner, capacity, hosted or physical-device claim.",
+          "after": "Separate fresh-owner one-case WebKit account-stage diagnostic using existing timing labels and unchanged90s timeout/assertions. Original20-case and fresh5-case failures remain retained. No product fix or acceptance/performance promotion.",
+          "count": 1
+        },
+        {
+          "before": "expectedCases: 5",
+          "after": "expectedCases: 1",
+          "count": 2
+        },
+        {
+          "before": "caseSelectionAndAssertionsChanged: false",
+          "after": "caseSelectionAndAssertionsChanged: true",
+          "count": 1
+        },
+        {
+          "before": "freshOwnerRequired: true, existingRunner:",
+          "after": "freshOwnerRequired: true, existingTimingModeEnabled: true, exactTestTimeoutMs: 90000, existingRunner:",
+          "count": 1
+        },
+        {
+          "before": "completed?.stats?.expected === 5",
+          "after": "completed?.stats?.expected === 1",
+          "count": 1
+        },
+        {
+          "before": "'PASS-SCOPED-BROWSER'",
+          "after": "'PASS-SCOPED-DIAGNOSTIC'",
+          "count": 2
+        }
+      ],
+      "reversibleByteIdentity": true
+    },
+    {
+      "oldFile": "audit/2026-10-27/pack-native-browser-final27-webkit-auth-confirmation.mjs",
+      "originalSha256": "2579809b6f3b7e7eca63aa4f893245781a3951646b49eb31a219a1c5d5d7a8bd",
+      "file": "audit/2026-10-27/pack-native-browser-final27-webkit-account-stage-diagnostic.mjs",
+      "sha256": "17d1cc2c5432f424e422c4e9c5d4a72951d8368e7f72be213ea2f3203e8c84d5",
+      "swaps": [
+        {
+          "before": "NATIVE_WEBKIT_AUTH_CONFIRMATION_WINDOW",
+          "after": "NATIVE_WEBKIT_ACCOUNT_STAGE_DIAGNOSTIC_WINDOW",
+          "count": 1
+        },
+        {
+          "before": "source27 WebKit confirmation",
+          "after": "source27 WebKit account-stage diagnostic",
+          "count": 1
+        },
+        {
+          "before": "assert.notEqual(marker.id,'3d44c37ac589c270','The original failed owner must never be reused or reset.');",
+          "after": "for(const oldOwner of ['3d44c37ac589c270','7bbf2372eea5cde5'])assert.notEqual(marker.id,oldOwner,'Prior failed owners must never be reused or reset.');",
+          "count": 1
+        },
+        {
+          "before": "final27-webkit-auth-confirmation",
+          "after": "final27-webkit-account-stage-diagnostic",
+          "count": 2
+        },
+        {
+          "before": "exactly all five real native cases for WebKit",
+          "after": "exactly one existing account case for WebKit with fixed-phase stage logging",
+          "count": 1
+        },
+        {
+          "before": "diagnostic:null",
+          "after": "diagnostic:'webkit-account-stage'",
+          "count": 1
+        },
+        {
+          "before": "Fresh-owner WebKit-only five-case auth quota follow-up; original20-caseFAILED result retained",
+          "after": "Fresh-owner WebKit-only account lifecycle diagnostic; original20-case and fresh5-case FAILED results retained",
+          "count": 1
+        },
+        {
+          "before": "expectedCases:5",
+          "after": "expectedCases:1",
+          "count": 1
+        },
+        {
+          "before": "assertionsAndTimeoutsUnchanged:true",
+          "after": "assertionsAndTimeoutsUnchanged:true,existingTimingModeEnabled:true,exactTestTimeoutMs:90000",
+          "count": 1
+        },
+        {
+          "before": "const selected=['real PHP account signup, replay upload, independent-device history/preferences and account deletion','real two-browser PHP human race shares opponent pace and settles server results','real account sign in with dedicated deployment credentials','PHP two-account race authorization and server-owned countdown','real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish'];",
+          "after": "const selected=[\"real PHP account signup, replay upload, independent-device history/preferences and account deletion\"];",
+          "count": 1
+        },
+        {
+          "before": "'e2e/php-account-flow.spec.ts','e2e/php-human-race.spec.ts','e2e/auth-flow.spec.ts','e2e/race-mode.spec.ts'",
+          "after": "'e2e/php-account-flow.spec.ts'",
+          "count": 1
+        },
+        {
+          "before": "PLAYWRIGHT_BROWSERS:protocol.engines.join(',')",
+          "after": "PLAYWRIGHT_BROWSERS:protocol.engines.join(','),SPAROWTYPE_NATIVE_TIMING_AUDIT:'1'",
+          "count": 1
+        },
+        {
+          "before": "const cases=[];const collect=suite=>",
+          "after": "const stageEntries=[];const collectStages=suite=>{for(const spec of suite.specs??[])for(const test of spec.tests??[])for(const result of test.results??[])for(const chunk of result.stdout??[]){if(typeof chunk.text!=='string')continue;for(const line of chunk.text.split(/\\r?\\n/)){try{const event=JSON.parse(line);if(event.type==='native-account-stage'&&typeof event.stage==='string'&&/^[a-z0-9.-]+$/.test(event.stage)&&Number.isFinite(event.elapsedMs))stageEntries.push({type:event.type,stage:event.stage,elapsedMs:event.elapsedMs});}catch{}}}for(const child of suite.suites??[])collectStages(child);};for(const suite of report?.suites??[])collectStages(suite);await writeFile(`${prefix}-stages.json`,JSON.stringify({scope:'Existing safe fixed-phase timing labels only; HTTP statuses and blocked-await causes remain unobserved unless stage intervals establish them.',entries:stageEntries,lastStage:stageEntries.at(-1)??null,rawOutcomeRetained:true},null,2)+'\\n',{flag:'wx'});\n const cases=[];const collect=suite=>",
+          "count": 1
+        },
+        {
+          "before": "cases.length===5",
+          "after": "cases.length===1",
+          "count": 1
+        },
+        {
+          "before": "return value.replace(/Acceptance!",
+          "after": "return value.replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}/gi,'[REDACTED-EMAIL]').replace(/Acceptance!",
+          "count": 1
+        }
+      ],
+      "reversibleByteIdentity": true
+    }
+  ],
+  "diagnostic": {
+    "build": "11de46af5d4a80e0e830",
+    "sourceFiles": 505,
+    "cases": 1,
+    "engine": "webkit",
+    "title": "real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+    "workers": 1,
+    "retries": 0,
+    "traces": false,
+    "testTimeoutMs": 90000,
+    "assertionsUnchanged": true,
+    "existingStageMode": "SPAROWTYPE_NATIVE_TIMING_AUDIT=1",
+    "safeOutput": "Whitelisted fixed stage labels and finite elapsedMs only; rawreport password/email/cookie redaction. HTTP status unobserved.",
+    "freshOwnerRequired": true,
+    "noPriorNativeProtocolRequired": true,
+    "oldOwnersForbidden": [
+      "3d44c37ac589c270",
+      "7bbf2372eea5cde5"
+    ],
+    "explicitRootGoRequired": true,
+    "acceptancePromotion": false
+  },
+  "sourceOrTestEdits": 0,
+  "browsersStarted": 0,
+  "servicesStarted": 0,
+  "privateBackendConfigEnvOrLogsRead": false,
+  "preparationHistory": "Initial all-before-write replacement preflight expected4 namespace occurrences but found3; no wrappers or acceptance outputs were written until the corrected exact reversible adaptation."
+}

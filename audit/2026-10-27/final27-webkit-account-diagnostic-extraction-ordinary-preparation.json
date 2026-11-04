@@ -1,0 +1,231 @@
+{
+  "status": "DIAGNOSTIC-PASS-SCOPED-ONE-ORDINARY-CONFIRMATION-PREPARED-NOT-RUN",
+  "recordedAt": "2026-10-27T18:09:57.023Z",
+  "build": "11de46af5d4a80e0e830",
+  "diagnostic": {
+    "rawFile": "audit/2026-10-27/pack-native-final27-webkit-account-stage-diagnostic-5328b93486cb9358-1793124435158-browser.json",
+    "rawSha256": "b62316013de2a052d66c01f15b52ce3e41515e3c1c077e405f3c102aaf9432d2",
+    "stagesFile": "audit/2026-10-27/pack-native-final27-webkit-account-stage-diagnostic-5328b93486cb9358-1793124435158-stages.json",
+    "stagesSha256": "664f94cd8c59a63c28572046d61b8fd54a1005b7b85abe4d2197202969dceee2",
+    "status": "passed",
+    "testDurationMs": 25011,
+    "suiteDurationMs": 26248.746,
+    "cases": 1,
+    "skipped": 0,
+    "retries": 0,
+    "phases": [
+      {
+        "type": "native-account-stage",
+        "stage": "first.signup.attach-cookie-policy",
+        "elapsedMs": 1663.847
+      },
+      {
+        "type": "native-account-stage",
+        "stage": "first.words.read-history",
+        "elapsedMs": 8600.175
+      },
+      {
+        "type": "native-account-stage",
+        "stage": "first.lesson.expect-progress",
+        "elapsedMs": 15180.995
+      },
+      {
+        "type": "native-account-stage",
+        "stage": "first.settings.expect-saved",
+        "elapsedMs": 16205.491
+      },
+      {
+        "type": "native-account-stage",
+        "stage": "first.profile.expect-guest",
+        "elapsedMs": 18328.275
+      },
+      {
+        "type": "native-account-stage",
+        "stage": "second.signin.complete",
+        "elapsedMs": 20258.053
+      },
+      {
+        "type": "native-account-stage",
+        "stage": "second.profile-history.expect-two-sessions",
+        "elapsedMs": 20343.694
+      },
+      {
+        "type": "native-account-stage",
+        "stage": "second.lesson.expect-progress",
+        "elapsedMs": 21276.952
+      },
+      {
+        "type": "native-account-stage",
+        "stage": "second.settings.expect-finger-guide-hidden",
+        "elapsedMs": 23203.765
+      },
+      {
+        "type": "native-account-stage",
+        "stage": "second.profile-deletion.expect-empty-session",
+        "elapsedMs": 24485.946
+      },
+      {
+        "type": "native-account-stage",
+        "stage": "workflow.complete",
+        "elapsedMs": 24515.854
+      },
+      {
+        "type": "native-account-stage",
+        "stage": "cleanup.complete",
+        "elapsedMs": 24651.441
+      }
+    ],
+    "workflowCompleteMs": 24515.854,
+    "cleanupCompleteMs": 24651.441,
+    "scope": "Existing opt-in stage logging enabled; complete success does not establish original timeout cause.",
+    "owner": "5328b93486cb9358",
+    "cleanup": "Root reports graceful closure and temporary directory removal; no private files read."
+  },
+  "originalTimeout": {
+    "receipt": "audit/2026-10-27/final27-webkit-account-timeout-diagnosis-preparation.json",
+    "outcome": "timedOut",
+    "durationMs": 90206,
+    "blockedAwait": "UNOBSERVED",
+    "cause": "UNOBSERVED",
+    "fixedCauseClaim": false,
+    "originalFailuresPreserved": true
+  },
+  "ordinaryFollowup": {
+    "reason": "One ordinary confirmation removes timing logging confound after successful complete diagnostic; no invented product repair or repeated trials.",
+    "cases": 1,
+    "engine": "webkit",
+    "title": "real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+    "workers": 1,
+    "retries": 0,
+    "traces": false,
+    "testTimeoutMs": 90000,
+    "assertionsUnchanged": true,
+    "timingAuditEnvironmentRemoved": true,
+    "stageParserRemoved": true,
+    "freshOwnerRequired": true,
+    "noPriorNativeProtocolRequired": true,
+    "separateOwnerFromFault4": true,
+    "explicitRootGoRequired": true,
+    "noRepeatUnlessConcreteFailure": true
+  },
+  "prepared": [
+    {
+      "oldFile": "audit/2026-10-27/run-final27-native-webkit-account-stage-diagnostic.mjs",
+      "originalSha256": "e2e1ad2001f880f786eda9286a74092e263778e05edb2ed379141326f8088e62",
+      "file": "audit/2026-10-27/run-final27-native-webkit-account-ordinary-confirmation.mjs",
+      "sha256": "15bc7588ca9932bc6666ab7ea2e30966619925eed3a7fdb5795d4b045d86e6cc",
+      "reversibleByteIdentity": true,
+      "substitutions": [
+        {
+          "before": "NATIVE_WEBKIT_ACCOUNT_STAGE_DIAGNOSTIC_WINDOW",
+          "after": "NATIVE_WEBKIT_ACCOUNT_ORDINARY_CONFIRMATION_WINDOW",
+          "count": 1
+        },
+        {
+          "before": "final27-webkit-account-stage-diagnostic",
+          "after": "final27-webkit-account-ordinary-confirmation",
+          "count": 3
+        },
+        {
+          "before": "['3d44c37ac589c270','7bbf2372eea5cde5']",
+          "after": "['3d44c37ac589c270','7bbf2372eea5cde5','5328b93486cb9358']",
+          "count": 1
+        },
+        {
+          "before": "final27-native-webkit-account-stage-diagnostic",
+          "after": "final27-native-webkit-account-ordinary-confirmation",
+          "count": 3
+        },
+        {
+          "before": "exactly one existing account lifecycle title for WebKit with stage logging",
+          "after": "exactly one existing ordinary account lifecycle title for WebKit without timing audit",
+          "count": 1
+        },
+        {
+          "before": "Separate fresh-owner one-case WebKit account-stage diagnostic using existing timing labels and unchanged90s timeout/assertions. Original20-case and fresh5-case failures remain retained. No product fix or acceptance/performance promotion.",
+          "after": "Single ordinary fresh-owner WebKit account confirmation after a complete successful stage diagnostic. Same90s timeout/assertions; timing audit removed. Original20-case/fresh5-case failures retained and original timeout cause still unobserved. One bounded confirmation, no retry or product fix.",
+          "count": 1
+        },
+        {
+          "before": "existingTimingModeEnabled: true",
+          "after": "existingTimingModeEnabled: false",
+          "count": 1
+        },
+        {
+          "before": "'PASS-SCOPED-DIAGNOSTIC'",
+          "after": "'PASS-SCOPED-BROWSER'",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "oldFile": "audit/2026-10-27/pack-native-browser-final27-webkit-account-stage-diagnostic.mjs",
+      "originalSha256": "17d1cc2c5432f424e422c4e9c5d4a72951d8368e7f72be213ea2f3203e8c84d5",
+      "file": "audit/2026-10-27/pack-native-browser-final27-webkit-account-ordinary-confirmation.mjs",
+      "sha256": "78ccd6a585315bcc67c8502d0fab23fd6a9f959f8ad3b11459b6a7e6948e0d57",
+      "reversibleByteIdentity": true,
+      "substitutions": [
+        {
+          "before": "NATIVE_WEBKIT_ACCOUNT_STAGE_DIAGNOSTIC_WINDOW",
+          "after": "NATIVE_WEBKIT_ACCOUNT_ORDINARY_CONFIRMATION_WINDOW",
+          "count": 1
+        },
+        {
+          "before": "final27-webkit-account-stage-diagnostic",
+          "after": "final27-webkit-account-ordinary-confirmation",
+          "count": 2
+        },
+        {
+          "before": "['3d44c37ac589c270','7bbf2372eea5cde5']",
+          "after": "['3d44c37ac589c270','7bbf2372eea5cde5','5328b93486cb9358']",
+          "count": 1
+        },
+        {
+          "before": "source27 WebKit account-stage diagnostic",
+          "after": "source27 WebKit ordinary account confirmation",
+          "count": 1
+        },
+        {
+          "before": "exactly one existing account case for WebKit with fixed-phase stage logging",
+          "after": "exactly one existing ordinary account case for WebKit without timing audit",
+          "count": 1
+        },
+        {
+          "before": "diagnostic:'webkit-account-stage'",
+          "after": "diagnostic:null",
+          "count": 1
+        },
+        {
+          "before": "Fresh-owner WebKit-only account lifecycle diagnostic; original20-case and fresh5-case FAILED results retained",
+          "after": "Single ordinary fresh-owner WebKit account confirmation after successful stage diagnostic; original FAILED results retained and original timeout cause still unobserved",
+          "count": 1
+        },
+        {
+          "before": "existingTimingModeEnabled:true",
+          "after": "existingTimingModeEnabled:false",
+          "count": 1
+        },
+        {
+          "before": " const stageEntries=[];const collectStages=suite=>{for(const spec of suite.specs??[])for(const test of spec.tests??[])for(const result of test.results??[])for(const chunk of result.stdout??[]){if(typeof chunk.text!=='string')continue;for(const line of chunk.text.split(/\\r?\\n/)){try{const event=JSON.parse(line);if(event.type==='native-account-stage'&&typeof event.stage==='string'&&/^[a-z0-9.-]+$/.test(event.stage)&&Number.isFinite(event.elapsedMs))stageEntries.push({type:event.type,stage:event.stage,elapsedMs:event.elapsedMs});}catch{}}}for(const child of suite.suites??[])collectStages(child);};for(const suite of report?.suites??[])collectStages(suite);await writeFile(`${prefix}-stages.json`,JSON.stringify({scope:'Existing safe fixed-phase timing labels only; HTTP statuses and blocked-await causes remain unobserved unless stage intervals establish them.',entries:stageEntries,lastStage:stageEntries.at(-1)??null,rawOutcomeRetained:true},null,2)+'\\n',{flag:'wx'});",
+          "after": " // Stage collection intentionally absent for the ordinary confirmation.",
+          "count": 1
+        },
+        {
+          "before": "child=spawn(process.execPath,args,",
+          "after": "const ordinaryEnv={...process.env,...browserEnv,PLAYWRIGHT_BROWSERS:protocol.engines.join(',')};delete ordinaryEnv.SPAROWTYPE_NATIVE_TIMING_AUDIT; child=spawn(process.execPath,args,",
+          "count": 1
+        },
+        {
+          "before": "env:{...process.env,...browserEnv,PLAYWRIGHT_BROWSERS:protocol.engines.join(','),SPAROWTYPE_NATIVE_TIMING_AUDIT:'1'}",
+          "after": "env:ordinaryEnv",
+          "count": 1
+        }
+      ]
+    }
+  ],
+  "sourceOrTestEdits": 0,
+  "browsersStartedByPreparation": 0,
+  "servicesStartedByPreparation": 0,
+  "privateBackendConfigEnvOrLogsRead": false,
+  "preparationHistory": "Initial deletion-reversal preflight failed before any writes; corrected to an inert comment so the exact reversible proof succeeds. No acceptance run or original receipt changed."
+}

@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Page, type Route } from "@playwright/test";
 import { focusTyping } from "./helpers";
 import { phpApiBase } from "./php-api-fixture";
 
@@ -134,4 +134,260 @@ test("real two-browser PHP human race shares opponent pace and settles server re
       }
     } finally { await peerContext.close(); }
   }
+});
+
+test.describe("route-controlled human-race feedback", () => {
+test.use({ serviceWorkers: "block" });
+test("real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish", async ({ page, browser, baseURL }, info) => {
+  const hostEmail = process.env.PHP_E2E_RACE_HOST_EMAIL;
+  const hostPassword = process.env.PHP_E2E_RACE_HOST_PASSWORD;
+  const opponentEmail = process.env.PHP_E2E_RACE_OPPONENT_EMAIL;
+  const opponentPassword = process.env.PHP_E2E_RACE_OPPONENT_PASSWORD;
+  test.skip(process.env.PHP_E2E_ACCEPTANCE !== "1" || !hostEmail || !hostPassword || !opponentEmail || !opponentPassword,
+    "Requires two dedicated accounts on the explicit PHP acceptance deployment.");
+  test.setTimeout(90_000);
+  const api = phpApiBase(baseURL!);
+  const submitUrl = new URL("race/submit", api).href;
+  const peerContext = await browser.newContext({ baseURL, serviceWorkers: "block" });
+  const peer = await peerContext.newPage();
+  let roomId: string | undefined;
+  let phase: "first-failure" | "hold-recovery" | "normal" | "hold-late" | "late-held" = "normal";
+  let recoveryRoute: Route | undefined;
+  let lateRoute: Route | undefined;
+  let lateHeldAt = 0;
+  let injectedFailures = 0;
+  let acceptedCheckpoints = 0;
+  let finalAcknowledged = false;
+  const pageErrors: string[] = [];
+  // BEGIN opt-in fault-route audit: bounded metadata, never bodies or headers.
+  const routeAuditEnabled = process.env.SPAROWTYPE_NATIVE_FAULT_ROUTE_AUDIT === "1";
+  const routeAuditStarted = routeAuditEnabled ? performance.now() : 0;
+  const routeAudit = {
+    routeHitCount: 0, submitRequestCount: 0, submitResponseCount: 0,
+    submitRequestFailedCount: 0, serviceWorkerResponseCount: 0,
+    routeEvents: [] as Array<{ atMs: number; phase: string; method: string }>,
+    responseEvents: [] as Array<{ atMs: number; page: string; path: string; status: number; fromServiceWorker: boolean; matchesExpectedUrl: boolean; phase: string }>,
+  };
+  const auditTime = () => Math.round(performance.now() - routeAuditStarted);
+  if (routeAuditEnabled) for (const [label, target] of [["host", page], ["peer", peer]] as const) {
+    target.on("request", request => {
+      if (new URL(request.url()).pathname.endsWith("/race/submit")) routeAudit.submitRequestCount++;
+    });
+    target.on("requestfailed", request => {
+      if (new URL(request.url()).pathname.endsWith("/race/submit")) routeAudit.submitRequestFailedCount++;
+    });
+    target.on("response", response => {
+      const path = new URL(response.url()).pathname;
+      if (!path.endsWith("/race/submit")) return;
+      routeAudit.submitResponseCount++;
+      const fromServiceWorker = response.fromServiceWorker();
+      if (fromServiceWorker) routeAudit.serviceWorkerResponseCount++;
+      if (routeAudit.responseEvents.length < 48) routeAudit.responseEvents.push({
+        atMs: auditTime(), page: label, path, status: response.status(),
+        fromServiceWorker, matchesExpectedUrl: response.url() === submitUrl, phase,
+      });
+    });
+  }
+  const auditPageState = async (target: Page) => {
+    let deadline: ReturnType<typeof setTimeout> | undefined;
+    try {
+      return await Promise.race([
+        target.evaluate(() => {
+          const controller = navigator.serviceWorker?.controller;
+          return {
+            visibility: document.visibilityState, focused: document.hasFocus(),
+            serviceWorkerControllerPath: controller ? new URL(controller.scriptURL).pathname : null,
+            serviceWorkerControllerState: controller?.state ?? null,
+          };
+        }),
+        new Promise<never>((_, reject) => { deadline = setTimeout(() => reject(new Error("audit-state-deadline")), 1_500); }),
+      ]);
+    } catch { return { unavailable: true, closed: target.isClosed() }; }
+    finally { clearTimeout(deadline); }
+  };
+  // END opt-in fault-route audit.
+  for (const target of [page, peer]) {
+    target.on("pageerror", error => pageErrors.push(error.message));
+    await target.addInitScript(() => localStorage.setItem("sparowtype.opening-animation.enabled", "false"));
+  }
+  const signIn = async (target: Page, email: string, password: string) => {
+    await target.goto("/auth");
+    await target.getByLabel("Email", { exact: true }).fill(email);
+    await target.getByLabel("Password", { exact: true }).fill(password);
+    await target.getByRole("button", { name: "Sign In", exact: true }).click();
+    await expect(target).toHaveURL("/");
+    await expect(target.getByRole("link", { name: "Account", exact: true })).toBeVisible();
+    await target.goto("/race");
+  };
+  // Only host checkpoints are intercepted. Successful requests, both players'
+  // final evidence, scoring, countdown and all room snapshots use the real API.
+  await page.route(submitUrl, async route => {
+    // BEGIN route hit control and opt-in event witness.
+    routeAudit.routeHitCount++;
+    if (routeAuditEnabled) {
+      if (routeAudit.routeEvents.length < 24) routeAudit.routeEvents.push({ atMs: auditTime(), phase, method: route.request().method() });
+    }
+    // END route hit control and opt-in event witness.
+    const request = route.request();
+    const body = request.postDataJSON() as { finish?: boolean };
+    if (request.method() !== "POST" || body.finish) {
+      await route.continue();
+      return;
+    }
+    if (phase === "first-failure") {
+      phase = "hold-recovery";
+      injectedFailures++;
+      await route.abort("failed");
+    } else if (phase === "hold-recovery") {
+      recoveryRoute = route;
+    } else if (phase === "hold-late") {
+      phase = "late-held";
+      lateHeldAt = Date.now();
+      lateRoute = route;
+    } else {
+      await route.continue();
+    }
+  });
+  page.on("response", response => {
+    if (response.url() === submitUrl && response.status() === 200 && !response.request().postDataJSON().finish)
+      acceptedCheckpoints++;
+  });
+  try {
+    await signIn(page, hostEmail!, hostPassword!);
+    await signIn(peer, opponentEmail!, opponentPassword!);
+    for (const target of [page, peer])
+      expect(await target.evaluate(() => navigator.serviceWorker?.controller ? new URL(navigator.serviceWorker.controller.scriptURL).pathname : null)).toBeNull();
+    await page.getByRole("combobox", { name: "Duration", exact: true }).selectOption("30");
+    const createdResponse = page.waitForResponse(response => response.url() === new URL("race/create", api).href && response.request().method() === "POST");
+    await page.getByRole("button", { name: "Create room", exact: true }).click();
+    const created = await createdResponse;
+    expect(created.status()).toBe(200);
+    const { room } = await created.json() as { room: { id: string; room_code: string } };
+    roomId = room.id;
+    await expect(page.getByRole("heading", { name: "Your track is ready.", exact: true })).toBeVisible();
+    await peer.getByRole("textbox", { name: "Room code", exact: true }).fill(room.room_code);
+    const joinedResponse = peer.waitForResponse(response => response.url() === new URL("race/join", api).href && response.request().method() === "POST");
+    await peer.getByRole("button", { name: "Join", exact: true }).click();
+    const joined = await joinedResponse;
+    expect(joined.status()).toBe(200);
+    const joinedBody = await joined.json() as { room: { id: string; status: string; started_at: string; deadline_at: string; server_now: string } };
+    const serverClockOffset = Date.parse(joinedBody.room.server_now) - Date.now();
+    expect(Number.isFinite(serverClockOffset)).toBe(true);
+    expect(joinedBody.room.id).toBe(roomId);
+    expect(joinedBody.room.status).toBe("countdown");
+    expect(Date.parse(joinedBody.room.deadline_at) - Date.parse(joinedBody.room.started_at)).toBe(30_000);
+    for (const target of [page, peer])
+      await expect(target.getByRole("region", { name: "Typing session", exact: true })).toHaveAttribute("data-status", "running", { timeout: 15_000 });
+
+    const passage = (await page.getByTestId("typing-target").textContent())!;
+    expect(await peer.getByTestId("typing-target").textContent()).toBe(passage);
+    const hostText = passage.split(" ").slice(0, 3).join(" ") + " ";
+    const peerText = passage.split(" ").slice(0, 2).join(" ") + " ";
+    const hostInput = await focusTyping(page);
+    // A real accepted key focuses the native input and publishes its running
+    // snapshot before the fixture waits for the first periodic checkpoint.
+    await hostInput.pressSequentially(hostText.slice(0, 1), { delay: 90 });
+    await expect(hostInput).toHaveValue(hostText.slice(0, 1));
+    phase = "first-failure";
+    await expect(page.getByRole("alert")).toContainText("The PHP API could not be reached");
+    await expect(page.getByRole("button", { name: "Retry finish", exact: true })).toHaveCount(0);
+    expect(injectedFailures).toBe(1);
+    expect(routeAudit.routeHitCount).toBeGreaterThan(0);
+    await expect.poll(() => !!recoveryRoute).toBe(true);
+    const recoveredResponse = page.waitForResponse(response => response.url() === submitUrl && !response.request().postDataJSON().finish);
+    phase = "normal";
+    await recoveryRoute!.continue();
+    recoveryRoute = undefined;
+    const recovered = await recoveredResponse;
+    expect(recovered.status()).toBe(200);
+    expect((await recovered.json()).room.id).toBe(roomId);
+    await expect(page.getByRole("alert")).toHaveCount(0);
+
+    await hostInput.pressSequentially(hostText.slice(1), { delay: 90 });
+    await expect(hostInput).toHaveValue(hostText);
+    await expect.poll(async () => Number(await peer.getByTestId("race-pace-legend").getAttribute("data-position")), { timeout: 10_000 }).toBeGreaterThan(0);
+    const peerInput = await focusTyping(peer);
+    await peerInput.pressSequentially(peerText, { delay: 100 });
+    await expect(peerInput).toHaveValue(peerText);
+    await expect.poll(async () => Number(await page.getByTestId("race-pace-legend").getAttribute("data-position")), { timeout: 10_000 }).toBeGreaterThan(0);
+
+    // Hold one checkpoint only during the last four real seconds, safely inside
+    // the unchanged 15-second API timeout. The final request is never held.
+    const untilLateCheckpoint = Date.parse(joinedBody.room.deadline_at) - (Date.now() + serverClockOffset) - 4_000;
+    expect(untilLateCheckpoint).toBeGreaterThan(0);
+    expect(untilLateCheckpoint).toBeLessThan(30_000);
+    const finishedResponse = page.waitForResponse(response => response.url() === submitUrl && !!response.request().postDataJSON().finish, { timeout: 45_000 });
+    await page.waitForTimeout(untilLateCheckpoint);
+    phase = "hold-late";
+    await expect.poll(() => !!lateRoute).toBe(true);
+    const finished = await finishedResponse;
+    expect(finished.status()).toBe(200);
+    expect((await finished.json()).room.id).toBe(roomId);
+    // This attribute changes only on this client's matching submit ACK. A room
+    // completion seen by polling is insufficient to release the held request.
+    await expect(page.locator('[data-finish-confirmed="true"]')).toBeVisible();
+    finalAcknowledged = true;
+    expect(Date.now() - lateHeldAt).toBeLessThan(15_000);
+    const failedRequest = page.waitForEvent("requestfailed", { predicate: request => request === lateRoute!.request() });
+    injectedFailures++;
+    await lateRoute!.abort("failed");
+    await failedRequest;
+    lateRoute = undefined;
+    // Drain native rejection delivery and React's next paint before checking
+    // that the deliberately late failure did not resurrect a stale alert.
+    await page.evaluate(() => new Promise<void>(resolve => setTimeout(() => {
+      requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+    }, 0)));
+    await expect(page.locator('[data-finish-confirmed="true"]')).toBeVisible();
+    for (const target of [page, peer]) {
+      await expect(target.getByRole("heading", { name: /^(You won this race|Opponent won this race|Race tied)$/ })).toBeVisible({ timeout: 9_000 });
+      await expect(target.getByRole("region", { name: "Session results", exact: true })).toBeVisible();
+      await expect(target.getByRole("alert")).toHaveCount(0);
+      await expect(target.getByRole("button", { name: "Retry finish", exact: true })).toHaveCount(0);
+    }
+    expect(injectedFailures).toBe(2);
+    expect(acceptedCheckpoints).toBeGreaterThan(0);
+    expect(finalAcknowledged).toBe(true);
+    expect(pageErrors).toEqual([]);
+    await info.attach("real-human-race-checkpoint-recovery", { contentType: "application/json", body: JSON.stringify({
+      browser: info.project.name, distinctBrowserContexts: true, durationMs: 30_000,
+      injectedFailures, acceptedCheckpoints, finalAcknowledged,
+      firstCheckpointFailureArmedAfterAcceptedTargetCharacter: true,
+      routeHitCount: routeAudit.routeHitCount, serviceWorkersBlockedOnlyForThisFaultCase: true,
+      originalHumanRaceAndPwaServiceWorkerBehaviorChanged: false,
+      recovery: "first host checkpoint route.abort; following checkpoint held until error observed, then real API200",
+      lateFailure: "separate host checkpoint held inside final four seconds; route.abort only after matching real final acknowledgement",
+      input: "ordinary clock and individual key events; no paste, fake clock, scored-response mocks, or route.fulfill",
+      preservedServerValidation: true, localStorageFailureCoverage: "separate pure feedback regression",
+    }) });
+  } finally {
+    // BEGIN opt-in finally evidence: preserve the original test failure.
+    if (routeAuditEnabled) {
+      const [hostState, peerState] = await Promise.all([auditPageState(page), auditPageState(peer)]);
+      await info.attach("fault-route-interception-audit", { contentType: "application/json", body: JSON.stringify({
+        browser: info.project.name, durationMs: auditTime(), phase,
+        injectedFailures, acceptedCheckpoints, finalAcknowledged,
+        recoveryRouteHeld: !!recoveryRoute, lateRouteHeld: !!lateRoute,
+        expectedSubmitPath: new URL(submitUrl).pathname, ...routeAudit,
+        hostState, peerState, serviceWorkersBlockedOnlyForThisFaultCase: true,
+        headersBodiesCredentialsAndDomTextCollected: false,
+      }) }).catch(() => undefined);
+    }
+    // END opt-in finally evidence.
+    try {
+      await recoveryRoute?.abort("failed").catch(() => undefined);
+      await lateRoute?.abort("failed").catch(() => undefined);
+      if (roomId) {
+        const response = await page.request.get(new URL("auth/session", api).href);
+        const state = await response.json() as { user: { id: string } | null; csrfToken: string };
+        if (state.user) {
+          const left = await page.request.post(new URL("race/leave", api).href, {
+            headers: { "X-CSRF-Token": state.csrfToken }, data: { raceId: roomId, expectedOwner: state.user.id },
+          });
+          expect(left.ok(), "Own recovery race room cleanup").toBe(true);
+        }
+      }
+    } finally { await peerContext.close(); }
+  }
+});
 });

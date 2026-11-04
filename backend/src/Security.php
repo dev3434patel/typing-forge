@@ -54,19 +54,44 @@ final class Security
         }
     }
 
+    /** Arena members share networks, not request allowances. Only a live,
+     * database-validated session may select the account lane. All other API
+     * traffic retains the existing IP allowance, including auth endpoints.
+     * Return the validated user so dispatch does not repeat the auth lookup.
+     */
+    public static function apiRate(PDO $db, array $config, AuthService $auth, bool $arenaRequest): ?array
+    {
+        $user = $arenaRequest ? $auth->user() : null;
+        if ($user !== null) {
+            // This stricter Arena allowance subsumes the generic account API
+            // budget. Charge it before body/CSRF work, once per request.
+            self::rate($db, $config, 'arena-write', 300, 60, $user['id'], false);
+        } else {
+            self::rate($db, $config, 'api', 1200, 60);
+        }
+        return $user;
+    }
+
     public static function rate(PDO $db, array $config, string $operation, int $limit, int $window, string $scope = '', bool $includeIp = true): void
     {
+        if ($limit < 1 || $window < 1) throw new \InvalidArgumentException('Rate limits and windows must be positive.');
         // Ignore proxy headers. Configure the web server to set REMOTE_ADDR from
         // a trusted proxy if hosting requires it; arbitrary X-Forwarded-For is unsafe.
         $identity = ($includeIp ? ($_SERVER['REMOTE_ADDR'] ?? 'local') : 'account').':'.$scope;
         $key = hash_hmac('sha256', $operation.':'.$identity, $config['app_key']);
         $now = time();
         $windowStart = (int) (floor($now / $window) * $window);
-        $statement = $db->prepare('INSERT INTO rate_limits(bucket_key,window_started,attempts) VALUES(?,?,1) ON DUPLICATE KEY UPDATE attempts=IF(window_started=VALUES(window_started),attempts+1,1),window_started=VALUES(window_started)');
+        // LAST_INSERT_ID(expr) returns this connection's exact atomic increment,
+        // including the first insert. A subsequent table SELECT can instead see
+        // a later concurrent request and reject requests still within budget.
+        // A delayed previous-window request must not reset a newer bucket.
+        $statement = $db->prepare('INSERT INTO rate_limits(bucket_key,window_started,attempts) VALUES(?,?,LAST_INSERT_ID(1)) ON DUPLICATE KEY UPDATE attempts=LAST_INSERT_ID(IF(window_started<VALUES(window_started),1,attempts+1)),window_started=GREATEST(window_started,VALUES(window_started))');
         $statement->execute([$key, $windowStart]);
-        $read = $db->prepare('SELECT attempts FROM rate_limits WHERE bucket_key=?');
-        $read->execute([$key]);
-        if ((int) $read->fetchColumn() > $limit) {
+        $attempts = $db->lastInsertId();
+        if (!is_string($attempts) || !ctype_digit($attempts) || (int) $attempts < 1) {
+            throw new ApiException(503, 'rate-storage', 'Request accounting is unavailable. Retry shortly.');
+        }
+        if ((int) $attempts > $limit) {
             header('Retry-After: '.max(1, $windowStart + $window - $now));
             throw new ApiException(429, 'rate-limit', 'Too many requests. Wait briefly before retrying.');
         }

@@ -1,0 +1,12 @@
+{
+  "status": "FAILED",
+  "scope": "First added receipt-clock pure PDO contract; no SQL engine, HTTP or service",
+  "command": "node --experimental-strip-types backend/tests/arena-contract.mjs",
+  "exitCode": 1,
+  "clockChecksPassed": 8,
+  "clockChecksFailed": 1,
+  "failure": "Within-grace write occurred and current settlement completed, but its new test expected strict PHP float30000.0. The existing min(int duration,float elapsed) intentionally clamps a reached deadline to int30000.",
+  "failedAssertion": "evidence received within grace remains accepted when validation completes after grace",
+  "originalLog": "audit/2026-10-21/final20-backend-receipt-clock-contract.log",
+  "followup": "Correct only the test expectation to the existing exact integer deadline. Preserve all original timing, write, state, status and future-evidence checks; rerun separately."
+}

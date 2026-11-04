@@ -346,13 +346,27 @@ export function locateKeyboardCharacter(
 ): { key: LiveKey; shifted: boolean } | null {
   if (!character || !layout.mapped) return null;
   const normalized = character === "\r\n" ? "\n" : character.normalize("NFC");
-  const keys = layout.rows.flat();
-  const base = keys.find((key) => !key.deadBase && key.base === normalized);
-  if (base) return { key: base, shifted: false };
-  const shifted = keys.find(
-    (key) => !key.deadShift && key.shifted === normalized,
-  );
-  return shifted ? { key: shifted, shifted: true } : null;
+  // Every unshifted match has priority over every shifted match, including
+  // matches on later rows. Read the current rows directly: layouts may mutate.
+  for (let rowIndex = 0; rowIndex < layout.rows.length; rowIndex++) {
+    if (!(rowIndex in layout.rows)) continue;
+    const row = layout.rows[rowIndex];
+    for (let index = 0; index < row.length; index++) {
+      if (!(index in row)) continue;
+      const key = row[index];
+      if (!key.deadBase && key.base === normalized) return { key, shifted: false };
+    }
+  }
+  for (let rowIndex = 0; rowIndex < layout.rows.length; rowIndex++) {
+    if (!(rowIndex in layout.rows)) continue;
+    const row = layout.rows[rowIndex];
+    for (let index = 0; index < row.length; index++) {
+      if (!(index in row)) continue;
+      const key = row[index];
+      if (!key.deadShift && key.shifted === normalized) return { key, shifted: true };
+    }
+  }
+  return null;
 }
 export function oppositeShift(finger: Finger | undefined): string | null {
   if (finger?.startsWith("left-")) return "ShiftRight";

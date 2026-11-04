@@ -62,6 +62,8 @@ export class SessionController {
   private clockAnomaly = false;
   private lateTargetExtension = false;
   private presentationAlignment: { sequence: number; target: string; value: Alignment } | null = null;
+  private retainedTextSequence: number | null = null;
+  private retainedText = '';
 
   constructor(config: SessionConfig, private readonly clock: SessionClock) {
     if (!config.clientSessionId || config.clientSessionId.length > 200) throw new Error('Session ID is required');
@@ -82,7 +84,14 @@ export class SessionController {
     return this.startMono === null || this.wallStart === null ? null : { monotonic: this.startMono, wall: this.wallStart };
   }
   /** Canonical retained input for edit diffing; reading text never samples time or rescores. */
-  get currentText(): string { return this.state.units.join(''); }
+  get currentText(): string {
+    if (this.retainedTextSequence !== this.state.lastSequence) {
+      const text = this.state.units.join('');
+      this.retainedText = text;
+      this.retainedTextSequence = this.state.lastSequence;
+    }
+    return this.retainedText;
+  }
   /** Earliest retained grapheme that may be corrected in this session. */
   get editableStart(): number { return this.state.editableStart; }
   get previousWordCorrection() { return previousCommittedWord(this.state, this.target, this.configuration); }
@@ -153,6 +162,8 @@ export class SessionController {
     }
     if (this.startMono === null && text && edit.type !== 'delete' && edit.type !== 'submit') this.start(now);
     event.start = start;
+    // Invalidate before mutation, including an exceptional partial edit.
+    this.retainedTextSequence = null;
     applyEvent(this.state, event, this.target, this.configuration);
     this.transcriptEvents.push(event);
     const snapshot = this.snapshot(now);
@@ -177,7 +188,7 @@ export class SessionController {
       this.presentationAlignment = { sequence: this.state.lastSequence, target: this.target, value: freezePresentationAlignment(alignTranscript(targetGraphemes(this.target), this.state.units, this.configuration.scoringPolicy!, false, this.state.submissions)) };
     }
     const calculated = calculateMetrics(this.configuration, this.target, this.state, elapsedMs, { pauseIntervals: this.intervals(now), includeRhythm: false, alignment: this.presentationAlignment.value });
-    return { status: this.status, finalText: this.state.units.join(''), targetText: this.target, elapsedMs, wallDurationMs: this.startMono === null ? 0 : now - this.startMono, remainingMs: this.configuration.durationMs === undefined ? null : Math.max(0, this.configuration.durationMs - elapsedMs), cursor: calculated.cursor, characters: calculated.characters, metrics: calculated.metrics, events: this.transcriptEvents.map(event => ({ ...event })) };
+    return { status: this.status, finalText: this.currentText, targetText: this.target, elapsedMs, wallDurationMs: this.startMono === null ? 0 : now - this.startMono, remainingMs: this.configuration.durationMs === undefined ? null : Math.max(0, this.configuration.durationMs - elapsedMs), cursor: calculated.cursor, characters: calculated.characters, metrics: calculated.metrics, events: this.transcriptEvents.map(event => ({ ...event })) };
   }
   appendTarget(segment: string, at?: number): void {
     if (this.finalized) throw new Error('Cannot append to a finalized target');

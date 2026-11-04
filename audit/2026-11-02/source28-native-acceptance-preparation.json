@@ -1,0 +1,95 @@
+{
+  "capturedAt": "2026-11-02T16:43:31.765Z",
+  "status": "PREPARED-NOT-RUN",
+  "owner": {
+    "baseline": "audit/2026-10-27/pack-backend-instance-source27.mjs",
+    "baselineRawSha256": "48f9496a55201705a81b5c78f62b5972640ac6e3152b4eb2bc549f0191821d9c",
+    "target": "audit/2026-11-02/pack-backend-instance-source28.mjs",
+    "sha256": "98920c5dc264239a51b80e5680b478b64adfc1775b07ec2aaea95aa1548c78a2",
+    "normalizedCloneReversesExactly": true,
+    "changes": [
+      "New source28 build/window names",
+      "New audit/2026-11-02/final28-source.json frozen source path"
+    ],
+    "provisioningCleanupRatePolicyChanged": false
+  },
+  "adapter": {
+    "baseline": "audit/2026-10-27/pack-native-browser-final27-routed-fault-confirmation.mjs",
+    "baselineRawSha256": "ec152394fb25947315c0bd2254484ec34831faac405f3480348e697968c0e59b",
+    "target": "audit/2026-11-02/pack-native-browser-final28.mjs",
+    "sha256": "306b7a2d32eaaae7e56117c78fb6577b2c4ce406d96a49e15f624f0f743600cf",
+    "exactReversalVerified": true,
+    "changes": [
+      {
+        "before": "assert.equal(process.env.SPAROWTYPE_FINAL27_NATIVE_ROUTED_FAULT_CONFIRMATION_WINDOW,'1','Wait for the separately coordinated source27 four-engine route-isolated fault confirmation.');",
+        "after": "assert.equal(process.env.SPAROWTYPE_FINAL28_NATIVE_BROWSER_WINDOW,'1','Wait for the separately coordinated source28 native acceptance window.');\nconst engine=process.env.SPAROWTYPE_FINAL28_NATIVE_ENGINE;\nassert.ok(['chromium','edge','firefox','webkit'].includes(engine),'Select exactly one native engine; the outer owner runner sequences all four.');\nassert.match(process.env.SPAROWTYPE_FINAL28_NATIVE_OWNER??'',/^[a-f0-9]{16}$/,'Bind the newly created public owner ID.');"
+      },
+      {
+        "before": "const marker=JSON.parse(await readFile(path.join(owned,'ownership.json'),'utf8'));assert.equal(path.basename(owned),`pack-instance-${marker.id}`);assert.equal(path.resolve(marker.root).toLowerCase(),root.toLowerCase());",
+        "after": "const marker=JSON.parse(await readFile(path.join(owned,'ownership.json'),'utf8'));assert.equal(path.basename(owned),`pack-instance-${marker.id}`);assert.equal(path.resolve(marker.root).toLowerCase(),root.toLowerCase());\nassert.equal(marker.id,process.env.SPAROWTYPE_FINAL28_NATIVE_OWNER,'The adapter must consume exactly the fresh owner bound by the orchestrator.');\nassert.equal(path.basename(readyPath),`pack-backend-${marker.id}-browser-ready.json`);"
+      },
+      {
+        "before": "const attempt=`${marker.id}-${Date.now()}`,prefix=path.join(here,`pack-native-final27-routed-fault-confirmation-${attempt}`);",
+        "after": "const attempt=`${marker.id}-${Date.now()}`,prefix=path.join(here,`pack-native-final28-${engine}-${attempt}`);"
+      },
+      {
+        "before": "assert.ok(!process.env.SPAROWTYPE_PACK_BROWSER_DIAGNOSTIC,'This confirmation runs exactly the corrected real-backend fault case for all four engines.');",
+        "after": "assert.ok(!process.env.SPAROWTYPE_PACK_BROWSER_DIAGNOSTIC,'This acceptance runs all five original native titles for exactly one engine; no diagnostic subset.');"
+      },
+      {
+        "before": "scope:'Fresh-owner exact routed-fault case in four engines; serviceWorkers:block is local to appended fault test and peer context. Existing assertions/timeouts unchanged; new controller-null and route-hit controls. All original failures retained; SW response causality unproven.'",
+        "after": "scope:'All five original native titles in one engine against its own fresh owned Apache/PHP/MariaDB instance and dedicated accounts. No counter resets, reseeding or rate-limit policy changes. Route-controlled fault case alone blocks service workers; normal human-race and PWA behavior remain unchanged. Original source27 failures retained.'"
+      },
+      {
+        "before": "engines:['chromium','edge','firefox','webkit'],expectedCases:4",
+        "after": "engines:[engine],expectedCases:5"
+      },
+      {
+        "before": "const selected=['real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish'];",
+        "after": "const selected=['real PHP account signup, replay upload, independent-device history/preferences and account deletion','real two-browser PHP human race shares opponent pace and settles server results','real account sign in with dedicated deployment credentials','PHP two-account race authorization and server-owned countdown','real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish'];"
+      },
+      {
+        "before": "'--workers=1','--retries=0','--trace=off','--reporter=json'",
+        "after": "`--project=${engine}`,'--workers=1','--retries=0','--trace=off','--reporter=json'"
+      },
+      {
+        "before": "`.playwright-artifacts-pack-native-final27-routed-fault-confirmation-${attempt}`",
+        "after": "`.playwright-artifacts-pack-native-final28-${engine}-${attempt}`"
+      },
+      {
+        "before": "const cases=[];const collect=suite=>{for(const spec of suite.specs??[])for(const item of spec.tests??[])cases.push({title:spec.title,engine:item.projectName});for(const childSuite of suite.suites??[])collect(childSuite);};for(const suite of report?.suites??[])collect(suite);const expectedCases=protocol.engines.map(engine=>`${engine}:${selected[0]}`).sort();const exactCasesVerified=cases.length===4&&JSON.stringify(cases.map(item=>`${item.engine}:${item.title}`).sort())===JSON.stringify(expectedCases);",
+        "after": "const cases=[];const collect=suite=>{for(const spec of suite.specs??[])for(const item of spec.tests??[])cases.push({title:spec.title,engine:item.projectName,status:item.status,results:(item.results??[]).map(result=>({status:result.status,retry:result.retry,durationMs:result.duration}))});for(const childSuite of suite.suites??[])collect(childSuite);};for(const suite of report?.suites??[])collect(suite);const expectedCases=selected.map(title=>`${engine}:${title}`).sort();const exactCasesVerified=cases.length===5&&JSON.stringify(cases.map(item=>`${item.engine}:${item.title}`).sort())===JSON.stringify(expectedCases);\n const exactResultsVerified=cases.every(item=>item.status==='expected'&&item.results.length===1&&item.results[0].status==='passed'&&item.results[0].retry===0)&&Array.isArray(report?.errors)&&report.errors.length===0&&report?.config?.workers===1&&report?.config?.projects?.length===1&&report.config.projects[0].name===engine&&report.config.projects[0].retries===0;"
+      },
+      {
+        "before": "summary={exactCasesVerified,actualCases:cases,status:exitCode===0&&exactCasesVerified&&stats?.expected===protocol.expectedCases&&stats?.unexpected===0&&stats?.skipped===0?'PASS':'FAILED'",
+        "after": "summary={exactCasesVerified,exactResultsVerified,actualCases:cases,status:exitCode===0&&exactCasesVerified&&exactResultsVerified&&stats?.expected===protocol.expectedCases&&stats?.unexpected===0&&stats?.skipped===0&&stats?.flaky===0?'PASS':'FAILED'"
+      }
+    ]
+  },
+  "execution": {
+    "orchestrator": "audit/2026-11-02/run-final28-native-browser.mjs",
+    "engines": [
+      "chromium",
+      "edge",
+      "firefox",
+      "webkit"
+    ],
+    "sequential": true,
+    "freshBackendPerEngine": true,
+    "expectedCasesPerEngine": 5,
+    "expectedTotalCases": 20,
+    "workers": 1,
+    "retries": 0,
+    "traces": false,
+    "sourceFile": "audit/2026-11-02/final28-source.json",
+    "buildEnv": "SPAROWTYPE_FINAL28_BUILD_ID",
+    "actualBuildKnown": false,
+    "defaultDist": "dist",
+    "sourceFileCountRequired": 505
+  },
+  "comparisonBoundary": "A new acceptance run across four independent fresh instances, not a rewrite or aggregation of source27 failures, not concurrent or400-user capacity evidence.",
+  "privateOriginalConfigsRead": false,
+  "originalServicesOrDatabaseTouched": false,
+  "servicesStarted": 0,
+  "testsRun": 0
+}

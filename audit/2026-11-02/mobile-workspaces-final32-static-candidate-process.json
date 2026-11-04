@@ -1,0 +1,1574 @@
+{
+  "status": "PASS-SCOPED",
+  "declaredAt": "2026-11-04T15:39:27.377Z",
+  "source": {
+    "sourceFile": "audit/2026-11-02/final32-source.json",
+    "expectedBuild": "332e23584f1e36465df2",
+    "compared": 505,
+    "mismatches": []
+  },
+  "deploymentMode": "Candidate-only real frontend-only Vercel build, owned loopback directory server; API disabled in compiled artifact. No mocks or PHP.",
+  "candidateOnly": true,
+  "wholeProductAcceptance": false,
+  "normalStaticEvidenceReused": false,
+  "candidateSceneAssets": [
+    {
+      "file": "assets/keyboard-bloom-CFGEPK_L.js",
+      "kind": "bloom",
+      "bytes": 20277,
+      "gzipBytes": 5073,
+      "sha256": "966db3e3d61752514688db63b3d970e1a87e7a66498f5f3f0b93f0085c0c0977"
+    },
+    {
+      "file": "assets/keyboard-render-worker-oeYyHX4e.js",
+      "kind": "worker",
+      "bytes": 1167,
+      "gzipBytes": 617,
+      "sha256": "37b2d1842100f3516e8af626c58d58791c3ff9c6cc970835d5bd3d8ef948be13"
+    },
+    {
+      "file": "assets/keyboard-scene-DYowRFwC.js",
+      "kind": "scene",
+      "bytes": 71692,
+      "gzipBytes": 28055,
+      "sha256": "1624b699d9955f32c182e82eb0ac03567c446174bd2b29e649647a6079fe2f44"
+    },
+    {
+      "file": "assets/keyboard-scene-bridge-BOEWbpeD.js",
+      "kind": "bridge",
+      "bytes": 4057,
+      "gzipBytes": 1681,
+      "sha256": "44f686ab6eda6bdfa5aebf75ace08e1e60f78da44a8432352f8e25efae031659",
+      "normalizedBootstrapSpecifierSha256": "ba0d3eda5d2d87b18731d257c53a5c050285070940d589b9a5089c8de23f6eb1",
+      "bootstrapSpecifierCount": 1
+    },
+    {
+      "file": "assets/three.module-ytFXl0Cs.js",
+      "kind": "three",
+      "bytes": 533107,
+      "gzipBytes": 132577,
+      "sha256": "2b26c8bf33db5d22e8c7d6a8ecd2b2f1ea76ceaf6a3c815f613258f32ac9cf9f"
+    }
+  ],
+  "candidateQuality": [
+    {
+      "kind": "scene",
+      "pass": true,
+      "comparison": "Exact filename, raw bytes and SHA-256 against preserved checkpoint; no normalization."
+    },
+    {
+      "kind": "bloom",
+      "pass": true,
+      "comparison": "Exact filename, raw bytes and SHA-256 against preserved checkpoint; no normalization."
+    },
+    {
+      "kind": "three",
+      "pass": true,
+      "comparison": "Exact filename, raw bytes and SHA-256 against preserved checkpoint; no normalization."
+    },
+    {
+      "kind": "worker",
+      "pass": true,
+      "comparison": "Exact public worker filename and SHA-256 against preserved public-file receipt."
+    },
+    {
+      "kind": "bridge",
+      "pass": true,
+      "comparison": "Replace exactly one from\"./index-HASH.js\" bootstrap import. Every other bridge byte remains compared; no logic normalization."
+    }
+  ],
+  "acceptanceLimit": "One source32 candidate production build and unchanged four-case mobile diagnostic. Full67-check/two-target static validation and three ordinary mobile trials remain separate required gates.",
+  "artifactDirectory": "dist-static-final32-candidate-vercel",
+  "artifactBefore": {
+    "deployment": {
+      "target": "vercel",
+      "base": "/",
+      "frontendOnly": true,
+      "api": "disabled",
+      "siteUrl": "https://sparowtype.example/"
+    },
+    "build": {
+      "version": "2f3804662ab6e43a5f95",
+      "publicFiles": 133,
+      "bytes": 2926973
+    },
+    "publicFilesRecomputed": 133,
+    "publicBytesRecomputed": 2926973,
+    "versionDigestRecomputed": true,
+    "hashes": {
+      ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      ".vite/manifest.json": "90cb2ad37d7c717642ea5741b8d22a1c8c0730ddeb1697a05cdeff1d6c88e81c",
+      "404.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "_headers": "57db1a499f4524b6ced68b0a8609cdeebfa38547f0468488278541d52495d0b7",
+      "_offline-recovery.html": "4738811fa84d492ef5e97f27da3060fd734097438b2a4af954b5594573cbd542",
+      "about/index.html": "9fdacb66597b3876068658d31f7895d4d5747150e615201cec5059279c61aa24",
+      "arcade/boss-duel/index.html": "fc238b70207a6d0effa80ea18e8653ca659042b952e9ed1c9535fe76477162d2",
+      "arcade/daily-gauntlet/index.html": "615a4128cb2cb5619fad9a90faadeae372060edaec862b12ce079e3498b1378a",
+      "arcade/ghost-gp/index.html": "4177e5e182a3ca495ad1ea9fa56f1e15c011e367ef255f7f82952f7f38653113",
+      "arcade/index.html": "1d610d0632ee7c3a3d8d22eac8a76103d292eb12b7a8a48defe12b2399a635ca",
+      "arcade/key-tower/index.html": "83a55ab0ba84249a49ebaadfcbb06171d7b218aeb9fcb1402c87f81ad10d7afd",
+      "arcade/lava-rise/index.html": "de389ea545956ce44bb242df093fb9a85dae183a2612d649e7817696f1b1a40c",
+      "arcade/rhythm-typing/index.html": "e6350d9810201910c8b5c1ad5742cbc8a2c0116b21918fad953c3dbbd5cf36e5",
+      "arcade/snake-words/index.html": "d6a8a55b10c1b624a81271e0af48be8e6d3dd574b7cc1b32bb697b501b5f9e4b",
+      "arcade/word-invaders/index.html": "24ca33bedc0f22f4efe9f28b86012fe58b8e65a8af025356a44c1fa523a340a6",
+      "arena/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "assets/About-COFr1MfS.js": "3b330fa3a097bec6e3a282c1bb82a7b8cdfa068a6ffe18eb9853d42694b5e31b",
+      "assets/App-BWeSDFNV.js": "034dca9f065d5c8da6251b3183c7b811e2e865c7b38857326e355a9d7e4fa026",
+      "assets/App-CJTV6Izc.css": "48e2ee7744ed007f215d23003f8ab4c17be1401b688ae845d47fa0a0bb2195ca",
+      "assets/ArcadePage-CNRQ-ONR.js": "cf605f120ca9f8b5933fd8f7fe94598e085f578e3fde1f59d99dff5669efb4d6",
+      "assets/ArcadePage-M-pcbyBV.css": "72c1d18e574e74d3744568e32c56cefe20e540134c6afad3002ee1905e506aa3",
+      "assets/ArcadePlayer-vqX6Utaf.js": "64201c63cc9f86d0d1bfbc0649a3d8f7f442d4518154eb93b59f64097bade1ea",
+      "assets/Arena-QLsNum_a.js": "024fa650b09b9ff2e3d33ecdfde2e0bfe23d9c6058c504e27288fa248dc17670",
+      "assets/Auth-DalPBE4q.js": "b98950e705f197da15e6a5205dbcda1b4d78756a920e84d7f99674c3cce0792d",
+      "assets/Classroom-CBph1KaT.js": "81dc15391c0603ae07950c23a7f507a349ee9417c1ca96ac4ed05ccd283c36d5",
+      "assets/CommandPalette-BNe_TOHn.js": "545f5ea28c444f120bf301bdb91a52f2dd80cbc91e10724ab2987be7112d505c",
+      "assets/DuelAttempt-CaC7uWwP.js": "d6ac541eb7bba31bc02d283d7c21dd3b479b3c8f881d1c68f84b80bff4a6f3b8",
+      "assets/Footer-C8y3JC8g.js": "f28a2c5ce5798a49a5a906567c8fe3c18efab0003f4bf35190b7758c9ca9c686",
+      "assets/Friends-B99mhk0Q.js": "0157db32a798ff717c136eb62e1da6ddc84c99169eed27374afeb6d1947e802e",
+      "assets/Games-CGLw_3iz.css": "920a9d3493cb6f46003512b0966d54c6392280240003c6523a3ac2a3751fee85",
+      "assets/Games-d9OPSwtU.js": "49c241c1044c4af0da4adc529757743cece2adee4c2a8960bc33bdb42893e457",
+      "assets/Index-BENVA8OZ.js": "71aedcea97182ef90c06ee2b057d3b31cbe703bc7000050bad411ef88fc0387c",
+      "assets/KeyboardLab-DJ7QbNMA.js": "f48a7e0c5eb62648098d8ef2762ca914e5744777adc4da1a9884744e9dc3c591",
+      "assets/Leaderboard-Bz7vH1NP.js": "1b92d1bdf2b86ed0265f32dada68b753fa1ad67256dc7a2d74ab53394e0be9fd",
+      "assets/Learn-CaDvSLEL.css": "3a2ac91ce0d4e87d4ef44beacf2fcdcca65c3e95d7974f27a2a41d311c943e9e",
+      "assets/Learn-CthythUy.js": "24cdf0b23c0ba8e4a957a69f8b9fc52d594b436a4c28af278c5d1d4884d85470",
+      "assets/Lessons-CAPN-WR7.css": "0bc1d4ec24897645fb33994a8e941f835fd0fe653c1f3b9f9725221ed4eecf4e",
+      "assets/Lessons-CNDF6VbD.js": "bfb8b3ed89bbbdacbc2a32661c11ca56f12874d52f71a1ff881cfa2e1ac4cc70",
+      "assets/LetterProgressPanel-DclsjsF7.js": "08a4eb3a2be071f6a7747cd2c4a291633dd8406a17abee0edcd924f2f959f1df",
+      "assets/LocalReminderRuntime-CJXICurR.js": "74ddcfbf7eaad8954ac176f37792748779ec47230d727f9bc4629f385fe86aaf",
+      "assets/NotFound-BQ3CJBLK.js": "27b2515729850cf9b48eb5af606d275fc4772a3133a134b584c01525f3da0681",
+      "assets/Offline-BtON-X37.js": "d22e026938a42932bff0bfda633520e9db0c49106dc39983a22bc2bce80e6509",
+      "assets/Privacy-OiiID2Dc.js": "92110392bec7bee98a41b1a19aad49296ab82e9a0085b8f92fc636d2fa578103",
+      "assets/Profile-BlWnf0OR.js": "bfeadd9679dce5314a3c62f1db45d35de2f358c32b3e914e90ede4eb548f73d3",
+      "assets/ProfileAppearance-JfY5Wh74.js": "57b8274308b9dca2c4bc95085cb705f8b31b1ff022ff4b710dbad9fdfd673f90",
+      "assets/Progression-C4599pIF.js": "a6b91691acc3d499334ea1f1a1bf7f7510054cb85c3e50080f70b6d87ef23cfb",
+      "assets/PwaStatus-CbAR0g3_.js": "28d296913d5f06e1ca37496b921a7bff6870ab3b9973a1add98a52d930cd4bd8",
+      "assets/Race-Bak-5SaN.js": "c9b46fdbd0e42f54b239ac9d961c6d20855a47e8fcbe9b4f3ed631cf4136ccd7",
+      "assets/Ranked-B1sBqhn2.js": "5dda68ae8e14fb2ae59fdcb90627a4d048e23ec11804adeda3d28a4060b18bb6",
+      "assets/SessionInsightsPanel-hilbEQQH.js": "d52f3f141497a655d46a607ed6783c15c0a09078eeec95f5120e68b1236aaca2",
+      "assets/SessionResults-DLKl-kZ-.js": "41e9fd5bab2f91086429b95c0c06ae75a5ffd57011cad194a261525267aae89c",
+      "assets/Settings-CE624ecc.js": "3d0207b111bc178bc54f08b6f01dbbb20f9acc826fb3ae6a8edbb738a01c1bd7",
+      "assets/Stats-w4EelANI.js": "cfc844b45a808745fdfc3d9f06717435c67bcbbf2ac43abe972218f08d8170cf",
+      "assets/StatsSpeedChart-FGe0a_5o.js": "67d0ec8c9eec562670ef2073a148a52a931d129d9f05330b4b71e43d069bb7bb",
+      "assets/Studio-BDbM5J-A.js": "5c3caaec8c164fd3d4eae11d5765b08e288d4aa11e71f4b3e294b43854073de8",
+      "assets/Studio-BPi8zNnu.css": "4bac161133e879216aaef87099ae98c3066c147ebfe02ceadc3264f493e50e41",
+      "assets/Terms-Df7_gLY1.js": "4f0421a23b3024d382e120635f3ded72c135b2a389319f4aa8ed0ac15b678f47",
+      "assets/TouchTyping-BgaRy4yB.js": "c63bab1107ffeaf9ec9f2eb4cd6a8716b027a8c940697cfb787481ad6bece85a",
+      "assets/TypingArea-LIHIdRGE.js": "b1eac30e3918c2b82040993fa4a6c1bdc443fbd7b6ac3f759e6a4eda10442ecb",
+      "assets/arrow-right-B5dz1iS6.js": "f53390492048cc63987f8b7286725b8073f05f56f7294f7cf1d8711f2a59e326",
+      "assets/arrow-up-right-BfKO5rC7.js": "3f5ea94f3fdd9177bed01df6a25bb9f3f507e38316ac868b133c113e2c8b5459",
+      "assets/button-BqqPS59F.js": "bc90f3129c2750af0f802edd8c33bf9b45fa149879cdbe1858e08d993c5097f8",
+      "assets/calendar-qHXkz0Pn.js": "e22474dde5ebf677ae41d07b4911575038614d1609ece81901734a979ced38c7",
+      "assets/caret-handoff-Bo5AUEQO.js": "8ac4d9848755e7ec1eb773ac2eed8c31d1fb07123b57cb086e078228ca408e72",
+      "assets/check-Ctk70LZ8.js": "b459adf897015657a7141a1d752096635b4019e4f7b8dcfccfb8c0e8958efc9b",
+      "assets/clock-3-C6bIJliF.js": "8738ff08cb42b25794d1d09c8c5f5529a7a5c3a8cbdc8688ad11fe71cd429e38",
+      "assets/composition-echo-3wx55gok.js": "26fe8bf48454d2d67706a812a62b50e27605a4dd6bdbe1c245b43e01fdb0fd57",
+      "assets/content-packs-xYdkiJY8.js": "087c06ff9c18845c901f4ee36bab0b0352cb0ec3fc67bd79ce5bacb2dd23bf84",
+      "assets/createLucideIcon-pxyWYaHV.js": "624a69081b611b2396b1a16494dc379d4a5227a732eaf6b87ee4ee3222a8578b",
+      "assets/dashboard-CG4qYAqt.js": "56d60070d901270fa84dcae4593a23097ee536e0556c8f06e76f54dbf7086e79",
+      "assets/dialog-DFcKo1BZ.js": "2115a7540570c60456b5e7b3cbaf243dc1f8c143488109e380f408532101c039",
+      "assets/download-B3SywXPS.js": "c8335090e48f364dd0437a447414c6a39cc09bb9345fc9540156c70d06c4ed7c",
+      "assets/evidence-policy-DPUBgzfl.js": "93fe2d00ae448e8068fcf383e1f4ce6e97b0d00619841295b5332391369e1671",
+      "assets/finger-map-C2OrIfaO.js": "8d2b4a10b168652779876ff5567f74167c677f66ef8219443d0c4ac030774b6b",
+      "assets/flag-Bp_ESXR-.js": "cfa5f7a223292f830ee9c56e62f1be7aa79d4728d321372d8adf5f654d753b46",
+      "assets/generateCategoricalChart-mVDZn29H.js": "996f65456ef9474c89405f9dfc1bb657d2626c1b2dd22a55d2e6319d00663b7a",
+      "assets/history-model-Cg8nY6dX.js": "4bc668f255b81010b9f2529d63ef1413a312160a2a69b925fc96ff8cb6a70369",
+      "assets/index-CEa8BANT.js": "b2e2e7a14bd77c0f88f8bd9ee68d6a5f90884c99c52e54f3a4407a3468712488",
+      "assets/index-CTA64RGR.js": "a472fc2ee87a512fee30c263f56c2e11352eb553b947ebe39749d791b46e86a5",
+      "assets/index-CYsflULJ.js": "b2fbd3d89268d078e7aaefc8ebc19f0028e27e4de0b062cef93682d697c2edb1",
+      "assets/index-Cdp-3GNg.js": "8692ca47ed95857b949188e5f35ca6b2447d3d17d319559c7d16ff44aa7a5574",
+      "assets/index-CktWMSlL.js": "d01e41f3b1526756f6af539e5ec90f70353ba428613df425ae993512f2abdb3d",
+      "assets/index-CqG1Jbr6.js": "524de70be8db5c3e0df525f69081162a1e7171c513c8ad5d2ce0cb88d2e076a3",
+      "assets/index-Drd88ecX.js": "a539db3cdf7aca8fd1a2b068cecae321ea5fd0182a285447c8fd4f57f8e4d184",
+      "assets/index-XwygSNVl.css": "167a5a967a2d03028487103ebf897d2f927a2d2372b46b4ab7a44799b2401d9c",
+      "assets/keyboard-audio-CkcWSiE5.js": "647ea86f23f6e83e30110e29e4846f2532220d49511c7171e23647bc5747880a",
+      "assets/keyboard-bloom-CFGEPK_L.js": "966db3e3d61752514688db63b3d970e1a87e7a66498f5f3f0b93f0085c0c0977",
+      "assets/keyboard-lab-UzEVr6VM.js": "26de248aa14e9509a82fab659c7acec07203dc8d49c7fa673f02ab804937509e",
+      "assets/keyboard-layout-C21F3kj3.js": "105c89037b49c4de07d6e4e3f5f51c34bbdc055c62d05ed64e6054d5b052c461",
+      "assets/keyboard-render-worker-oeYyHX4e.js": "37b2d1842100f3516e8af626c58d58791c3ff9c6cc970835d5bd3d8ef948be13",
+      "assets/keyboard-scene-DYowRFwC.js": "1624b699d9955f32c182e82eb0ac03567c446174bd2b29e649647a6079fe2f44",
+      "assets/keyboard-scene-bridge-BOEWbpeD.js": "44f686ab6eda6bdfa5aebf75ace08e1e60f78da44a8432352f8e25efae031659",
+      "assets/keybr-engine-B3jIqrsc.js": "742adbc4c73b461394e425a3a384fcb2473483e762787e005146904b2dc9d7a2",
+      "assets/live-keyboard-Dx32XHs5.js": "4e4916a21c7f8b4bf87c54a8e73264991ee7b3939ba355a4186d1f0e89ed48b5",
+      "assets/local-adapter-D7X_Egle.js": "467945267fd9f9e5dfd4c888af995e33ea39e84746cc4f6e713417d1488d7e74",
+      "assets/lock-DFT34lU3.js": "da97dc60260c533c8e8e836ebfb0e89f8bf1a2fbf0041c4101af2a8d51d497ee",
+      "assets/metrics-COWyo3SE.js": "54743ee715f2bacd2ce46156d3268ceee2ee78fd3d912389f2d8b3d734de3072",
+      "assets/pause-BA2qb7Bj.js": "d3b4da24e39d16b5f984fc882c5ea87d64e0946ab22ab728ffd0dd0bb516a2a0",
+      "assets/placement-x0FVtLUt.js": "4c191b9f467c7d8c4e945eecd43e620fd206bba01aae2390d6c79112c966c67d",
+      "assets/play-T9qs9vpa.js": "3a273b12700730282295afa39715a8f03c905fd298d58587957f224129255f84",
+      "assets/practice-style-CpuT8IEY.js": "15b9b0d248929f12409a017a2f3d9d54de0377001ee8a4bf36e950b107cc1915",
+      "assets/progression-api-CGGcqNVr.js": "fdd3938d8b7aa41e3118bdd387baf6c36477625c287c838741024b218b992b38",
+      "assets/progression-service-D1WrjnjA.js": "9e6801f5226a8a1c3737395ef26408c8e25f3a9b71bf4888db391c4925c6622f",
+      "assets/progression-storage-BaAJtERX.js": "9709ff465e5e250b3df86cf3766f98577862e7d6fa3a4281c2afdce75f1a4d8b",
+      "assets/records-BFoFVzC_.js": "4b76fe56ce69c0d374cccbf4adc127be2fff3fc286b1225472c6b204037d51ca",
+      "assets/reminders-CI2LqXB-.js": "66c452732d564611d237b9e28858ab1fa8d8f06c39a41eb05218e6271428883b",
+      "assets/rotate-ccw-Co65aFgA.js": "f6901cb08d6f5940c72c415cf93408db9737396ca405f871ecffb0fa4de28559",
+      "assets/season-customization-waN5yPvc.js": "78f65479607af87ac1747a8aad91020e48d0e439a9898ffbbe119a73318f8507",
+      "assets/session-BmmUk0lp.js": "4e22709cd9650a7ff0d38f9f6995f0dd29c73fb01e919c421a62e9ef778d22b0",
+      "assets/shield-check-D5f6SsjI.js": "207034682bf427414dc5d319bcf214bbe9769d43814b4f98bcc2ca107b7bc6e7",
+      "assets/sparkles-Ck8lw4We.js": "abee1a7e27d13f804cd60d3d2fcee3815960a076138bbb46307e792bb3db5108",
+      "assets/target-kWt52SrO.js": "2ca73c53e53511b896cdcf4bbf94fa7693dc70e5391da325b30dc6d227294249",
+      "assets/three.module-ytFXl0Cs.js": "2b26c8bf33db5d22e8c7d6a8ecd2b2f1ea76ceaf6a3c815f613258f32ac9cf9f",
+      "assets/timer-CeifsXI0.js": "8c72391f57b21ce38465ce57c0c72ae7428fe7b5fe9b2abce792105718801880",
+      "assets/toaster-D7lIEVds.js": "b90c8327b9e31d441fbbe37c13b4a5dccbabe165ae36ffaad55ef27d44d0c2f6",
+      "assets/typing-caret-cache-12qVKh6w.css": "bb894bec236a2385566c2ce243a147b429acd01600b195b50e5270406a8a95dd",
+      "assets/typing-caret-cache-vSU4G55o.js": "3b41fb5e93e2c70808f62b41f0767fe1aa108638eb7fecb7e95d239f5f4aa6bc",
+      "assets/typing-course-CuqxwHND.js": "a9bed841b43757cd35998268bcf380b79556587666ae7d2bdc634bca66e4fc5d",
+      "assets/useCountdownClock-CDsiuLYA.js": "ff5cd829ac8281aa4c8d412b1c1d48b50edac5e793df39b3febf4853bee7abce",
+      "assets/useIssuedChallengeCountdown-DmiswH_C.js": "68921843af880b83d217f227e5d8e5cb807abca569dde91e3f7b700c9cdceb52",
+      "assets/useTestResults-BeyTggRg.js": "45f08793ef7f1fe5601ec236b213cb647f43eaa310a7a832748ab27f6ca84aeb",
+      "assets/utils-d2XQ1MEC.js": "1e7512e5695a9a4f9157a2a7eb97213f21adb5539cae51f19c02766aea94ab91",
+      "assets/workspace-extras-K91OJpUF.js": "c67cb6e06f3d1f530c854a03e40af58d8fc17efe42765b4aacdf38aa3f5aed44",
+      "assets/x-DbZGXsK0.js": "47c439e97557e594b04b71e164d1977b9b13731b99854a047b3c08a1f40d1acd",
+      "auth/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "classroom/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "deployment.json": "67f7b59e3f5d73b819342564c7e629a0b9f4348827c05588148ae6e13febdfa1",
+      "favicon.ico": "19857910ebc438f4fe09acaafa17e9cb1fc4e8ac15fec9f24a48e2aca9fcb716",
+      "fonts/fonts.css": "928fcb85725d5f40a65d4de5ae6473cbfd6d13a81575c053c9563cbc5e47b4a6",
+      "fonts/inter-LICENSE.txt": "3b0a5fca3d17942cde889069889dedbbbd075e9b599968c82a95f4d944e9b345",
+      "fonts/inter-cyrillic-ext-wght-normal.woff2": "ca157063339ac4ad418f214f3abfed119b0798ab4d377386ce5c9e5a7a435ebd",
+      "fonts/inter-cyrillic-wght-normal.woff2": "71d5ee93cc1e9f1d520a3a8b66456de18c7879d8df09d57fcd2eaff75fef0075",
+      "fonts/inter-greek-ext-wght-normal.woff2": "6e9e020a25f9b56d418f2c085b1d3c09725a4da23fe693a5b463064606732190",
+      "fonts/inter-greek-wght-normal.woff2": "1be3448e292fbf05ffe176fe1e43f135013d50b1e7d324ad1a558f623d3bb6f6",
+      "fonts/inter-latin-ext-wght-normal.woff2": "34b9c504cab7a73e37b746343a449132e56cf7b5481af2cb81dc74dcff25c956",
+      "fonts/inter-latin-wght-normal.woff2": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "fonts/inter-vietnamese-wght-normal.woff2": "5c66f9e07e90c6d4ac4922cc68d60de26c17b1858e677fb5e603fce3952b3ff2",
+      "fonts/jetbrains-mono-LICENSE.txt": "403581b69dac5cff4079205e01c6b467e56af449ecbd7247693ddb1baafa005b",
+      "fonts/jetbrains-mono-cyrillic-ext-wght-normal.woff2": "593ccd6fe36e299e151aeae4521be9bfe83ac487d96d7cdb44f50be4a04041c7",
+      "fonts/jetbrains-mono-cyrillic-wght-normal.woff2": "d274604c40757f98f07df623a8b8fb5194508a6fa4f5413a7a107f09e3b7452a",
+      "fonts/jetbrains-mono-greek-wght-normal.woff2": "ee863198077f3093ffa81c072581cc4bd608a04e60a8a9c0b846396ce4f14109",
+      "fonts/jetbrains-mono-latin-ext-wght-normal.woff2": "79bfdab9ba467e26eea4122e6f2567e188dd8a09a8c730d501fc487c4ab99c6e",
+      "fonts/jetbrains-mono-latin-wght-normal.woff2": "18be452724bfdc236c074ca94a249a7f41a86752c7d04ab258ce9ed5651f6a7e",
+      "fonts/jetbrains-mono-vietnamese-wght-normal.woff2": "2288795da89dd97e648954b96e22b4501bd85dfc453264460b252f888b582ca2",
+      "fonts/sora-LICENSE.txt": "1ec9623d38c445eb4dfe5fcc783e0f0ee728cc97ca157ce1f8cb2b3bf9d9b0d9",
+      "fonts/sora-latin-ext-wght-normal.woff2": "c163c536f68befd99a83d4f17e8b88030e7f54229688a45c44f70c7149db7385",
+      "fonts/sora-latin-wght-normal.woff2": "fa26406eeda9a3c6ec3d9ea8813c3045d6dc755e30c716d5c094e8ef43be5a7f",
+      "friends/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "games/index.html": "11bd2c8d41aa208ea3101f11bbf14a25a1db645fc02d65dd3de998a800cc5937",
+      "icon-192.png": "2bff879235e3de20d9957a590c0ef2f645e03dc54e61289b12cca0874227e5b9",
+      "icon-512.png": "c8e02ffc54792807f5c01f1c8014ffe07af75fb8630c4ca2bf3ddfbd565850c8",
+      "index.html": "2d0d435e822e1a0788fba4f7db13f26585577b144d58921411cb377a37fc8550",
+      "keyboard-lab/index.html": "4b0436816008223c5b97d3986fcc6ce9d38f78c2c94164cd4e7dc22601fd98ce",
+      "leaderboard/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "learn/index.html": "8ac356d824ef2143ded1456e03e406a7f5e8dababf0aeb12f11e9503ba5e3111",
+      "lessons/index.html": "da5198d99c7ddeaf55da4e9de143891aacdf6201b373186c3978302fe5d3a646",
+      "offline-build.json": "b63d7f4cb3204a3064c18df4c177a4f5758828a2460996c51423def1cc2df1a5",
+      "offline/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "og-sparowtype.png": "4641c5942811c91a6154a649282cc0472fe4463ba53453c52e3a57c5b75c43ac",
+      "placeholder.svg": "64badf7aabda0b9630b87020ffb6095cb858ccbcf66b355c2aa08b1063954d3b",
+      "practice/index.html": "8ac356d824ef2143ded1456e03e406a7f5e8dababf0aeb12f11e9503ba5e3111",
+      "privacy/index.html": "cab68fc28f3b1e00557868832acc593304abed6bb42bc86f05f63c46005d379f",
+      "profile/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "progression/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "race/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "ranked/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "robots.txt": "04383e7d07f0b1c141ed9e7fbbf0815ef53933011691c4c6b402ab5f390082c0",
+      "settings/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "site.webmanifest": "02c06737927144bb4714aca32d1d95607bf4eb25deadd87f19538c6fdcfae2a7",
+      "sitemap.xml": "e178ec89b1499b97952dd5740159b41afece293ad5924c70add704d8c076e10a",
+      "sparowtype.svg": "bf5efee9b93c021766ad7d9857202a139ce9ab4d938c256e1831f7e1653aecfb",
+      "stats/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "studio/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "sw.js": "d37c24a111a9f38e71e381e2a8f3c9a6fc97a4c24eb1e44514af29a5ee478848",
+      "terms/index.html": "bca8f4ce9427da66219131585ae0dde7a6f67867261c1af6bc54bdd3b609b186",
+      "touch-typing/index.html": "c6eea81056e9b8835772f0796cdaf4ea7b906f093e2b9e7dde755decc73f88a3",
+      "typing-practice/index.html": "8ac356d824ef2143ded1456e03e406a7f5e8dababf0aeb12f11e9503ba5e3111",
+      "typing-test/index.html": "2d0d435e822e1a0788fba4f7db13f26585577b144d58921411cb377a37fc8550"
+    }
+  },
+  "preservedNormalReport": "audit/2026-10-21/mobile-workspaces-final7.json",
+  "measurementDriver": {
+    "file": "audit/2026-11-02/measure-mobile-workspaces-static-final32.mjs",
+    "sha256": "96db25833d7c633ce17de11f005f166b4c87f05f220028d1191bf4159ea5654f",
+    "original": "audit/2026-10-21/measure-mobile-workspaces.mjs",
+    "originalSha256": "69bc61a77b632524f2bd3e689431413e3ab178119226c3d603b60cb6f8245d6a",
+    "referenceChanges": [
+      [
+        "const directory = 'audit/2026-10-21';",
+        "const directory = 'audit/2026-11-02';"
+      ],
+      [
+        "process.argv[2] ?? 'mobile-workspaces'",
+        "process.argv[2] ?? 'mobile-workspaces-final32-static'"
+      ],
+      [
+        "`${directory}/mobile-workspaces-protocol.json`",
+        "`${directory}/mobile-workspaces-final32-static-protocol.json`"
+      ],
+      [
+        "`${directory}/after-1-build.json`",
+        "`${directory}/mobile-workspaces-final32-static-build.json`"
+      ]
+    ],
+    "assertionsAndTimingByteIdentical": true
+  },
+  "automaticRetries": 0,
+  "resultFiltering": false,
+  "ownBrowserChildExited": true,
+  "origin": "http://127.0.0.1:11555",
+  "command": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "audit/2026-11-02/measure-mobile-workspaces-static-final32.mjs",
+    "mobile-workspaces-final32-static-candidate",
+    "audit/2026-11-02/mobile-workspaces-final32-static-candidate-protocol.json"
+  ],
+  "startedAt": "2026-11-04T15:39:27.561Z",
+  "pid": 13724,
+  "exitCode": 0,
+  "signal": null,
+  "measured": {
+    "report": "audit/2026-11-02/mobile-workspaces-final32-static-candidate.json",
+    "completed": true,
+    "watchdogExpired": false,
+    "cases": [
+      {
+        "id": "learn",
+        "passed": true,
+        "timing": {
+          "eventTimingSupported": true,
+          "observedTypingEventsAtLeast16ms": 508,
+          "p98ObservedTypingEventDurationMs": 56,
+          "maxObservedTypingEventDurationMs": 144,
+          "measuredInteractionsAtLeast16ms": 127,
+          "p98ObservedInteractionMaximumMs": 56,
+          "observedBeforeInputEvents": 127,
+          "measuredWallMs": 3574.7000000001863,
+          "longTasksThroughTypingAndResult": [
+            123,
+            69,
+            81,
+            138
+          ]
+        },
+        "evidence": {
+          "targetUnits": 127,
+          "finalTextExact": true,
+          "attempts": 127,
+          "incorrectAttempts": 0,
+          "inputAccuracy": 100,
+          "elapsedMs": 2918.7000000001863,
+          "correctCharacterWpm": 522.1502723815064,
+          "exportedClientSessionId": "587395bb-7a17-477f-a572-7e5881cd7d50"
+        },
+        "pageErrors": [],
+        "consoleErrors": []
+      },
+      {
+        "id": "course",
+        "passed": true,
+        "timing": {
+          "eventTimingSupported": true,
+          "observedTypingEventsAtLeast16ms": 293,
+          "p98ObservedTypingEventDurationMs": 56,
+          "maxObservedTypingEventDurationMs": 80,
+          "measuredInteractionsAtLeast16ms": 59,
+          "p98ObservedInteractionMaximumMs": 72,
+          "observedBeforeInputEvents": 59,
+          "measuredWallMs": 1520.2000000001863,
+          "longTasksThroughTypingAndResult": [
+            72
+          ]
+        },
+        "evidence": {
+          "targetUnits": 59,
+          "finalTextExact": true,
+          "attempts": 59,
+          "incorrectAttempts": 0,
+          "inputAccuracy": 100,
+          "elapsedMs": 1395.3999999994412,
+          "correctCharacterWpm": 507.38139601568264,
+          "exportedClientSessionId": "65f92358-07f3-4016-b9c2-a78e15fca6cf"
+        },
+        "pageErrors": [],
+        "consoleErrors": []
+      },
+      {
+        "id": "local-bot",
+        "passed": true,
+        "timing": {
+          "eventTimingSupported": true,
+          "observedTypingEventsAtLeast16ms": 500,
+          "p98ObservedTypingEventDurationMs": 56,
+          "maxObservedTypingEventDurationMs": 64,
+          "measuredInteractionsAtLeast16ms": 100,
+          "p98ObservedInteractionMaximumMs": 64,
+          "observedBeforeInputEvents": 100,
+          "measuredWallMs": 3290.7999999998137,
+          "longTasksThroughTypingAndResult": [
+            53,
+            201,
+            127
+          ]
+        },
+        "evidence": {
+          "targetUnits": 100,
+          "finalTextExact": true,
+          "attempts": 100,
+          "incorrectAttempts": 0,
+          "inputAccuracy": 100,
+          "elapsedMs": 2800.2000000001863,
+          "correctCharacterWpm": 428.54081851293483,
+          "exportedClientSessionId": "a5168855-7585-4531-bc33-a2fdc7464480",
+          "localBot": true
+        },
+        "pageErrors": [],
+        "consoleErrors": []
+      },
+      {
+        "id": "games",
+        "passed": true,
+        "timing": {
+          "eventTimingSupported": true,
+          "observedTypingEventsAtLeast16ms": 339,
+          "p98ObservedTypingEventDurationMs": 24,
+          "maxObservedTypingEventDurationMs": 32,
+          "measuredInteractionsAtLeast16ms": 89,
+          "p98ObservedInteractionMaximumMs": 32,
+          "observedBeforeInputEvents": 98,
+          "measuredWallMs": 1856.0999999996275,
+          "longTasksThroughTypingAndResult": []
+        },
+        "evidence": {
+          "targetUnits": 98,
+          "attempts": 98,
+          "inputAccuracy": 100,
+          "finalInputValuesExact": true,
+          "completedGates": 18,
+          "localBest": {
+            "version": "signal-run-v1",
+            "mode": "calm",
+            "gates": 18,
+            "cleanGates": 18,
+            "accuracy": 100,
+            "elapsedMs": 1776.2999999998137,
+            "paused": false
+          },
+          "rawTypedTextStored": false
+        },
+        "pageErrors": [],
+        "consoleErrors": []
+      }
+    ]
+  },
+  "serverRequests": [
+    {
+      "path": "/offline-build.json",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/learn",
+      "method": "GET",
+      "status": 301
+    },
+    {
+      "path": "/learn/",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/fonts/sora-latin-wght-normal.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-CEa8BANT.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/keyboard-layout-C21F3kj3.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-CqG1Jbr6.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/App-CJTV6Izc.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/content-packs-xYdkiJY8.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/App-BWeSDFNV.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/PwaStatus-CbAR0g3_.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/download-B3SywXPS.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/createLucideIcon-pxyWYaHV.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/x-DbZGXsK0.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-XwygSNVl.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/Learn-CthythUy.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/Footer-C8y3JC8g.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/utils-d2XQ1MEC.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/button-BqqPS59F.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-CTA64RGR.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-Drd88ecX.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/typing-caret-cache-vSU4G55o.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/live-keyboard-Dx32XHs5.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/keyboard-lab-UzEVr6VM.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/composition-echo-3wx55gok.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/session-BmmUk0lp.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/metrics-COWyo3SE.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/keybr-engine-B3jIqrsc.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/useTestResults-BeyTggRg.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/typing-caret-cache-12qVKh6w.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/Learn-CaDvSLEL.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/workspace-extras-K91OJpUF.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/evidence-policy-DPUBgzfl.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/LetterProgressPanel-DclsjsF7.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/check-Ctk70LZ8.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/lock-DFT34lU3.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/sparkles-Ck8lw4We.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/timer-CeifsXI0.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/rotate-ccw-Co65aFgA.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/play-T9qs9vpa.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/pause-BA2qb7Bj.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/arrow-right-B5dz1iS6.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/fonts/inter-latin-wght-normal.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/fonts/jetbrains-mono-latin-wght-normal.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/SessionResults-DLKl-kZ-.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/history-model-Cg8nY6dX.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/SessionInsightsPanel-hilbEQQH.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/dashboard-CG4qYAqt.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/typing-course-CuqxwHND.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/finger-map-C2OrIfaO.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/generateCategoricalChart-mVDZn29H.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/progression-service-D1WrjnjA.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/calendar-qHXkz0Pn.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/progression-storage-BaAJtERX.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/lessons",
+      "method": "GET",
+      "status": 301
+    },
+    {
+      "path": "/lessons/",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/fonts/sora-latin-wght-normal.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-CEa8BANT.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/keyboard-layout-C21F3kj3.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-CqG1Jbr6.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/App-CJTV6Izc.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/content-packs-xYdkiJY8.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/App-BWeSDFNV.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/PwaStatus-CbAR0g3_.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/createLucideIcon-pxyWYaHV.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/x-DbZGXsK0.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-XwygSNVl.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/download-B3SywXPS.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/Lessons-CNDF6VbD.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/Footer-C8y3JC8g.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/utils-d2XQ1MEC.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/TypingArea-LIHIdRGE.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/session-BmmUk0lp.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/metrics-COWyo3SE.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/typing-caret-cache-vSU4G55o.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/live-keyboard-Dx32XHs5.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/keyboard-lab-UzEVr6VM.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/composition-echo-3wx55gok.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/rotate-ccw-Co65aFgA.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/pause-BA2qb7Bj.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/typing-caret-cache-12qVKh6w.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/Lessons-CAPN-WR7.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/flag-Bp_ESXR-.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/play-T9qs9vpa.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/useTestResults-BeyTggRg.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/keybr-engine-B3jIqrsc.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/workspace-extras-K91OJpUF.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/evidence-policy-DPUBgzfl.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/typing-course-CuqxwHND.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/placement-x0FVtLUt.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/finger-map-C2OrIfaO.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/dashboard-CG4qYAqt.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/history-model-Cg8nY6dX.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/SessionInsightsPanel-hilbEQQH.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/arrow-right-B5dz1iS6.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/check-Ctk70LZ8.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/target-kWt52SrO.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/progression-storage-BaAJtERX.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/calendar-qHXkz0Pn.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/fonts/inter-latin-wght-normal.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/fonts/jetbrains-mono-latin-wght-normal.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/progression-service-D1WrjnjA.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/SessionResults-DLKl-kZ-.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/generateCategoricalChart-mVDZn29H.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/lock-DFT34lU3.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/race",
+      "method": "GET",
+      "status": 301
+    },
+    {
+      "path": "/race/",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/fonts/sora-latin-wght-normal.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-CEa8BANT.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/keyboard-layout-C21F3kj3.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-CqG1Jbr6.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/App-CJTV6Izc.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/content-packs-xYdkiJY8.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/App-BWeSDFNV.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/PwaStatus-CbAR0g3_.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/createLucideIcon-pxyWYaHV.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/x-DbZGXsK0.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/download-B3SywXPS.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-XwygSNVl.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/Race-Bak-5SaN.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/Footer-C8y3JC8g.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/utils-d2XQ1MEC.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/TypingArea-LIHIdRGE.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/session-BmmUk0lp.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/metrics-COWyo3SE.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/typing-caret-cache-vSU4G55o.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/live-keyboard-Dx32XHs5.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/keyboard-lab-UzEVr6VM.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/composition-echo-3wx55gok.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/rotate-ccw-Co65aFgA.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/pause-BA2qb7Bj.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/flag-Bp_ESXR-.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/typing-caret-cache-12qVKh6w.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/play-T9qs9vpa.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/SessionResults-DLKl-kZ-.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/useTestResults-BeyTggRg.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/keybr-engine-B3jIqrsc.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/workspace-extras-K91OJpUF.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/evidence-policy-DPUBgzfl.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/history-model-Cg8nY6dX.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/SessionInsightsPanel-hilbEQQH.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/dashboard-CG4qYAqt.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/typing-course-CuqxwHND.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/finger-map-C2OrIfaO.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/generateCategoricalChart-mVDZn29H.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/arrow-right-B5dz1iS6.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/lock-DFT34lU3.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/useCountdownClock-CDsiuLYA.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/fonts/inter-latin-wght-normal.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/fonts/jetbrains-mono-latin-wght-normal.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/progression-service-D1WrjnjA.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/calendar-qHXkz0Pn.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/progression-storage-BaAJtERX.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/games",
+      "method": "GET",
+      "status": 301
+    },
+    {
+      "path": "/games/",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/fonts/sora-latin-wght-normal.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-CEa8BANT.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/keyboard-layout-C21F3kj3.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-CqG1Jbr6.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/App-CJTV6Izc.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/content-packs-xYdkiJY8.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/App-BWeSDFNV.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/PwaStatus-CbAR0g3_.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/createLucideIcon-pxyWYaHV.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/x-DbZGXsK0.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-XwygSNVl.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/download-B3SywXPS.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/Games-d9OPSwtU.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/Footer-C8y3JC8g.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/utils-d2XQ1MEC.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-CYsflULJ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/shield-check-D5f6SsjI.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/rotate-ccw-Co65aFgA.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/Games-CGLw_3iz.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/play-T9qs9vpa.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/timer-CeifsXI0.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/check-Ctk70LZ8.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/arrow-right-B5dz1iS6.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/pause-BA2qb7Bj.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/flag-Bp_ESXR-.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/fonts/inter-latin-wght-normal.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/fonts/jetbrains-mono-latin-wght-normal.woff2",
+      "method": "GET",
+      "status": 200
+    }
+  ],
+  "apiRequests": [],
+  "ownedServerClosed": true,
+  "sourceAfter": {
+    "sourceFile": "audit/2026-11-02/final32-source.json",
+    "expectedBuild": "332e23584f1e36465df2",
+    "compared": 505,
+    "mismatches": []
+  },
+  "artifactAfter": {
+    "deployment": {
+      "target": "vercel",
+      "base": "/",
+      "frontendOnly": true,
+      "api": "disabled",
+      "siteUrl": "https://sparowtype.example/"
+    },
+    "build": {
+      "version": "2f3804662ab6e43a5f95",
+      "publicFiles": 133,
+      "bytes": 2926973
+    },
+    "publicFilesRecomputed": 133,
+    "publicBytesRecomputed": 2926973,
+    "versionDigestRecomputed": true,
+    "hashes": {
+      ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      ".vite/manifest.json": "90cb2ad37d7c717642ea5741b8d22a1c8c0730ddeb1697a05cdeff1d6c88e81c",
+      "404.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "_headers": "57db1a499f4524b6ced68b0a8609cdeebfa38547f0468488278541d52495d0b7",
+      "_offline-recovery.html": "4738811fa84d492ef5e97f27da3060fd734097438b2a4af954b5594573cbd542",
+      "about/index.html": "9fdacb66597b3876068658d31f7895d4d5747150e615201cec5059279c61aa24",
+      "arcade/boss-duel/index.html": "fc238b70207a6d0effa80ea18e8653ca659042b952e9ed1c9535fe76477162d2",
+      "arcade/daily-gauntlet/index.html": "615a4128cb2cb5619fad9a90faadeae372060edaec862b12ce079e3498b1378a",
+      "arcade/ghost-gp/index.html": "4177e5e182a3ca495ad1ea9fa56f1e15c011e367ef255f7f82952f7f38653113",
+      "arcade/index.html": "1d610d0632ee7c3a3d8d22eac8a76103d292eb12b7a8a48defe12b2399a635ca",
+      "arcade/key-tower/index.html": "83a55ab0ba84249a49ebaadfcbb06171d7b218aeb9fcb1402c87f81ad10d7afd",
+      "arcade/lava-rise/index.html": "de389ea545956ce44bb242df093fb9a85dae183a2612d649e7817696f1b1a40c",
+      "arcade/rhythm-typing/index.html": "e6350d9810201910c8b5c1ad5742cbc8a2c0116b21918fad953c3dbbd5cf36e5",
+      "arcade/snake-words/index.html": "d6a8a55b10c1b624a81271e0af48be8e6d3dd574b7cc1b32bb697b501b5f9e4b",
+      "arcade/word-invaders/index.html": "24ca33bedc0f22f4efe9f28b86012fe58b8e65a8af025356a44c1fa523a340a6",
+      "arena/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "assets/About-COFr1MfS.js": "3b330fa3a097bec6e3a282c1bb82a7b8cdfa068a6ffe18eb9853d42694b5e31b",
+      "assets/App-BWeSDFNV.js": "034dca9f065d5c8da6251b3183c7b811e2e865c7b38857326e355a9d7e4fa026",
+      "assets/App-CJTV6Izc.css": "48e2ee7744ed007f215d23003f8ab4c17be1401b688ae845d47fa0a0bb2195ca",
+      "assets/ArcadePage-CNRQ-ONR.js": "cf605f120ca9f8b5933fd8f7fe94598e085f578e3fde1f59d99dff5669efb4d6",
+      "assets/ArcadePage-M-pcbyBV.css": "72c1d18e574e74d3744568e32c56cefe20e540134c6afad3002ee1905e506aa3",
+      "assets/ArcadePlayer-vqX6Utaf.js": "64201c63cc9f86d0d1bfbc0649a3d8f7f442d4518154eb93b59f64097bade1ea",
+      "assets/Arena-QLsNum_a.js": "024fa650b09b9ff2e3d33ecdfde2e0bfe23d9c6058c504e27288fa248dc17670",
+      "assets/Auth-DalPBE4q.js": "b98950e705f197da15e6a5205dbcda1b4d78756a920e84d7f99674c3cce0792d",
+      "assets/Classroom-CBph1KaT.js": "81dc15391c0603ae07950c23a7f507a349ee9417c1ca96ac4ed05ccd283c36d5",
+      "assets/CommandPalette-BNe_TOHn.js": "545f5ea28c444f120bf301bdb91a52f2dd80cbc91e10724ab2987be7112d505c",
+      "assets/DuelAttempt-CaC7uWwP.js": "d6ac541eb7bba31bc02d283d7c21dd3b479b3c8f881d1c68f84b80bff4a6f3b8",
+      "assets/Footer-C8y3JC8g.js": "f28a2c5ce5798a49a5a906567c8fe3c18efab0003f4bf35190b7758c9ca9c686",
+      "assets/Friends-B99mhk0Q.js": "0157db32a798ff717c136eb62e1da6ddc84c99169eed27374afeb6d1947e802e",
+      "assets/Games-CGLw_3iz.css": "920a9d3493cb6f46003512b0966d54c6392280240003c6523a3ac2a3751fee85",
+      "assets/Games-d9OPSwtU.js": "49c241c1044c4af0da4adc529757743cece2adee4c2a8960bc33bdb42893e457",
+      "assets/Index-BENVA8OZ.js": "71aedcea97182ef90c06ee2b057d3b31cbe703bc7000050bad411ef88fc0387c",
+      "assets/KeyboardLab-DJ7QbNMA.js": "f48a7e0c5eb62648098d8ef2762ca914e5744777adc4da1a9884744e9dc3c591",
+      "assets/Leaderboard-Bz7vH1NP.js": "1b92d1bdf2b86ed0265f32dada68b753fa1ad67256dc7a2d74ab53394e0be9fd",
+      "assets/Learn-CaDvSLEL.css": "3a2ac91ce0d4e87d4ef44beacf2fcdcca65c3e95d7974f27a2a41d311c943e9e",
+      "assets/Learn-CthythUy.js": "24cdf0b23c0ba8e4a957a69f8b9fc52d594b436a4c28af278c5d1d4884d85470",
+      "assets/Lessons-CAPN-WR7.css": "0bc1d4ec24897645fb33994a8e941f835fd0fe653c1f3b9f9725221ed4eecf4e",
+      "assets/Lessons-CNDF6VbD.js": "bfb8b3ed89bbbdacbc2a32661c11ca56f12874d52f71a1ff881cfa2e1ac4cc70",
+      "assets/LetterProgressPanel-DclsjsF7.js": "08a4eb3a2be071f6a7747cd2c4a291633dd8406a17abee0edcd924f2f959f1df",
+      "assets/LocalReminderRuntime-CJXICurR.js": "74ddcfbf7eaad8954ac176f37792748779ec47230d727f9bc4629f385fe86aaf",
+      "assets/NotFound-BQ3CJBLK.js": "27b2515729850cf9b48eb5af606d275fc4772a3133a134b584c01525f3da0681",
+      "assets/Offline-BtON-X37.js": "d22e026938a42932bff0bfda633520e9db0c49106dc39983a22bc2bce80e6509",
+      "assets/Privacy-OiiID2Dc.js": "92110392bec7bee98a41b1a19aad49296ab82e9a0085b8f92fc636d2fa578103",
+      "assets/Profile-BlWnf0OR.js": "bfeadd9679dce5314a3c62f1db45d35de2f358c32b3e914e90ede4eb548f73d3",
+      "assets/ProfileAppearance-JfY5Wh74.js": "57b8274308b9dca2c4bc95085cb705f8b31b1ff022ff4b710dbad9fdfd673f90",
+      "assets/Progression-C4599pIF.js": "a6b91691acc3d499334ea1f1a1bf7f7510054cb85c3e50080f70b6d87ef23cfb",
+      "assets/PwaStatus-CbAR0g3_.js": "28d296913d5f06e1ca37496b921a7bff6870ab3b9973a1add98a52d930cd4bd8",
+      "assets/Race-Bak-5SaN.js": "c9b46fdbd0e42f54b239ac9d961c6d20855a47e8fcbe9b4f3ed631cf4136ccd7",
+      "assets/Ranked-B1sBqhn2.js": "5dda68ae8e14fb2ae59fdcb90627a4d048e23ec11804adeda3d28a4060b18bb6",
+      "assets/SessionInsightsPanel-hilbEQQH.js": "d52f3f141497a655d46a607ed6783c15c0a09078eeec95f5120e68b1236aaca2",
+      "assets/SessionResults-DLKl-kZ-.js": "41e9fd5bab2f91086429b95c0c06ae75a5ffd57011cad194a261525267aae89c",
+      "assets/Settings-CE624ecc.js": "3d0207b111bc178bc54f08b6f01dbbb20f9acc826fb3ae6a8edbb738a01c1bd7",
+      "assets/Stats-w4EelANI.js": "cfc844b45a808745fdfc3d9f06717435c67bcbbf2ac43abe972218f08d8170cf",
+      "assets/StatsSpeedChart-FGe0a_5o.js": "67d0ec8c9eec562670ef2073a148a52a931d129d9f05330b4b71e43d069bb7bb",
+      "assets/Studio-BDbM5J-A.js": "5c3caaec8c164fd3d4eae11d5765b08e288d4aa11e71f4b3e294b43854073de8",
+      "assets/Studio-BPi8zNnu.css": "4bac161133e879216aaef87099ae98c3066c147ebfe02ceadc3264f493e50e41",
+      "assets/Terms-Df7_gLY1.js": "4f0421a23b3024d382e120635f3ded72c135b2a389319f4aa8ed0ac15b678f47",
+      "assets/TouchTyping-BgaRy4yB.js": "c63bab1107ffeaf9ec9f2eb4cd6a8716b027a8c940697cfb787481ad6bece85a",
+      "assets/TypingArea-LIHIdRGE.js": "b1eac30e3918c2b82040993fa4a6c1bdc443fbd7b6ac3f759e6a4eda10442ecb",
+      "assets/arrow-right-B5dz1iS6.js": "f53390492048cc63987f8b7286725b8073f05f56f7294f7cf1d8711f2a59e326",
+      "assets/arrow-up-right-BfKO5rC7.js": "3f5ea94f3fdd9177bed01df6a25bb9f3f507e38316ac868b133c113e2c8b5459",
+      "assets/button-BqqPS59F.js": "bc90f3129c2750af0f802edd8c33bf9b45fa149879cdbe1858e08d993c5097f8",
+      "assets/calendar-qHXkz0Pn.js": "e22474dde5ebf677ae41d07b4911575038614d1609ece81901734a979ced38c7",
+      "assets/caret-handoff-Bo5AUEQO.js": "8ac4d9848755e7ec1eb773ac2eed8c31d1fb07123b57cb086e078228ca408e72",
+      "assets/check-Ctk70LZ8.js": "b459adf897015657a7141a1d752096635b4019e4f7b8dcfccfb8c0e8958efc9b",
+      "assets/clock-3-C6bIJliF.js": "8738ff08cb42b25794d1d09c8c5f5529a7a5c3a8cbdc8688ad11fe71cd429e38",
+      "assets/composition-echo-3wx55gok.js": "26fe8bf48454d2d67706a812a62b50e27605a4dd6bdbe1c245b43e01fdb0fd57",
+      "assets/content-packs-xYdkiJY8.js": "087c06ff9c18845c901f4ee36bab0b0352cb0ec3fc67bd79ce5bacb2dd23bf84",
+      "assets/createLucideIcon-pxyWYaHV.js": "624a69081b611b2396b1a16494dc379d4a5227a732eaf6b87ee4ee3222a8578b",
+      "assets/dashboard-CG4qYAqt.js": "56d60070d901270fa84dcae4593a23097ee536e0556c8f06e76f54dbf7086e79",
+      "assets/dialog-DFcKo1BZ.js": "2115a7540570c60456b5e7b3cbaf243dc1f8c143488109e380f408532101c039",
+      "assets/download-B3SywXPS.js": "c8335090e48f364dd0437a447414c6a39cc09bb9345fc9540156c70d06c4ed7c",
+      "assets/evidence-policy-DPUBgzfl.js": "93fe2d00ae448e8068fcf383e1f4ce6e97b0d00619841295b5332391369e1671",
+      "assets/finger-map-C2OrIfaO.js": "8d2b4a10b168652779876ff5567f74167c677f66ef8219443d0c4ac030774b6b",
+      "assets/flag-Bp_ESXR-.js": "cfa5f7a223292f830ee9c56e62f1be7aa79d4728d321372d8adf5f654d753b46",
+      "assets/generateCategoricalChart-mVDZn29H.js": "996f65456ef9474c89405f9dfc1bb657d2626c1b2dd22a55d2e6319d00663b7a",
+      "assets/history-model-Cg8nY6dX.js": "4bc668f255b81010b9f2529d63ef1413a312160a2a69b925fc96ff8cb6a70369",
+      "assets/index-CEa8BANT.js": "b2e2e7a14bd77c0f88f8bd9ee68d6a5f90884c99c52e54f3a4407a3468712488",
+      "assets/index-CTA64RGR.js": "a472fc2ee87a512fee30c263f56c2e11352eb553b947ebe39749d791b46e86a5",
+      "assets/index-CYsflULJ.js": "b2fbd3d89268d078e7aaefc8ebc19f0028e27e4de0b062cef93682d697c2edb1",
+      "assets/index-Cdp-3GNg.js": "8692ca47ed95857b949188e5f35ca6b2447d3d17d319559c7d16ff44aa7a5574",
+      "assets/index-CktWMSlL.js": "d01e41f3b1526756f6af539e5ec90f70353ba428613df425ae993512f2abdb3d",
+      "assets/index-CqG1Jbr6.js": "524de70be8db5c3e0df525f69081162a1e7171c513c8ad5d2ce0cb88d2e076a3",
+      "assets/index-Drd88ecX.js": "a539db3cdf7aca8fd1a2b068cecae321ea5fd0182a285447c8fd4f57f8e4d184",
+      "assets/index-XwygSNVl.css": "167a5a967a2d03028487103ebf897d2f927a2d2372b46b4ab7a44799b2401d9c",
+      "assets/keyboard-audio-CkcWSiE5.js": "647ea86f23f6e83e30110e29e4846f2532220d49511c7171e23647bc5747880a",
+      "assets/keyboard-bloom-CFGEPK_L.js": "966db3e3d61752514688db63b3d970e1a87e7a66498f5f3f0b93f0085c0c0977",
+      "assets/keyboard-lab-UzEVr6VM.js": "26de248aa14e9509a82fab659c7acec07203dc8d49c7fa673f02ab804937509e",
+      "assets/keyboard-layout-C21F3kj3.js": "105c89037b49c4de07d6e4e3f5f51c34bbdc055c62d05ed64e6054d5b052c461",
+      "assets/keyboard-render-worker-oeYyHX4e.js": "37b2d1842100f3516e8af626c58d58791c3ff9c6cc970835d5bd3d8ef948be13",
+      "assets/keyboard-scene-DYowRFwC.js": "1624b699d9955f32c182e82eb0ac03567c446174bd2b29e649647a6079fe2f44",
+      "assets/keyboard-scene-bridge-BOEWbpeD.js": "44f686ab6eda6bdfa5aebf75ace08e1e60f78da44a8432352f8e25efae031659",
+      "assets/keybr-engine-B3jIqrsc.js": "742adbc4c73b461394e425a3a384fcb2473483e762787e005146904b2dc9d7a2",
+      "assets/live-keyboard-Dx32XHs5.js": "4e4916a21c7f8b4bf87c54a8e73264991ee7b3939ba355a4186d1f0e89ed48b5",
+      "assets/local-adapter-D7X_Egle.js": "467945267fd9f9e5dfd4c888af995e33ea39e84746cc4f6e713417d1488d7e74",
+      "assets/lock-DFT34lU3.js": "da97dc60260c533c8e8e836ebfb0e89f8bf1a2fbf0041c4101af2a8d51d497ee",
+      "assets/metrics-COWyo3SE.js": "54743ee715f2bacd2ce46156d3268ceee2ee78fd3d912389f2d8b3d734de3072",
+      "assets/pause-BA2qb7Bj.js": "d3b4da24e39d16b5f984fc882c5ea87d64e0946ab22ab728ffd0dd0bb516a2a0",
+      "assets/placement-x0FVtLUt.js": "4c191b9f467c7d8c4e945eecd43e620fd206bba01aae2390d6c79112c966c67d",
+      "assets/play-T9qs9vpa.js": "3a273b12700730282295afa39715a8f03c905fd298d58587957f224129255f84",
+      "assets/practice-style-CpuT8IEY.js": "15b9b0d248929f12409a017a2f3d9d54de0377001ee8a4bf36e950b107cc1915",
+      "assets/progression-api-CGGcqNVr.js": "fdd3938d8b7aa41e3118bdd387baf6c36477625c287c838741024b218b992b38",
+      "assets/progression-service-D1WrjnjA.js": "9e6801f5226a8a1c3737395ef26408c8e25f3a9b71bf4888db391c4925c6622f",
+      "assets/progression-storage-BaAJtERX.js": "9709ff465e5e250b3df86cf3766f98577862e7d6fa3a4281c2afdce75f1a4d8b",
+      "assets/records-BFoFVzC_.js": "4b76fe56ce69c0d374cccbf4adc127be2fff3fc286b1225472c6b204037d51ca",
+      "assets/reminders-CI2LqXB-.js": "66c452732d564611d237b9e28858ab1fa8d8f06c39a41eb05218e6271428883b",
+      "assets/rotate-ccw-Co65aFgA.js": "f6901cb08d6f5940c72c415cf93408db9737396ca405f871ecffb0fa4de28559",
+      "assets/season-customization-waN5yPvc.js": "78f65479607af87ac1747a8aad91020e48d0e439a9898ffbbe119a73318f8507",
+      "assets/session-BmmUk0lp.js": "4e22709cd9650a7ff0d38f9f6995f0dd29c73fb01e919c421a62e9ef778d22b0",
+      "assets/shield-check-D5f6SsjI.js": "207034682bf427414dc5d319bcf214bbe9769d43814b4f98bcc2ca107b7bc6e7",
+      "assets/sparkles-Ck8lw4We.js": "abee1a7e27d13f804cd60d3d2fcee3815960a076138bbb46307e792bb3db5108",
+      "assets/target-kWt52SrO.js": "2ca73c53e53511b896cdcf4bbf94fa7693dc70e5391da325b30dc6d227294249",
+      "assets/three.module-ytFXl0Cs.js": "2b26c8bf33db5d22e8c7d6a8ecd2b2f1ea76ceaf6a3c815f613258f32ac9cf9f",
+      "assets/timer-CeifsXI0.js": "8c72391f57b21ce38465ce57c0c72ae7428fe7b5fe9b2abce792105718801880",
+      "assets/toaster-D7lIEVds.js": "b90c8327b9e31d441fbbe37c13b4a5dccbabe165ae36ffaad55ef27d44d0c2f6",
+      "assets/typing-caret-cache-12qVKh6w.css": "bb894bec236a2385566c2ce243a147b429acd01600b195b50e5270406a8a95dd",
+      "assets/typing-caret-cache-vSU4G55o.js": "3b41fb5e93e2c70808f62b41f0767fe1aa108638eb7fecb7e95d239f5f4aa6bc",
+      "assets/typing-course-CuqxwHND.js": "a9bed841b43757cd35998268bcf380b79556587666ae7d2bdc634bca66e4fc5d",
+      "assets/useCountdownClock-CDsiuLYA.js": "ff5cd829ac8281aa4c8d412b1c1d48b50edac5e793df39b3febf4853bee7abce",
+      "assets/useIssuedChallengeCountdown-DmiswH_C.js": "68921843af880b83d217f227e5d8e5cb807abca569dde91e3f7b700c9cdceb52",
+      "assets/useTestResults-BeyTggRg.js": "45f08793ef7f1fe5601ec236b213cb647f43eaa310a7a832748ab27f6ca84aeb",
+      "assets/utils-d2XQ1MEC.js": "1e7512e5695a9a4f9157a2a7eb97213f21adb5539cae51f19c02766aea94ab91",
+      "assets/workspace-extras-K91OJpUF.js": "c67cb6e06f3d1f530c854a03e40af58d8fc17efe42765b4aacdf38aa3f5aed44",
+      "assets/x-DbZGXsK0.js": "47c439e97557e594b04b71e164d1977b9b13731b99854a047b3c08a1f40d1acd",
+      "auth/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "classroom/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "deployment.json": "67f7b59e3f5d73b819342564c7e629a0b9f4348827c05588148ae6e13febdfa1",
+      "favicon.ico": "19857910ebc438f4fe09acaafa17e9cb1fc4e8ac15fec9f24a48e2aca9fcb716",
+      "fonts/fonts.css": "928fcb85725d5f40a65d4de5ae6473cbfd6d13a81575c053c9563cbc5e47b4a6",
+      "fonts/inter-LICENSE.txt": "3b0a5fca3d17942cde889069889dedbbbd075e9b599968c82a95f4d944e9b345",
+      "fonts/inter-cyrillic-ext-wght-normal.woff2": "ca157063339ac4ad418f214f3abfed119b0798ab4d377386ce5c9e5a7a435ebd",
+      "fonts/inter-cyrillic-wght-normal.woff2": "71d5ee93cc1e9f1d520a3a8b66456de18c7879d8df09d57fcd2eaff75fef0075",
+      "fonts/inter-greek-ext-wght-normal.woff2": "6e9e020a25f9b56d418f2c085b1d3c09725a4da23fe693a5b463064606732190",
+      "fonts/inter-greek-wght-normal.woff2": "1be3448e292fbf05ffe176fe1e43f135013d50b1e7d324ad1a558f623d3bb6f6",
+      "fonts/inter-latin-ext-wght-normal.woff2": "34b9c504cab7a73e37b746343a449132e56cf7b5481af2cb81dc74dcff25c956",
+      "fonts/inter-latin-wght-normal.woff2": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "fonts/inter-vietnamese-wght-normal.woff2": "5c66f9e07e90c6d4ac4922cc68d60de26c17b1858e677fb5e603fce3952b3ff2",
+      "fonts/jetbrains-mono-LICENSE.txt": "403581b69dac5cff4079205e01c6b467e56af449ecbd7247693ddb1baafa005b",
+      "fonts/jetbrains-mono-cyrillic-ext-wght-normal.woff2": "593ccd6fe36e299e151aeae4521be9bfe83ac487d96d7cdb44f50be4a04041c7",
+      "fonts/jetbrains-mono-cyrillic-wght-normal.woff2": "d274604c40757f98f07df623a8b8fb5194508a6fa4f5413a7a107f09e3b7452a",
+      "fonts/jetbrains-mono-greek-wght-normal.woff2": "ee863198077f3093ffa81c072581cc4bd608a04e60a8a9c0b846396ce4f14109",
+      "fonts/jetbrains-mono-latin-ext-wght-normal.woff2": "79bfdab9ba467e26eea4122e6f2567e188dd8a09a8c730d501fc487c4ab99c6e",
+      "fonts/jetbrains-mono-latin-wght-normal.woff2": "18be452724bfdc236c074ca94a249a7f41a86752c7d04ab258ce9ed5651f6a7e",
+      "fonts/jetbrains-mono-vietnamese-wght-normal.woff2": "2288795da89dd97e648954b96e22b4501bd85dfc453264460b252f888b582ca2",
+      "fonts/sora-LICENSE.txt": "1ec9623d38c445eb4dfe5fcc783e0f0ee728cc97ca157ce1f8cb2b3bf9d9b0d9",
+      "fonts/sora-latin-ext-wght-normal.woff2": "c163c536f68befd99a83d4f17e8b88030e7f54229688a45c44f70c7149db7385",
+      "fonts/sora-latin-wght-normal.woff2": "fa26406eeda9a3c6ec3d9ea8813c3045d6dc755e30c716d5c094e8ef43be5a7f",
+      "friends/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "games/index.html": "11bd2c8d41aa208ea3101f11bbf14a25a1db645fc02d65dd3de998a800cc5937",
+      "icon-192.png": "2bff879235e3de20d9957a590c0ef2f645e03dc54e61289b12cca0874227e5b9",
+      "icon-512.png": "c8e02ffc54792807f5c01f1c8014ffe07af75fb8630c4ca2bf3ddfbd565850c8",
+      "index.html": "2d0d435e822e1a0788fba4f7db13f26585577b144d58921411cb377a37fc8550",
+      "keyboard-lab/index.html": "4b0436816008223c5b97d3986fcc6ce9d38f78c2c94164cd4e7dc22601fd98ce",
+      "leaderboard/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "learn/index.html": "8ac356d824ef2143ded1456e03e406a7f5e8dababf0aeb12f11e9503ba5e3111",
+      "lessons/index.html": "da5198d99c7ddeaf55da4e9de143891aacdf6201b373186c3978302fe5d3a646",
+      "offline-build.json": "b63d7f4cb3204a3064c18df4c177a4f5758828a2460996c51423def1cc2df1a5",
+      "offline/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "og-sparowtype.png": "4641c5942811c91a6154a649282cc0472fe4463ba53453c52e3a57c5b75c43ac",
+      "placeholder.svg": "64badf7aabda0b9630b87020ffb6095cb858ccbcf66b355c2aa08b1063954d3b",
+      "practice/index.html": "8ac356d824ef2143ded1456e03e406a7f5e8dababf0aeb12f11e9503ba5e3111",
+      "privacy/index.html": "cab68fc28f3b1e00557868832acc593304abed6bb42bc86f05f63c46005d379f",
+      "profile/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "progression/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "race/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "ranked/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "robots.txt": "04383e7d07f0b1c141ed9e7fbbf0815ef53933011691c4c6b402ab5f390082c0",
+      "settings/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "site.webmanifest": "02c06737927144bb4714aca32d1d95607bf4eb25deadd87f19538c6fdcfae2a7",
+      "sitemap.xml": "e178ec89b1499b97952dd5740159b41afece293ad5924c70add704d8c076e10a",
+      "sparowtype.svg": "bf5efee9b93c021766ad7d9857202a139ce9ab4d938c256e1831f7e1653aecfb",
+      "stats/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "studio/index.html": "d1dd44f584bc927f0935aade6dfaa085a59d48e46f6ff277a8f9b67267d9e8de",
+      "sw.js": "d37c24a111a9f38e71e381e2a8f3c9a6fc97a4c24eb1e44514af29a5ee478848",
+      "terms/index.html": "bca8f4ce9427da66219131585ae0dde7a6f67867261c1af6bc54bdd3b609b186",
+      "touch-typing/index.html": "c6eea81056e9b8835772f0796cdaf4ea7b906f093e2b9e7dde755decc73f88a3",
+      "typing-practice/index.html": "8ac356d824ef2143ded1456e03e406a7f5e8dababf0aeb12f11e9503ba5e3111",
+      "typing-test/index.html": "2d0d435e822e1a0788fba4f7db13f26585577b144d58921411cb377a37fc8550"
+    }
+  },
+  "hashesUnchanged": true,
+  "driverUnchanged": true,
+  "originalProtocolUnchanged": true,
+  "finishedAt": "2026-11-04T15:39:45.164Z"
+}

@@ -1,0 +1,181 @@
+{
+  "status": "PASS-SCOPED-DIAGNOSTIC",
+  "protocol": {
+    "declaredAt": "2026-10-27T16:02:33.446Z",
+    "build": "85735c1a3b56655b767e",
+    "source": {
+      "sourceFile": "audit/2026-10-27/final23-source.json",
+      "expectedBuild": "85735c1a3b56655b767e",
+      "compared": 506,
+      "mismatches": []
+    },
+    "scope": "One pure PHP CPU timing diagnostic over an actual portable800-word/10-event/15-second interim checkpoint. Synthetic event fixture clock; CPU durations use native hrtime. No browser/network/database/config/server.",
+    "iterations": 12,
+    "fixture": {
+      "words": 800,
+      "events": 10,
+      "characters": 4599,
+      "timeSeries": 15,
+      "elapsedMs": 15000,
+      "utf8JsonBytes": 302392,
+      "sha256": "39fe841e3c203ee647cce99c75643b0ec9e6ed8efc685cc699c8b9abf809469c"
+    },
+    "inputHashes": {
+      "audit/2026-10-27/run-source23-serializer-profile.mjs": "449d2070957a0721512b9f72b9eae2f4560b47cd817a415d7b7764f557ce1466",
+      "audit/2026-10-27/benchmark-validator-source23.php": "49891244669388a8007a9569943711306d3c786ba782881ccb820fc0118652a1",
+      "backend/src/SessionValidator.php": "5d5907e4a49a1a92966a967591701976a25051a3a4f0d4d21f8e70f112be776d",
+      "scripts/php-runtime.mjs": "2adeffc2ac322edbc611f34c437a0f34569689c942602bf39b079305cfb7a60f"
+    },
+    "retries": 0,
+    "productSourceChanged": false,
+    "candidateOrSecretsPublished": false
+  },
+  "finishedAt": "2026-10-27T16:02:34.142Z",
+  "totalProcessMs": 688.9145999999998,
+  "exitCode": 0,
+  "childTimedOut": false,
+  "diagnosticsBytes": 0,
+  "failure": null,
+  "result": {
+    "status": "PASS-SCOPED-PURE-DIAGNOSTIC",
+    "phpVersion": "8.2.12",
+    "iterations": 12,
+    "fixture": {
+      "events": 10,
+      "characters": 4599,
+      "timeSeries": 15,
+      "elapsedMs": 15000,
+      "stablePayloadBytes": 302392,
+      "plainJsonBytes": 302392
+    },
+    "summaries": {
+      "validateTotalMs": {
+        "count": 12,
+        "min": 10.4047,
+        "median": 11.50255,
+        "p95": 22.6809,
+        "max": 22.6809
+      },
+      "stablePayloadOnValidatedCandidateMs": {
+        "count": 12,
+        "min": 3.0064,
+        "median": 3.374,
+        "p95": 4.3945,
+        "max": 4.3945
+      },
+      "sha256OnlyMs": {
+        "count": 12,
+        "min": 0.8576,
+        "median": 1.0383,
+        "p95": 1.314,
+        "max": 1.314
+      },
+      "unsortedSingleJsonEncodeMs": {
+        "count": 12,
+        "min": 0.4394,
+        "median": 0.56455,
+        "p95": 0.6877,
+        "max": 0.6877
+      }
+    },
+    "rows": [
+      {
+        "iteration": 1,
+        "validateTotalMs": 22.6809,
+        "stablePayloadOnValidatedCandidateMs": 4.226,
+        "sha256OnlyMs": 1.1601,
+        "unsortedSingleJsonEncodeMs": 0.6021
+      },
+      {
+        "iteration": 2,
+        "validateTotalMs": 12.4488,
+        "stablePayloadOnValidatedCandidateMs": 3.2428,
+        "sha256OnlyMs": 0.9094,
+        "unsortedSingleJsonEncodeMs": 0.6549
+      },
+      {
+        "iteration": 3,
+        "validateTotalMs": 11.7196,
+        "stablePayloadOnValidatedCandidateMs": 4.0087,
+        "sha256OnlyMs": 1.314,
+        "unsortedSingleJsonEncodeMs": 0.5767
+      },
+      {
+        "iteration": 4,
+        "validateTotalMs": 10.9166,
+        "stablePayloadOnValidatedCandidateMs": 3.322,
+        "sha256OnlyMs": 0.9918,
+        "unsortedSingleJsonEncodeMs": 0.5621
+      },
+      {
+        "iteration": 5,
+        "validateTotalMs": 10.6975,
+        "stablePayloadOnValidatedCandidateMs": 4.3945,
+        "sha256OnlyMs": 1.1954,
+        "unsortedSingleJsonEncodeMs": 0.6877
+      },
+      {
+        "iteration": 6,
+        "validateTotalMs": 11.5012,
+        "stablePayloadOnValidatedCandidateMs": 3.3382,
+        "sha256OnlyMs": 1.0848,
+        "unsortedSingleJsonEncodeMs": 0.567
+      },
+      {
+        "iteration": 7,
+        "validateTotalMs": 11.1628,
+        "stablePayloadOnValidatedCandidateMs": 3.5194,
+        "sha256OnlyMs": 1.0877,
+        "unsortedSingleJsonEncodeMs": 0.5363
+      },
+      {
+        "iteration": 8,
+        "validateTotalMs": 11.3281,
+        "stablePayloadOnValidatedCandidateMs": 3.0064,
+        "sha256OnlyMs": 1.1137,
+        "unsortedSingleJsonEncodeMs": 0.5294
+      },
+      {
+        "iteration": 9,
+        "validateTotalMs": 10.4047,
+        "stablePayloadOnValidatedCandidateMs": 3.4098,
+        "sha256OnlyMs": 0.9281,
+        "unsortedSingleJsonEncodeMs": 0.5026
+      },
+      {
+        "iteration": 10,
+        "validateTotalMs": 11.5039,
+        "stablePayloadOnValidatedCandidateMs": 3.2121,
+        "sha256OnlyMs": 0.8576,
+        "unsortedSingleJsonEncodeMs": 0.4394
+      },
+      {
+        "iteration": 11,
+        "validateTotalMs": 11.5534,
+        "stablePayloadOnValidatedCandidateMs": 3.0621,
+        "sha256OnlyMs": 0.936,
+        "unsortedSingleJsonEncodeMs": 0.5852
+      },
+      {
+        "iteration": 12,
+        "validateTotalMs": 12.723,
+        "stablePayloadOnValidatedCandidateMs": 3.5101,
+        "sha256OnlyMs": 0.9424,
+        "unsortedSingleJsonEncodeMs": 0.53
+      }
+    ],
+    "canonicalFingerprint": "b37500e0ef5744b2dee080ff9fe6039cf8d4a338a6ae6f311b45b16d657f8cab",
+    "allValidationHashesMatch": true,
+    "measurementLimit": "Serialization is timed separately on the already validated candidate, not instrumented inside the validate call. Its ratio is diagnostic context, not exact exclusive attribution or HTTP latency. Plain json_encode is an unsorted lower-bound comparison, not a canonical replacement.",
+    "privateConfigurationRead": false,
+    "databaseConnected": false
+  },
+  "sourceAfter": {
+    "sourceFile": "audit/2026-10-27/final23-source.json",
+    "expectedBuild": "85735c1a3b56655b767e",
+    "compared": 506,
+    "mismatches": []
+  },
+  "inputsUnchanged": true,
+  "noAcceptanceResultReplaced": true
+}
