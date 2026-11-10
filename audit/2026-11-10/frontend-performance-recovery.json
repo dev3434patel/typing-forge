@@ -1,0 +1,94 @@
+{
+  "recordedAt": "2026-11-10T15:00:01.205Z",
+  "clientDate": "2026-11-10",
+  "status": "NOT-STARTED-RESOURCE-GATE-AND-AWAITING-ROOT-GO",
+  "scope": "File-only recovery after usage-cap interruption. This agent launched no frontend measurement/browser/preview in the prior GO turn; that turn stopped during planning before any runtime tool call.",
+  "source": {
+    "sourceFile": "audit/2026-11-05-followup/final36-source.json",
+    "expectedBuild": "d89f84d74519bf2bbae0",
+    "compared": 506,
+    "mismatches": []
+  },
+  "dependencyCount": 73,
+  "dependencySha256": "525e91c1a220c8e978d65241c7c2acfe76f53efec000817ab8a28416a4840f37",
+  "helperHashes": {
+    "audit/2026-11-05-followup/run-mobile-workspaces-static-final36.mjs": "4fe8a6767a1a24fc191732fb986dd103da3e8fd2df2b8229a6bf4b6a49dd4d07",
+    "audit/2026-11-05-followup/measure-mobile-workspaces-static-final36.mjs": "de31bf492a665afcb02856592c8edd2ea703dffcde0dfefb7b46efe661ae88fd",
+    "audit/2026-11-05-followup/assess-final36-mobile-latency.mjs": "68b89622d6c309e3b4cfbd0f5b05b3335bd45ad6561b03f46b1969dd2782563f",
+    "audit/2026-11-05-followup/assess-final36-mobile-interaction-latency.mjs": "08abd8a620171f7478ba3062e7d05db8638f31e90441a1c700d7c0c7bcbefcfa",
+    "audit/2026-11-05-followup/run-input-final36.mjs": "9f6b14590d48165fdb6b0cb8649529f932a2cc6bb902462d94b9af44b0956a8f",
+    "audit/2026-11-05-followup/run-final36-lighthouse.mjs": "485745fa1168ee8acdaaa6383b69213b8c9f04bad2652408df087f1506ce5c61"
+  },
+  "readiness": {
+    "file": "audit/2026-11-09/performance-runner-readiness.json",
+    "sha256": "39b82f4344cb546474662ac66eb591919cfb323254e858f6e2228ab85cb0845c"
+  },
+  "builds": {
+    "default": {
+      "version": "d89f84d74519bf2bbae0",
+      "publicFiles": 133,
+      "bytes": 2964860
+    },
+    "vercel": {
+      "version": "3d4bcb5f0a0a855c09f8",
+      "publicFiles": 133,
+      "bytes": 2927314
+    }
+  },
+  "reservedOutputsChecked": 56,
+  "existingOutputs": [],
+  "matchingPerfEntryProcesses": [],
+  "unattributedPreview4173ListenerPids": [],
+  "resource": {
+    "nodeBeforeFreeBytes": 939274240,
+    "nodeAfterFreeBytes": 917921792,
+    "cimFreeBytes": 854798336,
+    "nodeTotalBytes": 16849256448,
+    "cimTotalBytes": 16849256448,
+    "minimumAvailableBytes": 2147483648,
+    "lowestPairedFreeBytes": 854798336,
+    "passes": false
+  },
+  "originalMobileCommands": [
+    "node audit/2026-11-05-followup/run-mobile-workspaces-static-final36.mjs mobile-workspaces-final36-static-1",
+    "node audit/2026-11-05-followup/assess-final36-mobile-latency.mjs mobile-workspaces-final36-static-1",
+    "node audit/2026-11-05-followup/assess-final36-mobile-interaction-latency.mjs mobile-workspaces-final36-static-1",
+    "node audit/2026-11-05-followup/run-mobile-workspaces-static-final36.mjs mobile-workspaces-final36-static-2",
+    "node audit/2026-11-05-followup/assess-final36-mobile-latency.mjs mobile-workspaces-final36-static-2",
+    "node audit/2026-11-05-followup/assess-final36-mobile-interaction-latency.mjs mobile-workspaces-final36-static-2",
+    "node audit/2026-11-05-followup/run-mobile-workspaces-static-final36.mjs mobile-workspaces-final36-static-3",
+    "node audit/2026-11-05-followup/assess-final36-mobile-latency.mjs mobile-workspaces-final36-static-3",
+    "node audit/2026-11-05-followup/assess-final36-mobile-interaction-latency.mjs mobile-workspaces-final36-static-3"
+  ],
+  "requiredMobileEnvironment": {
+    "SPAROWTYPE_MOBILE_STATIC_ACCEPTANCE": "1",
+    "SPAROWTYPE_FINAL36_BUILD_ID": "d89f84d74519bf2bbae0",
+    "SPAROWTYPE_FINAL36_STATIC_BUILD_ID": "3d4bcb5f0a0a855c09f8"
+  },
+  "homeCommand": "node audit/2026-11-05-followup/run-input-final36.mjs final36",
+  "homeEnvironment": {
+    "TYPING_BENCH_ORIGIN": "http://127.0.0.1:4173"
+  },
+  "lighthouseCommand": "node audit/2026-11-05-followup/run-final36-lighthouse.mjs final36-mobile",
+  "requiredOwnership": "Home/LH require a separately identified root-owned defaultd89 preview on4173; no existing listener is stopped or attributed by this inspection.",
+  "unchangedProtocolQualifications": {
+    "mobileHomeIntroIsolation": true,
+    "lighthouseNormalFull3D": true,
+    "mobileDualStrictP98Under100": true,
+    "homeRequiresSeparateLatencyAssessment": true,
+    "originalThreeTrialsNoRetries": true,
+    "lighthouseQuiet30SecondsBeforeEach": true
+  },
+  "setupOnlyFailure": "audit/2026-11-10/frontend-performance-recovery-initial-metadata-error.json",
+  "rootSteering": "No frontend performance GO yet onNov10. RAM below2GiB; recover readiness and stop. Unrelated mysqldPID41932 must not be touched.",
+  "notPerformed": {
+    "runtimeLaunch": true,
+    "browserLaunch": true,
+    "tests": true,
+    "services": true,
+    "benchmarks": true,
+    "processControl": true,
+    "sourceEdits": true,
+    "indexEdits": true
+  }
+}

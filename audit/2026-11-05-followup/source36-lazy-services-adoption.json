@@ -1,0 +1,58 @@
+{
+  "adoptedAt": "2026-11-04T19:24:10.450Z",
+  "status": "THREE-PRODUCTION-FILES-STABLE-PERMANENT-TEST-PORT-IN-PROGRESS-NO-RUNTIME",
+  "records": [
+    {
+      "file": "backend/public/index.php",
+      "beforeSha256": "92382a84ac652b38198711bc86973245a6a6dbc4af0aeaefb796ee0267618d76",
+      "afterSha256": "f02f477750838614113cf0900143a79218dfc8299b1cb963aab570b7f6683c84",
+      "exactProvenCandidateBytes": true,
+      "reference": "backend\\tests\\lazy-services\\reference\\backend\\public\\index.php",
+      "referenceSha256": "92382a84ac652b38198711bc86973245a6a6dbc4af0aeaefb796ee0267618d76",
+      "archive": "audit\\2026-11-05-followup\\source36-before\\backend\\public\\index.php"
+    },
+    {
+      "file": "backend/src/ArenaService.php",
+      "beforeSha256": "5076d6095607e652ee481b9dce772658996ee63ddea49a092414e01993f59392",
+      "afterSha256": "07ba6e0f26c7a17f15746d457b3fc95f5f2f663acd3b283bb5e1fb8b61c36635",
+      "exactProvenCandidateBytes": true,
+      "reference": "backend\\tests\\lazy-services\\reference\\backend\\src\\ArenaService.php",
+      "referenceSha256": "5076d6095607e652ee481b9dce772658996ee63ddea49a092414e01993f59392",
+      "archive": "audit\\2026-11-05-followup\\source36-before\\backend\\src\\ArenaService.php"
+    },
+    {
+      "file": "backend/src/ArenaEvidence.php",
+      "beforeSha256": "ea182239afb2420f6ae42f83b0ff6ac25fe4ce3fa7f2fc1d786bdf6dfc2e72af",
+      "afterSha256": "3932346a67e8f81694d3b12c521ddb8ee906bd0e77069c64127f170e707ee6c1",
+      "exactProvenCandidateBytes": true,
+      "reference": "backend\\tests\\lazy-services\\reference\\backend\\src\\ArenaEvidence.php",
+      "referenceSha256": "ea182239afb2420f6ae42f83b0ff6ac25fe4ce3fa7f2fc1d786bdf6dfc2e72af",
+      "archive": "audit\\2026-11-05-followup\\source36-before\\backend\\src\\ArenaEvidence.php"
+    }
+  ],
+  "archive": "audit/2026-11-05-followup/source36-before",
+  "referenceRole": "Exact frozen Source35 bytes; tests select current production as candidate on every fresh child, never audit-clone versus audit-clone.",
+  "probe": {
+    "file": "backend/tests/lazy-services/autoload-probe.php",
+    "sha256": "f53123e056484aca8a240b0afad566447606650a46fc8330a0a2d8312f74e2cb",
+    "auditSource": "audit/2026-11-05-followup/lazy-services/autoload-probe.php",
+    "auditSha256": "22805736bdb4db2053342a5d800df6e64c0dff024c5ea90df7c6eb8fb318ba94",
+    "portOnly": {
+      "from": "$file=in_array($relative,['ArenaService','ArenaEvidence'],true)?__DIR__.'/'.$variant.'/backend/src/'.$relative.'.php':$projectRoot.'/backend/src/'.$relative.'.php';",
+      "to": "$file=$variant==='baseline'&&in_array($relative,['ArenaService','ArenaEvidence'],true)?__DIR__.'/reference/backend/src/'.$relative.'.php':$projectRoot.'/backend/src/'.$relative.'.php';"
+    },
+    "exactReverse": true
+  },
+  "proofs": {
+    "genuineAutoload24": "lazy-arena-autoload-result.json",
+    "actualIndex231": "lazy-arena-index-result.json"
+  },
+  "patch": {
+    "file": "audit/2026-11-05-followup/source36-lazy-services-adoption.patch",
+    "sha256": "a4eb9826242728224271f53784565f84ee1c73692ed8a4ed7722b76586757411"
+  },
+  "noOtherArchitectureChanges": true,
+  "testsRunDuringAdoption": 0,
+  "servicesStarted": 0,
+  "permanentTestIntegration": "PENDING-FILE-PORT-THEN-FREEZE"
+}

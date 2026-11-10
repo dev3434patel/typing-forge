@@ -1,19 +1,23 @@
-# SparowType implementation status — 4 November 2026
+# SparowType implementation status — 11 November 2026
 
-**Current checkpoint: source34 / frontend `332e23584f1e36465df2`; status PARTIAL.** The [4 November release audit](RELEASE_AUDIT_2026-11-04.md) is the current evidence ledger. Exact source/artifact identity binds reused source33 frontend measurements to the PHP-only source34 change.
+**Current checkpoint: source37 / frontend `d89f84d74519bf2bbae0`; status PARTIAL.** The [11 November audit](RELEASE_AUDIT_2026-11-11.md) is the current ledger. All 12 fresh source checks and32 fresh native Arena cases pass. Unchanged frontend evidence is explicitly reused. Load/performance testing is authorized but remains below the declared resource minimum; no current performance pass is claimed.
 
 | Scope | Current result |
 | --- | --- |
-| Home input p98 | 48 / 48 / 48 ms |
-| Full-quality mobile Lighthouse | 97 / 96 / 96; other categories 100 throughout |
-| Unit/source/CI checks | 2,878 unit tests; corrected composite 12-command gate and actual PGlite/Deno checks pass |
-| Original full browser matrix | 1,483 passed / four failed / 29 skipped; original outcome retained |
-| Separate affected-file confirmation | 200 / 200 passed across all four engines |
-| Fresh native backend/browser acceptance | 20 / 20 passed; four independently owned backends closed gracefully |
-| Conditional production-wire capacity | 141.3239 ms p95 with OPcache, after the full workload on the same cache |
-| Other capacity profiles | Ordinary full/wire and OPcache full remain above the strict 150-ms target |
+| Typing core and source checks | 2,883 units / 115 files; all 12 source commands passed |
+| PHP metric/replay parity | 560 unique / 578 executed candidates; zero mismatches |
+| Arena pure contracts | 1,175 / 1,175 passed in the fresh source37 gate |
+| Reproduced WebKit Profile input race | Fixed; current-build regression 8 / 8 passed across four engines |
+| Full browser scope | PASS-SCOPED COMPOSITE: 65 specs, 1,495 passes / 29 skips / zero failures; final 32 completed separately after interruption |
+| Native Arena finish/history/retry | Fresh source37: 32 / 32 passed; graceful owned Apache/database cleanup |
+| Dedicated account/human-race browser | Scoped source36 reuse: 20 / 20 passed; non-Arena routing remains unchanged under fresh index contracts |
+| Static deployment and extra CI | PASS: 67 artifact checks / 56 deployment cases / 16 game accessibility cases; actual PGlite/Deno and fresh dependency/bundle checks |
+| Mobile typing latency and Lighthouse | NOT RUN on current build; resource gate remains unmet |
+| Uncached capacity | Source37 UNVERIFIED; all four prior source36 controlled full-payload trials failed strict150 ms |
+| Request-memory reduction | 113 semantic cases match exactly; 24 microprobe samples preserve canonical/replay bytes and reduce retained memory about3.2 MB/request |
+| 3D animation quality | Protected source and emitted quality checks unchanged; no quality reduction |
 
-Nine capability gaps, physical devices, hosted/sustained capacity and broader feature limits remain unverified. The original WebKit course timeout's cause remains unverified despite its later scoped passes. Do not treat the historical notices below as current acceptance. Commit and remote equality are verified separately in the final delivery.
+Physical devices, nine WebKit runner-capability gaps, hosted/sustained capacity and broader feature limits remain unverified. The concrete Profile input race has a reproduced diagnosis and passing regression; the original course/reset scenario also passed in recovered full coverage. The older stackless timeout is retained without a retrospective causal claim. The [5 November working report](RELEASE_AUDIT_2026-11-05.md), [4 November audit](RELEASE_AUDIT_2026-11-04.md) and all sections below remain historical evidence.
 
 ## Historical source31 and earlier checkpoints
 

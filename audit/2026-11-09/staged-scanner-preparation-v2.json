@@ -1,0 +1,63 @@
+{
+  "recordedAt": "2026-11-09T17:56:08.051Z",
+  "status": "PREPARED-SYNTAX-PASS-NOT-EXECUTED",
+  "target": "audit/2026-11-09/review-staged-release.mjs",
+  "targetSha256": "ac42f1854c30a284db0e95e7a46ab02254a50fce893d6d56c99a3aaaca39c0a8",
+  "previousScanner": {
+    "file": "audit/2026-11-09/review-staged-release.v1-snapshot.mjs",
+    "sha256": "306acacd23cbee5596f29048b9dde13a1ce617bff37784fc53ba4d7a70144169"
+  },
+  "previousPreparation": {
+    "file": "audit/2026-11-09/staged-scanner-preparation.v1-snapshot.json",
+    "sha256": "2f3ab894059cacae7a82aa7afd3c7f1196cc458f3fd8fc9b7a29bed7674e6132"
+  },
+  "changedSpans": 2,
+  "changes": [
+    {
+      "oldText": "const output = process.argv[2];\nassert.match(output ?? '', /^audit\\/2026-11-09\\/[a-z0-9-]+\\.json$/);\nawait assert.rejects(access(output), { code: 'ENOENT' });",
+      "newText": "assert.equal(process.argv.length, 3, 'Supply one new audit output path or --stdout.');\nconst stdoutOnly = process.argv[2] === '--stdout';\nconst output = stdoutOnly ? null : process.argv[2];\nif (!stdoutOnly) {\n  assert.match(output ?? '', /^audit\\/2026-11-09\\/[a-z0-9-]+\\.json$/);\n  await assert.rejects(access(output), { code: 'ENOENT' });\n}",
+      "reason": "Require exactly one output path or --stdout; stdout mode skips only output path/new-file availability preconditions."
+    },
+    {
+      "oldText": "await writeFile(output, JSON.stringify(result, null, 2) + '\\n', { flag: 'wx' });\nconsole.log(JSON.stringify({ output, status: result.status, fileCount: result.fileCount, textFiles, allBytes, forbiddenPaths, indexMismatches, decodingIssues, findingCount: findings.length, findings: findings.slice(0, 20) }));",
+      "newText": "if (!stdoutOnly) await writeFile(output, JSON.stringify(result, null, 2) + '\\n', { flag: 'wx' });\nif (stdoutOnly) {\n  console.log(JSON.stringify({ stdoutOnly: true, status: result.status, fileCount: result.fileCount, textFiles, allBytes, nameStatusTokenCount: stagedNameStatusTokens.length, forbiddenPathCount: forbiddenPaths.length, forbiddenPaths: forbiddenPaths.slice(0, 20), indexMismatchCount: indexMismatches.length, indexMismatches: indexMismatches.slice(0, 20), decodingIssueCount: decodingIssues.length, decodingIssues: decodingIssues.slice(0, 20), findingCount: findings.length, findings: findings.slice(0, 20), scannerSha256: result.scannerSha256 }));\n} else {\n  console.log(JSON.stringify({ output, status: result.status, fileCount: result.fileCount, textFiles, allBytes, forbiddenPaths, indexMismatches, decodingIssues, findingCount: findings.length, findings: findings.slice(0, 20) }));\n}",
+      "reason": "Stdout mode skips only report-file write and emits a bounded summary; file mode keeps the prior report write and summary."
+    }
+  ],
+  "exactReversal": true,
+  "indexScanBodyByteIdentical": true,
+  "syntax": {
+    "command": "node --check audit/2026-11-09/review-staged-release.mjs",
+    "exitCode": 0,
+    "stdoutBytes": 0,
+    "stderrBytes": 0
+  },
+  "allowedModes": [
+    "one new audit/2026-11-09/[a-z0-9-]+.json path",
+    "--stdout"
+  ],
+  "stdoutMode": {
+    "reportFileWritten": false,
+    "inventoryPrinted": false,
+    "samplesLimitedTo20PerFindingCategory": true,
+    "fullIndexScanned": true,
+    "exitStatusUsesSameFindings": true
+  },
+  "unchangedChecks": [
+    "All six declared credential patterns",
+    "Actual indexed byte/hash checks and exact CRLF-only/BOM-preserving normalization",
+    "UTF16 BOM and sparse/ambiguous NUL decoding",
+    "Forbidden/private paths, new local-runtime paths and nonregular index modes",
+    "Full name/status tokens retained in report and existing deletion-intent qualification",
+    "New output paths must not already exist; file writes use wx"
+  ],
+  "notPerformed": {
+    "actualScannerExecution": true,
+    "staging": true,
+    "commit": true,
+    "tests": true,
+    "services": true,
+    "privateFileReads": true
+  },
+  "remaining": "Root must finish final explicit staging, generate and stage one evidence receipt, then run --stdout for the last full-index proof without creating another output file."
+}

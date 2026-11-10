@@ -1,0 +1,84 @@
+{
+  "preparedAt": "2026-11-04T19:17:11.014Z",
+  "status": "AUDIT-ONLY-LAZY-SERVICES-CANDIDATE-NOT-EXECUTED",
+  "source": {
+    "sourceFile": "audit/2026-11-05-followup/final35-source.json",
+    "expectedBuild": "d89f84d74519bf2bbae0",
+    "compared": 506,
+    "mismatches": []
+  },
+  "records": [
+    {
+      "file": "backend/public/index.php",
+      "sourceSha256": "92382a84ac652b38198711bc86973245a6a6dbc4af0aeaefb796ee0267618d76",
+      "candidateSha256": "f02f477750838614113cf0900143a79218dfc8299b1cb963aab570b7f6683c84",
+      "edits": [
+        {
+          "from": "    $validator = new SessionValidator();\n    $data = new DataService($db, $validator, $config);\n",
+          "to": "",
+          "index": 1985
+        },
+        {
+          "from": "    if ($method === 'GET' && $path === '/health') {",
+          "to": "    $validator = null; $data = null;\n    if ($arenaAction === null || $arenaAction === 'submit') {\n        $validator = new SessionValidator();\n        if ($arenaAction === null || ($body['finish'] ?? false) === true) $data = new DataService($db, $validator, $config);\n    }\n    if ($method === 'GET' && $path === '/health') {",
+          "index": 3367
+        }
+      ],
+      "exactReverse": true
+    },
+    {
+      "file": "backend/src/ArenaService.php",
+      "sourceSha256": "5076d6095607e652ee481b9dce772658996ee63ddea49a092414e01993f59392",
+      "candidateSha256": "07ba6e0f26c7a17f15746d457b3fc95f5f2f663acd3b283bb5e1fb8b61c36635",
+      "edits": [
+        {
+          "from": "public function __construct(private PDO $db,private SessionValidator $validator,private DataService $data){}",
+          "to": "public function __construct(private PDO $db,private ?SessionValidator $validator,private ?DataService $data){}",
+          "index": 545
+        }
+      ],
+      "exactReverse": true
+    },
+    {
+      "file": "backend/src/ArenaEvidence.php",
+      "sourceSha256": "ea182239afb2420f6ae42f83b0ff6ac25fe4ce3fa7f2fc1d786bdf6dfc2e72af",
+      "candidateSha256": "3932346a67e8f81694d3b12c521ddb8ee906bd0e77069c64127f170e707ee6c1",
+      "edits": [
+        {
+          "from": "public function __construct(private PDO $db,private SessionValidator $validator,private DataService $data){}",
+          "to": "public function __construct(private PDO $db,private ?SessionValidator $validator,private ?DataService $data){}",
+          "index": 171
+        },
+        {
+          "from": "        return ['finish'=>$finish,'validated'=>$finish?$this->validator->validate($candidate,$user['id'],false,false):$this->validator->validateCheckpoint($candidate,$user['id'])];",
+          "to": "        $validator=$this->validator;\n        if($validator===null)throw new \\LogicException('Arena submission requires a validator.');\n        $validated=$finish?$validator->validate($candidate,$user['id'],false,false):$validator->validateCheckpoint($candidate,$user['id']);\n        if($finish&&$this->data===null)throw new \\LogicException('Arena finish requires persistence.');\n        return ['finish'=>$finish,'validated'=>$validated];",
+          "index": 865
+        },
+        {
+          "from": "        $finish=$prepared['finish'];$validated=$prepared['validated'];$candidate=$validated['candidate'];",
+          "to": "        $finish=$prepared['finish'];$validator=$this->validator;$data=$this->data;\n        if($validator===null)throw new \\LogicException('Arena submission requires a validator.');\n        if($finish&&$data===null)throw new \\LogicException('Arena finish requires persistence.');\n        $validated=$prepared['validated'];$candidate=$validated['candidate'];",
+          "index": 1415
+        },
+        {
+          "from": "$replay=$this->validator->replay(",
+          "to": "$replay=$validator->replay(",
+          "index": 3576
+        },
+        {
+          "from": "$this->data->commitValidated(",
+          "to": "$data->commitValidated(",
+          "index": 5278
+        }
+      ],
+      "exactReverse": true
+    }
+  ],
+  "scope": "Three exact cloned files; only constructor allocation/nullable dependency guards. No production edit, parser/rate/auth/clock/lock/cache/scoring/hash/policy change.",
+  "nonArena": "Both original services remain allocated before route dispatch; constructor bodies have no side effects.",
+  "arenaNonSubmit": "Neither optional heavy class is instantiated.",
+  "arenaCheckpoint": "Same validator for prepare and independent authoritative replay; no DataService.",
+  "arenaFinish": "Strict boolean true allocates both; missing persistence fails before transaction/write, including direct prepared bypass.",
+  "tests": "PENDING",
+  "servicesStarted": 0,
+  "productionEdited": false
+}

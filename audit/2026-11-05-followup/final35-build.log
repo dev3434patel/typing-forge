@@ -1,0 +1,145 @@
+
+> sparowtype@3.0.0 build
+> vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 3003 modules transformed.
+rendering chunks...
+[plugin vite:reporter] 
+(!) D:/extra/typing_updated/typing-forge/src/lib/quotes.ts is dynamically imported by D:/extra/typing_updated/typing-forge/src/lib/content-library.ts, D:/extra/typing_updated/typing-forge/src/lib/content-library.ts but also statically imported by D:/extra/typing_updated/typing-forge/src/pages/Index.tsx, dynamic import will not move module into another chunk.
+
+computing gzip size...
+dist/index.html                                       21.10 kB │ gzip:   5.04 kB
+dist/.vite/manifest.json                              41.70 kB │ gzip:   4.60 kB
+dist/assets/Studio-BPi8zNnu.css                        1.17 kB │ gzip:   0.52 kB
+dist/assets/Games-CGLw_3iz.css                         2.72 kB │ gzip:   0.94 kB
+dist/assets/Learn-CaDvSLEL.css                         3.96 kB │ gzip:   1.19 kB
+dist/assets/typing-caret-cache-12qVKh6w.css            7.65 kB │ gzip:   2.09 kB
+dist/assets/ArcadePage-M-pcbyBV.css                    8.87 kB │ gzip:   2.25 kB
+dist/assets/index-XwygSNVl.css                        10.48 kB │ gzip:   2.98 kB
+dist/assets/Lessons-CAPN-WR7.css                      17.97 kB │ gzip:   3.58 kB
+dist/assets/App-CJTV6Izc.css                         125.92 kB │ gzip:  20.54 kB
+dist/assets/evidence-policy-DPUBgzfl.js                0.03 kB │ gzip:   0.05 kB
+dist/assets/index-Dn-YmW72.js                          0.07 kB │ gzip:   0.08 kB
+dist/assets/check-D5Yrvlaq.js                          0.13 kB │ gzip:   0.14 kB
+dist/assets/play-DJNL3jTu.js                           0.14 kB │ gzip:   0.15 kB
+dist/assets/x-BXyElxiv.js                              0.16 kB │ gzip:   0.16 kB
+dist/assets/arrow-right-CpryDYUE.js                    0.17 kB │ gzip:   0.17 kB
+dist/assets/arrow-up-right-B69jeRLt.js                 0.17 kB │ gzip:   0.17 kB
+dist/assets/clock-3-CakTFcTC.js                        0.19 kB │ gzip:   0.18 kB
+dist/assets/rotate-ccw-B5FYgcY8.js                     0.21 kB │ gzip:   0.19 kB
+dist/assets/lock-BHLK28uN.js                           0.21 kB │ gzip:   0.20 kB
+dist/assets/pause-CCuz86tm.js                          0.22 kB │ gzip:   0.17 kB
+dist/assets/flag-Cyb3xJ1C.js                           0.23 kB │ gzip:   0.21 kB
+dist/assets/target-C7HxmFVE.js                         0.23 kB │ gzip:   0.17 kB
+dist/assets/timer-OsQ-nCeQ.js                          0.25 kB │ gzip:   0.19 kB
+dist/assets/download-Gwv_JV4O.js                       0.27 kB │ gzip:   0.23 kB
+dist/assets/finger-map-C2OrIfaO.js                     0.27 kB │ gzip:   0.21 kB
+dist/assets/composition-echo-3wx55gok.js               0.28 kB │ gzip:   0.18 kB
+dist/assets/useIssuedChallengeCountdown-CzST3pg7.js    0.32 kB │ gzip:   0.25 kB
+dist/assets/shield-check-BH9lOlBn.js                   0.33 kB │ gzip:   0.25 kB
+dist/assets/useCountdownClock-GYbY6zx2.js              0.40 kB │ gzip:   0.29 kB
+dist/assets/sparkles-LzW7COCx.js                       0.52 kB │ gzip:   0.31 kB
+dist/assets/index-BmorOacU.js                          0.67 kB │ gzip:   0.46 kB
+dist/assets/index-Drd88ecX.js                          0.70 kB │ gzip:   0.43 kB
+dist/assets/createLucideIcon-CylReYum.js               0.89 kB │ gzip:   0.55 kB
+dist/assets/keyboard-layout-C21F3kj3.js                0.98 kB │ gzip:   0.53 kB
+dist/assets/history-model-Cg8nY6dX.js                  1.05 kB │ gzip:   0.58 kB
+dist/assets/calendar-qHXkz0Pn.js                       1.16 kB │ gzip:   0.65 kB
+dist/assets/keyboard-render-worker-oeYyHX4e.js         1.17 kB │ gzip:   0.62 kB
+dist/assets/NotFound-C9l2WarI.js                       1.21 kB │ gzip:   0.63 kB
+dist/assets/button-0m2XrEUl.js                         1.32 kB │ gzip:   0.64 kB
+dist/assets/StatsSpeedChart-D7qzv6fu.js                1.45 kB │ gzip:   0.80 kB
+dist/assets/season-customization-waN5yPvc.js           1.67 kB │ gzip:   0.91 kB
+dist/assets/LocalReminderRuntime-BC4Hf177.js           1.67 kB │ gzip:   0.80 kB
+dist/assets/keyboard-audio-CkcWSiE5.js                 1.87 kB │ gzip:   0.87 kB
+dist/assets/challenge-timing-DMVQIMC8.js               2.02 kB │ gzip:   0.93 kB
+dist/assets/caret-handoff-Bo5AUEQO.js                  2.24 kB │ gzip:   1.07 kB
+dist/assets/ProfileAppearance-BbZV-V1s.js              2.37 kB │ gzip:   1.24 kB
+dist/assets/PwaStatus-CQ_bjyDu.js                      2.89 kB │ gzip:   1.25 kB
+dist/assets/reminders-CI2LqXB-.js                      2.96 kB │ gzip:   1.38 kB
+dist/assets/workspace-extras-CRTpj1uW.js               3.16 kB │ gzip:   1.22 kB
+dist/assets/index-BYL4Sxgf.js                          3.21 kB │ gzip:   1.47 kB
+dist/assets/Terms-DtUBaBAp.js                          3.47 kB │ gzip:   1.68 kB
+dist/assets/keyboard-scene-bridge-Czsf5Pvl.js          4.06 kB │ gzip:   1.68 kB
+dist/assets/practice-style-p9r9GjFV.js                 4.37 kB │ gzip:   2.08 kB
+dist/assets/keyboard-lab-UzEVr6VM.js                   4.82 kB │ gzip:   2.09 kB
+dist/assets/About-Ch0p5UI2.js                          4.88 kB │ gzip:   2.04 kB
+dist/assets/Offline-DkPVvPIx.js                        5.00 kB │ gzip:   1.82 kB
+dist/assets/TouchTyping-C2ZTy6OJ.js                    5.01 kB │ gzip:   1.89 kB
+dist/assets/LetterProgressPanel-CVCXSP9J.js            5.58 kB │ gzip:   2.12 kB
+dist/assets/Studio-ClNfkD3l.js                         5.60 kB │ gzip:   2.20 kB
+dist/assets/placement-DrAamwuQ.js                      5.72 kB │ gzip:   2.42 kB
+dist/assets/DuelAttempt-Co_jbtzp.js                    5.77 kB │ gzip:   2.54 kB
+dist/assets/metrics-BlQzpLh9.js                        5.85 kB │ gzip:   2.35 kB
+dist/assets/local-adapter-D7X_Egle.js                  6.71 kB │ gzip:   2.48 kB
+dist/assets/dashboard-FHwclODz.js                      6.72 kB │ gzip:   2.85 kB
+dist/assets/live-keyboard-Dx32XHs5.js                  6.84 kB │ gzip:   2.85 kB
+dist/assets/Leaderboard-Cs9W3AKn.js                    7.69 kB │ gzip:   2.89 kB
+dist/assets/Ranked-D6z9nbPj.js                         7.96 kB │ gzip:   3.34 kB
+dist/assets/Footer-D_qjslZF.js                         8.09 kB │ gzip:   2.98 kB
+dist/assets/progression-service-DuUtQMMA.js            8.55 kB │ gzip:   3.42 kB
+dist/assets/Privacy-ZdW9QfSq.js                        9.34 kB │ gzip:   3.82 kB
+dist/assets/Settings-DSL0zG0e.js                      10.10 kB │ gzip:   3.47 kB
+dist/assets/Profile-B3pWLnga.js                       11.45 kB │ gzip:   4.19 kB
+dist/assets/SessionInsightsPanel-DL2cgwtP.js          11.51 kB │ gzip:   4.20 kB
+dist/assets/records-ChJwRgOV.js                       12.47 kB │ gzip:   5.29 kB
+dist/assets/session-4G-zWYdf.js                       12.60 kB │ gzip:   3.97 kB
+dist/assets/useTestResults-CCyAzlZO.js                12.90 kB │ gzip:   4.71 kB
+dist/assets/Arena-BAzzOeCC.js                         12.91 kB │ gzip:   5.10 kB
+dist/assets/ArcadePage-CHUqcG6K.js                    13.20 kB │ gzip:   5.24 kB
+dist/assets/index-Ct7LDiX9.js                         13.45 kB │ gzip:   4.65 kB
+dist/assets/content-packs-xYdkiJY8.js                 15.10 kB │ gzip:   8.15 kB
+dist/assets/KeyboardLab-DB6FQQ3S.js                   15.41 kB │ gzip:   5.61 kB
+dist/assets/Friends-BZpDdvPE.js                       15.50 kB │ gzip:   5.18 kB
+dist/assets/CommandPalette-By6xwEP0.js                16.01 kB │ gzip:   6.15 kB
+dist/assets/Stats-D8uc3fgg.js                         16.60 kB │ gzip:   5.57 kB
+dist/assets/Classroom-2CeDFW5y.js                     18.39 kB │ gzip:   6.52 kB
+dist/assets/keybr-engine-CmLAbQhh.js                  18.72 kB │ gzip:   7.38 kB
+dist/assets/Games-DG96ZF7K.js                         18.81 kB │ gzip:   6.21 kB
+dist/assets/progression-storage-BaAJtERX.js           19.50 kB │ gzip:   7.07 kB
+dist/assets/keyboard-bloom-CFGEPK_L.js                20.28 kB │ gzip:   5.07 kB
+dist/assets/utils-d2XQ1MEC.js                         20.29 kB │ gzip:   6.84 kB
+dist/assets/App-BFMljiFN.js                           20.49 kB │ gzip:   7.46 kB
+dist/assets/typing-caret-cache-D9dFobB3.js            21.31 kB │ gzip:   7.72 kB
+dist/assets/Index-Dx_rcgfQ.js                         21.62 kB │ gzip:   8.53 kB
+dist/assets/toaster-fi1stCIn.js                       23.49 kB │ gzip:   8.11 kB
+dist/assets/Progression-BMCakcUM.js                   24.44 kB │ gzip:   8.21 kB
+dist/assets/dialog-4k-okVZT.js                        24.65 kB │ gzip:   9.07 kB
+dist/assets/TypingArea-De02TVeq.js                    26.28 kB │ gzip:   9.11 kB
+dist/assets/Race-BHa8vQhr.js                          27.15 kB │ gzip:  10.19 kB
+dist/assets/Learn-5pD9mC_C.js                         29.85 kB │ gzip:   9.91 kB
+dist/assets/typing-course-DLOCGBTP.js                 37.38 kB │ gzip:  11.47 kB
+dist/assets/Lessons-D0eK4sXX.js                       38.89 kB │ gzip:  12.85 kB
+dist/assets/ArcadePlayer-CpAYPVBv.js                  43.91 kB │ gzip:  15.18 kB
+dist/assets/SessionResults-B0By2QtW.js                52.10 kB │ gzip:  15.78 kB
+dist/assets/keyboard-scene-DYowRFwC.js                71.69 kB │ gzip:  28.06 kB
+dist/assets/index-Bq0QXmov.js                         89.41 kB │ gzip:  31.76 kB
+dist/assets/index-CYSdN84l.js                        169.19 kB │ gzip:  55.75 kB
+dist/assets/Auth-CcR00OH5.js                         209.98 kB │ gzip:  65.77 kB
+dist/assets/generateCategoricalChart-CqzlX_Rb.js     393.82 kB │ gzip: 108.54 kB
+dist/assets/three.module-ytFXl0Cs.js                 533.11 kB │ gzip: 132.58 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 25.35s
+
+> sparowtype@3.0.0 postbuild
+> node scripts/build-offline.mjs
+
+Offline public app prepared: 133 files, 2964860 bytes, version d89f84d74519bf2bbae0. Sitemap omitted until SPAROWTYPE_SITE_URL is configured.

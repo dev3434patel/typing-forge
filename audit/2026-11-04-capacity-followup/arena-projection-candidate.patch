@@ -1,0 +1,53 @@
+diff --git a/audit/2026-11-04-capacity-followup/ArenaServiceSource34.php.original b/audit/2026-11-04-capacity-followup/ArenaServiceProjectionCandidate.php
+index 5dbad0a..bdd37ef 100644
+--- a/audit/2026-11-04-capacity-followup/ArenaServiceSource34.php.original
++++ b/audit/2026-11-04-capacity-followup/ArenaServiceProjectionCandidate.php
+@@ -5,7 +5,7 @@ use PDO;
+ use PDOException;
+ 
+ /** Eight real accounts per InnoDB-serialized room. Shared-hosting polling transport. */
+-final class ArenaService
++final class ArenaServiceProjectionCandidate
+ {
+     private const WORDS=['clear','river','steady','light','calm','signal','practice','bright','focus','slow','learn','flow','cloud','quiet','world','voice','space','craft','field','glow','ocean','warm','north','path'];
+     public function __construct(private PDO $db,private SessionValidator $validator,private DataService $data){}
+@@ -56,6 +56,16 @@ final class ArenaService
+     {
+         $q=$this->db->prepare('SELECT * FROM arena_members WHERE arena_id=? ORDER BY slot FOR UPDATE');$q->execute([$room['id']]);return $q->fetchAll();
+     }
++    /** Scalar active-state projection; every call retains its fresh row locks. */
++    private function activeMembers(array $room): array
++    {
++        $q=$this->db->prepare('SELECT user_id,status,last_seen_at,credited_units FROM arena_members WHERE arena_id=? ORDER BY slot FOR UPDATE');$q->execute([$room['id']]);return $q->fetchAll();
++    }
++    /** Public response projection; private canonical evidence stays in members(). */
++    private function responseMembers(array $room): array
++    {
++        $q=$this->db->prepare('SELECT user_id,slot,ready,status,credited_units,wpm,accuracy,elapsed_ms,rematch_vote,quarantine_reason,appeal_requested_at FROM arena_members WHERE arena_id=? ORDER BY slot FOR UPDATE');$q->execute([$room['id']]);return $q->fetchAll();
++    }
+     private function member(array $room,string $owner): array
+     {
+         foreach($this->members($room) as $member)if($member['user_id']===$owner)return $member;
+@@ -140,7 +150,7 @@ final class ArenaService
+         }
+         if($room['status']==='countdown'&&$now>=$start){$q=$this->db->prepare("UPDATE arena_rooms SET status='active' WHERE id=?");$q->execute([$room['id']]);$q=$this->db->prepare("UPDATE arena_members SET status='racing' WHERE arena_id=? AND status='joined'");$q->execute([$room['id']]);$room['status']='active';$changed=true;}
+         if($room['status']==='active'){
+-            $members=$this->members($room);$active=0;
++            $members=$this->activeMembers($room);$active=0;
+             foreach($members as $member)if($member['status']==='racing'){
+                 if($now>=$deadline+ArenaRules::FINISH_GRACE_MS){$duration=(int)$room['duration_seconds']*1000;$q=$this->db->prepare("UPDATE arena_members SET status='finished',elapsed_ms=?,wpm=?,finished_at=? WHERE arena_id=? AND user_id=?");$q->execute([$duration,(int)$member['credited_units']*12000/$duration,Database::timestamp($deadline),$room['id'],$member['user_id']]);$changed=true;}
+                 elseif($now<$deadline&&$now-ArenaRules::milliseconds($member['last_seen_at'])>ArenaRules::RECONNECT_MS){$this->forfeit($room,$member,ArenaRules::milliseconds($member['last_seen_at'])+ArenaRules::RECONNECT_MS);$changed=true;}
+@@ -172,10 +182,10 @@ final class ArenaService
+     }
+     private function serialize(array $room,string $owner,bool $spectator,float $now): array
+     {
+-        $members=$this->members($room);
++        $members=$this->responseMembers($room);
+         if($members){
+-            // Only the public response needs handles. Internal room operations
+-            // retain fresh full member rows and their original write locks.
++            // Only the public response needs handles. Its scalar projection
++            // retains fresh member rows and their original write locks.
+             // Other accounts must never be write-locked while holding a room.
+             $q=$this->db->prepare('SELECT id,handle FROM users WHERE id IN('.implode(',',array_fill(0,count($members),'?')).')');$q->execute(array_column($members,'user_id'));$handles=array_column($q->fetchAll(),'handle','id');
+             foreach($members as &$member)$member['handle']=$handles[$member['user_id']]??'Former member';unset($member);

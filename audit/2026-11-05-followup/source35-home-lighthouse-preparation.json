@@ -1,0 +1,149 @@
+{
+  "status": "PREPARED-NOT-RUN",
+  "recordedAt": "2026-11-04T18:57:59.226Z",
+  "source": {
+    "file": "audit/2026-11-05-followup/final35-source.json",
+    "sha256": "c9c4c1b9ac7a27854b0db33ef5c2c69fa973ae4c433a2b29020636462393c596",
+    "capturedAt": "2026-11-04T18:56:50.857Z",
+    "actualBuild": "d89f84d74519bf2bbae0",
+    "inventory": 506,
+    "baseline": "9b21e255ea1840508cbc35b625d0ccde8f3af7cc"
+  },
+  "files": [
+    {
+      "original": "audit/2026-11-02/run-input-final.mjs",
+      "target": "audit/2026-11-05-followup/run-input-final35.mjs",
+      "originalSha256": "411da09552d267be081f20cddf650dca4ebabc2d540ed3b5740602de97512294",
+      "targetSha256": "9f6b14590d48165fdb6b0cb8649529f932a2cc6bb902462d94b9af44b0956a8f",
+      "changes": [
+        {
+          "from": "const directory = 'audit/2026-11-02',",
+          "to": "const directory = 'audit/2026-11-05-followup',",
+          "occurrences": 1
+        }
+      ],
+      "exactReverseVerified": true,
+      "originalUnchanged": true
+    },
+    {
+      "original": "audit/2026-11-02/run-final-lighthouse.mjs",
+      "target": "audit/2026-11-05-followup/run-final35-lighthouse.mjs",
+      "originalSha256": "b395120c0c9ac8ea91a88ca8ace0dc25a8dfd636cc970b430bad453c236b6e47",
+      "targetSha256": "485745fa1168ee8acdaaa6383b69213b8c9f04bad2652408df087f1506ce5c61",
+      "changes": [
+        {
+          "from": "path.resolve('audit/2026-11-02')",
+          "to": "path.resolve('audit/2026-11-05-followup')",
+          "occurrences": 1
+        }
+      ],
+      "exactReverseVerified": true,
+      "originalUnchanged": true
+    },
+    {
+      "original": "audit/2026-11-02/assess-source33-home-input.mjs",
+      "target": "audit/2026-11-05-followup/assess-source35-home-input.mjs",
+      "originalSha256": "e06671cc7d80103ae45c4c4627bbb6da85efbaba7b442948970ea2298567a779",
+      "targetSha256": "c0ee8cac99665532e909a7dcd7ec8faf848e4204fe319211fc03ec3a5cd1745e",
+      "changes": [
+        {
+          "from": "const directory = 'audit/2026-11-02', prefix = 'final33';",
+          "to": "const directory = 'audit/2026-11-05-followup', prefix = 'final35';",
+          "occurrences": 1
+        },
+        {
+          "from": "const expectedBuild = '332e23584f1e36465df2';",
+          "to": "const expectedBuild = 'd89f84d74519bf2bbae0';",
+          "occurrences": 1
+        },
+        {
+          "from": "`${directory}/run-input-final.mjs`",
+          "to": "`${directory}/run-input-final35.mjs`",
+          "occurrences": 1
+        },
+        {
+          "from": "'actual frozen build matches source33 and its served manifest'",
+          "to": "'actual frozen build matches source35 and its served manifest'",
+          "occurrences": 1
+        },
+        {
+          "from": "'all 505 frozen production files remain unchanged'",
+          "to": "'all 506 frozen production files remain unchanged'",
+          "occurrences": 1
+        },
+        {
+          "from": "sourceAfter?.compared === 505",
+          "to": "sourceAfter?.compared === 506",
+          "occurrences": 1
+        }
+      ],
+      "exactReverseVerified": true,
+      "originalUnchanged": true
+    }
+  ],
+  "syntax": [
+    {
+      "file": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-05-followup\\prepare-source35-home-lighthouse-helpers.mjs",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "file": "audit/2026-11-05-followup/run-input-final35.mjs",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "file": "audit/2026-11-05-followup/run-final35-lighthouse.mjs",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "file": "audit/2026-11-05-followup/assess-source35-home-input.mjs",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "entryCommands": [
+    "node audit/2026-11-05-followup/run-input-final35.mjs final35",
+    "node audit/2026-11-05-followup/assess-source35-home-input.mjs",
+    "node audit/2026-11-05-followup/run-final35-lighthouse.mjs final35-lighthouse"
+  ],
+  "home": {
+    "runs": 3,
+    "cpuThrottle": 4,
+    "repetitions": 16,
+    "interCharacterDelayMs": 0,
+    "quietSeconds": 5,
+    "attempts": 495,
+    "rotationPrefix": 247,
+    "everyTrialStrictP98BelowMs": 100,
+    "originalImmutableDriverPreserved": true,
+    "maximaRetainedWithoutNewThreshold": true
+  },
+  "lighthouse": {
+    "runs": 3,
+    "freshProfiles": true,
+    "quietBeforeEachSeconds": 30,
+    "qualityOverrides": false,
+    "introSkip": false,
+    "reducedMotionOverride": false,
+    "medianPerformanceAtLeast": 95,
+    "everyRunOtherCategories": 100,
+    "lcpAtMostMs": 2500,
+    "clsAtMost": 0.05
+  },
+  "inputActionsChanged": false,
+  "timingChanged": false,
+  "assertionsOrThresholdsChanged": false,
+  "automaticRetriesChanged": false,
+  "historicalMeasurementEvidenceReused": false,
+  "testsExecuted": false,
+  "buildsStarted": false,
+  "browsersStarted": false,
+  "servicesStarted": false,
+  "executionRequiresSeparateRootGoAfterEarlyCapacityFeedback": true
+}

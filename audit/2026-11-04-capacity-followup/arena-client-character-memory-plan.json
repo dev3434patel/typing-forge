@@ -1,0 +1,27 @@
+{
+  "status": "PREPARATION-PLAN-ONLY-NOT-IMPLEMENTED-NOT-RUN",
+  "goal": "Reduce simultaneous retention of ignored client display-character maps during full-payload Arena validation without changing HTTP evidence size, JSON parsing, validation or canonical output.",
+  "sourceFacts": [
+    "SessionValidator only assigns candidate.characters from independent replay; it does not inspect the supplied characters field.",
+    "Both checkpoint and default full/final validation overwrite that field before JSON serializability/hash derivation.",
+    "public/index.php currently retains the decoded original body while canonical candidate replay and database locking proceed.",
+    "The current full-capacity producer sends thousands of character-slot arrays per candidate; body decoding must continue to validate all bytes before any cleanup."
+  ],
+  "proposedBoundary": {
+    "filesIfSeparatelyAuthorized": ["backend/src/RequestBody.php", "backend/public/index.php"],
+    "route": "Only the already identified POST arena submit operation, after complete existing RequestBody.decode succeeds",
+    "operation": "If body.candidate is an array and has an existing characters key, replace its value in place with null. Do not unset/reinsert the key and do not add a missing key, preserving insertion order of the canonical candidate.",
+    "unchanged": ["Original full HTTP bytes/body limit", "JSON syntax/depth/UTF8/NUL-property/duplicate-key handling and error precedence", "Every metric/configuration/event validation", "Independent candidate replay/chart", "Canonical character/cursor/timeSeries generation", "Default final payload hash", "Server receipt/shared clock", "All locks, durability, rate and authentication policies"],
+    "notProposed": ["A custom or regex JSON-skipping parser", "Dropping metrics/configuration/events before validation", "Reducing the tested full-payload representation", "Changing any production file during source35 adoption"]
+  },
+  "requiredPureEvidenceBeforeAdoption": {
+    "wholeCorpus": "All578 executed rows, including all560 unique existing candidates; compare exact canonical candidate key order, full bundle, replay/chart, payloadHash and rejection type/code/message to frozen baseline.",
+    "HTTPReachableOverflow": "Retain all existing raw JSON overflow outcomes. Nonfinite values inside overwritten characters remain accepted where baseline accepts; nonfinite retained extras continue rejecting. JSON parse errors are still raised before cleanup.",
+    "shapes": ["characters absent", "null", "empty", "wrong scalar/object/list shapes already ignored by baseline", "deep invalid JSON", "NUL invalid property under characters", "duplicate containing keys", "large40000-character canonical target", "malformed candidate identity before replay"],
+    "memoryAndCpu": "A separately approved twelve alternating-pair diagnostic with all raw samples, no warmup/filter/retry, measuring decode+cleanup+validation and live memory while preserving a caller-owned body. Fresh-process peak measurements must distinguish peak decode allocation from later retained memory.",
+    "runtime": "Only if pure evidence and measured benefit justify adoption: new source freeze, actual native final/retry, and original fresh ordinary full1653+wire1653 with20concurrent/50x8/strict p95 below150ms."
+  },
+  "performanceGain": "UNMEASURED",
+  "productionChanges": 0,
+  "runtimeOrTestsRun": 0
+}

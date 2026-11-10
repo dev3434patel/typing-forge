@@ -1,0 +1,28 @@
+diff --git a/src/pages/Profile.tsx b/src/pages/Profile.tsx
+index 50d234c..8eb9397 100644
+--- a/src/pages/Profile.tsx
++++ b/src/pages/Profile.tsx
+@@ -1,4 +1,4 @@
+-import { lazy,Suspense,useEffect,useState } from 'react';
++import { lazy,Suspense,useEffect,useLayoutEffect,useState } from 'react';
+ import { Link } from 'react-router-dom';
+ import { ArrowUpRight,Download,ShieldCheck,UserRound } from 'lucide-react';
+ import { Header } from '@/components/layout/Header';
+@@ -11,6 +11,7 @@ import { sessionRepository } from '@/services/session-repository';
+ import { cohortLabel,metricLabel,sessionView } from '@/services/history-model';
+ import { readOwnerGameBests } from '@/services/game-data';
+ const ProfileAppearance = lazy(() => import('@/components/progression/ProfileAppearance'));
++const useIsomorphicLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
+ 
+ // Retained exported contracts for existing profile display primitives.
+ export interface ProfileData {id:string;username:string;avatar_url:string|null;target_wpm:number;theme:string;created_at:string}
+@@ -25,7 +26,8 @@ export default function Profile(){
+   const [handle,setHandle]=useState(''),[savedHandle,setSavedHandle]=useState(''),[message,setMessage]=useState(''),[busy,setBusy]=useState(false),[confirmation,setConfirmation]=useState(''),[guestCount,setGuestCount]=useState(0),[limit,setLimit]=useState(10);
+   const [identityRequest,setIdentityRequest]=useState<{ownerId:string|undefined;loading:boolean}>({ownerId:userId,loading:Boolean(userId&&isBackendConfigured)});
+   const identityLoading=Boolean(userId&&isBackendConfigured&&(identityRequest.ownerId!==userId||identityRequest.loading));
+-  useEffect(()=>{setConfirmation('');setMessage('');},[ownerId]);
++  useIsomorphicLayoutEffect(()=>{setConfirmation('');},[ownerId]);
++  useEffect(()=>{setMessage('');},[ownerId]);
+   useEffect(()=>{let active=true;setHandle('');setSavedHandle('');setIdentityRequest({ownerId:userId,loading:Boolean(userId&&isBackendConfigured)});void sessionRepository.list('guest').then(rows=>{if(active)setGuestCount(rows.length);});
+     if(userId&&isBackendConfigured)void accountApi.profile(userId).then(identity=>{if(active){setHandle(identity.handle);setSavedHandle(identity.handle);}}).catch(cause=>{if(active)setMessage(cause instanceof Error?cause.message:'Public identity unavailable.');}).finally(()=>{if(active)setIdentityRequest({ownerId:userId,loading:false});});
+     return()=>{active=false;};

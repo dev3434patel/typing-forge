@@ -1,0 +1,65 @@
+{
+  "boundAt": "2026-11-04T18:58:36.396Z",
+  "status": "FROZEN-PREPARED-NOT-RUN-WAITING-SOURCE-GATES-AND-ROOT-GO",
+  "source": {
+    "sourceFile": "audit/2026-11-05-followup/final35-source.json",
+    "expectedBuild": "d89f84d74519bf2bbae0",
+    "compared": 506,
+    "mismatches": []
+  },
+  "sourceManifestSha256": "c9c4c1b9ac7a27854b0db33ef5c2c69fa973ae4c433a2b29020636462393c596",
+  "build": "d89f84d74519bf2bbae0",
+  "templateFile": "audit/2026-11-05-followup/source35-ordinary-capacity-template-preparation.json",
+  "templateSha256": "52723e0140d6c9307d06cbf575e09beafd796f6f450db4ff2318ea00b39d5bbd",
+  "runtimeInputs": {
+    "audit/2026-11-05-followup/pack-capacity-instance-source35-wire.mjs": "cb8073cc1275f421db0ab6d1aeadda53765671876b79379bb59d7c8d00cefb1c",
+    "audit/2026-11-05-followup/run-source35-capacity-burst.mjs": "74c2b1945a91bd8e15ca2b76d8c0463594709317fcde40881b564eccce1ec4b2",
+    "audit/2026-11-05-followup/run-source35-capacity-wire-burst.mjs": "bb780d68f7275dcd5fca2deed796eb42864adf97aa34e0e120fcb6dd9e439955",
+    "audit/2026-11-05-followup/run-source35-native-rate.mjs": "fb501bdfc70b6909dfb8be2f40744fe2834ab08c982de911ce6bda71a6643359",
+    "audit/2026-11-05-followup/native-rate-worker-source35.php": "151a599fc37d8181b82851319dfc68eba1cec2e2762943b654be61c9615b160b",
+    "backend/tests/arena-audit-admin.php": "1c40050d0318e8ec84e6cfc44ab90ebd7840d467ea1f0387ec16e11744b8091b",
+    "scripts/php-runtime.mjs": "2adeffc2ac322edbc611f34c437a0f34569689c942602bf39b079305cfb7a60f",
+    "audit/2026-10-21/pack-apache-runtime.mjs": "80dd94f993d853d2057314473855a796e11264323bce64a4a9db97822b6dabe7"
+  },
+  "entry": "audit/2026-11-05-followup/pack-capacity-instance-source35-wire.mjs",
+  "flags": {
+    "SPAROWTYPE_PACK_INSTANCE_ACCEPTANCE": "1",
+    "SPAROWTYPE_PACK_APACHE_ACCEPTANCE": "1",
+    "SPAROWTYPE_PACK_HTTP_RUNTIME": "apache",
+    "SPAROWTYPE_PACK_SUITES": "password",
+    "SPAROWTYPE_PACK_HOLD": "1",
+    "SPAROWTYPE_PACK_KEEP_FAILURE": "1",
+    "SPAROWTYPE_SOURCE35_CAPACITY_ACCEPTANCE": "1",
+    "SPAROWTYPE_SOURCE35_CAPACITY_WIRE_ACCEPTANCE": "1",
+    "SPAROWTYPE_FINAL35_BUILD_ID": "d89f84d74519bf2bbae0"
+  },
+  "commands": [
+    "capacity35",
+    "capacity35-wire",
+    "cleanup"
+  ],
+  "predeclaredRepeatedAcceptance": {
+    "firstOwner": "One new owner runs full1653 then wire1653. All outcomes retained; no retries, filtering or automatic threshold adjustment.",
+    "ifFirstBothPass": "Run two additional independently new owners with the identical full→wire order; all three owners must pass both strict p95<150ms targets.",
+    "ifAnyFails": "Retain that failure and stop acceptance expansion for diagnosis; do not relabel an earlier pass or run the long matrix as if capacity passed.",
+    "perOwner": {
+      "rooms": 50,
+      "seats": 8,
+      "requestsPerRepresentation": 1653,
+      "concurrentHttpRequests": 20,
+      "strictP95BelowMs": 150,
+      "fullBeforeWire": true,
+      "newIndependentFixturesPerRepresentation": true,
+      "OPcache": false,
+      "persistentPDO": false,
+      "actualPhpPoliciesUnchanged": true,
+      "wireCacheQualification": "Same owner/database after full workload, with no added warmup or code cache."
+    }
+  },
+  "source35ProductionSnapshotUnchanged": true,
+  "existingDatabaseConfigurationRead": false,
+  "runtimeStarted": false,
+  "OPcache": "Must prove OFF in same existing owned readiness HTTP request",
+  "nativePDOPolicy": "Unchanged frozen Database.php; native prepares/nonpersistent/UTC",
+  "noNewProfilerOrVariantHeaders": true
+}

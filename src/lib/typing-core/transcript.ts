@@ -19,8 +19,8 @@ export function graphemes(text: string): string[] {
 const targetCache = new Map<string, readonly string[]>();
 // Null brands a factory-owned immutable target whose bounded word metadata is lazy.
 const targetWordCache = new WeakMap<readonly string[], readonly Readonly<Word>[] | null>();
-const MAX_CACHED_WORD_TARGET_UNITS = 4096;
-const MAX_CACHED_TARGET_WORDS = 512;
+const MAX_CACHED_WORD_TARGET_UNITS = 8192;
+const MAX_CACHED_TARGET_WORDS = 1024;
 export function targetGraphemes(text: string): readonly string[] {
   const cached = targetCache.get(text);
   if (cached) return cached;

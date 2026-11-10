@@ -1,0 +1,46 @@
+{
+  "status": "PREPARED-NOT-RUN-REQUIRES-SEPARATE-ROOT-GO-AND-2GIB",
+  "sourceManifest": {
+    "file": "audit/2026-11-05-followup/final37-source.json",
+    "sha256": "893d7adfccb85bda12994aafed15a881e76e07b84d6166d479c9803ccaa300b2",
+    "sourceFiles": 506,
+    "defaultBuild": "d89f84d74519bf2bbae0"
+  },
+  "frontendProof": {
+    "file": "audit/2026-11-10/source37-frontend-artifact-reuse-proof.json",
+    "sha256": "3caa392db88a7dadf8a10a846667e3a21cd34d41a01bbd8bb26adb8abe595814"
+  },
+  "preparation": {
+    "file": "audit/2026-11-10/transport-control-preparation-source37.json",
+    "sha256": "23ca2d60823de3030cc689b2ceccd3fb36fedbe3f9dbc75b8791bffa4077170b",
+    "inputFiles": 17
+  },
+  "source36Snapshot": "audit/2026-11-10/transport-control-source36-snapshot",
+  "source36PreparationRetained": "audit/2026-11-10/transport-control-preparation.json",
+  "aliasChanges": [
+    "final36-source.json to final37-source.json",
+    "transport-control-preparation.json to transport-control-preparation-source37.json"
+  ],
+  "exactReverseToPriorServer": true,
+  "clientProducerRawBytesUnchanged": true,
+  "requestBodyTimersWorkloadChanged": false,
+  "syntaxChecksPassed": [
+    "node --check audit/2026-11-10/run-transport-control.mjs",
+    "node --check audit/2026-11-10/transport-control-client.mjs"
+  ],
+  "runtimeExecuted": false,
+  "httpRequestsSent": 0,
+  "minimumFreeMemoryBytes": 2147483648,
+  "executionConditions": [
+    "Root confirms its prior heavy job and source37 gate window are closed.",
+    "Root gives separate runtime GO after a fresh eligible resource check.",
+    "Coordinator repeats the2GiB gate before listener/client spawn; client and coordinator repeat it before realHTTP.",
+    "No other load, browser, benchmark or heavy job overlaps the control."
+  ],
+  "powershellCommands": [
+    "$env:SPAROWTYPE_TRANSPORT_CONTROL_GO = '1'",
+    "$env:SPAROWTYPE_TRANSPORT_PREPARATION_SHA256 = '23ca2d60823de3030cc689b2ceccd3fb36fedbe3f9dbc75b8791bffa4077170b'",
+    "node audit/2026-11-10/run-transport-control.mjs"
+  ],
+  "scope": "Transport-only synthetic control: eight ABBA-balanced phases,400 actual full800-word/10-event candidate bodies per phase, pool20, fixed8192-byte Node echo response. Exact per-actor fullJSON SHA equality is required across variants. Only candidate clocks are synthetic; HTTPperformance.now is real. This is not Arena, backend correctness or capacity acceptance."
+}

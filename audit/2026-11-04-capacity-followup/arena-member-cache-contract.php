@@ -1,0 +1,147 @@
+<?php
+declare(strict_types=1);
+// Pure audit-only contract. No bootstrap/configuration, native connection or server.
+spl_autoload_register(static function (string $class): void {
+    $prefix='SparowType\\';
+    if(str_starts_with($class,$prefix))require_once dirname(__DIR__,2).'/backend/src/'.substr($class,strlen($prefix)).'.php';
+});
+require_once __DIR__.'/ArenaServiceCachedCandidate.php';
+set_error_handler(static function(int $severity,string $message,string $file,int $line):never{throw new ErrorException($message,0,$severity,$file,$line);});
+
+use SparowType\ApiException;
+use SparowType\ArenaRules;
+use SparowType\ArenaService;
+use SparowType\ArenaServiceCachedCandidate;
+use SparowType\DataService;
+use SparowType\Database;
+use SparowType\SessionValidator;
+
+final class CacheConnection extends PDO
+{
+    public const MEMBER='SELECT * FROM arena_members WHERE arena_id=? ORDER BY slot FOR UPDATE';
+    public array $trace=[],$reads=[],$clocks=[];
+    public bool $transaction=false;
+    public int $clockReads=0;
+    public ?string $failSql=null;
+    private array $before=[];
+    public function __construct(public array $room,public array $rows,public array $handles){}
+    public function beginTransaction():bool{$this->trace[]=['sql'=>'BEGIN','params'=>[]];$this->before=[$this->room,$this->rows];$this->transaction=true;return true;}
+    public function commit():bool{$this->trace[]=['sql'=>'COMMIT','params'=>[]];$this->transaction=false;return true;}
+    public function rollBack():bool{$this->trace[]=['sql'=>'ROLLBACK','params'=>[]];[$this->room,$this->rows]=$this->before;$this->transaction=false;return true;}
+    public function inTransaction():bool{return $this->transaction;}
+    public function prepare(string $query,array $options=[]):PDOStatement|false{return new CacheStatement($this,$query);}
+    public function query(string $query,?int $fetchMode=null,mixed ...$fetchModeArgs):PDOStatement|false{$statement=new CacheStatement($this,$query);$statement->execute();return $statement;}
+    public function executeQuery(string $sql,array $params):array
+    {
+        $this->trace[]=['sql'=>$sql,'params'=>$params];
+        if($sql===$this->failSql)throw new PDOException('Deliberate audit-only native-call failure.');
+        if($sql===self::MEMBER){if($params!==[$this->room['id']])throw new RuntimeException('Wrong room binding.');$rows=$this->rows;usort($rows,static fn(array $a,array $b):int=>(int)$a['slot']<=>(int)$b['slot']);$this->reads[]=$rows;return ['rows'=>$rows];}
+        if($sql==='SELECT * FROM arena_rooms WHERE room_code=? FOR UPDATE')return ['row'=>$params===[$this->room['room_code']]?$this->room:false];
+        if($sql==='SELECT id FROM users WHERE id=? FOR UPDATE')return ['column'=>in_array($params[0],array_column($this->rows,'user_id'),true)?$params[0]:false];
+        if($sql==='SELECT UNIX_TIMESTAMP(UTC_TIMESTAMP(3))*1000'){if(!array_key_exists($this->clockReads,$this->clocks))throw new RuntimeException('Unexpected clock read.');return ['column'=>$this->clocks[$this->clockReads++]];}
+        if(preg_match('/^SELECT id,handle FROM users WHERE id IN\\(\\?(?:,\\?)*\\)$/D',$sql))return ['rows'=>array_values(array_filter($this->handles,static fn(array $row):bool=>in_array($row['id'],$params,true)))];
+        if($sql==='SELECT room_code FROM arena_rooms WHERE rematch_of=?'||$sql==='SELECT id FROM arena_rooms WHERE rematch_of=?')return ['column'=>false];
+        if($sql==='UPDATE arena_rooms SET version=version+1 WHERE id=?'){$this->room['version']++;return [];}
+        if($sql==='INSERT INTO arena_members(arena_id,user_id,slot,last_seen_at) VALUES(?,?,?,?)'){$this->rows[]=['arena_id'=>$params[0],'user_id'=>$params[1],'slot'=>$params[2],'ready'=>0,'status'=>'joined','last_seen_at'=>$params[3],'client_session_id'=>null,'events_json'=>null,'evidence_json'=>null,'metrics_json'=>null,'event_hash'=>null,'sequence_count'=>0,'credited_units'=>0,'accuracy'=>null,'wpm'=>null,'elapsed_ms'=>0.0,'finished_at'=>null,'rematch_vote'=>0,'quarantine_reason'=>null,'appeal_requested_at'=>null];return [];}
+        if($sql==='UPDATE arena_members SET ready=?,last_seen_at=? WHERE arena_id=? AND user_id=?'){foreach($this->rows as &$row)if($row['user_id']===$params[3]){$row['ready']=$params[0];$row['last_seen_at']=$params[1];}unset($row);return [];}
+        if($sql==='UPDATE arena_members SET last_seen_at=? WHERE arena_id=? AND user_id=?'){foreach($this->rows as &$row)if($row['user_id']===$params[2])$row['last_seen_at']=$params[0];unset($row);return [];}
+        if($sql==='DELETE FROM arena_members WHERE arena_id=? AND user_id=?'){$before=count($this->rows);$this->rows=array_values(array_filter($this->rows,static fn(array $row):bool=>$row['user_id']!==$params[1]));return ['affected'=>$before-count($this->rows)];}
+        if($sql==="UPDATE arena_members SET status='forfeit',elapsed_ms=?,wpm=?,finished_at=? WHERE arena_id=? AND user_id=?"||$sql==="UPDATE arena_members SET status='finished',elapsed_ms=?,wpm=?,finished_at=? WHERE arena_id=? AND user_id=?"){foreach($this->rows as &$row)if($row['user_id']===$params[4]){$row['status']=str_contains($sql,"status='forfeit'")?'forfeit':'finished';$row['elapsed_ms']=$params[0];$row['wpm']=$params[1];$row['finished_at']=$params[2];}unset($row);return [];}
+        if($sql==="UPDATE arena_rooms SET status='active' WHERE id=?"){$this->room['status']='active';return [];}
+        if($sql==="UPDATE arena_members SET status='racing' WHERE arena_id=? AND status='joined'"){foreach($this->rows as &$row)if($row['status']==='joined')$row['status']='racing';unset($row);return [];}
+        if($sql==="UPDATE arena_rooms SET status='completed',ended_at=? WHERE id=?"||$sql==="UPDATE arena_rooms SET status='cancelled',ended_at=? WHERE id=?"){$this->room['status']=str_contains($sql,"status='completed'")?'completed':'cancelled';$this->room['ended_at']=$params[0];return [];}
+        if($sql==="UPDATE arena_rooms SET status='countdown',starts_at=?,deadline_at=? WHERE id=?"){$this->room['status']='countdown';$this->room['starts_at']=$params[0];$this->room['deadline_at']=$params[1];return [];}
+        if($sql==='UPDATE arena_members SET rematch_vote=1 WHERE arena_id=? AND user_id=?'){foreach($this->rows as &$row)if($row['user_id']===$params[1])$row['rematch_vote']=1;unset($row);return [];}
+        if($sql==='UPDATE arena_members SET appeal_requested_at=COALESCE(appeal_requested_at,?) WHERE arena_id=? AND user_id=?'){foreach($this->rows as &$row)if($row['user_id']===$params[2])$row['appeal_requested_at']??=$params[0];unset($row);return [];}
+        if(str_starts_with($sql,'DELETE FROM arena_members WHERE arena_id=? AND user_id IN(')){$before=count($this->rows);$this->rows=array_values(array_filter($this->rows,static function(array $row)use($params):bool{if(!in_array($row['user_id'],array_slice($params,1),true)||$row['status']!=='joined'||(int)$row['sequence_count']!==0||(int)$row['credited_units']!==0||(float)$row['elapsed_ms']!==0.0)return true;foreach(['client_session_id','events_json','evidence_json','metrics_json','event_hash','finished_at']as$key)if($row[$key]!==null)return true;return false;}));return ['affected'=>$before-count($this->rows)];}
+        if(str_starts_with($sql,'UPDATE arena_members SET status=?,client_session_id=?,events_json=?')){foreach($this->rows as &$row)if($row['user_id']===$params[15])$row=[...$row,'status'=>$params[0],'client_session_id'=>$params[1],'events_json'=>$params[2],'evidence_json'=>$params[3],'metrics_json'=>$params[4],'event_hash'=>$params[5],'sequence_count'=>$params[6],'credited_units'=>$params[7],'accuracy'=>$params[8],'wpm'=>$params[9],'elapsed_ms'=>$params[10],'last_seen_at'=>max($row['last_seen_at'],$params[11]),'finished_at'=>$params[12],'quarantine_reason'=>$params[13]];unset($row);return [];}
+        throw new RuntimeException('Unexpected SQL in cache contract.');
+    }
+}
+final class CacheStatement extends PDOStatement
+{
+    private array $result=[];
+    public function __construct(private CacheConnection $db,private string $sql){}
+    public function execute(?array $params=null):bool{$this->result=$this->db->executeQuery($this->sql,$params??[]);return true;}
+    public function fetch(int $mode=PDO::FETCH_DEFAULT,int $cursorOrientation=PDO::FETCH_ORI_NEXT,int $cursorOffset=0):mixed{return $this->result['row']??false;}
+    public function fetchAll(int $mode=PDO::FETCH_DEFAULT,mixed ...$args):array{return $this->result['rows']??[];}
+    public function fetchColumn(int $column=0):mixed{return $this->result['column']??false;}
+    public function rowCount():int{return $this->result['affected']??0;}
+}
+
+$checks=[];
+$check=static function(string $name,bool $pass)use(&$checks):void{$checks[]=['name'=>$name,'pass'=>$pass];};
+$invoke=static fn(object $service,string $method,mixed ...$args):mixed=>(new ReflectionMethod($service,$method))->invoke($service,...$args);
+$property=static fn(object $service,string $name):mixed=>(new ReflectionProperty($service,$name))->getValue($service);
+$activate=static function(object $service,CacheConnection $db):void{$db->beginTransaction();if($service instanceof ArenaServiceCachedCandidate)(new ReflectionProperty($service,'memberCacheActive'))->setValue($service,true);};
+$outcome=static function(callable $work):array{try{return ['ok'=>true,'value'=>$work()];}catch(Throwable $error){return ['ok'=>false,'class'=>$error::class,'message'=>$error->getMessage(),'status'=>$error instanceof ApiException?$error->status:null,'code'=>$error instanceof ApiException?$error->errorCode:null];}};
+$withoutMemberReads=static fn(array $trace):array=>array_values(array_filter($trace,static fn(array $row):bool=>$row['sql']!==CacheConnection::MEMBER));
+$id='33333333-3333-4333-8333-333333333333';$owner='11111111-1111-4111-8111-111111111111';$peer='22222222-2222-4222-8222-222222222222';$third='44444444-4444-4444-8444-444444444444';$now=1793793600000.0;
+$room=['id'=>$id,'room_code'=>'ABCD1234','host_id'=>$owner,'status'=>'active','version'=>9,'duration_seconds'=>30,'starts_at'=>Database::timestamp($now-10000),'deadline_at'=>Database::timestamp($now+20000),'ended_at'=>null,'expected_text'=>'calm clear river','configuration_json'=>Database::json(ArenaRules::configuration($id,30)),'is_public'=>0,'expires_at'=>Database::timestamp($now+600000),'created_at'=>Database::timestamp($now-12000),'bracket_wpm'=>35,'rematch_of'=>null];
+$seat=static fn(string $user,int $slot,array $changes=[]):array=>['arena_id'=>$id,'user_id'=>$user,'slot'=>$slot,'ready'=>1,'status'=>'racing','last_seen_at'=>Database::timestamp($now-5000),'client_session_id'=>null,'events_json'=>null,'evidence_json'=>null,'metrics_json'=>null,'event_hash'=>null,'sequence_count'=>0,'credited_units'=>10,'accuracy'=>100.0,'wpm'=>12.0,'elapsed_ms'=>10000.0,'finished_at'=>null,'rematch_vote'=>0,'quarantine_reason'=>null,'appeal_requested_at'=>null,...$changes];
+$handles=[['id'=>$peer,'handle'=>'peer_handle'],['id'=>$owner,'handle'=>'owner_handle']];
+$pair=static function(array $current,array $rows)use($handles):array{$a=new CacheConnection($current,$rows,$handles);$b=new CacheConnection($current,$rows,$handles);$validator=new SessionValidator();return [new ArenaService($a,$validator,new DataService($a,$validator,[])),new ArenaServiceCachedCandidate($b,$validator,new DataService($b,$validator,[])),$a,$b];};
+$compare=static function(string $name,array $p,callable $work,bool $manual=true)use($activate,$outcome,$check,$withoutMemberReads):array{[$a,$b,$ad,$bd]=$p;if($manual){$activate($a,$ad);$activate($b,$bd);}$left=$outcome(static fn():mixed=>$work($a,$ad));$right=$outcome(static fn():mixed=>$work($b,$bd));$check($name.' exact result/error parity',$left===$right&&$left['ok']);$check($name.' identical authoritative mutations',$ad->room===$bd->room&&$ad->rows===$bd->rows);$check($name.' all non-member SQL, clocks, binds and transaction order retained',$withoutMemberReads($ad->trace)===$withoutMemberReads($bd->trace)&&$ad->clockReads===$bd->clockReads);$check($name.' every retained member query is original full FOR UPDATE',!array_filter($bd->trace,static fn(array $row):bool=>str_contains($row['sql'],'SELECT')&&str_contains($row['sql'],'FROM arena_members')&&$row['sql']!==CacheConnection::MEMBER));return [$left,$right];};
+
+// Both guards are mandatory. Reflection is used only to enter a bounded test scope.
+foreach(['outside transaction','inactive scope','active transaction']as$guard){$p=$pair($room,[$seat($owner,0)]);$db=$p[3];$service=$p[1];if($guard!=='outside transaction')$db->beginTransaction();if($guard!=='inactive scope')(new ReflectionProperty($service,'memberCacheActive'))->setValue($service,true);$first=$invoke($service,'members',$room);$second=$invoke($service,'members',$room);$check($guard.' returns full rows and first locking read',$first===$second&&$first===$db->rows);$check($guard.' expected read reuse',count($db->reads)===($guard==='active transaction'?1:2));}
+
+// One room only, including a fresh lock when returning to a previously seen room.
+$p=$pair($room,[$seat($owner,0)]);$activate($p[1],$p[3]);$invoke($p[1],'members',$room);$other=[...$room,'id'=>'55555555-5555-4555-8555-555555555555','room_code'=>'ROOM5678'];$p[3]->room=$other;$p[3]->rows=[$seat($peer,0,['arena_id'=>$other['id']])];$invoke($p[1],'members',$other);$check('room switch retains only latest room snapshot',$property($p[1],'memberCacheRoom')===$other['id']&&$property($p[1],'memberCacheRows')===$p[3]->rows);$p[3]->room=$room;$p[3]->rows=[$seat($owner,0,['credited_units'=>77])];$back=$invoke($p[1],'members',$room);$check('A to B to A locks each first room read and does not reuse old A',count($p[3]->reads)===3&&$back[0]['credited_units']===77);
+
+// PHP copy-on-write must prevent public-handle enrichment from altering cached authority.
+$p=$pair($room,[$seat($owner,0,['events_json'=>'[{"sequence":0,"text":"c"}]','evidence_json'=>'{"private":true}','metrics_json'=>'{}'])]);
+$compare('serialization COW',$p,static function(object $service)use($invoke,$room,$owner,$now):array{$before=$invoke($service,'members',$room);$snapshot=$invoke($service,'serialize',$room,$owner,false,$now);$after=$invoke($service,'members',$room);return [$before,$snapshot,$after];});
+$raw=$invoke($p[1],'members',$room);$check('cached canonical rows remain full and contain no public handle',!array_key_exists('handle',$raw[0])&&$raw[0]['evidence_json']==='{"private":true}'&&count($p[3]->reads)===1);
+
+// Exercise every local member-write invalidation against the original service.
+$waiting=[...$room,'status'=>'waiting','starts_at'=>null,'deadline_at'=>null];
+$untouched=['status'=>'joined','client_session_id'=>null,'events_json'=>null,'evidence_json'=>null,'metrics_json'=>null,'event_hash'=>null,'sequence_count'=>0,'credited_units'=>0,'elapsed_ms'=>0.0,'finished_at'=>null];
+$cases=[
+ 'insertMember'=>[$waiting,[$seat($owner,0,$untouched)],static fn(object $s,CacheConnection $d):mixed=>$invoke($s,'insertMember',$id,$third,1,$now)],
+ 'ready before startWhenReady'=>[$waiting,[$seat($owner,0,[...$untouched,'ready'=>0]),$seat($peer,1,$untouched)],static fn(object $s,CacheConnection $d):mixed=>$invoke($s,'ready',$d->room,$d->rows[0],['ready'=>true],$now)],
+ 'heartbeat'=>[$room,[$seat($owner,0)],static fn(object $s,CacheConnection $d):mixed=>$invoke($s,'heartbeat',$d->room,$d->rows[0],$now)],
+ 'leave DELETE'=>[$waiting,[$seat($owner,0,$untouched),$seat($peer,1,$untouched)],static fn(object $s,CacheConnection $d):mixed=>$invoke($s,'leave',$d->room,$d->rows[1],$now)],
+ 'forfeit'=>[$room,[$seat($owner,0)],static fn(object $s,CacheConnection $d):mixed=>$invoke($s,'forfeit',$d->room,$d->rows[0],$now)],
+ 'waiting prune'=>[[...$waiting,'is_public'=>1],[$seat($owner,0,[...$untouched,'last_seen_at'=>Database::timestamp($now)]),$seat($peer,1,[...$untouched,'last_seen_at'=>Database::timestamp($now-60000)])],static fn(object $s,CacheConnection $d):mixed=>$invoke($s,'settle',$d->room,$now)],
+ 'countdown mass status'=>[[...$room,'status'=>'countdown','starts_at'=>Database::timestamp($now)],[$seat($owner,0,['status'=>'joined']),$seat($peer,1,['status'=>'joined'])],static fn(object $s,CacheConnection $d):mixed=>$invoke($s,'settle',$d->room,$now)],
+ 'grace finishes'=>[$room,[$seat($owner,0),$seat($peer,1)],static fn(object $s,CacheConnection $d):mixed=>$invoke($s,'settle',$d->room,$now+23000)],
+ 'rematch vote'=>[[...$room,'status'=>'completed'],[$seat($owner,0,['status'=>'finished']),$seat($peer,1,['status'=>'finished'])],static fn(object $s,CacheConnection $d):mixed=>$invoke($s,'rematch',$d->room,$d->rows[0],$now)],
+ 'appeal'=>[$room,[$seat($owner,0,['status'=>'quarantined'])],static fn(object $s,CacheConnection $d):mixed=>$invoke($s,'appeal',$d->room,$d->rows[0],$now)],
+];
+foreach($cases as$name=>[$current,$rows,$action]){$p=$pair($current,$rows);$compare($name,$p,static function(object $service,CacheConnection $db)use($invoke,$action):array{$invoke($service,'members',$db->room);$action($service,$db);return $invoke($service,'members',$db->room);});$check($name.' actually invalidates populated snapshot',count($p[3]->reads)>=2&&$property($p[1],'memberCacheRows')===$p[3]->rows);}
+foreach(['client_session_id'=>'saved','events_json'=>'[]','evidence_json'=>'{}','metrics_json'=>'{}','event_hash'=>'hash','finished_at'=>Database::timestamp($now)]as$field=>$value){$current=[...$waiting,'is_public'=>1];$p=$pair($current,[$seat($owner,0,[...$untouched,'last_seen_at'=>Database::timestamp($now)]),$seat($peer,1,[...$untouched,'last_seen_at'=>Database::timestamp($now-60000),$field=>$value])]);$compare('waiting protected '.$field,$p,static function(object $s,CacheConnection $d)use($invoke,$now):array{$invoke($s,'members',$d->room);$invoke($s,'settle',$d->room,$now);return $invoke($s,'members',$d->room);});$check('non-null '.$field.' remains protected in full cached row',count($p[3]->rows)===2&&$p[3]->rows[1][$field]===$value);}
+
+// No empty-range lock is introduced before the exclusively owned first insert.
+$p=$pair($waiting,[]);$activate($p[1],$p[3]);$invoke($p[1],'insertMember',$id,$owner,0,$now);$check('first host insert performs no preliminary empty member lock',$p[3]->reads===[]);$check('first host is visible through subsequent original full lock',$invoke($p[1],'members',$waiting)[0]['user_id']===$owner&&count($p[3]->reads)===1);
+
+// Real handler clock call sites stay unchanged; a write invalidates before reuse.
+$p=$pair($room,[$seat($owner,0),$seat($peer,1)]);foreach([$p[2],$p[3]]as$db)$db->clocks=[$now,$now+1,$now+2,$now+3];
+$answers=$compare('active get handler',$p,static fn(object $s,CacheConnection $d):array=>$s->handle('get',['code'=>$room['room_code']],['id'=>$owner]),false);
+$check('typical active get retains first full locks and reduces four member reads to two',count($p[2]->reads)===4&&count($p[3]->reads)===2);
+$check('heartbeat forces fresh second snapshot',$p[3]->reads[0][0]['last_seen_at']!==$p[3]->reads[1][0]['last_seen_at']&&$p[3]->reads[1][0]['last_seen_at']===Database::timestamp($now+1));
+$check('all four get clocks and final authoritative response time retained',$p[3]->clockReads===4&&($answers[1]['value']['arena']['serverNow']??null)===$now+3);
+$check('successful handle clears all cache state',$property($p[1],'memberCacheActive')===false&&$property($p[1],'memberCacheRoom')===null&&$property($p[1],'memberCacheRows')===[]);
+foreach([$p[2],$p[3]]as$db){$db->clocks=[$now+4,$now+5,$now+6,$now+7];$db->clockReads=0;$db->rows[0]['credited_units']=88;}
+$reuse=$compare('reused instance next transaction',$p,static fn(object $s,CacheConnection $d):array=>$s->handle('get',['code'=>$room['room_code']],['id'=>$owner]),false);
+$check('reuse sees current rows instead of previous transaction snapshot',($reuse[1]['value']['arena']['members'][0]['progress']??null)===100);
+
+// Actual interim ArenaEvidence submission, not a synthetic direct cache reset.
+$issued=ArenaRules::configuration($id,30);$config=[...$issued,'clientSessionId'=>'arena-cache-proof','ownerScope'=>$owner,'initialTarget'=>$room['expected_text'],'paused'=>false];$events=[];foreach(['c','a','l']as$index=>$text)$events[]=['sequence'=>$index,'offsetMs'=>($index+1)*100,'start'=>$index,'end'=>$index,'type'=>'insert','text'=>$text,'provenance'=>'keyboard'];$validator=new SessionValidator();$replay=$validator->replay($config,$events,1000,['targetText'=>$room['expected_text'],'finiteFinal'=>false]);$start=(int)ArenaRules::milliseconds($room['starts_at']);
+$candidate=['schemaVersion'=>3,'metricsVersion'=>'forge-v3','clientSessionId'=>'arena-cache-proof','ownerScope'=>$owner,'configuration'=>$config,'initialTarget'=>$room['expected_text'],'targetText'=>$room['expected_text'],'finalText'=>'cal','finalTranscript'=>'cal','elapsedMs'=>1000,'wallDurationMs'=>1000,'startedAtWall'=>$start,'finishedAtWall'=>$start+1000,'finishReason'=>'manual','status'=>'running','events'=>$events,'pauseIntervals'=>[],'issuedTargetSegments'=>[],'metrics'=>$replay['metrics'],'comparisonKey'=>SessionValidator::comparisonKey($config)];
+$p=$pair($room,[$seat($owner,0,['elapsed_ms'=>0.0]),$seat($peer,1)]);foreach([$p[2],$p[3]]as$db)$db->clocks=[$now,$now+1,$now+2];
+$answers=$compare('actual interim submit handler',$p,static fn(object $s,CacheConnection $d):array=>$s->handle('submit',['code'=>$room['room_code'],'candidate'=>$candidate,'finish'=>false],['id'=>$owner]),false);
+$check('external submit invalidates original authority before post-settle snapshot',count($p[2]->reads)===4&&count($p[3]->reads)===2&&($p[3]->reads[1][0]['sequence_count']??null)===3&&($p[3]->reads[1][0]['credited_units']??null)===3);
+$check('submit retains receipt clock and final response clock',$p[3]->clockReads===3&&($answers[1]['value']['arena']['serverNow']??null)===$now+2);
+$check('submit finally clears canonical JSON cache',$property($p[1],'memberCacheRows')===[]&&!$property($p[1],'memberCacheActive'));
+
+// Exception path must roll back and clear scope even on a reused object.
+$p=$pair($room,[$seat($owner,0),$seat($peer,1)]);foreach([$p[2],$p[3]]as$db){$db->clocks=[$now,$now+1];$db->failSql='UPDATE arena_members SET last_seen_at=? WHERE arena_id=? AND user_id=?';}
+$a=$outcome(static fn():array=>$p[0]->handle('get',['code'=>$room['room_code']],['id'=>$owner]));$b=$outcome(static fn():array=>$p[1]->handle('get',['code'=>$room['room_code']],['id'=>$owner]));
+$check('native exception and rollback parity',$a===$b&&!$a['ok']&&$a['class']===PDOException::class&&$withoutMemberReads($p[2]->trace)===$withoutMemberReads($p[3]->trace));
+$check('exception finally clears cache and transaction scope',!$p[3]->transaction&&!$property($p[1],'memberCacheActive')&&$property($p[1],'memberCacheRoom')===null&&$property($p[1],'memberCacheRows')===[]);
+$p[3]->failSql=null;$p[3]->rows[0]['credited_units']=99;$after=$invoke($p[1],'members',$room);$check('outside read after rollback cannot reuse cached authority',$after[0]['credited_units']===99);
+
+$failed=count(array_filter($checks,static fn(array $row):bool=>!$row['pass']));
+echo json_encode(['status'=>$failed?'FAILED':'PASS-SCOPED','scope'=>'Pure unconnected-PDO baseline/cache differential. Physical InnoDB locks, optimizer behavior, concurrent requests and throughput remain UNVERIFIED.','passed'=>count($checks)-$failed,'failed'=>$failed,'checks'=>$checks,'databaseConnected'=>false,'privateConfigurationRead'=>false],JSON_THROW_ON_ERROR);
+exit($failed?1:0);

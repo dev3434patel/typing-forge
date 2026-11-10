@@ -1,0 +1,21 @@
+{
+  "status": "RETAINED-FILE-PREFLIGHT-FAILURE-CORRECTED-BEFORE-PRIMARY-EDITS",
+  "entry": "audit/2026-11-04-capacity-followup/adopt-source35-arena-member-cache.mjs",
+  "firstAttempt": {
+    "exitCode": 1,
+    "stage": "Exact candidate class-rename reversal assertion",
+    "reason": "The preparation script initially hardcoded CRLF after the restored class declaration, while the proven candidate used LF. The unique-span assertion found zero occurrences.",
+    "primaryProductionFilesChanged": 0,
+    "primaryTestFilesChanged": 0,
+    "archiveWritten": "source35-before/ArenaService.php",
+    "PHPExecuted": false,
+    "servicesStarted": 0
+  },
+  "correction": {
+    "scope": "Use the unique class declaration itself as the exact reversible span, preserving every original line-ending byte. Allow an existing archive only after exact byte-hash equality.",
+    "candidateImplementationChanged": false,
+    "subsequentAdoptionReceipt": "source35-arena-member-cache-adoption.json",
+    "subsequentAdoptionReceiptSha256": "0da22523698e2adf91c640c473bf52cbace87d8e48dd158d337f913b9fefbd98"
+  },
+  "qualification": "This was a file-preparation assertion failure, not a passing runtime test or a product/performance failure. No acceptance history is rewritten."
+}

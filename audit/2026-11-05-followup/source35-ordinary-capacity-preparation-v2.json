@@ -1,0 +1,262 @@
+{
+  "preparedAt": "2026-11-04T19:01:22.443Z",
+  "status": "V2-FS-PREFLIGHT-PASS-NO-CAPACITY-ATTEMPT-YET",
+  "priorPreparationFile": "audit/2026-11-05-followup/source35-ordinary-capacity-preparation.json",
+  "priorPreparationSha256": "3fe43e0b382d834045264b56c4a65c7f0784a43c87dfde6b3be44705d0c26cdf",
+  "retainedSetupFailure": {
+    "failureFile": "audit/2026-11-05-followup/pack-backend-8c164ff7da01c733-failure.json",
+    "failureSha256": "8120b1ea2e25aebccb1c2578cfd2f844e2fead877f428caac65c38749cd03275",
+    "cleanupFile": "audit/2026-11-05-followup/pack-backend-8c164ff7da01c733-cleanup.json",
+    "cleanupSha256": "3a14e067ab99a52d54ba33ed9198cc21a58ba92b2c9c9a39217d2075adc02eef",
+    "actualCapacityAttempts": 0,
+    "allServicesGracefullyClosed": true,
+    "privateDiagnosticsRetainedIgnored": true
+  },
+  "addedMissingIdentity": {
+    "originalFile": "audit/2026-11-02/pack-capacity-instance-source34.mjs",
+    "originalSha256": "4f838dfeae4e1ec4fd8582420ef522db650bf1afbb59e5756c7fe7b987b860ff",
+    "file": "audit/2026-11-05-followup/pack-capacity-instance-source35.mjs",
+    "sha256": "c23e0afdb49fe5242bfa8708844332940bff9b8f55bc1a1e6dee76c1b4630b8d",
+    "exactReversal": true,
+    "replacements": [
+      {
+        "from": "audit/2026-11-02",
+        "to": "audit/2026-11-05-followup",
+        "count": 2
+      },
+      {
+        "from": "source34",
+        "to": "source35",
+        "count": 2
+      },
+      {
+        "from": "capacity34",
+        "to": "capacity35",
+        "count": 6
+      },
+      {
+        "from": "rate-native34",
+        "to": "rate-native35",
+        "count": 4
+      },
+      {
+        "from": "apache = await prepareApache({ owned, root, privateLogs, appConfig: configFile, phpDirectory: path.dirname(runtime.binary), port: apiPort });",
+        "to": "apache = await prepareApache({ owned, root, privateLogs, appConfig: configFile, phpDirectory: path.dirname(runtime.binary), port: apiPort });\n    // Same owned readiness request, with bounded OPcache/PDO availability facts.\n    await writeFile(path.join(apache.webRoot,'__audit-runtime.php'),\"<?php\\nheader('Content-Type: application/json'); echo json_encode(['sapi'=>PHP_SAPI,'threadSafe'=>PHP_ZTS===1,'pid'=>getmypid(),'ini'=>php_ini_loaded_file(),'config'=>getenv('SPAROWTYPE_CONFIG_FILE'),'opcodeCacheEnabled'=>extension_loaded('Zend OPcache') && filter_var(ini_get('opcache.enable'), FILTER_VALIDATE_BOOLEAN),'pdoMysqlLoaded'=>extension_loaded('pdo_mysql'),'nativeMysqlDriverAvailable'=>in_array('mysql',PDO::getAvailableDrivers(),true)]);\\n\");",
+        "count": 1
+      },
+      {
+        "from": "assert.equal(actual.sapi, 'apache2handler'); assert.equal(actual.threadSafe, true);",
+        "to": "assert.equal(actual.sapi, 'apache2handler'); assert.equal(actual.threadSafe, true);\n    assert.equal(actual.opcodeCacheEnabled,false,'Ordinary capacity requires OPcache OFF.');\n    assert.equal(actual.pdoMysqlLoaded,true);assert.equal(actual.nativeMysqlDriverAvailable,true);",
+        "count": 1
+      },
+      {
+        "from": "privateIniMatched: true, privateConfigMatched: true, existingApacheConfigRead: false",
+        "to": "privateIniMatched: true, privateConfigMatched: true, opcodeCacheEnabled:false, pdoMysqlLoaded:true, nativeMysqlDriverAvailable:true, connectionPolicy:'Frozen unchanged native PDO constructor; nonpersistent, native prepares, UTC session initialization', existingApacheConfigRead: false",
+        "count": 1
+      }
+    ],
+    "syntaxExit": 0
+  },
+  "source": {
+    "sourceFile": "audit/2026-11-05-followup/final35-source.json",
+    "expectedBuild": "d89f84d74519bf2bbae0",
+    "compared": 506,
+    "mismatches": []
+  },
+  "build": "d89f84d74519bf2bbae0",
+  "sourceManifestSha256": "c9c4c1b9ac7a27854b0db33ef5c2c69fa973ae4c433a2b29020636462393c596",
+  "runtimeInputs": {
+    "audit/2026-11-05-followup/pack-capacity-instance-source35-wire.mjs": "cb8073cc1275f421db0ab6d1aeadda53765671876b79379bb59d7c8d00cefb1c",
+    "audit/2026-11-05-followup/run-source35-capacity-burst.mjs": "74c2b1945a91bd8e15ca2b76d8c0463594709317fcde40881b564eccce1ec4b2",
+    "audit/2026-11-05-followup/run-source35-capacity-wire-burst.mjs": "bb780d68f7275dcd5fca2deed796eb42864adf97aa34e0e120fcb6dd9e439955",
+    "audit/2026-11-05-followup/run-source35-native-rate.mjs": "fb501bdfc70b6909dfb8be2f40744fe2834ab08c982de911ce6bda71a6643359",
+    "audit/2026-11-05-followup/native-rate-worker-source35.php": "151a599fc37d8181b82851319dfc68eba1cec2e2762943b654be61c9615b160b",
+    "backend/tests/arena-audit-admin.php": "1c40050d0318e8ec84e6cfc44ab90ebd7840d467ea1f0387ec16e11744b8091b",
+    "scripts/php-runtime.mjs": "2adeffc2ac322edbc611f34c437a0f34569689c942602bf39b079305cfb7a60f",
+    "audit/2026-10-21/pack-apache-runtime.mjs": "80dd94f993d853d2057314473855a796e11264323bce64a4a9db97822b6dabe7",
+    "audit/2026-11-05-followup/pack-capacity-instance-source35.mjs": "c23e0afdb49fe5242bfa8708844332940bff9b8f55bc1a1e6dee76c1b4630b8d"
+  },
+  "filesystemPreflight": [
+    {
+      "file": "C:/xampp/apache/bin/httpd.exe",
+      "exists": true
+    },
+    {
+      "file": "C:/xampp/mysql/bin/mysql_install_db.exe",
+      "exists": true
+    },
+    {
+      "file": "C:/xampp/mysql/bin/mysqld.exe",
+      "exists": true
+    },
+    {
+      "file": "C:/xampp/php/ext/php_intl.dll",
+      "exists": true
+    },
+    {
+      "file": "C:/xampp/php/ext/php_mbstring.dll",
+      "exists": true
+    },
+    {
+      "file": "C:/xampp/php/ext/php_pdo_mysql.dll",
+      "exists": true
+    },
+    {
+      "file": "C:/xampp/php/php.exe",
+      "exists": true
+    },
+    {
+      "file": "C:/xampp/php/php8apache2_4.dll",
+      "exists": true
+    },
+    {
+      "file": "C:/xampp/php/php8ts.dll",
+      "exists": true
+    },
+    {
+      "file": "audit/2026-10-21/artifact-verification.mjs",
+      "exists": true
+    },
+    {
+      "file": "audit/2026-10-21/pack-apache-runtime.mjs",
+      "exists": true
+    },
+    {
+      "file": "audit/2026-11-05-followup/final35-source.json",
+      "exists": true
+    },
+    {
+      "file": "audit/2026-11-05-followup/native-rate-worker-source35.php",
+      "exists": true
+    },
+    {
+      "file": "audit/2026-11-05-followup/pack-capacity-instance-source35-wire.mjs",
+      "exists": true
+    },
+    {
+      "file": "audit/2026-11-05-followup/pack-capacity-instance-source35.mjs",
+      "exists": true
+    },
+    {
+      "file": "audit/2026-11-05-followup/run-source35-capacity-burst.mjs",
+      "exists": true
+    },
+    {
+      "file": "audit/2026-11-05-followup/run-source35-capacity-wire-burst.mjs",
+      "exists": true
+    },
+    {
+      "file": "audit/2026-11-05-followup/run-source35-native-rate.mjs",
+      "exists": true
+    },
+    {
+      "file": "audit/mega-pack-2026-10-21/run-arena-http.mjs",
+      "exists": true
+    },
+    {
+      "file": "audit/mega-pack-2026-10-21/run-arena-load.mjs",
+      "exists": true
+    },
+    {
+      "file": "backend/tests/arena-audit-admin.php",
+      "exists": true
+    },
+    {
+      "file": "backend/tests/classroom-lifecycle.mjs",
+      "exists": true
+    },
+    {
+      "file": "backend/tests/course-lifecycle.mjs",
+      "exists": true
+    },
+    {
+      "file": "backend/tests/data-lifecycle.mjs",
+      "exists": true
+    },
+    {
+      "file": "backend/tests/pack-progression-lifecycle.mjs",
+      "exists": true
+    },
+    {
+      "file": "backend/tests/pack-social-lifecycle.mjs",
+      "exists": true
+    },
+    {
+      "file": "backend/tests/password-policy.php",
+      "exists": true
+    },
+    {
+      "file": "backend/tests/race-lifecycle.mjs",
+      "exists": true
+    },
+    {
+      "file": "backend/tests/validation-parity.mjs",
+      "exists": true
+    },
+    {
+      "file": "dist/offline-build.json",
+      "exists": true
+    },
+    {
+      "file": "scripts/php-runtime.mjs",
+      "exists": true
+    },
+    {
+      "file": "src/domain/__tests__/arena.test.ts",
+      "exists": true
+    },
+    {
+      "file": "src/domain/arena.ts",
+      "exists": true
+    },
+    {
+      "file": "src/lib/typing-core/index.ts",
+      "exists": true
+    },
+    {
+      "file": "src/services/arena-service.ts",
+      "exists": true
+    }
+  ],
+  "allRequiredStaticHelperInputAndImportPathsExist": true,
+  "all506SourceDependenciesVerified": true,
+  "predeclaredRepeatedAcceptance": {
+    "firstOwner": "One new owner runs full1653 then wire1653. All outcomes retained; no retries, filtering or automatic threshold adjustment.",
+    "ifFirstBothPass": "Run two additional independently new owners with the identical full→wire order; all three owners must pass both strict p95<150ms targets.",
+    "ifAnyFails": "Retain that failure and stop acceptance expansion for diagnosis; do not relabel an earlier pass or run the long matrix as if capacity passed.",
+    "perOwner": {
+      "rooms": 50,
+      "seats": 8,
+      "requestsPerRepresentation": 1653,
+      "concurrentHttpRequests": 20,
+      "strictP95BelowMs": 150,
+      "fullBeforeWire": true,
+      "newIndependentFixturesPerRepresentation": true,
+      "OPcache": false,
+      "persistentPDO": false,
+      "actualPhpPoliciesUnchanged": true,
+      "wireCacheQualification": "Same owner/database after full workload, with no added warmup or code cache."
+    }
+  },
+  "entry": "audit/2026-11-05-followup/pack-capacity-instance-source35-wire.mjs",
+  "flags": {
+    "SPAROWTYPE_PACK_INSTANCE_ACCEPTANCE": "1",
+    "SPAROWTYPE_PACK_APACHE_ACCEPTANCE": "1",
+    "SPAROWTYPE_PACK_HTTP_RUNTIME": "apache",
+    "SPAROWTYPE_PACK_SUITES": "password",
+    "SPAROWTYPE_PACK_HOLD": "1",
+    "SPAROWTYPE_PACK_KEEP_FAILURE": "1",
+    "SPAROWTYPE_SOURCE35_CAPACITY_ACCEPTANCE": "1",
+    "SPAROWTYPE_SOURCE35_CAPACITY_WIRE_ACCEPTANCE": "1",
+    "SPAROWTYPE_FINAL35_BUILD_ID": "d89f84d74519bf2bbae0"
+  },
+  "commands": [
+    "capacity35",
+    "capacity35-wire",
+    "cleanup"
+  ],
+  "measuredApplicationActionsOrTimingChanged": false,
+  "otherExistingRuntimeInputsChanged": false,
+  "servicesStartedByThisPreparation": 0,
+  "originalPrivateConfigurationRead": false
+}

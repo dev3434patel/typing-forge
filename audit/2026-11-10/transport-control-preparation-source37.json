@@ -1,0 +1,61 @@
+{
+  "status": "PREPARED-NOT-RUN-REQUIRES-ROOT-GO-AND-2GIB",
+  "preparedAt": "2026-11-10T15:34:16.1860112+00:00",
+  "filesystemOnly": true,
+  "productionOrOriginalHarnessEdited": false,
+  "groups": [
+    "A-B-B-A",
+    "A-B-B-A"
+  ],
+  "A": "checkpoint inside20-worker pool before api timer",
+  "B": "all400 fullcheckpoints prebuilt before same20-worker pool",
+  "requestsPerPhase": 400,
+  "rooms": 50,
+  "actorsPerRoom": 8,
+  "wordsPerTarget": 800,
+  "eventsPerActor": 10,
+  "fixedResponseBytes": 8192,
+  "syntheticClockScope": "Only real SessionController clock: start1700000000000/checkpointoffset1200ms. HTTPperformance.now untouched.",
+  "payloadEquality": "Server streamSHA256 of all400 actor fullJSONbytes compared across all8phases; no shortened projection.",
+  "timing": "api timer starts before JSON.stringify in both variants; checkpoint remains outside timer, inside concurrent pool only inA.",
+  "minFreeMemoryBytes": 2147483648,
+  "stopRule": "Stop after any functional, integrity, payload or resource failure; no retry or timing filtering.",
+  "warmupHttpRequests": 0,
+  "sourceManifest": "audit/2026-11-05-followup/final37-source.json",
+  "build": "d89f84d74519bf2bbae0",
+  "requiredSourceFiles": 506,
+  "inputHashes": {
+    "audit/2026-11-10/run-transport-control.mjs": "eb1ba92ecfe89cf77cf1ad32e55b4b26f08ff2d717336ece761b94df3b860a24",
+    "audit/2026-11-10/transport-control-client.mjs": "a179c67e7701684d7a2e7683678d1e6290808627876d10455551b69a74b7fc01",
+    "audit/2026-11-05-followup/final37-source.json": "893d7adfccb85bda12994aafed15a881e76e07b84d6166d479c9803ccaa300b2",
+    "audit/2026-11-05-followup/artifact-verification.mjs": "4f247025eb2a54792d5ad080054541883c11b8bcede8b777354d477bda2a2d78",
+    "audit/2026-11-05-followup/run-source36-capacity-burst.mjs": "c8739b8721aad22a2697b3c06a0b914cf03c936488fa229aaf65bfd392d42b4f",
+    "audit/2026-11-05-followup/run-source36-capacity-wire-burst.mjs": "81da7c33b739257867003ad1fdb3ca2be489a14288feb2e41e2e3796f4d97249",
+    "audit/2026-11-05-followup/run-index-abba-capacity.mjs": "6dd5b533c535e5818c30c5fbb867968b0ad20970ab73ba17a034f2ea172098fc",
+    "backend/src/ArenaService.php": "07ba6e0f26c7a17f15746d457b3fc95f5f2f663acd3b283bb5e1fb8b61c36635",
+    "backend/src/ArenaRules.php": "abb6f4c82a699e353354efd3600f7c9c8330a8df72a9b290702c5e4cfcf20353",
+    "src/lib/typing-core/index.ts": "daaec994ec92b5c94f61be801a15675c0a918b555329321079a1af25a25ccc87",
+    "src/lib/typing-core/session.ts": "fb4ad1a1678da5f4399bb2d32a57ab5fc876546b8b018e7f1a2d2c21f6104fbd",
+    "src/lib/typing-core/transcript.ts": "bf91763defa8980fc0670e26f3bba6e4b008452e59fa1f4670419567faa085f8",
+    "src/lib/typing-core/metrics.ts": "de11128e062997daa61a621cd992e475ddd07934b26192508164b27b7a71e976",
+    "src/lib/typing-core/types.ts": "8c77af952d7980d29de2dc9b4fb107bfd7e9b0f77a1bbab44916313e3b007471",
+    "package.json": "92801edd253f07c11c67c75177aab9f8f77583470eaf1d2986184196e2220984",
+    "package-lock.json": "6b01d934527c99a523390d4f55b2d56ed00fff34ce189cb07fc068c57ce28ace",
+    "audit/2026-11-10/source37-frontend-artifact-reuse-proof.json": "3caa392db88a7dadf8a10a846667e3a21cd34d41a01bbd8bb26adb8abe595814"
+  },
+  "execution": "SPAROWTYPE_TRANSPORT_CONTROL_GO=1 plus exact source37 preparationSHA; node audit/2026-11-10/run-transport-control.mjs",
+  "scope": "TRANSPORT ONLY; fixedNodeecho response is notArena/backend/correctness orcapacity acceptance.",
+  "supersedesPreparationSha256": "45ff91c3dda1b39e93ecda90bdf207a86b36c50caf282b9e98c6730eacaf9868",
+  "preRunReviewRevision": "Ready-before-config IPC handshake and preparation self-hash checked per phase; no prior execution.",
+  "source37FrontendProof": {
+    "file": "audit/2026-11-10/source37-frontend-artifact-reuse-proof.json",
+    "sha256": "3caa392db88a7dadf8a10a846667e3a21cd34d41a01bbd8bb26adb8abe595814"
+  },
+  "rebind": {
+    "source36Snapshot": "audit/2026-11-10/transport-control-source36-snapshot",
+    "exactTwoLiteralReversal": true,
+    "workloadChanged": false,
+    "timersChanged": false,
+    "clientRawSha256Unchanged": "a179c67e7701684d7a2e7683678d1e6290808627876d10455551b69a74b7fc01"
+  }
+}

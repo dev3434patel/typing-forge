@@ -1,0 +1,75 @@
+{
+  "declaredAt": "2026-11-09T18:05:53.826Z",
+  "status": "NOT-RUN",
+  "build": "d89f84d74519bf2bbae0",
+  "source": {
+    "sourceFile": "audit/2026-11-05-followup/final36-source.json",
+    "expectedBuild": "d89f84d74519bf2bbae0",
+    "compared": 506,
+    "mismatches": []
+  },
+  "ownerId": "15643f7ac91af72a",
+  "origin": "http://127.0.0.1:7052/api/",
+  "rooms": 50,
+  "accountsPerRoom": 8,
+  "occupiedSeatsRequired": 400,
+  "durationSeconds": 30,
+  "concurrency": 20,
+  "requestTimeoutMs": 15000,
+  "watchdogMs": 180000,
+  "expectedArenaOperations": 1653,
+  "expectedOperations": {
+    "create": 50,
+    "join": 351,
+    "get": 51,
+    "spectate": 1,
+    "ready": 400,
+    "submit": 400,
+    "leave": 400
+  },
+  "p95TargetMs": 150,
+  "p95Method": "Nearest rank: sorted successful real Arena HTTP latencies[ceil(n*0.95)-1]. Every unexpected status separately fails the whole gate; all-request and per-phase distributions are also retained.",
+  "retries": 0,
+  "resultFiltering": false,
+  "rateCountersReset": false,
+  "limiterBypass": false,
+  "evidence": "400 independent guarded synthetic authenticated sessions. Ten canonical insertion events per account use native performance.now mapped to the actual authoritative server start and real80/83/86ms pacing; no server/browser/client clock fast-forward.",
+  "authenticationEndpointPerformance": "NOT-MEASURED: accounts/sessions are isolated SQL/file fixtures; one real session request verifies the API binding.",
+  "sustained120SecondLoad": "NOT-RUN: this declared burst preserves the original1653-operation comparison. It cannot establish400-client steady-state polling throughput.",
+  "sourceAndHarnessHashes": {
+    "audit/2026-11-05-followup/pack-index-abba-instance.mjs": "78ced43065f660f1651f26fcd3585e4f90b81d97c17ea8c10ce908d0b83fc52f",
+    "audit/2026-11-05-followup/run-index-abba-capacity.mjs": "6dd5b533c535e5818c30c5fbb867968b0ad20970ab73ba17a034f2ea172098fc",
+    "audit/2026-11-05-followup/index-abba-shim.mjs": "7779800ad7cd52228c9d0a89189020cf264fc440d0b828468ba3d9ffe6287a4f",
+    "audit/2026-11-05-followup/index-abba-preflight.mjs": "dfddbe0b29dd632cc88f7fb774e8c8a59cb976180c512cbb8289a465b6891e98",
+    "backend/tests/arena-audit-admin.php": "1c40050d0318e8ec84e6cfc44ab90ebd7840d467ea1f0387ec16e11744b8091b",
+    "scripts/php-runtime.mjs": "2adeffc2ac322edbc611f34c437a0f34569689c942602bf39b079305cfb7a60f"
+  },
+  "machine": {
+    "logicalCpus": 20,
+    "cpuModel": "13th Gen Intel(R) Core(TM) i7-13650HX",
+    "totalMemoryBytes": 16849256448,
+    "freeMemoryBytes": 3092336640
+  },
+  "diagnosticOnly": true,
+  "diagnosticPhase": "3B",
+  "diagnosticVariant": "B",
+  "variantHeader": "Identity only; no server timing instrumentation",
+  "fullPayloadUnchanged": true,
+  "order": [
+    "1A",
+    "2B",
+    "3B",
+    "4A"
+  ],
+  "warmDatabaseOrderDeclared": true,
+  "producer": {
+    "node": "v22.20.0",
+    "v8HeapLimitBytes": 4345298944,
+    "runtimeFlagsSha256": "697a22637caa4bc62b345a1d673caadffb15b514eab0d930ef4c308b0804d291",
+    "nodeOptionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "privateConfigReadByHarness": false,
+  "originalConfigRead": false,
+  "existingDatabaseConnected": false,
+  "cleanupOwnership": "Fixture account/session cleanup belongs to this script; Apache/MariaDB process cleanup remains with its original owner and must be verified separately."
+}

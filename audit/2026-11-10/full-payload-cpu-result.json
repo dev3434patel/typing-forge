@@ -1,0 +1,2915 @@
+{
+  "declaredAt": "2026-11-10T15:09:18.470Z",
+  "status": "PASS-SCOPED-24-FRESH-PHP-CPU-SAMPLES",
+  "scope": "Fresh single-process CLI CPU/allocation diagnostic only; no HTTP/server/database, no capacity acceptance.",
+  "sourceHashes": {
+    "backend/public/index.php": "f02f477750838614113cf0900143a79218dfc8299b1cb963aab570b7f6683c84",
+    "backend/src/RequestBody.php": "0857c88cd3895facb3c5d5076e1dc0f7654942e5510be0a1b5739c20989d2fba",
+    "backend/src/ArenaRules.php": "abb6f4c82a699e353354efd3600f7c9c8330a8df72a9b290702c5e4cfcf20353",
+    "backend/src/CompetitiveInputPolicy.php": "4f33803bab70e09ebc5b304ea41c5e2433f7ed080ef5a1a43f97deb640cd5a23",
+    "backend/src/SessionValidator.php": "d23d6a87a8e0bf9480281083f36575989112e80064fb3ef6c46e8e26e0abaaa6",
+    "backend/src/CourseAssessment.php": "224f3b3ca7192089ff04027a9e8411573565a1e3bc2e3b1180b509e72bfe1795",
+    "src/lib/typing-core/session.ts": "fb4ad1a1678da5f4399bb2d32a57ab5fc876546b8b018e7f1a2d2c21f6104fbd",
+    "src/lib/typing-core/metrics.ts": "de11128e062997daa61a621cd992e475ddd07934b26192508164b27b7a71e976",
+    "src/lib/typing-core/transcript.ts": "bf91763defa8980fc0670e26f3bba6e4b008452e59fa1f4670419567faa085f8"
+  },
+  "fixture": {
+    "bytes": 314569,
+    "sha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+    "words": 800,
+    "characters": 4804,
+    "events": 10,
+    "elapsedMs": 2000,
+    "authoritativeReplayElapsedMs": 2300,
+    "realSessionController": true,
+    "injectedClockForMicroOnly": true
+  },
+  "candidate": {
+    "file": "audit/2026-11-10/full-payload-index-candidate.php",
+    "sha256": "ace06732ab6996e13525e08dbb41dff441109c94c18650db937985d5ae2f5c78",
+    "exactInsertionReversal": true,
+    "metricsRetained": true,
+    "existingSlotsReplacedWithNullOnly": true,
+    "rawJsonReleasedAfterFullDecode": true
+  },
+  "runtime": {
+    "binary": "C:/xampp/php/php.exe",
+    "args": [
+      "-n",
+      "-d",
+      "extension_dir=C:/xampp/php/ext",
+      "-d",
+      "extension=intl",
+      "-d",
+      "extension=mbstring",
+      "-d",
+      "extension=pdo_mysql",
+      "-d",
+      "memory_limit=45M"
+    ],
+    "managedLimitBytes": 47185920,
+    "gcDisabled": false,
+    "nodeObservedRssBytes": 62398464,
+    "nodeHeapUsedBytes": 10669352,
+    "freeMemoryBeforeBytes": 1999765504
+  },
+  "schedule": [
+    "A",
+    "B",
+    "B",
+    "A",
+    "A",
+    "B",
+    "B",
+    "A",
+    "A",
+    "B",
+    "B",
+    "A",
+    "A",
+    "B",
+    "B",
+    "A",
+    "A",
+    "B",
+    "B",
+    "A",
+    "A",
+    "B",
+    "B",
+    "A"
+  ],
+  "automaticRetries": 0,
+  "samples": [
+    {
+      "index": 1,
+      "variant": "A",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "A",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 34.9171,
+          "decodeMs": 4.2199,
+          "releaseMs": 0.0017,
+          "validationAutoloadMs": 2.8496,
+          "preflightMs": 0.5615,
+          "validateCheckpointMs": 7.3695,
+          "authoritativeReplay2300Ms": 0.7214,
+          "hashAndSerializationMs": 7.3667
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 3714472,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 4055304,
+            "allocatedBytes": 6291456,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 6622736,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "authoritativeReplay": {
+            "usedBytes": 8573728,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "hashes": {
+            "usedBytes": 9189168,
+            "allocatedBytes": 12582912,
+            "peakAllocatedBytes": 12582912
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": true,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 12582912,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    },
+    {
+      "index": 2,
+      "variant": "B",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "B",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 0.5655,
+          "decodeMs": 3.3896,
+          "releaseMs": 0.1498,
+          "validationAutoloadMs": 2.5146,
+          "preflightMs": 0.025,
+          "validateCheckpointMs": 3.5267,
+          "authoritativeReplay2300Ms": 0.7814,
+          "hashAndSerializationMs": 7.409
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 494952,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 835784,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 3403216,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "authoritativeReplay": {
+            "usedBytes": 5354208,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "hashes": {
+            "usedBytes": 5969648,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": false,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 10485760,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    },
+    {
+      "index": 3,
+      "variant": "B",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "B",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 0.6445,
+          "decodeMs": 3.5523,
+          "releaseMs": 0.183,
+          "validationAutoloadMs": 2.514,
+          "preflightMs": 0.0247,
+          "validateCheckpointMs": 3.5376,
+          "authoritativeReplay2300Ms": 0.7023,
+          "hashAndSerializationMs": 7.4904
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 494952,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 835784,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 3403216,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "authoritativeReplay": {
+            "usedBytes": 5354208,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "hashes": {
+            "usedBytes": 5969648,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": false,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 10485760,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    },
+    {
+      "index": 4,
+      "variant": "A",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "A",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 0.5631,
+          "decodeMs": 3.495,
+          "releaseMs": 0.0015,
+          "validationAutoloadMs": 2.633,
+          "preflightMs": 0.0272,
+          "validateCheckpointMs": 3.7949,
+          "authoritativeReplay2300Ms": 0.6902,
+          "hashAndSerializationMs": 7.6837
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 3714472,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 4055304,
+            "allocatedBytes": 6291456,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 6622736,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "authoritativeReplay": {
+            "usedBytes": 8573728,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "hashes": {
+            "usedBytes": 9189168,
+            "allocatedBytes": 12582912,
+            "peakAllocatedBytes": 12582912
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": true,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 12582912,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    },
+    {
+      "index": 5,
+      "variant": "A",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "A",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 0.5633,
+          "decodeMs": 3.5995,
+          "releaseMs": 0.0016,
+          "validationAutoloadMs": 2.5926,
+          "preflightMs": 0.0269,
+          "validateCheckpointMs": 4.2259,
+          "authoritativeReplay2300Ms": 0.701,
+          "hashAndSerializationMs": 7.5377
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 3714472,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 4055304,
+            "allocatedBytes": 6291456,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 6622736,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "authoritativeReplay": {
+            "usedBytes": 8573728,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "hashes": {
+            "usedBytes": 9189168,
+            "allocatedBytes": 12582912,
+            "peakAllocatedBytes": 12582912
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": true,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 12582912,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    },
+    {
+      "index": 6,
+      "variant": "B",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "B",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 0.5654,
+          "decodeMs": 3.635,
+          "releaseMs": 0.2037,
+          "validationAutoloadMs": 2.56,
+          "preflightMs": 0.0247,
+          "validateCheckpointMs": 3.6673,
+          "authoritativeReplay2300Ms": 0.8074,
+          "hashAndSerializationMs": 7.7777
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 494952,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 835784,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 3403216,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "authoritativeReplay": {
+            "usedBytes": 5354208,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "hashes": {
+            "usedBytes": 5969648,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": false,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 10485760,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    },
+    {
+      "index": 7,
+      "variant": "B",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "B",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 0.6244,
+          "decodeMs": 3.5139,
+          "releaseMs": 0.1544,
+          "validationAutoloadMs": 2.5224,
+          "preflightMs": 0.0226,
+          "validateCheckpointMs": 3.1232,
+          "authoritativeReplay2300Ms": 0.7292,
+          "hashAndSerializationMs": 8.4543
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 494952,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 835784,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 3403216,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "authoritativeReplay": {
+            "usedBytes": 5354208,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "hashes": {
+            "usedBytes": 5969648,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": false,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 10485760,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    },
+    {
+      "index": 8,
+      "variant": "A",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "A",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 0.6251,
+          "decodeMs": 3.6191,
+          "releaseMs": 0.0016,
+          "validationAutoloadMs": 2.6462,
+          "preflightMs": 0.0275,
+          "validateCheckpointMs": 3.8971,
+          "authoritativeReplay2300Ms": 0.7658,
+          "hashAndSerializationMs": 7.5562
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 3714472,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 4055304,
+            "allocatedBytes": 6291456,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 6622736,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "authoritativeReplay": {
+            "usedBytes": 8573728,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "hashes": {
+            "usedBytes": 9189168,
+            "allocatedBytes": 12582912,
+            "peakAllocatedBytes": 12582912
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": true,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 12582912,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    },
+    {
+      "index": 9,
+      "variant": "A",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "A",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 0.5271,
+          "decodeMs": 3.5701,
+          "releaseMs": 0.0015,
+          "validationAutoloadMs": 3.0433,
+          "preflightMs": 0.0299,
+          "validateCheckpointMs": 3.9694,
+          "authoritativeReplay2300Ms": 0.6773,
+          "hashAndSerializationMs": 7.7428
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 3714472,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 4055304,
+            "allocatedBytes": 6291456,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 6622736,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "authoritativeReplay": {
+            "usedBytes": 8573728,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "hashes": {
+            "usedBytes": 9189168,
+            "allocatedBytes": 12582912,
+            "peakAllocatedBytes": 12582912
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": true,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 12582912,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    },
+    {
+      "index": 10,
+      "variant": "B",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "B",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 0.7057,
+          "decodeMs": 4.9014,
+          "releaseMs": 0.1553,
+          "validationAutoloadMs": 2.5645,
+          "preflightMs": 0.026,
+          "validateCheckpointMs": 3.2931,
+          "authoritativeReplay2300Ms": 0.6786,
+          "hashAndSerializationMs": 7.541
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 494952,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 835784,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 3403216,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "authoritativeReplay": {
+            "usedBytes": 5354208,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "hashes": {
+            "usedBytes": 5969648,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": false,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 10485760,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    },
+    {
+      "index": 11,
+      "variant": "B",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "B",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 0.568,
+          "decodeMs": 3.5224,
+          "releaseMs": 0.1833,
+          "validationAutoloadMs": 2.5599,
+          "preflightMs": 0.0248,
+          "validateCheckpointMs": 3.4248,
+          "authoritativeReplay2300Ms": 0.7036,
+          "hashAndSerializationMs": 7.4794
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 494952,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 835784,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 3403216,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "authoritativeReplay": {
+            "usedBytes": 5354208,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "hashes": {
+            "usedBytes": 5969648,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": false,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 10485760,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    },
+    {
+      "index": 12,
+      "variant": "A",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "A",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 0.5411,
+          "decodeMs": 3.728,
+          "releaseMs": 0.0014,
+          "validationAutoloadMs": 2.6509,
+          "preflightMs": 0.0256,
+          "validateCheckpointMs": 3.9807,
+          "authoritativeReplay2300Ms": 0.7202,
+          "hashAndSerializationMs": 7.4183
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 3714472,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 4055304,
+            "allocatedBytes": 6291456,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 6622736,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "authoritativeReplay": {
+            "usedBytes": 8573728,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "hashes": {
+            "usedBytes": 9189168,
+            "allocatedBytes": 12582912,
+            "peakAllocatedBytes": 12582912
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": true,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 12582912,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    },
+    {
+      "index": 13,
+      "variant": "A",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "A",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 0.5485,
+          "decodeMs": 3.6032,
+          "releaseMs": 0.0017,
+          "validationAutoloadMs": 2.6708,
+          "preflightMs": 0.0301,
+          "validateCheckpointMs": 4.0444,
+          "authoritativeReplay2300Ms": 0.6706,
+          "hashAndSerializationMs": 7.2345
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 3714472,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 4055304,
+            "allocatedBytes": 6291456,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 6622736,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "authoritativeReplay": {
+            "usedBytes": 8573728,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "hashes": {
+            "usedBytes": 9189168,
+            "allocatedBytes": 12582912,
+            "peakAllocatedBytes": 12582912
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": true,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 12582912,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    },
+    {
+      "index": 14,
+      "variant": "B",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "B",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 0.7729,
+          "decodeMs": 4.0851,
+          "releaseMs": 0.1619,
+          "validationAutoloadMs": 2.565,
+          "preflightMs": 0.0239,
+          "validateCheckpointMs": 3.308,
+          "authoritativeReplay2300Ms": 0.6729,
+          "hashAndSerializationMs": 7.2398
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 494952,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 835784,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 3403216,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "authoritativeReplay": {
+            "usedBytes": 5354208,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "hashes": {
+            "usedBytes": 5969648,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": false,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 10485760,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    },
+    {
+      "index": 15,
+      "variant": "B",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "B",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 1.0372,
+          "decodeMs": 4.9726,
+          "releaseMs": 0.1859,
+          "validationAutoloadMs": 2.9919,
+          "preflightMs": 0.0311,
+          "validateCheckpointMs": 3.3138,
+          "authoritativeReplay2300Ms": 0.6705,
+          "hashAndSerializationMs": 7.7541
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 494952,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 835784,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 3403216,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "authoritativeReplay": {
+            "usedBytes": 5354208,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "hashes": {
+            "usedBytes": 5969648,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": false,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 10485760,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    },
+    {
+      "index": 16,
+      "variant": "A",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "A",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 0.7791,
+          "decodeMs": 7.9425,
+          "releaseMs": 0.0034,
+          "validationAutoloadMs": 5.5942,
+          "preflightMs": 0.1157,
+          "validateCheckpointMs": 5.5155,
+          "authoritativeReplay2300Ms": 1.4881,
+          "hashAndSerializationMs": 12.2488
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 3714472,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 4055304,
+            "allocatedBytes": 6291456,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 6622736,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "authoritativeReplay": {
+            "usedBytes": 8573728,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "hashes": {
+            "usedBytes": 9189168,
+            "allocatedBytes": 12582912,
+            "peakAllocatedBytes": 12582912
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": true,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 12582912,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    },
+    {
+      "index": 17,
+      "variant": "A",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "A",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 0.5692,
+          "decodeMs": 4.049,
+          "releaseMs": 0.0016,
+          "validationAutoloadMs": 2.7362,
+          "preflightMs": 0.0276,
+          "validateCheckpointMs": 4.2231,
+          "authoritativeReplay2300Ms": 0.6826,
+          "hashAndSerializationMs": 9.4207
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 3714472,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 4055304,
+            "allocatedBytes": 6291456,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 6622736,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "authoritativeReplay": {
+            "usedBytes": 8573728,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "hashes": {
+            "usedBytes": 9189168,
+            "allocatedBytes": 12582912,
+            "peakAllocatedBytes": 12582912
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": true,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 12582912,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    },
+    {
+      "index": 18,
+      "variant": "B",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "B",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 0.5431,
+          "decodeMs": 3.3817,
+          "releaseMs": 0.1755,
+          "validationAutoloadMs": 2.6572,
+          "preflightMs": 0.0273,
+          "validateCheckpointMs": 3.6403,
+          "authoritativeReplay2300Ms": 0.7034,
+          "hashAndSerializationMs": 7.475
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 494952,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 835784,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 3403216,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "authoritativeReplay": {
+            "usedBytes": 5354208,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "hashes": {
+            "usedBytes": 5969648,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": false,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 10485760,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    },
+    {
+      "index": 19,
+      "variant": "B",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "B",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 0.5178,
+          "decodeMs": 3.3567,
+          "releaseMs": 0.1555,
+          "validationAutoloadMs": 2.4221,
+          "preflightMs": 0.0239,
+          "validateCheckpointMs": 3.2062,
+          "authoritativeReplay2300Ms": 0.6718,
+          "hashAndSerializationMs": 7.8237
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 494952,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 835784,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 3403216,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "authoritativeReplay": {
+            "usedBytes": 5354208,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "hashes": {
+            "usedBytes": 5969648,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": false,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 10485760,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    },
+    {
+      "index": 20,
+      "variant": "A",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "A",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 0.6247,
+          "decodeMs": 4.6351,
+          "releaseMs": 0.0019,
+          "validationAutoloadMs": 2.9425,
+          "preflightMs": 0.0292,
+          "validateCheckpointMs": 4.6616,
+          "authoritativeReplay2300Ms": 0.8063,
+          "hashAndSerializationMs": 8.3792
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 3714472,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 4055304,
+            "allocatedBytes": 6291456,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 6622736,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "authoritativeReplay": {
+            "usedBytes": 8573728,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "hashes": {
+            "usedBytes": 9189168,
+            "allocatedBytes": 12582912,
+            "peakAllocatedBytes": 12582912
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": true,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 12582912,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    },
+    {
+      "index": 21,
+      "variant": "A",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "A",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 0.6919,
+          "decodeMs": 3.7263,
+          "releaseMs": 0.0015,
+          "validationAutoloadMs": 2.7919,
+          "preflightMs": 0.0309,
+          "validateCheckpointMs": 4.3859,
+          "authoritativeReplay2300Ms": 0.773,
+          "hashAndSerializationMs": 7.5979
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 3714472,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 4055304,
+            "allocatedBytes": 6291456,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 6622736,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "authoritativeReplay": {
+            "usedBytes": 8573728,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "hashes": {
+            "usedBytes": 9189168,
+            "allocatedBytes": 12582912,
+            "peakAllocatedBytes": 12582912
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": true,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 12582912,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    },
+    {
+      "index": 22,
+      "variant": "B",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "B",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 0.5061,
+          "decodeMs": 3.7213,
+          "releaseMs": 0.1926,
+          "validationAutoloadMs": 2.5964,
+          "preflightMs": 0.0312,
+          "validateCheckpointMs": 3.4737,
+          "authoritativeReplay2300Ms": 0.776,
+          "hashAndSerializationMs": 7.4591
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 494952,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 835784,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 3403216,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "authoritativeReplay": {
+            "usedBytes": 5354208,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "hashes": {
+            "usedBytes": 5969648,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": false,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 10485760,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    },
+    {
+      "index": 23,
+      "variant": "B",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "B",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 0.6313,
+          "decodeMs": 3.4299,
+          "releaseMs": 0.2461,
+          "validationAutoloadMs": 2.6839,
+          "preflightMs": 0.0276,
+          "validateCheckpointMs": 3.6151,
+          "authoritativeReplay2300Ms": 0.7425,
+          "hashAndSerializationMs": 7.6957
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 494952,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 835784,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 3403216,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "authoritativeReplay": {
+            "usedBytes": 5354208,
+            "allocatedBytes": 8388608,
+            "peakAllocatedBytes": 8388608
+          },
+          "hashes": {
+            "usedBytes": 5969648,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": false,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 10485760,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    },
+    {
+      "index": 24,
+      "variant": "A",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "data": {
+        "status": "PASS-SCOPED-CPU-ONLY",
+        "variant": "A",
+        "inputSha256": "3232873d52875c834ec396c7f7aeb69014717db50fb962e2e4cfd944864618dd",
+        "inputBytes": 314569,
+        "times": {
+          "requestBodyAutoloadMs": 0.6023,
+          "decodeMs": 3.6113,
+          "releaseMs": 0.0017,
+          "validationAutoloadMs": 2.7562,
+          "preflightMs": 0.0284,
+          "validateCheckpointMs": 4.496,
+          "authoritativeReplay2300Ms": 0.7273,
+          "hashAndSerializationMs": 8.0283
+        },
+        "memory": {
+          "raw": {
+            "usedBytes": 762848,
+            "allocatedBytes": 2097152,
+            "peakAllocatedBytes": 6291456
+          },
+          "decoded": {
+            "usedBytes": 3714096,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "releasedOrRetained": {
+            "usedBytes": 3714472,
+            "allocatedBytes": 4194304,
+            "peakAllocatedBytes": 6291456
+          },
+          "autoloaded": {
+            "usedBytes": 4055304,
+            "allocatedBytes": 6291456,
+            "peakAllocatedBytes": 6291456
+          },
+          "validated": {
+            "usedBytes": 6622736,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "authoritativeReplay": {
+            "usedBytes": 8573728,
+            "allocatedBytes": 10485760,
+            "peakAllocatedBytes": 10485760
+          },
+          "hashes": {
+            "usedBytes": 9189168,
+            "allocatedBytes": 12582912,
+            "peakAllocatedBytes": 12582912
+          }
+        },
+        "managedMemoryLimit": "45M",
+        "rawRetained": true,
+        "bodyRetained": true,
+        "metricClaimRetained": true,
+        "canonicalPropertyOrder": [
+          "status",
+          "finalText",
+          "targetText",
+          "elapsedMs",
+          "wallDurationMs",
+          "remainingMs",
+          "cursor",
+          "characters",
+          "metrics",
+          "events",
+          "timeSeries",
+          "schemaVersion",
+          "metricsVersion",
+          "learningVersion",
+          "clientSessionId",
+          "ownerScope",
+          "configuration",
+          "comparisonKey",
+          "initialTarget",
+          "issuedTargetSegments",
+          "finalTranscript",
+          "startedAtWall",
+          "finishedAtWall",
+          "pauseIntervals",
+          "finishReason",
+          "assistance",
+          "eligibility"
+        ],
+        "hashes": {
+          "canonicalRawJsonSha256": "05900b36c82393838ca61aadd578afe08c49aef27c174d3ec7350489f1445da9",
+          "canonicalStableSha256": "f5a0499989995e4dcb64dde83b3d35a8f5607e08d383a9bbfd63c2a5f9f40d03",
+          "authoritativeReplayRawJsonSha256": "5ade4b842424c716ace479d984803c93ef878c5bf852c77aefca723ecbca39d4"
+        },
+        "canonicalBytes": 314467,
+        "replayBytes": 298769,
+        "includedFiles": [
+          "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-10\\full-payload-cpu.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\RequestBody.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\ArenaRules.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CompetitiveInputPolicy.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\CourseAssessment.php",
+          "D:\\extra\\typing_updated\\typing-forge\\backend\\src\\SessionValidator.php"
+        ],
+        "peakAllocatedBytes": 12582912,
+        "checkpointElapsedMs": 2000,
+        "authoritativeElapsedMs": 2300,
+        "databaseConnectionCreated": false,
+        "bootstrapOrPrivateConfigLoaded": false
+      },
+      "exactCanonicalAndReplayParity": true
+    }
+  ],
+  "summary": {
+    "A": {
+      "samples": 12,
+      "medianTimesMs": {
+        "requestBodyAutoloadMs": 0.58575,
+        "decodeMs": 3.6727,
+        "releaseMs": 0.0016,
+        "validationAutoloadMs": 2.7462,
+        "preflightMs": 0.0288,
+        "validateCheckpointMs": 4.2245,
+        "authoritativeReplay2300Ms": 0.7208,
+        "hashAndSerializationMs": 7.6408000000000005
+      },
+      "medianMemory": {
+        "raw": {
+          "usedBytes": 762848,
+          "allocatedBytes": 2097152
+        },
+        "decoded": {
+          "usedBytes": 3714096,
+          "allocatedBytes": 4194304
+        },
+        "releasedOrRetained": {
+          "usedBytes": 3714472,
+          "allocatedBytes": 4194304
+        },
+        "autoloaded": {
+          "usedBytes": 4055304,
+          "allocatedBytes": 6291456
+        },
+        "validated": {
+          "usedBytes": 6622736,
+          "allocatedBytes": 10485760
+        },
+        "authoritativeReplay": {
+          "usedBytes": 8573728,
+          "allocatedBytes": 10485760
+        },
+        "hashes": {
+          "usedBytes": 9189168,
+          "allocatedBytes": 12582912
+        }
+      },
+      "peakManagedAllocatedBytes": 12582912
+    },
+    "B": {
+      "samples": 12,
+      "medianTimesMs": {
+        "requestBodyAutoloadMs": 0.5962,
+        "decodeMs": 3.53735,
+        "releaseMs": 0.17925,
+        "validationAutoloadMs": 2.5622499999999997,
+        "preflightMs": 0.0249,
+        "validateCheckpointMs": 3.44925,
+        "authoritativeReplay2300Ms": 0.7035,
+        "hashAndSerializationMs": 7.515700000000001
+      },
+      "medianMemory": {
+        "raw": {
+          "usedBytes": 762848,
+          "allocatedBytes": 2097152
+        },
+        "decoded": {
+          "usedBytes": 3714096,
+          "allocatedBytes": 4194304
+        },
+        "releasedOrRetained": {
+          "usedBytes": 494952,
+          "allocatedBytes": 4194304
+        },
+        "autoloaded": {
+          "usedBytes": 835784,
+          "allocatedBytes": 4194304
+        },
+        "validated": {
+          "usedBytes": 3403216,
+          "allocatedBytes": 8388608
+        },
+        "authoritativeReplay": {
+          "usedBytes": 5354208,
+          "allocatedBytes": 8388608
+        },
+        "hashes": {
+          "usedBytes": 5969648,
+          "allocatedBytes": 10485760
+        }
+      },
+      "peakManagedAllocatedBytes": 10485760
+    }
+  },
+  "qualification": "Single valid representative checkpoint, not full semantic certification, HTTP capacity, clean-host stability or proof of a production speed improvement. Timings are host-sensitive; PHP managed allocation is capped45M. Node fixture/orchestrator runtime RSS is separately disclosed and is not the PHP managed-memory figure.",
+  "productionSourceUnchanged": true,
+  "finishedAt": "2026-11-10T15:09:21.728Z",
+  "freeMemoryAfterBytes": 1857163264
+}

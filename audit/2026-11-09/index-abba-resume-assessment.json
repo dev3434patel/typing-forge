@@ -1,0 +1,332 @@
+{
+  "recordedAt": "2026-11-09T18:12:37.292Z",
+  "status": "COMPLETE-DIAGNOSTIC-ALL-FOUR-LATENCY-GATES-FAILED",
+  "ownerId": "15643f7ac91af72a",
+  "diagnosticOnly": true,
+  "ordinaryAcceptance": false,
+  "source": {
+    "files": 506,
+    "build": "d89f84d74519bf2bbae0",
+    "testConfigDependencies": 73,
+    "unchanged": true
+  },
+  "protocolUnchanged": true,
+  "retries": 0,
+  "filtering": false,
+  "strictP95TargetMs": 150,
+  "totalOperationsAcrossFourPhases": 6612,
+  "totalAcceptedSubmissions": 1600,
+  "totalAcceptedLeaves": 1600,
+  "unexpectedStatuses": 0,
+  "apiOrWorkloadWatchdogFailure": false,
+  "phases": [
+    {
+      "phase": "1A",
+      "variant": "A",
+      "targetMet": false,
+      "globalP95Ms": 195.27750000000015,
+      "submitP95Ms": 228.2569999999996,
+      "nonSubmitP95Ms": {
+        "create": 151.69880000000012,
+        "join": 82.63979999999992,
+        "get": 47.04309999999987,
+        "spectate": 22.292100000000573,
+        "ready": 92.58240000000023,
+        "leave": 161.06049999999777
+      },
+      "evidencePreparationMs": 2867.0915999999997,
+      "totalOperations": 1653,
+      "successful2xx": 1651,
+      "expectedRejections": {
+        "forbidden": 1,
+        "conflict": 1
+      },
+      "unexpectedStatuses": 0,
+      "fixtureAccountsRemoved": 400,
+      "fixtureSessionsRemoved": 400,
+      "beforePhaseFreeBytes": 2914779136,
+      "sampledMinimumFreeBytes": 1911955456,
+      "sampledBelowStartupThreshold": true,
+      "sampledPeakRssBytes": 814841856,
+      "sampledPeakHeapBytes": 495298328,
+      "resourceSampleCount": 10,
+      "producer": {
+        "node": "v22.20.0",
+        "v8HeapLimitBytes": 4345298944,
+        "runtimeFlagsSha256": "697a22637caa4bc62b345a1d673caadffb15b514eab0d930ef4c308b0804d291",
+        "nodeOptionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "correctnessPassed": true,
+      "sourceAndInputsUnchanged": true
+    },
+    {
+      "phase": "2B",
+      "variant": "B",
+      "targetMet": false,
+      "globalP95Ms": 175.74149999999827,
+      "submitP95Ms": 210.8659000000007,
+      "nonSubmitP95Ms": {
+        "create": 89.27879999999982,
+        "join": 80.66130000000021,
+        "get": 42.662700000000314,
+        "spectate": 32.117499999999836,
+        "ready": 93.53999999999996,
+        "leave": 82.14190000000053
+      },
+      "evidencePreparationMs": 2817.702299999999,
+      "totalOperations": 1653,
+      "successful2xx": 1651,
+      "expectedRejections": {
+        "forbidden": 1,
+        "conflict": 1
+      },
+      "unexpectedStatuses": 0,
+      "fixtureAccountsRemoved": 400,
+      "fixtureSessionsRemoved": 400,
+      "beforePhaseFreeBytes": 3170791424,
+      "sampledMinimumFreeBytes": 2401099776,
+      "sampledBelowStartupThreshold": false,
+      "sampledPeakRssBytes": 780550144,
+      "sampledPeakHeapBytes": 587262832,
+      "resourceSampleCount": 9,
+      "producer": {
+        "node": "v22.20.0",
+        "v8HeapLimitBytes": 4345298944,
+        "runtimeFlagsSha256": "697a22637caa4bc62b345a1d673caadffb15b514eab0d930ef4c308b0804d291",
+        "nodeOptionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "correctnessPassed": true,
+      "sourceAndInputsUnchanged": true
+    },
+    {
+      "phase": "3B",
+      "variant": "B",
+      "targetMet": false,
+      "globalP95Ms": 162.8040000000001,
+      "submitP95Ms": 192.13880000000063,
+      "nonSubmitP95Ms": {
+        "create": 80.02700000000004,
+        "join": 81.65499999999975,
+        "get": 42.253600000000006,
+        "spectate": 29.057000000000244,
+        "ready": 88.88400000000001,
+        "leave": 84.78299999999945
+      },
+      "evidencePreparationMs": 2722.651899999999,
+      "totalOperations": 1653,
+      "successful2xx": 1651,
+      "expectedRejections": {
+        "forbidden": 1,
+        "conflict": 1
+      },
+      "unexpectedStatuses": 0,
+      "fixtureAccountsRemoved": 400,
+      "fixtureSessionsRemoved": 400,
+      "beforePhaseFreeBytes": 3131961344,
+      "sampledMinimumFreeBytes": 2128420864,
+      "sampledBelowStartupThreshold": true,
+      "sampledPeakRssBytes": 800948224,
+      "sampledPeakHeapBytes": 409929632,
+      "resourceSampleCount": 9,
+      "producer": {
+        "node": "v22.20.0",
+        "v8HeapLimitBytes": 4345298944,
+        "runtimeFlagsSha256": "697a22637caa4bc62b345a1d673caadffb15b514eab0d930ef4c308b0804d291",
+        "nodeOptionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "correctnessPassed": true,
+      "sourceAndInputsUnchanged": true
+    },
+    {
+      "phase": "4A",
+      "variant": "A",
+      "targetMet": false,
+      "globalP95Ms": 175.2597999999998,
+      "submitP95Ms": 201.76820000000043,
+      "nonSubmitP95Ms": {
+        "create": 100.99330000000009,
+        "join": 87.60510000000022,
+        "get": 46.29399999999987,
+        "spectate": 27.591099999999642,
+        "ready": 74.70839999999953,
+        "leave": 82.98550000000068
+      },
+      "evidencePreparationMs": 3027.7122999999992,
+      "totalOperations": 1653,
+      "successful2xx": 1651,
+      "expectedRejections": {
+        "forbidden": 1,
+        "conflict": 1
+      },
+      "unexpectedStatuses": 0,
+      "fixtureAccountsRemoved": 400,
+      "fixtureSessionsRemoved": 400,
+      "beforePhaseFreeBytes": 2706870272,
+      "sampledMinimumFreeBytes": 1691553792,
+      "sampledBelowStartupThreshold": true,
+      "sampledPeakRssBytes": 802885632,
+      "sampledPeakHeapBytes": 545354552,
+      "resourceSampleCount": 9,
+      "producer": {
+        "node": "v22.20.0",
+        "v8HeapLimitBytes": 4345298944,
+        "runtimeFlagsSha256": "697a22637caa4bc62b345a1d673caadffb15b514eab0d930ef4c308b0804d291",
+        "nodeOptionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "correctnessPassed": true,
+      "sourceAndInputsUnchanged": true
+    }
+  ],
+  "descriptiveComparisonOnly": {
+    "meanOfAPhaseP95Ms": 185.26864999999998,
+    "meanOfBPhaseP95Ms": 169.27274999999918,
+    "differenceMs": 15.995900000000802,
+    "notAnAcceptanceAverage": true,
+    "interpretation": "Both B phase p95s and both A phase p95s fail. Current lazy allocation is descriptively lower on average in this single balanced-order diagnostic; it does not establish a server-only causal improvement or a normal production capacity pass."
+  },
+  "resourceQualification": {
+    "startupAndEveryPhaseStartGatePassed": true,
+    "minimumRequiredAtGateBytes": 2147483648,
+    "startupFreeBytes": 3051339776,
+    "lowerInPhaseSamples": [
+      {
+        "phase": "1A",
+        "bytes": 1911955456
+      },
+      {
+        "phase": "3B",
+        "bytes": 2128420864
+      },
+      {
+        "phase": "4A",
+        "bytes": 1691553792
+      }
+    ],
+    "interpretation": "The frozen protocol gates before services and before each phase, not continuously. Recorded in-phase memory dips remain visible and limit stronger clean-host claims.",
+    "windowsContext": [
+      {
+        "phase": "startup",
+        "when": "before services",
+        "status": "OBSERVED",
+        "exitCode": null,
+        "errorName": null
+      },
+      {
+        "phase": "1A",
+        "when": "before",
+        "status": "OBSERVED",
+        "exitCode": null,
+        "errorName": null
+      },
+      {
+        "phase": "1A",
+        "when": "after",
+        "status": "OBSERVED",
+        "exitCode": null,
+        "errorName": null
+      },
+      {
+        "phase": "2B",
+        "when": "before",
+        "status": "OBSERVED",
+        "exitCode": null,
+        "errorName": null
+      },
+      {
+        "phase": "2B",
+        "when": "after",
+        "status": "UNVERIFIED",
+        "exitCode": null,
+        "errorName": "Error"
+      },
+      {
+        "phase": "3B",
+        "when": "before",
+        "status": "UNVERIFIED",
+        "exitCode": null,
+        "errorName": "Error"
+      },
+      {
+        "phase": "3B",
+        "when": "after",
+        "status": "UNVERIFIED",
+        "exitCode": null,
+        "errorName": "Error"
+      },
+      {
+        "phase": "4A",
+        "when": "before",
+        "status": "UNVERIFIED",
+        "exitCode": null,
+        "errorName": "Error"
+      },
+      {
+        "phase": "4A",
+        "when": "after",
+        "status": "UNVERIFIED",
+        "exitCode": null,
+        "errorName": "Error"
+      }
+    ],
+    "windowsFailureCause": "UNVERIFIED: later collections recorded only status UNVERIFIED, exitCode null and Error. The exact error code was not retained; no precise timeout cause is asserted.",
+    "aggregateCpuQualification": "The recorded aggregate includes System Idle Process and is not a direct busy-CPU percentage. Nominal CIM clock reporting is not effective-frequency measurement."
+  },
+  "attributionLimits": [
+    "evidencePreparationMs measures unchanged Node-only insertion/pacing work before HTTP submit; index allocation cannot directly affect that segment.",
+    "HTTP duration includes client checkpoint serialization/event-loop work, loopback transport, queues and server execution. No profiler or Server-Timing was added, so server-only time is unavailable.",
+    "The same owned database warms across four independent fixture namespaces in declared A-B-B-A order; this is one diagnostic, not repeated ordinary acceptance.",
+    "All submitted evidence remains full payload and independently validated. No rate-limit, durability, native-PDO, timing, threshold or 3D setting was relaxed."
+  ],
+  "privateConfigurationHashesUnchanged": true,
+  "gracefulCleanup": {
+    "apache": true,
+    "database": true,
+    "forcedStops": false,
+    "apacheResidualPids": [],
+    "ownProcessesStopped": true,
+    "failedRunDiagnosticsRetainedGitIgnored": true
+  },
+  "ownerProcessExit": {
+    "exitCode": 1,
+    "observedBy": "/root/capacity_resume",
+    "tool": "write_stdin",
+    "sessionId": 90035,
+    "chunkId": "c9a0f2",
+    "interpretation": "Expected nonzero owner exit preserves declared latency failures; the diagnostic completed all four phases and then cleaned up."
+  },
+  "furtherWorkloadStarted": false,
+  "references": {
+    "audit/2026-11-05-followup/index-abba-preparation-v2.json": "eaf8b7cfcc121b9337a5013c7c4ee6b0303fa3c35d937fbe291e651692d43d52",
+    "audit/2026-11-05-followup/pack-backend-15643f7ac91af72a-index-abba-summary.json": "88321a9be65c269b129c6f364c6f1f3beccc32b0bd5911fd55f42cc7e24eee04",
+    "audit/2026-11-05-followup/pack-backend-15643f7ac91af72a-apache-runtime.json": "005348223e8a3b3ea1aec63e65f9cefc3e5f3148066874b8fa22bf2b7d7556ad",
+    "audit/2026-11-05-followup/pack-backend-15643f7ac91af72a-cleanup.json": "c8d0f61616669026ab1ddb094e8785deee09bc0e5ee3df8a1794c4d13d99229f",
+    "audit/2026-11-05-followup/pack-backend-15643f7ac91af72a-index-abba-final-inputs.json": "527d2c37c91dfa52aaec67f5d18923ffd585b5de13d9288646e3666465a76d62",
+    "audit/2026-11-05-followup/pack-backend-15643f7ac91af72a-index-abba-private-input-hashes-before.json": "1fbb50192e0be26cf2cb96533373d8c900bc1a960d4bfaa9d3928ce886ea67fc",
+    "audit/2026-11-05-followup/pack-backend-15643f7ac91af72a-index-abba-private-input-hashes-final.json": "9bb7af46f415078d80ad12c326066574b4807ca0619ff3df7a4fd875e62c72ea",
+    "audit/2026-11-05-followup/pack-backend-15643f7ac91af72a-index-abba-startup-resources.json": "a7e93b27769719fab408ba804ffc72da0fd272844ba5cec089769ef3d92370a2",
+    "audit/2026-11-05-followup/index-abba-15643f7ac91af72a-1A.json": "6853d684b591eba9028dc9b2ef918a5e586e705e38cf99cabd2a19d7a090dd84",
+    "audit/2026-11-05-followup/pack-backend-15643f7ac91af72a-index-abba-1A-summary.json": "9bd1ed65e1d8eff2e96777da89bd070fcff8821e338205620e5a3aae6eebabf1",
+    "audit/2026-11-05-followup/pack-backend-15643f7ac91af72a-index-abba-1A-host-before.json": "c2a0be6de56de8ad544109d3681f339790efa1a78e0be7fc92db40f94e28e075",
+    "audit/2026-11-05-followup/pack-backend-15643f7ac91af72a-index-abba-1A-host-after.json": "408e31f470296f916fbe2d7c94fd09df2247b40ea68429a0e9676f35a75b24dd",
+    "audit/2026-11-05-followup/pack-backend-15643f7ac91af72a-index-abba-1A-private-input-hashes-after.json": "9bb7af46f415078d80ad12c326066574b4807ca0619ff3df7a4fd875e62c72ea",
+    "audit/2026-11-05-followup/index-abba-15643f7ac91af72a-1A-protocol.json": "aef4ab09c9df067a659584e9ada550f455b4ea26d424220a8d5f51b38203c0c3",
+    "audit/2026-11-05-followup/index-abba-15643f7ac91af72a-2B.json": "818454235ec6fe27b692fa9a6ec6b319d3f9906d3a6212b0eaf0bdd7de0adb45",
+    "audit/2026-11-05-followup/pack-backend-15643f7ac91af72a-index-abba-2B-summary.json": "2540ad71ecf1f04a655921bba3bcd8fc6523b15dffa4f765e10f4402f9ea88fd",
+    "audit/2026-11-05-followup/pack-backend-15643f7ac91af72a-index-abba-2B-host-before.json": "0deb99bb7a76075096ea0daee48085a81af546eee75bb928682a87131c9b48ce",
+    "audit/2026-11-05-followup/pack-backend-15643f7ac91af72a-index-abba-2B-host-after.json": "200eb491acadc54b8c9698889f723a086efe32cd2632b7fc5544367f8bbc5ccb",
+    "audit/2026-11-05-followup/pack-backend-15643f7ac91af72a-index-abba-2B-private-input-hashes-after.json": "9bb7af46f415078d80ad12c326066574b4807ca0619ff3df7a4fd875e62c72ea",
+    "audit/2026-11-05-followup/index-abba-15643f7ac91af72a-2B-protocol.json": "4b68a2efd87e912056cea3e0466171ee833ed7aa41b45f16968bc2392f8e2c2b",
+    "audit/2026-11-05-followup/index-abba-15643f7ac91af72a-3B.json": "4f41931aab4c7f11f97f1be11de2dea76277acfb3e970a45a463bd133c010310",
+    "audit/2026-11-05-followup/pack-backend-15643f7ac91af72a-index-abba-3B-summary.json": "dde4971f22c472754b4c19cc02e0b733d517a0863ab3d9bbb1c31ead570b524c",
+    "audit/2026-11-05-followup/pack-backend-15643f7ac91af72a-index-abba-3B-host-before.json": "625a29acc34a64a4ceeeabdc042053977fc30b7071f95ce0a498a048d4ad18dd",
+    "audit/2026-11-05-followup/pack-backend-15643f7ac91af72a-index-abba-3B-host-after.json": "d9243f88420db171dcfa42ca35bef41f94546404d46db817a586daea6989a242",
+    "audit/2026-11-05-followup/pack-backend-15643f7ac91af72a-index-abba-3B-private-input-hashes-after.json": "9bb7af46f415078d80ad12c326066574b4807ca0619ff3df7a4fd875e62c72ea",
+    "audit/2026-11-05-followup/index-abba-15643f7ac91af72a-3B-protocol.json": "fbf15f4fdfd7e6d779a3ab6acc298313ca5585efaba0451d235e248f392362eb",
+    "audit/2026-11-05-followup/index-abba-15643f7ac91af72a-4A.json": "968fe005e075c1bcc7413be070cd58d563fd900682238292c47dc1e5606a1fd1",
+    "audit/2026-11-05-followup/pack-backend-15643f7ac91af72a-index-abba-4A-summary.json": "0b0997d3dbcb049ae57f2c42b009d9636c1d947172157a8655c2e5a90690eda5",
+    "audit/2026-11-05-followup/pack-backend-15643f7ac91af72a-index-abba-4A-host-before.json": "498c1daca2d96b3776e0a9c325a3105f8092f6b12eed5ed6cf08324203e2e032",
+    "audit/2026-11-05-followup/pack-backend-15643f7ac91af72a-index-abba-4A-host-after.json": "213e9473da943e6b05fef8541cca2fe318319c0b717d05373f14dc27fcc760e7",
+    "audit/2026-11-05-followup/pack-backend-15643f7ac91af72a-index-abba-4A-private-input-hashes-after.json": "9bb7af46f415078d80ad12c326066574b4807ca0619ff3df7a4fd875e62c72ea",
+    "audit/2026-11-05-followup/index-abba-15643f7ac91af72a-4A-protocol.json": "03b89e8f8cf193d80c48f991d0e78485cf51ee3bc52568da2b20154a88cfac74"
+  }
+}

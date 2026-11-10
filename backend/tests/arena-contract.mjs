@@ -72,5 +72,11 @@ for (const assertion of JSON.parse(chartErrorProcess.stdout).checks) check(`Char
 const checkpointPersistenceProcess = spawnSync(runtime.binary, [...runtime.args, 'backend/tests/checkpoint-persistence-contract.php'], { encoding: 'utf8', windowsHide: true });
 if (checkpointPersistenceProcess.status !== 0) throw new Error(checkpointPersistenceProcess.stderr || checkpointPersistenceProcess.stdout);
 for (const assertion of JSON.parse(checkpointPersistenceProcess.stdout).checks) check(`Checkpoint persistence guard: ${assertion.name}`, assertion.pass);
+const memberCacheProcess = spawnSync(runtime.binary, [...runtime.args, 'backend/tests/arena-member-cache-contract.php'], { encoding: 'utf8', windowsHide: true });
+if (memberCacheProcess.status !== 0) throw new Error(memberCacheProcess.stderr || memberCacheProcess.stdout);
+for (const assertion of JSON.parse(memberCacheProcess.stdout).checks) check(`Locked member snapshot: ${assertion.name}`, assertion.pass);
+const lazyServicesProcess = spawnSync(process.execPath, ['backend/tests/arena-lazy-services-contract.mjs'], { encoding: 'utf8', windowsHide: true });
+if (lazyServicesProcess.status !== 0) throw new Error(lazyServicesProcess.stderr || lazyServicesProcess.stdout);
+for (const assertion of JSON.parse(lazyServicesProcess.stdout).checks) check(`Lazy Arena services: ${assertion.name}`, assertion.pass);
 const report = { status: 'PASS-SCOPED', recordedAt: new Date().toISOString(), passed: checks.length, failed: 0, scope: 'Pure PHP/TS arena contracts. No DB, HTTP, accounts or private configuration.', checks, nativeDatabaseLifecycle: 'NOT-RUN', load50Rooms8Players: 'NOT-RUN' };
 await writeFile(process.env.ARENA_CONTRACT_REPORT || 'audit/mega-pack-2026-10-21/arena-php-contract.json', JSON.stringify(report, null, 2) + '\n'); console.log(JSON.stringify({ status: report.status, passed: checks.length, failed: 0 }));

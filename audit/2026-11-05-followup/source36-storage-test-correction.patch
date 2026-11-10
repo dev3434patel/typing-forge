@@ -1,0 +1,19 @@
+diff --git a/audit/2026-11-05-followup/source36-storage-test-before/index-contract.php b/backend/tests/lazy-services/index-contract.php
+index f66fa52..b819265 100644
+--- a/audit/2026-11-05-followup/source36-storage-test-before/index-contract.php
++++ b/backend/tests/lazy-services/index-contract.php
+@@ -57,7 +57,13 @@ if(($argv[1]??'')==='--child'){
+ 
+ $request=trim(stream_get_contents(STDIN));$input=$request===''?[]:json_decode($request,true,512,JSON_THROW_ON_ERROR);$phpArgs=$input['phpArgs']??[];
+ if(!is_array($phpArgs)||!array_is_list($phpArgs)||count($phpArgs)>40)throw new RuntimeException('Expected explicit phpArgs list.');foreach($phpArgs as$arg)if(!is_string($arg)||strlen($arg)>2048||str_contains($arg,"\0"))throw new RuntimeException('Invalid runtime argument.');
+-$storage=realpath($root.'/backend/storage');if($storage===false)throw new RuntimeException('Repository storage directory is required.');
++$backend=$root.DIRECTORY_SEPARATOR.'backend';
++if(is_link($backend)||!is_dir($backend)||realpath($backend)!==$backend)throw new RuntimeException('Repository backend directory identity mismatch.');
++$storagePath=$backend.DIRECTORY_SEPARATOR.'storage';
++if(is_link($storagePath))throw new RuntimeException('Storage must not be a symlink.');
++if(!file_exists($storagePath)&&!mkdir($storagePath,0700))throw new RuntimeException('Cannot create repository test storage.');
++if(is_link($storagePath)||!is_dir($storagePath))throw new RuntimeException('Storage must be a directory.');
++$storage=realpath($storagePath);if($storage!==$storagePath)throw new RuntimeException('Storage directory identity mismatch.');
+ $owned=$storage.DIRECTORY_SEPARATOR.'lazy-index-'.bin2hex(random_bytes(8));$runnerPid=getmypid();
+ if(!mkdir($owned,0700))throw new RuntimeException('Cannot create fresh temporary index workspace.');
+ $identity=['kind'=>'sparowtype-lazy-index-contract-v1','root'=>$root,'runnerPid'=>$runnerPid,'name'=>basename($owned),'files'=>[]];

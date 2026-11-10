@@ -1,0 +1,127 @@
+{
+  "preparedAt": "2026-11-04T18:42:31.034Z",
+  "status": "AUDIT-ONLY-CACHE-PREPARED-NOT-EXECUTED",
+  "baselineFile": "backend/src/ArenaService.php",
+  "baselineSha256": "9008825c59bdcfd863b714f45412638082043eae56a1000b70a134de67919a6d",
+  "candidateFile": "audit/2026-11-04-capacity-followup/ArenaServiceCachedCandidate.php",
+  "candidateSha256": "f0181ab564c1f02d7aaa9b429b3ac66cc19dc3e0a4896ec77f88f0e25563ce6e",
+  "contractFile": "audit/2026-11-04-capacity-followup/arena-member-cache-contract.php",
+  "contractSha256": "32b380b12e680c0cbcc5239c8d2b8b149dab4651e13f871cc4a37ab0478df2be",
+  "generatorSha256": "8b8c1a4b0f40250a61ddf210eb024761e22f03b109f24850958e100a679c7ff7",
+  "exactReverse": true,
+  "replacements": [
+    {
+      "from": "final class ArenaService\n",
+      "to": "final class ArenaServiceCachedCandidate\n",
+      "index": 170,
+      "reason": "audit-only class identity"
+    },
+    {
+      "from": "    public function __construct(private PDO $db,private SessionValidator $validator,private DataService $data){}",
+      "to": "    private bool $memberCacheActive=false;\n    private ?string $memberCacheRoom=null;\n    private array $memberCacheRows=[];\n    public function __construct(private PDO $db,private SessionValidator $validator,private DataService $data){}",
+      "index": 431,
+      "reason": "one room snapshot, never a room map"
+    },
+    {
+      "from": "        Security::owner($body,$user['id'],false);",
+      "to": "        $this->memberCacheActive=false;$this->clearMemberCache();\n        Security::owner($body,$user['id'],false);",
+      "index": 749,
+      "reason": "clear at every handle entry before validation"
+    },
+    {
+      "from": "        $this->db->beginTransaction();\n        try{",
+      "to": "        $this->db->beginTransaction();\n        $this->memberCacheActive=true;\n        try{",
+      "index": 1418,
+      "reason": "enable only after original transaction begins"
+    },
+    {
+      "from": "        }catch(\\Throwable $error){if($this->db->inTransaction())$this->db->rollBack();throw $error;}",
+      "to": "        }catch(\\Throwable $error){if($this->db->inTransaction())$this->db->rollBack();throw $error;}\n        finally{$this->memberCacheActive=false;$this->clearMemberCache();}",
+      "index": 3263,
+      "reason": "clear after success, rollback or exception"
+    },
+    {
+      "from": "    private function members(array $room): array\n    {\n        $q=$this->db->prepare('SELECT * FROM arena_members WHERE arena_id=? ORDER BY slot FOR UPDATE');$q->execute([$room['id']]);return $q->fetchAll();\n    }",
+      "to": "    private function members(array $room): array\n    {\n        $cacheable=$this->memberCacheActive&&$this->db->inTransaction();\n        if($cacheable&&$this->memberCacheRoom===$room['id'])return $this->memberCacheRows;\n        $this->clearMemberCache();\n        $q=$this->db->prepare('SELECT * FROM arena_members WHERE arena_id=? ORDER BY slot FOR UPDATE');$q->execute([$room['id']]);$rows=$q->fetchAll();\n        if($cacheable){$this->memberCacheRoom=$room['id'];$this->memberCacheRows=$rows;}\n        return $rows;\n    }\n    private function clearMemberCache(): void{$this->memberCacheRoom=null;$this->memberCacheRows=[];}",
+      "index": 3861,
+      "reason": "same full locking query on first read, room switch or invalidation"
+    },
+    {
+      "from": "$evidence->submit($room,$member,$prepared,$user,$now);$this->bump",
+      "to": "$evidence->submit($room,$member,$prepared,$user,$now);$this->clearMemberCache();$this->bump",
+      "index": 2587,
+      "reason": "external authoritative evidence write"
+    },
+    {
+      "from": "$q->execute([$roomId,$owner,$slot,Database::timestamp($now)]);$this->bump",
+      "to": "$q->execute([$roomId,$owner,$slot,Database::timestamp($now)]);$this->clearMemberCache();$this->bump",
+      "index": 7829,
+      "reason": "insertMember"
+    },
+    {
+      "from": "$q->execute([(int)$body['ready'],Database::timestamp($now),$room['id'],$member['user_id']]);",
+      "to": "$q->execute([(int)$body['ready'],Database::timestamp($now),$room['id'],$member['user_id']]);$this->clearMemberCache();",
+      "index": 8396,
+      "reason": "ready before startWhenReady"
+    },
+    {
+      "from": "$q->execute([Database::timestamp($now),$room['id'],$member['user_id']]);}",
+      "to": "$q->execute([Database::timestamp($now),$room['id'],$member['user_id']]);$this->clearMemberCache();}",
+      "index": 9391,
+      "reason": "heartbeat"
+    },
+    {
+      "from": "$q=$this->db->prepare('DELETE FROM arena_members WHERE arena_id=? AND user_id=?');$q->execute([$room['id'],$member['user_id']]);",
+      "to": "$q=$this->db->prepare('DELETE FROM arena_members WHERE arena_id=? AND user_id=?');$q->execute([$room['id'],$member['user_id']]);$this->clearMemberCache();",
+      "index": 9830,
+      "reason": "waiting leave DELETE"
+    },
+    {
+      "from": "$q->execute([$elapsed,$elapsed>0?(int)$member['credited_units']*12000/$elapsed:null,Database::timestamp($at),$room['id'],$member['user_id']]);",
+      "to": "$q->execute([$elapsed,$elapsed>0?(int)$member['credited_units']*12000/$elapsed:null,Database::timestamp($at),$room['id'],$member['user_id']]);$this->clearMemberCache();",
+      "index": 10543,
+      "reason": "forfeit"
+    },
+    {
+      "from": "$q->execute([$room['id'],...$liveness['remove']]);$changed=",
+      "to": "$q->execute([$room['id'],...$liveness['remove']]);$this->clearMemberCache();$changed=",
+      "index": 11926,
+      "reason": "waiting prune before rowCount/startWhenReady"
+    },
+    {
+      "from": "$q->execute([$room['id']]);$room['status']='active';",
+      "to": "$q->execute([$room['id']]);$this->clearMemberCache();$room['status']='active';",
+      "index": 12528,
+      "reason": "countdown mass status"
+    },
+    {
+      "from": "$q->execute([$duration,(int)$member['credited_units']*12000/$duration,Database::timestamp($deadline),$room['id'],$member['user_id']]);$changed=true;",
+      "to": "$q->execute([$duration,(int)$member['credited_units']*12000/$duration,Database::timestamp($deadline),$room['id'],$member['user_id']]);$this->clearMemberCache();$changed=true;",
+      "index": 13032,
+      "reason": "grace finish"
+    },
+    {
+      "from": "$q->execute([$room['id'],$member['user_id']]);$members=$this->members($room);",
+      "to": "$q->execute([$room['id'],$member['user_id']]);$this->clearMemberCache();$members=$this->members($room);",
+      "index": 15337,
+      "reason": "rematch vote before read"
+    },
+    {
+      "from": "$q->execute([Database::timestamp($now),$room['id'],$member['user_id']]);$this->bump",
+      "to": "$q->execute([Database::timestamp($now),$room['id'],$member['user_id']]);$this->clearMemberCache();$this->bump",
+      "index": 16277,
+      "reason": "appeal"
+    }
+  ],
+  "localWriteInvalidations": 10,
+  "externalSubmitInvalidations": 1,
+  "scope": "At most one full locked room-member snapshot during one handle-owned transaction only; first FOR UPDATE, independent authoritative replay/clock/grace/final persistence unchanged. No cross-request/result/clock cache.",
+  "invalidationPolicy": "Clear entry/finally, room switch, every own member mutation, and after ArenaEvidence.submit; reuse additionally requires active handle and PDO inTransaction.",
+  "limitations": [
+    "Physical lock isolation is not proven by PDO mocks.",
+    "An ordered instrumented HTTP pair cannot replace independent final ordinary full/wire acceptance.",
+    "Performance gain is not yet measured."
+  ],
+  "productionEdited": false,
+  "servicesStarted": 0
+}

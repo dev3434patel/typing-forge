@@ -1,0 +1,79 @@
+{
+  "status": "PASS-SCOPED",
+  "finishedAt": "2026-11-09T17:58:26.876Z",
+  "protocolFile": "audit/2026-11-09/source36-release-checks-protocol.json",
+  "protocolSha256": "cc0e92a629d547838197a01579408c80253010bd9868c9352311cd9d08cda49f",
+  "before": {
+    "source": {
+      "sourceFile": "audit/2026-11-05-followup/final36-source.json",
+      "expectedBuild": "d89f84d74519bf2bbae0",
+      "compared": 506,
+      "mismatches": []
+    },
+    "build": {
+      "version": "d89f84d74519bf2bbae0",
+      "publicFiles": 133,
+      "bytes": 2964860
+    },
+    "dependencies": 73,
+    "dependencySha256": "525e91c1a220c8e978d65241c7c2acfe76f53efec000817ab8a28416a4840f37"
+  },
+  "after": {
+    "source": {
+      "sourceFile": "audit/2026-11-05-followup/final36-source.json",
+      "expectedBuild": "d89f84d74519bf2bbae0",
+      "compared": 506,
+      "mismatches": []
+    },
+    "build": {
+      "version": "d89f84d74519bf2bbae0",
+      "publicFiles": 133,
+      "bytes": 2964860
+    },
+    "dependencies": 73,
+    "dependencySha256": "525e91c1a220c8e978d65241c7c2acfe76f53efec000817ab8a28416a4840f37"
+  },
+  "inputsUnchanged": true,
+  "results": [
+    {
+      "id": "production-audit",
+      "command": "npm audit --omit=dev --json",
+      "stdout": "audit/2026-11-09/source36-release-checks-production-audit.json",
+      "stderr": "audit/2026-11-09/source36-release-checks-production-audit.stderr.log",
+      "startedAt": "2026-11-09T17:58:19.367Z",
+      "finishedAt": "2026-11-09T17:58:25.383Z",
+      "durationMs": 6014.985000000001,
+      "exitCode": 0,
+      "timedOut": false,
+      "ownedForcedStopProof": null,
+      "status": "PASS-SCOPED",
+      "stdoutSha256": "a85e1242917ec7a5e4582d88e60361d2e3121b463847c45a300820b82baa010f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      }
+    },
+    {
+      "id": "bundle",
+      "command": "npm run check:bundle",
+      "stdout": "audit/2026-11-09/source36-release-checks-bundle.log",
+      "stderr": "audit/2026-11-09/source36-release-checks-bundle.stderr.log",
+      "startedAt": "2026-11-09T17:58:25.388Z",
+      "finishedAt": "2026-11-09T17:58:26.505Z",
+      "durationMs": 1117.6542,
+      "exitCode": 0,
+      "timedOut": false,
+      "ownedForcedStopProof": null,
+      "status": "PASS-SCOPED",
+      "stdoutSha256": "0e590d7292abe7daeffb1ccaf17097e7f76842b87d6adc252cccffe209dcc334",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "failure": null,
+  "noCapacityOrMobileOrLighthouseMeasurement": true
+}

@@ -1,0 +1,245 @@
+{
+  "preparedAt": "2026-11-04T18:57:22.705Z",
+  "status": "TEMPLATES-PREPARED-NO-RUNTIME-WAITING-FINAL35-FREEZE",
+  "plannedSourceManifest": "audit/2026-11-05-followup/final35-source.json",
+  "expectedSourceFileCount": 506,
+  "buildEnvironment": "SPAROWTYPE_FINAL35_BUILD_ID must be the actual newly frozen20-character build ID",
+  "entry": "audit/2026-11-05-followup/pack-capacity-instance-source35-wire.mjs",
+  "commands": [
+    "capacity35",
+    "capacity35-wire",
+    "cleanup"
+  ],
+  "changes": [
+    {
+      "originalFile": "audit/2026-11-02/pack-capacity-instance-source34-wire.mjs",
+      "originalSha256": "a7986f70bcf29c2676dbd1d4954c6291cbfcc6d0488d8c4bc3947032a7a07a0a",
+      "file": "audit/2026-11-05-followup/pack-capacity-instance-source35-wire.mjs",
+      "sha256": "cb8073cc1275f421db0ab6d1aeadda53765671876b79379bb59d7c8d00cefb1c",
+      "replacements": [
+        {
+          "from": "audit/2026-11-02",
+          "to": "audit/2026-11-05-followup",
+          "count": 6
+        },
+        {
+          "from": "source34",
+          "to": "source35",
+          "count": 6
+        },
+        {
+          "from": "capacity34",
+          "to": "capacity35",
+          "count": 15
+        },
+        {
+          "from": "rate-native34",
+          "to": "rate-native35",
+          "count": 4
+        },
+        {
+          "from": "apache = await prepareApache({ owned, root, privateLogs, appConfig: configFile, phpDirectory: path.dirname(runtime.binary), port: apiPort });",
+          "to": "apache = await prepareApache({ owned, root, privateLogs, appConfig: configFile, phpDirectory: path.dirname(runtime.binary), port: apiPort });\n    // Same owned readiness request, with bounded OPcache/PDO availability facts.\n    await writeFile(path.join(apache.webRoot,'__audit-runtime.php'),\"<?php\\nheader('Content-Type: application/json'); echo json_encode(['sapi'=>PHP_SAPI,'threadSafe'=>PHP_ZTS===1,'pid'=>getmypid(),'ini'=>php_ini_loaded_file(),'config'=>getenv('SPAROWTYPE_CONFIG_FILE'),'opcodeCacheEnabled'=>extension_loaded('Zend OPcache') && filter_var(ini_get('opcache.enable'), FILTER_VALIDATE_BOOLEAN),'pdoMysqlLoaded'=>extension_loaded('pdo_mysql'),'nativeMysqlDriverAvailable'=>in_array('mysql',PDO::getAvailableDrivers(),true)]);\\n\");",
+          "count": 1
+        },
+        {
+          "from": "assert.equal(actual.sapi, 'apache2handler'); assert.equal(actual.threadSafe, true);",
+          "to": "assert.equal(actual.sapi, 'apache2handler'); assert.equal(actual.threadSafe, true);\n    assert.equal(actual.opcodeCacheEnabled,false,'Ordinary capacity requires OPcache OFF.');\n    assert.equal(actual.pdoMysqlLoaded,true);assert.equal(actual.nativeMysqlDriverAvailable,true);",
+          "count": 1
+        },
+        {
+          "from": "privateIniMatched: true, privateConfigMatched: true, existingApacheConfigRead: false",
+          "to": "privateIniMatched: true, privateConfigMatched: true, opcodeCacheEnabled:false, pdoMysqlLoaded:true, nativeMysqlDriverAvailable:true, connectionPolicy:'Frozen unchanged native PDO constructor; nonpersistent, native prepares, UTC session initialization', existingApacheConfigRead: false",
+          "count": 1
+        }
+      ],
+      "exactReversal": true,
+      "applicationActionsAndTimingUnchanged": true
+    },
+    {
+      "originalFile": "audit/2026-11-02/run-source34-capacity-burst.mjs",
+      "originalSha256": "3ab9b5af24c0a4ccc6d387633fcebdb771efdbba4f583a309112b4b8a0e53ece",
+      "file": "audit/2026-11-05-followup/run-source35-capacity-burst.mjs",
+      "sha256": "74c2b1945a91bd8e15ca2b76d8c0463594709317fcde40881b564eccce1ec4b2",
+      "replacements": [
+        {
+          "from": "audit/2026-11-02",
+          "to": "audit/2026-11-05-followup",
+          "count": 3
+        },
+        {
+          "from": "source34",
+          "to": "source35",
+          "count": 4
+        },
+        {
+          "from": "SOURCE34",
+          "to": "SOURCE35",
+          "count": 1
+        },
+        {
+          "from": "FINAL34",
+          "to": "FINAL35",
+          "count": 1
+        },
+        {
+          "from": "receipt.compared, 505",
+          "to": "receipt.compared, 506",
+          "count": 1
+        },
+        {
+          "from": "assert.equal(runtimeReceipt.existingApacheConfigRead, false);",
+          "to": "assert.equal(runtimeReceipt.existingApacheConfigRead, false);\nassert.equal(runtimeReceipt.opcodeCacheEnabled,false);assert.equal(runtimeReceipt.pdoMysqlLoaded,true);assert.equal(runtimeReceipt.nativeMysqlDriverAvailable,true);",
+          "count": 1
+        }
+      ],
+      "exactReversal": true,
+      "applicationActionsAndTimingUnchanged": true
+    },
+    {
+      "originalFile": "audit/2026-11-02/run-source34-capacity-wire-burst.mjs",
+      "originalSha256": "d3fbd0246eb2ad60c4def3cf387300d72def5f6a10db01c0c86d954f0ced1959",
+      "file": "audit/2026-11-05-followup/run-source35-capacity-wire-burst.mjs",
+      "sha256": "bb780d68f7275dcd5fca2deed796eb42864adf97aa34e0e120fcb6dd9e439955",
+      "replacements": [
+        {
+          "from": "audit/2026-11-02",
+          "to": "audit/2026-11-05-followup",
+          "count": 5
+        },
+        {
+          "from": "source34",
+          "to": "source35",
+          "count": 6
+        },
+        {
+          "from": "SOURCE34",
+          "to": "SOURCE35",
+          "count": 1
+        },
+        {
+          "from": "FINAL34",
+          "to": "FINAL35",
+          "count": 1
+        },
+        {
+          "from": "receipt.compared, 505",
+          "to": "receipt.compared, 506",
+          "count": 1
+        },
+        {
+          "from": "assert.equal(runtimeReceipt.existingApacheConfigRead, false);",
+          "to": "assert.equal(runtimeReceipt.existingApacheConfigRead, false);\nassert.equal(runtimeReceipt.opcodeCacheEnabled,false);assert.equal(runtimeReceipt.pdoMysqlLoaded,true);assert.equal(runtimeReceipt.nativeMysqlDriverAvailable,true);",
+          "count": 1
+        }
+      ],
+      "exactReversal": true,
+      "applicationActionsAndTimingUnchanged": true
+    },
+    {
+      "originalFile": "audit/2026-11-02/run-source34-native-rate.mjs",
+      "originalSha256": "c74d305aa331bb1d50a72c8a66544d59f6e266cbbbe39f8302a8de2bb2e80a23",
+      "file": "audit/2026-11-05-followup/run-source35-native-rate.mjs",
+      "sha256": "fb501bdfc70b6909dfb8be2f40744fe2834ab08c982de911ce6bda71a6643359",
+      "replacements": [
+        {
+          "from": "audit/2026-11-02",
+          "to": "audit/2026-11-05-followup",
+          "count": 1
+        },
+        {
+          "from": "source34",
+          "to": "source35",
+          "count": 3
+        },
+        {
+          "from": "SOURCE34",
+          "to": "SOURCE35",
+          "count": 1
+        },
+        {
+          "from": "FINAL34",
+          "to": "FINAL35",
+          "count": 1
+        },
+        {
+          "from": "receipt.compared, 505",
+          "to": "receipt.compared, 506",
+          "count": 1
+        }
+      ],
+      "exactReversal": true,
+      "applicationActionsAndTimingUnchanged": true
+    },
+    {
+      "originalFile": "audit/2026-11-02/native-rate-worker-source34.php",
+      "originalSha256": "9b776ee1d3add6db36b7895a534499ee946f6db13268045adfebb87653c98dde",
+      "file": "audit/2026-11-05-followup/native-rate-worker-source35.php",
+      "sha256": "151a599fc37d8181b82851319dfc68eba1cec2e2762943b654be61c9615b160b",
+      "replacements": [
+        {
+          "from": "SOURCE34",
+          "to": "SOURCE35",
+          "count": 1
+        }
+      ],
+      "exactReversal": true,
+      "applicationActionsAndTimingUnchanged": true
+    }
+  ],
+  "syntax": [
+    {
+      "file": "audit/2026-11-05-followup/pack-capacity-instance-source35-wire.mjs",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "file": "audit/2026-11-05-followup/run-source35-capacity-burst.mjs",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "file": "audit/2026-11-05-followup/run-source35-capacity-wire-burst.mjs",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "file": "audit/2026-11-05-followup/run-source35-native-rate.mjs",
+      "exit": 0,
+      "stderr": ""
+    }
+  ],
+  "readinessProbe": {
+    "existingRequestReused": true,
+    "applicationEndpointsChanged": false,
+    "addedResponseHeaders": false,
+    "profileInstrumentation": false,
+    "opcodeCacheOffRequired": true,
+    "actualNativePdoDriverAvailabilityRequired": true,
+    "source34DatabaseHashUnchanged": "38e67995661448fb80af94ae81acc2fc844b5ecea15c6313d6fc87135681acb0"
+  },
+  "predeclaredRepeatedAcceptance": {
+    "firstOwner": "One new owner runs full1653 then wire1653. All outcomes retained; no retries, filtering or automatic threshold adjustment.",
+    "ifFirstBothPass": "Run two additional independently new owners with the identical full→wire order; all three owners must pass both strict p95<150ms targets.",
+    "ifAnyFails": "Retain that failure and stop acceptance expansion for diagnosis; do not relabel an earlier pass or run the long matrix as if capacity passed.",
+    "perOwner": {
+      "rooms": 50,
+      "seats": 8,
+      "requestsPerRepresentation": 1653,
+      "concurrentHttpRequests": 20,
+      "strictP95BelowMs": 150,
+      "fullBeforeWire": true,
+      "newIndependentFixturesPerRepresentation": true,
+      "OPcache": false,
+      "persistentPDO": false,
+      "actualPhpPoliciesUnchanged": true,
+      "wireCacheQualification": "Same owner/database after full workload, with no added warmup or code cache."
+    }
+  },
+  "ordinarySource34FailuresRetained": true,
+  "existingUserServicesTouched": false,
+  "privateOriginalConfigurationRead": false,
+  "productionEdited": false,
+  "servicesStarted": 0,
+  "phpRuntimeExecuted": false
+}

@@ -1,0 +1,39 @@
+{
+  "recordedAt": "2026-11-09T17:38:37.702Z",
+  "status": "PREPARED-NOT-EXECUTED",
+  "original": "audit/2026-11-04/review-staged-release.mjs",
+  "originalSha256": "7a07611de4e79be01fa2a10194c768e406606209d280d999ed0bf4ad4253b7eb",
+  "target": "audit/2026-11-09/review-staged-release.mjs",
+  "targetSha256": "306acacd23cbee5596f29048b9dde13a1ce617bff37784fc53ba4d7a70144169",
+  "changedSpans": 4,
+  "changes": [
+    {
+      "oldText": "assert.match(output ?? '', /^audit\\/2026-11-04\\/[a-z0-9-]+\\.json$/);",
+      "newText": "assert.match(output ?? '', /^audit\\/2026-11-09\\/[a-z0-9-]+\\.json$/);",
+      "reason": "New output-date guard; no existing receipt may be overwritten."
+    },
+    {
+      "oldText": "await readFile('audit/2026-11-04/review-staged-release.mjs')",
+      "newText": "await readFile('audit/2026-11-09/review-staged-release.mjs')",
+      "reason": "Bind the exact current scanner source."
+    },
+    {
+      "oldText": "const findings = [], forbiddenPaths = [], indexMismatches = [], decodingIssues = [], inventory = [];",
+      "newText": "const unreviewedRuntime = /^audit\\/[^/]+\\/(?:\\.[^/]*artifacts|[^/]*-artifacts)(?:\\/|$)/i;\nconst findings = [], forbiddenPaths = [], indexMismatches = [], decodingIssues = [], inventory = [];",
+      "reason": "Reject known local artifact directories before content reads."
+    },
+    {
+      "oldText": "if (forbidden.test(file) || !['100644', '100755'].includes(index.get(file)?.mode))",
+      "newText": "if (forbidden.test(file) || unreviewedRuntime.test(file) || !['100644', '100755'].includes(index.get(file)?.mode))",
+      "reason": "Apply the additional runtime-directory rejection while retaining all prior checks."
+    }
+  ],
+  "exactReversal": true,
+  "currentWholeIndexListingBytes": 837848,
+  "allSixPatternsUnchanged": true,
+  "actualIndexedByteAndCrLfChecksUnchanged": true,
+  "bomAndSparseNulChecksUnchanged": true,
+  "forbiddenPathAndModeChecksPreserved": true,
+  "noStagingOrScanExecution": true,
+  "remaining": "Root must explicitly stage only reviewed paths and public logs, then run this scanner with a new audit/2026-11-09/*.json output. Final actual indexed-byte scan remains pending."
+}

@@ -1,0 +1,275 @@
+{
+  "recordedAt": "2026-11-04T19:10:43.618Z",
+  "status": "TRIAL1-CLOSED-FULL-FAILED-WIRE-PASS",
+  "build": "d89f84d74519bf2bbae0",
+  "sourceFiles": 506,
+  "owner": "40ca606d925e999b",
+  "variants": {
+    "full": {
+      "file": "audit/2026-11-05-followup/source35-capacity-40ca606d925e999b.json",
+      "sha256": "c70186652aa9697d1e0e29167131b34997e5762fbd25b063e1f833960547195a",
+      "finishedAt": "2026-11-04T19:07:45.922Z",
+      "status": "FAILED",
+      "p95Ms": 166.6268,
+      "targetMet": false,
+      "targetStrictlyBelowMs": 150,
+      "total": 1653,
+      "successful": 1651,
+      "statusCounts": {
+        "200": 1651,
+        "403": 1,
+        "409": 1
+      },
+      "phases": [
+        {
+          "phase": "create",
+          "expectedRequests": 50,
+          "actualRequests": 50,
+          "successful": 50,
+          "unexpected": 0,
+          "p95SuccessfulMs": 93.78600000000006,
+          "p95AllMs": 93.78600000000006,
+          "p95QueueMs": 138.35379999999986,
+          "maxMs": 126.5739000000001
+        },
+        {
+          "phase": "join",
+          "expectedRequests": 351,
+          "actualRequests": 351,
+          "successful": 350,
+          "unexpected": 0,
+          "p95SuccessfulMs": 73.15700000000015,
+          "p95AllMs": 73.15700000000015,
+          "p95QueueMs": 819.5475999999999,
+          "maxMs": 156.5661
+        },
+        {
+          "phase": "get",
+          "expectedRequests": 51,
+          "actualRequests": 51,
+          "successful": 50,
+          "unexpected": 0,
+          "p95SuccessfulMs": 42.60530000000017,
+          "p95AllMs": 42.60530000000017,
+          "p95QueueMs": 0.000600000000304135,
+          "maxMs": 49.59299999999985
+        },
+        {
+          "phase": "spectate",
+          "expectedRequests": 1,
+          "actualRequests": 1,
+          "successful": 1,
+          "unexpected": 0,
+          "p95SuccessfulMs": 33.91350000000011,
+          "p95AllMs": 33.91350000000011,
+          "p95QueueMs": 0.0005999999998493877,
+          "maxMs": 33.91350000000011
+        },
+        {
+          "phase": "ready",
+          "expectedRequests": 400,
+          "actualRequests": 400,
+          "successful": 400,
+          "unexpected": 0,
+          "p95SuccessfulMs": 78.08879999999999,
+          "p95AllMs": 78.08879999999999,
+          "p95QueueMs": 1011.1029000000003,
+          "maxMs": 238.32949999999983
+        },
+        {
+          "phase": "submit",
+          "expectedRequests": 400,
+          "actualRequests": 400,
+          "successful": 400,
+          "unexpected": 0,
+          "p95SuccessfulMs": 196.76449999999932,
+          "p95AllMs": 196.76449999999932,
+          "p95QueueMs": 2902.0655000000006,
+          "maxMs": 246.1988999999994
+        },
+        {
+          "phase": "leave",
+          "expectedRequests": 400,
+          "actualRequests": 400,
+          "successful": 400,
+          "unexpected": 0,
+          "p95SuccessfulMs": 79.61869999999908,
+          "p95AllMs": 79.61869999999908,
+          "p95QueueMs": 993.3082999999988,
+          "maxMs": 142.5640000000003
+        }
+      ],
+      "failedChecks": [
+        {
+          "name": "successful-request p95 remains strictly below150ms",
+          "pass": false,
+          "detail": {
+            "p95Ms": 166.6268,
+            "targetMs": 150
+          }
+        }
+      ],
+      "allFunctionalChecksPass": true,
+      "all506SourceAndInputsUnchanged": true,
+      "fixtureCleanup": {
+        "deletedOwnAccounts": 400,
+        "removedOwnSessions": 400
+      }
+    },
+    "wire": {
+      "file": "audit/2026-11-05-followup/source35-capacity-wire-40ca606d925e999b.json",
+      "sha256": "1111e77b42f2c0e67a159d4e0ad9be1ec148b7fb4a842d7285891ebc0c893bb4",
+      "finishedAt": "2026-11-04T19:08:29.402Z",
+      "status": "PASS-SCOPED",
+      "p95Ms": 140.5565999999999,
+      "targetMet": true,
+      "targetStrictlyBelowMs": 150,
+      "total": 1653,
+      "successful": 1651,
+      "statusCounts": {
+        "200": 1651,
+        "403": 1,
+        "409": 1
+      },
+      "phases": [
+        {
+          "phase": "create",
+          "expectedRequests": 50,
+          "actualRequests": 50,
+          "successful": 50,
+          "unexpected": 0,
+          "p95SuccessfulMs": 79.56780000000003,
+          "p95AllMs": 79.56780000000003,
+          "p95QueueMs": 117.95640000000003,
+          "maxMs": 82.20230000000015
+        },
+        {
+          "phase": "join",
+          "expectedRequests": 351,
+          "actualRequests": 351,
+          "successful": 350,
+          "unexpected": 0,
+          "p95SuccessfulMs": 73.76220000000012,
+          "p95AllMs": 73.76220000000012,
+          "p95QueueMs": 796.0394000000001,
+          "maxMs": 117.9964
+        },
+        {
+          "phase": "get",
+          "expectedRequests": 51,
+          "actualRequests": 51,
+          "successful": 50,
+          "unexpected": 0,
+          "p95SuccessfulMs": 47.36819999999989,
+          "p95AllMs": 47.36819999999989,
+          "p95QueueMs": 0.001099999999951251,
+          "maxMs": 50.452800000000025
+        },
+        {
+          "phase": "spectate",
+          "expectedRequests": 1,
+          "actualRequests": 1,
+          "successful": 1,
+          "unexpected": 0,
+          "p95SuccessfulMs": 16.83750000000009,
+          "p95AllMs": 16.83750000000009,
+          "p95QueueMs": 0.0001999999999497959,
+          "maxMs": 16.83750000000009
+        },
+        {
+          "phase": "ready",
+          "expectedRequests": 400,
+          "actualRequests": 400,
+          "successful": 400,
+          "unexpected": 0,
+          "p95SuccessfulMs": 82.4980000000005,
+          "p95AllMs": 82.4980000000005,
+          "p95QueueMs": 1079.6556,
+          "maxMs": 198.83179999999993
+        },
+        {
+          "phase": "submit",
+          "expectedRequests": 400,
+          "actualRequests": 400,
+          "successful": 400,
+          "unexpected": 0,
+          "p95SuccessfulMs": 164.96730000000025,
+          "p95AllMs": 164.96730000000025,
+          "p95QueueMs": 2261.2022000000015,
+          "maxMs": 227.46360000000095
+        },
+        {
+          "phase": "leave",
+          "expectedRequests": 400,
+          "actualRequests": 400,
+          "successful": 400,
+          "unexpected": 0,
+          "p95SuccessfulMs": 75.42579999999907,
+          "p95AllMs": 75.42579999999907,
+          "p95QueueMs": 934.286900000001,
+          "maxMs": 142.21349999999984
+        }
+      ],
+      "failedChecks": [],
+      "allFunctionalChecksPass": true,
+      "all506SourceAndInputsUnchanged": true,
+      "fixtureCleanup": {
+        "deletedOwnAccounts": 400,
+        "removedOwnSessions": 400
+      }
+    }
+  },
+  "runtime": {
+    "file": "audit/2026-11-05-followup/pack-backend-40ca606d925e999b-apache-runtime.json",
+    "sha256": "ce6f7e63e4492f604c0149068718f81d8864d5770f34f61415019bdce24e22a7",
+    "sapi": "apache2handler",
+    "actualOPcacheEnabled": false,
+    "actualNativePdoMysqlAvailable": true,
+    "ownedIniAndConfigMatched": true,
+    "connectionPolicy": "Frozen unchanged native PDO constructor; nonpersistent, native prepares, UTC session initialization"
+  },
+  "cleanup": {
+    "file": "audit/2026-11-05-followup/pack-backend-40ca606d925e999b-cleanup.json",
+    "sha256": "cb424d88553294bf080c431072138e58e77e28eda85da5b943b6a56188267fa1",
+    "gracefulApache": true,
+    "gracefulDatabase": true,
+    "forcedStops": false,
+    "residualProcesses": 0,
+    "protectedUserServicesUntouched": true,
+    "ownedPrivateDiagnosticsRetainedIgnored": true
+  },
+  "sourceAfter": {
+    "sourceFile": "audit/2026-11-05-followup/final35-source.json",
+    "expectedBuild": "d89f84d74519bf2bbae0",
+    "compared": 506,
+    "mismatches": []
+  },
+  "allTenRuntimeInputsUnchanged": true,
+  "all73TestConfigDependenciesUnchanged": true,
+  "dependencySha256": "525e91c1a220c8e978d65241c7c2acfe76f53efec000817ab8a28416a4840f37",
+  "independentPreflight": {
+    "file": "audit/2026-11-05-followup/source35-capacity-independent-preflight.json",
+    "sha256": "628195575dd07e47a58880aa9c02dc97e37f92f1f39a4121de1d39cbb01abbe4"
+  },
+  "predeclaredTrials": {
+    "plannedFreshOwners": 3,
+    "actualCapacityOwners": 1,
+    "trials2And3": "NOT RUN: first full representation failed; predeclared stop rule applied.",
+    "allThreeBothRepresentationsRequiredForFinalCapacityClaim": true
+  },
+  "retainedSetupOnlyFailures": [
+    {
+      "owner": "8c164ff7da01c733",
+      "capacityRequests": 0,
+      "reason": "Missing required baseowner identity file"
+    },
+    {
+      "owner": "c07524e1e4962966",
+      "capacityRequests": 0,
+      "reason": "Legacy lowercase manifest path before sourceguard"
+    }
+  ],
+  "qualification": "One fresh ordinary Apache/PHP/MariaDB owner, realOPcacheOFF, unchanged nativePDO/durability/rates and original full1653→productionwire1653 protocol at20concurrency/50x8/strict150. No profiler, variant headers, retry, filtering or added warmup. Wire follows full on same database; it is not an independently cold wire claim. Full/default target remains failed; older failures remain unchanged.",
+  "fullCapacityPassed": false,
+  "stableRepeatedCapacityPassed": false
+}

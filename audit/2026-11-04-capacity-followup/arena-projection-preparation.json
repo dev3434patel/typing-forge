@@ -1,0 +1,123 @@
+{
+  "recordedAt": "2026-11-04T18:25:43.473Z",
+  "status": "AUDIT-ONLY-CANDIDATE-PREPARED-NOT-EXECUTED",
+  "sourceFile": "backend/src/ArenaService.php",
+  "sourceSha256": "9008825c59bdcfd863b714f45412638082043eae56a1000b70a134de67919a6d",
+  "candidateFile": "audit/2026-11-04-capacity-followup/ArenaServiceProjectionCandidate.php",
+  "candidateSha256": "d1b348e52cd6ea52e79b3c8d6151736996cf0cbbf71f1927a9a7439c6e157b13",
+  "exactReverse": true,
+  "replacements": [
+    {
+      "from": "final class ArenaService\n",
+      "to": "final class ArenaServiceProjectionCandidate\n",
+      "index": 170
+    },
+    {
+      "from": "    private function members(array $room): array\n    {\n        $q=$this->db->prepare('SELECT * FROM arena_members WHERE arena_id=? ORDER BY slot FOR UPDATE');$q->execute([$room['id']]);return $q->fetchAll();\n    }",
+      "to": "    private function members(array $room): array\n    {\n        $q=$this->db->prepare('SELECT * FROM arena_members WHERE arena_id=? ORDER BY slot FOR UPDATE');$q->execute([$room['id']]);return $q->fetchAll();\n    }\n    /** Scalar active-state projection; every call retains its fresh row locks. */\n    private function activeMembers(array $room): array\n    {\n        $q=$this->db->prepare('SELECT user_id,status,last_seen_at,credited_units FROM arena_members WHERE arena_id=? ORDER BY slot FOR UPDATE');$q->execute([$room['id']]);return $q->fetchAll();\n    }\n    /** Public response projection; private canonical evidence stays in members(). */\n    private function responseMembers(array $room): array\n    {\n        $q=$this->db->prepare('SELECT user_id,slot,ready,status,credited_units,wpm,accuracy,elapsed_ms,rematch_vote,quarantine_reason,appeal_requested_at FROM arena_members WHERE arena_id=? ORDER BY slot FOR UPDATE');$q->execute([$room['id']]);return $q->fetchAll();\n    }",
+      "index": 3560
+    },
+    {
+      "from": "$members=$this->members($room);$active=0;",
+      "to": "$members=$this->activeMembers($room);$active=0;",
+      "index": 12520
+    },
+    {
+      "from": "    private function serialize(array $room,string $owner,bool $spectator,float $now): array\n    {\n        $members=$this->members($room);",
+      "to": "    private function serialize(array $room,string $owner,bool $spectator,float $now): array\n    {\n        $members=$this->responseMembers($room);",
+      "index": 16181
+    },
+    {
+      "from": "            // Only the public response needs handles. Internal room operations\n            // retain fresh full member rows and their original write locks.",
+      "to": "            // Only the public response needs handles. Its scalar projection\n            // retains fresh member rows and their original write locks.",
+      "index": 16349
+    }
+  ],
+  "sourceBefore": {
+    "sourceFile": "audit/2026-11-02/final34-source.json",
+    "expectedBuild": "332e23584f1e36465df2",
+    "compared": 505,
+    "mismatches": []
+  },
+  "proposedProductionFiles": [
+    "backend/src/ArenaService.php"
+  ],
+  "activeColumns": [
+    "user_id",
+    "status",
+    "last_seen_at",
+    "credited_units"
+  ],
+  "responseColumns": [
+    "user_id",
+    "slot",
+    "ready",
+    "status",
+    "credited_units",
+    "wpm",
+    "accuracy",
+    "elapsed_ms",
+    "rematch_vote",
+    "quarantine_reason",
+    "appeal_requested_at"
+  ],
+  "lockBoundary": "Identical WHERE arena_id=? ORDER BY slot FOR UPDATE, same parameter values and call positions. Full members() remains authoritative and waiting-liveness source. No row, clock, handle, lock or statement-result cache introduced.",
+  "preserved": [
+    "Own member full evidence/prefix/immutable finish retry",
+    "Waiting liveness six null evidence markers",
+    "All room/account/member locks and ordering",
+    "All independent validation/replay/chart/final persistence",
+    "Every database-clock call and shared deadline/grace",
+    "Separate nonlocking public handle lookup",
+    "Transaction positions, status/version writes and response field order"
+  ],
+  "risks": [
+    "SQL column projection may alter physical optimizer access and requires native query-plan/lock proof.",
+    "Historical member stage is small; removing it cannot by itself justify a predicted38ms gain.",
+    "Terminal finished evidence can be large, but current original capacity fixture has only ten events per account."
+  ],
+  "historicalMeasurement": {
+    "source": "source31 instrumented wire diagnostic, not a current source34 measurement or acceptance",
+    "file": "audit/2026-11-02/source31-sql-profile-c4f783325fb85273-summary.json",
+    "sha256": "738899e470e6f31273bffa32e92366440bd99b8401cf890e87fc3f269140365f",
+    "submitRequests": 400,
+    "facts": {
+      "stage_locked_replay": {
+        "label": "stage_locked_replay",
+        "calls": 400,
+        "errors": 0,
+        "p50Ms": 9.845,
+        "p95Ms": 14.844,
+        "maxMs": 18.867
+      },
+      "sqlcat_room_lock": {
+        "label": "sqlcat_room_lock",
+        "calls": 850,
+        "errors": 0,
+        "p50Ms": 24.686,
+        "p95Ms": 73.714,
+        "maxMs": 143.173
+      },
+      "sqlcat_member_lock": {
+        "label": "sqlcat_member_lock",
+        "calls": 1600,
+        "errors": 0,
+        "p50Ms": 1.094,
+        "p95Ms": 1.541,
+        "maxMs": 8.684
+      }
+    },
+    "positiveUnattributedHttpMinusPhpP95Ms": 88.9288
+  },
+  "requiredEvidence": [
+    "Pure original-vs-candidate PDO mocks returning actual slim column sets and comparing exact public response bytes, mutations, clocks and query shape.",
+    "Original full member evidence and waiting-liveness contracts unchanged.",
+    "Separately approved fresh owned native plan/lock/lifecycle checks.",
+    "Exact original full1653 and wire1653 bursts,50x8 seats,concurrency20,strict p95<150,all outcomes retained and no retry/filter/warmup policy change."
+  ],
+  "servicesStarted": 0,
+  "productionEdited": false,
+  "capacityPassed": "UNVERIFIED",
+  "performanceGain": "UNMEASURED",
+  "privateConfigRead": false
+}

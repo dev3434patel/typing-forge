@@ -1,0 +1,146 @@
+{
+  "recordedAt": "2026-11-10T15:33:14.981Z",
+  "status": "PREPARED-ALIASES-AWAITING-REUSE-PROOF-PREFLIGHT",
+  "derivatives": [
+    {
+      "sourceFile": "audit/2026-11-05-followup/run-mobile-workspaces-static-final36.mjs",
+      "sourceSha256": "4fe8a6767a1a24fc191732fb986dd103da3e8fd2df2b8229a6bf4b6a49dd4d07",
+      "target": "audit/2026-11-05-followup/run-mobile-workspaces-static-final37.mjs",
+      "targetSha256": "f61e8b350631032ea2632fb0e5fabc27d47b7f41f58f0c84b5a03f027918d6f5",
+      "identityChanges": [
+        [
+          "mobile-workspaces-final36-static",
+          "mobile-workspaces-final37-static",
+          5
+        ],
+        [
+          "final36-source.json",
+          "final37-source.json",
+          1
+        ],
+        [
+          "SPAROWTYPE_FINAL36_BUILD_ID",
+          "SPAROWTYPE_FINAL37_BUILD_ID",
+          1
+        ],
+        [
+          "SPAROWTYPE_FINAL36_STATIC_BUILD_ID",
+          "SPAROWTYPE_FINAL37_STATIC_BUILD_ID",
+          1
+        ],
+        [
+          "measure-mobile-workspaces-static-final36.mjs",
+          "measure-mobile-workspaces-static-final37.mjs",
+          1
+        ]
+      ],
+      "guardPrefix": "import { verifyPreparedSource37FrontendPerformance } from './source37-frontend-performance-preflight.mjs';\nassert.equal(process.env.SPAROWTYPE_SOURCE37_FRONTEND_PERFORMANCE_WINDOW, '1', 'Wait for the separately coordinated source37 frontend performance window.');\nconst source37PerformanceBefore = await verifyPreparedSource37FrontendPerformance();\n",
+      "guardSuffix": "\nassert.deepEqual(await verifyPreparedSource37FrontendPerformance(), source37PerformanceBefore);\n",
+      "exactReversal": true,
+      "actualMeasurementBodyChangedOnlyInDeclaredIdentityReferences": true
+    },
+    {
+      "sourceFile": "audit/2026-11-05-followup/measure-mobile-workspaces-static-final36.mjs",
+      "sourceSha256": "de31bf492a665afcb02856592c8edd2ea703dffcde0dfefb7b46efe661ae88fd",
+      "target": "audit/2026-11-05-followup/measure-mobile-workspaces-static-final37.mjs",
+      "targetSha256": "a8a058dd16a3423c9f23a87c628e5e0fc70c96f493171b80ea0c0adcf8f347f0",
+      "identityChanges": [
+        [
+          "mobile-workspaces-final36-static",
+          "mobile-workspaces-final37-static",
+          3
+        ]
+      ],
+      "guardPrefix": "",
+      "guardSuffix": "",
+      "exactReversal": true,
+      "actualMeasurementBodyChangedOnlyInDeclaredIdentityReferences": true
+    },
+    {
+      "sourceFile": "audit/2026-11-05-followup/assess-final36-mobile-latency.mjs",
+      "sourceSha256": "68b89622d6c309e3b4cfbd0f5b05b3335bd45ad6561b03f46b1969dd2782563f",
+      "target": "audit/2026-11-05-followup/assess-final37-mobile-latency.mjs",
+      "targetSha256": "e16da4fcdaff0dea1e4cc74380f0f1543ca761c55500c52f60ef4918b05f7642",
+      "identityChanges": [
+        [
+          "mobile-workspaces-final36-static",
+          "mobile-workspaces-final37-static",
+          1
+        ],
+        [
+          "final36-source.json",
+          "final37-source.json",
+          1
+        ],
+        [
+          "SPAROWTYPE_FINAL36_BUILD_ID",
+          "SPAROWTYPE_FINAL37_BUILD_ID",
+          1
+        ]
+      ],
+      "guardPrefix": "import { verifyPreparedSource37FrontendPerformance } from './source37-frontend-performance-preflight.mjs';\nconst source37PerformanceBefore = await verifyPreparedSource37FrontendPerformance();\n",
+      "guardSuffix": "\nassert.deepEqual(await verifyPreparedSource37FrontendPerformance(), source37PerformanceBefore);\n",
+      "exactReversal": true,
+      "actualMeasurementBodyChangedOnlyInDeclaredIdentityReferences": true
+    },
+    {
+      "sourceFile": "audit/2026-11-05-followup/assess-final36-mobile-interaction-latency.mjs",
+      "sourceSha256": "08abd8a620171f7478ba3062e7d05db8638f31e90441a1c700d7c0c7bcbefcfa",
+      "target": "audit/2026-11-05-followup/assess-final37-mobile-interaction-latency.mjs",
+      "targetSha256": "9f72d51ec0a24fbdf1931585a923efdde916f79e6a4d78c52255d5680276f2d1",
+      "identityChanges": [
+        [
+          "Separate stricter source36 assessment",
+          "Separate stricter source37 assessment",
+          1
+        ],
+        [
+          "mobile-workspaces-final36-static",
+          "mobile-workspaces-final37-static",
+          1
+        ],
+        [
+          "final36-source.json",
+          "final37-source.json",
+          1
+        ],
+        [
+          "SPAROWTYPE_FINAL36_BUILD_ID",
+          "SPAROWTYPE_FINAL37_BUILD_ID",
+          1
+        ]
+      ],
+      "guardPrefix": "import { verifyPreparedSource37FrontendPerformance } from './source37-frontend-performance-preflight.mjs';\nconst source37PerformanceBefore = await verifyPreparedSource37FrontendPerformance();\n",
+      "guardSuffix": "\nassert.deepEqual(await verifyPreparedSource37FrontendPerformance(), source37PerformanceBefore);\n",
+      "exactReversal": true,
+      "actualMeasurementBodyChangedOnlyInDeclaredIdentityReferences": true
+    },
+    {
+      "sourceFile": "audit/2026-11-05-followup/run-input-final36.mjs",
+      "sourceSha256": "9f6b14590d48165fdb6b0cb8649529f932a2cc6bb902462d94b9af44b0956a8f",
+      "target": "audit/2026-11-05-followup/run-input-final37.mjs",
+      "targetSha256": "cffc0134282bebbd991a22d823c2ec9b7dd0e5aa846736a65b4cf19f5acb3969",
+      "identityChanges": [],
+      "guardPrefix": "import { verifyPreparedSource37FrontendPerformance } from './source37-frontend-performance-preflight.mjs';\nassert.equal(process.env.SPAROWTYPE_SOURCE37_FRONTEND_PERFORMANCE_WINDOW, '1', 'Wait for the separately coordinated source37 frontend performance window.');\nassert.equal(process.argv[2], 'final37', 'Source37 home measurement must use the frozen final37 source/output prefix.');\nconst source37PerformanceBefore = await verifyPreparedSource37FrontendPerformance();\n",
+      "guardSuffix": "\nassert.deepEqual(await verifyPreparedSource37FrontendPerformance(), source37PerformanceBefore);\n",
+      "exactReversal": true,
+      "actualMeasurementBodyChangedOnlyInDeclaredIdentityReferences": true
+    },
+    {
+      "sourceFile": "audit/2026-11-05-followup/run-final36-lighthouse.mjs",
+      "sourceSha256": "485745fa1168ee8acdaaa6383b69213b8c9f04bad2652408df087f1506ce5c61",
+      "target": "audit/2026-11-05-followup/run-final37-lighthouse.mjs",
+      "targetSha256": "d5eb25035eac05e516a5d5ee22f332e3fb53a8891dc93a9e7ab070c7699e30ec",
+      "identityChanges": [],
+      "guardPrefix": "import { verifyPreparedSource37FrontendPerformance } from './source37-frontend-performance-preflight.mjs';\nassert.equal(process.env.SPAROWTYPE_SOURCE37_FRONTEND_PERFORMANCE_WINDOW, '1', 'Wait for the separately coordinated source37 frontend performance window.');\nassert.match(process.argv[2] ?? '', /^final37-mobile(?:-[a-z0-9]+)*$/, 'Use a fresh source37 Lighthouse output prefix.');\nconst source37PerformanceBefore = await verifyPreparedSource37FrontendPerformance();\n",
+      "guardSuffix": "\nassert.deepEqual(await verifyPreparedSource37FrontendPerformance(), source37PerformanceBefore);\n",
+      "exactReversal": true,
+      "actualMeasurementBodyChangedOnlyInDeclaredIdentityReferences": true
+    }
+  ],
+  "original36HelpersEdited": false,
+  "actionsTimingThresholdsThreeTrialCountsUnchanged": true,
+  "actualArtifactRetained": "dist-static-final36-vercel",
+  "historicalStaticReportRetained": "audit/2026-11-05-followup/final36-static-artifacts.json",
+  "runtimeExecuted": false
+}

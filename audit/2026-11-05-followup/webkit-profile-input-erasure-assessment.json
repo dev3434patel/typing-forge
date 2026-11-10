@@ -1,0 +1,157 @@
+{
+  "status": "REPRODUCED-NATIVE-INPUT-ERASURE-BEFORE-RESET",
+  "recordedAt": "2026-11-04T18:32:35.768Z",
+  "actualExecution": {
+    "utcStart": "2026-11-04T18:30:08.558Z",
+    "localCalendarDate": "2026-11-05",
+    "directoryQualification": "Pack was prepared before local midnight in2026-11-04-followup; UTC timestamps remain authoritative.",
+    "cases": 8,
+    "passed": 7,
+    "failed": 1,
+    "skipped": 0,
+    "retries": 0
+  },
+  "source505And78InputsAnd21BrandUnchanged": true,
+  "failure": {
+    "project": "webkit",
+    "title": "three real course attempts retain DELETE through native fill and reset completion",
+    "caseId": "6154a565dbf79a25459d-da22ab2334391ae5ac09",
+    "errors": [
+      {
+        "location": {
+          "file": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-04-followup\\webkit-reset-probe\\profile-reset.spec.ts",
+          "column": 23,
+          "line": 95
+        },
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByLabel('Type DELETE to enable this action', { exact: true })\nExpected: \u001b[32m\"DELETE\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" getByLabel('Type DELETE to enable this action', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByLabel('Type DELETE to enable this action', { exact: true })\u001b[22m\n\u001b[2m    13 × locator resolved to <input value=\"\" autocomplete=\"off\" id=\"delete-confirmation\" class=\"forge-input max-w-xs\"/>\u001b[22m\n\u001b[2m       - unexpected value \"\"\u001b[22m\n\n\n  93 |   const field = await confirmation(page);\n  94 |   await action('native-fill', () => field.fill('DELETE'));\n> 95 |   await expect(field).toHaveValue('DELETE');\n     |                       ^\n  96 |   await action('reset-click', () => page.getByRole('button', { name: 'Reset guest workspace', exact: true }).click());\n  97 |   await action('durable-public-completion', () => expect(page.getByRole('status').filter({ hasText: 'This device workspace has been reset.' })).toBeVisible());\n  98 |   await action('goto-locked-lesson', () => page.goto(`/lessons?lesson=${second.id}`));\n    at D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-04-followup\\webkit-reset-probe\\profile-reset.spec.ts:95:23"
+      }
+    ],
+    "attachments": [
+      {
+        "name": "screenshot",
+        "contentType": "image/png",
+        "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-04-followup\\.webkit-profile-reset-probe-artifacts\\profile-reset-three-real-c-f3ef4-e-fill-and-reset-completion-webkit\\test-failed-1.png"
+      },
+      {
+        "name": "error-context",
+        "contentType": "text/markdown",
+        "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-04-followup\\.webkit-profile-reset-probe-artifacts\\profile-reset-three-real-c-f3ef4-e-fill-and-reset-completion-webkit\\error-context.md"
+      },
+      {
+        "name": "trace",
+        "contentType": "application/zip",
+        "path": "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-04-followup\\.webkit-profile-reset-probe-artifacts\\profile-reset-three-real-c-f3ef4-e-fill-and-reset-completion-webkit\\trace.zip"
+      }
+    ]
+  },
+  "causalObservations": {
+    "inputEvent": {
+      "nodeElapsedMs": 19825.782,
+      "kind": "browser",
+      "sequence": 5,
+      "elapsedMs": 469,
+      "type": "input",
+      "value": "DELETE",
+      "node": 1,
+      "connected": true,
+      "focused": true,
+      "reset": false,
+      "complete": false,
+      "saved": 0
+    },
+    "nativeFillReturned": {
+      "nodeElapsedMs": 19836.844,
+      "kind": "action",
+      "label": "native-fill",
+      "phase": "end"
+    },
+    "sameNodeEmptyAfterReturn": {
+      "nodeElapsedMs": 19842.389,
+      "kind": "browser",
+      "sequence": 6,
+      "elapsedMs": 505,
+      "type": "frame",
+      "value": "",
+      "node": 1,
+      "connected": true,
+      "focused": true,
+      "reset": false,
+      "complete": false,
+      "saved": 0
+    },
+    "delayAfterInputMs": 16.60699999999997,
+    "delayAfterFillReturnMs": 5.544999999998254,
+    "resetNeverClicked": true,
+    "resetNeverPublished": true,
+    "sameConnectedFocusedNode": true,
+    "savedHistoryEventuallyThree": true
+  },
+  "controls": [
+    {
+      "project": "webkit",
+      "title": "first mount accepts native fill beginning at document commit",
+      "passedOnce": true
+    },
+    {
+      "project": "webkit",
+      "title": "first mount native keyboard input controls for fill-specific behavior",
+      "passedOnce": true
+    },
+    {
+      "project": "webkit",
+      "title": "controlled pending reset records remount and hard-navigation ordering",
+      "passedOnce": true
+    },
+    {
+      "project": "chromium",
+      "title": "first mount accepts native fill beginning at document commit",
+      "passedOnce": true
+    },
+    {
+      "project": "chromium",
+      "title": "three real course attempts retain DELETE through native fill and reset completion",
+      "passedOnce": true
+    },
+    {
+      "project": "chromium",
+      "title": "first mount native keyboard input controls for fill-specific behavior",
+      "passedOnce": true
+    },
+    {
+      "project": "chromium",
+      "title": "controlled pending reset records remount and hard-navigation ordering",
+      "passedOnce": true
+    }
+  ],
+  "interpretation": "A real native insertion is erased after fill returns and before any reset action/navigation. This reproduces the observable original case1014 state and rules out reset-remount/navigation as the cause of this newly observed erasure. Static Profile source contains a mount/owner passive effect clearing confirmation; it is the leading causal candidate. No effect stack was captured, so the historical60-second timeout is not retroactively declared conclusively explained.",
+  "proposedChangeNotApplied": "Scope confirmation draft state to its owner and derive empty text on mismatch, replacing the passive confirmation clear while retaining message clearing. Native follow-up must test actual value retention and owner isolation.",
+  "originalEvidenceOverwritten": false,
+  "productOrExistingTestsEdited": false,
+  "additionalRuntimeStarted": false,
+  "bindings": [
+    {
+      "file": "audit/2026-11-04-followup/webkit-profile-reset-probe-result.json",
+      "sha256": "4f6944048cd0e4470621e43c92225615060b6c2454c11fb6291cede894e46ac8"
+    },
+    {
+      "file": "audit/2026-11-04-followup/webkit-profile-reset-probe-raw.json",
+      "sha256": "284782726574785be382d3e82297d11f4b16ff09b84803e6d48fa37f34a338ef"
+    },
+    {
+      "file": "audit/2026-11-04-followup/webkit-profile-reset-webkit-course-fill-events.jsonl",
+      "sha256": "5f946ac8373bc4824b2de7ea764ec5d350b7cea229f205b1609f524728b31175"
+    },
+    {
+      "file": "audit/2026-11-04-followup/webkit-profile-reset-probe-protocol.json",
+      "sha256": "a2410a4fb1d1fad28904371a3c13be72f0668ad8a925de0c67ea77ffd6c70940"
+    },
+    {
+      "file": "audit/2026-11-04-followup/webkit-profile-reset-probe-preparation-v2.json",
+      "sha256": "fdbeeff1730dd8b89bd6611fa0b0a0deed33e0cf1cdd330e933d130a1d61ab53"
+    },
+    {
+      "file": "src/pages/Profile.tsx",
+      "sha256": "e5999c4c3aeb05784e88dfc7e5be12853e7e49099f34ddbc589a3ce4fc40228a"
+    }
+  ]
+}

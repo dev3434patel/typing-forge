@@ -1,0 +1,50 @@
+{
+  "status": "APPLIED-FROZEN-SYNTAX-ONLY-NO-RUNTIME",
+  "recordedAt": "2026-11-04T18:34:36.918Z",
+  "file": "src/pages/Profile.tsx",
+  "before": {
+    "archived": "audit/2026-11-05-followup/Profile.tsx.before-layout-fix",
+    "sha256": "e5999c4c3aeb05784e88dfc7e5be12853e7e49099f34ddbc589a3ce4fc40228a"
+  },
+  "afterSha256": "596a7031ddf98ccb99691b2a46e9457bc7e11f301ea5bdbff5f7636714d88fb7",
+  "exactPatch": {
+    "file": "audit/2026-11-05-followup/profile-layout-fix.patch",
+    "sha256": "1220b10a59598bf23d9aa4c14ae397fda6f00079fb81ff25a736721945db34de"
+  },
+  "scope": "Move confirmation reset to isomorphic layout effect before paint on initial mount and every actual owner change; retain separate passive message clear and unchanged reset action. No ref skip, owner-scoped draft cache, timing/metric or 3D change.",
+  "source505Comparison": {
+    "sourceFile": "audit/2026-11-02/final34-source.json",
+    "expectedBuild": "332e23584f1e36465df2",
+    "compared": 505,
+    "mismatches": [
+      "src/pages/Profile.tsx"
+    ]
+  },
+  "onlyApprovedProfileProductionDelta": true,
+  "all21BrandSourcesUnchanged": true,
+  "regression": {
+    "file": "e2e/profile-confirmation-readiness.spec.ts",
+    "sha256": "0ed2931c613a8eec6ef14b0ea5bf76185fd3b3103111e63f8a490800bd733e15",
+    "cases": [
+      "early native fill survives course history/paint and durable reset",
+      "real owner transition A→B→A clears confirmation each time"
+    ]
+  },
+  "syntax": [
+    {
+      "file": "src/pages/Profile.tsx",
+      "errors": []
+    },
+    {
+      "file": "e2e/profile-confirmation-readiness.spec.ts",
+      "errors": []
+    }
+  ],
+  "semanticTypecheckExecuted": false,
+  "ssrRuntimeExecuted": false,
+  "ssrGuard": "typeof window === 'undefined' ? useEffect : useLayoutEffect",
+  "testsExecuted": false,
+  "originalSevenPassOneFailRetained": true,
+  "originalHistorical60SecondCauseNotRetrospectivelyClaimed": true,
+  "requiresFreshFrontendBuildBeforePostFixNativeProbe": true
+}

@@ -1,0 +1,94 @@
+{
+  "recordedAt": "2026-11-09T17:43:10.388Z",
+  "status": "PASS-SCOPED-INDEPENDENT-NATIVE32-RECEIPTS-AND-CLEANUP",
+  "ownerId": "ccf8ebed549b388b",
+  "build": "d89f84d74519bf2bbae0",
+  "receipts": {
+    "raw": {
+      "file": "audit/2026-11-05-followup/pack-backend-ccf8ebed549b388b-arena-http-raw.json",
+      "sha256": "3b7509f6c644477ae43538007f941bb3b14820b9c2feda4be7539a7d9e9c4b07",
+      "bytes": 7397
+    },
+    "guard": {
+      "file": "audit/2026-11-05-followup/pack-backend-ccf8ebed549b388b-arena-http36-source-guard.json",
+      "sha256": "10bd00c3a62425ac708ee48f42fe1c6e6f02a075fd854fcb6a6ab7c01de89e4a",
+      "bytes": 44888
+    },
+    "suiteSummary": {
+      "file": "audit/2026-11-05-followup/pack-backend-ccf8ebed549b388b-arena-http36-summary.json",
+      "sha256": "db0342a15b558d303d869a8fca63752ca3f3db4b7811141ca9296cfb673e3530",
+      "bytes": 115
+    },
+    "ownerSummary": {
+      "file": "audit/2026-11-05-followup/pack-backend-ccf8ebed549b388b-summary.json",
+      "sha256": "0e5de9565a639f04a309ba7e34b4b6e189d00c8bfab99f8bbc492c3c61e7fa1c",
+      "bytes": 492
+    },
+    "inputsAfter": {
+      "file": "audit/2026-11-05-followup/pack-backend-ccf8ebed549b388b-source36-arena-http-inputs-after.json",
+      "sha256": "f915635aae06ec81f882f48c75660979f93ed71407fc40e260023475e4a7cb45",
+      "bytes": 21564
+    },
+    "cleanup": {
+      "file": "audit/2026-11-05-followup/pack-backend-ccf8ebed549b388b-cleanup.json",
+      "sha256": "bbebb78ceb31368ba69488826c8354e01e3e47be64be274454a82067d03d9b55",
+      "bytes": 486
+    },
+    "protocol": {
+      "file": "audit/2026-11-05-followup/pack-backend-ccf8ebed549b388b-protocol.json",
+      "sha256": "b56c8626c05fe63ed781d40b518a4399a829c9349301fd00887555d33d9d3b59",
+      "bytes": 703
+    },
+    "suiteProtocol": {
+      "file": "audit/2026-11-05-followup/pack-backend-ccf8ebed549b388b-arena-http36-protocol.json",
+      "sha256": "df28af3523baa58b01969bdaa445590ef18d8929256fa8598eb27173b0ebbadf",
+      "bytes": 22896
+    }
+  },
+  "checks": {
+    "all32Passed": true,
+    "original29AndThreeFinishHistoryAssertionsPreserved": true,
+    "fixtureAccountsRemoved": 3,
+    "fixtureSessionsRemoved": 3,
+    "source506Unchanged": true,
+    "testDependencies73Unchanged": true,
+    "ownedConfigHashes6Unchanged": true,
+    "finalOwnerInputsUnchanged": true,
+    "gracefulApacheShutdown": true,
+    "gracefulDatabaseShutdown": true,
+    "forcedStops": false,
+    "residualApachePids": [],
+    "ownProcessesStopped": true,
+    "ownedTemporaryDirectoryRemoved": true,
+    "originalPortsUntouched": [
+      3308,
+      8081,
+      4173
+    ],
+    "noOriginalConfigRead": true,
+    "noExistingDatabaseConnection": true
+  },
+  "ownerProcessExit": {
+    "value": 0,
+    "provenance": "Root reports original unified-exec session82040 tools.write_stdin chunk a5ee2c returned exit_code0. Independently read public receipts prove suite exit0 and complete graceful cleanup; they do not separately encode the outer owner process exit.",
+    "independentlyReobserved": false,
+    "publicProcessReceipt": null,
+    "parentTool": "tools.write_stdin",
+    "parentSessionId": 82040,
+    "parentToolChunkId": "a5ee2c"
+  },
+  "scope": "Independent read of eight public receipts only. Original32 native HTTP lifecycle including bounded three-way functional room creation plus complete finish chart/history/idempotence. This is not a capacity, latency, browser human-input or hosted certificate.",
+  "limitations": [
+    "Owner suite/source summaries are intentionally written before finally cleanup and retain PENDING wording. Acceptance uses the separate later cleanup receipt rather than reinterpreting those summaries.",
+    "The owner outer process exit is an explicit root observation, not a separately reobserved child tool handle. Root should preserve its process evidence alongside this receipt.",
+    "No private owned or original configuration files were read by this assessment; only recorded public configuration SHA256 values were compared."
+  ],
+  "mutations": {
+    "production": false,
+    "tests": false,
+    "index": false,
+    "services": false,
+    "testsExecuted": false,
+    "loadExecuted": false
+  }
+}

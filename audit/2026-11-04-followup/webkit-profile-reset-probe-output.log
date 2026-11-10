@@ -1,0 +1,61 @@
+
+Running 8 tests using 1 worker
+
+(node:20124) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [webkit] › audit\2026-11-04-followup\webkit-reset-probe\profile-reset.spec.ts:72:1 › first mount accepts native fill beginning at document commit (1.4s)
+  x  2 [webkit] › audit\2026-11-04-followup\webkit-reset-probe\profile-reset.spec.ts:81:1 › three real course attempts retain DELETE through native fill and reset completion (25.4s)
+(node:23304) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 3 [webkit] › audit\2026-11-04-followup\webkit-reset-probe\profile-reset.spec.ts:102:1 › first mount native keyboard input controls for fill-specific behavior (1.1s)
+  ok 4 [webkit] › audit\2026-11-04-followup\webkit-reset-probe\profile-reset.spec.ts:112:1 › controlled pending reset records remount and hard-navigation ordering (8.7s)
+(node:14924) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 5 [chromium] › audit\2026-11-04-followup\webkit-reset-probe\profile-reset.spec.ts:72:1 › first mount accepts native fill beginning at document commit (505ms)
+  ok 6 [chromium] › audit\2026-11-04-followup\webkit-reset-probe\profile-reset.spec.ts:81:1 › three real course attempts retain DELETE through native fill and reset completion (16.8s)
+  ok 7 [chromium] › audit\2026-11-04-followup\webkit-reset-probe\profile-reset.spec.ts:102:1 › first mount native keyboard input controls for fill-specific behavior (466ms)
+  ok 8 [chromium] › audit\2026-11-04-followup\webkit-reset-probe\profile-reset.spec.ts:112:1 › controlled pending reset records remount and hard-navigation ordering (6.6s)
+
+
+  1) [webkit] › audit\2026-11-04-followup\webkit-reset-probe\profile-reset.spec.ts:81:1 › three real course attempts retain DELETE through native fill and reset completion 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator:  getByLabel('Type DELETE to enable this action', { exact: true })
+    Expected: "DELETE"
+    Received: ""
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveValue" getByLabel('Type DELETE to enable this action', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('Type DELETE to enable this action', { exact: true })
+        13 × locator resolved to <input value="" autocomplete="off" id="delete-confirmation" class="forge-input max-w-xs"/>
+           - unexpected value ""
+
+
+      93 |   const field = await confirmation(page);
+      94 |   await action('native-fill', () => field.fill('DELETE'));
+    > 95 |   await expect(field).toHaveValue('DELETE');
+         |                       ^
+      96 |   await action('reset-click', () => page.getByRole('button', { name: 'Reset guest workspace', exact: true }).click());
+      97 |   await action('durable-public-completion', () => expect(page.getByRole('status').filter({ hasText: 'This device workspace has been reset.' })).toBeVisible());
+      98 |   await action('goto-locked-lesson', () => page.goto(`/lessons?lesson=${second.id}`));
+        at D:\extra\typing_updated\typing-forge\audit\2026-11-04-followup\webkit-reset-probe\profile-reset.spec.ts:95:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    audit\2026-11-04-followup\.webkit-profile-reset-probe-artifacts\profile-reset-three-real-c-f3ef4-e-fill-and-reset-completion-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: audit\2026-11-04-followup\.webkit-profile-reset-probe-artifacts\profile-reset-three-real-c-f3ef4-e-fill-and-reset-completion-webkit\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    audit\2026-11-04-followup\.webkit-profile-reset-probe-artifacts\profile-reset-three-real-c-f3ef4-e-fill-and-reset-completion-webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace audit\2026-11-04-followup\.webkit-profile-reset-probe-artifacts\profile-reset-three-real-c-f3ef4-e-fill-and-reset-completion-webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [webkit] › audit\2026-11-04-followup\webkit-reset-probe\profile-reset.spec.ts:81:1 › three real course attempts retain DELETE through native fill and reset completion 
+  7 passed (1.1m)

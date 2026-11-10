@@ -1,0 +1,217 @@
+{
+  "preparedAt": "2026-11-04T19:05:45.667Z",
+  "status": "V3-FROZEN-FS-SOURCE-BUILD-PREFLIGHT-PASS-WAITING-INDEPENDENT-REVIEW-AND-NEW-ROOT-GO",
+  "priorPreparationFile": "audit/2026-11-05-followup/source35-ordinary-capacity-preparation-v2.json",
+  "priorPreparationSha256": "0e2fea9fa458eae1a7ab483b153e1c007e90cb6742835e08ba340d5f6e5eb885",
+  "retainedSetupFailures": [
+    {
+      "owner": "8c164ff7da01c733",
+      "reason": "Missing baseowner identity file",
+      "actualCapacityRequests": 0,
+      "gracefulCleanup": true
+    },
+    {
+      "owner": "c07524e1e4962966",
+      "reason": "Unconverted lowercase final34 manifest template path",
+      "actualCapacityRequests": 0,
+      "gracefulCleanup": true,
+      "cleanupFile": "audit/2026-11-05-followup/pack-backend-c07524e1e4962966-cleanup.json",
+      "cleanupSha256": "84955bfee188a21480f79e6d3b51c9e296dc376b83e3118e54b2a581ccd18f79"
+    }
+  ],
+  "filePreparationFailure": {
+    "stage": "Explicit source35 producer dependency count",
+    "expected": 17,
+    "observed": 18,
+    "reason": "The newly added source35 core regression-test file is included in the506-file manifest. Corrected exact expected count to18; no source hash or acceptance threshold was relaxed.",
+    "nativeProcessesStarted": 0
+  },
+  "changes": [
+    {
+      "file": "audit/2026-11-05-followup/run-source35-capacity-burst.mjs",
+      "beforeSha256": "74c2b1945a91bd8e15ca2b76d8c0463594709317fcde40881b564eccce1ec4b2",
+      "afterSha256": "bda1168b03bd09d96950512797b0e27639b3546af4819615d03660aa02a140eb",
+      "edits": [
+        {
+          "from": "final34-source.json",
+          "to": "final35-source.json"
+        }
+      ],
+      "exactReverse": true,
+      "nodeSyntaxExit": 0
+    },
+    {
+      "file": "audit/2026-11-05-followup/run-source35-capacity-wire-burst.mjs",
+      "beforeSha256": "bb780d68f7275dcd5fca2deed796eb42864adf97aa34e0e120fcb6dd9e439955",
+      "afterSha256": "fa14f2081a167c1c89eb30f464e9d5dff3074686e8615bf281a78e958c77b1ac",
+      "edits": [
+        {
+          "from": "final34-source.json",
+          "to": "final35-source.json"
+        }
+      ],
+      "exactReverse": true,
+      "nodeSyntaxExit": 0
+    },
+    {
+      "file": "audit/2026-11-05-followup/run-source35-native-rate.mjs",
+      "beforeSha256": "fb501bdfc70b6909dfb8be2f40744fe2834ab08c982de911ce6bda71a6643359",
+      "afterSha256": "1e95af18077ea329407c5fff27bed26bde218976d743a3af617733431d5b246b",
+      "edits": [
+        {
+          "from": "final34-source.json",
+          "to": "final35-source.json"
+        }
+      ],
+      "exactReverse": true,
+      "nodeSyntaxExit": 0
+    },
+    {
+      "file": "audit/2026-11-05-followup/pack-capacity-instance-source35.mjs",
+      "beforeSha256": "c23e0afdb49fe5242bfa8708844332940bff9b8f55bc1a1e6dee76c1b4630b8d",
+      "afterSha256": "68b9af4b1349836c302a41cc0e7b61223564de47dfd0d75c5fca871a79b5de24",
+      "edits": [
+        {
+          "from": "import readline from 'node:readline';",
+          "to": "import readline from 'node:readline';\nimport { verifyPreparedOrdinarySource35 } from './source35-ordinary-preflight.mjs';"
+        },
+        {
+          "from": "assert.equal(process.env.SPAROWTYPE_PACK_INSTANCE_ACCEPTANCE, '1'",
+          "to": "await verifyPreparedOrdinarySource35(); // Before initialization, process spawn or private configuration creation.\nassert.equal(process.env.SPAROWTYPE_PACK_INSTANCE_ACCEPTANCE, '1'"
+        }
+      ],
+      "exactReverse": true,
+      "nodeSyntaxExit": 0
+    },
+    {
+      "file": "audit/2026-11-05-followup/pack-capacity-instance-source35-wire.mjs",
+      "beforeSha256": "cb8073cc1275f421db0ab6d1aeadda53765671876b79379bb59d7c8d00cefb1c",
+      "afterSha256": "e3a54eb7fa8481bf6e927e89cb4dfad5054d163deec5246893cc8516ef04c9ce",
+      "edits": [
+        {
+          "from": "import readline from 'node:readline';",
+          "to": "import readline from 'node:readline';\nimport { verifyPreparedOrdinarySource35 } from './source35-ordinary-preflight.mjs';"
+        },
+        {
+          "from": "assert.equal(process.env.SPAROWTYPE_PACK_INSTANCE_ACCEPTANCE, '1'",
+          "to": "await verifyPreparedOrdinarySource35(); // Before initialization, process spawn or private configuration creation.\nassert.equal(process.env.SPAROWTYPE_PACK_INSTANCE_ACCEPTANCE, '1'"
+        }
+      ],
+      "exactReverse": true,
+      "nodeSyntaxExit": 0
+    }
+  ],
+  "preflight": {
+    "source": {
+      "sourceFile": "audit/2026-11-05-followup/final35-source.json",
+      "expectedBuild": "d89f84d74519bf2bbae0",
+      "compared": 506,
+      "mismatches": []
+    },
+    "sourceManifestSha256": "c9c4c1b9ac7a27854b0db33ef5c2c69fa973ae4c433a2b29020636462393c596",
+    "build": {
+      "version": "d89f84d74519bf2bbae0",
+      "publicFiles": 133,
+      "bytes": 2964860
+    },
+    "producerDependenciesVerified": 18,
+    "requiredPaths": [
+      "C:/xampp/apache/bin/httpd.exe",
+      "C:/xampp/mysql/bin/mysql_install_db.exe",
+      "C:/xampp/mysql/bin/mysqld.exe",
+      "C:/xampp/php/ext/php_intl.dll",
+      "C:/xampp/php/ext/php_mbstring.dll",
+      "C:/xampp/php/ext/php_pdo_mysql.dll",
+      "C:/xampp/php/php.exe",
+      "C:/xampp/php/php8apache2_4.dll",
+      "C:/xampp/php/php8ts.dll",
+      "audit/2026-10-21/artifact-verification.mjs",
+      "audit/2026-10-21/pack-apache-runtime.mjs",
+      "audit/2026-11-05-followup/final35-source.json",
+      "audit/2026-11-05-followup/native-rate-worker-source35.php",
+      "audit/2026-11-05-followup/pack-capacity-instance-source35-wire.mjs",
+      "audit/2026-11-05-followup/pack-capacity-instance-source35.mjs",
+      "audit/2026-11-05-followup/run-source35-capacity-burst.mjs",
+      "audit/2026-11-05-followup/run-source35-capacity-wire-burst.mjs",
+      "audit/2026-11-05-followup/run-source35-native-rate.mjs",
+      "audit/2026-11-05-followup/source35-ordinary-preflight.mjs",
+      "audit/mega-pack-2026-10-21/run-arena-http.mjs",
+      "audit/mega-pack-2026-10-21/run-arena-load.mjs",
+      "backend/tests/arena-audit-admin.php",
+      "backend/tests/classroom-lifecycle.mjs",
+      "backend/tests/course-lifecycle.mjs",
+      "backend/tests/data-lifecycle.mjs",
+      "backend/tests/pack-progression-lifecycle.mjs",
+      "backend/tests/pack-social-lifecycle.mjs",
+      "backend/tests/password-policy.php",
+      "backend/tests/race-lifecycle.mjs",
+      "backend/tests/validation-parity.mjs",
+      "dist/offline-build.json",
+      "scripts/php-runtime.mjs",
+      "src/domain/__tests__/arena.test.ts",
+      "src/domain/arena.ts",
+      "src/lib/typing-core/index.ts",
+      "src/services/arena-service.ts"
+    ],
+    "runtimeInputs": {
+      "audit/2026-11-05-followup/pack-capacity-instance-source35.mjs": "68b9af4b1349836c302a41cc0e7b61223564de47dfd0d75c5fca871a79b5de24",
+      "audit/2026-11-05-followup/pack-capacity-instance-source35-wire.mjs": "e3a54eb7fa8481bf6e927e89cb4dfad5054d163deec5246893cc8516ef04c9ce",
+      "audit/2026-11-05-followup/run-source35-capacity-burst.mjs": "bda1168b03bd09d96950512797b0e27639b3546af4819615d03660aa02a140eb",
+      "audit/2026-11-05-followup/run-source35-capacity-wire-burst.mjs": "fa14f2081a167c1c89eb30f464e9d5dff3074686e8615bf281a78e958c77b1ac",
+      "audit/2026-11-05-followup/run-source35-native-rate.mjs": "1e95af18077ea329407c5fff27bed26bde218976d743a3af617733431d5b246b",
+      "audit/2026-11-05-followup/native-rate-worker-source35.php": "151a599fc37d8181b82851319dfc68eba1cec2e2762943b654be61c9615b160b",
+      "audit/2026-11-05-followup/source35-ordinary-preflight.mjs": "bf9d9d6361b941aa0ad2116e647e28ced7e4a0f0de524711353dd321ed95de9c",
+      "backend/tests/arena-audit-admin.php": "1c40050d0318e8ec84e6cfc44ab90ebd7840d467ea1f0387ec16e11744b8091b",
+      "scripts/php-runtime.mjs": "2adeffc2ac322edbc611f34c437a0f34569689c942602bf39b079305cfb7a60f",
+      "audit/2026-10-21/pack-apache-runtime.mjs": "80dd94f993d853d2057314473855a796e11264323bce64a4a9db97822b6dabe7"
+    },
+    "servicesStarted": 0,
+    "privateOriginalConfigurationRead": false
+  },
+  "entry": "audit/2026-11-05-followup/pack-capacity-instance-source35-wire.mjs",
+  "newRequiredEnvironment": "SPAROWTYPE_SOURCE35_CAPACITY_PREPARATION_SHA256 must equal this exact independently reviewed receipt SHA256",
+  "flags": {
+    "SPAROWTYPE_PACK_INSTANCE_ACCEPTANCE": "1",
+    "SPAROWTYPE_PACK_APACHE_ACCEPTANCE": "1",
+    "SPAROWTYPE_PACK_HTTP_RUNTIME": "apache",
+    "SPAROWTYPE_PACK_SUITES": "password",
+    "SPAROWTYPE_PACK_HOLD": "1",
+    "SPAROWTYPE_PACK_KEEP_FAILURE": "1",
+    "SPAROWTYPE_SOURCE35_CAPACITY_ACCEPTANCE": "1",
+    "SPAROWTYPE_SOURCE35_CAPACITY_WIRE_ACCEPTANCE": "1",
+    "SPAROWTYPE_FINAL35_BUILD_ID": "d89f84d74519bf2bbae0"
+  },
+  "commands": [
+    "capacity35",
+    "capacity35-wire",
+    "cleanup"
+  ],
+  "predeclaredRepeatedAcceptance": {
+    "firstOwner": "One new owner runs full1653 then wire1653. All outcomes retained; no retries, filtering or automatic threshold adjustment.",
+    "ifFirstBothPass": "Run two additional independently new owners with the identical full→wire order; all three owners must pass both strict p95<150ms targets.",
+    "ifAnyFails": "Retain that failure and stop acceptance expansion for diagnosis; do not relabel an earlier pass or run the long matrix as if capacity passed.",
+    "perOwner": {
+      "rooms": 50,
+      "seats": 8,
+      "requestsPerRepresentation": 1653,
+      "concurrentHttpRequests": 20,
+      "strictP95BelowMs": 150,
+      "fullBeforeWire": true,
+      "newIndependentFixturesPerRepresentation": true,
+      "OPcache": false,
+      "persistentPDO": false,
+      "actualPhpPoliciesUnchanged": true,
+      "wireCacheQualification": "Same owner/database after full workload, with no added warmup or code cache."
+    }
+  },
+  "retainedHistoricalMetadataLabels": {
+    "nativeCompletionEvent": "pack-native-rate33-complete",
+    "nativeWorkerNamespace": "audit-native-rate33:<fresh random run>",
+    "assertionCopy": "Source20 capacity requires the real owned Apache runtime.",
+    "meaning": "Inherited metadata labels, not source-manifest reads. Native namespace is consistent between work and inspect. No orchestration currently waits that optional counter event."
+  },
+  "measuredApiActionsHeadersTimingOrPoliciesChanged": false,
+  "profilingEnabled": false,
+  "servicesStartedByPreparation": 0,
+  "allPreparationAndSetupFailuresRetained": true
+}

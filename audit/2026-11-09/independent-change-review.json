@@ -1,0 +1,111 @@
+{
+  "recordedAt": "2026-11-09T17:41:15.216Z",
+  "status": "NO-ACTIONABLE-PRODUCTION-FINDING-IN-SCOPED-FILE-REVIEW",
+  "baseline": "9b21e255ea1840508cbc35b625d0ccde8f3af7cc",
+  "build": "d89f84d74519bf2bbae0",
+  "reviewedProductionFiles": [
+    "src/pages/Profile.tsx",
+    "src/lib/typing-core/session.ts",
+    "src/lib/typing-core/transcript.ts",
+    "backend/public/index.php",
+    "backend/src/ArenaEvidence.php",
+    "backend/src/ArenaService.php"
+  ],
+  "reviewedProductionHashes": {
+    "src/pages/Profile.tsx": {
+      "rawSha256": "596a7031ddf98ccb99691b2a46e9457bc7e11f301ea5bdbff5f7636714d88fb7",
+      "manifestNormalizedSha256": "65ce9db22d5682ed187b3afb991126021af6cd9499706ecd87c7b1beb6cda312"
+    },
+    "src/lib/typing-core/session.ts": {
+      "rawSha256": "fb4ad1a1678da5f4399bb2d32a57ab5fc876546b8b018e7f1a2d2c21f6104fbd",
+      "manifestNormalizedSha256": "fb4ad1a1678da5f4399bb2d32a57ab5fc876546b8b018e7f1a2d2c21f6104fbd"
+    },
+    "src/lib/typing-core/transcript.ts": {
+      "rawSha256": "bf91763defa8980fc0670e26f3bba6e4b008452e59fa1f4670419567faa085f8",
+      "manifestNormalizedSha256": "bf91763defa8980fc0670e26f3bba6e4b008452e59fa1f4670419567faa085f8"
+    },
+    "backend/public/index.php": {
+      "rawSha256": "f02f477750838614113cf0900143a79218dfc8299b1cb963aab570b7f6683c84",
+      "manifestNormalizedSha256": "f02f477750838614113cf0900143a79218dfc8299b1cb963aab570b7f6683c84"
+    },
+    "backend/src/ArenaEvidence.php": {
+      "rawSha256": "3932346a67e8f81694d3b12c521ddb8ee906bd0e77069c64127f170e707ee6c1",
+      "manifestNormalizedSha256": "3932346a67e8f81694d3b12c521ddb8ee906bd0e77069c64127f170e707ee6c1"
+    },
+    "backend/src/ArenaService.php": {
+      "rawSha256": "07ba6e0f26c7a17f15746d457b3fc95f5f2f663acd3b283bb5e1fb8b61c36635",
+      "manifestNormalizedSha256": "07ba6e0f26c7a17f15746d457b3fc95f5f2f663acd3b283bb5e1fb8b61c36635"
+    }
+  },
+  "sourceVerification": {
+    "sourceFile": "audit/2026-11-05-followup/final36-source.json",
+    "expectedBuild": "d89f84d74519bf2bbae0",
+    "compared": 506,
+    "mismatches": []
+  },
+  "allSixCurrentNormalizedHashesMatch": true,
+  "reviewChecks": [
+    "Profile owner confirmation clears before paint; initial deferred history work cannot erase early input; explicit SSR fallback is retained.",
+    "Checkpoint keeps prior snapshot/replay field precedence and JSON order; independent replay remains authoritative; primitive-constrained character leaves and all remaining result fields are frozen.",
+    "Metadata expansion remains factory-owned, immutable, WeakMap-associated and per-target bounded; external/mutable arrays keep their general path.",
+    "Arena snapshot stays in one active transaction and one room, retains full FOR UPDATE row acquisition, invalidates on member writes and clears at entry/finally.",
+    "Non-Arena service allocation remains; Arena finish requires strict true plus explicit validator/persistence guards and both independent replays. No trusted client-score bypass is introduced."
+  ],
+  "findings": [],
+  "resolvedStagingBoundary": {
+    "file": ".gitignore",
+    "added": "audit/2026-11-04-followup/.webkit-profile-reset-probe-artifacts/",
+    "capturesDeleted": false,
+    "publicFailureReceiptsPreserved": true,
+    "guardedSourceOrTestsChanged": false
+  },
+  "initialReviewCheckQualification": {
+    "status": "INITIAL-RAW-VS-NORMALIZED-COMPARISON-REJECTED-THEN-CORRECTED",
+    "file": "src/pages/Profile.tsx",
+    "rawSha256": "596a7031ddf98ccb99691b2a46e9457bc7e11f301ea5bdbff5f7636714d88fb7",
+    "manifestNormalizedSha256": "65ce9db22d5682ed187b3afb991126021af6cd9499706ecd87c7b1beb6cda312",
+    "reason": "The first ad-hoc review assertion compared raw bytes with a CRLF-normalized manifest. The established normalizedSourceHash helper proves the exact intended comparison; no production file was changed to satisfy it.",
+    "rawAssertionTriggered": true,
+    "correctedAll506Mismatches": []
+  },
+  "preliminaryScan": {
+    "file": "audit/2026-11-05-followup/source36-nov09-prestage-visible-review.json",
+    "sha256": "39591b2e4a768dd1e380eab1b21fe8260692bcd5269f986d48310b800c2562f5",
+    "files": 454,
+    "bytes": 20242529,
+    "textFiles": 454,
+    "findings": 0,
+    "unwantedRuntime": 0
+  },
+  "stagedScanner": {
+    "file": "audit/2026-11-09/review-staged-release.mjs",
+    "sha256": "306acacd23cbee5596f29048b9dde13a1ce617bff37784fc53ba4d7a70144169",
+    "syntaxChecked": true,
+    "executed": false,
+    "preparation": "audit/2026-11-09/staged-scanner-preparation.json"
+  },
+  "stagingPlan": [
+    "Freeze all runtime outcomes and final public docs before staging; use explicit source/test/docs/public-audit paths, not blanket git add .",
+    "Keep backend/storage, private configuration, .env, executables, archives, generated runtime and unreviewed media out. Only individually reviewed ignored top-level public logs may be force-added.",
+    "Run cached whitespace and name/status intent review; preserve archived evidence bytes rather than trimming raw captures.",
+    "Run the prepared scanner against actual indexed bytes after explicit staging. Then stage its derived receipt and recheck that receipt plus every prior indexed hash through a stdout-only check to avoid self-referential hash reporting.",
+    "Commit without bypassing hooks; push main without force; verify HEAD/origin/main/ls-remote equality and a clean working tree."
+  ],
+  "limitations": [
+    "No new runtime, browser, physical-device, performance or hosted-security certification is performed by this review.",
+    "Prior capacity p95 full333.1376ms/wire270.2455ms remains FAILED; this review neither proves a cause nor a pass.",
+    "Current interrupted matrix/native/static outcomes require reconciliation from actual receipts.",
+    "This preliminary snapshot excludes ignored public logs and later outputs. Final indexed-byte review remains mandatory. Six declared credential patterns do not guarantee absence of every possible secret or vulnerability."
+  ],
+  "mutations": {
+    "gitignoreOnly": true,
+    "production": false,
+    "tests": false,
+    "guardedHelpers": false,
+    "index": false,
+    "commit": false,
+    "services": false,
+    "testsExecuted": false,
+    "loadExecuted": false
+  }
+}

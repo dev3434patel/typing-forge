@@ -279,45 +279,75 @@ describe("bounded factory-owned target-word metadata", () => {
     ]);
   });
 
-  it("allows bounded metadata at 4,096 factory graphemes", () => {
+  it("retains the original4,096-grapheme inclusive cache coverage", () => {
     const exercised = exerciseFactory(oneWordOfLength(4096, "inclusive-unit-cache-contract-"));
     expect(exercised.target).toHaveLength(4096);
     expect(exercised.metadataWrites).toHaveLength(1);
     expectFrozenNumericMetadata(exercised.metadataWrites[0], 1);
   });
 
-  it("does not retain word-array metadata for 4,097 factory graphemes", () => {
+  it("caches the former4,097-grapheme outer boundary within the expanded limit", () => {
     const exercised = exerciseFactory(oneWordOfLength(4097, "exclusive-unit-cache-contract-"));
     expect(exercised.target).toHaveLength(4097);
-    expect(exercised.metadataWrites).toEqual([]);
+    expect(exercised.metadataWrites).toHaveLength(1);
+    expectFrozenNumericMetadata(exercised.metadataWrites[0], 1);
   });
 
-  it("allows at most 512 frozen numeric Word records for an eligible factory target", () => {
+  it("retains the original512-word inclusive cache coverage", () => {
     const exercised = exerciseFactory(nonemptyWords(512, "inclusive-word-cache-contract"));
     expect(exercised.target.length).toBeLessThan(4096);
     expect(exercised.metadataWrites).toHaveLength(1);
     expectFrozenNumericMetadata(exercised.metadataWrites[0], 512);
   });
 
-  it("does not retain 513 Word records even when target length is below 4,096", () => {
+  it("caches the former513-word outer boundary within the expanded limit", () => {
     const exercised = exerciseFactory(nonemptyWords(513, "exclusive-word-cache-contract"));
     expect(exercised.target.length).toBeLessThan(4096);
+    expect(exercised.metadataWrites).toHaveLength(1);
+    expectFrozenNumericMetadata(exercised.metadataWrites[0], 513);
+  });
+
+  it("allows bounded metadata at8,192 factory graphemes", () => {
+    const exercised = exerciseFactory(oneWordOfLength(8192, "expanded-inclusive-unit-cache-"));
+    expect(exercised.target).toHaveLength(8192);
+    expect(exercised.metadataWrites).toHaveLength(1);
+    expectFrozenNumericMetadata(exercised.metadataWrites[0], 1);
+  });
+
+  it("does not retain metadata beyond8,192 factory graphemes", () => {
+    const exercised = exerciseFactory(oneWordOfLength(8193, "expanded-exclusive-unit-cache-"));
+    expect(exercised.target).toHaveLength(8193);
     expect(exercised.metadataWrites).toEqual([]);
   });
 
-  it("keeps all-space and empty-word-heavy targets on exact bounded-retention fallback", () => {
-    const atWordLimit = exerciseFactory(" ".repeat(511), "  ");
-    // Another suite may already have used this literal; an existing eligible
-    // cache hit writes nothing. Any new payload must still be bounded/frozen.
-    expect(atWordLimit.metadataWrites.length).toBeLessThanOrEqual(1);
-    for (const words of atWordLimit.metadataWrites)
-      expectFrozenNumericMetadata(words, 512);
-    const beyondWordLimit = exerciseFactory(" ".repeat(512), "  ");
-    expect(beyondWordLimit.metadataWrites).toEqual([]);
-    const denseEmptyWords = exerciseFactory(" ".repeat(4096), "  ");
-    expect(denseEmptyWords.first.words).toHaveLength(4097);
-    expect(denseEmptyWords.first.creditedUnits).toBe(0);
-    expect(denseEmptyWords.metadataWrites).toEqual([]);
+  it("allows at most1,024 frozen numeric Word records", () => {
+    const exercised = exerciseFactory(nonemptyWords(1024, "expanded-inclusive-word-cache"));
+    expect(exercised.target.length).toBeLessThan(8192);
+    expect(exercised.metadataWrites).toHaveLength(1);
+    expectFrozenNumericMetadata(exercised.metadataWrites[0], 1024);
+  });
+
+  it("does not retain1,025 Word records even below8,192 graphemes", () => {
+    const exercised = exerciseFactory(nonemptyWords(1025, "expanded-exclusive-word-cache"));
+    expect(exercised.target.length).toBeLessThan(8192);
+    expect(exercised.metadataWrites).toEqual([]);
+  });
+
+  it("keeps original and expanded all-space boundaries on exact bounded-retention paths", () => {
+    for (const [spaces, wordCount] of [[511, 512], [512, 513], [1023, 1024]]) {
+      const exercised = exerciseFactory(" ".repeat(spaces), "  ");
+      expect(exercised.metadataWrites.length).toBeLessThanOrEqual(1);
+      for (const words of exercised.metadataWrites)
+        expectFrozenNumericMetadata(words, wordCount);
+      expect(exercised.first.words).toHaveLength(wordCount);
+      expect(exercised.first.creditedUnits).toBe(0);
+    }
+    for (const spaces of [1024, 4096, 8192, 8193]) {
+      const exercised = exerciseFactory(" ".repeat(spaces), "  ");
+      expect(exercised.first.words).toHaveLength(spaces + 1);
+      expect(exercised.first.creditedUnits).toBe(0);
+      expect(exercised.metadataWrites).toEqual([]);
+    }
   });
 
   it("never brands external mutable or ordinary frozen public target arrays", () => {

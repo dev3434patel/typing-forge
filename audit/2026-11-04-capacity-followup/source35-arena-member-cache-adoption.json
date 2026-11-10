@@ -1,0 +1,213 @@
+{
+  "adoptedAt": "2026-11-04T18:53:13.865Z",
+  "status": "PRODUCTION-AND-TESTS-FILE-STABLE-NOT-YET-EXECUTED",
+  "authorization": "Root explicit GO after118 pure differential contracts and40 native locking checks; no ordinary latency pass is claimed.",
+  "primaryFile": {
+    "file": "backend/src/ArenaService.php",
+    "beforeSha256": "9008825c59bdcfd863b714f45412638082043eae56a1000b70a134de67919a6d",
+    "afterSha256": "5076d6095607e652ee481b9dce772658996ee63ddea49a092414e01993f59392",
+    "candidateSha256": "f0181ab564c1f02d7aaa9b429b3ac66cc19dc3e0a4896ec77f88f0e25563ce6e",
+    "candidateDelta": "Class declaration renamed back only",
+    "exactCandidateClassRename": true
+  },
+  "frozenReference": {
+    "file": "backend/tests/ArenaServiceReferenceSource34.php",
+    "sha256": "af7a13fa9d4384aa1e149a248ef98531fb35b8eb7ac2eb09de3edd0a04191f6e",
+    "source34OriginalSha256": "9008825c59bdcfd863b714f45412638082043eae56a1000b70a134de67919a6d",
+    "exactClassRenameOnly": true
+  },
+  "contract": {
+    "file": "backend/tests/arena-member-cache-contract.php",
+    "sha256": "c4083d433a98548aae6dc680fa51c38eb1de19d04c80fc7c942791ee8a523dc9",
+    "auditOriginalSha256": "32b380b12e680c0cbcc5239c8d2b8b149dab4651e13f871cc4a37ab0478df2be",
+    "changes": [
+      {
+        "from": "require_once __DIR__.'/ArenaServiceCachedCandidate.php';",
+        "to": "require_once __DIR__.'/ArenaServiceReferenceSource34.php';"
+      },
+      {
+        "from": "use SparowType\\ArenaService;",
+        "to": "use SparowType\\ArenaServiceReferenceSource34 as ArenaService;"
+      },
+      {
+        "from": "use SparowType\\ArenaServiceCachedCandidate;",
+        "to": "use SparowType\\ArenaService as ArenaServiceCachedCandidate;"
+      },
+      {
+        "from": "// Pure audit-only contract. No bootstrap/configuration, native connection or server.",
+        "to": "// Frozen Source34 reference versus production transaction-local member cache. No connection or bootstrap."
+      }
+    ],
+    "exactReverse": true,
+    "comparesOldSource34ToCurrentProduction": true
+  },
+  "runner": {
+    "file": "backend/tests/arena-contract.mjs",
+    "beforeSha256": "1c5abe314977a92b7eee70cc9273d39d667297f49534a1fc67b833f66c5ba623",
+    "afterSha256": "aeca68afb2b03acd0dc793b96c05c165a22e1652b73c2005ff6a7a3850f4147a",
+    "hook": "const memberCacheProcess = spawnSync(runtime.binary, [...runtime.args, 'backend/tests/arena-member-cache-contract.php'], { encoding: 'utf8', windowsHide: true });\nif (memberCacheProcess.status !== 0) throw new Error(memberCacheProcess.stderr || memberCacheProcess.stdout);\nfor (const assertion of JSON.parse(memberCacheProcess.stdout).checks) check(`Locked member snapshot: ${assertion.name}`, assertion.pass);\n",
+    "original802AssertionsPreserved": true,
+    "newPreparedAssertions": 118,
+    "expectedTotalAssertions": 920,
+    "actualTotal": "NOT RUN"
+  },
+  "other37BackendFiles": [
+    {
+      "file": "backend/bin/cleanup.php",
+      "rawSha256": "176b43c8f229c587b56792e7d2f285f4c3df8c906434da4f5c4659d1f7226324"
+    },
+    {
+      "file": "backend/bin/install-schema.php",
+      "rawSha256": "77b17d597952fefbb75cad7eae67f1ae552367faf38e738e875cf00b0f0eef63"
+    },
+    {
+      "file": "backend/bin/migrate-schema.php",
+      "rawSha256": "29b57b5be80cf2d14aad1173283d1431fc16ef98208d7f5f7c2d307e434d07ae"
+    },
+    {
+      "file": "backend/bootstrap.php",
+      "rawSha256": "1437ca997a919b7a64669dc09690f62cff9cd627626549e06a1c6d9e3482d647"
+    },
+    {
+      "file": "backend/migrations/002-progression.sql",
+      "rawSha256": "2d49893fdc8c8f0dc626e4122b7803fee72d1327483ed55dcb2257b07d7f0427"
+    },
+    {
+      "file": "backend/migrations/003_classroom.sql",
+      "rawSha256": "16d6330ef81c69dbc71fc6e5b8790b5ea03ab9ab9eaf6ace368b3e1dfa164aca"
+    },
+    {
+      "file": "backend/migrations/004_social.sql",
+      "rawSha256": "f4756041284b3ab373dd0fdb7d432847d98b8e1ffd8c404344308ade8e18afaa"
+    },
+    {
+      "file": "backend/migrations/005_arena.sql",
+      "rawSha256": "b61df52810f8e3958a81fdb5947a9b747e29041094b755c8a12161b5182f7301"
+    },
+    {
+      "file": "backend/public/.htaccess",
+      "rawSha256": "f00f2c3074167570ec0ebd65c3cd6bf29667be5bb2e6adf554ef0665124acf01"
+    },
+    {
+      "file": "backend/public/index.php",
+      "rawSha256": "92382a84ac652b38198711bc86973245a6a6dbc4af0aeaefb796ee0267618d76"
+    },
+    {
+      "file": "backend/resources/progression-fingers-v1.json",
+      "rawSha256": "925af6e6bfd28d7fa544d8f3547c61994f332b7b86fc598cea742cae999bc2b9"
+    },
+    {
+      "file": "backend/resources/typing-course-v1.json",
+      "rawSha256": "fc4dd602a730f0916b5fb214d7ffcf8efb5b6907e06894ba00e489f61ef6cb39"
+    },
+    {
+      "file": "backend/router.php",
+      "rawSha256": "64da7e7d094b6278b4cda3e9590c3e4fb1311ab4050bd1bb0f23284ff535b199"
+    },
+    {
+      "file": "backend/schema.sql",
+      "rawSha256": "0223553c2e8bec1504483dc59c41bfe26518891ae475262a81c59b86208b9f3a"
+    },
+    {
+      "file": "backend/src/ApiException.php",
+      "rawSha256": "4f231b2c8e2d00716dae49763f7664a4d56430f885b1d58c40892e6a5417ccb9"
+    },
+    {
+      "file": "backend/src/ArenaEvidence.php",
+      "rawSha256": "ea182239afb2420f6ae42f83b0ff6ac25fe4ce3fa7f2fc1d786bdf6dfc2e72af"
+    },
+    {
+      "file": "backend/src/ArenaRules.php",
+      "rawSha256": "abb6f4c82a699e353354efd3600f7c9c8330a8df72a9b290702c5e4cfcf20353"
+    },
+    {
+      "file": "backend/src/AuthService.php",
+      "rawSha256": "c2790aa548136a0fee00dc0c32bb4ec2be6b3d0a033f2cfd5992f79442991efd"
+    },
+    {
+      "file": "backend/src/ChallengeTimingPolicy.php",
+      "rawSha256": "75faf3a12fabb0949400bcade2ba1d36ddb2e5a22f061dd35a4d82e216f1786a"
+    },
+    {
+      "file": "backend/src/ClassroomService.php",
+      "rawSha256": "35f957a5ed3f6eb7f11a95aaa2a36fd32c1530efa55760cf827e048f5ff11bab"
+    },
+    {
+      "file": "backend/src/CompetitiveInputPolicy.php",
+      "rawSha256": "4f33803bab70e09ebc5b304ea41c5e2433f7ed080ef5a1a43f97deb640cd5a23"
+    },
+    {
+      "file": "backend/src/CourseAssessment.php",
+      "rawSha256": "224f3b3ca7192089ff04027a9e8411573565a1e3bc2e3b1180b509e72bfe1795"
+    },
+    {
+      "file": "backend/src/DataService.php",
+      "rawSha256": "37d4a2752e12528cec1202570ac8c4d05508b134819607a8c23dfe2d5db1c5ac"
+    },
+    {
+      "file": "backend/src/Database.php",
+      "rawSha256": "38e67995661448fb80af94ae81acc2fc844b5ecea15c6313d6fc87135681acb0"
+    },
+    {
+      "file": "backend/src/ProgressionCalendar.php",
+      "rawSha256": "ce871c6f94b8cd64ae518a01704adc18e4d794a6dce1cf54afcfab30234182c3"
+    },
+    {
+      "file": "backend/src/ProgressionEngine.php",
+      "rawSha256": "7d23f85d02dce2a02e9915e8beab417bbcba74557c22048e18d6aabe7076a361"
+    },
+    {
+      "file": "backend/src/ProgressionFacts.php",
+      "rawSha256": "5ae32fd3943fdbd6bb31e7e8996c1118bc2f8fe3c2ca9c2d12dddfa2663a62b3"
+    },
+    {
+      "file": "backend/src/ProgressionQuests.php",
+      "rawSha256": "897cc73353576a8ea8f0f194fe2df44c6de420638fb11c8ff77d79add5af5602"
+    },
+    {
+      "file": "backend/src/ProgressionService.php",
+      "rawSha256": "758f20333d46c929fbf57689fc7068d659eeee6a2eebec5895ab2e87d370ff26"
+    },
+    {
+      "file": "backend/src/RaceService.php",
+      "rawSha256": "984a5b4ceea0887739c70d743f61c321bd0a8dd86e3b63e46c7ecbd60eb10b2d"
+    },
+    {
+      "file": "backend/src/RaceStream.php",
+      "rawSha256": "3249970663b7ebcde1f4e23c82bff1a7db0422b0b33843b6a13dfd9020d4c05d"
+    },
+    {
+      "file": "backend/src/RequestBody.php",
+      "rawSha256": "0857c88cd3895facb3c5d5076e1dc0f7654942e5510be0a1b5739c20989d2fba"
+    },
+    {
+      "file": "backend/src/Security.php",
+      "rawSha256": "671d4e7944cfbe7d4a6d94e44e17374caa12c8c8f8c33bd850ceedba371e0401"
+    },
+    {
+      "file": "backend/src/SessionValidator.php",
+      "rawSha256": "d23d6a87a8e0bf9480281083f36575989112e80064fb3ef6c46e8e26e0abaaa6"
+    },
+    {
+      "file": "backend/src/SocialDuelRules.php",
+      "rawSha256": "7b8889819e9eb10f402b0adc44f2bfbe0d2e356218eb9ec0b2de95ce5d46179f"
+    },
+    {
+      "file": "backend/src/SocialService.php",
+      "rawSha256": "8250bafc44ce0231f9b414395ea8581199d62777366da437ba7883630d894940"
+    },
+    {
+      "file": "backend/src/UnicodeGraphemes.php",
+      "rawSha256": "091cd87cf485b87aa0a9fd709b86a5462f35923dad4f34a9b0ddb4206b6bc145"
+    }
+  ],
+  "patch": {
+    "file": "audit/2026-11-04-capacity-followup/source35-arena-member-cache-adoption.patch",
+    "sha256": "d601694539c34390998ef2d1b748fdfeebd691c44333f475a5a86558b3de8e7c"
+  },
+  "archive": "audit/2026-11-04-capacity-followup/source35-before",
+  "testsOrSyntaxRunDuringAdoption": false,
+  "source35Freeze": "Root will bind the combined Profile/core/backend source after all owners are stable",
+  "strictFreshOrdinaryFullAndWire": "STILL REQUIRED",
+  "memoryTrimIdea": "NOT IMPLEMENTED"
+}

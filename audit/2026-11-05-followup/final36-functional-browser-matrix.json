@@ -1,0 +1,669 @@
+{
+  "executionProfile": {
+    "id": "serial-functional-workers1-v1",
+    "workersPerBatch": 1,
+    "batchesRunSequentially": true,
+    "automaticRetries": 0,
+    "tracing": "off",
+    "assertionsChanged": false,
+    "timeoutsChanged": false,
+    "filesFiltered": false,
+    "qualification": "Test isolation declared before the first source18 full matrix; no claim that contention caused prior failures. Source17 actual outcomes and earlier prepared source18 worker2 plans remain historical."
+  },
+  "coverageExtension": {
+    "previousSpecCount": 64,
+    "currentSpecCount": 65,
+    "currentSourceFileCount": 506,
+    "priorSourceFile": "audit/2026-10-27/final27-source.json",
+    "changedSourceFiles": [
+      "backend/public/index.php",
+      "backend/src/ArenaEvidence.php",
+      "backend/src/ArenaService.php",
+      "backend/src/DataService.php",
+      "backend/src/SessionValidator.php",
+      "src/components/keybr/KeybrLessonMode.tsx",
+      "src/components/keybr/KeybrResults.tsx",
+      "src/components/keybr/LetterProgressPanel.tsx",
+      "src/components/keybr/learn-workspace.css",
+      "src/components/typing/TypingArea.tsx",
+      "src/index.css",
+      "src/lib/__tests__/race-pace.test.ts",
+      "src/lib/race-pace.ts",
+      "src/lib/typing-core/__tests__/checkpoint-result-contract.test.ts",
+      "src/lib/typing-core/__tests__/transcript-target-cache.test.ts",
+      "src/lib/typing-core/session.ts",
+      "src/lib/typing-core/transcript.ts",
+      "src/pages/Profile.tsx",
+      "src/pages/Race.tsx"
+    ],
+    "sourceIdentity": "final36",
+    "frontendEvidenceReuse": "BUILD-ONLY-SOURCE35-IDENTICAL-FRONTEND-NO-PERFORMANCE-REUSE",
+    "freshFrontendBuildRequired": false,
+    "retainedFrontendBuildIdentityRequired": true,
+    "freshOrdinaryInputRunsRequired": 3,
+    "freshFullQualityMobileLighthouseRunsRequired": 3,
+    "testCasesDerivedFromActualReports": true,
+    "newLearnCasesInExistingSpec": 8,
+    "newProfileCasesInNewSpec": 2,
+    "staleKeyboardDurationAssertionsCorrectedExactly": 2,
+    "newProductOptimizationsDoNotChangeMetricOrTimingContracts": true
+  },
+  "declaredAt": "2026-11-04T20:01:44.333Z",
+  "status": "PARTIAL",
+  "build": {
+    "version": "d89f84d74519bf2bbae0",
+    "publicFiles": 133,
+    "bytes": 2964860
+  },
+  "browsers": [
+    "chromium",
+    "edge",
+    "firefox",
+    "webkit"
+  ],
+  "automaticRetries": 0,
+  "filesCoveredExactlyOnce": 65,
+  "batches": [
+    {
+      "id": "new-features",
+      "files": [
+        "e2e/arcade.spec.ts",
+        "e2e/arena.spec.ts",
+        "e2e/studio-polish.spec.ts",
+        "e2e/learning-analytics-v2.spec.ts",
+        "e2e/classroom-lite.spec.ts",
+        "e2e/progression.spec.ts",
+        "e2e/workspace-reset.spec.ts",
+        "e2e/progression-extras.spec.ts",
+        "e2e/friends.spec.ts",
+        "e2e/arcade-data-isolation.spec.ts",
+        "e2e/arcade-offline.spec.ts"
+      ],
+      "workers": 1
+    },
+    {
+      "id": "existing",
+      "files": [
+        "e2e/accessibility-audit.spec.ts",
+        "e2e/account-workspace.spec.ts",
+        "e2e/auth-flow.spec.ts",
+        "e2e/caret-geometry.spec.ts",
+        "e2e/content-options.spec.ts",
+        "e2e/countdown-clock.spec.ts",
+        "e2e/current-word-correction.spec.ts",
+        "e2e/frontend-deployment.spec.ts",
+        "e2e/frontend-game-accessibility.spec.ts",
+        "e2e/game-data-controls.spec.ts",
+        "e2e/games.spec.ts",
+        "e2e/keyboard-lab.spec.ts",
+        "e2e/keyboard-viewport.spec.ts",
+        "e2e/leaderboard-periods.spec.ts",
+        "e2e/leaderboard.spec.ts",
+        "e2e/learning-v3.spec.ts",
+        "e2e/live-keyboard.spec.ts",
+        "e2e/mobile-input-integrity.spec.ts",
+        "e2e/mode-matrix.spec.ts",
+        "e2e/navigation-accessibility.spec.ts",
+        "e2e/offline-pwa.spec.ts",
+        "e2e/php-account-flow.spec.ts",
+        "e2e/php-human-race.spec.ts",
+        "e2e/profile-flow.spec.ts",
+        "e2e/profile-identity.spec.ts",
+        "e2e/pwa-notices.spec.ts",
+        "e2e/quick-restart.spec.ts",
+        "e2e/race-mode.spec.ts",
+        "e2e/race-pace.spec.ts",
+        "e2e/responsive-layout.spec.ts",
+        "e2e/responsive-pages.spec.ts",
+        "e2e/result-evidence.spec.ts",
+        "e2e/secondary-pages.spec.ts",
+        "e2e/sparowtype-brand.spec.ts",
+        "e2e/startup-recovery.spec.ts",
+        "e2e/stats-dashboard.spec.ts",
+        "e2e/typing-audit-regressions.spec.ts",
+        "e2e/typing-course.spec.ts",
+        "e2e/typing-experience.spec.ts",
+        "e2e/typing-observer-ownership.spec.ts",
+        "e2e/typing-test.spec.ts",
+        "e2e/wrong-key-feedback.spec.ts",
+        "e2e/keycap-attribute-ownership.spec.ts",
+        "e2e/profile-confirmation-readiness.spec.ts"
+      ],
+      "workers": 1
+    },
+    {
+      "id": "isolated",
+      "files": [
+        "e2e/caret-handoff-readiness.spec.ts",
+        "e2e/input-guardrails.spec.ts",
+        "e2e/opening-experience.spec.ts",
+        "e2e/opening-low-power.spec.ts",
+        "e2e/opening-single-keyboard.spec.ts",
+        "e2e/opening-worker.spec.ts",
+        "e2e/typing-render-budget.spec.ts",
+        "e2e/viewport-acceptance.spec.ts",
+        "e2e/pwa-snapshot-consistency.spec.ts"
+      ],
+      "workers": 1
+    },
+    {
+      "id": "first-input-timing",
+      "files": [
+        "e2e/independent-challenge-timing.spec.ts"
+      ],
+      "workers": 1
+    }
+  ],
+  "results": [
+    {
+      "id": "new-features",
+      "exitCode": 0,
+      "summary": {
+        "totals": {
+          "total": 204,
+          "passed": 204,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0
+        },
+        "projects": [
+          {
+            "project": "chromium",
+            "total": 51,
+            "passed": 51,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "edge",
+            "total": 51,
+            "passed": 51,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "firefox",
+            "total": 51,
+            "passed": 51,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "webkit",
+            "total": 51,
+            "passed": 51,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          }
+        ],
+        "reportedStats": {
+          "expected": 204,
+          "unexpected": 0,
+          "skipped": 0,
+          "flaky": 0
+        },
+        "countsAgreeWithReport": true,
+        "failures": [],
+        "flakyCases": [],
+        "skippedCases": [],
+        "skipReasons": [],
+        "expectedFailures": [],
+        "globalErrors": [],
+        "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+      }
+    },
+    {
+      "id": "existing",
+      "exitCode": 0,
+      "summary": {
+        "totals": {
+          "total": 1060,
+          "passed": 1040,
+          "failed": 0,
+          "skipped": 20,
+          "flaky": 0
+        },
+        "projects": [
+          {
+            "project": "chromium",
+            "total": 265,
+            "passed": 260,
+            "failed": 0,
+            "skipped": 5,
+            "flaky": 0
+          },
+          {
+            "project": "edge",
+            "total": 265,
+            "passed": 260,
+            "failed": 0,
+            "skipped": 5,
+            "flaky": 0
+          },
+          {
+            "project": "firefox",
+            "total": 265,
+            "passed": 260,
+            "failed": 0,
+            "skipped": 5,
+            "flaky": 0
+          },
+          {
+            "project": "webkit",
+            "total": 265,
+            "passed": 260,
+            "failed": 0,
+            "skipped": 5,
+            "flaky": 0
+          }
+        ],
+        "reportedStats": {
+          "expected": 1040,
+          "unexpected": 0,
+          "skipped": 20,
+          "flaky": 0
+        },
+        "countsAgreeWithReport": true,
+        "failures": [],
+        "flakyCases": [],
+        "skippedCases": [
+          {
+            "project": "chromium",
+            "title": "auth-flow.spec.ts › real account sign in with dedicated deployment credentials",
+            "file": "auth-flow.spec.ts",
+            "line": 54,
+            "reasons": [
+              "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used."
+            ]
+          },
+          {
+            "project": "edge",
+            "title": "auth-flow.spec.ts › real account sign in with dedicated deployment credentials",
+            "file": "auth-flow.spec.ts",
+            "line": 54,
+            "reasons": [
+              "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used."
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "auth-flow.spec.ts › real account sign in with dedicated deployment credentials",
+            "file": "auth-flow.spec.ts",
+            "line": 54,
+            "reasons": [
+              "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "auth-flow.spec.ts › real account sign in with dedicated deployment credentials",
+            "file": "auth-flow.spec.ts",
+            "line": 54,
+            "reasons": [
+              "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used."
+            ]
+          },
+          {
+            "project": "chromium",
+            "title": "php-account-flow.spec.ts › real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+            "file": "php-account-flow.spec.ts",
+            "line": 6,
+            "reasons": [
+              "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account."
+            ]
+          },
+          {
+            "project": "edge",
+            "title": "php-account-flow.spec.ts › real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+            "file": "php-account-flow.spec.ts",
+            "line": 6,
+            "reasons": [
+              "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account."
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "php-account-flow.spec.ts › real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+            "file": "php-account-flow.spec.ts",
+            "line": 6,
+            "reasons": [
+              "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "php-account-flow.spec.ts › real PHP account signup, replay upload, independent-device history/preferences and account deletion",
+            "file": "php-account-flow.spec.ts",
+            "line": 6,
+            "reasons": [
+              "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account."
+            ]
+          },
+          {
+            "project": "chromium",
+            "title": "php-human-race.spec.ts › real two-browser PHP human race shares opponent pace and settles server results",
+            "file": "php-human-race.spec.ts",
+            "line": 5,
+            "reasons": [
+              "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+            ]
+          },
+          {
+            "project": "edge",
+            "title": "php-human-race.spec.ts › real two-browser PHP human race shares opponent pace and settles server results",
+            "file": "php-human-race.spec.ts",
+            "line": 5,
+            "reasons": [
+              "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "php-human-race.spec.ts › real two-browser PHP human race shares opponent pace and settles server results",
+            "file": "php-human-race.spec.ts",
+            "line": 5,
+            "reasons": [
+              "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "php-human-race.spec.ts › real two-browser PHP human race shares opponent pace and settles server results",
+            "file": "php-human-race.spec.ts",
+            "line": 5,
+            "reasons": [
+              "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+            ]
+          },
+          {
+            "project": "chromium",
+            "title": "php-human-race.spec.ts › route-controlled human-race feedback › real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+            "file": "php-human-race.spec.ts",
+            "line": 141,
+            "reasons": [
+              "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+            ]
+          },
+          {
+            "project": "edge",
+            "title": "php-human-race.spec.ts › route-controlled human-race feedback › real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+            "file": "php-human-race.spec.ts",
+            "line": 141,
+            "reasons": [
+              "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "php-human-race.spec.ts › route-controlled human-race feedback › real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+            "file": "php-human-race.spec.ts",
+            "line": 141,
+            "reasons": [
+              "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "php-human-race.spec.ts › route-controlled human-race feedback › real two-browser PHP race clears recovered checkpoints and ignores late checkpoint errors after confirmed finish",
+            "file": "php-human-race.spec.ts",
+            "line": 141,
+            "reasons": [
+              "Requires two dedicated accounts on the explicit PHP acceptance deployment."
+            ]
+          },
+          {
+            "project": "chromium",
+            "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+            "file": "race-mode.spec.ts",
+            "line": 84,
+            "reasons": [
+              "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+            ]
+          },
+          {
+            "project": "edge",
+            "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+            "file": "race-mode.spec.ts",
+            "line": 84,
+            "reasons": [
+              "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+            ]
+          },
+          {
+            "project": "firefox",
+            "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+            "file": "race-mode.spec.ts",
+            "line": 84,
+            "reasons": [
+              "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "race-mode.spec.ts › PHP two-account race authorization and server-owned countdown",
+            "file": "race-mode.spec.ts",
+            "line": 84,
+            "reasons": [
+              "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization."
+            ]
+          }
+        ],
+        "skipReasons": [
+          {
+            "reason": "Set dedicated FORGE_E2E_AUTH_EMAIL and FORGE_E2E_AUTH_PASSWORD against the deployed test backend; no fake token is used.",
+            "count": 4,
+            "projects": [
+              "chromium",
+              "edge",
+              "firefox",
+              "webkit"
+            ]
+          },
+          {
+            "reason": "Enable PHP_E2E_ACCEPTANCE=1 only against the intended local/staging PHP and MySQL acceptance database. This creates and deletes its own dedicated account.",
+            "count": 4,
+            "projects": [
+              "chromium",
+              "edge",
+              "firefox",
+              "webkit"
+            ]
+          },
+          {
+            "reason": "Requires two dedicated accounts on the explicit PHP acceptance deployment.",
+            "count": 8,
+            "projects": [
+              "chromium",
+              "edge",
+              "firefox",
+              "webkit"
+            ]
+          },
+          {
+            "reason": "UNVERIFIED: requires PHP_E2E_ACCEPTANCE=1 and two dedicated PHP race test accounts. Guest bot and API-fixture tests do not establish deployed two-account authorization.",
+            "count": 4,
+            "projects": [
+              "chromium",
+              "edge",
+              "firefox",
+              "webkit"
+            ]
+          }
+        ],
+        "expectedFailures": [],
+        "globalErrors": [],
+        "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+      }
+    },
+    {
+      "id": "isolated",
+      "exitCode": 0,
+      "summary": {
+        "totals": {
+          "total": 228,
+          "passed": 219,
+          "failed": 0,
+          "skipped": 9,
+          "flaky": 0
+        },
+        "projects": [
+          {
+            "project": "chromium",
+            "total": 57,
+            "passed": 57,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "edge",
+            "total": 57,
+            "passed": 57,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "firefox",
+            "total": 57,
+            "passed": 57,
+            "failed": 0,
+            "skipped": 0,
+            "flaky": 0
+          },
+          {
+            "project": "webkit",
+            "total": 57,
+            "passed": 48,
+            "failed": 0,
+            "skipped": 9,
+            "flaky": 0
+          }
+        ],
+        "reportedStats": {
+          "expected": 219,
+          "unexpected": 0,
+          "skipped": 9,
+          "flaky": 0
+        },
+        "countsAgreeWithReport": true,
+        "failures": [],
+        "flakyCases": [],
+        "skippedCases": [
+          {
+            "project": "webkit",
+            "title": "input-guardrails.spec.ts › supported typing audio creates one context on input and disposes it on navigation",
+            "file": "input-guardrails.spec.ts",
+            "line": 95,
+            "reasons": [
+              "UNVERIFIED: this browser runner exposes no standard AudioContext API; this is not a native Safari capability claim."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "opening-single-keyboard.spec.ts › the normal-clock production worker shows the creative 3D keyboard through wordmark typing and automatic entry",
+            "file": "opening-single-keyboard.spec.ts",
+            "line": 240,
+            "reasons": [
+              "UNVERIFIED: this runner has no native transferable-canvas worker API."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "opening-worker.spec.ts › default native worker draws the complete keyboard while document tasks, resize and skip remain responsive",
+            "file": "opening-worker.spec.ts",
+            "line": 364,
+            "reasons": [
+              "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "opening-worker.spec.ts › native worker acknowledges real resource disposal at an explicitly idle renderer boundary",
+            "file": "opening-worker.spec.ts",
+            "line": 461,
+            "reasons": [
+              "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "opening-worker.spec.ts › five consecutive native-worker startup reloads close each prior owner and final skip closes the last worker",
+            "file": "opening-worker.spec.ts",
+            "line": 591,
+            "reasons": [
+              "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "opening-worker.spec.ts › skipping while the native worker entry is blocked terminates startup and preserves the first typing key",
+            "file": "opening-worker.spec.ts",
+            "line": 742,
+            "reasons": [
+              "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "opening-worker.spec.ts › a native worker transport failure replaces the transferred canvas with the complete real document renderer",
+            "file": "opening-worker.spec.ts",
+            "line": 797,
+            "reasons": [
+              "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "opening-worker.spec.ts › actual worker WebGL context loss during preparation recovers with a fresh canvas and keeps practice usable",
+            "file": "opening-worker.spec.ts",
+            "line": 1039,
+            "reasons": [
+              "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+            ]
+          },
+          {
+            "project": "webkit",
+            "title": "opening-worker.spec.ts › actual worker WebGL context loss after live frames recovers with a fresh canvas and keeps practice usable",
+            "file": "opening-worker.spec.ts",
+            "line": 1045,
+            "reasons": [
+              "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently."
+            ]
+          }
+        ],
+        "skipReasons": [
+          {
+            "reason": "UNVERIFIED: this browser runner exposes no standard AudioContext API; this is not a native Safari capability claim.",
+            "count": 1,
+            "projects": [
+              "webkit"
+            ]
+          },
+          {
+            "reason": "UNVERIFIED: this runner has no native transferable-canvas worker API.",
+            "count": 1,
+            "projects": [
+              "webkit"
+            ]
+          },
+          {
+            "reason": "UNVERIFIED: this runner has no native transferable-canvas worker API. Document fallback is covered independently.",
+            "count": 7,
+            "projects": [
+              "webkit"
+            ]
+          }
+        ],
+        "expectedFailures": [],
+        "globalErrors": [],
+        "scope": "Reported case outcomes only. Flaky cases remain separate from passes; skip reasons are copied from report annotations. No browser or test execution is performed."
+      }
+    }
+  ],
+  "scope": "Full source-file partition; native credential cases require the separately guarded20-case backend run. Static artifacts have their separate root/subpath execution. Conditional skips remain explicit."
+}

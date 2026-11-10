@@ -1,0 +1,76 @@
+{
+  "status": "PASS-SCOPED-FILE-REVIEW-NO-BLOCKER",
+  "reviewedAt": "2026-11-10T15:25:14.1101633+00:00",
+  "reviewer": "/root/finish_functional",
+  "runtimeExecutedByReviewer": false,
+  "sourceOrCandidateEditedByReviewer": false,
+  "original36ExactSingleInsertionReversal": true,
+  "reconstructedOriginal36Sha256": "f02f477750838614113cf0900143a79218dfc8299b1cb963aab570b7f6683c84",
+  "exactInsertedBlockSha256": "31a3436b6010e61131e3426f5ef3b99f2f8d4d39059882b338542e2480d0fff4",
+  "currentAdoptedIndexEqualsCandidate": true,
+  "staleComparisonQualification": "Root adopted candidate during review. Initial direct comparison to then-current index stopped because it already contained the insertion; no receipt was written then. Independent reversal now matches frozen36f02 by SHA256.",
+  "inputHashes": {
+    "backend/public/index.php": "ace06732ab6996e13525e08dbb41dff441109c94c18650db937985d5ae2f5c78",
+    "audit/2026-11-10/full-payload-index-candidate.php": "ace06732ab6996e13525e08dbb41dff441109c94c18650db937985d5ae2f5c78",
+    "backend/src/RequestBody.php": "0857c88cd3895facb3c5d5076e1dc0f7654942e5510be0a1b5739c20989d2fba",
+    "backend/src/ArenaRules.php": "abb6f4c82a699e353354efd3600f7c9c8330a8df72a9b290702c5e4cfcf20353",
+    "backend/src/ArenaEvidence.php": "3932346a67e8f81694d3b12c521ddb8ee906bd0e77069c64127f170e707ee6c1",
+    "backend/src/SessionValidator.php": "d23d6a87a8e0bf9480281083f36575989112e80064fb3ef6c46e8e26e0abaaa6",
+    "backend/src/CourseAssessment.php": "224f3b3ca7192089ff04027a9e8411573565a1e3bc2e3b1180b509e72bfe1795",
+    "backend/src/CompetitiveInputPolicy.php": "4f33803bab70e09ebc5b304ea41c5e2433f7ed080ef5a1a43f97deb640cd5a23",
+    "backend/src/DataService.php": "37d4a2752e12528cec1202570ac8c4d05508b134819607a8c23dfe2d5db1c5ac"
+  },
+  "findings": [
+    {
+      "scope": "Request bounds and decoding",
+      "references": [
+        "original index.php:61-67",
+        "RequestBody.php:10-27"
+      ],
+      "finding": "Original max_body_bytes+1 read and oversize check remain before complete JSON decode. Syntax/depth/UTF8 and NUL-property-name checks execute before projection release, including duplicate-overwritten nested objects."
+    },
+    {
+      "scope": "Route and untrusted metrics",
+      "references": [
+        "candidate index.php:70-77",
+        "ArenaEvidence.php:16-22",
+        "CompetitiveInputPolicy.php:20-45",
+        "SessionValidator.php:535-610"
+      ],
+      "finding": "Only already-classified POST Arena submit is transformed. Metrics stay supplied and sameMetrics validates them before replacement. Preflight uses events; config/text/time/event checks are unchanged. All unknown body/candidate fields remain."
+    },
+    {
+      "scope": "Projection reads and overwrite order",
+      "references": [
+        "SessionValidator.php:612-621",
+        "SessionValidator.php:624-645",
+        "CourseAssessment.php:52-84"
+      ],
+      "finding": "No real characters/timeSeries/cursor input-value read found before canonical overwrite. deriveKeys reads config/events/pauses. Course configuration and assessment do not inspect those3 leaves. Only existing projection keys are NULLed; absent keys and associative insertion order remain, then both checkpoint and finish regenerate full values."
+    },
+    {
+      "scope": "Canonical persistence and idempotence",
+      "references": [
+        "ArenaEvidence.php:30-54",
+        "DataService.php:162-225",
+        "SessionValidator.php:37-65"
+      ],
+      "finding": "ArenaEvidence forwards validated canonical candidate. Finished evidence conflict comparison, evidence_json, accepted charts and DataService payload hashing receive regenerated full projections. Unknown nonfinite fields still reach canonical JSON rejection; discarded-leaf nonfinite inputs remain overwritten as before. Non-Arena/default paths are unchanged."
+    }
+  ],
+  "citedSemanticProof": {
+    "file": "audit/2026-11-10/full-payload-semantics-result.json",
+    "sha256": "d3dd8c8a366f8ba78b4bbaf323351dd0010a50448cec8a03b24db29a14043294",
+    "reportedCases": 113,
+    "reportedAccepted": 62,
+    "reportedFailed": 0,
+    "finishPersistenceProjections": 30,
+    "actualSqlPersistencePerformed": false,
+    "reviewedAsExistingEvidenceNotRerun": true
+  },
+  "limitations": [
+    "This is a file-only semantic review, not a benchmark or native HTTP/SQL acceptance run.",
+    "Memory/CPU benefit and150ms capacity remain separate acceptance questions.",
+    "Adoption changes frozen production index; subsequent controls require newsource binding, not old36runtime."
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "status": "PROPOSAL-ONLY-NOT-RUN",
+  "scope": "Fresh owned MariaDB proof for the two audit-only ArenaService projection reads; not a replacement for original capacity or native Arena acceptance.",
+  "requiresSeparateRootRuntimeGo": true,
+  "ownership": {
+    "database": "A new audit-owned database and independently allocated non-user port only",
+    "configuration": "Only the new owner's generated private configuration, checked by ownership marker and exact path",
+    "originalConfigurationOrStorageRead": false,
+    "cleanup": "Rollback all proof transactions; delete only owned fixture accounts through the guarded owner; graceful Apache and MariaDB closure with residual and protected-port checks"
+  },
+  "fixture": {
+    "rooms": 2,
+    "membersPerRoom": 8,
+    "sameSchemaAndIndexes": true,
+    "largeEvidenceRows": "Use deterministic valid JSON for each of events_json, evidence_json and metrics_json to make projection transfer visible; exact private values and SQL results must not be exported",
+    "reportOnly": ["row counts", "selected field counts", "serialized byte counts", "bounded timings", "canonical query-plan equality booleans", "transaction/lock outcomes"]
+  },
+  "checks": [
+    {
+      "name": "Same native query-plan shape",
+      "method": "EXPLAIN full members, active scalar members and response scalar members with the same guarded arena_id, predicate and slot ordering. Compare access_type, chosen key, row estimate and ordering/filesort indicators; retain bounded facts. A different chosen plan is not silently accepted."
+    },
+    {
+      "name": "Full lock blocks both projection reads",
+      "method": "Connection A begins transaction and executes the original full-row locking read. Independent connection B uses a bounded session-local lock wait and must receive native lock-timeout1205 for either projection in that same room. No global lock policy changes."
+    },
+    {
+      "name": "Both projections retain every member write lock",
+      "method": "For each projection, connection A locks the eight members; independent connection B attempts an UPDATE against each of the eight unique primary keys and must receive lock-timeout1205. Each failed B transaction is rolled back. All eight seats must be checked; a successful same-room write fails the proof."
+    },
+    {
+      "name": "Other occupied room remains independent",
+      "method": "While A retains each projection's first-room locks, B can update its separately owned second-room member and roll back. Preserve original room-isolation scope and report actual errors."
+    },
+    {
+      "name": "Fresh snapshots observe committed same-owner changes",
+      "method": "Execute each read at the same service call sites in one owned transaction, apply the existing heartbeat/member-state change, and re-read. Compare full-reference scalar projection to the candidate without caching either result."
+    },
+    {
+      "name": "Bounded paired transfer diagnostic",
+      "method": "If separately approved, use twelve alternating pairs with fresh statements, same fixed rows, no warmup/filter/retry, and retain every measurement. Separate execute/fetch timings and actual transferred/returned byte counts; do not infer strict HTTP acceptance from this diagnostic."
+    }
+  ],
+  "acceptanceStillRequired": {
+    "full": "Original1653 operations,50rooms x8seats,20concurrent HTTP requests,strict successful-request p95 below150ms,all phases and original assertions retained",
+    "wire": "Same independent original1653-operation protocol with production wire; preserve measured order/cache state",
+    "nativeArena": "All original32 HTTP lifecycle/finish/history/immutable retry checks with full final chart",
+    "pureContracts": "Original Arena/query/clock/prefix/receipt/security contracts plus audit candidate projection parity",
+    "noClaimUntilExecuted": true
+  }
+}

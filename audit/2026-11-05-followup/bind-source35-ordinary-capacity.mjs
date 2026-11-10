@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import{readFile,writeFile}from'node:fs/promises';
+import{createHash}from'node:crypto';
+import{verifyFrozenSource}from'../2026-10-21/artifact-verification.mjs';
+const directory='audit/2026-11-05-followup',sha=bytes=>createHash('sha256').update(bytes).digest('hex');
+const file=`${directory}/final35-source.json`,source=await verifyFrozenSource(file);assert.equal(source.receipt.compared,506);assert.deepEqual(source.receipt.mismatches,[]);assert.equal(source.frozen.local.version,'d89f84d74519bf2bbae0');
+assert.equal(JSON.parse(await readFile('dist/offline-build.json')).version,source.frozen.local.version);
+const templateFile=`${directory}/source35-ordinary-capacity-template-preparation.json`,template=JSON.parse(await readFile(templateFile));
+for(const row of template.changes)assert.equal(sha(await readFile(row.file)),row.sha256);
+const inputs=Object.fromEntries(await Promise.all([...template.changes.map(row=>row.file),'backend/tests/arena-audit-admin.php','scripts/php-runtime.mjs','audit/2026-10-21/pack-apache-runtime.mjs'].map(async name=>[name,sha(await readFile(name))])));
+const receipt={boundAt:new Date().toISOString(),status:'FROZEN-PREPARED-NOT-RUN-WAITING-SOURCE-GATES-AND-ROOT-GO',source:source.receipt,sourceManifestSha256:sha(await readFile(file)),build:source.frozen.local.version,templateFile,templateSha256:sha(await readFile(templateFile)),runtimeInputs:inputs,entry:template.entry,flags:{SPAROWTYPE_PACK_INSTANCE_ACCEPTANCE:'1',SPAROWTYPE_PACK_APACHE_ACCEPTANCE:'1',SPAROWTYPE_PACK_HTTP_RUNTIME:'apache',SPAROWTYPE_PACK_SUITES:'password',SPAROWTYPE_PACK_HOLD:'1',SPAROWTYPE_PACK_KEEP_FAILURE:'1',SPAROWTYPE_SOURCE35_CAPACITY_ACCEPTANCE:'1',SPAROWTYPE_SOURCE35_CAPACITY_WIRE_ACCEPTANCE:'1',SPAROWTYPE_FINAL35_BUILD_ID:source.frozen.local.version},commands:['capacity35','capacity35-wire','cleanup'],predeclaredRepeatedAcceptance:template.predeclaredRepeatedAcceptance,source35ProductionSnapshotUnchanged:true,existingDatabaseConfigurationRead:false,runtimeStarted:false,OPcache:'Must prove OFF in same existing owned readiness HTTP request',nativePDOPolicy:'Unchanged frozen Database.php; native prepares/nonpersistent/UTC',noNewProfilerOrVariantHeaders:true};
+const out=`${directory}/source35-ordinary-capacity-preparation.json`,bytes=JSON.stringify(receipt,null,2)+'\n';await writeFile(out,bytes,{flag:'wx'});console.log(JSON.stringify({file:out,sha256:sha(bytes),build:receipt.build,sourceFiles:506,runtimeInputs:Object.keys(inputs).length,runtime:false}));

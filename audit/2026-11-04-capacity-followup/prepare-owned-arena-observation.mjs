@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {readFile,readdir,writeFile}from'node:fs/promises';
+import {createHash}from'node:crypto';
+import {filesWithin}from'../2026-10-21/artifact-verification.mjs';
+const directory='audit/2026-11-04-capacity-followup',sha=bytes=>createHash('sha256').update(bytes).digest('hex');
+const files=[...(await readdir('e2e')).filter(name=>name.endsWith('.ts')).map(name=>`e2e/${name}`),'playwright.config.ts'].sort();assert.equal(files.length,73);
+const tests=Object.fromEntries(await Promise.all(files.map(async file=>[file,sha(await readFile(file))])));
+const artifacts=Object.fromEntries(await Promise.all((await filesWithin('dist')).map(async file=>[file,sha(await readFile(`dist/${file}`))])));
+const build=JSON.parse(await readFile('dist/offline-build.json'));assert.equal(build.version,'6e456d1e2ceaa9a6d71f');
+const mainManifestFile=`${directory}/owned-arena-diagnostic-preparation.json`;
+const receipt={preparedAt:new Date().toISOString(),status:'PREPARED-NOT-RUN',controller:`${directory}/run-owned-arena-diagnostic-guard.mjs`,controllerSha256:sha(await readFile(`${directory}/run-owned-arena-diagnostic-guard.mjs`)),mainManifestFile,mainManifestSha256:sha(await readFile(mainManifestFile)),snapshot:{tests,artifacts,build},scope:'Additional current actual frontend artifact and73 test/config before/after guards. The main manifest505source snapshot permits only the authorized Profile source delta; core producer/backend remain34baseline. No final frontend acceptance is claimed.'};
+const file=`${directory}/owned-arena-diagnostic-observation-preparation.json`,bytes=JSON.stringify(receipt,null,2)+'\n';await writeFile(file,bytes,{flag:'wx'});console.log(JSON.stringify({file,sha256:sha(bytes),mainManifestSha256:receipt.mainManifestSha256,build:build.version,dependencies:files.length,artifacts:Object.keys(artifacts).length}));

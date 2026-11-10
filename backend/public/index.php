@@ -46,8 +46,6 @@ try {
     Security::beginSession($config);
     $db = Database::connect($config);
     $auth = new AuthService($db, $config);
-    $validator = new SessionValidator();
-    $data = new DataService($db, $validator, $config);
     $requestPath = rawurldecode(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/');
     $prefix = rtrim($config['api_prefix'], '/');
     $path = $prefix && ($requestPath === $prefix || str_starts_with($requestPath, $prefix.'/')) ? substr($requestPath, strlen($prefix)) : $requestPath;
@@ -68,6 +66,19 @@ try {
         } catch (JsonException) {
             throw new ApiException(400, 'json', 'Send a valid JSON object.');
         }
+    }
+    if ($arenaAction === 'submit') {
+        unset($raw);
+        if (is_array($body['candidate'] ?? null)) {
+            foreach (['characters', 'timeSeries', 'cursor'] as $field) {
+                if (array_key_exists($field, $body['candidate'])) $body['candidate'][$field] = null;
+            }
+        }
+    }
+    $validator = null; $data = null;
+    if ($arenaAction === null || $arenaAction === 'submit') {
+        $validator = new SessionValidator();
+        if ($arenaAction === null || ($body['finish'] ?? false) === true) $data = new DataService($db, $validator, $config);
     }
     if ($method === 'GET' && $path === '/health') {
         $version = $db->query('SELECT MAX(version) FROM schema_metadata')->fetchColumn();

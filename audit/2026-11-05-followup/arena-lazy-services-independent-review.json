@@ -1,0 +1,58 @@
+{
+  "status": "READONLY-PLAN-REVIEW-CONDITIONALLY-SOUND-CANDIDATE-NOT-YET-REVIEWED",
+  "recordedAt": "2026-11-04T19:13:26.812Z",
+  "inputs": {
+    "backend/public/index.php": "92382a84ac652b38198711bc86973245a6a6dbc4af0aeaefb796ee0267618d76",
+    "backend/src/SessionValidator.php": "d23d6a87a8e0bf9480281083f36575989112e80064fb3ef6c46e8e26e0abaaa6",
+    "backend/src/DataService.php": "37d4a2752e12528cec1202570ac8c4d05508b134819607a8c23dfe2d5db1c5ac",
+    "backend/src/ArenaService.php": "5076d6095607e652ee481b9dce772658996ee63ddea49a092414e01993f59392",
+    "backend/src/ArenaEvidence.php": "ea182239afb2420f6ae42f83b0ff6ac25fe4ce3fa7f2fc1d786bdf6dfc2e72af"
+  },
+  "constructorFindings": [
+    "SessionValidator has no constructor; its class load declares methods/constants and empty per-instance cache defaults.",
+    "DataService, ArenaService and ArenaEvidence constructors only promote typed properties; no SQL, receipt capture, session or lock operation occurs in these current constructors."
+  ],
+  "consumerFindings": [
+    "ArenaService uses validator/data only when constructing ArenaEvidence in the submit branch.",
+    "ArenaEvidence always needs a validator for candidate and authoritative replay; DataService is consumed only by an unquarantined finish commit.",
+    "All other non-Arena consumers in index.php must retain the current validator/data path, including public student routes and request-receipt capture for sessions/social duel-submit."
+  ],
+  "requiredPreservedOrder": [
+    "Session/extensions/database/auth setup",
+    "API rate/auth classification",
+    "CSRF then content-type/body-size/JSON decoding",
+    "Owner check",
+    "Arena code validation",
+    "One server receipt before candidate validation and locks",
+    "Candidate validation/preflight",
+    "Account/room/member locks and authoritative replay",
+    "Member update and eligible finish persistence in the same transaction"
+  ],
+  "requiredGuards": [
+    "Explicit nullable typed constructor parameters/properties where omitted; no passing null to current nonnullable signatures.",
+    "Fail closed before a validator or persistence dependency is consumed; never use nullsafe calls to silently omit replay or commit.",
+    "Strict finish===true allocation decision; malformed nonboolean finish retains the existing arena-candidate422 path.",
+    "One validator instance reused for prepare and locked replay, preserving request-local cache lifetime.",
+    "Do not move server receipt capture into constructors or factories or alter locked-error precedence.",
+    "Retain non-Arena service allocation behavior and preserve all DataService captureRequestReceipt consumers."
+  ],
+  "risks": [
+    "Skipping an unused class load changes file-load/parse failure precedence for a broken deployment; normal candidate evaluation must assume the independently checked complete release artifact.",
+    "Nullable signatures alone are not proof that PHP avoids autoloading on the fast branch. A controlled class-loader count/class_exists(name,false) contract should establish this without loading private configuration.",
+    "A client finish flag can choose which dependency is allocated, but it cannot grant a finish or bypass boolean/canonical/clock/member validation."
+  ],
+  "primaryReferences": [
+    {
+      "title": "PHP type declarations and nullable types",
+      "url": "https://www.php.net/manual/en/language.types.declarations.php"
+    },
+    {
+      "title": "PHP autoloading classes",
+      "url": "https://www.php.net/manual/en/language.oop5.autoload.php"
+    }
+  ],
+  "phpAutoloadTimingRuntimeClaimed": false,
+  "candidatePatchOrFinalApprovalClaimed": false,
+  "productOrTestOrHelperEdits": false,
+  "testsOrPhpOrServicesOrBrowsersStarted": 0
+}

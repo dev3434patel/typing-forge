@@ -1,0 +1,45 @@
+{
+  "declaredAt": "2026-11-09T17:58:19.365Z",
+  "commands": [
+    {
+      "id": "production-audit",
+      "command": "npm audit --omit=dev --json",
+      "stdout": "audit/2026-11-09/source36-release-checks-production-audit.json",
+      "stderr": "audit/2026-11-09/source36-release-checks-production-audit.stderr.log"
+    },
+    {
+      "id": "bundle",
+      "command": "npm run check:bundle",
+      "stdout": "audit/2026-11-09/source36-release-checks-bundle.log",
+      "stderr": "audit/2026-11-09/source36-release-checks-bundle.stderr.log"
+    }
+  ],
+  "before": {
+    "source": {
+      "sourceFile": "audit/2026-11-05-followup/final36-source.json",
+      "expectedBuild": "d89f84d74519bf2bbae0",
+      "compared": 506,
+      "mismatches": []
+    },
+    "build": {
+      "version": "d89f84d74519bf2bbae0",
+      "publicFiles": 133,
+      "bytes": 2964860
+    },
+    "dependencies": 73,
+    "dependencySha256": "525e91c1a220c8e978d65241c7c2acfe76f53efec000817ab8a28416a4840f37"
+  },
+  "inputHashes": {
+    "D:\\extra\\typing_updated\\typing-forge\\audit\\2026-11-09\\run-source36-release-checks.mjs": "fd30950333cefc1879ecca9fd86b182b3344fad7ed33f1ba523fa6f0ebaf90a0",
+    "audit/2026-11-05-followup/final36-source.json": "15199ea3b3b18e144584f99f225849f4a6dd8bc5f94a0b40bb103fe27134a5d2",
+    "package.json": "92801edd253f07c11c67c75177aab9f8f77583470eaf1d2986184196e2220984",
+    "package-lock.json": "6b01d934527c99a523390d4f55b2d56ed00fff34ce189cb07fc068c57ce28ace",
+    "scripts/check-bundle.mjs": "b2ae515c9c4a80ec1b94a939b7bf0275f3b609cd35f8f3e5a96c3d7d4ecf6bab"
+  },
+  "deadlineMs": 180000,
+  "automaticRetries": 0,
+  "sequential": true,
+  "resultsFiltered": false,
+  "noPerformanceScoreClaim": true,
+  "defaultArtifactRebuilt": false
+}

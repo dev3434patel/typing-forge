@@ -1,0 +1,169 @@
+{
+  "status": "PASS-SCOPED-REPRODUCED-INPUT-RACE-FIX",
+  "recordedAt": "2026-11-04T18:40:56.025Z",
+  "scope": "Profile-only frontend candidate6e456d1e2ceaa9a6d71f, not a final combined release checkpoint or a new performance claim.",
+  "before": {
+    "result": "audit/2026-11-04-followup/webkit-profile-reset-probe-result.json",
+    "passed": 7,
+    "failed": 1,
+    "observedFailure": "WebKit native fill emitted DELETE and returned, then the same connected/focused field became empty before reset was clicked."
+  },
+  "productionFix": {
+    "file": "src/pages/Profile.tsx",
+    "sha256": "596a7031ddf98ccb99691b2a46e9457bc7e11f301ea5bdbff5f7636714d88fb7",
+    "change": "Initial/owner confirmation reset executes synchronously in layout phase before paint; passive message clearing and explicit reset action remain unchanged.",
+    "ownerSafety": "Every actual owner transition still clears; no reference-skip or stored owner-draft cache can revive A after A→B→A.",
+    "ssrGuardPresent": true,
+    "ssrRuntimeExecuted": false
+  },
+  "after": {
+    "result": "audit/2026-11-05-followup/webkit-profile-reset-probe-v3-result.json",
+    "passed": 8,
+    "failed": 0,
+    "skipped": 0,
+    "retries": 0,
+    "sameNativeActionMethodAndBudgets": true,
+    "nativeDeleteInput": {
+      "nodeElapsedMs": 24450.594,
+      "kind": "browser",
+      "sequence": 19,
+      "elapsedMs": 1220,
+      "type": "input",
+      "value": "DELETE",
+      "node": 1,
+      "connected": true,
+      "focused": true,
+      "reset": false,
+      "complete": false,
+      "saved": 3
+    },
+    "beforeResetObservations": [
+      {
+        "nodeElapsedMs": 24497.272,
+        "kind": "browser",
+        "sequence": 20,
+        "elapsedMs": 1233,
+        "type": "frame",
+        "value": "DELETE",
+        "node": 1,
+        "connected": true,
+        "focused": true,
+        "reset": false,
+        "complete": false,
+        "saved": 3
+      },
+      {
+        "nodeElapsedMs": 24497.909,
+        "kind": "browser",
+        "sequence": 21,
+        "elapsedMs": 1248,
+        "type": "frame",
+        "value": "DELETE",
+        "node": 1,
+        "connected": true,
+        "focused": true,
+        "reset": false,
+        "complete": false,
+        "saved": 3
+      },
+      {
+        "nodeElapsedMs": 24498.44,
+        "kind": "browser",
+        "sequence": 22,
+        "elapsedMs": 1264,
+        "type": "frame",
+        "value": "DELETE",
+        "node": 1,
+        "connected": true,
+        "focused": true,
+        "reset": false,
+        "complete": false,
+        "saved": 3
+      },
+      {
+        "nodeElapsedMs": 24510.519,
+        "kind": "browser",
+        "sequence": 23,
+        "elapsedMs": 1280,
+        "type": "frame",
+        "value": "DELETE",
+        "node": 1,
+        "connected": true,
+        "focused": true,
+        "reset": false,
+        "complete": false,
+        "saved": 3
+      }
+    ],
+    "noObservedPrematureErasure": true,
+    "durableResetCompleted": {
+      "nodeElapsedMs": 25185.964,
+      "kind": "action",
+      "label": "durable-public-completion",
+      "phase": "end"
+    }
+  },
+  "permanentRegressions": {
+    "result": "audit/2026-11-05-followup/profile-readiness-regressions-result.json",
+    "actualCases": 8,
+    "passed": 8,
+    "failed": 0,
+    "skipped": 0,
+    "retries": 0,
+    "engines": [
+      "chromium",
+      "edge",
+      "firefox",
+      "webkit"
+    ],
+    "completeFile": "e2e/profile-confirmation-readiness.spec.ts",
+    "sourceAnd73InputHashesUnchanged": true,
+    "apiOwnedByFixtures": true,
+    "includesAfterPaintRetentionAndActualOwnerABA": true
+  },
+  "quality": "All21 protected brand sources and five original emitted scene checks passed for the Profile-only build; scene quality was not reduced. No new Lighthouse/physical-device claim.",
+  "historicalQualification": "The new erasure reproduces the old focused-empty-field/three-session state and exposes a concrete late-clear hazard. Original case1014 had only a global60s timeout, so its precise historical call stack is not retroactively proven. Original failures and7/1 diagnostic remain retained.",
+  "noAdditionalRuntimeOrSourceEditsByAssessment": true,
+  "bindings": [
+    {
+      "file": "audit/2026-11-04-followup/webkit-profile-reset-probe-result.json",
+      "sha256": "4f6944048cd0e4470621e43c92225615060b6c2454c11fb6291cede894e46ac8"
+    },
+    {
+      "file": "audit/2026-11-05-followup/webkit-profile-reset-probe-v3-result.json",
+      "sha256": "6f7089273a077fa64dbc35797c940987b5aa671527b63b8e5d3153f61b40f4ae"
+    },
+    {
+      "file": "audit/2026-11-05-followup/profile-readiness-regressions-result.json",
+      "sha256": "d0582e7d42ce99694d7b76c010df74dd804ba6119016c31c5d83fbea6a2b80e2"
+    },
+    {
+      "file": "audit/2026-11-05-followup/webkit-profile-reset-v3-webkit-course-fill-events.jsonl",
+      "sha256": "4f1a0e893372975094862f2a2bf2df8b4225a506c084f998eb056ed31c0c43c2"
+    },
+    {
+      "file": "audit/2026-11-05-followup/profile-layout-fix-preparation.json",
+      "sha256": "ca0866fe7c0ef98c218194a9c210588e0609103f72468b6abfea42728eba84c5"
+    },
+    {
+      "file": "audit/2026-11-05-followup/profile-only-build-quality.json",
+      "sha256": "1acdfd12f3f1b53d3b91ec5ad29285f514b6e1904dced8f977e7c4f41705e3b8"
+    },
+    {
+      "file": "audit/2026-11-05-followup/profile-readiness-regressions-protocol.json",
+      "sha256": "90ff3010e7c7d9e91f12fae53f33a1c24da63824d80882c07aefdbd18962dedc"
+    },
+    {
+      "file": "audit/2026-11-05-followup/webkit-profile-input-erasure-assessment.json",
+      "sha256": "301cb62d35498ea603614cfb7721e0ac51fc868ab094639a893b33f8fbdd4413"
+    },
+    {
+      "file": "src/pages/Profile.tsx",
+      "sha256": "596a7031ddf98ccb99691b2a46e9457bc7e11f301ea5bdbff5f7636714d88fb7"
+    },
+    {
+      "file": "e2e/profile-confirmation-readiness.spec.ts",
+      "sha256": "7953fdc72ee12745163ece8f0091e35de4b2a9aae1711db8cb50e1e3d3d3741a"
+    }
+  ]
+}

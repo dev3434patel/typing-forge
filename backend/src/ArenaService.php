@@ -8,9 +8,13 @@ use PDOException;
 final class ArenaService
 {
     private const WORDS=['clear','river','steady','light','calm','signal','practice','bright','focus','slow','learn','flow','cloud','quiet','world','voice','space','craft','field','glow','ocean','warm','north','path'];
-    public function __construct(private PDO $db,private SessionValidator $validator,private DataService $data){}
+    private bool $memberCacheActive=false;
+    private ?string $memberCacheRoom=null;
+    private array $memberCacheRows=[];
+    public function __construct(private PDO $db,private ?SessionValidator $validator,private ?DataService $data){}
     public function handle(string $action,array $body,array $user): array
     {
+        $this->memberCacheActive=false;$this->clearMemberCache();
         Security::owner($body,$user['id'],false);
         $evidence=null;$prepared=null;$receivedAt=null;
         if($action==='submit'){
@@ -23,6 +27,7 @@ final class ArenaService
             $prepared=$evidence->prepare($body,$user);
         }
         $this->db->beginTransaction();
+        $this->memberCacheActive=true;
         try{
             $lock=$this->db->prepare('SELECT id FROM users WHERE id=? FOR UPDATE');$lock->execute([$user['id']]);if(!$lock->fetchColumn())throw new ApiException(401,'arena-auth','Sign in again.');
             $now=$receivedAt??$this->now();
@@ -36,7 +41,7 @@ final class ArenaService
                     $member=$this->member($room,$user['id']);
                     if($action==='get')$this->heartbeat($room,$member,$now);
                     elseif($action==='ready')$this->ready($room,$member,$body,$now);
-                    elseif($action==='submit'){$evidence->submit($room,$member,$prepared,$user,$now);$this->bump($room['id']);}
+                    elseif($action==='submit'){$evidence->submit($room,$member,$prepared,$user,$now);$this->clearMemberCache();$this->bump($room['id']);}
                     elseif($action==='leave')$this->leave($room,$member,$now);
                     elseif($action==='rematch')$this->rematch($room,$member,$now);
                     elseif($action==='appeal')$this->appeal($room,$member,$now);
@@ -46,6 +51,7 @@ final class ArenaService
             }
             $result=['arena'=>$this->serialize($room,$user['id'],$action==='spectate',$this->now())];$this->db->commit();return $result;
         }catch(\Throwable $error){if($this->db->inTransaction())$this->db->rollBack();throw $error;}
+        finally{$this->memberCacheActive=false;$this->clearMemberCache();}
     }
     private function now(): float{return (float)$this->db->query('SELECT UNIX_TIMESTAMP(UTC_TIMESTAMP(3))*1000')->fetchColumn();}
     private function fetch(string $code): array
@@ -54,8 +60,14 @@ final class ArenaService
     }
     private function members(array $room): array
     {
-        $q=$this->db->prepare('SELECT * FROM arena_members WHERE arena_id=? ORDER BY slot FOR UPDATE');$q->execute([$room['id']]);return $q->fetchAll();
+        $cacheable=$this->memberCacheActive&&$this->db->inTransaction();
+        if($cacheable&&$this->memberCacheRoom===$room['id'])return $this->memberCacheRows;
+        $this->clearMemberCache();
+        $q=$this->db->prepare('SELECT * FROM arena_members WHERE arena_id=? ORDER BY slot FOR UPDATE');$q->execute([$room['id']]);$rows=$q->fetchAll();
+        if($cacheable){$this->memberCacheRoom=$room['id'];$this->memberCacheRows=$rows;}
+        return $rows;
     }
+    private function clearMemberCache(): void{$this->memberCacheRoom=null;$this->memberCacheRows=[];}
     private function member(array $room,string $owner): array
     {
         foreach($this->members($room) as $member)if($member['user_id']===$owner)return $member;
@@ -91,13 +103,13 @@ final class ArenaService
     }
     private function insertMember(string $roomId,string $owner,int $slot,float $now): void
     {
-        $q=$this->db->prepare('INSERT INTO arena_members(arena_id,user_id,slot,last_seen_at) VALUES(?,?,?,?)');$q->execute([$roomId,$owner,$slot,Database::timestamp($now)]);$this->bump($roomId);
+        $q=$this->db->prepare('INSERT INTO arena_members(arena_id,user_id,slot,last_seen_at) VALUES(?,?,?,?)');$q->execute([$roomId,$owner,$slot,Database::timestamp($now)]);$this->clearMemberCache();$this->bump($roomId);
     }
     private function ready(array $room,array $member,array $body,float $now): void
     {
         if($room['status']!=='waiting')throw new ApiException(409,'arena-not-waiting','Readiness is locked after the countdown starts.');
         if(!is_bool($body['ready']??null))throw new ApiException(422,'arena-ready','Ready must be a boolean.');
-        $q=$this->db->prepare('UPDATE arena_members SET ready=?,last_seen_at=? WHERE arena_id=? AND user_id=?');$q->execute([(int)$body['ready'],Database::timestamp($now),$room['id'],$member['user_id']]);
+        $q=$this->db->prepare('UPDATE arena_members SET ready=?,last_seen_at=? WHERE arena_id=? AND user_id=?');$q->execute([(int)$body['ready'],Database::timestamp($now),$room['id'],$member['user_id']]);$this->clearMemberCache();
         $this->startWhenReady($room,$now);
         $this->bump($room['id']);
     }
@@ -109,20 +121,20 @@ final class ArenaService
     }
     private function heartbeat(array $room,array $member,float $now): void
     {
-        if(in_array($room['status'],['waiting','countdown','active'],true)&&!in_array($member['status'],['forfeit','quarantined'],true)){$q=$this->db->prepare('UPDATE arena_members SET last_seen_at=? WHERE arena_id=? AND user_id=?');$q->execute([Database::timestamp($now),$room['id'],$member['user_id']]);}
+        if(in_array($room['status'],['waiting','countdown','active'],true)&&!in_array($member['status'],['forfeit','quarantined'],true)){$q=$this->db->prepare('UPDATE arena_members SET last_seen_at=? WHERE arena_id=? AND user_id=?');$q->execute([Database::timestamp($now),$room['id'],$member['user_id']]);$this->clearMemberCache();}
     }
     private function leave(array $room,array $member,float $now): void
     {
         if($room['status']==='waiting'){
             if($room['host_id']===$member['user_id']){$q=$this->db->prepare("UPDATE arena_rooms SET status='cancelled',ended_at=? WHERE id=?");$q->execute([Database::timestamp($now),$room['id']]);}
-            else{$q=$this->db->prepare('DELETE FROM arena_members WHERE arena_id=? AND user_id=?');$q->execute([$room['id'],$member['user_id']]);}
+            else{$q=$this->db->prepare('DELETE FROM arena_members WHERE arena_id=? AND user_id=?');$q->execute([$room['id'],$member['user_id']]);$this->clearMemberCache();}
         }elseif(in_array($room['status'],['countdown','active'],true)&&!in_array($member['status'],['finished','quarantined','forfeit'],true))$this->forfeit($room,$member,$now);
         $this->bump($room['id']);
     }
     private function forfeit(array $room,array $member,float $at): void
     {
         $elapsed=max(0,min((int)$room['duration_seconds']*1000,$at-(ArenaRules::milliseconds($room['starts_at'])??$at)));
-        $q=$this->db->prepare("UPDATE arena_members SET status='forfeit',elapsed_ms=?,wpm=?,finished_at=? WHERE arena_id=? AND user_id=?");$q->execute([$elapsed,$elapsed>0?(int)$member['credited_units']*12000/$elapsed:null,Database::timestamp($at),$room['id'],$member['user_id']]);
+        $q=$this->db->prepare("UPDATE arena_members SET status='forfeit',elapsed_ms=?,wpm=?,finished_at=? WHERE arena_id=? AND user_id=?");$q->execute([$elapsed,$elapsed>0?(int)$member['credited_units']*12000/$elapsed:null,Database::timestamp($at),$room['id'],$member['user_id']]);$this->clearMemberCache();
     }
     private function settle(array $room,float $now): array
     {
@@ -134,15 +146,15 @@ final class ArenaService
                 // The caller already owns its account, the room and member-row
                 // locks. Never lock another account while holding this room.
                 $q=$this->db->prepare("DELETE FROM arena_members WHERE arena_id=? AND user_id IN(".implode(',',array_fill(0,count($liveness['remove']),'?')).") AND status='joined' AND sequence_count=0 AND credited_units=0 AND elapsed_ms=0 AND client_session_id IS NULL AND events_json IS NULL AND evidence_json IS NULL AND metrics_json IS NULL AND event_hash IS NULL AND finished_at IS NULL");
-                $q->execute([$room['id'],...$liveness['remove']]);$changed=$q->rowCount()>0;
+                $q->execute([$room['id'],...$liveness['remove']]);$this->clearMemberCache();$changed=$q->rowCount()>0;
                 if($changed&&$this->startWhenReady($room,$now)){$room=$this->fetch($room['room_code']);$start=ArenaRules::milliseconds($room['starts_at']);$deadline=ArenaRules::milliseconds($room['deadline_at']);}
             }
         }
-        if($room['status']==='countdown'&&$now>=$start){$q=$this->db->prepare("UPDATE arena_rooms SET status='active' WHERE id=?");$q->execute([$room['id']]);$q=$this->db->prepare("UPDATE arena_members SET status='racing' WHERE arena_id=? AND status='joined'");$q->execute([$room['id']]);$room['status']='active';$changed=true;}
+        if($room['status']==='countdown'&&$now>=$start){$q=$this->db->prepare("UPDATE arena_rooms SET status='active' WHERE id=?");$q->execute([$room['id']]);$q=$this->db->prepare("UPDATE arena_members SET status='racing' WHERE arena_id=? AND status='joined'");$q->execute([$room['id']]);$this->clearMemberCache();$room['status']='active';$changed=true;}
         if($room['status']==='active'){
             $members=$this->members($room);$active=0;
             foreach($members as $member)if($member['status']==='racing'){
-                if($now>=$deadline+ArenaRules::FINISH_GRACE_MS){$duration=(int)$room['duration_seconds']*1000;$q=$this->db->prepare("UPDATE arena_members SET status='finished',elapsed_ms=?,wpm=?,finished_at=? WHERE arena_id=? AND user_id=?");$q->execute([$duration,(int)$member['credited_units']*12000/$duration,Database::timestamp($deadline),$room['id'],$member['user_id']]);$changed=true;}
+                if($now>=$deadline+ArenaRules::FINISH_GRACE_MS){$duration=(int)$room['duration_seconds']*1000;$q=$this->db->prepare("UPDATE arena_members SET status='finished',elapsed_ms=?,wpm=?,finished_at=? WHERE arena_id=? AND user_id=?");$q->execute([$duration,(int)$member['credited_units']*12000/$duration,Database::timestamp($deadline),$room['id'],$member['user_id']]);$this->clearMemberCache();$changed=true;}
                 elseif($now<$deadline&&$now-ArenaRules::milliseconds($member['last_seen_at'])>ArenaRules::RECONNECT_MS){$this->forfeit($room,$member,ArenaRules::milliseconds($member['last_seen_at'])+ArenaRules::RECONNECT_MS);$changed=true;}
                 else $active++;
             }
@@ -160,7 +172,7 @@ final class ArenaService
     private function rematch(array $room,array $member,float $now): void
     {
         if(!in_array($room['status'],['completed','cancelled'],true))throw new ApiException(409,'arena-rematch','The current arena must end before rematch voting.');
-        $q=$this->db->prepare('UPDATE arena_members SET rematch_vote=1 WHERE arena_id=? AND user_id=?');$q->execute([$room['id'],$member['user_id']]);$members=$this->members($room);$all=count($members)>=2;foreach($members as $value)if(!(bool)$value['rematch_vote'])$all=false;
+        $q=$this->db->prepare('UPDATE arena_members SET rematch_vote=1 WHERE arena_id=? AND user_id=?');$q->execute([$room['id'],$member['user_id']]);$this->clearMemberCache();$members=$this->members($room);$all=count($members)>=2;foreach($members as $value)if(!(bool)$value['rematch_vote'])$all=false;
         $q=$this->db->prepare('SELECT id FROM arena_rooms WHERE rematch_of=?');$q->execute([$room['id']]);
         if($all&&!$q->fetchColumn()){$new=$this->create($room['host_id'],(int)$room['duration_seconds'],$now,false,$room['id']);foreach($members as $value)if($value['user_id']!==$room['host_id'])$this->join($new,$value['user_id'],$now);}
         $this->bump($room['id']);
@@ -168,7 +180,7 @@ final class ArenaService
     private function appeal(array $room,array $member,float $now): void
     {
         if($member['status']!=='quarantined')throw new ApiException(409,'arena-appeal','Only a quarantined result can request review.');
-        $q=$this->db->prepare('UPDATE arena_members SET appeal_requested_at=COALESCE(appeal_requested_at,?) WHERE arena_id=? AND user_id=?');$q->execute([Database::timestamp($now),$room['id'],$member['user_id']]);$this->bump($room['id']);
+        $q=$this->db->prepare('UPDATE arena_members SET appeal_requested_at=COALESCE(appeal_requested_at,?) WHERE arena_id=? AND user_id=?');$q->execute([Database::timestamp($now),$room['id'],$member['user_id']]);$this->clearMemberCache();$this->bump($room['id']);
     }
     private function serialize(array $room,string $owner,bool $spectator,float $now): array
     {

@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import { readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { arenaMemberCacheCandidate } from './prepare-arena-member-cache.mjs';
+const directory='audit/2026-11-04-capacity-followup';
+const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
+const original=await readFile('backend/src/ArenaService.php');
+const result=arenaMemberCacheCandidate(original);
+assert.equal(sha(await readFile(`${directory}/ArenaServiceCachedCandidate.php`)),result.candidateSha256);
+const contractFile=`${directory}/arena-member-cache-contract.php`;
+const receipt={preparedAt:new Date().toISOString(),status:'AUDIT-ONLY-CACHE-PREPARED-NOT-EXECUTED',baselineFile:'backend/src/ArenaService.php',baselineSha256:sha(original),candidateFile:`${directory}/ArenaServiceCachedCandidate.php`,candidateSha256:result.candidateSha256,contractFile,contractSha256:sha(await readFile(contractFile)),generatorSha256:sha(await readFile(`${directory}/prepare-arena-member-cache.mjs`)),exactReverse:result.exactReverse,replacements:result.replacements,localWriteInvalidations:result.localWriteInvalidations,externalSubmitInvalidations:result.externalSubmitInvalidations,scope:'At most one full locked room-member snapshot during one handle-owned transaction only; first FOR UPDATE, independent authoritative replay/clock/grace/final persistence unchanged. No cross-request/result/clock cache.',invalidationPolicy:'Clear entry/finally, room switch, every own member mutation, and after ArenaEvidence.submit; reuse additionally requires active handle and PDO inTransaction.',limitations:['Physical lock isolation is not proven by PDO mocks.','An ordered instrumented HTTP pair cannot replace independent final ordinary full/wire acceptance.','Performance gain is not yet measured.'],productionEdited:false,servicesStarted:0};
+const bytes=JSON.stringify(receipt,null,2)+'\n',file=`${directory}/arena-member-cache-preparation.json`;
+await writeFile(file,bytes,{flag:'wx'});
+console.log(JSON.stringify({file,sha256:sha(bytes),candidateSha256:receipt.candidateSha256,contractSha256:receipt.contractSha256,runtimeExecuted:false}));
